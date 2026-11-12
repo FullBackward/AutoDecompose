@@ -7,7 +7,7 @@ small-scale, controlled scaling study: the model is held fixed and only the
 harness varies, which is the experiment Prove2Me (arXiv 2608.28433) leaves open.
 
 This repository is at the design stage. It holds the research note that
-motivates the work and the three literature surveys behind it; the code layout
+motivates the work and the six literature surveys behind it; the code layout
 is not decided yet.
 
 ## The question
@@ -47,7 +47,9 @@ nearAI_Isabelle harness, imported rather than copied.
   Section 4 proposes a pipeline (plan, blueprint, fill, leaf prover, revise,
   verify) and its cost model; Section 5 lists what would settle the open
   points; Section 6 records the owner's framing and reads Prove2Me's
-  statement-object model against it.
+  statement-object model against it; Section 7 reads large proving projects
+  and other harnesses' decomposition procedures (surveys D-F) against the
+  pipeline and proposes the changes they imply.
 - `docs/research/survey-A-systems-2026-11-10.md`: about 45 LLM theorem-proving
   systems, 2022-2026, with budgets and source URLs.
 - `docs/research/survey-B-practice-2026-11-10.md`: Isabelle and Lean automation
@@ -55,6 +57,17 @@ nearAI_Isabelle harness, imported rather than copied.
 - `docs/research/survey-C-frontier-2026-11-10.md`: IMO 2025-26 results,
   PutnamBench state, authors' accounts of what solved the hardest problems,
   costs, Isabelle-specific work.
+- `docs/research/survey-D-verification-projects-2026-11-11.md`: large
+  verification projects (seL4 and its proof-engineering studies, AutoCorrode,
+  LLM work on verification codebases, CompCert and others) and what they say
+  about decomposition, interfaces, cost and scale.
+- `docs/research/survey-E-mathematics-projects-2026-11-11.md`: large
+  mathematics formalisations, AI-run (Prove2Me, the FLT run, the agent swarm,
+  AutoformBot, Munkres in Isabelle) and human-run (LTE, PFR, the Equational
+  Theories Project, Flyspeck, the AFP).
+- `docs/research/survey-F-decomposition-procedures-2026-11-11.md`: how 33
+  published and six local harnesses decompose, step by step, compared on
+  eleven fields, with 18 candidate rules in their Isabelle form.
 
 The experimental evidence the note cites (pass-1 analysis, rep-1 analysis, the
 three-run comparison table) stays in `nearAI_Isabelle/docs/`.

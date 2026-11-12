@@ -5,8 +5,10 @@ Moved to AutoDecompose on 2026-11-11 (it is the starting point of that repo); th
 pass-1 and rep-1 analyses it cites stay in nearAI_Isabelle.
 Evidence: pass 1 (`nearAI_Isabelle/docs/pass1-analysis-2026-11-10.md`) and three
 literature surveys commissioned for this note, kept as appendices in `docs/research/`
-(systems [A], practice [B], frontier results [C]); every borrowed claim below
-carries a bracketed pointer into them, and from there to the primary source.
+(systems [A], practice [B], frontier results [C]), and three more added on
+2026-11-11 for Section 7 (verification projects [D], mathematics projects [E],
+decomposition procedures [F]); every borrowed claim below carries a bracketed
+pointer into them, and from there to the primary source.
 
 My conclusions, stated first and argued below. (i) A longer fixed sledgehammer
 timeout will not make the forced arm solve more; this is more probable than not
@@ -20,7 +22,9 @@ only a hammer) on each unfilled leaf in a fresh context, and a disproof check on
 every new statement. The pipeline I propose in Section 4 adds those three, keeps
 the Pool Server as the verifier, and is sized for the six IMO problems first.
 
-Roadmap. Section 6 is an addendum on the owner's framing and Prove2Me. Section 1 fixes terms and what the pass measured. Section 2 answers
+Roadmap. Section 6 is an addendum on the owner's framing and Prove2Me; Section 7,
+a second addendum, reads large proving projects and other harnesses' decomposition
+procedures against the pipeline. Section 1 fixes terms and what the pass measured. Section 2 answers
 question 1a and 1b. Section 3 distils the surveys into the design rules that
 have evidence behind them. Section 4 proposes the pipeline and says what to
 build first; Section 5 lists what would settle the open points. The surveys'
@@ -100,9 +104,9 @@ scratchpad when the server's scratch runs timed out (P2), and to leaves no
 hammer could close (P3, P6). An exemplar fixes none of these.
 
 There is one thing an exemplar might teach that rules do not: *granularity*.
-Aristotle restructures each informal proof into lemmas "each meant to have a
-very short proof" and attributes its failures to lemmas too coarse for search
-[B §C2]; Delta-Prover solved IMO 2019 P1 as 83 subproblems of about four calls
+Aristotle restructures each informal proof into lemmas that "individually have
+very short proofs" and, on failure, asks whether the proof was broken down into
+"sufficiently granular lemmas" [F §5.1]; Delta-Prover solved IMO 2019 P1 as 83 subproblems of about four calls
 each after 1 024 monolithic attempts failed [A §4.2]. Our forced misses have
 exactly the coarse-leaf signature (P3's late rounds: 0/3, 0/4, 1/9, 1/6). A
 skeleton exemplar of the right grain could move that; I put it at "it might
@@ -137,8 +141,8 @@ follow each rule.
    the repair input whose removal hurts most [B §C1].
 4. **Disproof as a first-class signal.** Goedel-Architect found a false
    sub-lemma on 292 of 672 problems; Seed-Prover 1.5 routes a disproved lemma
-   back to sketch revision; Aristotle's formalisation step caught quantifier
-   errors in its own informal drafts [C §3]. In Isabelle this is `nitpick` and
+   back to sketch revision; Aristotle's formalisation step caught its informal
+   draft confusing strictly, weakly and eventually decreasing [C §3; F §5.1]. In Isabelle this is `nitpick` and
    `quickcheck`, with "potentially spurious" treated as a hint [B §A3].
 5. **A cheap-to-expensive automation ladder, and one hammer call per goal
    shape.** `try0`-class methods in seconds, heuristics at about 10 s, then one
@@ -150,7 +154,8 @@ follow each rule.
    transcript.** Seed-Prover 1.5 found 32 to 64 k-token trajectories net
    negative and re-injects proved lemmas on restart; Numina moved stuck lemmas
    into subagents because "very long contexts degrade instruction-following";
-   h1 measured "context rot" (200-turn contexts drop Putnam100 from 69 to 60);
+   h1 measured "context rot" (raising turns per reflection from 10 to 200
+   drops Putnam100 from 72 to 60 [F §6.3]);
    the minimal agent's self-managed notes gave +7 % at -20 % cost [B §C4; C §4].
    Our plain P2 at 741 k tokens per call and the 1.3 GB P3 transcript are the
    same failure.
@@ -360,6 +365,213 @@ Three consequences for this project, in my opinion.
    automation p, subagent success q, decomposition correctness r, and prover
    time per leaf; their swarm figures give the large-scale end of the curve.
 
+## 7. Addendum (2026-11-11): what large projects and other harnesses say about decomposition
+
+Surveys A to C studied systems that prove one competition problem at a time.
+Two kinds of evidence were missing: projects that proved thousands of
+statements with many workers, where decomposition, interfaces and cost have
+been lived with for years, and the step-by-step procedures by which other
+harnesses split a goal. Three further surveys supply them: large verification
+projects [D] (seL4, AutoCorrode, CompCert, LLM work on verification
+codebases), large mathematics formalisations [E] (Prove2Me and the FLT run on
+it, the 30 000-agent swarm, AutoformBot, Munkres in Isabelle, LTE, PFR, the
+Equational Theories Project, Flyspeck and others), and the decomposition
+procedures of 33 published harnesses and six local ones [F]. Section 7.1 says
+what the projects teach, 7.2 what the procedures teach, 7.3 what I would
+change in Section 4, 7.4 what stays open, and 7.5 records corrections.
+
+My conclusions, stated first. (i) The evidence supports rule-based
+decomposition in a narrower form than the README's: *rules should produce
+most child statements from the structure of the parent, and the model should
+supply only the few statements that carry the idea.* Every large project that
+worked divided the labour this way, and every measured gain from
+decomposition in a harness came from a mechanical or template move, not from
+free generation. (ii) Decomposition fails on statements, not proofs, so the
+statement check of Stage 1 should become the centre of the pipeline and the
+source of the correctness measurement r.
+
+### 7.1 What the large projects teach
+
+1. *At scale, most lemma statements are produced by rule.* In 2012 the seL4
+   proofs held 22 000 lemmas stated by people and 95 000 once tool-generated
+   ones were counted; `crunch` states one invariant-preservation lemma per
+   callee and closes it with `wp` [D §1.1, §1.3]. AutoCorrode derives one
+   weakest-precondition obligation per function contract and uses callee
+   contracts as lemmas [D §2.2]; CompCert and CakeML fix one statement shape
+   per compiler pass [D §4]. The analogue for a mathematical problem is the
+   definitional and inductive structure of its statement: cases, induction
+   steps, the unfolding of each defined constant.
+2. *The expensive statement is the invariant, and it is fixed before the work
+   fans out.* Invariants took 80 % of the effort of seL4's first refinement,
+   and design-level work divided among people only "once the formulation of
+   invariants had stabilized" [D §1.2, §1.6]. For a competition problem the
+   invariant is the strengthened induction hypothesis or the key auxiliary
+   statement: the part no rule can produce, and the part to check hardest.
+3. *The unit of work has converged on one immutable statement, posted before
+   its proof, with its imports explicit.* Prove2Me, AutoformBot, the swarm and
+   the human blueprints all arrived at it [E §0, §3]. Anthropic's FLT run is
+   the clearest case: its first attempts "quickly lost track of the project's
+   state", and it succeeded after moving to Prove2Me's statement graph
+   [E §1.2]. Immutability has a measured price there, since about two in five
+   statements in the proof files repeat one made elsewhere [E §1.2];
+   statements should be deduplicated when they are posted.
+4. *Projects fail on statements, above all on definitions.* Of the 62
+   definitions an agent made for the Grothendieck vanishing formalisation, its
+   expert reviewers found one done correctly; the Isabelle Munkres has a
+   topology predicate that is too weak; the swarm got one textbook definition
+   wrong twice [E §1.3, §1.7, §1.8]. Extraction also creates false statements:
+   23 of 241 seL4 lemmas that an LLM search failed to prove were false because
+   the benchmark had dropped their assumptions when slicing them out of their
+   files [D §1.9]. The projects that caught such errors early did it by
+   computation, not argument (FLT's peer agents "caught several false
+   statements early"; test and API statements are 23.8 % of Formal
+   Conjectures) [E §1.2, §1.9].
+5. *Leaves are short, and closing the short ones is easy to overvalue.* 41.5 %
+   of 29 125 seL4 lemmas are one step and 86 % at most ten [D §1.4].
+   Sledgehammer alone closes 40.3 % of seL4 theorems but 15.0 % of proof
+   lines, and the best LLM system's 77.6 % of theorems is 36.2 % of lines
+   [D §1.9, §5]. The bulk is closed by methods tied to the decomposition, not
+   by the general hammer: about 21 800 `wp`-family calls in l4v, and
+   AutoCorrode's Crush [D §2.3, §5].
+6. *Statement size predicts proof size.* Matichuk et al. found proof size
+   quadratic in the size of the formal statement, and Staples et al. found
+   effort linear in proof size [D §1.5]. This gives a prediction we can test:
+   tokens per closed leaf should grow roughly with the square of the leaf's
+   statement size.
+7. *Parallelism is bounded by the stability of interfaces, and checking is a
+   cost.* Up to four people worked on one seL4 proof "without much conflict";
+   more than five or six would have needed "a more serious effort in planning
+   and synchronisation" [D §1.6]. The swarm spent about half its input tokens
+   on agents later aborted, and its single merge queue choked [E §1.3]. One
+   pass over OpenAI's AI-written Lean library took 31.5 hours on 24 cores
+   [E §1.6].
+
+### 7.2 What the other harnesses' procedures teach
+
+[F] records the same eleven fields for every harness (trigger, proposer,
+representation, granularity control, statement checks, sufficiency check,
+limits, failure routing, reuse, parallelism, ablation). Six findings bear on
+this project.
+
+1. *Moves are of three kinds, and only two have evidence.* A mechanical move
+   is computed from the proof text or the failure site (MechMath's Sorrifier,
+   APOLLO, ProofAug); a template move is chosen by the model in a fixed shape
+   whose obligations are computed (Delta-Prover's DSL, Minilang's ten
+   operations, Goedel-Architect's blueprint, Hilbert's `have` sketch); a free
+   move is whatever the model writes, typically an informal proof cut into
+   lemmas. Every ablation of decomposition that [F] found measures a move of
+   the first two kinds; the free moves have the weakest evidence and the
+   clearest reports of waste [F §0, §8].
+2. *The mathematical templates are everywhere and nowhere tested.* Case split,
+   induction, both directions of an iff, a named witness and a calculational
+   chain appear in every system's proofs, but no harness ablates them as moves.
+   Minilang alone makes them its whole vocabulary, and it is measured against
+   Isar, not against free decomposition [F §8]. This is the gap a rule-based
+   decomposer can fill.
+3. *Truth is checked late; sufficiency is checked cheaply.* Hilbert,
+   Goedel-Architect, MerLean and Seed-Prover 1.5 test a lemma's truth only
+   after the prover fails on it; the only formal checks before proof are
+   Goedel-Code-Prover's quickcheck factor and Kimina's negation filter.
+   Sufficiency, wherever it is checked, is checked by compiling the parent with
+   the children as placeholders [F §9].
+4. *Granularity is set by words.* "Individually have very short proofs"
+   (Aristotle), "(nearly) trivial once its parent nodes are taken as given"
+   (Goedel-Architect); the only measurable controls are Goedel-Code-Prover's
+   operator-footprint reduction and Seed-Prover 1.5's reward [F §0].
+5. *Shallow beats deep, global replanning beats recursion, and diagnosis has
+   two labels.* Hilbert reaches 98.36 % at depth 2 and 98.7 % at depth 3;
+   every harness that names a cause of failure uses "statement wrong" and "too
+   hard or too coarse" [F §0, §5.2, §5.4].
+6. *The usual control is not a null control.* h1's system prompt tells the
+   model to "break it into lemmas, sketch the structure with sorry ... prove
+   the pieces"; the humanize harness, and its Isabelle port, enforce no proof
+   decomposition, and the port's Putnam 2023 B5 solve came from the model
+   splitting the proof itself [F §1.1, §1.2, §6.3]. A comparison with either
+   is a comparison of *suggested* with *enforced* decomposition.
+
+### 7.3 Changes to Section 4
+
+I would make five changes, each a consequence of the points above.
+
+(i) *Split Stage 0 by who writes what.* The model writes the plan and the key
+statements (the invariant of 7.1, point 2). Every other statement is produced
+by rules: the templates of [F §10] rules 5-9 (a case split with its
+exhaustiveness as a child, induction with its `arbitrary:` set as a parameter,
+the two directions of an iff, `suffices` and named witnesses, one child per
+link of a calculational chain) and the mechanical moves of rules 2-3 (sorrify
+the innermost failing block; retry automation on the coarser goal before
+asking the model). This also removes an inconsistency: Section 4 as written
+has Stages 0 and 1 generated freely, while the README promises rule-driven
+decomposition.
+
+(ii) *A statement gate, in fixed order, before any proof effort:* parse and
+type-check in the parent's context; `quickcheck`, then `nitpick` (a genuine
+counterexample rejects, "potentially spurious" is logged only); extraction
+fidelity (the hole the child came from closes by `using child by blast`);
+sufficiency (the parent builds with every child `sorry`); deduplication by
+canonical form and `solve_direct` against the problem's proved lemmas. The
+gate's log is the measurement r, reported by cause: ill-typed, refuted,
+unfaithful extraction, insufficient, duplicate, and, after the run, unused.
+Before a proof exists "true" can only mean "not refuted", and r should say so.
+
+(iii) *Each template carries its closing method, and rules define nothing.* An
+induction template emits, say, `induct ...; auto simp: ...` for its routine
+cases, and only the residue goes to the filler and the students [D §5 rule 7].
+A rule may not introduce a `definition`; a new definition from any source is
+flagged for audit [E §4 rule 5].
+
+(iv) *Statement objects, dispatched from the graph.* One theory per lemma,
+immutable once it passes the gate; a correction is a new theory. Students are
+dispatched from the dependency graph, and only over frozen statements; Stage 4
+replans globally and keeps proved nodes. The depth cap of three stands, though
+Hilbert's curve suggests two would lose little.
+
+(v) *Weigh what is closed, and time the checking.* Report tokens per closed
+leaf beside the leaf's statement size, so that a harness closing only short
+leaves does not look efficient [D §5 rule 13], and test the prediction of 7.1,
+point 6. Log prover time per leaf beside tokens, and plot leaves closed against
+cumulative tokens rather than quote one cost [E §4 rule 13].
+
+These changes define the experiment that, in my opinion, the literature lacks:
+with the model, the students and the filler fixed, compare three decomposition
+policies, namely suggested (an h1-style prompt), free (an informal plan cut
+into lemmas, as in Goedel-Architect) and rule-based (as above). The only
+harness ablation at a fixed model I know of is AutoformBot's, 77 % for the full
+system against 51 to 64 % with one component removed, and it does not vary the
+decomposition policy [E §1.4].
+
+### 7.4 What the surveys could not settle
+
+- *The cost of a theory per lemma in Isabelle.* No multi-agent Isabelle
+  project exists, and nobody has measured the build overhead of one theory per
+  lemma [E §5]. It decides whether the statement-object model of Section 6 is
+  affordable here, and it can be measured on the Pool Server without a model
+  call: build a parent importing N child theories against the same lemmas in
+  one file, for N from 10 to 200.
+- *Decomposition errors by type.* No harness reports, per generated lemma, how
+  many are false, ill-typed, insufficient or unused [F §9]. The gate of 7.3
+  (ii) produces exactly this table.
+- *Prove2Me's scaling argument.* Its Section 4.1, the case that naive
+  sorry-filling does not scale, contains no measurements [E §1.1, §5]; Section
+  6 above rests on that argument and on the swarm's experience, not on a
+  number.
+- *The value of the templates.* Whether rule-produced children close at a
+  higher rate per token than free ones is untested anywhere [F] could find. I
+  put a gain at "it might well be"; the three-policy comparison of 7.3 would
+  settle it.
+
+### 7.5 Corrections made on 2026-11-11
+
+Survey F found three errors in this note, now corrected in place: Aristotle's
+wording is "individually have very short proofs", not "each meant to have a
+very short proof" (Section 2b); the slip Aristotle's formalisation caught was a
+confusion of strictly, weakly and eventually decreasing (Section 3, rule 4);
+and h1's context-rot figure is 72 to 60 as turns per reflection rise from 10 to
+200, where the note had mixed two ablations into "69 to 60" (Section 3, rule
+7). It found a fourth in survey B: the HybridProver figures 34.8 to 56.1 % come
+from the paper's first version, whose procedure differs from the current one
+[F §2.4]. Surveys A to C are left as written; [F §11] lists the discrepancies.
+
 ## Appendices
 
 - `docs/research/survey-A-systems-2026-11-10.md`: about 45 systems, 2022-2026,
@@ -370,3 +582,14 @@ Three consequences for this project, in my opinion.
 - `docs/research/survey-C-frontier-2026-11-10.md`: IMO 2025-26 results,
   PutnamBench state, the authors' own accounts of what solved the hardest
   problems, costs, Isabelle-specific work; section 6 lists unverified claims.
+- `docs/research/survey-D-verification-projects-2026-11-11.md`: seL4 and its
+  proof-engineering literature, AutoCorrode, LLM work on verification
+  codebases, CompCert and others; 14 lessons in section 5.
+- `docs/research/survey-E-mathematics-projects-2026-11-11.md`: Prove2Me, the
+  FLT run on it, the 30 000-agent swarm, AutoformBot, Gauss, Munkres in
+  Isabelle, and the human projects (LTE, PFR, ETP, Flyspeck, Odd Order, the
+  AFP); a comparison table in section 3, 17 lessons in section 4.
+- `docs/research/survey-F-decomposition-procedures-2026-11-11.md`: the
+  decomposition procedure of 33 published and six local harnesses on eleven
+  common fields; 18 candidate rules with their Isabelle form in section 10;
+  discrepancies with A-C in section 11.
