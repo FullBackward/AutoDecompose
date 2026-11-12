@@ -47,6 +47,18 @@ def check(eid: str, strict: bool) -> list[str]:
     if e["kind"] not in KINDS: errs.append(f"bad kind {e['kind']}")
     if e["status"] not in STATUSES: errs.append(f"bad status {e['status']}")
     if e["move"] not in MOVES: errs.append(f"bad move {e['move']}")
+    sh = e.get("shape")
+    if sh is not None:
+        if not isinstance(sh, dict) or sh.get("scale") not in ("theorem", "tactic"):
+            errs.append("shape.scale must be 'theorem' or 'tactic'")
+        elif sh["scale"] == "theorem":
+            for k in ("direct_lemmas", "depth", "glue_lines", "child_lines"):
+                if k not in sh:
+                    errs.append(f"shape.{k} missing")
+            if not isinstance(sh.get("direct_lemmas"), int) or sh["direct_lemmas"] < 2:
+                errs.append("a theorem-scale entry needs shape.direct_lemmas >= 2")
+            if sum(1 for s in e["sites"] if s.get("role") == "child") < 2:
+                errs.append("a theorem-scale entry needs at least 2 child sites")
     if not re.fullmatch(r"[0-9a-f]{40}", e["source"].get("commit", "")):
         errs.append("source.commit is not a full 40-hex commit hash")
 

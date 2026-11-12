@@ -1,0 +1,101 @@
+{
+  "entry": "markdown-workflow-lean-autoformalization-skills-a0f54ad1",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:34:38Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:34:38Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1837b95b3d5a9fd8d311367603902ad7fe261adf",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:34:45Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "the copied file is a Markdown skill reference (skills/lean-proof-patterns/references/math-to-lean.md), not a Lean source file; no CI compiles a Markdown phrasebook, so there is no build to record",
+      "by": "verifier",
+      "at": "2026-11-12T15:35:14Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "counted on the copied file: the glue path 'A -> Step 1 -> Step 2 -> B' is the single line 47; the parent theorem is line 56; the mandate naming Step 1 and Step 2 is lines 50-51, giving direct_lemmas=2, depth=2, glue_lines=1, child_lines=[1,1] with no child proof bodies shown.",
+      "by": "verifier",
+      "at": "2026-11-12T15:35:18Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "read the copied file lines 60-62: 'Treat auditor phrases such as \"certified under the abstract interface\" or \"conditional certification\" as failures when the user asked for the implication itself.'",
+      "by": "verifier",
+      "at": "2026-11-12T15:35:19Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "read the copied file: line 56 is exactly \"theorem final (hA : A) (hStep1 : Step1) (hStep2 : Step2) : B\" with the two added hypotheses, and line 59 reads \"is not a formalization of A -> B; it is only a conditional scaffold.\"",
+      "by": "verifier",
+      "at": "2026-11-12T15:35:25Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "read the copied file lines 50-51: \"then the Lean development must contain theorems proving Step 1 and Step 2 from the approved concrete inputs before the final theorem proves B.\"",
+      "by": "verifier",
+      "at": "2026-11-12T15:35:26Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "object",
+      "evidence": "Decomposition, children and closing methods match the copied file: the glue 'A -> Step 1 -> Step 2 -> B' (line 47), the mandate to prove Step 1 and Step 2 before final proves B (lines 50-51), and the anti-pattern theorem on line 56 are all quoted verbatim. direct_lemmas=2 and depth=2 are right. But shape.child_lines=[1,1] is not right: the field is 'proof lines of each child shown', and neither child has a statement or proof body in the source (they are schematic, only named in prose); the single glue/path line 47 is not a proof line of either child. This contradicts the entry's own metrics.child_bodies_shown=0. Fix: set child_lines to [0,0] (and reconcile metrics), or annotate the shape to say the children are not shown. Secondary: glue_lines is counted as the glue path line 47, but the field defines it as 'lines of the main proof' (here the parent theorem line 56); the number is coincidentally also 1.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:38:13Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated abstractly (named analytic sections, schematic Step1/Step2 with no proof body), so it applies beyond the one A -> Step1 -> Step2 -> B example. 'When not to use' gives three honest, specific cases grounded in the source: (a) section is genuinely a paper hypothesis, not a step (source's 'when the user asked for the implication itself' implies the converse); (b) deliberate provisional scaffold discharged later; (c) local decomposition, where source line 40 itself says use suffices/helper lemmas. Consequences are honest and specific: hypothesis promotion yields a strictly weaker type undetectable by downstream clients without comparing to the paper, and the sequential Step1->Step2 dependence means the leaves are not parallelisable. It states what makes the leaves good for a bounded prover (README lines 78-85): Step1 is self-contained (A -> Step 1 closes from approved inputs, no sibling) and Step2 has a single explicit input (Step 1 -> Step 2 closes from Step1's conclusion rather than re-proving it). No overclaim beyond the source's implication scope.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:39:14Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1837b95b3d5a9fd8d311367603902ad7fe261adf",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:39:41Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are all consistent and traceable. check_provenance.py passes: the single copied file (6469 bytes, sha256 4b65d248...) is byte-identical at commit 1837b95b3d5a9fd8d311367603902ad7fe261adf. entry.json, README.md, sources/lean-autoformalization-skills/source.json and SOURCE.md all record the same commit. Licence CC-BY-4.0 is recorded identically in entry.json, README, source.json and SOURCE.md, and the copied upstream-LICENSE is the genuine CC-BY-4.0 text. SOURCE.md lists LICENSE copied as upstream-LICENSE and gives repo URL/commit/pinned date. The entry README's Source-and-licence section notes the derivative attribution to cameronfreer/lean4-skills, which the copied file's header (lines 3-7) also retains, so CC-BY attribution is preserved. All site permalinks use the pinned commit with line anchors that match the copied file.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:40:17Z"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "entry": "rocq-per-callee-lemma-vst-ecff0afd",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:52:13Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:52:13Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "17 file(s) byte-identical at c082fe210ec501219abe52b9d0f25541d7c97e59",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:52:24Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "VST CI workflow .github/workflows/coq-action.yml runs 'make vst' (build job) and 'make test/test2/test3/test4/test5' (test job) on default branch 'master'. None builds progs/memmgr: the 'vst' target (Makefile:766) is 'msl veric floyd simpleconc', and the 'memmgr' target (Makefile:1005) that would build progs/memmgr/VSU_malloc.vo is referenced by no CI job.",
+      "by": "verifier",
+      "at": "2026-11-12T15:55:13Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read code/progs/memmgr/VSU_malloc.v 40-59: Definition MF_R_VSU at 40-43, Proof. at 44, 'mkVSU malloc.prog MF_internal_specs.' at 45, twelve 'solve_SF_internal body_X' at 46-57, 'apply create_memmgr_R.' at 58, Qed. at 59; nothing else between Proof. and Qed.",
+      "by": "verifier",
+      "at": "2026-11-12T15:55:17Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "grep -nE '\\b(admit|Admitted|sorry|Axiom|Parameter)\\b' over the copied VSU_malloc.v and the ten verif_*.v files returned no matches (no matches in the whole copied memmgr directory).",
+      "by": "verifier",
+      "at": "2026-11-12T15:55:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "direct_lemmas=13 (12 solve_SF_internal + 1 apply create_memmgr_R at VSU_malloc.v:46-58); glue_lines=16 (VSU_malloc.v:44-59); child_lines verified: create_memmgr_R 20-23=4, body_malloc_large 10-92=83, body_malloc 8-39=32, body_bin2size 7-9=3, body_size2bin 11-23=13, body_free_large 11-23=13, body_fill_bin 11-59=49; depth=3 chain: VSU_malloc.v:52 solve_SF_internal body_list_from_block -> verif_list_from_block.v:291 apply (list_from_inv_remainder ...) -> :82 erewrite list_from_inv_remainder'.",
+      "by": "verifier",
+      "at": "2026-11-12T15:55:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "grep '^(Lemma|Parameter) body_' over the verif files: all 12 body lemmas are 'Lemma body_X : semax_body MF_Vprog MF_Gprog f_X X_spec' naming exactly one function and one funspec; four (body_malloc/body_free/body_pre_fill/body_try_pre_fill) carry an index i as an extra parameter but still name one function and one funspec.",
+      "by": "verifier",
+      "at": "2026-11-12T15:55:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Fetched progs/memmgr/VSU_mmap0.v at c082fe2: Parameter body_mmap0 (line 33) and Parameter body_munmap (36-42) are unproved; MM0_VSU Definition 44-45, Proof 'mkVSU prog (SYS++MM0_internal_specs)' at 47, discharges solve_SF_external body_munmap (49), solve_SF_internal body_mmap0 (58), solve_SF_internal body_placeholder (59), Qed at 60.",
+      "by": "verifier",
+      "at": "2026-11-12T15:55:30Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "17 file(s) byte-identical at c082fe210ec501219abe52b9d0f25541d7c97e59",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:55:55Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent MF_R_VSU (VSU_malloc.v:40-43) is closed at L44-59 by exactly one mkVSU (L45) plus 12 solve_SF_internal body_X (L46-57) and apply create_memmgr_R (L58), nothing else between Proof. and Qed. All 13 children statements match their code lines verbatim and closed_by summaries match (e.g. body_malloc verif_malloc_free.v:8 forward_call bin2size/malloc_large/malloc_small; body_malloc_large rewrite malloc_large_chunk L69; body_free_large sep_apply free_large_chunk L19; body_list_from_block forward_while list_from_inv + mmlist_fold_last/mmlist_app_null/bin2size2bin_id; body_try_pre_fill forward_while + add_resvec_0/add_resvec_plus). The 13 children are exactly the 13 names discharged in the parent proof, no extras/missing. Every body ends in Qed; grep for admit/Admitted/sorry/Axiom/Parameter over VSU_malloc.v + the 10 verif_*.v returns no match. Shape numbers verified: direct_lemmas=13, glue_lines=16 (L44-59), child_lines=[4,83,32,3,13,13,49] match the 7 shown child Lemma..Qed ranges in site order (create_memmgr_R 20-23, body_malloc_large 10-92, body_malloc 8-39, body_bin2size 7-9, body_size2bin 11-23, body_free_large 11-23, body_fill_bin 11-59), and depth=3 chain locators confirmed (VSU_malloc.v:52 -> verif_list_from_block.v:291 apply list_from_inv_remainder -> :82 erewrite list_from_inv_remainder').",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:57:34Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generically: goal_shape covers any VSU/program-correctness theorem over a fixed set of functions each with a funspec, and also_known_as bridges to CompCert per-pass and seL4 crunch, so it is not tied to malloc. avoid_when is honest and specific (whole-program invariant not threadable through a funspec; bodies too interdependent; an uncloseable body), grounded in the real sibling VSU_mmap0.v where body_mmap0/body_munmap are Parameters. Consequences are specific (one obligation per function; a single unproved body fails the whole VSU; weak/strong spec surfaces only as a deep entailment failure, not at the glue). It says explicitly what makes the leaves good for a bounded prover: one self-contained semax_body per function closing by symbolic execution + entailer!, independent leaves communicating only through forward_call on specs, and one line of glue per leaf.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:58:14Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "17 file(s) byte-identical at c082fe210ec501219abe52b9d0f25541d7c97e59",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:58:42Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "provenance check passes: 17 files byte-identical at commit c082fe210ec501219abe52b9d0f25541d7c97e59; commit and licence BSD-2-Clause are identical across entry.json, sources/vst/SOURCE.md and source.json; upstream-LICENSE text is BSD 2-clause and explicitly covers progs/ (VST test suite) where the copied progs/memmgr files live; every files/sites permalink uses the same commit hash; source note carries attribution.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:59:12Z"
+    }
+  ]
+}

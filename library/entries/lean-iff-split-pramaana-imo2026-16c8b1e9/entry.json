@@ -1,0 +1,166 @@
+{
+  "id": "lean-iff-split-pramaana-imo2026-16c8b1e9",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Iff-split of the IMO 2026 P5 answer: admissible f are x ↦ x + c",
+  "intent": "Characterise the functions satisfying the IMO 2026 P5 inequality as exactly the affine family x ↦ x + c with c ≥ 0, by splitting Fact_condition f ↔ f ∈ answer into a forward direction closed from d_nonneg and g_const and a backward direction that is the verification lemma easy_dir.",
+  "move": "iff-split",
+  "also_known_as": [
+    "two inclusions",
+    "bidirectional split",
+    "constructor on ↔"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "pramaana-imo2026",
+    "url": "https://github.com/pramaana-labs/imo2026-lean",
+    "commit": "788fddc53c463d5d40d4680fb9bfd7b0f96f1063",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "IMO2026/Q5/solution.lean",
+      "bytes": 9559,
+      "sha256": "237a170756e64cce61746ca36c0b5ce3ae821f80e85d5d5710ff388470dd0db0",
+      "permalink": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q5/solution.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "IMO2026/Q5/solution.lean",
+      "lines": [
+        223,
+        236
+      ],
+      "role": "parent",
+      "name": "answer_correctness",
+      "excerpt_sha256": "bf94de8f3d1d3df2d72b33668e32e1062750ff789744395421def69b8df41698",
+      "permalink": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q5/solution.lean#L223-L236"
+    },
+    {
+      "path": "IMO2026/Q5/solution.lean",
+      "lines": [
+        78,
+        90
+      ],
+      "role": "child",
+      "name": "d_nonneg",
+      "excerpt_sha256": "299a4fbb3e4a2505c89375bafd9e1e86ede374414fc26442d9e8d714fddd88b0",
+      "permalink": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q5/solution.lean#L78-L90"
+    },
+    {
+      "path": "IMO2026/Q5/solution.lean",
+      "lines": [
+        191,
+        202
+      ],
+      "role": "child",
+      "name": "g_const",
+      "excerpt_sha256": "5c5654bfa5c8b153749a98c6e1fa786a555e25a81112c0c5cdc27ac11b8da695",
+      "permalink": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q5/solution.lean#L191-L202"
+    },
+    {
+      "path": "IMO2026/Q5/solution.lean",
+      "lines": [
+        204,
+        221
+      ],
+      "role": "child",
+      "name": "easy_dir",
+      "excerpt_sha256": "105d552c94620ae352cc10dcbe3ea134abc4e9bbfda5b97f4c564f832b01cfc3",
+      "permalink": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q5/solution.lean#L204-L221"
+    }
+  ],
+  "parent": {
+    "name": "answer_correctness",
+    "statement": "theorem answer_correctness (f : ℝ → ℝ) (ha_pos : Assumption_pos f) : Fact_condition f ↔ f ∈ answer"
+  },
+  "children": [
+    {
+      "name": "d_nonneg",
+      "statement": "lemma d_nonneg (f : ℝ → ℝ) (ha : Assumption_pos f) (hf : Fact_condition f) {y : ℝ} (hy : 0 < y) : 0 ≤ f y - y",
+      "closed_by": "by_contra; obtain ⟨n, hn⟩ := exists_nat_gt (y / (-d)); have hpos := (orbit f ha hf hy n).1; linarith"
+    },
+    {
+      "name": "g_const",
+      "statement": "lemma g_const (f : ℝ → ℝ) (ha : Assumption_pos f) (hf : Fact_condition f) {x : ℝ} (hx : 0 < x) : f x - x = f 1 - 1",
+      "closed_by": "rcases eq_or_lt_of_le on the two d_nonneg facts; no_mixed eliminates the mixed cases; le_antisymm (pos_d_le f ha hf hx one_pos h10) (pos_d_le f ha hf one_pos hx hx0)"
+    },
+    {
+      "name": "easy_dir",
+      "statement": "lemma easy_dir (f : ℝ → ℝ) (c : ℝ) (hc : 0 ≤ c) (hfc : ∀ x : ℝ, 0 < x → f x = x + c) : Fact_condition f",
+      "closed_by": "rw [hfc x hx, hfc y hy]; constructor; per conjunct a calc chain closed by nlinarith [sq_nonneg (x - y - c)] and positivity"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "a biconditional P f ↔ f ∈ answer where answer is the closed family {f | ∃ c, side c ∧ ∀ x, 0 < x → f x = g x c}; the forward direction exhibits the parameter c from a single evaluation and the backward direction is a verification lemma",
+    "use_when": "the family is in closed form and every member verifies P independently of the uniqueness argument, and the parameter is determined by one evaluation (here f 1 - 1) plus a constancy lemma",
+    "avoid_when": "the two directions share a deep argument (the split duplicates it); the family is not given in closed form (no single witness to exhibit); the parameter is not determined by one evaluation (needs an extra uniqueness lemma)"
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 6,
+    "glue_lines": 14,
+    "child_lines": [
+      13,
+      12,
+      18
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 14,
+    "direct_children": 3,
+    "project_lemmas_in_file": 10,
+    "depth": 6,
+    "how_counted": "parent_proof_lines = 236 - 223 + 1; direct_children counted from the glue lines 223-236; project_lemmas_in_file = grep '^(lemma|theorem) ' on the copied file; depth = answer_correctness → g_const → no_mixed → d_nonneg → orbit → key_ff → ineqA (edges at lines 233, 198, 146, 89, 66, 45)"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent answer_correctness closes from the three direct children: constructor splits the iff (line 227); the forward direction is closed by d_nonneg (line 230) and g_const (line 233); the backward direction by easy_dir (line 236).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q5/solution.lean#L223-L236"
+    },
+    {
+      "n": 2,
+      "claim": "The file has no sorry, admit or axiom: all ten lemmas/theorems close.",
+      "evidence_kind": "check",
+      "evidence": "grep for 'sorry|admit|axiom' over the whole copied file IMO2026/Q5/solution.lean returns no matches; https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q5/solution.lean"
+    },
+    {
+      "n": 3,
+      "claim": "The glue is 14 lines (223-236) using exactly 3 direct project lemmas, and the longest chain of project lemmas below the theorem has depth 6: answer_correctness → g_const → no_mixed → d_nonneg → orbit → key_ff → ineqA.",
+      "evidence_kind": "measurement",
+      "evidence": "counted on the copied file IMO2026/Q5/solution.lean; the six chain edges are the uses at lines 233, 198, 146, 89, 66 and 45"
+    },
+    {
+      "n": 4,
+      "claim": "The code documents the answer as the complete solution family: the AnswerType doc comment reads 'The answer is a *set* of functions (the complete solution family).' and def answer is wrapped in a BEGIN ANSWER / END ANSWER block.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q5/solution.lean#L4-L5 and #L19-L21"
+    }
+  ],
+  "consequences": "The split creates exactly two goals, one per direction of the iff. The forward direction additionally creates a witness obligation (refine ⟨f 1 - 1, ?_, ?_⟩): prove 0 ≤ f 1 - 1 (discharged by d_nonneg) and f x = x + (f 1 - 1) (discharged by g_const). If g_const were missing or too weak the forward direction would not close; if answer were not a plain ∃ family the backward rintro ⟨c, hc, hfc⟩ would not be a one-liner. The two directions are otherwise independent.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "16c8b1e96071900b8b17a35d95ebb3c8ab6a6da0ff0f7abab1f6f668e13466a9",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:09:54Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,shape,metrics,claims,consequences,rule",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:15:00Z"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "entry": "lean-calc-chain-humanfia-hoa-qed-e7194d55",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:14:17Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:14:17Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1c918ec9a96c7751ce9c283304e1aebd7ffb19a3",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:14:27Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/lean.yml, step 'Check IMO 2026 solutions', runs 'lake env lean' over ../gpt-5.6-solution/*.lean on push to main; pinned commit 1c918ec is on default branch main",
+      "by": "verifier",
+      "at": "2026-11-12T15:16:10Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "grep over the copied file for sorry/admit/axiom/Admitted/sorryAx returned no matches; parent proof L419-L451 uses exactly the 7 project lemmas (initial_allPositive L423, reachable_allPositive L424, statement_a_unique_large L425, terminal_prod_eq_large L426, reachable_prod_primeFactors L430, reachable_gExp L443, terminal_gExp_eq_padicValNat L444) and two top-level calc blocks (L428 and L435)",
+      "by": "verifier",
+      "at": "2026-11-12T15:16:14Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "fetched .github/workflows/lean.yml this session: on push, branches [main]; step 'Check IMO 2026 solutions' (working-directory imo2026/base) runs 'lake env lean' over every ../gpt-5.6-solution/*.lean and ../kimi-solution/*.lean, covering IMO2026Q1.lean",
+      "by": "verifier",
+      "at": "2026-11-12T15:16:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "counted 7 direct lemma applications at lines 423,424,425,426,430,443,444; glue lines 419-451 inclusive = 33; longest project-lemma chain has 4 links: terminal_value_eq_Mval(419) -> reachable_gExp(443) -> move_gExp(276) -> padicValNat_lcm_div_gcd(263) -> padicValNat_lcm(248)",
+      "by": "verifier",
+      "at": "2026-11-12T15:16:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "doc comment L416-L418 reads: 'For any terminal board B' reachable from an initial board B0, the unique entry M > 1 of B' equals the invariant Mval B0.'",
+      "by": "verifier",
+      "at": "2026-11-12T15:16:26Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "statement_b_invariance L399-L404 calc chains padicValNat p M = gExp p B1 = gExp p B0 = gExp p B2 = padicValNat p N via terminal_gExp_eq_padicValNat and reachable_gExp (same two lemmas)",
+      "by": "verifier",
+      "at": "2026-11-12T15:16:29Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent terminal_value_eq_Mval (L419-451) is a calc-chain assembly closing from exactly the 7 named project lemmas listed as children: initial_allPositive (L423), reachable_allPositive (L424), statement_a_unique_large (L425), terminal_prod_eq_large (L426), reachable_prod_primeFactors (L430), reachable_gExp (L443), terminal_gExp_eq_padicValNat (L444); no sorry/admit/axiom in the copied file so it closes. Each child's statement and closed_by match the copied code verbatim (site line ranges match: 138-140, 209-213, 373-382, 363-369, 354-361, 272-276, 305-317). Shape numbers are right: direct_lemmas=7, glue_lines=33 (419-451), child_lines=[3,5,10,7,8,5,13] matching each site span, and depth=4 confirmed by the chain terminal_value_eq_Mval->reachable_gExp(L443)->move_gExp(L276)->padicValNat_lcm_div_gcd(L263)->padicValNat_lcm(L248).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:17:38Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalises beyond the example: README 'When to use' frames it as an equality between a structural invariant (product over prime factors, a sum over a basis, a norm) and a value already characterised by two lemmas, and the general shape (value M = product/valuation characterised by one prime-factor lemma and one gExp/valuation lemma) is stated in applicability.use_when with a genuine known-use (statement_b_invariance, lines 399-404, reusing reachable_gExp and terminal_gExp_eq_padicValNat). 'When not to use' is honest and specific (inline nontrivial link -> extract as child first; single rw/simp suffices; mismatched types break the = chain). Consequences are honest and specific: the final link needs Nat.prod_factorization_pow_eq_self (by omega) consuming hM : 1 < M, and the stated failure mode that a non-lemma per-prime link collapses the 'each link is a named lemma' property. 'Why each child is a good leaf' explicitly answers the bounded-prover question: one-liner unfolding, one-step induction with trivial step matching a single-move lemma, closes from named siblings only, or collapses to one entry via terminal_erase_all_one then simp.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:18:40Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1c918ec9a96c7751ce9c283304e1aebd7ffb19a3",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:19:35Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are mutually consistent and traceable. Commit 1c918ec9a96c7751ce9c283304e1aebd7ffb19a3 is recorded identically in entry.json (source, files, sites), README, SOURCE.md and source.json, and is on the default branch main; check_provenance.py re-run this session confirms the copied file is byte-identical at that commit. The copied file's sha256 (7e296f9f...) and 21031 bytes match entry.json files[]. Licence Apache-2.0 AND CC-BY-4.0 matches source.json, SOURCE.md and the upstream NOTICE (code/Lean proofs under Apache-2.0, natural-language write-ups under CC-BY-4.0); upstream-LICENSE (Apache 2.0), upstream-LICENSE-CC-BY-4.0 (CC BY Attribution 4.0 International) and upstream-NOTICE are present and match the recorded licence files. Every permalink uses the same commit and path imo2026/gpt-5.6-solution/IMO2026Q1.lean, and the README 'Source and licence' note links the source note correctly.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:20:02Z"
+    }
+  ]
+}

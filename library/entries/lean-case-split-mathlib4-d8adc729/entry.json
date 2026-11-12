@@ -1,0 +1,176 @@
+{
+  "id": "lean-case-split-mathlib4-d8adc729",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Case split on the degree d < 3 vs 3 ≤ d in the Friendship Theorem",
+  "intent": "Reduce the Friendship Theorem to two closed branches by first extracting the regular degree d from the no-politician assumption, then splitting on d < 3 vs 3 ≤ d, closing the small-degree side by a constructive lemma and the large-degree side by a contradiction.",
+  "move": "case-split",
+  "also_known_as": [
+    "degree-threshold casework",
+    "lt_or_ge split",
+    "branch on d < k vs k ≤ d"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "mathlib4",
+    "url": "https://github.com/leanprover-community/mathlib4",
+    "commit": "e1545ebed97594477bbd88b2fe948ffce56e5af2",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Archive/Wiedijk100Theorems/FriendshipGraphs.lean",
+      "bytes": 14374,
+      "sha256": "27ed2662ff4fac875727b7270eb3c58eaf011fbf2702af27d4f4cf6c0a6b456b",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/FriendshipGraphs.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Archive/Wiedijk100Theorems/FriendshipGraphs.lean",
+      "lines": [
+        330,
+        335
+      ],
+      "role": "parent",
+      "name": "friendship_theorem",
+      "excerpt_sha256": "7860940f788ed1063594b84da1baaec065707f5931ebda91c85bcd1525613b93",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/FriendshipGraphs.lean#L330-L335"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/FriendshipGraphs.lean",
+      "lines": [
+        149,
+        175
+      ],
+      "role": "child",
+      "name": "isRegularOf_not_existsPolitician",
+      "excerpt_sha256": "f20700cd7542d975cd31a8c82ea6fc087f199cf9b97c89e4efe019b08227957a",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/FriendshipGraphs.lean#L149-L175"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/FriendshipGraphs.lean",
+      "lines": [
+        248,
+        273
+      ],
+      "role": "child",
+      "name": "false_of_three_le_degree",
+      "excerpt_sha256": "b700b307a93aa7806e438e4355f16fe2e0b3bd5581cca9f05a8fa3b1219212d4",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/FriendshipGraphs.lean#L248-L273"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/FriendshipGraphs.lean",
+      "lines": [
+        315,
+        319
+      ],
+      "role": "child",
+      "name": "existsPolitician_of_degree_le_two",
+      "excerpt_sha256": "5b60c9599ea4efd5852c7245bd37e48ea494e1c905e8f7fcb83d1ed01c668d18",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/FriendshipGraphs.lean#L315-L319"
+    }
+  ],
+  "parent": {
+    "name": "friendship_theorem",
+    "statement": "theorem friendship_theorem [Nonempty V] : ExistsPolitician G"
+  },
+  "children": [
+    {
+      "name": "isRegularOf_not_existsPolitician",
+      "statement": "theorem isRegularOf_not_existsPolitician (hG' : ¬ExistsPolitician G) : ∃ d : ℕ, G.IsRegularOfDegree d",
+      "closed_by": "by_cases on G.Adj v x, G.Adj x w, G.Adj v y; each branch closed by degree_eq_of_not_adj (lines 154-165), the last via a commonNeighbors cardinality argument (lines 167-175)"
+    },
+    {
+      "name": "false_of_three_le_degree",
+      "statement": "theorem false_of_three_le_degree (hd : G.IsRegularOfDegree d) (h : 3 ≤ d) : False",
+      "closed_by": "contrapose! on ZMod.trace_pow_card, then a trace computation (trace_adjMatrix vs adjMatrix_pow_mod_p_of_regular) closed by lia (line 273)"
+    },
+    {
+      "name": "existsPolitician_of_degree_le_two",
+      "statement": "theorem existsPolitician_of_degree_le_two (hd : G.IsRegularOfDegree d) (h : d ≤ 2) : ExistsPolitician G",
+      "closed_by": "interval_cases d; iterate 2 apply existsPolitician_of_degree_le_one; exact existsPolitician_of_degree_eq_two"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A theorem whose conclusion depends only on a natural-number degree d that the proof first extracts from an assumption (here ∃ d, G.IsRegularOfDegree d), then branches on a threshold of d (d < 3 vs 3 ≤ d via lt_or_ge d 3).",
+    "use_when": "the integer parameter has a genuine threshold: one side closes by a constructive existence lemma and the other by deriving a contradiction, so the two branches are unrelated sub-arguments each worth a named lemma.",
+    "avoid_when": "the threshold is not a real cut between a constructive and an impossible case (one branch may be vacuous); the branches share substantial proof; or the exhaustiveness of the split (here lt_or_ge d 3) is not already a library fact."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent friendship_theorem closes from the three named child lemmas in six lines of glue (lines 330-335): isRegularOf_not_existsPolitician supplies the degree, lt_or_ge d 3 splits, and each branch is closed by one exact applying a child lemma.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/FriendshipGraphs.lean#L330-L335"
+    },
+    {
+      "n": 2,
+      "claim": "The two goals produced by rcases lt_or_ge d 3 are d < 3 and 3 ≤ d; the first closes with exact npG (hG.existsPolitician_of_degree_le_two dreg (Nat.lt_succ_iff.mp dle2)) (line 334) and the second with exact hG.false_of_three_le_degree dreg dge3 (line 335).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/FriendshipGraphs.lean#L333-L335"
+    },
+    {
+      "n": 3,
+      "claim": "The theorem's docstring states the plan the proof realises: 'If the degree is at most 2, we observe by casework that it has a politician anyway. If the degree is at least 3, the graph cannot exist.' (lines 328-329), matching the module outline 'By casework, show that if d = 0, 1, 2, then G has a politician. If 3 ≤ d, let p be a prime factor of d - 1.' (lines 29-30).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/FriendshipGraphs.lean#L324-L329 and #L28-L32"
+    },
+    {
+      "n": 4,
+      "claim": "The longest chain of project lemmas below friendship_theorem is six deep: friendship_theorem (L330) → existsPolitician_of_degree_le_two (L315, calls existsPolitician_of_degree_eq_two at L319) → existsPolitician_of_degree_eq_two (L306, calls neighborFinset_eq_of_degree_eq_two at L310) → neighborFinset_eq_of_degree_eq_two (L289, calls card_of_regular at L298) → card_of_regular (L185, calls adjMatrix_sq_of_regular at L188) → adjMatrix_sq_of_regular (L127, calls adjMatrix_sq_of_ne at L131) → adjMatrix_sq_of_ne (L82, a leaf).",
+      "evidence_kind": "measurement",
+      "evidence": "read of Archive/Wiedijk100Theorems/FriendshipGraphs.lean at the pinned commit, following each named lemma's body for calls to other project lemmas until a leaf; the chain above is the longest such path"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 6,
+    "glue_lines": 6,
+    "child_lines": [
+      27,
+      26,
+      5
+    ]
+  },
+  "metrics": {
+    "parent_lines": 6,
+    "direct_children": 3,
+    "child_lines": [
+      27,
+      26,
+      5
+    ],
+    "how_counted": "parent = lines 330-335; direct children = the three named lemmas the glue calls; child_lines = full proof span of each child as copied (isRegularOf_not_existsPolitician 149-175, false_of_three_le_degree 248-273, existsPolitician_of_degree_le_two 315-319)"
+  },
+  "consequences": "Creates two goals plus an exhaustiveness obligation, discharged by the library lemma lt_or_ge d 3. The witness d must be obtained before the split (isRegularOf_not_existsPolitician), so the glue depends on that lemma's signature. The d < 3 branch is re-encoded to d ≤ 2 via Nat.lt_succ_iff.mp before invoking its lemma, a coercion the author supplies by hand; if the threshold were stated as a ≤ on both sides this step would vanish.",
+  "known_uses": [
+    "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/FriendshipGraphs.lean#L315-L319"
+  ],
+  "related": [
+    "lean-case-split-compfiles-6ac56e7f"
+  ],
+  "rule": {
+    "f10_rule": 5,
+    "relation": "supports"
+  },
+  "content_key": "d8adc729dd2156f3546064bebde89c239252647e02a7cd92d19c1c0767815fc9",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T14:42:59Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule,also_known_as",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T14:50:32Z"
+}

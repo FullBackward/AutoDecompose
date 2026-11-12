@@ -1,0 +1,192 @@
+{
+  "id": "lean-iff-split-numina-putnam2025-95670702",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Optimal-constant iff-split for Putnam 2025 A2",
+  "intent": "Reduce the optimal-constant answer for Putnam 2025 A2 — that 1/π is the greatest lower bound and 4/π² the least upper bound of the constants sandwiching sin x between quadratic lower and upper bounds on [0, π] — to two order-antisymmetry splits, each of which is itself a conjunction of membership (the inequality holds) and optimality (every competing constant is worse). Each of the four halves is discharged by one already-proved named lemma.",
+  "move": "iff-split",
+  "also_known_as": [
+    "order antisymmetry",
+    "antisym",
+    "both directions of an optimality",
+    "constructor on IsGreatest/IsLeast"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "numina-putnam2025",
+    "url": "https://github.com/project-numina/Numina-Putnam2025",
+    "commit": "60d33c8ba19af905bd731e938ebde1c5b8c76519",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a2.lean",
+      "bytes": 25823,
+      "sha256": "15bc630214631df04edade202cf63b7f7f92967567b3eb0291b316cb1e0d3663",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a2.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a2.lean",
+      "lines": [
+        511,
+        522
+      ],
+      "role": "parent",
+      "name": "putnam_2025_a2",
+      "excerpt_sha256": "6188e40ed5beeb98ee71d207447e3fedd2f210a8443b27abb49cb7ae038267d4",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a2.lean#L511-L522"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a2.lean",
+      "lines": [
+        20,
+        20
+      ],
+      "role": "child",
+      "name": "sin_ge_inv_pi_mul_quad",
+      "excerpt_sha256": "13c07e5f655df3fb30a4b5486f5c8857b7a78bcc073109cddb807b53af788a94",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a2.lean#L20-L20"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a2.lean",
+      "lines": [
+        195,
+        196
+      ],
+      "role": "child",
+      "name": "inv_pi_is_greatest_lower_bound",
+      "excerpt_sha256": "c909a4fc0d72e5b4a5829260b360a839a3d40e459f8e4eb95fcd21030a9c159d",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a2.lean#L195-L196"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a2.lean",
+      "lines": [
+        253,
+        253
+      ],
+      "role": "child",
+      "name": "sin_le_four_div_pi_sq_mul_quad",
+      "excerpt_sha256": "44f6736bf281c1f4dae7aaf2d2b1dd5364c82754f6ec4ec5d46391f09a04233d",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a2.lean#L253-L253"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a2.lean",
+      "lines": [
+        488,
+        489
+      ],
+      "role": "child",
+      "name": "four_div_pi_sq_is_least_upper_bound",
+      "excerpt_sha256": "93d62c944232fa43bbc0db547c69437f95e6d072b06009f3628214e196270f45",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a2.lean#L488-L489"
+    }
+  ],
+  "parent": {
+    "name": "putnam_2025_a2",
+    "statement": "theorem putnam_2025_a2 :\n  IsGreatest {a : ℝ | ∀ x ∈ Icc 0 π, a * x * (π - x) ≤ sin x} (1 / π) ∧\n  IsLeast {b : ℝ | ∀ x ∈ Icc 0 π, b * x * (π - x) ≥ sin x} (4 / π ^ 2) := by"
+  },
+  "children": [
+    {
+      "name": "sin_ge_inv_pi_mul_quad",
+      "statement": "lemma sin_ge_inv_pi_mul_quad : ∀ x ∈ Icc (0:ℝ) π, (1 / π) * x * (π - x) ≤ sin x := by",
+      "closed_by": "a case tree over x = 0, x = π, x ≤ π/2, x ≥ π - 2, x ≤ 1 (and the symmetric halves for x > π/2 via sin_pi_sub); each leaf closed by nlinarith/linarith, using sin_bound, mul_le_sin, sin_one_lower and sin_pi_sub"
+    },
+    {
+      "name": "inv_pi_is_greatest_lower_bound",
+      "statement": "lemma inv_pi_is_greatest_lower_bound (a : ℝ) (h : ∀ x ∈ Icc (0:ℝ) π, a * x * (π - x) ≤ sin x) :\n    a ≤ 1 / π := by",
+      "closed_by": "by_contra; set x := min (min ((a - 1/π) / (2 * a)) (1/2)) (π/2); applying h at that x contradicts sin x ≤ x, closed by nlinarith"
+    },
+    {
+      "name": "sin_le_four_div_pi_sq_mul_quad",
+      "statement": "lemma sin_le_four_div_pi_sq_mul_quad : ∀ x ∈ Icc (0:ℝ) π, sin x ≤ (4 / π ^ 2) * x * (π - x) := by",
+      "closed_by": "a case tree over x = 0, x = π, x ≤ π/2, x ≤ 0.6, x ≤ π - π^2/4 (and the symmetric halves for x > π/2 via sin_pi_sub); each leaf closed by nlinarith/linarith, using sin_le, sin_pi_sub, sin_pi_div_two and cos_bound"
+    },
+    {
+      "name": "four_div_pi_sq_is_least_upper_bound",
+      "statement": "lemma four_div_pi_sq_is_least_upper_bound (b : ℝ) (h : ∀ x ∈ Icc (0:ℝ) π, b * x * (π - x) ≥ sin x) :\n    4 / π ^ 2 ≤ b := by",
+      "closed_by": "specialises h at x = π/2; sin (π/2) = 1 gives b * (π/2) * (π/2) ≥ 1, then nlinarith [hpi2]"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "an optimal-constant claim IsGreatest S c ∧ IsLeast T d, where each IsGreatest/IsLeast unfolds to a conjunction of membership (an inequality over a parameter set) and optimality (every element of the set is ≤/≥ the constant)",
+    "use_when": "the two halves of each constant (the inequality holds, and every competing constant is worse) are already proved as named lemmas, so the main theorem is assembled by constructor + exact with no further arithmetic",
+    "avoid_when": "the membership inequality and the optimality argument are entangled or need a case analysis that cannot be shared across halves; only one direction holds; or either half is not yet isolated as a self-contained named lemma"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "Three constructor applications (lines 514, 515, 519) split the conjunction into four leaf goals, and each leaf is closed by exactly one of the four named lemmas — sin_ge_inv_pi_mul_quad, inv_pi_is_greatest_lower_bound, sin_le_four_div_pi_sq_mul_quad, four_div_pi_sq_is_least_upper_bound — in 9 lines (514-522).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a2.lean#L514-L522"
+    },
+    {
+      "n": 2,
+      "claim": "The glue is 9 lines (514-522) while the four child proofs span 172, 54, 232 and 20 lines respectively, 478 in total, of a 524-line file; the theorem-level argument is stated in the 9 glue lines.",
+      "evidence_kind": "measurement",
+      "evidence": "line counts of the copied file at the pinned commit: glue = lines 514-522; child proof bodies = lines 21-192, 197-250, 254-485, 490-509"
+    },
+    {
+      "n": 3,
+      "claim": "The file contains no sorry, admit, Admitted or axiom; the only match for 'axiom' is the diagnostic command #print axioms on line 524, which asserts nothing.",
+      "evidence_kind": "check",
+      "evidence": "grep -nE 'sorry|admit|Admitted|axiom' of the copied file returns only line 524 (#print axioms putnam_2025_a2)"
+    },
+    {
+      "n": 4,
+      "claim": "The same two-half split — membership by an inequality lemma, then optimality against every competing constant — is applied twice inside the parent, once for the lower constant 1/π (lines 515-518) and once for the upper constant 4/π² (lines 519-522).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a2.lean#L515-L522"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 2,
+    "glue_lines": 9,
+    "child_lines": [
+      172,
+      54,
+      232,
+      20
+    ]
+  },
+  "metrics": {
+    "glue_lines": 9,
+    "direct_lemmas": 4,
+    "child_proof_lines": [
+      172,
+      54,
+      232,
+      20
+    ],
+    "depth": 2,
+    "how_counted": "glue = lines 514-522 of the copied file; child proof bodies = lines 21-192, 197-250, 254-485, 490-509; depth = putnam_2025_a2 → sin_ge_inv_pi_mul_quad → sin_one_lower (sin_one_lower used at lines 127 and 188)"
+  },
+  "consequences": "The move creates exactly four obligations — the four conjuncts — and no exhaustiveness obligation, because constructor on ∧ and on IsGreatest/IsLeast produces precisely the two halves of each conjunction. It relies on the four lemmas being already proved and in scope; if one is missing, that half becomes a sorry-able hole whose statement is exactly the leaf lemma. Failure mode: the membership and optimality halves are both inequalities about the same expression a * x * (π - x), so the wrong lemma can be supplied to the wrong half; the split shape is still right, but exact fails on the type of the constant.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "95670702879ffd14b893a4f372b1544e44349108dd788dc470f4ee49def76c8b",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:15:36Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,also_known_as,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:22:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T15:24:37Z"
+}

@@ -1,0 +1,101 @@
+{
+  "entry": "lean-case-split-flt-regular-696a9e84",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:05:28Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:05:28Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 83f477ccc8cef9fd9a022b90d87aed49368e7bbd",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:05:39Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push.yml triggers on push to master (default branch) and runs 'lake -R -Kenv=dev build FltRegular', which compiles FltRegular/FltRegular.lean (the parent theorem file); pinned commit 83f477ccc8cef9fd9a022b90d87aed49368e7bbd is on master (GitHub API branches-where-head)",
+      "by": "verifier",
+      "at": "2026-11-12T15:07:19Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Local copy (byte-identical per provenance) FltRegular.lean lines 21-28: rw (23), apply (24), by_cases (26), exact caseII (27), exact caseI (28); grep -i over code/ for sorry|admit|axiom returns nothing across the 4 files",
+      "by": "verifier",
+      "at": "2026-11-12T15:07:22Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "FltRegular.lean docstring lines 12-13 read 'This file combines the first and second cases to prove Fermat's Last Theorem at every odd regular prime exponent.'",
+      "by": "verifier",
+      "at": "2026-11-12T15:07:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Parent proof lines 22-28 (7), caseII 82-100 (19), caseI 262-263 (2); chain confirmed: caseII calls not_exists_Int_solution' at 88/94/100, which calls not_exists_Int_solution at 68, which calls not_exists_solution' at 57, which calls not_exists_solution at 45 -> 5 lemmas below flt_regular",
+      "by": "verifier",
+      "at": "2026-11-12T15:07:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "FltRegular.lean line 26 'by_cases hcase : ↑p ∣ a * b * c' yields the two branches closed at 27 (caseII, positive) and 28 (caseI, negative); no separate (p ∣ a*b*c) ∨ ¬(p ∣ a*b*c) lemma appears anywhere in the file",
+      "by": "verifier",
+      "at": "2026-11-12T15:07:26Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent, children and shape all check out. Parent statement verbatim matches code/FltRegular/FltRegular.lean:21-22; children caseII (CaseII/Statement.lean:78-81) and caseI (CaseI/Statement.lean:260-261) are verbatim in entry.json, and are exactly the two lemmas the parent proof uses (caseII at line 27, caseI at line 28). Closing methods match the code: caseII closes via intro e then dvd_or_dvd splits into three branches each ending in not_exists_Int_solution' hreg hodd <...> (lines 82-100); caseI closes via FltRegular.CaseI.may_assume (fun ... => caseI_easier ...) hreg caseI (lines 262-263). Both by_cases branches hand each child exactly its hypotheses (line 27: hreg hodd (mul_ne_zero (mul_ne_zero ha hb) hc) hgcd hcase; line 28: hreg hcase). Shape numbers are right: direct_lemmas=2, glue_lines=7 (lines 22-28), child_lines=[19,2] (82-100 and 262-263), depth=5 confirmed as flt_regular->caseII->not_exists_Int_solution' (:88,94,100->:68->:57->:45). grep -i for sorry/admit/axiom/Admitted over the four copied files finds nothing.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:11:22Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality lens: (1) The move is stated beyond the example — applicability.use_when/avoid_when and the README 'When to use it, and when not' name the general condition (a goal reduced by a few normalising lemmas to one decidable hypothesis Q whose two sides are each a named project theorem, with self-contained disjoint children), not FLT-specifics. (2) 'When not to use' is honest and specific: three concrete failure conditions (per-side differing normalisation; Q not decidable without classical assumptions; one side a family of subgoals), and consequences name the exhaustiveness obligation, the per-branch hypothesis mismatch, and a concrete failure mode (a reduction dropping a hypothesis a child needs). (3) It says what makes the leaves good for a bounded prover: 'Each child is a good leaf because its statement is self-contained (every hypothesis explicit in the header) and its proof closes from named siblings, not the parent's local context.' The copied code confirms all three: parent is 7 proof lines with one by_cases and one exact per branch (FltRegular.lean:26-28), and both children carry fully explicit hypotheses in their headers.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:12:31Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 83f477ccc8cef9fd9a022b90d87aed49368e7bbd",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:12:57Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit, licence, permalinks and source note are mutually consistent and traceable. entry.json source.commit 83f477ccc8cef9fd9a022b90d87aed49368e7bbd equals source.json commit and sources/flt-regular/SOURCE.md pinned commit. Licence is Apache-2.0 in entry.json, source.json and SOURCE.md, and sources/flt-regular/upstream-LICENSE is the Apache License 2.0 text. All four file permalinks and three site permalinks use github.com/leanprover-community/flt-regular/blob/83f477c.../<path>, matching repo, commit and path. check_provenance.py reports 4 file(s) byte-identical at 83f477c..., confirming the copied files match the permalinks. README 'Source and licence' section correctly states whole-and-unmodified copy at 83f477c under Apache-2.0 and links the source note.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:13:14Z"
+    }
+  ]
+}

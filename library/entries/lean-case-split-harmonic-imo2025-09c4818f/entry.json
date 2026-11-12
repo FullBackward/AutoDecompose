@@ -1,0 +1,222 @@
+{
+  "id": "lean-case-split-harmonic-imo2025-09c4818f",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Case split on the attainable sunny-line counts {0,1,3} for IMO 2025 P1",
+  "intent": "Reduce the statement 'the attainable sunny-line counts are exactly {0,1,3}' to three constructions and two impossibilities. The forward direction of the set equality enumerates the finite answer set {0,1,3} and closes each member with a construction lemma (k = 0, 1, 3); the backward direction bounds k ≤ 3 with an impossibility lemma, then interval_cases k and rules out k = 2 with a second impossibility lemma.",
+  "move": "case-split",
+  "also_known_as": [
+    "exhaustive case analysis",
+    "answer-set case split",
+    "interval_cases over a bounded variable"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "harmonic-imo2025",
+    "url": "https://github.com/harmonic-ai/IMO2025",
+    "commit": "72b62405a176a7eaeadb335a7fa6ee80b6667161",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "HarmonicLean/IMO2025P1.lean",
+      "bytes": 103151,
+      "sha256": "b763f01962032cc25ed9bf4c9eb304dc6b22cca69c4d6d26d92604a8bbd35fd7",
+      "permalink": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P1.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "HarmonicLean/IMO2025P1.lean",
+      "lines": [
+        1387,
+        1431
+      ],
+      "role": "parent",
+      "name": "main_theorem",
+      "excerpt_sha256": "fb3a7eb5f8accd3cc32bb6d5f8f261f8ac975c113a111e6bde2e85fb20d964cd",
+      "permalink": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P1.lean#L1387-L1431"
+    },
+    {
+      "path": "HarmonicLean/IMO2025P1.lean",
+      "lines": [
+        121,
+        137
+      ],
+      "role": "child",
+      "name": "lem_k0_possible",
+      "excerpt_sha256": "99b4aa20e3d7c534c0628eb2396d518430c77f0cc99b7374ff573ad6c6c96946",
+      "permalink": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P1.lean#L121-L137"
+    },
+    {
+      "path": "HarmonicLean/IMO2025P1.lean",
+      "lines": [
+        170,
+        196
+      ],
+      "role": "child",
+      "name": "lem_k1_possible",
+      "excerpt_sha256": "55a7cfe3e4b84de49faf365d8e443e1766f561881e1a7c797f89d1994bed68af",
+      "permalink": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P1.lean#L170-L196"
+    },
+    {
+      "path": "HarmonicLean/IMO2025P1.lean",
+      "lines": [
+        307,
+        318
+      ],
+      "role": "child",
+      "name": "lem_k3_possible",
+      "excerpt_sha256": "ad99df76cb692e37c002e52f31ad682e51369312e116bfe1ba686ac043b64778",
+      "permalink": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P1.lean#L307-L318"
+    },
+    {
+      "path": "HarmonicLean/IMO2025P1.lean",
+      "lines": [
+        1217,
+        1268
+      ],
+      "role": "child",
+      "name": "lem_k_ge_4_impossible",
+      "excerpt_sha256": "3ce3053d1ced6d1e3bc186ec70c2d8aa872fd0ad92ccb951d6c0cf3ac0697c18",
+      "permalink": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P1.lean#L1217-L1268"
+    },
+    {
+      "path": "HarmonicLean/IMO2025P1.lean",
+      "lines": [
+        1352,
+        1379
+      ],
+      "role": "child",
+      "name": "lem_k2_impossible",
+      "excerpt_sha256": "a823b9f4e5070c8ebc362c48507e96c670352483bc1c5fc3f86d76fa35f38287",
+      "permalink": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P1.lean#L1352-L1379"
+    },
+    {
+      "path": "HarmonicLean/IMO2025P1.lean",
+      "lines": [
+        40,
+        53
+      ],
+      "role": "context",
+      "name": "definitions",
+      "excerpt_sha256": "ce87915f3ff4998772db819d0ede8878065276e7869e7baf079979e0d9fc5584",
+      "permalink": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P1.lean#L40-L53"
+    }
+  ],
+  "parent": {
+    "name": "main_theorem",
+    "statement": "theorem main_theorem\n  (n : ℕ)\n  (hn : n ≥ 3) :\n  {0, 1, 3} = { k | ∃ lines : Finset (Set (ℝ × ℝ)),\n      (∀ line ∈ lines, ∃ a b c, ¬ (a = 0 ∧ b = 0) ∧ line = { v : ℝ × ℝ | a * v.1 + b * v.2 + c = 0 }) ∧\n      lines.card = n ∧\n      (∀ a b : ℕ, 0 < a ∧ 0 < b ∧ a + b ≤ n + 1 → ∃ (l : Set (ℝ × ℝ)), l ∈ lines ∧ ((a : ℝ), (b : ℝ)) ∈ l) ∧\n      ((lines.filter (fun l => ∃ a b c, l = { v : ℝ × ℝ | a * v.1 + b * v.2 + c = 0 } ∧ a ≠ 0 ∧ b ≠ 0 ∧ a ≠ b)).card = k) }"
+  },
+  "children": [
+    {
+      "name": "lem_k0_possible",
+      "statement": "lemma lem_k0_possible (n : ℕ) (hn : n ≥ 3) :\n  ∃ lines : Finset (Set (ℝ × ℝ)),\n    (∀ line ∈ lines, ∃ a b c, ¬ (a = 0 ∧ b = 0) ∧ line = { v | a * v.1 + b * v.2 + c = 0 }) ∧\n    lines.card = n ∧\n    (∀ p ∈ s n, ∃ l ∈ lines, p ∈ l) ∧\n    (lines.filter Sunny).card = 0",
+      "closed_by": "obtain ⟨lines, hlines⟩ := lem_k0_construction n hn; use (Finset.image ...); aesop (lines 128-137)"
+    },
+    {
+      "name": "lem_k1_possible",
+      "statement": "lemma lem_k1_possible (n : ℕ) (hn : n ≥ 3) :\n  ∃ lines : Finset (Set (ℝ × ℝ)),\n    (∀ line ∈ lines, ∃ a b c, ¬ (a = 0 ∧ b = 0) ∧ line = { v | a * v.1 + b * v.2 + c = 0 }) ∧\n    lines.card = n ∧\n    (∀ p ∈ s n, ∃ l ∈ lines, p ∈ l) ∧\n    (lines.filter Sunny).card = 1",
+      "closed_by": "refine' ⟨L1, _, _, _, _⟩; last conjunct closed by lem_k1_construction n hn (lines 177-196)"
+    },
+    {
+      "name": "lem_k3_possible",
+      "statement": "lemma lem_k3_possible (n : ℕ) (hn : n ≥ 3) :\n  ∃ lines : Finset (Set (ℝ × ℝ)),\n    (∀ line ∈ lines, ∃ a b c, ¬ (a = 0 ∧ b = 0) ∧ line = { v | a * v.1 + b * v.2 + c = 0 }) ∧\n    lines.card = n ∧\n    (∀ p ∈ s n, ∃ l ∈ lines, p ∈ l) ∧\n    (lines.filter Sunny).card = 3",
+      "closed_by": "induction' n using Nat.le_induction; base `exact?` (resolves to lem_n3_k3_exists), step `apply lem_induction_step n 3 ih` (lines 314-318)"
+    },
+    {
+      "name": "lem_k_ge_4_impossible",
+      "statement": "lemma lem_k_ge_4_impossible (n k : ℕ) (hn : n ≥ 3) (hk : k ≥ 4) :\n  ¬ (∃ lines : Finset (Set (ℝ × ℝ)),\n    (∀ line ∈ lines, ∃ a b c, ¬ (a = 0 ∧ b = 0) ∧ line = { v | a * v.1 + b * v.2 + c = 0 }) ∧\n    lines.card = n ∧\n    (∀ p ∈ s n, ∃ l ∈ lines, p ∈ l) ∧\n    (lines.filter Sunny).card = k)",
+      "closed_by": "induction' n using Nat.le_induction; base `card_filter_le`, step `lem_reduction` (non-sunny boundary line) or `lem_boundary_lines_implication` + `lem_kn_impossible` (all sunny) (lines 1224-1268)"
+    },
+    {
+      "name": "lem_k2_impossible",
+      "statement": "lemma lem_k2_impossible (n : ℕ) (hn : n ≥ 3) :\n  ¬ (∃ lines : Finset (Set (ℝ × ℝ)),\n    (∀ line ∈ lines, ∃ a b c, ¬ (a = 0 ∧ b = 0) ∧ line = { v | a * v.1 + b * v.2 + c = 0 }) ∧\n    lines.card = n ∧\n    (∀ p ∈ s n, ∃ l ∈ lines, p ∈ l) ∧\n    (lines.filter Sunny).card = 2)",
+      "closed_by": "reduce n down to 3 with lem_reduction / lem_boundary_lines_implication, then lem_k2_impossible_n3 (lines 1358-1379)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "a set equality {v1, ..., vm} = { k | P k } where the left side is a literal finite set of naturals ('exactly these values are attainable'); the forward direction enumerates the left set, the backward direction bounds k by an impossibility lemma and then interval_cases k",
+    "use_when": "the answer is a small finite set of values; each attainable value already has a construction lemma and each excluded value an impossibility lemma; the excluded values are bounded by one lemma so interval_cases terminates; the construction lemmas share one statement shape so `convert` + `unfold` closes each case uniformly",
+    "avoid_when": "the answer set is large or unknown; the constructions and impossibilities are not already isolated as named lemmas (then the glue is not the content); the excluded cases need deep reasoning that cannot be compressed into a single bounding lemma and a small interval_cases"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The main theorem's proof body (lines 1395-1431) is pure glue: it closes by invoking exactly five named lemmas — lem_k0_possible (line 1402), lem_k1_possible (1409), lem_k3_possible (1413), lem_k_ge_4_impossible (1422) and lem_k2_impossible (1428) — and references no other project lemma.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P1.lean#L1395-L1431"
+    },
+    {
+      "n": 2,
+      "claim": "The five children are stated and proved in the same file, above the main theorem — lem_k0_possible (121-137), lem_k1_possible (170-196), lem_k3_possible (307-318), lem_k_ge_4_impossible (1217-1268), lem_k2_impossible (1352-1379) — and none of the five proofs uses sorry, axiom or admit; the file ends with `#print axioms main_theorem` (line 1433) so axiom use is inspectable.",
+      "evidence_kind": "check",
+      "evidence": "read of the copied file HarmonicLean/IMO2025P1.lean at the five ranges above, plus https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P1.lean#L1433"
+    },
+    {
+      "n": 3,
+      "claim": "The decomposition's shape is scale 'theorem', 5 direct lemmas, glue of 37 tactic lines (1395-1431), and a longest checked chain of 6 project lemmas below the main theorem: main_theorem → lem_k_ge_4_impossible (call at 1267) → lem_kn_impossible (call at 1210) → lem_kn_impossible_n_ge_5 (call at 1133) → lem_kn_impossible_n_ge_5_point_coverage (call at 1019) → lem_kn_point_22 (call at 845) → lem_kn_setup (leaf).",
+      "evidence_kind": "measurement",
+      "evidence": "call sites: https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P1.lean#L1422 ; chain lemmas at #L1202-L1212, #L1114-L1197, #L961-L1108, #L807-L871, #L532-L609 (all read in the copied file)"
+    },
+    {
+      "n": 4,
+      "claim": "The authors recorded the answer and the case plan in comments: the file header ends with 'Answer: 0, 1, 3' (line 7), and the glue's comments name the lemmas it applies ('By Lemma~\\ref{lem:k_ge_4_impossible}, $k \\leq 3$', line 1420; 'By Lemma~\\ref{lem:k2_impossible} ...', line 1427).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P1.lean#L7 and #L1420-L1427"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 5,
+    "depth": 6,
+    "glue_lines": 37,
+    "child_lines": [
+      11,
+      21,
+      6,
+      46,
+      22
+    ]
+  },
+  "metrics": {
+    "parent_lines": 45,
+    "glue_lines": 37,
+    "direct_children": 5,
+    "child_proof_lines": [
+      11,
+      21,
+      6,
+      46,
+      22
+    ],
+    "how_counted": "parent_lines = 1431-1387+1 over the copied file; glue_lines = 1431-1395+1 (the by-block tactics); child_proof_lines = each child site's proof lines: lem_k0_possible 127-137, lem_k1_possible 176-196, lem_k3_possible 313-318, lem_k_ge_4_impossible 1223-1268, lem_k2_impossible 1358-1379"
+  },
+  "consequences": "Forward: `cases' hk with hk0 hk1 hk3` on the finite set {0,1,3} creates one goal per element and leaves the exhaustiveness of that enumeration to Lean (the disjunction over the finset). Each goal is closed by `convert` to a construction lemma whose statement matches up to unfolding, repaired by `unfold s`/`unfold Sunny`/`aesop`. Backward: the split on k is indirect — the glue first proves k ≤ 3 by contraposing lem_k_ge_4_impossible, then `interval_cases k` yields 0,1,2,3, and the one excluded case k=2 is disposed of by lem_k2_impossible. Failure mode: `convert` needs the goal and child to be definitionally close; if a child's statement diverges from the parent's inline predicates, each case needs its own normalisation and the shared `convert … <;> unfold …` pattern breaks.",
+  "known_uses": [],
+  "related": [
+    "lean-case-split-compfiles-6ac56e7f"
+  ],
+  "rule": {
+    "f10_rule": 5,
+    "relation": "supports"
+  },
+  "content_key": "09c4818fbbf6b0213f0d38fc137d3971f78ce5efc949801d3711be96f53b5a22",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:18:06Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T15:28:52Z"
+}

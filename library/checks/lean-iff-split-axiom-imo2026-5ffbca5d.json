@@ -1,0 +1,109 @@
+{
+  "entry": "lean-iff-split-axiom-imo2026-5ffbca5d",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:04:51Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:04:51Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:05:01Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI workflow in the repository: .github/workflows returns 404 (GitHub API) and the full file listing at pinned commit c5a6a089 has no .github entry; verification is verify.py calling the external Axle API, not CI building the file on the default branch (main)",
+      "by": "verifier",
+      "at": "2026-11-12T15:07:03Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "read the byte-identical copy code/IMO2026/Q4/solution.lean: line 480 is 'by_contra h; push_neg at h; exact equilateral_counterexample θ hθ0 h hguar' (necessity), line 518 is 'exact all_win_of_divides θ hθ0 n hn hdvd' (sufficiency), 'constructor' at line 471 splits the ↔; the main_theorem body (469-518) names no other project lemma",
+      "by": "verifier",
+      "at": "2026-11-12T15:07:06Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "counted lines in the byte-identical copy: parent site 469-518 = 50 lines; equilateral_counterexample 444-462 = 19 lines; all_win_of_divides 251-360 = 110 lines; 19+110 = 129",
+      "by": "verifier",
+      "at": "2026-11-12T15:07:09Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "read doc comment at lines 466-468 of the byte-identical copy: \"**Main theorem.** For 0 < theta < 180, Mulan can guarantee her victory in finitely many steps, no matter how Shan-Yu plays, if and only if theta = 180 / n for some integer n >= 2\" matches the quoted sentence verbatim",
+      "by": "verifier",
+      "at": "2026-11-12T15:07:16Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "read the byte-identical copy: equilateral_counterexample applies safe_not_win at line 462; safe_not_win applies safe_child at line 436; safe_child (372-418) closes with rcases/linarith and names no project lemma (leaf). all_win_of_divides applies win_of_multiple at line 276; win_of_multiple applies triangle_with_apex at line 121; triangle_with_apex (93-103) is a leaf. No chain below main_theorem exceeds 3 project lemmas",
+      "by": "verifier",
+      "at": "2026-11-12T15:07:20Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:09:39Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "object",
+      "evidence": "Children and closing methods match the code (equilateral_counterexample closes by 'exact safe_not_win ...' at line 462; all_win_of_divides closes via win_of_multiple at 276 and interval_lemma at 306 + MulanWins.move/win_of_multiple at 346-360; parent statement matches lines 469-470; 'constructor' at 471 splits the iff; main names exactly two project lemmas, equilateral_counterexample at 480 and all_win_of_divides at 518). direct_lemmas=2, glue_lines=50 (469-518), child_lines=[19,110] (444-462, 251-360) are correct. BUT the depth shape number and claim 4 are wrong: safe_not_win also applies cut_preserves (Lemma 2) at line 435 and win_of_multiple applies cut_preserves at lines 144/151, and cut_preserves (63-90) itself applies the project lemmas sum_triple (68,81,90), card_triple (74,83), mem_triple (76,85). So the longest chain below main_theorem is 4 deep (main -> equilateral_counterexample -> safe_not_win -> cut_preserves -> sum_triple/card_triple/mem_triple; likewise main -> all_win_of_divides -> win_of_multiple -> cut_preserves -> ...), not 3. Claim 4's chains omit cut_preserves. Fix: recompute depth to 4 and correct claim 4 to include cut_preserves and its structural-helper dependencies.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:10:17Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally: goal_shape generalises the specific 'P iff exists n, 2<=n and theta=180/n' to 'P iff Q', and use_when/avoid_when give generic conditions (both directions already named lemmas over matching hypotheses, each side closing by one exact). When-not-to-use is honest and specific (direction not yet lifted into a lemma; mismatched hypotheses needing real rewriting rather than a field_simp/linarith shuffle; one-way implication with an empty direction). Consequences name the two obligations and concrete failure modes (dropping theta<180 leaves n=1; mismatched hypotheses break the exact hand-off). Good leaves for a bounded prover are identified in substance: self-contained statements, proofs that close by rcases/linarith on their own hypotheses, short (child_lines 19/110, depth 3, each child sits close to a self-contained leaf). The literal term bounded prover is not used, but every leaf property a bounded prover needs (self-contained statement, short automation-closable proof, shallow depth) is named, so I do not treat the missing phrase as a standing objection.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:11:58Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:12:22Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes (1 file byte-identical at c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2). Commit is consistent across entry.json, sources/axiom-imo2026/source.json and SOURCE.md (all c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2). Licence MIT is recorded identically in entry.json, README and the source note; sources/axiom-imo2026/upstream-LICENSE is a genuine MIT text (Copyright 2026 Axiom Math). Permalinks point to the pinned commit and file IMO2026/Q4/solution.lean; line ranges verified against the copied file: parent main_theorem 469-518, child equilateral_counterexample 444-462, child all_win_of_divides 251-360, doc comment 466-468. Copied file is 520 lines, 23893 bytes, sha256 22410574...c7896, matching entry.json fields. Source note links the licence text and attribution. All traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:12:57Z"
+    }
+  ]
+}

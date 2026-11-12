@@ -1,0 +1,101 @@
+{
+  "entry": "lean-iff-split-numina-putnam2025-95670702",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:18:24Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:18:24Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 60d33c8ba19af905bd731e938ebde1c5b8c76519",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:18:35Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/lean_action_ci.yml uses leanprover/lean-action@v1 which builds the default target NuminaPutnam2025; that lean_lib builds NuminaPutnam2025/putnam_2025_a2.lean via the root NuminaPutnam2025.lean import; pinned commit 60d33c8ba19af905bd731e938ebde1c5b8c76519 is HEAD of default branch main",
+      "by": "verifier",
+      "at": "2026-11-12T15:20:21Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read copied file putnam_2025_a2.lean: constructor at lines 514, 515, 519; leaves closed by sin_ge_inv_pi_mul_quad (516), inv_pi_is_greatest_lower_bound (518), sin_le_four_div_pi_sq_mul_quad (520), four_div_pi_sq_is_least_upper_bound (522); 9 glue lines 514-522",
+      "by": "verifier",
+      "at": "2026-11-12T15:20:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Copied file: glue lines 514-522 (9); child bodies 21-192=172, 197-250=54, 254-485=232, 490-509=20, sum 478; wc -l = 524 lines",
+      "by": "verifier",
+      "at": "2026-11-12T15:20:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "grep -nE 'sorry|admit|Admitted|axiom' on copied file returns only line 524 '#print axioms putnam_2025_a2', a diagnostic; no sorry/admit/Admitted/axiom declarations",
+      "by": "verifier",
+      "at": "2026-11-12T15:20:31Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Copied file lines 515-518 (lower constant 1/pi: constructor then exact sin_ge_inv_pi_mul_quad, intro a ha; exact inv_pi_is_greatest_lower_bound a ha) and 519-522 (upper constant 4/pi^2: constructor then exact sin_le_four_div_pi_sq_mul_quad, intro b hb; exact four_div_pi_sq_is_least_upper_bound b hb) — same two-half split applied twice",
+      "by": "verifier",
+      "at": "2026-11-12T15:20:34Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Read local copy code/NuminaPutnam2025/putnam_2025_a2.lean in full. Parent (511-513) and proof (514-522) match entry; three constructors (514,515,519) split the conjunction into four leaves closed by exactly the four named lemmas: sin_ge_inv_pi_mul_quad (516), inv_pi_is_greatest_lower_bound (518), sin_le_four_div_pi_sq_mul_quad (520), four_div_pi_sq_is_least_upper_bound (522). Child statements at lines 20, 195-196, 253, 488-489 match entry.json children verbatim; closed_by descriptions match the code (case trees via mul_le_sin/sin_bound/sin_one_lower/sin_pi_sub; by_contra+set min probe; sin_le/cos_bound/sin_pi_div_two; probe x=pi/2 + nlinarith [hpi2]). IsGreatest/IsLeast unfold to membership+optimality, so constructor produces the four leaves the entry claims. Shape numbers correct: direct_lemmas=4, depth=2 (putnam_2025_a2 -> sin_ge_inv_pi_mul_quad -> sin_one_lower, used at lines 127 and 188), glue_lines=9 (514-522), child_lines=[172,54,232,20] = bodies 21-192, 197-250, 254-485, 490-509. grep shows no sorry/admit/Admitted/axiom except the diagnostic #print axioms at line 524, so it closes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:21:57Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is abstracted beyond the example: applicability.goal_shape generalises to any optimal-constant claim IsGreatest S c ∧ IsLeast T d (or a single IsGreatest/IsLeast), and the README's 'When to use it'/'avoid_when' give a reusable trigger (halves already isolated as named lemmas) and honest exclusions (entangled halves, shared case analysis, one-sided, or unisolated halves). Consequences are specific and match the code: exactly four constructor obligations, no exhaustiveness obligation, reliance on pre-proved lemmas, and the concrete failure mode (wrong lemma to wrong half -> exact fails on 1/π vs 4/π²). Leaf quality for a bounded prover is answered: each leaf is self-contained and closes on its own from Mathlib facts plus at most one named sibling (sin_one_lower), with per-leaf closing methods spelled out. Verified against the copied file at the pinned commit.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:23:05Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 60d33c8ba19af905bd731e938ebde1c5b8c76519",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:23:30Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note all consistent and traceable. check_provenance.py passes: copied file putnam_2025_a2.lean byte-identical at pinned commit 60d33c8ba19af905bd731e938ebde1c5b8c76519; entry.json files.sha256 (15bc6302...) matches local file, bytes 25823 and 524 lines match. Commit is identical across entry.json, source.json, SOURCE.md and every permalink (blob URL + #L ranges); site line ranges (parent 511-522; children 20, 195-196, 253, 488-489) match the local copy. Licence MIT is consistent across entry.json, source.json, SOURCE.md and the repo LICENSE fetched at the pinned commit (byte-identical to sources/numina-putnam2025/upstream-LICENSE, standard MIT text, 'Copyright (c) 2025 Numina'). SOURCE.md records repo URL, pinned commit (pinned_at 2026-11-12T10:24:03Z), browse URL, licence and links the LICENSE file. Nothing to fix.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:24:29Z"
+    }
+  ]
+}

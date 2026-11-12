@@ -1,0 +1,109 @@
+{
+  "entry": "isabelle-case-split-autocorrode-5c995779",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:07:36Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:07:36Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 200f1acf2d264f2dedee33792b986ebe73c224a3",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:07:47Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/ci.yml build job runs 'isabelle build -v -b -d . -o browser_info -d $AFP_COMPONENT_BASE/Word_Lib AutoCorrode'; AutoCorrode session ROOT lists Shallow_Separation_Logic, whose ROOT lists Adequacy as its first theory; pinned commit 200f1acf2d264f2dedee33792b986ebe73c224a3 is identical to default branch main (git compare status identical)",
+      "by": "verifier",
+      "at": "2026-11-12T16:09:39Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Adequacy.thy L63-66: 'using assms by (auto simp add: sstriple_def deep_evaluate_basic_no_yield' atriple_rel_eval_value_adequacy atriple_rel_eval_return_adequacy atriple_rel_eval_abort_adequacy split: continuation.splits)' - single auto, unfolds sstriple_def, split continuation.splits, cites the four named lemmas; CI builds Adequacy via AutoCorrode session",
+      "by": "verifier",
+      "at": "2026-11-12T16:09:42Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Adequacy.thy L36 'using assms by (auto simp add: atriple_rel_def eval_value_def urust_eval_predicate_defs)', L43 (eval_return), L50 (eval_abort) all close by auto from definitions only; Core_Expression_Lemmas.thy L77-79 deep_evaluate_basic_no_yield' closed by 'using deep_evaluate_basic_no_yield by force'",
+      "by": "verifier",
+      "at": "2026-11-12T16:09:45Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "glue_lines 14 = Adequacy.thy 53-66; child lines 6 (31-36), 6 (38-43), 6 (45-50), 3 (Core_Expression_Lemmas.thy 77-79); direct_lemmas 4; depth chain: sstriple_adequacy L64 uses deep_evaluate_basic_no_yield' -> no_yield' L79 uses deep_evaluate_basic_no_yield -> no_yield L56 uses expression_wf_base_is_wf -> expression_wf_base_is_wf at Core_Expression.thy L93",
+      "by": "verifier",
+      "at": "2026-11-12T16:09:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Adequacy.thy L14 'from a Hoare triple/weakest precondition entailment/function contract on a program e' and L16 'we can derive that the evaluating e on appropriate machines does not go wrong'; L62 comment 'Evaluating with deep_evaluates_nondet_basic will never terminate in Yield'",
+      "by": "verifier",
+      "at": "2026-11-12T16:09:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Adequacy.thy: 'split: continuation.splits' recurs at L92 (contract_adequacy), L111 (wp_adequacy_deterministic), L141 (sstriple_from_evaluation), L163 (contract_from_evaluation); sstriple_adequacy reused at L77 (wp_adequacy 'simp add: sstriple_adequacy') and L92 (contract_adequacy 'dest!: sstriple_adequacy')",
+      "by": "verifier",
+      "at": "2026-11-12T16:09:55Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Copied code matches entry verbatim: parent sstriple_adequacy (Adequacy.thy L53-66) is one auto call (simp add: sstriple_def ... split: continuation.splits) citing exactly the four children deep_evaluate_basic_no_yield', atriple_rel_eval_value_adequacy, atriple_rel_eval_return_adequacy, atriple_rel_eval_abort_adequacy; the four child statements and closed_by lines match code L31-36/38-43/45-50 and Core_Expression_Lemmas.thy L77-79 (using deep_evaluate_basic_no_yield by force). The split closes: sstriple_def (Triple.thy L35-46) unfolds the premise into three exact-triple conjuncts, Success/Return/Abort dispatch to the per-constructor lemmas, and Yield is ruled out by no_yield' (Yield ... iff False). Shape numbers correct: direct_lemmas=4 (exactly the four named lemmas), glue_lines=14 (L53-66), child_lines=[6,6,6,3] (L31-36/38-43/45-50/77-79), depth=3 chain sstriple_adequacy to no_yield' (L79) to no_yield (L56 uses expression_wf_base_is_wf) to expression_wf_base_is_wf (Core_Expression.thy L93, confirmed lemma).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T16:11:47Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalised beyond the example: applicability.use_when states the rule as 'finitely many constructors + one per-constructor lemma for each real constructor + a separate falsity lemma for the impossible constructor', with the four continuation constructors as illustration only. avoid_when is honest and specific (three named failure modes: per-constructor lemmas not yet stated so auto must close raw-definition goals that may not close; large constructor count; a constructor that genuinely holds needs a real child lemma instead of a falsity lemma). consequences correctly names the exhaustiveness obligation as discharged by the datatype case rule continuation.splits and the fragility to a newly added constructor. README 'Why each child is a good leaf' explicitly answers the bounded-prover question: each child is self-contained and closes by a single auto/force unfolding definitions only (atriple_rel_def, eval_*_def, urust_eval_predicate_defs) with no further project lemma; the Yield child closes from its named sibling by force. Confirmed against the copied code (Adequacy.thy 31-66, Core_Expression_Lemmas.thy 53-79).",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T16:12:56Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 200f1acf2d264f2dedee33792b986ebe73c224a3",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:13:15Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are mutually consistent and traceable. check_provenance.py reports pass: 4 file(s) byte-identical at 200f1acf2d264f2dedee33792b986ebe73c224a3. entry.json source.commit and every permalink use that same pinned commit with paths matching the four copied files under code/ (Adequacy.thy, Triple.thy, Eval.thy, Core_Expression_Lemmas.thy). source.json and sources/autocorrode/SOURCE.md record the identical commit (pinned 2026-11-12T13:44:17Z) and repo https://github.com/awslabs/AutoCorrode. Licence is MIT throughout entry.json/README/SOURCE.md/source.json, and sources/autocorrode/upstream-LICENSE is the standard MIT License (Amazon copyright); no conflicting or copyleft/NC notice. SOURCE.md carries licence text pointer and attribution; README's Source and licence section agrees.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T16:13:45Z"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "entry": "python-workflow-goedel-prover-v2-aff4c769",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:33:11Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:33:12Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2e9036e118464aa96a8bebaf9f5b9d091aa3585c",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:33:25Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI workflow in the repository: .github/workflows returns 404 (confirmed via GitHub API and list_files.py at pinned commit 2e9036e11846); no CI builds src/utils.py",
+      "by": "verifier",
+      "at": "2026-11-12T15:34:46Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "line 341 prompt F-string contains verbatim 'Before producing the Lean 4 code to formally prove the given theorem, provide a detailed proof plan ... The plan should highlight key ideas, intermediate lemmas, and proof structures that will guide the construction of the final formal proof' (read of byte-identical local copy code/src/utils.py, provenance pass)",
+      "by": "verifier",
+      "at": "2026-11-12T15:34:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "line 340: formal_statement = lean4_code.split(':=' by')[0] + ':= by sorry'; line 341 prompt begins 'Complete the following Lean 4 code:' and embeds formal_statement",
+      "by": "verifier",
+      "at": "2026-11-12T15:34:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "extrac_code lines 323-337 keeps only the last lean4 code block (matches[-1], prepended with import_head); problem_check lines 352-354 calls replace_statement_in_proof; read of whole copied file found no code parsing or validating the plan text",
+      "by": "verifier",
+      "at": "2026-11-12T15:34:58Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "line 372 correction prompt contains verbatim 'Before producing the Lean 4 code to formally prove the given theorem, provide a detailed analysis of the error message'",
+      "by": "verifier",
+      "at": "2026-11-12T15:35:00Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "line 340 trailing comment is '# include sorry https://huggingface.co/deepseek-ai/DeepSeek-Prover-V2-7B' — states the sorry rewrite is to include sorry and cites the model-card URL",
+      "by": "verifier",
+      "at": "2026-11-12T15:35:03Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2e9036e118464aa96a8bebaf9f5b9d091aa3585c",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:36:10Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Skill (workflow) entry; provenance passes (code byte-identical at 2e9036e). Read code/src/utils.py: site excerpt lines 339-350 match README verbatim. All four children and closed_by match the code: sorrify-goal (L340 lean4_code.split(':=' by')[0]+':=' by sorry'), plan-first-prompt (L341 F-string), extract-code (extrac_code L323-337 re.findall matches[-1] + import_head), splice-proof (problem_check L352-354 -> replace_statement_in_proof L210-223). It closes: replace_statement_in_proof returns stats_re[:span1].replace('sorry','')+proof_str[span2:], a complete theorem. All 5 claims verified against the file: claim1 prompt quote L341, claim2 L340-341, claim3 no plan parsing, claim4 correction prompt L372, claim5 'include sorry' comment L340. No shape field and that is correct for a skill (shape is theorem-scale only); children are pipeline stages, not lemmas, which the entry states honestly.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:36:20Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the one harness: aliases (plan-before-proving, chain-of-thought proof planning, decompose-before-prove), the transferable ordering principle (plan instruction placed before the code request, with a fixed := by sorry skeleton), and a mapping to survey F rule 4. When-not-to-use and consequences are honest and specific and match the copied code: DeepSeekNonCoTHandler (lines 384-387) drops both sorry and plan; extrac_code keeps only the last lean4 code block so the plan is never parsed; the := by sorry split discards a prior body; replace_statement_in_proof refuses apply?/exact? (211-212) and non-'theorem :=' proofs (220-222). The entry honestly says the named intermediate lemmas are a soft nudge never read back, so it does not overclaim them as good leaves for a bounded prover. Minor gap, not blocking: it does not positively characterize what would make such lemmas good leaves, but it flags the plan is a prompt convention, not a verified skeleton.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:37:51Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2e9036e118464aa96a8bebaf9f5b9d091aa3585c",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:38:43Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent and traceable. Commit 2e9036e118464aa96a8bebaf9f5b9d091aa3585c agrees across entry.json, source.json and SOURCE.md; check_provenance.py re-fetched src/utils.py at that commit and it is byte-identical (21675 bytes, sha256 594e183d...). Every permalink uses the same commit and path with line anchors that match the local copy: file blob URL, site #L339-L350 (prover_inference), claim1 #L341 (prompt F-string), claim2 #L340-L341, claim3 #L323-L354, claim4 #L372 (correction prompt), claim5 #L340 (include-sorry comment). Licence LicenseRef-unknown is recorded identically in entry.json, source.json and SOURCE.md, and list_files.py at the pinned commit shows 22 files with no LICEN[CS]E/COPYING/COPYRIGHT/NOTICE/CeCILL, so 'no licence file found at the root' and unknown are correct (protocol decision 1 tags unknown licences). SOURCE.md attribution statement matches. Entry language 'python' is from the copied file extension (src/utils.py), per fields.md; the SOURCE.md 'Language: lean' is the project-level label and is not a provenance-licence defect.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:39:39Z"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "entry": "rocq-key-invariant-rocq-stdlib-1a358d2f",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:56:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:56:06Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 22fcaa27d17bc28ab4be728ed10a1fb73afb23ee",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:56:14Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/nix-action-rocq-9.3.yml 'stdlib' job (nix-build bundle rocq-9.3 job stdlib) compiles the whole rocq stdlib incl. theories/Logic/WKL.v, on push to master (default branch); pinned commit 22fcaa27d17bc28ab4be728ed10a1fb73afb23ee is on master (API compare master...22fcaa27 = identical)",
+      "by": "verifier",
+      "at": "2026-11-12T15:58:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "byte-identical local copy (check_provenance pass) of theories/Logic/WKL.v: parent 211-235, assert (infinite_from P l) at 216, induction l at 217, Y_approx 222, Y_unique 225, is_path_from_restrict 228, find_left_path 229 & 232, inductively_barred_at_monotone 231, inductively_barred_at_imp_is_path_from 233, specialize (H 0). inversion H. assumption. 234",
+      "by": "verifier",
+      "at": "2026-11-12T15:58:54Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "local copy: parent 211-235 = 25 lines; child sites 104-117/119-128/135-147/163-169/171-187/193-207 = [14,10,13,7,17,15] lines; 6 direct children; chain PreWeakKonigsLemma(222 apply Y_approx)->Y_approx(200 rewrite Y_unique)->Y_unique(181,184 is_path_from_imp_inductively_barred_at), 3 edges, no longer chain exists",
+      "by": "verifier",
+      "at": "2026-11-12T15:58:56Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "local copy lines 89-92 contain the quoted comment verbatim: 'The proof proceeds by building a set [Y] ... true::true::... if [P] happens to be inductively_barred'",
+      "by": "verifier",
+      "at": "2026-11-12T15:58:59Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "grep -E 'admit|Admitted|Axiom' over local copy: no matches; Qed present at 117,128,147,161,169,187,207,235 (6 children + helper + parent)",
+      "by": "verifier",
+      "at": "2026-11-12T15:59:00Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "fetched WeakFan.v at 22fcaa27: WeakFanTheorem 88-101, Fixpoint Y at 49, Y_unique 57-69, Y_approx 75-86, Definition X at 73; same unindexed Y/Y_unique/Y_approx/X pattern as WKL.v",
+      "by": "verifier",
+      "at": "2026-11-12T15:59:01Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Opened code/theories/Logic/WKL.v (copied, 273 lines). Parent statement and all six child statements match entry.json verbatim (PreWeakKonigsLemma L211-235; is_path_from_restrict L104-117; inductively_barred_at_monotone L119-128; inductively_barred_at_imp_is_path_from L135-147; find_left_path L163-169; Y_unique L171-187; Y_approx L193-207). Glue (L216-233) asserts infinite_from P l, proves by induction on l, closes with 'specialize (H 0). inversion H. assumption.' (L234); it applies exactly the six named children by name (Y_approx L222, Y_unique L225, is_path_from_restrict L228, find_left_path L229+L232, inductively_barred_at_monotone L231, inductively_barred_at_imp_is_path_from L233); the helper is_path_from_imp_inductively_barred_at (L149-161) is NOT applied by the glue directly, matching its 'context' role. Each child's closed_by matches its proof (induction/inversion/f_equal steps as stated). All proofs end in Qed; no admit/Admitted/Axiom in the file. Shape numbers correct: direct_lemmas 6; glue_lines 25 (L211-235); child_lines [14,10,13,7,17,15] = site ranges 104-117,119-128,135-147,163-169,171-187,193-207 in the children-array order; depth 3 = PreWeakKonigsLemma -> Y_approx (uses Y_unique L203) -> Y_unique (uses is_path_from_imp_inductively_barred_at L184,L186).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T16:00:11Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally: the glue is characterised as strengthening the fixed instance infinite_from P [] to the invariant forall l, infinite_from P l and inducting on l, and use_when is abstracted to an existential over an infinite object over finite prefixes with one pinned finite instance reducible by a restriction/monotonicity lemma plus a decidability link between dual relations; it maps to Survey F rule 6 and cites the sibling WeakFan.v as known-use, so it does not stay tied to the example. When-not-to-use and consequences are honest and specific: they name the exact failure modes tied to named lemmas (no demorgan_inductively_barred_at closes the false case of Y_approx and the step of inductively_barred_at_imp_is_path_from; no Y_unique breaks the re-targeting rewrite; a non-unique prefix set Y). It explicitly says what makes children good leaves: self-contained statements, each closes on its own or from named siblings, with two purely structural lemmas and a two-line find_left_path over a shared no-overlap helper.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T16:01:07Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 22fcaa27d17bc28ab4be728ed10a1fb73afb23ee",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:01:38Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalink, commit, licence and source note are all consistent and traceable. check_provenance.py reports the single copied file theories/Logic/WKL.v is byte-identical at commit 22fcaa27d17bc28ab4be728ed10a1fb73afb23ee. Raw view of LICENSE at that commit is LGPL-2.1 (matches entry.json licence, SOURCE.md, source.json and the copied upstream-LICENSE); the WKL.v header itself states 'GNU Lesser General Public License Version 2.1'. All site permalinks point at the pinned commit and the correct path. source.json and SOURCE.md agree on url, commit, licence and licence_files.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T16:02:23Z"
+    }
+  ]
+}

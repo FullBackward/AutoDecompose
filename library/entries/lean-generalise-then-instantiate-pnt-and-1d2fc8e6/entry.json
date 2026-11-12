@@ -1,0 +1,176 @@
+{
+  "id": "lean-generalise-then-instantiate-pnt-and-1d2fc8e6",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Medium PNT by instantiating GenStrengthPNT at exponents 9, 9",
+  "intent": "Prove the medium prime-number theorem ψ(x) = x + O(x exp(−c (log x)^(1/10))) by stating and proving the stronger general form once — GenStrengthPNT over arbitrary exponents n₁, n₂ — then specialising n₁ = n₂ = 9 through LogDerivZetaBoundedAndHolo99, leaving only a simplification of 1/(1+9) to 1/10.",
+  "move": "generalise-then-instantiate",
+  "also_known_as": [
+    "generalise-then-specialise",
+    "abstract-then-instantiate",
+    "specialise a general lemma"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "pnt-and",
+    "url": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd",
+    "commit": "2c476fa6441c607096d93c8fc7ac0a227a655dae",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "PrimeNumberTheoremAnd/MediumPNT.lean",
+      "bytes": 178324,
+      "sha256": "5bcb908f994b02097ad439957f016b411bd8e990d400f083cb0a0dcf735c3b02",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/MediumPNT.lean"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/ZetaBounds.lean",
+      "bytes": 172111,
+      "sha256": "0c5d904863f0416eaf3d20e8dc9249277fd87a9ae572dd68536283143fef4e5f",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/ZetaBounds.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "PrimeNumberTheoremAnd/MediumPNT.lean",
+      "lines": [
+        4142,
+        4146
+      ],
+      "role": "parent",
+      "name": "MediumPNT",
+      "excerpt_sha256": "96e2f03d8a81361b5f13808a004cabd19d5d3192ca09230ec7ab20750afb4cab",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/MediumPNT.lean#L4142-L4146"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/MediumPNT.lean",
+      "lines": [
+        3606,
+        4131
+      ],
+      "role": "child",
+      "name": "GenStrengthPNT",
+      "excerpt_sha256": "df2c0805cbc84b6ce94ce11ac023ff4f0732c1e62d2eda83707028a778e1b12b",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/MediumPNT.lean#L3606-L4131"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/MediumPNT.lean",
+      "lines": [
+        3500,
+        3501
+      ],
+      "role": "child",
+      "name": "LogDerivZetaBoundedAndHolo99",
+      "excerpt_sha256": "a558e22c70999bdcd3c7ab65bb38a5209d0956a9ba94ecfc581c79705914ea76",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/MediumPNT.lean#L3500-L3501"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/MediumPNT.lean",
+      "lines": [
+        3474,
+        3498
+      ],
+      "role": "context",
+      "name": "LogDerivZetaBoundedAndHoloGen",
+      "excerpt_sha256": "66a13c472bacfa2ae14b38ebb557cd626ddbef7a2b1fef69a26afd72d0bc3a1b",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/MediumPNT.lean#L3474-L3498"
+    }
+  ],
+  "parent": {
+    "name": "MediumPNT",
+    "statement": "theorem MediumPNT : ∃ c > 0,\n    (ψ - id) =O[atTop]\n      fun (x : ℝ) ↦ x * Real.exp (-c * (Real.log x) ^ ((1 : ℝ) / 10))"
+  },
+  "children": [
+    {
+      "name": "GenStrengthPNT",
+      "statement": "lemma GenStrengthPNT {n₁ n₂ : ℝ}\n  (LogDerivZetaBoundedAndHolo : LogDerivZetaBoundedAndHoloGenProp n₁ n₂)\n  (n₁_pos : 0 < n₁) (n₂_pos : 0 < n₂) : ∃ c > 0,\n  (ψ - id) =O[atTop]\n    fun (x : ℝ) ↦ x * Real.exp (-c * (Real.log x) ^ ((1 : ℝ) / (1 + n₁)))",
+      "closed_by": "its own 521-line proof (lines 3611-4131): it obtains I1Bound … I9Bound, SmoothedChebyshevClose, SmoothedChebyshevPull1/2 and MellinOfSmooth1cExplicit, then closes with a calc chain of inequalities ending in `rw [Real.norm_of_nonneg]`"
+    },
+    {
+      "name": "LogDerivZetaBoundedAndHolo99",
+      "statement": "lemma LogDerivZetaBoundedAndHolo99 : LogDerivZetaBoundedAndHoloGenProp 9 9",
+      "closed_by": "exact LogDerivZetaBoundedAndHoloGen LogDerivZetaBndUnif99 LogDerivZetaHolcLargeT9"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "a concrete theorem whose statement is the image of a general theorem under a substitution of its parameters (here the exponent 1/(1+n₁) becomes 1/10 by n₁ = 9), with the general theorem already proved over the parameters",
+    "use_when": "the hard part depends on the parameters only through a proven general bound, and the instantiation is discharged by unification plus cheap arithmetic (linarith, ring_nf)",
+    "avoid_when": "the concrete instance needs an argument the general proof does not cover, or the general lemma's side conditions (here 0 < n₁, 0 < n₂) cannot be closed by automation"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent MediumPNT closes in two tactic lines that instantiate GenStrengthPNT at n₁ = n₂ = 9 and simplify the exponent: `have := GenStrengthPNT LogDerivZetaBoundedAndHolo99 (by linarith) (by linarith); ring_nf at this` then `simpa only [gt_iff_lt, one_div, neg_mul] using this`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/MediumPNT.lean#L4142-L4146; the file is compiled by .github/workflows/build.yml (lean-action, build-args :blueprint) on pushes to main"
+    },
+    {
+      "n": 2,
+      "claim": "Shape measured on the copied file: 2 direct lemmas (GenStrengthPNT, LogDerivZetaBoundedAndHolo99), 2 lines of glue (lines 4145-4146), child proof lines [521, 1] (GenStrengthPNT 3611-4131, LogDerivZetaBoundedAndHolo99 3501), and depth 2 along MediumPNT → LogDerivZetaBoundedAndHolo99 → LogDerivZetaBoundedAndHoloGen.",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/MediumPNT.lean#L4142-L4146 (parent), #L3606-L4131 (GenStrengthPNT), #L3500-L3501 (LogDerivZetaBoundedAndHolo99), #L3474-L3498 (LogDerivZetaBoundedAndHoloGen)"
+    },
+    {
+      "n": 3,
+      "claim": "The authors state the general form first: the GenStrengthPNT blueprint says 'Assuming a bound of the form of Definition \\ref{LogDerivZetaHasBound}, we have that ∑_{n ≤ x} Λ(n) = x + O(x exp(−c (log x)^{1/(1+n₁)})).'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/MediumPNT.lean#L3586-L3604"
+    },
+    {
+      "n": 4,
+      "claim": "No sorry, admit or axiom closes any of the lemmas: a grep for these tokens over the copied MediumPNT.lean and ZetaBounds.lean returns nothing, and the file ends with the author's own check `#print axioms MediumPNT` (line 4148).",
+      "evidence_kind": "check",
+      "evidence": "grep -nE '\\bsorry\\b|\\badmit\\b|\\baxiom\\b' over the two copied files returned no matches; https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/MediumPNT.lean#L4148"
+    },
+    {
+      "n": 5,
+      "claim": "The same generalise-then-instantiate move runs a second time one level down in ZetaBounds.lean: LogDerivZetaHolcLargeTGen (general n) is instantiated at n = 9 by LogDerivZetaHolcLargeT9, and LogDerivZetaBndUnif99 : LogDerivZetaBndUnifGenProp 9 9 is the bound LogDerivZetaBoundedAndHolo99 consumes.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/ZetaBounds.lean#L3371-L3372 and #L3629"
+    }
+  ],
+  "metrics": {
+    "parent_statement_lines": 3,
+    "parent_proof_lines": 2,
+    "children": 2,
+    "how_counted": "parent statement = lines 4142-4144 and proof = lines 4145-4146 of the copied PrimeNumberTheoremAnd/MediumPNT.lean; children = the two named lemmas the glue cites directly"
+  },
+  "consequences": "The move leaves two side conditions of the general lemma to discharge at the instantiation site — here 0 < 9 twice, closed by `linarith` — plus a normalisation of the exponent (1/(1+9) → 1/10) closed by `ring_nf`/`simpa`. If the concrete instance changes a parameter in a way the general proof's hypotheses do not cover, the instantiation fails; the general lemma must be stated so that its hypotheses are exactly what the concrete case can supply.",
+  "known_uses": [
+    "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/ZetaBounds.lean#L3371-L3372"
+  ],
+  "related": [],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 2,
+    "glue_lines": 2,
+    "child_lines": [
+      521,
+      1
+    ]
+  },
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "1d2fc8e658ffa48442d4cd27550f823a0af00320f9435316ad6721095ee72910",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:18:19Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,metrics,consequences,known_uses,shape",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:30:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T16:28:28Z"
+}

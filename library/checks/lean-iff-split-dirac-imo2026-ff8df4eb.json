@@ -1,0 +1,133 @@
+{
+  "entry": "lean-iff-split-dirac-imo2026-ff8df4eb",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:04:39Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:04:39Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 37259237016275044e3905e8d537efd0eead74d2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:04:50Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI workflow at the pinned commit 37259237016275044e3905e8d537efd0eead74d2 (repository tree has no .github/workflows; list_files.py shows no .github directory) and no local Lean toolchain (protocol section 6), so the build was not run",
+      "by": "verifier",
+      "at": "2026-11-12T15:09:54Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "read code/IMO2026/Q4/solution.lean L381-384: constructor (L381) splits the iff; bullet 1 is a single exact of exists_div_of_canGuarantee (L382); bullet 2 is rintro ⟨n, hn, hθ⟩ then a single exact of mulanCanGuarantee_of_div (L383-384). Each bullet applies exactly one named project lemma via exact; the only extra tactic is the witness-unpacking rintro, so no substantive tactic work happens in the parent proof",
+      "by": "verifier",
+      "at": "2026-11-12T15:09:57Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "refuted",
+      "evidence": "glue counts correct: L381-384 = 4 lines calling exactly exists_div_of_canGuarantee and mulanCanGuarantee_of_div (2 direct lemmas); child proofs = 6 lines (L365-370) and 7 lines (L273-279). But longest chain is not 4: isTriangle_triple (L68-73) is not a leaf — it uses card_triple (L70), mem_triple (L72), sum_triple (L73), so main_theorem → exists_div_of_canGuarantee → not_good_of_mulanWins → good_of_cut → isTriangle_triple → card_triple has 5 project lemmas below main_theorem (depth 5), not 4",
+      "by": "verifier",
+      "at": "2026-11-12T15:10:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "read code L376-378: doc comment labels it Main theorem and states the informal biconditional (0 < θ < 180, Mulan can guarantee victory iff θ = 180/n for some integer n ≥ 2), matching the formal statement L379-380 component-wise (0<θ<180 ↔ hθ0 hθ180; guarantee ↔ MulanCanGuarantee θ; iff ↔ iff; θ=180/n for n≥2 ↔ ∃ n, 2≤n ∧ θ=180/n)",
+      "by": "verifier",
+      "at": "2026-11-12T15:10:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "read L363-370: exists_div_of_canGuarantee closes by exact not_good_of_mulanWins hc (h _ htri) (good_equilateral hc) at L370, using not_good_of_mulanWins and good_equilateral, not the other direction. read L271-279: mulanCanGuarantee_of_div closes by obtain ... := exists_opening_cut (L276) and exact MulanWins.move ... mulanWins_of_succ_mul ... (L277-279), not the other direction. Both children close on their own from named siblings without referencing the opposite direction",
+      "by": "verifier",
+      "at": "2026-11-12T15:10:08Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 37259237016275044e3905e8d537efd0eead74d2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:13:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read code/IMO2026/Q4/solution.lean. Glue: L381-384 = 4 lines (constructor, exact exists_div_of_canGuarantee, rintro, exact mulanCanGuarantee_of_div) calling exactly the 2 direct lemmas exists_div_of_canGuarantee and mulanCanGuarantee_of_div. Children proof bodies: exists_div_of_canGuarantee L365-370 = 6 lines; mulanCanGuarantee_of_div L273-279 = 7 lines. Longest chain (depth 5) confirmed step-by-step: main_theorem L382 -> exists_div_of_canGuarantee; L370 -> not_good_of_mulanWins; L352 (rcases good_of_cut) -> good_of_cut; L307-310 -> isTriangle_triple; L70 (refine card_triple) -> card_triple = 5 project lemmas below main_theorem. Checked the other branch too: mulanCanGuarantee_of_div -> exists_opening_cut -> exists_repr_apex -> exists_repr -> mem_triple also reaches depth 5, and mulanWins_of_succ_mul -> exists_repr_apex -> exists_repr -> mem_triple reaches depth 4, so no chain exceeds 5.",
+      "by": "verifier",
+      "at": "2026-11-12T15:15:54Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "already recorded",
+      "by": "verifier",
+      "at": "2026-11-12T15:16:02Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read code/IMO2026/Q4/solution.lean. Glue: L381-384 = 4 lines (constructor, exact exists_div_of_canGuarantee, rintro, exact mulanCanGuarantee_of_div) calling exactly the 2 direct lemmas exists_div_of_canGuarantee and mulanCanGuarantee_of_div. Child proof bodies: exists_div_of_canGuarantee L365-370 = 6 lines; mulanCanGuarantee_of_div L273-279 = 7 lines. Longest chain (depth 5) confirmed: main_theorem L382 -> exists_div_of_canGuarantee -> not_good_of_mulanWins (L370) -> good_of_cut (L352 rcases) -> isTriangle_triple (L307-310) -> card_triple (L70 refine) = 5 project lemmas below main_theorem. Other branch reaches depth 5 too (mulanCanGuarantee_of_div -> exists_opening_cut -> exists_repr_apex -> exists_repr -> mem_triple) and mulanWins_of_succ_mul branch depth 4, so no chain exceeds 5.",
+      "by": "verifier",
+      "at": "2026-11-12T15:16:16Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Read code/IMO2026/Q4/solution.lean directly. Parent main_theorem (L379-384) is exactly constructor then one exact per direction: exact exists_div_of_canGuarantee hθ0 hθ180 (L382) and rintro ⟨n,hn,hθ⟩ / exact mulanCanGuarantee_of_div hn hθ (L383-384); the rintro witness-unpacking is acknowledged in the intent and README, so the decomposition matches. Children are exactly the two lemmas the parent proof uses. Child closed_by matches code: exists_div_of_canGuarantee (L365-370) terminates in exact not_good_of_mulanWins hc (h _ htri) (good_equilateral hc); mulanCanGuarantee_of_div (L273-279) terminates in exact MulanWins.move hcut (mulanWins_of_succ_mul ...) (mulanWins_of_succ_mul ...) from exists_opening_cut. Shape numbers verified against the shape definition in fields.md: direct_lemmas=2, glue_lines=4 (L381-384), child_lines=[6,7] (L365-370 and L273-279), depth=5. Longest chain independently traced: main_theorem -> exists_div_of_canGuarantee -> not_good_of_mulanWins -> good_of_cut -> isTriangle_triple -> card_triple = 5 lemmas below main_theorem; backward branch mulanCanGuarantee_of_div -> exists_opening_cut -> exists_repr_apex -> exists_repr -> mem_triple also reaches 5, none exceeds 5, so depth=5 is correct (the earlier refuted depth-4 claim was fixed). Build is not-run for want of a toolchain, but the code is syntactically consistent and every named closing method exists and is applied as claimed.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:18:04Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated beyond the example: applicability.goal_shape generalises to any iff whose two directions are already separate forward/backward lemmas, and notes the same shape for order antisymmetry and set equality; use_when/avoid_when give general criteria. When-not-to-use is honest and specific (shared proofs -> fold into one lemma or use le_antisymm/ext; a direction not yet a lemma -> constructor just exposes an open goal). Consequences are honest: exactly two obligations, each named with its argument, a true hypothesis-surgery observation (forward needs h0/h180 for div_iff_intMul, backward only hn/hdef), and the failure mode stated. Good-leaf question answered in substance: README says each direction is a good leaf because its statement is self-contained and it closes on its own from named siblings never from the other direction, with measured 6/7-line proofs and depth-5 chain; the exact phrase 'bounded prover' is not used, but the properties a bounded prover needs (self-contained statement, short independent proof, shallow lemma chain) are all recorded.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:19:00Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 37259237016275044e3905e8d537efd0eead74d2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:19:25Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent and traceable. check_provenance.py passes: code/IMO2026/Q4/solution.lean is byte-identical at commit 37259237016275044e3905e8d537efd0eead74d2 and its recorded sha256 matches. Commit is identical across entry.json source.commit, source.json, SOURCE.md (pinned 2026-11-12T10:23:52Z) and README (372592370162 = first 12 chars). Licence MIT is consistent in entry.json, source.json, SOURCE.md and README; upstream-LICENSE is the MIT text (Copyright 2026 Boundless Intuition) and is byte-identical to the fetched upstream LICENSE at the pinned commit. All 4 site permalinks and the file permalink use the pinned commit and correct path IMO2026/Q4/solution.lean with line anchors matching the README excerpts.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:20:08Z"
+    }
+  ]
+}

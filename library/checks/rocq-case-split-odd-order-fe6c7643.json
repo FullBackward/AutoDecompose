@@ -1,0 +1,101 @@
+{
+  "entry": "rocq-case-split-odd-order-fe6c7643",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:38:08Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:38:08Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at ba734c020d9f7dce5758fa822904dea29e2624ba",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:38:17Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/coq-action.yml (name: CI) builds coq-mathcomp-odd-order.opam via docker-coq-action on push to master and PRs; _CoqProject lists theories/PFsection14.v (line 23). Pinned commit ba734c0 is HEAD of master (default branch, 2026-08-20). nix-action-master.yml also has an odd-order job on push to master.",
+      "by": "verifier",
+      "at": "2026-11-12T15:41:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Opened the copied code (byte-identical per provenance) and the 12 named lemmas are closed Lemma/Theorem/Fact/Remark ending in Qed: compl_of_typeII (PFsection8.v L387-395 Qed), typeP_pair_sym (L436-440 Qed), FTtypeP_pair_cases (L443-465 Qed), typeP_pairW (L470-498 Qed), FTtype1_ref_irr (PFsection12.v L56-60 Qed), FT_Frobenius_type1 (L491-495 Qed), not_all_FTtype1 (L1302-1361 Qed), FTtypeII_support_facts (PFsection13.v L1658-1776 Qed), FTtype1_coherence (L1963-1969 Qed), FTtypeP_max_typeII (PFsection14.v L491-492 Qed), FTtypeP_min_typeII (L733-854 Qed), FTtype2_exclusion (L1211-1212 Qed). None is axiom/hypothesis/Admitted.",
+      "by": "verifier",
+      "at": "2026-11-12T15:42:00Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "PFsection8.v L443-445: FTtypeP_pair_cases returns the disjunction '{in 'M, forall M, FTtype M == 1%N} \\/ exists S, exists T, exists_typeP (fun _ => typeP_pair S T)'. Parent at PFsection14.v L1218-1219: 'have [/forall_inP | [S [T [_ W W1 W2 defW pairST]]]] := FTtypeP_pair_cases gT.' with left arm 'exact/negP/not_all_FTtype1.' and right arm carrying the pair; both arms covered, exhaustive.",
+      "by": "verifier",
+      "at": "2026-11-12T15:42:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Parent proof body is PFsection14.v L1217-1253 (37 lines). The body applies 12 distinct named lemmas (FTtypeP_pair_cases, not_all_FTtype1, typeP_pair_sym, typeP_pairW, FTtypeP_max_typeII, FTtypeP_min_typeII, compl_of_typeII, FTtypeII_support_facts, FT_Frobenius_type1, FTtype1_coherence, FTtype1_ref_irr, FTtype2_exclusion) across 4 files (PFsection8/12/13/14). Chain verified: no_minSimple_odd_group -> FTtype2_exclusion (L1250 'exact: (FTtype2_exclusion ...)'), FTtype2_exclusion -> not_charUH (L1212 ':= not_charUH'), not_charUH -> no_full_FT_Galois_structure (L639 'case: no_full_FT_Galois_structure'), no_full_FT_Galois_structure -> prime_dim_normed_finField (L487 'exact: (prime_dim_normed_finField ...)'). prime_dim_normed_finField is a Theorem at BGappendixC.v L763.",
+      "by": "verifier",
+      "at": "2026-11-12T15:42:09Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "PFsection14.v L23-24: '(* This file covers Peterfalvi, Section 14: Non_existence of G. *)' and '(* It completes the proof of the Odd Order theorem. *)'. L1255-1257: 'Theorem Feit_Thompson (gT : finGroupType) (G : {group gT}) : odd #|G| -> solvable G. Proof. exact: (minSimpleOdd_ind no_minSimple_odd_group). Qed.' — matches the quoted author statement exactly.",
+      "by": "verifier",
+      "at": "2026-11-12T15:42:11Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent no_minSimple_odd_group (PFsection14.v:1216-1253) is a 37-line proof that is exactly an exhaustive case split (FTtypeP_pair_cases :1218), a wlog q<p (:1228), and assembly of the 12 listed children ending in FTtype2_exclusion; it closes with Qed and has no admit/axiom. All 12 children are directly applied in the glue, each closes with Qed, their statements match entry.json verbatim, and every closed_by string matches the code (verified against PFsection8.v, PFsection12.v, PFsection13.v, PFsection14.v local copies). Shape numbers check out: glue_lines 37, child_lines [20,59,3,1,121,8,114,1] equal the Proof..Qed body line counts of the 8 shown children, depth 4 = chain no_minSimple_odd_group->FTtype2_exclusion->not_charUH->no_full_FT_Galois_structure->prime_dim_normed_finField (edges at L1212/L639/L487 confirmed). Minor non-blocking note: metrics how_counted and README cite typeP_pairW as applied at line 1237, but it is applied at line 1232 (1237 is mFT_norm_proper); also direct_lemmas=12 counts only the skeleton children while the glue additionally applies generic project helpers (mmax_exists, mFT_norm_proper, mFT_sol_proper).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:47:25Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalised beyond the example: applicability.goal_shape abstracts to 'impossibility theorem forall gT, C gT -> False' reduced to a finite exhaustive dichotomy (all-small-kind OR distinguished pair), each arm closed by a named lemma, and also_known_as names the transferable ingredients 'dichotomy on a classification lemma'/'wlog ordering'. use_when/avoid_when are specific and honest: exhaustiveness must already be a proved project lemma; arms must factor through named lemmas; and the closing lemma must not depend on a fragile positional argument list (a real risk here, where FTtype2_exclusion is applied to a long positional list). Consequences are concrete: two obligations from the \\/, the wlog swap via typeP_pair_sym carrying one ordering for both, and the single exact: breaking if any intermediate fact changes shape. The entry explicitly answers 'what makes these good leaves': each child's statement is already in the shape the glue needs (the dichotomy IS the disjunction; not_all_FTtype1 IS the negation of arm (a); the one-liners close by a single rewrite/case), and the summary states the parent is a bounded-prover skeleton where every hole is 'have := <closed lemma>' with the wlog ordering as the only creative glue step.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:48:39Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at ba734c020d9f7dce5758fa822904dea29e2624ba",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:49:05Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance pass: check_provenance.py confirms 4 files byte-identical at ba734c020d9f7dce5758fa822904dea29e2624ba. Commit is consistent everywhere: entry.json source.commit, source.json, SOURCE.md, and every file/site permalink use ba734c020d9f7dce5758fa822904dea29e2624ba; the verifier's ci-record cites it as HEAD of master. Licence CECILL-B is recorded consistently in entry.json, source.json, SOURCE.md, README; the copied upstream-CeCILL-B is genuinely the CeCILL-B licence (Version 1.0 dated 2006-09-05). Source note SOURCE.md matches (repo, commit, language, licence file). All 12 site line ranges resolve to the correct named lemmas in the byte-identical copies (spot-checked: no_minSimple_odd_group 1216, Feit_Thompson 1255, compl_of_typeII 387, typeP_pair_sym 436, FTtypeP_pair_cases 443, typeP_pairW 470, FTtype1_ref_irr 56, FT_Frobenius_type1 491, not_all_FTtype1 1302, FTtypeII_support_facts 1658, FTtype1_coherence 1963, FTtypeP_max_typeII 491, FTtypeP_min_typeII 733, FTtype2_exclusion 1211). Traceable end to end.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:49:49Z"
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "entry": "lean-case-split-harmonic-imo2025-09c4818f",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:21:23Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:21:23Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 72b62405a176a7eaeadb335a7fa6ee80b6667161",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:21:29Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/lean_action_ci.yml runs leanprover/lean-action@v1 (lake build of the whole project, including HarmonicLean/IMO2025P1.lean) on push/PR; pinned commit 72b62405a176a7eaeadb335a7fa6ee80b6667161 is on the default branch main (verified via API branches-where-head)",
+      "by": "verifier",
+      "at": "2026-11-12T15:23:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read copied file lines 1395-1431: the only named project lemmas invoked are convert lem_k0_possible (1402), convert lem_k1_possible (1409), convert lem_k3_possible (1413), have := lem_k_ge_4_impossible (1422), apply lem_k2_impossible (1428); rest of body is aesop/unfold/simp/norm_num/interval_cases/bound/contrapose!/cases'",
+      "by": "verifier",
+      "at": "2026-11-12T15:23:37Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Read copied file: five children defined at 121, 170, 307, 1217, 1352 (all above main_theorem at 1387) with proof bodies in the stated ranges; grep found no 'sorry', 'admit' or 'axiom' keyword anywhere in the file; line 1433 is '#print axioms main_theorem'",
+      "by": "verifier",
+      "at": "2026-11-12T15:23:38Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Verified call sites in copied file: main_theorem->lem_k_ge_4_impossible at 1422; ->lem_kn_impossible at 1267; ->lem_kn_impossible_n_ge_5 at 1210; ->lem_kn_impossible_n_ge_5_point_coverage at 1133; ->lem_kn_point_22 at 1019; ->lem_kn_setup at 845 (leaf at 532). Lemma defs match cited ranges. Glue = 1431-1395+1 = 37 lines; 5 direct lemmas; 6 project lemmas below main_theorem",
+      "by": "verifier",
+      "at": "2026-11-12T15:23:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read copied file: line 7 is \"Answer: 0, 1, 3\"; line 1420 comment \"-- By Lemma~\\ref{lem:k_ge_4_impossible}, $k \\leq 3$.\"; line 1427 comment \"-- By Lemma~\\ref{lem:k2_impossible}, there cannot be a configuration with $k=2$.\"",
+      "by": "verifier",
+      "at": "2026-11-12T15:23:46Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Independently read the copied code at HarmonicLean/IMO2025P1.lean (provenance pass, byte-identical at 72b62405). Decomposition matches the entry: main_theorem (1387-1431) is pure glue — forward direction cases' hk into the {0,1,3} cases and closes each with convert lem_k0_possible (1402) / lem_k1_possible (1409) / lem_k3_possible (1413); backward direction proves k<=3 via lem_k_ge_4_impossible (1422), interval_cases k, then lem_k2_impossible (1428). The five children are exactly the lemmas the glue invokes; each child's closed_by matches its code (k0: lem_k0_construction+image+aesop 128-137; k1: refine'+lem_k1_construction 177-196; k3: Nat.le_induction, exact? -> lem_n3_k3_exists, lem_induction_step 314-318; k_ge_4: Nat.le_induction, card_filter_le base, lem_reduction / lem_boundary_lines_implication + lem_kn_impossible 1224-1268; k2: lem_reduction+lem_boundary_lines_implication to n=3 then lem_k2_impossible_n3 1358-1379). Closes: grep found no sorry/admit/axiom in the file; #print axioms main_theorem at 1433. Shape numbers verified: direct_lemmas=5, glue_lines=1431-1395+1=37, child_lines=[11,21,6,46,22] (127-137, 176-196, 313-318, 1223-1268, 1358-1379), parent_lines=45, depth=6 chain main_theorem->lem_k_ge_4_impossible(1422)->lem_kn_impossible(1267)->lem_kn_impossible_n_ge_5(1210)->lem_kn_impossible_n_ge_5_point_coverage(1133)->lem_kn_point_22(1019)->lem_kn_setup(845, leaf 532) all real.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:26:06Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalized beyond the example to the goal shape \"set equality between a literal finite set and a comprehension\": use-when names a construction lemma per attainable value, an impossibility lemma per excluded value, and one bounding lemma so interval_cases terminates; avoid-when names large/unknown answer set, lemmas not already isolated, and excluded-case reasoning that will not compress into one bound plus a small interval_cases. Consequences give a specific failure mode (convert needs the goal and child definitionally close; a diverging child statement breaks the shared convert/unfold pattern). Leaf quality for a bounded prover is stated: each child is self-contained, closes on its own or from named siblings with no sorry/axiom, and the constructions share one statement shape; the staged backward split (bound k<=3, interval_cases, one excluded case k=2 left) is honestly described.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:27:32Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 72b62405a176a7eaeadb335a7fa6ee80b6667161",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:27:56Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes (1 file byte-identical at 72b62405a176a7eaeadb335a7fa6ee80b6667161); copied-file sha256 b763f019... matches entry.json; commit consistent across entry.json, SOURCE.md and ledger/sources.jsonl; licence LicenseRef-unknown correct - jsDelivr listing at the pinned commit shows no LICENSE/COPYING file at root; permalinks use the pinned commit and path HarmonicLean/IMO2025P1.lean, all line ranges within the 1433-line file.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:28:43Z"
+    }
+  ]
+}

@@ -1,0 +1,287 @@
+{
+  "id": "rocq-induction-interaction-trees-b0a7a191",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Induction on the Imp statement for compile_correct (Imp-to-Asm compiler)",
+  "intent": "Prove the Imp-to-Asm compiler correct by induction on the Imp statement, reducing the theorem to one case per constructor (Assign, Seq, If, While, Skip), each case rewriting the target denotation with the matching linking or correctness lemma proved earlier in the same file and closing on the induction hypothesis.",
+  "move": "induction",
+  "also_known_as": [
+    "structural induction over a language AST",
+    "one case per constructor",
+    "induction on the syntax of statements"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "interaction-trees",
+    "url": "https://github.com/DeepSpec/InteractionTrees",
+    "commit": "284d42248a3c5517cff9f582e335fcee2f6bdc1f",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "tutorial/Imp2AsmCorrectness.v",
+      "bytes": 35547,
+      "sha256": "68f852b1f1eb7a3c9a5fb569c364bc688e31b1555757e9779491efe75935603f",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/tutorial/Imp2AsmCorrectness.v"
+    },
+    {
+      "path": "tutorial/AsmCombinators.v",
+      "bytes": 15756,
+      "sha256": "57960f3ee29435e09b23721121f9b6377bfd4b120ae05af6fd77a8b1dbfd8333",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/tutorial/AsmCombinators.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "tutorial/Imp2AsmCorrectness.v",
+      "lines": [
+        822,
+        976
+      ],
+      "role": "parent",
+      "name": "compile_correct",
+      "excerpt_sha256": "de8f6f1f091d676aa0882343a750d0ec8a471f60a511bc6daf7f3e5b27716bca",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/tutorial/Imp2AsmCorrectness.v#L822-L976"
+    },
+    {
+      "path": "tutorial/Imp2AsmCorrectness.v",
+      "lines": [
+        353,
+        371
+      ],
+      "role": "child",
+      "name": "bisimilar_bind'",
+      "excerpt_sha256": "cce3791e7a9d53059810628706948b75938caaac3315bda6c51269abb651b51a",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/tutorial/Imp2AsmCorrectness.v#L353-L371"
+    },
+    {
+      "path": "tutorial/Imp2AsmCorrectness.v",
+      "lines": [
+        373,
+        402
+      ],
+      "role": "child",
+      "name": "bisimilar_iter",
+      "excerpt_sha256": "3907ae324bfb112c5e59e7f3d79a1835d1dfc4380a050dc3f73f2b77298e8ed3",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/tutorial/Imp2AsmCorrectness.v#L373-L402"
+    },
+    {
+      "path": "tutorial/Imp2AsmCorrectness.v",
+      "lines": [
+        454,
+        462
+      ],
+      "role": "child",
+      "name": "seq_asm_correct",
+      "excerpt_sha256": "82730d94cd9c45e83677eea02cb4d5bcbf4c68b221678ed6718561b5017568d7",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/tutorial/Imp2AsmCorrectness.v#L454-L462"
+    },
+    {
+      "path": "tutorial/Imp2AsmCorrectness.v",
+      "lines": [
+        466,
+        520
+      ],
+      "role": "child",
+      "name": "if_asm_correct",
+      "excerpt_sha256": "eaa46ae4c210a6dc8aa55cc32bb334ab003f19c66c64efa444f307a9450cb0d1",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/tutorial/Imp2AsmCorrectness.v#L466-L520"
+    },
+    {
+      "path": "tutorial/Imp2AsmCorrectness.v",
+      "lines": [
+        526,
+        579
+      ],
+      "role": "child",
+      "name": "while_asm_correct",
+      "excerpt_sha256": "5deb4a8adf243cda2fd05bcd6730292e4538d690ad51246b1c36668b410a7d07",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/tutorial/Imp2AsmCorrectness.v#L526-L579"
+    },
+    {
+      "path": "tutorial/Imp2AsmCorrectness.v",
+      "lines": [
+        597,
+        713
+      ],
+      "role": "child",
+      "name": "compile_expr_correct",
+      "excerpt_sha256": "c3bbb6a139565830e2997761a037542e343c2cd0c6d41745fc055e66716052c7",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/tutorial/Imp2AsmCorrectness.v#L597-L713"
+    },
+    {
+      "path": "tutorial/Imp2AsmCorrectness.v",
+      "lines": [
+        719,
+        753
+      ],
+      "role": "child",
+      "name": "compile_assign_correct",
+      "excerpt_sha256": "245b13425c5202b4e67c260010d4991355ee34dde741f473bfa6d15599e773f3",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/tutorial/Imp2AsmCorrectness.v#L719-L753"
+    },
+    {
+      "path": "tutorial/Imp2AsmCorrectness.v",
+      "lines": [
+        772,
+        797
+      ],
+      "role": "child",
+      "name": "while_is_loop",
+      "excerpt_sha256": "3c31e3b3b3e3370601ff5c92c236fd912d5277e106615208d5fba29f01d83666",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/tutorial/Imp2AsmCorrectness.v#L772-L797"
+    }
+  ],
+  "parent": {
+    "name": "compile_correct",
+    "statement": "Theorem compile_correct {E} {HasExit : Exit -< E} (s : stmt) : equivalent (E := E) s (compile s)."
+  },
+  "children": [
+    {
+      "name": "bisimilar_bind'",
+      "statement": "Lemma bisimilar_bind' {A A' B C E} (RAA' : A -> A' -> Prop) (RBC: B -> C -> Prop): forall (t1 : itree (ImpState +' E) A) (t2 : itree (Reg +' Memory +' E) A') , bisimilar RAA' t1 t2 -> forall (k1 : A -> itree (ImpState +' E) B) (k2 : A' -> itree (Reg +' Memory +' E) C) (H: forall (a:A) (a':A'), RAA' a a' -> bisimilar RBC (k1 a) (k2 a')), bisimilar RBC (t1 >>= k1) (t2 >>= k2).",
+      "closed_by": "repeat intro; rewrite interp_asm_bind, interp_imp_bind; eapply eutt_clo_bind; { eapply H; auto. }; intros; destruct u1/u2; eapply H0; eauto"
+    },
+    {
+      "name": "bisimilar_iter",
+      "statement": "Lemma bisimilar_iter {E A A' B B'} (R : A -> A' -> Prop) (S : B -> B' -> Prop) (t1 : A -> itree (_ +' E) (A + B)) (t2 : A' -> itree (_ +' _ +' E) (A' + B')) : (forall l l', R l l' -> bisimilar (sum_rel R S) (t1 l) (t2 l')) -> forall x x', R x x' -> bisimilar S (iter (C := ktree _) t1 x) (iter (C := ktree _) t2 x').",
+      "closed_by": "unfold bisimilar/interp; rewrite 2 interp_iter; apply (eutt_iter' (state_invariant R)); then eutt_clo_bind on the step"
+    },
+    {
+      "name": "seq_asm_correct",
+      "statement": "Lemma seq_asm_correct {A B C} (ab : asm A B) (bc : asm B C) : denote_asm (seq_asm ab bc) ⩯ denote_asm ab >>> denote_asm bc.",
+      "closed_by": "unfold seq_asm; rewrite loop_asm_correct, relabel_asm_correct, app_asm_correct; rewrite fmap_id0, cat_id_r, fmap_swap; apply cat_from_loop"
+    },
+    {
+      "name": "if_asm_correct",
+      "statement": "Lemma if_asm_correct {A} (e : list instr) (tp fp : asm 1 A) : denote_asm (if_asm e tp fp) ⩯ ((fun _ => denote_list e ;; v <- trigger (GetReg tmp_if) ;; if v : value then denote_asm fp f0 else denote_asm tp f0)).",
+      "closed_by": "unfold if_asm; rewrite seq_asm_correct; ... eqit_bind on the two branches, each closing by app_asm_correct and unique_f0/split_fin_sum"
+    },
+    {
+      "name": "while_asm_correct",
+      "statement": "Lemma while_asm_correct (e : list instr) (p : asm 1 1) : denote_asm (while_asm e p) ⩯ (loop (C := sub (ktree _) fin) (fun l : fin (1 + 1) => match label_case l with | inl _ => denote_list e ;; v <- trigger (GetReg tmp_if) ;; if (v:value) then Ret (fS f0) else (denote_asm p f0;; Ret f0) | inr _ => Ret f0 end)).",
+      "closed_by": "unfold while_asm; rewrite loop_asm_correct; apply Proper_loop; ... destruct label_case; each branch by pure_asm_correct/relabel_asm_correct and unique_fin"
+    },
+    {
+      "name": "compile_expr_correct",
+      "statement": "Lemma compile_expr_correct : forall {E} e g_imp g_asm l n, Renv g_imp g_asm -> @eutt E _ _ (sim_rel l n) (interp_imp (denote_expr e) g_imp) (interp_asm (denote_list (compile_expr n e)) g_asm l).",
+      "closed_by": "induction e; Var/Literal cases by sim_rel_add; Plus/Sub/Mul by eutt_clo_bind on IHe1, IHe2 then sim_rel_binary_op"
+    },
+    {
+      "name": "compile_assign_correct",
+      "statement": "Lemma compile_assign_correct : forall {E} e x, bisimilar eq ((v <- denote_expr e ;; trigger (Imp.SetVar x v)) : itree (ImpState +' E) unit) ((denote_list (compile_assign x e)) : itree (Reg +' Memory +' E) unit).",
+      "closed_by": "eapply eutt_clo_bind; { eapply compile_expr_correct; eauto. }; then sim_rel_find_tmp_n / sim_rel_Renv / Renv_write_local"
+    },
+    {
+      "name": "while_is_loop",
+      "statement": "Lemma while_is_loop {E} (body : itree E (unit+unit)) : while body ≈ iter (C := ktree _) (fun l : unit + unit => match l with | inl _ => x <- body;; match x with inl _ => Ret (inl (inl tt)) | inr _ => Ret (inr tt) end | inr _ => Ret (inl (inl tt)) end) (inr tt).",
+      "closed_by": "unfold while; rewrite unfold_iter_ktree; apply eutt_iter' with (RI := fun _ r => inl tt = r)"
+    },
+    {
+      "name": "fold_to_itree'",
+      "statement": "Lemma fold_to_itree' {E} (f : ktree_fin E 1 1) : f f0 = to_itree' f.",
+      "closed_by": "reflexivity"
+    },
+    {
+      "name": "pure_asm_correct",
+      "statement": "Theorem pure_asm_correct {A B} (f : sub Fun fin A B) : denote_asm (pure_asm f) ⩯ subpure f.",
+      "closed_by": "unfold pure_asm; rewrite raw_asm_correct; reflexivity"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A correctness theorem `forall s : stmt, equivalent s (compile s)` where `stmt` is an inductive syntax type and `equivalent s (compile s)` is a bisimulation/equivalence predicate between the source denotation and the compiled target denotation; the proof is `induction s`, one case per constructor.",
+    "use_when": "the language is defined by an inductive type and correctness is naturally per-constructor; each constructor's target denotation has a linking lemma (seq_asm_correct, if_asm_correct, while_asm_correct, raw_asm_block_correct, pure_asm_correct) that commutes the denotation with the combinator, and each leaf has a correctness lemma (compile_expr_correct, compile_assign_correct); a library-level bind/iter bisimulation lemma (bisimilar_bind', bisimilar_iter) composes the cases.",
+    "avoid_when": "the per-constructor linking lemmas are not yet proved (the induction then cannot close and the linking is itself the real work, a separate subtree); the target semantics is not stated uniformly across constructors, so a shared induction step does not fit; the language has a diverging constructor (a loop) not covered by a coinductive iter/eutt_iter' lemma."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent compile_correct (lines 822-976) applies the ten direct lemmas directly — bisimilar_bind' (836, 854), bisimilar_iter (901), seq_asm_correct (851), if_asm_correct (862), while_asm_correct (893), compile_expr_correct (871, 927), compile_assign_correct (837), while_is_loop (892), fold_to_itree' (850, 861, 891), pure_asm_correct (968) — and each is a closed Lemma/Theorem ending in Qed. at the pinned commit, none an axiom or admit.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/tutorial/Imp2AsmCorrectness.v#L822-L976 (parent); #L353-L371, #L373-L402, #L454-L462, #L466-L520, #L526-L579, #L597-L713, #L719-L753, #L772-L797 (children); #L800-L801 (fold_to_itree'); tutorial/AsmCombinators.v#L308-L314 (pure_asm_correct)"
+    },
+    {
+      "n": 2,
+      "claim": "The file header announces the decomposition and the proof follows it: 'The proof is essentially structured as followed: … Linking is proved in isolation … Finally, all the pieces are tied together to prove the correctness.' (lines 17-33), and just above the theorem, 'all control-flow related reasoning having been handled in isolation.' (lines 818-820).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/tutorial/Imp2AsmCorrectness.v#L17-L33 and #L818-L820"
+    },
+    {
+      "n": 3,
+      "claim": "The theorem-scale shape is 10 direct lemmas, a 153-line glue proof body (lines 824-976), child proof bodies of 13/22/6/49/44/112/31/19 lines for the 8 shown children, and a longest checked dependency chain of depth 4 below the main theorem: compile_assign_correct (719) -> compile_expr_correct (597) -> sim_rel_binary_op (271) -> sim_rel_Renv (207).",
+      "evidence_kind": "measurement",
+      "evidence": "parent body at Imp2AsmCorrectness.v#L824-L976; chain edges at #L735 (compile_assign_correct applies compile_expr_correct), #L656 (compile_expr_correct applies sim_rel_binary_op), #L281 (sim_rel_binary_op applies sim_rel_Renv), #L207-L210 (sim_rel_Renv closes on its own)"
+    },
+    {
+      "n": 4,
+      "claim": "The repository's README states the tutorial compiler proof is axiom-free — 'For example, the compiler proof in `tutorial` doesn't need it [UIP] and is axiom-free.' (README.md lines 58-60) — and ships tutorial/PrintAssumptions.v, which prints `Print Assumptions Imp2AsmCorrectness.compile_correct.` to confirm no axioms.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/README.md#L58-L60 and tutorial/PrintAssumptions.v#L1-L4"
+    },
+    {
+      "n": 5,
+      "claim": "The same move — induction on the Imp statement for a compiler-correctness theorem — is repeated in the repository's labelled variant: `Lemma compile_stmt_correct (s : stmt sensitivity_lat)` in secure_example/LabelledImp2AsmCorrectness.v is proved by `induction s` (line 1108).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/secure_example/LabelledImp2AsmCorrectness.v#L1105-L1108"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 10,
+    "depth": 4,
+    "glue_lines": 153,
+    "child_lines": [
+      13,
+      22,
+      6,
+      49,
+      44,
+      112,
+      31,
+      19
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 153,
+    "direct_lemmas": 10,
+    "shown_children": 8,
+    "child_proof_lines": [
+      13,
+      22,
+      6,
+      49,
+      44,
+      112,
+      31,
+      19
+    ],
+    "how_counted": "parent_proof_lines = lines 824-976 of tutorial/Imp2AsmCorrectness.v (the Proof...Qed body of compile_correct); direct_lemmas = distinct named project lemmas applied in that body (including fold_to_itree' and pure_asm_correct); child_proof_lines = proof-body line counts (Proof...Qed) of the 8 shown children in the order listed"
+  },
+  "consequences": "The induction produces one obligation per constructor (Assign, Seq, If, While, Skip). Each obligation must first rewrite the target denotation with its matching linking lemma (raw_asm_block_correct, seq_asm_correct, if_asm_correct, while_asm_correct, pure_asm_correct) before the induction hypothesis or a bisimulation step can be applied. The While case is the hard obligation: it needs both a restructuring of the source loop (while_is_loop) and a coinductive bisimulation step (bisimilar_iter); if the loop body's denotation does not match the iter shape exactly, the bisimilar_iter application fails. Every case also depends on the trivial ktree unfolding fold_to_itree' (a reflexivity) being applied at the right point before the linking rewrite.",
+  "known_uses": [
+    "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/secure_example/LabelledImp2AsmCorrectness.v#L1105-L1108"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "b0a7a19188d9c5f46f22581109943de7e2792b9803c403958f299dbe4763fc67",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:54:43Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T16:08:10Z"
+}

@@ -73,6 +73,18 @@ def read_json(p: Path):
     return json.loads(p.read_text(encoding="utf-8"))
 
 
+def load_entries() -> tuple[list[dict], list[str]]:
+    """Every entry.json that parses, and the ids of those that do not (a worker may be
+    writing one while a run is going; a broken one fails validate_entry.py anyway)."""
+    good, bad = [], []
+    for d in sorted(p for p in ENTRIES.iterdir() if (p / "entry.json").exists()):
+        try:
+            good.append(read_json(d / "entry.json"))
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            bad.append(d.name)
+    return good, bad
+
+
 def write_json(p: Path, obj) -> None:
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(json.dumps(obj, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -190,4 +202,11 @@ def append_jsonl(p: Path, rec: dict) -> None:
 def read_jsonl(p: Path) -> list[dict]:
     if not p.exists():
         return []
-    return [json.loads(l) for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
+    out = []
+    for i, l in enumerate(p.read_text(encoding="utf-8").splitlines(), 1):
+        if l.strip():
+            try:
+                out.append(json.loads(l))
+            except json.JSONDecodeError:   # a line being appended while we read
+                print(f"# skipped unparsable line {i} of {p.name}", file=sys.stderr)
+    return out

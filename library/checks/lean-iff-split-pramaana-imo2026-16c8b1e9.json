@@ -1,0 +1,101 @@
+{
+  "entry": "lean-iff-split-pramaana-imo2026-16c8b1e9",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:11:40Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:11:40Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 788fddc53c463d5d40d4680fb9bfd7b0f96f1063",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:11:47Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI workflow present: list_files.py pramaana-imo2026 returns no .github/ directory and no workflow files, so there is no CI configuration on the default branch to confirm the file builds (README.md only claims 'lake build' compiles all solutions)",
+      "by": "verifier",
+      "at": "2026-11-12T15:12:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "read copied file solution.lean lines 223-236: line 227 'constructor' splits the iff; forward branch closes via d_nonneg at line 230 and g_const at line 233; backward branch closes via easy_dir at line 236",
+      "by": "verifier",
+      "at": "2026-11-12T15:12:43Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "grep 'sorry|admit|axiom' over the copied file returns no matches; grep '^(lemma|theorem) ' returns exactly 10 statements (9 lemma + 1 theorem)",
+      "by": "verifier",
+      "at": "2026-11-12T15:12:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "glue = lines 223-236 = 14 lines; direct lemmas used in glue: d_nonneg (230), g_const (233), easy_dir (236) = 3; chain edges confirmed: g_const use at 233, no_mixed at 198, d_nonneg at 146, orbit at 89, key_ff at 66, ineqA at 45 => depth 6",
+      "by": "verifier",
+      "at": "2026-11-12T15:12:45Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "line 4 doc comment reads 'The answer is a *set* of functions (the complete solution family).'; def answer wrapped in /-- BEGIN ANSWER -/ (line 19) and /-- END ANSWER -/ (line 21)",
+      "by": "verifier",
+      "at": "2026-11-12T15:12:47Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Read copied code/IMO2026/Q5/solution.lean (byte-identical; whole-file sha256 matches files[0].sha256). Parent answer_correctness (223-236) is a 14-line glue whose only structural step is constructor (227) splitting the biconditional Fact_condition f iff f in answer; forward dir uses exactly d_nonneg (line 230) and g_const (line 233); backward dir is 'exact easy_dir f c hc hfc' (236). The three child statements match lines 78-90 (d_nonneg), 191-202 (g_const), 204-221 (easy_dir) verbatim, and the closed_by descriptions match the actual proof bodies. The glue uses exactly these 3 project lemmas directly (direct_lemmas=3 correct). Chain answer_correctness to g_const to no_mixed to d_nonneg to orbit to key_ff to ineqA holds at uses 233,198,146,89,66,45 giving depth 6, and no longer project-lemma chain exists below the theorem. glue_lines=14 and child_lines=[13,12,18] match actual line counts. No sorry/admit/axiom; all 10 lemma/theorem declarations have complete proof bodies (build not-run: no toolchain, no CI, per protocol s6).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:14:37Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalises beyond the example: goal_shape/use_when state it as 'P f iff f in answer' where answer is 'exists c, side c and forall x, f x = g x c'; the forward direction picks c from one evaluation plus a constancy lemma, the backward direction is an independent verification lemma. avoid_when is honest and specific (shared deep argument duplicates; non-closed family has no single witness; parameter not fixed by one evaluation needs an extra uniqueness lemma). Consequences name concrete failure modes (g_const missing/too weak; answer not a plain exists family so rintro is not a one-liner). Leaf story mostly present: each child's single fact and closure method are given (easy_dir automation-only; d_nonneg/g_const close against named siblings), and the depth-6 chain is disclosed in the graph and metrics. Minor imprecision: 'the three direct children are good leaves' uses leaf loosely for direct child - only easy_dir (and bottom ineqA/ineqB) are automation-closable; d_nonneg/g_const sit mid-graph. Disclosed elsewhere so not misleading; would be fixed by calling them holes and stating the bounded-prover leaf criterion explicitly.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:16:21Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 788fddc53c463d5d40d4680fb9bfd7b0f96f1063",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:16:48Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit, licence, permalinks and source note are mutually consistent and traceable. source.json, SOURCE.md and entry.json all pin commit 788fddc53c463d5d40d4680fb9bfd7b0f96f1063; check_provenance.py reports the copied IMO2026/Q5/solution.lean byte-identical at that commit, and its sha256 (237a1707...) and byte count (9559) match entry.json files[0]. The upstream-LICENSE (sources/pramaana-imo2026/upstream-LICENSE) is the MIT License (c) 2026 Pramaana Labs, matching the MIT recorded in source.json, SOURCE.md and entry.json. Every permalink uses the pinned commit, and the site line ranges match the copied file (d_nonneg@78, g_const@191, easy_dir@204, answer_correctness@223, AnswerType@5/def answer@20). All traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:17:12Z"
+    }
+  ]
+}

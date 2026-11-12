@@ -14,7 +14,7 @@ from __future__ import annotations
 import argparse
 from collections import defaultdict
 
-from common import ENTRIES, REPORTS, normalised_hash, read_json, write_json
+from common import ENTRIES, REPORTS, load_entries, normalised_hash, read_json, write_json
 
 
 def main() -> None:
@@ -22,8 +22,10 @@ def main() -> None:
     ap.add_argument("--write", action="store_true")
     a = ap.parse_args()
     keys = defaultdict(lambda: defaultdict(list))
-    for d in sorted(p for p in ENTRIES.iterdir() if p.is_dir()):
-        e = read_json(d / "entry.json")
+    entries, bad = load_entries()
+    if bad:
+        print(f"# not read (entry.json does not parse): {', '.join(bad)}")
+    for e in entries:
         for s in e["sites"]:
             keys["location"][(e["source"]["url"], s["path"], tuple(s["lines"]))].append(e["id"])
         keys["content"][e["content_key"]].append(e["id"])

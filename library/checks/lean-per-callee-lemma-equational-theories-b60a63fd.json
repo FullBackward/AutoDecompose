@@ -1,0 +1,101 @@
+{
+  "entry": "lean-per-callee-lemma-equational-theories-b60a63fd",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T14:49:08Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T14:49:08Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 8b87204d5b201e1cf6c69b8dcabb0558109bee00",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:49:19Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/blueprint-paper.yml (job build_project, '~/.elan/bin/lake build equational_theories' line 110) triggers on push to main with paths '**/*.lean'; pinned commit 8b87204d5b201e1cf6c69b8dcabb0558109bee00 is HEAD of main (compare status identical)",
+      "by": "verifier",
+      "at": "2026-11-12T14:50:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read code/equational_theories/ManuallyProved/Equation1729.lean L14-43 (byte-identical at pinned commit): L21 'have := exists_greedy_chain task ?_ TrivialPartialSolution', L23 'apply use_chain hchain', L36 'enlarge_L₀' sol x', L40 'enlarge_S' sol x', L43 'enlarge_op sol x y', dispatch 'match b with' over Sum.inl/Sum.inr at L33-43",
+      "by": "verifier",
+      "at": "2026-11-12T14:52:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Read Equation1729.lean: L16 'let β := N ⊕ N ⊕ (N × N)'; match branches L34 (enlarge_L₀'), L38 (enlarge_S'), L41 (enlarge_op), one per component; proof spans L15-43 = 29 lines. Note 'match b with' is at L33 (range 32-43 in claim includes L32 'intro sol b')",
+      "by": "verifier",
+      "at": "2026-11-12T14:52:22Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Fetched blueprint/src/chapter/1729.tex at pinned commit via raw view: label '1729_refute_817' (\\lean{Eq1729.not_817}); proof header '\\begin{proof}\\uses{partial-exist, enlarge-l0, enlarge-S, enlarge-op,chain}\\leanok' matches the quoted string verbatim",
+      "by": "verifier",
+      "at": "2026-11-12T14:52:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "grep over the three copied files (byte-identical at pinned commit) for 'sorry|admit|Admitted' returned no matches; case-insensitive 'sorry|admit' also no matches",
+      "by": "verifier",
+      "at": "2026-11-12T14:52:24Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "object",
+      "evidence": "Decomposition is correct and closes: no sorry/admit/Admitted; parent not_817 closes from exists_greedy_chain, TrivialPartialSolution, use_chain, enlarge_L0', enlarge_S', enlarge_op; all five children statements match code verbatim and are exactly what the main proof uses. glue_lines 29, child_lines [53,71,50,10,367], direct_lemmas 5 are right. But shape.depth is 4 while the entry's own README documents a 5-level chain: not_817 -> enlarge_op (wlog calls enlarge_S' at 2056/2060) -> enlarge_S' (calls enlarge_S'_induction at 2051) -> enlarge_S'_induction (calls enlarge_L0'_multiple at 1996) -> enlarge_L0'_multiple (calls enlarge_L0' at 569) -> enlarge_L0'. Fix: recompute depth to at least 5. Minor: TrivialPartialSolution has eleven axiom fields and axiom_L closes with simp not Finset.notMem_empty, so closed_by ten-fields-each-by-notMem_empty is wrong; enlarge_S' closed_by cites call sites 2049/2053 but enlarge_S'_induction is called at 2047/2051; claim 2 places match b with at line 32 but it is line 33.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T14:56:31Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalized beyond the example: README 'When to use it' abstracts goal 1729-not-817 to '∃ G, P G ∧ ¬ Q G via a greedy/back-and-forth limit of finite partial solutions' and the concrete index to 'a sum-indexed totality condition with one enlargement lemma per component, glue = dispatch over the index'; applicability.goal_shape/use_when restate it. avoid_when names three specific honest failures (components with genuinely different arguments → not one family; no off-the-shelf combinator → glue carries the work; many components → generated/folded form wins). Consequences list concrete obligations (instantiate exists_greedy_chain, seed nonempty, exhaustiveness via match coverage check) plus the domain-preservation failure mode with specifics (enlarge_L₀' returns Dom_S'=Dom_S'; enlarge_op wlogs via enlarge_S'/enlarge_L₀'). Good-leaf section states the bounded-prover criterion ('self-contained statement whose proof closes on its own or from named siblings') per lemma.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T14:57:45Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 8b87204d5b201e1cf6c69b8dcabb0558109bee00",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:58:00Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes: all 3 copied files byte-identical at pinned commit 8b87204d5b201e1cf6c69b8dcabb0558109bee00, and recorded sha256 hashes match the local copies; commit agrees across entry.json, source.json and SOURCE.md; licence Apache-2.0 consistent across entry.json, source.json, SOURCE.md and the copied upstream-LICENSE (Apache 2.0 text with Equational Theories Project copyright); every file and site permalink points at github.com/teorth/equational_theories/blob/<commit>/<path> matching the copied paths.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T14:58:43Z"
+    }
+  ]
+}

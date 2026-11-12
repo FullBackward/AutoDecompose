@@ -1,0 +1,157 @@
+{
+  "id": "lean-case-split-pnt-and-96d6a0ca",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Case split on sigma <= 3/2 to glue a strip bound and a half-plane bound",
+  "intent": "Bound |ζ'/ζ(σ+it)| uniformly by a single C·log²|t| over the whole region σ ≥ 1 − F/log|t| by combining two regional bounds that meet at σ = 3/2 — the strip bound (valid for 1 − F/log|t| ≤ σ ≤ 3/2) and the half-plane bound (valid for σ ≥ 3/2) — taking C = max C1 C2 and splitting on σ ≤ 3/2.",
+  "move": "case-split",
+  "also_known_as": [
+    "piecewise bound",
+    "gluing two regional bounds at a boundary",
+    "max-of-constants argument"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "pnt-and",
+    "url": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd",
+    "commit": "2c476fa6441c607096d93c8fc7ac0a227a655dae",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "PrimeNumberTheoremAnd/StrongPNT.lean",
+      "bytes": 151072,
+      "sha256": "f777e11c13b12fa4c408b8d75073100ae1252588a54d28c2bba79a5613f7fb75",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/StrongPNT.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "PrimeNumberTheoremAnd/StrongPNT.lean",
+      "lines": [
+        2831,
+        2850
+      ],
+      "role": "parent",
+      "name": "LogDerivZetaUniformLogSquaredBound",
+      "excerpt_sha256": "b3c3f56cb23485c0368f21aa3f42cf22eee40a54bcf8af914bbd2768873b9939",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/StrongPNT.lean#L2831-L2850"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/StrongPNT.lean",
+      "lines": [
+        2821,
+        2830
+      ],
+      "role": "context",
+      "name": "LogDerivZetaUniformLogSquaredBound-blueprint",
+      "excerpt_sha256": "aad110a0f051cd2d47c81a97609c57b240dfe79c53ca9c9a1ed1fb0e8d75da23",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/StrongPNT.lean#L2821-L2830"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/StrongPNT.lean",
+      "lines": [
+        2761,
+        2765
+      ],
+      "role": "child",
+      "name": "LogDerivZetaUniformLogSquaredBoundStripSpec",
+      "excerpt_sha256": "2dad6f8060e3ddc3190e5497400aaf188d1766a13d7236b0c1bef25f6fae2cfa",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/StrongPNT.lean#L2761-L2765"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/StrongPNT.lean",
+      "lines": [
+        2771,
+        2817
+      ],
+      "role": "child",
+      "name": "LogDerivZetaBdd_of_Re_ge_three_halves",
+      "excerpt_sha256": "08d3a5b509e4b4d581c39f1a368b3f043b4ff801968caee1988e6bfb804d3bac",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/StrongPNT.lean#L2771-L2817"
+    }
+  ],
+  "parent": {
+    "name": "LogDerivZetaUniformLogSquaredBound",
+    "statement": "theorem LogDerivZetaUniformLogSquaredBound : ∃ (C : ℝ) (_ : 0 < C),\n    ∀ (σ t : ℝ), 3 < |t| → σ ∈ Set.Ici (1 - F / Real.log |t|) →\n      ‖ζ' (σ + t * I) / ζ (σ + t * I)‖ ≤ C * Real.log |t| ^ (2 : ℝ)"
+  },
+  "children": [
+    {
+      "name": "LogDerivZetaUniformLogSquaredBoundStripSpec",
+      "statement": "lemma LogDerivZetaUniformLogSquaredBoundStripSpec : ∃ (C : ℝ) (_ : 0 < C),\n    ∀ (t : ℝ), 3 ≤ |t| →\n      ∀ (σ : ℝ), σ ∈ Set.Icc (1 - F / Real.log |t|) (3 / 2) →\n          ‖ζ' (σ + t * I) / ζ (σ + t * I)‖ ≤ C * (Real.log |t|) ^ 2",
+      "closed_by": "LogDerivZetaUniformLogSquaredBoundStrip.choose_spec.2 (the second projection of the witness chosen from LogDerivZetaUniformLogSquaredBoundStrip, lines 2603-2752)"
+    },
+    {
+      "name": "LogDerivZetaBdd_of_Re_ge_three_halves",
+      "statement": "lemma LogDerivZetaBdd_of_Re_ge_three_halves :\n    ∃ C, ∀ (s : ℂ), 3/2 ≤ s.re → ‖deriv riemannZeta s / riemannZeta s‖ ≤ C",
+      "closed_by": "a 32-line proof (lines 2786-2817) via vonMangoldtLSeriesSummable and LogDerivativeDirichlet, ending with `simpa [neg_div, h_log_deriv_sum s hs] using (h_triangle s).trans (hSum.tsum_le_tsum (fun n ↦ h_norm_summand s hs n) h_sum_converges)`"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "a goal `∃ C > 0, ∀ x, P x → Q x ≤ C · g x` whose region `P x` is the union of two sub-regions split at a boundary `b` (here `1 - F/log|t| ≤ σ` split at `σ = 3/2`), with a named lemma already bounding `Q x` on each sub-region with the same gauge `g`",
+    "use_when": "two proved lemmas bound the same quantity on regions that meet at a common boundary so their union is the goal's domain; the boundary is a linear inequality (`σ ≤ 3/2`) that `by_cases` decides; both lemmas use the same gauge, or the weaker gauge is dominated by it (here the constant bound is dominated by log²|t| for |t| > 3)",
+    "avoid_when": "the two regions leave a gap that must also be proved; the two lemmas use different gauges with no domination; the boundary is not an order on a linear-ordered type; or one lemma's constant cannot be carried into the other's region"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent LogDerivZetaUniformLogSquaredBound is assembled in its proof body (lines 2834-2850) from exactly two named project lemmas — LogDerivZetaUniformLogSquaredBoundStripSpec (line 2834) and LogDerivZetaBdd_of_Re_ge_three_halves (line 2835) — by `use max C1 C2` and a `by_cases hσ' : σ ≤ 3/2` split, with each branch closing by one `.trans` to the child's bound.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/StrongPNT.lean#L2831-L2850"
+    },
+    {
+      "n": 2,
+      "claim": "Neither the parent nor its two children rest on a hole: StrongPNT.lean contains no `sorry`, `admit` or `axiom` (the only line mentioning 'axioms' is the diagnostic `#print axioms StrongPNT` at line 2906).",
+      "evidence_kind": "check",
+      "evidence": "read of the whole copied file https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/StrongPNT.lean , searched for `sorry|admit|axiom`"
+    },
+    {
+      "n": 3,
+      "claim": "The authors state the glue's plan in one sentence in the blueprint annotation — 'Put the previous two Lemmas together.' (lines 2828-2830) — and the half-plane child's plan as the Dirichlet-series bound '... ≤ Σ Λ(n)/n^(3/2) < ∞ by vonMangoldtLSeriesSummable' (lines 2777-2782).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/StrongPNT.lean#L2821-L2830 and .../StrongPNT.lean#L2771-L2783"
+    },
+    {
+      "n": 4,
+      "claim": "The main proof is 17 lines (2834-2850) and combines 2 direct project lemmas; the strip child's proof is 1 line (2765) and the half-plane child's is 32 lines (2786-2817); the checked chain below the parent is depth 3 (parent → StripSpec → LogDerivZetaUniformLogSquaredBoundStrip → SumBoundII).",
+      "evidence_kind": "measurement",
+      "evidence": "line counts of https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/StrongPNT.lean#L2834-L2850 , #L2761-L2765 , #L2771-L2817 , and the chain #L2603-L2752 then #L2435-L2441"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 3,
+    "glue_lines": 17,
+    "child_lines": [
+      1,
+      32
+    ]
+  },
+  "metrics": {},
+  "consequences": "Creates two goals by `by_cases hσ' : σ ≤ 3/2`, whose exhaustiveness is discharged by the law of the excluded middle (no separate exhaustiveness child, unlike a finite `rcases` disjunction). Both branches must close against the same witness `max C1 C2`, so each needs a `le_max_left`/`le_max_right` step, and the weaker (constant) half-plane bound must be shown `≤ C · log²|t|`; here that means proving `1 ≤ log²|t|` from `3 < |t|` via `Real.exp_one_lt_d9`. Failure mode: if the two gauges did not dominate one another, the `gcongr`/`nth_rewrite` normalisation would not close, and a third lemma or a different split point would be needed.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 5,
+    "relation": "supports"
+  },
+  "content_key": "96d6a0ca9a889d2cae20259facb5a006ff9a71700ea31fcc4d1be7ad83bbce85",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T14:43:30Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,consequences,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T14:44:23Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T14:59:07Z"
+}

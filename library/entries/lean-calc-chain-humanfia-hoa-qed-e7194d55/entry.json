@@ -1,0 +1,245 @@
+{
+  "id": "lean-calc-chain-humanfia-hoa-qed-e7194d55",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Calc-chain assembly of the invariant terminal value for IMO 2026 Q1",
+  "intent": "Reduce the correctness of the explicit invariant — that the unique large entry M of a terminal board reachable from an initial board equals Mval B₀ — to seven already-proved lemmas joined by two calc chains: one showing the prime factors of B₀.prod are exactly those of M, the other rewriting the invariant product into M's prime factorization.",
+  "move": "calc-chain",
+  "also_known_as": [
+    "calculational proof",
+    "chained equality",
+    "transitivity chain"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "humanfia-hoa-qed",
+    "url": "https://github.com/humanfia/hoa-qed",
+    "commit": "1c918ec9a96c7751ce9c283304e1aebd7ffb19a3",
+    "licence": "Apache-2.0 AND CC-BY-4.0"
+  },
+  "files": [
+    {
+      "path": "imo2026/gpt-5.6-solution/IMO2026Q1.lean",
+      "bytes": 21031,
+      "sha256": "7e296f9f6fdcfd358b480c3fd4e8bcc21cce49d7a0bbafa3ae7d29773587e43b",
+      "permalink": "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/imo2026/gpt-5.6-solution/IMO2026Q1.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "imo2026/gpt-5.6-solution/IMO2026Q1.lean",
+      "lines": [
+        419,
+        451
+      ],
+      "role": "parent",
+      "name": "terminal_value_eq_Mval",
+      "excerpt_sha256": "52c1652f9d439fce7317d24f5d935861a486e8a3c8071410c477095b82666c4e",
+      "permalink": "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/imo2026/gpt-5.6-solution/IMO2026Q1.lean#L419-L451"
+    },
+    {
+      "path": "imo2026/gpt-5.6-solution/IMO2026Q1.lean",
+      "lines": [
+        138,
+        140
+      ],
+      "role": "child",
+      "name": "initial_allPositive",
+      "excerpt_sha256": "e4701145ee419fa7d2d678f73be419cf37577269b1516887d53076dd701e54e0",
+      "permalink": "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/imo2026/gpt-5.6-solution/IMO2026Q1.lean#L138-L140"
+    },
+    {
+      "path": "imo2026/gpt-5.6-solution/IMO2026Q1.lean",
+      "lines": [
+        209,
+        213
+      ],
+      "role": "child",
+      "name": "reachable_allPositive",
+      "excerpt_sha256": "17255488e3cf4feefef035da68b8359f2671db64c332ceee0ea64d52a791e7f9",
+      "permalink": "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/imo2026/gpt-5.6-solution/IMO2026Q1.lean#L209-L213"
+    },
+    {
+      "path": "imo2026/gpt-5.6-solution/IMO2026Q1.lean",
+      "lines": [
+        373,
+        382
+      ],
+      "role": "child",
+      "name": "statement_a_unique_large",
+      "excerpt_sha256": "73c2a353765c9914ad588be64e069f469770cbabbd674800cccd1eac84e41688",
+      "permalink": "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/imo2026/gpt-5.6-solution/IMO2026Q1.lean#L373-L382"
+    },
+    {
+      "path": "imo2026/gpt-5.6-solution/IMO2026Q1.lean",
+      "lines": [
+        363,
+        369
+      ],
+      "role": "child",
+      "name": "terminal_prod_eq_large",
+      "excerpt_sha256": "dc83c1af7b3156ee80819613f9cf20567113651fc30d630997bfb454b65278fb",
+      "permalink": "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/imo2026/gpt-5.6-solution/IMO2026Q1.lean#L363-L369"
+    },
+    {
+      "path": "imo2026/gpt-5.6-solution/IMO2026Q1.lean",
+      "lines": [
+        354,
+        361
+      ],
+      "role": "child",
+      "name": "reachable_prod_primeFactors",
+      "excerpt_sha256": "2423f805eff39fe9eab521fb31d923b9d1a0b72b490ab24608050b68f7510c6d",
+      "permalink": "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/imo2026/gpt-5.6-solution/IMO2026Q1.lean#L354-L361"
+    },
+    {
+      "path": "imo2026/gpt-5.6-solution/IMO2026Q1.lean",
+      "lines": [
+        272,
+        276
+      ],
+      "role": "child",
+      "name": "reachable_gExp",
+      "excerpt_sha256": "ac69450c00748dff639250af902b31d87dac2dd0d2141e6cd054989fe23c33ab",
+      "permalink": "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/imo2026/gpt-5.6-solution/IMO2026Q1.lean#L272-L276"
+    },
+    {
+      "path": "imo2026/gpt-5.6-solution/IMO2026Q1.lean",
+      "lines": [
+        305,
+        317
+      ],
+      "role": "child",
+      "name": "terminal_gExp_eq_padicValNat",
+      "excerpt_sha256": "8e9e5a47e266d354cd6496591f3854fd7e5646b80e0e3b1414d6f07fdcff6289",
+      "permalink": "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/imo2026/gpt-5.6-solution/IMO2026Q1.lean#L305-L317"
+    }
+  ],
+  "parent": {
+    "name": "terminal_value_eq_Mval",
+    "statement": "theorem terminal_value_eq_Mval (B₀ : Board) (hB₀ : IsInitial B₀)\n    (B' : Board) (hreach : Reachable B₀ B') (hterm : IsTerminal B')\n    (M : ℕ) (hM : 1 < M) (hMem : M ∈ B') :\n    M = Mval B₀"
+  },
+  "children": [
+    {
+      "name": "initial_allPositive",
+      "statement": "lemma initial_allPositive {B : Board} (hB : IsInitial B) : AllPositive B",
+      "closed_by": "intro a ha; exact (hB.2 a ha).trans' Nat.zero_lt_one (no named lemma)"
+    },
+    {
+      "name": "reachable_allPositive",
+      "statement": "lemma reachable_allPositive {B B' : Board} (hB : AllPositive B) (hreach : Reachable B B') : AllPositive B'",
+      "closed_by": "induction hreach; tail case closed by move_allPositive ih hmove (line 149)"
+    },
+    {
+      "name": "statement_a_unique_large",
+      "statement": "theorem statement_a_unique_large (B₀ : Board) (hB₀ : IsInitial B₀) (B' : Board) (hreach : Reachable B₀ B') (hterm : IsTerminal B') : HasUniqueLarge B'",
+      "closed_by": "obtain ⟨a, ha, ha1⟩ := reachable_hasLarge hB₀ hreach; then Nat.eq_one_of_dvd_one with Nat.le_antisymm hterm hpos"
+    },
+    {
+      "name": "terminal_prod_eq_large",
+      "statement": "lemma terminal_prod_eq_large {B : Board} (hpos : AllPositive B) (huniq : HasUniqueLarge B) {M : ℕ} (hM : 1 < M) (hMem : M ∈ B) : B.prod = M",
+      "closed_by": "terminal_erase_all_one hpos huniq hM hMem; then Multiset.prod_eq_one, Multiset.cons_erase; simp [htail]"
+    },
+    {
+      "name": "reachable_prod_primeFactors",
+      "statement": "lemma reachable_prod_primeFactors {B B' : Board} (hB : AllPositive B) (hreach : Reachable B B') : B'.prod.primeFactors = B.prod.primeFactors",
+      "closed_by": "induction hreach; tail case closed by move_allPositive ih.1 hmove and move_prod_primeFactors ih.1 hmove (lines 149, 323)"
+    },
+    {
+      "name": "reachable_gExp",
+      "statement": "lemma reachable_gExp {B B' : Board} (hreach : Reachable B B') (p : ℕ) (hp : p.Prime) : gExp p B' = gExp p B",
+      "closed_by": "induction hreach; tail case closed by (move_gExp hmove p hp).trans ih (line 250)"
+    },
+    {
+      "name": "terminal_gExp_eq_padicValNat",
+      "statement": "lemma terminal_gExp_eq_padicValNat {B : Board} (hpos : AllPositive B) (huniq : HasUniqueLarge B) {M p : ℕ} (hM : 1 < M) (hMem : M ∈ B) : gExp p B = padicValNat p M",
+      "closed_by": "terminal_erase_all_one hpos huniq hM hMem; then Multiset.gcd_eq_zero_iff, padicValNat_one_right p, Multiset.cons_erase; simp [htail]"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An equality M = f B where the right side is a product over a finite set of primes (here ∏ p ∈ B.prod.primeFactors, p ^ gExp p B) and the left side M is already characterised by two lemmas: one equating the board's product (or its prime factors) to M, one equating each gExp/valuation to M's prime factorization.",
+    "use_when": "the invariant is expressed as a product over prime factors and each link of the chain is an already-proved named lemma, so transitivity is checked by the chain itself; the per-prime step under a Finset.prod_congr can itself be a nested calc.",
+    "avoid_when": "a link cannot be stated as its own lemma and must be proved inline with a nontrivial argument (then that step is the real content and should be a child lemma); the equality is between terms of different types; or a single rw/simp closes the goal more directly than a chain."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent terminal_value_eq_Mval closes from exactly seven named project lemmas and two calc chains, and the file contains no sorry, admit or axiom.",
+      "evidence_kind": "check",
+      "evidence": "grep -nE '\\b(sorry|admit|axiom|Admitted|sorryAx)\\b' over the copied file returns nothing; the have/calc assembly is https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/imo2026/gpt-5.6-solution/IMO2026Q1.lean#L419-L451"
+    },
+    {
+      "n": 2,
+      "claim": "The file is built by the project's CI on pushes to main: .github/workflows/lean.yml, step 'Check IMO 2026 solutions', runs `lake env lean` on every ../gpt-5.6-solution/*.lean.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/.github/workflows/lean.yml (step `Check IMO 2026 solutions`, `for solution in ../gpt-5.6-solution/*.lean`), fetched this session"
+    },
+    {
+      "n": 3,
+      "claim": "The decomposition has 7 direct lemmas, glue of 33 lines (419-451), and the longest checked chain of project lemmas below the main theorem has depth 4: terminal_value_eq_Mval → reachable_gExp → move_gExp → padicValNat_lcm_div_gcd → padicValNat_lcm.",
+      "evidence_kind": "measurement",
+      "evidence": "direct lemmas are the seven `have`/calc applications at lines 423, 424, 425, 426, 430, 443, 444; the chain follows lines 443 (reachable_gExp), 276 (move_gExp), 263 (padicValNat_lcm_div_gcd), 248 (padicValNat_lcm)"
+    },
+    {
+      "n": 4,
+      "claim": "The authors state the intent in the doc comment above the theorem: 'For any terminal board B' reachable from an initial board B₀, the unique entry M > 1 of B' equals the invariant Mval B₀.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/imo2026/gpt-5.6-solution/IMO2026Q1.lean#L416-L418"
+    },
+    {
+      "n": 5,
+      "claim": "The same calc-over-gExp move is reused in statement_b_invariance (lines 399-404), chaining padicValNat p M = gExp p B₁ = gExp p B₀ = gExp p B₂ = padicValNat p N from the same two lemmas reachable_gExp and terminal_gExp_eq_padicValNat.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/imo2026/gpt-5.6-solution/IMO2026Q1.lean#L399-L404"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 7,
+    "depth": 4,
+    "glue_lines": 33,
+    "child_lines": [
+      3,
+      5,
+      10,
+      7,
+      8,
+      5,
+      13
+    ]
+  },
+  "metrics": {
+    "parent_lines": 33,
+    "children": 7,
+    "children_closed_by_induction": 3,
+    "children_closed_by_direct_rewrites": 4,
+    "how_counted": "parent_lines = site lines 419-451; children = the 7 named lemmas; 'induction' counts reachable_allPositive, reachable_prod_primeFactors, reachable_gExp which close by induction on Reachable; the other 4 (initial_allPositive, statement_a_unique_large, terminal_prod_eq_large, terminal_gExp_eq_padicValNat) close by unfolding/simp/one sibling lemma"
+  },
+  "consequences": "The move creates no new goals of its own: every calc link is a transitive step justified by a named lemma or by a congr 1 / Finset.prod_congr under a product, so the obligations are pushed onto the lemmas (prime factors invariant along a reach; a terminal board collapses to its one large entry). The final link `M.factorization.prod (fun p e => p ^ e) = M` needs Nat.prod_factorization_pow_eq_self (by omega), and that omega obligation consumes hM : 1 < M; without M > 1 the chain's last link does not close. A failure mode: if a per-prime link is not already a lemma, the inner calc under prod_congr must carry the whole argument and the 'each link is a named lemma' property breaks.",
+  "known_uses": [
+    "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/imo2026/gpt-5.6-solution/IMO2026Q1.lean#L399-L404"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "e7194d5556430c6a55a18a98415a4a05d6383d1f26533dc424ae947119c0d563",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:11:42Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:12:55Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T15:20:11Z"
+}

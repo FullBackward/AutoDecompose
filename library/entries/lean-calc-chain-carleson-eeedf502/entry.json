@@ -1,0 +1,219 @@
+{
+  "id": "lean-calc-chain-carleson-eeedf502",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Calc chain assembling forest-union and forest-complement bounds for the discrete Carleson theorem (Prop 2.0.2)",
+  "intent": "Prove the discrete Carleson theorem (Proposition 2.0.2), the headline dyadic bound on the Carleson operator, by splitting carlesonSum over the forest tiles 𝔓₁ and their complement, bounding each half with a named project lemma (forest_union, forest_complement), and folding the two constants C5_1_2 + C5_1_3 into C2_0_2 with le_C2_0_2.",
+  "move": "calc-chain",
+  "also_known_as": [
+    "calculational proof",
+    "Isar also...finally chain",
+    "transitivity chain"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "carleson",
+    "url": "https://github.com/fpvandoorn/carleson",
+    "commit": "d75f54374f7f930e70a86b443f20d0e0935c275e",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Carleson/Discrete/MainTheorem.lean",
+      "bytes": 2799,
+      "sha256": "1a07992b2da7639797e57690249c634a6dc78be980345a5351eba57a9eacb875",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Discrete/MainTheorem.lean"
+    },
+    {
+      "path": "Carleson/Discrete/ExceptionalSet.lean",
+      "bytes": 56136,
+      "sha256": "95b64cfd1fdedd4f8f5c237e0d9b51c6806a58c91ae3a442ad0b4f69495750b5",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Discrete/ExceptionalSet.lean"
+    },
+    {
+      "path": "Carleson/Discrete/ForestUnion.lean",
+      "bytes": 54896,
+      "sha256": "416c2301dfd706eee7d366b1ea04cc38405c784df23a0432be112af8458ef32e",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Discrete/ForestUnion.lean"
+    },
+    {
+      "path": "Carleson/Discrete/ForestComplement.lean",
+      "bytes": 63506,
+      "sha256": "b8726fa8f797c96cf40dd9fd598e6b8408fcff447121b1adcf72c184d2966f79",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Discrete/ForestComplement.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Carleson/Discrete/MainTheorem.lean",
+      "lines": [
+        44,
+        68
+      ],
+      "role": "parent",
+      "name": "discrete_carleson",
+      "excerpt_sha256": "d7d9a34b516f1ff9eff133b2e19130233b640f0321233f2046f5ae0c66b800d4",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Discrete/MainTheorem.lean#L44-L68"
+    },
+    {
+      "path": "Carleson/Discrete/MainTheorem.lean",
+      "lines": [
+        21,
+        36
+      ],
+      "role": "child",
+      "name": "le_C2_0_2",
+      "excerpt_sha256": "191159d95dc1a5955c53fd3df13c37f6793bef8f73e3d7c723f90e243c5ba022",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Discrete/MainTheorem.lean#L21-L36"
+    },
+    {
+      "path": "Carleson/Discrete/ExceptionalSet.lean",
+      "lines": [
+        977,
+        989
+      ],
+      "role": "child",
+      "name": "exceptional_set",
+      "excerpt_sha256": "f3a570681be7efb045611009ff358ac585cad0f8255977e07a2c668c4ab383a8",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Discrete/ExceptionalSet.lean#L977-L989"
+    },
+    {
+      "path": "Carleson/Discrete/ForestUnion.lean",
+      "lines": [
+        1042,
+        1047
+      ],
+      "role": "child",
+      "name": "forest_union",
+      "excerpt_sha256": "442a124927f367c24172c4cb7dd2a1209aee462b3ffcf507348065eb4b06dc47",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Discrete/ForestUnion.lean#L1042-L1047"
+    },
+    {
+      "path": "Carleson/Discrete/ForestComplement.lean",
+      "lines": [
+        1176,
+        1181
+      ],
+      "role": "child",
+      "name": "forest_complement",
+      "excerpt_sha256": "3b0de567fee1e4af7775446ee45879e79e7ce70289dfdf054ed5d8ed2f3bac5f",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Discrete/ForestComplement.lean#L1176-L1181"
+    }
+  ],
+  "parent": {
+    "name": "discrete_carleson",
+    "statement": "theorem discrete_carleson :\n    ∃ G', MeasurableSet G' ∧ 2 * volume G' ≤ volume G ∧\n    ∀ f : X → ℂ, Measurable f → (∀ x, ‖f x‖ ≤ F.indicator 1 x) →\n    ∫⁻ x in G \\ G', ‖carlesonSum univ f x‖ₑ ≤\n    C2_0_2 a nnq * volume G ^ (1 - q⁻¹) * volume F ^ q⁻¹"
+  },
+  "children": [
+    {
+      "name": "le_C2_0_2",
+      "statement": "lemma le_C2_0_2 (ha : 4 ≤ a) {q : ℝ≥0} (hq : q ∈ Ioc 1 2) : C5_1_2 a q + C5_1_3 a q ≤ C2_0_2 a q",
+      "closed_by": "grw/gcongr over the three constants, then apply (add_le_pow_two_add_cube ha le_rfl ?_).trans_eq (by ring); ring_nf; lia (lines 23-36)"
+    },
+    {
+      "name": "exceptional_set",
+      "statement": "lemma exceptional_set : volume (G' : Set X) ≤ 2 ^ (-1 : ℤ) * volume G",
+      "closed_by": "calc over G₁, G₂, G₃ with add_le_add_three first_exception second_exception third_exception, then ring and norm_num (lines 978-989)"
+    },
+    {
+      "name": "forest_union",
+      "statement": "lemma forest_union {f : X → ℂ} (hf : ∀ x, ‖f x‖ ≤ F.indicator 1 x) (h'f : Measurable f) : ∫⁻ x in G \\ G', ‖carlesonSum 𝔓₁ f x‖ₑ ≤ C5_1_2 a nnq * (volume G) ^ (1 - q⁻¹) * (volume F) ^ (q⁻¹)",
+      "closed_by": "apply (forest_union_optimized hf h'f).trans; gcongr; exact C5_1_2_optimized_le"
+    },
+    {
+      "name": "forest_complement",
+      "statement": "lemma forest_complement {f : X → ℂ} (hf : ∀ x, ‖f x‖ ≤ F.indicator 1 x) (h'f : Measurable f) : ∫⁻ x in G \\ G', ‖carlesonSum 𝔓₁ᶜ f x‖ₑ ≤ C5_1_3 a nnq * volume G ^ (1 - q⁻¹) * volume F ^ q⁻¹",
+      "closed_by": "apply (forest_complement_optimized hf h'f).trans; gcongr; exact C5_1_3_optimized_le_C5_1_3"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An integral bound ∫⁻ x in A, ‖carlesonSum S f x‖ₑ ≤ C * volume G ^ (1 - q⁻¹) * volume F ^ q⁻¹ where the index set S splits into two parts (here 𝔓₁ and its complement 𝔓₁ᶜ) each already bounded by a named lemma with a matching constant form.",
+    "use_when": "you already hold two named lemmas bounding the two halves of a partition, and a third lemma that folds their constants; the parent's only job is a triangle-inequality step, a linearity-of-integral step, and the constant fold.",
+    "avoid_when": "the two halves need different constants or exponents a single fold lemma cannot absorb; the partition of S itself needs proof rather than being definitional (here carlesonSum univ splits by Finset.sum_filter_add_sum_filter_not); the halves are not disjoint, so the equality step fails."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent discrete_carleson closes from exactly four named project lemmas — exceptional_set (line 49), forest_union and forest_complement (line 63), and le_C2_0_2 (line 68) — and its calc chain uses no other bound-carrying lemma.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Discrete/MainTheorem.lean#L44-L68 (the file is 69 lines and was read whole)"
+    },
+    {
+      "n": 2,
+      "claim": "Below the main theorem, the longest chain of project lemmas is 6 deep: discrete_carleson → forest_union (applies forest_union_optimized, ForestUnion.lean 1045) → forest_union_optimized (applies forest_union_aux, 974) → forest_union_aux (applies lintegral_carlesonSum_forest', 865) → lintegral_carlesonSum_forest' (applies lintegral_carlesonSum_forest, 800) → lintegral_carlesonSum_forest (uses forest_operator_le_volume, 774).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Discrete/ForestUnion.lean#L1042-L1047 and #L971-L998 and #L835-L875 and #L796-L832 and #L752-L792"
+    },
+    {
+      "n": 3,
+      "claim": "The authors label the theorem 'Proposition 2.0.2' and record the blueprint value of the folded constant in a doc comment: 'The constant used in Proposition 2.0.2. Has value 2 ^ (442 * a ^ 3) / (q - 1) ^ 5 in the blueprint.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Discrete/MainTheorem.lean#L14-L19"
+    },
+    {
+      "n": 4,
+      "claim": "The glue — the main theorem's proof block — is 20 lines (MainTheorem.lean 49-68), of which the calc chain is 4 links over 16 lines (53-68).",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Discrete/MainTheorem.lean#L49-L68, counted by reading the copied file"
+    },
+    {
+      "n": 5,
+      "claim": "The same calc-chain move reappears one level down: the child exceptional_set proves volume G' ≤ 2 ^ (-1) * volume G by a 4-link calc that splits G' into G₁, G₂, G₃ and folds the three constants with first_exception, second_exception, third_exception.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Discrete/ExceptionalSet.lean#L977-L989"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 6,
+    "glue_lines": 20,
+    "child_lines": [
+      14,
+      12,
+      3,
+      3
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 20,
+    "calc_links": 4,
+    "children": 4,
+    "child_proof_lines": [
+      14,
+      12,
+      3,
+      3
+    ],
+    "how_counted": "parent proof = MainTheorem.lean lines 49-68; child proofs = le_C2_0_2 lines 23-36, exceptional_set lines 978-989, forest_union lines 1045-1047, forest_complement lines 1179-1181"
+  },
+  "consequences": "The move creates: (a) a witness obligation for G' (discharged by exceptional_set and the measurable_G' fact); (b) a measurability side condition for the sum split (setLIntegral_mono / lintegral_add_left take care of it); (c) a constant-fold obligation, discharged by le_C2_0_2. Failure mode: if the two child bounds use incompatible constant forms, the final gcongr / le_C2_0_2 step fails and the constants must be re-normalised before the split; the equality link (lintegral_add_left) also requires the two integrands to be a.e.-finite, otherwise the chain must stay as inequalities.",
+  "known_uses": [
+    "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Discrete/ExceptionalSet.lean#L977-L989"
+  ],
+  "related": [
+    "latex-blueprint-node-carleson-85d5b51c"
+  ],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "eeedf50258ecbd876ae4d696bf1e1d129cbd8fd287fe6ee921326885d5113e27",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T14:43:37Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T14:58:31Z"
+}

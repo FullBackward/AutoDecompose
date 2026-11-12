@@ -1,0 +1,196 @@
+{
+  "id": "markdown-workflow-numina-lean-agent-b4e8ebdf",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Worked split of an alternating-property lemma into three dependency-chained sub-lemmas",
+  "intent": "Record the blueprint-agent workflow's worked example: one lemma whose proof is empty is replaced by three named sub-lemmas, one per proof step returned by Gemini, chained by `uses`. The parent's six-line proof then only cites the chain, and each child's body is an informal Gemini proof left to be formalised.",
+  "move": "workflow",
+  "also_known_as": [
+    "blueprint refinement",
+    "proof-step decomposition",
+    "dependency-ordered lemma split"
+  ],
+  "language": "markdown",
+  "source": {
+    "source_id": "numina-lean-agent",
+    "url": "https://github.com/project-numina/numina-lean-agent",
+    "commit": "1c9af8a52e715f22fede766425ba3d3b95526132",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "prompts/docs/prompts/blueprint_agent.md",
+      "bytes": 15933,
+      "sha256": "279548624a683e9c83cfb8001bf5c9c964f0d5ba781cf5d935d4192eb8ebd662",
+      "permalink": "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/blueprint_agent.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": "prompts/docs/prompts/blueprint_agent.md",
+      "lines": [
+        551,
+        568
+      ],
+      "role": "parent",
+      "name": "lem:alternating_property",
+      "excerpt_sha256": "2bddfbcf949538ef79af1de8fceef3a0ba85bc6e889ca2cad611ed25a0897e8d",
+      "permalink": "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/blueprint_agent.md#L551-L568"
+    },
+    {
+      "path": "prompts/docs/prompts/blueprint_agent.md",
+      "lines": [
+        500,
+        513
+      ],
+      "role": "child",
+      "name": "lem:alternating_property_respects_pattern",
+      "excerpt_sha256": "e433f579a7b96a0191ea730b0a6d59eb1e4162354e6171ccfa7eca67dea06fa1",
+      "permalink": "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/blueprint_agent.md#L500-L513"
+    },
+    {
+      "path": "prompts/docs/prompts/blueprint_agent.md",
+      "lines": [
+        517,
+        530
+      ],
+      "role": "child",
+      "name": "lem:alternating_property_count",
+      "excerpt_sha256": "f5648a95805e40d4ca00593f43e278970e485d004289831cf5ed9961665596c4",
+      "permalink": "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/blueprint_agent.md#L517-L530"
+    },
+    {
+      "path": "prompts/docs/prompts/blueprint_agent.md",
+      "lines": [
+        534,
+        547
+      ],
+      "role": "child",
+      "name": "lem:alternating_property_maximal",
+      "excerpt_sha256": "a1fed53632b09439e7a49b038e986c8ec50b68f340d529939f55d5ab55ff88ce",
+      "permalink": "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/blueprint_agent.md#L534-L547"
+    },
+    {
+      "path": "prompts/docs/prompts/blueprint_agent.md",
+      "lines": [
+        468,
+        483
+      ],
+      "role": "context",
+      "name": "lem:alternating_property-before",
+      "excerpt_sha256": "c8d2a4522b5fbdab7ec3c847e01eee97d7934cfdb3577bcc6e7239ea10781462",
+      "permalink": "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/blueprint_agent.md#L468-L483"
+    },
+    {
+      "path": "prompts/docs/prompts/blueprint_agent.md",
+      "lines": [
+        488,
+        493
+      ],
+      "role": "context",
+      "name": "gemini-three-steps",
+      "excerpt_sha256": "ce25ae29acef8a1f495375a413c19eaf5fcbeaa1a14a58ca7dcba06231cbda70",
+      "permalink": "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/blueprint_agent.md#L488-L493"
+    }
+  ],
+  "parent": {
+    "name": "lem:alternating_property",
+    "statement": "If s is alternating, then f(n, s) is maximal."
+  },
+  "children": [
+    {
+      "name": "lem:alternating_property_respects_pattern",
+      "statement": "Valid permutations must respect alternating pattern.",
+      "closed_by": "its informal proof placeholder `[Detailed reasoning from Gemini]`; a leaf, since its `uses` field lists only `def:alternating` (line 504)"
+    },
+    {
+      "name": "lem:alternating_property_count",
+      "statement": "Count of valid permutations for alternating vs non-alternating.",
+      "closed_by": "its informal proof placeholder `[Detailed reasoning from Gemini]`, resting on `lem:alternating_property_respects_pattern` and `def:f` (line 521)"
+    },
+    {
+      "name": "lem:alternating_property_maximal",
+      "statement": "Alternating has strictly more valid permutations.",
+      "closed_by": "its informal proof placeholder `[Detailed reasoning from Gemini]`, resting on `lem:alternating_property_count` (line 538)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A blueprint node (lemma) whose proof is empty or partial and whose informal proof has N >= 3 distinct steps; each step becomes one sub-lemma, and the sub-lemmas are chained by their `uses` fields so the parent cites only the last one.",
+    "use_when": "Gemini returns a step-by-step informal proof with several distinct steps; the proof agent has exhausted its attempts on the lemma; and the informal proof should be fixed in the blueprint before formalisation begins.",
+    "avoid_when": "the proof has fewer than 3 steps (the workflow says to refine instead of split); the steps are not ordered into a dependency chain; or the lemma is already small enough for the proof agent to close directly."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent `lem:alternating_property` is closed by a six-line glue (lines 563-568): the `## proof` header, `Follows from [lem:alternating_property_maximal]:`, one line for each of the three steps, and `QED.` — it cites the chain rather than re-proving.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/blueprint_agent.md#L563-L568"
+    },
+    {
+      "n": 2,
+      "claim": "The split is a depth-3 chain of three sub-lemmas: `lem:alternating_property_respects_pattern` uses only `def:alternating` (line 504), `lem:alternating_property_count` uses `lem:alternating_property_respects_pattern` (line 521), `lem:alternating_property_maximal` uses `lem:alternating_property_count` (line 538), and the parent uses `lem:alternating_property_maximal` (line 555).",
+      "evidence_kind": "measurement",
+      "evidence": "the four `uses` fields in the copied file, lines 504, 521, 538 and 555: https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/blueprint_agent.md#L504"
+    },
+    {
+      "n": 3,
+      "claim": "The workflow states its split rule in its own words: '3 distinct steps → SPLIT' (line 496) and 'Split complex lemmas when proof has 3+ steps' (line 583).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/blueprint_agent.md#L496 and https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/blueprint_agent.md#L583"
+    },
+    {
+      "n": 4,
+      "claim": "The file `prompts/docs/prompts/blueprint_agent.md` (15933 bytes) contains no `sorry`, `admit`, `Admitted` or `oops` token; the three child proof bodies are the placeholder `[Detailed reasoning from Gemini]`.",
+      "evidence_kind": "check",
+      "evidence": "grep for `sorry|admit|Admitted|oops` over the whole copied file returned no match; child proof lines are 513, 530 and 547."
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 3,
+    "glue_lines": 6,
+    "child_lines": [
+      1,
+      1,
+      1
+    ]
+  },
+  "metrics": {
+    "parent_glue_lines": 6,
+    "children": 3,
+    "depth": 3,
+    "child_proof_lines": [
+      1,
+      1,
+      1
+    ],
+    "how_counted": "glue = lines 563-568 of the copied file; children = the three sub-lemma blocks at lines 500-513, 517-530, 534-547; depth = the longest `uses` chain property → maximal → count → respects_pattern (lines 555, 538, 521); each child's `## proof` body is a single placeholder line (513, 530, 547)"
+  },
+  "consequences": "The split creates three new blueprint nodes whose Lean files are marked '(to be created)', so each child's informal Gemini proof still has to be formalised, and the parent's proof reduces to a citation whose correctness rests entirely on the chain holding. Obligations: every `uses` edge must stay consistent (the checklist requires 'Updated all `uses` fields correctly', line 454, and 'Reordered blueprint by topology (if needed)', line 456), and each child must close from its own reasoning plus its named siblings. Failure modes: a step that is not self-contained becomes a child whose placeholder proof cannot later close; a broken `uses` edge leaves a lemma importing a sibling that is not yet proved; and a wrong sub-lemma propagates to the theorem undetected because the parent only cites it.",
+  "known_uses": [],
+  "related": [
+    "markdown-workflow-lean4-skills-84730478",
+    "markdown-other-leanprover-skills-68f66bfd"
+  ],
+  "rule": {
+    "f10_rule": 15,
+    "relation": "supports"
+  },
+  "content_key": "b4e8ebdf5b201e5cf82ed523fa1d1cf53481a2d18c93defc951ce37a3798be0d",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:28:57Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,also_known_as,related,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12"
+    }
+  ]
+}

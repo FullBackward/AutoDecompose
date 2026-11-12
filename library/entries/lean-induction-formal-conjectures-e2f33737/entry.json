@@ -1,0 +1,211 @@
+{
+  "id": "lean-induction-formal-conjectures-e2f33737",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Strong induction on s+t for the Erdos-Szekeres binomial bound C(s+t, s)",
+  "intent": "Prove the off-diagonal Ramsey binomial bound HasRamseyProperty (Nat.choose (s+t) s) s t for all s, t by strong induction on the shared measure n = s + t, so the induction step is exactly the pigeonhole recurrence lemma and each base case is monotonicity applied to a zero base case.",
+  "move": "induction",
+  "also_known_as": [
+    "induction on the total s+t",
+    "strong induction on a measure",
+    "Nat.strong_induction_on",
+    "generalise-then-induct (the suffices strengthens the statement to one indexed by n)"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "formal-conjectures",
+    "url": "https://github.com/google-deepmind/formal-conjectures",
+    "commit": "a425ca3eb797fe927cb88c950565fdcbbbbada70",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean",
+      "bytes": 14955,
+      "sha256": "267f8d5930529894aee8335932111e7cddfe69c02e7a9dc701070a6d43434fe3",
+      "permalink": "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean",
+      "lines": [
+        237,
+        278
+      ],
+      "role": "parent",
+      "name": "hasRamseyProperty_choose",
+      "excerpt_sha256": "8b0e009401107b3c2f53a04e973898222a6a0983479859cd983c38e0d4382ddb",
+      "permalink": "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean#L237-L278"
+    },
+    {
+      "path": "FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean",
+      "lines": [
+        67,
+        70
+      ],
+      "role": "child",
+      "name": "HasRamseyProperty.mono",
+      "excerpt_sha256": "cd28030789f00f309ac68ec151c66edf33ce638d706f6ad75c1e9879c1d0c5cd",
+      "permalink": "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean#L67-L70"
+    },
+    {
+      "path": "FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean",
+      "lines": [
+        73,
+        79
+      ],
+      "role": "child",
+      "name": "hasRamseyProperty_zero_left",
+      "excerpt_sha256": "9ecfa4bd40478053585ed0bbc675d33f4e5e000cb8e39febeb2d5f4b5f4f03fc",
+      "permalink": "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean#L73-L79"
+    },
+    {
+      "path": "FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean",
+      "lines": [
+        82,
+        87
+      ],
+      "role": "child",
+      "name": "hasRamseyProperty_zero_right",
+      "excerpt_sha256": "26313dc0573ce353c7142e505c59fd35ac6382cf822922724bd12914fa4bd563",
+      "permalink": "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean#L82-L87"
+    },
+    {
+      "path": "FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean",
+      "lines": [
+        180,
+        233
+      ],
+      "role": "child",
+      "name": "HasRamseyProperty.step",
+      "excerpt_sha256": "a6225283160f8f812d1503b5471a3011464fa7cc5431b6381c24cf01512019bd",
+      "permalink": "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean#L180-L233"
+    },
+    {
+      "path": "FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean",
+      "lines": [
+        61,
+        64
+      ],
+      "role": "context",
+      "name": "HasRamseyProperty",
+      "excerpt_sha256": "10fdf6de7d2b9f50e7c65c6e324bde061aecda0cab3fd4994d44c4842cdaa128",
+      "permalink": "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean#L61-L64"
+    }
+  ],
+  "parent": {
+    "name": "hasRamseyProperty_choose",
+    "statement": "hasRamseyProperty_choose : ∀ (s t : ℕ), HasRamseyProperty (Nat.choose (s + t) s) s t"
+  },
+  "children": [
+    {
+      "name": "HasRamseyProperty.mono",
+      "statement": "HasRamseyProperty.mono {N N' s t : ℕ} (hNN' : N ≤ N') (h : HasRamseyProperty N s t) : HasRamseyProperty N' s t",
+      "closed_by": "intro m c V hV; exact h c V (hNN'.trans hV)"
+    },
+    {
+      "name": "hasRamseyProperty_zero_left",
+      "statement": "hasRamseyProperty_zero_left (N t : ℕ) : HasRamseyProperty N 0 t",
+      "closed_by": "refine Or.inl ⟨∅, Finset.empty_subset _, by simp, ?_⟩; the 2-subset condition is vacuous (e ⊆ ∅ forces e = ∅), closed by Finset.subset_empty.mp + simp"
+    },
+    {
+      "name": "hasRamseyProperty_zero_right",
+      "statement": "hasRamseyProperty_zero_right (N s : ℕ) : HasRamseyProperty N s 0",
+      "closed_by": "refine Or.inr ⟨∅, Finset.empty_subset _, by simp, ?_⟩; symmetric to the left base case, closed by Finset.subset_empty.mp + simp"
+    },
+    {
+      "name": "HasRamseyProperty.step",
+      "statement": "HasRamseyProperty.step {Ns Nt s t : ℕ} (hs : HasRamseyProperty Ns s (t + 1)) (ht : HasRamseyProperty Nt (s + 1) t) (hNs : 1 ≤ Ns) : HasRamseyProperty (Ns + Nt) (s + 1) (t + 1)",
+      "closed_by": "splits V.erase v into false/true neighbours by card_false_true_split, pigeonholes by le_or_gt Ns R.card, then in each case applies hs or ht and extends the clique by v with mono_insert"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "∀ (s t : ℕ), HasRamseyProperty (Nat.choose (s + t) s) s t: a two-parameter universal statement whose conclusion depends on s and t only through the shared measure s+t and the binomial coefficient C(s+t, s), and whose recurrence lowers s+t by 1",
+    "use_when": "the target has a recurrence that lowers a single shared measure (here s+t); the induction should be on that measure, with the two parameters generalised so the induction hypothesis applies at both (s, t+1) and (s+1, t); the base cases and the recurrence step are already stated as separate named lemmas",
+    "avoid_when": "the recurrence does not lower one shared measure (a more complex well-founded order is needed), or the strengthened statement indexed by n = s+t is not obviously implied by the target, or there is no monotonicity lemma to move the trivial base value C(n,0) = 1 up to the HasRamseyProperty 1 0 t form the zero base case expects"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The copied file compiles at the pinned commit: .github/workflows/build-and-docs.yml's build job runs `lake --wfail build FormalConjecturesForMathlib FormalConjecturesUtil`, which builds FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/.github/workflows/build-and-docs.yml#L208-L212"
+    },
+    {
+      "n": 3,
+      "claim": "The decomposition is theorem scale with 4 direct lemmas and depth 2: the glue (hasRamseyProperty_choose, 42 lines at 237-278) uses HasRamseyProperty.step (54 lines at 180-233), which in turn uses card_false_true_split (117-137) and mono_insert (142-169), while the glue is shorter than its step child.",
+      "evidence_kind": "measurement",
+      "evidence": "line counts read from the copied file: 237-278 (42 lines), 180-233 (54 lines), 117-137 and 142-169 for the depth-2 lemmas; mono 67-70 (4), zero_left 73-79 (7), zero_right 82-87 (6)"
+    },
+    {
+      "n": 4,
+      "claim": "The authors state the plan as induction on s+t in the module docstring: 'Induction on `s + t` then gives `R(s, t) ≤ C(s+t, s)`; for `s = t = k` this is `R(k, k) ≤ C(2k, k) ≤ 4 ^ k`'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean#L27-L31"
+    },
+    {
+      "n": 5,
+      "claim": "hasRamseyProperty_choose is the chapter the file's headline result Combinatorics.hypergraphRamsey_two_le_four_pow is assembled from: that theorem instantiates it at s = t = k (Diagonal.hasRamseyProperty_choose k k) to get the C(2k, k) member of the hypergraphRamsey defining set.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean#L290-L308"
+    },
+    {
+      "n": 6,
+      "claim": "The parent hasRamseyProperty_choose closes by strong induction (Nat.strong_induction_on, line 244) in three match branches, each an exact built from the four named children: HasRamseyProperty.mono + hasRamseyProperty_zero_left (line 252), HasRamseyProperty.mono + hasRamseyProperty_zero_right (line 256), and HasRamseyProperty.step applied to the two induction hypotheses (line 271); the other lemmas it uses are Nat.zero_le (the monotonicity bound in both base branches, lines 252 and 256), Nat.choose_zero_right (line 251), Nat.choose_pos (line 269) and Nat.choose_succ_succ (line 275, Pascal's identity).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean#L237-L278"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 2,
+    "glue_lines": 42,
+    "child_lines": [
+      4,
+      7,
+      6,
+      54
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 42,
+    "direct_children": 4,
+    "child_proof_lines": [
+      4,
+      7,
+      6,
+      54
+    ],
+    "depth": 2,
+    "how_counted": "parent = lines 237-278 of the copied file; children = HasRamseyProperty.mono 67-70 (4), hasRamseyProperty_zero_left 73-79 (7), hasRamseyProperty_zero_right 82-87 (6), HasRamseyProperty.step 180-233 (54); depth = hasRamseyProperty_choose -> HasRamseyProperty.step -> (card_false_true_split 117-137 | mono_insert 142-169)"
+  },
+  "consequences": "The move creates two obligations: (a) the strengthened statement must imply the target, discharged here by instantiating the strengthened theorem at n = s + t; (b) the induction must be well-founded, which Nat.strong_induction_on provides on n. Each match branch must line up its goal with one child's exact statement, so the glue needs the two rewrites Nat.choose_zero_right and Nat.choose_succ_succ (Pascal) to change the target's binomial coefficient into the child's form. Failure modes: if the measure is not a plain sum the generalisation is less obvious, and if the base cases cannot be obtained by monotonicity from a single zero base case, more base-case lemmas are needed.",
+  "known_uses": [
+    "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean#L290-L308"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "e2f337372489aab4d79e3ac62322ed098466f89e2287d877c5206a2411bf6c30",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T14:55:58Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,rule,also_known_as,known_uses",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T15:09:58Z"
+}

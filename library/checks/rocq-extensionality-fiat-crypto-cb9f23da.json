@@ -1,0 +1,101 @@
+{
+  "entry": "rocq-extensionality-fiat-crypto-cb9f23da",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:49:54Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:49:54Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 3d2880ef2803faa9385589a81a835d5828eb3d38",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:50:02Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/coq-debian.yml (push branches: master, sp2019latest) runs 'etc/ci/github-actions-make.sh -j2 all-except-generated-and-js-of-ocaml'; Makefile target 'coq' builds REGULAR_VOFILES = all src/**/*.v (coq_makefile from 'find src -type f -name *.v'), which includes src/Arithmetic/BYInv.v; pinned commit 3d2880ef is HEAD of default branch master",
+      "by": "verifier",
+      "at": "2026-11-12T15:52:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read byte-identical local copy code/src/Arithmetic/BYInv.v lines 1012-1021: Proof at 1012, 'repeat apply injective_projections.' at 1014, then rewrite lines 1015-1021 (5 coordinates closed by divstep_spec*_divstep_spec_full_* projection lemma + divstep_d/f/g/v/r component lemma, discharged by auto/lia). 8 glue lines = 1014 + 1015-1021.",
+      "by": "verifier",
+      "at": "2026-11-12T15:52:45Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Counted Proof. through Qed. inclusive in byte-identical local BYInv.v: divstep_d 732-755=24, divstep_f 767-784=18, divstep_g 659-718=60, divstep_v 845-856=12, divstep_r 898-948=51, projection lemmas 952-953/2 lines each. child_lines [24,18,60,12,51,2,2,2] matches site order. Glue rewrites 10 named lemmas (5 projection + 5 component).",
+      "by": "verifier",
+      "at": "2026-11-12T15:52:47Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read byte-identical local BYInv.v lines 572-574: line 573 is the comment '(** This section is for the implementation and correctness of the divstep algorithm *)'; divstep_d/f/g/v/r and divstep_correct_full all appear after it (638-1021).",
+      "by": "verifier",
+      "at": "2026-11-12T15:52:48Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read byte-identical local BYInv.v lines 786-816: divstep_correct proves 3-tuple (d,f,g)=divstep_spec; proof (810-816) does 'apply injective_projections' twice (812,813) then rewrites divstep_d (814), divstep_f (815), divstep_g (816).",
+      "by": "verifier",
+      "at": "2026-11-12T15:52:49Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Verified against copied code/src/Arithmetic/BYInv.v: parent divstep_correct_full (975-1021) and all 10 child statements/proofs match entry.json verbatim. Glue (1012-1021) = assert (0 < machine_wordsize) by lia; repeat apply injective_projections; 7 rewrite lines (1015-1021) closing 5 coordinates by projection+component lemma pairs (d/f/g via divstep_spec_divstep_spec_full_*, v/r via divstep_spec2_divstep_spec_full_*), each auto/lia, ends Qed so it closes. The 10 children are exactly the lemmas the glue uses (plus stdlib injective_projections, correctly not a child). Shape numbers right: parent_proof_lines=10 (1012-1021), glue_lines=8 (1014-1021), direct_lemmas=10, child_lines=[24,18,60,12,51,2,2,2] = Proof.through-Qed. counts at sites 720-755,757-784,638-718,818-856,870-948,950-953,955-958,960-963; depth=4 chain holds (divstep_correct_full->divstep_g@1017->eval_twos_complement_sat_arithmetic_shiftr1@674->eval_sat_arithmetic_shiftr1@522->eval_testbit@277/115).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:54:46Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generically (tuple equality -> per-coordinate via injective_projections, not divstep-specific): applicability.goal_shape/use_when use general conditions (same-arity nested products, per-coordinate lemma with hypotheses a subset of the parent's, same nesting order). When-not-to-use is honest and specific (entangled coordinates; record/dependent types where injective_projections doesn't apply; incompatible side conditions breaking uniform auto). Consequences match (side conditions must be subset or derived first, e.g. assert 0<machine_wordsize; nesting-order requirement). Good-leaf rationale present: projection lemmas close in 2 lines (unfold/destruct/reflexivity), component lemmas are self-contained and close by case-split + lia/reflexivity, with depth 4 chain cited; known-use divstep_correct (3-tuple) confirms the move generalises. Verified the section header (L573), divstep_correct injective_projections use (L810-816) and parent glue (L1012-1021) in the copied code.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:55:47Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 3d2880ef2803faa9385589a81a835d5828eb3d38",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:56:10Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "object",
+      "evidence": "Permalinks, commit and copied files are consistent: check_provenance.py passed (2 files byte-identical at 3d2880ef); every site permalink's line range matches the local copy (divstep_g 638-718, divstep_d 720-755, divstep_f 757-784, divstep_v 818-856, divstep_r 870-948, projections 950-953/955-958/960-963, parent divstep_correct_full 975-1021, glue 1012-1021), and the section header 572-574 is as claimed. The source note and source.json agree on commit and licence string. Objection: the recorded licence 'Apache-2.0 AND BSD-2-Clause AND MIT AND MIT OR Apache-2.0 OR BSD-1-Clause' is inconsistent with the copied licence files -- there is no BSD-2-Clause file (the file is LICENSE-BSD-1 declaring BSD-1-Clause), and the 'AND' conjunction contradicts the COPYRIGHT's 'MIT OR Apache-2.0 OR BSD-1-Clause' ('at your option'). Fix: set the licence field to 'MIT OR Apache-2.0 OR BSD-1-Clause' per COPYRIGHT, dropping the phantom BSD-2-Clause and the 'AND' framing, in entry.json, the README and the source note.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:58:05Z"
+    }
+  ]
+}

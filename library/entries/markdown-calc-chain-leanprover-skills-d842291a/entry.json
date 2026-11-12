@@ -1,0 +1,183 @@
+{
+  "id": "markdown-calc-chain-leanprover-skills-d842291a",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Across Theorems: main_theorem via lemma1, lemma2",
+  "intent": "Replace a single theorem `main_theorem : A = C` held by a `sorry` with two named helper lemmas `lemma1 : A = B` and `lemma2 : B = C`, and a parent whose entire proof is the two-step rewrite chain `rw [lemma1, lemma2]`. Each remaining hole is a smaller equality than the original, and the parent closes the moment both helpers are filled.",
+  "move": "calc-chain",
+  "also_known_as": [
+    "across-theorems split",
+    "equality chain",
+    "rewrite chain",
+    "lemma-splitting"
+  ],
+  "language": "markdown",
+  "source": {
+    "source_id": "leanprover-skills",
+    "url": "https://github.com/leanprover/skills",
+    "commit": "7d3da0282e7b724b07620e45cf212f2e05e19334",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "skills/lean-proof/SKILL.md",
+      "bytes": 3053,
+      "sha256": "362c42ddae83b8d52ceaadd6efa32f707a15ebe83e25038fc08d75a329d60a41",
+      "permalink": "https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": "skills/lean-proof/SKILL.md",
+      "lines": [
+        42,
+        43
+      ],
+      "role": "parent",
+      "name": "main_theorem",
+      "excerpt_sha256": "ec3138500409c4d79ad9a76de22dbc0c8d35cfce4360988b4b00f792acc820bf",
+      "permalink": "https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md#L42-L43"
+    },
+    {
+      "path": "skills/lean-proof/SKILL.md",
+      "lines": [
+        40,
+        40
+      ],
+      "role": "child",
+      "name": "lemma1",
+      "excerpt_sha256": "d838d729b57350a2be3d2a2e23bd4a02972ad5ffba0b05cef471d9433fb887be",
+      "permalink": "https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md#L40-L40"
+    },
+    {
+      "path": "skills/lean-proof/SKILL.md",
+      "lines": [
+        41,
+        41
+      ],
+      "role": "child",
+      "name": "lemma2",
+      "excerpt_sha256": "53cfec82221322edf4dbf5244e82b46ff8bddeeb9854cdb2792e8a6c01d973f8",
+      "permalink": "https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md#L41-L41"
+    },
+    {
+      "path": "skills/lean-proof/SKILL.md",
+      "lines": [
+        37,
+        37
+      ],
+      "role": "context",
+      "name": "before_main_theorem",
+      "excerpt_sha256": "2c49e0beb5a6c70cdc26ab626151abc6b5f267a69f8fe2d9d4255076e68a72a0",
+      "permalink": "https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md#L37-L37"
+    },
+    {
+      "path": "skills/lean-proof/SKILL.md",
+      "lines": [
+        29,
+        33
+      ],
+      "role": "skill-text",
+      "name": "across_theorems_rule",
+      "excerpt_sha256": "ff36efffa49dded2020a3e046e4f944234ded180734fbcd68684e844de472725",
+      "permalink": "https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md#L29-L33"
+    }
+  ],
+  "parent": {
+    "name": "main_theorem",
+    "statement": "theorem main_theorem : A = C := by\n  rw [lemma1, lemma2]"
+  },
+  "children": [
+    {
+      "name": "lemma1",
+      "statement": "theorem lemma1 : A = B := by sorry",
+      "closed_by": "sorry (a placeholder hole, left unfilled by design)"
+    },
+    {
+      "name": "lemma2",
+      "statement": "theorem lemma2 : B = C := by sorry",
+      "closed_by": "sorry (a placeholder hole, left unfilled by design)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An equality A = C (or any rewrite-friendly relation) that factors through an intermediate B as A = B then B = C; the parent is closed by rw [lemma1, lemma2].",
+    "use_when": "the direct proof is missing (a single sorry) and an intermediate value B makes each link a smaller, self-contained equality that can be stated as its own named lemma, so rw can rewrite by name.",
+    "avoid_when": "the intermediate B does not reduce either side (children no smaller than the parent); the helper lemmas need hypotheses or local context that a bare rw cannot supply; or the equality is already a single rewrite step."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent main_theorem's entire proof is the single line rw [lemma1, lemma2], so A = C is closed from exactly the two children lemma1 and lemma2.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md#L42-L43"
+    },
+    {
+      "n": 2,
+      "claim": "The decomposition's shape is direct_lemmas = 2 and depth = 1 (lemma1 and lemma2 are leaves, neither uses the other), with a one-line glue rw [lemma1, lemma2] and one line per helper.",
+      "evidence_kind": "measurement",
+      "evidence": "lines 40-43 of skills/lean-proof/SKILL.md at 7d3da0282e7b724b07620e45cf212f2e05e19334: lemma1 (L40), lemma2 (L41), main_theorem (L42-L43)"
+    },
+    {
+      "n": 3,
+      "claim": "The skill directs this move in its own words: 'Move sorries earlier in the file by replacing a `sorry` proof with references to simpler lemmas' (line 33), and permits `by sorry` for placeholders: '`by sorry` is acceptable: For placeholders you're not actively working on' (line 14).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md#L33 and https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md#L14"
+    },
+    {
+      "n": 4,
+      "claim": "Both children are themselves holes: lemma1 and lemma2 end in `by sorry` (lines 40-41), so this is a teaching skeleton whose leaves are not yet proved, not a closed instance.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md#L40-L41"
+    }
+  ],
+  "metrics": {
+    "glue_lines": 1,
+    "child_lines": [
+      1,
+      1
+    ],
+    "before_lines": 1,
+    "after_lines": 4,
+    "how_counted": "before = line 37 (one theorem closed by sorry); after = lines 40-43 (lemma1, lemma2, main_theorem); glue = line 43; each child is one line whose proof is by sorry"
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 1,
+    "glue_lines": 1,
+    "child_lines": [
+      1,
+      1
+    ]
+  },
+  "consequences": "The two helper statements must typecheck even while `sorry` (Lean treats `sorry` as an axiom, so the file shows no error but also no proof). The two lemmas must share the same intermediate B and the right orientation: `rw [lemma1, lemma2]` rewrites A to B then B to C, so `lemma1 : B = A` or a mismatched middle value breaks the chain. The move leaves the proof incomplete by design — the skill forbids declaring done while any `sorry` remains (line 93) — so the real work is deferred to filling lemma1 and lemma2.",
+  "known_uses": [
+    "https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md#L60"
+  ],
+  "related": [
+    "markdown-other-leanprover-skills-68f66bfd",
+    "markdown-sorrify-at-failure-leanprover-skills-9066c346",
+    "lean-calc-chain-compfiles-f7c6dc2b",
+    "lean-calc-chain-mathlib4-9433f97f"
+  ],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "d842291aed62f73cafec089f60cfd6d83ca27e8e78a9195e3f72a5376ca681e5",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:23:08Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,metrics,shape,consequences,known_uses,related,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:30:00Z"
+    }
+  ]
+}

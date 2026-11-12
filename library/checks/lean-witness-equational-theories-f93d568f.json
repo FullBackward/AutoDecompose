@@ -1,0 +1,101 @@
+{
+  "entry": "lean-witness-equational-theories-f93d568f",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:17:25Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:17:25Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 8b87204d5b201e1cf6c69b8dcabb0558109bee00",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:17:36Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/blueprint-paper.yml, job build_project, step 'Build project': run: ~/.elan/bin/lake build equational_theories, triggered on push to main (default branch, paths include '**/*.lean'); this compiles equational_theories/ManuallyProved/Equation854.lean; pinned commit 8b87204d5b201e1cf6c69b8dcabb0558109bee00 is HEAD of main",
+      "by": "verifier",
+      "at": "2026-11-12T16:19:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read copied Equation854.lean L506-527: line 510 is '⟨⟨_, fromList_ok⟩, rfl⟩'; line 511 'refine ⟨GreedyMagma e, inferInstance, e.eq854, fun h => ?_, fun h => ?_⟩' supplies the law via e.eq854; six fromList_eval calls at 512, 513, 518, 519, 520, 521; refutations end 'cases e.aux this.symm' (517) and 'cases this' (527), closing the by-block",
+      "by": "verifier",
+      "at": "2026-11-12T16:19:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Glue spans L507-527 (21 lines). 4 named lemmas cited: fromList_ok (510), fromList_eval (512/513/518-521), Extension.eq854 via e.eq854 (511), Extension.aux via e.aux (517), all in Equation854.lean. Chain: fromList_eval uses Extension.base (499) -> Extension.base = (exists_extension e0).choose_spec.2.2 (448-449) -> exists_extension uses exists_greedy_chain (409) -> exists_greedy_chain Greedy.lean L8-43; depth 4",
+      "by": "verifier",
+      "at": "2026-11-12T16:19:28Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read copied blueprint/src/chapter/854.tex L231-254: corollary 854-413 at L238 and 854-1045 at L248 both carry \\lean{Refutation_854.not_413_1045}; proof sketch L241-245 reads 'Create a partial magma by imposing the laws ... We then extend it to a global magma using \\Cref{extend-854}', matching fromList + exists_extension (extend-854 is Refutation_854.Greedy.exists_extension, L231)",
+      "by": "verifier",
+      "at": "2026-11-12T16:19:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Fetched Equation73.lean at 8b87204d5b201e1cf6c69b8dcabb0558109bee00: fromList at L37 (abbrev), fromList_ok at L248, fromList_eval at L260; used the same way at L273 '⟨⟨_, fromList_ok⟩, rfl⟩' and L280-281 'rw [fromList_eval he 1 x₁, fromList_eval he (x₁^(-1)) x₃, fromList_eval he (x₃ * x₁) x₄]'",
+      "by": "verifier",
+      "at": "2026-11-12T16:19:31Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent statement verbatim matches code (Equation854.lean L507). The 4 children are exactly the named lemmas the glue cites: fromList_ok (L510), Extension.eq854 (L511 e.eq854), fromList_eval (6 calls L512,513,518,519,520,521), Extension.aux (L517 e.aux); no other named lemma is used. Closing methods match: fromList_ok field-by-field (finite:=List.finite_toSet L479; func via isChain_iff_pairwise L480-485; rest direct L486-494); fromList_eval via Extension.base (L499); eq854/aux via choose_spec (L443/L446). Glue closes both refutations with cases e.aux this.symm (L517) and cases this (L527), no sorry/admit. Shape numbers all correct: direct_lemmas=4; depth=4 chain fromList_eval->Extension.base->exists_extension->exists_greedy_chain verified (L499, L449, L409, Greedy.lean L8-L43); glue_lines=21 (507-527); child_lines=[29,4,2,2] match site ranges 466-494, 496-499, 442-443, 445-446. Minor non-blocking note: closed_by says '10 PreExtension.OK fields' but OK has 11 fields (finite,func + 9 law fields); only 9 are discharged from matching by-decide hypotheses. Does not affect the decomposition or shape.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T16:21:21Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated beyond the single example: applicability.goal_shape generalises to any existential over a magma whose witness is a finite literal table, and use_when/avoid_when are stated in general terms (small finite table with decidable side conditions, accessor-packaged law). When-not-to-use is specific and honest (infinite/undecidable table, law not already an accessor, refutation not a table eval plus single cases). Consequences are honest and specific, acknowledging the shifted burden onto decide-decidability and the inherited dependency on exists_extension/exists_greedy_chain/~170-line next_ok, plus concrete failure modes. Why-each-child-is-a-good-leaf names what makes leaves bounded-prover-friendly (self-contained, closes field-by-field by decide, closes by projecting choose_spec). Known-use (Equation73.lean) corroborates reuse within the project.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T16:22:28Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 8b87204d5b201e1cf6c69b8dcabb0558109bee00",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:22:55Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance is fully traceable and consistent. check_provenance.py passes: 3 files byte-identical at pinned commit 8b87204d5b201e1cf6c69b8dcabb0558109bee00. Commit matches across entry.json source.commit, source.json, SOURCE.md, and every file/site permalink. Licence Apache-2.0 is consistent in entry.json, SOURCE.md (Licence detected), and source.json, and upstream-LICENSE is the genuine Apache-2.0 text. Copied files exist with matching byte sizes (Equation854.lean 22923, Greedy.lean 2426, 854.tex 32686). Site permalinks' line ranges (parent 506-527; children 466-494, 496-499, 442-443, 445-446; contexts) were checked against the local copy and match the excerpted code exactly. SOURCE.md links the repo, pinned commit, browse-at-commit URL, and licence file (LICENSE copied as upstream-LICENSE).",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T16:23:24Z"
+    }
+  ]
+}

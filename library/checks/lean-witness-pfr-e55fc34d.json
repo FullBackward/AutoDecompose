@@ -1,0 +1,101 @@
+{
+  "entry": "lean-witness-pfr-e55fc34d",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:14:44Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:14:44Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:14:56Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push.yml (leanprover/lean-action builds the whole project incl. PFR/EntropyPFR.lean); default branch master; pinned commit 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+      "by": "verifier",
+      "at": "2026-11-12T16:15:43Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "code/PFR/EntropyPFR.lean lines 60-73: line 61 calls tau_minimizer_exists, 62 tau_strictly_decreases, 63 exists_isUniform_of_rdist_eq_zero, 64 rdist_symm, 65 is_tau_min, 68-71 rdist_triangle four times, 73 closes three bounds by linarith",
+      "by": "verifier",
+      "at": "2026-11-12T16:16:38Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "code/PFR/HundredPercent.lean lines 158-159 doc comment 'Follows from the preceding claim by the triangle inequality'; proof 165-175 uses rdist_triangle at 168 and 174 plus rdist_symm at 169 and 175",
+      "by": "verifier",
+      "at": "2026-11-12T16:16:39Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "parent EntropyPFR.lean 60-73 = 14 lines; children TauFunctional.lean 151-160=10, EntropyPFR.lean 41-49=9, HundredPercent.lean 165-175=11, RuzsaDist.lean 240-245=6, TauFunctional.lean 171-175=5, RuzsaDist.lean 448-465=18; depth chain EntropyPFR.lean:62->:48 tau_strictly_decreases_aux -> Endgame.lean:468 tau_strictly_decreases_aux -> FirstEstimate.lean:143 first_estimate",
+      "by": "verifier",
+      "at": "2026-11-12T16:16:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "PFR/ImprovedPFR.lean lines 819-832 (fetched): 819 obtains minimiser+d=0, 820 exists_isUniform_of_rdist_eq_zero, 823 is_tau_min, 826-831 rdist_triangle, 828/832 linarith",
+      "by": "verifier",
+      "at": "2026-11-12T16:16:42Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent glue (EntropyPFR.lean 60-73) obtains a tau-minimiser witness (obtain, line 61) then proves its properties, matching move=witness. It uses exactly six named lemmas: tau_minimizer_exists (61), tau_strictly_decreases (62), exists_isUniform_of_rdist_eq_zero (63), rdist_symm (64), is_tau_min (65), rdist_triangle (68-71, four times); the three target bounds close by linarith (73), rest by inferInstance/hU/hH_unif. All six children match the code: statements and closed_by descriptions verified against copied files; no sorry/admit. Shape numbers correct: direct_lemmas=6, glue_lines=14 (60-73), child_lines=[10,9,11,6,5,18] (TauFunctional 151-160, EntropyPFR 41-49, HundredPercent 165-175, RuzsaDist 240-245, TauFunctional 171-175, RuzsaDist 448-465), depth=3 confirmed chain entropic_PFR_conjecture->tau_strictly_decreases->tau_strictly_decreases_aux (Endgame.lean)->first_estimate (FirstEstimate.lean:143).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T16:19:39Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality is stated so it applies beyond the example and is honest. applicability/use_when generalise the move to an existence goal whose witness is an optimisation or zero-distance object, with the remaining properties being distance/functional inequalities closed by generic facts (triangle inequality, minimiser comparison) plus linear arithmetic; avoid_when is specific (witness must be built explicitly with no existence lemma available; a property needs the witness's internal construction; the bounds are not linarith-closable). consequences name the real obligations (one named lemma per property, exhaustiveness of the obtain discharged by the existence lemma, ambient hypotheses nonempty_fintype G and refPackage p) and a concrete failure mode (a non-linarith bound forces unfolding the witness, breaking the one-lemma-per-goal shape). The 'good leaf' paragraph answers the bounded-prover question: each child is a self-contained statement whose proof closes on its own or from named siblings, has a short proof (5-18 lines), and no leaf repeats the parent's work (the parent never reasons about tau or the subgroup internals). Local code/PFR/EntropyPFR.lean confirms the glue is 14 lines invoking the six named lemmas with linarith closing the three bounds.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T16:20:44Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:21:08Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py pass: 4 files byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a; commit consistent across entry.json/source.json/SOURCE.md; licence Apache-2.0 in entry, source.json and SOURCE.md matches upstream-LICENSE (Apache 2.0 text); permalinks all point to github.com/teorth/pfr/blob/<commit>/<path> with correct paths and line ranges",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T16:21:44Z"
+    }
+  ]
+}

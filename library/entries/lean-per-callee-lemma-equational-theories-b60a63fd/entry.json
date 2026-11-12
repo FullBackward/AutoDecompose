@@ -1,0 +1,221 @@
+{
+  "id": "lean-per-callee-lemma-equational-theories-b60a63fd",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Per-component enlargement lemmas assemble the greedy chain for equation 1729 not implying 817",
+  "intent": "Reduce the existence of a magma satisfying equation 1729 but not 817 to a greedy chain over a sum-indexed task beta = N + N + (N x N), seeded by TrivialPartialSolution and turned into a magma by use_chain, with each component of the index closed by its own enlargement lemma.",
+  "move": "per-callee-lemma",
+  "also_known_as": [
+    "one lemma per component",
+    "component-wise enlargement lemma",
+    "per-constructor closure lemma"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "equational-theories",
+    "url": "https://github.com/teorth/equational_theories",
+    "commit": "8b87204d5b201e1cf6c69b8dcabb0558109bee00",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "equational_theories/ManuallyProved/Equation1729.lean",
+      "bytes": 1551,
+      "sha256": "a4ed5e9a46af653e5403313e648f68744b9294502d5536c99500e805baabbffa",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation1729.lean"
+    },
+    {
+      "path": "equational_theories/ManuallyProved/Equation1729/MagmaConstruction.lean",
+      "bytes": 129788,
+      "sha256": "8dab4759fe8aa39d31c2fa5a6ea9c2aea8510f69430a9c5813b25c32df597a0a",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation1729/MagmaConstruction.lean"
+    },
+    {
+      "path": "equational_theories/ManuallyProved/Equation1729/SmallMagma.lean",
+      "bytes": 39331,
+      "sha256": "5deb072b38fd2c69ae8252abdaf261445ef05686faaeec7f67a65d36b94b532b",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation1729/SmallMagma.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "equational_theories/ManuallyProved/Equation1729.lean",
+      "lines": [
+        14,
+        43
+      ],
+      "role": "parent",
+      "name": "not_817",
+      "excerpt_sha256": "e9f3d883f13f2bdb7a640b1647c3a923c6101c30f09b72203708260f1b35bb2c",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation1729.lean#L14-L43"
+    },
+    {
+      "path": "equational_theories/ManuallyProved/Equation1729/MagmaConstruction.lean",
+      "lines": [
+        56,
+        108
+      ],
+      "role": "child",
+      "name": "TrivialPartialSolution",
+      "excerpt_sha256": "946f02c1b483257f36de85217c9090c477ce7b47bbd4f036c56b963cfe0dea0d",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation1729/MagmaConstruction.lean#L56-L108"
+    },
+    {
+      "path": "equational_theories/ManuallyProved/Equation1729/MagmaConstruction.lean",
+      "lines": [
+        135,
+        205
+      ],
+      "role": "child",
+      "name": "use_chain",
+      "excerpt_sha256": "945c0ca9d8c5caba5eaa1ba4b6216c4afd1979d99caa64a503430ba108625d33",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation1729/MagmaConstruction.lean#L135-L205"
+    },
+    {
+      "path": "equational_theories/ManuallyProved/Equation1729/MagmaConstruction.lean",
+      "lines": [
+        513,
+        562
+      ],
+      "role": "child",
+      "name": "enlarge_L₀'",
+      "excerpt_sha256": "ecf2b0726cb57b9f05f6f7ca5cab85e361dff4fc662e218bc44020de6e55c9d4",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation1729/MagmaConstruction.lean#L513-L562"
+    },
+    {
+      "path": "equational_theories/ManuallyProved/Equation1729/MagmaConstruction.lean",
+      "lines": [
+        2043,
+        2052
+      ],
+      "role": "child",
+      "name": "enlarge_S'",
+      "excerpt_sha256": "22ac7a8d5ecbb8961f831947df7cac93ea307312b2ebb0fe8e78d535d903bd1c",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation1729/MagmaConstruction.lean#L2043-L2052"
+    },
+    {
+      "path": "equational_theories/ManuallyProved/Equation1729/MagmaConstruction.lean",
+      "lines": [
+        2054,
+        2420
+      ],
+      "role": "child",
+      "name": "enlarge_op",
+      "excerpt_sha256": "cb0bdcfc7e717d4b8e23f56c40ebbad21232c3d34bfc03f02be74fa233ae96b7",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation1729/MagmaConstruction.lean#L2054-L2420"
+    }
+  ],
+  "parent": {
+    "name": "not_817",
+    "statement": "theorem not_817 : ∃ (G: Type) (_: Magma G), Equation1729 G ∧ ¬ Equation817 G"
+  },
+  "children": [
+    {
+      "name": "use_chain",
+      "statement": "lemma use_chain {sols : Set PartialSolution} (hchain: IsChain (fun (sol1 sol2 : PartialSolution) => sol1 ≤ sol2) sols ) (hnon: Nonempty sols) (htotal_L₀' : ∀ x : N, ∃ sol ∈ sols, x ∈ sol.Dom_L₀') (htotal_S' : ∀ x : N, ∃ sol ∈ sols, x ∈ sol.Dom_S') (htotal_op : ∀ (x y : N), ∃ sol ∈ sols, (x,y) ∈ sol.Dom_op) : ∃ (G: Type) (_: Magma G), Equation1729 G ∧ ¬ Equation817 G",
+      "closed_by": "filter limit over `Filter.atTop` on `sols`, defining S', op, L₀' by `Set.choose`, then `apply @reduce_to_new_axioms S' L₀' op` (SmallMagma.lean:431), each axiom discharged by `filter_upwards` over the partial-solution axiom fields"
+    },
+    {
+      "name": "enlarge_L₀'",
+      "statement": "lemma enlarge_L₀' (sol : PartialSolution) (x : N)  : ∃ sol', sol ≤ sol' ∧ x ∈ fill sol'.Predom_L₀' ∧ sol.Dom_S' = sol'.Dom_S'",
+      "closed_by": "`by_cases hx : x ∈ sol.Dom_L₀'`; else `set sol' := enlarge_L₀'_by hx hed (gen_fresh_not_rel_extra ...) hcol1 hcol2` after proving the two non-collision facts hcol1/hcol2, then closes with `enlarge_L₀'_extends` (line 558)"
+    },
+    {
+      "name": "enlarge_S'",
+      "statement": "lemma enlarge_S' (sol : PartialSolution) (x : N) :\n    ∃ sol', sol ≤ sol' ∧ x ∈ sol'.Dom_S'",
+      "closed_by": "`apply WellFoundedLT.induction x`; both the base (z = 1) and step cases call `enlarge_S'_induction` (lines 2049 and 2053)"
+    },
+    {
+      "name": "enlarge_op",
+      "statement": "lemma enlarge_op (sol : PartialSolution) (x y :N) : ∃ sol', sol ≤ sol' ∧ (x,y) ∈ sol'.Dom_op",
+      "closed_by": "three `wlog`'s (x ∈ Dom_S', y ∈ Dom_S', w ∈ Dom_L₀') that call `enlarge_S'` and `enlarge_L₀'`, then `by_cases` on x = y, x = R' a y, else; each case builds a new PartialSolution extending `Dom_op` by one entry"
+    },
+    {
+      "name": "TrivialPartialSolution",
+      "statement": "def TrivialPartialSolution : PartialSolution := { L₀' := fun _ ↦ 1, op := fun _ ↦ fun _ ↦ Sum.inl 0, S' := fun _ ↦ 0, I := Finset.empty, Predom_L₀' := Finset.empty, Dom_op := Finset.empty, Dom_S' := Finset.empty, ... }",
+      "closed_by": "each of the ten `axiom_*` fields is closed by `contrapose! h; exact Finset.notMem_empty _`, since every domain field is `Finset.empty`"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An existence goal ∃ (G : Type) (_ : Magma G), P G ∧ ¬ Q G whose intended model is the limit of a chain of finite partial solutions, each step governed by a totality condition indexed by a finite sum type (here N ⊕ N ⊕ (N × N)).",
+    "use_when": "the construction is a greedy/back-and-forth limit whose single-step move is a family of near-identical enlargement lemmas, one per component of the index type, so the glue is a dispatch over that index; a generic chain combinator (exists_greedy_chain) and a chain-to-magma lemma (use_chain) already exist.",
+    "avoid_when": "the components need genuinely different enlargement arguments that do not share one PartialSolution structure (then they are not one family); the limit combinator is not available, so the glue itself would carry real work; or there are many components, where a generated or folded form beats one hand-written lemma per component."
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 5,
+    "depth": 4,
+    "glue_lines": 29,
+    "child_lines": [
+      53,
+      71,
+      50,
+      10,
+      367
+    ]
+  },
+  "metrics": {
+    "parent_site_lines": 30,
+    "glue_lines": 29,
+    "direct_children": 5,
+    "enlargement_lemmas": 3,
+    "child_lines": [
+      53,
+      71,
+      50,
+      10,
+      367
+    ],
+    "how_counted": "parent site = Equation1729.lean 14-43 (30 lines incl. @[equational_result]); glue = 15-43 (29 lines, statement + proof); child_lines = lines spanned by each child site (TrivialPartialSolution 56-108, use_chain 135-205, enlarge_L₀' 513-562, enlarge_S' 2043-2052, enlarge_op 2054-2420)"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent not_817 closes from the five named items: exists_greedy_chain is instantiated with the task and seed TrivialPartialSolution (line 21), use_chain is applied to the obtained chain (line 23), and the three closure obligations are discharged by enlarge_L₀' (line 36), enlarge_S' (line 40) and enlarge_op (line 43) in the `match b with` dispatch over the index sum.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation1729.lean#L14-L43"
+    },
+    {
+      "n": 2,
+      "claim": "The glue dispatches over the three components of β = N ⊕ N ⊕ (N × N) (the `match b with` at lines 32-43), one enlargement lemma per component, and the whole main proof is 29 lines (lines 15-43).",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation1729.lean#L15-L43 (glue line count) together with the three child permalinks in `sites`"
+    },
+    {
+      "n": 3,
+      "claim": "The blueprint node 1729_refute_817 lists its proof dependencies as partial-exist, enlarge-l0, enlarge-S, enlarge-op, chain (\\uses{...} at blueprint/src/chapter/1729.tex:302), which map one-to-one onto TrivialPartialSolution, enlarge_L₀', enlarge_S', enlarge_op, use_chain.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/blueprint/src/chapter/1729.tex#L299-L304 ('\\begin{proof}\\uses{partial-exist, enlarge-l0, enlarge-S, enlarge-op,chain}\\leanok')"
+    },
+    {
+      "n": 4,
+      "claim": "No `sorry`, `admit` or `Admitted` appears in the copied files, so no child closes on a hole.",
+      "evidence_kind": "check",
+      "evidence": "grep -n \"sorry\\|admit\\|Admitted\" over equational_theories/ManuallyProved/Equation1729.lean and equational_theories/ManuallyProved/Equation1729/ at the pinned commit returned nothing"
+    }
+  ],
+  "consequences": "Each constructor of the index sum β = N ⊕ N ⊕ (N × N) is a separate closure obligation on the greedy chain: Sum.inl x, Sum.inr (Sum.inl x), Sum.inr (Sum.inr (x,y)). The glue must (a) instantiate exists_greedy_chain with a task whose three components match use_chain's three totality hypotheses, (b) seed it nonempty with TrivialPartialSolution, and (c) cover every constructor in the match (exhaustiveness is Lean's coverage check on `match b with`, not a separate lemma). The failure mode is a component whose enlargement lemma does not preserve the other components' domains: enlarge_L₀' therefore returns `sol.Dom_S' = sol'.Dom_S'` explicitly, and enlarge_op wlogs its prerequisites via enlarge_S'/enlarge_L₀' before extending Dom_op.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 5,
+    "relation": "supports"
+  },
+  "content_key": "b60a63fd86b56fa6227ad02feb214acbab4e283e9cfc90830607c02a0721bb8f",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-2",
+      "at": "2026-11-12T14:45:13Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,shape,metrics,claims,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T14:46:53Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T14:58:50Z"
+}

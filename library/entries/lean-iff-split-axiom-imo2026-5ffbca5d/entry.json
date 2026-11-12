@@ -1,0 +1,152 @@
+{
+  "id": "lean-iff-split-axiom-imo2026-5ffbca5d",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Iff split of the triangle-game main theorem: Mulan can guarantee θ iff θ = 180/n for some n ≥ 2",
+  "intent": "Assemble the triangle game's headline result — Mulan can force a winning angle θ from every valid triangle in finitely many steps exactly when θ = 180 / n for some integer n ≥ 2 — by splitting the biconditional with `constructor` and closing each direction with one named lemma already proved above: the necessity direction derives `∃ z, 180 = z·θ` by contradiction with `equilateral_counterexample` and converts z to a natural n ≥ 2, while the sufficiency direction rewrites θ = 180/n to 180 = n·θ and hands off to `all_win_of_divides`.",
+  "move": "iff-split",
+  "also_known_as": [
+    "bidirectional split",
+    "iff introduction (iffI)",
+    "two inclusions"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "axiom-imo2026",
+    "url": "https://github.com/AxiomMath/IMO2026",
+    "commit": "c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "IMO2026/Q4/solution.lean",
+      "bytes": 23893,
+      "sha256": "22410574eb5b2748725b5ec4b5875a26846106f28b57ddca3640e1e6128c7896",
+      "permalink": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q4/solution.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "IMO2026/Q4/solution.lean",
+      "lines": [
+        469,
+        518
+      ],
+      "role": "parent",
+      "name": "main_theorem",
+      "excerpt_sha256": "272866175b44970963e7ff591cf93168212c92fffcae852f1d3fc8583a947919",
+      "permalink": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q4/solution.lean#L469-L518"
+    },
+    {
+      "path": "IMO2026/Q4/solution.lean",
+      "lines": [
+        444,
+        462
+      ],
+      "role": "child",
+      "name": "equilateral_counterexample",
+      "excerpt_sha256": "00278169cc9df5872b7f89e968b33e9d2b49e70ceb309d4c909f3bc81e9b2108",
+      "permalink": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q4/solution.lean#L444-L462"
+    },
+    {
+      "path": "IMO2026/Q4/solution.lean",
+      "lines": [
+        251,
+        360
+      ],
+      "role": "child",
+      "name": "all_win_of_divides",
+      "excerpt_sha256": "aba497fc38b02a8a75e5de1c12597aba39b60a8168ce59f6d50546d5975df946",
+      "permalink": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q4/solution.lean#L251-L360"
+    }
+  ],
+  "parent": {
+    "name": "main_theorem",
+    "statement": "theorem main_theorem (θ : ℝ) (hθ0 : 0 < θ) (hθ180 : θ < 180) :\n    MulanCanGuarantee θ ↔ ∃ n : ℕ, 2 ≤ n ∧ θ = 180 / n := by"
+  },
+  "children": [
+    {
+      "name": "equilateral_counterexample",
+      "statement": "theorem equilateral_counterexample (θ : ℝ) (hθ0 : 0 < θ)\n    (hstar : ∀ z : ℤ, (180 : ℝ) ≠ (z : ℝ) * θ) :\n    ¬ MulanCanGuarantee θ := by",
+      "closed_by": "`exact safe_not_win θ hθ0 hstar hetri hesafe (hguar e hetri)` (line 462), after building the equilateral triangle `e = {60, 60, 60}` and proving it valid (`hetri`, lines 449-453) and safe (`hesafe`, lines 454-461)"
+    },
+    {
+      "name": "all_win_of_divides",
+      "statement": "theorem all_win_of_divides (θ : ℝ) (hθ0 : 0 < θ) (n : ℕ) (hn : 2 ≤ n)\n    (hdvd : (180 : ℝ) = (n : ℝ) * θ) :\n    ∀ s : Multiset ℝ, IsTriangle s → MulanWins θ s := by",
+      "closed_by": "`by_cases hcaseA : ∃ v ∈ s, ∃ z : ℤ, v = (z:ℝ)*θ`; Case A hands `z.toNat` to `win_of_multiple` (line 276); Case B normalises `a, b, c` by θ, applies `interval_lemma` to pick `m` (line 306), builds a cut at `m·θ` and closes with `MulanWins.move` plus `win_of_multiple` on each child (lines 346-360)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal `P ↔ ∃ n : ℕ, 2 ≤ n ∧ θ = 180 / n` (more generally `P ↔ Q`) where the two directions are already proved as standalone lemmas: one lemma derives the right-hand side from P by contradiction against a counterexample, the other proves P from the witness n by a universal argument over all valid triangles.",
+    "use_when": "both directions already exist as named lemmas whose hypotheses match the theorem's (`0 < θ`, and `θ < 180` to rule out n = 1); the theorem is a genuine iff and each side closes by a single `exact` of the corresponding lemma.",
+    "avoid_when": "one direction needs a bespoke argument too large or too case-specific to be worth naming; the two lemmas are stated over different hypotheses so the hand-off needs extra rewriting; the 'iff' is really a one-way implication and one direction is trivial or empty."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent `main_theorem` closes from exactly two named project lemmas — `equilateral_counterexample` closes the necessity direction (`exact equilateral_counterexample θ hθ0 h hguar`, line 480) and `all_win_of_divides` closes the sufficiency direction (`exact all_win_of_divides θ hθ0 n hn hdvd`, line 518) — and the `constructor` on `↔` is the only glue between them.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q4/solution.lean#L469-L518 (the file was read whole)"
+    },
+    {
+      "n": 2,
+      "claim": "The glue is 50 lines (the parent site, lines 469-518) while the two children carry 19 lines (`equilateral_counterexample`, 444-462) and 110 lines (`all_win_of_divides`, 251-360) between them, so 129 lines of the argument live in the named lemmas and only 50 in the iff-assembly.",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q4/solution.lean#L469-L518 and #L444-L462 and #L251-L360, counted by reading the copied file"
+    },
+    {
+      "n": 3,
+      "claim": "The authors label the theorem and state its goal in the doc comment: '**Main theorem.** For `0 < θ < 180`, Mulan can guarantee her victory in finitely many steps, no matter how Shan-Yu plays, if and only if `θ = 180 / n` for some integer `n ≥ 2`.' (lines 466-468).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q4/solution.lean#L466-L468"
+    },
+    {
+      "n": 4,
+      "claim": "Below `main_theorem` the longest chain of project lemmas is 3 deep: `main_theorem` → `equilateral_counterexample` (applies `safe_not_win`, line 462) → `safe_not_win` (applies `safe_child`, line 436) → `safe_child` (a leaf, closed by `rcases`/`linarith` on its own); a second 3-deep chain runs `main_theorem` → `all_win_of_divides` (applies `win_of_multiple`, line 276) → `win_of_multiple` (applies `triangle_with_apex`, line 121).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q4/solution.lean#L444-L462 and #L422-L440 and #L372-L418 and #L251-L360 and #L109-L155"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 3,
+    "glue_lines": 50,
+    "child_lines": [
+      19,
+      110
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 50,
+    "children": 2,
+    "child_proof_lines": [
+      19,
+      110
+    ],
+    "how_counted": "parent proof = solution.lean lines 469-518; child proofs = equilateral_counterexample lines 444-462, all_win_of_divides lines 251-360"
+  },
+  "consequences": "`constructor` on `↔` creates exactly two goals, one per direction. Necessity side: the obligation is to produce `∃ n, 2 ≤ n ∧ θ = 180/n` from `MulanCanGuarantee θ`, which the proof reduces to showing `180` is an integer multiple of θ (by contradiction with `equilateral_counterexample`) and then to excluding n = 1 via `θ < 180`. Sufficiency side: the obligation is to prove `MulanCanGuarantee θ` from `θ = 180/n`, discharged by the rewrite `180 = n·θ` plus `all_win_of_divides`. Failure modes: dropping `θ < 180` leaves n = 1 (θ = 180) unexcluded and necessity fails; if the two lemmas are not stated with matching hypotheses (`0 < θ`, `hstar` for the counterexample, `2 ≤ n` and `hdvd` for sufficiency) the `exact` hand-offs fail and the glue grows.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "5ffbca5d591e7c113a3ab4ca07112c6b78010225838cc87890876d8b47acb016",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:02:25Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12"
+    }
+  ]
+}

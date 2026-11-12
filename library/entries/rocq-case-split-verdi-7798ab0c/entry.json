@@ -1,0 +1,238 @@
+{
+  "id": "rocq-case-split-verdi-7798ab0c",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Case split on step_async proves composed_invariant inductive",
+  "intent": "Show that the composed state/network/network invariant `composed_invariant` is an inductive invariant of `step_async` by splitting on the `step_async` constructor, so each of the six resulting cases closes from one `Decomposition` class field or one of five same-file list lemmas, with no per-case mathematics left.",
+  "move": "case-split",
+  "also_known_as": [
+    "inversion on the step relation",
+    "constructor case analysis",
+    "inductive-invariant case split"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "verdi",
+    "url": "https://github.com/uwplse/verdi",
+    "commit": "7e1641b758d8f0032aa7de63620bc115330e0a6b",
+    "licence": "BSD-2-Clause"
+  },
+  "files": [
+    {
+      "path": "theories/Core/StatePacketPacketDecomposition.v",
+      "bytes": 7751,
+      "sha256": "22689ceca7a5922b1f136d71c19acdc13b14b8dca64a251bbae80c8f38bd1d53",
+      "permalink": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/Core/StatePacketPacketDecomposition.v",
+      "lines": [
+        172,
+        207
+      ],
+      "role": "parent",
+      "name": "decomposition_invariant",
+      "excerpt_sha256": "bb020afbb279370374f9266f3f1376c8188983124209b7a2551cdc017da07757",
+      "permalink": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v#L172-L207"
+    },
+    {
+      "path": "theories/Core/StatePacketPacketDecomposition.v",
+      "lines": [
+        117,
+        124
+      ],
+      "role": "child",
+      "name": "post_net_analyze_sent_packet",
+      "excerpt_sha256": "ba61df8fa2e220927b13d00c763ab082eadc0f17ffcb1c6646177c527431a3e8",
+      "permalink": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v#L117-L124"
+    },
+    {
+      "path": "theories/Core/StatePacketPacketDecomposition.v",
+      "lines": [
+        126,
+        133
+      ],
+      "role": "child",
+      "name": "post_input_analyze_sent_packet",
+      "excerpt_sha256": "481677fe6a1e44168ddf89fa4b362b9f2a1e98e6614f47ef0eb93430effc373a",
+      "permalink": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v#L126-L133"
+    },
+    {
+      "path": "theories/Core/StatePacketPacketDecomposition.v",
+      "lines": [
+        137,
+        146
+      ],
+      "role": "child",
+      "name": "nw_nw_distinct_pairs_and_elim",
+      "excerpt_sha256": "5d70c0ab92309855dc302707c1301ec31683942933e88313acbe64e0713c9fb7",
+      "permalink": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v#L137-L146"
+    },
+    {
+      "path": "theories/Core/StatePacketPacketDecomposition.v",
+      "lines": [
+        148,
+        155
+      ],
+      "role": "child",
+      "name": "distinct_pairs_and_app_cons",
+      "excerpt_sha256": "95a8d6b987bafaa8d99de9da335525409913a5a6ffda256dee0556fb18021aaf",
+      "permalink": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v#L148-L155"
+    },
+    {
+      "path": "theories/Core/StatePacketPacketDecomposition.v",
+      "lines": [
+        157,
+        170
+      ],
+      "role": "child",
+      "name": "distinct_pairs_and_app",
+      "excerpt_sha256": "8e1f2241d54fe2bd483e509ee99983e04d991e34974c6fddc6052c3a8020fd1a",
+      "permalink": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v#L157-L170"
+    },
+    {
+      "path": "theories/Core/StatePacketPacketDecomposition.v",
+      "lines": [
+        5,
+        9
+      ],
+      "role": "context",
+      "name": "distinct_pairs_and",
+      "excerpt_sha256": "b340588e12eabe580ef6692424a5984ccb3d9fab754167b6c1d4ed8186691728",
+      "permalink": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v#L5-L9"
+    },
+    {
+      "path": "theories/Core/StatePacketPacketDecomposition.v",
+      "lines": [
+        11,
+        99
+      ],
+      "role": "context",
+      "name": "Decomposition",
+      "excerpt_sha256": "fda806fc8dd534f2a25bd5becd740f2dad83e606bd0b07653e1ecadfe1569364",
+      "permalink": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v#L11-L99"
+    },
+    {
+      "path": "theories/Core/StatePacketPacketDecomposition.v",
+      "lines": [
+        112,
+        115
+      ],
+      "role": "context",
+      "name": "composed_invariant",
+      "excerpt_sha256": "c96245b2444f5b532a4d4b5e90708344a98aae1bc1a56a08a2f27aaab1d5ff1a",
+      "permalink": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v#L112-L115"
+    }
+  ],
+  "parent": {
+    "name": "decomposition_invariant",
+    "statement": "inductive_invariant step_async step_async_init composed_invariant"
+  },
+  "children": [
+    {
+      "name": "post_net_analyze_sent_packet",
+      "statement": "forall h p ms xs ys,\n  In p (map (fun m => mkPacket h (fst m) (snd m)) ms ++ xs ++ ys) ->\n  (In (pDst p, pBody p) ms /\\ h = pSrc p) \\/ In p (xs ++ ys).",
+      "closed_by": "intros. in_crush. destruct x; simpl in *; eauto."
+    },
+    {
+      "name": "post_input_analyze_sent_packet",
+      "statement": "forall h p ms l,\n  In p (map (fun m => mkPacket h (fst m) (snd m)) ms ++ l) ->\n  (In (pDst p, pBody p) ms /\\ h = pSrc p) \\/ In p l.",
+      "closed_by": "intros. in_crush; destruct x; simpl in *; eauto."
+    },
+    {
+      "name": "nw_nw_distinct_pairs_and_elim",
+      "statement": "forall xs a b ys l,\n  l = xs ++ a :: ys ->\n  In b (xs ++ ys) ->\n  distinct_pairs_and network_network_invariant l ->\n  network_network_invariant a b.",
+      "closed_by": "induction xs; intros; subst; simpl in *; intuition eauto; subst; eauto. apply network_network_invariant_sym. eauto."
+    },
+    {
+      "name": "distinct_pairs_and_app_cons",
+      "statement": "forall A R xs p ys l,\n  l = (xs ++ p :: ys) ->\n  distinct_pairs_and (A:=A) R l ->\n  distinct_pairs_and R (xs ++ ys).",
+      "closed_by": "induction xs; intros; subst; simpl in *; intuition eauto."
+    },
+    {
+      "name": "distinct_pairs_and_app",
+      "statement": "forall A R l1 l2,\n  distinct_pairs_and (A := A) R l1 ->\n  distinct_pairs_and R l2 ->\n  (forall x y, In x l1 -> In y l2 -> R x y) ->\n  distinct_pairs_and R (l1 ++ l2).",
+      "closed_by": "induction l1; intros; simpl in *; intuition. find_apply_lem_hyp in_app_or. intuition eauto."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal `inductive_invariant step_async step_async_init I` whose invariant `I` is a conjunction of a state invariant, a per-packet `network_invariant`, and a pairwise `distinct_pairs_and network_network_invariant` over the packet list; the step relation `step_async` is inductively defined with a small fixed set of constructors (here: input and deliver).",
+    "use_when": "the step relation's constructors are the only branching and the effect of each constructor on each conjunct has already been packaged as a class field or a small list lemma, so `invcs` + `intuition` + `eauto using ...` closes every case.",
+    "avoid_when": "the invariant is not a conjunction (so `intuition` cannot fan the goal into the conjuncts), or a single constructor's case needs a genuinely new argument not already a field or lemma; then the real content is a strengthened invariant or a key lemma, not the split itself."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The file is part of the project's CI build: `.github/workflows/docker-action.yml` runs docker-coq-action on `coq-verdi.opam`, whose `build:` is `make`, and `Makefile` turns `_CoqProject` into `coq_makefile`; `_CoqProject` lists `theories/Core/StatePacketPacketDecomposition.v` (line 17).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/_CoqProject#L17 ; https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/coq-verdi.opam#L19 ; https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/.github/workflows/docker-action.yml#L29-L32 ; https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/Makefile#L8-L9"
+    },
+    {
+      "n": 2,
+      "claim": "No `admit`, `Admitted`, `axiom` or `sorry` appears anywhere in the file, and the parent and all five children close with `Qed`.",
+      "evidence_kind": "check",
+      "evidence": "grep -nE 'admit|Admitted|axiom|Axiom|sorry' over the copied file theories/Core/StatePacketPacketDecomposition.v returned no matches; the Lemma/Theorem bodies at lines 117-207 each end in `Qed`."
+    },
+    {
+      "n": 3,
+      "claim": "The main proof is 34 lines (174-207) and, via `invcs H` on `step_async`, fans into 6 cases that call directly on 5 same-file lemmas; none of the 5 lemmas calls another, so the lemma depth below the theorem is 1.",
+      "evidence_kind": "measurement",
+      "evidence": "count over the copied file: proof body lines 174-207 = 34 lines; `invcs H` at line 179 opens the 6 `+` bullets at lines 180, 181, 188, 195, 196, 200; the 5 child lemmas are at 117-124, 126-133, 137-146, 148-155, 157-170, and each of their proofs ends without citing another of the five."
+    },
+    {
+      "n": 4,
+      "claim": "The author states why `nw_nw_distinct_pairs_and_elim` is specialised to `network_network_invariant` rather than generalised over the relation: 'NB: generalizing this over R makes it useless to [eauto using] because the conclusion is too general.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v#L135-L136"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 5,
+    "depth": 1,
+    "glue_lines": 34,
+    "child_lines": [
+      4,
+      4,
+      4,
+      3,
+      5
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 34,
+    "case_count": 6,
+    "children": 5,
+    "children_closed_by_automation": 5,
+    "how_counted": "proof body = lines 174-207 of the copied file (statement at 172-173 not counted); case_count = the 6 `+` bullets opened by `invcs H` at line 179; children = the 5 same-file lemmas the proof cites; each child's proof is a single induction + `intuition`/`in_crush`/`eauto`, i.e. closed by automation with no intervening named lemma."
+  },
+  "consequences": "`invcs H` on `step_async` creates one goal per constructor and `intuition` further fans each into the three conjuncts of `composed_invariant`, so the case count is constructors x conjuncts (here 6). Exhaustiveness is the whole obligation: the split is sound only because `invcs` enumerates every constructor of `step_async`; adding a constructor to `step_async` later breaks the `Qed`. The glue carries no mathematics of its own — every `eauto using` names a `Decomposition` class field or one of the five list lemmas — so it breaks if a field's statement is reworded or a lemma is generalised (the author's comment at lines 135-136 warns of exactly this).",
+  "known_uses": [],
+  "related": [
+    "lean-case-split-compfiles-6ac56e7f"
+  ],
+  "rule": {
+    "f10_rule": 5,
+    "relation": "supports"
+  },
+  "content_key": "7798ab0cfbbf42d35cd16c36529d5a486cee211ab43aedf1df2a239210e35f76",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:42:10Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:50:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T15:51:29Z"
+}

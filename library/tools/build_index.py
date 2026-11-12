@@ -12,13 +12,20 @@ from __future__ import annotations
 
 from collections import Counter, defaultdict
 
-from common import ENTRIES, LEDGER, LIB, MOVES, REPORTS, read_json, read_jsonl
+from common import ENTRIES, LEDGER, LIB, MOVES, REPORTS, load_entries, read_json, read_jsonl
 
 ORDER = {"accepted": 0, "verified": 1, "draft": 2, "flagged": 3, "deprecated": 4}
 
 
+def scale_of(e: dict) -> str:
+    """Entries before pilot-2 carry no shape; they are tactic scale."""
+    return (e.get("shape") or {}).get("scale", "tactic")
+
+
 def main() -> None:
-    entries = [read_json(d / "entry.json") for d in sorted(ENTRIES.iterdir()) if d.is_dir()]
+    entries, unreadable = load_entries()
+    if unreadable:
+        print(f"# not indexed (entry.json does not parse): {', '.join(unreadable)}")
     by_move = defaultdict(list)
     for e in entries:
         by_move[e["move"]].append(e)
@@ -30,9 +37,10 @@ def main() -> None:
         es = sorted(by_move.get(move, []), key=lambda e: (ORDER[e["status"]], e["language"], e["id"]))
         if not es:
             continue
-        out += [f"## {move}", "", "| Entry | Kind | Language | Status | Source |", "|---|---|---|---|---|"]
+        out += [f"## {move}", "", "| Entry | Kind | Scale | Language | Status | Source |",
+                "|---|---|---|---|---|---|"]
         for e in es:
-            out.append(f"| [{e['title']}](entries/{e['id']}/README.md) | {e['kind']} | "
+            out.append(f"| [{e['title']}](entries/{e['id']}/README.md) | {e['kind']} | {scale_of(e)} | "
                        f"{e['language']} | {e['status']} | {e['source']['source_id']} |")
         out.append("")
     (LIB / "INDEX.md").write_text("\n".join(out), encoding="utf-8")
@@ -51,7 +59,8 @@ def main() -> None:
            f"- Sources registered (pinned): {len(sources)}",
            f"- Screening decisions: " + (", ".join(f"{k} {v}" for k, v in scr.items()) or "none"),
            f"- Candidate sites: {len(sites)}",
-           f"- Entries: " + (", ".join(f"{k} {v}" for k, v in sorted(status.items())) or "none"), "",
+           f"- Entries: " + (", ".join(f"{k} {v}" for k, v in sorted(status.items())) or "none"),
+           f"- By scale: " + ", ".join(f"{k} {v}" for k, v in sorted(Counter(scale_of(e) for e in entries).items())), "",
            "## Coverage: move by language (accepted / verified / all)", "",
            "Verified entries passed every check but still have an open review objection.", "",
            "| Move | " + " | ".join(langs) + " |", "|---" * (len(langs) + 1) + "|"]

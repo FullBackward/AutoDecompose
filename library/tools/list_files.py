@@ -36,13 +36,13 @@ def via_git(src: dict) -> list[dict]:
         r = run("git", "fetch", "-q", "--depth", "1", "--filter=blob:none", "origin", src["commit"])
         if r.returncode != 0:
             die(f"git fetch failed: {r.stderr.strip()}")
-        r = run("git", "ls-tree", "-r", "-l", src["commit"])
-        out = []
-        for line in r.stdout.splitlines():
-            meta, path = line.split("\t", 1)
-            size = meta.split()[3]
-            out.append({"path": path, "bytes": int(size) if size.isdigit() else None})
-        return out
+        # No -l: sizes need the blobs, and a blobless clone would fetch them one by
+        # one (hours on the AFP). Trees alone give the paths; bytes are unknown.
+        r = run("git", "ls-tree", "-r", "--full-tree", src["commit"])
+        if r.returncode != 0:
+            die(f"git ls-tree failed: {r.stderr.strip()}")
+        return [{"path": line.split("\t", 1)[1], "bytes": None}
+                for line in r.stdout.splitlines() if "\t" in line]
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 

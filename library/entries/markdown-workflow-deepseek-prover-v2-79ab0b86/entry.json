@@ -1,0 +1,119 @@
+{
+  "id": "markdown-workflow-deepseek-prover-v2-79ab0b86",
+  "kind": "skill",
+  "status": "draft",
+  "title": "Plan-first inference prompt: name intermediate lemmas before Lean code",
+  "intent": "Make the model state a proof plan — its key ideas, intermediate lemmas and proof structures — before writing any Lean code, so the generated proof arrives as a decomposition into named subgoals rather than a single monolith, mirroring the plan-first cold-start pipeline the model was trained with.",
+  "move": "workflow",
+  "also_known_as": [
+    "plan-first prompting",
+    "sketch-then-prove prompt",
+    "decompose-then-formalise prompt",
+    "chain-of-thought before code"
+  ],
+  "language": "markdown",
+  "source": {
+    "source_id": "deepseek-prover-v2",
+    "url": "https://github.com/deepseek-ai/DeepSeek-Prover-V2",
+    "commit": "e598a57ea3284997d4a2a168a069fdd5064afbc8",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 9782,
+      "sha256": "08d0b515c693c84d2aca9160efe72e15405f85d8990c547f7a779a555753fb54",
+      "permalink": "https://github.com/deepseek-ai/DeepSeek-Prover-V2/blob/e598a57ea3284997d4a2a168a069fdd5064afbc8/README.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": "README.md",
+      "lines": [
+        140,
+        149
+      ],
+      "role": "skill-text",
+      "name": "prompt",
+      "excerpt_sha256": "428a91c97abe6b4c4f6bc29b994e954ebdf63b8d59f3685517d17815638991a5",
+      "permalink": "https://github.com/deepseek-ai/DeepSeek-Prover-V2/blob/e598a57ea3284997d4a2a168a069fdd5064afbc8/README.md#L140-L149"
+    },
+    {
+      "path": "README.md",
+      "lines": [
+        127,
+        138
+      ],
+      "role": "context",
+      "name": "formal_statement",
+      "excerpt_sha256": "18ea5e32adb5d3da28e00b059a50dbb11d81f2cce503e36554817db218b6eb8c",
+      "permalink": "https://github.com/deepseek-ai/DeepSeek-Prover-V2/blob/e598a57ea3284997d4a2a168a069fdd5064afbc8/README.md#L127-L138"
+    }
+  ],
+  "parent": null,
+  "children": [],
+  "applicability": {
+    "goal_shape": "A chat turn carrying a Lean theorem whose proof body is `sorry`, dropped into the prompt's `{}` hole; the model must return a proof plan first and then the Lean code that fills the hole. In general: any competition or library statement you want a plan-first prover to solve by naming subgoals before proving.",
+    "use_when": "the model was trained to plan before proving — DeepSeek-Prover-V2's cold-start data pairs subgoal decompositions with their formal proofs (README lines 56-58) — and you want the decomposition surfaced as an inspectable plan rather than a single opaque proof.",
+    "avoid_when": "the model was not trained to plan first, or you need only the code and the plan would waste output tokens (the example sets `max_new_tokens=8192`, line 160, to leave room for the plan); or the plan is never checked against the code, so a plan that names lemmas the code does not use still passes."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The prompt makes the plan a mandatory step ordered before the code: 'Before producing the Lean 4 code to formally prove the given theorem, provide a detailed proof plan outlining the main proof steps and strategies' (README.md line 147).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/deepseek-ai/DeepSeek-Prover-V2/blob/e598a57ea3284997d4a2a168a069fdd5064afbc8/README.md#L140-L149"
+    },
+    {
+      "n": 2,
+      "claim": "The plan is required to name decomposition structure, not just prose: it must 'highlight key ideas, intermediate lemmas, and proof structures that will guide the construction of the final formal proof' (README.md line 148).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/deepseek-ai/DeepSeek-Prover-V2/blob/e598a57ea3284997d4a2a168a069fdd5064afbc8/README.md#L140-L149"
+    },
+    {
+      "n": 3,
+      "claim": "The target the prompt wraps is the theorem `mathd_algebra_10` with proof body `sorry` (README.md line 137), so the prompt is a fill-the-hole instruction whose plan precedes the code that replaces the hole.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/deepseek-ai/DeepSeek-Prover-V2/blob/e598a57ea3284997d4a2a168a069fdd5064afbc8/README.md#L127-L138"
+    },
+    {
+      "n": 4,
+      "claim": "The README describes this same plan-first workflow as the model's training procedure: DeepSeek-V3 is prompted 'to decompose theorems into high-level proof sketches while simultaneously formalizing these proof steps in Lean 4, resulting in a sequence of subgoals' (README.md line 56).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/deepseek-ai/DeepSeek-Prover-V2/blob/e598a57ea3284997d4a2a168a069fdd5064afbc8/README.md#L56"
+    },
+    {
+      "n": 5,
+      "claim": "The reinforcement-learning stage reuses the same decomposition and composes the subgoal proofs: 'By composing the proofs of all subgoals, we construct a complete formal proof for the original problem' (README.md line 64).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/deepseek-ai/DeepSeek-Prover-V2/blob/e598a57ea3284997d4a2a168a069fdd5064afbc8/README.md#L64"
+    }
+  ],
+  "metrics": {},
+  "consequences": "The prompt lets the model spend output tokens on a plan the code may not actually use: nothing in the Quick Start checks that the plan's named lemmas appear in the Lean code, or that the returned code compiles — the plan is trusted, not verified. The `sorry` in `mathd_algebra_10` (line 137) is the input hole the model is asked to fill, not a closing hack, so this site does not trip protocol §4 E3's 'sorry in the dependency cone' exclusion; a reader must substitute their own goal statement for `mathd_algebra_10`. Because the plan is emitted before the code, the example sets `max_new_tokens=8192` (line 160) to leave room for it.",
+  "known_uses": [
+    "https://github.com/deepseek-ai/DeepSeek-Prover-V2/blob/e598a57ea3284997d4a2a168a069fdd5064afbc8/README.md#L56",
+    "https://github.com/deepseek-ai/DeepSeek-Prover-V2/blob/e598a57ea3284997d4a2a168a069fdd5064afbc8/README.md#L64"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 4,
+    "relation": "supports"
+  },
+  "content_key": "79ab0b86bc96664d5fa7c5212f11b8c5d82ad634e7c382a3ddbb9d9d3834d60a",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:31:35Z"
+    },
+    {
+      "field": "intent,also_known_as,applicability,claims,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12"
+    }
+  ]
+}

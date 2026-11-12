@@ -1,0 +1,223 @@
+{
+  "id": "lean-calc-chain-compfiles-f7c6dc2b",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Three-step calc chain over a product partition for USA 2020 P3",
+  "intent": "Reduce the goal ∏A = 2 (the product over a : 1 ≤ a < p with both a and 4−a quadratic non-residues) to a three-step calc chain: rewrite ∏A through the partition C = A ∪ B, erase the element 2, and re-index the erased product onto B, then cancel the common non-zero factor ∏B. Each of the three links and the cancellation hypothesis is a named lemma proved earlier in the same file.",
+  "move": "calc-chain",
+  "also_known_as": [
+    "calculational chain (Isar 'also … finally')",
+    "equality chain",
+    "one child per link"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "compfiles",
+    "url": "https://github.com/dwrensha/compfiles",
+    "commit": "1745e6ced3e671bd74417548494b034eb2c87da8",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Compfiles/Usa2020P3.lean",
+      "bytes": 6019,
+      "sha256": "6266f959e1fe1c59841e51e1e5da33bf4e834d5ccc3fe63ab654f1e07175ff45",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa2020P3.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Compfiles/Usa2020P3.lean",
+      "lines": [
+        138,
+        148
+      ],
+      "role": "parent",
+      "name": "usa2020_p3",
+      "excerpt_sha256": "db3713849cec4f3d04317c471d5a01ac38b44aa2d5b14b3693bcc4b276e82646",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa2020P3.lean#L138-L148"
+    },
+    {
+      "path": "Compfiles/Usa2020P3.lean",
+      "lines": [
+        65,
+        73
+      ],
+      "role": "child",
+      "name": "setC_eq_union",
+      "excerpt_sha256": "1d7379107808ab0b4094340abbb2a2464dd8c40fe05b31f610fe018f92452045",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa2020P3.lean#L65-L73"
+    },
+    {
+      "path": "Compfiles/Usa2020P3.lean",
+      "lines": [
+        75,
+        76
+      ],
+      "role": "child",
+      "name": "disjoint_AB",
+      "excerpt_sha256": "cab9fb0db4949236668791628d01e92a1fee709de3316bf0eedfc83ebc7e21e9",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa2020P3.lean#L75-L76"
+    },
+    {
+      "path": "Compfiles/Usa2020P3.lean",
+      "lines": [
+        87,
+        88
+      ],
+      "role": "child",
+      "name": "two_mem_setC",
+      "excerpt_sha256": "3adebbf912391c3341098535fa3538137ae1b8e8a37432e19b14e7bebf3daf12",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa2020P3.lean#L87-L88"
+    },
+    {
+      "path": "Compfiles/Usa2020P3.lean",
+      "lines": [
+        124,
+        129
+      ],
+      "role": "child",
+      "name": "prod_C_erase_eq_prod_B",
+      "excerpt_sha256": "40e77716e816fc06308d0034870f60be7cbf14854bab76c0a0f9f90503f81706",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa2020P3.lean#L124-L129"
+    },
+    {
+      "path": "Compfiles/Usa2020P3.lean",
+      "lines": [
+        131,
+        132
+      ],
+      "role": "child",
+      "name": "prod_B_ne_zero",
+      "excerpt_sha256": "feaa0929f7476efb316f273949261ab32e14d90a254af37ed517b46a9e3822b3",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa2020P3.lean#L131-L132"
+    },
+    {
+      "path": "Compfiles/Usa2020P3.lean",
+      "lines": [
+        44,
+        55
+      ],
+      "role": "context",
+      "name": "definitions",
+      "excerpt_sha256": "e15ce383887066ddda9b2901e0ad41b5fe8cbb01f754d8b724b53547659e0648",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa2020P3.lean#L44-L55"
+    }
+  ],
+  "parent": {
+    "name": "usa2020_p3",
+    "statement": "problem usa2020_p3 (p : ℕ) [hp : Fact (Nat.Prime p)] (hp2 : p ≠ 2) : ∏ a ∈ Finset.univ.filter (fun (a : ZMod p) => a ≠ 0 ∧ ¬IsSquare a ∧ ¬IsSquare (4 - a)), a = (solution_val : ZMod p)"
+  },
+  "children": [
+    {
+      "name": "setC_eq_union",
+      "statement": "private lemma setC_eq_union : setC' p = setA' p ∪ setB' p",
+      "closed_by": "ext a; simp [setA', setB', setC', mem_union, mem_filter, mem_univ, true_and]; by_cases on a = 0 and a = 4; rw [isSquare_mul_iff_same p ha (sub_ne_zero_of_ne (Ne.symm ha4))]; tauto"
+    },
+    {
+      "name": "disjoint_AB",
+      "statement": "private lemma disjoint_AB : Disjoint (setA' p) (setB' p)",
+      "closed_by": "Finset.disjoint_filter.mpr fun _ _ _ _ => by aesop"
+    },
+    {
+      "name": "two_mem_setC",
+      "statement": "private lemma two_mem_setC : (2 : ZMod p) ∈ setC' p",
+      "closed_by": "Finset.mem_filter.mpr ⟨Finset.mem_univ _, p_two_ne_zero p hp2, p_two_ne_four p hp2, 2, by ring⟩"
+    },
+    {
+      "name": "prod_C_erase_eq_prod_B",
+      "statement": "private lemma prod_C_erase_eq_prod_B : ∏ n ∈ (setC' p).erase 2, n = ∏ b ∈ setB' p, b",
+      "closed_by": "rw [← Finset.prod_fiberwise_of_maps_to (fun n hn => map_mem_setB p (Finset.mem_of_mem_erase hn) (Finset.ne_of_mem_erase hn)) (fun n => n)]; exact Finset.prod_congr rfl fun _ hb => fiber_prod p hp2 hb"
+    },
+    {
+      "name": "prod_B_ne_zero",
+      "statement": "private lemma prod_B_ne_zero : ∏ b ∈ setB' p, b ≠ 0",
+      "closed_by": "Finset.prod_ne_zero_iff.mpr fun _ hb => (Finset.mem_filter.mp hb).2.1"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "∏ a ∈ s, a = c, where s is a Finset filtered by a 'balanced' predicate (here both a and 4 − a are non-squares) so that the complementary set C of the predicate splits as A ∪ B with a fiberwise map n ↦ n · (4 − n) from C \\ {2} onto B.",
+    "use_when": "the product admits a partition whose parts are related by a re-indexing map, the element to erase and the non-zero factor to cancel are explicit, and each link can be stated as its own lemma with a short proof.",
+    "avoid_when": "the re-indexing or the disjointness needs a substantial proof that cannot be stated as a self-contained sibling; the common factor is not provably non-zero; or a link mixes several independent facts so the chain's 'one child per link' shape is forced."
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 5,
+    "depth": 3,
+    "glue_lines": 9,
+    "child_lines": [
+      8,
+      1,
+      1,
+      4,
+      1
+    ]
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent usa2020_p3 closes from the five named lemmas and nothing else project-specific: apply mul_left_cancel₀ (prod_B_ne_zero p) discharges the cancellation, and the three calc links are closed by setC_eq_union together with disjoint_AB (link 1), two_mem_setC (link 2), and prod_C_erase_eq_prod_B (link 3).",
+      "evidence_kind": "check",
+      "evidence": "read of the parent site, lines 138-148, at https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa2020P3.lean#L138-L148"
+    },
+    {
+      "n": 2,
+      "claim": "The decomposition has shape {direct_lemmas: 5, glue_lines: 9, child_lines: [8, 1, 1, 4, 1], depth: 3}: the glue is the apply + calc block of lines 140-148; the child proofs are setC_eq_union 66-73 (8), disjoint_AB 76 (1), two_mem_setC 88 (1), prod_C_erase_eq_prod_B 126-129 (4), prod_B_ne_zero 132 (1); depth 3 is the chain usa2020_p3 → prod_C_erase_eq_prod_B → fiber_prod → p_two_ne_zero.",
+      "evidence_kind": "measurement",
+      "evidence": "line ranges at the pinned commit: https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa2020P3.lean#L140-L148 (glue), #L66-L73, #L76, #L88, #L126-L129, #L132 (children), #L124-L129 → #L99-L121 → #L79-L80 (depth chain)"
+    },
+    {
+      "n": 3,
+      "claim": "The authors state the same three-step plan in a comment above the code: 'C is the disjoint union of A and B. The map n ↦ n * (4 - n) sends C \\ {2} to B … Hence ∏ C \\ {2} = ∏ B, and cancelling ∏ B ≠ 0 from ∏ A * ∏ B = ∏ C = 2 * ∏ C \\ {2} gives ∏ A = 2'.",
+      "evidence_kind": "author-statement",
+      "evidence": "comment at lines 35-42, https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa2020P3.lean#L35-L42"
+    },
+    {
+      "n": 4,
+      "claim": "The file has no sorry, admit, or axiom: all five children and the five supporting lemmas (isSquare_mul_iff_same, p_two_ne_zero, p_two_ne_four, map_mem_setB, fiber_prod) are fully proved, and the file is compiled by lake build in the project's CI on push to main.",
+      "evidence_kind": "check",
+      "evidence": "read of the whole copied file (150 lines, no sorry/admit/axiom) at https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa2020P3.lean; build step 'lake build' in .github/workflows/push-main.yaml (fetched this session)"
+    }
+  ],
+  "metrics": {
+    "parent_proof_lines": 9,
+    "direct_children": 5,
+    "child_proof_lines": [
+      8,
+      1,
+      1,
+      4,
+      1
+    ],
+    "supporting_lemmas": 5,
+    "how_counted": "parent proof = lines 140-148; child proofs = lines 66-73, 76, 88, 126-129, 132; supporting lemmas (used by children, not cited by the glue) = isSquare_mul_iff_same (57-63), p_two_ne_zero (79-80), p_two_ne_four (83-84), map_mem_setB (90-96), fiber_prod (99-121)"
+  },
+  "consequences": "The move creates one rewrite obligation per calc link (three) plus a cancellation obligation, which the glue discharges up front by applying mul_left_cancel₀ (prod_B_ne_zero p) so the rest of the chain is an equality between products. The first link is the only one needing two lemmas at once: setC_eq_union rewrites C as A ∪ B and disjoint_AB is the hypothesis of Finset.prod_union, so forgetting disjointness stalls the one-line rw. The erase step (link 2) depends on two_mem_setC, which in turn needs p_two_ne_zero and p_two_ne_four; the re-indexing step (link 3) hides a depth-3 spine through map_mem_setB and fiber_prod. Failure modes: an unproved non-zero or membership fact collapses a link; the re-indexing is the deep part, so a calc chain that looks flat may still need a non-trivial fiber lemma below the surface.",
+  "known_uses": [],
+  "related": [
+    "lean-calc-chain-compfiles-5cbadaea",
+    "lean-calc-chain-mathlib4-9433f97f"
+  ],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "f7c6dc2b844ffaf70eb7902274a085a637e5c59daba2f9120e00d70d3a2f8734",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:01:24Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,shape,claims,metrics,consequences,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:02:33Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T15:09:15Z"
+}

@@ -1,0 +1,200 @@
+{
+  "id": "lean-iff-split-flt-imperial-0fde62f1",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Iff-split of irreducibility ↔ absolute irreducibility (FLT odd representation)",
+  "intent": "Split the main result 'ρ is irreducible iff it is absolutely irreducible' into its two directions and close each by one named lemma: the hard direction base-changes irreducibility to the algebraic closure, and the easy direction descends irreducibility from the base change. The glue is a nine-line `constructor` proof that instantiates both lemmas at `AlgebraicClosure k`.",
+  "move": "iff-split",
+  "also_known_as": [
+    "bidirectional split",
+    "iffI",
+    "constructor on an iff"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "flt-imperial",
+    "url": "https://github.com/ImperialCollegeLondon/FLT",
+    "commit": "a3210204ad8876e851e32f73dd97d882bf1ccd0a",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean",
+      "bytes": 23691,
+      "sha256": "4715d1791ebd051ce7b06302b53de296fa85e1c500a9ce7f8218077950a2f5ef",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean",
+      "lines": [
+        480,
+        492
+      ],
+      "role": "parent",
+      "name": "isIrreducible_iff_isAbsolutelyIrreducible_slop",
+      "excerpt_sha256": "10301810cec99f6c1f9e6f82f7bb47af4928bccf24642bf18c293ec89131e798",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean#L480-L492"
+    },
+    {
+      "path": "FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean",
+      "lines": [
+        447,
+        474
+      ],
+      "role": "child",
+      "name": "isIrreducible_baseChange_of_finrank_eigenspace_eq_one",
+      "excerpt_sha256": "2d3b9bd0ae9eaba859527870ce8171bb2b3dcc43a07bdb17b6355d97fc91d842",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean#L447-L474"
+    },
+    {
+      "path": "FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean",
+      "lines": [
+        405,
+        440
+      ],
+      "role": "child",
+      "name": "isIrreducible_of_baseChange",
+      "excerpt_sha256": "a06e7e5b95756b877f21629a0714047b37bc488153b412b7a7e6e0c320ab55c1",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean#L405-L440"
+    },
+    {
+      "path": "FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean",
+      "lines": [
+        96,
+        99
+      ],
+      "role": "context",
+      "name": "IsAbsolutelyIrreducible",
+      "excerpt_sha256": "bb6d22cca1cfb9a708c55ecdc25e7acd9bc5ef636a8367d89400331aa42c9563",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean#L96-L99"
+    },
+    {
+      "path": "FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean",
+      "lines": [
+        76,
+        90
+      ],
+      "role": "context",
+      "name": "baseChange",
+      "excerpt_sha256": "63e2679fa18da3b046c5c32d5254253697a9c2b1723dcf143f5324be82f061e1",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean#L76-L90"
+    },
+    {
+      "path": "FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean",
+      "lines": [
+        109,
+        141
+      ],
+      "role": "context",
+      "name": "isIrreducible_iff_forall",
+      "excerpt_sha256": "2e7e4d976551bf9b42ba6b06e9a215904e02ef73813458a55b4fab758794569c",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean#L109-L141"
+    }
+  ],
+  "parent": {
+    "name": "isIrreducible_iff_isAbsolutelyIrreducible_slop",
+    "statement": "theorem isIrreducible_iff_isAbsolutelyIrreducible_slop\n    [FiniteDimensional k V]\n    {g : G} (hg : finrank k (Module.End.eigenspace (ρ g) 1) = 1) :\n    ρ.IsIrreducible ↔ IsAbsolutelyIrreducible ρ"
+  },
+  "children": [
+    {
+      "name": "isIrreducible_baseChange_of_finrank_eigenspace_eq_one",
+      "statement": "theorem isIrreducible_baseChange_of_finrank_eigenspace_eq_one\n    [FiniteDimensional k V]\n    (l : Type*) [Field l] [Algebra k l]\n    (hirr : ρ.IsIrreducible)\n    {g : G} (hg : finrank k (Module.End.eigenspace (ρ g) 1) = 1) :\n    (baseChange l ρ).IsIrreducible",
+      "closed_by": "chains five project lemmas: exists_smul_eq_of_commute (Lemma 1.4), adjoinRange_eq_top (Lemma 1.5), adjoinRange_baseChange_eq_top (Lemma 1.6), isIrreducible_iff_forall (unpacks irreducibility), then isIrreducible_of_adjoinRange_eq_top (step (iv)); lines 453-474"
+    },
+    {
+      "name": "isIrreducible_of_baseChange",
+      "statement": "lemma isIrreducible_of_baseChange (l : Type*) [Field l] [Algebra k l]\n    (h : (baseChange l ρ).IsIrreducible) :\n    ρ.IsIrreducible",
+      "closed_by": "unpacks irreducibility with isIrreducible_iff_forall and descends the invariant subspace via Submodule.baseChange_injective; lines 408-440"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A biconditional P ↔ Q where one side is defined as the other after base change to an algebraic closure (IsAbsolutelyIrreducible ρ := (baseChange (AlgebraicClosure k) ρ).IsIrreducible); each direction is stated as a named lemma over an arbitrary field extension l/k.",
+    "use_when": "both directions are genuinely independent named lemmas: the forward direction needs a chain of auxiliary results while the reverse is a short descent, so a `constructor` plus one `exact` per direction is all the glue needed.",
+    "avoid_when": "the reverse direction reuses intermediate facts of the forward direction (then it is not a leaf); the two directions are not stated at the same generality (here the hard direction is over any l/k, the easy direction only needs l = AlgebraicClosure k); the definitional side of the iff is not a simple `unfold` away."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent isIrreducible_iff_isAbsolutelyIrreducible_slop is closed from its two children by a nine-line glue (lines 484-492): `constructor` yields one goal per direction and each is discharged by a single `exact` that instantiates a named lemma at `AlgebraicClosure k`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean#L484-L492"
+    },
+    {
+      "n": 2,
+      "claim": "Both child lemmas are proved earlier in the same file with no `sorry`, `admit` or `axiom`: isIrreducible_baseChange_of_finrank_eigenspace_eq_one at lines 447-474 and isIrreducible_of_baseChange at lines 405-440.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean#L405-L474 (read of the copied file at the pinned commit)"
+    },
+    {
+      "n": 3,
+      "claim": "The file header labels the two directions and their roles: '`OddRep.isIrreducible_baseChange_of_finrank_eigenspace_eq_one`: the hard direction, over an arbitrary field extension `l/k`' and '`OddRep.isIrreducible_of_baseChange`: descent of irreducibility (easy direction)'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean#L38-L40"
+    },
+    {
+      "n": 6,
+      "claim": "The glue is 9 lines and the two children's proofs are 22 and 33 lines respectively (shape glue_lines=9, child_lines=[22,33]); the hard-direction child calls five project lemmas — exists_smul_eq_of_commute, adjoinRange_eq_top, adjoinRange_baseChange_eq_top, isIrreducible_iff_forall, and isIrreducible_of_adjoinRange_eq_top — in its 22-line proof.",
+      "evidence_kind": "measurement",
+      "evidence": "glue = lines 484-492 and child proof bodies = lines 453-474 (22) and 408-440 (33) of the copied file at the pinned commit, counted by reading the `by` blocks; the five calls are at lines 456, 458, 460, 462 and 474"
+    },
+    {
+      "n": 5,
+      "claim": "The public-facing theorem OddRep.isIrreducible_iff_isAbsolutelyIrreducible re-exports this decomposition as a one-line appeal to isIrreducible_iff_isAbsolutelyIrreducible_slop, so the whole split is reused unchanged at the package boundary.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/KnownIn1980s/RepresentationTheory/OddAbsIrred.lean#L45-L49"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 3,
+    "glue_lines": 9,
+    "child_lines": [
+      22,
+      33
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 9,
+    "direct_children": 2,
+    "hard_direction_project_lemmas": 5,
+    "easy_direction_project_lemmas": 1,
+    "how_counted": "glue = lines 484-492 of the copied file; child proof lines = 453-474 (22) and 408-440 (33); project-lemma references inside each child's proof, by reading the copied file at the pinned commit"
+  },
+  "consequences": "The `constructor` on an ↔ creates exactly two goals (one per direction) and no exhaustiveness obligation. The hard direction is stated over an arbitrary field extension l/k rather than just AlgebraicClosure k, which is what lets the glue instantiate it at AlgebraicClosure k while keeping the lemma reusable elsewhere. The easy direction is a genuine leaf only because its invariant-subspace descent (via Submodule.baseChange_injective) closes on its own; it does not reuse the hard direction's intermediate lemmas, so the two halves can be proved in either order.",
+  "known_uses": [
+    "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/KnownIn1980s/RepresentationTheory/OddAbsIrred.lean#L45-L49"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "0fde62f126e2622db0b30d5d9e0cf0ded75716df2d550ddd8207062b7cd1afeb",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:14:03Z"
+    },
+    {
+      "field": "title,intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:20:00Z"
+    },
+    {
+      "field": "children,metrics,claims",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:20:30Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T16:27:06Z"
+}

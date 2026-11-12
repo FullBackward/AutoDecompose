@@ -1,0 +1,239 @@
+{
+  "id": "rocq-key-invariant-rocq-stdlib-1a358d2f",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Key invariant `infinite_from P l` for the constructive Weak König's Lemma",
+  "intent": "Prove a constructive Weak König's Lemma: from `infinite_from P []` (arbitrarily long P-avoiding paths above []) plus a De Morgan decidability hypothesis, exhibit a predicate `X` with `has_infinite_path P`. The single idea is the strengthened invariant `infinite_from P l` for an arbitrary prefix `l`, which the glue asserts and proves by induction on `l`, dispatching each case to six named lemmas.",
+  "move": "key-invariant",
+  "also_known_as": [
+    "strengthened invariant",
+    "strengthen the hypothesis",
+    "induction invariant",
+    "generalised induction hypothesis"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "rocq-stdlib",
+    "url": "https://github.com/rocq-prover/stdlib",
+    "commit": "22fcaa27d17bc28ab4be728ed10a1fb73afb23ee",
+    "licence": "LGPL-2.1"
+  },
+  "files": [
+    {
+      "path": "theories/Logic/WKL.v",
+      "bytes": 9792,
+      "sha256": "136a20916dbf0ab7f2ef78d8d7b7f512c52a78aeca48018a529e7b6e7e538dbb",
+      "permalink": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/WKL.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/Logic/WKL.v",
+      "lines": [
+        211,
+        235
+      ],
+      "role": "parent",
+      "name": "PreWeakKonigsLemma",
+      "excerpt_sha256": "392f8357fb64e09b95c31fbe9dde0370b2c28da363ba7bee75bd44d93c268635",
+      "permalink": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/WKL.v#L211-L235"
+    },
+    {
+      "path": "theories/Logic/WKL.v",
+      "lines": [
+        104,
+        117
+      ],
+      "role": "child",
+      "name": "is_path_from_restrict",
+      "excerpt_sha256": "364bc9e54da5655834dbf45a57ecb8a2186f3ae3f3c7250a6f582173d1226741",
+      "permalink": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/WKL.v#L104-L117"
+    },
+    {
+      "path": "theories/Logic/WKL.v",
+      "lines": [
+        119,
+        128
+      ],
+      "role": "child",
+      "name": "inductively_barred_at_monotone",
+      "excerpt_sha256": "8cf5adb428cfa40487f15b7a3cca4ad2346e0e89fd392fed147f50f384b1ceda",
+      "permalink": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/WKL.v#L119-L128"
+    },
+    {
+      "path": "theories/Logic/WKL.v",
+      "lines": [
+        135,
+        147
+      ],
+      "role": "child",
+      "name": "inductively_barred_at_imp_is_path_from",
+      "excerpt_sha256": "c09060948e2d5f6bf049bcf80e133af9233eadfeb80aff6d4fcce900b7d61142",
+      "permalink": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/WKL.v#L135-L147"
+    },
+    {
+      "path": "theories/Logic/WKL.v",
+      "lines": [
+        149,
+        161
+      ],
+      "role": "context",
+      "name": "is_path_from_imp_inductively_barred_at",
+      "excerpt_sha256": "4fedea4f5130354dc6c9f0a5cc1428ee61f2443f776b8f7dfbf46c8f9fa5fb3a",
+      "permalink": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/WKL.v#L149-L161"
+    },
+    {
+      "path": "theories/Logic/WKL.v",
+      "lines": [
+        163,
+        169
+      ],
+      "role": "child",
+      "name": "find_left_path",
+      "excerpt_sha256": "823cf1d8b7259596c19f44f3f2acde7205f9d056da08aa465505be75df983b6f",
+      "permalink": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/WKL.v#L163-L169"
+    },
+    {
+      "path": "theories/Logic/WKL.v",
+      "lines": [
+        171,
+        187
+      ],
+      "role": "child",
+      "name": "Y_unique",
+      "excerpt_sha256": "6eb5f88b4644080050aa44a27ebcc204481bdb23d78f307cfaf750196fe214bb",
+      "permalink": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/WKL.v#L171-L187"
+    },
+    {
+      "path": "theories/Logic/WKL.v",
+      "lines": [
+        193,
+        207
+      ],
+      "role": "child",
+      "name": "Y_approx",
+      "excerpt_sha256": "9211a5969172d6b47c5e99e122e2c9020f24dde180a53e2dba0faa6f643fd333",
+      "permalink": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/WKL.v#L193-L207"
+    }
+  ],
+  "parent": {
+    "name": "PreWeakKonigsLemma",
+    "statement": "Theorem PreWeakKonigsLemma : forall P,\n  demorgan_inductively_barred_at P -> infinite_from P [] -> has_infinite_path P."
+  },
+  "children": [
+    {
+      "name": "is_path_from_restrict",
+      "statement": "Lemma is_path_from_restrict : forall P n n' l, n <= n' ->\n  is_path_from P n' l -> is_path_from P n l.",
+      "closed_by": "induction H on is_path_from P n' l; each constructor case closes by destruct n and apply here / next_left / next_right after Nat.le_0_r or Nat.succ_le_mono"
+    },
+    {
+      "name": "inductively_barred_at_monotone",
+      "statement": "Lemma inductively_barred_at_monotone : forall P l n n', n' <= n ->\n  inductively_barred_at P n' l -> inductively_barred_at P n l.",
+      "closed_by": "induction Hbar on inductively_barred_at P n' l, then now_at / propagate_at (with Nat.nle_succ_0 and Nat.succ_le_mono)"
+    },
+    {
+      "name": "inductively_barred_at_imp_is_path_from",
+      "statement": "Lemma inductively_barred_at_imp_is_path_from :\n  forall P, demorgan_inductively_barred_at P -> forall n l,\n  ~ inductively_barred_at P n l -> is_path_from P n l.",
+      "closed_by": "induction n; base case here + now_at; step case Hdemorgan + IHn + auto using is_path_from"
+    },
+    {
+      "name": "find_left_path",
+      "statement": "Lemma find_left_path : forall P l n,\n  is_path_from P (S n) l -> inductively_barred_at P n (false :: l) -> is_path_from P n (true :: l).",
+      "closed_by": "inversion 1 on is_path_from P (S n) l; first case auto, second case exfalso; eauto using is_path_from_imp_inductively_barred_at"
+    },
+    {
+      "name": "Y_unique",
+      "statement": "Lemma Y_unique : forall P, demorgan_inductively_barred_at P ->\n  forall l1 l2, length l1 = length l2 -> Y P l1 -> Y P l2 -> l1 = l2.",
+      "closed_by": "induction l1, l2; f_equal; the (true,false) and (false,true) cases close by destructing is_path_from_imp_inductively_barred_at"
+    },
+    {
+      "name": "Y_approx",
+      "statement": "Lemma Y_approx : forall P, demorgan_inductively_barred_at P ->\n  forall l, approx (X P) l -> Y P l.",
+      "closed_by": "induction l; the b=true case rewrites with Y_unique, the b=false case applies inductively_barred_at_imp_is_path_from"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal of the form has_infinite_path P, i.e. exists X, forall l, approx X l -> ~ P l, over two dual inductive relations (is_path_from P n l and inductively_barred_at P n l); proved by strengthening the given instance infinite_from P [] to the invariant forall l, infinite_from P l and inducting on the prefix l.",
+    "use_when": "The conclusion is an existential over an infinite object (a path/stream represented as a predicate over finite prefixes), and the hypotheses pin one finite instance ([] here) that a restriction/monotonicity lemma can reduce an arbitrary prefix to; a De Morgan hypothesis (demorgan_inductively_barred_at P) is available to move between the 'barred' and 'path' forms.",
+    "avoid_when": "The invariant cannot be stated as a single predicate over prefixes, or no decidability/De Morgan hypothesis links the 'barred' and 'path' directions, or the prefix set Y is not unique so the rewrite that re-targets the bound cannot go through."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent PreWeakKonigsLemma (lines 211-235) closes by asserting the invariant infinite_from P l, proving it by induction on l, and finishing with 'specialize (H 0). inversion H. assumption.'; the induction step applies the six child lemmas by name: Y_approx (line 222), Y_unique (225), is_path_from_restrict (228), find_left_path (229 and 232), inductively_barred_at_monotone (231), inductively_barred_at_imp_is_path_from (233).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/WKL.v#L211-L235"
+    },
+    {
+      "n": 2,
+      "claim": "The decomposition's shape is: 6 direct lemmas, glue 25 lines, child proof lengths [14, 10, 13, 7, 17, 15] lines, and a longest checked chain of project lemmas below the theorem of length 3 (PreWeakKonigsLemma -> Y_approx -> Y_unique -> is_path_from_imp_inductively_barred_at).",
+      "evidence_kind": "measurement",
+      "evidence": "copied file library/entries/rocq-key-invariant-rocq-stdlib-1a358d2f/code/theories/Logic/WKL.v, parent lines 211-235 (25 lines); child sites 104-117, 119-128, 135-147, 163-169, 171-187, 193-207; helper 149-161; the chain 211-235 -> 193-207 -> 171-187 -> 149-161"
+    },
+    {
+      "n": 3,
+      "claim": "The authors state the proof idea in a comment: 'The proof proceeds by building a set [Y] of finite paths approximating either the smallest unbarred infinite path in [P], if there is one (taking [true]>[false]), or the path true::true::... if [P] happens to be inductively_barred'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/WKL.v#L89-L92"
+    },
+    {
+      "n": 4,
+      "claim": "The copied file contains no admit, Admitted or Axiom: all six children and their shared helper is_path_from_imp_inductively_barred_at end in Qed, so the constructive proof closes without any axiom.",
+      "evidence_kind": "check",
+      "evidence": "grep for 'admit|Admitted|Axiom' over library/entries/rocq-key-invariant-rocq-stdlib-1a358d2f/code/theories/Logic/WKL.v returned no matches; Qed at lines 117, 128, 147, 161, 169, 187, 207, 235"
+    },
+    {
+      "n": 5,
+      "claim": "The same prefix-set construction — a fixpoint Y with Y_unique and Y_approx lemmas and the witness X — appears at the simpler unindexed type in the sibling file WeakFan.v, whose WeakFanTheorem (lines 88-101) WKL.v re-derives with the indexed relations inductively_barred_at / is_path_from.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/WeakFan.v#L88-L101 (Y at L49, Y_unique L57-L69, Y_approx L75-L86)"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 6,
+    "depth": 3,
+    "glue_lines": 25,
+    "child_lines": [
+      14,
+      10,
+      13,
+      7,
+      17,
+      15
+    ]
+  },
+  "metrics": {
+    "parent_lines": 25,
+    "direct_children": 6,
+    "shared_helper_lemmas": 1,
+    "how_counted": "parent_lines = parent site lines 211-235 (two-line statement + proof through Qed); direct_children = the six lemmas the glue applies by name; shared_helper_lemmas = is_path_from_imp_inductively_barred_at (149-161), used by Y_unique and find_left_path but not by the glue; child_lines in shape follow the children order is_path_from_restrict, inductively_barred_at_monotone, inductively_barred_at_imp_is_path_from, find_left_path, Y_unique, Y_approx"
+  },
+  "consequences": "The move creates one strengthened-invariant obligation: the glue must prove infinite_from P l for every l, not just [], so the induction step splits on the next bit a (true/false) and, in the true case, on the bound comparison le_lt_dec n n' to choose between is_path_from_restrict (n <= n') and inductively_barred_at_monotone (n' < n). Every lemma that reasons across the two dual predicates (is_path_from vs inductively_barred_at) rests on their no-overlap lemma is_path_from_imp_inductively_barred_at. Failure modes: without demorgan_inductively_barred_at P the false-case of Y_approx and the step of inductively_barred_at_imp_is_path_from cannot close; without Y_unique the rewrite in the true case that re-targets the bound to the current prefix does not go through.",
+  "known_uses": [
+    "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/WeakFan.v#L88-L101"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "1a358d2f29f6e1e7991af7ff5f80cce40371463f80f495487eb9b9bd35718c3d",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:51:21Z"
+    },
+    {
+      "field": "title,intent,parent,children,applicability,shape,metrics,consequences,known_uses,related,rule,claims",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:52:16Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T16:02:31Z"
+}

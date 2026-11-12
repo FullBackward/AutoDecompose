@@ -1,0 +1,125 @@
+{
+  "entry": "lean-iff-split-flt-imperial-0fde62f1",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:16:13Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:16:13Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at a3210204ad8876e851e32f73dd97d882bf1ccd0a",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:16:26Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/blueprint.yml ('Build project') runs leanprover/lean-action@v1 with build:true on push to main and PRs (paths '**/*.lean'); lakefile.toml defaultTargets=['FLT'] and lean_lib FLT globs 'FLT', so FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean is built on the default branch (pinned commit a3210204ad8876e851e32f73dd97d882bf1ccd0a from ref HEAD)",
+      "by": "verifier",
+      "at": "2026-11-12T16:18:38Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read the copied file (byte-identical per provenance) lines 484-492: 9 lines, 'unfold IsAbsolutelyIrreducible' (484), 'constructor' (485), then two goals each discharged by a single 'exact' instantiating a named lemma at AlgebraicClosure k (isIrreducible_baseChange_of_finrank_eigenspace_eq_one at 488-489, isIrreducible_of_baseChange at 492)",
+      "by": "verifier",
+      "at": "2026-11-12T16:18:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Read the copied file at the pinned commit: isIrreducible_baseChange_of_finrank_eigenspace_eq_one at lines 447-474 and isIrreducible_of_baseChange at 405-440, both proved; the whole 496-line file contains no 'sorry', 'admit' or 'axiom'",
+      "by": "verifier",
+      "at": "2026-11-12T16:18:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read copied file lines 38-40: line 38 is 'OddRep.isIrreducible_of_baseChange: descent of irreducibility (easy direction)'; lines 39-40 are 'OddRep.isIrreducible_baseChange_of_finrank_eigenspace_eq_one: the hard direction, over an arbitrary field extension l/k' — matches the two quoted role labels",
+      "by": "verifier",
+      "at": "2026-11-12T16:18:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "refuted",
+      "evidence": "Glue 484-492 = 9 lines and child proof bodies 453-474 = 22 and 408-440 = 33 lines all check out, and the four named lemmas are called at the cited lines (456, 458, 460, 474). But 'exactly four project lemmas' is wrong: line 462 also directly calls isIrreducible_iff_forall (a project lemma defined at 109-141 in the same file), so the 22-line proof invokes five project lemmas, not four.",
+      "by": "verifier",
+      "at": "2026-11-12T16:18:53Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Fetched FLT/KnownIn1980s/RepresentationTheory/OddAbsIrred.lean at the pinned commit: theorem OddRep.isIrreducible_iff_isAbsolutelyIrreducible (lines 45-48) is proved by the single line 49 'Slop.OddRep.isIrreducible_iff_isAbsolutelyIrreducible_slop ρ hg', a one-line re-export of the slop theorem",
+      "by": "verifier",
+      "at": "2026-11-12T16:18:56Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at a3210204ad8876e851e32f73dd97d882bf1ccd0a",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:21:22Z"
+    },
+    {
+      "type": "claim",
+      "key": "6",
+      "value": "verified",
+      "evidence": "Read the copied file (byte-identical per provenance) at the pinned commit. Glue lines 484-492 = 9 lines (unfold, constructor, two goals each closed by one exact). Child proof bodies: hard direction 453-474 = 22 lines, easy direction 408-440 = 33 lines. Five project-lemma calls at the cited lines: exists_smul_eq_of_commute (456), adjoinRange_eq_top (458), adjoinRange_baseChange_eq_top (460), isIrreducible_iff_forall (462), isIrreducible_of_adjoinRange_eq_top (474).",
+      "by": "verifier",
+      "at": "2026-11-12T16:22:40Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Correctness verified against copied file code/FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean: parent (480-492) is exactly unfold+constructor iff-split, each bullet intro+single exact instantiating a named lemma at AlgebraicClosure k (hard: isIrreducible_baseChange_of_finrank_eigenspace_eq_one, easy: isIrreducible_of_baseChange); goal shapes match so it closes. Children are exactly the two lemmas the glue uses. Child statements match code; closed_by matches (hard chains exists_smul_eq_of_commute@456, adjoinRange_eq_top@458, adjoinRange_baseChange_eq_top@460, isIrreducible_iff_forall@462, isIrreducible_of_adjoinRange_eq_top@474; easy uses isIrreducible_iff_forall@408 and Submodule.baseChange_injective@437,439). No sorry/admit/axiom. Shape right: glue_lines=9 (484-492), child_lines=[22,33] (453-474, 408-440), direct_lemmas=2, depth=3.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T16:24:08Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "object",
+      "evidence": "The move is generalised well (biconditional between a property and its base-change/'lifted' analogue; use_when/avoid_when are general conditions), the consequences are honest, and 'Why each leaf is a good leaf' covers self-containedness/closure-on-own, which is what makes them good bounded-prover leaves. But the entry.json applicability.avoid_when parenthetical is factually wrong: it says 'here the hard direction is over any l/k, the easy direction only needs l = AlgebraicClosure k', implying the two directions are at different generality, whereas the copied file shows BOTH children are stated over an arbitrary extension l/k (isIrreducible_of_baseChange at line 405 and isIrreducible_baseChange_of_finrank_eigenspace_eq_one at lines 447-449 each take (l : Type*) [Field l] [Algebra k l]), and the parent instantiates both at AlgebraicClosure k (488-489, 492). Fix: reword the avoid_when example to say both directions here ARE stated at the same generality (arbitrary l/k, specialised to AlgebraicClosure k in the glue), and state the 'not at the same generality' failure mode with a correct or no example (e.g. note the hard direction's proof genuinely needs general l via adjoinRange_baseChange_eq_top, the easy direction's does not).",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T16:25:44Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at a3210204ad8876e851e32f73dd97d882bf1ccd0a",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:26:06Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance and licence are consistent and traceable. check_provenance.py passes: the copied file code/FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean is byte-identical at commit a3210204ad8876e851e32f73dd97d882bf1ccd0a (sha256 4715d179... matches entry.json files[0].sha256; 23691 bytes match). The commit hash is recorded identically in entry.json source.commit, sources/flt-imperial/source.json, and sources/flt-imperial/SOURCE.md. Licence 'Apache-2.0' is recorded identically in all three and matches the copied upstream-LICENSE (standard Apache-2.0 text, linked from SOURCE.md as the LICENSE at the pinned commit). Every permalink (files, sites, claims, known_uses) uses the same commit and the correct repo path, and the file has 495 lines so all cited line ranges (up to L492) are in range. The source note's attribution paragraph matches the entry's README 'Source and licence' section. Nothing inconsistent or untraceable found.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T16:26:59Z"
+    }
+  ]
+}

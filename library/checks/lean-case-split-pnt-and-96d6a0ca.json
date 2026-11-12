@@ -1,0 +1,109 @@
+{
+  "entry": "lean-case-split-pnt-and-96d6a0ca",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T14:53:20Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T14:53:20Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2c476fa6441c607096d93c8fc7ac0a227a655dae",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:53:28Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml: runs leanprover/lean-action (build-args :blueprint) on push/PR to main, which compiles the PrimeNumberTheoremAnd library including StrongPNT.lean; pinned commit 2c476fa6441c607096d93c8fc7ac0a227a655dae is on default branch main (compare API: main ahead 1, behind 0)",
+      "by": "verifier",
+      "at": "2026-11-12T14:55:36Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Opened copied code/PrimeNumberTheoremAnd/StrongPNT.lean L2831-2850: L2834 obtain from LogDerivZetaUniformLogSquaredBoundStripSpec, L2835 obtain from LogDerivZetaBdd_of_Re_ge_three_halves, L2837 use max C1 C2, L2839 by_cases hsigma : sigma <= 3/2; left branch (hC1.2 ...).trans + gcongr, right branch (hC2 _ ?_).trans. Exactly two named project lemmas, split and one .trans per branch.",
+      "by": "verifier",
+      "at": "2026-11-12T14:55:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "grep of copied StrongPNT.lean for sorry|admit|axiom matched only L2906 '#print axioms StrongPNT'; no sorry, admit or axiom terms anywhere in the file.",
+      "by": "verifier",
+      "at": "2026-11-12T14:55:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "L2828-2830 contain the blueprint proof 'Put the previous two Lemmas together.'; L2777-2782 contain the half-plane child blueprint with the Dirichlet-series bound ending '... <= sum Lambda(n)/n^(3/2) < oo by vonMangoldtLSeriesSummable'.",
+      "by": "verifier",
+      "at": "2026-11-12T14:55:42Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Line counts checked in copied file: parent proof L2834-2850 = 17 lines using 2 direct lemmas; strip child proof L2765 = 1 line (LogDerivZetaUniformLogSquaredBoundStrip.choose_spec.2); half-plane child L2786-2817 = 32 lines; chain parent(2831) -> StripSpec(2761) -> LogDerivZetaUniformLogSquaredBoundStrip(2603, obtain SumBoundII at 2608) -> SumBoundII(2435) = depth 3.",
+      "by": "verifier",
+      "at": "2026-11-12T14:55:44Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2c476fa6441c607096d93c8fc7ac0a227a655dae",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:56:04Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent (2831-2833), both child statements and closed_by match the copied code verbatim: StripSpec (2761-2765) is closed by LogDerivZetaUniformLogSquaredBoundStrip.choose_spec.2; half-plane child (2784-2817) by the 32-line proof ending in the simpa ... trans ... tsum_le_tsum line. Glue is exactly use max C1 C2 (2837) + by_cases hσ' : σ ≤ 3/2 (2839), each branch closing by one .trans to the child bound (2840, 2844). Parent uses exactly these two project lemmas (2834-2835); the only other named lemma used (Real.exp_one_lt_d9, 2849) is a Mathlib lemma, not a project lemma. Closes: grep finds no sorry/admit/axiom in the whole file except the #print axioms StrongPNT diagnostic (2906). Shape numbers correct: direct_lemmas=2, depth=3 (parent→StripSpec→LogDerivZetaUniformLogSquaredBoundStrip(2603)→SumBoundII(2435), each edge present), glue_lines=17 (2834-2850), child_lines=[1,32] (2765; 2786-2817).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T14:57:24Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generically: goal shape '∃ C>0, ∀x, P x → Q x ≤ C·g x' covered by two regional lemmas meeting at a boundary b, with use_when/avoid_when naming concrete, honest failure modes (gap between regions, non-dominated gauges, non-order boundary, non-transferable constant). Consequences are specific (by_cases/LEM exhaustiveness vs finite-disjunction; both branches close against the shared witness max C1 C2; the constant gauge must be lifted to log²|t| via 1≤log²|t|; failure mode if gauges don't dominate). It explicitly names what makes the children good bounded-prover leaves: self-contained, closing without reference back to the parent, and the parent only consuming their existential statements. The opinion is honest that the split itself is trivial and the generalizable detail is the split-point choice plus gauge domination.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T14:58:14Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2c476fa6441c607096d93c8fc7ac0a227a655dae",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:58:40Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance pass (1 file byte-identical at 2c476fa6441c607096d93c8fc7ac0a227a655dae); commit 2c476fa... consistent across entry.json, sources/pnt-and/source.json and SOURCE.md; licence Apache-2.0 consistent in entry.json/source.json/SOURCE.md and upstream-LICENSE is the Apache 2.0 text (not copyleft/nc/unknown); all 5 permalinks use the pinned commit; copied file 151072 bytes and sha256 f777e11c... match entry.json. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T14:59:01Z"
+    }
+  ]
+}

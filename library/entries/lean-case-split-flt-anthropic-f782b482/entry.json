@@ -1,0 +1,289 @@
+{
+  "id": "lean-case-split-flt-anthropic-f782b482",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Case-split at the prime 3 (the 3-5 switch) for Wiles semistable modularity",
+  "intent": "Reduce Wiles's semistable modularity theorem — every integral Weierstrass model W with Δ ≠ 0 and IsSemistableModel is modular — to a case split on whether the mod-3 Galois representation ρ̄_{W,3} is irreducible, and close each branch from already-proved project lemmas (Langlands–Tunnell, modularity lifting, the 3-5 switch), leaving ~35 lines of glue that only extract record fields and prove two small Nat divisibility facts.",
+  "move": "case-split",
+  "also_known_as": ["the 3-5 switch", "case split on residual irreducibility"],
+  "language": "lean",
+  "source": {
+    "source_id": "flt-anthropic",
+    "url": "https://github.com/anthropics/fermats-last-theorem",
+    "commit": "6e837e75355538c7f80bab5b956861e86c4eacc2",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean",
+      "bytes": 214335,
+      "sha256": "e792f23cc5ff2d5611c988c23787b34a3959cd7dd432cf6c4f918550cd38aea6",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean"
+    },
+    {
+      "path": "Theorems/Thm_WeierstrassCurve_isResiduallyModular_three_and_noInertiaFixedTorsion_and_not_cube_dvd_of_isSemistableModel.lean",
+      "bytes": 77838,
+      "sha256": "bbd2e7bde30b181722fa187304a9fe26c3a55432515d0b4dc1716363b12e5eb9",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_WeierstrassCurve_isResiduallyModular_three_and_noInertiaFixedTorsion_and_not_cube_dvd_of_isSemistableModel.lean"
+    },
+    {
+      "path": "Theorems/Thm_WeierstrassCurve_modThreeOrFiveIrreducible.lean",
+      "bytes": 2226,
+      "sha256": "d8784b060d23baa8fb80450843717a6922caaa291fcc8488f203018f76d295a6",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_WeierstrassCurve_modThreeOrFiveIrreducible.lean"
+    },
+    {
+      "path": "Theorems/Thm_WeierstrassCurve_threeFiveSwitchCurve.lean",
+      "bytes": 2781,
+      "sha256": "2ba94c427f07dfa8d11b2386a9bdd500b6217a07d9f7650f41731566e15762f0",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_WeierstrassCurve_threeFiveSwitchCurve.lean"
+    },
+    {
+      "path": "Theorems/Thm_WeierstrassCurve_isResiduallyModularOfLevel_of_switch.lean",
+      "bytes": 671,
+      "sha256": "dfd9626382994fd9c62c2e3a8c1a1144f4e0437ebf8b5adab8c91ec5248545af",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_WeierstrassCurve_isResiduallyModularOfLevel_of_switch.lean"
+    },
+    {
+      "path": "Theorems/Thm_WeierstrassCurve_modularityLiftingAtConductor_threeFive_of_level_of_inertia_moves_torsion_of_eq_three_of_not_cube_dvd.lean",
+      "bytes": 198047,
+      "sha256": "eed7a48ea44e7cb5f48a0fac62f814fcc2226757361073ad5cc2a010e973cd2f",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_WeierstrassCurve_modularityLiftingAtConductor_threeFive_of_level_of_inertia_moves_torsion_of_eq_three_of_not_cube_dvd.lean"
+    },
+    {
+      "path": "PROOF-PATH.md",
+      "bytes": 8666,
+      "sha256": "ada9b1b2f69184b9a9334d51ed9f2e2e241d16df364d9e53df418339748c6705",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/PROOF-PATH.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": "P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean",
+      "lines": [
+        165,
+        201
+      ],
+      "role": "parent",
+      "name": "WeierstrassCurve.modularity_of_semistableModel'",
+      "excerpt_sha256": "ea19633bc5a457cc137b6a9a620be784e48a59ef716bf7b7c6aefbfceb4e694e",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean#L165-L201"
+    },
+    {
+      "path": "Theorems/Thm_WeierstrassCurve_isResiduallyModular_three_and_noInertiaFixedTorsion_and_not_cube_dvd_of_isSemistableModel.lean",
+      "lines": [
+        57,
+        66
+      ],
+      "role": "child",
+      "name": "WeierstrassCurve.isResiduallyModular_three_and_noInertiaFixedTorsion_and_not_cube_dvd_of_isSemistableModel",
+      "excerpt_sha256": "2335a0ac429f81aa020a59325418b8e7c270e35252047ddb3336cb2f6aeee723",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_WeierstrassCurve_isResiduallyModular_three_and_noInertiaFixedTorsion_and_not_cube_dvd_of_isSemistableModel.lean#L57-L66"
+    },
+    {
+      "path": "P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean",
+      "lines": [
+        160,
+        163
+      ],
+      "role": "child",
+      "name": "WeierstrassCurve.isModular_map_of_mlc1",
+      "excerpt_sha256": "79a0a61a23f116a733d9072bd399674ed479993cb42802c36c60ebcf35018a00",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean#L160-L163"
+    },
+    {
+      "path": "P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean",
+      "lines": [
+        142,
+        151
+      ],
+      "role": "child",
+      "name": "WeierstrassCurve.liftingAtConductor_three_of_level_hns",
+      "excerpt_sha256": "6b1f99eeb60166b458967359799b4c24e8579b3263bc550a2646aa21b4a9429e",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean#L142-L151"
+    },
+    {
+      "path": "Theorems/Thm_WeierstrassCurve_modThreeOrFiveIrreducible.lean",
+      "lines": [
+        15,
+        15
+      ],
+      "role": "child",
+      "name": "WeierstrassCurve.modThreeOrFiveIrreducible",
+      "excerpt_sha256": "c7213cf6ab6adffab7064f7acf1f387b4bae23305acc5e712b26fc0eaee966ce",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_WeierstrassCurve_modThreeOrFiveIrreducible.lean#L15-L15"
+    },
+    {
+      "path": "Theorems/Thm_WeierstrassCurve_threeFiveSwitchCurve.lean",
+      "lines": [
+        16,
+        16
+      ],
+      "role": "child",
+      "name": "WeierstrassCurve.threeFiveSwitchCurve",
+      "excerpt_sha256": "3820dc5bf58aac24c6755a6cf28d9ad8570a2941ecd7798dc20763fadd748ddc",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_WeierstrassCurve_threeFiveSwitchCurve.lean#L16-L16"
+    },
+    {
+      "path": "Theorems/Thm_WeierstrassCurve_isResiduallyModularOfLevel_of_switch.lean",
+      "lines": [
+        5,
+        10
+      ],
+      "role": "child",
+      "name": "WeierstrassCurve.isResiduallyModularOfLevel_of_switch",
+      "excerpt_sha256": "d5190a543a10e23f6d83bd519cdfe5bf2eba7a6763c9b848d975bdc5a21bb861",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_WeierstrassCurve_isResiduallyModularOfLevel_of_switch.lean#L5-L10"
+    },
+    {
+      "path": "P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean",
+      "lines": [
+        153,
+        158
+      ],
+      "role": "child",
+      "name": "WeierstrassCurve.liftingAtConductor_threeFive_of_level_not_sq_dvd",
+      "excerpt_sha256": "58c9454d2e1e878e5f7c04ccc70aad0f5d564ad5b5e704bbb09a5d91d838ef96",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean#L153-L158"
+    },
+    {
+      "path": "Theorems/Thm_WeierstrassCurve_modularityLiftingAtConductor_threeFive_of_level_of_inertia_moves_torsion_of_eq_three_of_not_cube_dvd.lean",
+      "lines": [
+        120,
+        129
+      ],
+      "role": "context",
+      "name": "WeierstrassCurve.modularityLiftingAtConductor_threeFive_of_level_of_inertia_moves_torsion_of_eq_three_of_not_cube_dvd",
+      "excerpt_sha256": "2da35dbdc19b049eefeab745af992d6c5894a2e2ef60a6bb5c6419395d3d5076",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_WeierstrassCurve_modularityLiftingAtConductor_threeFive_of_level_of_inertia_moves_torsion_of_eq_three_of_not_cube_dvd.lean#L120-L129"
+    },
+    {
+      "path": "PROOF-PATH.md",
+      "lines": [
+        39,
+        64
+      ],
+      "role": "context",
+      "name": "PROOF-PATH step 4 modularity",
+      "excerpt_sha256": "a9e319661600e4cc5c1dd8196e9369517ee45c117efffdccf2e04355dd4ef545",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/PROOF-PATH.md#L39-L64"
+    }
+  ],
+  "parent": {
+    "name": "WeierstrassCurve.modularity_of_semistableModel'",
+    "statement": "modularity_of_semistableModel' (W : WeierstrassCurve ℤ) (hΔ : W.Δ ≠ 0) (hW : W.IsSemistableModel) : (W.map (Int.castRingHom ℚ)).IsModular"
+  },
+  "children": [
+    {
+      "name": "WeierstrassCurve.isResiduallyModular_three_and_noInertiaFixedTorsion_and_not_cube_dvd_of_isSemistableModel",
+      "statement": "(W : WeierstrassCurve ℤ) (hΔ : W.Δ ≠ 0) (hW : W.IsSemistableModel) (h3 : W.ModRepIsIrreducible 3) : ∃ M : ℕ, 0 < M ∧ W.IsResiduallyModularOfLevel 3 M ∧ (∀ q : ℕ, q.Prime → q ≠ 3 → ¬ q ^ 3 ∣ M) ∧ (3 ^ 2 ∣ M → ∀ A : ValuationSubring (AlgebraicClosure ℚ), A.LiesOverPrime 3 → ∀ x : Submodule.torsionBy ℤ ((W.map (Int.castRingHom ℚ))⁄(AlgebraicClosure ℚ)).Point (3 : ℕ), (∀ σ ∈ A.inertiaSubgroupIn ℚ, σ • x = x) → x = 0)",
+      "closed_by": "p2m_exact_reverting @_root_.P2MW.S_WeierstrassCurve_isResiduallyModular_three_and_noInertiaFixedTorsion_and_not_cube_dvd_of_isSemistableModel.solution"
+    },
+    {
+      "name": "WeierstrassCurve.isModular_map_of_mlc1",
+      "statement": "{W : WeierstrassCurve ℤ} (h : Mlc1IsModularModelOfExactConductorLevel W) : (W.map (Int.castRingHom ℚ)).IsModular",
+      "closed_by": "isModular_map_of_isModularModel (IsModularModelOfExactConductorLevel.isModularModelOfConductorLevel h).isModularModel"
+    },
+    {
+      "name": "WeierstrassCurve.liftingAtConductor_three_of_level_hns",
+      "statement": "(p : ℕ) (hp : p = 3) (W : WeierstrassCurve ℤ) (hΔ : W.Δ ≠ 0) (hW : W.IsSemistableModel) (hirr : W.ModRepIsIrreducible p) (M₀ : ℕ) [NeZero M₀] (hres₀ : W.IsResiduallyModularOfLevel p M₀) (hns : p ^ 2 ∣ M₀ → ∀ A : ValuationSubring (AlgebraicClosure ℚ), A.LiesOverPrime p → ∀ x : Submodule.torsionBy ℤ ((W.map (Int.castRingHom ℚ))⁄(AlgebraicClosure ℚ)).Point p, (∀ σ ∈ A.inertiaSubgroupIn ℚ, σ • x = x) → x = 0) (hM₀3 : ∀ q : ℕ, q.Prime → q ≠ p → ¬ q ^ 3 ∣ M₀) : Mlc1IsModularModelOfExactConductorLevel W",
+      "closed_by": "modularityLiftingAtConductor_threeFive_of_level_of_inertia_moves_torsion_of_eq_three_of_not_cube_dvd p hp W hΔ hW hirr M₀ hres₀ hns hM₀3"
+    },
+    {
+      "name": "WeierstrassCurve.modThreeOrFiveIrreducible",
+      "statement": "(W : WeierstrassCurve ℤ) (hΔ : W.Δ ≠ 0) (hW : W.IsSemistableModel) : W.ModRepIsIrreducible 3 ∨ W.ModRepIsIrreducible 5",
+      "closed_by": "p2m_exact_reverting @_root_.P2MW.S_WeierstrassCurve_modThreeOrFiveIrreducible.solution"
+    },
+    {
+      "name": "WeierstrassCurve.threeFiveSwitchCurve",
+      "statement": "(W : WeierstrassCurve ℤ) (hΔ : W.Δ ≠ 0) (hW : W.IsSemistableModel) (h5 : W.ModRepIsIrreducible 5) : ∃ W' : WeierstrassCurve ℤ, W'.Δ ≠ 0 ∧ W'.IsSemistableModel ∧ W'.ModRepIsIrreducible 3 ∧ ∀ ℓ : ℕ, ℓ.Prime → W.IsGoodPrimeFor ℓ → W'.IsGoodPrimeFor ℓ → ℓ ≠ 5 → (5 : ℤ) ∣ (W'.apOfModel ℓ - W.apOfModel ℓ)",
+      "closed_by": "p2m_exact_reverting @_root_.P2MW.S_WeierstrassCurve_threeFiveSwitchCurve.solution"
+    },
+    {
+      "name": "WeierstrassCurve.isResiduallyModularOfLevel_of_switch",
+      "statement": "{W W' : WeierstrassCurve ℤ} {N : ℕ} (hmod : W'.IsModularModelOfLevel N) (hND : ∀ ℓ : ℕ, ℓ.Prime → (ℓ : ℤ) ∣ W'.Δ → ℓ ∣ N) (hcong : ∀ ℓ : ℕ, ℓ.Prime → W.IsGoodPrimeFor ℓ → W'.IsGoodPrimeFor ℓ → ℓ ≠ 5 → (5 : ℤ) ∣ (W'.apOfModel ℓ - W.apOfModel ℓ)) : W.IsResiduallyModularOfLevel 5 N",
+      "closed_by": "p2m_exact_reverting @_root_.P2MW.S_WeierstrassCurve_isResiduallyModularOfLevel_of_switch.solution"
+    },
+    {
+      "name": "WeierstrassCurve.liftingAtConductor_threeFive_of_level_not_sq_dvd",
+      "statement": "(p : ℕ) (hp : p = 3 ∨ p = 5) (W : WeierstrassCurve ℤ) (hΔ : W.Δ ≠ 0) (hW : W.IsSemistableModel) (hirr : W.ModRepIsIrreducible p) (M₀ : ℕ) [NeZero M₀] (hres₀ : W.IsResiduallyModularOfLevel p M₀) (hM₀ : ¬ p ^ 2 ∣ M₀) (hM₀3 : ∀ q : ℕ, q.Prime → q ≠ p → ¬ q ^ 3 ∣ M₀) : Mlc1IsModularModelOfExactConductorLevel W",
+      "closed_by": "modularityLiftingAtConductor_threeFive_of_level_of_not_sq_dvd_of_not_cube_dvd p hp W hΔ hW hirr M₀ hres₀ hM₀ hM₀3"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 7,
+    "depth": 3,
+    "glue_lines": 35,
+    "child_lines": [1, 2, 1, 1, 1, 1, 1]
+  },
+  "applicability": {
+    "goal_shape": "∀ W : WeierstrassCurve ℤ, W.IsSemistableModel → (W.map (Int.castRingHom ℚ)).IsModular, split by by_cases on a decidable property of one fixed prime (W.ModRepIsIrreducible 3); each branch ends by applying isModular_map_of_mlc1 to a liftingAtConductor lemma that consumes a residual-modularity level M with its side conditions.",
+    "use_when": "the goal forks on a decidable predicate whose two alternatives are each already proved as named project lemmas, and one branch can be reduced to the other by a switch construction (threeFiveSwitchCurve) that hands over a second model and a trace congruence mod 5; the glue is then only obtain field extraction, NeZero instances, and small Nat divisibility facts.",
+    "avoid_when": "the branch lemmas do not exist yet (each is deep — Langlands-Tunnell, Taylor-Wiles R = T lifting, the Rubin-Silverberg switch — so the split is a roadmap, not a proof); the disjunction is not decidable/exhaustive; or the two branches need genuinely different arguments that no switch lemma can bridge."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent modularity_of_semistableModel' closes as a by_cases split on h3 : W.ModRepIsIrreducible 3, and each branch ends in exact isModular_map_of_mlc1 (liftingAtConductor_...), with no other closing tactic.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean#L165-L201"
+    },
+    {
+      "n": 2,
+      "claim": "The main proof (lines 167-201) is 35 lines, invokes 7 distinct named lemmas (10 invocations: isResiduallyModular_three_…, isModular_map_of_mlc1 and liftingAtConductor_three_of_level_hns twice each, the other four once), and its only local proofs are two have-blocks of Nat divisibility/unit bookkeeping (h25 at lines 191-194, hN3 at lines 196-197).",
+      "evidence_kind": "measurement",
+      "evidence": "read of lines 167-201 of the copied file P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean at commit 6e837e75355538c7f80bab5b956861e86c4eacc2"
+    },
+    {
+      "n": 3,
+      "claim": "PROOF-PATH.md step 4 states the plan and its final sentence matches the two branches exactly: 'If ρ̄_{W,3} is irreducible, Langlands-Tunnell and lifting at 3; otherwise the switch gives W′, the first case makes W′ modular, W is residually modular mod 5, and lifting at 5 finishes.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/PROOF-PATH.md#L63-L64"
+    },
+    {
+      "n": 4,
+      "claim": "Below the main theorem lies a chain of three project lemmas: modularity_of_semistableModel' calls liftingAtConductor_three_of_level_hns (line 175), whose body calls modularityLiftingAtConductor_threeFive_of_level_of_inertia_moves_torsion_of_eq_three_of_not_cube_dvd (line 151), whose body is a wrapper over P2M.Sol.S_WeierstrassCurve_modularityLiftingAtConductor_threeFive_of_level_of_inertia_moves_torsion_of_eq_three_of_not_cube_dvd.solution (context file line 129).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean#L175 and Theorems/Thm_WeierstrassCurve_modularityLiftingAtConductor_threeFive_of_level_of_inertia_moves_torsion_of_eq_three_of_not_cube_dvd.lean#L129"
+    },
+    {
+      "n": 5,
+      "claim": "The same-file theorem solution (lines 208-210) reuses WeierstrassCurve.modularity_of_semistableModel' unchanged, so this decomposition is exactly the step the top-level FLT proof plugs into.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean#L208-L210"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 37,
+    "children": 7,
+    "direct_lemma_invocations": 10,
+    "local_nat_have_blocks": 2,
+    "how_counted": "parent_lines = lines 165-201 inclusive (statement plus proof); children = the 7 distinct named lemmas the glue uses; direct_lemma_invocations = every occurrence in lines 167-201 (three lemmas used twice, four once); local_nat_have_blocks = the two have terms h25 (¬5^2∣N) and hN3 (∀q, q≠5→¬q^3∣N)"
+  },
+  "consequences": "The split creates exactly two obligations (h3 and ¬h3) and no exhaustiveness child: by_cases discharges exhaustiveness via excluded middle on the decidable Prop W.ModRepIsIrreducible 3 (unlike a mod_cases residue split, which needs an exhaustiveness proof). Each branch must produce a Mlc1IsModularModelOfExactConductorLevel for isModular_map_of_mlc1, which forces the glue to carry a residual level M and its conditions — the two local have-blocks (h25, hN3) and two NeZero instances are exactly those obligations. The branches are symmetric only because threeFiveSwitchCurve carries the mod-5 trace congruence at every common good prime ℓ ≠ 5; without that congruence the isResiduallyModularOfLevel_of_switch call would not typecheck.",
+  "known_uses": [
+    "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean#L208-L210"
+  ],
+  "related": ["lean-case-split-compfiles-6ac56e7f"],
+  "rule": {
+    "f10_rule": 5,
+    "relation": "supports"
+  },
+  "content_key": "f782b48266493ff275756ec8d2f32d7ebc0b32176a8defedb612fe7ff98b914d",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T14:49:13Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,shape,claims,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "entry": "lean-case-split-pfr-7d058764",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T14:52:33Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T14:52:33Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:52:40Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push.yml 'Build project' job uses leanprover/lean-action (lake build of the whole project; PFR/Main.lean is imported by PFR.lean line 30); pinned commit 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a is the tip of default branch master (api.github.com/repos/teorth/pfr/branches/master)",
+      "by": "verifier",
+      "at": "2026-11-12T14:54:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read Main.lean L294-337: rcases le_or_gt ((H:Set G).ncard) A.ncard at L294; #H<=#A branch calc ends 'K^12 < 2*K^12' (L296-302); #A<#H branch ZModModule.exists_submodule_subset_card_le at L308, AddSubgroup.exists_left_transversal_of_le via H'.toAddSubgroup at L314, calc ends '2*K^12' (L335-337). CI builds the file.",
+      "by": "verifier",
+      "at": "2026-11-12T14:54:07Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Read Main.lean L149-152 doc comment 'Auxiliary statement towards the polynomial Freiman-Ruzsa (PFR) conjecture'; L286 comment '-- consider the subgroup H given by Lemma PFR_conjecture_aux.'",
+      "by": "verifier",
+      "at": "2026-11-12T14:54:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read Main.lean L266-337 (72 lines). Named-lemma calls: PFR_conjecture_pos_aux' L285, PFR_conjecture_aux L291, ZModModule.exists_submodule_subset_card_le L308, AddSubgroup.exists_left_transversal_of_le L314 (via H'.toAddSubgroup).",
+      "by": "verifier",
+      "at": "2026-11-12T14:54:09Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read ImprovedPFR.lean L948-1008: theorem PFR_conjecture_improv L953; wlog Finite G L958; PFR_conjecture_improv_aux L983; rcases le_or_gt #H #A L986; ZModModule.exists_submodule_subset_card_le L1000; AddSubgroup.exists_left_transversal_of_le L1006.",
+      "by": "verifier",
+      "at": "2026-11-12T14:54:11Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:54:32Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent/children statements match PFR/Main.lean (parent 261-265; aux 153-156; pos_aux' 102-104). Split rcases le_or_gt at L294; #H<=#A branch closes via PFR_conjecture_aux calc ending K^12<2*K^12 (L296-302); #A<#H branch shrinks H via ZModModule.exists_submodule_subset_card_le (L308) and AddSubgroup.exists_left_transversal_of_le (L314), calc ends 2*K^12 (L317-337). Children are exactly the lemmas the proof uses directly (pos_aux' L285, aux L291); two Mathlib lemmas are named but not treated as children, and direct_lemmas=4 reflects this. Shape numbers correct: glue_lines=72 (266-337), child_lines=[98,5] (aux proof 157-254, pos_aux' proof 105-109), depth=3 (PFR_conjecture->aux->rdist_le_of_isUniform_of_card_sub_le->PFR_conjecture_pos_aux). Minor wording only (closed_by says '102-line proof' vs 98 proof lines; 'covering set c' vs local u) - not correctness defects.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T14:56:52Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality is handled honestly and specifically. (1) Applies beyond the example: applicability.use_when/avoid_when are stated over a 'total-order dichotomy on a size or measure' with 'reuse vs shrink' branches and 'same calc chain', not over the concrete #H/#A; the README opinion explicitly separates 'the shape of the split' from 'the arithmetic'; claim 4 (known-use, already verifier-confirmed) shows the same move (wlog finite, le_or_gt #H #A split, aux-lemma branch, submodule+transversal branch) closes PFR_conjecture_improv in ImprovedPFR.lean L948-1008. (2) When-not-to-use is concrete (genuinely different constructions -> separate lemmas; exhaustiveness not supplied by a library lemma -> state it as its own fact; comparison not the natural cut point). Consequences are honest and specific: exhaustiveness is free via Mathlib le_or_gt so no disjunction lemma appears, each branch still owes a calc chain, exponent changes move only the rpow_ring;norm_num step, and the #A<#H branch is not self-contained (depends on ZModModule.exists_submodule_subset_card_le and AddSubgroup.exists_left_transversal_of_le, so a prover that cannot reach library lemmas leaves it open). (3) It says what makes the leaves good for a bounded prover: PFR_conjecture_pos_aux' is self-contained (closes from Set.ncard_pos + mul_pos_iff alone), and PFR_conjecture_aux has an interface exactly matching the glue's needs (hA0, hA |- exists H c, bounds and A subset c+H) so the glue uses it as a black box and never reopens its entropy argument.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T14:58:07Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:58:33Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "provenance pass (check_provenance.py: 1 file byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a, recorded sha256 matches). Commit 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a is consistent across entry.json, sources/pfr/source.json, sources/pfr/SOURCE.md and README. Permalinks point to teorth/pfr at that commit with path PFR/Main.lean and line ranges matching the local copy (parent 261-337 ends at file line 337; aux 149-254; pos_aux' 102-109; cited lines 285/286/291/294/308/314 all verified in the copied file). Licence Apache-2.0 consistent in entry.json, source note and upstream-LICENSE (Apache License 2.0).",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T14:59:43Z"
+    }
+  ]
+}

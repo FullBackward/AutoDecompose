@@ -1,0 +1,375 @@
+{
+  "id": "rocq-per-callee-lemma-vst-ecff0afd",
+  "kind": "instance",
+  "status": "draft",
+  "title": "One semax_body lemma per malloc function, assembled by mkVSU into MF_R_VSU",
+  "intent": "Reduce the correctness proof of the malloc/free Verified Software Unit (VSU) to one self-contained semax_body lemma per function of malloc.prog plus one initializer lemma: mkVSU generates an obligation per function, and each is discharged by exactly one named body lemma (body_X), so the glue is one line per callee.",
+  "move": "per-callee-lemma",
+  "also_known_as": [
+    "one body lemma per function",
+    "per-function verification lemma",
+    "per-pass simulation lemma (CompCert)",
+    "crunch (seL4)",
+    "mkVSU + solve_SF_internal"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "vst",
+    "url": "https://github.com/PrincetonUniversity/VST",
+    "commit": "c082fe210ec501219abe52b9d0f25541d7c97e59",
+    "licence": "BSD-2-Clause"
+  },
+  "files": [
+    {
+      "path": "progs/memmgr/VSU_malloc.v",
+      "bytes": 2623,
+      "sha256": "4ee6bf730e8d699086f7e36770b89c0240c5f8e781706c76c3bcb8014ace1971",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/VSU_malloc.v"
+    },
+    {
+      "path": "progs/memmgr/verif_malloc_large.v",
+      "bytes": 3655,
+      "sha256": "c59c6cddba7ad637d067f1434ea302e373e1262779c78e520656c7f4cc9cd670",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/verif_malloc_large.v"
+    },
+    {
+      "path": "progs/memmgr/verif_malloc_free.v",
+      "bytes": 3709,
+      "sha256": "43864f7794dc418b7b8756a5a668c8d2a9f536c0b9b647e484aa10c7b05dacb4",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/verif_malloc_free.v"
+    },
+    {
+      "path": "progs/memmgr/verif_bin2size2bin.v",
+      "bytes": 941,
+      "sha256": "9ce75720bf5f168912921f5b8b0f88e6029e76bf2e0dd58b1d8effe72cc42707",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/verif_bin2size2bin.v"
+    },
+    {
+      "path": "progs/memmgr/verif_free_large.v",
+      "bytes": 752,
+      "sha256": "61ce4e61bb3cdc449888b173586b8cfbe5fe059cedc7599314d3d2edaf4ec935",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/verif_free_large.v"
+    },
+    {
+      "path": "progs/memmgr/verif_fill_bin.v",
+      "bytes": 1989,
+      "sha256": "ad2eb1e664674e80ae67c6ee56638dd0c6b6b89d6e3b63b3b82fa7fae861739f",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/verif_fill_bin.v"
+    },
+    {
+      "path": "progs/memmgr/verif_malloc_small.v",
+      "bytes": 15496,
+      "sha256": "a0eebdf22d1bec6e2efbd0c0c1d5ee00fa8b182fe3f0c9dd172d1afd1555d607",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/verif_malloc_small.v"
+    },
+    {
+      "path": "progs/memmgr/verif_free_small.v",
+      "bytes": 6099,
+      "sha256": "9ddbd14a2207ea26db20ba36281b5c4dc41a21aad451e0481238dbde49f3124a",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/verif_free_small.v"
+    },
+    {
+      "path": "progs/memmgr/verif_list_from_block.v",
+      "bytes": 21578,
+      "sha256": "7bc0d388a259681b93ee64aebd571de4b70acec0a9cad48339d1cfc1dd7f4b46",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/verif_list_from_block.v"
+    },
+    {
+      "path": "progs/memmgr/verif_pre_fill.v",
+      "bytes": 4401,
+      "sha256": "51579fb1c6105daf4707184481580754d0ffb0eb605c8d46e30ae81e5b9afeb9",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/verif_pre_fill.v"
+    },
+    {
+      "path": "progs/memmgr/verif_try_pre_fill.v",
+      "bytes": 5370,
+      "sha256": "ccfe6043e79270c95c20d50c219ce4627cccafe70fc4bf08a62376a806e07750",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/verif_try_pre_fill.v"
+    },
+    {
+      "path": "progs/memmgr/VSU_malloc_definitions.v",
+      "bytes": 5175,
+      "sha256": "4f666d347bd8d8ce7e03ea9d73c0da1c6b2890a9b3f90a0fe827bff629edf27f",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/VSU_malloc_definitions.v"
+    },
+    {
+      "path": "progs/memmgr/ASI_malloc.v",
+      "bytes": 8938,
+      "sha256": "e24b1a6cb9c7743b71e4aab087759dd6b75476ff5b6bc49c1c0eb634243693cb",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/ASI_malloc.v"
+    },
+    {
+      "path": "progs/memmgr/malloc_lemmas.v",
+      "bytes": 28428,
+      "sha256": "80f639f7d65e710982cc77d6734a47ce699d457e55233271aafccfc2e9f03c79",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/malloc_lemmas.v"
+    },
+    {
+      "path": "progs/memmgr/malloc_sep.v",
+      "bytes": 34844,
+      "sha256": "cef04a382a2b4e1e04e95f143467c8aaa561bf3a0ffa54241a34482ef125518f",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/malloc_sep.v"
+    },
+    {
+      "path": "progs/memmgr/malloc.v",
+      "bytes": 39543,
+      "sha256": "cc89912909c496b3577f1c710d63e8de95cb1b051297939fbe223f811cd1550c",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/malloc.v"
+    },
+    {
+      "path": "progs/memmgr/ASI_mmap0.v",
+      "bytes": 1508,
+      "sha256": "beb0a36e9542e3f3649cf56d6b43f60374402ef77142b436a3eac1799023ba6f",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/ASI_mmap0.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "progs/memmgr/VSU_malloc.v",
+      "lines": [
+        40,
+        59
+      ],
+      "role": "parent",
+      "name": "MF_R_VSU",
+      "excerpt_sha256": "26094eef823a2b1ddb18cf85967dc520232622cb796ed3d22d29012d3ff8448d",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/VSU_malloc.v#L40-L59"
+    },
+    {
+      "path": "progs/memmgr/VSU_malloc.v",
+      "lines": [
+        20,
+        23
+      ],
+      "role": "child",
+      "name": "create_memmgr_R",
+      "excerpt_sha256": "45dd1a4ff61c2d365d7895b7f7c19ef303236027cf37797716c1f7c950c79b9c",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/VSU_malloc.v#L20-L23"
+    },
+    {
+      "path": "progs/memmgr/verif_malloc_large.v",
+      "lines": [
+        10,
+        92
+      ],
+      "role": "child",
+      "name": "body_malloc_large",
+      "excerpt_sha256": "9a5a1e15a8a6ecd3c57f368541f94546242694bd1ebea39ff270023d92dcfe5a",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/verif_malloc_large.v#L10-L92"
+    },
+    {
+      "path": "progs/memmgr/verif_malloc_free.v",
+      "lines": [
+        8,
+        39
+      ],
+      "role": "child",
+      "name": "body_malloc",
+      "excerpt_sha256": "68eb253cf9205e13e46d0a4cc7c5d4a37d4f4c0b7168bbb0d9805bc7e6100bd1",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/verif_malloc_free.v#L8-L39"
+    },
+    {
+      "path": "progs/memmgr/verif_bin2size2bin.v",
+      "lines": [
+        7,
+        9
+      ],
+      "role": "child",
+      "name": "body_bin2size",
+      "excerpt_sha256": "240de0e0d0e915147c2f1e1d909e89b9bee7bdfad96662e5db653514eb1916d1",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/verif_bin2size2bin.v#L7-L9"
+    },
+    {
+      "path": "progs/memmgr/verif_bin2size2bin.v",
+      "lines": [
+        11,
+        23
+      ],
+      "role": "child",
+      "name": "body_size2bin",
+      "excerpt_sha256": "bc8d0d45a4bbd1d7c578da7ac12b7c02f1f0b788f54cb64238746b4ecf982cec",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/verif_bin2size2bin.v#L11-L23"
+    },
+    {
+      "path": "progs/memmgr/verif_free_large.v",
+      "lines": [
+        11,
+        23
+      ],
+      "role": "child",
+      "name": "body_free_large",
+      "excerpt_sha256": "b3fec0c1c88cb36378eed87b6d734f6f51ad53a1abb9c95d4437107cc7feba99",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/verif_free_large.v#L11-L23"
+    },
+    {
+      "path": "progs/memmgr/verif_fill_bin.v",
+      "lines": [
+        11,
+        59
+      ],
+      "role": "child",
+      "name": "body_fill_bin",
+      "excerpt_sha256": "1f91acfb17b3dc538b46f8a10f0588c691cbe651f092b26c1cc9dd6a31f423b3",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/verif_fill_bin.v#L11-L59"
+    }
+  ],
+  "parent": {
+    "name": "MF_R_VSU",
+    "statement": "Definition MF_R_VSU: @VSU NullExtension.Espec nil MF_Imports ltac:(QPprog malloc.prog) (Malloc_R_ASI R_APD malloc._pre_fill malloc._try_pre_fill malloc._malloc malloc._free) (mem_mgr_R emptyResvec)."
+  },
+  "children": [
+    {
+      "name": "body_malloc_large",
+      "statement": "Lemma body_malloc_large: semax_body MF_Vprog MF_Gprog f_malloc_large malloc_large_spec.",
+      "closed_by": "start_function; forward_call mmap0; forward_if; rewrite malloc_large_chunk (verif_malloc_large.v:69); entailer!"
+    },
+    {
+      "name": "body_malloc_small",
+      "statement": "Lemma body_malloc_small:  semax_body MF_Vprog MF_Gprog f_malloc_small malloc_small_spec.",
+      "closed_by": "start_function; forward_call size2bin/fill_bin; rewrite (mem_mgr_split_R ...); sep_apply (to_malloc_token'_and_block ...); rewrite mem_mgr_split'; entailer!"
+    },
+    {
+      "name": "body_free_large",
+      "statement": "Lemma body_free_large: semax_body MF_Vprog MF_Gprog f_free_large free_large_spec.",
+      "closed_by": "start_function; forward_call munmap; sep_apply (free_large_chunk s p) (verif_free_large.v:19); entailer!"
+    },
+    {
+      "name": "body_free_small",
+      "statement": "Lemma body_free_small:  semax_body MF_Vprog MF_Gprog f_free_small free_small_spec.",
+      "closed_by": "start_function; forward_call size2bin; rewrite (mem_mgr_split_R ...); mmlist_unroll_nonempty; entailer!"
+    },
+    {
+      "name": "body_bin2size",
+      "statement": "Lemma body_bin2size: semax_body MF_Vprog MF_Gprog f_bin2size bin2size_spec.",
+      "closed_by": "start_function. forward."
+    },
+    {
+      "name": "body_size2bin",
+      "statement": "Lemma body_size2bin: semax_body MF_Vprog MF_Gprog f_size2bin size2bin_spec.",
+      "closed_by": "start_function; forward_call bin2size; forward_if; entailer!; lia"
+    },
+    {
+      "name": "body_list_from_block",
+      "statement": "Lemma body_list_from_block: semax_body MF_Vprog MF_Gprog f_list_from_block list_from_block_spec.",
+      "closed_by": "start_function; forward_while with list_from_inv; mmlist_fold_last; mmlist_app_null; bin2size2bin_id; entailer!"
+    },
+    {
+      "name": "body_fill_bin",
+      "statement": "Lemma body_fill_bin: semax_body MF_Vprog MF_Gprog f_fill_bin fill_bin_spec.",
+      "closed_by": "start_function; forward_call bin2size/mmap0/list_from_block; chunks_from_block_pos; entailer!"
+    },
+    {
+      "name": "body_pre_fill",
+      "statement": "Lemma body_pre_fill i: semax_body MF_Vprog MF_Gprog f_pre_fill (pre_fill_spec' R_APD i).",
+      "closed_by": "start_function; forward_call size2bin/bin2size/list_from_block; rewrite (mem_mgr_split_R ...); rewrite mem_mgr_split'; entailer!"
+    },
+    {
+      "name": "body_try_pre_fill",
+      "statement": "Lemma body_try_pre_fill i: semax_body MF_Vprog MF_Gprog f_try_pre_fill (try_pre_fill_spec' R_APD i).",
+      "closed_by": "start_function; forward_call bin2size/size2bin/pre_fill; forward_while; add_resvec_0/add_resvec_plus; entailer!"
+    },
+    {
+      "name": "body_malloc",
+      "statement": "Lemma body_malloc i: semax_body MF_Vprog MF_Gprog f_malloc (malloc_spec_R' R_APD i).",
+      "closed_by": "start_function; forward_call bin2size/malloc_large/malloc_small; forward_if; entailer!"
+    },
+    {
+      "name": "body_free",
+      "statement": "Lemma body_free i: semax_body MF_Vprog MF_Gprog f_free (free_spec_R' R_APD i).",
+      "closed_by": "start_function; forward_call bin2size/free_small/free_large; forward_if; sep_apply (from_malloc_token'_and_block ...); entailer!"
+    },
+    {
+      "name": "create_memmgr_R",
+      "statement": "Lemma create_memmgr_R: VSU_initializer malloc.prog (mem_mgr_R emptyResvec).",
+      "closed_by": "InitGPred_tac; eapply derives_trans; apply create_mem_mgr_R (malloc_sep.v:830); entailer!"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A VSU (or program-correctness) theorem `@VSU Espec nil imports ltac:(QPprog prog) exports invariant` whose proof is a single `mkVSU prog internal_specs` invocation followed by one obligation per function of `prog`: a `semax_body Vprog Gprog f_X X_spec` goal for each internal function plus a `VSU_initializer` goal for the global invariant.",
+    "use_when": "the program is a fixed set of C functions each with its own funspec; each function's body can be verified in isolation as a self-contained `semax_body` lemma named `body_X`; the bodies communicate only through `forward_call` on their specs; and the initial invariant can be established by one separate lemma (`create_memmgr_R` here).",
+    "avoid_when": "a function's correctness depends on a whole-program invariant that cannot be threaded through its funspec (here `mem_mgr_R` is threaded through every spec so each body stays independent); the bodies are too interdependent to verify in isolation; or a body cannot be closed at all (VSU_mmap0.v leaves `body_mmap0`/`body_munmap` as `Parameter`, so that unit's mkVSU defers rather than proves)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent MF_R_VSU is closed by a single `mkVSU malloc.prog MF_internal_specs` invocation plus 13 one-line discharges — 12 `solve_SF_internal body_X` (one per internal function) and one `apply create_memmgr_R` for the initializer — across VSU_malloc.v lines 45-58, with nothing else between `Proof.` and `Qed.`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/VSU_malloc.v#L44-L59"
+    },
+    {
+      "n": 2,
+      "claim": "No `admit`, `Admitted`, `sorry`, `Axiom` or `Parameter` appears in VSU_malloc.v or any of the ten `verif_*.v` files that hold the body lemmas, so every function's body is closed by a real proof (protocol section 4, E3).",
+      "evidence_kind": "check",
+      "evidence": "grep -nE '\\b(admit|Admitted|sorry|Axiom|Parameter)\\b' over the 11 copied files VSU_malloc.v and verif_*.v returned no matches"
+    },
+    {
+      "n": 3,
+      "claim": "Measured from the copied files: direct_lemmas = 13 (the 12 body lemmas plus create_memmgr_R, the 13 names discharged at VSU_malloc.v:46-58), glue_lines = 16 (VSU_malloc.v:44-59, the Proof..Qed block), child_lines = [4, 83, 32, 3, 13, 13, 49] (the seven shown children's Lemma..Qed ranges), and depth = 3 along the chain MF_R_VSU -> body_list_from_block -> list_from_inv_remainder -> list_from_inv_remainder'.",
+      "evidence_kind": "measurement",
+      "evidence": "depth chain: VSU_malloc.v:52 (solve_SF_internal body_list_from_block), verif_list_from_block.v:291 (apply (list_from_inv_remainder ...)), verif_list_from_block.v:82 (erewrite list_from_inv_remainder')"
+    },
+    {
+      "n": 4,
+      "claim": "All 12 body lemmas share the same per-callee signature — each is `Lemma body_X : semax_body MF_Vprog MF_Gprog f_X X_spec` naming exactly one function and one funspec — so the glue `solve_SF_internal body_X` needs no per-function argument beyond the lemma name.",
+      "evidence_kind": "measurement",
+      "evidence": "read of the ten verif_*.v files; e.g. verif_bin2size2bin.v:7 (body_bin2size, f_bin2size/bin2size_spec), verif_malloc_free.v:8 and :41 (body_malloc/body_free, malloc_spec_R'/free_spec_R'), verif_malloc_large.v:10 (body_malloc_large, malloc_large_spec)"
+    },
+    {
+      "n": 5,
+      "claim": "The same `mkVSU` + `solve_SF_internal` per-function pattern appears in the sibling unit MM0_VSU (VSU_mmap0.v:46-60), discharged one per function by `solve_SF_external body_munmap`, `solve_SF_internal body_mmap0`, `solve_SF_internal body_placeholder`; there `body_mmap0`/`body_munmap` are left as `Parameter` (unproved), whereas malloc's 12 bodies are all real lemmas.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/VSU_mmap0.v#L44-L60"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 13,
+    "depth": 3,
+    "glue_lines": 16,
+    "child_lines": [
+      4,
+      83,
+      32,
+      3,
+      13,
+      13,
+      49
+    ]
+  },
+  "metrics": {
+    "parent_lines": 20,
+    "glue_applications": 13,
+    "body_lemmas": 12,
+    "initializer_lemmas": 1,
+    "how_counted": "parent_lines = VSU_malloc.v lines 40-59 (Definition MF_R_VSU through Qed.); glue_applications = 12 `solve_SF_internal body_X` + 1 `apply create_memmgr_R` across lines 46-58; body_lemmas = the 12 `Lemma body_* : semax_body ...` declarations in the ten verif_*.v files; initializer_lemmas = create_memmgr_R in VSU_malloc.v:20-23"
+  },
+  "consequences": "mkVSU creates one obligation per function of malloc.prog (12 semax_body goals plus one VSU_initializer goal), each of which must be closed by a named body lemma; a single unproved body fails the whole VSU. The move pays off when the bodies are independent: the API functions malloc/free/pre_fill/try_pre_fill carry an index i so one body lemma proves the spec family (malloc_spec_R' R_APD i, free_spec_R' R_APD i, ...) for every i, and the private specs thread the shared invariant mem_mgr_R so no body needs a global argument. Failure modes: a body that cannot be closed must be deferred (as VSU_mmap0.v defers body_mmap0/body_munmap by declaring them Parameter), and a spec that is too weak or too strong at one function surfaces only as an entailment failure deep inside that one body's proof.",
+  "known_uses": [
+    "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/progs/memmgr/VSU_mmap0.v#L44-L60",
+    "rocq-per-callee-lemma-fourcolor-3d7b1949"
+  ],
+  "related": [
+    "rocq-per-callee-lemma-fourcolor-3d7b1949",
+    "rocq-interface-lemma-compcert-eda26107"
+  ],
+  "rule": {
+    "f10_rule": 15,
+    "relation": "supports"
+  },
+  "content_key": "ecff0afdda219eb8a33466861e1ef1e7745ef578898eaa29559b37be53552cf7",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:42:59Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12"
+    }
+  ]
+}

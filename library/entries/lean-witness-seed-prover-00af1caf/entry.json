@@ -1,0 +1,189 @@
+{
+  "id": "lean-witness-seed-prover-00af1caf",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Witness introduction for the IMO 2025 P4 counterexample sequence",
+  "intent": "Prove the headline existence theorem of the IMO 2025 P4 counterexample sequence — every starting value a0 = 6·12^k·n with n coprime to 10 begins an infinite sequence of positive integers whose successor is the sum of the three largest proper divisors — by naming the witness a m = 6·12^(k−m)·13^m·n (constant 6·13^k·n after index k), then discharging each of the three conjuncts of the existential from one of four named lemmas.",
+  "move": "witness",
+  "also_known_as": [
+    "witness introduction",
+    "use ⟨w⟩ then one constructor per property",
+    "name the witness with `use`, then refine ⟨w, ?_, ?_, ?_⟩"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "seed-prover",
+    "url": "https://github.com/ByteDance-Seed/Seed-Prover",
+    "commit": "38c59cebaf969ac259196eb091757518d5b54c67",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "SeedProver/imo2025/IMO2025/P4.lean",
+      "bytes": 159842,
+      "sha256": "eea9dec4644275b6bf54dad5d33fa20886a560c8d3fdd9a098da90115318bb24",
+      "permalink": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P4.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "SeedProver/imo2025/IMO2025/P4.lean",
+      "lines": [
+        3900,
+        3926
+      ],
+      "role": "parent",
+      "name": "imo2025_p4_right",
+      "excerpt_sha256": "47bc033be67077adff6309dbd5944f155a34be35d605154bed8af4c1764e2608",
+      "permalink": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P4.lean#L3900-L3926"
+    },
+    {
+      "path": "SeedProver/imo2025/IMO2025/P4.lean",
+      "lines": [
+        3389,
+        3397
+      ],
+      "role": "child",
+      "name": "imo2025_p4_right8_h1",
+      "excerpt_sha256": "32a7cc3db88c681282423ed0fcaaf1466be6b94fe6f9e9c474d572b244cae8cb",
+      "permalink": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P4.lean#L3389-L3397"
+    },
+    {
+      "path": "SeedProver/imo2025/IMO2025/P4.lean",
+      "lines": [
+        3400,
+        3435
+      ],
+      "role": "child",
+      "name": "imo2025_p4_right8_h2",
+      "excerpt_sha256": "c74aa7502cde15a8d320bf16211bb5cc5eb15d4bada3fc67243de5c5c3015fd3",
+      "permalink": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P4.lean#L3400-L3435"
+    },
+    {
+      "path": "SeedProver/imo2025/IMO2025/P4.lean",
+      "lines": [
+        3438,
+        3478
+      ],
+      "role": "child",
+      "name": "imo2025_p4_right8_h3",
+      "excerpt_sha256": "eec421426682fd67f7e7852e8225bc301807e2a5dc4de1d8d3164878c7d6e354",
+      "permalink": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P4.lean#L3438-L3478"
+    },
+    {
+      "path": "SeedProver/imo2025/IMO2025/P4.lean",
+      "lines": [
+        3481,
+        3897
+      ],
+      "role": "child",
+      "name": "imo2025_p4_right1_main",
+      "excerpt_sha256": "410009d45194d4242d034fbe6d9ba29c1e94f9dddef6cecfb98706a46ce90099",
+      "permalink": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P4.lean#L3481-L3897"
+    }
+  ],
+  "parent": {
+    "name": "imo2025_p4_right",
+    "statement": "theorem imo2025_p4_right (a0 k n : ℕ)\n  (hn : Nat.Coprime n 10)\n  (ha0 : a0 = 6 * 12 ^ k * n) :\n  ∃ a : ℕ → ℕ, (∀ n : ℕ, a n > 0) ∧ (∀ n : ℕ, ∃ b c d : ℕ, b < c ∧ c < d ∧ d < a n ∧ b ∣ a n ∧ c ∣ a n ∧ d ∣ a n ∧ (∀ e : ℕ, e < a n → e ∣ a n → e ≤ b ∨ e = c ∨ e = d) ∧ a (n + 1) = b + c + d) ∧ (a 0 = a0)"
+  },
+  "children": [
+    {
+      "name": "imo2025_p4_right8_h1",
+      "statement": "lemma imo2025_p4_right8_h1 (a0 k n : ℕ)\n  (hn : Nat.Coprime n 10)\n  (ha0 : a0 = 6 * 12 ^ k * n):\n  n ≥ 1",
+      "closed_by": "by_contra h; n = 0 by omega; rw [n = 0] at hn; norm_num at hn; contradiction"
+    },
+    {
+      "name": "imo2025_p4_right8_h2",
+      "statement": "lemma imo2025_p4_right8_h2 (a0 k n : ℕ)\n  (hn : Nat.Coprime n 10)\n  (ha0 : a0 = 6 * 12 ^ k * n)\n  (h1 : n ≥ 1):\n  ∀ m : ℕ, (if m ≤ k then 6 * 12 ^ (k - m) * 13 ^ m * n else 6 * 13 ^ k * n) > 0",
+      "closed_by": "by_cases h3 : m ≤ k; each branch shows the product is positive via Nat.one_le_pow (12^(k-m) ≥ 1, 13^m ≥ 1) and positivity, then simp [h3]; linarith"
+    },
+    {
+      "name": "imo2025_p4_right8_h3",
+      "statement": "lemma imo2025_p4_right8_h3 (a0 k n : ℕ)\n  (hn : Nat.Coprime n 10)\n  (ha0 : a0 = 6 * 12 ^ k * n)\n  (h1 : n ≥ 1)\n  (h2 : ∀ m : ℕ, (if m ≤ k then 6 * 12 ^ (k - m) * 13 ^ m * n else 6 * 13 ^ k * n) > 0):\n  ∀ m : ℕ, (if m ≤ k then 6 * 12 ^ (k - m) * 13 ^ m * n else 6 * 13 ^ k * n) > 3",
+      "closed_by": "by_cases h3 : m ≤ k; each branch lowers the product to ≥ 6 via Nat.one_le_pow and nlinarith (m ≤ k: 6·12^(k-m)·13^m·n ≥ 6·1·1·1; ¬(m ≤ k): 6·13^k·n ≥ 6·1), then simp [h3]; linarith"
+    },
+    {
+      "name": "imo2025_p4_right1_main",
+      "statement": "lemma imo2025_p4_right1_main (a0 k n : ℕ)\n  (hn : Nat.Coprime n 10)\n  (ha0 : a0 = 6 * 12 ^ k * n)\n  (h1 : n ≥ 1)\n  (h2 : ∀ m : ℕ, (if m ≤ k then 6 * 12 ^ (k - m) * 13 ^ m * n else 6 * 13 ^ k * n) > 0)\n  (h3 : ∀ m : ℕ, (if m ≤ k then 6 * 12 ^ (k - m) * 13 ^ m * n else 6 * 13 ^ k * n) > 3):\n  ∀ m : ℕ, ∃ b c d : ℕ, b < c ∧ c < d ∧ d < (if m ≤ k then 6 * 12 ^ (k - m) * 13 ^ m * n else 6 * 13 ^ k * n) ∧\n    b ∣ (if m ≤ k then 6 * 12 ^ (k - m) * 13 ^ m * n else 6 * 13 ^ k * n) ∧\n    c ∣ (if m ≤ k then 6 * 12 ^ (k - m) * 13 ^ m * n else 6 * 13 ^ k * n) ∧\n    d ∣ (if m ≤ k then 6 * 12 ^ (k - m) * 13 ^ m * n else 6 * 13 ^ k * n) ∧\n    (∀ e : ℕ, e < (if m ≤ k then 6 * 12 ^ (k - m) * 13 ^ m * n else 6 * 13 ^ k * n) →\n      e ∣ (if m ≤ k then 6 * 12 ^ (k - m) * 13 ^ m * n else 6 * 13 ^ k * n) →\n      e ≤ b ∨ e = c ∨ e = d) ∧\n    (if (m + 1) ≤ k then 6 * 12 ^ (k - (m + 1)) * 13 ^ (m + 1) * n else 6 * 13 ^ k * n) =\n    b + c + d",
+      "closed_by": "self-contained by by_cases h4 : m ≥ k; in the m ≥ k branch it writes X = 6·s with s = 13^k·n and returns the witness ⟨s, 2s, 3s⟩; in the m < k branch it writes X = 12·t and returns ⟨3t, 4t, 6t⟩; each branch closes with omega/nlinarith/ring/aesop using only h2 and h3 and no further project lemma"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "an existential goal ∃ a : ℕ → ℕ, P a whose body is a conjunction of properties of the sequence (every term positive, every term admits the three-largest-proper-divisor decomposition, a 0 = a0); the witness is a single closed-form term a m = 6·12^(k−m)·13^m·n with an `if m ≤ k` branch, and each conjunct is closed by a separate pre-stated lemma",
+    "use_when": "the witness is one closed-form candidate whose properties are already factored into named lemmas (a bound n ≥ 1, positivity, a lower bound > 3, the divisor decomposition), so each conjunct closes by one lemma application plus the `use`/`constructor` packaging",
+    "avoid_when": "the witness must be assembled interactively from several choices rather than written as one term; the conjuncts must be proved jointly instead of one per lemma; or the candidate's properties are not already named, so the glue would have to re-derive them inline"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent `imo2025_p4_right` (lines 3900-3926) introduces the witness `fun m => if m ≤ k then 6 * 12 ^ (k - m) * 13 ^ m * n else 6 * 13 ^ k * n` with `use` (line 3912), then closes the three conjuncts of the existential from exactly four same-file lemmas — `imo2025_p4_right8_h1` (line 3907, `n ≥ 1`), `imo2025_p4_right8_h2` (line 3908, positivity), `imo2025_p4_right8_h3` (line 3909, `> 3`), `imo2025_p4_right1_main` (line 3910, the proper-divisor decomposition) — and the `a 0 = a0` conjunct closes by `simp only [ha0]; aesop` (lines 3924-3926).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P4.lean#L3906-L3926"
+    },
+    {
+      "n": 2,
+      "claim": "The copied file `P4.lean` contains no `sorry`, `admit`, `Admitted` or `axiom` declaration that closes a goal: the only occurrences of the string 'axiom' are the diagnostic commands `#print axioms …` (lines 1544, 2470, 2731, 3033, 3139, 3387, 3928) and the variable name `h_axiom1` (line 3335).",
+      "evidence_kind": "check",
+      "evidence": "read of the whole copied file SeedProver/imo2025/IMO2025/P4.lean (3929 lines); grep for `sorry|admit|Admitted|axiom` returns only `#print axioms` and `h_axiom1`"
+    },
+    {
+      "n": 3,
+      "claim": "The authors state the informal problem as a doc comment directly above the theorem: 'The infinite sequence a_1, a_2, … consists of positive integers, each of which has at least three proper divisors. For each n ≥ 1, the integer a_{n+1} is the sum of the three largest proper divisors of a_n. When a_1 is 6 * 12^k * m, where m is coprime to 10. Please prove that a_n exists.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P4.lean#L3904-L3905"
+    },
+    {
+      "n": 4,
+      "claim": "The glue is 27 lines (3900-3926) and the four children span 9, 36, 41 and 417 lines respectively (3389-3397, 3400-3435, 3438-3478, 3481-3897); all four children close without invoking any further project lemma (depth 1), and `imo2025_p4_right8_h1` closes by `by_contra` plus `norm_num` alone.",
+      "evidence_kind": "measurement",
+      "evidence": "line ranges counted in the copied file SeedProver/imo2025/IMO2025/P4.lean; recorded as shape.glue_lines=27 and shape.child_lines=[9, 36, 41, 417]"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 1,
+    "glue_lines": 27,
+    "child_lines": [
+      9,
+      36,
+      41,
+      417
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 27,
+    "children": 4,
+    "children_closed_by_automation": 0,
+    "how_counted": "parent_proof_lines = lines 3900-3926 of SeedProver/imo2025/IMO2025/P4.lean (the parent site span, including the statement); children = the four named lemmas the glue cites; children_closed_by_automation = 0 because each child needs at least a by_cases split, though h1 closes by by_contra + norm_num"
+  },
+  "consequences": "The ∃-goal becomes `use ⟨witness⟩` plus three `constructor` obligations, one per conjunct, each discharged by a pre-packaged lemma, so a missing conjunct is a missing lemma rather than a partial proof. The obligations are coupled through the lemmas' hypotheses: h2 needs h1 (`n ≥ 1`), h3 needs h2 (positivity), and right1_main needs all three, so the glue must assemble the `have`s in order and re-state each exact type. The witness is a closed-form term with an `if m ≤ k` branch, so any later step that computes the witness at a specific index must simplify the `if` first; the `a 0 = a0` conjunct is discharged by `simp only [ha0]; aesop` rather than by a named lemma, so if `ha0` were stated differently that branch would need its own fact.",
+  "known_uses": [
+    "the same `refine ⟨w, …⟩` witness introduction recurs inside `imo2025_p4_right1_main` itself, which returns its three largest proper divisors by `refine ⟨s, 2 * s, 3 * s, ?_, …⟩` (line 3665) and `refine ⟨3 * t, 4 * t, 6 * t, ?_, …⟩` (line 3856) (https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P4.lean#L3665)"
+  ],
+  "related": [
+    "lean-witness-compfiles-b724f0b7",
+    "lean-witness-mathlib4-98e915ff",
+    "lean-witness-sphere-eversion-2ae37d14"
+  ],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "00af1caf27bc1baa490b76a0e0d6a3a48207bcce2991a09c5969659dddedee05",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:16:12Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:16:58Z"
+    }
+  ]
+}

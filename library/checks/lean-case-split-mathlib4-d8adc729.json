@@ -1,0 +1,101 @@
+{
+  "entry": "lean-case-split-mathlib4-d8adc729",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T14:45:33Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T14:45:33Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:45:47Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml (delegates to build_template.yml, whose 'build archive, counterexamples and wanted' step runs lake-build-with-retry.sh Archive and 'check that Archive built' runs lake build --no-build --wfail Archive); commit e1545ebed97594477bbd88b2fe948ffce56e5af2 on default branch master",
+      "by": "verifier",
+      "at": "2026-11-12T14:47:02Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Opened code/Archive/Wiedijk100Theorems/FriendshipGraphs.lean lines 330-335: six lines; L332 rcases hG.isRegularOf_not_existsPolitician npG supplies degree d, L333 rcases lt_or_ge d 3 splits, L334 and L335 each close one branch by a single exact applying a child lemma",
+      "by": "verifier",
+      "at": "2026-11-12T14:47:05Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Opened code lines 333-335: L333 rcases lt_or_ge d 3 with dle2 | dge3 (goals d < 3 and 3 <= d); L334 exact npG (hG.existsPolitician_of_degree_le_two dreg (Nat.lt_succ_iff.mp dle2)); L335 exact hG.false_of_three_le_degree dreg dge3",
+      "by": "verifier",
+      "at": "2026-11-12T14:47:09Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Opened code lines 328-329 (docstring: 'If the degree is at most 2, we observe by casework that it has a politician anyway. If the degree is at least 3, the graph cannot exist.') and lines 29-30 (module outline: 'By casework, show that if d = 0, 1, 2, then G has a politician. If 3 <= d, let p be a prime factor of d - 1.'); both quoted sentences present verbatim",
+      "by": "verifier",
+      "at": "2026-11-12T14:47:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Traced calls in code: friendship_theorem L330 -> existsPolitician_of_degree_le_two L315 (calls existsPolitician_of_degree_eq_two at L319) -> existsPolitician_of_degree_eq_two L306 (calls neighborFinset_eq_of_degree_eq_two at L310) -> neighborFinset_eq_of_degree_eq_two L289 (calls card_of_regular at L298) -> card_of_regular L185 (calls adjMatrix_sq_of_regular at L188) -> adjMatrix_sq_of_regular L127 (calls adjMatrix_sq_of_ne at L131) -> adjMatrix_sq_of_ne L82 leaf. 6 edges, all line numbers match; checked alternative branches (isRegularOf..., false_of_three_le_degree -> card_mod_p/adjMatrix_pow_mod_p) are shorter",
+      "by": "verifier",
+      "at": "2026-11-12T14:47:16Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Verified against the copied code/Archive/Wiedijk100Theorems/FriendshipGraphs.lean. Parent friendship_theorem (L330-335) is 6 glue lines: by_contra npG, rcases hG.isRegularOf_not_existsPolitician npG, rcases lt_or_ge d 3, and one exact per branch (L334, L335); each branch closes. The three children are exactly the lemmas the glue calls: isRegularOf_not_existsPolitician (L149-175, 27 lines), false_of_three_le_degree (L248-273, 26 lines, closed by contrapose! on ZMod.trace_pow_card then trace_adjMatrix vs adjMatrix_pow_mod_p_of_regular, lia at L273), existsPolitician_of_degree_le_two (L315-319, 5 lines, interval_cases d; iterate 2 apply existsPolitician_of_degree_le_one; exact existsPolitician_of_degree_eq_two). Child statements and closed_by match the code verbatim. Shape numbers correct: direct_lemmas=3, glue_lines=6, child_lines=[27,26,5]. Depth=6 confirmed by following the longest chain friendship_theorem->existsPolitician_of_degree_le_two(L319)->existsPolitician_of_degree_eq_two(L310)->neighborFinset_eq_of_degree_eq_two(L298)->card_of_regular(L188)->adjMatrix_sq_of_regular(L131)->adjMatrix_sq_of_ne(L82 leaf); no longer chain exists. Claims 1-4 all match the code and line numbers.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T14:48:23Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated to generalise: 'extract a natural-number parameter d from an assumption, then threshold-split it via a library fact (lt_or_ge d 3), closing each branch with one named lemma' (applicability.goal_shape/use_when). 'When not to use' and Consequences are honest and specific against the copied code: the d<3 to d<=2 re-encoding costs Nat.lt_succ_iff.mp (line 334); exhaustiveness is a free library fact lt_or_ge; d must be obtained before the split via isRegularOf_not_existsPolitician; failure mode when branches drag shared assumptions is named. 'Why each direct child is a good leaf' states the bounded-prover-relevant property: self-contained statement + independent closure (each closes by one named lemma or a deterministic interval_cases). Non-blocking notes: entry.json avoid_when's third item (exhaustiveness not a library fact) and README's third 'avoid' bullet (sides need d in different forms) differ, and known_uses points at the entry's own site (L315-L319) rather than an independent use.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T14:49:36Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:49:53Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes: 1 file byte-identical at pinned commit e1545ebed97594477bbd88b2fe948ffce56e5af2; copied file sha256 27ed2662... matches entry.json; all file/site permalinks use the same pinned commit; licence Apache-2.0 matches upstream LICENSE (Apache License 2.0, copied as sources/mathlib4/upstream-LICENSE) and source.json/SOURCE.md; site line ranges (149-175, 248-273, 315-319, 330-335, 28-32) verified against the local copy",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T14:50:25Z"
+    }
+  ]
+}

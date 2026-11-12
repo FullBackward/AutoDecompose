@@ -1,0 +1,162 @@
+{
+  "id": "markdown-extract-have-lean4-skills-2f8b180f",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Extract-have: lift the two inline haves of big_result into helper1 and helper2",
+  "intent": "Refactor a monolithic proof of `big_result` whose body holds two inline `have` blocks (30 and 40 lines of tactics) plus a 30-line remainder into two named lemmas `helper1` and `helper2`, each owning one intermediate goal, so the main proof shrinks to a one-line application per lemma plus the remainder.",
+  "move": "extract-have",
+  "also_known_as": [
+    "extract a have as a standalone lemma with context",
+    "hoist a have into a lemma",
+    "helper lemma extraction"
+  ],
+  "language": "markdown",
+  "source": {
+    "source_id": "lean4-skills",
+    "url": "https://github.com/cameronfreer/lean4-skills",
+    "commit": "3f913c66251b8712bb58e6ce83a453fa96e3f94f",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "plugins/lean4/skills/lean4/references/proof-refactoring.md",
+      "bytes": 28691,
+      "sha256": "94729eafa81f873172d0f98b1dd204902a33b4d14991e9250fff8d040b7be6f7",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-refactoring.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": "plugins/lean4/skills/lean4/references/proof-refactoring.md",
+      "lines": [
+        208,
+        212
+      ],
+      "role": "parent",
+      "name": "big_result",
+      "excerpt_sha256": "f57edaa6cd6e084374d665773d88f8350cdcd27ca34a95be46fd32632ffd18d9",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-refactoring.md#L208-L212"
+    },
+    {
+      "path": "plugins/lean4/skills/lean4/references/proof-refactoring.md",
+      "lines": [
+        202,
+        203
+      ],
+      "role": "child",
+      "name": "helper1",
+      "excerpt_sha256": "1b91d672c9bf4766b65a88824873e4ae4348a9a4715e3c36fafbdc60d20ae7a1",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-refactoring.md#L202-L203"
+    },
+    {
+      "path": "plugins/lean4/skills/lean4/references/proof-refactoring.md",
+      "lines": [
+        205,
+        206
+      ],
+      "role": "child",
+      "name": "helper2",
+      "excerpt_sha256": "942824e7a17c4123c6b677ae1fdf0360b5f00630602997b34ff200ec23515184",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-refactoring.md#L205-L206"
+    },
+    {
+      "path": "plugins/lean4/skills/lean4/references/proof-refactoring.md",
+      "lines": [
+        192,
+        199
+      ],
+      "role": "context",
+      "name": "before-monolithic",
+      "excerpt_sha256": "ac8f745cb3b7a3c16f77ab2d34cd62f1593ff508d900ef60427b8dc9d1aa6e68",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-refactoring.md#L192-L199"
+    }
+  ],
+  "parent": {
+    "name": "big_result",
+    "statement": "theorem big_result : Conclusion"
+  },
+  "children": [
+    {
+      "name": "helper1",
+      "statement": "lemma helper1 (x : α) (hx : Property x) : IntermediateGoal1",
+      "closed_by": "the 30-line tactic block lifted from the inline `have h1 : IntermediateGoal1` (elided in the source as `[30 lines - extracted from h1]`)"
+    },
+    {
+      "name": "helper2",
+      "statement": "lemma helper2 (x : α) (h1 : IntermediateGoal1) : IntermediateGoal2",
+      "closed_by": "the 40-line tactic block lifted from the inline `have h2 : IntermediateGoal2`, using the prior result `h1 : IntermediateGoal1` (elided as `[40 lines - extracted from h2]`)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A theorem `big_result : Conclusion` whose proof body is a sequence of intermediate goals stated as inline `have`s with long tactic blocks (30-40 lines each), followed by a remainder. The move turns each such `have h : T := by <block>` into a lemma whose conclusion is `T` and whose parameters are exactly the hypotheses the block uses, and the parent's line becomes `have h := helper <args>`.",
+    "use_when": "an intermediate `have` is a self-contained statement with local dependencies that is worth testing or reusing on its own, and the parent is long enough (the file says 60-200 lines) that the inline blocks obscure the main argument",
+    "avoid_when": "the `have` is short and linear, the helper would need 10+ parameters or its context is too tangled to separate cleanly (the file's 'Bad breakpoints', lines 182-187), or the intermediate result depends on later bindings so it cannot be stated before the parent"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The AFTER proof of big_result cites exactly two lemmas, helper1 and helper2, one application each (`have h1 := helper1 x hx`, `have h2 := helper2 x h1`), and these correspond one-to-one to the two inline goals `have h1 : IntermediateGoal1` and `have h2 : IntermediateGoal2` of the BEFORE block.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-refactoring.md#L192-L212"
+    },
+    {
+      "n": 2,
+      "claim": "The main proof drops from the 8-line BEFORE block (lines 192-199), which embeds two elided tactic blocks totalling 70 lines (`[30 lines of tactics...]` + `[40 lines of tactics...]`), to 5 lines of glue (lines 208-212); the two extracted bodies (30 and 40 lines) are moved out into helper1 and helper2.",
+      "evidence_kind": "measurement",
+      "evidence": "counted on the copied file: BEFORE https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-refactoring.md#L192-L199 versus AFTER https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-refactoring.md#L208-L212"
+    },
+    {
+      "n": 3,
+      "claim": "The file states the trigger for this exact move in its own words: refactor when there are 'Large preliminary calculations (50+ line `have` statements)'. This site is the Step 3 illustration of that rule.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-refactoring.md#L59"
+    },
+    {
+      "n": 4,
+      "claim": "The same move is applied again in the file's 'Real Refactoring Example' (lines 295-342): the inline `have hk_bound : ∀ i : Fin (m' + 1), k i < n := by ...` (lines 309-317) is extracted to `private lemma strictMono_all_lt_succ_last` (lines 320-328) and the main proof 'now just calls helper' (line 330).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-refactoring.md#L309-L330"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 2,
+    "glue_lines": 5,
+    "child_lines": [
+      2,
+      2
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines_before": 8,
+    "parent_proof_lines_after": 5,
+    "direct_lemmas": 2,
+    "how_counted": "BEFORE block (lines 192-199) versus AFTER theorem (lines 208-212) of the copied file; the two extracted bodies are stated in the source as 30 and 40 lines of tactics"
+  },
+  "consequences": "Each extracted `have` becomes a top-level lemma whose statement must be exactly the type the parent's `have` expects, with every hypothesis the body uses: helper1 must conclude in IntermediateGoal1 given hx : Property x, and helper2 must take h1 : IntermediateGoal1 — the previous lemma's conclusion — or the glue `have h2 := helper2 x h1` will not elaborate. The file's Step 4 (lines 215-232) turns this into a check: the goal at the old `have` line must match the helper's conclusion. A dropped or mismatched hypothesis breaks sufficiency silently. Sequential dependence is the other cost: helper2 depends on helper1, so the two leaves are not parallelisable as stated (to parallelise, helper2 would re-prove IntermediateGoal1 or take it as an assumption).",
+  "known_uses": [
+    "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-refactoring.md#L309-L330"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 4,
+    "relation": "supports"
+  },
+  "content_key": "2f8b180f071a289215ca33ebf33f9051c25af21a20a10a8a33240c2d8f3d880f",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:19:46Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:21:00Z"
+    }
+  ]
+}

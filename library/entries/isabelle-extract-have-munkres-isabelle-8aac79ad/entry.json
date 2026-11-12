@@ -1,0 +1,190 @@
+{
+  "id": "isabelle-extract-have-munkres-isabelle-8aac79ad",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Extract normality and G-delta halves of Munkres Lemma 40.1 into named step lemmas (Nagata-Smirnov)",
+  "intent": "Reduce Munkres Lemma 40.1 — `regular with a sigma-locally-finite basis \\<Longrightarrow> normal \\<and> every closed set is G-delta` — to two named step lemmas whose proofs were lifted out of the conjunction: `Lemma_40_1_step3` proves the normality half and `Lemma_40_1_step2` the G-delta half, so the parent closes in four lines by applying both to the shared hReg/hBasis/hCLF context and letting `argo` assemble the conjunction.",
+  "move": "extract-have",
+  "also_known_as": [
+    "lift a have into a standalone lemma",
+    "lemma extraction",
+    "assert-to-lemma"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "munkres-isabelle",
+    "url": "https://github.com/JUrban/isa_top_autoform1",
+    "commit": "90d108779e83453e9cae2f55b513246e1cc044e0",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "tst/Top1_Ch5_8.thy",
+      "bytes": 1644384,
+      "sha256": "e545e6ca96db683e8b116fa8e30689dd05a101e33f3cdd31539e1e2150dcb46a",
+      "permalink": "https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/Top1_Ch5_8.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "tst/Top1_Ch5_8.thy",
+      "lines": [
+        5064,
+        5072
+      ],
+      "role": "parent",
+      "name": "Lemma_40_1",
+      "excerpt_sha256": "5f74bb03da29a391c6c66630fdad0aae739f38de481bf831d0f9fc178f3d8d9d",
+      "permalink": "https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/Top1_Ch5_8.thy#L5064-L5072"
+    },
+    {
+      "path": "tst/Top1_Ch5_8.thy",
+      "lines": [
+        4626,
+        4704
+      ],
+      "role": "child",
+      "name": "Lemma_40_1_step2",
+      "excerpt_sha256": "2f4b3fe31bbb0da10f5dc1b561b45a9d223aa3a83dcaac06f6e9876cf8fabb52",
+      "permalink": "https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/Top1_Ch5_8.thy#L4626-L4704"
+    },
+    {
+      "path": "tst/Top1_Ch5_8.thy",
+      "lines": [
+        4756,
+        5062
+      ],
+      "role": "child",
+      "name": "Lemma_40_1_step3",
+      "excerpt_sha256": "bcd46f315551c81a08f81f3ea7aef732051830af201d58609a945a6896072964",
+      "permalink": "https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/Top1_Ch5_8.thy#L4756-L5062"
+    },
+    {
+      "path": "tst/Top1_Ch5_8.thy",
+      "lines": [
+        4376,
+        4623
+      ],
+      "role": "context",
+      "name": "Lemma_40_1_step1",
+      "excerpt_sha256": "10f7607299115488f52dfb576b17ab1e09ac38dcda5cd511414039281ed79973",
+      "permalink": "https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/Top1_Ch5_8.thy#L4376-L4623"
+    },
+    {
+      "path": "tst/Top1_Ch5_8.thy",
+      "lines": [
+        4708,
+        4754
+      ],
+      "role": "context",
+      "name": "closedin_on_finite_Union",
+      "excerpt_sha256": "e9c8f608242f7b810472a4225032aaeed5b88160740dd311ad0fee04f94ce719",
+      "permalink": "https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/Top1_Ch5_8.thy#L4708-L4754"
+    },
+    {
+      "path": "tst/Top1_Ch5_8.thy",
+      "lines": [
+        4369,
+        4370
+      ],
+      "role": "context",
+      "name": "top1_G_delta_on_def",
+      "excerpt_sha256": "fd71aea442a29ea9cf4449b7ed08552f3efdc8d3802c80fec73b2d86f487c1b4",
+      "permalink": "https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/Top1_Ch5_8.thy#L4369-L4370"
+    }
+  ],
+  "parent": {
+    "name": "Lemma_40_1",
+    "statement": "top1_normal_on X TX \\<and> (\\<forall>A. closedin_on X TX A \\<longrightarrow> top1_G_delta_on X TX A)"
+  },
+  "children": [
+    {
+      "name": "Lemma_40_1_step2",
+      "statement": "closedin_on X TX A \\<Longrightarrow> top1_G_delta_on X TX A (under the same hReg/hBasis/hCLF)",
+      "closed_by": "Lemma_40_1_step1 (line 4649) decomposes the open complement W = X - A into U n with cl(U n) \\<subseteq> W and W = \\<Union>n. U n; then V n = X - cl(U n) gives A = \\<Inter>n. V n, and the goal closes by unfolding top1_G_delta_on_def and apply (rule exI[where x=V]) by satx"
+    },
+    {
+      "name": "Lemma_40_1_step3",
+      "statement": "top1_normal_on X TX (under the same hReg/hBasis/hCLF)",
+      "closed_by": "unfolds top1_normal_on_def, then the Theorem 32.1 shrinking argument: Lemma_40_1_step1 applied twice (lines 4798, 4811) to X - D and X - C, define U'_n / V'_n by subtracting finite unions of closures, closedin_on_finite_Union (4854, 4891) makes those unions closed, and a WLOG m \\<le> n case split closes the disjointness of UU and VV"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A conjunction goal `P \\<and> Q` over a shared hypothesis context (here `top1_regular_on X TX`, `basis_for X \\<B> TX`, `top1_sigma_locally_finite_family_on X TX \\<B>`), where each conjunct has a long proof that reuses the same assumptions verbatim; the parent proof is then just `using lemmaP lemmaQ by argo`.",
+    "use_when": "the two conjuncts are independent (neither needs the other) and each is long enough to deserve its own lemma; both restate the same hypotheses, so the parent can instantiate each with a single `[OF hReg hBasis hCLF]`.",
+    "avoid_when": "the two halves share a genuinely intermediate construction — extract that shared part first (as Lemma_40_1_step1 is here) rather than duplicating it in both children; or the conjunction is so short that one proof with `intro conjI` is clearer than two lemmas."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent `Lemma_40_1` is closed in four proof lines (5069-5072) by `using Lemma_40_1_step3[OF hReg hBasis hCLF]` and `Lemma_40_1_step2[OF hReg hBasis hCLF]` followed by `by argo`, with no other proof step.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/Top1_Ch5_8.thy#L5064-L5072"
+    },
+    {
+      "n": 2,
+      "claim": "Each child is a self-contained `lemma ... qed` in the same file that closes on its own, and the region 4369-5072 (the parent, both children, and the two context lemmas) contains no `sorry`, `oops` or `admit`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/Top1_Ch5_8.thy#L4626-L4704 and https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/Top1_Ch5_8.thy#L4756-L5062; grep for `sorry|oops|admit` over lines 4369-5072 returns no match (the file's such markers are all at line 12322 or later)"
+    },
+    {
+      "n": 3,
+      "claim": "Below the parent there is a chain of project lemmas of depth 2: `Lemma_40_1_step2` closes by applying `Lemma_40_1_step1` (line 4649), and `Lemma_40_1_step3` closes by applying `Lemma_40_1_step1` twice (lines 4798 and 4811), so both branches are `Lemma_40_1 -> (step2 | step3) -> step1`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/Top1_Ch5_8.thy#L4649 and https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/Top1_Ch5_8.thy#L4798 and https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/Top1_Ch5_8.thy#L4811"
+    },
+    {
+      "n": 4,
+      "claim": "The authors label the decomposition by step and tie it to the textbook: the section header reads '\\S40 The Nagata-Smirnov Metrization Theorem' (line 4367), the provenance comment reads '(** from \\S40 Lemma 40.1 [top1.tex:5675] **)' (line 4372), and the `text` blocks name each step — 'Step 1 of Lemma 40.1: open set decomposition' (4373), 'Step 2 of Lemma 40.1: closed sets are G-delta' (4625), 'Step 3 of Lemma 40.1: normality via the Theorem 32.1 technique' (4706).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/Top1_Ch5_8.thy#L4367, https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/Top1_Ch5_8.thy#L4372-L4373, https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/Top1_Ch5_8.thy#L4625, https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/Top1_Ch5_8.thy#L4706"
+    },
+    {
+      "n": 5,
+      "claim": "The shape is a measurement: a 9-line parent (5064-5072) whose 4-line proof body delegates 386 lines to the two children (step2 = 4626-4704 = 79 lines; step3 = 4756-5062 = 307 lines).",
+      "evidence_kind": "measurement",
+      "evidence": "line counts at the pinned commit: 4704-4626+1 = 79; 5062-4756+1 = 307; 79+307 = 386, in https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/Top1_Ch5_8.thy"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 2,
+    "glue_lines": 4,
+    "child_lines": [
+      79,
+      307
+    ]
+  },
+  "metrics": {
+    "parent_lines": 9,
+    "glue_lines": 4,
+    "children": 2,
+    "child_total_lines": 386,
+    "lemma_reuse": 2,
+    "how_counted": "parent = 5064-5072 (9 lines); glue (proof body) = 5069-5072 (4); children = 4626-4704 (79) and 4756-5062 (307); Lemma_40_1 reused at 6105 and 6107 by Theorem_40_3"
+  },
+  "consequences": "The move turns one conjunction goal into two named obligations (normality, and closed-implies-G-delta) that each restate the three shared hypotheses hReg/hBasis/hCLF verbatim. The parent's `using` step relies on the two children having exactly those three `assumes` in the same order, so a child that adds or drops a hypothesis breaks the `[OF hReg hBasis hCLF]` template. The two children are independent of each other (each calls the shared open-decomposition `Lemma_40_1_step1`, never its sibling), so they can be proved in parallel. The real difficulty is not removed but pushed one level down into `Lemma_40_1_step1` (248 lines); if that shared lemma is wrong or too weak, both children fail together. Downstream, `Theorem_40_3` (the Nagata-Smirnov metrization theorem) consumes `Lemma_40_1` twice (lines 6105 and 6107), so the decomposition's statement must stay exactly the one that theorem needs.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 4,
+    "relation": "supports"
+  },
+  "content_key": "8aac79adc376e63ab888023aba77d4a160b6a254e26da44460f79c7e75ee51ed",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:04:54Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:06:10Z"
+    }
+  ]
+}

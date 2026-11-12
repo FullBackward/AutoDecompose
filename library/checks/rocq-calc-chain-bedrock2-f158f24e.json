@@ -1,0 +1,109 @@
+{
+  "entry": "rocq-calc-chain-bedrock2-f158f24e",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:55:45Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:55:45Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:55:51Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/debian.yml runs 'make' on push to master (default branch); root Makefile 'all' -> compiler_ex -> compiler_noex -> compiler/Makefile 'noex' compiles every *.v under src/compiler including Pipeline.v; commit b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b is pinned at ref HEAD",
+      "by": "verifier",
+      "at": "2026-11-12T15:57:43Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Pipeline.v L634-643: Lemma composed_compiler_correct; proof is 'unfold composed_compile' (636) then a single 'exact' (637-642) applying nested compose_phases_correct over flattening_correct, useimmediate_correct, dce_correct, regalloc_correct, spilling_correct, riscv_phase_correct; Qed 643; no other tactic",
+      "by": "verifier",
+      "at": "2026-11-12T15:57:46Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "debian.yml L5-8 on push branches [master]; L59-62 run TIMED=1 make -j -k; root Makefile all (L161) includes compiler_ex->compiler_noex (L49-50,131-135) -> compiler/Makefile noex (L45-47) builds VS_NOEX = every *.v under src/compiler (L39,42), which contains Pipeline.v",
+      "by": "verifier",
+      "at": "2026-11-12T15:57:48Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Parent 634-643 = 9 lines, applies 6 per-pass lemmas + compose_phases_correct. Pass proof lines (Proof..Qed inclusive): flattening_correct 275-324=50, useimmediate_correct 343-376=34, dce_correct 392-439=48, regalloc_correct 458-503=46, spilling_correct 553-584=32, riscv_phase_correct 603-622=20. Depth 2: flattening_correct uses flatten_functions_NoDup at L280 (defined 249, leaf)",
+      "by": "verifier",
+      "at": "2026-11-12T15:57:50Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Pipeline.v L681 comment '(* restate composed_compiler_correct by unfolding definitions used to compose phases *)'; L682 'Lemma compiler_correct: forall' — matches the author-statement claim",
+      "by": "verifier",
+      "at": "2026-11-12T15:57:50Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "L733 'pose proof (phase_preserves_post (composed_compiler_correct p_funcs stack_hi ret_addr)) as C' inside compiler_correct; L806 'destruct (compiler_correct fs ...) as ...' inside compiler_correct_wp (lemma at L764)",
+      "by": "verifier",
+      "at": "2026-11-12T15:57:52Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent composed_compiler_correct (Pipeline.v L634-643) is 'unfold composed_compile' then a single nested 'exact' over compose_phases_correct + the 6 per-pass lemmas flattening_correct/useimmediate_correct/dce_correct/regalloc_correct/spilling_correct/riscv_phase_correct; order matches composed_compile (L624-632) and consecutive instances typecheck (SrcLang->FlatWithStrVars->FlatWithStrVars->FlatWithStrVars->FlatWithZVars->FlatWithRegs->RiscvLang), so it closes. All 7 children are exactly the lemmas the parent uses. Each child closed_by matches its proof: split; validity via *_NoDup/spilling_preserves_valid/exact I; simulation via *_correct_aux/checker_correct/spill_fun_correct/flat_to_riscv_correct. Shape numbers right: direct_lemmas=7, depth=2 (parent->flattening_correct->flatten_functions_NoDup L280), glue_lines=9 (L635-643), child_lines=[15,50,34,48,46,32,20] sum 245=child_proof_lines_total.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:59:50Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated beyond the example: applicability.goal_shape abstracts to 'phase_correct L_first L_last composed' with a right-nested compose_phases and a two-field simulation record, and use_when names preconditions (per-pass phase_correct lemmas of one shape, one fixed composed_compile order, an available transitivity lemma) that do not depend on bedrock2; also_known_as maps it to CompCert-style pass composition. 'When not to use' is honest: it concedes the top-level proof is trivial and the real work sits in the per-pass lemmas (20-50 lines each, closed by bespoke *_correct_aux / checker_correct / spill_fun_correct / flat_to_riscv_correct, none by a single automated tactic), and lists concrete avoid conditions (no standalone phase_correct lemma yet, order/reuse changes, intermediate languages not written out). Consequences are specific (both record fields, glue order must match composed_compile, intermediate languages named; failure = type error at the exact). It says what makes the leaves good for a bounded prover: each pass lemma's statement is self-contained (a phase_correct between two named Lang instances), closes on its own via split + one imported per-pass lemma + a _functions_NoDup lemma, and the parent proof depends only on the phase_correct type, not on how any pass is proved. Minor, non-blocking: the prose 'CompCert and seL4-style per-pass proofs work the same way' is uncited (would be a stronger claim with a CompCert Compiler.v permalink), but it sits in README prose, not in entry claims.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T16:01:02Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:01:29Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent and traceable. check_provenance passes (1 file byte-identical at b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b); the local copy compiler/src/compiler/Pipeline.v is 37416 bytes with sha256 514ccfb9... matching entry.json files[0]. Commit b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b is identical across source.json, SOURCE.md, entry.json and README; all permalinks use that full commit hash on mit-plv/bedrock2. Licence is MIT consistently (source.json licence, SOURCE.md detected MIT with upstream-LICENSE holding the MIT text, entry.json licence, README licence); MIT is permissive so no index withholding mark needed. Source note records pinned commit, browse URL, licence file and attribution.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T16:01:58Z"
+    }
+  ]
+}

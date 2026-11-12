@@ -1,0 +1,117 @@
+{
+  "entry": "rocq-per-callee-lemma-fourcolor-3d7b1949",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:36:32Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:36:32Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "13 file(s) byte-identical at c1d6b1cd5288bea4b067aac13cdde3c18dffe018",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:36:41Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/docker-action.yml builds coq-fourcolor on push to master (opam install coq-fourcolor builds the whole library incl. theories/proof/reducibility.v, listed in _CoqProject line 127); default branch is master and pinned commit c1d6b1cd5288bea4b067aac13cdde3c18dffe018 is the master HEAD",
+      "by": "verifier",
+      "at": "2026-11-12T15:39:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "reducibility.v L16-21: L18 'rewrite /reducibility; apply cat_reducible_range with 322.', L19-20 two CatReducible chains (red000to214..red302to322 over [0,322); red322to485..red588to633 over [322,633)); nothing between Proof(17) and Qed(21)",
+      "by": "verifier",
+      "at": "2026-11-12T15:39:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "all ten task*.v files show 'CatReducible' with five sub-block lemmas; job001to106.v/job107to164.v/job563to588.v/job623to633.v all close 'Proof. CheckReducible. Qed.'; task589to633.v closes red633 (empty [633,633)) with 'by apply check_reducible_in_range; left.'",
+      "by": "verifier",
+      "at": "2026-11-12T15:39:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "reducibility.v L19-20 name 10 direct lemmas; glue block L17-21 = 5 lines; depth the_reducibility->red000to214->red000to106 = 2 (job closed by CheckReducible); child_lines from 8 child sites: 7 with 3-line Proof..Qed, red588to633 with 5 (adds 'have red633' + 'by apply')",
+      "by": "verifier",
+      "at": "2026-11-12T15:39:26Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "list_files.py fourcolor --glob theories/proof/job*.v returns exactly 49 job files; configurations.v L2076 'Definition the_configs := @seqn config 633'; 1 theorem + 10 task + 49 job = 60; sampled job files all close with CheckReducible",
+      "by": "verifier",
+      "at": "2026-11-12T15:39:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "cfreducible.v L25-28 header: 'CatReducible lem1 .. lem5 :: tactic for proving a reducible_in_range i j subgoal by combining proofs lem[1-5] of reducible_in_range for five contiguous subranges covering [i, j).' (quote matches; 'cfs' in the claim comes from the reducible_in_range signature documented at L21)",
+      "by": "verifier",
+      "at": "2026-11-12T15:39:28Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "13 file(s) byte-identical at c1d6b1cd5288bea4b067aac13cdde3c18dffe018",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:41:17Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Opened copied code and upstream: parent reducibility.v L16-21 is Lemma the_reducibility : reducibility., whose L18 rewrite /reducibility; apply cat_reducible_range with 322 splits [0,633) at 322 (present.v L73: reducibility := reducible_in_range 0 (size the_configs) the_configs; configurations.v L2076: the_configs := @seqn config 633), closed by two CatReducible chains L19-20 naming exactly the 10 children. All 10 children's statements and closed_by match their task files verbatim (task001to214..task589to633); each is a 5-arg CatReducible chain of contiguous sub-blocks, and job leaves (e.g. job001to106, job563to588, job623to633) close with Proof. CheckReducible. Qed.; red588to633's red633 inline closes by apply check_reducible_in_range; left. Tiling is exact at every level (no gaps/overlaps). Shape numbers verified from code: direct_lemmas=10 (L19-20), depth=2 (the_reducibility->red000to214->red000to106), glue_lines=5 (L17-21), child_lines=[3,3,3,3,3,3,3,5] for the 8 shown child sites (red588to633=5 incl. red633). Provenance passes (13 files byte-identical); list_files.py confirms 49 job files, 60 total lemmas.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:42:13Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "object",
+      "evidence": "Move is stated beyond the example (also_known_as: CompCert per-pass simulation, seL4 crunch; known_uses: lean equational-theories entry) and the 'Why each lemma is a good leaf' paragraph does name what makes leaves bounded-prover-sized (statement = two numeric bounds + the_configs, one mechanical tactic, no free variables). Consequences are honest/specific and match the copied code: CatReducible is fixed arity 5 (cfreducible.v L109-112), cat_reducible_range needs contiguous tiling (L101-103), red588to633 pads the empty end range (task589to633.v L15-16). But the README 'when not to use' is not honest: its 4th clause 'avoid when the per-case check is expensive and must be cached per component anyway, which is the situation the block lemma already encodes' is self-contradictory -- it warns against the move in exactly the per-component-caching situation the block lemmas provide (cfreducible.v L72 'hides the expensive reducibility evaluation'). It also diverges from entry.json avoid_when, whose 3rd clause ('per-case check not uniform enough for one generated tactic') is the honest converse and is missing from the README. Fix: replace that 4th README clause with the uniformity converse, or reword so expensive per-case checks read as a reason to use, not avoid.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:44:05Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "13 file(s) byte-identical at c1d6b1cd5288bea4b067aac13cdde3c18dffe018",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:44:29Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance passes: 13 files byte-identical at c1d6b1cd5288bea4b067aac13cdde3c18dffe018 (check_provenance.py). Commit c1d6b1cd5288bea4b067aac13cdde3c18dffe018 is consistent across entry.json source, sources/fourcolor/source.json, sources/fourcolor/SOURCE.md, and every file/site permalink (all blob/c1d6b1cd.../theories/proof/*.v). Licence CECILL-B is recorded consistently in entry.json source.licence, source.json licence, and SOURCE.md, and the copied upstream-LICENSE is the CeCILL-B licence text (matches). Source note records the pinned commit, browse URL, detected licence, and licence file LICENSE->upstream-LICENSE, with attribution. All 13 code/ files match the entry files array; permalink line anchors are consistent with the copied files. Everything traceable; no gaps.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:44:56Z"
+    }
+  ]
+}

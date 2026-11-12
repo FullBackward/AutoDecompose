@@ -1,0 +1,225 @@
+{
+  "id": "isabelle-suffices-or-strengthen-l4v-0a36f701",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Strengthen the seL4 abstract-to-design refinement to an invariant-guarded forward simulation",
+  "intent": "Reduce the headline refinement `ADT_H uop \\<sqsubseteq> ADT_A uop` (a global property over all executions) to a stronger, decomposable statement — an invariant-guarded forward simulation — by applying two library rules backwards, so that the single goal becomes three named lemmas: the abstract invariant, the concrete invariant, and the simulation.",
+  "move": "suffices-or-strengthen",
+  "also_known_as": [
+    "strengthen the goal",
+    "backward rule application",
+    "reduce refinement to forward simulation",
+    "invariant-guarded simulation"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "l4v",
+    "url": "https://github.com/seL4/l4v",
+    "commit": "1abfe5bce98632a94ba52adf183045620c509340",
+    "licence": "CC-BY-SA-4.0"
+  },
+  "files": [
+    {
+      "path": "proof/refine/Refine.thy",
+      "bytes": 40323,
+      "sha256": "615078e897c6e25be0a06076e7d139fd1862b7d32c1af7b5ac66e89c7c851539",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/Refine.thy"
+    },
+    {
+      "path": "lib/Simulation.thy",
+      "bytes": 12814,
+      "sha256": "46723b5dfda09ee7b4d832acaf1d3c4c17423f550e88989de96e5af498fe8fa9",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/lib/Simulation.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "proof/refine/Refine.thy",
+      "lines": [
+        842,
+        849
+      ],
+      "role": "parent",
+      "name": "refinement",
+      "excerpt_sha256": "b2265c7a1ee630e393ce807ddbbee71012c6ef55c4a1cdd2be0c29fc3ac24ccb",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/Refine.thy#L842-L849"
+    },
+    {
+      "path": "proof/refine/Refine.thy",
+      "lines": [
+        232,
+        262
+      ],
+      "role": "child",
+      "name": "akernel_invariant",
+      "excerpt_sha256": "64583cfe145599ceee6f0fbf25f0e6c8218221721212ad079c48a5db3b032af7",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/Refine.thy#L232-L262"
+    },
+    {
+      "path": "proof/refine/Refine.thy",
+      "lines": [
+        652,
+        765
+      ],
+      "role": "child",
+      "name": "ckernel_invariant",
+      "excerpt_sha256": "4e9e89848bbf9ef8105d499b527036ce8d9855a48c626ba8c8dad155c54e8af6",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/Refine.thy#L652-L765"
+    },
+    {
+      "path": "proof/refine/Refine.thy",
+      "lines": [
+        769,
+        840
+      ],
+      "role": "child",
+      "name": "fw_sim_A_H",
+      "excerpt_sha256": "5cd2da0e8e51ab3d61d5b866a2021e2bf7c19c2602a7ef267145ca8d3b3725f8",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/Refine.thy#L769-L840"
+    },
+    {
+      "path": "lib/Simulation.thy",
+      "lines": [
+        77,
+        80
+      ],
+      "role": "context",
+      "name": "refines",
+      "excerpt_sha256": "ec9e9df129723c1fde9dbc70dde183db40f5bf81c323dba248d84748f40b4271",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/lib/Simulation.thy#L77-L80"
+    },
+    {
+      "path": "lib/Simulation.thy",
+      "lines": [
+        140,
+        152
+      ],
+      "role": "context",
+      "name": "sim_imp_refines",
+      "excerpt_sha256": "bf30cbe5530bbc72ecbd9760cc4b0a0c5bfb16b8b88daf5054931b8d780b727f",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/lib/Simulation.thy#L140-L152"
+    },
+    {
+      "path": "lib/Simulation.thy",
+      "lines": [
+        200,
+        205
+      ],
+      "role": "context",
+      "name": "LI",
+      "excerpt_sha256": "820bdf99bef251f286d225660d37b6735c576f43eaa7d580c0b45c81d7f43d78",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/lib/Simulation.thy#L200-L205"
+    },
+    {
+      "path": "lib/Simulation.thy",
+      "lines": [
+        267,
+        272
+      ],
+      "role": "context",
+      "name": "L_invariantI",
+      "excerpt_sha256": "64406740d8fad9e2903b247d2551d12f39099cee17a796804532c4fd2937068d",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/lib/Simulation.thy#L267-L272"
+    }
+  ],
+  "parent": {
+    "name": "refinement",
+    "statement": "ADT_H uop \\<sqsubseteq> ADT_A uop"
+  },
+  "children": [
+    {
+      "name": "akernel_invariant",
+      "statement": "ADT_A uop \\<Turnstile> full_invs",
+      "closed_by": "apply (rule invariantI); init subgoal by bspec[OF akernel_init_invs]; step subgoal by elim disjE over the global_automaton transition, each case use_valid with kernel_entry_invs / do_user_op_invs2 / check_active_irq_invs / check_active_irq_invs_just_running / check_active_irq_invs_just_idle"
+    },
+    {
+      "name": "ckernel_invariant",
+      "statement": "ADT_H uop \\<Turnstile> full_invs'",
+      "closed_by": "apply (rule invariantI); init by ckernel_init_invs, ckernel_init_sch_norm, ckernel_init_ctr, ckernel_init_domain_time, ckernel_init_domain_list and init_refinement; step by elim disjE, each case use_valid with valid_corres_combined of entry_corres/do_user_op_corres/check_active_irq_corres* and kernelEntry_invs'/doUserOp_invs'/checkActiveIRQ_invs'*"
+    },
+    {
+      "name": "fw_sim_A_H",
+      "statement": "LI (ADT_A uop) (ADT_H uop) (lift_state_relation state_relation) (full_invs \\<times> full_invs')",
+      "closed_by": "apply (unfold LI_def full_invs_def full_invs'_def); init by init_refinement; step by elim disjE, each case rev_mp with entry_corres/do_user_op_corres/check_active_irq_corres, closed with ct_running_related/ct_idle_related/kernelEntry_invs'/absKState_correct"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A refinement `C \\<sqsubseteq> A` between two transition systems (here `ADT_H uop \\<sqsubseteq> ADT_A uop`) that is a global, quantifier-heavy property over all executions; the strengthen step replaces it with a forward simulation guarded by two per-side invariants, decomposed through the library rule `L_invariantI`.",
+    "use_when": "the goal is a relation between two state machines (refinement, simulation, bisimulation) too hard to show pointwise, and you can state per-side invariants so that the simulation only needs to hold on invariant states; the two invariants are provable independently.",
+    "avoid_when": "there is no shared invariant that actually weakens the simulation obligation; the two invariants depend on each other so the split does not separate concerns; or the strengthen step is reversible and the original goal is already as easy (no benefit)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent `refinement` is closed in six lines (844-849) by two strengthening rules, `sim_imp_refines` then `L_invariantI`, followed by exactly three named project lemmas `akernel_invariant`, `ckernel_invariant` and `fw_sim_A_H`, with no other proof step.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/Refine.thy#L842-L849"
+    },
+    {
+      "n": 2,
+      "claim": "Each of the three children is a self-contained `lemma ... done` in the same file that closes on its own, and the file contains no `sorry`, `oops` or `admit` (grep over the whole file at the pinned commit).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/Refine.thy#L232-L262, https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/Refine.thy#L652-L765, https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/Refine.thy#L769-L840; grep for `sorry|oops|admit` over the whole file returns no match"
+    },
+    {
+      "n": 3,
+      "claim": "Below `refinement` there is a chain of four project lemmas, `refinement` -> `fw_sim_A_H` -> `entry_corres` -> `kernel_corres` -> `kernel_corres'`, each applied by an explicit `rule` step in the next one up.",
+      "evidence_kind": "check",
+      "evidence": "Refine.thy#L848 (rule fw_sim_A_H), #L784 (rule ... entry_corres), #L483 (corres_split[OF kernel_corres]), #L443 (rule kernel_corres') at https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/Refine.thy"
+    },
+    {
+      "n": 4,
+      "claim": "The authors state why the strengthening is needed: 'Refinement is a global property over all executions and/or all hoare triples. As this is hard to show, we define the weaker concept of forward simulation.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/lib/Simulation.thy#L97-L100"
+    },
+    {
+      "n": 5,
+      "claim": "The `shape` is a measurement: glue_lines = 6 (Refine.thy 844-849) and child_lines = [31, 114, 72] (akernel_invariant 232-262, ckernel_invariant 652-765, fw_sim_A_H 769-840), so the main theorem delegates 217 lines of proof to three children.",
+      "evidence_kind": "measurement",
+      "evidence": "line counts at the pinned commit: 844-849 = 6; 262-232+1 = 31; 765-652+1 = 114; 840-769+1 = 72; total 217, in https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/Refine.thy"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 4,
+    "glue_lines": 6,
+    "child_lines": [
+      31,
+      114,
+      72
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 6,
+    "children": 3,
+    "child_total_lines": 217,
+    "how_counted": "glue = Refine.thy 844-849; children = 232-262 (31), 652-765 (114), 769-840 (72)"
+  },
+  "consequences": "Creates three obligations from one: two invariant-preservation goals (one per side) and one simulation goal. The simulation obligation is weaker than raw refinement because its step and final cases may assume the invariant holds (LI restricts the relation to `R \\<inter> I`); the price is that both invariants must be established first and the relation must be invariant-closed on both sides. Failure mode: an invariant that is too weak makes `fw_sim_A_H` unprovable, too strong makes the invariant lemmas unprovable — the invariant is the shared design decision coupling all three children.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "0a36f701e291a5208c884926970c8498f6885222ac8a3c97c1b72a476e6852d1",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:00:28Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:01:34Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T16:10:27Z"
+}

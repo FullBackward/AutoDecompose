@@ -1,0 +1,244 @@
+{
+  "id": "rocq-witness-mathcomp-analysis-dc247f7a",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Hahn-Banach extension: witness g built from a Zorn-maximal linear graph",
+  "intent": "Prove the Hahn-Banach extension theorem — every linear functional f on a submodule F' bounded by a convex p extends to a linear functional g on the whole module V bounded by the same p — by first obtaining a Zorn-maximal linear graph via zornS_ex, turning it into a function g via hahn_banach_witness, closing g's additivity/scalability with lingraphD and lingraphZ, and packing g into a {scalar V}.",
+  "move": "witness",
+  "also_known_as": [
+    "constructive existence",
+    "exists2 witness",
+    "obtain-witness-then-prove-properties"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "mathcomp-analysis",
+    "url": "https://github.com/math-comp/analysis",
+    "commit": "eca10f89bd852201c8148ff2f597c7c7346d6df2",
+    "licence": "CECILL-C"
+  },
+  "files": [
+    {
+      "path": "theories/functional_analysis/hahn_banach_theorem.v",
+      "bytes": 20554,
+      "sha256": "86caef4f48c8de030df696528822c354870b56be8f010bec2afbd174f4224165",
+      "permalink": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/functional_analysis/hahn_banach_theorem.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/functional_analysis/hahn_banach_theorem.v",
+      "lines": [
+        306,
+        323
+      ],
+      "role": "parent",
+      "name": "hahn_banach_extension",
+      "excerpt_sha256": "9c17f1884789edbeb231f85510506a2b1c3d7ed09044a15a78b3962a26fb83c1",
+      "permalink": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/functional_analysis/hahn_banach_theorem.v#L306-L323"
+    },
+    {
+      "path": "theories/functional_analysis/hahn_banach_theorem.v",
+      "lines": [
+        124,
+        161
+      ],
+      "role": "child",
+      "name": "zornS_ex",
+      "excerpt_sha256": "0c880f13ffbd8348090b3ca1eb914e46afeec1482cca1c392db1746cd4d419b4",
+      "permalink": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/functional_analysis/hahn_banach_theorem.v#L124-L161"
+    },
+    {
+      "path": "theories/functional_analysis/hahn_banach_theorem.v",
+      "lines": [
+        279,
+        286
+      ],
+      "role": "child",
+      "name": "hahn_banach_witness",
+      "excerpt_sha256": "1b3871daca2be7426caf5a7009115fc0a70bb732db58bc2ece4617691e7f65ac",
+      "permalink": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/functional_analysis/hahn_banach_theorem.v#L279-L286"
+    },
+    {
+      "path": "theories/functional_analysis/hahn_banach_theorem.v",
+      "lines": [
+        67,
+        68
+      ],
+      "role": "child",
+      "name": "lingraphD",
+      "excerpt_sha256": "587512cb0cbf172d89455f8910e35d4f3768d3bb0b7ea5ae3363c5034d6ac042",
+      "permalink": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/functional_analysis/hahn_banach_theorem.v#L67-L68"
+    },
+    {
+      "path": "theories/functional_analysis/hahn_banach_theorem.v",
+      "lines": [
+        64,
+        65
+      ],
+      "role": "child",
+      "name": "lingraphZ",
+      "excerpt_sha256": "365ded7731e838fed88046117411eca79ca9bfef5e618023727594a4623c8349",
+      "permalink": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/functional_analysis/hahn_banach_theorem.v#L64-L65"
+    },
+    {
+      "path": "theories/functional_analysis/hahn_banach_theorem.v",
+      "lines": [
+        51,
+        54
+      ],
+      "role": "context",
+      "name": "linear_graph",
+      "excerpt_sha256": "435d0a8f38d3c279eeaecbbb507aa5d721f67930c76ae3cab8a9059f8fc80d24",
+      "permalink": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/functional_analysis/hahn_banach_theorem.v#L51-L54"
+    },
+    {
+      "path": "theories/functional_analysis/hahn_banach_theorem.v",
+      "lines": [
+        88,
+        98
+      ],
+      "role": "context",
+      "name": "le_extend_graph",
+      "excerpt_sha256": "66b9a366a46dc4468fd274935e1f1a06b72b767fc9d4ca8a4a4f9ea0be0ce6e1",
+      "permalink": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/functional_analysis/hahn_banach_theorem.v#L88-L98"
+    },
+    {
+      "path": "theories/functional_analysis/hahn_banach_theorem.v",
+      "lines": [
+        121,
+        121
+      ],
+      "role": "context",
+      "name": "zornS",
+      "excerpt_sha256": "30bf1630194156a590d630c8677b8148d3b370626eab7fcbd054e1a3af734215",
+      "permalink": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/functional_analysis/hahn_banach_theorem.v#L121-L121"
+    },
+    {
+      "path": "theories/functional_analysis/hahn_banach_theorem.v",
+      "lines": [
+        299,
+        304
+      ],
+      "role": "context",
+      "name": "section_context",
+      "excerpt_sha256": "b1f2bc57f6f1eb89f6418f12422043718dc0b7e8774a6cb638dc11ccae5d9bfe",
+      "permalink": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/functional_analysis/hahn_banach_theorem.v#L299-L304"
+    }
+  ],
+  "parent": {
+    "name": "hahn_banach_extension",
+    "statement": "Theorem hahn_banach_extension : exists2 g : {scalar V},\n  (forall x, g x <= p x) & forall z : F', g (\\val z) = f z."
+  },
+  "children": [
+    {
+      "name": "zornS_ex",
+      "statement": "Lemma zornS_ex : exists g : zorn_type, forall z, zornS g z -> z = g.",
+      "closed_by": "apply: (@Zorn zorn_type Rbool) to the zornS order reflected as Rbool; the union graph g of a maximal chain A is shown to satisfy le_extend_graph and returned as ZornType g; the empty chain yields zphi"
+    },
+    {
+      "name": "hahn_banach_witness",
+      "statement": "Lemma hahn_banach_witness :\n  exists h : V -> R, forall v r, carrier g v r <-> h v = r.",
+      "closed_by": "choice total_g gives h; the -> direction by functional_graph fg (fg v r (h v)), the <- direction by rewriting h v = r"
+    },
+    {
+      "name": "lingraphD",
+      "statement": "Lemma lingraphD x1 x2 r1 r2 : f x1 r1 -> f x2 r2 -> f (x1 - x2) (r1 - r2).",
+      "closed_by": "move=> f1 f2; have := lf (-1) f1 f2; rewrite !scaleN1r mulN1r"
+    },
+    {
+      "name": "lingraphZ",
+      "statement": "Lemma lingraphZ x r l : f x r -> f (l *: x) (l * r).",
+      "closed_by": "move=> fxr; have := lf l (lingraph_00 fxr) fxr; rewrite !add0r"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "exists2 g : {scalar V}, (forall x, g x <= p x) & (forall z : F', g (\\val z) = f z) — a constructive existence of a structured object (a linear map g) with two properties, a bound by a convex p and an extension of f from a submodule F', from hypotheses p_cvx (p convex) and f_bounded_by_p (f <= p on F')",
+    "use_when": "the witness is a structured object whose existence follows from a maximality or choice argument (Zorn's lemma, choice) followed by a short list of algebraic closure lemmas; the target properties factor into independent named lemmas (linearity, bound, extension) so the glue is a thin skeleton",
+    "avoid_when": "the witness has no finite or constructible description; the object's properties do not factor through small named lemmas (each needs a bespoke argument); or the maximality argument itself is the content and cannot be isolated into one lemma"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The glue of hahn_banach_extension (lines 308-323) references exactly four named lemmas defined in the same file — zornS_ex and hahn_banach_witness (line 310), lingraphD (line 314), lingraphZ (line 317) — and then packs g via GRing.isLinear.Build and HB.pack (lines 318-319) to close `exists2 g`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/functional_analysis/hahn_banach_theorem.v#L306-L323"
+    },
+    {
+      "n": 2,
+      "claim": "The main proof is 16 lines (308-323) while the four children it calls total 50 proof lines — zornS_ex 38 (124-161), hahn_banach_witness 8 (279-286), lingraphD 2 (67-68), lingraphZ 2 (64-65) — so the heavy work sits in the children and the glue is a thin skeleton.",
+      "evidence_kind": "measurement",
+      "evidence": "line counts of https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/functional_analysis/hahn_banach_theorem.v#L124-L161, #L279-L286, #L67-L68, #L64-L65 and #L308-L323 (161-124+1=38, 286-279+1=8, 2, 2, 323-308+1=16)"
+    },
+    {
+      "n": 3,
+      "claim": "The file header states the plan and content: 'This file proves the Hahn-Banach theorem thanks to Zorn's lemma. Theorem `hahn_banach_extension` states that ... a linear function on a subLmodType of V, that is bounded by a convex function, can be extended to a linear map on V bounded by the same convex function.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/functional_analysis/hahn_banach_theorem.v#L11-L15"
+    },
+    {
+      "n": 4,
+      "claim": "hahn_banach_extension is reused as a lemma by three later theorems in the same file: hahn_banach_extension_normed (line 352), hahn_banach_extension_subctvs (line 395) and hahn_banach_extension_initialsubctvs (line 450).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/functional_analysis/hahn_banach_theorem.v#L352, #L395, #L450"
+    },
+    {
+      "n": 5,
+      "claim": "All four children and the parent close with Qed (lines 161, 286, 68, 65, 323); the file contains no Admitted, sorry or admit.",
+      "evidence_kind": "check",
+      "evidence": "read of the whole copied file code/theories/functional_analysis/hahn_banach_theorem.v at https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/functional_analysis/hahn_banach_theorem.v"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 3,
+    "glue_lines": 16,
+    "child_lines": [
+      38,
+      8,
+      2,
+      2
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 16,
+    "children": 4,
+    "child_proof_lines": [
+      38,
+      8,
+      2,
+      2
+    ],
+    "how_counted": "parent proof = lines 308-323; children = zornS_ex (124-161), hahn_banach_witness (279-286), lingraphD (67-68), lingraphZ (64-65) of the copied file"
+  },
+  "consequences": "The move creates the two obligations of `exists2` (boundedness and extension) plus the linearity obligation needed to pack g as a {scalar V}; linearity is discharged by the two graph-closure lemmas lingraphD (addition/subtraction) and lingraphZ (scaling). The witness rests on the classical choice/Zorn foundation (`choice`, `@Zorn`), so the extension is non-computational. A failure mode: because lingraphD/lingraphZ are stated for a generic `linear_graph f` hypothesis, the glue must first re-establish that g satisfies linear_graph by destructuring the zorn_type spec (`case: z gP => [c [_ ls1 _ _]]`); if that spec changes shape, the destructuring breaks.",
+  "known_uses": [
+    "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/functional_analysis/hahn_banach_theorem.v#L352",
+    "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/functional_analysis/hahn_banach_theorem.v#L395",
+    "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/functional_analysis/hahn_banach_theorem.v#L450"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "dc247f7a1c19ffd7fd8c1436332ff38991d83a6d0b675df921ba3d852af60636",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:40:46Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:45:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T15:49:01Z"
+}

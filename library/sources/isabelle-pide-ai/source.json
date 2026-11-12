@@ -1,0 +1,17 @@
+{
+  "source_id": "isabelle-pide-ai",
+  "url": "https://github.com/kappelmann/isabelle-pide-ai",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "kappelmann/isabelle-pide-ai",
+  "commit": "80ec85239c8a76d992a6f06d586cdc370934d751",
+  "ref": "HEAD",
+  "language": "isabelle",
+  "pinned_at": "2026-11-12T13:44:21Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "LGPL-3.0",
+  "licence_files": [
+    "LICENSE.md"
+  ]
+}

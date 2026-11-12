@@ -1,0 +1,101 @@
+{
+  "entry": "lean-witness-sphere-eversion-2ae37d14",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:04:26Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:04:26Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 33ab3d626854a0f0f04ed5772e3102d652e96475",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:04:34Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/blueprint.yml triggers push and pull_request on master and runs ~/.elan/bin/lake build SphereEversion (builds SphereEversion incl. Global/Immersion.lean); pinned commit 33ab3d626854a0f0f04ed5772e3102d652e96475 is HEAD of default branch master (compare status identical)",
+      "by": "verifier",
+      "at": "2026-11-12T15:09:00Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "read copied code lines 307-340: line 324 rcases (immersionRel_satisfiesHPrincipleWith ...).bs (formalEversion E omega) (formalEversion_hol_near_zero_one E omega) with <f, h1, h2, -, h5>; line 327 passes formalEversion_hol_near_zero_one; line 333 convert! formalEversion_zero; line 336 convert! formalEversion_one; refine <f, h1, ...> uses h1 smoothness (line 338) and h5 injectivity (line 339); all four lemmas are same-file",
+      "by": "verifier",
+      "at": "2026-11-12T15:09:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "grep of the copied 350-line file found no sorry/admit/Admitted/axiom token; .github/workflows/blueprint.yml triggers push and pull_request on master and runs lake build SphereEversion (command on line 36, \"Build project\" name on line 35; claim cited lines 34-35)",
+      "by": "verifier",
+      "at": "2026-11-12T15:09:07Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "global_convex_integration.tex at pinned commit: line 737 \\begin{theorem}[Smale 1958], line 738 \\label{thm:sphere_eversion}, line 739 \\lean{sphere_eversion}\\leanok (claim said line 738), line 746 \\uses{thm:open_ample, lem:open_ample_immersion}; matches the open+ample h-principle instantiated by immersionRel_satisfiesHPrincipleWith (uses immersionRel_ample + immersionRel_open)",
+      "by": "verifier",
+      "at": "2026-11-12T15:09:10Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "counted in copied file: glue 307-340 = 34 lines; children immersionRel_satisfiesHPrincipleWith 119-124 = 6, formalEversion_hol_near_zero_one 243-256 = 14, formalEversion_zero 209 = 1, formalEversion_one 211 = 1; lines 209 and 211 close by simp alone",
+      "by": "verifier",
+      "at": "2026-11-12T15:09:14Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "object",
+      "evidence": "Decomposition, children, closing methods and most shape numbers match the copied code verbatim: parent statement (307-310) and all four child statements + closed_by match their cited lines; glue_lines=34 (307-340), child_lines=[6,14,1,1] (119-124, 243-256, 209, 211), depth=2 (hol_near_zero_one -> holAtZero/holAtOne) are all correct, and the file has no sorry/admit/Admitted/axiom. One correctness error: claim 1 says the parent closes from 'exactly four same-file lemmas' and shape.direct_lemmas=4, but the glue also directly invokes the same-file theorem ContMDiff.uncurry_left (line 299) at line 338 (contMDiff := h1.uncurry_left ...), so the parent actually closes from five same-file named theorems and the smoothness projection h1 does not close the contMDiff field by itself. Fix: set shape.direct_lemmas=5, or amend claim 1 to 'four named children plus the same-file helper ContMDiff.uncurry_left' and describe the smoothness step as h1.uncurry_left rather than h1 alone.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:12:21Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated beyond the example: applicability.goal_shape and use_when abstract to 'an existential goal whose body is a conjunction, witness produced by one named construction', and generalise the source to 'a h-principle, a structure-inhabiting lemma, a universal property' whose bundle of projections matches the conjuncts. avoid_when is specific and honest (property not exposed by the bundle; conjuncts interact so cannot be filled independently; witness assembled from several choices rather than one lemma). Consequences are tied to the actual proof, not generic: the dropped '-' field, the immersion conjunct rebuilt from h1/h5 rather than a single field, and the convert! definitional gap (lines 333/336) are all real. Good-leaf criterion is stated ('self-contained statement whose proof closes on its own or from named siblings') and made concrete per leaf, confirmed against the copied code: formalEversion_zero/one close by simp alone, immersionRel_satisfiesHPrincipleWith closes in one line from same-file immersionRel_ample/immersionRel_open without unfolding, formalEversion_hol_near_zero_one is a 14-line case split on sibling lemmas; shape.child_lines=[6,14,1,1] and children_closed_by_automation=2 give the budget-relevant numbers.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:13:43Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 33ab3d626854a0f0f04ed5772e3102d652e96475",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:14:03Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes (2 files byte-identical at 33ab3d626854a0f0f04ed5772e3102d652e96475). Commit, URL, licence are consistent across entry.json, sources/sphere-eversion/source.json and SOURCE.md; upstream-LICENSE is Apache-2.0 text matching the recorded 'Apache-2.0'. Both copied files' sha256 in entry.json match the local copies. All file/site permalinks use the same commit, correct paths, and line ranges verified against the local copies (parent 307-340, children 119-124/209/211/243-256). Evidence permalinks resolve: blueprint.yml:34-35 has 'lake build SphereEversion'; global_convex_integration.tex:737-746 has thm:sphere_eversion + leanok + uses. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:15:05Z"
+    }
+  ]
+}

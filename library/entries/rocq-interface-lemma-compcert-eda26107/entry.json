@@ -1,0 +1,163 @@
+{
+  "id": "rocq-interface-lemma-compcert-eda26107",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Interface lemmas behind CompCert's transf_c_program_correct",
+  "intent": "Assemble CompCert's headline correctness theorem — a successfully compiled C program is related to its assembly by a backward simulation — in one line from two interface lemmas (transf_c_program_match, c_semantic_preservation), so the client never unfolds the 20-pass compile chain or the simulation construction.",
+  "move": "interface-lemma",
+  "also_known_as": [
+    "abstraction-boundary lemma",
+    "relational specification lemma",
+    "API lemma"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "compcert",
+    "url": "https://github.com/AbsInt/CompCert",
+    "commit": "2685140bf72c959446981fb99b5e44a8975021bc",
+    "licence": "LicenseRef-INRIA-Non-Commercial"
+  },
+  "files": [
+    {
+      "path": "driver/Compiler.v",
+      "bytes": 20511,
+      "sha256": "1782a975c8df642a54d28c891405714145997c1cfe4d227f07a4c4d71ff525fb",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/driver/Compiler.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "driver/Compiler.v",
+      "lines": [
+        446,
+        452
+      ],
+      "role": "parent",
+      "name": "transf_c_program_correct",
+      "excerpt_sha256": "4b85daec5bf509fab8d66f70d29c14f82600653ea3053cfcbb0dfa56ac8d60f0",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/driver/Compiler.v#L446-L452"
+    },
+    {
+      "path": "driver/Compiler.v",
+      "lines": [
+        265,
+        318
+      ],
+      "role": "child",
+      "name": "transf_c_program_match",
+      "excerpt_sha256": "768ae1acc069d968e8d0507ba5b253dc476e3eb42d285fa404a2e64c9ba8d5c8",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/driver/Compiler.v#L265-L318"
+    },
+    {
+      "path": "driver/Compiler.v",
+      "lines": [
+        419,
+        432
+      ],
+      "role": "child",
+      "name": "c_semantic_preservation",
+      "excerpt_sha256": "a789dc08a2f4731764363da10edfcffd3fc0986e8e8c430c352035740ad44bc9",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/driver/Compiler.v#L419-L432"
+    }
+  ],
+  "parent": {
+    "name": "transf_c_program_correct",
+    "statement": "Theorem transf_c_program_correct:\n  forall p tp,\n  transf_c_program p = OK tp ->\n  backward_simulation (Csem.semantics p) (Asm.semantics tp)."
+  },
+  "children": [
+    {
+      "name": "transf_c_program_match",
+      "statement": "Theorem transf_c_program_match:\n  forall p tp,\n  transf_c_program p = OK tp ->\n  match_prog p tp.",
+      "closed_by": "unfold transf_c_program and each pass, then exists pi; split. apply <pass>proof.transf_program_match for all 20 passes, ending reflexivity (lines 269-318)"
+    },
+    {
+      "name": "c_semantic_preservation",
+      "statement": "Theorem c_semantic_preservation:\n  forall p tp,\n  match_prog p tp ->\n  backward_simulation (Csem.semantics p) (Asm.semantics tp).",
+      "closed_by": "compose_backward_simulation with atomic (Cstrategy.semantics p), factor_backward_simulation, Cstrategy.strategy_simulation, and proj2 (cstrategy_semantic_preservation _ _ H) (lines 423-432)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "Theorem whose conclusion is the conclusion of one named lemma and whose hypothesis is the hypothesis of another, so the proof is a chain of apply over interface lemmas (A -> B -> C proved as apply l2; apply l1)",
+    "use_when": "the goal is exactly a composition of two already-proved facts stated at an abstraction boundary, and unfolding the underlying definition would be long or would repeat work the lemmas already package (here transf_c_program and match_prog)",
+    "avoid_when": "the children's statements do not line up (the apply must leave no residual obligation); or the boundary lemma is not self-contained enough for a client to use without further unfolding"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent transf_c_program_correct closes in a single tactic line, apply c_semantic_preservation; apply transf_c_program_match; auto, without unfolding transf_c_program or match_prog.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/driver/Compiler.v#L446-L452 (the parent excerpt is the statement plus Proof. / the one apply line / Qed.)"
+    },
+    {
+      "n": 2,
+      "claim": "The authors describe the plan in the comment above the theorem: 'Combining the results above, we obtain semantic preservation for two usage scenarios of CompCert: compilation of a single monolithic program, and separate compilation of multiple source files followed by linking.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/driver/Compiler.v#L434-L444"
+    },
+    {
+      "n": 3,
+      "claim": "The main proof is 1 glue line applying 2 lemmas, and the two children's proofs are 50 and 10 lines (direct_lemmas = 2, glue_lines = 1, child_lines = [50, 10], depth = 2), counted over driver/Compiler.v lines 446-452, 265-318 and 419-432.",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/driver/Compiler.v#L446-L452 and #L265-L318 and #L419-L432"
+    },
+    {
+      "n": 4,
+      "claim": "The same two interface lemmas are reused at a second call site: separate_transf_c_program_correct applies transf_c_program_match (line 476) and c_semantic_preservation (line 480).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/driver/Compiler.v#L466-L481"
+    },
+    {
+      "n": 5,
+      "claim": "c_semantic_preservation closes by applying proj2 (cstrategy_semantic_preservation _ _ H) (line 431), so the chain of project lemmas below the main theorem reaches depth 2: transf_c_program_correct -> c_semantic_preservation -> cstrategy_semantic_preservation, all in driver/Compiler.v.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/driver/Compiler.v#L419-L432 and #L353-L417"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 2,
+    "glue_lines": 1,
+    "child_lines": [
+      50,
+      10
+    ]
+  },
+  "metrics": {
+    "glue_lines": 1,
+    "direct_lemmas": 2,
+    "child_proof_lines": [
+      50,
+      10
+    ],
+    "depth": 2,
+    "how_counted": "glue = line 451 of driver/Compiler.v (the single tactic line); child proofs = lines 269-318 (transf_c_program_match) and 423-432 (c_semantic_preservation), counted Proof. through Qed.; depth = the chain transf_c_program_correct -> c_semantic_preservation -> cstrategy_semantic_preservation, all in driver/Compiler.v"
+  },
+  "consequences": "The glue is nothing but apply, so the decomposition's only obligation is that the children's statements line up exactly: transf_c_program_match must end in match_prog and c_semantic_preservation must take match_prog, or the two applies will not compose. Each child then carries the real work — transf_c_program_match proves the 20-pass chain to match_prog and c_semantic_preservation builds the backward simulation — so a reader who wants the argument must descend into those bodies and then into the per-pass proof files. Failure mode: if a pass is added or removed, transf_c_program_match's body must be updated by hand to stay in sync with transf_c_program, while the parent and c_semantic_preservation never change.",
+  "known_uses": [
+    "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/driver/Compiler.v#L466-L481"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 15,
+    "relation": "supports"
+  },
+  "content_key": "eda26107a7018c6a5a8393b4367d92f73fd7d19abac97fd13abe27e9d6e676e2",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:41:08Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:45:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T15:49:05Z"
+}

@@ -1,0 +1,221 @@
+{
+  "id": "lean-interface-lemma-lean-liquid-96015c5e",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Interface lemma is_zero_iff_epi_and_is_iso turns Ext-vanishing into epi + is_iso (Liquid Tensor Theorem 1.1)",
+  "intent": "Reduce the main theorem of the Liquid Tensor Experiment — Ext^i(ℳ_{p'} S, V) ≅ 0 for all i > 0 — to two separate facts by applying the interface lemma is_zero_iff_epi_and_is_iso to the short exact sequence laurent_measures.short_exact: the Ext-vanishing goal becomes 'epi at 0 and is_iso above 0', which laurent_measures.epi_and_is_iso supplies exactly, leaving only its T-inv hypothesis to discharge.",
+  "move": "interface-lemma",
+  "also_known_as": [
+    "API lemma",
+    "abstraction-boundary lemma",
+    "iff restatement",
+    "interface equivalence"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "lean-liquid",
+    "url": "https://github.com/leanprover-community/lean-liquid",
+    "commit": "ee4795874a99ea5f9d85bd0b364425f07b932377",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "src/challenge.lean",
+      "bytes": 1541,
+      "sha256": "d426789da3e4d4a9f002fcff35410e5734a805ed16a40a68c415a845fc3f3323",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/challenge.lean"
+    },
+    {
+      "path": "src/for_mathlib/derived/les_facts.lean",
+      "bytes": 6661,
+      "sha256": "dcc0886fb6f5d977a84a70057ed91d6329d3a1ed0bf528132af4df584760f30a",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/for_mathlib/derived/les_facts.lean"
+    },
+    {
+      "path": "src/laurent_measures/ext.lean",
+      "bytes": 2106,
+      "sha256": "a8f54d3bfcc393da463a3b1bda50ffcf89d669eb75d1fe4252aa1153dbc2aa78",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/laurent_measures/ext.lean"
+    },
+    {
+      "path": "src/laurent_measures/ses2.lean",
+      "bytes": 6019,
+      "sha256": "f625aabe7f54405bda2913a3012f781eee2383402e3b37153ca757329a1ba0e1",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/laurent_measures/ses2.lean"
+    },
+    {
+      "path": "src/challenge_notations.lean",
+      "bytes": 3164,
+      "sha256": "ebdc1acf4724db75a8140b2f5569029fff046a3238275da97fb56b48ee15fa8e",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/challenge_notations.lean"
+    },
+    {
+      "path": "src/challenge_prerequisites.lean",
+      "bytes": 585,
+      "sha256": "35435032f0895de765cf8764c6118e8bebc50ecdf0b496fb585ae0a876eb8a8c",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/challenge_prerequisites.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "src/challenge.lean",
+      "lines": [
+        28,
+        43
+      ],
+      "role": "parent",
+      "name": "liquid_tensor_experiment",
+      "excerpt_sha256": "41b1a1455d4155e1d551767440029b05cbd3434f8318480b7441261c88b9b3db",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/challenge.lean#L28-L43"
+    },
+    {
+      "path": "src/for_mathlib/derived/les_facts.lean",
+      "lines": [
+        77,
+        106
+      ],
+      "role": "child",
+      "name": "is_zero_iff_epi_and_is_iso",
+      "excerpt_sha256": "271be21bd1488e93680a120f19cb9cc5927966c25f52094461e69536d59c43fa",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/for_mathlib/derived/les_facts.lean#L77-L106"
+    },
+    {
+      "path": "src/laurent_measures/ext.lean",
+      "lines": [
+        28,
+        57
+      ],
+      "role": "child",
+      "name": "epi_and_is_iso",
+      "excerpt_sha256": "7e7df11186d7bd975466dd2fa5b85e85ebc66f2b68924ed18bf68dfc09d3d6cc",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/laurent_measures/ext.lean#L28-L57"
+    },
+    {
+      "path": "src/laurent_measures/ses2.lean",
+      "lines": [
+        71,
+        155
+      ],
+      "role": "child",
+      "name": "short_exact",
+      "excerpt_sha256": "e15da23463465f1315d22d46998de429cbd73ab95e168d9d7f147d40ed2ceb75",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/laurent_measures/ses2.lean#L71-L155"
+    },
+    {
+      "path": "src/challenge_notations.lean",
+      "lines": [
+        36,
+        43
+      ],
+      "role": "context",
+      "name": "notations",
+      "excerpt_sha256": "e5d9ec2c31df73b33dffcca0d9f371d76dd1fcd8da9f2c01f6cfb90302b93c24",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/challenge_notations.lean#L36-L43"
+    }
+  ],
+  "parent": {
+    "name": "liquid_tensor_experiment",
+    "statement": "theorem liquid_tensor_experiment (S : Profinite.{0}) (V : pBanach.{0} p) :\n  ∀ i > 0, Ext i (ℳ_{p'} S) V ≅ 0 :="
+  },
+  "children": [
+    {
+      "name": "is_zero_iff_epi_and_is_iso",
+      "statement": "lemma is_zero_iff_epi_and_is_iso\n  {A₁ A₂ A₃ : C} (f : A₁ ⟶ A₂) (g : A₂ ⟶ A₃) (B : C) (h : short_exact f g) :\n  (∀ i > 0, is_zero (((Ext' i).obj (op A₃)).obj B)) ↔\n  (epi (((Ext' 0).map f.op).app B) ∧ ∀ i > 0, is_iso (((Ext' i).map f.op).app B)) :=",
+      "closed_by": "the five-term exact sequence h.Ext'_five_term_exact_seq (line 82), chased in both directions with epi_iff_eq_zero, is_iso_of_zero_of_zero, is_zero_of_exact_zero_zero', epi_of_iso and mono_of_iso (lines 83-105); no further project lemma"
+    },
+    {
+      "name": "epi_and_is_iso",
+      "statement": "lemma epi_and_is_iso\n  (V : SemiNormedGroup.{0}) [normed_with_aut r V] [complete_space V] [separated_space V]\n  (hV : ∀ (v : V), (normed_with_aut.T.inv v) = 2 • v) :\n  epi (((Ext' 0).map ((condensify_Tinv2 (Fintype_LaurentMeasures r')).app S).op).app\n    (Condensed.of_top_ab V)) ∧\n  ∀ i > 0, is_iso (((Ext' i).map ((condensify_Tinv2 (Fintype_LaurentMeasures r')).app S).op).app\n    (Condensed.of_top_ab V)) :=",
+      "closed_by": "epi_and_is_iso_iff_of_is_iso (line 46) with Lbar.short_exact (36) and Lbar.is_iso_Tinv2 r r' S V hV (48); then is_zero_iff_epi_and_is_iso on invpoly.short_exact p' S (49) closed by free_pfpng_acyclic (51); the two square conditions by condensify_map_comp_Tinv2 (55-56)"
+    },
+    {
+      "name": "short_exact",
+      "statement": "theorem short_exact (S : Profinite) :\n  short_exact ((condensify_Tinv2 _).app S) ((condensify_map $ Θ_fintype_nat_trans p).app S) :=",
+      "closed_by": "condensify_nonstrict_exact (line 74) with the two remaining goals closed by the bounded splittings ψ / psi_bound / θ_ϕ_split_exact (92-108) and measure_aux / theta_aux_lemma.tsum_le / nnreal.int.binary_sum (109-154)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal '∀ i > 0, Ext i A B ≅ 0' (Ext-vanishing), where Ext is defined through the derived category Ext' and the goal mentions a known short exact sequence f, g with A = the right object. The interface lemma rewrites the vanishing statement into 'epi of the Ext' 0-map ∧ is_iso of every positive Ext' i-map', i.e. it stops unfolding Ext' and works with epi/is_iso of the induced maps instead.",
+    "use_when": "the goal is an Ext-vanishing (or any 'all terms of a cohomology theory vanish') statement for which you already have (or can prove) a short exact sequence, and a separate argument proves the epi + is_iso form; the interface lemma is a reusable iff, so it pays for itself the second time it is applied.",
+    "avoid_when": "no short exact sequence is available to supply the h : short_exact f g argument; the epi/is_iso form is no easier than the original vanishing (e.g. when you would prove it by the same five-term chase anyway); or the Ext-vanishing is the final object of study rather than a stepping stone to a concrete epi/is_iso fact."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent liquid_tensor_experiment (challenge.lean:28-43) closes from the three named children in 14 proof lines: line 36 applies is_zero_iff_epi_and_is_iso to laurent_measures.short_exact, line 40 hands the resulting 'epi at 0 ∧ is_iso above 0' goal to laurent_measures.epi_and_is_iso via convert ... using 1, and lines 41-42 discharge its hV side condition.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/challenge.lean#L28-L43; the CI workflow .github/workflows/build.yml builds the file with 'lean --json --make src' and its 'test' job runs scripts/ensure_lte_sorry_free.py"
+    },
+    {
+      "n": 2,
+      "claim": "The interface lemma is_zero_iff_epi_and_is_iso is applied at two sites in the project: in the main theorem (challenge.lean:36, with laurent_measures.short_exact) and inside the sibling child epi_and_is_iso (ext.lean:49, with invpoly.short_exact).",
+      "evidence_kind": "measurement",
+      "evidence": "grep of the project src/ for 'is_zero_iff_epi_and_is_iso' at commit ee4795874a99 returns two call sites, src/challenge.lean:36 and src/laurent_measures/ext.lean:49 (the definition is src/for_mathlib/derived/les_facts.lean:77)"
+    },
+    {
+      "n": 3,
+      "claim": "The project README identifies liquid_tensor_experiment as the project's main target: 'The formal statement of `Theorem 1.1` ... can be found in [`src/challenge.lean`](https://github.com/leanprover-community/lean-liquid/blob/master/src/challenge.lean#L28)', and its overview says the goal is 'to formalise its `Theorem 1.1`, a variant of `Analytic 9.1`'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/README.md#L45-L54 and #L20"
+    },
+    {
+      "n": 4,
+      "claim": "None of the four files that carry the decomposition contains the word 'sorry', 'admit' or 'axiom' (src/challenge.lean, src/for_mathlib/derived/les_facts.lean, src/laurent_measures/ext.lean, src/laurent_measures/ses2.lean), so the three children and the glue close without holes.",
+      "evidence_kind": "check",
+      "evidence": "grep -n 'sorry|admit|axiom' over the four copied files under code/ returns no match; the CI 'test' job additionally enforces this with scripts/ensure_lte_sorry_free.py (see .github/workflows/build.yml)"
+    },
+    {
+      "n": 5,
+      "claim": "The longest chain of project lemmas below the main theorem has depth at least 3: liquid_tensor_experiment (challenge.lean:28) calls laurent_measures.epi_and_is_iso (ext.lean:28), which calls epi_and_is_iso_iff_of_is_iso (les_facts.lean:108), which calls Ext'_five_term_exact_seq (les_facts.lean:120, defined at les3.lean:420).",
+      "evidence_kind": "measurement",
+      "evidence": "chain counted by following the call sites https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/challenge.lean#L40 → src/laurent_measures/ext.lean#L46 → src/for_mathlib/derived/les_facts.lean#L120, with the definition at src/for_mathlib/derived/les3.lean#L420"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 3,
+    "glue_lines": 14,
+    "child_lines": [
+      26,
+      23,
+      83
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 14,
+    "direct_lemmas": 3,
+    "interface_lemma_reuses": 2,
+    "how_counted": "parent_proof_lines = the begin...end block of liquid_tensor_experiment (src/challenge.lean lines 30-43); direct_lemmas = the three lemmas the glue applies directly (is_zero_iff_epi_and_is_iso, short_exact, epi_and_is_iso); interface_lemma_reuses = grep of src/ for 'is_zero_iff_epi_and_is_iso' (challenge.lean:36, ext.lean:49)"
+  },
+  "consequences": "The interface lemma shifts the goal from a quantified Ext-vanishing to an epi/is_iso statement, so the main proof must supply a short exact sequence (short_exact) and a lemma that proves the epi/is_iso form (epi_and_is_iso), plus any hypotheses that lemma needs (here hV : T.inv v = 2 • v, discharged by two lines of rewriting). The interface lemma only holds for i > 0, so the i = 0 term is split out as 'epi', not 'is_iso' — a client must not forget that the 0-th map is only epi. Because epi_and_is_iso itself reuses the same interface lemma on a different short exact sequence (invpoly.short_exact), the three children are not independent: changing the interface lemma changes both the glue and the epi_and_is_iso child.",
+  "known_uses": [
+    "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/laurent_measures/ext.lean#L49"
+  ],
+  "related": [
+    "lean-interface-lemma-carleson-50fa619f",
+    "lean-interface-lemma-harmonic-imo2025-8920cc7b"
+  ],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "96015c5e90de58af20c9d66651b624e3f9681357c358be5d71add04e1c47bdf9",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:03:36Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:10:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T15:29:10Z"
+}

@@ -1,0 +1,15 @@
+{
+  "source_id": "afp",
+  "url": "https://github.com/isabelle-prover/mirror-afp-devel",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "isabelle-prover/mirror-afp-devel",
+  "commit": "07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
+  "ref": "HEAD",
+  "language": "isabelle",
+  "pinned_at": "2026-11-12T13:44:06Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "LicenseRef-unknown",
+  "licence_files": []
+}

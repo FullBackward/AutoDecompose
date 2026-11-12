@@ -1,0 +1,215 @@
+{
+  "id": "isabelle-case-split-autocorrode-5c995779",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Adequacy of sstriple by case split on the four continuations",
+  "intent": "Reduce the headline adequacy theorem -- a Hoare triple (sstriple) over the non-deterministic evaluator implies the post-condition for every possible continuation -- to a case split on the four continuation constructors: Success, Return and Abort are dispatched to the three per-constructor adequacy lemmas, and Yield is discharged as impossible by deep_evaluate_basic_no_yield'.",
+  "move": "case-split",
+  "also_known_as": [
+    "case analysis on a datatype",
+    "constructor split",
+    "continuation split"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "autocorrode",
+    "url": "https://github.com/awslabs/AutoCorrode",
+    "commit": "200f1acf2d264f2dedee33792b986ebe73c224a3",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "Shallow_Separation_Logic/Adequacy.thy",
+      "bytes": 13279,
+      "sha256": "42b3884146187aab65f1cb87024c100af1285f905543eae77cf55db83e6645a3",
+      "permalink": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Adequacy.thy"
+    },
+    {
+      "path": "Shallow_Micro_Rust/Core_Expression_Lemmas.thy",
+      "bytes": 40934,
+      "sha256": "26a8ada84338566b48b3b1e7f185995fb209b561259b5a27ca85ea4cddaba634",
+      "permalink": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Micro_Rust/Core_Expression_Lemmas.thy"
+    },
+    {
+      "path": "Shallow_Separation_Logic/Triple.thy",
+      "bytes": 65211,
+      "sha256": "94e6b0d10a466b4079249f9621019b42c9803df6c71d12791d31d421b40a9ff8",
+      "permalink": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Triple.thy"
+    },
+    {
+      "path": "Shallow_Micro_Rust/Eval.thy",
+      "bytes": 61854,
+      "sha256": "9251141956c0c7011c1191f989222471e047071cc9302b365b3fc5203960c2e4",
+      "permalink": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Micro_Rust/Eval.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Shallow_Separation_Logic/Adequacy.thy",
+      "lines": [
+        53,
+        66
+      ],
+      "role": "parent",
+      "name": "sstriple_adequacy",
+      "excerpt_sha256": "e05dfdb7790a58fa62900894a888b54b7e76e29e3ce4cd3300ef587a2a3e97c0",
+      "permalink": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Adequacy.thy#L53-L66"
+    },
+    {
+      "path": "Shallow_Separation_Logic/Adequacy.thy",
+      "lines": [
+        31,
+        36
+      ],
+      "role": "child",
+      "name": "atriple_rel_eval_value_adequacy",
+      "excerpt_sha256": "c30134bc2f1418bc12ee5289434feaf971e2cf9709dc5d3999f94784e94ba51e",
+      "permalink": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Adequacy.thy#L31-L36"
+    },
+    {
+      "path": "Shallow_Separation_Logic/Adequacy.thy",
+      "lines": [
+        38,
+        43
+      ],
+      "role": "child",
+      "name": "atriple_rel_eval_return_adequacy",
+      "excerpt_sha256": "ac1ef4d13a7812c0dd157e521372cd8c4cf503bcddf061d03f7e9e1eeec77db8",
+      "permalink": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Adequacy.thy#L38-L43"
+    },
+    {
+      "path": "Shallow_Separation_Logic/Adequacy.thy",
+      "lines": [
+        45,
+        50
+      ],
+      "role": "child",
+      "name": "atriple_rel_eval_abort_adequacy",
+      "excerpt_sha256": "bc0e87d37656f056d18e011966ad31a6b62bd20807ad4359fc8460f706f64182",
+      "permalink": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Adequacy.thy#L45-L50"
+    },
+    {
+      "path": "Shallow_Micro_Rust/Core_Expression_Lemmas.thy",
+      "lines": [
+        77,
+        79
+      ],
+      "role": "child",
+      "name": "deep_evaluate_basic_no_yield'",
+      "excerpt_sha256": "832faf4f9c5382d4b4fe8c1061bc50ceb6665ede41e9206a6dc5c48a85041c26",
+      "permalink": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Micro_Rust/Core_Expression_Lemmas.thy#L77-L79"
+    }
+  ],
+  "parent": {
+    "name": "sstriple_adequacy",
+    "statement": "lemma sstriple_adequacy:\n  assumes \\<open>\\<Gamma> ; \\<xi> \\<turnstile> e \\<stileturn> \\<phi> \\<bowtie> \\<rho> \\<bowtie> \\<theta>\\<close>\n      and \\<open>\\<sigma> \\<Turnstile> \\<xi>\\<close>\n      and \\<open>c \\<in> deep_evaluates_nondet_basic (yield_handler \\<Gamma>) e \\<sigma>\\<close>\n    shows \\<open>case c of\n            continuation.Success v \\<sigma>' \\<Rightarrow> \\<sigma>' \\<Turnstile> \\<phi> v\n          | continuation.Return v \\<sigma>' \\<Rightarrow> \\<sigma>' \\<Turnstile> \\<rho> v\n          | continuation.Abort a \\<sigma>' \\<Rightarrow> \\<sigma>' \\<Turnstile> \\<theta> a\n          | continuation.Yield _ _ _ \\<Rightarrow> False\\<close>"
+  },
+  "children": [
+    {
+      "name": "atriple_rel_eval_value_adequacy",
+      "statement": "lemma atriple_rel_eval_value_adequacy:\n  assumes \\<open>\\<xi> \\<turnstile> eval_value Y e \\<stileturn>\\<^sub>R \\<phi>\\<close>\n      and \\<open>\\<sigma> \\<Turnstile> \\<xi>\\<close>\n      and \\<open>continuation.Success v \\<sigma>' \\<in> deep_evaluates_nondet_basic Y e \\<sigma>\\<close>\n    shows \\<open>\\<sigma>' \\<Turnstile> \\<phi> v\\<close>",
+      "closed_by": "using assms by (auto simp add: atriple_rel_def eval_value_def urust_eval_predicate_defs)"
+    },
+    {
+      "name": "atriple_rel_eval_return_adequacy",
+      "statement": "lemma atriple_rel_eval_return_adequacy:\n  assumes \\<open>\\<xi> \\<turnstile> eval_return Y e \\<stileturn>\\<^sub>R \\<phi>\\<close>\n      and \\<open>\\<sigma> \\<Turnstile> \\<xi>\\<close>\n      and \\<open>continuation.Return v \\<sigma>' \\<in> deep_evaluates_nondet_basic Y e \\<sigma>\\<close>\n    shows \\<open>\\<sigma>' \\<Turnstile> \\<phi> v\\<close>",
+      "closed_by": "using assms by (auto simp add: atriple_rel_def eval_return_def urust_eval_predicate_defs)"
+    },
+    {
+      "name": "atriple_rel_eval_abort_adequacy",
+      "statement": "lemma atriple_rel_eval_abort_adequacy:\n  assumes \\<open>\\<xi> \\<turnstile> eval_abort Y e \\<stileturn>\\<^sub>R \\<phi>\\<close>\n      and \\<open>\\<sigma> \\<Turnstile> \\<xi>\\<close>\n      and \\<open>continuation.Abort a \\<sigma>' \\<in> deep_evaluates_nondet_basic Y e \\<sigma>\\<close>\n    shows \\<open>\\<sigma>' \\<Turnstile> \\<phi> a\\<close>",
+      "closed_by": "using assms by (auto simp add: atriple_rel_def eval_abort_def urust_eval_predicate_defs)"
+    },
+    {
+      "name": "deep_evaluate_basic_no_yield'",
+      "statement": "lemma deep_evaluate_basic_no_yield':\n  shows \\<open>Yield \\<pi> \\<sigma>' e' \\<in> deep_evaluates_nondet_basic y e \\<sigma> \\<longleftrightarrow> False\\<close>",
+      "closed_by": "using deep_evaluate_basic_no_yield by force"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "a goal `case c of Success v \\<sigma>' \\<Rightarrow> ... | Return v \\<sigma>' \\<Rightarrow> ... | Abort a \\<sigma>' \\<Rightarrow> ... | Yield _ _ _ \\<Rightarrow> False` where `c` is drawn from `deep_evaluates_nondet_basic` over a finite continuation datatype, and the hypothesis is a defined relation (here `sstriple`, a conjunction of three `atriple_rel` exact triples) that already packages one fact per constructor",
+    "use_when": "the result type has finitely many constructors (here four: Success, Return, Abort, Yield); one per-constructor adequacy lemma already exists for each 'real' constructor; and a separate lemma rules out the remaining constructor (here Yield), so the `split: continuation.splits` is exhaustive by construction of the datatype and no disjunction lemma needs to be stated",
+    "avoid_when": "the per-constructor lemmas have not yet been stated (then the split leaves goals that `auto` must solve from raw definitions, which may not close); the constructor count is large; or the case for a constructor genuinely holds rather than being impossible (then a real child lemma is needed instead of a falsity lemma)"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent sstriple_adequacy is closed by a single `auto` call (lines 63-66) that unfolds sstriple_def, splits on continuation.splits, and dispatches the four continuation constructors to the four named direct lemmas deep_evaluate_basic_no_yield', atriple_rel_eval_value_adequacy, atriple_rel_eval_return_adequacy and atriple_rel_eval_abort_adequacy; the theory is built by the project's CI.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Adequacy.thy#L63-L66; .github/workflows/ci.yml runs `isabelle build -b -d . AutoCorrode`, the AutoCorrode session lists Shallow_Separation_Logic, and Shallow_Separation_Logic/ROOT lists Adequacy as its first theory"
+    },
+    {
+      "n": 2,
+      "claim": "The three per-constructor children close on their own by unfolding definitions only -- `using assms by (auto simp add: atriple_rel_def eval_value_def urust_eval_predicate_defs)` (line 36) and the analogous eval_return/eval_abort forms (lines 43, 50) -- with no further project lemma; the fourth child deep_evaluate_basic_no_yield' closes from its named sibling deep_evaluate_basic_no_yield by `force` (line 79).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Adequacy.thy#L36, #L43, #L50; https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Micro_Rust/Core_Expression_Lemmas.thy#L77-L79"
+    },
+    {
+      "n": 3,
+      "claim": "direct_lemmas = 4; glue_lines = 14 (Adequacy.thy lines 53-66, the full lemma); child proof lines = 6 (value, 31-36), 6 (return, 38-43), 6 (abort, 45-50), 3 (no_yield', 77-79); depth = 3, the longest chain of project lemmas below the main theorem: sstriple_adequacy -> deep_evaluate_basic_no_yield' -> deep_evaluate_basic_no_yield -> expression_wf_base_is_wf.",
+      "evidence_kind": "measurement",
+      "evidence": "line ranges in https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Adequacy.thy; https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Micro_Rust/Core_Expression_Lemmas.thy#L53-L79; https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Micro_Rust/Core_Expression.thy#L93"
+    },
+    {
+      "n": 4,
+      "claim": "The authors state the adequacy goal and the Yield side in the surrounding text: 'from a Hoare triple/weakest precondition entailment/function contract on a program e we can derive that the evaluating e on appropriate machines does not go wrong' (lines 12-16), and 'Evaluating with deep_evaluates_nondet_basic will never terminate in Yield' (the comment at line 62).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Adequacy.thy#L9-L27 and #L62"
+    },
+    {
+      "n": 5,
+      "claim": "The same `split: continuation.splits` case-split move recurs four more times in the same file -- contract_adequacy (line 92), wp_adequacy_deterministic (line 111), sstriple_from_evaluation (line 141), contract_from_evaluation (line 163) -- and sstriple_adequacy itself is reused as the head of the two corollaries wp_adequacy (line 77) and contract_adequacy (line 92).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Adequacy.thy#L68-L77, #L81-L92, #L99-L111, #L130-L141, #L153-L163"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 3,
+    "glue_lines": 14,
+    "child_lines": [
+      6,
+      6,
+      6,
+      3
+    ]
+  },
+  "metrics": {
+    "glue_lines": 14,
+    "direct_lemmas": 4,
+    "depth": 3,
+    "children_closed_by_automation": 4,
+    "how_counted": "glue_lines = lines 53-66 of Adequacy.thy (the full lemma sstriple_adequacy; the proof body `using assms by (auto ... split: continuation.splits)` is lines 63-66); direct_lemmas = the four named lemmas the auto call cites; depth = longest project-lemma chain sstriple_adequacy -> deep_evaluate_basic_no_yield' -> deep_evaluate_basic_no_yield -> expression_wf_base_is_wf; children_closed_by_automation = all four children close by a single auto/force call"
+  },
+  "consequences": "The case split produces one goal per constructor plus an exhaustiveness obligation that `continuation.splits` (a datatype case rule) discharges itself, exactly because `continuation` is a datatype. The Yield case is not 'covered' but ruled out by deep_evaluate_basic_no_yield', so the decomposition relies on that lemma's strength (`Yield ... \\<longleftrightarrow> False`). If a new constructor were added to the `continuation` datatype, the split would produce a new goal and `auto` would fail to close it, exposing the exhaustiveness obligation.",
+  "known_uses": [
+    "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Adequacy.thy#L81-L92",
+    "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Adequacy.thy#L99-L111",
+    "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Adequacy.thy#L130-L141",
+    "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Adequacy.thy#L153-L163"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 5,
+    "relation": "supports"
+  },
+  "content_key": "5c9957799962ba88cda685e97a29fe4d3666c28512af05937fc75c3a1a5de2fb",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:03:49Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:12:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T16:13:52Z"
+}

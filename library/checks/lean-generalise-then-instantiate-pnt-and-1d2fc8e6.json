@@ -1,0 +1,109 @@
+{
+  "entry": "lean-generalise-then-instantiate-pnt-and-1d2fc8e6",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:22:22Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:22:22Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 2c476fa6441c607096d93c8fc7ac0a227a655dae",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:22:29Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml runs lean-action with build-args :blueprint on pushes and pull requests to main; pinned commit 2c476fa6441c607096d93c8fc7ac0a227a655dae is on main (compare main...2c476fa = behind_by 1)",
+      "by": "verifier",
+      "at": "2026-11-12T16:24:36Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "MediumPNT.lean 4142-4146: theorem MediumPNT closes in exactly the two tactic lines (4145 have := GenStrengthPNT LogDerivZetaBoundedAndHolo99 (by linarith) (by linarith); ring_nf at this, 4146 simpa only [gt_iff_lt, one_div, neg_mul] using this); .github/workflows/build.yml builds the project with lean-action build-args :blueprint on pushes/PRs to main",
+      "by": "verifier",
+      "at": "2026-11-12T16:24:39Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "counted on copied file: GenStrengthPNT proof 3611-4131 = 521 lines, LogDerivZetaBoundedAndHolo99 proof line 3501 = 1 line, glue 4145-4146 = 2 lines, 2 direct lemmas, depth 2 MediumPNT -> LogDerivZetaBoundedAndHolo99 -> LogDerivZetaBoundedAndHoloGen",
+      "by": "verifier",
+      "at": "2026-11-12T16:24:42Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "opened @[blueprint GenStrengthPNT] annotation lines 3586-3591: statement reads \"Assuming a bound of the form of Definition \\ref{LogDerivZetaHasBound}, we have that ∑_{n ≤ x} Λ(n)=x+O(x exp(-c(log x)^{1/(1+n₁)})).\"",
+      "by": "verifier",
+      "at": "2026-11-12T16:24:45Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "grep \\b(sorry|admit|axiom)\\b over both copied files returned no matches; MediumPNT.lean line 4148 is `#print axioms MediumPNT` and the file ends there (4148 lines total)",
+      "by": "verifier",
+      "at": "2026-11-12T16:24:48Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "ZetaBounds.lean 3371-3372: theorem LogDerivZetaHolcLargeT9 : LogDerivZetaHolcLargeTGenProp 9 := by apply LogDerivZetaHolcLargeTGen ZetaZeroFree9 Nat.ofNat_pos, the general lemma instantiated at n=9; line 3629: lemma LogDerivZetaBndUnif99 : LogDerivZetaBndUnifGenProp 9 9",
+      "by": "verifier",
+      "at": "2026-11-12T16:25:00Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Decomposition matches code: parent MediumPNT (L4142-4146) closes in 2 glue lines by instantiating GenStrengthPNT at n1=n2=9 via LogDerivZetaBoundedAndHolo99 then simpa, exactly as entry says. Children match code verbatim: GenStrengthPNT statement (L3606-3610) and its closing method (self-contained 521-line proof L3611-4131 obtaining I1..I9Bound, SmoothedChebyshevClose/Pull1/Pull2, MellinOfSmooth1cExplicit, closing calc chain with rw Real.norm_of_nonneg at L4129) are accurate; LogDerivZetaBoundedAndHolo99 closes by 'exact LogDerivZetaBoundedAndHoloGen LogDerivZetaBndUnif99 LogDerivZetaHolcLargeT9' (L3500-3501). No sorry/admit/axiom in the copied files, so it genuinely closes. Children are exactly the lemmas the glue cites. Shape numbers correct: direct_lemmas=2, glue_lines=2 (L4145-4146), child_lines=[521,1] (3611-4131=521; 3501=1), depth=2 (MediumPNT -> LogDerivZetaBoundedAndHolo99 -> LogDerivZetaBoundedAndHoloGen), metrics parent_statement_lines=3/parent_proof_lines=2 all match.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T16:26:14Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generically, not just for PNT: concrete theorem is the image of a general theorem under a parameter substitution, general statement already proved, instantiation discharged by unification plus cheap arithmetic. 'When not to use' and 'consequences' are honest and specific: names the actual side conditions (0 < 9 twice, closed by linarith) and the normalisation (1/(1+9) -> 1/10, closed by ring_nf/simpa), and gives real failure modes (concrete instance needing an argument the general proof does not cover; side conditions not closable by automation; general statement not yet proved = real content, not glue). The 'Why each lemma is a good leaf' section answers the bounded-prover question: GenStrengthPNT is self-contained (hypotheses are exactly what the concrete case supplies), closes on its own, glue never opens it; LogDerivZetaBoundedAndHolo99 is a one-line leaf.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T16:27:10Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 2c476fa6441c607096d93c8fc7ac0a227a655dae",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:27:31Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit 2c476fa6441c607096d93c8fc7ac0a227a655dae is identical in entry.json, sources/pnt-and/source.json, and SOURCE.md; check_provenance passes (2 files byte-identical at that commit, so permalinks and paths resolve); licence Apache-2.0 is recorded identically in entry.json, source.json and SOURCE.md and matches the stored upstream-LICENSE (standard Apache 2.0 text); README source/licence lines agree. Traceable and consistent.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T16:28:25Z"
+    }
+  ]
+}

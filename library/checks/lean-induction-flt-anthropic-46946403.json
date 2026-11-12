@@ -1,0 +1,117 @@
+{
+  "entry": "lean-induction-flt-anthropic-46946403",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:18:58Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:18:58Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 6e837e75355538c7f80bab5b956861e86c4eacc2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:19:04Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "No CI workflow at the pinned commit 6e837e7: the repo root has no .github/workflows directory and no CI config file (formalization.yaml is repo metadata, not CI), so there is no CI workflow that builds this file on the default branch; no local Lean toolchain either",
+      "by": "verifier",
+      "at": "2026-11-12T16:21:05Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Opened the copied parent file P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean: line 118 is 'induction N using Nat.strong_induction_on with'; line 125 applies P.level_lowering_odd_prime_of_conductorLevel; line 134 applies P.level_lowering_at_p_of_conductorLevel; line 143 applies dvd_two_of_squarefree_of_forall_prime_eq_two_16. The three by_cases branches close with exactly these three lemmas.",
+      "by": "verifier",
+      "at": "2026-11-12T16:21:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Fetched PROOF-PATH.md at the pinned commit; lines 71-74 read 'Then primes are removed one at a time (FreyPackage.level_lowering_to_two_of_conductorLevel): an odd q != p, at which E_P[p] is unramified, by FreyPackage.level_lowering_odd_prime_of_conductorLevel ... p itself by FreyPackage.level_lowering_at_p_of_conductorLevel', matching the quoted plan.",
+      "by": "verifier",
+      "at": "2026-11-12T16:21:09Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Opened the three copied files: parent glue spans lines 116-148 = 33 lines (statement ':= by' at 116 through final branch at 148). level_lowering_odd_prime_of_conductorLevel is a single-line theorem at line 90; level_lowering_at_p_of_conductorLevel is a single line at line 70; dvd_two_of_squarefree_of_forall_prime_eq_two_16 proof body is lines 100-111 = 12 lines.",
+      "by": "verifier",
+      "at": "2026-11-12T16:21:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Opened the copied parent file: theorem 'solution' (lines 163-170) applies the parent via a single obtain at lines 167-168 'obtain <M, hM0, hM2, hmodM> := P.exists_modularRepOfLevel_dvd_two_of_conductorLevel_16 hirr N hcond hmod', so the parent is consumed downstream in the same file.",
+      "by": "verifier",
+      "at": "2026-11-12T16:21:14Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Ran grep for 'sorry|admit|axiom' over the three copied .lean files in entries/<id>/code/; returned no matches, so none of the three files contains sorry, admit or axiom.",
+      "by": "verifier",
+      "at": "2026-11-12T16:21:15Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 6e837e75355538c7f80bab5b956861e86c4eacc2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:22:53Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Correctness verified against the local copied code (provenance: 3 files byte-identical at 6e837e75355538c7f80bab5b956861e86c4eacc2). Parent is a strong induction on N (line 118) with exactly three branches closed by the three named children: level_lowering_odd_prime_of_conductorLevel (line 125), level_lowering_at_p_of_conductorLevel (line 134), dvd_two_of_squarefree_of_forall_prime_eq_two₁₆ (line 143). Each child statement and closed_by matches the code verbatim (odd prime line 90, at_p line 70, dvd_two lines 98-111 with its rcases/norm_num/exfalso squarefree proof). No sorry/admit/axiom in the three copied files (grep), so it closes. Shape numbers are right: glue_lines 33 = lines 116-148, child_lines [1,1,12] = proof lines of the three children, direct_lemmas 3 = the three branch-closing children. The only other direct fact used is P.freyGaloisRep_isUnramifiedAt (line 126), a hypothesis-feeding imported lemma, which the README discloses as glue rather than a child, so direct_lemmas 3 is correct for the skeleton.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T16:23:13Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example: 'when to use' abstracts level to 'the level (or any measure)' and frames the pattern as 'remove one factor at a time until a small set of allowed factors remains'; goal_shape generalises k=2 to any k; the opinion paragraph states the reusable shape (induction step = finite set of named lemmas, one per kind of factor, glue = pure plumbing). 'when not to use' is honest and specific: (a) a removable prime with no covering lemma leaves a hole, (b) no strict decrease means ih never fires, (c) a base case entangled with the step; it also honestly flags the two level-lowering children as deep Ribet/Mazur-Ribet theorems so the induction 'does not make the hard work go away'. Consequences name the real obligations (strict-decrease via hMlt at lines 129-130/137-138; exhaustiveness over prime divisors discharged at 142-148) and the failure modes (non-strict divisor -> nontermination; uncovered prime -> unprovable last branch). Good-leaves question answered explicitly (lines 135-143): children are self-contained statements (one-line theorems) closed by p2m_exact_reverting delegation to P2MW solutions, or a short self-contained number-theory proof, so the parent never unfolds them; the opinion paragraph ties this to the skeleton AutoDecompose should emit. All line numbers verified against the local code copy.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T16:24:14Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 6e837e75355538c7f80bab5b956861e86c4eacc2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:24:34Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes: 3 files byte-identical at commit 6e837e75355538c7f80bab5b956861e86c4eacc2, and their local sha256 match entry.json (ed2aa9df..., e5c6c82c..., 1625a5fc...). Commit is identical across entry.json source.commit, sources/flt-anthropic/source.json, SOURCE.md, and every permalink. Licence Apache-2.0 is consistent across entry.json, source.json, SOURCE.md, upstream-LICENSE (Apache 2.0 text) and upstream-NOTICE; upstream-LICENSE and upstream-NOTICE are byte-identical to the raw LICENSE/NOTICE at the pinned commit. All permalinks and the source note trace back to the same pinned commit.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T16:25:30Z"
+    }
+  ]
+}

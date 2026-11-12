@@ -1,0 +1,277 @@
+{
+  "id": "rocq-extensionality-fiat-crypto-cb9f23da",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Component-wise equality of divstep against divstep_spec_full via injective_projections",
+  "intent": "Reduce the headline correctness theorem of BYInv.v -- that one Bernstein-Yang divstep on the 5-tuple (d,f,g,v,r) equals the full specification divstep_spec_full -- to five independent coordinate equalities, one per tuple slot, by applying Coq's injective_projections component-wise, then closing each coordinate with one rewrite of a matching pair of lemmas (a trivial projection lemma plus a component-correctness lemma).",
+  "move": "extensionality",
+  "also_known_as": [
+    "component-wise equality",
+    "tuple extensionality",
+    "injective_projections",
+    "extensional split on a product"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "fiat-crypto",
+    "url": "https://github.com/mit-plv/fiat-crypto",
+    "commit": "3d2880ef2803faa9385589a81a835d5828eb3d38",
+    "licence": "Apache-2.0 AND BSD-2-Clause AND MIT AND MIT OR Apache-2.0 OR BSD-1-Clause"
+  },
+  "files": [
+    {
+      "path": "src/Arithmetic/BYInv.v",
+      "bytes": 50854,
+      "sha256": "a72ae9e46675b54563dafffdeece1784d8b7e1753284387eede2f16c3fd425a0",
+      "permalink": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/BYInv.v"
+    },
+    {
+      "path": "src/Arithmetic/WordByWordMontgomery.v",
+      "bytes": 66865,
+      "sha256": "ea50cdb5a1f725a759b79cf7403b43123db4aa23f5ed28a640c9d9b1521ac572",
+      "permalink": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/WordByWordMontgomery.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "src/Arithmetic/BYInv.v",
+      "lines": [
+        975,
+        1021
+      ],
+      "role": "parent",
+      "name": "divstep_correct_full",
+      "excerpt_sha256": "cc576d1fcc2a54a51424bf5d09b9f9bf124398f81639b95b7867d45070c96131",
+      "permalink": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/BYInv.v#L975-L1021"
+    },
+    {
+      "path": "src/Arithmetic/BYInv.v",
+      "lines": [
+        720,
+        755
+      ],
+      "role": "child",
+      "name": "divstep_d",
+      "excerpt_sha256": "48f6fb5bc175fd83923606752d53a682c771651e0e1ec9350b0b71ebf02315d2",
+      "permalink": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/BYInv.v#L720-L755"
+    },
+    {
+      "path": "src/Arithmetic/BYInv.v",
+      "lines": [
+        757,
+        784
+      ],
+      "role": "child",
+      "name": "divstep_f",
+      "excerpt_sha256": "48d562eb90e13a36e1445cbcd751c5b97b6180f2bff7f458839a6dbec5247d3c",
+      "permalink": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/BYInv.v#L757-L784"
+    },
+    {
+      "path": "src/Arithmetic/BYInv.v",
+      "lines": [
+        638,
+        718
+      ],
+      "role": "child",
+      "name": "divstep_g",
+      "excerpt_sha256": "e93681586dd58ab18af6026a64f2e3100c26d000df167b7af12c984ad0350684",
+      "permalink": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/BYInv.v#L638-L718"
+    },
+    {
+      "path": "src/Arithmetic/BYInv.v",
+      "lines": [
+        818,
+        856
+      ],
+      "role": "child",
+      "name": "divstep_v",
+      "excerpt_sha256": "16511dfed1e7abb835bf7614b9c8e328705b5a3e572bec9e6cdef006bc9cb526",
+      "permalink": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/BYInv.v#L818-L856"
+    },
+    {
+      "path": "src/Arithmetic/BYInv.v",
+      "lines": [
+        870,
+        948
+      ],
+      "role": "child",
+      "name": "divstep_r",
+      "excerpt_sha256": "6c5c9ef21c65426a73ce04149c69416d290d29bdd5771a6ad53f1612d3cf5d9b",
+      "permalink": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/BYInv.v#L870-L948"
+    },
+    {
+      "path": "src/Arithmetic/BYInv.v",
+      "lines": [
+        950,
+        953
+      ],
+      "role": "child",
+      "name": "divstep_spec_divstep_spec_full_d",
+      "excerpt_sha256": "b9479f522e7be3a90615fb9bad99baad27d2fb1f11d0ece7dbed8d8a9567ac49",
+      "permalink": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/BYInv.v#L950-L953"
+    },
+    {
+      "path": "src/Arithmetic/BYInv.v",
+      "lines": [
+        955,
+        958
+      ],
+      "role": "child",
+      "name": "divstep_spec_divstep_spec_full_f",
+      "excerpt_sha256": "b3549351e3d35585461a97f6a91516224f002fb4ffa579baac524cdda22ffca1",
+      "permalink": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/BYInv.v#L955-L958"
+    },
+    {
+      "path": "src/Arithmetic/BYInv.v",
+      "lines": [
+        960,
+        963
+      ],
+      "role": "child",
+      "name": "divstep_spec_divstep_spec_full_g",
+      "excerpt_sha256": "06c3645bc923bea34acc01d37b29c8345eefce288118485c068df937fe31ada2",
+      "permalink": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/BYInv.v#L960-L963"
+    }
+  ],
+  "parent": {
+    "name": "divstep_correct_full",
+    "statement": "Theorem divstep_correct_full machine_wordsize sat_limbs mont_limbs m r' m' d f g v r\n      (fodd : Z.odd (eval_twos_complement machine_wordsize sat_limbs f) = true)\n      (r'_correct : (2 ^ machine_wordsize * r') mod m = 1)\n      (m'_correct : (m * m') mod 2 ^ machine_wordsize = -1 mod 2 ^ machine_wordsize)\n      (m_big : 1 < m)\n      (m_small : m < (2 ^ machine_wordsize) ^ Z.of_nat mont_limbs)\n      (mw1 : 1 < machine_wordsize)\n      (sat_limbs0 : (0 < sat_limbs)%nat)\n      (mont_limbs0 : (0 < mont_limbs)%nat)\n      (Hv : length v = mont_limbs)\n      (Hr : length r = mont_limbs)\n      (Hf : length f = sat_limbs)\n      (Hg : length g = sat_limbs)\n      (overflow_d : - 2 ^ (machine_wordsize - 1) + 1 <\n                    Z.twos_complement machine_wordsize d <\n                    2 ^ (machine_wordsize - 1) - 1)\n      (overflow_f : - 2 ^ (machine_wordsize * sat_limbs - 2) <\n                    eval_twos_complement machine_wordsize sat_limbs f <\n                    2 ^ (machine_wordsize * sat_limbs - 2))\n      (overflow_g : - 2 ^ (machine_wordsize * sat_limbs - 2) <\n                    eval_twos_complement machine_wordsize sat_limbs g <\n                    2 ^ (machine_wordsize * sat_limbs - 2))\n      (Hf2 : forall z, In z f -> 0 <= z < 2^machine_wordsize)\n      (Hg2 : forall z, In z g -> 0 <= z < 2^machine_wordsize)\n      (Hv2 : valid machine_wordsize mont_limbs m v)\n      (Hr2 : valid machine_wordsize mont_limbs m r) :\n  let '(d1,f1,g1,v1,r1) := (divstep machine_wordsize sat_limbs mont_limbs m d f g v r) in\n    (Z.twos_complement machine_wordsize d1,\n     eval_twos_complement machine_wordsize sat_limbs f1,\n     eval_twos_complement machine_wordsize sat_limbs g1,\n     @WordByWordMontgomery.eval machine_wordsize mont_limbs (from_montgomerymod machine_wordsize mont_limbs m m' v1) mod m,\n     @WordByWordMontgomery.eval machine_wordsize mont_limbs (from_montgomerymod machine_wordsize mont_limbs m m' r1) mod m) =\n    divstep_spec_full m (Z.twos_complement machine_wordsize d)\n                      (eval_twos_complement machine_wordsize sat_limbs f)\n                      (eval_twos_complement machine_wordsize sat_limbs g)\n                      (@WordByWordMontgomery.eval machine_wordsize mont_limbs (from_montgomerymod machine_wordsize mont_limbs m m' v))\n                      (@WordByWordMontgomery.eval machine_wordsize mont_limbs (from_montgomerymod machine_wordsize mont_limbs m m' r))."
+  },
+  "children": [
+    {
+      "name": "divstep_spec_divstep_spec_full_d",
+      "statement": "Lemma divstep_spec_divstep_spec_full_d m d f g v r :\n  fst (fst (divstep_spec d f g)) = fst (fst (fst (fst (divstep_spec_full m d f g v r)))).",
+      "closed_by": "unfold divstep_spec, divstep_spec_full; destruct ((0 <? d) && Z.odd g); reflexivity"
+    },
+    {
+      "name": "divstep_d",
+      "statement": "Lemma divstep_d machine_wordsize sat_limbs mont_limbs m d f g v r\n      (mw1 : 1 < machine_wordsize)\n      (sat_limbs0 : (0 < sat_limbs)%nat)\n      (Hg : length g = sat_limbs)\n      (overflow_d : - 2 ^ (machine_wordsize - 1) + 1 <\n                    Z.twos_complement machine_wordsize d <\n                    2 ^ (machine_wordsize - 1) - 1) :\n  let '(d1,f1,g1,v1,r1) := (divstep machine_wordsize sat_limbs mont_limbs m d f g v r) in\n  Z.twos_complement machine_wordsize d1 =\n  fst (fst (divstep_spec (Z.twos_complement machine_wordsize d)\n                           (eval_twos_complement machine_wordsize sat_limbs f)\n                           (eval_twos_complement machine_wordsize sat_limbs g))).",
+      "closed_by": "unfold divstep_spec; rewrite the twos-complement helpers; destruct ((0 <? Z.twos_complement machine_wordsize d) && (Z.odd g')) eqn:E; each branch closed by lia"
+    },
+    {
+      "name": "divstep_spec_divstep_spec_full_f",
+      "statement": "Lemma divstep_spec_divstep_spec_full_f m d f g v r :\n  snd (fst (divstep_spec d f g)) = snd (fst (fst (fst (divstep_spec_full m d f g v r)))).",
+      "closed_by": "unfold divstep_spec, divstep_spec_full; destruct ((0 <? d) && Z.odd g); reflexivity"
+    },
+    {
+      "name": "divstep_f",
+      "statement": "Lemma divstep_f machine_wordsize sat_limbs mont_limbs m d f g v r\n      (mw0 : 0 < machine_wordsize)\n      (Hf : length f = sat_limbs)\n      (Hg : length g = sat_limbs)\n      (corner_case : Z.twos_complement machine_wordsize d <> - 2 ^ (machine_wordsize - 1)) :\n  let '(d1,f1,g1,v1,r1) := (divstep machine_wordsize sat_limbs mont_limbs m d f g v r) in\n  eval_twos_complement machine_wordsize sat_limbs f1 =\n  snd (fst (divstep_spec (Z.twos_complement machine_wordsize d)\n                           (eval_twos_complement machine_wordsize sat_limbs f)\n                           (eval_twos_complement machine_wordsize sat_limbs g))).",
+      "closed_by": "destruct sat_limbs (base case reflexivity); destruct (0 <? Z.twos_complement machine_wordsize d); destruct (Z.odd (eval_twos_complement machine_wordsize n' g)); try reflexivity; lia"
+    },
+    {
+      "name": "divstep_spec_divstep_spec_full_g",
+      "statement": "Lemma divstep_spec_divstep_spec_full_g m d f g v r :\n  snd (divstep_spec d f g) = snd (fst (fst (divstep_spec_full m d f g v r))).",
+      "closed_by": "unfold divstep_spec, divstep_spec_full; destruct ((0 <? d) && Z.odd g); reflexivity"
+    },
+    {
+      "name": "divstep_g",
+      "statement": "Lemma divstep_g machine_wordsize sat_limbs mont_limbs m d f g v r\n      (mw0 : 0 < machine_wordsize)\n      (sat_limbs0 : (0 < sat_limbs)%nat)\n      (fodd : Z.odd (eval_twos_complement machine_wordsize sat_limbs f) = true)\n      (Hf : length f = sat_limbs)\n      (Hg : length g = sat_limbs)\n      (corner_case : Z.twos_complement machine_wordsize d <> - 2 ^ (machine_wordsize - 1))\n      (overflow_f : - 2 ^ (machine_wordsize * sat_limbs - 2) <\n                    eval_twos_complement machine_wordsize sat_limbs f <\n                    2 ^ (machine_wordsize * sat_limbs - 2))\n      (overflow_g : - 2 ^ (machine_wordsize * sat_limbs - 2) <\n                    eval_twos_complement machine_wordsize sat_limbs g <\n                    2 ^ (machine_wordsize * sat_limbs - 2))\n      (Hf2 : forall z, In z f -> 0 <= z < 2^machine_wordsize)\n      (Hg2 : forall z, In z g -> 0 <= z < 2^machine_wordsize) :\n  let '(d1,f1,g1,v1,r1) := (divstep machine_wordsize sat_limbs mont_limbs m d f g v r) in\n  eval_twos_complement machine_wordsize sat_limbs g1 =\n  snd (divstep_spec\n         (Z.twos_complement machine_wordsize d)\n         (eval_twos_complement machine_wordsize sat_limbs f)\n         (eval_twos_complement machine_wordsize sat_limbs g)).",
+      "closed_by": "rewrite chain of the eval_twos_complement_* lemmas; destruct (0 <? Z.twos_complement machine_wordsize d); destruct (Z.odd g') eqn:g'_odd; four cases closed by reflexivity / lia"
+    },
+    {
+      "name": "divstep_spec2_divstep_spec_full_v",
+      "statement": "Lemma divstep_spec2_divstep_spec_full_v m d f g v r :\n  fst (divstep_spec2 m d g v r) = snd (fst (divstep_spec_full m d f g v r)).",
+      "closed_by": "unfold divstep_spec2, divstep_spec_full; destruct ((0 <? d) && Z.odd g); reflexivity"
+    },
+    {
+      "name": "divstep_v",
+      "statement": "Lemma divstep_v machine_wordsize sat_limbs mont_limbs m (r' : Z) m' d f g v r\n      (fodd : Z.odd (eval_twos_complement machine_wordsize sat_limbs f) = true)\n\n      (r'_correct : (2 ^ machine_wordsize * r') mod m = 1)\n      (m'_correct : (m * m') mod 2 ^ machine_wordsize = -1 mod 2 ^ machine_wordsize)\n      (m_big : 1 < m)\n      (m_small : m < (2 ^ machine_wordsize) ^ Z.of_nat mont_limbs)\n      (Hv2 : valid machine_wordsize mont_limbs m v)\n      (Hr2 : valid machine_wordsize mont_limbs m r)\n      (mw0 : 0 < machine_wordsize)\n      (sat_limbs0 : (0 < sat_limbs)%nat)\n      (mont_limbs0 : (0 < mont_limbs)%nat)\n      (Hv : length v = mont_limbs)\n      (Hr : length r = mont_limbs)\n      (Hg : length g = sat_limbs)\n      (overflow_d : - 2 ^ (machine_wordsize - 1) + 1 <\n                    Z.twos_complement machine_wordsize d <\n                    2 ^ (machine_wordsize - 1) - 1) :\n  let '(d1,f1,g1,v1,r1) := (divstep machine_wordsize sat_limbs mont_limbs m d f g v r) in\n  @WordByWordMontgomery.eval machine_wordsize mont_limbs\n                        (from_montgomerymod machine_wordsize mont_limbs m m' v1) mod m =\n  fst (divstep_spec2 m (Z.twos_complement machine_wordsize d)\n                (eval_twos_complement machine_wordsize sat_limbs g)\n                (@WordByWordMontgomery.eval machine_wordsize mont_limbs\n                                       (from_montgomerymod machine_wordsize mont_limbs m m' v))\n                (@WordByWordMontgomery.eval machine_wordsize mont_limbs\n                                       (from_montgomerymod machine_wordsize mont_limbs m m' r))).",
+      "closed_by": "unfold divstep_spec2; destruct (0 <? Z.twos_complement machine_wordsize d); destruct (Z.odd (eval_twos_complement machine_wordsize sat_limbs g)); rewrite ?(eval_addmod _ _ _ r'), ?Z.add_diag; auto"
+    },
+    {
+      "name": "divstep_spec2_divstep_spec_full_r",
+      "statement": "Lemma divstep_spec2_divstep_spec_full_r m d f g v r :\n  snd (divstep_spec2 m d g v r) = snd (divstep_spec_full m d f g v r).",
+      "closed_by": "unfold divstep_spec2, divstep_spec_full; destruct ((0 <? d) && Z.odd g); reflexivity"
+    },
+    {
+      "name": "divstep_r",
+      "statement": "Lemma divstep_r machine_wordsize sat_limbs mont_limbs m (r' : Z) m' d f g v r\n      (fodd : Z.odd (eval_twos_complement machine_wordsize sat_limbs f) = true)\n      (r'_correct : (2 ^ machine_wordsize * r') mod m = 1)\n      (m'_correct : (m * m') mod 2 ^ machine_wordsize = -1 mod 2 ^ machine_wordsize)\n      (m_big : 1 < m)\n      (m_small : m < (2 ^ machine_wordsize) ^ Z.of_nat mont_limbs)\n      (Hv2 : valid machine_wordsize mont_limbs m v)\n      (Hr2 : valid machine_wordsize mont_limbs m r)\n      (mw0 : 0 < machine_wordsize)\n      (sat_limbs0 : (0 < sat_limbs)%nat)\n      (mont_limbs0 : (0 < mont_limbs)%nat)\n      (Hv : length v = mont_limbs)\n      (Hr : length r = mont_limbs)\n      (Hf : length f = sat_limbs)\n      (Hg : length g = sat_limbs)\n      (overflow_d : - 2 ^ (machine_wordsize - 1) + 1 <\n                    Z.twos_complement machine_wordsize d <\n                    2 ^ (machine_wordsize - 1) - 1)\n      (Hf2 : forall z, In z f -> 0 <= z < 2^machine_wordsize) :\n  let '(d1,f1,g1,v1,r1) := (divstep machine_wordsize sat_limbs mont_limbs m d f g v r) in\n  @WordByWordMontgomery.eval machine_wordsize mont_limbs\n                        (from_montgomerymod machine_wordsize mont_limbs m m' r1) mod m =\n  snd (divstep_spec2 m (Z.twos_complement machine_wordsize d)\n                (eval_twos_complement machine_wordsize sat_limbs g)\n                (@WordByWordMontgomery.eval machine_wordsize mont_limbs\n                                       (from_montgomerymod machine_wordsize mont_limbs m m' v))\n                (@WordByWordMontgomery.eval machine_wordsize mont_limbs\n                                       (from_montgomerymod machine_wordsize mont_limbs m m' r))).",
+      "closed_by": "rewrite oppmod_correct / nonzeromod_correct / select_eq lemmas; destruct (0 <? Z.twos_complement machine_wordsize d); destruct (Z.odd (eval_twos_complement machine_wordsize sat_limbs g)); four cases closed by eval_addmod / eval_oppmod rewrites; length side conditions by length_sat_zero and friends"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 10,
+    "depth": 4,
+    "glue_lines": 8,
+    "child_lines": [
+      24,
+      18,
+      60,
+      12,
+      51,
+      2,
+      2,
+      2
+    ]
+  },
+  "applicability": {
+    "goal_shape": "Equality of two tuples of the same arity (nested products) whose coordinates are separate functions of a shared state; injective_projections turns the one tuple equality into one goal per coordinate.",
+    "use_when": "a correctness lemma per coordinate already exists (or is easy to prove) and its hypotheses are exactly a subset of the parent's, so auto/lia discharges each rewrite's side conditions; the tuple is a plain nested product written in the same nesting order on both sides.",
+    "avoid_when": "coordinates are entangled (one coordinate's proof needs another's result); the tuple is a record or dependent type where injective_projections does not apply directly; the per-coordinate lemmas have incompatible side conditions so each rewrite needs a manual by-block and the glue stops being uniform."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent divstep_correct_full closes in eight glue lines: repeat apply injective_projections (line 1014) splits the 5-tuple equality into one goal per coordinate, and each of the seven following rewrite lines (1015-1021) closes a coordinate by applying a divstep_spec*_divstep_spec_full_* projection lemma together with a component lemma (divstep_d/f/g/v/r), discharged by auto/lia.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/BYInv.v#L1012-L1021"
+    },
+    {
+      "n": 2,
+      "claim": "The glue combines 10 direct lemmas (direct_lemmas = 10) in 8 glue lines; the five component children have proofs of 24 (divstep_d), 18 (divstep_f), 60 (divstep_g), 12 (divstep_v) and 51 (divstep_r) lines, and the three shown projection lemmas 2 lines each (child_lines = [24,18,60,12,51,2,2,2]).",
+      "evidence_kind": "measurement",
+      "evidence": "counted from the copied file src/Arithmetic/BYInv.v: glue = lines 1014-1021; child proofs counted from Proof. through Qed. inclusive at lines 720-755, 757-784, 638-718, 818-856, 870-948, 950-953, 955-958, 960-963"
+    },
+    {
+      "n": 3,
+      "claim": "The author groups the five component lemmas and the theorem under one section header, 'This section is for the implementation and correctness of the divstep algorithm' (line 573), signalling that divstep_correct_full is assembled from the per-coordinate lemmas immediately above it.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/BYInv.v#L572-L574"
+    },
+    {
+      "n": 4,
+      "claim": "The same component-wise move is used earlier in the file: divstep_correct (lines 786-816) proves the 3-tuple (d,f,g) equals divstep_spec by apply injective_projections twice and one rewrite per coordinate (divstep_d, divstep_f, divstep_g).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/BYInv.v#L810-L816"
+    }
+  ],
+  "metrics": {
+    "parent_proof_lines": 10,
+    "glue_lines": 8,
+    "direct_lemmas": 10,
+    "children": 10,
+    "children_shown": 8,
+    "how_counted": "parent proof = BYInv.v lines 1012-1021 (Proof. through Qed.); glue_lines = lines 1014-1021 (one repeat apply injective_projections plus seven rewrite lines applying the named component lemmas); direct_lemmas = the 10 named project lemmas the glue rewrites; child proof lines counted from Proof. to Qed. inclusive at the line ranges recorded in sites, in site order divstep_d, divstep_f, divstep_g, divstep_v, divstep_r, divstep_spec_divstep_spec_full_d, divstep_spec_divstep_spec_full_f, divstep_spec_divstep_spec_full_g"
+  },
+  "consequences": "The move creates one obligation per coordinate (five here), each closed by auto from the parent's hypotheses, plus the side conditions of every component lemma, which must be a subset of the parent's hypotheses or be derived first (the assert (0 < machine_wordsize) by lia at line 1013). Failure mode: injective_projections splits only a syntactic nested product in the order it is written, so the left tuple must be printed in the same nesting as the right tuple; if a component lemma's hypotheses are not a subset of the parent's, the uniform auto fails and each rewrite needs an explicit discharge.",
+  "known_uses": [
+    "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/BYInv.v#L786-L816 (divstep_correct: the same injective_projections plus per-coordinate rewrite, for the 3-tuple (d,f,g) against divstep_spec)"
+  ],
+  "related": [
+    "lean-extensionality-axiom-imo2026-729383a9",
+    "lean-extensionality-numina-putnam2025-88be3839"
+  ],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "cb9f23da5b6d0599df2052e2c57a398637b6bd313e9d3bcd358700ab5c0a24c8",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:42:52Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:45:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T15:58:12Z"
+}

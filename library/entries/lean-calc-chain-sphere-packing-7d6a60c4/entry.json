@@ -1,0 +1,315 @@
+{
+  "id": "lean-calc-chain-sphere-packing-7d6a60c4",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Thirteen-link calc bounding f/Δ for polynomially-growing Fourier coefficients",
+  "intent": "Prove the blueprint's Lemma 7.4 (an upper bound on the ratio of a function with polynomially-growing Fourier coefficients to the modular discriminant Δ) as one monotone calc chain, one private step lemma per link, so each factor of the product (leading exponential, sum of coefficient norms, infinite product) is bounded by its own small lemma.",
+  "move": "calc-chain",
+  "also_known_as": [
+    "calculational proof",
+    "chain of inequalities",
+    "transitivity chain"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "sphere-packing",
+    "url": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean",
+    "commit": "efe3bbbc1ece548f4672a772b94d8f621c10fdda",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "SpherePacking/MagicFunction/PolyFourierCoeffBound.lean",
+      "bytes": 26652,
+      "sha256": "c6702c06c41564c4a865e379e14a37b9c17b0ec11f9d5d1272aa2c401dafc2d8",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/MagicFunction/PolyFourierCoeffBound.lean"
+    },
+    {
+      "path": "SpherePacking/ModularForms/Delta.lean",
+      "bytes": 6499,
+      "sha256": "a802b91179026fb81743740f81b5cee907b577a9335379765ff7cc4162571d21",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ModularForms/Delta.lean"
+    },
+    {
+      "path": "SpherePacking/ForMathlib/SpecificLimits.lean",
+      "bytes": 1028,
+      "sha256": "5d4b9cf3e73c49b23d55d84318e1727779487e1f2c599e3815437a5b207bab8a",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ForMathlib/SpecificLimits.lean"
+    },
+    {
+      "path": "SpherePacking/ForMathlib/tprod.lean",
+      "bytes": 1169,
+      "sha256": "f3b9ad0ac738ac3a0a48abec2866a232fe3c0cd51957cd5cbee7bc029da03805",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ForMathlib/tprod.lean"
+    },
+    {
+      "path": "blueprint/src/subsections/construct-a-b.tex",
+      "bytes": 39641,
+      "sha256": "65a7765be0bbc076c432d580a4fe8c0bab1fb375ad2553bbedff2feabba4148d",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/blueprint/src/subsections/construct-a-b.tex"
+    }
+  ],
+  "sites": [
+    {
+      "path": "SpherePacking/MagicFunction/PolyFourierCoeffBound.lean",
+      "lines": [
+        457,
+        487
+      ],
+      "role": "parent",
+      "name": "DivDiscBoundOfPolyFourierCoeff",
+      "excerpt_sha256": "88f958622e080c35e0974e3a85655c64d59e164c73eff65a95e8153a7892e143",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/MagicFunction/PolyFourierCoeffBound.lean#L457-L487"
+    },
+    {
+      "path": "SpherePacking/MagicFunction/PolyFourierCoeffBound.lean",
+      "lines": [
+        192,
+        197
+      ],
+      "role": "child",
+      "name": "step_1",
+      "excerpt_sha256": "90a3846e6461cc5ffc839d1c9cb1461dd17ffcd099bf5cfaa39c19ec69ce7b88",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/MagicFunction/PolyFourierCoeffBound.lean#L192-L197"
+    },
+    {
+      "path": "SpherePacking/MagicFunction/PolyFourierCoeffBound.lean",
+      "lines": [
+        247,
+        255
+      ],
+      "role": "child",
+      "name": "step_7",
+      "excerpt_sha256": "53e03fd1fd59501eda713fb46d5995540bd88f319c53601c59f9fec5881985a9",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/MagicFunction/PolyFourierCoeffBound.lean#L247-L255"
+    },
+    {
+      "path": "SpherePacking/MagicFunction/PolyFourierCoeffBound.lean",
+      "lines": [
+        257,
+        270
+      ],
+      "role": "child",
+      "name": "step_8",
+      "excerpt_sha256": "6e1ed54be459342562af177fa0e1c7ef70306f5e798b3234f6aac94c146eb066",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/MagicFunction/PolyFourierCoeffBound.lean#L257-L270"
+    },
+    {
+      "path": "SpherePacking/MagicFunction/PolyFourierCoeffBound.lean",
+      "lines": [
+        272,
+        283
+      ],
+      "role": "child",
+      "name": "step_9",
+      "excerpt_sha256": "98cae40e6320c047ec890a38a35d0f1c3764974d6c49e0441f28f92f61a44114",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/MagicFunction/PolyFourierCoeffBound.lean#L272-L283"
+    },
+    {
+      "path": "SpherePacking/MagicFunction/PolyFourierCoeffBound.lean",
+      "lines": [
+        285,
+        318
+      ],
+      "role": "child",
+      "name": "step_10",
+      "excerpt_sha256": "9f30bf0b1c8ac198b9100c0e7fc355336170a04a1308a99563db2eb7a66552e5",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/MagicFunction/PolyFourierCoeffBound.lean#L285-L318"
+    },
+    {
+      "path": "SpherePacking/MagicFunction/PolyFourierCoeffBound.lean",
+      "lines": [
+        320,
+        352
+      ],
+      "role": "child",
+      "name": "step_11",
+      "excerpt_sha256": "c7ca6144563171f51c6f83560456fa13e4a99ca0959a3d50d7667579b41ba20b",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/MagicFunction/PolyFourierCoeffBound.lean#L320-L352"
+    },
+    {
+      "path": "SpherePacking/MagicFunction/PolyFourierCoeffBound.lean",
+      "lines": [
+        406,
+        440
+      ],
+      "role": "child",
+      "name": "step_12",
+      "excerpt_sha256": "b65eae06abd36d04230f8f10d4eb5e5e8cc8f1b68f7260d4da982fbf0ac9db8a",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/MagicFunction/PolyFourierCoeffBound.lean#L406-L440"
+    },
+    {
+      "path": "SpherePacking/MagicFunction/PolyFourierCoeffBound.lean",
+      "lines": [
+        442,
+        446
+      ],
+      "role": "child",
+      "name": "step_13",
+      "excerpt_sha256": "7f37e81f73bc8dfa56e3b982dceaa1afe0aec1d52df677dd1fe7db8b4866f4de",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/MagicFunction/PolyFourierCoeffBound.lean#L442-L446"
+    }
+  ],
+  "parent": {
+    "name": "DivDiscBoundOfPolyFourierCoeff",
+    "statement": "theorem DivDiscBoundOfPolyFourierCoeff : norm ((f z) / (Δ z)) ≤\n  (DivDiscBound c n₀) * rexp (-π * (n₀ - 2) * z.im)"
+  },
+  "children": [
+    {
+      "name": "step_1",
+      "statement": "norm (f z / Δ z) = norm ((∑' n, c (n+n₀) * cexp (π*I*(n+n₀)*z)) / (cexp (2*π*I*z) * ∏' n : ℕ+, (1 - cexp (2*π*I*n*z))^24)) — unfold f via hf/fouterm and Δ via DiscriminantProductFormula",
+      "closed_by": "simp [DiscriminantProductFormula, hf, fouterm]"
+    },
+    {
+      "name": "step_2",
+      "statement": "pull cexp (π*I*n₀*z) out of the tsum: ∑' n, c (n+n₀) * cexp (π*I*(n+n₀)*z) = cexp (π*I*n₀*z) * ∑' n, c (n+n₀) * cexp (π*I*n*z)",
+      "closed_by": "congr; rw [← tsum_mul_left]; ext n; ring_nf; rw [mul_assoc, ← Complex.exp_add]; ring"
+    },
+    {
+      "name": "step_3",
+      "statement": "fold cexp (π*I*n₀*z) into the numerator as the quotient cexp (π*I*n₀*z) / cexp (2*π*I*z)",
+      "closed_by": "field_simp"
+    },
+    {
+      "name": "step_4",
+      "statement": "cexp (π*I*n₀*z) / cexp (2*π*I*z) = cexp (π*I*(n₀-2)*z)",
+      "closed_by": "rw [mul_sub, sub_mul, ← Complex.exp_sub]; congr 6; ac_rfl"
+    },
+    {
+      "name": "step_5",
+      "statement": "norm (a * b / c) = norm a * norm b / norm c, pushing norm through the product and division",
+      "closed_by": "simp only [norm_div, norm_mul]"
+    },
+    {
+      "name": "step_6",
+      "statement": "norm (∏' n : ℕ+, (1 - cexp (2*π*I*n*z))^24) = ∏' n : ℕ+, norm (1 - cexp (2*π*I*n*z))^24",
+      "closed_by": "congr; exact aux_5 z"
+    },
+    {
+      "name": "step_7",
+      "statement": "norm (cexp (π*I*(n₀-2)*z)) ≤ rexp (-π*(n₀-2)*z.im) — the first inequality, bounding the leading exponential",
+      "closed_by": "gcongr; exact aux_6 z; norm_cast; exact aux_7 z (n₀-2)"
+    },
+    {
+      "name": "step_8",
+      "statement": "norm (∑' n, c (n+n₀) * cexp (π*I*n*z)) ≤ ∑' n, norm (c (n+n₀)) * norm (cexp (π*I*n*z)) — triangle inequality for the infinite sum",
+      "closed_by": "norm_tsum_le_tsum_norm; aux_3 z c n₀ hcsum"
+    },
+    {
+      "name": "step_9",
+      "statement": "norm (cexp (π*I*n*z)) = rexp (-π*n*z.im) pointwise, so the sum becomes ∑' n, norm (c (n+n₀)) * rexp (-π*n*z.im)",
+      "closed_by": "gcongr; aux_4; aux_10; rw [Complex.norm_exp]"
+    },
+    {
+      "name": "step_10",
+      "statement": "∏' n : ℕ+, norm (1 - cexp (2*π*I*n*z))^24 ≤ ∏' n : ℕ+, (1 - rexp (-2*π*n*z.im))^24 — bound each product factor below the denominator",
+      "closed_by": "tprod_le_of_nonneg_of_multipliable; aux_2; aux_8"
+    },
+    {
+      "name": "step_11",
+      "statement": "∑' n, norm (c (n+n₀)) * rexp (-π*n*z.im) ≤ ∑' n, norm (c (n+n₀)) * rexp (-π*n/2) — the polynomial-growth step, using z.im > 1/2 and hpoly",
+      "closed_by": "summable_real_norm_mul_geometric_of_norm_lt_one hnorm (hpoly' c n₀ k hpoly)"
+    },
+    {
+      "name": "step_12",
+      "statement": "∏' n : ℕ+, (1 - rexp (-2*π*n*z.im))^24 ≤ ∏' n : ℕ+, (1 - rexp (-π*n))^24 — bound the product using z.im > 1/2",
+      "closed_by": "tprod_le_of_nonneg_of_multipliable; step_12a"
+    },
+    {
+      "name": "step_13",
+      "statement": "the final expression equals (DivDiscBound c n₀) * rexp (-π*(n₀-2)*z.im) — recognise the definition of DivDiscBound",
+      "closed_by": "rw [DivDiscBound, mul_div_assoc, mul_comm]"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A bound norm (g z) ≤ C * r z (or an equality/inequality chain between quotients of norms, exponentials and infinite sums/products) that factors into a leading exponential, a sum of norms and an infinite product, each factor boundable by its own lemma.",
+    "use_when": "the bound factors into independent pieces so each can be bounded by one lemma, and the whole is a monotone =/≤ chain; the informal proof (blueprint or paper) is already a displayed = ≤ = ≤ = chain; each link is a clean standalone statement whose endpoints definitionally match the adjacent links.",
+    "avoid_when": "a step needs too much local context to state standalone (keep it as an inline `have`/`calc`); the chain is short enough that one `calc` with `rw`/`gcongr` inline is clearer than many one-use lemmas; the children have no independent interest and are pure rewrites."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The proof of DivDiscBoundOfPolyFourierCoeff (lines 457-487) is a single `calc` whose 13 links each cite exactly one private step lemma (`_ = ... := step_N ...` or `_ ≤ ... := step_N ...`), with no other proof text.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/MagicFunction/PolyFourierCoeffBound.lean#L457-L487"
+    },
+    {
+      "n": 2,
+      "claim": "Every lemma the main theorem depends on within its own file — step_1…step_13, aux_1…aux_11, aux_ring, aux_misc, step_12a, natplus_summable_of_nat_summable, hpoly' — is closed without `sorry`; the file's only `sorry`s are at lines 631 and 633, in the downstream corollary norm_φ₀_le that uses (not feeds) this theorem.",
+      "evidence_kind": "check",
+      "evidence": "read of the whole copied file code/SpherePacking/MagicFunction/PolyFourierCoeffBound.lean: the only `sorry` tokens are at lines 631 and 633"
+    },
+    {
+      "n": 3,
+      "claim": "The glue is 29 lines (the calc body, lines 459-487) assembling 13 direct lemmas; the 8 shown children have proof bodies of 1, 4, 8, 6, 29, 27, 29 and 1 lines (step_1, step_7, step_8, step_9, step_10, step_11, step_12, step_13), so the two estimate-heavy steps (step_10 and step_12) and the polynomial-growth step (step_11) carry 85 of the 105 shown proof lines.",
+      "evidence_kind": "measurement",
+      "evidence": "permalinks to the 8 child sites (https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/MagicFunction/PolyFourierCoeffBound.lean#L192-L197, #L247-L255, #L257-L270, #L272-L283, #L285-L318, #L320-L352, #L406-L440, #L442-L446); proof body counted from `:= by`/`by` to the last line of each lemma"
+    },
+    {
+      "n": 4,
+      "claim": "The blueprint states this as `lemma:mod-div-disc-bound` with `\\lean{MagicFunction.PolyFourierCoeffBound.DivDiscBoundOfPolyFourierCoeff}` marked `\\leanok`, and gives a 5-line `=, ≤, ≤, ≤, =` chain (lines 115-119) that the Lean calc expands into 13 steps; the in-proof comment at line 330 marks the polynomial-growth step ('This is where we use the fact that c is eventually polynomial in n.').",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/blueprint/src/subsections/construct-a-b.tex#L96 and #L112-L127; file comment at SpherePacking/MagicFunction/PolyFourierCoeffBound.lean#L330"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 13,
+    "depth": 4,
+    "glue_lines": 29,
+    "child_lines": [
+      1,
+      4,
+      8,
+      6,
+      29,
+      27,
+      29,
+      1
+    ]
+  },
+  "metrics": {
+    "parent_lines": 31,
+    "glue_lines": 29,
+    "children": 13,
+    "children_shown": 8,
+    "child_proof_lines_shown": [
+      1,
+      4,
+      8,
+      6,
+      29,
+      27,
+      29,
+      1
+    ],
+    "how_counted": "parent_lines = lines 457-487 of the copied file (theorem statement + calc); glue_lines = the calc body lines 459-487; child_proof_lines_shown = proof-body lines (from `:= by`/`by` to the last line) of the shown children step_1, step_7, step_8, step_9, step_10, step_11, step_12, step_13 in order"
+  },
+  "consequences": "Thirteen private lemmas, one per link, stated before the theorem and referenced by name; transitivity of the chain is checked by `calc` itself, so each child's only obligation is that its two endpoints definitionally match the adjacent links (its LHS must equal the previous link's RHS). Failure modes: a child whose statement drifts from the chain endpoints will not elaborate; a one-use child that cannot be stated cleanly (needs many section variables, as step_11 includes hz hcsum hpoly) is boilerplate; and a missing summability hypothesis (hcsum in step_8, step_9, step_11) silently fails the chain.",
+  "known_uses": [
+    "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/MagicFunction/PolyFourierCoeffBound.lean#L628 (the corollary norm_φ₀_le instantiates DivDiscBoundOfPolyFourierCoeff with c n = n * σ 3 n.toNat and n₀ = 4)"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "7d6a60c47963b2c2e1849a29294a962b764448322e51439c1bf02116b4417479",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T14:46:26Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T14:52:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T14:59:32Z"
+}

@@ -1,0 +1,101 @@
+{
+  "entry": "isabelle-calc-chain-afp-4d3178de",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:02:34Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:02:34Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:02:44Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no Isabelle toolchain on the harvest machine; mirror-afp-devel has no in-repo CI workflow (no .github/workflows or Jenkins/Travis/GitLab config in the 31441-file listing at the pinned commit), so there is no workflow file to cite for ci-record — the AFP's CI is an external Jenkins testboard",
+      "by": "verifier",
+      "at": "2026-11-12T16:04:53Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "read code/thys/IMO2019/IMO2019_Q4.thy (byte-identical to pinned commit per check_provenance): L245-246 fact T <= fact k via k_gt_T, L248 rhs_less, L257-258 fact_ge_power, qed at L260; child qeds at L38, L191, L224",
+      "by": "verifier",
+      "at": "2026-11-12T16:04:56Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "grep -iE 'sorry|admit|oops' over library/cache/afp/files/thys/IMO2019/IMO2019_Q1.thy, IMO2019_Q4.thy, IMO2019_Q5.thy returned 0 matches",
+      "by": "verifier",
+      "at": "2026-11-12T16:05:00Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "counted in the copied file: glue L232-260 = 29 lines; direct same-file lemmas k_gt_T/rhs_less/fact_ge_power = 3; chain n_less_7 -> k_gt_T -> multiplicity_2_rhs -> rhs_altdef = depth 3; child lines 181-191=11, 207-224=18, 32-38=7",
+      "by": "verifier",
+      "at": "2026-11-12T16:05:03Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "comment L226-230 reads: 'It is clear that 2^(n^2) <= 8^T and that 8^T < T! if T is sufficiently big ... We can therefore conclude that n must be less than 7.'",
+      "by": "verifier",
+      "at": "2026-11-12T16:05:06Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "k_gt_T (L181-191) uses multiplicity_2_rhs (L183), multiplicity_prime_fact (L187), legendre_aux_less (L189); rhs_less (L207-224) uses rhs_altdef (L209)",
+      "by": "verifier",
+      "at": "2026-11-12T16:05:10Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Read the byte-identical copied code (per check_provenance). Parent n_less_7 (L231-260) closes at qed L260 from exactly three same-file children: k_gt_T (L246, gives fact T <= fact k), rhs_less (L248, gives rhs < 2^n^2), fact_ge_power (L258, gives fact T >= 8^T via [of _ 20]); each child ends in qed (L191, L224, L38). Child statements and closed_by match the code: k_gt_T chain T = multiplicity 2 rhs = legendre_aux k 2 < k over multiplicity_2_rhs/multiplicity_prime_fact/legendre_aux_less; rhs_less over rhs_altdef/prod_mono_strict/power_sum; fact_ge_power dec_induct with mult_mono step. No sorry/admit/oops. Shape numbers correct: direct_lemmas=3, depth=3 (n_less_7 -> k_gt_T -> multiplicity_2_rhs -> rhs_altdef), glue_lines=29 (L232-260), child_lines=[11,18,7] (L181-191, L207-224, L32-38). fact_bounds (L244) is an imported Stirling_Formula lemma, correctly not a child.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T16:07:44Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generally (goal_shape 'a bound like n < N, or more generally an inequality between two expressions... collapses to a small finite check'; use_when/avoid_when and 'When to use it' prose describe a chain of inequalities with non-trivial named steps written in one direction with also/finally, not just IMO 2019 Q4). 'When not to use' and consequences are honest and specific: the >= limitation of Isar's also, folding one-off rewrites inline, a link stated too weak breaking the strict end, one obligation per link, and the hidden precondition that fact_bounds needs T >= 21. It explicitly says what makes the leaves good for a bounded prover: each child is a single self-contained inequality between named quantities whose proof closes on its own (fact_ge_power) or from named same-file siblings (k_gt_T, rhs_less), so each step is a hole a bounded prover can be pointed at. Minor: 'dropping either child makes the proof close vacuously wrong' is imprecise (it would leave the proof incomplete, not vacuously wrong), but the substance is correct and does not warrant objection.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T16:08:42Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "object",
+      "evidence": "Permalinks and commit are consistent and traceable: every permalink points at 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df, check_provenance reports the copied file byte-identical at that commit, and the line anchors match the copied file (n_less_7 L231-260, context L133-139, children L180-191/L206-224/L27-38). The licence is not consistent with the copied file: entry.json and SOURCE.md record LicenseRef-unknown and claim 'no licence file found at the root', but the IMO2019 entry's licence is traceable at the pinned commit - metadata/entries/IMO2019.toml has license = 'bsd' and metadata/licenses.toml maps bsd -> 'BSD'. Fix: record the licence as BSD and cite that metadata locator in the entry's source licence and in SOURCE.md, instead of LicenseRef-unknown.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T16:11:22Z"
+    }
+  ]
+}

@@ -1,6 +1,42 @@
 {
   "location": [
     [
+      "lean-case-split-flt-anthropic-22d1c0d8",
+      "lean-case-split-flt-anthropic-f782b482"
+    ],
+    [
+      "lean-case-split-flt-anthropic-22d1c0d8",
+      "lean-case-split-flt-anthropic-f782b482"
+    ],
+    [
+      "lean-case-split-flt-anthropic-22d1c0d8",
+      "lean-case-split-flt-anthropic-f782b482"
+    ],
+    [
+      "lean-case-split-flt-anthropic-22d1c0d8",
+      "lean-case-split-flt-anthropic-f782b482"
+    ],
+    [
+      "lean-case-split-flt-anthropic-22d1c0d8",
+      "lean-case-split-flt-anthropic-f782b482"
+    ],
+    [
+      "lean-case-split-flt-anthropic-22d1c0d8",
+      "lean-case-split-flt-anthropic-f782b482"
+    ],
+    [
+      "lean-case-split-flt-anthropic-22d1c0d8",
+      "lean-case-split-flt-anthropic-f782b482"
+    ],
+    [
+      "lean-case-split-flt-anthropic-22d1c0d8",
+      "lean-case-split-flt-anthropic-f782b482"
+    ],
+    [
+      "lean-case-split-flt-anthropic-22d1c0d8",
+      "lean-case-split-flt-anthropic-f782b482"
+    ],
+    [
       "lean-statement-object-flt-anthropic-afa74779",
       "lean-statement-object-flt-anthropic-b51da0fb"
     ],
@@ -10,7 +46,12 @@
     ]
   ],
   "content": [],
-  "statement": [],
+  "statement": [
+    [
+      "lean-iff-split-axiom-imo2026-5ffbca5d",
+      "lean-iff-split-mechmath-imo2026-75bedf39"
+    ]
+  ],
   "move+shape": [
     [
       "lean-statement-object-flt-anthropic-afa74779",

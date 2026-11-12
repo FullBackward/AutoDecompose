@@ -1,0 +1,198 @@
+{
+  "id": "lean-iff-split-mechmath-imo2026-75bedf39",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Iff split for IMO 2026 Q4: MulanCanGuarantee θ iff θ = 180/n for some n ≥ 2",
+  "intent": "Assemble the triangle-game headline result — Mulan can force a winning angle θ from every valid triangle exactly when θ = 180/n for some integer n ≥ 2 — by rewriting the markedness predicate into the arithmetic form with `arithmetic_bridge`, then splitting the biconditional with `constructor`. The necessity direction (guarantee ⇒ marked) refutes the win from an unmarked complement using `safe_start` and `safe_nonwin`; the sufficiency direction (marked ⇒ guarantee) hands the witness n to `universal_win`.",
+  "move": "iff-split",
+  "also_known_as": [
+    "bidirectional split",
+    "iff introduction (iffI)",
+    "two inclusions"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "mechmath-imo2026",
+    "url": "https://github.com/MechMath/IMO2026",
+    "commit": "47ff510110dd400c98aee2ead3be0f53f7b8ba04",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "IMO2026/Q4/solution.lean",
+      "bytes": 17624,
+      "sha256": "2fd1ea379e02ec323bb4d4b287b1bfb64af6474c43ffd6c6168b3bd1fb80d2ff",
+      "permalink": "https://github.com/MechMath/IMO2026/blob/47ff510110dd400c98aee2ead3be0f53f7b8ba04/IMO2026/Q4/solution.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "IMO2026/Q4/solution.lean",
+      "lines": [
+        383,
+        398
+      ],
+      "role": "parent",
+      "name": "main_theorem",
+      "excerpt_sha256": "e91e3f0a4f8f058be8fe65061fcfb278a1a1d29fbb95383feaa66c5c501fce5b",
+      "permalink": "https://github.com/MechMath/IMO2026/blob/47ff510110dd400c98aee2ead3be0f53f7b8ba04/IMO2026/Q4/solution.lean#L383-L398"
+    },
+    {
+      "path": "IMO2026/Q4/solution.lean",
+      "lines": [
+        359,
+        381
+      ],
+      "role": "child",
+      "name": "arithmetic_bridge",
+      "excerpt_sha256": "f19b229a71fb51579e2cb3d3f4c1733b66b223b77f1053bb597f29b99dfb04b5",
+      "permalink": "https://github.com/MechMath/IMO2026/blob/47ff510110dd400c98aee2ead3be0f53f7b8ba04/IMO2026/Q4/solution.lean#L359-L381"
+    },
+    {
+      "path": "IMO2026/Q4/solution.lean",
+      "lines": [
+        184,
+        200
+      ],
+      "role": "child",
+      "name": "safe_start",
+      "excerpt_sha256": "de601250496f279f7fdd871d88818897e3b7cbe18e5cc892503eb5e843cde908",
+      "permalink": "https://github.com/MechMath/IMO2026/blob/47ff510110dd400c98aee2ead3be0f53f7b8ba04/IMO2026/Q4/solution.lean#L184-L200"
+    },
+    {
+      "path": "IMO2026/Q4/solution.lean",
+      "lines": [
+        203,
+        216
+      ],
+      "role": "child",
+      "name": "safe_nonwin",
+      "excerpt_sha256": "a62223188d50dd789779ec5a8473462bc5c734d8f99ad8a1839042714d6e0c48",
+      "permalink": "https://github.com/MechMath/IMO2026/blob/47ff510110dd400c98aee2ead3be0f53f7b8ba04/IMO2026/Q4/solution.lean#L203-L216"
+    },
+    {
+      "path": "IMO2026/Q4/solution.lean",
+      "lines": [
+        302,
+        354
+      ],
+      "role": "child",
+      "name": "universal_win",
+      "excerpt_sha256": "8f8c8c7a97d63e3bb30a621a06677ebf0a903679955910970629a2a016ce77dc",
+      "permalink": "https://github.com/MechMath/IMO2026/blob/47ff510110dd400c98aee2ead3be0f53f7b8ba04/IMO2026/Q4/solution.lean#L302-L354"
+    }
+  ],
+  "parent": {
+    "name": "main_theorem",
+    "statement": "theorem main_theorem (θ : ℝ) (hθ0 : 0 < θ) (hθ180 : θ < 180) :\n    MulanCanGuarantee θ ↔ ∃ n : ℕ, 2 ≤ n ∧ θ = 180 / n := by"
+  },
+  "children": [
+    {
+      "name": "arithmetic_bridge",
+      "statement": "lemma arithmetic_bridge {θ : ℝ} (h0 : 0 < θ) (h180 : θ < 180) :\n    Marked θ 180 ↔ ∃ n : ℕ, 2 ≤ n ∧ θ = 180 / (n : ℝ) := by",
+      "closed_by": "`constructor` on `↔`; the `Marked → ∃` direction derives `1 < m` by `lt_of_mul_lt_mul_right h (le_of_lt h0)` and closes `rw [eq_div_iff (ne_of_gt hmpos)]` + `linarith [heq, mul_comm (m : ℝ) θ]` (lines 54-56); the `∃ → Marked` direction closes `rw [heq]` + `field_simp` (lines 63-64)"
+    },
+    {
+      "name": "safe_start",
+      "statement": "lemma safe_start {θ : ℝ} (h0 : 0 < θ) (h180 : θ < 180) (hT : ¬ Marked θ 180) :\n    Safe θ ({θ / 2, θ / 2, 180 - θ} : Multiset ℝ) := by",
+      "closed_by": "`refine ⟨isTriangle_triple (by linarith) (by linarith) (by linarith) (by ring), ?_⟩` for validity (line 72); the two θ/2 angles are shown unmarked by `nlinarith [heq, h0, hm1]` (lines 78, 81), the third angle `180 - θ` by deriving a marked `180` and closing with `exact hT ⟨m + 1, by omega, …⟩` (lines 82-86)"
+    },
+    {
+      "name": "safe_nonwin",
+      "statement": "lemma safe_nonwin {θ : ℝ} (hθ : 0 < θ) (hT : ¬ Marked θ 180)\n    {s : Multiset ℝ} (hsafe : Safe θ s) : ¬ MulanWins θ s := by",
+      "closed_by": "`suffices h : ∀ t, MulanWins θ t → Safe θ t → False` then induction on `MulanWins`; `win` case `exact hsafe'.2 θ h ⟨1, le_refl 1, by push_cast; ring⟩` (line 100); `move` case `rcases safe_child hθ hT hsafe' hcut with hsL | hsR` (line 103) then `exact ihL hsL` / `exact ihR hsR` (lines 104-105)"
+    },
+    {
+      "name": "universal_win",
+      "statement": "lemma universal_win {θ : ℝ} (hθ : 0 < θ) {n : ℕ} (hn : 2 ≤ n)\n    (hT : (180 : ℝ) = (n : ℝ) * θ) : MulanCanGuarantee θ := by",
+      "closed_by": "an inner strong induction `Pq` over `q` (`Nat.le_induction`, lines 304-340): base uses `small_angle_finish` (line 121) or `MulanWins.win` (line 122); step builds a cut with `peeling_cut` (line 135) and recurses `ih _ (a - θ) hRtri haθmem haθ0 haθle` (line 147); closed by `exact Pq q hq1 s a hs ha ha0 haq` (line 354)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A biconditional `P ↔ ∃ n : ℕ, 2 ≤ n ∧ θ = 180 / n`, where `P` is a game reachability predicate (`MulanCanGuarantee θ`) and the right-hand side is an arithmetic existence condition with a side condition `2 ≤ n`. Both directions already exist as named lemmas, and a separate rewrite lemma (`arithmetic_bridge`) converts the intermediate predicate `Marked θ 180` into the arithmetic form so the `rw` fires before the split.",
+    "use_when": "both directions already exist as named lemmas whose hypotheses match the theorem's exactly (`0 < θ`, `θ < 180`); the theorem is a genuine biconditional and each direction closes by a single `rw`/`exact` of the corresponding lemma; an intermediate predicate needs a one-to-one bridge to the arithmetic statement, so the split happens on the simpler predicate.",
+    "avoid_when": "one direction needs a bespoke argument too large to be worth naming, so the glue grows; the two lemmas are stated over different hypotheses and the hand-off needs extra rewriting; the intermediate predicate has no clean bridge lemma and the rewrite does not fire; the biconditional is really a one-way implication."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "`main_theorem` (lines 383-398) closes from exactly four named project lemmas: `arithmetic_bridge` (rewrite, line 385), `safe_start` (line 389), `safe_nonwin` (line 391) and `universal_win` (line 398), with `constructor` on `↔` the only glue between the two directions.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/MechMath/IMO2026/blob/47ff510110dd400c98aee2ead3be0f53f7b8ba04/IMO2026/Q4/solution.lean#L383-L398 (the file was read whole)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent's proof body is 14 lines (lines 385-398, the two statement lines 383-384 excluded), while the four children's spans total 107 lines — `arithmetic_bridge` 23 (359-381), `safe_start` 17 (184-200), `safe_nonwin` 14 (203-216), `universal_win` 53 (302-354) — so the named lemmas carry most of the argument.",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/MechMath/IMO2026/blob/47ff510110dd400c98aee2ead3be0f53f7b8ba04/IMO2026/Q4/solution.lean#L383-L398 and #L359-L381 and #L184-L200 and #L203-L216 and #L302-L354, counted by reading the copied file"
+    },
+    {
+      "n": 3,
+      "claim": "The repository README states 'Every `solution.lean` is `sorry`-free and `admit`-free' and that Q4's `TriangleGame.main_theorem` prints `[propext, Classical.choice, Quot.sound]` from `#print axioms`, i.e. no `sorryAx` and no custom axiom.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/MechMath/IMO2026/blob/47ff510110dd400c98aee2ead3be0f53f7b8ba04/README.md#L47-L62 (section 'Verification'); the `#print axioms TriangleGame.main_theorem` command is at solution.lean line 402"
+    },
+    {
+      "n": 4,
+      "claim": "Below `main_theorem` the longest chain of project lemmas is 5 deep: `main_theorem` → `safe_nonwin` (applies `safe_child`, line 214) → `safe_child` (applies `cut_witnesses`, line 133) → `cut_witnesses` (applies `isTriangle_triple`, line 105) → `isTriangle_triple` (applies `mem_triple`, line 48) → `mem_triple` (a leaf closed by `simp`, line 40).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/MechMath/IMO2026/blob/47ff510110dd400c98aee2ead3be0f53f7b8ba04/IMO2026/Q4/solution.lean#L203-L216 and #L130-L181 and #L86-L109 and #L43-L51 and #L38-L40"
+    },
+    {
+      "n": 5,
+      "claim": "The same iff-split of the same IMO 2026 Q4 theorem (MulanCanGuarantee θ iff θ = 180/n for some n ≥ 2) is formalized independently in the AxiomMath/IMO2026 repository, already harvested as library entry `lean-iff-split-axiom-imo2026-5ffbca5d` with move `iff-split`.",
+      "evidence_kind": "known-use",
+      "evidence": "library entry lean-iff-split-axiom-imo2026-5ffbca5d (its entry.json, read this session, records the same `main_theorem` statement and move iff-split over AxiomMath/IMO2026)"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 5,
+    "glue_lines": 14,
+    "child_lines": [
+      23,
+      17,
+      14,
+      53
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 14,
+    "children": 4,
+    "child_proof_lines": [
+      23,
+      17,
+      14,
+      53
+    ],
+    "how_counted": "parent proof (glue) = solution.lean lines 385-398, the two statement lines 383-384 excluded; child proofs = statement+proof span of each child: arithmetic_bridge 359-381 (23), safe_start 184-200 (17), safe_nonwin 203-216 (14), universal_win 302-354 (53)"
+  },
+  "consequences": "`constructor` on `↔` creates exactly two goals. The necessity direction (`MulanCanGuarantee θ → Marked θ 180`) is proved by contradiction: assume `hT : ¬ Marked θ 180`, build the safe triangle with `safe_start`, obtain a win from `hg`, and refute it with `safe_nonwin`. The sufficiency direction (`Marked θ 180 → MulanCanGuarantee θ`) unpacks the mark as `⟨m, hm, heq⟩`, re-derives `1 < m` from `θ < 180` (lines 393-397, duplicating part of `arithmetic_bridge`) to satisfy `universal_win`'s `2 ≤ n`, and applies `universal_win`. Failure modes: dropping `θ < 180` leaves n = 1 (θ = 180) unexcluded and both `arithmetic_bridge` and the glue's `1 < m` argument fail; if `arithmetic_bridge` is stated over different hypotheses the `rw [← …]` at line 385 does not fire; the `1 < m` re-derivation in the glue (lines 393-397) is a small duplication that must stay in step with `arithmetic_bridge`'s forward direction.",
+  "known_uses": [
+    "lean-iff-split-axiom-imo2026-5ffbca5d"
+  ],
+  "related": [
+    "lean-iff-split-axiom-imo2026-5ffbca5d"
+  ],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "75bedf39d5863bca6dff1e061a118547fa95a3bdcfe992a1a739d203ebc3f6c4",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:12:11Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12"
+    }
+  ]
+}

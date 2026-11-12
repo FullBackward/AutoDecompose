@@ -1,0 +1,190 @@
+{
+  "id": "rocq-witness-hydra-battles-f45d6a98",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Witness G with one lemma per property for Goedel's first incompleteness theorem",
+  "intent": "Prove Goedel's first incompleteness theorem — every ω-consistent system T extending NN has a closed formula independent of T — by fixing the fixed-point sentence G once (line 66) and delegating each conjunct of `independent T G ∧ closed G` to its own named lemma, leaving a 10-line glue that poses the three lemmas and closes by `repeat split; tauto`.",
+  "move": "witness",
+  "also_known_as": [
+    "constructive existence",
+    "exists-witness",
+    "name-the-witness-then-prove-its-properties"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "hydra-battles",
+    "url": "https://github.com/coq-community/hydra-battles",
+    "commit": "ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "theories/goedel/goedel1.v",
+      "bytes": 9666,
+      "sha256": "4081bd6de4a60b4338a656c5d48267d94c265d863e0844afdb1c55f38edf4757",
+      "permalink": "https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/goedel/goedel1.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/goedel/goedel1.v",
+      "lines": [
+        289,
+        301
+      ],
+      "role": "parent",
+      "name": "Goedel'sIncompleteness1st",
+      "excerpt_sha256": "5abbe93719d62c09dd131e562676f5e7fd2f555e4bfcd1e9198923dbb09ab7d8",
+      "permalink": "https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/goedel/goedel1.v#L289-L301"
+    },
+    {
+      "path": "theories/goedel/goedel1.v",
+      "lines": [
+        87,
+        106
+      ],
+      "role": "child",
+      "name": "freeVarG",
+      "excerpt_sha256": "83256b6ca2087378e63290a476b2b3adb2cd9b42792612516c1e00d290d85e49",
+      "permalink": "https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/goedel/goedel1.v#L87-L106"
+    },
+    {
+      "path": "theories/goedel/goedel1.v",
+      "lines": [
+        108,
+        124
+      ],
+      "role": "child",
+      "name": "FirstIncompletenessA",
+      "excerpt_sha256": "212654ec6951119a06f6eb83cf7df8fe9baeb1c4d060c3a57a701c5e2349e514",
+      "permalink": "https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/goedel/goedel1.v#L108-L124"
+    },
+    {
+      "path": "theories/goedel/goedel1.v",
+      "lines": [
+        132,
+        286
+      ],
+      "role": "child",
+      "name": "FirstIncompletenessB",
+      "excerpt_sha256": "d1112d0298d23175c7f38548e868f118d64e12dada285bd5ae4892f96a9de56e",
+      "permalink": "https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/goedel/goedel1.v#L132-L286"
+    },
+    {
+      "path": "theories/goedel/goedel1.v",
+      "lines": [
+        66,
+        66
+      ],
+      "role": "context",
+      "name": "G",
+      "excerpt_sha256": "1d8b1714fb95c0a661d2e2c2e63e27e72bd797821a71aff2ddf5349277095813",
+      "permalink": "https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/goedel/goedel1.v#L66-L66"
+    }
+  ],
+  "parent": {
+    "name": "Goedel'sIncompleteness1st",
+    "statement": "Theorem Goedel'sIncompleteness1st :\n wConsistent T ->\n exists f : Formula, independent T f /\\ closed f."
+  },
+  "children": [
+    {
+      "name": "freeVarG",
+      "statement": "Lemma freeVarG : closed G.",
+      "closed_by": "unfolds `closed` and `G`, destructs the fixed point, and for any `v` in the free variables proves both `v ≠ 0` (via `in_remove_neq`) and `v = 0` (via `freeVarCodeSysPrf` through `freeVarRepT`), closing `absurd (v = 0)`"
+    },
+    {
+      "name": "FirstIncompletenessA",
+      "statement": "Lemma FirstIncompletenessA : SysPrf T G -> Inconsistent LNN T.",
+      "closed_by": "unfolds `G` to the fixed point `x` and proves `Inconsistent` with `contradiction with x`; `SysPrf T x` is the assumption, and `SysPrf T (notH x)` follows from the fixed-point equivalence (`cp2`, `iffE1`) and `codeSysPfCorrect` (`impE`, `nnI`)"
+    },
+    {
+      "name": "FirstIncompletenessB",
+      "statement": "Lemma FirstIncompletenessB :\n  wConsistent T -> ~ SysPrf T (notH G).",
+      "closed_by": "assumes `SysPrf T (notH G)`, uses w-consistency (`wCon2Con`) to reach a numeral whose formula is not provable, then splits on `eq_nat_dec (checkPrf …) 0`: `= 0` contradicts via `codeSysPrfCorrect3` and `checkPrfCorrect1`; `≠ 0` reconstructs a proof of `x` via `checkPrfCorrect2` and yields inconsistency via `codeSysPrfCorrect2`"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "∃ f : Formula, P f where P f is a conjunction (here `independent T f ∧ closed f`, i.e. `~ SysPrf T f ∧ ~ SysPrf T (~ f)%fol ∧ closed f`) and the witness f is a named term G defined once outside the proof; each conjunct of P G is discharged by one named lemma stated for G",
+    "use_when": "the witness can be fixed up front (a fixed-point or constructed object) and the properties it must satisfy are independent of one another, each a self-contained statement; then the main proof is `exists G` plus `repeat split; tauto` over the posed lemmas",
+    "avoid_when": "the witness must be adjusted during the proof, or the properties are interdependent (one lemma needs another's conclusion), or the property statements do not factor into separate named lemmas"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent closes in 10 lines: after `exists G`, it poses `freeVarG`, `FirstIncompletenessA`, `FirstIncompletenessB`, asserts `~ Inconsistent LNN T` (discharged by `wCon2Con`), and `repeat split; tauto` resolves all three conjuncts of `independent T G ∧ closed G` from those three lemmas.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/goedel/goedel1.v#L289-L301"
+    },
+    {
+      "n": 2,
+      "claim": "The main proof is 10 lines (292-301) while the three children span 19, 16 and 153 proof lines (88-106, 109-124, 134-286), so the glue hides 188 lines of argument behind three lemma names.",
+      "evidence_kind": "measurement",
+      "evidence": "line counts of https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/goedel/goedel1.v (301-292+1=10; 106-88+1=19; 124-109+1=16; 286-134+1=153; 19+16+153=188)"
+    },
+    {
+      "n": 3,
+      "claim": "The author documents why FirstIncompletenessB is stated as `wConsistent T -> ~ SysPrf T (notH G)` rather than as a direct inconsistency implication: 'I don't believe I can prove (SysPrf T (notH G))->(wInconsistent T). So instead I prove:'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/goedel/goedel1.v#L126-L130"
+    },
+    {
+      "n": 4,
+      "claim": "Each of the three children closes independently: freeVarG uses only the fixed point and `freeVarCodeSysPrf`, FirstIncompletenessA uses `codeSysPfCorrect`, FirstIncompletenessB uses `wCon2Con` and `codeSysPrfCorrect2/3`; no child cites another child.",
+      "evidence_kind": "check",
+      "evidence": "read of the whole copied file code/theories/goedel/goedel1.v at https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/goedel/goedel1.v"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 1,
+    "glue_lines": 10,
+    "child_lines": [
+      19,
+      16,
+      153
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 10,
+    "children": 3,
+    "child_proof_lines": [
+      19,
+      16,
+      153
+    ],
+    "witness_definition_lines": 1,
+    "how_counted": "parent proof = lines 292-301; children = freeVarG (88-106), FirstIncompletenessA (109-124), FirstIncompletenessB (134-286); witness G is a one-line Definition at line 66 of the copied file"
+  },
+  "consequences": "The move creates one obligation per conjunct of the witness's spec — here `closed G`, `~ SysPrf T G` and `~ SysPrf T (notH G)` — surfaced by `repeat split`, plus the obligation that the witness G is well-typed/well-defined (here discharged once by the fixed-point construction `FixPointLNN`). All the real work is deferred to the children, so the theorem fails if any child is unprovable or is stated slightly weaker than the conjunct, in which case `tauto` cannot use it. The glue itself does no case analysis beyond the final `repeat split`.",
+  "known_uses": [
+    "https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/goedel/goedel2.v#L71-L73",
+    "https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/goedel/goedel2.v#L183-L202"
+  ],
+  "related": [
+    "rocq-witness-mathcomp-analysis-dc247f7a",
+    "rocq-witness-unimath-e5043582"
+  ],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "f45d6a987d40aa0ec8806d55b32d7b2cfe60f09002ffd6bfc100f35601a7eddb",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:50:58Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:55:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T16:04:15Z"
+}

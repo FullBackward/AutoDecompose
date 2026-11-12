@@ -1,0 +1,101 @@
+{
+  "entry": "lean-calc-chain-sphere-packing-7d6a60c4",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T14:49:25Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T14:49:25Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "5 file(s) byte-identical at efe3bbbc1ece548f4672a772b94d8f621c10fdda",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:49:34Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml: 'Build the project' step runs leanprover/lean-action (lake build) on every push to main, building all SpherePacking modules including SpherePacking/MagicFunction/PolyFourierCoeffBound.lean; pinned commit efe3bbbc1ece548f4672a772b94d8f621c10fdda is on the default branch main",
+      "by": "verifier",
+      "at": "2026-11-12T14:52:36Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Counted proof-body lines in the copied file: glue = lines 459-487 = 29 lines. Shown children proof bodies: step_1 L197=1, step_7 L252-255=4, step_8 L263-270=8, step_9 L278-283=6, step_10 L290-318=29, step_11 L326-352=27, step_12 L412-440=29, step_13 L446=1; matches [1,4,8,6,29,27,29,1]; 29+27+29=85 of total 105.",
+      "by": "verifier",
+      "at": "2026-11-12T14:53:06Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read copied code/blueprint/src/subsections/construct-a-b.tex: L96 = \\begin{lemma}\\label{lemma:mod-div-disc-bound}\\lean{MagicFunction.PolyFourierCoeffBound.DivDiscBoundOfPolyFourierCoeff}\\leanok (exact); the proof's align env spans L115-119 = 5 display lines; file L330 comment is exactly 'This is where we use the fact that c is eventually polynomial in n.'. Minor note: the relation sequence is =,=,≤,≤,= (two equalities then two inequalities), not the claim's '=,≤,≤,≤,='; all locators and the 5-line count are correct.",
+      "by": "verifier",
+      "at": "2026-11-12T14:53:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read copied PolyFourierCoeffBound.lean lines 457-487: DivDiscBoundOfPolyFourierCoeff is a single calc with 13 links (lines 459-487), each link citing exactly one private step lemma (step_1 through step_13), and no other proof text in the calc body.",
+      "by": "verifier",
+      "at": "2026-11-12T14:53:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "grep sorry over copied PolyFourierCoeffBound.lean: only two sorry tactic tokens, at lines 631 and 633 inside the downstream corollary norm_phi0_le which uses (not feeds) the theorem; lines 31 and 33 mention sorry only inside a doc-comment. step_1..step_13, aux_1..aux_11, aux_ring, aux_misc, step_12a, natplus_summable_of_nat_summable, hpoly' all close without sorry.",
+      "by": "verifier",
+      "at": "2026-11-12T14:53:23Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Read the copied file code/SpherePacking/MagicFunction/PolyFourierCoeffBound.lean and the blueprint tex. Parent DivDiscBoundOfPolyFourierCoeff (L457-487) is a single calc with 13 links, each '_ = ... := step_N ...' or '_ ≤ ... := step_N ...', no other proof text; matches claim 1 and the README. The 13 children step_1..step_13 are exactly the lemmas the calc cites (no aux_* appears directly in the calc body), and each child's statement LHS/RHS matches the adjacent links so the chain closes on (DivDiscBound c n₀) * rexp (...). Closing tactics in entry.json match the code (e.g. step_1 'simp [DiscriminantProductFormula, hf, fouterm]', step_13 'rw [DivDiscBound, mul_div_assoc, mul_comm]'; step_2/step_8/step_9/step_10/step_11/step_12 are faithful paraphrases of the code). Only 'sorry' tokens are at L631 and L633, in the downstream corollary norm_φ₀_le that calls (not feeds) the theorem, so the theorem's own dependency cone (step_*, aux_1..aux_11, aux_ring, aux_misc, step_12a, natplus_summable_of_nat_summable, hpoly') is sorry-free. Shape numbers correct: direct_lemmas=13, glue_lines=29 (L459-487), child_lines=[1,4,8,6,29,27,29,1] match proof-body line counts of step_1,7,8,9,10,11,12,13, and depth=4 matches the longest chain step_9→aux_10→aux_9→aux_ring. Trivial non-blocking wording note: the blueprint align is '=,=,≤,≤,=' over 5 lines (L115-119), described in claim 4 as '=,≤,≤,='; does not affect the decomposition.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T14:56:32Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality holds. (1) Move stated beyond the example: applicability.goal_shape + use_when/avoid_when abstract it to any monotone =/<= chain of a bound that factors into independent pieces, each bounded by one lemma with definitionally-matching endpoints; use_when even keys on the informal proof already being a displayed = <= = <= = chain. (2) 'when not to use' and consequences are honest and specific: avoid_when flags pure-rewrite children as boilerplate (admitting step_2..step_6 'arguably are'), consequences name concrete failure modes (endpoint drift fails elaboration; missing hcsum fails the whole chain; one-use children needing many section vars are boilerplate). (3) Good-leaf rationale present: README 'Why each is a good leaf' says self-contained statements closing by a single simp/field_simp/rw or named siblings aux_1..aux_11, shallow dependency depth (step_9 -> aux_10 -> aux_9 -> aux_ring, verified in code), and hypotheses threaded only where needed via include (hcsum/hpoly, confirmed by grep). Minor imprecision, not an objection: the avoid_when sentence attributes the authors' TODO-list 'boilerplate' naming to step_2..step_6, but the file header (lines 30-38) actually names step_10/step_11/step_12/aux_5 as needing library lemmas (tprod_le_tprod, summable_real_norm_mul_geometric_of_norm_lt_one); the substance (estimate-heavy vs pure-rewrite steps) is still correctly separated elsewhere.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T14:58:17Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "5 file(s) byte-identical at efe3bbbc1ece548f4672a772b94d8f621c10fdda",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:58:38Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes: 5 files byte-identical at commit efe3bbbc1ece548f4672a772b94d8f621c10fdda and recorded sha256 hashes match. entry.json source.url/commit/licence (thefundamentaltheor3m/Sphere-Packing-Lean, efe3bbbc..., Apache-2.0) match sources/sphere-packing/source.json and SOURCE.md exactly; upstream-LICENSE is Apache License 2.0 text. All permalinks (files and sites) use the pinned commit with correct repo and paths matching the copied code files. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T14:59:26Z"
+    }
+  ]
+}

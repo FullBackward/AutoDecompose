@@ -1,0 +1,15 @@
+{
+  "source_id": "munkres-isabelle",
+  "url": "https://github.com/JUrban/isa_top_autoform1",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "JUrban/isa_top_autoform1",
+  "commit": "90d108779e83453e9cae2f55b513246e1cc044e0",
+  "ref": "HEAD",
+  "language": "isabelle",
+  "pinned_at": "2026-11-12T13:44:19Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "LicenseRef-unknown",
+  "licence_files": []
+}

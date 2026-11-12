@@ -1,0 +1,109 @@
+{
+  "entry": "lean-case-split-flt-anthropic-f782b482",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T14:53:38Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T14:53:38Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "7 file(s) byte-identical at 6e837e75355538c7f80bab5b956861e86c4eacc2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:53:51Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI on default branch main: https://github.com/anthropics/fermats-last-theorem/tree/main/.github/workflows returns 404, so no workflow builds P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean; no Lean toolchain on harvest machine",
+      "by": "verifier",
+      "at": "2026-11-12T14:55:07Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "local copy lines 165-201: line 168 'by_cases h3 : W.ModRepIsIrreducible 3'; branch 1 ends 'exact isModular_map_of_mlc1 (liftingAtConductor_three_of_level_hns ...)' (174-175); branch 2 ends 'exact isModular_map_of_mlc1 (liftingAtConductor_threeFive_of_level_not_sq_dvd ...)' (200-201); no other closing tactic",
+      "by": "verifier",
+      "at": "2026-11-12T14:55:10Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "local copy lines 167-201 count 35 lines; 7 distinct lemmas (isResiduallyModular_three..., isModular_map_of_mlc1, liftingAtConductor_three_of_level_hns, modThreeOrFiveIrreducible, threeFiveSwitchCurve, isResiduallyModularOfLevel_of_switch, liftingAtConductor_threeFive_of_level_not_sq_dvd), 10 invocations (first three used twice); local proofs h25 (191-194) and hN3 (196-197) only",
+      "by": "verifier",
+      "at": "2026-11-12T14:55:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "local copy PROOF-PATH.md lines 63-64: 'If rho-bar_{W,3} is irreducible, Langlands-Tunnell and lifting at 3; otherwise the switch gives W', the first case makes W' modular, W is residually modular mod 5, and lifting at 5 finishes.' matches the two branches",
+      "by": "verifier",
+      "at": "2026-11-12T14:55:13Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "line 175 calls liftingAtConductor_three_of_level_hns; line 151 body calls modularityLiftingAtConductor_threeFive_of_level_of_inertia_moves_torsion_of_eq_three_of_not_cube_dvd; Theorems file line 129 wraps P2M.Sol.S_...solution via p2m_exact_reverting",
+      "by": "verifier",
+      "at": "2026-11-12T14:55:15Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "local copy lines 208-210: 'theorem solution ... := WeierstrassCurve.modularity_of_semistableModel' W hDelta hW' reuses the parent unchanged",
+      "by": "verifier",
+      "at": "2026-11-12T14:55:16Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Read entry code/ directly: parent (S_WeierstrassCurve_modularity_of_semistableModel.lean L165-201) is a by_cases h3 : W.ModRepIsIrreducible 3 with two branches, each closed by 'exact isModular_map_of_mlc1 (liftingAtConductor_...)' (L174-175, L200-201); argument order/instances (NeZero M3, NeZero N via hN0.ne') line up so both calls typecheck and close. The 7 children are exactly the named lemmas the glue invokes: isResiduallyModular_three..., isModular_map_of_mlc1, liftingAtConductor_three_of_level_hns (each 2x), modThreeOrFiveIrreducible, threeFiveSwitchCurve, isResiduallyModularOfLevel_of_switch, liftingAtConductor_threeFive_of_level_not_sq_dvd (each 1x) = 10 invocations; all 7 statements and closed_by fields match the copied files verbatim. Shape numbers check out: direct_lemmas=7; glue_lines=35 (L167-201); child_lines=[1,2,1,1,1,1,1] = proof lines of each child (isModular_map_of_mlc1 has 2, rest 1); depth=3 = chain parent -> liftingAtConductor_three_of_level_hns (L151 body) -> modularityLiftingAtConductor_threeFive_of_level_of_inertia_moves_torsion_of_eq_three_of_not_cube_dvd (Thm file L129) -> P2M.Sol solution. Local have-blocks h25 (L191-194) and hN3 (L196-197) are the only non-lemma proofs, matching the entry.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T14:57:25Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is generalized beyond the FLT example: 'when to use' names a decidable predicate at a fixed small prime whose two alternatives are already proved as standalone project lemmas, one branch reducible to the other via a switch construction handing over a second object and a congruence of traces, leaving glue of record-field extraction and small divisibility facts. 'when not to use' is honest (deep lemmas make it a roadmap over holes, not a directly fillable proof; non-decidable disjunction would need its own exhaustiveness child; branches needing genuinely different arguments). Consequences are specific (exactly two obligations, no exhaustiveness child since by_cases uses excluded middle; each branch must produce Mlc1IsModularModelOfExactConductorLevel, forcing the glue to carry a residual level and its conditions). It states what makes the leaves good for a bounded prover: self-contained statements closing on their own (one-line wrappers), with none of the deep mathematics leaking into the glue, so the parent is a pure skeleton over named holes.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T14:59:07Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "7 file(s) byte-identical at 6e837e75355538c7f80bab5b956861e86c4eacc2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:59:33Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes: 7 copied files byte-identical at commit 6e837e75355538c7f80bab5b956861e86c4eacc2. The commit, repo URL and licence (Apache-2.0) are identical across entry.json, source.json, SOURCE.md and README; every permalink pins that same commit with the correct path and line anchors. LICENSE (copied as upstream-LICENSE) is the Apache-2.0 text; NOTICE (upstream-NOTICE) explains the FLT/Mathlib derivation and shows all third-party material is Apache-2.0, so no copyleft/non-commercial/unknown marking is needed. Source note records repo, pinned commit, licence text and attribution, so the chain entry -> source -> upstream is traceable. Minor note, not an objection: NOTICE points to ATTRIBUTION.md for per-file attribution of the derived P2M/Sol material, which is not copied, but NOTICE itself is preserved and the licence remains consistent.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:00:25Z"
+    }
+  ]
+}

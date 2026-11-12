@@ -1,0 +1,101 @@
+{
+  "entry": "rocq-case-split-verdi-7798ab0c",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:46:36Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:46:36Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 7e1641b758d8f0032aa7de63620bc115330e0a6b",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:46:42Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/docker-action.yml: docker-coq-action builds coq-verdi.opam (opam_file at L31) whose build is 'make' (L19); Makefile.coq target (Makefile L8-L9) runs coq_makefile on _CoqProject, which lists theories/Core/StatePacketPacketDecomposition.v at line 17. Workflow triggers on push to master (default branch); pinned commit 7e1641b758d8f0032aa7de63620bc115330e0a6b.",
+      "by": "verifier",
+      "at": "2026-11-12T15:47:48Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Fetched at commit 7e1641b: _CoqProject L17 = 'theories/Core/StatePacketPacketDecomposition.v'; coq-verdi.opam L19 = 'build: [make \"-j%{jobs}%\"]'; .github/workflows/docker-action.yml L29-L32 = docker-coq-action with opam_file: 'coq-verdi.opam'; Makefile L8-L9 = 'Makefile.coq: _CoqProject' / 'coq_makefile -f _CoqProject'.",
+      "by": "verifier",
+      "at": "2026-11-12T15:47:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "grep -nE 'admit|Admitted|axiom|Axiom|sorry' over the copied file returned no matches; parent Theorem decomposition_invariant (172-207) and the 5 children (117-124, 126-133, 137-146, 148-155, 157-170) each end in 'Qed.' (packet_eq_dec ends in Defined, but it is not among parent+children).",
+      "by": "verifier",
+      "at": "2026-11-12T15:47:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Counted in copied file: proof body 174-207 = 34 lines (Proof using. at 174, Qed. at 207). Line 179 has 'match goal with H : step_async _ _ _ |- _ => invcs H end; intuition; simpl in *'. Six '+' bullets at 180, 181, 188, 195, 196, 200. Proof cites the 5 same-file lemmas (post_net_analyze_sent_packet L181, nw_nw_distinct_pairs_and_elim L186/193, distinct_pairs_and_app_cons L189, distinct_pairs_and_app L188/200, post_input_analyze_sent_packet L196). None of the 5 lemmas' bodies cites another of the 5 (they use in_crush/in_app_or/network_network_invariant_sym only), so depth=1.",
+      "by": "verifier",
+      "at": "2026-11-12T15:47:59Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Lines 135-136 of the copied file read: '(* NB: generalizing this over R makes it useless to [eauto using]' / 'because the conclusion is too general. *)', matching the quoted author statement above nw_nw_distinct_pairs_and_elim.",
+      "by": "verifier",
+      "at": "2026-11-12T15:48:02Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent statement matches code lines 172-173 verbatim. All 5 children (post_net_analyze_sent_packet 117-124, post_input_analyze_sent_packet 126-133, nw_nw_distinct_pairs_and_elim 137-146, distinct_pairs_and_app_cons 148-155, distinct_pairs_and_app 157-170) have statements and closed_by matching the copied code exactly, and each is cited directly by the parent proof (lines 181, 186/193, 188/200, 189, 196). The 5 children are exactly the lemmas the proof uses: the remaining proof citations are Decomposition class fields, and packet_eq_dec is unused. No admit/Admitted/axiom/sorry anywhere; parent and all 5 children end in Qed. invcs H is at line 179 and opens the 6 '+' bullets at 180/181/188/195/196/200. Shape numbers verified: direct_lemmas=5, depth=1 (no child cites another; network_network_invariant_sym and in_app_or are a class field and a stdlib lemma), glue_lines=34 (174-207), child_lines=[4,4,4,3,5] (Proof using through Qed inclusive for each child). Author comment quote at 135-136 verbatim.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:49:14Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality passes. Move stated beyond the example: applicability.use_when and README 'When to use it' generalise to 'any inductive_invariant step init I with a small fixed constructor set and a conjunctive I whose per-constructor preservation is already packaged as class fields/small list lemmas, closed by invcs+intuition+eauto'. avoid_when names two concrete, honest failure modes (I not a conjunction so intuition cannot fan; a case needing a genuinely new argument, whose real content is a strengthened invariant/key lemma). Consequences are specific and honest (case count = constructors x conjuncts; adding a constructor breaks the Qed; glue is brittle to reworded/generalised lemmas, tied to the author's actual 135-136 comment). Good-leaves-for-a-bounded-prover is explicit: children mention no step_async/network semantics/each other, depth is exactly 1, each closes by one induction + automation, and depend only on class-field assumptions, described as the skeleton an automated prover wants to emit.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:50:15Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 7e1641b758d8f0032aa7de63620bc115330e0a6b",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:50:36Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit 7e1641b758d8f0032aa7de63620bc115330e0a6b is identical in entry.json source.commit, sources/verdi/source.json, and SOURCE.md; check_provenance.py reports the copied file byte-identical at that commit, so the commit resolves and every permalink (correct commit + path theories/Core/StatePacketPacketDecomposition.v + line ranges) matches the copied file (verified parent 172-207, children 117-124/126-133/137-146/148-155/157-170, contexts 5-9/11-99/112-115, author comment 135-136). Licence BSD-2-Clause is consistent across entry.json, source.json, SOURCE.md, and the upstream-LICENSE copy, which matches the actual LICENSE at the pinned commit (Copyright 2014-2019 Verdi Team, two redistribution conditions, AS-IS disclaimer). Source note records the correct repo URL, commit, rocq language, licence and attribution. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:51:22Z"
+    }
+  ]
+}

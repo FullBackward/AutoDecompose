@@ -1,0 +1,117 @@
+{
+  "entry": "rocq-induction-math-comp-8c9c659d",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:34:44Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:34:44Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 3a90d8b65f77f24e4fd770453c0697233b1c791d",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:34:52Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/nix-action-rocq-9.2.yml (also nix-action-rocq-9.1.yml, nix-action-rocq-9.3.yml, nix-action-rocq-master.yml) has a mathcomp-solvable job built via nix-build on push/PR; mathcomp-solvable compiles solvable/jordanholder.v. Commit 3a90d8b65f77f24e4fd770453c0697233b1c791d is on the default branch master (branches-where-head returns master).",
+      "by": "verifier",
+      "at": "2026-11-12T15:38:26Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read jordanholder.v 165-224 (parent JordanHolderUniqueness closes Qed. at 224) and the eight child sites: trivg_comps Qed.131, simple_compsP Qed.145, exists_comps Qed.158, section_repr_isog Qed.104 (jordanholder.v); maxnormal_proper Qed.392, maxnormalM Qed.417, quotient_simple Qed.466 (gseries.v); weak_second_isog Qed.797 (quotient.v). Grep for admit|Admitted|sorry|axiom|Axiom|Abort over all three copied files: no matches.",
+      "by": "verifier",
+      "at": "2026-11-12T15:38:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Read jordanholder.v 160-163: header comment lines 161-162 read \"The factors associated to two composition series of the same group are the same up to isomorphism and permutation\", matching the goal perm_eq (mkfactors G s1) (mkfactors G s2) at line 166.",
+      "by": "verifier",
+      "at": "2026-11-12T15:38:33Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "refuted",
+      "evidence": "The 58-line count (167-224) and both depth-2 chains are correct (exists_comps cites maxnormal_proper at 156; simple_compsP cites trivg_comps at 140-141). But \"9 named project lemmas cited directly\" undercounts: the proof body also cites isog_simple directly at lines 207 and 214 (rewrite -(isog_simple iso1/iso2)), a lemma in gseries.v (line 468) omitted from the listed 9, so the direct count is 10.",
+      "by": "verifier",
+      "at": "2026-11-12T15:38:36Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read jordanholder.v 575-660: StrongJordanHolderUniqueness reuses the same skeleton - have [n] := ubnP #|G|; elim: n G => // n Hi G in s1 s2 * at 579; trivg_acomps/asimple_acompsP base cases; maxainv_proper/maxainv_norm/maxainvM/exists_acomps swap the maxnormal/comps lemmas; identical i1/i2/i3 fG1/fG2 permutation assembly; closes Qed. at 660.",
+      "by": "verifier",
+      "at": "2026-11-12T15:38:40Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 3a90d8b65f77f24e4fd770453c0697233b1c791d",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:42:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read copied code/solvable/jordanholder.v: parent proof body Proof..Qed spans lines 167-224 = 58 lines. Counted the 10 named project lemmas cited directly in the body: trivg_comps (170,171,176,178), simple_compsP (174), maxnormal_proper (182,184), maxnormal_normal (188,189), maxnormalM (194,198), weak_second_isog (196,199), exists_comps (200), quotient_simple (205,207,212,214), section_repr_isog (219,220), isog_simple (207,214). isog_simple is at gseries.v#L468-478 (fetched). Depth-2 chains confirmed: exists_comps cites maxnormal_proper at jordanholder.v:156; simple_compsP cites trivg_comps at jordanholder.v:140-141.",
+      "by": "verifier",
+      "at": "2026-11-12T15:44:12Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Correctness lens: parent JordanHolderUniqueness (jordanholder.v 165-224) is well-founded induction on #|G| via ubnP+elim with s1 s2 generalised (in s1 s2 *), matching the entry. Proof body 167-224 (58 lines) cites exactly 10 named project lemmas: trivg_comps, simple_compsP, maxnormal_proper, maxnormal_normal, maxnormalM, weak_second_isog, exists_comps, quotient_simple, isog_simple, section_repr_isog; all 10 are named in the entry (8 child sites + 2 links), none missing or extra. All 8 shown children's statements and closed_by match the copied code (checked each site line range). Parent and all 8 children close with Qed; grep found no admit/Admitted/sorry/axiom/Abort in the 3 copied files. Shape numbers correct: direct_lemmas=10, glue_lines=58, child_lines=[5,9,3,11,1,11,4,3]; depth=2 matches the two cited child-to-child chains (exists_comps->maxnormal_proper, simple_compsP->trivg_comps). Known-use StrongJordanHolderUniqueness 575-660 confirmed (same skeleton, acomps/maxainv swap). Minor cosmetic note: trivg_comps closed_by swaps forward/backward labels; substance accurate.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:48:49Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated beyond the example: well-founded strong induction on a strictly decreasing measure (#|G|) with auxiliary series s1 s2 kept general via 'in s1 s2 *'; goal_shape/use_when abstract 'group order' to 'a strictly decreasing measure', and the opinion isolates the transferable detail; known-use (StrongJordanHolderUniqueness, same file) honestly scoped as a second instance, not claimed as broad reuse. avoid_when and consequences are honest and specific: each names a real proof dependency (measure decrease via maxnormal_proper, exists_comps for the common refinement, quotient_simple/isog_simple as the IH precondition, reflect base cases) and a concrete failure mode (IH cannot apply if the measure does not strictly decrease into N). Good leaves for a bounded prover are addressed: 'Why each lemma is a good leaf' says each child is a self-contained statement closing in one-to-a-few ssreflect lines from named siblings, with shape depth 2 and small child_lines (5,9,3,11,1,11,4,3) — shallow, independently closable obligations. Minor: use_when/avoid_when mix Jordan-Holder-specific machinery (second isomorphism, permutation assembly) into the general criterion, but the general core is separately flagged, so not an objection.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:50:13Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 3a90d8b65f77f24e4fd770453c0697233b1c791d",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:50:32Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "provenance pass: check_provenance.py reports 3/3 files byte-identical at 3a90d8b65f77f24e4fd770453c0697233b1c791d; commit, licence CECILL-B and URL agree across entry.json, source.json and sources/math-comp/SOURCE.md; upstream-LICENCE is the CeCILL-B text; all site/claim permalinks and line ranges verified against local copies (parent L165-224, children L126-131/L136-145/L147-158/L100-104/L389-392/L405-417/L461-466/L796-797, known-use StrongJordanHolderUniqueness L575-660); bytes 28830/20676/33871 match entry.json",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:51:21Z"
+    }
+  ]
+}

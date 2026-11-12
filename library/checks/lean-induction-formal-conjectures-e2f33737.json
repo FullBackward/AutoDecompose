@@ -1,0 +1,141 @@
+{
+  "entry": "lean-induction-formal-conjectures-e2f33737",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T14:59:20Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T14:59:20Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at a425ca3eb797fe927cb88c950565fdcbbbbada70",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:59:29Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build-and-docs.yml build job (steps 208-212) runs lake --wfail build FormalConjecturesForMathlib FormalConjecturesUtil on push to main (default branch), which builds the library containing Combinatorics/Ramsey/Diagonal.lean; pinned commit a425ca3eb797fe927cb88c950565fdcbbbbada70 registered at ref=HEAD (default branch)",
+      "by": "verifier",
+      "at": "2026-11-12T15:02:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "workflow .github/workflows/build-and-docs.yml at a425ca3: build job step Build ForMathlib utilities and test (lines 208-212) runs lake --wfail build FormalConjecturesForMathlib FormalConjecturesUtil; library FormalConjecturesForMathlib contains module FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean",
+      "by": "verifier",
+      "at": "2026-11-12T15:02:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "refuted",
+      "evidence": "read copied Diagonal.lean lines 237-278: branches invoke mono + zero_left (252), mono + zero_right (256), step (271); but both base branches also apply Nat.zero_le (lines 252, 256), a lemma the claim omits from its only-other-lemmas list (choose_zero_right, choose_pos, choose_succ_succ); the induction also uses Nat.strong_induction_on (244)",
+      "by": "verifier",
+      "at": "2026-11-12T15:02:25Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "counted copied file lines: 237-278 = 42 (glue), 180-233 = 54 (step), mono 67-70 = 4, zero_left 73-79 = 7, zero_right 82-87 = 6; depth-2 lemmas card_false_true_split 117-137 and mono_insert 142-169; glue calls step (271); step calls card_false_true_split (195) and mono_insert (212, 230); 4 direct children, depth 2, glue 42 is shorter than step 54",
+      "by": "verifier",
+      "at": "2026-11-12T15:02:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "read module docstring lines 27-31: the sentence Induction on s + t then gives R(s,t) <= C(s+t,s); for s = t = k this is R(k,k) <= C(2k,k) <= 4^k appears verbatim",
+      "by": "verifier",
+      "at": "2026-11-12T15:02:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read lines 290-308: hypergraphRamsey_two_le_four_pow (290) sets hprop := Diagonal.hasRamseyProperty_choose k k (293-294), builds hmem showing Nat.choose (k+k) k is in the defining set (295-304), then closes with Nat.sInf_le hmem (305) and Nat.centralBinom_le_four_pow (308)",
+      "by": "verifier",
+      "at": "2026-11-12T15:02:30Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at a425ca3eb797fe927cb88c950565fdcbbbbada70",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:04:37Z"
+    },
+    {
+      "type": "claim",
+      "key": "6",
+      "value": "verified",
+      "evidence": "read copied Diagonal.lean lines 237-278: line 244 'induction n using Nat.strong_induction_on with'; three match branches at 248/253/257; branch 1 (252) 'exact HasRamseyProperty.mono (Nat.zero_le _) (hasRamseyProperty_zero_left 0 t)'; branch 2 (256) 'exact HasRamseyProperty.mono (Nat.zero_le _) (hasRamseyProperty_zero_right 0 (s+1))'; branch 3 (271) 'HasRamseyProperty.step hs_ih ht_ih hNs_pos' with hs_ih/ht_ih the two ih applications (261-266); other lemmas: Nat.zero_le (252,256), Nat.choose_zero_right (251), Nat.choose_pos (269), Nat.choose_succ_succ (275)",
+      "by": "verifier",
+      "at": "2026-11-12T15:05:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "6",
+      "value": "verified",
+      "evidence": "read copied file Diagonal.lean (byte-identical at a425ca3e): line 244 'induction n using Nat.strong_induction_on with'; match at 247 with three branches 248/253/257; branch 0,t (252) exact HasRamseyProperty.mono (Nat.zero_le _) (hasRamseyProperty_zero_left 0 t); branch s+1,0 (256) exact HasRamseyProperty.mono (Nat.zero_le _) (hasRamseyProperty_zero_right 0 (s+1)); branch s+1,t+1 builds hs_ih (261-263) and ht_ih (264-266) via ih then hrec := HasRamseyProperty.step hs_ih ht_ih hNs_pos (271); other lemmas Nat.choose_zero_right (251), Nat.zero_le (252,256), Nat.choose_pos (269), Nat.choose_succ_succ (275); all match the claim",
+      "by": "verifier",
+      "at": "2026-11-12T15:05:53Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at a425ca3eb797fe927cb88c950565fdcbbbbada70",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:06:38Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent hasRamseyProperty_choose (237-278) matches the copied code verbatim; the four children (HasRamseyProperty.mono 67-70, hasRamseyProperty_zero_left 73-79, hasRamseyProperty_zero_right 82-87, HasRamseyProperty.step 180-233) are exactly the named project lemmas the glue applies directly (lines 252, 256, 271), each child's statement and closed_by text match the code, and the glue's only other lemmas are mathlib facts (Nat.zero_le, Nat.choose_zero_right, Nat.choose_pos, Nat.choose_succ_succ). The proof closes: no sorry/admit/axiom in the file, and the suffices-generalise + Nat.strong_induction_on + three match branches assemble correctly. Shape numbers are right: direct_lemmas=4, depth=2 (hasRamseyProperty_choose -> HasRamseyProperty.step -> {card_false_true_split 117-137, mono_insert 142-169}), glue_lines=42 (237-278), child_lines=[4,7,6,54] matching mono/zero_left/zero_right/step. Provenance check passes (file byte-identical at a425ca3eb797).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:07:29Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality lens passes. (1) The move is stated beyond the example: 'When to use' abstracts to any two-index statement whose truth depends only on a shared measure (s+t 'or another single measure'), with a recurrence lowering that measure by 1 and base/step lemmas pre-stated; the suffices-over-n generalisation is explicitly named the Lean counterpart of Isabelle's arbitrary:. (2) 'When not to use' is honest and specific: recurrence not lowering one shared measure (needs lexicographic order), strengthened statement not obviously implied by target, and base cases not reachable by a single monotonicity/weakening lemma — each a concrete, falsifiable condition, and Consequences correctly lists the two obligations (strengthened statement implies target via instantiation at n=s+t; well-foundedness from Nat.strong_induction_on) plus the real failure mode that the pigeonhole split leans on le_or_gt/by lia not supplied by the IH. (3) 'Why each child is a good leaf' names the bounded-prover properties: mono is a one-line transitivity transport holding for any predicate with the N ≤ V.card guard; the zero lemmas discharge vacuously and are independent of N; step is the self-contained hard leaf that does not reference choose and is reusable for any (Ns+Nt)(s+1)(t+1) recurrence. No standing objection.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:08:43Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at a425ca3eb797fe927cb88c950565fdcbbbbada70",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:09:12Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance/licence lens passes. Permalinks: every files[] and sites[] permalink and every claim URL pins the full commit a425ca3eb797fe927cb88c950565fdcbbbbada70 with the correct repo google-deepmind/formal-conjectures and path FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean; site line ranges match the copied file verbatim (mono 67-70, zero_left 73-79, zero_right 82-87, HasRamseyProperty 61-64, step 180-233, parent 237-278; claim-4 docstring 27-31 and claim-5 290-308 also match). Commit: entry.json source.commit == source.json commit == SOURCE.md pinned commit (a425ca3e..., pinned 2026-11-12T10:23:42Z); check_provenance re-ran pass ('1 file(s) byte-identical at a425ca3eb797fe927cb88c950565fdcbbbbada70'), proving the commit and path resolve upstream and the local copy (14955 bytes, recorded sha256) is unmodified. Licence: entry.json 'Apache-2.0' == source.json licence == SOURCE.md 'Apache-2.0'; the copied file header declares Apache License 2.0 and sources/formal-conjectures/upstream-LICENSE begins with the Apache 2.0 text; SOURCE.md lists the LICENSE permalink and attribution. Source note is consistent with the copied files. Everything traceable; no objection.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:09:51Z"
+    }
+  ]
+}

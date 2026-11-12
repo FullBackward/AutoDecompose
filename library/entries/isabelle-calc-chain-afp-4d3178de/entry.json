@@ -1,0 +1,186 @@
+{
+  "id": "isabelle-calc-chain-afp-4d3178de",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Inequality chain proving n < 7 for IMO 2019 Q4",
+  "intent": "Reduce IMO 2019 Q4 from infinitely many candidate pairs (k, n) to a finite search over n in {1..6} by proving the bound n < 7 through one 'also ... finally' inequality chain whose three non-trivial links are the named same-file lemmas k_gt_T, rhs_less and fact_ge_power.",
+  "move": "calc-chain",
+  "also_known_as": [
+    "calculational chain",
+    "Isar also/finally",
+    "chained transitivity"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "afp",
+    "url": "https://github.com/isabelle-prover/mirror-afp-devel",
+    "commit": "07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "thys/IMO2019/IMO2019_Q4.thy",
+      "bytes": 11587,
+      "sha256": "aed38cf910655dcd55eb54dd01c6acbc79732c8e4eb79dc00b32ea84cf5edb75",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/IMO2019/IMO2019_Q4.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "thys/IMO2019/IMO2019_Q4.thy",
+      "lines": [
+        231,
+        260
+      ],
+      "role": "parent",
+      "name": "n_less_7",
+      "excerpt_sha256": "c9305bfa0ccbfca0ac97c01cc07701a937408c7b3dbec58a5ccde887e0834056",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/IMO2019/IMO2019_Q4.thy#L231-L260"
+    },
+    {
+      "path": "thys/IMO2019/IMO2019_Q4.thy",
+      "lines": [
+        133,
+        139
+      ],
+      "role": "context",
+      "name": "context",
+      "excerpt_sha256": "13840b5a051a03427f585fd626e52d3f133109795bd904c87bad9f1e17311cf2",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/IMO2019/IMO2019_Q4.thy#L133-L139"
+    },
+    {
+      "path": "thys/IMO2019/IMO2019_Q4.thy",
+      "lines": [
+        180,
+        191
+      ],
+      "role": "child",
+      "name": "k_gt_T",
+      "excerpt_sha256": "a938253664f08180d0c51eaf1a62843ea803e25533cdccfd4207be8adc8c2115",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/IMO2019/IMO2019_Q4.thy#L180-L191"
+    },
+    {
+      "path": "thys/IMO2019/IMO2019_Q4.thy",
+      "lines": [
+        206,
+        224
+      ],
+      "role": "child",
+      "name": "rhs_less",
+      "excerpt_sha256": "f34110e21b330e5cfcbfc64ca5d33d3d257ce5a0163995a924cb255d6e6116c8",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/IMO2019/IMO2019_Q4.thy#L206-L224"
+    },
+    {
+      "path": "thys/IMO2019/IMO2019_Q4.thy",
+      "lines": [
+        27,
+        38
+      ],
+      "role": "child",
+      "name": "fact_ge_power",
+      "excerpt_sha256": "1a62ba732115080f6ea56d55dbb5008222e3831693c2745adf2d618f634db7eb",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/IMO2019/IMO2019_Q4.thy#L27-L38"
+    }
+  ],
+  "parent": {
+    "name": "n_less_7",
+    "statement": "n_less_7: \"n < 7\""
+  },
+  "children": [
+    {
+      "name": "k_gt_T",
+      "statement": "k_gt_T: \"k > T\"",
+      "closed_by": "an 'also ... finally' chain T = multiplicity 2 rhs = legendre_aux k 2 < k; links multiplicity_2_rhs (simp), multiplicity_prime_fact, legendre_aux_less"
+    },
+    {
+      "name": "rhs_less",
+      "statement": "rhs_less: \"rhs < 2 ^ n\\<^sup>2\"",
+      "closed_by": "an 'also ... finally' chain rhs = 2^T * prod (2^i - 1) < ... = 2 ^ n^2; links rhs_altdef, prod_mono_strict, power_sum"
+    },
+    {
+      "name": "fact_ge_power",
+      "statement": "fact_ge_power: \"fact n >= c ^ n\" (from \"fact n0 >= c ^ n0\", \"c <= n0 + 1\", \"n >= n0\")",
+      "closed_by": "proof (induction n rule: dec_induct); the step case closes by mult_mono then simp"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "a bound like n < N, or more generally an inequality between two expressions, that can be pushed through a chain of named inequalities so that its truth collapses to a small finite check (here n in {1..6})",
+    "use_when": "the goal is a chain of inequalities whose individual steps are non-trivial enough to each deserve a named lemma (each with its own proof), and the whole chain can be written as 'also ... finally' so transitivity is automatic; the steps are ordered < / <= / = in one direction",
+    "avoid_when": "the steps are one-off rewrites with no reuse (fold them inline); a direct proof by induction or a single library theorem is shorter; the chain needs >= steps, which Isar's 'also' does not compose by default"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent n_less_7 closes from its three named children: k_gt_T supplies fact T <= fact k (lines 245-246), rhs_less supplies rhs < 2 ^ n^2 (line 248), fact_ge_power supplies fact T >= 8 ^ T (line 258), and the proof ends in qed (line 260); each child also ends in qed (lines 38, 191, 224).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/IMO2019/IMO2019_Q4.thy#L245-L260"
+    },
+    {
+      "n": 2,
+      "claim": "thys/IMO2019 contains no sorry, admit or oops: a grep for 'sorry', 'admit' and 'oops' over the three theories IMO2019_Q1.thy, IMO2019_Q4.thy and IMO2019_Q5.thy at the pinned commit returned no matches.",
+      "evidence_kind": "check",
+      "evidence": "grep over library/cache/afp/files/thys/IMO2019/*.thy fetched at 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df; 0 matches"
+    },
+    {
+      "n": 3,
+      "claim": "The glue proof spans 29 lines (232-260) and calls 3 named same-file lemmas directly (direct_lemmas = 3); the longest chain of project lemmas below the main theorem has depth 3, via n_less_7 -> k_gt_T -> multiplicity_2_rhs -> rhs_altdef; child proof lines are 11 (k_gt_T, 181-191), 18 (rhs_less, 207-224) and 7 (fact_ge_power, 32-38).",
+      "evidence_kind": "measurement",
+      "evidence": "line ranges counted in https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/IMO2019/IMO2019_Q4.thy: glue L232-L260, k_gt_T L181-L191, rhs_less L207-L224, fact_ge_power L32-L38, multiplicity_2_rhs L160-L174, rhs_altdef L144-L155"
+    },
+    {
+      "n": 4,
+      "claim": "The authors state the plan in the comment before the lemma: 'It is clear that 2^(n^2) <= 8^T and that 8^T < T! if T is sufficiently big ... We can therefore conclude that n must be less than 7.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/IMO2019/IMO2019_Q4.thy#L226-L230"
+    },
+    {
+      "n": 5,
+      "claim": "The same 'also ... finally'-over-named-lemmas pattern recurs at the child level: k_gt_T (lines 181-191) chains multiplicity_2_rhs, multiplicity_prime_fact and legendre_aux_less, and rhs_less (lines 207-224) chains over rhs_altdef.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/IMO2019/IMO2019_Q4.thy#L181-L191 and #L207-L224"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 3,
+    "glue_lines": 29,
+    "child_lines": [
+      11,
+      18,
+      7
+    ]
+  },
+  "metrics": {
+    "glue_lines": 29,
+    "direct_lemmas": 3,
+    "depth": 3,
+    "how_counted": "glue_lines = proof body of n_less_7, lines 232-260; child proof lines = 181-191 (k_gt_T), 207-224 (rhs_less), 32-38 (fact_ge_power); depth = longest project-lemma chain n_less_7 -> k_gt_T -> multiplicity_2_rhs -> rhs_altdef"
+  },
+  "consequences": "The move creates one obligation per link: each named lemma must be proved in its own right before the chain composes them. Transitivity of the chain is discharged automatically by 'also'/'finally'. A link stated too weak breaks the final result (here the strict < survives only because rhs_less is strict after the equality fact T = rhs). fact_bounds needs T >= 21, so the glue first derives T >= 21 from n >= 7; forgetting that precondition leaves fact T >= 8^T without a hypothesis.",
+  "known_uses": [
+    "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/IMO2019/IMO2019_Q4.thy#L181-L191",
+    "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/IMO2019/IMO2019_Q4.thy#L207-L224"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "4d3178de56854a24e9e664b9eda9d02f62e9e1734ade16550954f7f79a58f5ee",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:59:59Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:05:00Z"
+    }
+  ]
+}

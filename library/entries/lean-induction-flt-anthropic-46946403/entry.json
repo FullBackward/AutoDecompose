@@ -1,0 +1,198 @@
+{
+  "id": "lean-induction-flt-anthropic-46946403",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Strong induction on the conductor level down to a divisor of 2",
+  "intent": "Lower the conductor level of a Frey representation to a divisor of 2 by strong induction on the level N: each induction step removes one prime factor through a named level-lowering lemma, until only the prime 2 can divide N and a squarefree argument closes the base case.",
+  "move": "induction",
+  "also_known_as": [
+    "strong induction",
+    "complete induction",
+    "well-founded induction",
+    "Nat.strong_induction_on"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "flt-anthropic",
+    "url": "https://github.com/anthropics/fermats-last-theorem",
+    "commit": "6e837e75355538c7f80bab5b956861e86c4eacc2",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean",
+      "bytes": 143305,
+      "sha256": "ed2aa9dffbe7704b42c1b94122a2243677ad6485350454debf56e697c6ce520d",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean"
+    },
+    {
+      "path": "Theorems/Thm_FreyPackage_level_lowering_odd_prime_of_conductorLevel.lean",
+      "bytes": 137856,
+      "sha256": "e5c6c82cd79983242b2fafc95e2aa0b0be8424b8e793d1fc160b3e258028eb41",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_FreyPackage_level_lowering_odd_prime_of_conductorLevel.lean"
+    },
+    {
+      "path": "Theorems/Thm_FreyPackage_level_lowering_at_p_of_conductorLevel.lean",
+      "bytes": 101614,
+      "sha256": "1625a5fc9ed53e4a596ffef926156213b7bb0d12c2410bf097886d990bad09a2",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_FreyPackage_level_lowering_at_p_of_conductorLevel.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean",
+      "lines": [
+        113,
+        148
+      ],
+      "role": "parent",
+      "name": "exists_modularRepOfLevel_dvd_two_of_conductorLevel₁₆",
+      "excerpt_sha256": "6b7d3f03c2e949c203bbf88ab8e94203a129e9d3b658789017ea6fd54e70cf8a",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean#L113-L148"
+    },
+    {
+      "path": "Theorems/Thm_FreyPackage_level_lowering_odd_prime_of_conductorLevel.lean",
+      "lines": [
+        90,
+        90
+      ],
+      "role": "child",
+      "name": "level_lowering_odd_prime_of_conductorLevel",
+      "excerpt_sha256": "ccddaf09fdb30fd77dc4b59c6d8e5d9efd542ad2cbdc708b48b3b94f35116bdf",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_FreyPackage_level_lowering_odd_prime_of_conductorLevel.lean#L90-L90"
+    },
+    {
+      "path": "Theorems/Thm_FreyPackage_level_lowering_at_p_of_conductorLevel.lean",
+      "lines": [
+        70,
+        70
+      ],
+      "role": "child",
+      "name": "level_lowering_at_p_of_conductorLevel",
+      "excerpt_sha256": "e76971089d5da5c96f0f76d435de037cfb5a9f1fac1edfeab623cd2f263e4c45",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_FreyPackage_level_lowering_at_p_of_conductorLevel.lean#L70-L70"
+    },
+    {
+      "path": "P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean",
+      "lines": [
+        98,
+        111
+      ],
+      "role": "child",
+      "name": "dvd_two_of_squarefree_of_forall_prime_eq_two₁₆",
+      "excerpt_sha256": "4e8bbbbc8745b094b3f57248aac0531164e95d04e437ff698c5a6f434fdfaad7",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean#L98-L111"
+    },
+    {
+      "path": "P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean",
+      "lines": [
+        163,
+        170
+      ],
+      "role": "context",
+      "name": "solution",
+      "excerpt_sha256": "3801bf5a077ad9a1b7753b58470f5f226bf90bd52daad5e9e221e031179a4208",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean#L163-L170"
+    }
+  ],
+  "parent": {
+    "name": "FreyPackage.exists_modularRepOfLevel_dvd_two_of_conductorLevel₁₆",
+    "statement": "private theorem _root_.FreyPackage.exists_modularRepOfLevel_dvd_two_of_conductorLevel₁₆ (P : FreyPackage)\n    (hirr : GaloisRepIsIrreducible (K := AlgebraicClosure ℚ) ℚ P.freyCurve P.p) :\n    ∀ N : ℕ, P.IsConductorLevel N → P.ModularRepOfLevel N →\n      ∃ M : ℕ, 0 < M ∧ M ∣ 2 ∧ P.ModularRepOfLevel M"
+  },
+  "children": [
+    {
+      "name": "FreyPackage.level_lowering_odd_prime_of_conductorLevel",
+      "statement": "theorem FreyPackage.level_lowering_odd_prime_of_conductorLevel (P : FreyPackage) {N q : ℕ} (hcond : P.IsConductorLevel N) (hq : q.Prime) (hq2 : q ≠ 2) (hqp : q ≠ P.p) (hqN : q ∣ N) (hirr : GaloisRepIsIrreducible (K := AlgebraicClosure ℚ) ℚ P.freyCurve P.p) (hmod : P.ModularRepOfLevel N) (hunr : P.GaloisRepUnramifiedAt q) : ∃ M : ℕ, M ∣ N ∧ ¬ q ∣ M ∧ P.ModularRepOfLevel M",
+      "closed_by": "p2m_exact_reverting @_root_.P2MW.S_FreyPackage_level_lowering_odd_prime_of_conductorLevel.solution"
+    },
+    {
+      "name": "FreyPackage.level_lowering_at_p_of_conductorLevel",
+      "statement": "theorem FreyPackage.level_lowering_at_p_of_conductorLevel (P : FreyPackage) {N : ℕ} (hcond : P.IsConductorLevel N) (hpN : P.p ∣ N) (hirr : GaloisRepIsIrreducible (K := AlgebraicClosure ℚ) ℚ P.freyCurve P.p) (hmod : P.ModularRepOfLevel N) : ∃ M : ℕ, M ∣ N ∧ ¬ P.p ∣ M ∧ P.ModularRepOfLevel M",
+      "closed_by": "p2m_exact_reverting @_root_.P2MW.S_FreyPackage_level_lowering_at_p_of_conductorLevel.solution"
+    },
+    {
+      "name": "FreyPackage.dvd_two_of_squarefree_of_forall_prime_eq_two₁₆",
+      "statement": "lemma dvd_two_of_squarefree_of_forall_prime_eq_two₁₆ {N : ℕ} (hsq : Squarefree N)\n    (h : ∀ q : ℕ, q.Prime → q ∣ N → q = 2) : N ∣ 2",
+      "closed_by": "a self-contained case analysis: rcases/obtain on N = 1 and N = 2·N', closed by norm_num in the unit cases and by exfalso + Nat.squarefree_iff_prime_squarefree.mp to rule out a second odd prime factor"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "∀ N : ℕ, P.IsConductorLevel N → P.ModularRepOfLevel N → ∃ M : ℕ, 0 < M ∧ M ∣ k ∧ P.ModularRepOfLevel M — remove prime factors of a level or measure one at a time until only the target divisors remain (k = 2 here)",
+    "use_when": "for each kind of prime that can divide the level there is a lemma that lowers the level past that prime to a strictly smaller proper divisor M (M ∣ N and M < N), so a strong induction composes the lemmas until no removable prime remains, and a base lemma (squarefree + 'only 2 divides' ⇒ divides 2) closes the last case",
+    "avoid_when": "a removable prime has no covering lemma (then the induction step leaves a hole), the measure does not strictly decrease (the induction hypothesis would not apply), or the base case is not a separate self-contained statement"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent's proof is a strong induction on N (`induction N using Nat.strong_induction_on`, line 118) whose three branches close by applying exactly the three named lemmas: `P.level_lowering_odd_prime_of_conductorLevel` (line 125), `P.level_lowering_at_p_of_conductorLevel` (line 134) and `dvd_two_of_squarefree_of_forall_prime_eq_two₁₆` (line 143).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean#L113-L148"
+    },
+    {
+      "n": 2,
+      "claim": "The project's PROOF-PATH.md states the same plan in words: \"Then primes are removed one at a time (FreyPackage.level_lowering_to_two_of_conductorLevel): an odd q ≠ p, at which E_P[p] is unramified, by FreyPackage.level_lowering_odd_prime_of_conductorLevel ... p itself by FreyPackage.level_lowering_at_p_of_conductorLevel\".",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/PROOF-PATH.md#L71-L74"
+    },
+    {
+      "n": 3,
+      "claim": "The parent glue is 33 lines (116-148) while two of the three children are one-line theorems (`level_lowering_odd_prime_of_conductorLevel` line 90, `level_lowering_at_p_of_conductorLevel` line 70) and the third is a 12-line proof (`dvd_two_of_squarefree_of_forall_prime_eq_two₁₆`, lines 100-111).",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_FreyPackage_level_lowering_odd_prime_of_conductorLevel.lean#L90-L90 ; https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_FreyPackage_level_lowering_at_p_of_conductorLevel.lean#L70-L70 ; https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean#L98-L111"
+    },
+    {
+      "n": 4,
+      "claim": "The public `solution` theorem applies the parent as a single `obtain` step (`obtain ⟨M, hM0, hM2, hmodM⟩ := P.exists_modularRepOfLevel_dvd_two_of_conductorLevel₁₆ ...`), so the parent is a reusable interface consumed downstream in the same file.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean#L163-L170"
+    },
+    {
+      "n": 5,
+      "claim": "None of the three copied files contains `sorry`, `admit`, or `axiom` (grep at the pinned commit), so the decomposition has no unclosed holes.",
+      "evidence_kind": "check",
+      "evidence": "grep -rn 'sorry\\|admit\\|axiom' over the three files P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean, Theorems/Thm_FreyPackage_level_lowering_odd_prime_of_conductorLevel.lean and Theorems/Thm_FreyPackage_level_lowering_at_p_of_conductorLevel.lean at commit 6e837e75355538c7f80bab5b956861e86c4eacc2 returned no matches"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 1,
+    "glue_lines": 33,
+    "child_lines": [
+      1,
+      1,
+      12
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 33,
+    "direct_children": 3,
+    "one_line_children": 2,
+    "how_counted": "glue_lines = lines 116-148 of the parent file (from the line ending in `:= by` to the last branch); child_lines = proof lines of each shown child in children[] order (level_lowering_odd_prime is one line, level_lowering_at_p is one line, dvd_two_of_squarefree is lines 100-111)"
+  },
+  "consequences": "The strong induction creates an obligation that each recursive call uses a strictly smaller level: `hMlt : M < N` is derived from `M ∣ N` and `M ≠ N` (lines 129-130, 137-138). The two `by_cases` splits (an odd prime q ≠ 2, q ≠ p dividing N; then p ∣ N) create an exhaustiveness obligation over the prime divisors of N, which the final branch discharges by showing every remaining prime divisor is 2 via `dvd_two_of_squarefree_of_forall_prime_eq_two₁₆` (lines 142-148). The two level-lowering children are deep results (Ribet and Mazur-Ribet respectively, per PROOF-PATH.md) stated as separate theorem files and imported; if one did not return a strict divisor M < N the induction hypothesis would not apply and the recursion would not terminate.",
+  "known_uses": [
+    "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean#L163-L170"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "46946403ce8fe5987dbb92c33328a563dcd6bfca2067c60c82dc674d5a4780b6",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:16:00Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,also_known_as,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:22:00Z"
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "id": "lean-induction-mathlib4-e5402126",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Diagonal induction on (p, q) for the ballot problem",
+  "intent": "Reduce the ballot problem — the probability that candidate A (p votes) is strictly ahead of B (q votes, q < p) throughout the count equals (p − q)/(p + q) — to a diagonal induction on the pair (q, p) with two base cases and one two-induction-hypothesis step, then discharge each case with a named lemma written for it.",
+  "move": "induction",
+  "also_known_as": [
+    "diagonal induction",
+    "double induction on a pair",
+    "Nat.diag_induction"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "mathlib4",
+    "url": "https://github.com/leanprover-community/mathlib4",
+    "commit": "e1545ebed97594477bbd88b2fe948ffce56e5af2",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Archive/Wiedijk100Theorems/BallotProblem.lean",
+      "bytes": 16837,
+      "sha256": "a90aa888962040723aa547ff32a23ed5c61e56546ee07ecfbb6891464c15d956",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/BallotProblem.lean"
+    },
+    {
+      "path": "Mathlib/Data/Nat/Init.lean",
+      "bytes": 20810,
+      "sha256": "2537d5b031a0517531c79ce50aa2b02bbd94d8060f0e15c08e30a163e1e16b06",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/Data/Nat/Init.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Archive/Wiedijk100Theorems/BallotProblem.lean",
+      "lines": [
+        309,
+        344
+      ],
+      "role": "parent",
+      "name": "ballot_problem'",
+      "excerpt_sha256": "d34c86b89069c12df7ff334ed2d8f3f7e9c3896fcdf366124dcf77e082aeff1d",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/BallotProblem.lean#L309-L344"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/BallotProblem.lean",
+      "lines": [
+        239,
+        246
+      ],
+      "role": "child",
+      "name": "ballot_same",
+      "excerpt_sha256": "8b46f0f4736e714783b8dd95cea7742c169fe3340e564b7737905af386600758",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/BallotProblem.lean#L239-L246"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/BallotProblem.lean",
+      "lines": [
+        248,
+        253
+      ],
+      "role": "child",
+      "name": "ballot_edge",
+      "excerpt_sha256": "a8db40ff7c4785f5304d5b442991de7a910eec98e4952fb0badbb0097a4901fb",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/BallotProblem.lean#L248-L253"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/BallotProblem.lean",
+      "lines": [
+        266,
+        279
+      ],
+      "role": "child",
+      "name": "ballot_pos",
+      "excerpt_sha256": "8c729c605bcfa448ad1ced27d431b3a701d166107efb0e06f13b10b23af63436",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/BallotProblem.lean#L266-L279"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/BallotProblem.lean",
+      "lines": [
+        293,
+        307
+      ],
+      "role": "child",
+      "name": "ballot_neg",
+      "excerpt_sha256": "64a973675543870871e2d63912b50b4a6e16258a9a1ff80b0f885c0f5700a2ed",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/BallotProblem.lean#L293-L307"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/BallotProblem.lean",
+      "lines": [
+        188,
+        223
+      ],
+      "role": "child",
+      "name": "first_vote_pos",
+      "excerpt_sha256": "926ee05caf43dca1b60adf579e0c1f5d12499a28ba524cca9633ccc13bea2832",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/BallotProblem.lean#L188-L223"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/BallotProblem.lean",
+      "lines": [
+        229,
+        237
+      ],
+      "role": "child",
+      "name": "first_vote_neg",
+      "excerpt_sha256": "d59faf625da11f3966cdca3c4e11c43094b2b88b518cc6ab46f4fcbf9da9b13f",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/BallotProblem.lean#L229-L237"
+    }
+  ],
+  "parent": {
+    "name": "ballot_problem'",
+    "statement": "theorem ballot_problem' :\n    ∀ q p, q < p → (uniformOn (countedSequence p q) staysPositive).toReal = (p - q) / (p + q)"
+  },
+  "children": [
+    {
+      "name": "ballot_same",
+      "statement": "theorem ballot_same (p : ℕ) : uniformOn (countedSequence (p + 1) (p + 1)) staysPositive = 0",
+      "closed_by": "rw [uniformOn_eq_zero_iff (countedSequence_finite _ _), eq_empty_iff_forall_notMem] then emptiness: a (p+1),(p+1) counted sequence has sum 0 (sum_of_mem_countedSequence) yet must have every suffix positive, contradiction via length_of_mem_countedSequence"
+    },
+    {
+      "name": "ballot_edge",
+      "statement": "theorem ballot_edge (p : ℕ) : uniformOn (countedSequence (p + 1) 0) staysPositive = 1",
+      "closed_by": "rw [counted_right_zero] then uniformOn_eq_one_of (finite_singleton _) (singleton_nonempty _) and List.sum_pos over the single all-+1 list (List.eq_of_mem_replicate)"
+    },
+    {
+      "name": "ballot_pos",
+      "statement": "theorem ballot_pos (p q : ℕ) :\n    uniformOn (countedSequence (p + 1) (q + 1) ∩ {l | l.headI = 1}) staysPositive =\n      uniformOn (countedSequence p (q + 1)) staysPositive",
+      "closed_by": "rw [countedSequence_int_pos_counted_succ_succ, uniformOn, cond_apply list_int_measurableSet, count_injective_image List.cons_injective] then image_inter + staysPositive_cons_pos _ one_pos (prepending +1 preserves staysPositive); no q < p hypothesis needed"
+    },
+    {
+      "name": "ballot_neg",
+      "statement": "theorem ballot_neg (p q : ℕ) (qp : q < p) :\n    uniformOn (countedSequence (p + 1) (q + 1) ∩ {l | l.headI = 1}ᶜ) staysPositive =\n      uniformOn (countedSequence (p + 1) q) staysPositive",
+      "closed_by": "rw [countedSequence_int_neg_counted_succ_succ, uniformOn, cond_apply list_int_measurableSet, count_injective_image List.cons_injective] then image_inter + staysPositive_cons and sum_of_mem_countedSequence using qp"
+    },
+    {
+      "name": "first_vote_pos",
+      "statement": "theorem first_vote_pos :\n    ∀ p q,\n      0 < p + q → uniformOn (countedSequence p q : Set (List ℤ)) {l | l.headI = 1} = p / (p + q)",
+      "closed_by": "recursion on p, q with cases 0/q, p/0 and succ/succ; the succ/succ case uses counted_succ_succ, uniformOn_disjoint_union (disjoint_bits), uniformOn_eq_one_of, count_injective_image and count_countedSequence"
+    },
+    {
+      "name": "first_vote_neg",
+      "statement": "theorem first_vote_neg (p q : ℕ) (h : 0 < p + q) :\n    uniformOn (countedSequence p q) {l | l.headI = 1}ᶜ = q / (p + q)",
+      "closed_by": "uniformOn_compl then first_vote_pos and ENNReal algebra (eq_sub_of_add_eq, eq_div_iff, mul_sub, mul_div_cancel, add_sub_cancel_left)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "∀ q p, q < p → (uniformOn (countedSequence p q) staysPositive).toReal = (p - q) / (p + q): a two-index statement over a pair ordered by a strict inequality, reduced with Nat.diag_induction",
+    "use_when": "the statement is a recurrence on a pair (a, b) that steps down both coordinates together from (a + 1, b + 1) to (a + 1, b) and (a, b + 1), with easy diagonal (a = b) and edge (a = 0) base cases",
+    "avoid_when": "the pair has no natural diagonal/edge closure, only one of the two induction hypotheses is needed (then ordinary single-coordinate induction is simpler), or the strict ordering q < p is not the ordering the recurrence respects"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent ballot_problem' closes from its six children: the diagonal base closes by ballot_same + simp (lines 312-314), the edge base by ballot_edge + arithmetic (lines 315-319), and the step by first_vote_pos, first_vote_neg, ballot_pos, ballot_neg then field arithmetic with ring (lines 320-344).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/BallotProblem.lean#L309-L344"
+    },
+    {
+      "n": 2,
+      "claim": "The induction principle the proof relies on, Nat.diag_induction, has exactly the two-base-cases-plus-step shape the proof instantiates: premises diag (∀ a, motive (a+1) (a+1)) and zero_succ (∀ b, motive 0 (b+1)) and ind (∀ a b, a < b → motive (a+1) b → motive a (b+1) → motive (a+1) (b+1)).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/Data/Nat/Init.lean#L358-L366"
+    },
+    {
+      "n": 3,
+      "claim": "The glue is 36 lines (309-344) assembling 6 direct lemmas, and the longest chain of file-local lemmas below the main theorem has depth 4: ballot_problem' → first_vote_neg → first_vote_pos → count_countedSequence → counted_succ_succ.",
+      "evidence_kind": "measurement",
+      "evidence": "counted on the copied file: parent block 309-344 = 36 lines; the 6 direct lemmas are the named lemmas cited by the parent's rw at lines 313, 316 and 327; chain edges are line 234 (first_vote_neg uses first_vote_pos), lines 154/217 (first_vote_pos uses count_countedSequence) and line 182 (count_countedSequence uses counted_succ_succ) in https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/BallotProblem.lean"
+    },
+    {
+      "n": 4,
+      "claim": "The mathlib authors document the induction principle in the docstring: 'Given a predicate on two naturals motive : ℕ → ℕ → Prop, motive a b is true for all a < b if motive (a + 1) (a + 1) is true for all a, motive 0 (b + 1) is true for all b and for all a < b, motive (a + 1) b is true and motive a (b + 1) is true implies motive (a + 1) (b + 1) is true.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/Data/Nat/Init.lean#L358-L361"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 6,
+    "depth": 4,
+    "glue_lines": 36,
+    "child_lines": [
+      8,
+      6,
+      14,
+      15,
+      36,
+      9
+    ]
+  },
+  "metrics": {
+    "parent_lines": 36,
+    "children": 6,
+    "depth": 4,
+    "how_counted": "parent = lines 309-344 of Archive/Wiedijk100Theorems/BallotProblem.lean; children = the 6 named lemmas the parent's rw cites at lines 313/316/327; depth = longest chain of file-local lemmas below ballot_problem' (ballot_problem' → first_vote_neg → first_vote_pos → count_countedSequence → counted_succ_succ)"
+  },
+  "consequences": "The move creates three obligations: a diagonal base, an edge base, and a step carrying two induction hypotheses. Both bases must close with no induction hypothesis, and the step must produce the two smaller pairs (a+1, b) and (a, b+1) from (a+1, b+1) — here the 'condition on the first vote' split. Side conditions accumulate in the step: finiteness/non-emptiness of the count spaces (countedSequence_finite, countedSequence_nonempty), positivity of the vote count (h₃), non-zero denominators (h₄, h₅, h₆) and ≠ ∞ conditions for the ENNReal.toReal_* rewrites; one missing side condition breaks the final ring. The asymmetry that ballot_neg needs q < p while ballot_pos does not is a real obligation to track.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "e540212618d1b36b2daf3abbe4c4fa9e6c01f1b39716005ce9ab02499940c121",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:10:55Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,also_known_as,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:20:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T16:22:37Z"
+}

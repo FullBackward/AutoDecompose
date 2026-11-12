@@ -1,0 +1,201 @@
+{
+  "id": "rocq-witness-unimath-e5043582",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "The Yoneda lemma: witness isweq of yoneda_map_1 by the inverse natural transformation",
+  "intent": "Prove the Yoneda lemma — that a natural transformation from the representable yoneda C c to a functor F is a weak equivalence onto F c — by supplying, via isweq_iso, an explicit inverse natural transformation (yoneda_map_2, the witness) and discharging the two inverse laws as separate, self-contained same-file lemmas.",
+  "move": "witness",
+  "also_known_as": [
+    "isweq_iso",
+    "gradth (deprecated UniMath notation for isweq_iso)",
+    "two-sided inverse / section-retraction pair",
+    "obtain-witness-then-prove-properties"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "unimath",
+    "url": "https://github.com/UniMath/UniMath",
+    "commit": "7a4b03cce49449f45ce0d4285615165172f50546",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "UniMath/CategoryTheory/yoneda.v",
+      "bytes": 11020,
+      "sha256": "3c54ed75357988ef8c9428892a62c863aa4f99f29b613b4fb8922015b4f2d74a",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/CategoryTheory/yoneda.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "UniMath/CategoryTheory/yoneda.v",
+      "lines": [
+        305,
+        317
+      ],
+      "role": "parent",
+      "name": "isweq_yoneda_map_1",
+      "excerpt_sha256": "24d805ca1091f363e3760c1ddcce8ca1555b4cf326cfe0e370ca233233bcc0da",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/CategoryTheory/yoneda.v#L305-L317"
+    },
+    {
+      "path": "UniMath/CategoryTheory/yoneda.v",
+      "lines": [
+        178,
+        194
+      ],
+      "role": "child",
+      "name": "yoneda_map_1_2",
+      "excerpt_sha256": "fa12ecced9f9f5677b594d64eead52b14fbb5b0829265c7d48a7f1731d9118fb",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/CategoryTheory/yoneda.v#L178-L194"
+    },
+    {
+      "path": "UniMath/CategoryTheory/yoneda.v",
+      "lines": [
+        197,
+        204
+      ],
+      "role": "child",
+      "name": "yoneda_map_2_1",
+      "excerpt_sha256": "4304ddf32e052636862cf9d0e405b5ca9ff73cca30febbbbbec28d8dee76c710",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/CategoryTheory/yoneda.v#L197-L204"
+    },
+    {
+      "path": "UniMath/CategoryTheory/yoneda.v",
+      "lines": [
+        147,
+        150
+      ],
+      "role": "context",
+      "name": "yoneda_map_1",
+      "excerpt_sha256": "8bac4bf284e2c56f3e381a6a433b0b310a10a3b55d91f70f65bd6065c7ab1d6e",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/CategoryTheory/yoneda.v#L147-L150"
+    },
+    {
+      "path": "UniMath/CategoryTheory/yoneda.v",
+      "lines": [
+        154,
+        167
+      ],
+      "role": "context",
+      "name": "yoneda_map_2_ax",
+      "excerpt_sha256": "cd67953064bf570de11faed42d0347fa482001f98e2bc78f5bf298fbdba340f5",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/CategoryTheory/yoneda.v#L154-L167"
+    },
+    {
+      "path": "UniMath/CategoryTheory/yoneda.v",
+      "lines": [
+        169,
+        176
+      ],
+      "role": "context",
+      "name": "yoneda_map_2",
+      "excerpt_sha256": "49e34041b85d6f295c1682591a81746cc29c7db3ffe7f07fb7328f263003fdfc",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/CategoryTheory/yoneda.v#L169-L176"
+    }
+  ],
+  "parent": {
+    "name": "isweq_yoneda_map_1",
+    "statement": "Lemma isweq_yoneda_map_1 (C : category) (c : C) (F : functor C^op HSET) : isweq (yoneda_map_1 C c F)."
+  },
+  "children": [
+    {
+      "name": "yoneda_map_1_2",
+      "statement": "Lemma yoneda_map_1_2 (C : category) (c : C) (F : functor C^op HSET) (alpha : hom _ (yoneda C c) F) : yoneda_map_2 _ _ _ (yoneda_map_1 _ _ _ alpha) = alpha.",
+      "closed_by": "nat_trans_eq (C:=C^op) (has_homsets_HSET) reduces the natural-transformation equality pointwise, then rewrite <- nat_trans_ax and id_right f (lines 184-193); closes on its own"
+    },
+    {
+      "name": "yoneda_map_2_1",
+      "statement": "Lemma yoneda_map_2_1 (C : category) (c : C) (F : functor C^op HSET) (x : pr1 (F c)) : yoneda_map_1 _ _ _ (yoneda_map_2 _ _ _ x) = x.",
+      "closed_by": "simpl, rewrite (functor_id F), apply idpath (lines 201-203); closes on its own"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "isweq f — a goal that a map f : X → Y is a weak equivalence — where a candidate inverse g : Y → X and the two homotopies ∏ x, g (f x) = x and ∏ y, f (g y) = y can be supplied; here f = yoneda_map_1 C c F : hom (yoneda C c) F → pr1 (F c) and g = yoneda_map_2 C c F",
+    "use_when": "the inverse (witness) has an explicit constructible definition, and its two inverse laws factor into separate lemmas whose statements are self-contained; an extensionality principle (here nat_trans_eq / funextsec) reduces an equality of structured maps to pointwise equalities",
+    "avoid_when": "the inverse is not constructible without a choice or classical axiom (then prove isweq by unfolding it and showing contractibility of fibres); the two inverse laws share a long common proof not worth duplicating into two lemmas; or the map is already a known equivalence (then make_weq with an existing isweq is shorter)"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent isweq_yoneda_map_1 closes from the named witness and the two lemmas in a five-line proof: set (T:=yoneda_map_2 C c F) names the inverse, use isweq_iso creates the inverse-plus-two-homotopies goals, and the three bullets are closed by apply T, apply yoneda_map_1_2, apply yoneda_map_2_1 (lines 312-316).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/CategoryTheory/yoneda.v#L305-L317"
+    },
+    {
+      "n": 2,
+      "claim": "Each child closes on its own without another same-file lemma: yoneda_map_1_2 turns the natural-transformation equality into a pointwise equation with nat_trans_eq ... has_homsets_HSET and closes with rewrite <- nat_trans_ax and id_right f (lines 184-193); yoneda_map_2_1 closes with rewrite (functor_id F) and idpath (lines 201-203).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/CategoryTheory/yoneda.v#L178-L194 and https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/CategoryTheory/yoneda.v#L197-L204"
+    },
+    {
+      "n": 3,
+      "claim": "The authors state that this is the Yoneda lemma in the section comment: 'Yoneda lemma: natural transformations from [yoneda C c] to [F] are isomorphic to [F c]' (lines 143-144).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/CategoryTheory/yoneda.v#L143-L144"
+    },
+    {
+      "n": 4,
+      "claim": "The glue is 13 lines (305-317) with a 5-line proof body (312-316); the two children are 17 and 8 lines (178-194, 197-204); the longest chain of project items below the main theorem is 2 (isweq_yoneda_map_1 → yoneda_map_2 → yoneda_map_2_ax), while the two inverse-law lemmas each sit at depth 1.",
+      "evidence_kind": "measurement",
+      "evidence": "line counts of the copied file code/UniMath/CategoryTheory/yoneda.v (317-305+1=13; 194-178+1=17; 204-197+1=8); depth traced by hand from the parent site to yoneda_map_2 (lines 169-176) and its naturality lemma yoneda_map_2_ax (lines 154-167)"
+    },
+    {
+      "n": 5,
+      "claim": "The same witness move — isweq_iso with an inverse and two homotopies — is used again in the same file to prove the Yoneda embedding is fully faithful: yoneda_fully_faithful applies isweq_iso (line 330) and closes its two homotopy goals inline (lines 332-345).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/CategoryTheory/yoneda.v#L327-L346"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 2,
+    "glue_lines": 13,
+    "child_lines": [
+      17,
+      8
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 13,
+    "glue_body_lines": 5,
+    "children": 2,
+    "child_proof_lines": [
+      17,
+      8
+    ],
+    "how_counted": "parent = lines 305-317 of the copied file, of which the proof body between Proof. and Defined. is lines 312-316 (5); children = yoneda_map_1_2 (178-194), yoneda_map_2_1 (197-204)"
+  },
+  "consequences": "The move creates exactly three obligations via isweq_iso: an inverse g and the two homotopies g ∘ f = id (section) and f ∘ g = id (retraction); each is discharged by a single apply to a named lemma. The witness yoneda_map_2 is a Definition that must first prove its own naturality, done by the sub-lemma yoneda_map_2_ax; if that definition changes, both the sub-lemma and the two inverse laws must be revisited. The inverse laws are stated for an arbitrary alpha (resp. x), so no unfixed witness appears inside any child (survey F rule 8).",
+  "known_uses": [
+    "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/CategoryTheory/yoneda.v#L319-L322",
+    "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/CategoryTheory/yoneda.v#L327-L346",
+    "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/CategoryTheory/yoneda.v#L216-L234"
+  ],
+  "related": [
+    "rocq-witness-mathcomp-analysis-dc247f7a"
+  ],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "e5043582b0582a56eb8d72982ec185d47ac4394718b23679923fe46adbebabaf",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:49:00Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:52:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T15:57:33Z"
+}

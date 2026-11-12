@@ -1,0 +1,205 @@
+{
+  "id": "lean-generalise-then-instantiate-sphere-packing-9e03f73b",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Instantiate the periodic-density formula to compute the E8 packing density",
+  "intent": "Assemble the E8 packing density π^4/384 from the general periodic-density formula PeriodicSpherePacking.density_eq, instantiated at d=8, lattice E8Lattice, basis E8_ℤBasis and bound L=16, by substituting the three E8-specific ingredients (numReps=1, covolume=1, and the per-basis-vector norm bound 2).",
+  "move": "generalise-then-instantiate",
+  "also_known_as": [
+    "specialise a general statement",
+    "prove generally, apply specially",
+    "instantiate a formula over a structure at one member"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "sphere-packing",
+    "url": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean",
+    "commit": "efe3bbbc1ece548f4672a772b94d8f621c10fdda",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "SpherePacking/Basic/E8.lean",
+      "bytes": 30105,
+      "sha256": "754d474887cdc177c31a74ee8cbab8670a46c00f8c7847d7d42a745ce8aa7088",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/Basic/E8.lean"
+    },
+    {
+      "path": "SpherePacking/Basic/PeriodicPacking.lean",
+      "bytes": 54576,
+      "sha256": "08b2b8a3025807341907a84e861481c18c1b878d7edd0d36dab898398873d14e",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/Basic/PeriodicPacking.lean"
+    },
+    {
+      "path": "SpherePacking/Basic/SpherePacking.lean",
+      "bytes": 19770,
+      "sha256": "8b7b21e2d2f4bc1f099aa8b34918d092c962667e73efd2d4097364c6b5398e28",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/Basic/SpherePacking.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "SpherePacking/Basic/E8.lean",
+      "lines": [
+        671,
+        694
+      ],
+      "role": "parent",
+      "name": "E8Packing_density",
+      "excerpt_sha256": "141ecf149e720865ab1e50bbdc3d713d1390aba9716f801e6620a85d603880bb",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/Basic/E8.lean#L671-L694"
+    },
+    {
+      "path": "SpherePacking/Basic/PeriodicPacking.lean",
+      "lines": [
+        967,
+        972
+      ],
+      "role": "child",
+      "name": "PeriodicSpherePacking.density_eq",
+      "excerpt_sha256": "f377f9d9656f7e94d7adc81976c14f9be60ba0e914c500844ea04e91acd1fbe3",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/Basic/PeriodicPacking.lean#L967-L972"
+    },
+    {
+      "path": "SpherePacking/Basic/E8.lean",
+      "lines": [
+        631,
+        632
+      ],
+      "role": "child",
+      "name": "E8Packing_numReps",
+      "excerpt_sha256": "a25473997ac7bdf088b3ed9efc3a77d109845ebe2c8f05f8aef00b92f679d8ce",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/Basic/E8.lean#L631-L632"
+    },
+    {
+      "path": "SpherePacking/Basic/E8.lean",
+      "lines": [
+        641,
+        643
+      ],
+      "role": "child",
+      "name": "E8_ℤBasis_apply_norm",
+      "excerpt_sha256": "b64f4edb6edb29b0d779c2631bbbcce7600fa7e1e8e14b6a2dcfe4ac50650a54",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/Basic/E8.lean#L641-L643"
+    },
+    {
+      "path": "SpherePacking/Basic/E8.lean",
+      "lines": [
+        666,
+        668
+      ],
+      "role": "child",
+      "name": "E8_ℤBasis_ofZLatticeBasis_volume",
+      "excerpt_sha256": "4a5c58c18e566e0e9758ba9a0c8b4d4a0892591d6d3d5e829555eadff9194e20",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/Basic/E8.lean#L666-L668"
+    }
+  ],
+  "parent": {
+    "name": "E8Packing_density",
+    "statement": "theorem E8Packing_density : E8Packing.density = ENNReal.ofReal π ^ 4 / 384 := by"
+  },
+  "children": [
+    {
+      "name": "PeriodicSpherePacking.density_eq",
+      "statement": "theorem PeriodicSpherePacking.density_eq\n    (hL : ∀ x ∈ fundamentalDomain (b.ofZLatticeBasis ℝ _), ‖x‖ ≤ L) (hd : 0 < d) :\n    S.density\n      = S.numReps * volume (ball (0 : EuclideanSpace ℝ (Fin d)) (S.separation / 2))\n        / volume (fundamentalDomain (b.ofZLatticeBasis ℝ _)) :=",
+      "closed_by": "limsSup_eq_of_le_nhds (S.tendsto_finiteDensity b hL hd)"
+    },
+    {
+      "name": "E8Packing_numReps",
+      "statement": "lemma E8Packing_numReps : E8Packing.numReps = 1 :=",
+      "closed_by": "PeriodicSpherePacking.numReps_eq_one _ rfl"
+    },
+    {
+      "name": "E8_ℤBasis_apply_norm",
+      "statement": "lemma E8_ℤBasis_apply_norm : ∀ i : Fin 8, ‖E8_ℤBasis i‖ ≤ 2 := by",
+      "closed_by": "intro i; simpa [coe_E8_ℤBasis_apply, E8Basis_apply] using E8Basis_apply_norm i"
+    },
+    {
+      "name": "E8_ℤBasis_ofZLatticeBasis_volume",
+      "statement": "lemma E8_ℤBasis_ofZLatticeBasis_volume :\n    volume (fundamentalDomain (E8_ℤBasis.ofZLatticeBasis ℝ E8Lattice)) = 1 := by",
+      "closed_by": "rw [← volume_preimage_toLp_symm, preimage_fundamentalDomain_E8_ℤBasis, E8Basis_volume]"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal P(c) = v for a concrete object c of some structure class, where a general formula ∀ S d, P(S) = f(S.numReps, covolume(S), separation(S), d) has already been proved over the whole class; the instance is produced by `rw [general_formula c args]` and then substituting a small number of concrete ingredient values (each a named lemma).",
+    "use_when": "the general statement already exists and its parameters (dimension d, basis b, bound L) can be supplied syntactically; the concrete ingredient values (numReps, covolume, norm bound) each have short proofs; the goal matches the general formula's left-hand side up to unfolding.",
+    "avoid_when": "the general statement has to be proved as part of the job (then the general proof, not the instantiation, is the content); the ingredient values are many or deep (the 'instantiation' then hides the real work); each value needs a different argument rather than a uniform substitution, or the bound L has to be chosen by search."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent E8Packing_density closes in 23 lines from the four named lemmas — it instantiates PeriodicSpherePacking.density_eq at d=8/b=E8_ℤBasis/L=16 and substitutes E8Packing_numReps, E8_ℤBasis_ofZLatticeBasis_volume and E8_ℤBasis_apply_norm — with no sorry in its dependency cone, and the file is built by the project's CI.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/Basic/E8.lean#L671-L694; .github/workflows/build.yml runs lean-action (lake build) on pushes to main and SpherePacking.lean line 3 publicly imports SpherePacking.Basic.E8"
+    },
+    {
+      "n": 2,
+      "claim": "The blueprint node E8Packing-density declares the same two ingredients, \\uses{theorem:psp-density,E8Packing-covol}, and its prose proof is the same two-step argument: 'By \\cref{theorem:psp-density}, we have … where the last equality follows from \\cref{E8Packing-covol} and the formula for volume of a ball'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/blueprint/src/subsections/E8-defs.tex#L110-L115"
+    },
+    {
+      "n": 4,
+      "claim": "The general lemma PeriodicSpherePacking.density_eq is reused at two sites in the project: the E8 instance (E8.lean line 672) and the covolume-free variant density_eq' (PeriodicPacking.lean line 1152), so one general statement serves two theorems.",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/Basic/E8.lean#L672 and .../SpherePacking/Basic/PeriodicPacking.lean#L1152"
+    },
+    {
+      "n": 5,
+      "claim": "Below E8Packing_density the dependency cone is at least depth 5: E8Packing_density → PeriodicSpherePacking.density_eq (PeriodicPacking.lean:967) → tendsto_finiteDensity (PeriodicPacking.lean:945) → aux_big_le (PeriodicPacking.lean:753) → SpherePacking.finiteDensity_le (SpherePacking.lean:458) → inter_ball_encard_ge (SpherePacking.lean:411); the volume branch E8Packing_density → E8_ℤBasis_ofZLatticeBasis_volume → E8Basis_volume → E8Matrix_unimodular → lowerTriangular_E8Matrix (E8.lean:668 → :646 → :294 → :290) is depth 4.",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/Basic/PeriodicPacking.lean#L967-L972 (density_eq, calls tendsto_finiteDensity at L972) → #L945-L965 (tendsto_finiteDensity, calls aux_big_le at L951) → #L753-L764 (aux_big_le, calls finiteDensity_le at L764) → https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/Basic/SpherePacking.lean#L458-L470 (finiteDensity_le, calls inter_ball_encard_ge at L467) → #L411-L423 (inter_ball_encard_ge); volume branch https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/Basic/E8.lean#L666-L668 → #L646-L647 → #L294-L296 → #L290-L292"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 5,
+    "glue_lines": 23,
+    "child_lines": [
+      1,
+      1,
+      2,
+      1
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 23,
+    "children": 4,
+    "direct_lemmas": 4,
+    "depth": 5,
+    "how_counted": "parent proof = E8.lean lines 672-694 (the by block after the statement at line 671); child proof lines = density_eq 1 (PeriodicPacking.lean:972), E8Packing_numReps 1 (E8.lean:632), E8_ℤBasis_apply_norm 2 (E8.lean:642-643), E8_ℤBasis_ofZLatticeBasis_volume 1 (E8.lean:668); depth is a lower bound counted along the density_eq branch E8Packing_density -> PeriodicSpherePacking.density_eq (PeriodicPacking.lean:972) -> tendsto_finiteDensity (:951) -> aux_big_le (:764) -> SpherePacking.finiteDensity_le (SpherePacking.lean:467) -> inter_ball_encard_ge (:411); the volume branch E8Packing_density -> E8_ℤBasis_ofZLatticeBasis_volume -> E8Basis_volume -> E8Matrix_unimodular -> lowerTriangular_E8Matrix is depth 4"
+  },
+  "consequences": "Instantiating the general formula creates two obligations: (i) the side conditions of density_eq — hL (a norm bound over the fundamental domain, discharged here by E8_ℤBasis_apply_norm and the choice L=16) and hd (0<d, closed by omega) — become subgoals of the rewrite, and (ii) each concrete ingredient (numReps, covolume, norm bound) must be a separate named, proved lemma. Failure modes: choosing L too small makes the hL goal unprovable by the available norm lemmas; the rw only fires if the goal's head matches the general formula's left-hand side syntactically; and the move hides a potentially large dependency cone (depth ≥ 5 here) inside a deceptively short glue.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "9e03f73baf21a207dbd800cfa888e848e499cfe398c6aecfe462665990ec9b72",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:16:29Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:20:00Z"
+    },
+    {
+      "field": "claims,shape,metrics,consequences",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:25:52Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T16:31:49Z"
+}

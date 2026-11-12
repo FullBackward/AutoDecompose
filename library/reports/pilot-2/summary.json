@@ -1,0 +1,703 @@
+{
+  "run": "pilot-2",
+  "date": "2026-11-12",
+  "started": "2026-11-12T14:03:28Z",
+  "screening": {
+    "mathlib4": "include",
+    "pfr": "include",
+    "carleson": "include",
+    "equational-theories": "include",
+    "flt-imperial": "include",
+    "flt-anthropic": "include",
+    "sphere-packing": "include",
+    "compfiles": "include",
+    "axiom-imo2026": "include",
+    "numina-putnam2025": "include",
+    "seed-prover": "include",
+    "harmonic-imo2025": "include",
+    "lean4-skills": "include",
+    "leanprover-skills": "include",
+    "trailofbits-skills": "include",
+    "pnt-and": "include",
+    "strongpnt": "include",
+    "formal-conjectures": "include",
+    "sphere-eversion": "include",
+    "flt-regular": "include",
+    "lean-liquid": "include",
+    "dirac-imo2026": "include",
+    "pramaana-imo2026": "include",
+    "mechmath-imo2026": "include",
+    "humanfia-hoa-qed": "include",
+    "lean-autoformalization-skills": "include",
+    "numina-lean-agent": "include",
+    "opengauss": "exclude",
+    "ml-hilbert": "include",
+    "goedel-prover-v2": "include",
+    "deepseek-prover-v2": "include",
+    "math-comp": "include",
+    "odd-order": "include",
+    "fourcolor": "include",
+    "mathcomp-analysis": "include",
+    "compcert": "include",
+    "fiat-crypto": "include",
+    "vst": "include",
+    "verdi": "include",
+    "unimath": "include",
+    "hydra-battles": "include",
+    "rocq-stdlib": "include",
+    "certicoq": "include",
+    "interaction-trees": "include",
+    "bedrock2": "include",
+    "afp": "include",
+    "l4v": "include",
+    "autocorrode": "include",
+    "munkres-isabelle": "include",
+    "isabelle-pide-ai": "include",
+    "isabelle-dist": "include"
+  },
+  "sites_found": 179,
+  "sites_chosen": 80,
+  "entries": [
+    {
+      "site": "mathlib4:Archive/Wiedijk100Theorems/FriendshipGraphs.lean:330",
+      "id": "lean-case-split-mathlib4-d8adc729",
+      "status": "accepted"
+    },
+    {
+      "site": "pfr:PFR/Main.lean:261",
+      "id": "lean-case-split-pfr-7d058764",
+      "status": "accepted"
+    },
+    {
+      "site": "carleson:Carleson/Discrete/MainTheorem.lean:44",
+      "id": "lean-calc-chain-carleson-eeedf502",
+      "status": "verified"
+    },
+    {
+      "site": "equational-theories:equational_theories/ManuallyProved/Equation1729.lean:14",
+      "id": "lean-per-callee-lemma-equational-theories-b60a63fd",
+      "status": "verified"
+    },
+    {
+      "site": "flt-imperial:FLT/Slop/PGL2/FiniteSubgroups/DicksonClassification.lean:54",
+      "id": "lean-case-split-flt-imperial-b72a01ad",
+      "status": "accepted"
+    },
+    {
+      "site": "flt-anthropic:P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean:165",
+      "id": "lean-case-split-flt-anthropic-f782b482",
+      "status": "draft"
+    },
+    {
+      "site": "sphere-packing:SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:457",
+      "id": "lean-calc-chain-sphere-packing-7d6a60c4",
+      "status": "accepted"
+    },
+    {
+      "site": "pnt-and:PrimeNumberTheoremAnd/StrongPNT.lean:2831",
+      "id": "lean-case-split-pnt-and-96d6a0ca",
+      "status": "accepted"
+    },
+    {
+      "site": "strongpnt:StrongPNT/PNT3_RiemannZeta.lean:639",
+      "id": "lean-calc-chain-strongpnt-570bdcdb",
+      "status": "accepted"
+    },
+    {
+      "site": "formal-conjectures:FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean:237",
+      "id": "lean-induction-formal-conjectures-e2f33737",
+      "status": "accepted"
+    },
+    {
+      "site": "sphere-eversion:SphereEversion/Global/Immersion.lean:307",
+      "id": "lean-witness-sphere-eversion-2ae37d14",
+      "status": "verified"
+    },
+    {
+      "site": "flt-regular:FltRegular/FltRegular.lean:21",
+      "id": "lean-case-split-flt-regular-696a9e84",
+      "status": "accepted"
+    },
+    {
+      "site": "lean-liquid:src/challenge.lean:28",
+      "id": "lean-interface-lemma-lean-liquid-96015c5e",
+      "status": "accepted"
+    },
+    {
+      "site": "compfiles:Compfiles/Usa2020P3.lean:138",
+      "id": "lean-calc-chain-compfiles-f7c6dc2b",
+      "status": "accepted"
+    },
+    {
+      "site": "axiom-imo2026:IMO2026/Q4/solution.lean:469",
+      "id": "lean-iff-split-axiom-imo2026-5ffbca5d",
+      "status": "draft"
+    },
+    {
+      "site": "dirac-imo2026:IMO2026/Q4/solution.lean:376",
+      "id": "lean-iff-split-dirac-imo2026-ff8df4eb",
+      "status": "draft"
+    },
+    {
+      "site": "pramaana-imo2026:IMO2026/Q5/solution.lean:223",
+      "id": "lean-iff-split-pramaana-imo2026-16c8b1e9",
+      "status": "draft"
+    },
+    {
+      "site": "mechmath-imo2026:IMO2026/Q4/solution.lean:383",
+      "id": "lean-iff-split-mechmath-imo2026-75bedf39",
+      "status": "draft"
+    },
+    {
+      "site": "humanfia-hoa-qed:imo2026/gpt-5.6-solution/IMO2026Q1.lean:419",
+      "id": "lean-calc-chain-humanfia-hoa-qed-e7194d55",
+      "status": "accepted"
+    },
+    {
+      "site": "numina-putnam2025:NuminaPutnam2025/putnam_2025_a2.lean:511",
+      "id": "lean-iff-split-numina-putnam2025-95670702",
+      "status": "accepted"
+    },
+    {
+      "site": "seed-prover:SeedProver/imo2025/IMO2025/P4.lean:3900",
+      "id": "lean-witness-seed-prover-00af1caf",
+      "status": "draft"
+    },
+    {
+      "site": "harmonic-imo2025:HarmonicLean/IMO2025P1.lean:1387",
+      "id": "lean-case-split-harmonic-imo2025-09c4818f",
+      "status": "accepted"
+    },
+    {
+      "site": "lean4-skills:plugins/lean4/skills/lean4/references/proof-refactoring.md:189",
+      "id": "markdown-extract-have-lean4-skills-2f8b180f",
+      "status": "draft"
+    },
+    {
+      "site": "leanprover-skills:skills/lean-proof/SKILL.md:29",
+      "id": "markdown-calc-chain-leanprover-skills-d842291a",
+      "status": "draft"
+    },
+    {
+      "site": "trailofbits-skills:plugins/writing-lean-proofs/evals/cases/03-normal-form/input/WordCmp.lean:38",
+      "id": "lean-iff-split-trailofbits-skills-5f714afb",
+      "status": "draft"
+    },
+    {
+      "site": "lean-autoformalization-skills:skills/lean-proof-patterns/references/math-to-lean.md:38",
+      "id": "markdown-workflow-lean-autoformalization-skills-a0f54ad1",
+      "status": "draft"
+    },
+    {
+      "site": "numina-lean-agent:prompts/docs/prompts/blueprint_agent.md:462",
+      "id": "markdown-workflow-numina-lean-agent-b4e8ebdf",
+      "status": "draft"
+    },
+    {
+      "site": "ml-hilbert:src/prompts/hilbert.py:64",
+      "id": "python-extract-have-ml-hilbert-30f55e92",
+      "status": "draft"
+    },
+    {
+      "site": "goedel-prover-v2:src/utils.py:339",
+      "id": "python-workflow-goedel-prover-v2-aff4c769",
+      "status": "draft"
+    },
+    {
+      "site": "deepseek-prover-v2:README.md:127",
+      "id": "markdown-workflow-deepseek-prover-v2-79ab0b86",
+      "status": "draft"
+    },
+    {
+      "site": "math-comp:solvable/jordanholder.v:165",
+      "id": "rocq-induction-math-comp-8c9c659d",
+      "status": "accepted"
+    },
+    {
+      "site": "odd-order:theories/PFsection14.v:1216",
+      "id": "rocq-case-split-odd-order-fe6c7643",
+      "status": "accepted"
+    },
+    {
+      "site": "fourcolor:theories/proof/reducibility.v:16",
+      "id": "rocq-per-callee-lemma-fourcolor-3d7b1949",
+      "status": "verified"
+    },
+    {
+      "site": "mathcomp-analysis:theories/functional_analysis/hahn_banach_theorem.v:306",
+      "id": "rocq-witness-mathcomp-analysis-dc247f7a",
+      "status": "accepted"
+    },
+    {
+      "site": "compcert:driver/Compiler.v:446",
+      "id": "rocq-interface-lemma-compcert-eda26107",
+      "status": "accepted"
+    },
+    {
+      "site": "fiat-crypto:src/Arithmetic/BYInv.v:975",
+      "id": "rocq-extensionality-fiat-crypto-cb9f23da",
+      "status": "verified"
+    },
+    {
+      "site": "vst:progs/memmgr/VSU_malloc.v:40",
+      "id": "rocq-per-callee-lemma-vst-ecff0afd",
+      "status": "draft"
+    },
+    {
+      "site": "verdi:theories/Core/StatePacketPacketDecomposition.v:172",
+      "id": "rocq-case-split-verdi-7798ab0c",
+      "status": "accepted"
+    },
+    {
+      "site": "unimath:UniMath/CategoryTheory/yoneda.v:305",
+      "id": "rocq-witness-unimath-e5043582",
+      "status": "accepted"
+    },
+    {
+      "site": "hydra-battles:theories/goedel/goedel1.v:289",
+      "id": "rocq-witness-hydra-battles-f45d6a98",
+      "status": "accepted"
+    },
+    {
+      "site": "rocq-stdlib:theories/Logic/WKL.v:211",
+      "id": "rocq-key-invariant-rocq-stdlib-1a358d2f",
+      "status": "accepted"
+    },
+    {
+      "site": "certicoq:theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6030",
+      "id": "rocq-per-callee-lemma-certicoq-2bfeffdd",
+      "status": "accepted"
+    },
+    {
+      "site": "interaction-trees:tutorial/Imp2AsmCorrectness.v:822",
+      "id": "rocq-induction-interaction-trees-b0a7a191",
+      "status": "verified"
+    },
+    {
+      "site": "bedrock2:compiler/src/compiler/Pipeline.v:634",
+      "id": "rocq-calc-chain-bedrock2-f158f24e",
+      "status": "accepted"
+    },
+    {
+      "site": "afp:thys/IMO2019/IMO2019_Q4.thy:231",
+      "id": "isabelle-calc-chain-afp-4d3178de",
+      "status": "draft"
+    },
+    {
+      "site": "l4v:proof/refine/Refine.thy:842",
+      "id": "isabelle-suffices-or-strengthen-l4v-0a36f701",
+      "status": "verified"
+    },
+    {
+      "site": "autocorrode:Shallow_Separation_Logic/Adequacy.thy:53",
+      "id": "isabelle-case-split-autocorrode-5c995779",
+      "status": "accepted"
+    },
+    {
+      "site": "munkres-isabelle:tst/Top1_Ch5_8.thy:5064",
+      "id": "isabelle-extract-have-munkres-isabelle-8aac79ad",
+      "status": "draft"
+    },
+    {
+      "site": "isabelle-pide-ai:.agents/skills/isabelle/SKILL.md:15",
+      "id": "markdown-workflow-isabelle-pide-ai-cb5b2bef",
+      "status": "draft"
+    },
+    {
+      "site": "isabelle-dist:src/HOL/Examples/Reflection_Examples.thy:243",
+      "id": "isabelle-induction-isabelle-dist-552a2881",
+      "status": "draft"
+    },
+    {
+      "site": "mathlib4:Archive/Wiedijk100Theorems/BallotProblem.lean:309",
+      "id": "lean-induction-mathlib4-e5402126",
+      "status": "verified"
+    },
+    {
+      "site": "pfr:PFR/EntropyPFR.lean:54",
+      "id": "lean-witness-pfr-e55fc34d",
+      "status": "accepted"
+    },
+    {
+      "site": "carleson:Carleson/FinitaryCarleson.lean:110",
+      "id": "lean-generalise-then-instantiate-carleson-63234e9a",
+      "status": "accepted"
+    },
+    {
+      "site": "equational-theories:equational_theories/ManuallyProved/Equation854.lean:506",
+      "id": "lean-witness-equational-theories-f93d568f",
+      "status": "accepted"
+    },
+    {
+      "site": "flt-imperial:FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean:480",
+      "id": "lean-iff-split-flt-imperial-0fde62f1",
+      "status": "verified"
+    },
+    {
+      "site": "flt-anthropic:P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean:113",
+      "id": "lean-induction-flt-anthropic-46946403",
+      "status": "draft"
+    },
+    {
+      "site": "sphere-packing:SpherePacking/Basic/E8.lean:671",
+      "id": "lean-generalise-then-instantiate-sphere-packing-9e03f73b",
+      "status": "accepted"
+    },
+    {
+      "site": "pnt-and:PrimeNumberTheoremAnd/MediumPNT.lean:4142",
+      "id": "lean-generalise-then-instantiate-pnt-and-1d2fc8e6",
+      "status": "accepted"
+    },
+    {
+      "site": "strongpnt:StrongPNT/PNT4_ZeroFreeRegion.lean:6345",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "formal-conjectures:FormalConjecturesForMathlib/Geometry/OrdinaryLines.lean:215",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "sphere-eversion:SphereEversion/Local/HPrinciple.lean:453",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "flt-regular:FltRegular/CaseI/Statement.lean:259",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "lean-liquid:src/thm95/default.lean:98",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "compfiles:Compfiles/Imo1960P1.lean:103",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "axiom-imo2026:IMO2026/Q6/solution.lean:762",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "dirac-imo2026:IMO2026/Q6/solution.lean:700",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "pramaana-imo2026:IMO2026/Q3/solution.lean:3002",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "mechmath-imo2026:IMO2026/Q5/solution.lean:421",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "humanfia-hoa-qed:imo2026/gpt-5.6-solution/IMO2026Q5.lean:267",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "numina-putnam2025:NuminaPutnam2025/putnam_2025_b2.lean:1044",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "seed-prover:SeedProver/imo2025/IMO2025/P5.lean:292",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "harmonic-imo2025:HarmonicLean/IMO2025P3.lean:417",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "lean4-skills:plugins/lean4/skills/lean4/references/domain-patterns.md:469",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "trailofbits-skills:plugins/writing-lean-proofs/evals/cases/05-clean-restraint/input/Carry.lean:38",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "lean-autoformalization-skills:skills/lean-proof-patterns/references/tactics-and-automation.md:320",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "numina-lean-agent:prompts/BLUEPRINT_template.md:38",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "ml-hilbert:src/prompts/hilbert.py:133",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "goedel-prover-v2:README.md:184",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "deepseek-prover-v2:README.md:54",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "math-comp:field/finfield.v:484",
+      "id": null,
+      "status": "skipped"
+    }
+  ],
+  "skipped_at_soft_stop": 22,
+  "gold": [
+    {
+      "source_id": "pfr",
+      "path": "PFR/Main.lean",
+      "start": 261,
+      "end": 338,
+      "move": "case-split",
+      "why": "wlog finite G, then PFR_conjecture_pos_aux' and PFR_conjecture_aux; rcases le_or_gt on #H vs #A, each branch closed by a calc"
+    },
+    {
+      "source_id": "carleson",
+      "path": "Carleson/Discrete/MainTheorem.lean",
+      "start": 44,
+      "end": 68,
+      "move": "calc-chain",
+      "why": "calc through exceptional_set, forest_union, forest_complement and le_C2_0_2"
+    },
+    {
+      "source_id": "carleson",
+      "path": "Carleson/FinitaryCarleson.lean",
+      "start": 110,
+      "end": 124,
+      "move": "generalise-then-instantiate",
+      "why": "instantiates abstract structures via grid_existence and tile_existence, then discrete_carleson with tile_sum_operator"
+    },
+    {
+      "source_id": "flt-imperial",
+      "path": "FLT/Slop/DimensionTheorem/Main.lean",
+      "start": 64,
+      "end": 70,
+      "move": "iff-split",
+      "why": "le_antisymm; ringKrullDim_le_growthDeg against a calc through growthDeg_le_minGenPrimary and minGenPrimary_le_ringKrullDim"
+    },
+    {
+      "source_id": "pnt-and",
+      "path": "PrimeNumberTheoremAnd/StrongPNT.lean",
+      "start": 2900,
+      "end": 2904,
+      "move": "generalise-then-instantiate",
+      "why": "general GenStrengthPNT instantiated at LogDerivZetaBoundedAndHolo12"
+    },
+    {
+      "source_id": "strongpnt",
+      "path": "StrongPNT/PNT5_Strong.lean",
+      "start": 5911,
+      "end": 6589,
+      "move": "blueprint-node",
+      "why": "blueprint theorem with its \\uses list at 6591; glue assembles SmoothedChebyshevClose, MellinOfSmooth1cExplicit, the LogDerivZeta bounds and I1Bound-I5Bound"
+    },
+    {
+      "source_id": "flt-regular",
+      "path": "FltRegular/FltRegular.lean",
+      "start": 21,
+      "end": 28,
+      "move": "case-split",
+      "why": "fermatLastTheoremFor_iff_int plus coprime reduction, then by_cases on p | a*b*c with caseII and caseI"
+    },
+    {
+      "source_id": "compfiles",
+      "path": "Compfiles/Imo2024P3.lean",
+      "start": 959,
+      "end": 966,
+      "move": "case-split",
+      "why": "obtain exists_a_apply_add_eq, then even/odd split of N' with the eventual-periodicity witness in each branch"
+    },
+    {
+      "source_id": "axiom-imo2026",
+      "path": "IMO2026/Q1/solution.lean",
+      "start": 415,
+      "end": 437,
+      "move": "key-invariant",
+      "why": "card preserved by card_move and mu strictly decreased by mu_move give a bounded decreasing potential, contradicting an infinite play"
+    },
+    {
+      "source_id": "numina-putnam2025",
+      "path": "NuminaPutnam2025/putnam_2025_a2.lean",
+      "start": 511,
+      "end": 522,
+      "move": "iff-split",
+      "why": "nested constructor on IsGreatest and IsLeast; each direction uses sin_ge_inv_pi_mul_quad, inv_pi_is_greatest_lower_bound, sin_le_four_div_pi_sq_mul_quad, four_div_pi_sq_is_least_upper_bound"
+    },
+    {
+      "source_id": "harmonic-imo2025",
+      "path": "HarmonicLean/IMO2025P3.lean",
+      "start": 417,
+      "end": 431,
+      "move": "witness",
+      "why": "upper_bound_four gives the lower bound; f_construction with construction_bonza is the witness for minimality"
+    },
+    {
+      "source_id": "compcert",
+      "path": "driver/Compiler.v",
+      "start": 353,
+      "end": 417,
+      "move": "per-callee-lemma",
+      "why": "one *_proof.transf_program_correct per compiler pass, composed by compose_forward_simulations and match_if_simulation"
+    },
+    {
+      "source_id": "odd-order",
+      "path": "theories/PFsection14.v",
+      "start": 1216,
+      "end": 1253,
+      "move": "case-split",
+      "why": "FTtypeP_pair_cases, wlog q < p, then FTtypeP_max_typeII/min_typeII, FTtypeII_support_facts, FT_Frobenius_type1, FTtype1_coherence, FTtype1_ref_irr and FTtype2_exclusion"
+    },
+    {
+      "source_id": "fourcolor",
+      "path": "theories/proof/fourcolor.v",
+      "start": 27,
+      "end": 32,
+      "move": "interface-lemma",
+      "why": "discretize.discretize_to_hypermap hands the finite map to combinatorial4ct.four_color_hypermap across the module boundary"
+    },
+    {
+      "source_id": "certicoq",
+      "path": "theories/Compiler/correctness.v",
+      "start": 190,
+      "end": 215,
+      "move": "witness",
+      "why": "anf_corresp.convert_top_anf_total supplies e_tgt and comp_d'; metarocq_to_anf_correct supplies the refinement witness M"
+    },
+    {
+      "source_id": "mathcomp-analysis",
+      "path": "theories/functional_analysis/hahn_banach_theorem.v",
+      "start": 306,
+      "end": 323,
+      "move": "witness",
+      "why": "zornS_ex and hahn_banach_witness produce g, with lingraphD and lingraphZ packaging additivity and scalability"
+    },
+    {
+      "source_id": "mathlib4",
+      "path": "Archive/Wiedijk100Theorems/FriendshipGraphs.lean",
+      "start": 330,
+      "end": 335,
+      "move": "case-split",
+      "why": "isRegularOf_not_existsPolitician gives d; split d < 3 versus 3 <= d into existsPolitician_of_degree_le_two and false_of_three_le_degree"
+    },
+    {
+      "source_id": "compfiles",
+      "path": "Compfiles/Imo2024P2.lean",
+      "start": 197,
+      "end": 217,
+      "move": "iff-split",
+      "why": "refine (fun h => ?_, fun h => ?_); the hard direction packs Condition and closes with a_eq_one and b_eq_one"
+    },
+    {
+      "source_id": "afp",
+      "path": "thys/Bertrands_Postulate/Bertrand.thy",
+      "start": 1541,
+      "end": 1564,
+      "move": "case-split",
+      "why": "n < 600 discharged by prime_constants plus pratt; otherwise theta_double_lemma and theta_lessE"
+    },
+    {
+      "source_id": "unimath",
+      "path": "UniMath/CategoryTheory/Monads/KTriplesEquiv.v",
+      "start": 525,
+      "end": 533,
+      "move": "witness",
+      "why": "is_catiso split into full faithfulness from form_equivalence_unkleislify and the inverse kleislify with kleislify_unkleislify and unkleislify_kleislify"
+    },
+    {
+      "source_id": "rocq-stdlib",
+      "path": "theories/Reals/Rcomplete.v",
+      "start": 25,
+      "end": 193,
+      "move": "suffices-or-strengthen",
+      "why": "cut (x = x0) identifying the majorant and minorant limits from maj_cv and min_cv, then Vn_Un_Wn_order closes convergence"
+    },
+    {
+      "source_id": "afp",
+      "path": "thys/Bertrands_Postulate/Bertrand.thy",
+      "start": 984,
+      "end": 1017,
+      "move": "induction",
+      "why": "induction on j generalising n; the Suc case splits k <= j, using psi_bounds_sustained_induct in one branch and the hypothesis in the other"
+    },
+    {
+      "source_id": "dirac-imo2026",
+      "path": "IMO2026/Q4/solution.lean",
+      "start": 379,
+      "end": 384,
+      "move": "iff-split",
+      "why": "constructor; exists_div_of_canGuarantee and mulanCanGuarantee_of_div are the two directions"
+    },
+    {
+      "source_id": "mathlib4",
+      "path": "Archive/Wiedijk100Theorems/AbelRuffini.lean",
+      "start": 170,
+      "end": 173,
+      "move": "witness",
+      "why": "exhibits a root x of the quintic via IsAlgClosed.splits and map_Phi, algebraic via monic_Phi, insolvable via not_solvable_by_rad'"
+    }
+  ],
+  "gold_recall": "12/24",
+  "gold_missed": [
+    "pnt-and:PrimeNumberTheoremAnd/StrongPNT.lean:2900-2904 (generalise-then-instantiate)",
+    "strongpnt:StrongPNT/PNT5_Strong.lean:5911-6589 (blueprint-node)",
+    "compfiles:Compfiles/Imo2024P3.lean:959-966 (case-split)",
+    "axiom-imo2026:IMO2026/Q1/solution.lean:415-437 (key-invariant)",
+    "compcert:driver/Compiler.v:353-417 (per-callee-lemma)",
+    "fourcolor:theories/proof/fourcolor.v:27-32 (interface-lemma)",
+    "certicoq:theories/Compiler/correctness.v:190-215 (witness)",
+    "compfiles:Compfiles/Imo2024P2.lean:197-217 (iff-split)",
+    "unimath:UniMath/CategoryTheory/Monads/KTriplesEquiv.v:525-533 (witness)",
+    "rocq-stdlib:theories/Reals/Rcomplete.v:25-193 (suffices-or-strengthen)",
+    "afp:thys/Bertrands_Postulate/Bertrand.thy:984-1017 (induction)",
+    "mathlib4:Archive/Wiedijk100Theorems/AbelRuffini.lean:170-173 (witness)"
+  ],
+  "critic": {
+    "gaps": [
+      "Gold recall 12/24 (50%), below the 0.8 target: 12 gold sites missed inside already-harvested sources.",
+      "Missed gold by move — witness x3 (mathlib4 AbelRuffini.lean:170-173, certicoq correctness.v:190-215, unimath KTriplesEquiv.v:525-533), plus one each: generalise-then-instantiate (pnt-and StrongPNT.lean:2900-2904), blueprint-node (strongpnt PNT5_Strong.lean:5911-6589), case-split (compfiles Imo2024P3.lean:959-966), key-invariant (axiom-imo2026 Q1/solution.lean:415-437), per-callee-lemma (compcert Compiler.v:353-417), interface-lemma (fourcolor fourcolor.v:27-32), iff-split (compfiles Imo2024P2.lean:197-217), suffices-or-strengthen (rocq-stdlib Rcomplete.v:25-193), induction (afp Bertrand.thy:984-1017).",
+      "Four moves have zero accepted entries: workflow (0/6), sorrify-at-failure (0/2), statement-object (0/2), other (0/1). extract-have has only one accepted entry, a markdown skill (no lean/rocq/isabelle instance).",
+      "blueprint-node and statement-object exist only at tactic scale; neither has a theorem-scale entry, and the theorem-scale strongpnt blueprint-node gold site was missed.",
+      "Language gaps: iff-split has no rocq or isabelle entry; key-invariant, generalise-then-instantiate, interface-lemma, witness, extensionality all lack an isabelle entry.",
+      "No source is empty at the source level (all 50 'include' sources have >=1 entry), but afp yielded 1 entry across its 8 shard dirs (Bertrands_Postulate missed) and mathlib4/Archive missed AbelRuffini — the 3-sites-per-shard cap left deep sources under-harvested.",
+      "Build=not-run on 30 entries: all Isabelle batch-3 (afp, isabelle-dist, munkres-isabelle), agent-made IMO2026 repos (axiom/dirac/pramaana/mechmath), flt-anthropic, seed-prover, vst, and every markdown/python skill-harness entry.",
+      "Fidelity and sufficiency are not-run for all 91 entries (no local toolchain) — expected but still an unchecked dimension.",
+      "Six entries still carry a refuted claim that protocol s6 says must be removed: lean-calc-chain-strongpnt-570bdcdb, lean-induction-formal-conjectures-e2f33737, lean-iff-split-dirac-imo2026-ff8df4eb, rocq-induction-math-comp-8c9c659d, lean-iff-split-flt-imperial-0fde62f1, lean-generalise-then-instantiate-sphere-packing-9e03f73b.",
+      "~26 open review objections (correctness/generality/provenance-licence) block acceptance of ~25 entries, including several already-verified ones.",
+      "Near-duplicates not merged: the same IMO2026 Q4 'MulanCanGuarantee theta iff theta=180/n' iff-split is three entries (axiom-imo2026 5ffbca5d, dirac-imo2026 ff8df4eb, mechmath-imo2026 75bedf39); dedupe.json also clusters case-split flt-anthropic 22d1c0d8/f782b482 and suffices-or-strengthen numina 3fe390a3/687e778f.",
+      "Run pilot-2 is still incomplete (no reports/pilot-2/summary.json), so these counts are a mid-run snapshot."
+    ],
+    "next_batch": [
+      "Re-run site finding on the 12 gold-missed sources with the specific path+move hints rather than a uniform 3-sites-per-shard round-robin.",
+      "Deepen already-included sources before adding new ones: second pass over mathlib4/Archive, afp shard dirs, compcert, unimath, rocq-stdlib, compfiles where recall is low.",
+      "Replace the fixed 3-sites-per-shard cap with per-source site budgets scaled by repository size.",
+      "Remove the 6 refuted claims and resolve the ~26 open review objections before writing any new entries.",
+      "Add at least one theorem-scale blueprint-node and statement-object entry, and one rocq or isabelle iff-split to close the language gaps.",
+      "Merge the three Q4 iff-split near-duplicates and the dedupe.json clusters (flt-anthropic case-split pair, numina suffices pair) with dedupe.py --write.",
+      "For the 30 build not-run entries, cite a CI workflow at the pinned commit where one exists (the agent-made IMO repos all pin a lean-toolchain) or record the specific not-run reason.",
+      "Steer next batch toward the zero/thin moves (workflow, sorrify-at-failure, statement-object, key-invariant, extensionality) instead of adding more case-split/iff-split/calc-chain entries.",
+      "Reconcile the coverage numbers before the next run: flow.md reports 'exclude 2' but only opengauss is excluded, and sites_found/sites_chosen in the brief disagree with sites.jsonl (294) and chosen-sites.json (60)."
+    ]
+  },
+  "calls": 437,
+  "tokens": 438674076,
+  "cost_cny": 179.24,
+  "finished": "2026-11-12T16:35:29Z"
+}

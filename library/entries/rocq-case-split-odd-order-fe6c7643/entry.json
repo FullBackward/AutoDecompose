@@ -1,0 +1,295 @@
+{
+  "id": "rocq-case-split-odd-order-fe6c7643",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Case split on the typeP-pair dichotomy for no_minSimple_odd_group",
+  "intent": "Record the last step of the Feit-Thompson theorem — the contradiction `no_minSimple_odd_group` that rules out a minimal simple group of odd order — as a theorem-scale decomposition whose 37-line glue proof is nothing but an exhaustive case split (`FTtypeP_pair_cases`), a `without loss` ordering `q < p`, one `have := <named project lemma>` per fact, and a single final application of `FTtype2_exclusion`.",
+  "move": "case-split",
+  "also_known_as": [
+    "dichotomy on a classification lemma",
+    "wlog ordering",
+    "without loss of generality"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "odd-order",
+    "url": "https://github.com/math-comp/odd-order",
+    "commit": "ba734c020d9f7dce5758fa822904dea29e2624ba",
+    "licence": "CECILL-B"
+  },
+  "files": [
+    {
+      "path": "theories/PFsection14.v",
+      "bytes": 64824,
+      "sha256": "be15ac9b81a93cd8930a9a689458e80db7cd4bf1c5004cf9d55971b13e6cb386",
+      "permalink": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/PFsection14.v"
+    },
+    {
+      "path": "theories/PFsection8.v",
+      "bytes": 54631,
+      "sha256": "2359bca21f95cae5d02492bb8cbb4b0776351bb541cec1667d6e65578d15c101",
+      "permalink": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/PFsection8.v"
+    },
+    {
+      "path": "theories/PFsection12.v",
+      "bytes": 72121,
+      "sha256": "311c5d41da9a7980740f5215bc46fb05897f6cf9a3928a8030362b150fbb719a",
+      "permalink": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/PFsection12.v"
+    },
+    {
+      "path": "theories/PFsection13.v",
+      "bytes": 114576,
+      "sha256": "f279d841c879326e919dee25672e2d9b086570b2d7f0d82f09610b1e61ef2037",
+      "permalink": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/PFsection13.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/PFsection14.v",
+      "lines": [
+        1216,
+        1253
+      ],
+      "role": "parent",
+      "name": "no_minSimple_odd_group",
+      "excerpt_sha256": "77c73f217565a022e40e91c944347123ab2d22b425e9e2b4a7a82d79318879ed",
+      "permalink": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/PFsection14.v#L1216-L1253"
+    },
+    {
+      "path": "theories/PFsection8.v",
+      "lines": [
+        443,
+        465
+      ],
+      "role": "child",
+      "name": "FTtypeP_pair_cases",
+      "excerpt_sha256": "dc9bbf9070f03a341778d1f4644634eb6e76123ebc7acb3bd2c90b2fc8620206",
+      "permalink": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/PFsection8.v#L443-L465"
+    },
+    {
+      "path": "theories/PFsection12.v",
+      "lines": [
+        1302,
+        1361
+      ],
+      "role": "child",
+      "name": "not_all_FTtype1",
+      "excerpt_sha256": "9936fe3223203f0efaeba62101319874e474aeb3c451cabf16ba4ff29bfaf003",
+      "permalink": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/PFsection12.v#L1302-L1361"
+    },
+    {
+      "path": "theories/PFsection8.v",
+      "lines": [
+        436,
+        440
+      ],
+      "role": "child",
+      "name": "typeP_pair_sym",
+      "excerpt_sha256": "c8e5aad83493bbde19b48f7d6d200ad480ebee052413ac5730a5858775961858",
+      "permalink": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/PFsection8.v#L436-L440"
+    },
+    {
+      "path": "theories/PFsection14.v",
+      "lines": [
+        491,
+        492
+      ],
+      "role": "child",
+      "name": "FTtypeP_max_typeII",
+      "excerpt_sha256": "e462f9e592d9366688ae43b4bcb98943da8b036ed00604e85c1e8201ce5481ff",
+      "permalink": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/PFsection14.v#L491-L492"
+    },
+    {
+      "path": "theories/PFsection14.v",
+      "lines": [
+        733,
+        854
+      ],
+      "role": "child",
+      "name": "FTtypeP_min_typeII",
+      "excerpt_sha256": "32aed5ce986cf43a2848865047c97094678d9ffa709392c08a9f60b8f8e54eb3",
+      "permalink": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/PFsection14.v#L733-L854"
+    },
+    {
+      "path": "theories/PFsection8.v",
+      "lines": [
+        387,
+        395
+      ],
+      "role": "child",
+      "name": "compl_of_typeII",
+      "excerpt_sha256": "5a83d576418cc677335512d8837642bfeedfd4b7b96db4199d6dc3164bb3fb47",
+      "permalink": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/PFsection8.v#L387-L395"
+    },
+    {
+      "path": "theories/PFsection13.v",
+      "lines": [
+        1658,
+        1776
+      ],
+      "role": "child",
+      "name": "FTtypeII_support_facts",
+      "excerpt_sha256": "2f5db74573a0d8e523b910c74e1da91a052bfd9bd8da8ce53790c1fe7b4ac5e2",
+      "permalink": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/PFsection13.v#L1658-L1776"
+    },
+    {
+      "path": "theories/PFsection14.v",
+      "lines": [
+        1211,
+        1212
+      ],
+      "role": "child",
+      "name": "FTtype2_exclusion",
+      "excerpt_sha256": "582f2b21820da38180af46ad3bbb570593068a967bd6744a2ab5ae3f82e3a6e9",
+      "permalink": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/PFsection14.v#L1211-L1212"
+    }
+  ],
+  "parent": {
+    "name": "no_minSimple_odd_group",
+    "statement": "Lemma no_minSimple_odd_group (gT : minSimpleOddGroupType) : False."
+  },
+  "children": [
+    {
+      "name": "FTtypeP_pair_cases",
+      "statement": "Lemma FTtypeP_pair_cases :\n     (*a*) {in 'M, forall M, FTtype M == 1%N}\n  \\/ (*b*) exists S, exists T, exists_typeP (fun _ => typeP_pair S T).",
+      "closed_by": "suffices tiW12: W1 :&: W2 = 1%g; a wlog to FTtype S == 2%N; then FTtypeP 2 gives prime #|W1| and `prime_TIg` closes"
+    },
+    {
+      "name": "not_all_FTtype1",
+      "statement": "Theorem not_all_FTtype1 : ~~ all_FTtype1 gT.",
+      "closed_by": "have /negP[] := no_coherent_Frobenius_partition (mFT_odd _) kge2 frobL tiH coH_ (contradiction)"
+    },
+    {
+      "name": "typeP_pair_sym",
+      "statement": "Lemma typeP_pair_sym S T W W1 W2 (defW : W1 \\x W2 = W) (xdefW : W2 \\x W1 = W) :\n  typeP_pair S T defW -> typeP_pair T S xdefW.",
+      "closed_by": "by case=> [[/cyclicTIhyp_sym ? ? ?] [? ?]]; rewrite setIC setUC orbC => ? ? []"
+    },
+    {
+      "name": "typeP_pairW",
+      "statement": "Lemma typeP_pairW S T W W1 W2 (defW : W1 \\x W2 = W) :\n  typeP_pair S T defW -> exists U : {group gT}, of_typeP S U defW.",
+      "closed_by": "FTtypeP_witness gives Ux; suffices W2 :=: W2x :^ y, then conj_of_typeP after a Hall/centraliser argument"
+    },
+    {
+      "name": "FTtypeP_max_typeII",
+      "statement": "Fact FTtypeP_max_typeII : FTtype S == 2%N.",
+      "closed_by": "by have [[_ ->]] := FTtypeP_facts maxS StypeP"
+    },
+    {
+      "name": "FTtypeP_min_typeII",
+      "statement": "Lemma FTtypeP_min_typeII : FTtype T == 2%N.",
+      "closed_by": "contradiction with v1p_gt_u1q: FTtype34_structure gives Ttype3, then the norm lower bound lb_Ga (via le_trans) forces v.-1 = p * size calT1"
+    },
+    {
+      "name": "compl_of_typeII",
+      "statement": "Remark compl_of_typeII : FTtype M == 2%N -> of_typeII M U defW.",
+      "closed_by": "split=> //; first by apply: compl_of_typeII_IV; then by apply: compl_of_typeF M'typeF"
+    },
+    {
+      "name": "FTtypeII_support_facts",
+      "statement": "Lemma FTtypeII_support_facts T L (Q := T`_\\F) (H := L`_\\F) :\n    FTtype S == 2%N -> typeP_pair S T defW -> L \\in 'M('N(U)) ->\n  [/\\ (*a*) [Frobenius L with kernel H],\n      (*b*) U \\subset H\n    & (*c*) H ><| W1 = L \\/ (exists2 y, y \\in Q & H ><| (W1 <*> W2 :^ y) = L)].",
+      "closed_by": "case (eqsVneq P2 1%g) on the Hall complement P2: left by left; ...; right by Hall_subJ conjugating P2 into W2 :^ y"
+    },
+    {
+      "name": "FT_Frobenius_type1",
+      "statement": "Lemma FT_Frobenius_type1 : FTtype L == 1%N.",
+      "closed_by": "by apply/idPn=> /FTtypeP_witness[]// _ _ _ _ _ /typePF_exclusion/(_ E)"
+    },
+    {
+      "name": "FTtype1_coherence",
+      "statement": "Lemma FTtype1_coherence : coherent calL L^# tauL.",
+      "closed_by": "have [_ [tau1 [IZtau1 Dtau1]]] := FT_Frobenius_coherence maxL frobL; exists tau1"
+    },
+    {
+      "name": "FTtype1_ref_irr",
+      "statement": "Lemma FTtype1_ref_irr : exists2 phi, phi \\in calS & phi 1%g = #|L : H|%:R.",
+      "closed_by": "by apply: exists_linInd; rewrite ?normal1 // proper1G mmax_Fcore_neq1"
+    },
+    {
+      "name": "FTtype2_exclusion",
+      "statement": "Lemma FTtype2_exclusion : False.",
+      "closed_by": "by have /negP[] := not_charUH; rewrite /= defH char_refl"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An impossibility theorem `forall gT, C gT -> False` discharged by reducing `C` to a finite, exhaustive dichotomy — either every object is of a small kind, or a distinguished pair exists — where each arm closes by a named lemma and the remaining hypotheses concentrate onto the pair.",
+    "use_when": "the dichotomy is already a proved project lemma (stated as a `\\/` or a classification), both arms close by named lemmas, and a symmetry (`without loss`/`wlog`) lets one ordering stand for both branches.",
+    "avoid_when": "the split's exhaustiveness is not yet proved (then the disjunction is itself a child with its own obligation — survey F rule 5); the arms need non-uniform arguments that do not factor through named lemmas; or the final lemma takes a long positional argument list that any reshuffling of intermediate facts would break."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "Each of the 12 lemmas the glue applies directly — FTtypeP_pair_cases, not_all_FTtype1, typeP_pair_sym, typeP_pairW, FTtypeP_max_typeII, FTtypeP_min_typeII, compl_of_typeII, FTtypeII_support_facts, FT_Frobenius_type1, FTtype1_coherence, FTtype1_ref_irr, FTtype2_exclusion — is a closed Lemma/Theorem/Fact/Remark ending in `Qed.` at the pinned commit, none an axiom, hypothesis or admitted.",
+      "evidence_kind": "check",
+      "evidence": "PFsection8.v#L387-L395, #L436-L440, #L443-L465, #L470-L498; PFsection12.v#L56-L60, #L491-L495, #L1302-L1361; PFsection13.v#L1658-L1776, #L1963-L1969; PFsection14.v#L491-L492, #L733-L854, #L1211-L1212, all under https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/"
+    },
+    {
+      "n": 2,
+      "claim": "The parent's case split is exhaustive and total: FTtypeP_pair_cases returns the disjunction `{in 'M, forall M, FTtype M == 1%N} \\/ exists S T, exists_typeP (fun _ => typeP_pair S T)`, and the parent's `have [/forall_inP | [S [T [_ W W1 W2 defW pairST]]]] := FTtypeP_pair_cases gT` covers both arms — left closed by `exact/negP/not_all_FTtype1`, right by the pair argument.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/PFsection8.v#L443-L445 and .../theories/PFsection14.v#L1218-L1219"
+    },
+    {
+      "n": 3,
+      "claim": "The proof body of no_minSimple_odd_group (lines 1217-1253, 37 lines) applies 12 distinct named project lemmas across 4 files, and the longest dependency chain below it that I checked is 4 lemmas deep: no_minSimple_odd_group -> FTtype2_exclusion -> not_charUH -> no_full_FT_Galois_structure -> prime_dim_normed_finField.",
+      "evidence_kind": "measurement",
+      "evidence": "parent excerpt at PFsection14.v#L1217-L1253; chain edges at PFsection14.v#L1212 (not_charUH), #L639 (no_full_FT_Galois_structure), #L487 (prime_dim_normed_finField), with prime_dim_normed_finField a Theorem at BGappendixC.v#L763"
+    },
+    {
+      "n": 4,
+      "claim": "The authors document this file as the final step of the proof — 'This file covers Peterfalvi, Section 14: Non_existence of G. It completes the proof of the Odd Order theorem.' (PFsection14.v lines 22-25) — and no_minSimple_odd_group is consumed immediately by the headline theorem, `Theorem Feit_Thompson (gT : finGroupType) (G : {group gT}) : odd #|G| -> solvable G. Proof. exact: (minSimpleOdd_ind no_minSimple_odd_group). Qed.` (lines 1255-1257).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/PFsection14.v#L22-L25 and #L1255-L1257"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 12,
+    "depth": 4,
+    "glue_lines": 37,
+    "child_lines": [
+      20,
+      59,
+      3,
+      1,
+      121,
+      8,
+      114,
+      1
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 37,
+    "direct_lemmas": 12,
+    "shown_children": 8,
+    "files_involved": 4,
+    "how_counted": "parent_proof_lines = lines 1217-1253 of PFsection14.v (the Proof...Qed body); direct_lemmas = distinct named project lemmas applied in that body (including typeP_pairW at line 1237); child_lines = proof-body line counts of the 8 shown children in the order listed"
+  },
+  "consequences": "The split creates two obligations (the left and right arms of the `\\/`); the exhaustiveness is carried by FTtypeP_pair_cases itself, so the parent never re-proves it. Inside the right arm a `without loss q < p` swaps S/T and W1/W2 via typeP_pair_sym, so one ordering stands for both. The final FTtype2_exclusion is applied to a 16-argument positional list assembled purely by `have := <lemma>`; if any intermediate fact changes shape (e.g. FTtypeII_support_facts returning a different conjunction), the single `exact:` call breaks.",
+  "known_uses": [
+    "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/PFsection14.v#L1228-L1230",
+    "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/PFsection8.v#L457-L459"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 5,
+    "relation": "supports"
+  },
+  "content_key": "fe6c76432e7a381e5d332bdc6a97399b7422a52a7a660683b431d66ef5c0a9c4",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:31:56Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T15:49:56Z"
+}

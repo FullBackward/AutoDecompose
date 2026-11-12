@@ -1,0 +1,109 @@
+{
+  "entry": "lean-interface-lemma-lean-liquid-96015c5e",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:23:58Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:23:58Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "6 file(s) byte-identical at ee4795874a99ea5f9d85bd0b364425f07b932377",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:24:08Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml build job runs 'lean --json --make src' (line 86), which compiles src/challenge.lean and the other copied files; commit ee4795874a99ea5f9d85bd0b364425f07b932377 is the HEAD/default-branch (master) tip at registration; 'test' job runs scripts/ensure_lte_sorry_free.py",
+      "by": "verifier",
+      "at": "2026-11-12T15:25:29Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read local copy code/src/challenge.lean: line 28 states liquid_tensor_experiment; proof block is lines 30-43 (14 lines); line 36 'erw is_zero_iff_epi_and_is_iso ... (laurent_measures.short_exact p' S)'; line 40 'convert laurent_measures.epi_and_is_iso p' p S ⟨V⟩ _ using 1'; lines 41-42 'intro v' then rw discharge hV. CI build.yml line 86 'lean --json --make src' builds the file.",
+      "by": "verifier",
+      "at": "2026-11-12T15:25:32Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Grep of code/ for 'is_zero_iff_epi_and_is_iso' returns exactly two call sites: code/src/challenge.lean:36 (with laurent_measures.short_exact) and code/src/laurent_measures/ext.lean:49 (with invpoly.short_exact); the definition is code/src/for_mathlib/derived/les_facts.lean:77.",
+      "by": "verifier",
+      "at": "2026-11-12T15:25:34Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Fetched README.md at ee4795874: line 45 section 'The formal statement of Theorem 1.1', line 47 'The statement can be found in [src/challenge.lean](.../blob/master/src/challenge.lean#L28)'; line 20 'The challenge in the blog post is to formalise its Theorem 1.1, a variant of Analytic 9.1'.",
+      "by": "verifier",
+      "at": "2026-11-12T15:25:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Grep for 'sorry|admit|axiom' over code/ returned no matches (covers challenge.lean, les_facts.lean, ext.lean, ses2.lean). CI .github/workflows/build.yml 'test' job runs 'python scripts/ensure_lte_sorry_free.py' (line 176).",
+      "by": "verifier",
+      "at": "2026-11-12T15:25:36Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Chain confirmed: challenge.lean:40 calls laurent_measures.epi_and_is_iso (ext.lean:28); ext.lean:46 'rw ← epi_and_is_iso_iff_of_is_iso' (les_facts.lean:108); les_facts.lean:120 'have H1 := λ i, hf.Ext'_five_term_exact_seq Z i'; definition at les3.lean:420 'lemma Ext'_five_term_exact_seq'. Depth 3 edges.",
+      "by": "verifier",
+      "at": "2026-11-12T15:25:38Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Shape numbers verified against code: direct_lemmas=3 (glue uses is_zero_iff_epi_and_is_iso at challenge.lean:36, laurent_measures.short_exact at :36, laurent_measures.epi_and_is_iso at :40 — exactly the three children, no other project lemma used); depth=3 (challenge.lean:40 -> ext.lean:46 epi_and_is_iso_iff_of_is_iso -> les_facts.lean:120 Ext'_five_term_exact_seq); glue_lines=14 (challenge.lean begin..end 30-43); child_lines=[26,23,83] (les_facts.lean:81-106, ext.lean:35-57, ses2.lean:73-155). Children statements and closed_by match code: is_zero_iff_epi_and_is_iso chased via h.Ext'_five_term_exact_seq with epi_iff_eq_zero/is_iso_of_zero_of_zero/is_zero_of_exact_zero_zero'/epi_of_iso/mono_of_iso; epi_and_is_iso via epi_and_is_iso_iff_of_is_iso + Lbar.short_exact + Lbar.is_iso_Tinv2 + invpoly.short_exact + free_pfpng_acyclic + condensify_map_comp_Tinv2; short_exact via condensify_nonstrict_exact + psi/theta_aux_lemma.tsum_le/nnreal.int.binary_sum. All four files close with no sorry/admit/axiom.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:26:57Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalises beyond the example: applicability.goal_shape/use_when restate it as 'an Ext-vanishing (or any all-terms-of-a-cohomology-theory-vanish) statement' with a short exact sequence in hand, and the reuse measurement (claim 2: two call sites) grounds the 'pays for itself on the second use' advice. when-not-to-use is honest and specific (no SES available; epi/iso form no easier than the same five-term chase; vanishing is the object of study not a stepping stone). Consequences are honest and specific: the i=0 term splits as epi not is_iso (client must not read 'is_iso everywhere'), and the three children are non-independent because epi_and_is_iso reuses the same interface lemma. 'Why each child is a good leaf' states what makes them good bounded-prover leaves: each closes on its own (five-term chase) or from named project siblings, one hole per bounded prover.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:27:53Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "6 file(s) byte-identical at ee4795874a99ea5f9d85bd0b364425f07b932377",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:28:15Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are all consistent and traceable. check_provenance.py passes: the 6 copied files are byte-identical at the pinned commit ee4795874a99ea5f9d85bd0b364425f07b932377, matching both entry.json (source.commit, file permalinks, sha256) and sources/lean-liquid/SOURCE.md (same commit, same repository URL). Licence is recorded as LicenseRef-unknown in entry.json, README 'Source and licence', and SOURCE.md consistently; I confirmed via list_files.py lean-liquid that no LICENSE/COPYING file exists at the root or anywhere in the tree, so 'unknown' is the honest tag per protocol decision 1. Every file and site permalink points at the pinned commit with line anchors, and the entry README states files are copied whole/unmodified from that commit, matching the provenance result.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:29:03Z"
+    }
+  ]
+}

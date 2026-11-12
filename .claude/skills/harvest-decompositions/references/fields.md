@@ -19,6 +19,7 @@
 | `children` | analyst | list of `{name, statement, closed_by}`; `closed_by` names the tactic, lemma or sub-proof that closes it, verbatim where short |
 | `applicability` | analyst | `goal_shape`: the shape of goal the move applies to (head symbol, quantifiers, recursion of the defined constants); `use_when`; `avoid_when` |
 | `claims` | analyst | list of `{n, claim, evidence_kind, evidence}`; kinds per protocol §7; `evidence` is a locator (permalink with lines, URL with section and quoted sentence, or a tool output) |
+| `shape` | analyst, theorem scale only | `{"scale": "theorem", "direct_lemmas": N, "depth": D, "glue_lines": G, "child_lines": [..]}`: the count of all lemmas the main proof uses directly (at least 2), the longest chain of project lemmas below the main theorem that you checked (at least 1), the lines of the main proof, and the proof lines of each child shown; absent means tactic scale (protocol §3, "Scale") |
 | `metrics` | analyst, when measurable | e.g. `{"parent_lines": .., "children": .., "children_closed_by_automation": ..}`; say how each was counted |
 | `consequences` | analyst | obligations the move creates (exhaustiveness, side conditions, generalised hypotheses) and known failure modes |
 | `known_uses` | analyst, reviewer | other places with the same move: permalinks or entry ids |

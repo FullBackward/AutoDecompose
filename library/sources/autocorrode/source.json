@@ -1,0 +1,17 @@
+{
+  "source_id": "autocorrode",
+  "url": "https://github.com/awslabs/AutoCorrode",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "awslabs/AutoCorrode",
+  "commit": "200f1acf2d264f2dedee33792b986ebe73c224a3",
+  "ref": "HEAD",
+  "language": "isabelle",
+  "pinned_at": "2026-11-12T13:44:17Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "MIT",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

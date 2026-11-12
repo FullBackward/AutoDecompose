@@ -1,0 +1,93 @@
+{
+  "entry": "markdown-workflow-isabelle-pide-ai-cb5b2bef",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:06:29Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:06:29Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 80ec85239c8a76d992a6f06d586cdc370934d751",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:06:35Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI workflow in the repository: list_files.py isabelle-pide-ai shows no .github/workflows (or any .yml/.yaml CI config); the copied file .agents/skills/isabelle/SKILL.md is a markdown skill file, not a compiled theory, so no CI builds it",
+      "by": "verifier",
+      "at": "2026-11-12T16:07:15Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read the copied file code/.agents/skills/isabelle/SKILL.md (byte-identical at commit 80ec852, per provenance pass). Lines 15-19 read: L15 'Understand the mathematics informally first. Plan the structure...' (plan), L16 'Work top-down: state definitions and lemmas with sorry and check that they suffice for the main results before proving them...' (sorry-skeleton/sufficiency), L17 'Don't sorry steps you can prove right away...' (don't-sorry-provables), L18 'When stuck, isolate problems with sorry.' (isolate-with-sorry), L19 'Work incrementally...' (incremental). L16 contains the quoted sentence verbatim.",
+      "by": "verifier",
+      "at": "2026-11-12T16:07:39Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Read code/.agents/skills/isabelle/SKILL.md (byte-identical at 80ec852). L6-12: '## Principles' / 'In priority order:' / '1. Correctness: no errors or inconsistencies.' / '2. Faithfulness: definitions and statements capture the intended meaning.'. L17: 'Don't sorry steps you can prove right away and only sorry statements you are convinced are true.' Quotes and ranking match exactly; the 'workflow-level expression' framing is the analyst's interpretation over these accurate quotes.",
+      "by": "verifier",
+      "at": "2026-11-12T16:07:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Counted 'sorry' in code/.agents/skills/isabelle/SKILL.md L15-19: L16 has 2 ('with sorry', 'sorry larger subproofs'), L17 has 2 ('Don't sorry steps', 'only sorry statements'), L18 has 1 ('with sorry') = 5. No proof method/tactic (simp, auto, blast, metis, sledgehammer, etc.) appears in L15-19.",
+      "by": "verifier",
+      "at": "2026-11-12T16:07:42Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Correctness verified against code/.agents/skills/isabelle/SKILL.md: the five children (understand-plan, sorry-skeleton, sorry-only-believed, isolate-stuck, incremental-check) map verbatim and in order to lines 15-19; each closed_by restates its rule accurately; the workflow closes as an ordered loop (each rule's output feeds the next, incremental-check loops back). parent=null is correct for a skill; there are no lemmas, so the children-as-lemmas test is N/A (README states this). No shape field is present, which is correct (shape is theorem-scale instances only); metrics steps=5 and sorry_mentions=5 both verified by counting lines 15-19 (sorry: line 16 x2, 17 x2, 18 x1). Claims 1-3 match the code verbatim.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T16:08:45Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "object",
+      "evidence": "Move is stated generally (an ordered five-rule loop, with related Lean sorrify-at-failure entries anchoring it beyond Isabelle), and the avoid_when/consequences are honest and specific (they cite SKILL.md line 20 for 'search libraries first' and line 18 for isolate-with-sorry, and correctly flag that sorry checks sufficiency not truth, with no quickcheck/nitpick in the excerpt). But the entry never says what makes a stubbed lemma a good leaf for a bounded prover: it establishes skeleton soundness (sufficiency-first) and honesty (believe-true), yet nothing states that each stub should be an independent, small-enough statement a bounded prover (e.g. sledgehammer under a timeout) can discharge, nor does it flag that 'believed true' is not 'provable within budget'. Fix: add one sentence in applicability or consequences stating the leaf criterion, noting that the workflow's 'don't sorry what you can prove right away' + 'isolate stuck subgoals' rules are what keep holes bounded and self-contained.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T16:10:19Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 80ec85239c8a76d992a6f06d586cdc370934d751",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:10:34Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalink, commit, licence and source note are mutually consistent and traceable. entry.json source.url=https://github.com/kappelmann/isabelle-pide-ai, commit=80ec85239c8a76d992a6f06d586cdc370934d751 and licence=LGPL-3.0 all match SOURCE.md (same commit, LGPL-3.0) and source.json (licence LGPL-3.0, licence_files LICENSE.md). upstream-LICENSE.md is the GNU LGPL v3 text, so the declared licence matches the copied licence file. check_provenance.py passes (1 file byte-identical at 80ec852...), confirming the file permalink blob/80ec852.../.agents/skills/isabelle/SKILL.md and the site permalink #L15-L19 resolve to the copied file; the copied file's lines 15-19 are exactly the excerpt in README.md. All URLs are raw/blob views at the pinned commit, no unmatching hashes.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T16:11:04Z"
+    }
+  ]
+}

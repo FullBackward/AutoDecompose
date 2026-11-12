@@ -1,0 +1,153 @@
+{
+  "id": "lean-case-split-pfr-7d058764",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Case split on #H <= #A closes the polynomial Freiman-Ruzsa conjecture",
+  "intent": "Reduce the polynomial Freiman-Ruzsa conjecture to a finite group, obtain a subgroup H from the auxiliary lemma PFR_conjecture_aux, then split on whether |H| ≤ |A|; one branch reuses H and finishes with |c| ≤ K^12, the other shrinks H to a subgroup H' and covers A by cosets of H' to finish with |c| < 2·K^12.",
+  "move": "case-split",
+  "also_known_as": [
+    "binary case analysis on a cardinality bound",
+    "le_or_gt dichotomy",
+    "split on #H <= #A"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "pfr",
+    "url": "https://github.com/teorth/pfr",
+    "commit": "1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "PFR/Main.lean",
+      "bytes": 18303,
+      "sha256": "4d0b32eaba55693d79648ca3200fbb1e1510800e768e29477acd8e6c20710977",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/Main.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "PFR/Main.lean",
+      "lines": [
+        261,
+        337
+      ],
+      "role": "parent",
+      "name": "PFR_conjecture",
+      "excerpt_sha256": "f0f0e03c26c256f3f131009a4c53cfff29114aa9ee1acc241dc1a55cc388bddd",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/Main.lean#L261-L337"
+    },
+    {
+      "path": "PFR/Main.lean",
+      "lines": [
+        149,
+        254
+      ],
+      "role": "child",
+      "name": "PFR_conjecture_aux",
+      "excerpt_sha256": "982ada540fb1a94b766e9ff821417edd4ccd5d220dbb39e9b7b8d31e6cf9d2b5",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/Main.lean#L149-L254"
+    },
+    {
+      "path": "PFR/Main.lean",
+      "lines": [
+        102,
+        109
+      ],
+      "role": "child",
+      "name": "PFR_conjecture_pos_aux'",
+      "excerpt_sha256": "c9a97cc6ebed9e5ddde1d13d647829add6003a55e989d63e7de8144c5c1da762",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/Main.lean#L102-L109"
+    }
+  ],
+  "parent": {
+    "name": "PFR_conjecture",
+    "statement": "theorem PFR_conjecture {G : Type*} [AddCommGroup G] [Module (ZMod 2) G]\n    {A : Set G} {K : ℝ} (hA₀ : A.Nonempty) (Afin : A.Finite)\n    (hA : (A + A).ncard ≤ K * A.ncard) :\n    ∃ (H : Submodule (ZMod 2) G) (c : Set G), c.Finite ∧ (H : Set G).Finite ∧\n      Nat.card c < 2 * K ^ 12 ∧ (H : Set G).ncard ≤ A.ncard ∧ A ⊆ c + H"
+  },
+  "children": [
+    {
+      "name": "PFR_conjecture_aux",
+      "statement": "lemma PFR_conjecture_aux (hA₀ : A.Nonempty) (hA : (A + A).ncard ≤ K * A.ncard) :\n    ∃ (H : Submodule (ZMod 2) G) (c : Set G),\n    Nat.card c ≤ K ^ (13/2 : ℝ) * A.ncard ^ (1/2 : ℝ) * (H : Set G).ncard ^ (-1/2 : ℝ) ∧\n      (H : Set G).ncard ≤ K ^ 11 * A.ncard ∧ A.ncard ≤ K ^ 11 * (H : Set G).ncard ∧ A ⊆ c + H",
+      "closed_by": "a 102-line proof: entropic_PFR_conjecture produces H close to A (line 174); entropy/cardinality estimates (diff_ent_le_rdist, exp_monotone) give the two K^11 bounds (lines 196-203); Set.ruzsa_covering_add (lines 248-249) yields the covering set c"
+    },
+    {
+      "name": "PFR_conjecture_pos_aux'",
+      "statement": "lemma PFR_conjecture_pos_aux' {G : Type*} [AddCommGroup G] {A : Set G} (hA : A.Finite) {K : ℝ}\n    (hA₀ : A.Nonempty) (hAK : (A + A).ncard ≤ K * A.ncard) :\n    (0 : ℝ) < A.ncard ∧ (0 : ℝ) < (A + A).ncard ∧ 0 < K",
+      "closed_by": "two positivity `have`s closed by `simpa [Set.ncard_pos (hA.add hA)]` and `simpa [...] using mul_pos_iff.1 (card_AA_pos.trans_le hAK)`, then `exact`"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "an existence goal ∃ H c, (bounds on c and H) ∧ A ⊆ c + H, where an auxiliary lemma has already produced a candidate H and the remaining work depends on a size comparison |H| ≤ |A|",
+    "use_when": "the argument divides cleanly on a total-order dichotomy over a size or measure; one branch reuses the produced object and the other must shrink it; both branches close by the same kind of `calc` chain",
+    "avoid_when": "the two branches need genuinely different constructions (make each a separate lemma instead); the dichotomy's exhaustiveness is not already supplied by a library lemma (then it must be stated as its own fact); the measure comparison is not the natural cut point of the argument"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent PFR_conjecture closes from its children and the split `rcases le_or_gt ((H : Set G).ncard) A.ncard with h|h` (line 294): the `#H ≤ #A` branch uses PFR_conjecture_aux and a `calc` ending in `K ^ 12 < 2 * K ^ 12` (lines 296-302); the `#A < #H` branch shrinks H to H' by `ZModModule.exists_submodule_subset_card_le` (line 308), covers A by cosets of H' via `AddSubgroup.exists_left_transversal_of_le` (line 314), and a `calc` ends in `2 * K ^ 12` (lines 317-337).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/Main.lean#L294-L337; the file is built by the project's CI (.github/workflows/push.yml, `Build project` job using leanprover/lean-action)"
+    },
+    {
+      "n": 2,
+      "claim": "The authors factored the subgroup/covering construction out as a named auxiliary lemma: the doc comment on PFR_conjecture_aux reads 'Auxiliary statement towards the polynomial Freiman-Ruzsa (PFR) conjecture' (lines 149-152), and the glue marks its use with the comment 'consider the subgroup H given by Lemma PFR_conjecture_aux' (line 286).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/Main.lean#L149-L156 and #L286-L291"
+    },
+    {
+      "n": 3,
+      "claim": "The glue (proof body, lines 266-337, 72 lines) calls 4 named lemmas directly: PFR_conjecture_pos_aux' (line 285), PFR_conjecture_aux (line 291), ZModModule.exists_submodule_subset_card_le (line 308) and AddSubgroup.exists_left_transversal_of_le (line 314).",
+      "evidence_kind": "measurement",
+      "evidence": "counted by reading https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/Main.lean#L266-L337"
+    },
+    {
+      "n": 4,
+      "claim": "The identical move — `wlog` to finite G, a `le_or_gt #H #A` split, a PFR_conjecture_aux-style branch, then the submodule+transversal branch — closes the improved bound theorem PFR_conjecture_improv (PFR/ImprovedPFR.lean, using PFR_conjecture_improv_aux, ZModModule.exists_submodule_subset_card_le and AddSubgroup.exists_left_transversal_of_le).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/ImprovedPFR.lean#L948-L1008"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 3,
+    "glue_lines": 72,
+    "child_lines": [
+      98,
+      5
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 72,
+    "direct_lemmas": 4,
+    "children_shown": 2,
+    "how_counted": "parent proof = lines 266-337 of PFR/Main.lean (the `by` block of PFR_conjecture); direct_lemmas counted by reading the proof body and listing the named lemmas it applies (the split itself uses Mathlib's `le_or_gt`, and the second branch also uses `natCard_add_le`, both routine library calls not counted)"
+  },
+  "consequences": "Creates two goals from the dichotomy `|H| ≤ |A|`; the exhaustiveness obligation is discharged by Mathlib's `le_or_gt`, so no separate disjunction lemma appears. Each branch must still close a `calc` chain that the `refine ⟨H, c, ...⟩`/`refine ⟨H', c+u, ...⟩` sets up; if the bound exponents change (as in the improved theorem, K^11 instead of K^12), the chain's final `rpow_ring; norm_num` step is the only part that moves. The second branch relies on a submodule-shrinking lemma and a coset-transversal lemma from Mathlib; without them the shrink step does not close.",
+  "known_uses": [
+    "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/ImprovedPFR.lean#L948-L1008"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 5,
+    "relation": "supports"
+  },
+  "content_key": "7d0587640dbb1b36e0776dccf315fb9cd5f45e770600eb7a3f5487237d239213",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T14:49:42Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,shape,consequences,known_uses,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T14:55:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T14:59:47Z"
+}

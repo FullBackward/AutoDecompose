@@ -65,6 +65,23 @@ that locate candidate sites (a signal finds candidates; it never decides):
 
 The vocabulary is amended once, after the pilot, by dated amendment.
 
+**Scale.** An entry is at one of two scales. At *tactic scale* the move is a
+single step inside one proof: a `suffices`, a `cases` split, one induction.
+At *theorem scale* the parent is a main theorem (a competition problem, a
+project's headline result, a chapter or blueprint node) whose proof, the
+*glue*, is assembled from at least two named lemmas written for it in the
+same file or project; the children are those lemmas. Theorem scale is the
+shape AutoDecompose must produce, a skeleton with lemma holes, one hole per
+bounded prover, so its entries record a `shape` (lemma count, depth, glue
+lines, child lines; see the fields reference). The entry's move is how the
+glue combines the lemmas. Signals, which find candidates and never decide:
+
+| Language | Theorem-scale signals |
+|---|---|
+| Lean | a `theorem` whose `by` block is mostly `have := lemma_a ..`, `exact lemma_b ..`, with those lemmas stated above it or imported from the project; blueprint `\uses{}`; one-theorem-per-file import graphs |
+| Rocq | a `Theorem` whose proof mostly `apply`s or `eapply`s `Lemma`s of the same development; files that chain per-pass results (CompCert's `Compiler.v`); `Section`s ending in a headline result |
+| Isabelle | a `theorem` whose Isar proof `have`s or `show`s by `(rule lemma_a)`, `using lemma_a lemma_b by ..`, or `by (simp add: lemma_a ..)`, with the lemmas proved earlier in the theory or session; the final theorem of an AFP entry; locale interpretations that instantiate proved lemmas |
+
 ## 4. Inclusion and exclusion
 
 Include a source if (I1) it is public with an identifiable licence or is
@@ -159,4 +176,15 @@ analysts write, and only inside their entry's directory.
 
 ## Amendments
 
-(none yet)
+**2026-11-12, after pilot-1.** (i) Section 3 gains *Scale*. Pilot-1's
+entries are tactic scale; the owner directed pilot-2 to cover the theorem
+scale, the shape AutoDecompose produces. Theorem-scale entries carry a
+`shape`, and `validate_entry.py` requires at least two child lemmas. The move
+vocabulary is unchanged. (ii) Fidelity and sufficiency are recorded as
+`not-run` automatically when an entry is created, as section 6 already
+required. (iii) Sites are chosen breadth first, round-robin over sources and
+then over moves, so a run stopped by its budget has covered as many sources
+as it could; no new entry starts past the soft stop (85% of the cap). (iv) A
+source screened in an earlier run keeps its decision. (v) The six Isabelle
+sources of batch 3 are registered; protocol section 2's "Lean first, then
+Rocq" order is met, since pilot-1 was Lean only.

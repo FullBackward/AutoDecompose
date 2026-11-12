@@ -1,0 +1,178 @@
+{
+  "id": "lean-case-split-flt-imperial-b72a01ad",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Case split on Nontrivial G and p divides |G| for Dickson's classification of finite PGL2 subgroups",
+  "intent": "Reduce Dickson's classification of the finite subgroups of PGL2(Fbar_p) — an 8-way disjunction — to two named lemmas, one per side of a `p divides |G|` split, plus a trivial subsingleton case, each re-indexed into the goal by a chain of `Or.inl`/`Or.inr`.",
+  "move": "case-split",
+  "also_known_as": [
+    "dichotomy case split",
+    "by_cases on a decidability predicate",
+    "branch-on-hypothesis"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "flt-imperial",
+    "url": "https://github.com/ImperialCollegeLondon/FLT",
+    "commit": "a3210204ad8876e851e32f73dd97d882bf1ccd0a",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "FLT/Slop/PGL2/FiniteSubgroups/DicksonClassification.lean",
+      "bytes": 3701,
+      "sha256": "11e67a442c865c6ac9532eed1b1596bb2e427edf21b24f207b93e4e000477d95",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/PGL2/FiniteSubgroups/DicksonClassification.lean"
+    },
+    {
+      "path": "FLT/Slop/PGL2/FiniteSubgroups/WildClassification.lean",
+      "bytes": 38552,
+      "sha256": "6305acaeaa3301d7db1f3726a16e0d18331476ddd77685851594d9c7cfd753df",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/PGL2/FiniteSubgroups/WildClassification.lean"
+    },
+    {
+      "path": "FLT/Slop/PGL2/FiniteSubgroups/TameClassification.lean",
+      "bytes": 80115,
+      "sha256": "05b2234b6dc36d2c8640a54e82c6220164d813f2e48121fce4ab5a2c49cb1888",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/PGL2/FiniteSubgroups/TameClassification.lean"
+    },
+    {
+      "path": "FLT/Slop/PGL2/FiniteSubgroups/CyclicPartition.lean",
+      "bytes": 68730,
+      "sha256": "71488347067290b382b787dbc1d381df785eccdee8b1820d0814d4e6c46f34c1",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/PGL2/FiniteSubgroups/CyclicPartition.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "FLT/Slop/PGL2/FiniteSubgroups/DicksonClassification.lean",
+      "lines": [
+        54,
+        83
+      ],
+      "role": "parent",
+      "name": "Dickson.dickson_classification",
+      "excerpt_sha256": "86121aa4298b8e31bc11593b4f6bdaced0452295ba3f0bc298865c80c38fa5b6",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/PGL2/FiniteSubgroups/DicksonClassification.lean#L54-L83"
+    },
+    {
+      "path": "FLT/Slop/PGL2/FiniteSubgroups/WildClassification.lean",
+      "lines": [
+        694,
+        715
+      ],
+      "role": "child",
+      "name": "Dickson.classification_wild_slop",
+      "excerpt_sha256": "3dbac1f115d76e2d961f85a7006551a592a5ff3302970f11079f7fb04ab86e5e",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/PGL2/FiniteSubgroups/WildClassification.lean#L694-L715"
+    },
+    {
+      "path": "FLT/Slop/PGL2/FiniteSubgroups/TameClassification.lean",
+      "lines": [
+        1641,
+        1671
+      ],
+      "role": "child",
+      "name": "Dickson.classification_tame_slop",
+      "excerpt_sha256": "ba6ce29ecc97f84e3a3d47578fded5b77037f032f50c36d93fd0e8b8e9a1e5c5",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/PGL2/FiniteSubgroups/TameClassification.lean#L1641-L1671"
+    }
+  ],
+  "parent": {
+    "name": "Dickson.dickson_classification",
+    "statement": "theorem dickson_classification (G : Subgroup (PGLOf (K p))) [Finite G] :\n    (IsCyclic G) ∨\n    (∃ n : ℕ, n ≥ 2 ∧ Nonempty (G ≃* DihedralGroup n)) ∨\n    (Nonempty (G ≃* alternatingGroup (Fin 4))) ∨\n    (Nonempty (G ≃* Equiv.Perm (Fin 4))) ∨\n    (Nonempty (G ≃* alternatingGroup (Fin 5))) ∨\n    (∃ (m t : ℕ) (_ : m ≥ 1) (_ : Nat.Coprime t p) (_ : t ∣ p ^ m - 1)\n      (φ : Multiplicative (ZMod t) →* MulAut (Multiplicative (Fin m → ZMod p))),\n      Nonempty (G ≃* (Multiplicative (Fin m → ZMod p)) ⋊[φ] Multiplicative (ZMod t))) ∨\n    (∃ m : ℕ, m ≥ 1 ∧\n      Nonempty (G ≃* Matrix.ProjectiveSpecialLinearGroup (Fin 2) (GaloisField p m))) ∨\n    (∃ m : ℕ, m ≥ 1 ∧\n      Nonempty (G ≃* (GL (Fin 2) (GaloisField p m) ⧸\n        Subgroup.center (GL (Fin 2) (GaloisField p m)))))"
+  },
+  "children": [
+    {
+      "name": "Dickson.classification_wild_slop",
+      "statement": "theorem classification_wild_slop (G : Subgroup (PGLOf (K p))) [Finite G]\n    (hG_p : p ∣ Nat.card G) :\n    (∃ (m t : ℕ) (_ : m ≥ 1) (_ : Nat.Coprime t p) (_ : t ∣ p ^ m - 1)\n      (φ : Multiplicative (ZMod t) →* MulAut (Multiplicative (Fin m → ZMod p))),\n      Nonempty (G ≃* (Multiplicative (Fin m → ZMod p)) ⋊[φ] Multiplicative (ZMod t))) ∨\n    (∃ m : ℕ, m ≥ 1 ∧\n      Nonempty (G ≃* Matrix.ProjectiveSpecialLinearGroup (Fin 2) (GaloisField p m))) ∨\n    (∃ m : ℕ, m ≥ 1 ∧\n      Nonempty (G ≃* (GL (Fin 2) (GaloisField p m) ⧸\n        Subgroup.center (GL (Fin 2) (GaloisField p m))))) ∨\n    (p = 3 ∧ Nonempty (G ≃* alternatingGroup (Fin 5)))",
+      "closed_by": "its own proof (WildClassification.lean lines 705-715): branch1_semidirect, partition_equation, dickson_branch2_z1_eq_1, dickson_branch2_z1_ge_2"
+    },
+    {
+      "name": "Dickson.classification_tame_slop",
+      "statement": "theorem classification_tame_slop (G : Subgroup (PGLOf (K p))) [Fintype G]\n    (hG_tame : ¬ (p : ℕ) ∣ Nat.card G)\n    (hG_nontrivial : Nontrivial G) :\n    (IsCyclic G) ∨\n    (∃ n : ℕ, n ≥ 2 ∧ Nonempty (G ≃* DihedralGroup n)) ∨\n    (Nonempty (G ≃* alternatingGroup (Fin 4))) ∨\n    (Nonempty (G ≃* Equiv.Perm (Fin 4))) ∨\n    (Nonempty (G ≃* alternatingGroup (Fin 5)))",
+      "closed_by": "its own proof (TameClassification.lean lines 1649-1671): tame_hasCyclicPartition, isCyclic_of_hasCyclicPartition, dihedral_of_hasCyclicPartition_odd, dihedral2_of_hasCyclicPartition, dihedral_of_hasCyclicPartition_even, iso_A4_of_hasCyclicPartition, iso_S4_of_hasCyclicPartition, iso_A5_of_hasCyclicPartition"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal that is a finite disjunction (here an 8-way `∨` of mutually exclusive group-isomorphism cases) over a quantified object `G`, where the truth of the disjuncts is controlled by a small set of decidable hypotheses on `G` (nontriviality; divisibility of the order by a fixed prime).",
+    "use_when": "the target is a classification theorem whose cases are indexed by a few decidable predicates, and one named lemma already exists for each branch; the glue is then only `by_cases` + `rcases` + re-indexing `Or.inl`/`Or.inr`.",
+    "avoid_when": "the cases overlap or are not a partition, so the disjunction needs a canonical representative; the per-branch lemmas do not already exist (then the split is not the content, the branch lemmas are); or the re-indexing would be into a deep, shifting disjunction where a `match`/`induction` on a dedicated `cases`-type is clearer."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent's proof closes from exactly two project lemmas plus mathlib facts: the `Nontrivial G` branch splits again on `p ∣ Nat.card G`, the `p ∣` case is closed by `classification_wild_slop` (line 70), the `¬ p ∣` case by `classification_tame_slop` (line 76), and the subsingleton case by `not_nontrivial_iff_subsingleton` and `Subgroup.mem_zpowers` (lines 82-83).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/PGL2/FiniteSubgroups/DicksonClassification.lean#L54-L83"
+    },
+    {
+      "n": 2,
+      "claim": "No branch is closed by a hole: the files holding the parent and its two children (DicksonClassification.lean, WildClassification.lean, TameClassification.lean, and the tame leaves' file CyclicPartition.lean) contain no `sorry`, `admit`, or `axiom`.",
+      "evidence_kind": "check",
+      "evidence": "grep -rn 'sorry\\|admit\\|axiom\\|Admitted' over code/FLT/Slop/PGL2/FiniteSubgroups/{DicksonClassification,WildClassification,TameClassification,CyclicPartition}.lean returned no matches (tool run at commit a3210204ad8876e851e32f73dd97d882bf1ccd0a)"
+    },
+    {
+      "n": 3,
+      "claim": "The authors state the decomposition explicitly in the module docstring: 'This is the combination of the tame case (`Dickson.classification_tame_slop`, order coprime to `p`) and the wild case (`Dickson.classification_wild_slop`, order divisible by `p`).'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/PGL2/FiniteSubgroups/DicksonClassification.lean#L24-L26"
+    },
+    {
+      "n": 4,
+      "claim": "The glue is 16 lines (lines 68-83), of which 10 are pure re-indexing `Or.inl`/`Or.inr` lines and 6 are the two `by_cases`, two `rcases` and two `have`; the two children's proofs are 11 lines (wild, 705-715) and 23 lines (tame, 1649-1671).",
+      "evidence_kind": "measurement",
+      "evidence": "count of lines in the copied files: code/FLT/Slop/PGL2/FiniteSubgroups/DicksonClassification.lean lines 68-83, WildClassification.lean lines 705-715, TameClassification.lean lines 1649-1671"
+    },
+    {
+      "n": 5,
+      "claim": "The decomposition is 4 project lemmas deep below the main theorem: dickson_classification → classification_wild_slop (WildClassification.lean:694) → branch1_semidirect (WildClassification.lean:263) → complement_isCyclic (WildClassification.lean:230) → fixes_point_coprime_isCyclic (WildClassification.lean:198), each a proved theorem in the same directory.",
+      "evidence_kind": "measurement",
+      "evidence": "the call chain is visible at https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/PGL2/FiniteSubgroups/DicksonClassification.lean#L70, .../WildClassification.lean#L708, #L273, #L243; the four lemmas are declared at #L694, #L263, #L230, #L198"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 4,
+    "glue_lines": 16,
+    "child_lines": [
+      11,
+      23
+    ]
+  },
+  "metrics": {
+    "parent_lines": 30,
+    "glue_lines": 16,
+    "reindex_lines": 10,
+    "direct_project_lemmas": 2,
+    "how_counted": "parent_lines = statement+proof lines 54-83 of DicksonClassification.lean; glue_lines = proof lines 68-83; reindex_lines = the Or.inl/Or.inr dispatch lines 71-74, 77-81 and 83; direct_project_lemmas = the two project lemmas named in the glue (classification_wild_slop, classification_tame_slop)"
+  },
+  "consequences": "The two `by_cases` create three branches (trivial / wild / tame) whose exhaustiveness is automatic (each is `Classical.em` on a decidable predicate), so unlike a residue split there is no separate exhaustiveness child. The cost is the re-indexing: each child proves a disjunction with a different number and order of disjuncts than the parent (wild is a 4-way disjunction, tame a 5-way, parent an 8-way), so every branch must be re-targeted by a chain of `Or.inl`/`Or.inr`; the `p = 3` exceptional case of the wild side lands on the same `alternatingGroup (Fin 5)` disjunct as the tame side, and a wrong re-index would silently misplace it. Failure mode: if the parent's disjunction order changes, every `Or.inr <| Or.inr <| …` chain silently points at the wrong disjunct (they are positional, not by name).",
+  "known_uses": [
+    "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Slop/PGL2/FiniteSubgroups/WildClassification.lean#L705-L715 (the wild child re-uses the same by_cases + branch-lemma pattern internally)"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 5,
+    "relation": "supports"
+  },
+  "content_key": "b72a01ad0467d1b44cfbb9782d148c4c3c82416ee13f7cd4ea795f516828ee2a",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T14:43:22Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T14:44:49Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T14:54:43Z"
+}

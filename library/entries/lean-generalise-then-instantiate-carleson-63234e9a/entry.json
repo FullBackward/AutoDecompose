@@ -1,0 +1,235 @@
+{
+  "id": "lean-generalise-then-instantiate-carleson-63234e9a",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Instantiate the abstract discrete Carleson theorem to prove finitary Carleson (Proposition 2.0.1)",
+  "intent": "Reduce the headline Proposition 2.0.1 (finitary Carleson) to the already-proved abstract theorem discrete_carleson, by instantiating the abstract GridStructure/TileStructure typeclasses at the concrete constructions grid_existence and tile_existence, then rewriting the abstract carlesonSum into the concrete per-scale tile sum with tile_sum_operator.",
+  "move": "generalise-then-instantiate",
+  "also_known_as": [
+    "prove-general-then-specialise",
+    "typeclass instantiation",
+    "abstract-then-instantiate",
+    "specialisation of an abstract theorem"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "carleson",
+    "url": "https://github.com/fpvandoorn/carleson",
+    "commit": "d75f54374f7f930e70a86b443f20d0e0935c275e",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Carleson/FinitaryCarleson.lean",
+      "bytes": 6481,
+      "sha256": "a498776c27854b1b3709607662c18c6e8ff4e726ad13832fbf5476ae95f4f370",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/FinitaryCarleson.lean"
+    },
+    {
+      "path": "Carleson/Discrete/MainTheorem.lean",
+      "bytes": 2799,
+      "sha256": "1a07992b2da7639797e57690249c634a6dc78be980345a5351eba57a9eacb875",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Discrete/MainTheorem.lean"
+    },
+    {
+      "path": "Carleson/TileExistence.lean",
+      "bytes": 84489,
+      "sha256": "27f5e6f20b225b1c2b6048180c6359e2185e6d04402291a54db76832c8970669",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/TileExistence.lean"
+    },
+    {
+      "path": "Carleson/Operators.lean",
+      "bytes": 20169,
+      "sha256": "884947e9a12b0f6d85b3f2fa81c715e6b2b731e96e1779d7e286503d57b4be96",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Operators.lean"
+    },
+    {
+      "path": "Carleson/GridStructure.lean",
+      "bytes": 19986,
+      "sha256": "ecf658820b8a6f7cc0cff186424cb5561e236597cc217102688dc98868dd69cb",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/GridStructure.lean"
+    },
+    {
+      "path": "Carleson/TileStructure.lean",
+      "bytes": 29714,
+      "sha256": "b2c8a0e52ad82fc5f0f179f26d054fe6f728f74639db55b642b39c23f2e1ef29",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/TileStructure.lean"
+    },
+    {
+      "path": "Carleson/ProofData.lean",
+      "bytes": 11308,
+      "sha256": "c227a0327f4d95df8ecc03444f843dea92a08cb50b6f93c54e4f9ac5c1cc4783",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/ProofData.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Carleson/FinitaryCarleson.lean",
+      "lines": [
+        110,
+        124
+      ],
+      "role": "parent",
+      "name": "finitary_carleson",
+      "excerpt_sha256": "71909e4c963d9b5d491275f77730cf4e85d9712e662d36b39975d675d609c86b",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/FinitaryCarleson.lean#L110-L124"
+    },
+    {
+      "path": "Carleson/Discrete/MainTheorem.lean",
+      "lines": [
+        43,
+        68
+      ],
+      "role": "child",
+      "name": "discrete_carleson",
+      "excerpt_sha256": "67c37a331dd44418eb12196b5a6232e5553a76b82523ce92a4de9f51405b69a7",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Discrete/MainTheorem.lean#L43-L68"
+    },
+    {
+      "path": "Carleson/TileExistence.lean",
+      "lines": [
+        1571,
+        1652
+      ],
+      "role": "child",
+      "name": "grid_existence",
+      "excerpt_sha256": "f8050be33efdf1ed8718963bba7aeb4553623dc71dce428b777132cde679ae19",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/TileExistence.lean#L1571-L1652"
+    },
+    {
+      "path": "Carleson/TileExistence.lean",
+      "lines": [
+        2009,
+        2021
+      ],
+      "role": "child",
+      "name": "tile_existence",
+      "excerpt_sha256": "4ea9b57b9e74f0d6378e36e767d219d152540398a2ca13fe4d58b630b1a64f23",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/TileExistence.lean#L2009-L2021"
+    },
+    {
+      "path": "Carleson/FinitaryCarleson.lean",
+      "lines": [
+        69,
+        98
+      ],
+      "role": "child",
+      "name": "tile_sum_operator",
+      "excerpt_sha256": "98e226ff036fe00037060850bc42fca67d2939c49dbcc485db75b74a3ec8b605",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/FinitaryCarleson.lean#L69-L98"
+    }
+  ],
+  "parent": {
+    "name": "finitary_carleson",
+    "statement": "theorem finitary_carleson : ∃ G', MeasurableSet G' ∧ 2 * volume G' ≤ volume G ∧ ∀ f : X → ℂ, Measurable f → (∀ x, ‖f x‖ ≤ F.indicator 1 x) → ∫⁻ x in G \\ G', ‖∑ s ∈ Icc (σ₁ x) (σ₂ x), ∫ y, Ks s x y * f y * exp (I * Q x y)‖ₑ ≤ C2_0_1 a nnq * (volume G) ^ (1 - q⁻¹) * (volume F) ^ q⁻¹"
+  },
+  "children": [
+    {
+      "name": "discrete_carleson",
+      "statement": "theorem discrete_carleson : ∃ G', MeasurableSet G' ∧ 2 * volume G' ≤ volume G ∧ ∀ f : X → ℂ, Measurable f → (∀ x, ‖f x‖ ≤ F.indicator 1 x) → ∫⁻ x in G \\ G', ‖carlesonSum univ f x‖ₑ ≤ C2_0_2 a nnq * volume G ^ (1 - q⁻¹) * volume F ^ q⁻¹",
+      "closed_by": "a calc chain whose steps are closed by exceptional_set (l.47), forest_union and forest_complement (l.61), and le_C2_0_2 (l.66)"
+    },
+    {
+      "name": "grid_existence",
+      "statement": "def grid_existence : GridStructure X D κ S o where",
+      "closed_by": "each GridStructure field constructed from 𝓓, I3_prop_1, I3_prop_3_1, I3_prop_3_2, cover_by_cubes, dyadic_property, boundary_measure', I3_measurableSet"
+    },
+    {
+      "name": "tile_existence",
+      "statement": "@[implicit_reducible] def tile_existence : TileStructure Q D κ S o where",
+      "closed_by": "each TileStructure field taken from Construction.Ω, Construction.Ω_biUnion, Construction.Ω_disjoint, Construction.Ω_RFD, Construction.ball_subset_Ω₁, Construction.Ω_subset_cball"
+    },
+    {
+      "name": "tile_sum_operator",
+      "statement": "theorem tile_sum_operator {G' : Set X} {f : X → ℂ} {x : X} (hx : x ∈ G \\ G') : ∑ (p : 𝔓 X), carlesonOn p f x = ∑ s ∈ Icc (σ₁ x) (σ₂ x), ∫ y, Ks s x y * f y * exp (I * (Q x y - Q x x))",
+      "closed_by": "the private lemmas 𝔓_biUnion, sum_eq_zero_of_notMem_Icc, 𝔰_eq, exists_Grid, plus the TileStructure fields biUnion_Ω and disjoint_Ω"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A headline theorem ∃ G', MeasurableSet G' ∧ … ≤ C over a concrete metric space X whose conclusion bounds a concrete operator (a per-scale tile sum over Ks and Q), where the same bound has been proved abstractly over a typeclass [TileStructure Q D κ S o] in terms of the abstract operator carlesonSum.",
+    "use_when": "A general statement over a typeclass or weaker structure is already proved (discrete_carleson); the concrete setting supplies instances of that structure (grid_existence, tile_existence); and the abstract notion (carlesonSum) rewrites into the concrete one by a named lemma (tile_sum_operator) up to a removable unit-norm phase factor.",
+    "avoid_when": "No general theorem exists yet (then instantiation is re-proving, not reuse); the concrete-to-abstract rewrite is itself a deep proof rather than a routine unfold (tile_sum_operator is a 26-line lemma, not a simp lemma); or the concrete statement differs from the abstract one by more than a definitional rewrite plus a unit phase."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent finitary_carleson's proof body (lines 114-124, 11 lines) closes using exactly four named project facts — grid_existence (l.114), tile_existence (l.115), discrete_carleson (l.117), tile_sum_operator (l.120) — with no sorry or axiom.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/FinitaryCarleson.lean#L110-L124; built by .github/workflows/push.yml (leanprover/lean-action build:true, build-args 'Carleson Challenge Solution', mk_all-check --lib Carleson)"
+    },
+    {
+      "n": 2,
+      "claim": "The authors mark the instantiation in the docstrings: finitary_carleson is '/-- Proposition 2.0.1 -/' (line 109), discrete_carleson's section header is 'Proposition 2.0.2' (MainTheorem.lean line 14), and the constant C2_0_1 is literally defined as C2_0_2 (line 104) with the docstring 'The constant used in Proposition 2.0.1. Has value 2 ^ (442 * a ^ 3) / (q - 1) ^ 5 in the blueprint.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/FinitaryCarleson.lean#L102-L109 and .../Carleson/Discrete/MainTheorem.lean#L14-L19"
+    },
+    {
+      "n": 3,
+      "claim": "The theorem-scale shape is direct_lemmas = 4, glue_lines = 11 (parent proof lines 114-124), child_lines = [20, 78, 10, 26] for discrete_carleson (49-68), grid_existence (1575-1652), tile_existence (2012-2021), tile_sum_operator (73-98), and depth = 4 along the chain finitary_carleson → tile_sum_operator → exists_Grid → GridStructure.ball_subset_Grid/Grid_subset_biUnion → cover_by_cubes/dyadic_property.",
+      "evidence_kind": "measurement",
+      "evidence": "counted from the copied files: FinitaryCarleson.lean lines 56-67, 73-98, 114-124; TileExistence.lean lines 1575-1652, 2012-2021; Discrete/MainTheorem.lean lines 49-68; the depth chain uses tile_sum_operator hx (FinitaryCarleson.lean:120), exists_Grid (FinitaryCarleson.lean:84), ball_subset_Grid/Grid_subset_biUnion (FinitaryCarleson.lean:61,67), cover_by_cubes/dyadic_property (TileExistence.lean:1609,1614)"
+    },
+    {
+      "n": 4,
+      "claim": "The same generalise-then-instantiate move is recorded in three other pilot-2 entries (compfiles, mathlib4, sphere-packing), so it is a recurring Lean pattern rather than a one-off.",
+      "evidence_kind": "known-use",
+      "evidence": "entry ids lean-generalise-then-instantiate-compfiles-f96a55bd, lean-generalise-then-instantiate-mathlib4-57b9f5e4, lean-generalise-then-instantiate-sphere-packing-9e03f73b"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 4,
+    "glue_lines": 11,
+    "child_lines": [
+      20,
+      78,
+      10,
+      26
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 11,
+    "direct_lemmas": 4,
+    "child_proof_lines": {
+      "discrete_carleson": 20,
+      "grid_existence": 78,
+      "tile_existence": 10,
+      "tile_sum_operator": 26
+    },
+    "how_counted": "proof-body line counts of the copied files: parent lines 114-124; children lines 49-68, 1575-1652, 2012-2021, 73-98 respectively"
+  },
+  "consequences": "The move shifts all the work out of the concrete theorem: the two structure instantiations (grid_existence, tile_existence) are large field-by-field constructions, and the abstract theorem discrete_carleson is itself proved by a calc chain that bottoms out in the forest estimates forest_union/forest_complement. The glue is nearly definitional — its only non-routine step is removing the constant phase factor exp(-I·Q x x), whose ‖·‖ₑ is shown to be 1 by the suffices at line 123. Failure mode: if the concrete target's operator differs from carlesonSum by more than unfolding plus a unit-norm phase, the simp_rw at line 120 will not close and the abstract theorem must be re-generalised (or a new rewrite lemma proved).",
+  "known_uses": [
+    "lean-generalise-then-instantiate-compfiles-f96a55bd",
+    "lean-generalise-then-instantiate-mathlib4-57b9f5e4",
+    "lean-generalise-then-instantiate-sphere-packing-9e03f73b"
+  ],
+  "related": [
+    "lean-calc-chain-carleson-eeedf502",
+    "lean-interface-lemma-carleson-50fa619f",
+    "latex-blueprint-node-carleson-85d5b51c"
+  ],
+  "rule": {
+    "f10_rule": 15,
+    "relation": "supports"
+  },
+  "content_key": "63234e9aac69e084ba76e77d745384470627d42e03c7b564ffd53f4c759dfcbe",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:14:27Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:30:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T16:25:38Z"
+}

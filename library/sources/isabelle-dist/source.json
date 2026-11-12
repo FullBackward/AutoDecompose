@@ -1,0 +1,17 @@
+{
+  "source_id": "isabelle-dist",
+  "url": "https://github.com/isabelle-prover/mirror-isabelle",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "isabelle-prover/mirror-isabelle",
+  "commit": "34ca456d44ca14641450b5d52f51b38688d4d1b5",
+  "ref": "HEAD",
+  "language": "isabelle",
+  "pinned_at": "2026-11-12T13:44:23Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "BSD-3-Clause",
+  "licence_files": [
+    "COPYRIGHT"
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "id": "markdown-workflow-isabelle-pide-ai-cb5b2bef",
+  "kind": "skill",
+  "status": "draft",
+  "title": "The isabelle skill workflow: sorry-first skeleton, then incremental proof",
+  "intent": "Prescribe a workflow for developing an Isabelle theory top-down: plan the order of definitions and key lemmas informally, state each lemma as a sorry stub and check that the stubs suffice for the main results before proving any of them, reserve further sorry holes for genuinely stuck subproofs, and check incrementally so errors and non-termination stay local.",
+  "move": "workflow",
+  "also_known_as": [
+    "sorry-first skeleton workflow",
+    "top-down skeleton then prove",
+    "stub-then-prove workflow"
+  ],
+  "language": "markdown",
+  "source": {
+    "source_id": "isabelle-pide-ai",
+    "url": "https://github.com/kappelmann/isabelle-pide-ai",
+    "commit": "80ec85239c8a76d992a6f06d586cdc370934d751",
+    "licence": "LGPL-3.0"
+  },
+  "files": [
+    {
+      "path": ".agents/skills/isabelle/SKILL.md",
+      "bytes": 4678,
+      "sha256": "18a0735233a255879dde1c72d448a05c08ebf966f8a41aa34e55c36869d1c354",
+      "permalink": "https://github.com/kappelmann/isabelle-pide-ai/blob/80ec85239c8a76d992a6f06d586cdc370934d751/.agents/skills/isabelle/SKILL.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": ".agents/skills/isabelle/SKILL.md",
+      "lines": [
+        15,
+        19
+      ],
+      "role": "skill-text",
+      "name": "workflow",
+      "excerpt_sha256": "81f2a2de8fde49e8a76780ff26a8dc67b112ffd89ae1cac90c37724400006b3a",
+      "permalink": "https://github.com/kappelmann/isabelle-pide-ai/blob/80ec85239c8a76d992a6f06d586cdc370934d751/.agents/skills/isabelle/SKILL.md#L15-L19"
+    }
+  ],
+  "parent": null,
+  "children": [
+    {
+      "name": "understand-plan",
+      "statement": "Understand the mathematics informally first. Plan the structure, order of definitions and theorems, and key lemmas.",
+      "closed_by": "produces the planned order of definitions, theorems, and key lemmas that the top-down step then states as sorry stubs"
+    },
+    {
+      "name": "sorry-skeleton",
+      "statement": "Work top-down: state definitions and lemmas with sorry and check that they suffice for the main results before proving them. Likewise within proofs: sorry larger subproofs first.",
+      "closed_by": "the sufficiency check — the main results are built against the sorry stubs before any lemma is proved"
+    },
+    {
+      "name": "sorry-only-believed",
+      "statement": "Don't sorry steps you can prove right away and only sorry statements you are convinced are true.",
+      "closed_by": "proving right away every step that is provable, so sorry is reserved for statements the author believes are true"
+    },
+    {
+      "name": "isolate-stuck",
+      "statement": "When stuck, isolate problems with sorry.",
+      "closed_by": "a sorry that reduces the failing proof to the stuck subgoal, which then becomes its own target"
+    },
+    {
+      "name": "incremental-check",
+      "statement": "Work incrementally: don't add too much before checking, so errors and non-termination stay easy to locate.",
+      "closed_by": "checking frequently so that errors and non-termination stay easy to locate"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An Isabelle theory (or one large proof) to be built from scratch: a set of definitions, several key lemmas, and a main result whose proof depends on them, where the order of definitions and the exact lemma statements are the hard part.",
+    "use_when": "The main result depends on several not-yet-proved lemmas whose statements you can plan and believe true; you want to fix the decomposition (which lemmas, in which order) before spending effort on any proof.",
+    "avoid_when": "You do not yet know the key lemmas (the workflow itself says to search the libraries first, line 20); a statement may be false (sorry does not check truth — quickcheck/nitpick do); or the task is a single stuck step in an otherwise complete proof, where only the isolate-with-sorry rule (line 18) applies."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The five workflow rules (lines 15-19) order the method as plan -> sorry-skeleton/sufficiency -> don't-sorry-provables -> isolate-with-sorry -> incremental, and line 16 states the sufficiency-first rule verbatim: 'state definitions and lemmas with sorry and check that they suffice for the main results before proving them'.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/kappelmann/isabelle-pide-ai/blob/80ec85239c8a76d992a6f06d586cdc370934d751/.agents/skills/isabelle/SKILL.md#L15-L19"
+    },
+    {
+      "n": 2,
+      "claim": "The skill's Principles rank Correctness first and Faithfulness second ('1. Correctness: no errors or inconsistencies.' / '2. Faithfulness: definitions and statements capture the intended meaning.'), and the workflow's 'only sorry statements you are convinced are true' (line 17) is the workflow-level expression of that priority.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/kappelmann/isabelle-pide-ai/blob/80ec85239c8a76d992a6f06d586cdc370934d751/.agents/skills/isabelle/SKILL.md#L6-L12 and #L17"
+    },
+    {
+      "n": 3,
+      "claim": "The word 'sorry' occurs 5 times across the five workflow lines (twice in line 16, twice in line 17, once in line 18) and no other proof method or tactic is named in the excerpt, so sorry is the only decomposition mechanism the workflow invokes.",
+      "evidence_kind": "measurement",
+      "evidence": "count of the word 'sorry' in the copied file code/.agents/skills/isabelle/SKILL.md lines 15-19"
+    }
+  ],
+  "metrics": {
+    "steps": 5,
+    "sorry_mentions": 5,
+    "how_counted": "steps = the five bullet rules in SKILL.md lines 15-19; sorry_mentions = occurrences of the word 'sorry' in those lines (line 16 twice, line 17 twice, line 18 once)"
+  },
+  "consequences": "The workflow leaves the theory full of sorry stubs, which creates two obligations. Sufficiency: the stubs must imply the main results, and this is checked before any lemma is proved (line 16). Discharge: every sorry must eventually be replaced by a proof, and the 'don't sorry steps you can prove right away / only sorry statements you are convinced are true' rule (line 17) keeps the sorry count honest rather than a dumping ground. Failure modes: sorry checks sufficiency but not truth, so a false-but-plausible lemma slips through until it is actually proved (nothing in the excerpt runs quickcheck/nitpick); and skipping the incremental rule can hide a non-terminating proof until far too much has been added.",
+  "known_uses": [],
+  "related": [
+    "markdown-sorrify-at-failure-lean4-skills-430f389e",
+    "markdown-sorrify-at-failure-leanprover-skills-9066c346"
+  ],
+  "rule": {
+    "f10_rule": 1,
+    "relation": "supports"
+  },
+  "content_key": "cb5b2befc288a89499527aee33fe72d24bfedfff50e301ac6b080265dbcaae3c",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:05:18Z"
+    },
+    {
+      "field": "intent,also_known_as,children,applicability,claims,metrics,consequences,related,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12"
+    }
+  ]
+}

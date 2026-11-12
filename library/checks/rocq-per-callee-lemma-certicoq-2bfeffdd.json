@@ -1,0 +1,109 @@
+{
+  "entry": "rocq-per-callee-lemma-certicoq-2bfeffdd",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:57:46Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:57:46Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 943b52ae654708130f241ccf8a50ecb95a7956e2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:57:54Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/nix-action-default.yml: CertiRocq job builds the full project (theories/CodegenWasm listed in _CoqProject) on push to main; pinned commit 943b52a is identical to main HEAD",
+      "by": "verifier",
+      "at": "2026-11-12T16:00:21Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "grep bs_wasm_related_E returns 9 Lemma declarations (L3800,4206,4393,4598,4882,5410,5426,5771,5957) plus the 9 parent dispatches only (depth 1); Proof/Qed spans 3809-4204=396, 4215-4391=177, 4403-4596=194, 4610-4880=271, 4897-5408=512, 5416-5424=9, 5433-5769=337, 5783-5955=173",
+      "by": "verifier",
+      "at": "2026-11-12T16:00:26Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Comment at lines 3739-3740 reads verbatim: 'The main correctness theorem below is proved by induction on [bstep_e]. The per-constructor lemmas and the induction hypotheses all share this statement.'",
+      "by": "verifier",
+      "at": "2026-11-12T16:00:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Local copy (byte-identical) lines 6030-6047: Proof block 6036-6047 = intros; induction Hev.; nine 'eapply bs_wasm_related_E(ctor); eassumption.' bullets (6038-6046), Qed at 6047 with no goal left; the 9 lemma names match the 9 bstep_e constructors",
+      "by": "verifier",
+      "at": "2026-11-12T16:00:33Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "toplevel_theorem.v line 258 instantiates repr_bs_LambdaANF_Wasm_related via 'have HMAIN := repr_bs_LambdaANF_Wasm_related cenv fenv penv _ _ Hassms ...' (lines 258-261)",
+      "by": "verifier",
+      "at": "2026-11-12T16:00:34Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 943b52ae654708130f241ccf8a50ecb95a7956e2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:01:06Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent theorem (L6030-6047) closes in 12 proof lines: induction Hev. then nine eapply bs_wasm_related_E<ctor>; eassumption. bullets, ending Qed.; the 9 eapply targets are exactly the 9 children listed (Econstr, Eproj, Ecase, Eapp, Eletapp, Efun, Eprim_val, Eprim, Ehalt), with no other lemma used. All 9 child statements in entry.json match the code verbatim, and each child proof ends in Qed (L4204, 4391, 4596, 4880, 5408, 5424, 5769, 5955, 6027); grep finds no admit/Admitted/axiom. Shape numbers verified: direct_lemmas=9 (grep bs_wasm_related_E returns exactly 9 declarations + 9 parent dispatches, depth 1), glue_lines=12 (L6036-6047), child_lines [396,177,194,271,512,9,337,173] match Proof..Qed ranges L3809-4204 etc., and Ehalt=66 (L5962-6027). Closing methods match: inversion Hrepr_e, memory_grow_reduce, r_load_success, r_call/r_invoke_native, apply Hred / rt_trans-apply Hred_final, inv Hrepr_e (Efun). Claim 4 known-use confirmed at toplevel_theorem.v L258. Provenance pass (2 files byte-identical).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T16:02:35Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality holds. The move is stated beyond the example: applicability.goal_shape abstracts to 'a theorem about every derivation of an inductively-defined relation with one constructor per syntactic form, each constructor becoming one lemma with the IH as explicit premise', and also_known_as/use_when map it to the standard CompCert per-pass simulation shape. avoid_when and consequences are honest and specific, and I confirmed them against the copied code: every child statement repeats the bs_wasm_assumptions/bs_wasm_related preamble (so editing the invariant touches all 9), the parent is pure dispatch (verified lines 6030-6047), and the failure mode (per-rule invariant strengthening diverges the statements) is real. The 'Why each child is a good leaf' section names what makes the leaves bounded-prover-friendly: self-contained statement carrying assumptions + IH premise, closing on its own from inversion + step lemmas.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T16:03:23Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 943b52ae654708130f241ccf8a50ecb95a7956e2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:03:42Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance check passes: 2 files byte-identical at pinned commit 943b52ae654708130f241ccf8a50ecb95a7956e2 (theories/CodegenWasm/LambdaANF_to_Wasm_correct.v, theories/CodegenWasm/toplevel_theorem.v). Commit is recorded consistently across entry.json source.commit, sources.jsonl, source.json, and SOURCE.md. Licence MIT is consistent: entry.json licence=MIT, source.json licence=MIT, SOURCE.md 'MIT', and upstream-LICENSE.md contains verbatim MIT text (copyright lines + MIT permission grant). Permalinks all use the pinned commit and paths matching the copied files; source URL https://github.com/CertiCoq/certicoq matches. README source-note links resolve to ../../sources/certicoq/SOURCE.md which carries the licence file and attribution.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T16:04:29Z"
+    }
+  ]
+}

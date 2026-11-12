@@ -1,0 +1,117 @@
+{
+  "entry": "lean-case-split-flt-imperial-b72a01ad",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T14:46:42Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T14:46:42Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at a3210204ad8876e851e32f73dd97d882bf1ccd0a",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:46:52Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/blueprint.yml (workflow 'Build project', job build_project runs leanprover/lean-action@v1 with build:true, triggered on push/PR to main for **/*.lean) builds the file; pinned commit a3210204ad8876e851e32f73dd97d882bf1ccd0a is the tip of default branch main (GitHub compare main...a3210204 returned identical)",
+      "by": "verifier",
+      "at": "2026-11-12T14:49:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read code/FLT/Slop/PGL2/FiniteSubgroups/DicksonClassification.lean: L68 by_cases Nontrivial G, L69 by_cases p | Nat.card G, L70 rcases classification_wild_slop, L76 rcases classification_tame_slop, L82-83 not_nontrivial_iff_subsingleton + Subgroup.mem_zpowers; only two project lemmas used (classification_wild_slop, classification_tame_slop)",
+      "by": "verifier",
+      "at": "2026-11-12T14:49:26Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "grep -rn 'sorry|admit|axiom|Admitted' over code/FLT/Slop/PGL2/FiniteSubgroups/{DicksonClassification,WildClassification,TameClassification,CyclicPartition}.lean returned no matches",
+      "by": "verifier",
+      "at": "2026-11-12T14:49:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read code DicksonClassification.lean L24-26 module docstring, which says exactly the quoted sentence about combining classification_tame_slop and classification_wild_slop",
+      "by": "verifier",
+      "at": "2026-11-12T14:49:29Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Counted in copied files: DicksonClassification.lean L68-83 = 16 lines; Or.inl/Or.inr lines are 71-74,77-81,83 = 10; setup lines 68,69,70,75,76,82 = 6 (two by_cases, two rcases, two have); WildClassification.lean L705-715 = 11 lines; TameClassification.lean L1649-1671 = 23 lines",
+      "by": "verifier",
+      "at": "2026-11-12T14:49:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read copied files: classification_wild_slop declared WildClassification.lean:694, called in DicksonClassification.lean:70; branch1_semidirect declared :263 called at :708; complement_isCyclic declared :230 called at :273; fixes_point_coprime_isCyclic declared :198 called at :243. Chain is 4 lemmas deep, all proved theorems in same directory",
+      "by": "verifier",
+      "at": "2026-11-12T14:49:32Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at a3210204ad8876e851e32f73dd97d882bf1ccd0a",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:51:41Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent dickson_classification (DicksonClassification.lean:54-83) is an 8-way disjunction closed by two nested by_cases (Nontrivial G, then p|Nat.card G): wild branch uses classification_wild_slop (line 70), tame branch classification_tame_slop (line 76), subsingleton branch not_nontrivial_iff_subsingleton+Subgroup.mem_zpowers (82-83). Children are exactly those two project lemmas. Wild child (WildClassification.lean:694-715) closes via branch1_semidirect(708), partition_equation(712), dickson_branch2_z1_eq_1(714), dickson_branch2_z1_ge_2(715) - matches closed_by. Tame child (TameClassification.lean:1641-1671) closes via tame_hasCyclicPartition(1650) and 6 iso lemmas (isCyclic/dihedral_odd/even/dihedral2/A4/S4/A5 at 1655-1671) - matches closed_by. No sorry/admit/axiom in any of the 4 copied files (grep). Re-indexing Or.inl/Or.inr chains positionally correct against the 8-way disjunction (incl. wild p=3|A5 -> disjunct 5). Shape numbers right: direct_lemmas=2, glue_lines=16 (68-83), child_lines=[11,23] (705-715,1649-1671), depth=4 chain verified dickson_classification->classification_wild_slop(694)->branch1_semidirect(263)->complement_isCyclic(230)->fixes_point_coprime_isCyclic(198). Provenance pass: 4 files byte-identical at a3210204. Minor prose note (not a claim): README says dihedral2_of_hasCyclicPartition is in CyclicPartition.lean but it is TameClassification.lean:1052.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T14:51:53Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generally: 'finite disjunction over a quantified object, cases indexed by a small set of decidable predicates, one named lemma per branch' (not 'Nontrivial / p-divides' only). avoid_when gives three concrete conditions (overlap/not-a-partition, branch lemmas not yet existing, deep shifting disjunction where positional reindex is error-prone). Consequences honest and specific: automatic exhaustiveness (by_cases = Classical.em, no exhaustiveness child), cost is re-indexing because wild=4-way/tame=5-way/parent=8-way, the wild p=3 case lands on the same A5 disjunct as tame, and the positional (not-by-name) failure mode — all of which match the copied parent proof (Or.inl/Or.inr chain lengths verified at lines 71-83). README explicitly says what makes the children good leaves for a bounded prover: self-contained statement carrying its own hypotheses, a direct slice of the parent's goal, closing from named siblings in the same directory (plus measured 11/23-line proofs).",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T14:53:03Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at a3210204ad8876e851e32f73dd97d882bf1ccd0a",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:53:20Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes: 4 code files byte-identical at commit a3210204ad8876e851e32f73dd97d882bf1ccd0a. Commit is recorded identically in entry.json, sources/flt-imperial/source.json and SOURCE.md. Licence is Apache-2.0 everywhere (entry.json, source.json, SOURCE.md) and matches the upstream LICENSE (fetched: Apache License 2.0) and the file header 'Released under Apache 2.0 license as described in the file LICENSE'. Permalinks use the pinned commit and correct paths FLT/Slop/PGL2/FiniteSubgroups/*.lean, and the cited line anchors (parent 54-83, docstring 24-26, wild 694/705-715, tame 1641/1649-1671) all match the byte-identical local copies. Source note links repo, commit and LICENSE correctly. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T14:54:37Z"
+    }
+  ]
+}

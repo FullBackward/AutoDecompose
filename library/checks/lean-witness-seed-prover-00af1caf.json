@@ -1,0 +1,109 @@
+{
+  "entry": "lean-witness-seed-prover-00af1caf",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:18:39Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:18:39Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 38c59cebaf969ac259196eb091757518d5b54c67",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:18:47Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "No CI workflow in the source: list_files.py seed-prover at commit 38c59cebaf969ac259196eb091757518d5b54c67 lists 579 files with no .github/ directory and no .yml/.yaml CI config, so no workflow builds SeedProver/imo2025/IMO2025/P4.lean.",
+      "by": "verifier",
+      "at": "2026-11-12T15:21:15Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read copied P4.lean L3900-3926: L3907 h1 := imo2025_p4_right8_h1 a0 k n hn ha0; L3908 h2 := ...h2... h1; L3909 h3 := ...h3... h1 h2; L3910 h4 := imo2025_p4_right1_main ... h1 h2 h3; L3912 use (fun m => if m ≤ k then 6*12^(k-m)*13^m*n else 6*13^k*n); L3914/3919/3924 three constructors, L3925 simp only [ha0]; L3926 <;> aesop. Matches claim exactly.",
+      "by": "verifier",
+      "at": "2026-11-12T15:21:19Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "grep on copied P4.lean: no sorry/admit/Admitted anywhere. 'axiom' occurs 10x: #print axioms at L1544,2470,2731,3033,3139,3387,3928 (7 diagnostics) and variable h_axiom1 at L3335 plus its projections h_axiom1.1/h_axiom1.2 at L3336-3337. No axiom declaration closes a goal.",
+      "by": "verifier",
+      "at": "2026-11-12T15:21:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read copied P4.lean L3904-3905: doc comment directly above theorem matches the quoted informal statement (modulo LaTeX markup $..$, \\emph, **largest**): 'The infinite sequence ... each of which has at least three proper divisors ... a_{n+1} is the sum of the three largest proper divisors ... When a_1 is 6*12^k*m, where m is coprime to 10. Please prove that a_n exists.'",
+      "by": "verifier",
+      "at": "2026-11-12T15:21:22Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Line counts exact: glue L3900-3926=27; h1 L3389-3397=9; h2 L3400-3435=36; h3 L3438-3478=41; right1_main L3481-3897=417. Depth 1 verified: grep for all project lemma names (round1_*/prop_a0_*/exists_first_*/val_5_*/v2_*/valuation_*/a_k_becomes_*/if_a_n_*/an_cannot_*/imo2025_p4_left) returns 0 hits inside L3481-3897; right1_main uses only hypotheses h2/h3 plus tactics. h1 closes by by_contra + omega (n=0) + norm_num + contradiction (claim's 'norm_num alone' is a slight simplification; also uses omega/contradiction).",
+      "by": "verifier",
+      "at": "2026-11-12T15:21:24Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 38c59cebaf969ac259196eb091757518d5b54c67",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:22:39Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Correctness verified. Provenance pass (file byte-identical at commit 38c59ceb). Parent theorem imo2025_p4_right (3900-3926) introduces witness via 'use' (line 3912) and its glue cites exactly four same-file lemmas: h1 (3907), h2 (3908), h3 (3909), right1_main (3910); the three conjuncts close via h2, h4, and 'simp only [ha0]; aesop' (3924-3926). Children statements and closed_by match the code verbatim: h1=by_contra+omega+norm_num+contradiction, h2/h3=by_cases m<=k with one_le_pow/positivity/nlinarith, right1_main=by_cases m>=k returning <s,2s,3s> (3665) and <3t,4t,6t> (3856), using only h2,h3 (h1 unused), no further project lemma. Grep confirms no sorry/admit/Admitted/axiom: only #print axioms at 1544,2470,2731,3033,3139,3387,3928 and h_axiom1 at 3335. Shape numbers correct: direct_lemmas=4, depth=1, glue_lines=27, child_lines=[9,36,41,417].",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:22:57Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated transferably: applicability.goal_shape/use_when and README 'When to use it' reduce to 'existential goal whose body is a conjunction of properties, a single closed-form witness, each property pre-factored into a named lemma, so each conjunct closes by one lemma + use/constructor' — applies beyond IMO 2025 P4. 'Avoid when' is specific (witness assembled interactively from several choices; conjuncts proved jointly; properties not pre-named so glue re-derives inline). Consequences honest: records the h1->h2->h3->right1_main hypothesis coupling, that a 0 = a0 closes by simp/aesop not a named lemma, and if-branch simplification. 'Why it is good' names what makes the leaves bounded-prover-friendly: self-contained statement, proof closes with omega/nlinarith/norm_num/positivity/ring/aesop using only passed hypotheses and no further project lemma.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:24:07Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 38c59cebaf969ac259196eb091757518d5b54c67",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:24:35Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent and traceable. check_provenance.py passes: the copied SeedProver/imo2025/IMO2025/P4.lean is byte-identical at commit 38c59cebaf969ac259196eb091757518d5b54c67 and its recorded sha256 matches. Commit 38c59cebaf969ac259196eb091757518d5b54c67 is identical across entry.json source.commit, source.json commit and SOURCE.md; all files[]/sites[] permalinks use blob/38c59ceb.../SeedProver/imo2025/IMO2025/P4.lean, matching source.json repo_path and commit. Licence 'Apache-2.0' is recorded identically in entry.json source.licence, source.json licence and SOURCE.md; sources/seed-prover/upstream-LICENSE is Apache 2.0 and is byte-identical (sha256 a5116e42...) to LICENSE fetched at the pinned commit. SOURCE.md records repo URL, commit, language lean, licence, how-found 'start set' (matches source.json) and the licence-file link. Everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:25:22Z"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "entry": "lean-calc-chain-carleson-eeedf502",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T14:47:33Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T14:47:33Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:47:49Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push.yml builds the Carleson library on push to master via leanprover/lean-action (build-args 'Carleson Challenge Solution'); commit d75f54374f7f930e70a86b443f20d0e0935c275e is on master, the default branch",
+      "by": "verifier",
+      "at": "2026-11-12T14:50:57Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read MainTheorem.lean whole (69 lines): parent proof (44-68) uses exactly four bound-carrying project lemmas — exceptional_set (49), forest_union and forest_complement (63), le_C2_0_2 (68); the calc chain (53-68) uses no other constant-carrying lemma",
+      "by": "verifier",
+      "at": "2026-11-12T14:51:00Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Read ForestUnion.lean: forest_union applies forest_union_optimized at 1045, forest_union_optimized applies forest_union_aux at 974, forest_union_aux applies lintegral_carlesonSum_forest' at 865, lintegral_carlesonSum_forest' applies lintegral_carlesonSum_forest at 800, lintegral_carlesonSum_forest uses forest_operator_le_volume at 774 — a 6-deep chain as claimed",
+      "by": "verifier",
+      "at": "2026-11-12T14:51:03Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "MainTheorem.lean 14-19: line 14 has the section header 'Proposition 2.0.2' and the doc comment (16-17) reads 'The constant used in Proposition 2.0.2. Has value 2 ^ (442 * a ^ 3) / (q - 1) ^ 5 in the blueprint.' — matches the claim verbatim",
+      "by": "verifier",
+      "at": "2026-11-12T14:51:06Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "MainTheorem.lean: proof block lines 49-68 is 20 lines; the calc runs 53-68 (16 lines) with 4 link heads at lines 54, 59, 61, 64",
+      "by": "verifier",
+      "at": "2026-11-12T14:51:09Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "ExceptionalSet.lean 977-989: exceptional_set is a 4-link calc (link heads at 979, 981, 983, 984) that splits G' into G1,G2,G3 via measure_union_le and folds first_exception, second_exception, third_exception via add_le_add_three",
+      "by": "verifier",
+      "at": "2026-11-12T14:51:12Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:51:33Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "object",
+      "evidence": "Provenance passes (4 files byte-identical at d75f543). The calc-chain decomposition is accurate and closes by reading: link1 triangle inequality (setLIntegral_mono+enorm_add_le), link2 linearity (lintegral_add_left), link3 the two children under add_le_add, link4 constant fold (le_C2_0_2). All four children match their code statements and closed_by; depth=6, glue_lines=20, child_lines=[14,12,3,3] all verify against the copied files. Objection: the main proof also directly uses a fifth named project lemma, measurable_G' (MainTheorem.lean line 51 'use G', measurable_G', ...'), which closes the MeasurableSet G' conjunct; it is 'lemma measurable_G' : MeasurableSet (G' (X := X)) := (measurable_G₁.union measurable_G₂).union measurable_G₃' in Carleson/Discrete/Defs.lean. So claim 1 'closes from exactly four named project lemmas' is false, and shape.direct_lemmas=4 contradicts its field definition 'all lemmas the main proof uses directly' (should be 5). Fix: either add measurable_G' as a fifth child and set direct_lemmas=5 (with its 3-line proof in child_lines), or narrow claim 1 to 'four bound-carrying project lemmas' and note in shape/README that direct_lemmas counts only bound-carrying children while measurable_G' is an additional directly-used measurability lemma.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T14:55:26Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated beyond the example: 'When to use' gives a transferable recipe (two named lemmas bounding a disjoint partition + a constant-fold lemma; parent only does triangle-inequality, integral linearity, and the fold), and 'when not to use' names three specific blockers (fold-incompatible constants/exponents, non-disjoint partition breaking the exact split, split itself being hard content), all consistent with the copied calc. Consequences list the three obligations (G' witness, measurability side condition, constant fold) plus a fold-failure mode. 'Each child is a good leaf' answers the bounded-prover question: le_C2_0_2 is self-contained over the constants closing by grw/gcongr/lia, forest_union/forest_complement are two-line wrappers over a reusable development, exceptional_set closes from same-file siblings + ring/norm_num. Minor imprecision (non-blocking): the consequences' 'a.e.-finite' clause overstates lintegral_add_left, which is unconditional for ENNReal; it is a valid caveat only when transplanting the move to Bochner/Lebesgue integrals.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T14:57:16Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:57:40Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes: 4 files byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e. Commit is consistent across entry.json source.commit, every file and site permalink, sources/carleson/source.json, and SOURCE.md. Licence Apache-2.0 is consistent everywhere (entry.json source.licence, source.json licence, SOURCE.md, and the copied upstream-LICENSE which is the Apache License 2.0 text). Site line anchors verified against the copied files: parent MainTheorem.lean L44-L68 (file has 68 lines), children L21-L36, ExceptionalSet.lean L977-L989 (of 989), ForestUnion.lean L1042-L1047 (of 1047), ForestComplement.lean L1176-L1181 (of 1181). File byte sizes match (2799/56136/54896/63506). Source note records repo URL, pinned commit, licence, license file, and attribution. Everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T14:58:24Z"
+    }
+  ]
+}

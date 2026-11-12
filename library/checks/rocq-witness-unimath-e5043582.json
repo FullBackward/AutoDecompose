@@ -1,0 +1,117 @@
+{
+  "entry": "rocq-witness-unimath-e5043582",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:52:03Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:52:03Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 7a4b03cce49449f45ce0d4285615165172f50546",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:52:09Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build-unimath.yml; runs 'dune build' of the whole UniMath project on push to master; pinned commit 7a4b03cce49449f45ce0d4285615165172f50546 is on the default branch master",
+      "by": "verifier",
+      "at": "2026-11-12T15:53:17Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Copied file yoneda.v lines 305-317: proof body is lines 312-316 = set (T:=yoneda_map_2 C c F). simpl in T. / use isweq_iso. / - apply T. / - apply yoneda_map_1_2. / - apply yoneda_map_2_1. (5 lines), matching the claim exactly",
+      "by": "verifier",
+      "at": "2026-11-12T15:53:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Copied file: yoneda_map_1_2 (178-194) sets T:=nat_trans_eq (C:=C^op) (has_homsets_HSET) (184), rewrite <- nat_trans_ax (191), apply (id_right f) (193); yoneda_map_2_1 (197-204) rewrite (functor_id F) (202), apply idpath (203). Neither uses a same-file lemma",
+      "by": "verifier",
+      "at": "2026-11-12T15:53:21Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Copied file lines 143-144 read: (** ** Yoneda lemma: natural transformations from [yoneda C c] to [F] / are isomorphic to [F c] *), matching the quoted author comment",
+      "by": "verifier",
+      "at": "2026-11-12T15:53:22Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Copied file line counts: 317-305+1=13, 312-316=5, 194-178+1=17, 204-197+1=8. Depth: isweq_yoneda_map_1 uses yoneda_map_2 (169-176, Definition) which applies yoneda_map_2_ax (154-167); inverse-law lemmas are direct children",
+      "by": "verifier",
+      "at": "2026-11-12T15:53:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Copied file lines 327-346: yoneda_fully_faithful applies isweq_iso (330) with inverse yoneda_map_1, closes two homotopy goals inline (332-333 by id_left; 334-345). Same witness move reused in-file",
+      "by": "verifier",
+      "at": "2026-11-12T15:53:25Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 7a4b03cce49449f45ce0d4285615165172f50546",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:53:43Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent isweq_yoneda_map_1 (L305-317) closes with set T:=yoneda_map_2, use isweq_iso, then apply T / yoneda_map_1_2 / yoneda_map_2_1; no admit/Admitted. Children yoneda_map_1_2 (L178-194) and yoneda_map_2_1 (L197-204) match entry statements verbatim and are exactly the two lemmas the glue applies; yoneda_map_2 is a Definition, correctly listed as context not a child. closing methods match: yoneda_map_1_2 uses nat_trans_eq/has_homsets_HSET then rewrite <- nat_trans_ax and id_right; yoneda_map_2_1 uses rewrite (functor_id F) and idpath. Shape: direct_lemmas=2, glue_lines=13 (305-317), child_lines=[17,8] (178-194, 197-204) all correct; depth=2 counts isweq_yoneda_map_1 -> yoneda_map_2 (Definition) -> yoneda_map_2_ax, disclosed in claim 4. Provenance pass (1 file byte-identical).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:55:23Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example: goal_shape/use_when abstract from the Yoneda instance to any 'isweq f' with a constructible inverse and two factorable homotopies plus an extensionality principle, and known-use claim 5 shows the same isweq_iso witness reused at yoneda_fully_faithful (code lines 330-345 confirm). avoid_when is honest and specific: non-constructible inverse -> prove isweq via contractible fibres; long shared proof duplicated across two laws; already-known equivalence -> make_weq (confirmed at yoneda_weq, code lines 319-322). Consequences are specific: three isweq_iso obligations each closed by one apply; witness yoneda_map_2 is a Definition carrying its own naturality obligation yoneda_map_2_ax; argument-order failure mode is real (section vs retraction laws are not symmetric here). Good leaves are explained: both children are self-contained for an arbitrary alpha/x with no unfixed witness inside any child, yoneda_map_1_2 closing via nat_trans_eq/nat_trans_ax and yoneda_map_2_1 near-trivially via functor_id (claim 2 + 'Both children are good leaves').",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:56:37Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 7a4b03cce49449f45ce0d4285615165172f50546",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:56:57Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks all use pinned commit 7a4b03cce49449f45ce0d4285615165172f50546 and their line ranges match the copied file (yoneda_map_1 147-150, yoneda_map_2_ax 154-167, yoneda_map_2 169-176, yoneda_map_1_2 178-194, yoneda_map_2_1 197-204, isweq_yoneda_map_1 305-317, yoneda_fully_faithful 327-346). Commit is identical across entry.json, source.json, SOURCE.md and README, and check_provenance.py confirms the file byte-identical at that commit. Licence MIT recorded consistently in all four places, and upstream-LICENSE.md holds the MIT permission grant (no copyleft/non-commercial). SOURCE.md source note (repo, commit, browse URL, licence, LICENSE.md -> upstream-LICENSE.md) matches the copied file and entry.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:57:27Z"
+    }
+  ]
+}

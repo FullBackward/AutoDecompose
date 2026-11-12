@@ -10,7 +10,7 @@ import json
 import time
 from collections import Counter
 
-from common import ENTRIES, LEDGER, LIB, read_jsonl
+from common import LEDGER, LIB, load_entries, read_jsonl
 
 
 def show(run: str) -> None:
@@ -35,10 +35,10 @@ def show(run: str) -> None:
         print(f"  first call {calls[0]['at']}, last finished {calls[-1]['at']}")
     if bad:
         print(f"  {len(bad)} failed or errored calls, e.g. {bad[-1]['label']}: exit {bad[-1].get('exit')}")
-    entries = [json.loads((p / 'entry.json').read_text(encoding='utf-8'))
-               for p in ENTRIES.iterdir() if (p / 'entry.json').exists()]
+    entries, unreadable = load_entries()
     st = Counter(e["status"] for e in entries)
-    print(f"  entries in library: {len(entries)} (" + ", ".join(f"{k} {v}" for k, v in st.items()) + ")")
+    print(f"  entries in library: {len(entries)} (" + ", ".join(f"{k} {v}" for k, v in st.items()) + ")"
+          + (f"; {len(unreadable)} being written" if unreadable else ""))
     print("  ledgers: " + ", ".join(f"{n} {len(read_jsonl(LEDGER / f'{n}.jsonl'))}"
                                     for n in ("candidates", "screening", "sites", "verdicts")))
     print("  last 5 calls:")

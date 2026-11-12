@@ -1,0 +1,117 @@
+{
+  "entry": "lean-generalise-then-instantiate-sphere-packing-9e03f73b",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:19:42Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:19:42Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at efe3bbbc1ece548f4672a772b94d8f621c10fdda",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:19:49Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml at efe3bbbc (default branch main; commit is HEAD of main per GitHub compare API): push to main runs job build_project -> leanprover/lean-action 'Build the project' (lake build); SpherePacking.lean:3 'public import SpherePacking.Basic.E8' pulls E8.lean into the build",
+      "by": "verifier",
+      "at": "2026-11-12T16:22:53Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read E8.lean L671-694: proof body L672-694 = 23 lines; L672 rw [PeriodicSpherePacking.density_eq E8_ℤBasis ?_ (by omega) (L := 16)]; substitutes E8Packing_numReps (L673), E8_ℤBasis_ofZLatticeBasis_volume (L683), E8_ℤBasis_apply_norm (L693). grep for sorry in copied files: only PeriodicPacking.lean:1220 (periodic_constant_eq_constant, not in E8Packing_density dependency cone) and commented '-- sorry' at :1067. build.yml runs lake build on push to main; SpherePacking.lean:3 imports E8",
+      "by": "verifier",
+      "at": "2026-11-12T16:22:56Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Read blueprint/src/subsections/E8-defs.tex L110-L115: L110 '\\uses{theorem:psp-density,E8Packing-covol}'; L114 proof reads 'By \\cref{theorem:psp-density}, ... where the last equality follows from \\cref{E8Packing-covol} and the formula for volume of a ball'",
+      "by": "verifier",
+      "at": "2026-11-12T16:22:59Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "refuted",
+      "evidence": "The named depth-4 chain does exist (E8.lean:668 -> E8Basis_volume :646-647 -> E8Matrix_unimodular :294-296 -> lowerTriangular_E8Matrix :290-292), but it is not the longest chain below E8Packing_density. The density_eq branch is deeper: E8Packing_density -> PeriodicSpherePacking.density_eq (PeriodicPacking.lean:967-972) -> tendsto_finiteDensity (:945-965) -> aux_big_le (:753, :764) -> SpherePacking.finiteDensity_le (SpherePacking.lean:458, :467) -> inter_ball_encard_ge ..., giving depth >= 5",
+      "by": "verifier",
+      "at": "2026-11-12T16:23:02Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "E8.lean:672 'rw [PeriodicSpherePacking.density_eq ...]'; PeriodicPacking.lean:1152 'rw [S.density_eq b hL hd]' (inside density_eq', :1143) — two reuse sites of the one general lemma",
+      "by": "verifier",
+      "at": "2026-11-12T16:23:05Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at efe3bbbc1ece548f4672a772b94d8f621c10fdda",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:26:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read copied code. Density branch: E8.lean:671 E8Packing_density calls PeriodicSpherePacking.density_eq at :672; PeriodicPacking.lean:967 density_eq calls S.tendsto_finiteDensity at :972; :945 tendsto_finiteDensity (private) calls aux_big_le at :951; :753 aux_big_le calls S.finiteDensity_le at :764; SpherePacking.lean:458 finiteDensity_le calls S.inter_ball_encard_ge at :467; :411 inter_ball_encard_ge is a leaf => depth 5. Volume branch: E8.lean:666 E8_ZBasis_ofZLatticeBasis_volume calls E8Basis_volume at :668; :646 E8Basis_volume calls E8Matrix_unimodular at :647; :294 E8Matrix_unimodular calls lowerTriangular_E8Matrix at :295; :290 lowerTriangular_E8Matrix is a leaf => depth 4. All line numbers match the claim.",
+      "by": "verifier",
+      "at": "2026-11-12T16:27:51Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Opened the three copied files. Parent E8Packing_density (E8.lean:671-694) is a single rw [PeriodicSpherePacking.density_eq E8_ℤBasis ?_ (by omega) (L := 16)] (line 672) followed by two closing branches; statement matches entry.json verbatim. The four children are exactly the four project lemmas the glue invokes: density_eq (PeriodicPacking.lean:967-972, used L672), E8Packing_numReps (E8.lean:631-632, used L673), E8_ℤBasis_ofZLatticeBasis_volume (E8.lean:666-668, used L683), E8_ℤBasis_apply_norm (E8.lean:641-643, used L693); no other project lemma is invoked directly. Each closed_by string matches the child proof verbatim: limsSup_eq_of_le_nhds (S.tendsto_finiteDensity b hL hd) (L972), PeriodicSpherePacking.numReps_eq_one _ rfl (L632), the simpa ... E8Basis_apply_norm i (L642-643), and the rw [←volume_preimage_toLp_symm, preimage_fundamentalDomain_E8_ℤBasis, E8Basis_volume] (L668). No sorry/admit in the dependency cone (the only sorry is periodic_constant_eq_constant at PeriodicPacking.lean:1220, outside the cone, and a commented-out block). Shape numbers correct: direct_lemmas=4, depth=5 (verified chain E8Packing_density→density_eq:972→tendsto_finiteDensity:951→aux_big_le:764→finiteDensity_le:467→inter_ball_encard_ge:411; volume branch :668→:647→:295→:292 is depth 4), glue_lines=23 (proof body 672-694), child_lines=[1,1,2,1] (density_eq proof L972, numReps L632, apply_norm L642-643, volume L668).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T16:29:55Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality is stated beyond the E8 example: applicability.goal_shape abstracts to 'rw [general_formula c args] then substitute a small number of named concrete ingredient lemmas', and use_when/avoid_when generalise to 'any general formula over a structure class'. 'When not to use' is honest and specific: the avoid_when 'the general statement has to be proved as part of the job' explicitly concedes the entry only captures the instantiate half; 'ingredient values are many or deep' matches the consequence that a short glue hides a depth>=5 dependency cone. Consequences name the two concrete obligations (hL/hd side conditions; one named lemma per ingredient) and concrete failure modes (L too small -> hL unprovable; rw needs syntactic head match). README 'Why each child is a good leaf' states per leaf why it is bounded: 1-2-line proofs closing via a known general lemma or a finite Fin 8 computation.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T16:30:48Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at efe3bbbc1ece548f4672a772b94d8f621c10fdda",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:31:12Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit efe3bbbc1ece548f4672a772b94d8f621c10fdda is consistent across entry.json source.commit, sources/sphere-packing/source.json, and SOURCE.md; every permalink (files and sites) points to that same commit with the correct path; licence Apache-2.0 matches entry.json, source.json and SOURCE.md, and upstream-LICENSE is the Apache-2.0 text; check_provenance.py passes (3 files byte-identical at the pinned commit) and local sha256 of E8.lean/PeriodicPacking.lean/SpherePacking.lean equals the entry.json sha256 values. All traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T16:31:40Z"
+    }
+  ]
+}

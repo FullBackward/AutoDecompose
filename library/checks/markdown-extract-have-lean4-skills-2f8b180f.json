@@ -1,0 +1,101 @@
+{
+  "entry": "markdown-extract-have-lean4-skills-2f8b180f",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:21:45Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:21:45Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 3f913c66251b8712bb58e6ce83a453fa96e3f94f",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:21:56Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "The copied file is a Markdown skill reference (plugins/lean4/skills/lean4/references/proof-refactoring.md), not a Lean source module, so no CI workflow compiles it; its code blocks are illustrative pseudocode with placeholders like '[30 lines of tactics...]'. No Lean toolchain is installed on the harvest machine (protocol section 6), and a markdown file has no Lean build target.",
+      "by": "verifier",
+      "at": "2026-11-12T15:23:06Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Opened the copied file. AFTER block (lines 208-212) cites exactly two lemmas, one application each: 'have h1 := helper1 x hx' (210) and 'have h2 := helper2 x h1' (211). BEFORE block (lines 192-199) has exactly the two inline goals 'have h1 : IntermediateGoal1 := by' (195) and 'have h2 : IntermediateGoal2 := by' (197), matching one-to-one.",
+      "by": "verifier",
+      "at": "2026-11-12T15:23:11Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Counted on the copied file: BEFORE lines 192-199 are 8 lines and embed '[30 lines of tactics...]' (196) plus '[40 lines of tactics...]' (198), totalling 70 elided lines. AFTER lines 208-212 are 5 lines. helper1 carries '[30 lines - extracted from h1]' (203) and helper2 '[40 lines - extracted from h2]' (206), so the 30- and 40-line bodies are moved out.",
+      "by": "verifier",
+      "at": "2026-11-12T15:23:13Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Line 59 of the copied file reads, verbatim, 'Large preliminary calculations (50+ line `have` statements)' under the '**Refactor when:**' list (line 53). The site (lines 208-212) sits under the '### Step 3: Extract Helper Lemma' heading (line 189), so it is Step 3's illustration. Note the Step 3 example uses 30/40-line haves rather than 50+, so the 'of that rule' link is loose, but the quoted author-statement is exact.",
+      "by": "verifier",
+      "at": "2026-11-12T15:23:15Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Opened the copied file. '## Real Refactoring Example' (line 295). Inline 'have hk_bound : ∀ i : Fin (m' + 1), k i < n := by' (310) with body 311-316; extracted to 'private lemma strictMono_all_lt_succ_last' (321-327). Line 330 reads '**Result:** Main proof now just calls helper, much clearer.' All cited lines match.",
+      "by": "verifier",
+      "at": "2026-11-12T15:23:16Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Correctness verified against the copied file code/plugins/lean4/skills/lean4/references/proof-refactoring.md. Parent statement and site lines match: theorem big_result : Conclusion at L208-212 (5 lines). Child statements verbatim: helper1 L202-203 (x:alpha)(hx:Property x):IntermediateGoal1; helper2 L205-206 (x:alpha)(h1:IntermediateGoal1):IntermediateGoal2. Closing methods match the elided blocks '[30 lines - extracted from h1]' and '[40 lines - extracted from h2]'. Children are exactly the lemmas the main proof uses: AFTER proof (L210-211) cites only helper1 and helper2, one application each (have h1 := helper1 x hx; have h2 := helper2 x h1), one-to-one with the BEFORE inline haves (L195-198). Glue is type-consistent so it closes: helper1's conclusion IntermediateGoal1 is passed as helper2's h1 parameter, then the 30-line remainder reaches Conclusion. Shape numbers: direct_lemmas=2 (correct), glue_lines=5 (L208-212, correct), child_lines=[2,2] (each child 2 lines, correct), scale=theorem (correct, >=2 named child lemmas). depth=2 is justified by the entry's stated sequential dependency (helper2 consumes helper1's conclusion as a parameter, a two-link chain, non-parallelisable), which the consequences field documents consistently. Claims 1-4 all check out against the cited lines (L59 trigger quote verbatim; L309-330 known-use extraction to strictMono_all_lt_succ_last; 'now just calls helper' L330).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:26:01Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generally: applicability.goal_shape gives the rule (lift 'have h : T := by <block>' to a lemma concluding T whose parameters are exactly the hypotheses the block uses; parent becomes 'have h := helper <args>'), and use_when/avoid_when generalize the trigger and boundaries. When-not-to-use and consequences are honest and specific, each locator confirmed in the copied proof-refactoring.md (trigger line 59, Bad breakpoints 182-187, Pattern 3.4 let-binding caution 644-648, Step 4 goal-match check 215-232); consequences name the silent sufficiency break and non-parallelizable sequential leaves. Why-each-leaf-is-good states the bounded-prover-relevant qualities: self-contained, takes only the hypotheses it uses, dependency recorded as an explicit parameter, independently provable, glue is composition.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:27:04Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 3f913c66251b8712bb58e6ce83a453fa96e3f94f",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:27:15Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit 3f913c66251b8712bb58e6ce83a453fa96e3f94f is consistent across entry.json, source.json, SOURCE.md and every permalink; check_provenance passes (copied file byte-identical at that commit, 28691 bytes matches bytes field). Licence MIT is consistent across entry.json, source.json, SOURCE.md and the upstream-LICENSE text (MIT License, copyright Lean 4 Theorem Proving Skill Contributors). Source note records repo URL, commit, licence files and attribution. All line anchors (59, 182-187, 192-199, 202-203, 205-206, 208-212, 215-232) match the copied file's content. Traceable end to end.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:27:59Z"
+    }
+  ]
+}

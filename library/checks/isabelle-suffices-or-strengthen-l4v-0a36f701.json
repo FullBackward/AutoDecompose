@@ -1,0 +1,117 @@
+{
+  "entry": "isabelle-suffices-or-strengthen-l4v-0a36f701",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:03:27Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:03:27Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 1abfe5bce98632a94ba52adf183045620c509340",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:03:35Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/proof-deploy.yml runs the 'Proofs' job (seL4/ci-actions/aws-proofs) on push to master, the default branch; it builds the full proof session set including session Refine (proof/ROOT lines 29-42), which compiles proof/refine/Refine.thy. Pinned commit 1abfe5bce98632a94ba52adf183045620c509340 is on the default branch (source registered with ref=HEAD, resolved by git ls-remote HEAD).",
+      "by": "verifier",
+      "at": "2026-11-12T16:06:15Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Refine.thy#L842-L849: theorem refinement; proof is exactly six lines 844-849 = rule sim_imp_refines, rule L_invariantI, rule akernel_invariant, rule ckernel_invariant, rule fw_sim_A_H, done. Two strengthening rules then three named project lemmas, no other step.",
+      "by": "verifier",
+      "at": "2026-11-12T16:06:19Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Refine.thy: akernel_invariant lemma at L232 ends done at L262; ckernel_invariant lemma at L652 ends done at L765; fw_sim_A_H lemma at L769 ends done at L840. Grep '\\b(sorry|oops|admit)\\b' over the whole file returns no match.",
+      "by": "verifier",
+      "at": "2026-11-12T16:06:22Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Refine.thy: L848 rule fw_sim_A_H (in refinement); L784 rule_tac ... in entry_corres (in fw_sim_A_H); L483 corres_split[OF kernel_corres] (in entry_corres, which starts L465); L443 rule kernel_corres' (in kernel_corres, which starts L425). Four-link chain confirmed.",
+      "by": "verifier",
+      "at": "2026-11-12T16:06:25Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Simulation.thy#L97-L100 text block reads verbatim: 'Refinement is a global property over all executions and/or all hoare triples. As this is hard to show, we define the weaker concept of forward simulation.'",
+      "by": "verifier",
+      "at": "2026-11-12T16:06:28Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Line counts at pinned commit confirmed: glue 844-849 = 6; akernel_invariant 232-262 = 31; ckernel_invariant 652-765 = 114; fw_sim_A_H 769-840 = 72; total = 31+114+72 = 217.",
+      "by": "verifier",
+      "at": "2026-11-12T16:06:31Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 1abfe5bce98632a94ba52adf183045620c509340",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:08:07Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Verified against copied code: parent theorem refinement (Refine.thy 842-849) states ADT_H uop <sqsubseteq> ADT_A uop and closes in 6 proof lines (844-849) by rule sim_imp_refines then rule L_invariantI, then exactly three project lemmas akernel_invariant (L846), ckernel_invariant (L847), fw_sim_A_H (L848), then done; no other step. Children match the code verbatim: akernel_invariant (232-262, ADT_A uop |= full_invs), ckernel_invariant (652-765, ADT_H uop |= full_invs'), fw_sim_A_H (769-840, LI (ADT_A uop) (ADT_H uop) (lift_state_relation state_relation) (full_invs x full_invs')); each is lemma..done and closes on its own. L_invariantI (Simulation.thy 267-272) yields exactly the three subgoals the three children discharge; sim_imp_refines (140-152) is the strengthening rule. grep over the file finds no sorry/oops/admit. Shape numbers all correct: direct_lemmas=3 (the three children, each used directly), depth=4 (chain fw_sim_A_H->entry_corres->kernel_corres->kernel_corres' via L848/L784/L483/L443), glue_lines=6 (844-849), child_lines=[31,114,72] (232-262, 652-765, 769-840).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T16:08:19Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generalizes beyond the example: applicability.goal_shape and use_when/avoid_when restate the move for any relation between two transition systems (refinement/simulation/bisimulation) too hard to show pointwise, scoped honestly to invariant-guarded forward simulation rather than all 'suffices' uses; intent frames it as backward application of two library rules making premises into children. When-not-to-use is honest and specific (no invariant that actually weakens the simulation; invariants that depend on each other; goal already as easy; README adds: invariant must stay in scope across every transition case). Consequences are specific with a real failure mode (invariant too weak => fw_sim_A_H unprovable, too strong => invariant lemmas unprovable) and name the concrete leak (concrete side must carry ex_abs einvs, Refine.thy 560-570), all consistent with the shown LI/L_invariantI code. It says what makes the leaves good for a bounded prover: each child's statement is self-contained (an invariant |= or LI), closes on its own from earlier/imported lemmas never a sibling, and the three children are independent so parallelisable.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T16:09:12Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 1abfe5bce98632a94ba52adf183045620c509340",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T16:09:39Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "object",
+      "evidence": "Permalinks, commit (1abfe5bce98632a94ba52adf183045620c509340) and source-note URL are consistent and traceable: check_provenance.py reports both copied files byte-identical at the pinned commit, and every site permalink uses that commit. But the recorded licence is wrong. entry.json source.licence, SOURCE.md and the README all record CC-BY-SA-4.0, which is only the licence of the LICENSE.md document itself, not the code. The two copied files carry their own SPDX headers: proof/refine/Refine.thy is GPL-2.0-only and lib/Simulation.thy is BSD-2-Clause; the upstream LICENSE.md (copied as upstream-LICENSE.md) states this exactly ('proofs about the seL4 kernel code itself are licensed under GPL version 2, and general libraries and tools under the 2-Clause BSD license'). Fix: record the per-file licences (GPL-2.0-only for Refine.thy, BSD-2-Clause for Simulation.thy) and mark the entry copyleft in the index per protocol decision 1.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T16:10:21Z"
+    }
+  ]
+}

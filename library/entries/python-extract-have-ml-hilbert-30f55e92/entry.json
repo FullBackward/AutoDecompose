@@ -1,0 +1,171 @@
+{
+  "id": "python-extract-have-ml-hilbert-30f55e92",
+  "kind": "skill",
+  "status": "draft",
+  "title": "Extract each have of a proof sketch into a standalone theorem (HILBERT subgoal-extraction prompt)",
+  "intent": "Turn a proof sketch — the main theorem with its `have` statements left as `sorry` — into one standalone theorem per hole, keeping the `have` name and the context of the preceding subgoals, so each hole can be filled by a separate prover and the sketch's own application lines remain untouched.",
+  "move": "extract-have",
+  "also_known_as": [
+    "have extraction",
+    "subgoal extraction",
+    "lift have to lemma",
+    "sketch-to-theorem decomposition"
+  ],
+  "language": "python",
+  "source": {
+    "source_id": "ml-hilbert",
+    "url": "https://github.com/apple/ml-hilbert",
+    "commit": "86360f90260613d21e08a001c83971a1998a5b5e",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "src/prompts/hilbert.py",
+      "bytes": 25977,
+      "sha256": "bf432f7c1b75ff91541c55920a48f23e936084554d20e229ee66ce5b5a64a81d",
+      "permalink": "https://github.com/apple/ml-hilbert/blob/86360f90260613d21e08a001c83971a1998a5b5e/src/prompts/hilbert.py"
+    },
+    {
+      "path": "src/models/HILBERTWorker.py",
+      "bytes": 96984,
+      "sha256": "8fa85fd69299c9cdfd973baf994c640f633d06f8f58474498e7d5fe85a5e88aa",
+      "permalink": "https://github.com/apple/ml-hilbert/blob/86360f90260613d21e08a001c83971a1998a5b5e/src/models/HILBERTWorker.py"
+    }
+  ],
+  "sites": [
+    {
+      "path": "src/prompts/hilbert.py",
+      "lines": [
+        64,
+        87
+      ],
+      "role": "skill-text",
+      "name": "EXTRACT_SUBGOALS_FROM_SKETCH_PROMPT",
+      "excerpt_sha256": "d0b3a1c3c4d8c4b341bb85d01455dd53b3ed9ffccdf07357be6cbc3d48f94b80",
+      "permalink": "https://github.com/apple/ml-hilbert/blob/86360f90260613d21e08a001c83971a1998a5b5e/src/prompts/hilbert.py#L64-L87"
+    },
+    {
+      "path": "src/models/HILBERTWorker.py",
+      "lines": [
+        1432,
+        1498
+      ],
+      "role": "context",
+      "name": "extract_subgoals_from_sketch",
+      "excerpt_sha256": "c46dab47d25c47918b974986552c368900d1c7848b2fe03388a98ca7344fde71",
+      "permalink": "https://github.com/apple/ml-hilbert/blob/86360f90260613d21e08a001c83971a1998a5b5e/src/models/HILBERTWorker.py#L1432-L1498"
+    },
+    {
+      "path": "src/models/HILBERTWorker.py",
+      "lines": [
+        1986,
+        2016
+      ],
+      "role": "context",
+      "name": "rename_theorems",
+      "excerpt_sha256": "67c210f27ff997fe45b2b22f1a2485520ea69d6d7869f10ac882ca702389ad0f",
+      "permalink": "https://github.com/apple/ml-hilbert/blob/86360f90260613d21e08a001c83971a1998a5b5e/src/models/HILBERTWorker.py#L1986-L2016"
+    }
+  ],
+  "parent": null,
+  "children": [
+    {
+      "name": "name-preserved",
+      "statement": "Each extracted theorem keeps the `have` statement's name (instruction 1).",
+      "closed_by": "instruction 1 ('Use the same name as the have statements for the theorems'); the name is what lets the sketch's application lines stay untouched and what the completeness check matches against"
+    },
+    {
+      "name": "context-carried",
+      "statement": "Each theorem carries the relevant context of the preceding subgoals, with preceding theorems presented as hypotheses unchanged (instructions 2 and 8).",
+      "closed_by": "instructions 2 and 8 verbatim"
+    },
+    {
+      "name": "one-per-hole",
+      "statement": "There are as many extracted theorems as `sorry`s in the sketch (instruction 3).",
+      "closed_by": "instruction 3; enforced by `_check_and_extract_missing_subgoals`, which re-prompts until `extract_all_have_names(original_sketch)` is covered and abandons the attempt otherwise"
+    },
+    {
+      "name": "statement-only",
+      "statement": "Each theorem is a bare statement with a `sorry` proof and no imports, open statements or definitions (instructions 4-6).",
+      "closed_by": "instructions 4, 5 and 6 verbatim"
+    },
+    {
+      "name": "conclusion-stable",
+      "statement": "The conclusion of each extracted theorem and the premise names/types are kept exactly as in the subgoal (instructions 7 and 10).",
+      "closed_by": "instructions 7 and 10 verbatim"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A Lean 4 proof sketch: a main theorem whose `by` block is a sequence of named `have` statements (each proved by `sorry`) applied to prove the goal, with no concrete lemma names until the extraction runs.",
+    "use_when": "you have a skeleton proof with `sorry`-ed `have` holes to farm out to per-hole provers, and you want each hole to become a self-contained theorem that keeps the `have` name so the sketch's application lines do not change.",
+    "avoid_when": "the sketch has no named `have` statements (the handler returns early, `_check_and_extract_missing_subgoals` returning `True, []`); a hole needs its conclusion changed or its statement strengthened or weakened (instructions 7-8 forbid it); or the holes share context that cannot be lifted into clean standalone statements. The prompt only extracts: it does not check that the extracted statements are true or sufficient, which must be done downstream."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The prompt maps each `sorry` hole to exactly one theorem and keeps the `have` name: instruction 1 reads 'Use the same name as the have statements for the theorems' and instruction 3 reads 'There should be as many extracted theorems as `sorry`s in the given theorem'.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/apple/ml-hilbert/blob/86360f90260613d21e08a001c83971a1998a5b5e/src/prompts/hilbert.py#L66-L68"
+    },
+    {
+      "n": 2,
+      "claim": "The handler refuses to proceed unless every `have` of the sketch was extracted: `_check_and_extract_missing_subgoals` computes `all_have_names = extract_all_have_names(original_sketch)` and `missing_names = [name for name in all_have_names if name not in extracted_names]`, and `extract_subgoals_from_sketch` returns `[]` — abandoning the attempt — when that check fails.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/apple/ml-hilbert/blob/86360f90260613d21e08a001c83971a1998a5b5e/src/models/HILBERTWorker.py#L1476-L1481 and #L1516-L1535"
+    },
+    {
+      "n": 3,
+      "claim": "After extraction each child is renamed under the parent theorem name — `new_name = f\"{current_name}_{parent_theorem_name}\"` (line 2000) — so `h0` under `main_theorem` becomes `h0_main_theorem`; the rename is called from the orchestration loop at line 2050.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/apple/ml-hilbert/blob/86360f90260613d21e08a001c83971a1998a5b5e/src/models/HILBERTWorker.py#L1986-L2016 and #L2048-L2050"
+    },
+    {
+      "n": 4,
+      "claim": "The prompt carries a standing constraint against undefined natural-number arithmetic in the extracted statements: 'Do NOT, under ANY circumstances, allow division and subtraction operations on natural number literals with UNDEFINED types, unless REQUIRED by the theorem statement.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/apple/ml-hilbert/blob/86360f90260613d21e08a001c83971a1998a5b5e/src/prompts/hilbert.py#L77-L79"
+    },
+    {
+      "n": 5,
+      "claim": "The extraction prompt is a single 24-line string (lines 64-87) with 10 numbered instructions (lines 65-75) and two 'IMPORTANT INSTRUCTION' paragraphs (lines 77 and 79); the consuming method `extract_subgoals_from_sketch` spans 67 lines (1432-1498).",
+      "evidence_kind": "measurement",
+      "evidence": "read of the copied files src/prompts/hilbert.py and src/models/HILBERTWorker.py"
+    }
+  ],
+  "metrics": {
+    "instructions": 10,
+    "important_instruction_paragraphs": 2,
+    "prompt_lines": 24,
+    "handler_lines": 67,
+    "how_counted": "instructions counted as the numbered items on lines 66-75 of hilbert.py; the two IMPORTANT INSTRUCTION paragraphs start on lines 77 and 79; the prompt string spans lines 64-87; the handler method extract_subgoals_from_sketch spans lines 1432-1498"
+  },
+  "consequences": "The lift creates one standalone theorem per `sorry`-ed `have`, with the `have` name preserved and the sketch's application lines untouched, so the sketch stays valid once each child is proved. Obligations it creates: (i) name and conclusion fidelity (instructions 1, 7, 10) — a child that changes its conclusion or argument types would break the sketch, and the prompt forbids repairing a hole by strengthening or weakening its statement during extraction; (ii) coverage (instruction 3) — the handler re-prompts for missing `have` names and abandons the attempt if they cannot be covered; (iii) statement hygiene — the two IMPORTANT INSTRUCTION paragraphs filter ill-typed natural-number arithmetic, but this is a literal model instruction, not a type check, so it can be misapplied. What the prompt does not check is truth and sufficiency: whether each extracted theorem is true and whether the assembled sketch closes is decided downstream (the assembly prompt USE_SKETCH_AND_THEOREMS_TO_PROVE, whose instruction is 'ALWAYS use the supplied theorems', and the no-`sorry` check `_check_for_sorries` on the completed proof). Failure modes: an unnamed `have` (e.g. `have : P := ...`) yields an empty name in `extract_all_have_names` and is silently dropped from the completeness comparison; the coverage check is by name only, so two distinct holes with the same `have` name would count as one.",
+  "known_uses": [
+    "https://github.com/apple/ml-hilbert/blob/86360f90260613d21e08a001c83971a1998a5b5e/src/prompts/hilbert.py#L89-L114"
+  ],
+  "related": [
+    "markdown-extract-have-trailofbits-skills-9a206aa0",
+    "markdown-extract-have-lean4-skills-2f8b180f",
+    "markdown-extract-have-lean4-skills-b59b032f"
+  ],
+  "rule": {
+    "f10_rule": 4,
+    "relation": "supports"
+  },
+  "content_key": "30f55e9260a9c483dc68ce2155291951a8c51225cbf03258527ca01d45c84ff0",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:28:58Z"
+    },
+    {
+      "field": "intent,also_known_as,children,applicability,claims,metrics,consequences,known_uses,related,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:40:00Z"
+    }
+  ]
+}

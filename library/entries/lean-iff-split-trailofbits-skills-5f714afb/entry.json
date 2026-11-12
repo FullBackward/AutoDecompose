@@ -1,0 +1,160 @@
+{
+  "id": "lean-iff-split-trailofbits-skills-5f714afb",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Iff split for the comparison-encoding lemma gtFelt_eq_one_iff",
+  "intent": "Characterise the field-element encoding `gtFelt` by proving `gtFelt a b = 1 ↔ a.val > b.val`, splitting the iff with `constructor` so that each direction is discharged by a dedicated one-line lemma that unfolds the definitional `if`.",
+  "move": "iff-split",
+  "also_known_as": [
+    "Iff.intro",
+    "constructor on an iff goal",
+    "bidirectional split"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "trailofbits-skills",
+    "url": "https://github.com/trailofbits/skills",
+    "commit": "e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff",
+    "licence": "CC-BY-SA-4.0"
+  },
+  "files": [
+    {
+      "path": "plugins/writing-lean-proofs/evals/cases/03-normal-form/input/WordCmp.lean",
+      "bytes": 2253,
+      "sha256": "3bc74c56353b084877669c1b93c993fcc2891b9635ff2f7857f6e82b10a9d0c0",
+      "permalink": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/evals/cases/03-normal-form/input/WordCmp.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "plugins/writing-lean-proofs/evals/cases/03-normal-form/input/WordCmp.lean",
+      "lines": [
+        38,
+        45
+      ],
+      "role": "parent",
+      "name": "gtFelt_eq_one_iff",
+      "excerpt_sha256": "874b7ea9f981ccfb9bfa5e76f5ad05cbe0ba842ebdb0ef33ce6c4e6bf5fa95e1",
+      "permalink": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/evals/cases/03-normal-form/input/WordCmp.lean#L38-L45"
+    },
+    {
+      "path": "plugins/writing-lean-proofs/evals/cases/03-normal-form/input/WordCmp.lean",
+      "lines": [
+        26,
+        27
+      ],
+      "role": "child",
+      "name": "gtFelt_of_gt",
+      "excerpt_sha256": "dd38b910f0eec3e3a978a161f07f5c730064b7051559599c21a865e17be995d0",
+      "permalink": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/evals/cases/03-normal-form/input/WordCmp.lean#L26-L27"
+    },
+    {
+      "path": "plugins/writing-lean-proofs/evals/cases/03-normal-form/input/WordCmp.lean",
+      "lines": [
+        29,
+        30
+      ],
+      "role": "child",
+      "name": "gtFelt_of_not_gt",
+      "excerpt_sha256": "439c9af329717b121e38fb2b221f596730dce42d2507ef227487c3f1b3efa0f2",
+      "permalink": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/evals/cases/03-normal-form/input/WordCmp.lean#L29-L30"
+    }
+  ],
+  "parent": {
+    "name": "gtFelt_eq_one_iff",
+    "statement": "theorem gtFelt_eq_one_iff (a b : Felt) : gtFelt a b = 1 ↔ a.val > b.val := by"
+  },
+  "children": [
+    {
+      "name": "gtFelt_of_gt",
+      "statement": "theorem gtFelt_of_gt (a b : Felt) (h : a.val > b.val) : gtFelt a b = 1 := by",
+      "closed_by": "simp [gtFelt, h]"
+    },
+    {
+      "name": "gtFelt_of_not_gt",
+      "statement": "theorem gtFelt_of_not_gt (a b : Felt) (h : ¬ a.val > b.val) : gtFelt a b = 0 := by",
+      "closed_by": "simp [gtFelt, h]"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "an iff (or antisymmetry) between a definitional encoding taking a fixed value and the decidable condition the encoding represents: here (gtFelt a b = 1) ↔ (a.val > b.val), where gtFelt a b is `if a.val > b.val then 1 else 0`",
+    "use_when": "each direction can be stated as its own lemma whose proof is a single simp/unfold over the definition, and the two values the encoding takes (1 and 0) are distinct constants so the contradictory branch closes by norm_num",
+    "avoid_when": "the forward direction needs a real argument rather than a one-line unfold-and-contradiction; the encoding is not already simp-normal form; the condition is not decidable; or the two directions need unrelated proofs"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent proof closes each direction with exactly one of the two children: `constructor` (line 39) yields two goals, the forward one rewrites with `gtFelt_of_not_gt a b hab` at h (line 42) and the backward one applies `gtFelt_of_gt a b h` (line 45).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/evals/cases/03-normal-form/input/WordCmp.lean#L38-L45"
+    },
+    {
+      "n": 2,
+      "claim": "Each child is closed by `simp [gtFelt, h]` alone (lines 27 and 30), with no other lemma or tactic in either proof.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/evals/cases/03-normal-form/input/WordCmp.lean#L26-L30"
+    },
+    {
+      "n": 3,
+      "claim": "Shape: the main theorem's glue is 8 lines (38-45), assembled from 2 direct lemmas whose proofs are 1 line each, so the longest project-lemma chain below the theorem has depth 1.",
+      "evidence_kind": "measurement",
+      "evidence": "read of the whole copied file code/plugins/writing-lean-proofs/evals/cases/03-normal-form/input/WordCmp.lean; parent = L38-L45, child proofs = L27 and L30, direct_lemmas = 2"
+    },
+    {
+      "n": 4,
+      "claim": "The parent is reused as a leaf: `ltFelt_eq_one_iff` reduces to it in one line, `simp only [ltFelt, gtFelt_eq_one_iff]` (line 48).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/evals/cases/03-normal-form/input/WordCmp.lean#L47-L48"
+    },
+    {
+      "n": 5,
+      "claim": "The file's module docstring states the purpose these lemmas serve: \"Field-element encodings of comparisons on canonical representatives, used to model the VM's `gt`/`lt` instructions.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/evals/cases/03-normal-form/input/WordCmp.lean#L3-L8"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 1,
+    "glue_lines": 8,
+    "child_lines": [
+      1,
+      1
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 8,
+    "children": 2,
+    "child_proof_lines": [
+      1,
+      1
+    ],
+    "how_counted": "parent = lines 38-45 of the copied file (theorem statement plus by-block); child proofs = the single simp line of each child, line 27 (gtFelt_of_gt) and line 30 (gtFelt_of_not_gt)"
+  },
+  "consequences": "constructor on the iff creates two goals, one per direction. The forward direction is the only one with real work: it must exclude the case gtFelt a b = 0 by contradiction (by_contra, rewrite with gtFelt_of_not_gt, then absurd 1 = 0 via norm_num). The backward direction is a direct application of gtFelt_of_gt. Failure modes: the contradiction step relies on the encoding's two values (1 and 0) being distinct and norm_num knowing 0 ≠ 1; if the encoding took the same value on both branches, or if the negation branch were not a single simp, the forward direction would need its own lemma.",
+  "known_uses": [
+    "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/evals/cases/03-normal-form/input/WordCmp.lean#L47-L48"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "5f714afb0db183b278e5f4d6427040c07ffc3c5084f528a61560e6bbb6cfc5fe",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:20:58Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:21:00Z"
+    }
+  ]
+}

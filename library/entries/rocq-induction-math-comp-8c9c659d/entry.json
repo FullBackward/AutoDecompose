@@ -1,0 +1,285 @@
+{
+  "id": "rocq-induction-math-comp-8c9c659d",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Well-founded induction on group order for Jordan-Holder uniqueness",
+  "intent": "Prove Jordan-Holder uniqueness - that the factor lists of any two composition series of a finite group agree up to isomorphism and permutation - by well-founded induction on the group order #|G|, the inductive step assembled from ten named project lemmas: two base cases (trivg_comps, simple_compsP), an order decrease (maxnormal_proper), normality of the maximal subgroups (maxnormal_normal), the product lemma and the second isomorphism theorem (maxnormalM, weak_second_isog), a common refinement (exists_comps), simplicity of the quotients to feed the induction hypothesis (quotient_simple, isog_simple), and permutation assembly (section_repr_isog).",
+  "move": "induction",
+  "also_known_as": [
+    "well-founded induction",
+    "strong induction on group order",
+    "ubnP induction (ssreflect upper-bound principle)"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "math-comp",
+    "url": "https://github.com/math-comp/math-comp",
+    "commit": "3a90d8b65f77f24e4fd770453c0697233b1c791d",
+    "licence": "CECILL-B"
+  },
+  "files": [
+    {
+      "path": "solvable/jordanholder.v",
+      "bytes": 28830,
+      "sha256": "4b3b6a9e68786a0b6739418e298dda02dbfdaeaa7ec878f8f0f46c16aacc0877",
+      "permalink": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/jordanholder.v"
+    },
+    {
+      "path": "solvable/gseries.v",
+      "bytes": 20676,
+      "sha256": "e096f23f31eff6ac7e39d63280c217a6817875771af40e1f56bd758db4efdf83",
+      "permalink": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/gseries.v"
+    },
+    {
+      "path": "finite_group/quotient.v",
+      "bytes": 33871,
+      "sha256": "b504396bb849d1a0d2c653b0667d9f2aaec322c5d95995a051b68bb5b46a64e7",
+      "permalink": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/finite_group/quotient.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "solvable/jordanholder.v",
+      "lines": [
+        165,
+        224
+      ],
+      "role": "parent",
+      "name": "JordanHolderUniqueness",
+      "excerpt_sha256": "ec95490e192d4d7a8429279e9759fa09de7616899004c90aa52804d5cd6af6c5",
+      "permalink": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/jordanholder.v#L165-L224"
+    },
+    {
+      "path": "solvable/jordanholder.v",
+      "lines": [
+        126,
+        131
+      ],
+      "role": "child",
+      "name": "trivg_comps",
+      "excerpt_sha256": "7b4c6fbabc6b269d65df2e41043cc30e356113daa08effdc5a9dd228f658d55d",
+      "permalink": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/jordanholder.v#L126-L131"
+    },
+    {
+      "path": "solvable/jordanholder.v",
+      "lines": [
+        136,
+        145
+      ],
+      "role": "child",
+      "name": "simple_compsP",
+      "excerpt_sha256": "f31a01c8c1a9f0dd35c66612c9b5d6862531b6c2f8e40ef8786873db13922bff",
+      "permalink": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/jordanholder.v#L136-L145"
+    },
+    {
+      "path": "solvable/gseries.v",
+      "lines": [
+        389,
+        392
+      ],
+      "role": "child",
+      "name": "maxnormal_proper",
+      "excerpt_sha256": "ebc9dd1e04d9a09150f985b5c6d8bae305a9b9378521951707fb02cf7e70415b",
+      "permalink": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/gseries.v#L389-L392"
+    },
+    {
+      "path": "solvable/gseries.v",
+      "lines": [
+        405,
+        417
+      ],
+      "role": "child",
+      "name": "maxnormalM",
+      "excerpt_sha256": "79c6be807e21c785d567cd3d17b3d33a5ab57c37dd8a558a5976ef465c6affa5",
+      "permalink": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/gseries.v#L405-L417"
+    },
+    {
+      "path": "finite_group/quotient.v",
+      "lines": [
+        796,
+        797
+      ],
+      "role": "child",
+      "name": "weak_second_isog",
+      "excerpt_sha256": "931e368803d239408e830d52230fd64d8f13abb8d6ddc569efe92c7cd89f1a5f",
+      "permalink": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/finite_group/quotient.v#L796-L797"
+    },
+    {
+      "path": "solvable/jordanholder.v",
+      "lines": [
+        147,
+        158
+      ],
+      "role": "child",
+      "name": "exists_comps",
+      "excerpt_sha256": "5acc68fa665157e8d191c71bffaaed0fc3c6216c8fba3c817ea0d3aa63646ecb",
+      "permalink": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/jordanholder.v#L147-L158"
+    },
+    {
+      "path": "solvable/gseries.v",
+      "lines": [
+        461,
+        466
+      ],
+      "role": "child",
+      "name": "quotient_simple",
+      "excerpt_sha256": "ba92918fa4fc6edc05c6f75e621eefc22328f3efbec54fe6dde522612f8bfa64",
+      "permalink": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/gseries.v#L461-L466"
+    },
+    {
+      "path": "solvable/jordanholder.v",
+      "lines": [
+        100,
+        104
+      ],
+      "role": "child",
+      "name": "section_repr_isog",
+      "excerpt_sha256": "561925bbde53ea7f864614d8fb08cba0f9362c2afc166e60eaffc6d73b7cb80a",
+      "permalink": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/jordanholder.v#L100-L104"
+    },
+    {
+      "path": "solvable/jordanholder.v",
+      "lines": [
+        160,
+        163
+      ],
+      "role": "context",
+      "name": "header",
+      "excerpt_sha256": "108515cad7331c4a558612fa8668da8c88f3257d6362718cef0b7a49358a1785",
+      "permalink": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/jordanholder.v#L160-L163"
+    }
+  ],
+  "parent": {
+    "name": "JordanHolderUniqueness",
+    "statement": "Lemma JordanHolderUniqueness (G : gTg) (s1 s2 : seq gTg) :\n  comps G s1 -> comps G s2 -> perm_eq (mkfactors G s1) (mkfactors G s2)."
+  },
+  "children": [
+    {
+      "name": "trivg_comps",
+      "statement": "Lemma trivg_comps G s : comps G s -> (G :==: 1) = (s == [::]).",
+      "closed_by": "case/andP=> ls cs; apply/eqP/eqP (forward: rewrite s1; backward: case s => //= H s /andP[/maxgroupp], rewrite /proper sub1G andbF)"
+    },
+    {
+      "name": "simple_compsP",
+      "statement": "Lemma simple_compsP G s : comps G s -> reflect (s = [:: 1%G]) (simple G).",
+      "closed_by": "apply: (iffP idP); uses trivg_comps, simpleP, simple_maxnormal, maxgroupp, maxgroupP"
+    },
+    {
+      "name": "maxnormal_proper",
+      "statement": "Lemma maxnormal_proper A B C : maxnormal A B C -> A \\proper B.",
+      "closed_by": "case/maxsetP=> /and3P[gA pAB _] _; apply: (sub_proper_trans (subset_gen A))"
+    },
+    {
+      "name": "maxnormalM",
+      "statement": "Lemma maxnormalM G H K :\n  maxnormal H G G -> maxnormal K G G -> H :<>: K -> H * K = G.",
+      "closed_by": "contraNeq then wlog on H \\subset K; maxgroupP, normC, comm_joingE, normalM (uses maxnormal_normal internally)"
+    },
+    {
+      "name": "weak_second_isog",
+      "statement": "Lemma weak_second_isog : H / (K :&: H) \\isog H * K / K.",
+      "closed_by": "rewrite quotientMidr; apply: second_isog"
+    },
+    {
+      "name": "exists_comps",
+      "statement": "Lemma exists_comps (G : gTg) : exists s, comps G s.",
+      "closed_by": "elim: {G} #|G| (well-founded induction on order); boolP (simple G), ex_maxnormal_ntrivg, maxnormal_proper"
+    },
+    {
+      "name": "quotient_simple",
+      "statement": "Lemma quotient_simple gT (G H : {group gT}) :\n  H <| G -> simple (G / H) = maxnormal H G G.",
+      "closed_by": "apply/idP/idP; [apply: minnormal_maxnormal | apply: maxnormal_minnormal]"
+    },
+    {
+      "name": "section_repr_isog",
+      "statement": "Lemma section_repr_isog s1 s2 :\n  s1 \\isog s2 -> section_repr s1 = section_repr s2.",
+      "closed_by": "congr (odflt _ _); apply: eq_pick => s; apply: isog_transr"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "For two lists s1 s2 and a group G, an equality perm_eq (f s1) (f s2) (multiset equality up to permutation) under assumptions comps G s1 -> comps G s2; the induction is well-founded on the group order #|G| with the two series s1 s2 kept generalised (elim: n G ... in s1 s2 *).",
+    "use_when": "the goal reduces to a strictly decreasing measure (here the group order), the base cases are a trivial and a simple object with a reflect characterisation lemma, and the step needs exactly: an order decrease to the maximal proper normal subgroups, a common refinement, two second-isomorphism quotients, simplicity of the quotients, and a permutation assembly.",
+    "avoid_when": "the measure does not strictly decrease into the refined subgroup (then the IH cannot be applied), the base cases need bespoke arguments rather than a reflect characterisation, or the two series cannot share a common refinement so the permutation assembly has nothing to commute."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent JordanHolderUniqueness (lines 165-224) and each of the eight shown children close with Qed.; none of the three copied files introduces an admit, Admitted, sorry or axiom to close a goal.",
+      "evidence_kind": "check",
+      "evidence": "read of the copied files solvable/jordanholder.v, solvable/gseries.v, finite_group/quotient.v at commit 3a90d8b65f77f24e4fd770453c0697233b1c791d; parent https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/jordanholder.v#L165-L224"
+    },
+    {
+      "n": 2,
+      "claim": "The authors state the result in prose in the file header, 'The factors associated to two composition series of the same group are the same up to isomorphism and permutation', matching the formal goal perm_eq (mkfactors G s1) (mkfactors G s2).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/jordanholder.v#L161-L162"
+    },
+    {
+      "n": 4,
+      "claim": "The same well-founded-induction-on-order skeleton is reused almost line-for-line for the action-invariant version StrongJordanHolderUniqueness in the same file (lines 575-660), which swaps the comps/maxnormal lemmas for their acomps/maxainv counterparts.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/jordanholder.v#L575-L660"
+    },
+    {
+      "n": 5,
+      "claim": "The main proof body spans 58 lines (167-224) and cites 10 named project lemmas directly (trivg_comps, simple_compsP, maxnormal_proper, maxnormal_normal, maxnormalM, weak_second_isog, exists_comps, quotient_simple, section_repr_isog, and isog_simple at lines 207 and 214); the longest chain of project lemmas below the main theorem that I checked has depth 2 (JordanHolderUniqueness -> exists_comps -> maxnormal_proper, and JordanHolderUniqueness -> simple_compsP -> trivg_comps).",
+      "evidence_kind": "measurement",
+      "evidence": "counted by reading the proof body https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/jordanholder.v#L167-L224 (isog_simple cited at lines 207 and 214) and isog_simple at https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/gseries.v#L468"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 10,
+    "depth": 2,
+    "glue_lines": 58,
+    "child_lines": [
+      5,
+      9,
+      3,
+      11,
+      1,
+      11,
+      4,
+      3
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 58,
+    "direct_children": 10,
+    "children_shown": 8,
+    "how_counted": "parent_proof_lines = lines 167-224 (Proof..Qed) of solvable/jordanholder.v; direct_children = the 10 named project lemmas cited in the proof body (trivg_comps, simple_compsP, maxnormal_proper, maxnormal_normal, maxnormalM, weak_second_isog, exists_comps, quotient_simple, section_repr_isog, isog_simple); children_shown = the 8 given their own child site, with maxnormal_normal and isog_simple listed in the README"
+  },
+  "consequences": "The move creates the obligations the induction step must discharge: (a) the order decreases along each maximal normal subgroup (maxnormal_proper, lines 181-184), (b) a composition series exists for the common refinement N1 :&: N2 (exists_comps, line 200), (c) the two quotient isomorphisms (G / N1) ~= (N2 / N) and (G / N2) ~= (N1 / N) hold (maxnormalM + weak_second_isog, lines 193-199), and (d) the quotients are simple so the induction hypothesis applies (quotient_simple + isog_simple, lines 205-214). The generalisation must keep s1 s2 free across the induction (in s1 s2 *), and the base cases must be recognised by reflect lemmas (trivg_comps, simple_compsP). Failure mode: if the measure does not strictly decrease into the refinement N, the IH cannot be applied and the step stalls.",
+  "known_uses": [
+    "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/jordanholder.v#L575-L660"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "8c9c659dc70bc1b170cc965e6415d14b2b4ddcde09bdfc0d57f635502c8ca5bc",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:31:56Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:32:52Z"
+    },
+    {
+      "field": "intent,claims,shape,metrics",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:41:18Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T15:51:25Z"
+}

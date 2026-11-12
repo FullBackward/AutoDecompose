@@ -1,0 +1,280 @@
+{
+  "id": "rocq-calc-chain-bedrock2-f158f24e",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Compiler pipeline correctness as a transitivity chain of six per-pass simulations",
+  "intent": "Prove the correctness of the whole bedrock2 compilation pipeline (six passes) by composing the six per-pass `phase_correct` lemmas with the transitivity lemma `compose_phases_correct`, so the top-level proof is nothing but the children applied in the order of `composed_compile`.",
+  "move": "calc-chain",
+  "also_known_as": [
+    "phase composition",
+    "simulation transitivity",
+    "per-pass simulation chain",
+    "CompCert-style pass composition"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "bedrock2",
+    "url": "https://github.com/mit-plv/bedrock2",
+    "commit": "b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "compiler/src/compiler/Pipeline.v",
+      "bytes": 37416,
+      "sha256": "514ccfb970f014443ffc9657022b4cd889d04888d079e5939daff6ceba7c9575",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/Pipeline.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "compiler/src/compiler/Pipeline.v",
+      "lines": [
+        634,
+        643
+      ],
+      "role": "parent",
+      "name": "composed_compiler_correct",
+      "excerpt_sha256": "5f94b5585ded43d2d607809a337dd72a313cf40a8629cc0c140fb3720801d45b",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/Pipeline.v#L634-L643"
+    },
+    {
+      "path": "compiler/src/compiler/Pipeline.v",
+      "lines": [
+        624,
+        632
+      ],
+      "role": "context",
+      "name": "composed_compile",
+      "excerpt_sha256": "90c217386770446cdd4496958dd3d84f6f1ebb6326244a1b63fe1fc233673ee1",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/Pipeline.v#L624-L632"
+    },
+    {
+      "path": "compiler/src/compiler/Pipeline.v",
+      "lines": [
+        79,
+        100
+      ],
+      "role": "context",
+      "name": "phase_correct",
+      "excerpt_sha256": "0408765dcae8e4d464a4b568c3f632bd82b3082ebb908f2522b59bc8b61ca71a",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/Pipeline.v#L79-L100"
+    },
+    {
+      "path": "compiler/src/compiler/Pipeline.v",
+      "lines": [
+        104,
+        109
+      ],
+      "role": "context",
+      "name": "compose_phases",
+      "excerpt_sha256": "1c9aa126a8908b3096cac16baa5e679af1a5d5ad8031868a8d7c2013888c8771",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/Pipeline.v#L104-L109"
+    },
+    {
+      "path": "compiler/src/compiler/Pipeline.v",
+      "lines": [
+        115,
+        135
+      ],
+      "role": "child",
+      "name": "compose_phases_correct",
+      "excerpt_sha256": "58ee0a3039bbf30aa379c57b3ed9fbe8c65fed7eb5727fd54ff64bc68c356ab1",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/Pipeline.v#L115-L135"
+    },
+    {
+      "path": "compiler/src/compiler/Pipeline.v",
+      "lines": [
+        274,
+        324
+      ],
+      "role": "child",
+      "name": "flattening_correct",
+      "excerpt_sha256": "4379dfcb4bfd5f9ded3dc5b2201dbdb0ba73e453a7f4c697b3162a872339cccd",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/Pipeline.v#L274-L324"
+    },
+    {
+      "path": "compiler/src/compiler/Pipeline.v",
+      "lines": [
+        342,
+        376
+      ],
+      "role": "child",
+      "name": "useimmediate_correct",
+      "excerpt_sha256": "afba766ecff1e985ae764f4fbd92843f0408aaae0655447193f2f429dd00c81d",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/Pipeline.v#L342-L376"
+    },
+    {
+      "path": "compiler/src/compiler/Pipeline.v",
+      "lines": [
+        391,
+        439
+      ],
+      "role": "child",
+      "name": "dce_correct",
+      "excerpt_sha256": "e8262750f6d24719fa19483f91ccdc85971ea082aa65112c42ae6553feb12816",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/Pipeline.v#L391-L439"
+    },
+    {
+      "path": "compiler/src/compiler/Pipeline.v",
+      "lines": [
+        457,
+        503
+      ],
+      "role": "child",
+      "name": "regalloc_correct",
+      "excerpt_sha256": "f72fd475cc6dab36f0940ad25037b2085249acd32e0ecc4282102619f2acf795",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/Pipeline.v#L457-L503"
+    },
+    {
+      "path": "compiler/src/compiler/Pipeline.v",
+      "lines": [
+        552,
+        584
+      ],
+      "role": "child",
+      "name": "spilling_correct",
+      "excerpt_sha256": "def6955321a6eb2708aa7c8e48bce35ae7d8e7c5a6bdf0fe0025ad4dcb6f80c1",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/Pipeline.v#L552-L584"
+    },
+    {
+      "path": "compiler/src/compiler/Pipeline.v",
+      "lines": [
+        602,
+        622
+      ],
+      "role": "child",
+      "name": "riscv_phase_correct",
+      "excerpt_sha256": "500cb4cb61f77854b6770e869c1c439edff79b5fe050f7d18a83a30525774d95",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/Pipeline.v#L602-L622"
+    }
+  ],
+  "parent": {
+    "name": "composed_compiler_correct",
+    "statement": "phase_correct SrcLang (RiscvLang p_funcs stack_pastend ret_addr) composed_compile"
+  },
+  "children": [
+    {
+      "name": "compose_phases_correct",
+      "statement": "phase_correct L1 L2 compile12 -> phase_correct L2 L3 compile23 -> phase_correct L1 L3 (compose_phases compile12 compile23)",
+      "closed_by": "split; intros; fwd; eauto — destructs both phase_correct records [V12 C12] [V23 C23], then chains the two simulations with `eapply C12 in H1; eapply C23 in H1`, closing the metric obligation by `post_ext` and `eauto 10 with metric_arith`"
+    },
+    {
+      "name": "flattening_correct",
+      "statement": "phase_correct SrcLang FlatWithStrVars flatten_functions",
+      "closed_by": "split; validity via `eapply flatten_functions_NoDup` (line 280); simulation via `eapply FlatImp.exec.weaken` then `eapply flattenStmt_correct_aux` (line 294)"
+    },
+    {
+      "name": "useimmediate_correct",
+      "statement": "phase_correct FlatWithStrVars FlatWithStrVars (useimmediate_functions is5BitImmediate is12BitImmediate)",
+      "closed_by": "split; validity via `eapply useimmediate_functions_NoDup` (line 348); simulation via `eapply exec.weaken` then `eapply useImmediate_correct_aux` (line 363)"
+    },
+    {
+      "name": "dce_correct",
+      "statement": "phase_correct FlatWithStrVars FlatWithStrVars dce_functions",
+      "closed_by": "split; validity via `eapply dce_functions_NoDup` (line 397); simulation via `eapply exec.weaken` then `eapply dce_correct_aux` (line 419)"
+    },
+    {
+      "name": "regalloc_correct",
+      "statement": "phase_correct FlatWithStrVars FlatWithZVars regalloc_functions",
+      "closed_by": "split; validity via `eapply regalloc_functions_NoDup` (line 462); simulation via `eapply FlatImp.exec.weaken` then `eapply checker_correct` (line 488)"
+    },
+    {
+      "name": "spilling_correct",
+      "statement": "phase_correct FlatWithZVars FlatWithRegs spill_functions",
+      "closed_by": "split; validity via `exact spilling_preserves_valid` (line 555); simulation via `eapply FlatImp.exec.weaken` then `eapply spill_fun_correct` (line 579)"
+    },
+    {
+      "name": "riscv_phase_correct",
+      "statement": "phase_correct FlatWithRegs (RiscvLang p_funcs stack_pastend ret_addr) (riscvPhase compile_ext_call)",
+      "closed_by": "split; validity `exact I` (RiscvLang Valid is True, line 606); simulation via `flat_to_riscv_correct` (line 612) then `eapply riscv_call_weaken` (line 616)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal `phase_correct L_first L_last composed` where `composed` is a right-nested `compose_phases p1 (compose_phases p2 ... pn)` and `phase_correct` is a two-field simulation record (validity preservation plus a relational postcondition carrying a metric inequality).",
+    "use_when": "each pass already has a `phase_correct` lemma of the same shape; the passes are composed in one fixed order (a `composed_compile` definition); a transitivity lemma `compose_phases_correct` is available.",
+    "avoid_when": "a pass has no standalone `phase_correct` lemma yet (the chain forces one lemma per pass before the glue can be written); the composition order must be reordered or a pass reused; the intermediate languages must be written out explicitly so consecutive transitivity instances typecheck."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent `composed_compiler_correct` closes with `unfold composed_compile` and a single `exact` of a nested `compose_phases_correct` application over the six per-pass lemmas, in 9 proof lines (lines 635-643), with no other tactic.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/Pipeline.v#L634-L643"
+    },
+    {
+      "n": 2,
+      "claim": "Pipeline.v is built by the project's CI: `.github/workflows/debian.yml` runs `make` on pushes to `master`, and `compiler/Makefile`'s `noex` target compiles every `*.v` under `src/compiler` (which includes Pipeline.v).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/.github/workflows/debian.yml#L59-L62 and https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/Makefile#L39-L48"
+    },
+    {
+      "n": 3,
+      "claim": "The glue applies 7 direct lemmas (6 per-pass lemmas plus the transitivity lemma `compose_phases_correct`) in 9 lines; the longest project-lemma chain below the parent is 2 (`composed_compiler_correct` -> `flattening_correct` -> `flatten_functions_NoDup`); the six pass lemmas have 50, 34, 48, 46, 32, 20 proof lines respectively.",
+      "evidence_kind": "measurement",
+      "evidence": "parent lines 634-643; flattening_correct lines 274-324; flatten_functions_NoDup lines 249-260 (used at line 280); proof-line counts of the six pass lemmas at lines 274-324, 342-376, 391-439, 457-503, 552-584, 602-622"
+    },
+    {
+      "n": 4,
+      "claim": "The authors deliberately separate the compositional core from the user-facing restatement: `compiler_correct` (line 682) is introduced with the comment 'restate composed_compiler_correct by unfolding definitions used to compose phases' (line 681), so the transitivity chain is the canonical statement and the restatement just unfolds it.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/Pipeline.v#L681-L733"
+    },
+    {
+      "n": 5,
+      "claim": "The one compositional lemma is reused rather than re-proved: `compiler_correct` consumes it at line 733 (`pose proof (phase_preserves_post (composed_compiler_correct p_funcs stack_hi ret_addr))`), and `compiler_correct_wp` in turn consumes `compiler_correct` at line 806.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/Pipeline.v#L733 and #L806"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 7,
+    "depth": 2,
+    "glue_lines": 9,
+    "child_lines": [
+      15,
+      50,
+      34,
+      48,
+      46,
+      32,
+      20
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 9,
+    "direct_lemmas": 7,
+    "child_proof_lines_total": 245,
+    "children_closed_by_automation": 0,
+    "how_counted": "parent proof lines = 635-643 of Pipeline.v; child proof lines = the seven child site ranges summed (121-135, 275-324, 343-376, 392-439, 458-503, 553-584, 603-622); children_closed_by_automation counts how many of the six per-pass lemmas close with a single automated tactic (none does — each ends in a bespoke *_correct_aux / checker_correct / spill_fun_correct / flat_to_riscv_correct lemma)."
+  },
+  "consequences": "Turns one large end-to-end simulation goal into one transitivity lemma plus n per-pass `phase_correct` lemmas, so each hole is one whole compiler pass — the natural unit for a bounded prover. Obligations: each child must be a full `phase_correct` record (both fields); the glue's application order must match `composed_compile`; the intermediate languages must be named so consecutive `compose_phases_correct` instances typecheck. Failure mode: the glue does no work itself, so a missing or misshaped per-pass lemma surfaces as a type error at the `exact`; if two passes share a language the intermediate must still be written out.",
+  "known_uses": [
+    "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/Pipeline.v#L733",
+    "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/Pipeline.v#L806"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "f158f24e09cfd0974b91670fa86da53358eeb5fd0fe399fe8ff4939c730037a2",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:53:55Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T16:02:02Z"
+}

@@ -1,0 +1,255 @@
+{
+  "id": "lean-witness-equational-theories-f93d568f",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Finite 8-entry magma-table witness that 854 implies neither 413 nor 1045",
+  "intent": "Reduce the existential goal `∃ (G : Type) (_ : Magma G), Facts G [854] [413, 1045]` (there is a magma satisfying equation 854 but neither 413 nor 1045) to a single finite 8-entry table: name that table as the witness `e`, take the law and the cancellation property from the greedy-extension accessors `Extension.eq854`/`Extension.aux`, and close the two refutations by evaluating the table with `fromList_eval`.",
+  "move": "witness",
+  "also_known_as": [
+    "finite model / countermodel table",
+    "partial magma completion",
+    "explicit counterexample via greedy extension"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "equational-theories",
+    "url": "https://github.com/teorth/equational_theories",
+    "commit": "8b87204d5b201e1cf6c69b8dcabb0558109bee00",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "equational_theories/ManuallyProved/Equation854.lean",
+      "bytes": 22923,
+      "sha256": "69d7f01a2398698d68ed1d9f6fdd5015d34d93e4d281afd93888452c69c0caca",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation854.lean"
+    },
+    {
+      "path": "equational_theories/Mathlib/Order/Greedy.lean",
+      "bytes": 2426,
+      "sha256": "d4e9a569396ff028a14a43b76dc44a5244faf5710cbd828c35a476409862d645",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/Mathlib/Order/Greedy.lean"
+    },
+    {
+      "path": "blueprint/src/chapter/854.tex",
+      "bytes": 32686,
+      "sha256": "ef08163c52210d664a6c8e22b7a0ad7a67b09650bd6040afa47abf107ae2baa2",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/blueprint/src/chapter/854.tex"
+    }
+  ],
+  "sites": [
+    {
+      "path": "equational_theories/ManuallyProved/Equation854.lean",
+      "lines": [
+        506,
+        527
+      ],
+      "role": "parent",
+      "name": "not_413_1045",
+      "excerpt_sha256": "51ed41c0693d9483e61d01c310abaca33adfe61cbcacbcc5bcf23692eccdde46",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation854.lean#L506-L527"
+    },
+    {
+      "path": "equational_theories/ManuallyProved/Equation854.lean",
+      "lines": [
+        466,
+        494
+      ],
+      "role": "child",
+      "name": "fromList_ok",
+      "excerpt_sha256": "8e19a64e8e6c303e5a2eb3a20520d330fd6f97dbea9c0f3ac18c103abd8a0b77",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation854.lean#L466-L494"
+    },
+    {
+      "path": "equational_theories/ManuallyProved/Equation854.lean",
+      "lines": [
+        496,
+        499
+      ],
+      "role": "child",
+      "name": "fromList_eval",
+      "excerpt_sha256": "9372465dc84b3c876ebec685a7927fe5c05f58906c0d463025260d93a7cf495c",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation854.lean#L496-L499"
+    },
+    {
+      "path": "equational_theories/ManuallyProved/Equation854.lean",
+      "lines": [
+        442,
+        443
+      ],
+      "role": "child",
+      "name": "Extension.eq854",
+      "excerpt_sha256": "cd7482d0494178dde312f82413786b4731670a7dc81440849c4e6e34457694b9",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation854.lean#L442-L443"
+    },
+    {
+      "path": "equational_theories/ManuallyProved/Equation854.lean",
+      "lines": [
+        445,
+        446
+      ],
+      "role": "child",
+      "name": "Extension.aux",
+      "excerpt_sha256": "f94771410435f8c4f1cb53722b6cb161367498dd076bc75073922c156d79092e",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation854.lean#L445-L446"
+    },
+    {
+      "path": "equational_theories/ManuallyProved/Equation854.lean",
+      "lines": [
+        448,
+        449
+      ],
+      "role": "context",
+      "name": "Extension.base",
+      "excerpt_sha256": "9e1a0b55ab48a161171c53ed1519f49331068aa07ba793e3471f0570babff085",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation854.lean#L448-L449"
+    },
+    {
+      "path": "equational_theories/ManuallyProved/Equation854.lean",
+      "lines": [
+        403,
+        433
+      ],
+      "role": "context",
+      "name": "exists_extension",
+      "excerpt_sha256": "e01554450cbbb29cca5eb3870dc2561386d8569c57ca7c4310ab840151908ba8",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation854.lean#L403-L433"
+    },
+    {
+      "path": "equational_theories/ManuallyProved/Equation854.lean",
+      "lines": [
+        435,
+        440
+      ],
+      "role": "context",
+      "name": "GreedyMagma",
+      "excerpt_sha256": "cc28a470e37cc8d8056df53a2b9ddc8ea968f988df4cc1919e831e9a5617ea27",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation854.lean#L435-L440"
+    },
+    {
+      "path": "equational_theories/ManuallyProved/Equation854.lean",
+      "lines": [
+        451,
+        451
+      ],
+      "role": "context",
+      "name": "fromList",
+      "excerpt_sha256": "fc99e2abe1c2ae80c54a86ce1093b0fcb5a65bbdb708f0c109356c92bdb2fc79",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation854.lean#L451-L451"
+    },
+    {
+      "path": "equational_theories/ManuallyProved/Equation854.lean",
+      "lines": [
+        120,
+        137
+      ],
+      "role": "context",
+      "name": "PreExtension_OK",
+      "excerpt_sha256": "9492716bd1053e194d50a0da86ff2c943e2c6710b4968aa85c21e629690c23fe",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation854.lean#L120-L137"
+    }
+  ],
+  "parent": {
+    "name": "not_413_1045",
+    "statement": "theorem not_413_1045 : ∃ (G : Type) (_ : Magma G), Facts G [854] [413, 1045]"
+  },
+  "children": [
+    {
+      "name": "fromList_ok",
+      "statement": "theorem fromList_ok {S : List ((Nat × Nat) × Nat)} (sorted … eq854 … eq8 … eq101 … eq46155 … eq378 … no_idem … aux … uniq_fac … mono, each := by decide) : (fromList S).OK",
+      "closed_by": "each of the 10 `PreExtension.OK` fields is discharged from its matching `by decide` hypothesis; `finite := List.finite_toSet S` (line 479), `func` by `List.isChain_iff_pairwise.1 sorted` (lines 480-485), the rest by direct application (lines 486-494)"
+    },
+    {
+      "name": "fromList_eval",
+      "statement": "theorem fromList_eval {e : Extension} {S : List ((Nat × Nat) × Nat)} (hS : e.1 = fromList S) (a b c : Nat) (h : ((a, b), c) ∈ S := by decide) : a ◇ b = c",
+      "closed_by": "(Extension.base e (hS ▸ h)).symm (line 499): the table membership is coerced through `hS` to `c ∈ e.1 a b`, then `Extension.base` gives `c = a ◇ b`, reversed"
+    },
+    {
+      "name": "Extension.eq854",
+      "statement": "theorem Extension.eq854 : Equation854 (GreedyMagma e₀)",
+      "closed_by": "(exists_extension e₀).choose_spec.1 (line 443)"
+    },
+    {
+      "name": "Extension.aux",
+      "statement": "theorem Extension.aux : ∀ {x y : GreedyMagma e₀}, x ◇ (x ◇ y) = x → x = y",
+      "closed_by": "(exists_extension e₀).choose_spec.2.1 (line 446)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "∃ (G : Type) (_ : Magma G), Facts G [e] [f₁, …, fₙ] — an existential over a magma type that must satisfy one equation `e` and refute finitely many others; the witness is a finite partial magma (a literal list of triples `(a,b) ↦ c`) completed to a total magma by a greedy extension.",
+    "use_when": "the refutations are determined by a small finite table whose side conditions are decidable (`by decide`), and the law plus the cancellation lemma come from an already-proved extension theorem exposed as accessors, so the witness proof only assembles and evaluates.",
+    "avoid_when": "the witness needs infinitely many entries or a side condition `decide` cannot discharge; the law must be re-derived inside the proof rather than taken from an accessor; or the refutation does not reduce to a table evaluation plus one `cases`."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent `not_413_1045` is closed from its four direct children: the witness is justified by `⟨⟨_, fromList_ok⟩, rfl⟩` (line 510), the law by `e.eq854` (line 511), six `fromList_eval` table lookups (lines 512, 513, 518, 519, 520, 521), and the two refutations end `cases e.aux this.symm` (line 517) and `cases this` (line 527), with no goal left over.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation854.lean#L506-L527"
+    },
+    {
+      "n": 2,
+      "claim": "The main proof is 21 lines (507-527) and combines exactly 4 named lemmas declared in the same file; the longest chain of project lemmas below it, traced by hand, is fromList_eval → Extension.base → exists_extension → exists_greedy_chain, a depth of 4.",
+      "evidence_kind": "measurement",
+      "evidence": "glue 507-527 at https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation854.lean#L507-L527; chain fromList_eval (496-499) → Extension.base (448-449) → exists_extension (403-433, uses exists_greedy_chain at line 409) → exists_greedy_chain at https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/Mathlib/Order/Greedy.lean#L8-L43"
+    },
+    {
+      "n": 3,
+      "claim": "The blueprint states the same plan: corollary `854-413` (854.tex line 238) and `854-1045` (line 248) both `\\lean`-name `Refutation_854.not_413_1045`, and the proof sketch says 'Create a partial magma by imposing the laws … We then extend it to a global magma using extend-854' (lines 241-245), matching the `fromList` + `exists_extension` structure of the Lean proof.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/blueprint/src/chapter/854.tex#L231-L254"
+    },
+    {
+      "n": 4,
+      "claim": "The same witness-table move (`fromList` + `fromList_ok` + `fromList_eval`, then `rw [fromList_eval he …]`) is reused in Equation73.lean, which declares its own `fromList` (line 37), `fromList_ok` (line 248), `fromList_eval` (line 260) and uses them the same way at lines 273, 280-281.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation73.lean#L37-L281"
+    }
+  ],
+  "metrics": {
+    "parent_proof_lines": 21,
+    "direct_lemmas": 4,
+    "fromList_eval_calls": 6,
+    "table_entries": 8,
+    "how_counted": "parent_proof_lines = the `by` block, lines 507-527 of the copied file (the parent site 506-527 additionally carries the `@[equational_result]` attribute on line 506); direct_lemmas = the named lemmas the glue cites (fromList_ok, fromList_eval, Extension.eq854, Extension.aux); fromList_eval_calls = occurrences at lines 512, 513, 518, 519, 520, 521; table_entries = the 8 triples of the literal list at lines 509-510"
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 4,
+    "glue_lines": 21,
+    "child_lines": [
+      29,
+      4,
+      2,
+      2
+    ]
+  },
+  "consequences": "The witness `e` must be proved a valid `Extension`: `⟨⟨_, fromList_ok⟩, rfl⟩` requires `(fromList S).OK`, i.e. all ten side conditions (sorted, eq854, eq8, eq101, eq46155, eq378, no_idem, aux, uniq_fac, mono) of the 8-entry table to be discharged by `decide`, so the burden is shifted onto the decidability of the literal list. The law (854) and the cancellation property are not re-derived for the witness: they are taken from `exists_extension` via `.choose_spec`, so the proof inherits a dependency on the greedy-extension theorem (which itself rests on `exists_greedy_chain` and the ~170-line `next_ok` extension of `PreExtension.OK`, lines 229-397). Failure modes: if `decide` cannot discharge one table side condition, `fromList_ok` fails; if a queried triple is absent from `S`, `fromList_eval`'s `by decide` membership fails; each refutation must reduce to a single falsehood (`e.aux` contradiction for 413, a numeral contradiction for 1045).",
+  "known_uses": [
+    "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation73.lean#L37-L281"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "f93d568fcbf32813800f5195336a8e5d451f57f862df43d5e1becfc1f5b791a3",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:14:44Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,shape,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:15:41Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T16:23:30Z"
+}

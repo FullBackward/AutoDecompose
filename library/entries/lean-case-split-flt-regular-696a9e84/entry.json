@@ -1,0 +1,174 @@
+{
+  "id": "lean-case-split-flt-regular-696a9e84",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Case split on p dividing a*b*c combines caseI and caseII into FLT for regular primes",
+  "intent": "Prove Fermat's Last Theorem at every odd regular prime exponent by reducing the goal to a coprime integer solution and splitting on whether the prime p divides a * b * c; each branch closes by one application of a project theorem (caseII for the divisible case, caseI for the non-divisible case).",
+  "move": "case-split",
+  "also_known_as": [
+    "case analysis",
+    "by_cases",
+    "exhaustive case split",
+    "proof by cases"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "flt-regular",
+    "url": "https://github.com/leanprover-community/flt-regular",
+    "commit": "83f477ccc8cef9fd9a022b90d87aed49368e7bbd",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "FltRegular/FltRegular.lean",
+      "bytes": 826,
+      "sha256": "f237bb924bce67006b2935e7843333ba2a5aa6fe0d86b8e03b6bce1acbbb0652",
+      "permalink": "https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/FltRegular.lean"
+    },
+    {
+      "path": "FltRegular/CaseII/Statement.lean",
+      "bytes": 4788,
+      "sha256": "36d4c89c8a8eb820a8c00bcd9a70ab44ef2b0650eeee4b0935ccf8a132fc6efb",
+      "permalink": "https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/CaseII/Statement.lean"
+    },
+    {
+      "path": "FltRegular/CaseI/Statement.lean",
+      "bytes": 12580,
+      "sha256": "0c444afa1bfad06dea361ca08c790863fc857e912ac99bb0f15d86cfa9a4a191",
+      "permalink": "https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/CaseI/Statement.lean"
+    },
+    {
+      "path": "FltRegular/NumberTheory/RegularPrimes.lean",
+      "bytes": 2446,
+      "sha256": "9b2e8d8fb44e7946875bcc311d6eec448b67541a95ccd0d457ac5270fbdcd5fd",
+      "permalink": "https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/NumberTheory/RegularPrimes.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "FltRegular/FltRegular.lean",
+      "lines": [
+        21,
+        28
+      ],
+      "role": "parent",
+      "name": "flt_regular",
+      "excerpt_sha256": "8fac48a24198b4925dfdc2348858c29a77ff8ffef58475c96638d10234610dcb",
+      "permalink": "https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/FltRegular.lean#L21-L28"
+    },
+    {
+      "path": "FltRegular/CaseII/Statement.lean",
+      "lines": [
+        78,
+        100
+      ],
+      "role": "child",
+      "name": "caseII",
+      "excerpt_sha256": "f6bd9d0e42db6aa288b92b97dd6abfcd50a8faef09e7d6d1c2b829c72f7796b1",
+      "permalink": "https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/CaseII/Statement.lean#L78-L100"
+    },
+    {
+      "path": "FltRegular/CaseI/Statement.lean",
+      "lines": [
+        260,
+        263
+      ],
+      "role": "child",
+      "name": "caseI",
+      "excerpt_sha256": "fbc92fba350964a0874b15a41632bd89ad52962bfeeaebfe66fcc00b289dc3e1",
+      "permalink": "https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/CaseI/Statement.lean#L260-L263"
+    }
+  ],
+  "parent": {
+    "name": "flt_regular",
+    "statement": "theorem flt_regular {p : ℕ} [Fact p.Prime] (hreg : IsRegularPrime p) (hodd : p ≠ 2) : FermatLastTheoremFor p"
+  },
+  "children": [
+    {
+      "name": "caseII",
+      "statement": "theorem caseII {a b c : ℤ} {p : ℕ} [hpri : Fact p.Prime] (hreg : IsRegularPrime p) (hodd : p ≠ 2) (hprod : a * b * c ≠ 0) (hgcd : ({a, b, c} : Finset ℤ).gcd id = 1) (caseII : ↑p ∣ a * b * c) : a ^ p + b ^ p ≠ c ^ p",
+      "closed_by": "intro e; split p ∣ a*b*c into which of a, b, c is divisible (dvd_or_dvd), then not_exists_Int_solution' hreg hodd ⟨…⟩ in each branch (CaseII/Statement.lean:82-100)"
+    },
+    {
+      "name": "caseI",
+      "statement": "theorem caseI {a b c : ℤ} {p : ℕ} [Fact p.Prime] (hreg : IsRegularPrime p) (caseI : ¬↑p ∣ a * b * c) : a ^ p + b ^ p ≠ c ^ p",
+      "closed_by": "FltRegular.CaseI.may_assume (fun … ↦ caseI_easier hreg hp5 hunit hxy hI h) hreg caseI (CaseI/Statement.lean:262-263)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A headline theorem of the form ∀ p [Fact p.Prime], H p → FermatLastTheoremFor p that, after normalisation, reduces to a single decidable hypothesis Q (here ↑p ∣ a*b*c) whose two sides Q and ¬Q are each already proved as named project theorems.",
+    "use_when": "the proof splits cleanly on one decidable hypothesis and each side is a single named theorem in the project, so the glue is one by_cases with one exact per branch; the children have disjoint, self-contained statements.",
+    "avoid_when": "the two sides need different normalisation before their theorem applies (here the reduction to coprime integer solutions must happen first, because caseII needs the gcd and nonzero hypotheses that caseI does not take); the split predicate is not decidable without extra classical assumptions; or one side is a family of subgoals rather than one theorem."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent flt_regular closes in eight lines (21-28): two normalising steps (rw, apply), one by_cases, and one exact per branch; none of the four copied files contains sorry, admit or axiom.",
+      "evidence_kind": "check",
+      "evidence": "grep -rniE 'sorry|admit|axiom' over code/ of the entry finds nothing; https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/FltRegular.lean#L21-L28"
+    },
+    {
+      "n": 2,
+      "claim": "The authors state the file's purpose in its docstring: 'This file combines the first and second cases to prove Fermat's Last Theorem at every odd regular prime exponent.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/FltRegular.lean#L9-L14"
+    },
+    {
+      "n": 3,
+      "claim": "The glue is thin relative to what it names: 7 proof lines in the parent (22-28) versus 19 proof lines for caseII (82-100) and 2 for caseI (262-263); the longest chain of project lemmas below flt_regular that I checked is 5 deep (flt_regular → caseII → not_exists_Int_solution' → not_exists_Int_solution → not_exists_solution' → not_exists_solution).",
+      "evidence_kind": "measurement",
+      "evidence": "FltRegular.lean:22-28; CaseII/Statement.lean:82-100 and 262-263 of CaseI/Statement.lean; chain links at CaseII/Statement.lean:88,94,100 → :68 → :57 → :45"
+    },
+    {
+      "n": 4,
+      "claim": "by_cases discharges the exhaustiveness obligation itself: the two branches are exactly ↑p ∣ a*b*c and ¬↑p ∣ a*b*c (line 26), and no separate (p ∣ a*b*c) ∨ ¬(p ∣ a*b*c) lemma appears in the file.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/FltRegular.lean#L26-L28"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 5,
+    "glue_lines": 7,
+    "child_lines": [
+      19,
+      2
+    ]
+  },
+  "metrics": {
+    "parent_site_lines": 8,
+    "parent_proof_lines": 7,
+    "children": 2,
+    "child_proof_lines": [
+      19,
+      2
+    ],
+    "how_counted": "parent site = FltRegular.lean:21-28 (statement lines 21-22, proof ':=' by block lines 22-28); caseII proof = CaseII/Statement.lean:82-100 (19 lines); caseI proof = CaseI/Statement.lean:262-263 (2 lines)"
+  },
+  "consequences": "The move creates two obligations (the two branches) plus an exhaustiveness obligation, which by_cases closes itself by classical decidability, so no separate ∨ child is needed. The two children take different hypotheses, so the glue must hand each branch exactly what it asks for: line 27 supplies mul_ne_zero (mul_ne_zero ha hb) hc and hgcd to caseII, while line 28 passes only hreg and hcase to caseI. The failure mode is a mismatch between the normalised goal and a child's hypotheses: if the reduction lemmas drop a hypothesis a child needs (the gcd or nonzeroness), the exact for that branch will not apply and the glue has to re-establish it.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 5,
+    "relation": "supports"
+  },
+  "content_key": "696a9e84250d9f72096e65019eec7cb6fe291d0e9542ced903a91d7ac0f4b0c5",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:00:24Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T15:13:22Z"
+}

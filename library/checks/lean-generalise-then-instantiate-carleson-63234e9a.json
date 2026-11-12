@@ -1,0 +1,101 @@
+{
+  "entry": "lean-generalise-then-instantiate-carleson-63234e9a",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:19:46Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:19:46Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "7 file(s) byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:19:55Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push.yml builds the whole Carleson project (leanprover/lean-action build:true, build-args 'Carleson Challenge Solution', mk_all-check true --lib Carleson) on push to master; pinned commit d75f54374f7f930e70a86b443f20d0e0935c275e is the current HEAD of master (default branch, confirmed via GitHub API)",
+      "by": "verifier",
+      "at": "2026-11-12T16:21:43Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Opened code/Carleson/FinitaryCarleson.lean: proof body lines 114-124 (11 lines) uses grid_existence (l.114), tile_existence (l.115), discrete_carleson (l.117), tile_sum_operator (l.120); grep over code/ finds no sorry/axiom (only a comment 'axioms:' in TileStructure.lean l.53). CI .github/workflows/push.yml builds the project.",
+      "by": "verifier",
+      "at": "2026-11-12T16:21:46Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Opened code copies: FinitaryCarleson.lean l.109 '/-- Proposition 2.0.1 -/', l.102-104 docstring 'The constant used in Proposition 2.0.1...' + 'def C2_0_1 (a) (q) := C2_0_2 a q'; Discrete/MainTheorem.lean l.14 '/-! ## Proposition 2.0.2 -/'.",
+      "by": "verifier",
+      "at": "2026-11-12T16:21:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Counted from code copies: parent proof 114-124 = 11 lines; children discrete_carleson 49-68 = 20, grid_existence 1575-1652 = 78, tile_existence 2012-2021 = 10, tile_sum_operator 73-98 = 26; depth chain: tile_sum_operator hx (FinitaryCarleson:120) -> exists_Grid (:84) -> ball_subset_Grid/Grid_subset_biUnion (:61,67) -> cover_by_cubes/dyadic_property (TileExistence:1609,1614) = 4 edges.",
+      "by": "verifier",
+      "at": "2026-11-12T16:21:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Opened entry.json of lean-generalise-then-instantiate-compfiles-f96a55bd, -mathlib4-57b9f5e4, -sphere-packing-9e03f73b: all three exist and have move 'generalise-then-instantiate'.",
+      "by": "verifier",
+      "at": "2026-11-12T16:21:55Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Decomposition matches the code: finitary_carleson (FinitaryCarleson.lean:110-113) instantiates discrete_carleson X (l.117) via the two structure instances grid_existence X (l.114) and tile_existence X (l.115), then rewrites carlesonSum into the per-scale tile sum with tile_sum_operator hx (l.120). The 4 children are exactly the facts the glue uses directly, and each closed_by field matches its proof: discrete_carleson's calc steps use exceptional_set/forest_union/forest_complement/le_C2_0_2 (MainTheorem.lean:49-68); grid_existence builds each GridStructure field from the cited lemmas (TileExistence.lean:1574-1652); tile_existence takes all six TileStructure fields from Construction.Ω* (TileExistence.lean:2011-2021); tile_sum_operator uses 𝔓_biUnion/sum_eq_zero_of_notMem_Icc/𝔰_eq/exists_Grid/biUnion_Ω/disjoint_Ω (FinitaryCarleson.lean:70-98). The proof closes: body 114-124 has no sorry/axiom and the final suffices+simp (l.123-124) closes the phase-factor goal. Shape numbers are right: direct_lemmas=4, glue_lines=11 (114-124), child_lines=[20,78,10,26] = proof bodies 49-68, 1575-1652, 2012-2021, 73-98, and depth=4 along finitary_carleson→tile_sum_operator→exists_Grid→Grid_subset_biUnion→cover_by_cubes/dyadic_property (TileExistence.lean:1609,1614).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T16:23:28Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality: the move is stated beyond the example — use_when/avoid_when (entry.json applicability; README 'When to use it, and when not') give the general preconditions (a general statement over a typeclass/weaker structure already proved; concrete instances supplied; abstract notion rewrites to concrete by one named lemma up to a unit phase), not just a recounting of this proof, and known_uses cites three other pilot-2 entries. 'When not to use' and consequences are honest and specific: it names the three negative conditions and is self-aware that tile_sum_operator is a 26-line lemma (a prerequisite, not a by-product), states the work is shifted not removed, and flags the reject-identity subtlety (discrete_carleson is the same statement one abstraction up, valid only as reuse of a previously-proved theorem). It says what makes the children good leaves: the dedicated 'Why each child is a good leaf' subsection gives self-containedness, closure by named lemmas, independence from the parent's goal, and a single interface lemma so the parent never unfolds carlesonOn, while honestly noting their sizes (78/20/10/26 proof lines).",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T16:24:29Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "7 file(s) byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:24:48Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes: all 7 files byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e. entry.json source.commit/url/source_id match library/sources/carleson/source.json and SOURCE.md (same commit, https://github.com/fpvandoorn/carleson). Licence Apache-2.0 is consistent across entry.json, source.json, SOURCE.md, and upstream-LICENSE (which is the Apache License 2.0 text). All site permalink line ranges match the copied code: finitary_carleson L110-124, tile_sum_operator L69-98, C2_0_1 def L104 with docstring L102-103, discrete_carleson L43-68 with 'Proposition 2.0.2' header at L14, grid_existence L1571-1652, tile_existence L2009-2021. All permalinks pin the same commit. Everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T16:25:31Z"
+    }
+  ]
+}

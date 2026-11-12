@@ -1,0 +1,288 @@
+{
+  "id": "rocq-per-callee-lemma-certicoq-2bfeffdd",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "One simulation lemma per evaluation rule for the LambdaANF-to-Wasm correctness theorem",
+  "intent": "Prove the Wasm code generator's main correctness theorem by induction on the source big-step derivation, delegating each of the nine evaluation rules to its own self-contained lemma that carries the induction hypothesis as an explicit premise.",
+  "move": "per-callee-lemma",
+  "also_known_as": [
+    "per-constructor simulation lemma",
+    "one lemma per evaluation rule",
+    "CompCert-style per-pass simulation lemma"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "certicoq",
+    "url": "https://github.com/CertiCoq/certicoq",
+    "commit": "943b52ae654708130f241ccf8a50ecb95a7956e2",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "theories/CodegenWasm/LambdaANF_to_Wasm_correct.v",
+      "bytes": 270730,
+      "sha256": "57ea21e49da357f89ab494742feb7920be59c74b60793a13eb3a88bc4c852581",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_correct.v"
+    },
+    {
+      "path": "theories/CodegenWasm/toplevel_theorem.v",
+      "bytes": 11307,
+      "sha256": "5aca498ae2945a94c4328760861b5282b59f76a7d80eb3b84c5205099bf7958e",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/toplevel_theorem.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/CodegenWasm/LambdaANF_to_Wasm_correct.v",
+      "lines": [
+        6030,
+        6047
+      ],
+      "role": "parent",
+      "name": "repr_bs_LambdaANF_Wasm_related",
+      "excerpt_sha256": "6e40e09e42ff228062bb235a318f617e1f2083b094b175c66dbf8182835b0ee3",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_correct.v#L6030-L6047"
+    },
+    {
+      "path": "theories/CodegenWasm/LambdaANF_to_Wasm_correct.v",
+      "lines": [
+        3800,
+        3808
+      ],
+      "role": "child",
+      "name": "bs_wasm_related_Econstr",
+      "excerpt_sha256": "4ac6ad87deebf4c9546d28fec5621d9ac4e13a6892c670b104c3b047524c4386",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_correct.v#L3800-L3808"
+    },
+    {
+      "path": "theories/CodegenWasm/LambdaANF_to_Wasm_correct.v",
+      "lines": [
+        4206,
+        4214
+      ],
+      "role": "child",
+      "name": "bs_wasm_related_Eproj",
+      "excerpt_sha256": "321d054d90ade2472560a11952eaacd27ac411b9dd27deb8a961d58ff6b3e0b3",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_correct.v#L4206-L4214"
+    },
+    {
+      "path": "theories/CodegenWasm/LambdaANF_to_Wasm_correct.v",
+      "lines": [
+        4393,
+        4402
+      ],
+      "role": "child",
+      "name": "bs_wasm_related_Ecase",
+      "excerpt_sha256": "10923cdd7608026d2b96c94620b69938ac724f716b4202189776b1af4916f5d2",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_correct.v#L4393-L4402"
+    },
+    {
+      "path": "theories/CodegenWasm/LambdaANF_to_Wasm_correct.v",
+      "lines": [
+        4598,
+        4609
+      ],
+      "role": "child",
+      "name": "bs_wasm_related_Eapp",
+      "excerpt_sha256": "35c774419af5ecffe7a11cc487f0e0b8fac9478b8c137300862ecd4cba952efc",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_correct.v#L4598-L4609"
+    },
+    {
+      "path": "theories/CodegenWasm/LambdaANF_to_Wasm_correct.v",
+      "lines": [
+        4882,
+        4896
+      ],
+      "role": "child",
+      "name": "bs_wasm_related_Eletapp",
+      "excerpt_sha256": "5290166d33ce31c192f13cbb79b78d065c3b3c6ac9259c854191a4fa7e20a832",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_correct.v#L4882-L4896"
+    },
+    {
+      "path": "theories/CodegenWasm/LambdaANF_to_Wasm_correct.v",
+      "lines": [
+        5410,
+        5415
+      ],
+      "role": "child",
+      "name": "bs_wasm_related_Efun",
+      "excerpt_sha256": "a2047c71a7b4063b46b45abdeeee0272f6e8d8931de502994ccbdb1d4d49f2e8",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_correct.v#L5410-L5415"
+    },
+    {
+      "path": "theories/CodegenWasm/LambdaANF_to_Wasm_correct.v",
+      "lines": [
+        5426,
+        5432
+      ],
+      "role": "child",
+      "name": "bs_wasm_related_Eprim_val",
+      "excerpt_sha256": "00e78bce4f72e369929192f6ef873ec0dcd47397c2eaeee41c4336f19c272f38",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_correct.v#L5426-L5432"
+    },
+    {
+      "path": "theories/CodegenWasm/LambdaANF_to_Wasm_correct.v",
+      "lines": [
+        5771,
+        5782
+      ],
+      "role": "child",
+      "name": "bs_wasm_related_Eprim",
+      "excerpt_sha256": "55efcba7c6f4802edcb9c058e9566d56ef9071561ee819c5fda56a3d7929d73d",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_correct.v#L5771-L5782"
+    },
+    {
+      "path": "theories/CodegenWasm/LambdaANF_to_Wasm_correct.v",
+      "lines": [
+        3739,
+        3741
+      ],
+      "role": "context",
+      "name": "bs_wasm_related_definition",
+      "excerpt_sha256": "9bc93843546c72660bdbda0092a5cd7323c3670bda76475a60b772e9c546b833",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_correct.v#L3739-L3741"
+    }
+  ],
+  "parent": {
+    "name": "repr_bs_LambdaANF_Wasm_related",
+    "statement": "Theorem repr_bs_LambdaANF_Wasm_related : forall pfs fds,\n  bs_wasm_assumptions pfs fds ->\n  forall (rho : eval.env) (e : exp) (v : term.val) (n : nat),\n    bstep_e pfs cenv rho e v n ->\n    bs_wasm_related fds rho e v."
+  },
+  "children": [
+    {
+      "name": "bs_wasm_related_Econstr",
+      "statement": "Lemma bs_wasm_related_Econstr : forall pfs fds,\n  bs_wasm_assumptions pfs fds ->\n  forall (x : term.var) (t : term.ctor_tag) (ys : list term.var) (e : exp)\n         (rho rho' : eval.env) (vs : list term.val) (v : term.val) (c : nat),\n    get_list ys rho = Some vs ->\n    M.set x (Vconstr t vs) rho = rho' ->\n    bstep_e pfs cenv rho' e v c ->\n    bs_wasm_related fds rho' e v ->\n    bs_wasm_related fds rho (Econstr x t ys e) v.",
+      "closed_by": "inverts the translation hypothesis (`inversion Hrepr_e`) and runs the constructor allocation via `reduce_trans`/`dostep_nary`/`memory_grow_reduce`; the IH premise closes the sub-expression (`apply Hred`); ends `Unshelve. all: assumption.` (proof lines 3809-4204)"
+    },
+    {
+      "name": "bs_wasm_related_Eproj",
+      "statement": "Lemma bs_wasm_related_Eproj : forall pfs fds,\n  bs_wasm_assumptions pfs fds ->\n  forall (t : term.ctor_tag) (vs : list term.val) (v : term.val) (rho : eval.env)\n         (x : term.var) (n : N) (y : term.var) (e : exp) (ov : term.val) (c : nat),\n    M.get y rho = Some (Vconstr t vs) ->\n    nthN vs n = Some v ->\n    bstep_e pfs cenv (M.set x v rho) e ov c ->\n    bs_wasm_related fds (M.set x v rho) e ov ->\n    bs_wasm_related fds rho (Eproj x t n y e) ov.",
+      "closed_by": "inverts `Hrepr_e`, reads the projected field (`r_load_success`) and binds it (`r_local_set'`); IH `apply Hred`; ends `Unshelve. all: assumption.` (proof lines 4215-4391)"
+    },
+    {
+      "name": "bs_wasm_related_Ecase",
+      "statement": "Lemma bs_wasm_related_Ecase : forall pfs fds,\n  bs_wasm_assumptions pfs fds ->\n  forall (y : term.var) (v : term.val) (e : exp) (t : term.ctor_tag)\n         (cl : list (term.ctor_tag * exp)) (vl : list term.val) (rho : eval.env) (c : nat),\n    M.get y rho = Some (Vconstr t vl) ->\n    caseConsistent cenv cl t ->\n    findtag cl t = Some e ->\n    bstep_e pfs cenv rho e v c ->\n    bs_wasm_related fds rho e v ->\n    bs_wasm_related fds rho (Ecase y cl) v.",
+      "closed_by": "inverts `Hrepr_e`, dispatches on the tag to the matching clause; IH `apply Hred`; ends `Unshelve. all: assumption.` (proof lines 4403-4596)"
+    },
+    {
+      "name": "bs_wasm_related_Eapp",
+      "statement": "Lemma bs_wasm_related_Eapp : forall pfs fds,\n  bs_wasm_assumptions pfs fds ->\n  forall (rho' : eval.env) (fl : fundefs) (f' : term.var) (vs : list term.val)\n         (xs : list term.var) (e : exp) (rho'' rho : eval.env) (f : term.var)\n         (t : term.ctor_tag) (ys : list term.var) (v : term.val) (c : nat),\n    M.get f rho = Some (Vfun rho' fl f') ->\n    get_list ys rho = Some vs ->\n    find_def f' fl = Some (t, xs, e) ->\n    set_lists xs vs (def_funs fl fl rho' rho') = Some rho'' ->\n    bstep_e pfs cenv rho'' e v c ->\n    bs_wasm_related fds rho'' e v ->\n    bs_wasm_related fds rho (Eapp f t ys) v.",
+      "closed_by": "inverts `Hrepr_e`, performs the function call (`r_call`/`r_invoke_native`); IH `apply Hred`; ends `Unshelve. all: assumption.` (proof lines 4610-4880)"
+    },
+    {
+      "name": "bs_wasm_related_Eletapp",
+      "statement": "Lemma bs_wasm_related_Eletapp : forall pfs fds,\n  bs_wasm_assumptions pfs fds ->\n  forall (rho' : eval.env) (fl : fundefs) (f' : term.var) (vs : list term.val)\n         (xs : list term.var) (e_body e : exp) (rho'' rho : eval.env)\n         (x f : term.var) (t : term.ctor_tag) (ys : list term.var)\n         (v v' : term.val) (c c' : nat),\n    M.get f rho = Some (Vfun rho' fl f') ->\n    get_list ys rho = Some vs ->\n    find_def f' fl = Some (t, xs, e_body) ->\n    set_lists xs vs (def_funs fl fl rho' rho') = Some rho'' ->\n    bstep_e pfs cenv rho'' e_body v c ->\n    bs_wasm_related fds rho'' e_body v ->\n    bstep_e pfs cenv (M.set x v rho) e v' c' ->\n    bs_wasm_related fds (M.set x v rho) e v' ->\n    bs_wasm_related fds rho (Eletapp x f t ys e) v'.",
+      "closed_by": "inverts `Hrepr_e`, performs the function call then the continuation, applying the two IH premises (`apply Hred`; `eapply rt_trans. apply Hred_final`); ends `Unshelve. all: assumption.` (proof lines 4897-5408)"
+    },
+    {
+      "name": "bs_wasm_related_Efun",
+      "statement": "Lemma bs_wasm_related_Efun : forall pfs fds,\n  bs_wasm_assumptions pfs fds ->\n  forall (rho : eval.env) (fl : fundefs) (e : exp) (v : term.val) (c : nat),\n    bstep_e pfs cenv (def_funs fl fl rho rho) e v c ->\n    bs_wasm_related fds (def_funs fl fl rho rho) e v ->\n    bs_wasm_related fds rho (Efun fl e) v.",
+      "closed_by": "`inv Hrepr_e.` closes the case as contradictory (comment: 'absurd, fn defs only on topmost level'); `Unshelve. all: assumption.` (proof lines 5416-5424)"
+    },
+    {
+      "name": "bs_wasm_related_Eprim_val",
+      "statement": "Lemma bs_wasm_related_Eprim_val : forall pfs fds,\n  bs_wasm_assumptions pfs fds ->\n  forall (rho' rho : eval.env) (x : term.var) p (e : exp) (v : term.val) (c : nat),\n    M.set x (Vprim p) rho = rho' ->\n    bstep_e pfs cenv rho' e v c ->\n    bs_wasm_related fds rho' e v ->\n    bs_wasm_related fds rho (Eprim_val x p e) v.",
+      "closed_by": "inverts `Hrepr_e`, runs the primitive-value store; IH `apply Hred`; ends `Unshelve. all: assumption.` (proof lines 5433-5769)"
+    },
+    {
+      "name": "bs_wasm_related_Eprim",
+      "statement": "Lemma bs_wasm_related_Eprim : forall pfs fds,\n  bs_wasm_assumptions pfs fds ->\n  forall (vs : list term.val) (rho' rho : eval.env) (x : term.var) (f : term.prim)\n         (f' : list term.val -> option term.val) (ys : list term.var) (e : exp)\n         (v v' : term.val) (c : nat),\n    get_list ys rho = Some vs ->\n    M.get f pfs = Some f' ->\n    f' vs = Some v ->\n    M.set x v rho = rho' ->\n    bstep_e pfs cenv rho' e v' c ->\n    bs_wasm_related fds rho' e v' ->\n    bs_wasm_related fds rho (Eprim x f ys e) v'.",
+      "closed_by": "inverts `Hrepr_e`, runs the primitive call then the continuation IH; ends `Unshelve. all: assumption.` (proof lines 5783-5955)"
+    },
+    {
+      "name": "bs_wasm_related_Ehalt",
+      "statement": "Lemma bs_wasm_related_Ehalt : forall pfs fds,\n  bs_wasm_assumptions pfs fds ->\n  forall x v rho,\n    M.get x rho = Some v ->\n    bs_wasm_related fds rho (Ehalt x) v.",
+      "closed_by": "inverts `Hrepr_e`, shows `find_def x fds = None`, then builds the final `reduce_trans` return; ends `Unshelve. all: assumption.` (proof lines 5962-6027)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A theorem P e v about every derivation of an inductively-defined relation R (here `bstep_e pfs cenv rho e v n`) with one constructor per syntactic form, where each constructor's conclusion `R rho (Ctor ...) v` is meant to follow from the induction hypothesis `P ... e v` on its sub-derivations. Each constructor becomes one lemma `R_ctor -> P rho' e v -> P rho (Ctor ...) v` (the IH as an explicit premise), and the parent is `induction` on the derivation plus one `eapply` per constructor.",
+    "use_when": "the target relation is stated uniformly (here `bs_wasm_related` is a single `Definition`, so every per-constructor lemma shares the same conclusion and the IH can be written as a plain premise), and the per-case argument is self-contained (only the translation/typing relation for that constructor plus fixed step-semantics lemmas). This is the standard shape for compiler/simulation correctness proofs.",
+    "avoid_when": "the invariant is not a uniform predicate over sub-derivations (each rule would need a differently-shaped statement, so the 'one near-identical lemma per case' factor disappears); the rules need to share a genuinely different invariant (then the lemma statements diverge and the mechanical dispatch breaks); or the per-case proofs are not self-contained (they need facts proved inside a sibling's proof)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent theorem is closed in 12 lines: `induction Hev.` followed by nine bullets `eapply bs_wasm_related_E<ctor>; eassumption.`, one per constructor of `bstep_e`, ending in `Qed.` with no remaining goal.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_correct.v#L6036-L6047; the nine `eapply` targets match the nine `Lemma bs_wasm_related_E*` declarations in the same file"
+    },
+    {
+      "n": 2,
+      "claim": "The decomposition has 9 direct lemmas (one per evaluation rule), depth 1 (no child calls another child), a 12-line glue, and child proof lengths of 396, 177, 194, 271, 512, 9, 337, 173 lines for the eight shown children.",
+      "evidence_kind": "measurement",
+      "evidence": "direct_lemmas: the nine `Lemma bs_wasm_related_E*` declarations at L3800, L4206, L4393, L4598, L4882, L5410, L5426, L5771, L5957; depth: grep for `bs_wasm_related_E` returns only these declarations and the nine parent dispatches, so no child uses another; child lines: `Proof`/`Qed` pairs L3809-L4204, L4215-L4391, L4403-L4596, L4610-L4880, L4897-L5408, L5416-L5424, L5433-L5769, L5783-L5955, counted from `Proof with eauto.` through `Qed.` inclusive"
+    },
+    {
+      "n": 3,
+      "claim": "The authors state the plan in a comment: 'The main correctness theorem below is proved by induction on [bstep_e]. The per-constructor lemmas and the induction hypotheses all share this statement.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_correct.v#L3739-L3741 (comment quoted verbatim)"
+    },
+    {
+      "n": 4,
+      "claim": "The generalized theorem is the interface consumed by the top-level correctness statement: `toplevel_theorem.v` instantiates it via `have HMAIN := repr_bs_LambdaANF_Wasm_related cenv fenv penv _ _ Hassms ...` at line 258.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/toplevel_theorem.v#L258-L262"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 9,
+    "depth": 1,
+    "glue_lines": 12,
+    "child_lines": [
+      396,
+      177,
+      194,
+      271,
+      512,
+      9,
+      337,
+      173
+    ]
+  },
+  "metrics": {
+    "parent_statement_lines": 5,
+    "direct_lemmas": 9,
+    "children_shown": 8,
+    "child_proof_lines": [
+      396,
+      177,
+      194,
+      271,
+      512,
+      9,
+      337,
+      173,
+      66
+    ],
+    "how_counted": "parent_statement_lines = lines 6030-6034; direct_lemmas = the nine `Lemma bs_wasm_related_E*` declarations; child_proof_lines counted from `Proof with eauto.` through `Qed.` inclusive, in declaration order (Econstr, Eproj, Ecase, Eapp, Eletapp, Efun, Eprim_val, Eprim, Ehalt); the first eight are the shown child sites"
+  },
+  "consequences": "The move creates one leaf per constructor of the inductive relation (9 here), each carrying the induction hypothesis as an explicit premise so the parent is pure dispatch and every leaf is provable in isolation. The cost is a fixed, repeated preamble: `bs_wasm_assumptions pfs fds` and the whole `bs_wasm_related` hypothesis structure are copied verbatim into every lemma's statement, so a change to the invariant forces editing all 9 statements. The parent has no independent content: if a child's statement is wrong the parent still compiles and dispatches, so correctness rests entirely on the children. Failure mode: when the invariant must be strengthened for one rule only, the uniform-statement premise breaks and the per-callee factoring stops paying (the lemma statements diverge).",
+  "known_uses": [
+    "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/toplevel_theorem.v#L258-L262"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "2bfeffdde5f12c3aa904cc628fa2df22094c9abf3ad24c2670f612b6e78b593f",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:54:10Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T16:04:38Z"
+}

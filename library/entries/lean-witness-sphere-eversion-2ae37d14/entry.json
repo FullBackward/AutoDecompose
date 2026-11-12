@@ -1,0 +1,193 @@
+{
+  "id": "lean-witness-sphere-eversion-2ae37d14",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Sphere eversion: obtain the witness from the immersion h-principle",
+  "intent": "Prove the headline Smale sphere-eversion theorem — an existential ∃ f : ℝ → 𝕊² → E, smooth in both variables, f 0 = inclusion, f 1 = antipodal, every f t an immersion — by obtaining the witness f from the parametric immersion h-principle applied to a formal eversion, then discharging each conjunct against the bundle's projections and three endpoint lemmas.",
+  "move": "witness",
+  "also_known_as": [
+    "witness introduction",
+    "obtain ⟨f, h⟩ := …; refine ⟨f, …⟩",
+    "rcases … with ⟨f, …⟩ then refine ⟨f, …⟩"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "sphere-eversion",
+    "url": "https://github.com/leanprover-community/sphere-eversion",
+    "commit": "33ab3d626854a0f0f04ed5772e3102d652e96475",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "SphereEversion/Global/Immersion.lean",
+      "bytes": 16248,
+      "sha256": "c51b0033a3f9504dff6eea146c4e01addea04adbe6e982a6ad74e11fa944cb8c",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/Immersion.lean"
+    },
+    {
+      "path": "SphereEversion/Main.lean",
+      "bytes": 4099,
+      "sha256": "8eca6c8e5a6c00bf98e820a5fbda09e94dc9c5f88506a43385c5cbfab5e23c9d",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Main.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "SphereEversion/Global/Immersion.lean",
+      "lines": [
+        307,
+        340
+      ],
+      "role": "parent",
+      "name": "sphere_eversion",
+      "excerpt_sha256": "cec7cdb188f5651433ced538ff0209baa711ff4ca70a7566b157b4f1f2cf3b62",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/Immersion.lean#L307-L340"
+    },
+    {
+      "path": "SphereEversion/Global/Immersion.lean",
+      "lines": [
+        119,
+        124
+      ],
+      "role": "child",
+      "name": "immersionRel_satisfiesHPrincipleWith",
+      "excerpt_sha256": "374f679df7e8d9452715baffd814a3732ad4089db2725f50c676fa0efd5c8112",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/Immersion.lean#L119-L124"
+    },
+    {
+      "path": "SphereEversion/Global/Immersion.lean",
+      "lines": [
+        243,
+        256
+      ],
+      "role": "child",
+      "name": "formalEversion_hol_near_zero_one",
+      "excerpt_sha256": "be38a4d47212ff607f5ad0a074c07538bb1807779af4f2c9c541faf0b268e3e8",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/Immersion.lean#L243-L256"
+    },
+    {
+      "path": "SphereEversion/Global/Immersion.lean",
+      "lines": [
+        209,
+        209
+      ],
+      "role": "child",
+      "name": "formalEversion_zero",
+      "excerpt_sha256": "4aee8365b675a3642dbc4a8ced674519656ee4beed0cc0e401297f51f4b921a2",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/Immersion.lean#L209-L209"
+    },
+    {
+      "path": "SphereEversion/Global/Immersion.lean",
+      "lines": [
+        211,
+        211
+      ],
+      "role": "child",
+      "name": "formalEversion_one",
+      "excerpt_sha256": "9959969179d06ffc5d9935f80de42dd5ec0fb7f4622b6f04f7c698225243ae07",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/Immersion.lean#L211-L211"
+    }
+  ],
+  "parent": {
+    "name": "sphere_eversion",
+    "statement": "theorem sphere_eversion :\n    ∃ f : ℝ → 𝕊² → E,\n      CMDiff ∞ ↿f ∧ (f 0 = fun x : 𝕊² ↦ (x : E)) ∧ (f 1 = fun x : 𝕊² ↦ -(x : E)) ∧\n        ∀ t, Immersion (𝓡 2) 𝓘(ℝ, E) (f t) ∞ := by"
+  },
+  "children": [
+    {
+      "name": "immersionRel_satisfiesHPrincipleWith",
+      "statement": "theorem immersionRel_satisfiesHPrincipleWith\n    [T2Space P] [SigmaCompactSpace P] [T2Space M] [SigmaCompactSpace M] [SigmaCompactSpace M']\n    (h : finrank ℝ E < finrank ℝ E') (hC : IsClosed C) (hε_pos : ∀ x, 0 < ε x)\n    (hε_cont : Continuous ε) : (immersionRel I M I' M').SatisfiesHPrincipleWith IP C ε",
+      "closed_by": "(immersionRel_ample I I' h).satisfiesHPrincipleWith (immersionRel_open I I') hC hε_pos hε_cont"
+    },
+    {
+      "name": "formalEversion_hol_near_zero_one",
+      "statement": "theorem formalEversion_hol_near_zero_one :\n    ∀ᶠ s : ℝ × 𝕊² near {0, 1} ×ˢ univ, (formalEversion E ω s.1).toOneJetSec.IsHolonomicAt s.2",
+      "closed_by": "filter_upwards [a neighbourhood (Iio (1/4) ∪ Ioi (3/4)) ×ˢ univ of {0,1} ×ˢ univ] then rcases the disjunction → formalEversionHolAtZero / formalEversionHolAtOne"
+    },
+    {
+      "name": "formalEversion_zero",
+      "statement": "theorem formalEversion_zero (x : 𝕊²) : (formalEversion E ω 0).bs x = x",
+      "closed_by": "by simp (using the [simp] lemma formalEversion_bs)"
+    },
+    {
+      "name": "formalEversion_one",
+      "statement": "theorem formalEversion_one (x : 𝕊²) : (formalEversion E ω 1).bs x = -x",
+      "closed_by": "by simp (using the [simp] lemma formalEversion_bs)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "an existential goal ∃ f : D → E, P f whose body is a conjunction of properties of the witness (smoothness, endpoint values, a ∀-predicate over the parameter); the witness is produced by one named construction (here the parametric h-principle …SatisfiesHPrincipleWith … .bs applied to a formal solution), and each conjunct is a separate fact about the named witness",
+    "use_when": "the witness arrives as a single bundle (a structure or an ∃ over several properties) and the goal's conjuncts match that bundle's projections; the remaining obligations are exactly the named lemmas you already hold about the candidate (endpoint values, holonomicity), so each closes independently",
+    "avoid_when": "the goal needs a property the source lemma does not expose (you would have to re-open the bundle and re-derive it); the conjuncts must be proved jointly rather than one per child; or the witness is assembled interactively from several choices rather than obtained from a single lemma"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent `sphere_eversion` (lines 307-340) closes using exactly four same-file lemmas — `immersionRel_satisfiesHPrincipleWith` (line 324) yields the witness `f`, `formalEversion_hol_near_zero_one` (line 327) is its holonomicity hypothesis, and `formalEversion_zero` (line 333) and `formalEversion_one` (line 336) close the two endpoint equalities — together with the projection fields `h₁` (smoothness) and `h₅` (injectivity) of the witness.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/Immersion.lean#L307-L340"
+    },
+    {
+      "n": 2,
+      "claim": "The file `SphereEversion/Global/Immersion.lean` contains no `sorry`, `admit`, `Admitted` or `axiom` token, and the project CI builds it (`lake build SphereEversion`) on every push and PR to `master`.",
+      "evidence_kind": "check",
+      "evidence": "read of the whole copied file (350 lines); .github/workflows/blueprint.yml lines 34-35 (https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/.github/workflows/blueprint.yml#L34-L35)"
+    },
+    {
+      "n": 3,
+      "claim": "The theorem is the blueprint node `thm:sphere_eversion` (`Smale 1958`), declared `\\lean{sphere_eversion}\\leanok` at global_convex_integration.tex line 738, and its blueprint proof `\\uses{thm:open_ample, lem:open_ample_immersion}` — the open+ample h-principle that `immersionRel_satisfiesHPrincipleWith` instantiates at the immersion relation.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/blueprint/src/global_convex_integration.tex#L737-L746"
+    },
+    {
+      "n": 4,
+      "claim": "The glue is 34 lines (307-340) and the four children span 6, 14, 1 and 1 lines respectively (119-124, 243-256, 209, 211); two of the four (`formalEversion_zero`, `formalEversion_one`) close by `simp` alone.",
+      "evidence_kind": "measurement",
+      "evidence": "line ranges counted in the copied file SphereEversion/Global/Immersion.lean; recorded as shape.glue_lines=34 and shape.child_lines=[6,14,1,1]"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 2,
+    "glue_lines": 34,
+    "child_lines": [
+      6,
+      14,
+      1,
+      1
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 34,
+    "children": 4,
+    "children_closed_by_automation": 2,
+    "how_counted": "parent_proof_lines = lines 307-340 of SphereEversion/Global/Immersion.lean; children = the four named lemmas the glue cites; children_closed_by_automation = formalEversion_zero and formalEversion_one, each closed by `simp`"
+  },
+  "consequences": "The ∃-goal becomes a `refine ⟨f, …⟩` with one obligation per conjunct, so a missing conjunct is a missing leaf rather than a partial proof. The witness's usable properties are only what the source lemma's bundle exposes (`h₁` smoothness, `h₂` agreement near `C`, `h₅` injectivity); here the immersion conjunct is reconstructed from `h₁` and `h₅` rather than taken as a single field. One field of the bundle is dropped with `-`, so if a later conjunct had needed it the `rcases` would have to be restructured. Definitional gaps between the witness and the goal's endpoint statement are bridged with `convert!` (lines 333, 336): the endpoint lemmas are stated for the reparametrized `formalEversion`, so they must match the `f 0 = …` goal up to definitional equality.",
+  "known_uses": [
+    "SphereEversion/Main.lean line 38: `sphere_eversion ℝ³` closes the headline `Smale` theorem (https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Main.lean#L27-L38)"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "2ae37d146206d20e87b482e9edcb07e3ea55809b23bdbb2890fd44b87f28d10c",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:00:42Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:06:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T15:15:13Z"
+}

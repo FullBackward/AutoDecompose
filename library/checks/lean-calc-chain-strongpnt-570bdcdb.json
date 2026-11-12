@@ -1,0 +1,133 @@
+{
+  "entry": "lean-calc-chain-strongpnt-570bdcdb",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T14:56:58Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T14:56:58Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2f5835c322314f55f1026ec2f139d704b7c45c69",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T14:57:06Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": "Source CI .github/workflows/blueprint.yml (job build_project, step 'Build the project' via leanprover/lean-action@v1.2.0) builds the whole Lean project incl. StrongPNT/PNT3_RiemannZeta.lean; triggers on push to main. Pinned commit 2f5835c322314f55f1026ec2f139d704b7c45c69 is the tip of default branch main (GitHub compare 2f5835c...main = identical).",
+      "by": "verifier",
+      "at": "2026-11-12T15:00:19Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read copied code/StrongPNT/PNT3_RiemannZeta.lean L639-651: calc with exactly three links = abs_zeta_ratio_eval (L647), <= abs_zeta_inequality t (L649), = abs_zeta_prod_prime ... hs (L651); have hs at L642-644 closed by simp only / norm_num. Matches claim.",
+      "by": "verifier",
+      "at": "2026-11-12T15:00:22Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "wc -l of copied file = 4778; grep -nE word-boundary (sorry|admit|axiom) over code/StrongPNT/PNT3_RiemannZeta.lean returned no matches.",
+      "by": "verifier",
+      "at": "2026-11-12T15:00:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read copied file: glue L642-651 = 10 lines; child proof bodies 586-637 (52 lines), 522-581 (60), 64-67 (4); 10-deep chain each arrow confirmed as an application: L647 abs_zeta_ratio_eval -> L587 zeta_ratio_at_3_2 -> L295 zeta_ratio_identity_ofReal_div_two -> L289 zeta_ratio_identity -> L265 zeta_ratios -> L227 simplify_prod_ratio -> L204 prod_of_ratios -> L186 prod_of_ratios_simplified -> L139/140 lift_multipliable_of_nonzero.",
+      "by": "verifier",
+      "at": "2026-11-12T15:00:28Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read copied file L583: comment '-- Theorem zeta_lower_bound'; L522: comment '-- Following the informal proof: use abs_term_inv_bound, prod_inequality, and zetaEulerprod'. Both match claim verbatim.",
+      "by": "verifier",
+      "at": "2026-11-12T15:00:32Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "refuted",
+      "evidence": "First half correct: abs_zeta_ratio_eval body L632-637 is a 4-link calc. Second half wrong: prod_of_ratios_simplified L145-160 has 7 equality links (L148,150,152,154,156,158,160), not 6 as claimed.",
+      "by": "verifier",
+      "at": "2026-11-12T15:00:35Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2f5835c322314f55f1026ec2f139d704b7c45c69",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:02:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "6",
+      "value": "verified",
+      "evidence": "Read copied code/StrongPNT/PNT3_RiemannZeta.lean: abs_zeta_ratio_eval body L632-637 is a calc with exactly 4 equality links (L634 h_abs_ratio, L635 h_abs_tprod, L636 simp [h_abs_eq_fun], L637 rfl); prod_of_ratios_simplified L145-160 is a calc with exactly 7 equality links (L148, L150, L152, L154, L156, L158, L160). Both line ranges and link counts match claim 6.",
+      "by": "verifier",
+      "at": "2026-11-12T15:03:58Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2f5835c322314f55f1026ec2f139d704b7c45c69",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:05:13Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Verified against the copied file (byte-identical to commit 2f5835c3 per check_provenance). Parent zeta_lower_bound (639-651) is a single 3-link calc (=,<=,=) discharged by exactly the three named children: abs_zeta_ratio_eval (647), abs_zeta_inequality t (649), abs_zeta_prod_prime (651, applied with .symm under hs); only other text is have hs (642-644). Child statements and bodies in README/entry.json match the code lines 585-637, 519-581, 62-67 exactly. No sorry/admit/axiom tokens in the file (4778 lines), so nothing is left as a hole. Shape numbers verified: direct_lemmas=3, glue_lines=10 (642-651), child_lines=[52,60,4] (586-637, 522-581, 64-67). Depth-10 chain verified edge-by-edge: zeta_lower_bound->abs_zeta_ratio_eval->zeta_ratio_at_3_2(292)->zeta_ratio_identity_ofReal_div_two(288)->zeta_ratio_identity(264)->zeta_ratios(225)->simplify_prod_ratio(189)->prod_of_ratios(164)->prod_of_ratios_simplified(131)->lift_multipliable_of_nonzero(98), each edge present in the code.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:05:49Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example: 'When to use' generalizes to 'the standard shape of an Euler-product estimate ... (or any Dirichlet-series/Euler-product object)' and use_when requires only an Euler-product-analogue rewrite over a shared index set, not the zeta specifics. 'Avoid when' is honest and specific (inline one-line rw/simp rewrites; skip when factorwise bound needs too much local context; skip when products have different index sets). Consequences names three per-link obligations and honest failure modes (parent must discharge hs before link 3; the NNReal multipliability hypotheses are heavy; product rewrites must already exist as named lemmas). 'Why each child is a good leaf' directly answers the bounded-prover question: self-contained with no hypotheses (abs_zeta_ratio_eval), isolated analytic heart with named multipliability sub-lemmas (abs_zeta_inequality), and a reusable 4-line interface lemma parametric in s (abs_zeta_prod_prime). No objection.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:06:47Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2f5835c322314f55f1026ec2f139d704b7c45c69",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:07:11Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance and licence are consistent and traceable. Permalinks point to github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean with line ranges that match the copied file exactly (abs_zeta_prod_prime 62-67, abs_zeta_inequality 519-581, abs_zeta_ratio_eval 585-637, zeta_lower_bound 639-651). Commit 2f5835c322314f55f1026ec2f139d704b7c45c69 is real (GitHub API, message 'Let there be light') and identical across entry.json, README, SOURCE.md and source.json. Licence is recorded as LicenseRef-unknown, matching SOURCE.md/source.json, and confirmed honest: the repo root has no LICENSE/COPYING file (GitHub API listing). check_provenance.py passes: file byte-identical at the pinned commit.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:08:07Z"
+    }
+  ]
+}

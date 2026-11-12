@@ -1,0 +1,347 @@
+{
+  "id": "rocq-per-callee-lemma-fourcolor-3d7b1949",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Per-block C-reducibility lemmas collated into the four-colour the_reducibility",
+  "intent": "Prove that all 633 configurations of `the_configs` are C-reducible by splitting the index range [0, 633) into ten contiguous blocks, giving one generated lemma per block (`red000to214` … `red588to633`), each itself a `CatReducible` chain of smaller generated block lemmas whose leaves close by computational reflection (`CheckReducible`).",
+  "move": "per-callee-lemma",
+  "also_known_as": [
+    "one lemma per component",
+    "per-block lemma",
+    "per-pass simulation lemma (CompCert)",
+    "crunch (seL4)"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "fourcolor",
+    "url": "https://github.com/math-comp/fourcolor",
+    "commit": "c1d6b1cd5288bea4b067aac13cdde3c18dffe018",
+    "licence": "CECILL-B"
+  },
+  "files": [
+    {
+      "path": "theories/proof/reducibility.v",
+      "bytes": 1289,
+      "sha256": "c22c62c834c4c5e14f3bbf53c13aff4ca86d402b4e04cfb6373150b4922592c0",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/reducibility.v"
+    },
+    {
+      "path": "theories/proof/task001to214.v",
+      "bytes": 1029,
+      "sha256": "6a0db28046d3ccc103e23ec8a0298f16eb86d1619c255b81ba1528af581fc614",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/task001to214.v"
+    },
+    {
+      "path": "theories/proof/task215to234.v",
+      "bytes": 1031,
+      "sha256": "a198dd6b7ed0ac89ae49070a0579d6361ce5029b98777027a9cc60295baba5d8",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/task215to234.v"
+    },
+    {
+      "path": "theories/proof/task235to282.v",
+      "bytes": 1031,
+      "sha256": "d79e2ab742640ab3cdfbaf8a6b5896311a9cc4c6ee74fffe3235e2c08a143038",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/task235to282.v"
+    },
+    {
+      "path": "theories/proof/task283to302.v",
+      "bytes": 1031,
+      "sha256": "bd7a77c2ee9f62dc28118425cfca9b14f6c13d914336d02cdae158334aeecc1a",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/task283to302.v"
+    },
+    {
+      "path": "theories/proof/task303to322.v",
+      "bytes": 1031,
+      "sha256": "8768568e6559561753f629650c1b2ddfa86b1519c92c21d6e2e8b94c013f0564",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/task303to322.v"
+    },
+    {
+      "path": "theories/proof/task323to485.v",
+      "bytes": 1031,
+      "sha256": "08cc8c77ff306ba3c0d5cb1153a3bff777df1e382fc6e2d085807e8f92194c6c",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/task323to485.v"
+    },
+    {
+      "path": "theories/proof/task486to506.v",
+      "bytes": 1031,
+      "sha256": "d8200550a2001d58c7177ab0662b9c06aaf8b1fb4d42fc088c6334790d145e83",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/task486to506.v"
+    },
+    {
+      "path": "theories/proof/task589to633.v",
+      "bytes": 1080,
+      "sha256": "f6bb1c6bee994a82a8418c432568b0f78ebeff5efd81e51e202c07a76ba6f63b",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/task589to633.v"
+    },
+    {
+      "path": "theories/proof/task507to541.v",
+      "bytes": 1031,
+      "sha256": "5685dc1151fa795fd5e3bc062408a1e0d7d4d7d6e39f368a624fddc5e8f42db3",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/task507to541.v"
+    },
+    {
+      "path": "theories/proof/task542to588.v",
+      "bytes": 1031,
+      "sha256": "4caad210353a4c1b0b01f4f372bc46528d31a59bafb023e47c1697db42439264",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/task542to588.v"
+    },
+    {
+      "path": "theories/proof/cfreducible.v",
+      "bytes": 5436,
+      "sha256": "28abd7d319124f676230fc428b7f96762ab99ef9c615c21748051e71320c1cdc",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/cfreducible.v"
+    },
+    {
+      "path": "theories/proof/job001to106.v",
+      "bytes": 845,
+      "sha256": "c0d9b315e5257f5c2f94b7ba754f6907dc2830ec4b8ab4025f769781c10aad56",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/job001to106.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/proof/reducibility.v",
+      "lines": [
+        16,
+        21
+      ],
+      "role": "parent",
+      "name": "the_reducibility",
+      "excerpt_sha256": "682fa03a96e76d60f19529d10a55cb483e3362f9e0fe90dcb4ce456163696d8b",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/reducibility.v#L16-L21"
+    },
+    {
+      "path": "theories/proof/task001to214.v",
+      "lines": [
+        14,
+        17
+      ],
+      "role": "child",
+      "name": "red000to214",
+      "excerpt_sha256": "1784276ca275b308b3a5f20d7752a5ca6e75cd00694c1ea10b35e6bbbea030d9",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/task001to214.v#L14-L17"
+    },
+    {
+      "path": "theories/proof/task215to234.v",
+      "lines": [
+        14,
+        17
+      ],
+      "role": "child",
+      "name": "red214to234",
+      "excerpt_sha256": "eab8e606daafabe8645f8fa71fdb6f8f8ce0d39915ee88021a9264af10cd9ad8",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/task215to234.v#L14-L17"
+    },
+    {
+      "path": "theories/proof/task235to282.v",
+      "lines": [
+        14,
+        17
+      ],
+      "role": "child",
+      "name": "red234to282",
+      "excerpt_sha256": "0810da46ce8d40709c306e141685ae334f940738bbe16aa4f8754b41c56aecca",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/task235to282.v#L14-L17"
+    },
+    {
+      "path": "theories/proof/task283to302.v",
+      "lines": [
+        14,
+        17
+      ],
+      "role": "child",
+      "name": "red282to302",
+      "excerpt_sha256": "f241bb2b59252753548bbffc57ec59953ca4eeebcf77f963c919b1d3d9ef8f37",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/task283to302.v#L14-L17"
+    },
+    {
+      "path": "theories/proof/task303to322.v",
+      "lines": [
+        14,
+        17
+      ],
+      "role": "child",
+      "name": "red302to322",
+      "excerpt_sha256": "272d2fcb00b9d49d3a6e76d3f92f3b7badb1fdf3707b43eea3f7b48d853f3b5e",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/task303to322.v#L14-L17"
+    },
+    {
+      "path": "theories/proof/task323to485.v",
+      "lines": [
+        14,
+        17
+      ],
+      "role": "child",
+      "name": "red322to485",
+      "excerpt_sha256": "4edd33e7e7ab7cec69347cc73f3b62a06b2cdf7399b9f09a1fb712c5b03e1649",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/task323to485.v#L14-L17"
+    },
+    {
+      "path": "theories/proof/task486to506.v",
+      "lines": [
+        14,
+        17
+      ],
+      "role": "child",
+      "name": "red485to506",
+      "excerpt_sha256": "2800c026e2cb1c0cd36779930f4e660aea7e1b00dcf24d46687b85bc67665629",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/task486to506.v#L14-L17"
+    },
+    {
+      "path": "theories/proof/task589to633.v",
+      "lines": [
+        13,
+        18
+      ],
+      "role": "child",
+      "name": "red588to633",
+      "excerpt_sha256": "6b96d1b2ae8d4186c6a92ee44250200a1cadcbc985d2eb7986a5d93ee785b797",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/task589to633.v#L13-L18"
+    }
+  ],
+  "parent": {
+    "name": "the_reducibility",
+    "statement": "Lemma the_reducibility : reducibility."
+  },
+  "children": [
+    {
+      "name": "red000to214",
+      "statement": "reducible_in_range 0 214 the_configs",
+      "closed_by": "CatReducible red000to106 red106to164 red164to189 red189to206 red206to214"
+    },
+    {
+      "name": "red214to234",
+      "statement": "reducible_in_range 214 234 the_configs",
+      "closed_by": "CatReducible red214to218 red218to222 red222to226 red226to230 red230to234"
+    },
+    {
+      "name": "red234to282",
+      "statement": "reducible_in_range 234 282 the_configs",
+      "closed_by": "CatReducible red234to238 red238to253 red253to270 red270to278 red278to282"
+    },
+    {
+      "name": "red282to302",
+      "statement": "reducible_in_range 282 302 the_configs",
+      "closed_by": "CatReducible red282to286 red286to290 red290to294 red294to298 red298to302"
+    },
+    {
+      "name": "red302to322",
+      "statement": "reducible_in_range 302 322 the_configs",
+      "closed_by": "CatReducible red302to306 red306to310 red310to314 red314to318 red318to322"
+    },
+    {
+      "name": "red322to485",
+      "statement": "reducible_in_range 322 485 the_configs",
+      "closed_by": "CatReducible red322to383 red383to398 red398to438 red438to465 red465to485"
+    },
+    {
+      "name": "red485to506",
+      "statement": "reducible_in_range 485 506 the_configs",
+      "closed_by": "CatReducible red485to489 red489to494 red494to498 red498to502 red502to506"
+    },
+    {
+      "name": "red506to541",
+      "statement": "reducible_in_range 506 541 the_configs",
+      "closed_by": "CatReducible red506to510 red510to516 red516to530 red530to534 red534to541"
+    },
+    {
+      "name": "red541to588",
+      "statement": "reducible_in_range 541 588 the_configs",
+      "closed_by": "CatReducible red541to545 red545to549 red549to553 red553to562 red562to588"
+    },
+    {
+      "name": "red588to633",
+      "statement": "reducible_in_range 588 633 the_configs",
+      "closed_by": "have red633: reducible_in_range 633 633 the_configs.; CatReducible red588to610 red610to617 red617to622 red622to633 red633"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A statement of the form `reducible_in_range 0 (size the_configs) the_configs` (all of a fixed, finite list satisfy a decidable predicate `cfreducible`), where the list is a long homogeneous family (`the_configs := @seqn config 633`) that can be partitioned into contiguous index blocks.",
+    "use_when": "One theorem must cover a large, structured family of homogeneous cases (one per configuration, compiler pass, or function), each provable by the same mechanical procedure, and the family has a natural contiguous ordering so a transitivity-like combinator (`cat_reducible_range`) can catenate the per-block results.",
+    "avoid_when": "The cases are few, or heterogeneous (each needs a distinct argument, so the shared per-block tactic buys nothing); the blocks are not contiguous or cannot be tiled exactly (the combinator requires the end of one block to equal the start of the next); the per-case check is not uniform enough to be discharged by one generated tactic."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent `the_reducibility` is closed from the ten direct lemmas in three tactic lines: line 18 unfolds `reducibility` and applies `cat_reducible_range with 322`, and lines 19-20 are two `CatReducible` chains naming `red000to214 … red302to322` (range [0, 322)) and `red322to485 … red588to633` (range [322, 633)); nothing else appears between `Proof.` and `Qed.`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/reducibility.v#L16-L21"
+    },
+    {
+      "n": 2,
+      "claim": "Each of the ten direct lemmas is a `CatReducible` chain of five contiguous sub-block lemmas, and every job-level sub-block lemma closes with the single tactic `CheckReducible` (computational reflection): `red000to214` cites `red000to106`, which `job001to106.v` closes with `Proof. CheckReducible. Qed.`; the one non-job argument, `red633` in `red588to633`, is the empty end range closed by `check_reducible_in_range; left`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/task001to214.v#L14-L17 and https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/job001to106.v#L12-L13"
+    },
+    {
+      "n": 3,
+      "claim": "The shape is measured from the copied files: `direct_lemmas = 10` (the ten `redMMMtoNNN` names in reducibility.v lines 19-20), `depth = 2` (the chain the_reducibility → red000to214 → red000to106, the last closed by `CheckReducible`), `glue_lines = 5` (reducibility.v lines 17-21, the `Proof … Qed` block), and `child_lines = [3, 3, 3, 3, 3, 3, 3, 5]` (each shown child's `Proof … Qed` block; red588to633 has 5 because it also proves the empty end-range `red633`).",
+      "evidence_kind": "measurement",
+      "evidence": "counted from https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/reducibility.v#L17-L21 and the eight child sites listed under `sites`; depth chain checked in task001to214.v#L14-L17 and job001to106.v#L12-L13"
+    },
+    {
+      "n": 4,
+      "claim": "The 633 configurations are covered by 49 job files (`theories/proof/job*.v`) grouped into the 10 task files, for a two-level tree of 60 lemmas (1 theorem + 10 task + 49 job) whose leaves are all closed by `CheckReducible`.",
+      "evidence_kind": "measurement",
+      "evidence": "49 job files counted by `library/tools/list_files.py fourcolor` at commit c1d6b1cd5288bea4b067aac13cdde3c18dffe018 (paths matching theories/proof/job*.v); the_configs := @seqn config 633 at https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/configurations.v#L2076"
+    },
+    {
+      "n": 5,
+      "claim": "The authors document the collation move in the file header: \"CatReducible lem1 .. lem5 :: tactic for proving a reducible_in_range i j cfs subgoal by combining proofs lem[1-5] of reducible_in_range for five contiguous subranges covering [i, j).\".",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/cfreducible.v#L25-L28"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 10,
+    "depth": 2,
+    "glue_lines": 5,
+    "child_lines": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      5
+    ]
+  },
+  "metrics": {
+    "direct_lemmas": 10,
+    "job_lemmas": 49,
+    "total_lemmas": 60,
+    "configurations": 633,
+    "how_counted": "job_lemmas = files matching theories/proof/job*.v in the list_files.py output at the pinned commit; total_lemmas = 1 theorem (the_reducibility) + 10 task lemmas + 49 job lemmas; configurations = size of the_configs, defined as @seqn config 633 in configurations.v line 2076"
+  },
+  "consequences": "The move creates one leaf obligation per block (each must prove `reducible_in_range MMM NNN the_configs`), a contiguity obligation (the blocks must tile the parent range exactly, since `cat_reducible_range` needs the end of one block to equal the start of the next), and a fixed arity (the `CatReducible` tactic takes exactly five sub-lemmas, so the final `red588to633` introduces an inline `have red633` for the empty end range [633, 633)). Failure modes: a missing or overlapping block, or a block whose range is off by one, fails as an opaque unification error at the catenation point rather than a pointed message; and a block whose configurations are not all checkable by the same `CheckReducible` reflection breaks the uniform one-tactic leaf.",
+  "known_uses": [
+    "lean-per-callee-lemma-equational-theories-b60a63fd"
+  ],
+  "related": [
+    "lean-per-callee-lemma-equational-theories-b60a63fd"
+  ],
+  "rule": {
+    "f10_rule": 15,
+    "relation": "supports"
+  },
+  "content_key": "3d7b1949dc87083674bcb4521b02b025bd3ef09e3b64c180f4598e1b355d3e48",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:32:45Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,rule,also_known_as,known_uses,related",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T15:45:02Z"
+}

@@ -1,0 +1,117 @@
+{
+  "entry": "rocq-interface-lemma-compcert-eda26107",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:42:59Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:42:59Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2685140bf72c959446981fb99b5e44a8975021bc",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:43:07Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml (Build job runs tools/runner.sh build = make all, which compiles every Coq file including driver/Compiler.v; workflow triggers on push to master, the default branch; pinned commit 2685140bf72c959446981fb99b5e44a8975021bc)",
+      "by": "verifier",
+      "at": "2026-11-12T15:44:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "line 451 reads 'intros. apply c_semantic_preservation. apply transf_c_program_match; auto.' — one tactic line applying the two lemmas then auto, no unfold of transf_c_program or match_prog",
+      "by": "verifier",
+      "at": "2026-11-12T15:44:26Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "lines 436-438 comment reads 'Combining the results above, we obtain semantic preservation for two usage scenarios of CompCert: compilation of a single monolithic program, and separate compilation of multiple source files followed by linking.'",
+      "by": "verifier",
+      "at": "2026-11-12T15:44:29Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "child proofs Proof. through Qed.: transf_c_program_match lines 269-318 = 50 lines; c_semantic_preservation lines 423-432 = 10 lines; glue = line 451 (1 line) applying 2 lemmas",
+      "by": "verifier",
+      "at": "2026-11-12T15:44:32Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "line 476 '... apply transf_c_program_match; auto.' and line 480 '... apply c_semantic_preservation; auto.' inside separate_transf_c_program_correct reuse both lemmas",
+      "by": "verifier",
+      "at": "2026-11-12T15:44:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "line 431 'exact (proj2 (cstrategy_semantic_preservation _ _ H)).' closes c_semantic_preservation; cstrategy_semantic_preservation is lines 353-417, all in driver/Compiler.v, giving depth 2",
+      "by": "verifier",
+      "at": "2026-11-12T15:44:38Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2685140bf72c959446981fb99b5e44a8975021bc",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:44:59Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Opened code/driver/Compiler.v (provenance pass, byte-identical). Parent (446-452) statement matches entry verbatim; proof is the single line 'intros. apply c_semantic_preservation. apply transf_c_program_match; auto.' (451) with Qed, using exactly the two named children and no other lemma, no unfold of transf_c_program/match_prog. Both children statements (265-268, 419-422) match verbatim and their closed_by matches their bodies (transf_c_program_match: unfold/destruct then exists/split/apply per pass, reflexivity, Qed 318; c_semantic_preservation: compose_backward_simulation ... exact (proj2 (cstrategy_semantic_preservation _ _ H)), Qed 432). Shape numbers correct: direct_lemmas=2, glue_lines=1 (line 451), child_lines=[50,10] (proof 269-318 = 50 lines, 423-432 = 10 lines), depth=2 (main -> c_semantic_preservation -> cstrategy_semantic_preservation, 353-417). All 5 claims verified. Nit, not a blocker: claim 3 says 'counted over ... 265-318 and 419-432' but the 50/10 counts are proof-only 269-318/423-432; the metrics how_counted field states it correctly.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:46:05Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality holds on all three questions. (1) Move abstracted beyond CompCert: applicability.goal_shape states 'A -> B -> C proved as apply l2; apply l1', and use_when/avoid_when are phrased generically (composition of two named facts at an abstraction boundary), with a second call site (separate_transf_c_program_correct) as known-use. (2) avoid_when and consequences are honest and specific: statement misalignment leaves a residual obligation; a non-self-contained child leaks the interface; the real work sits in the children; and the concrete failure mode (a pass added/removed forces hand-editing transf_c_program_match while parent and c_semantic_preservation never change) is named. (3) The good-leaf rationale is present: each child is self-contained and 'nearly trivial given parents' (survey F rule 14), closing mechanically from per-pass lemmas, which is exactly what a bounded filler needs. Non-blocking flag for the provenance/correctness reviewer: README cites 'survey F rule 14' but entry.json rule.f10_rule records 15 ('shallow and wide'); the two should be reconciled.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:48:16Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2685140bf72c959446981fb99b5e44a8975021bc",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:48:38Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance pass: file driver/Compiler.v byte-identical at pinned commit 2685140bf72c959446981fb99b5e44a8975021bc (sha256 1782a975... matches, 20511 bytes). Commit is recorded identically across entry.json, README, SOURCE.md and source.json. Licence LicenseRef-INRIA-Non-Commercial is consistent in all four and matches upstream-LICENSE text. Line permalinks verified against the local copy: parent 446-452, author comment 434-444, known-use 466-481 (transf_c_program_match at 476, c_semantic_preservation at 480). Source note records licence text and attribution. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:48:59Z"
+    }
+  ]
+}

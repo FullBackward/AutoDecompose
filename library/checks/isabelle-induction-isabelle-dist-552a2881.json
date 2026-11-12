@@ -1,0 +1,109 @@
+{
+  "entry": "isabelle-induction-isabelle-dist-552a2881",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:09:49Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:09:49Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 34ca456d44ca14641450b5d52f51b38688d4d1b5",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:09:56Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "Source isabelle-prover/mirror-isabelle (default branch master) has no CI workflow: GitHub API listing of the repo root shows no .github directory and no Jenkinsfile or other CI config (only .hgignore/.hgtags/Admin/bin/doc/etc/lib/src); it is a mirror of the Mercurial-based Isabelle distribution whose CI runs on Isabelle's own test infrastructure, outside this GitHub mirror. So no CI workflow path exists to cite for building src/HOL/Examples/Reflection_Examples.thy.",
+      "by": "verifier",
+      "at": "2026-11-12T16:11:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read the copied file code/src/HOL/Examples/Reflection_Examples.thy (byte-identical at 34ca456d per check_provenance). Line 245 is 'by (induct t rule: linum.induct) (simp_all add: lin_mul lin_add)', naming lin_mul and lin_add; lin_add ends in 'done' at line 223 and lin_mul's proof ends at line 233.",
+      "by": "verifier",
+      "at": "2026-11-12T16:11:11Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "grep over the copied file: 22 'oops' occurrences at exactly lines 67,82,90,127,132,163,171,180,186,200,251,287,292,321,328,344,371,384,388,419,450,484 (all outside 135-245), and zero 'sorry'. Range 135-245 has no oops or sorry.",
+      "by": "verifier",
+      "at": "2026-11-12T16:11:14Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read lines 202-203 of the copied file: text block reads 'Okay, let's try reflection. Some simplifications on num follow. You can skim until the main theorem linum.' (with markup stripped), matching the quoted author statement.",
+      "by": "verifier",
+      "at": "2026-11-12T16:11:16Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read copied file: line 121 'by (induct p rule: nnf.induct) auto' (nnf lemma), and lines 315-316 'lemma linaform: ...' / 'by (induct p rule: linaform.induct) (auto simp add: linum)' which names linum as a leaf lemma. Both recurrences of the same induction-over-reflected-datatype move are present.",
+      "by": "verifier",
+      "at": "2026-11-12T16:11:19Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read copied file: linum glue proof is a single line 245; lin_add proof body is lines 220-223 (apply, apply, apply, done) = 4 lines; lin_mul proof is a single line 233. So direct_lemmas=2, depth=1, glue_lines=1, child_lines=[4,1] as claimed.",
+      "by": "verifier",
+      "at": "2026-11-12T16:11:22Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "object",
+      "evidence": "Decomposition and shape are sound: parent linum (L243-245) statement 'Inum (linum t) bs = Inum t bs' matches code and closes by 'by (induct t rule: linum.induct) (simp_all add: lin_mul lin_add)'; children lin_add (L218-223, closed by its two-argument induction + case_tac + algebra_simps) and lin_mul (L231-233, closed by lin_mul.induct + auto algebra_simps) match the code; they are exactly the two lemmas the main proof names; shape direct_lemmas=2 depth=1 glue_lines=1 child_lines=[4,1] is correct. Objection: claim 2 is refuted. It asserts 'the dependency cone (lines 135-245) contains no sorry or oops' and that 'every oops in the file lies outside this range', listing oops at 163, 171, 180, 186, 200 among the outside lines - but those five lines are inside 135-245 (grep confirms oops at exactly 67,82,90,127,132,163,171,180,186,200,251,287,292,321,328,344,371,384,388,419,450,484). The oops at 160-200 are unrelated reify demo lemmas, not linum's cone, so the underlying fact (linum's real cone is sorry/oops-free) is true, but the claim's line-range statement is false and self-contradictory. Fix: reword claim 2 to name linum's actual dependency cone (num L137-138, Inum L152-158, lin_add L205-223, lin_mul L225-233, linum L235-245) as sorry/oops-free, and correctly state that the file's oops (including 163,171,180,186,200, which sit between those ranges) are in the unrelated reify/demo lemmas.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T16:13:02Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated to generalise beyond linum: applicability.goal_shape gives the parametric template 'I (f t) bs = I t bs' over a fun/primrec recursion f on a reflected datatype with interpretation I, and also_known_as plus claim 4 (known-use at nnf L121 and linaform L315-316, the latter reusing linum as a leaf) show the same induction-over-reflected-datatype move recurring, so it is not tied to this example. 'when not to use' is honest and specific: avoid when helpers depend on each other or the main theorem (breaks the acyclic depth-1 graph), when a helper is single-use and trivial (inline it), or when a case needs a parameter fixed (state an explicit arbitrary:). Consequences are specific and trace to the code: one obligation per helper or simp_all stalls; bs must be generalised over the induction (fixing it breaks recursive cases); the CN case needs both helpers because linum recurses through a Mul inside an Add; each helper must state exactly the rewrite simp_all needs. The README states what makes the children good leaves for a bounded prover: each is self-contained with a free environment list, closes without naming any further project lemma (own f.induct + case_tac + algebra_simps/Let_def), and the helper graph is acyclic at depth 1.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T16:14:23Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 34ca456d44ca14641450b5d52f51b38688d4d1b5",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:14:40Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance pass (check_provenance.py): the single copied file code/src/HOL/Examples/Reflection_Examples.thy is byte-identical at pinned commit 34ca456d44ca14641450b5d52f51b38688d4d1b5. Commit is consistent across entry.json source.commit, sources/isabelle-dist/SOURCE.md, source.json and ledger. Licence BSD-3-Clause is consistent across entry.json, README, SOURCE.md and source.json, and upstream-COPYRIGHT is the standard 3-clause BSD text. All permalinks (blob/ at the pinned commit) point at the same repo/path and their cited line ranges match the copied file exactly (parent 243-245; children 218-223, 231-233; contexts 137-138, 152-158, 205-216, 225-229, 235-241). README and SOURCE.md both state the code is copied whole and unmodified under BSD-3-Clause. Everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T16:15:23Z"
+    }
+  ]
+}

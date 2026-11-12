@@ -1,0 +1,217 @@
+{
+  "id": "isabelle-induction-isabelle-dist-552a2881",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Induction on the reflected num datatype proves the linear normaliser linum correct",
+  "intent": "Prove the correctness of the linear-arithmetic normaliser linum (the reflection target the chapter builds up to) by one structural induction over the reflected num datatype; each non-trivial constructor is discharged by the matching helper lemma written immediately above it - lin_add for Add and CN, lin_mul for Mul - both fed to simp_all.",
+  "move": "induction",
+  "also_known_as": [
+    "structural induction over a reflected datatype",
+    "recursion induction (rule: f.induct)",
+    "correctness of a simplifier by induction"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "isabelle-dist",
+    "url": "https://github.com/isabelle-prover/mirror-isabelle",
+    "commit": "34ca456d44ca14641450b5d52f51b38688d4d1b5",
+    "licence": "BSD-3-Clause"
+  },
+  "files": [
+    {
+      "path": "src/HOL/Examples/Reflection_Examples.thy",
+      "bytes": 21124,
+      "sha256": "c23ea76ff848169e2c90c3a8d3560bbfcf79f933a6958766a556f5a1b8b625dd",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Reflection_Examples.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "src/HOL/Examples/Reflection_Examples.thy",
+      "lines": [
+        243,
+        245
+      ],
+      "role": "parent",
+      "name": "linum",
+      "excerpt_sha256": "46c638fed529ff276aacccdd95d0a3376a6fa93583020dd1b5bceb8aab34768b",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Reflection_Examples.thy#L243-L245"
+    },
+    {
+      "path": "src/HOL/Examples/Reflection_Examples.thy",
+      "lines": [
+        218,
+        223
+      ],
+      "role": "child",
+      "name": "lin_add",
+      "excerpt_sha256": "9d8dfd7f9ced9c40d2a19883c18f3f3a0f5ea59b0b15ebaff7a013ea7714823b",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Reflection_Examples.thy#L218-L223"
+    },
+    {
+      "path": "src/HOL/Examples/Reflection_Examples.thy",
+      "lines": [
+        231,
+        233
+      ],
+      "role": "child",
+      "name": "lin_mul",
+      "excerpt_sha256": "aaffd3a8aebaf61e846bb5104c87b954cb398c3fc4a5bd13c547fb0c23e675fb",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Reflection_Examples.thy#L231-L233"
+    },
+    {
+      "path": "src/HOL/Examples/Reflection_Examples.thy",
+      "lines": [
+        137,
+        138
+      ],
+      "role": "context",
+      "name": "num-datatype",
+      "excerpt_sha256": "87a02f43a0b07a03664fd07e634307d63e41c0cc06e9339b6f603c677eb094af",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Reflection_Examples.thy#L137-L138"
+    },
+    {
+      "path": "src/HOL/Examples/Reflection_Examples.thy",
+      "lines": [
+        152,
+        158
+      ],
+      "role": "context",
+      "name": "Inum",
+      "excerpt_sha256": "502206b71d447a15c10986ef675d2b0a916d845e08eb478c39f1d90362861bb8",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Reflection_Examples.thy#L152-L158"
+    },
+    {
+      "path": "src/HOL/Examples/Reflection_Examples.thy",
+      "lines": [
+        205,
+        216
+      ],
+      "role": "context",
+      "name": "lin_add-def",
+      "excerpt_sha256": "1bcfe650ecccf6607952f091988f677cf8c3bbbe9952ec7ca37f17b0a4b89710",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Reflection_Examples.thy#L205-L216"
+    },
+    {
+      "path": "src/HOL/Examples/Reflection_Examples.thy",
+      "lines": [
+        225,
+        229
+      ],
+      "role": "context",
+      "name": "lin_mul-def",
+      "excerpt_sha256": "777ad3aec7e839e48158b3cb43e5d506d14894dac2ef6a15243655957a9bc8e6",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Reflection_Examples.thy#L225-L229"
+    },
+    {
+      "path": "src/HOL/Examples/Reflection_Examples.thy",
+      "lines": [
+        235,
+        241
+      ],
+      "role": "context",
+      "name": "linum-def",
+      "excerpt_sha256": "5ba66a0f39c595f3b6bd9a18b53edf96df27569e6fbfe9855950bf976edab01a",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Reflection_Examples.thy#L235-L241"
+    }
+  ],
+  "parent": {
+    "name": "linum",
+    "statement": "Inum (linum t) bs = Inum t bs"
+  },
+  "children": [
+    {
+      "name": "lin_add",
+      "statement": "Inum (lin_add t s) bs = Inum (Add t s) bs",
+      "closed_by": "its own two-argument induction 'induct t s rule: lin_add.induct' (five cases from the five defining equations) with 'simp_all add: Let_def', then 'case_tac' on the guards c1+c2 = 0, n1 ≤ n2 and n1 = n2, finished with 'simp_all add: algebra_simps'"
+    },
+    {
+      "name": "lin_mul",
+      "statement": "Inum (lin_mul t i) bs = Inum (Mul i t) bs",
+      "closed_by": "by (induct t i rule: lin_mul.induct) (auto simp add: algebra_simps)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A correctness statement for a normaliser/simplifier over a reflected datatype: Inum (f t) bs = Inum t bs, where f is a fun/primrec recursion over a datatype num and Inum is the interpretation into the host type; the environment list bs is free and is generalised over the induction",
+    "use_when": "the normaliser f is a fun recursion, so f.induct yields one case per constructor; each non-trivial constructor reduces to a distinct helper (one helper per operation, here lin_add and lin_mul) whose correctness can be stated and proved first as its own lemma, then fed to simp_all",
+    "avoid_when": "the helpers depend on each other or on the main theorem (breaking the acyclic, depth-1 lemma graph); a helper is used once and is trivial (fold it inline instead); a case needs the environment or another parameter fixed (then state an explicit arbitrary: on the induction)"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent linum (lines 243-245) closes from its two children: its one-line proof 'by (induct t rule: linum.induct) (simp_all add: lin_mul lin_add)' names lin_mul and lin_add, and both children are proved just above in the same file (lin_add ends in done at line 223, lin_mul at line 233).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Reflection_Examples.thy#L243-L245 and #L218-L223 and #L231-L233"
+    },
+    {
+      "n": 2,
+      "claim": "The dependency cone (lines 135-245, from 'Example 2: Simple arithmetic formulae' through the linum lemma) contains no sorry or oops; every oops in the file lies outside this range (lines 67, 82, 90, 127, 132, 163, 171, 180, 186, 200, 251, 287, 292, 321, 328, 344, 371, 384, 388, 419, 450, 484).",
+      "evidence_kind": "check",
+      "evidence": "read of the copied file https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Reflection_Examples.thy"
+    },
+    {
+      "n": 3,
+      "claim": "The author flags linum as the chapter's main theorem: 'Okay, let's try reflection. Some simplifications on num follow. You can skim until the main theorem linum.' (lines 202-203).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Reflection_Examples.thy#L202-L203"
+    },
+    {
+      "n": 4,
+      "claim": "The same move (correctness of a reflected simplifier by induction over the reflected datatype) recurs in the same file: nnf is proved by '(induct p rule: nnf.induct) auto' (line 121) and linaform by '(induct p rule: linaform.induct) (auto simp add: linum)' (lines 315-316), the latter reusing linum itself as a leaf lemma.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Reflection_Examples.thy#L119-L121 and #L315-L316"
+    },
+    {
+      "n": 5,
+      "claim": "Line counts in the copied file: the glue proof of linum is 1 line (245); the child proofs are 4 lines for lin_add (220-223) and 1 line for lin_mul (233). The shape is direct_lemmas = 2, depth = 1, glue_lines = 1, child_lines = [4, 1].",
+      "evidence_kind": "measurement",
+      "evidence": "line ranges counted in https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Reflection_Examples.thy: glue L245, lin_add L220-L223, lin_mul L233; depth = linum -> lin_add and linum -> lin_mul, both leaves"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 1,
+    "glue_lines": 1,
+    "child_lines": [
+      4,
+      1
+    ]
+  },
+  "metrics": {
+    "glue_lines": 1,
+    "direct_lemmas": 2,
+    "depth": 1,
+    "child_proof_lines": [
+      4,
+      1
+    ],
+    "how_counted": "glue_lines = proof body of linum, line 245; child proof lines = 220-223 (lin_add) and 233 (lin_mul); depth = longest project-lemma chain linum -> lin_add and linum -> lin_mul, both leaves"
+  },
+  "consequences": "The move creates one obligation per helper: lin_add and lin_mul must each be proved before the main induction, or simp_all stalls on the Add/Mul/CN cases. The main induction is over t with the environment bs generalised (implicitly, since bs does not occur in t); fixing bs would break the recursive cases. The CN case needs both helpers because linum recurses through a Mul inside an Add (lin_add (linum (Mul c (Var n))) (linum t)), so a helper stated only for a top-level constructor would not cover it. Each helper must state exactly the rewrite simp_all needs (Inum (lin_add a b) bs = Inum (Add a b) bs); a mismatched or missing equation leaves the goal unsimplified.",
+  "known_uses": [
+    "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Reflection_Examples.thy#L119-L121",
+    "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Reflection_Examples.thy#L315-L316"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "552a2881c9944a53c7e9572bb33203bfac218f3313d05b2443bdc9b07f437804",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:06:53Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:12:00Z"
+    }
+  ]
+}

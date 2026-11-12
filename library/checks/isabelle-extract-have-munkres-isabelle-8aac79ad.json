@@ -1,0 +1,109 @@
+{
+  "entry": "isabelle-extract-have-munkres-isabelle-8aac79ad",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:07:36Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T16:07:36Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 90d108779e83453e9cae2f55b513246e1cc044e0",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:07:44Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI workflow in the repository: list_files.py at 90d1087 shows 14 files and none under .github/, so there is no workflow to cite; tst/ROOT declares session Top1 (options [quick_and_dirty, timeout=120]) that builds Top1_Ch5_8.thy, but no local Isabelle toolchain is available to run it",
+      "by": "verifier",
+      "at": "2026-11-12T16:09:31Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "read code lines 5064-5072: proof body is exactly lines 5069-5072 = using Lemma_40_1_step3[OF hReg hBasis hCLF] (5069), Lemma_40_1_step2[OF hReg hBasis hCLF] (5070), blank (5071), by argo (5072); 4 lines, no other proof step",
+      "by": "verifier",
+      "at": "2026-11-12T16:09:31Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "step2 is lemma Lemma_40_1_step2 at 4626 closing with qed at 4704; step3 is lemma Lemma_40_1_step3 at 4756 closing with qed at 5062, both self-contained in the same file; grep -i 'sorry|oops|admit' over the file matches only lines 13, 3758 and 12322 onward, none in 4369-5072",
+      "by": "verifier",
+      "at": "2026-11-12T16:09:31Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "line 4649 = using Lemma_40_1_step1[OF hReg hBasis hCLF hWopen] (step2 calls step1); line 4798 = by (rule Lemma_40_1_step1[OF hReg hBasis hCLF hXmD_open]) and line 4811 = by (rule Lemma_40_1_step1[OF hReg hBasis hCLF hXmC_open]) (step3 calls step1 twice)",
+      "by": "verifier",
+      "at": "2026-11-12T16:09:32Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "line 4367 section header is 'section <open><S>40 The Nagata-Smirnov Metrization Theorem<close>'; line 4372 comment is '(** from <S>40 Lemma 40.1 [top1.tex:5675] **)'; text blocks: 4373 'Step 1 of Lemma 40.1: open set decomposition', 4625 'Step 2 of Lemma 40.1: closed sets are G-delta', 4706 'Step 3 of Lemma 40.1: normality via the Theorem 32.1 technique'",
+      "by": "verifier",
+      "at": "2026-11-12T16:09:32Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "line arithmetic at the pinned commit: parent 5064-5072 = 9 lines; proof body 5069-5072 = 4; step2 4626-4704 = 79 lines; step3 4756-5062 = 307 lines; 79 + 307 = 386",
+      "by": "verifier",
+      "at": "2026-11-12T16:09:32Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Read copied code (entries/isabelle-extract-have-munkres-isabelle-8aac79ad/code/tst/Top1_Ch5_8.thy). Parent Lemma_40_1 (5064-5072) statement matches entry verbatim; its body (5069-5072) is exactly 'using Lemma_40_1_step3[OF hReg hBasis hCLF] Lemma_40_1_step2[OF hReg hBasis hCLF] by argo' with no other step. The two children are exactly the lemmas the parent applies (step2 4626-4704, step3 4756-5062); step1 and closedin_on_finite_Union are context, correctly not children. Child statements match code: step2 shows top1_G_delta_on X TX A (extra assume hClosed, fairly summarised as 'closedin_on .. ==> ..'), step3 shows top1_normal_on X TX. Closing methods match: step2 applies Lemma_40_1_step1 at 4649 then unfolds top1_G_delta_on_def and closes apply(rule exI[where x=V]) by satx (4690-4702); step3 applies step1 at 4798 (X-D) and 4811 (X-C), closedin_on_finite_Union at 4854/4891, WLOG m<=n split at 5016-5054 closing UU/VV disjointness. Both children close with qed and parent with by argo; grep shows no sorry/oops/admit in 4369-5072 (first real sorry at 12322). Shape numbers all correct: direct_lemmas=2, depth=2 (parent -> step2|step3 -> step1), glue_lines=4 (5069-5072), child_lines 79 (4704-4626+1) and 307 (5062-4756+1).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T16:11:01Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "object",
+      "evidence": "Generality is mostly strong: applicability/use_when state the pattern as a conjunction P∧Q over a shared hypothesis context, the README answers the bounded-prover question ('one hole per conjunct, each a self-contained statement'; leaves are self-contained because each closes from shared step1 and never its sibling), and most consequences are honest. But the 'avoid_when'/consequences overstate the uniformity requirement, and the entry's own example refutes it: step2 takes FOUR assumptions (hReg hBasis hCLF hClosed, lines 4626-4630) while step3 takes THREE, yet the parent applies both with a uniform [OF hReg hBasis hCLF] (lines 5070-5071) and argo still closes, discharging step2's residual hClosed premise. So 'the whole glue depends on both children taking exactly the same assumes in the same order' and 'a child that adds ... a hypothesis breaks the [OF hReg hBasis hCLF] template' are false as written. Fix: state that the SHARED hypotheses must form a common prefix in the same order, and that a child may append extra assumptions (like step2's hClosed), which surface as a residual premise for the glue's automation — what breaks the template is reordering/renaming/dropping one of the shared prefix, or adding a hypothesis before it.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T16:12:48Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 90d108779e83453e9cae2f55b513246e1cc044e0",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:13:11Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are mutually consistent and traceable. check_provenance.py passes (1 file byte-identical at pinned commit 90d108779e83453e9cae2f55b513246e1cc044e0). All six site permalinks and the file permalink use that commit and path tst/Top1_Ch5_8.thy; list_files.py at the commit shows tst/Top1_Ch5_8.thy = 1644384 bytes, matching entry.json files[0].bytes. entry.json source (source_id munkres-isabelle, url github.com/JUrban/isa_top_autoform1, commit 90d1087...) matches sources/munkres-isabelle/SOURCE.md exactly. Licence is LicenseRef-unknown in both entry.json and SOURCE.md, and SOURCE.md's 'no licence file found at the root' is accurate: the 14-file listing at the commit has no LICENSE/LICENCE/COPYING. README 'Source and licence' note repeats the same commit and licence. Nothing inconsistent found.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T16:13:53Z"
+    }
+  ]
+}

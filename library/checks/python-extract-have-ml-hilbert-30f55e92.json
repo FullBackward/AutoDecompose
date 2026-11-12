@@ -1,0 +1,117 @@
+{
+  "entry": "python-extract-have-ml-hilbert-30f55e92",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:31:19Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:31:19Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 86360f90260613d21e08a001c83971a1998a5b5e",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:31:27Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "No CI workflow exists in the repository: list_files.py at the pinned commit 86360f90260613d21e08a001c83971a1998a5b5e shows no .github/ directory and no *.yml/*.yaml workflow files, so no CI builds src/prompts/hilbert.py or src/models/HILBERTWorker.py on the default branch.",
+      "by": "verifier",
+      "at": "2026-11-12T15:33:05Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read local copy code/src/prompts/hilbert.py (byte-identical per check_provenance): line 66 reads '1. Use the same name as the have statements for the theorems.' and line 68 reads '3. There should be as many extracted theorems as `sorry`s in the given theorem.'",
+      "by": "verifier",
+      "at": "2026-11-12T15:33:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Read local copy code/src/models/HILBERTWorker.py: line 1517 'all_have_names = extract_all_have_names(original_sketch)', line 1535 'missing_names = [name for name in all_have_names if name not in extracted_names]', and lines 1476-1481 ('status, missing_theorems = ...'; 'if not status:'; 'return []') abandon the attempt.",
+      "by": "verifier",
+      "at": "2026-11-12T15:33:09Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read local copy code/src/models/HILBERTWorker.py: line 2000 'new_name = f\"{current_name}_{parent_theorem_name}\"' inside rename_theorems (lines 1986-2016), and line 2050 'extracted_theorems = self.rename_theorems(extracted_theorems, parent_theorem_name)' in the orchestration loop _correct_proof_sketch_and_extract_theorems.",
+      "by": "verifier",
+      "at": "2026-11-12T15:33:11Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read local copy code/src/prompts/hilbert.py line 77, which reads exactly 'IMPORTANT INSTRUCTION: Do NOT, under ANY circumstances, allow division and subtraction operations on natural number literals with UNDEFINED types, unless REQUIRED by the theorem statement.' (quote matches the claim).",
+      "by": "verifier",
+      "at": "2026-11-12T15:33:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read local copies: hilbert.py lines 64-87 = 24 lines; 10 numbered instructions at lines 66-75 (line 65 is the 'Instructions:' header, so the claim's 'lines 65-75' is off by one at the start but the count 10 is correct); two IMPORTANT INSTRUCTION paragraphs at lines 77 and 79; HILBERTWorker.py extract_subgoals_from_sketch spans lines 1432-1498 = 67 lines.",
+      "by": "verifier",
+      "at": "2026-11-12T15:33:13Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 86360f90260613d21e08a001c83971a1998a5b5e",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:34:41Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Verified against the byte-identical local code copies (provenance pass). The skill-text prompt EXTRACT_SUBGOALS_FROM_SKETCH_PROMPT is lines 64-87 of hilbert.py with exactly 10 numbered instructions (66-75) and two IMPORTANT INSTRUCTION paragraphs (77, 79). All five children map verbatim to the code: name-preserved=instr 1, context-carried=instr 2+8, one-per-hole=instr 3 (enforced by _check_and_extract_missing_subgoals, which returns [] on gap at lines 1476-1481), statement-only=instr 4-6, conclusion-stable=instr 7+10. Closing: handler formats prompt (1446), parses blocks, coverage-checks have names (1517, 1535), abandons with [] if not closed, dedups, syntax-corrects, then rename_theorems (2000, called 2050) yields h0_main_theorem. Shape numbers all right: instructions=10, important_instruction_paragraphs=2, prompt_lines=24, handler_lines=67 (1432-1498). Entry is a skill, so no theorem-scale shape/lemma children apply; children are correctly labelled invariants. Minor non-blocking nit: claim 5 says 'lines 65-75' but instructions are 66-75 (metrics field itself says 66-75 correctly).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:35:10Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generically (intent + applicability give a general goal_shape 'A Lean 4 proof sketch' with use_when/avoid_when, not tied to the one HILBERT run). 'When not to use' is honest and specific: no named have -> early return True,[] (HILBERTWorker.py:1523-1524); instr 7-8 forbid changing/strengthening/weakening a hole's conclusion; holes whose context cannot be lifted; extraction-only with truth/sufficiency deferred downstream. Consequences are honest, including failure modes that undercut the coverage guarantee (unnamed have -> empty name silently dropped; name-only coverage check counts two same-named holes as one; Nat-arithmetic instruction is a literal model instruction, not a type check). It does say what makes the lemmas good leaves for a bounded prover: self-contained statement-only theorem (instr 4 no imports/open/definitions), no nested sub-lemmas (instr 4-5), one per sorry, name preserved so the sketch's glue lines stay untouched - enumerated in the children (statement-only, context-carried, one-per-hole, name-preserved, conclusion-stable) and the lemma-graph paragraph.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:36:38Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 86360f90260613d21e08a001c83971a1998a5b5e",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:36:59Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py reports pass: 2 file(s) byte-identical at 86360f90...; sha256 in entry.json (hilbert.py bf432f7c..., HILBERTWorker.py 8fa85fd...) match local copies; commit 86360f90260613d21e08a001c83971a1998a5b5e identical in entry.json, README, source.json and SOURCE.md; licence recorded as LicenseRef-unknown consistently in all four with Apple Sample Code License text captured in sources/ml-hilbert/upstream-LICENSE; every permalink and site/claim line anchor (hilbert.py L64-87, L89-114; HILBERTWorker.py L1432-1498, L1476-1481, L1516-1535, L1986-2016, L2048-2050) resolves to the stated content in the byte-identical copies.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:37:49Z"
+    }
+  ]
+}

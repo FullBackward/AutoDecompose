@@ -1,0 +1,193 @@
+{
+  "id": "lean-calc-chain-strongpnt-570bdcdb",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Three-step calc lower-bounding |ζ(3)/ζ(3/2)| by |ζ(3/2 + it)| via the Euler product",
+  "intent": "Prove the lower bound |ζ(3/2 + it)| ≥ |ζ(3)/ζ(3/2)| on the critical line by factoring it into a three-link calc: evaluate the ratio ζ(3)/ζ(3/2) as a real Euler product (abs_zeta_ratio_eval), compare that product factorwise to the product of inverse norms of the Euler factors at 3/2 + it (abs_zeta_inequality), then fold that product back into |ζ(3/2 + it)| (abs_zeta_prod_prime).",
+  "move": "calc-chain",
+  "also_known_as": [
+    "calculational proof",
+    "chain of equalities/inequalities",
+    "transitivity chain"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "strongpnt",
+    "url": "https://github.com/math-inc/strongpnt",
+    "commit": "2f5835c322314f55f1026ec2f139d704b7c45c69",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "StrongPNT/PNT3_RiemannZeta.lean",
+      "bytes": 238015,
+      "sha256": "6b7192b8aa016bef8e0a50358965c0b7b890a66942aab07996c828f9d276b87f",
+      "permalink": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "StrongPNT/PNT3_RiemannZeta.lean",
+      "lines": [
+        639,
+        651
+      ],
+      "role": "parent",
+      "name": "zeta_lower_bound",
+      "excerpt_sha256": "51c58fef673d3fd95c85ce7bf4a5c870a25188c9387310357a74fc49f44eec95",
+      "permalink": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean#L639-L651"
+    },
+    {
+      "path": "StrongPNT/PNT3_RiemannZeta.lean",
+      "lines": [
+        585,
+        637
+      ],
+      "role": "child",
+      "name": "abs_zeta_ratio_eval",
+      "excerpt_sha256": "45e713009d1851e8bc307e9fd28ec0352fe4270fdf96d5b00745dee97c5d3f24",
+      "permalink": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean#L585-L637"
+    },
+    {
+      "path": "StrongPNT/PNT3_RiemannZeta.lean",
+      "lines": [
+        519,
+        581
+      ],
+      "role": "child",
+      "name": "abs_zeta_inequality",
+      "excerpt_sha256": "a72253e0211dd2a3ac41452d220f6ba98f4d27d4d2cb18b73d32404079c696ac",
+      "permalink": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean#L519-L581"
+    },
+    {
+      "path": "StrongPNT/PNT3_RiemannZeta.lean",
+      "lines": [
+        62,
+        67
+      ],
+      "role": "child",
+      "name": "abs_zeta_prod_prime",
+      "excerpt_sha256": "127af26aa0f5513f4ee49db95117d6c43c7b9054e396ea3fc8abf38df576c014",
+      "permalink": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean#L62-L67"
+    }
+  ],
+  "parent": {
+    "name": "zeta_lower_bound",
+    "statement": "theorem zeta_lower_bound (t : ℝ) :\n  norm (riemannZeta 3 / riemannZeta ((3 : ℝ) / 2)) ≤\n    norm (riemannZeta (((3 : ℝ) / 2) + t * Complex.I))"
+  },
+  "children": [
+    {
+      "name": "abs_zeta_ratio_eval",
+      "statement": "lemma abs_zeta_ratio_eval : norm (riemannZeta 3 / riemannZeta ((3 : ℝ) / 2)) = ∏' p : ℙ, (1 + ((p : ℕ) : ℝ) ^ (-((3 : ℝ) / 2)))⁻¹",
+      "closed_by": "4-link calc: h_abs_ratio (congrArg norm applied to zeta_ratio_at_3_2), h_abs_tprod (abs_of_tprod w hw_mult), simp [h_abs_eq_fun], then rfl — with multipliable_positive_inv_powers and Complex.ofReal_cpow carrying the complex↔real factor identification"
+    },
+    {
+      "name": "abs_zeta_inequality",
+      "statement": "lemma abs_zeta_inequality (t : ℝ) :\n  ∏' p : ℙ, (1 + ((p : ℕ) : ℝ) ^ (-((3 : ℝ) / 2)))⁻¹ ≤\n  ∏' p : ℙ, (norm (1 - ((p : ℕ) : ℂ) ^ (-(((3 : ℝ) / 2) + t * Complex.I))))⁻¹",
+      "closed_by": "convert both products to NNReal (multipliable_real_to_nnreal), apply prod_inequality f g hf hg h_pointwise with h_pointwise = abs_term_inv_bound p t (per-prime), convert back with nnreal_tprod_le_coe; multipliability from multipliable_positive_inv_powers and multipliable_complex_abs_inv (via zetaEulerprod)"
+    },
+    {
+      "name": "abs_zeta_prod_prime",
+      "statement": "lemma abs_zeta_prod_prime (s : ℂ) (hs : 1 < s.re) :\n  norm (riemannZeta s) = ∏' p : ℙ, (norm (1 - ((p : ℕ) : ℂ) ^ (-s : ℂ)))⁻¹",
+      "closed_by": "rw [abs_zeta_prod s hs]; congr 1; ext p; rw [abs_of_inv (1 - ((p : ℕ) : ℂ) ^ (-s : ℂ)) (one_minus_p_s_neq_0 p s hs)]"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A real bound A ≤ B where A is a concrete analytic value (here norm (ζ(3)/ζ(3/2))) and B is norm (ζ(s)) for s on a line (here 3/2 + it); the middle term is an Euler product over primes, and the proof is a single = ≤ = calc.",
+    "use_when": "both endpoints admit an Euler-product (or analogous) rewrite as an infinite product over the same index set; the factorwise comparison (one ≤ link) and the two product rewrites (one = link each) can each be stated as a self-contained named lemma; the middle terms definitionally match the adjacent links so `calc` joins them.",
+    "avoid_when": "the two product rewrites are one-line rw/simp steps (inline them rather than name lemmas); the factorwise bound needs too much local context to be a clean standalone statement; the two products are indexed by different sets, so no single middle term joins the chain."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent zeta_lower_bound (lines 639-651) is a single three-link calc whose links are discharged by exactly three named project lemmas — abs_zeta_ratio_eval (line 647), abs_zeta_inequality t (line 649), and abs_zeta_prod_prime (line 651, applied to 3/2 + it under hs) — and whose only other proof text is the `have hs` side condition closed by simp/norm_num (lines 642-644).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean#L639-L651 (the copied file was read whole)"
+    },
+    {
+      "n": 2,
+      "claim": "StrongPNT/PNT3_RiemannZeta.lean (4778 lines) contains no `sorry`, `admit` or `axiom` token, so every lemma in the parent's dependency cone that lives in this file is closed without a hole.",
+      "evidence_kind": "check",
+      "evidence": "grep of the copied file code/StrongPNT/PNT3_RiemannZeta.lean for the tokens sorry, admit, axiom returned no match (the file is 4778 lines)"
+    },
+    {
+      "n": 3,
+      "claim": "The glue is 10 lines (642-651) assembling 3 direct lemmas whose proof bodies are 52, 60 and 4 lines (abs_zeta_ratio_eval 586-637, abs_zeta_inequality 522-581, abs_zeta_prod_prime 64-67); the longest chain of project lemmas below the theorem is 10 deep — zeta_lower_bound → abs_zeta_ratio_eval → zeta_ratio_at_3_2 → zeta_ratio_identity_ofReal_div_two → zeta_ratio_identity → zeta_ratios → simplify_prod_ratio → prod_of_ratios → prod_of_ratios_simplified → lift_multipliable_of_nonzero.",
+      "evidence_kind": "measurement",
+      "evidence": "permalinks https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean#L639-L651, #L585-L637, #L519-L581, #L62-L67, #L292-L295, #L288-L290, #L264-L269, #L225-L228, #L189-L222, #L164-L186, #L131-L160, #L98-L129; proof-body lines counted from the line after `:= by` to the last line of each lemma"
+    },
+    {
+      "n": 4,
+      "claim": "The author labels the theorem `-- Theorem zeta_lower_bound` (line 583) and states the plan for the analytic child in a comment: `-- Following the informal proof: use abs_term_inv_bound, prod_inequality, and zetaEulerprod` (line 522).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean#L583 and #L522"
+    },
+    {
+      "n": 6,
+      "claim": "The same one-named-lemma-per-link calc-chain move recurs in the file: abs_zeta_ratio_eval's own body is a 4-link calc (lines 632-637) and prod_of_ratios_simplified is a 7-link calc (lines 145-160).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean#L632-L637 and #L145-L160"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 10,
+    "glue_lines": 10,
+    "child_lines": [
+      52,
+      60,
+      4
+    ]
+  },
+  "metrics": {
+    "parent_lines": 13,
+    "glue_lines": 10,
+    "children": 3,
+    "children_shown": 3,
+    "child_proof_lines_shown": [
+      52,
+      60,
+      4
+    ],
+    "how_counted": "parent_lines = lines 639-651 of the copied file (3-line statement + 10-line proof); glue_lines = the proof body lines 642-651; child_proof_lines_shown = proof-body lines (from the line after `:= by` to the last line) of abs_zeta_ratio_eval (586-637), abs_zeta_inequality (522-581), abs_zeta_prod_prime (64-67) in order"
+  },
+  "consequences": "The move creates three obligations, one per link: (a) evaluate the concrete value to a product (abs_zeta_ratio_eval); (b) a factorwise bound between two products, carrying a multipliability/summability obligation for both sides (abs_zeta_inequality); (c) fold the product back into a function value, carrying the side condition 1 < Re s (abs_zeta_prod_prime, fed by the parent's `have hs`). Failure modes: the side condition hs must be discharged by the parent (here simp/norm_num) before link 3 elaborates; the factorwise step is the analytic heart and its NNReal multipliability hypotheses are heavy, so a child whose statement drifts from the chain endpoints will not elaborate; and if the two product rewrites were not already available as named lemmas, they would have to be stated first or inlined.",
+  "known_uses": [
+    "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean#L632-L637",
+    "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean#L145-L160"
+  ],
+  "related": [
+    "lean-calc-chain-carleson-eeedf502",
+    "lean-calc-chain-sphere-packing-7d6a60c4"
+  ],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "570bdcdb6690740136bd86b8f0a9b8eafd44c64b9e1bb94f5a1e9db2ecdd6ef9",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T14:53:42Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T14:56:00Z"
+    },
+    {
+      "field": "claims",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:01:52Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T15:08:10Z"
+}

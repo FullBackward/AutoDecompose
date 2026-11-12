@@ -1,0 +1,239 @@
+{
+  "id": "lean-witness-pfr-e55fc34d",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Witness the tau-minimiser and its uniform subgroup for the entropic PFR conjecture",
+  "intent": "Prove the entropic PFR conjecture (for two G-valued random variables there is a subgroup H and uniform U_H with both Ruzsa distances to U_H at most 6·d and their sum at most 11·d) by obtaining a tau-minimiser as a witness, turning its zero Ruzsa distance into a uniform subgroup, and closing the three distance bounds with the triangle inequality plus linarith.",
+  "move": "witness",
+  "also_known_as": [
+    "obtain-and-prove",
+    "witness introduction",
+    "exists-elimination into context"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "pfr",
+    "url": "https://github.com/teorth/pfr",
+    "commit": "1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "PFR/EntropyPFR.lean",
+      "bytes": 3844,
+      "sha256": "b2b3f38b71b9a0eb85c29a6e5247d4c9ef0f80a9ed98fd274e1d198f54592ee5",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/EntropyPFR.lean"
+    },
+    {
+      "path": "PFR/TauFunctional.lean",
+      "bytes": 13830,
+      "sha256": "99e20cdad535f543bbe95efc912cfc9a3e88c0344158a00f72b5830339938ba3",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/TauFunctional.lean"
+    },
+    {
+      "path": "PFR/HundredPercent.lean",
+      "bytes": 8300,
+      "sha256": "9460cbf06bf7104d32f2523abe57fedcc66b78aff9ac0fe911cc0f83877424b5",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/HundredPercent.lean"
+    },
+    {
+      "path": "PFR/ForMathlib/Entropy/RuzsaDist.lean",
+      "bytes": 74495,
+      "sha256": "c155708ce2f5933397d9310e1d8b1ac3055141baeea572cb3a51450d794141e1",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/ForMathlib/Entropy/RuzsaDist.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "PFR/EntropyPFR.lean",
+      "lines": [
+        54,
+        73
+      ],
+      "role": "parent",
+      "name": "entropic_PFR_conjecture",
+      "excerpt_sha256": "de74ed1d0e139a1ee0bb7717c266d75657390dfe5b5010cf2e095503b875a6e9",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/EntropyPFR.lean#L54-L73"
+    },
+    {
+      "path": "PFR/TauFunctional.lean",
+      "lines": [
+        147,
+        160
+      ],
+      "role": "child",
+      "name": "tau_minimizer_exists",
+      "excerpt_sha256": "d43dc7fb73ddee6aaeed27b5a33036d1714230fb8be1e213c4f811a70a8bb256",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/TauFunctional.lean#L147-L160"
+    },
+    {
+      "path": "PFR/EntropyPFR.lean",
+      "lines": [
+        39,
+        49
+      ],
+      "role": "child",
+      "name": "tau_strictly_decreases",
+      "excerpt_sha256": "cbc61d003f8a4ccecf3c0376db439a904430a08358053b79892433dcedcf30e6",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/EntropyPFR.lean#L39-L49"
+    },
+    {
+      "path": "PFR/HundredPercent.lean",
+      "lines": [
+        160,
+        175
+      ],
+      "role": "child",
+      "name": "exists_isUniform_of_rdist_eq_zero",
+      "excerpt_sha256": "b928d45814a33420fe516356b86d64b22e0c7ae64b2bcce62e49779e0e08b125",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/HundredPercent.lean#L160-L175"
+    },
+    {
+      "path": "PFR/ForMathlib/Entropy/RuzsaDist.lean",
+      "lines": [
+        238,
+        245
+      ],
+      "role": "child",
+      "name": "rdist_symm",
+      "excerpt_sha256": "f72c43d79188ba263686a9c333d3fe42b0067c5e0d50f3f484700cca529013b8",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/ForMathlib/Entropy/RuzsaDist.lean#L238-L245"
+    },
+    {
+      "path": "PFR/TauFunctional.lean",
+      "lines": [
+        169,
+        175
+      ],
+      "role": "child",
+      "name": "is_tau_min",
+      "excerpt_sha256": "975b5eb5a36fdb2c50932c27798c23b2e65ca87927f37883617de69d209f5a29",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/TauFunctional.lean#L169-L175"
+    },
+    {
+      "path": "PFR/ForMathlib/Entropy/RuzsaDist.lean",
+      "lines": [
+        443,
+        465
+      ],
+      "role": "child",
+      "name": "rdist_triangle",
+      "excerpt_sha256": "10631c6b758749bd72b2c68879c84e1bfb3e37b932404fd0ce469b40aea2e28a",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/ForMathlib/Entropy/RuzsaDist.lean#L443-L465"
+    }
+  ],
+  "parent": {
+    "name": "entropic_PFR_conjecture",
+    "statement": "theorem entropic_PFR_conjecture (hpη : p.η = 1 / 9) :\n    ∃ H : Submodule (ZMod 2) G, ∃ Ω : Type uG, ∃ mΩ : MeasureSpace Ω, ∃ U : Ω → G,\n    IsProbabilityMeasure (ℙ : Measure Ω) ∧ Measurable U ∧\n    IsUniform H U ∧ d[p.X₀₁ # U] + d[p.X₀₂ # U] ≤ 11 * d[p.X₀₁ # p.X₀₂] ∧\n      d[p.X₀₁ # U] ≤ 6 * d[p.X₀₁ # p.X₀₂] ∧\n      d[p.X₀₂ # U] ≤ 6 * d[p.X₀₁ # p.X₀₂]"
+  },
+  "children": [
+    {
+      "name": "tau_minimizer_exists",
+      "statement": "lemma tau_minimizer_exists [MeasurableSingletonClass G] :\n    ∃ (Ω : Type uG) (_ : MeasureSpace Ω) (X₁ : Ω → G) (X₂ : Ω → G),\n    Measurable X₁ ∧ Measurable X₂ ∧ IsProbabilityMeasure (ℙ : Measure Ω) ∧\n    TauMinimizes p X₁ X₂",
+      "closed_by": "tau_min_exists_measure p (compactness of the probability-measure pair via IsCompact.exists_isMinOn), lifted to random variables with IdentDistrib.tau_eq and Prod.fst / Prod.snd on G × G"
+    },
+    {
+      "name": "tau_strictly_decreases",
+      "statement": "theorem tau_strictly_decreases (h_min : TauMinimizes p X₁ X₂) (hpη : p.η = 1 / 9) :\n    d[X₁ # X₂] = 0",
+      "closed_by": "transfers to independent copies via independent_copies4_nondep and IdentDistrib.rdist_congr / IdentDistrib.tauMinimizes, then `apply tau_strictly_decreases_aux`"
+    },
+    {
+      "name": "exists_isUniform_of_rdist_eq_zero",
+      "statement": "theorem exists_isUniform_of_rdist_eq_zero\n    {Ω' : Type*} [MeasureSpace Ω'] [IsProbabilityMeasure (ℙ : Measure Ω')] {X' : Ω' → G}\n    (hX : Measurable X) (hX' : Measurable X') (hdist : d[X # X'] = 0) :\n    ∃ H : AddSubgroup G, ∃ U : Ω → G,\n      Measurable U ∧ IsUniform H U ∧ d[X # U] = 0 ∧ d[X' # U] = 0",
+      "closed_by": "derives d[X # X] = 0 from rdist_triangle and rdist_symm, then rcases exists_isUniform_of_rdist_self_eq_zero and closes d[X' # U] = 0 by rdist_triangle again"
+    },
+    {
+      "name": "rdist_symm",
+      "statement": "lemma rdist_symm [IsFiniteMeasure μ] [IsFiniteMeasure μ'] :\n    d[X ; μ # Y ; μ'] = d[Y ; μ' # X ; μ]",
+      "closed_by": "rw [rdist_def, rdist_def, sub_sub, sub_sub, add_comm], then entropy_neg and prod_swap"
+    },
+    {
+      "name": "is_tau_min",
+      "statement": "lemma is_tau_min (h : TauMinimizes p X₁ X₂) (h1 : Measurable X₁') (h2 : Measurable X₂') :\n    τ[X₁ # X₂ | p] ≤ τ[X₁' # X₂' | p]",
+      "closed_by": "push-forwards X₁' and X₂' to measures ν₁, ν₂ and rewrites via identDistrib_id_right .. tau_eq, then `convert h ν₁ ν₂`"
+    },
+    {
+      "name": "rdist_triangle",
+      "statement": "lemma rdist_triangle {X : Ω → G} {Y : Ω' → G} {Z : Ω'' → G}\n    (hX : Measurable X) (hY : Measurable Y) (hZ : Measurable Z)\n    [hμ : IsProbabilityMeasure μ] [hμ' : IsProbabilityMeasure μ']\n    [hμ'' : IsProbabilityMeasure μ''] [FiniteRange X] [FiniteRange Y] [FiniteRange Z] :\n    d[X ; μ # Z ; μ''] ≤ d[X ; μ # Y ; μ'] + d[Y ; μ' # Z ; μ'']",
+      "closed_by": "reduces to independent copies via independent_copies3_nondep_finiteRange, then a calc chain through ent_of_diff_le and IndepFun.rdist_eq"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "an existence goal ∃ H … , ∃ U …, IsUniform H U ∧ P₁ U ∧ P₂ U ∧ P₃ U whose witness is supplied by an existence lemma (a minimiser, a zero-distance object) and whose properties are distance/functional inequalities",
+    "use_when": "the object to exhibit is defined by an optimisation (a τ-minimiser here) or a zero-distance condition, and every remaining property of the witness follows from generic facts (a triangle inequality, a minimiser comparison) closed by linear arithmetic",
+    "avoid_when": "the witness's properties need a bespoke construction or a long case analysis instead of generic distance facts; or the existence lemma is the whole content rather than a building block; or a property needs the witness's internal structure, which must then come back through a lemma such as is_tau_min"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The glue of entropic_PFR_conjecture (PFR/EntropyPFR.lean lines 60-73) invokes six named lemmas — tau_minimizer_exists, tau_strictly_decreases, exists_isUniform_of_rdist_eq_zero, rdist_symm, is_tau_min, and rdist_triangle (four times) — and closes the three target distance bounds by linarith alone.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/EntropyPFR.lean#L60-L73; the file is built by leanprover/lean-action in .github/workflows/push.yml on pushes to master"
+    },
+    {
+      "n": 2,
+      "claim": "The authors state that exists_isUniform_of_rdist_eq_zero \"Follows from the preceding claim by the triangle inequality\", and the proof realises that with two rdist_triangle steps plus rdist_symm.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/HundredPercent.lean#L158-L175"
+    },
+    {
+      "n": 3,
+      "claim": "The decomposition is flat and short: the parent proof is 14 lines (60-73); its six direct-lemma children have proof lengths 10, 9, 11, 6, 5 and 18 lines (tau_minimizer_exists, tau_strictly_decreases, exists_isUniform_of_rdist_eq_zero, rdist_symm, is_tau_min, rdist_triangle); the longest project-lemma chain I checked below the theorem has depth 3 (entropic_PFR_conjecture → tau_strictly_decreases → tau_strictly_decreases_aux → first_estimate).",
+      "evidence_kind": "measurement",
+      "evidence": "copied files: PFR/EntropyPFR.lean lines 60-73 (parent) and 41-49, PFR/TauFunctional.lean lines 151-160 and 171-175, PFR/HundredPercent.lean lines 165-175, PFR/ForMathlib/Entropy/RuzsaDist.lean lines 240-245 and 448-465; the depth chain is EntropyPFR.lean:62 → :48 → PFR/Endgame.lean:468-487 → PFR/FirstEstimate.lean:143"
+    },
+    {
+      "n": 4,
+      "claim": "The same witness assembly is repeated for the improved conjecture: entropic_PFR_conjecture_improv obtains a minimiser, turns d = 0 into H and U via exists_isUniform_of_rdist_eq_zero, compares via is_tau_min, and closes by rdist_triangle and linarith.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/ImprovedPFR.lean#L819-L832"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 6,
+    "depth": 3,
+    "glue_lines": 14,
+    "child_lines": [
+      10,
+      9,
+      11,
+      6,
+      5,
+      18
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 14,
+    "direct_children": 6,
+    "children_closed_by_automation": 0,
+    "how_counted": "parent proof = PFR/EntropyPFR.lean lines 60-73; children = the six named lemmas invoked in the glue, in glue order; each child closes by named lemmas or rw/calc, none by a single automation tactic alone"
+  },
+  "consequences": "The move turns one ∃-goal into an obtain of the witness followed by a set of property goals for that witness, each discharged by one named lemma. Obligations: the existence lemma must be available under the ambient hypotheses (here nonempty_fintype G and the refPackage p, plus MeasurableSingletonClass G); the three distance bounds must follow from the obtained facts plus generic distance lemmas, so if a property needs the witness's internal structure it must return through a lemma such as is_tau_min. Failure mode: if any property is not derivable from rdist_triangle/linarith, the witness itself has to be unfolded and the clean one-lemma-per-goal shape breaks.",
+  "known_uses": [
+    "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/ImprovedPFR.lean#L819-L832"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "e55fc34d7cc5d49a77684335b616c3f3e0bf779007a769dcc88583075e2b5178",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:11:55Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T16:12:59Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T16:21:49Z"
+}

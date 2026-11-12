@@ -1,0 +1,109 @@
+{
+  "entry": "lean-calc-chain-compfiles-f7c6dc2b",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:04:24Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:04:24Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:04:31Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push-main.yaml at commit 1745e6ced3e671bd74417548494b034eb2c87da8 (pinned; on default branch main): the 'lake build' step compiles the whole project, which includes Compfiles/Usa2020P3.lean; fetched this session via fetch_file.py",
+      "by": "verifier",
+      "at": "2026-11-12T15:05:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read the copied parent site (Usa2020P3.lean lines 138-148): line 140 'apply mul_left_cancel₀ (prod_B_ne_zero p)' discharges the cancellation; link 1 (line 143) rw setC_eq_union p + Finset.prod_union (disjoint_AB p); link 2 (line 145) Finset.mul_prod_erase _ _ (two_mem_setC p hp2); link 3 (line 147) rw prod_C_erase_eq_prod_B p hp2. No other project-specific lemma is cited; only Mathlib tactics and same-file solution_val",
+      "by": "verifier",
+      "at": "2026-11-12T15:05:28Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Counted in the copied file: glue = lines 140-148 (9 lines: apply + calc); child proofs setC_eq_union 66-73 (8), disjoint_AB 76 (1), two_mem_setC 88 (1), prod_C_erase_eq_prod_B 126-129 (4), prod_B_ne_zero 132 (1); depth chain usa2020_p3(138) -> prod_C_erase_eq_prod_B(129 calls fiber_prod) -> fiber_prod(119 uses p_two_ne_zero) -> p_two_ne_zero(79-80). All 5 named children; direct_lemmas=5, child_lines=[8,1,1,4,1], depth=3 match",
+      "by": "verifier",
+      "at": "2026-11-12T15:05:32Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read the comment block at lines 35-42 of the copied file: it states 'By multiplicativity of the quadratic character, C is the disjoint union of A and B. The map n to n*(4-n) sends C minus {2} to B ... Hence prod C-minus-{2} = prod B, and cancelling prod B != 0 from prod A * prod B = prod C = 2 * prod C-minus-{2} gives prod A = 2.' The quoted sentences match the comment (elision marked by ...), which is the same three-step plan",
+      "by": "verifier",
+      "at": "2026-11-12T15:05:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read the whole copied file (150 lines); grep for sorry|admit|axiom|Admitted returns no matches. All five children (setC_eq_union, disjoint_AB, two_mem_setC, prod_C_erase_eq_prod_B, prod_B_ne_zero) and five supporting lemmas (isSquare_mul_iff_same 57-63, p_two_ne_zero 79-80, p_two_ne_four 83-84, map_mem_setB 90-96, fiber_prod 99-121) are private lemmas with full proofs, no sorry. CI .github/workflows/push-main.yaml (fetched this session) runs 'lake build' on push to main (default branch), which compiles the project including this file",
+      "by": "verifier",
+      "at": "2026-11-12T15:05:44Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Read the copied code (Compfiles/Usa2020P3.lean) against entry.json. Parent usa2020_p3 (138-149) closes: apply mul_left_cancel₀ (prod_B_ne_zero p) then a 3-link calc using exactly five named lemmas and nothing else project-specific — setC_eq_union+disjoint_AB (link 1, L143), two_mem_setC (link 2, L145), prod_C_erase_eq_prod_B (link 3, L147). All five child statements and closed_by methods match the code verbatim (setC_eq_union 65-73, disjoint_AB 75-76, two_mem_setC 87-88, prod_C_erase_eq_prod_B 124-129, prod_B_ne_zero 131-132). Shape is right: direct_lemmas=5, glue_lines=9 (140-148), child_lines=[8,1,1,4,1] (66-73,76,88,126-129,132), depth=3 via usa2020_p3→prod_C_erase_eq_prod_B(L147)→fiber_prod(L129)→p_two_ne_zero(L119), 3 project lemmas below the theorem. No sorry/admit/axiom in the 150-line file; author comment (35-42) states the same plan.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:07:06Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality: goal_shape and use_when abstract beyond USA 2020 P3 to any product/sum over a filtered set shown equal to a small constant via a partition, erase and re-index step each stated as a self-contained lemma; avoid_when is specific and honest (deep fiber/re-index not factorable into a named sibling, common factor not provably non-zero, or a link mixing independent facts). Consequences honestly flags that link 1 needs two lemmas at once and that the re-indexing hides a depth-3 spine through map_mem_setB/fiber_prod, so a flat-looking calc may still need a non-trivial fiber lemma. It does say what makes the children good leaves: 'a self-contained statement whose proof closes on its own or from named siblings', with per-child bullets explaining the short proofs (extensionality+by_cases+tauto, one-line aesop, mem_filter with witnesses, two-line prod_fiberwise via named siblings, pure prod_ne_zero_iff leaf); 'stating the non-zero/membership/disjointness facts first, each as its own sibling, is what keeps the links one-line'. I verified the copied code matches (children at lines 65-73, 75-76, 87-88, 124-129, 131-132; parent 138-148).",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:08:14Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality: goal_shape and use_when abstract beyond USA 2020 P3 to any product/sum over a filtered set shown equal to a small constant via a partition, erase and re-index step each stated as a self-contained lemma; avoid_when is specific and honest (deep fiber/re-index not factorable into a named sibling, common factor not provably non-zero, or a link mixing independent facts). Consequences honestly flags that link 1 needs two lemmas at once and that the re-indexing hides a depth-3 spine through map_mem_setB/fiber_prod, so a flat-looking calc may still need a non-trivial fiber lemma. It does say what makes the children good leaves: 'a self-contained statement whose proof closes on its own or from named siblings', with per-child bullets explaining the short proofs (extensionality+by_cases+tauto, one-line aesop, mem_filter with witnesses, two-line prod_fiberwise via named siblings, pure prod_ne_zero_iff leaf); 'stating the non-zero/membership/disjointness facts first, each as its own sibling, is what keeps the links one-line'. I verified the copied code matches (children at lines 65-73, 75-76, 87-88, 124-129, 131-132; parent 138-148).",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:08:19Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:08:43Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes (1 file byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8); commit 1745e6ced3e671bd74417548494b034eb2c87da8 is identical across entry.json, README (short form 1745e6ced3e6), sources/compfiles/SOURCE.md and source.json; licence Apache-2.0 matches the upstream-LICENSE (Apache License 2.0 text); the single copied file code/Compfiles/Usa2020P3.lean (6019 bytes, sha256 6266f959...) matches the entry.json files/sha256 and all permalinks resolve to valid line ranges within the 150-line file. Source note is consistent and traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:09:12Z"
+    }
+  ]
+}

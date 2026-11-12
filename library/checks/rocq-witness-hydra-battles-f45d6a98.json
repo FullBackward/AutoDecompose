@@ -1,0 +1,109 @@
+{
+  "entry": "rocq-witness-hydra-battles-f45d6a98",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:55:36Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:55:36Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:56:34Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/docker-action.yml (Docker CI) triggers on pushes to master and builds the coq-goedel package via 'opam install coq-goedel' -> 'dune build -p coq-goedel'; theories/goedel/dune declares (coq.theory (name Goedel) (package coq-goedel)) with no modules filter so it builds all of theories/goedel/*.v including goedel1.v. Commit ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8 is the head of master (default branch).",
+      "by": "verifier",
+      "at": "2026-11-12T15:58:13Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read the copied file (provenance pass, byte-identical to ed8e604). Lines 289-301: Theorem Goedel'sIncompleteness1st; proof body 292-301 = 10 lines. Line 293 'exists G; pose freeVarG', 294 'pose FirstIncompletenessA', 295 'pose FirstIncompletenessB', 296 'assert (H0: ~Inconsistent LNN T)', 297 discharged by 'wCon2Con T H', 300 'repeat split; tauto'. Matches the claim exactly.",
+      "by": "verifier",
+      "at": "2026-11-12T15:58:17Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Counted lines in the copied file: main proof Proof.(292)..Qed.(301)=10; freeVarG Proof.(88)..Qed.(106)=19; FirstIncompletenessA Proof.(109)..Qed.(124)=16; FirstIncompletenessB Proof.(134)..Qed.(286)=153; 19+16+153=188. Matches the claim.",
+      "by": "verifier",
+      "at": "2026-11-12T15:58:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read lines 126-130 of the copied file: comment '(*I don't believe I can prove (SysPrf T (notH G))->(wInconsistent T)) So instead I prove: *)'. The author-statement is accurate in substance; the claim's quote inserts a period after 'wInconsistent T)' (source has 'T))' with no period), a trivial punctuation normalization, and the comment directly precedes Lemma FirstIncompletenessB stated as 'wConsistent T -> ~ SysPrf T (notH G)'.",
+      "by": "verifier",
+      "at": "2026-11-12T15:58:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read the whole copied file. freeVarG (87-106) destructs the fixed point (FixPointLNN, line 90) and uses freeVarCodeSysPf (96) and freeVarRepT (98); FirstIncompletenessA (108-124) uses codeSysPfCorrect (123); FirstIncompletenessB (132-286) uses wCon2Con (137), codeSysPrfCorrect3 (178), codeSysPrfCorrect2 (227). None of the three lemmas cites any of the others; they are stated independently in the section and only the parent poses all three. The claim's spelling 'freeVarCodeSysPrf' is a one-letter typo for 'freeVarCodeSysPf' and 'uses only the fixed point' omits freeVarRepT, but the independence claim (no child cites another) is correct.",
+      "by": "verifier",
+      "at": "2026-11-12T15:58:28Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:58:46Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent (289-301) poses exactly freeVarG, FirstIncompletenessA, FirstIncompletenessB, then repeat split; tauto closes all three conjuncts; child statements match code verbatim; glue_lines 10 (292-301); child_lines 19/16/153 = 88-106/109-124/134-286; direct_lemmas 3; depth 1; closed_by matches tactics; provenance passes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T16:00:21Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality is strong and honest. The move is stated beyond the example: goal_shape/use_when/avoid_when abstract to 'exists f, P f' where P f is a conjunction of independent properties and the witness is fixed up front, with the mechanism (exists G + repeat split; tauto) named. avoid_when gives three concrete conditions (witness adjusted mid-proof; interdependent properties; a property that doesn't factor into a named lemma), and consequences enumerate per-conjunct obligations plus well-definedness and the 'child stated slightly weaker than its conjunct, so tauto cannot use it' failure mode — which the entry itself exhibits (FirstIncompletenessA is an implication needing the glue's assert ~Inconsistent, flagged honestly). It says what makes children good leaves: self-contained statement, closes on its own or from imported hydras lemmas, never from a sibling (README). Minor imprecision not worth objecting: 'no case analysis beyond repeat split' overlooks the destruct of wCon2Con in the assert, but that is existential-elimination (no branches), and the 153-line FirstIncompletenessB is honestly recorded.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T16:02:07Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:02:54Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance is consistent and traceable. check_provenance.py passed: code/theories/goedel/goedel1.v is byte-identical at pinned commit ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8 (9666 bytes; sha256 4081bd6d...f4757 matches entry.json). Commit recorded identically in entry.json, source.json and SOURCE.md. Permalinks all use repo coq-community/hydra-battles at that commit with correct path and line ranges (verified against the copied file: G at 66, freeVarG 87-106, FirstIncompletenessA 108-124, FirstIncompletenessB 132-286, parent 289-301). Licence MIT recorded consistently in entry.json, source.json, SOURCE.md and README; upstream LICENSE at the commit is the MIT License and matches sources/hydra-battles/upstream-LICENSE verbatim.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T16:04:05Z"
+    }
+  ]
+}

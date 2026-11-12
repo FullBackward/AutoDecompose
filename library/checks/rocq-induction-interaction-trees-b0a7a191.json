@@ -1,0 +1,117 @@
+{
+  "entry": "rocq-induction-interaction-trees-b0a7a191",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:57:25Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:57:25Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 284d42248a3c5517cff9f582e335fcee2f6bdc1f",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:57:35Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": "Pinned commit 284d42248a3c5517cff9f582e335fcee2f6bdc1f is HEAD of default branch master (both workflows trigger on push to master). .github/workflows/docker-action.yml builds via dune across Coq 8.14-8.20 and Rocq 9.0/dev using opam_file coq-itree.opam, whose build stanza runs 'dune build -p coq-itree @install @runtest @doc'; tutorial/dune declares (coq.theory (name ITreeTutorial)) containing tutorial/Imp2AsmCorrectness.v, and tutorial/extract-imptest/dune (coq.extraction (theories ITree ITreeTutorial) + tests stanza) forces the full tutorial theory to compile under @runtest. .github/workflows/build-with-make.yml also runs make all on master.",
+      "by": "verifier",
+      "at": "2026-11-12T16:02:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read the entry's byte-identical code copy of tutorial/Imp2AsmCorrectness.v. Parent body L824-L976 applies: bisimilar_bind' L836,L854; bisimilar_iter L901; seq_asm_correct L851; if_asm_correct L862; while_asm_correct L893; compile_expr_correct L871,L927; compile_assign_correct L837; while_is_loop L892; fold_to_itree' L850,L861,L891; pure_asm_correct L968 (pose proof @pure_asm_correct). Each of the ten is a closed Lemma/Theorem ending in Qed. (bisimilar_bind' L371; bisimilar_iter L402; seq_asm_correct L462; if_asm_correct L520; while_asm_correct L579; compile_expr_correct L713; compile_assign_correct L753; while_is_loop L797; fold_to_itree' L801; pure_asm_correct AsmCombinators.v L314); none is an axiom or admit.",
+      "by": "verifier",
+      "at": "2026-11-12T16:02:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Header comment L17-L33 reads 'The proof is essentially structured as followed: ... Linking is proved in isolation ... Finally, all the pieces are tied together to prove the correctness.'; comment L818-L820 reads 'We are only left with reasoning about the functional correctness of the compiler, all control-flow related reasoning having been handled in isolation.' Both match the claim's quotations.",
+      "by": "verifier",
+      "at": "2026-11-12T16:02:39Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Parent body L824-L976 is 153 lines. Child proof bodies (Proof..Qed): bisimilar_bind' L359-L371=13; bisimilar_iter L381-L402=22; seq_asm_correct L457-L462=6; if_asm_correct L472-L520=49; while_asm_correct L536-L579=44; compile_expr_correct L602-L713=112; compile_assign_correct L723-L753=31; while_is_loop L779-L797=19. Dependency chain edges all present: L735 compile_assign_correct applies compile_expr_correct; L656 compile_expr_correct applies sim_rel_binary_op; L281 sim_rel_binary_op applies sim_rel_Renv; L207-L210 sim_rel_Renv closes on its own (apply H).",
+      "by": "verifier",
+      "at": "2026-11-12T16:02:43Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "README.md L58-L60: 'For example, the compiler proof in tutorial doesn't need it and is axiom-free.' tutorial/PrintAssumptions.v L3: 'Print Assumptions Imp2AsmCorrectness.compile_correct.' Both fetched at the pinned commit and match the claim.",
+      "by": "verifier",
+      "at": "2026-11-12T16:02:47Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "secure_example/LabelledImp2AsmCorrectness.v (fetched at pinned commit): L1105 'Lemma compile_stmt_correct (s : stmt sensitivity_lat) :' and L1108 'induction s.' Match the claim's known-use.",
+      "by": "verifier",
+      "at": "2026-11-12T16:02:51Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 284d42248a3c5517cff9f582e335fcee2f6bdc1f",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:03:19Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "object",
+      "evidence": "Decomposition, children statements, closing methods, glue_lines=153 (824-976), child_lines=[13,22,6,49,44,112,31,19] and the depth-4 chain (compile_assign_correct->compile_expr_correct->sim_rel_binary_op->sim_rel_Renv) all verified against the copied code; parent closes at Qed 976, no admit/axiom. But the children are not exactly the lemmas the main proof uses: raw_asm_block_correct (AsmCombinators.v#L296-L300) is applied directly at Imp2AsmCorrectness.v#L831 (rewrite raw_asm_block_correct) as the Assign-case linking lemma, and the entry's own use_when names it among the five linking lemmas, yet it is not a child and not counted, so direct_lemmas=10 should be 11. Fix: add raw_asm_block_correct as an 11th child (site AsmCombinators.v#L296-L300) and set shape.direct_lemmas and metrics.direct_lemmas to 11, and list it in claim 1 at line 831.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T16:05:39Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "object",
+      "evidence": "Generality mostly good: move is stated transferably (goal_shape + use_when/avoid_when name per-constructor linking lemmas and a library bind/iter bisimulation lemma as the enabling conditions), and 'when not to use' is honest and specific. The 'good leaves' question is answered (self-contained statements, closing on library lemmas or reflexivity). One honesty/specificity failure in the Consequences (README + entry.json consequences): it claims 'Every case also depends on the trivial ktree unfolding fold_to_itree ... being applied ... before the linking rewrite', but in the copied parent proof only the Seq/If/While cases apply fold_to_itree' (lines 850, 861, 891); the Assign case (828-846) uses raw_asm_block_correct and the Skip case (964-975) uses pure_asm_correct with no fold_to_itree'. The entry's own claim 1 lists exactly three uses (850, 861, 891), contradicting 'every case'. Fix: change to 'the three control-flow cases (Seq, If, While) each depend on fold_to_itree' being applied before the linking rewrite' in both the README Consequences and entry.json consequences.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T16:06:54Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 284d42248a3c5517cff9f582e335fcee2f6bdc1f",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T16:07:10Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note all consistent and traceable. Commit 284d42248a3c5517cff9f582e335fcee2f6bdc1f matches across entry.json, sources/interaction-trees/source.json and SOURCE.md; check_provenance reports both copied files (Imp2AsmCorrectness.v, AsmCombinators.v) byte-identical at that commit. Licence MIT is recorded in entry.json, source.json, SOURCE.md and README.md and the copied upstream-LICENSE is the MIT License (Copyright 2018 DeepSpec). All site/full permalinks resolve to the correct paths and the line ranges in the permalinks match the named lemma/Theorem in the local copies (bisimilar_bind' 353, bisimilar_iter 373, seq_asm_correct 454, if_asm_correct 466, while_asm_correct 526, compile_expr_correct 597, compile_assign_correct 719, while_is_loop 772, fold_to_itree' 800, compile_correct 822, pure_asm_correct 308 in AsmCombinators.v).",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T16:08:02Z"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "entry": "rocq-witness-mathcomp-analysis-dc247f7a",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:42:47Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T15:42:47Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at eca10f89bd852201c8148ff2f597c7c7346d6df2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:42:54Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": "CI workflow .github/workflows/nix-action-master.yml runs on push to master and builds the project via nix-build (Nix CI, coq-nix-toolbox). The pinned commit eca10f89bd852201c8148ff2f597c7c7346d6df2 is the head of the default branch master (GitHub API commits/master), and _CoqProject lists theories/functional_analysis/hahn_banach_theorem.v, so the CI builds this file on the default branch.",
+      "by": "verifier",
+      "at": "2026-11-12T15:45:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read byte-identical local copy code/theories/functional_analysis/hahn_banach_theorem.v (provenance pass). Line 310 'have [z /(hahn_banach_witness p_cvx)[g gP]] := zornS_ex f_bounded_by_p.' calls zornS_ex and hahn_banach_witness; line 314 'apply: lingraphD'; line 317 'apply: lingraphZ'; lines 318-319 use GRing.isLinear.Build and HB.pack g lg; line 320 'exists g''. All four lemmas are defined in this same file (zornS_ex L124, hahn_banach_witness L279, lingraphD L67, lingraphZ L64).",
+      "by": "verifier",
+      "at": "2026-11-12T15:45:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Line counts from the byte-identical local copy: parent 323-308+1=16; zornS_ex 161-124+1=38; hahn_banach_witness 286-279+1=8; lingraphD 68-67+1=2; lingraphZ 65-64+1=2; children total 38+8+2+2=50. Arithmetic matches the claim exactly.",
+      "by": "verifier",
+      "at": "2026-11-12T15:45:26Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read lines 11-15 of the byte-identical local copy: the header says 'This file proves the Hahn-Banach theorem thanks to Zorn's lemma' and 'a linear function on a subLmodType of V, that is bounded by a convex function, can be extended to a linear map on V bounded by the same convex function', matching the quoted author statement (the claim's inserted '...' skips the interleaved words 'considering V an lmodType on a realtype' and 'can be', but the substance is verbatim).",
+      "by": "verifier",
+      "at": "2026-11-12T15:45:29Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read byte-identical local copy: hahn_banach_extension is used at line 352 ('move=> /(hahn_banach_extension convp)[g majgp F_eqgf]') inside hahn_banach_extension_normed; line 395 ('have [g majgp F_eqgf] := @hahn_banach_extension R V _ F' f p convp fp.') inside hahn_banach_extension_subctvs; line 450 ('have [g majgp F_eqgf] := @hahn_banach_extension R V _ F' f p' convp fp'.') inside hahn_banach_extension_initialsubctvs. Three later theorems, same file.",
+      "by": "verifier",
+      "at": "2026-11-12T15:45:33Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read the whole byte-identical local copy (460 lines): zornS_ex ends Qed at L161, hahn_banach_witness at L286, lingraphD at L68, lingraphZ at L65, hahn_banach_extension at L323. grep -n -i -E 'Admitted|sorry|admit|Axiom|Abort' over the file returned no matches.",
+      "by": "verifier",
+      "at": "2026-11-12T15:45:36Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Verified against copied code/theories/functional_analysis/hahn_banach_theorem.v. Parent hahn_banach_extension (306-323) is an exists2 witness; glue (308-323) references exactly the four children zornS_ex (310), hahn_banach_witness (310), lingraphD (314), lingraphZ (317), then GRing.isLinear.Build/HB.pack (318-319); no other same-file lemma is used. All four child statements and closed_by match the code verbatim (zornS_ex 124, hahn_banach_witness 279-280, lingraphD 67, lingraphZ 64). Parent and all children end in Qed (161,286,68,65,323); no Admitted/admit/sorry/axiom in file. Shape numbers are right: direct_lemmas=4, glue_lines=16 (308-323), child_lines=[38,8,2,2] (124-161,279-286,67-68,64-65); depth=3 correct via chain hahn_banach_witness(279)->total_g(273)->domain_extend(167). Claims 1-5 all hold (line counts sum to 50; known-uses at 352,395,450 confirmed).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T15:47:17Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality holds. The move is stated beyond the example: 'When to use' names constructive existence of a structured object (linear map, group homomorphism, section) from a maximality/choice argument plus a short list of algebraic closure lemmas whose properties factor into independent named lemmas. 'When not to use' is honest and specific (no finite description / existence shown not assumed / properties don't factor through small named lemmas / maximality can't be isolated into one lemma). Consequences are specific and honest (non-computational via choice/@Zorn; concrete failure mode where destructuring zorn_type's 4-way spec breaks if its shape changes). Good leaves for a bounded prover are spelled out: statement self-contained, proof closes on its own or from named siblings, never reaching back into the parent, with per-child detail and line counts (38/8/2/2).",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T15:48:08Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at eca10f89bd852201c8148ff2f597c7c7346d6df2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T15:48:26Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance pass (check_provenance: 1 file byte-identical at eca10f89bd852201c8148ff2f597c7c7346d6df2); copied file sha256 86caef4f...4165 matches entry.json; all permalinks point to math-comp/analysis/blob/eca10f89.../theories/functional_analysis/hahn_banach_theorem.v (path identical to the copied file); licence recorded as CECILL-C, consistent with source.json, SOURCE.md and the copied upstream-LICENCE (CeCILL-C FREE SOFTWARE LICENSE AGREEMENT); SOURCE.md commit/path/licence all agree with source.json and entry.json. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T15:48:55Z"
+    }
+  ]
+}

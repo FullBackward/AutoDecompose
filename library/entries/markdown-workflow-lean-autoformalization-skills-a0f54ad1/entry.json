@@ -1,0 +1,185 @@
+{
+  "id": "markdown-workflow-lean-autoformalization-skills-a0f54ad1",
+  "kind": "skill",
+  "status": "draft",
+  "title": "Do Not Turn Proof Sections Into Assumptions",
+  "intent": "Prescribe the correct theorem-scale structure for formalizing a paper implication A -> B: the Lean development must state and prove each proof section (Step 1, Step 2) as its own theorem from the approved concrete inputs, then let the final theorem prove B by composing them — never by adding a section's conclusion as a hypothesis to the public theorem, which leaves only a 'conditional scaffold' instead of the implication.",
+  "move": "workflow",
+  "also_known_as": [
+    "prove the sections, do not assume them",
+    "no conditional scaffolds",
+    "reject conditional certification",
+    "faithful theorem statement with no added hypotheses"
+  ],
+  "language": "markdown",
+  "source": {
+    "source_id": "lean-autoformalization-skills",
+    "url": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills",
+    "commit": "1837b95b3d5a9fd8d311367603902ad7fe261adf",
+    "licence": "CC-BY-4.0"
+  },
+  "files": [
+    {
+      "path": "skills/lean-proof-patterns/references/math-to-lean.md",
+      "bytes": 6469,
+      "sha256": "4b65d24828818156bc9681a6eb9bb008e5c2b5604a1ef5d3cba96d0d09d312b4",
+      "permalink": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/lean-proof-patterns/references/math-to-lean.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": "skills/lean-proof-patterns/references/math-to-lean.md",
+      "lines": [
+        40,
+        42
+      ],
+      "role": "skill-text",
+      "name": "the-rule",
+      "excerpt_sha256": "21d1f8b33b1c907918d5033a73c8e6050b17f3b2a85375212eb6ff91e0658a0c",
+      "permalink": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/lean-proof-patterns/references/math-to-lean.md#L40-L42"
+    },
+    {
+      "path": "skills/lean-proof-patterns/references/math-to-lean.md",
+      "lines": [
+        56,
+        56
+      ],
+      "role": "parent",
+      "name": "final",
+      "excerpt_sha256": "6f0cef82b1e96d4baa9f4db7f4264ef75cbd14a6f54cce7311f877e18d668211",
+      "permalink": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/lean-proof-patterns/references/math-to-lean.md#L56-L56"
+    },
+    {
+      "path": "skills/lean-proof-patterns/references/math-to-lean.md",
+      "lines": [
+        47,
+        47
+      ],
+      "role": "child",
+      "name": "Step1",
+      "excerpt_sha256": "97d1b9486bd158f40207a253d0de65d5aa42fa254d827d2439c75a0328998c8c",
+      "permalink": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/lean-proof-patterns/references/math-to-lean.md#L47-L47"
+    },
+    {
+      "path": "skills/lean-proof-patterns/references/math-to-lean.md",
+      "lines": [
+        47,
+        47
+      ],
+      "role": "child",
+      "name": "Step2",
+      "excerpt_sha256": "97d1b9486bd158f40207a253d0de65d5aa42fa254d827d2439c75a0328998c8c",
+      "permalink": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/lean-proof-patterns/references/math-to-lean.md#L47-L47"
+    },
+    {
+      "path": "skills/lean-proof-patterns/references/math-to-lean.md",
+      "lines": [
+        50,
+        51
+      ],
+      "role": "context",
+      "name": "must-prove-steps",
+      "excerpt_sha256": "28eb75c159b637f1faa927e235459ee00ee2704b387ec4a9b4f7f1ae86190d14",
+      "permalink": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/lean-proof-patterns/references/math-to-lean.md#L50-L51"
+    },
+    {
+      "path": "skills/lean-proof-patterns/references/math-to-lean.md",
+      "lines": [
+        59,
+        62
+      ],
+      "role": "context",
+      "name": "failure-conditions",
+      "excerpt_sha256": "fe9c2b25dc2ea8bbd628fb931a4712438566680f502eb8a1ca454d009866a0f3",
+      "permalink": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/lean-proof-patterns/references/math-to-lean.md#L59-L62"
+    }
+  ],
+  "parent": null,
+  "children": [
+    {
+      "name": "Step1",
+      "statement": "the paper's first proof section, the step `A -> Step 1` in the glue path (line 47); the rule requires it to be stated and proved as a theorem from the approved concrete inputs rather than added as a hypothesis to `final`",
+      "closed_by": "a Lean theorem proving Step 1 from the approved concrete inputs — the file requires 'theorems proving Step 1 and Step 2 from the approved concrete inputs' before `final` (lines 50-51); the proof body is not shown because this is a reference skill"
+    },
+    {
+      "name": "Step2",
+      "statement": "the paper's second proof section, the step `Step 1 -> Step 2` in the glue path (line 47); it is proved as a theorem that takes Step 1's conclusion as input",
+      "closed_by": "a Lean theorem proving Step 2 from Step 1's conclusion — the same mandate (lines 50-51); the body is not shown (schematic)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A formalization task whose target is a paper theorem `A -> B` (an implication) whose proof passes through named analytic sections; the move applies at the moment of stating the public theorem and its supporting lemmas, not inside a single proof.",
+    "use_when": "the paper's proof has identifiable intermediate sections (Step 1, Step 2) each statable as its own theorem from the approved concrete inputs, and the deliverable must be a faithful statement of the paper's implication with no extra hypotheses.",
+    "avoid_when": "a section's conclusion genuinely is an additional hypothesis of the paper's result rather than a step to prove; you are building a provisional scaffold for development on purpose and will discharge it later; or the decomposition is local to one proof, where the rule itself says to use `suffices` and helper lemmas instead."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The excerpt's only theorem statement is `theorem final (hA : A) (hStep1 : Step1) (hStep2 : Step2) : B` (line 56), which adds two hypotheses `hStep1 : Step1` and `hStep2 : Step2` on top of `hA : A`, and the following sentence declares it 'not a formalization of A -> B; it is only a conditional scaffold' (lines 59-60).",
+      "evidence_kind": "check",
+      "evidence": "read of the copied file, https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/lean-proof-patterns/references/math-to-lean.md#L55-L60"
+    },
+    {
+      "n": 2,
+      "claim": "The rule states the positive obligation in its own words: 'the Lean development must contain theorems proving Step 1 and Step 2 from the approved concrete inputs before the final theorem proves B' (lines 50-51).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/lean-proof-patterns/references/math-to-lean.md#L50-L51"
+    },
+    {
+      "n": 3,
+      "claim": "The recorded theorem-scale shape is direct_lemmas = 2 (Step1 and Step2, the two stages of the glue), depth = 2 (Step2 depends on Step1, and both sit below final), glue_lines = 1 (the single line `A -> Step 1 -> Step 2 -> B`), and child_lines = [1, 1] (each child is shown only by that one path line; neither has a proof body in this reference).",
+      "evidence_kind": "measurement",
+      "evidence": "counted on the copied file: the glue path is line 47, the parent theorem is line 56, and the mandate to prove the two steps is lines 50-51; https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/lean-proof-patterns/references/math-to-lean.md#L44-L57"
+    },
+    {
+      "n": 4,
+      "claim": "The rule names the failure symptom as auditor language: phrases 'certified under the abstract interface' and 'conditional certification' are to be treated as failures 'when the user asked for the implication itself' (lines 60-62).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/lean-proof-patterns/references/math-to-lean.md#L59-L62"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 2,
+    "glue_lines": 1,
+    "child_lines": [
+      1,
+      1
+    ]
+  },
+  "metrics": {
+    "direct_lemmas": 2,
+    "depth": 2,
+    "glue_lines": 1,
+    "parent_lines": 1,
+    "child_bodies_shown": 0,
+    "how_counted": "the glue is the single line 'A -> Step 1 -> Step 2 -> B' (line 47); the parent theorem is the single line 'theorem final (hA : A) (hStep1 : Step1) (hStep2 : Step2) : B' (line 56); the two children are the two stages named in that one glue line, so each is shown by 1 line and neither has a proof body in the reference (lines 50-51 only require that the theorems exist)"
+  },
+  "consequences": "Promoting a proof section to a hypothesis silently weakens the public theorem: `final (hA : A) (hStep1 : Step1) (hStep2 : Step2) : B` proves a strictly weaker claim than `A -> B`, and no downstream client can detect the gap without comparing the type to the paper's statement. The correct structure creates obligations instead: Step 1 must be proved from the approved concrete inputs, Step 2 from Step 1's conclusion, and `final` must compose them. The sequential dependence means Step 2 is not provable until Step 1 is, so the two leaves are not parallelisable as stated. The failure modes the file names are auditor phrases 'certified under the abstract interface' and 'conditional certification' — signs that sections were assumed rather than proved.",
+  "known_uses": [],
+  "related": [
+    "markdown-extract-have-lean4-skills-2f8b180f",
+    "markdown-extract-have-lean4-skills-b59b032f"
+  ],
+  "rule": {
+    "f10_rule": 1,
+    "relation": "supports"
+  },
+  "content_key": "a0f54ad1c6fdc1e07201f06fceb7f0be7087f732f26ffc481027a86c760f7429",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:31:19Z"
+    },
+    {
+      "field": "intent,also_known_as,children,applicability,claims,shape,metrics,consequences,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-2",
+      "at": "2026-11-12T15:31:51Z"
+    }
+  ]
+}
