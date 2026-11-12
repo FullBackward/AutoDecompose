@@ -1,0 +1,101 @@
+{
+  "entry": "lean-key-invariant-compfiles-f9a0ece2",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T11:47:43Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push-main.yaml runs 'lake build' on push to main (default branch); main HEAD = 1745e6ced3e671bd74417548494b034eb2c87da8 = pinned commit, so CI builds Compfiles/Usa1973P4.lean (a module under Compfiles/, imported by the lake build)",
+      "by": "verifier",
+      "at": "2026-11-12T11:48:59Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Copied file Compfiles/Usa1973P4.lean (byte-identical to pinned commit): line 42 is 'rcases ht with rfl | rfl | rfl'; lines 43-45 are each '· linear_combination t^2 * h1 - t * e2 + e3' (identical).",
+      "by": "verifier",
+      "at": "2026-11-12T11:49:00Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Copied file line 47: 'simp [solution_set, key x (by simp), key y (by simp), key z (by simp)]' - a single simp instantiating key at x, y, z; no further rcases/case analysis follows in the forward branch.",
+      "by": "verifier",
+      "at": "2026-11-12T11:49:03Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Copied file line 47 contains exactly three subterms key x, key y, key z (once each); count = 3.",
+      "by": "verifier",
+      "at": "2026-11-12T11:49:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Copied file lines 21-22 read verbatim: 'Find all complex numbers x, y, z which satisfy' / '  x + y + z = x² + y² + z² = x³ + y³ + z³ = 3.' The problem statement is symmetric in x, y, z.",
+      "by": "verifier",
+      "at": "2026-11-12T11:49:07Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Copied code Compfiles/Usa1973P4.lean matches every element of the entry: parent usa1973_p4 is the iff at lines 29-49; children e2 (x*y+y*z+z*x=3, closed by linear_combination (1/2)*( (x+y+z+3)*h1 - h2), line 36), e3 (x*y*z=1, line 38), and key (forall t, t=x | t=y | t=z -> t=1, lines 39-46) match the statements and closing tactics verbatim. key's proof does the three-way rcases rfl|rfl|rfl (line 42) and each case closes with the identical linear_combination t^2*h1 - t*e2 + e3, which in each case reduces the LHS to t^3 and the RHS to 3t^2-3t+1, i.e. (t-1)^3=0; sub_eq_zero.mp (pow_eq_zero_iff ..) then yields t=1. The skeleton (line 47) closes the forward direction with one simp instantiating key at x, y, z (three times). So the decomposition is what the entry says, children and closing methods match the code, and the proof closes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T11:50:13Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated beyond the example: applicability.use_when and README 'When to use it' generalize from t = 1 to P t and to any tuple of interchangeable variables (package as forall t, t = x \\/ t = y \\/ t = z -> P t, prove once, instantiate per variable), naming the general precondition that hypotheses treat variables interchangeably (symmetric sums, cyclic constraints). 'When not to use' is specific and honest: three concrete failure modes (variables not interchangeable / each with its own hypothesis; invariant cases needing different arguments so the shared tactic is non-uniform; closing step not uniform) plus the caveat that e2/e3-style intermediate facts are themselves the real content. Consequences are specific and honest: name the free-t requirement and the failure mode that a variable entering the symmetric relations in a different form breaks the shared tactic. No overreach: the writer's own judgement about the shape is labelled as opinion, kept out of claims.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T11:51:04Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T11:51:32Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes (file byte-identical at pinned commit 1745e6ced3e671bd74417548494b034eb2c87da8). Commit hash is consistent across source.json, sources/compfiles/SOURCE.md, entry.json files+site permalinks and all claim permalinks. Licence Apache-2.0 is consistent across source.json, SOURCE.md, entry.json and the copied file header ('Released under Apache 2.0 license as described in the file LICENSE'); upstream-LICENSE contains the Apache 2.0 text. Permalink line ranges (parent 29-49, context 34-38, child 39-46, skeleton 47, claims 42-45/47/21-22) match the copied code/Compfiles/Usa1973P4.lean line-for-line. Source note links to the LICENSE file and records verbatim-copy attribution. Everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T11:52:03Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+{
+  "id": "latex-blueprint-node-pfr-b4120b97",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Blueprint node pfr_aux (PFR_conjecture_aux): fixed statement proved from eight labelled upstream nodes",
+  "intent": "Freeze the statement and Lean name of the node `pfr_aux` before its proof, then prove it by composing eight already-stated upstream nodes, each cited by label and declared in one `\\uses{}` line, so the proof is a linear chain of citations rather than new constructions.",
+  "move": "blueprint-node",
+  "also_known_as": [
+    "blueprint declaration",
+    "declaration-first node",
+    "dependency-graph node"
+  ],
+  "language": "latex",
+  "source": {
+    "source_id": "pfr",
+    "url": "https://github.com/teorth/pfr",
+    "commit": "1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "blueprint/src/chapter/pfr.tex",
+      "bytes": 3328,
+      "sha256": "a827deb51993702d21131e1ea29f1c27d2b1ede5391e0ae20ced6c5d0dfd6bb1",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/pfr.tex"
+    }
+  ],
+  "sites": [
+    {
+      "path": "blueprint/src/chapter/pfr.tex",
+      "lines": [
+        14,
+        22
+      ],
+      "role": "parent",
+      "name": "pfr_aux",
+      "excerpt_sha256": "3b0578a2e0f70ddeaed733eaadc32b8c95a92c4d0dfbe12b40dd2ff04e899eed",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/pfr.tex#L14-L22"
+    },
+    {
+      "path": "blueprint/src/chapter/pfr.tex",
+      "lines": [
+        24,
+        47
+      ],
+      "role": "skeleton",
+      "name": "pfr_aux-proof",
+      "excerpt_sha256": "fe801ee82fc661d2ef98aa2320857cbab0bcc30de87aac1be7177f27b9ab9025",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/pfr.tex#L24-L47"
+    },
+    {
+      "path": "blueprint/src/chapter/pfr.tex",
+      "lines": [
+        3,
+        12
+      ],
+      "role": "context",
+      "name": "ruz-cov",
+      "excerpt_sha256": "86bbea78bbcdf68b420afdd8d074aad6e0a55bf1684b392ac21d55d1b89939e9",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/pfr.tex#L3-L12"
+    }
+  ],
+  "parent": {
+    "name": "pfr_aux",
+    "statement": "If A ⊂ F_2^n is non-empty and |A+A| ≤ K|A|, then A can be covered by at most K^{13/2}|A|^{1/2}/|H|^{1/2} translates of a subspace H of F_2^n with |H|/|A| ∈ [K^{-11}, K^{11}] (Lean name PFR_conjecture_aux)."
+  },
+  "children": [
+    {
+      "name": "unif-exist",
+      "statement": "Given a finite non-empty subset H of a set S, there exists a random variable X uniformly distributed on H.",
+      "closed_by": "cited as \\Cref{unif-exist} to obtain the uniform distribution U_A on A"
+    },
+    {
+      "name": "uniform-entropy-II",
+      "statement": "If X is uniformly distributed on H, then H[X] = log |H|.",
+      "closed_by": "cited as \\Cref{uniform-entropy-II} to get H[U_A] = log |A|"
+    },
+    {
+      "name": "jensen-bound",
+      "statement": "If X is an S-valued random variable, then H[X] ≤ log |S|.",
+      "closed_by": "cited with U_A + U_A supported on A + A to get H[U_A + U_A] ≤ log |A + A|"
+    },
+    {
+      "name": "ruz-dist-def",
+      "statement": "Ruzsa distance d[X;Y] := H[X' - Y'] - H[X']/2 - H[Y']/2 for independent copies X', Y'.",
+      "closed_by": "applied to turn the doubling bound into d[U_A;U_A] ≤ log K, and again at eq. (uauh) to rewrite d[U_A;U_H] as an entropy bound"
+    },
+    {
+      "name": "entropy-pfr",
+      "statement": "For G = F_2^n and G-valued X^0_1, X^0_2, there is a subgroup H ≤ G with d[X^0_1;U_H] + d[X^0_2;U_H] ≤ 11 d[X^0_1;X^0_2].",
+      "closed_by": "applied with X^0_1 = X^0_2 = U_A to obtain the subspace H with d[U_A;U_H] ≤ (1/2)C' log K, C' = 11"
+    },
+    {
+      "name": "ruzsa-diff",
+      "statement": "If X, Y are G-valued random variables, then |H[X] - H[Y]| ≤ 2 d[X;Y].",
+      "closed_by": "gives |log |H| - log |A|| ≤ C' log K, closing eq. (ah)"
+    },
+    {
+      "name": "bound-conc",
+      "statement": "If X is an S-valued random variable, then there exists s ∈ S with P[X = s] ≥ exp(-H[X]).",
+      "closed_by": "gives the point x_0 with the concentration lower bound on U_A - U_H"
+    },
+    {
+      "name": "ruz-cov",
+      "statement": "If A, B are finite non-empty subsets of a group G, then A can be covered by at most |A + B|/|B| translates of B - B.",
+      "closed_by": "covers A by translates of (A ∩ (H + x_0)) - (A ∩ (H + x_0)) ⊆ H, closing the covering bound"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A covering/transfer theorem whose hypotheses are about a set A (non-empty, doubling |A+A| ≤ K|A|) and whose conclusion quantifies over a witness H (existence of a subspace with a size bound), proved by a linear chain of citations to already-stated nodes.",
+    "use_when": "the result is a known combination of already-proved (or already-stated) lemmas; the proof is a sequence in which each step invokes exactly one upstream node; the statement can be frozen, with its Lean name and `\\leanok`, before the proof is written.",
+    "avoid_when": "the proof needs a new construction or a new lemma that must itself be stated and proved (that belongs as its own node in the graph); the statement may still change (then do not fix the Lean name yet); or the hypotheses of the cited lemmas do not line up into a single chain."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The proof of pfr_aux (lines 24-47) cites exactly the eight labels declared in \\uses{...} on line 25 — nine \\Cref{} calls, with ruz-dist-def cited twice — and ends with 'This proves the claim' without introducing any new node.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/pfr.tex#L24-L47"
+    },
+    {
+      "n": 2,
+      "claim": "The statement and its Lean name are fixed before the proof and both are marked checked: the lemma carries \\lean{PFR_conjecture_aux}\\leanok on line 15 and the proof carries \\leanok on line 25.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/pfr.tex#L14-L25; the text '\\lean{PFR_conjecture_aux}\\leanok' is line 15, '\\uses{...}\\leanok' is line 25"
+    },
+    {
+      "n": 3,
+      "claim": "Each of the eight labels cited by pfr_aux is defined at its own site with a \\label{} and a \\lean{} name, so the dependency cone is a set of already-stated named nodes rather than inline proof text.",
+      "evidence_kind": "check",
+      "evidence": "jensen-bound https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/entropy.tex#L24-L29; unif-exist https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/entropy.tex#L42-L46; uniform-entropy-II https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/entropy.tex#L66-L70; bound-conc https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/entropy.tex#L75-L79; ruz-dist-def https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/distance.tex#L85-L91; ruzsa-diff https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/distance.tex#L133-L138; entropy-pfr https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/entropy_pfr.tex#L417-L426; ruz-cov https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/pfr.tex#L3-L12"
+    },
+    {
+      "n": 4,
+      "claim": "pfr_aux cites 8 upstream nodes (counted from the comma-separated \\uses{} list on line 25), a statement spanning 9 lines (14-22) and a proof spanning 24 lines (24-47).",
+      "evidence_kind": "measurement",
+      "evidence": "count of labels in the \\uses{} list at https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/pfr.tex#L25; line ranges counted in the same file at the pinned commit"
+    },
+    {
+      "n": 5,
+      "claim": "The sibling theorem pfr (lines 50-61) is the next node in the graph and consumes pfr_aux via \\uses{pfr_aux} on line 56 before applying it, so the node is a reusable dependency, not a one-off.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/pfr.tex#L50-L61"
+    }
+  ],
+  "metrics": {
+    "upstream_nodes_cited": 8,
+    "parent_statement_lines": 9,
+    "proof_lines": 24,
+    "how_counted": "upstream nodes counted from the comma-separated \\uses{} list on line 25; statement = lines 14-22; proof = lines 24-47 of blueprint/src/chapter/pfr.tex at the pinned commit"
+  },
+  "consequences": "Freezing the statement first means the Lean name PFR_conjecture_aux must correspond to a provable Lean statement; if the statement later changes, the name and the \\lean{} marker change with it. The proof carries the obligation that each cited node's hypotheses are discharged in the state where it is invoked (for example entropy-pfr is applied only after ruz-dist-def has turned the doubling bound into d[U_A;U_A] ≤ log K). A citation whose hypotheses do not line up leaves a silent gap, because the blueprint's \\leanok is a claim the build verifies, not something the text itself enforces.",
+  "known_uses": [
+    "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/pfr.tex#L50-L61"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 15,
+    "relation": "supports"
+  },
+  "content_key": "b4120b9704bae3890bb86f7cec68aee6d4ecf73cd051d37228bbd6858b4ed4f4",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T11:54:53Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:10:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T12:05:41Z"
+}

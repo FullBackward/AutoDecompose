@@ -1,0 +1,109 @@
+{
+  "entry": "lean-witness-mathlib4-98e915ff",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:21:08Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build_template.yml builds Archive (step 'build archive, counterexamples and wanted' runs 'lake-build-with-retry.sh Archive Counterexamples Wanted' at line 252, and step 'check that Archive built' gates on 'lake build --no-build --wfail Archive' at line 297); invoked by .github/workflows/build.yml on: push (lines 3-4). Pinned commit e1545ebed97594477bbd88b2fe948ffce56e5af2 is on master (default branch), confirmed via GitHub compare API: master is ahead_by 1, behind_by 0.",
+      "by": "verifier",
+      "at": "2026-11-12T12:23:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Fetched .github/workflows/build_template.yml and build.yml at e1545ebed97594477bbd88b2fe948ffce56e5af2 via fetch_file.py. build_template.yml line 252 runs '../tools-branch/scripts/lake-build-with-retry.sh Archive Counterexamples Wanted' and line 297 runs 'lake build --no-build --wfail Archive'; build.yml lines 3-4 are 'on: push:' (with branches-ignore), and line 35 'uses: ./.github/workflows/build_template.yml'.",
+      "by": "verifier",
+      "at": "2026-11-12T12:23:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Copied code Archive/Imo/Imo1982Q3.lean: line 81 'use 4000', line 82 'convert! Imo1982Q3.ineq (Nat.succ_ne_zero 3998) hx h0 hp', line 83 'norm_num' (three tactic lines). ineq (lines 54-55) is '4 * n / (n + 1) <= sum k in range (n+1), x k ^ 2 / x (k+1)', with hypothesis hn : n != 0 from line 37. Nat.succ_ne_zero 3998 : 3998 + 1 != 0 instantiates n = 3999, so range (n+1) = range 4000 and bound 4*3999/4000 = 3.999.",
+      "by": "verifier",
+      "at": "2026-11-12T12:23:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Copied code Archive/Imo/Imo1982Q3.lean line 78 reads: /-- Part a of the problem is solved by n = 4000. -/ — matches the quoted doc comment verbatim.",
+      "by": "verifier",
+      "at": "2026-11-12T12:23:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Copied code Archive/Imo/Imo1982Q3.lean lines 28-29 (module doc comment) read: 'For part a, we use Sedrakyan's lemma to show the sum is bounded below by 4n/(n+1), which can be made arbitrarily close to 4 by taking large n.' — matches the quoted claim verbatim.",
+      "by": "verifier",
+      "at": "2026-11-12T12:23:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Copied code Archive/Imo/Imo1982Q3.lean lines 86-88: theorem imo1982_q3b has goal 'exists x : N -> R, ...', and line 88 'refine <fun k => 2^-1 ^ k, ?_, pow_zero _, ?_, fun n => ?_>' introduces the witness sequence 2^-1 ^ k for the existential — the witness move closing part (b).",
+      "by": "verifier",
+      "at": "2026-11-12T12:23:26Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Read copied code Archive/Imo/Imo1982Q3.lean: parent imo1982_q3a (L78-83) states exists n, 3.999 <= sum k in range n, (x k)^2 / x(k+1); proof is use 4000 (L81), convert! Imo1982Q3.ineq (Nat.succ_ne_zero 3998) hx h0 hp (L82), norm_num (L83). ineq (L54-55) bounds sum over range(n+1) by 4n/(n+1); Nat.succ_ne_zero 3998 : 3999 != 0 instantiates n=3999 so range(n+1)=range 4000 and 4*3999/4000=3.999 exactly. Children match the code: witness n=4000 closed by 'use 4000'; property at witness closed by the convert!/norm_num transfer. Decomposition is what the entry says and closes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:24:16Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "object",
+      "evidence": "Move is stated generally (goal shape ∃ n, c ≤ S n with a general lower bound B n ≤ S n; witness found by inverting the bound), and consequences are honest and grounded. But the 'when not to use' clause contains a factually wrong illustration: it says 'the bound only approaches 4 in the limit — an exact 3.999 at a finite n is then impossible', yet the entry's own point is that 4·3999/4000 = 3.999 exactly, i.e. 3.999 IS attained at finite n (n=4000). This directly contradicts the entry and would mislead a reader about when the move applies. Fix: reword the example to a target the bound genuinely never reaches, e.g. 'the bound 4n/(n+1) only approaches 4 from below, so a target of 4 itself is never attained at any finite n and the comparison will not close'.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:25:35Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:25:57Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance-licence lens: check_provenance.py passes (1 file byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2); copied file Archive/Imo/Imo1982Q3.lean has bytes 4087 and sha256 35c72bb4...29187b, both matching entry.json files[0]. Commit e1545ebed...56e5af2 is used consistently in source.commit, files.permalink, both sites.permalink, and all claim evidence URLs. Site line ranges are correct against the copied code (parent L78-83: doc comment, two-line statement, three tactic lines; context L53-74: doc comment + lemma). Licence Apache-2.0 is recorded in entry.json and SOURCE.md (detected), matches the file header 'Released under Apache 2.0 license' and the copied upstream-LICENSE (Apache License 2.0). SOURCE.md records repo, pinned commit, browse link, licence and attribution, consistent with the entry. Everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:26:21Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    }
+  ]
+}

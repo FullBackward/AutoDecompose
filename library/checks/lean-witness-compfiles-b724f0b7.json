@@ -1,0 +1,93 @@
+{
+  "entry": "lean-witness-compfiles-b724f0b7",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T11:47:23Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push-main.yaml triggers on push to main (default branch) and runs 'lake build' at lines 49-56; fetched at pinned commit 1745e6c; the lake build compiles all Compfiles modules including Compfiles/Usa1978P1.lean",
+      "by": "verifier",
+      "at": "2026-11-12T11:48:18Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Copied file code/Compfiles/Usa1978P1.lean L41-L46: simp only, four use (6/5), constructor <;> norm_num = 6 lines, no named lemma, no rw; workflow push-main.yaml L49-56 runs lake build on main",
+      "by": "verifier",
+      "at": "2026-11-12T11:48:19Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Copied file L37-L38 comment 'solution 3 from https://artofproblemsolving.com/wiki/index.php/1978_USAMO_Problems/Problem_1'; L30 max_e=(16:ℝ)/5 and L42-45 four use (6/5) reproduce assignment a=b=c=d=6/5, e=16/5",
+      "by": "verifier",
+      "at": "2026-11-12T11:48:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Copied file: membership branch L41-46 = 6 lines, upper-bound branch L47-67 = 21 lines, file ends L70 (end Usa1978P1)",
+      "by": "verifier",
+      "at": "2026-11-12T11:48:21Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent statement matches code L35-36 (IsGreatest {e | exists a b c d, IsGood a b c d e} max_e). Children match: witness a=b=c=d=6/5 via four 'use (6/5)' at L42-45 (e fixed to max_e=16/5, L30); IsGood-at-witness closed by 'constructor <;> norm_num' at L46 splitting IsGood's two conjuncts (L32-33). Closes: 4*(6/5)+16/5=8 and 4*(36/25)+256/25=16, so norm_num discharges both equations. No named lemma, no rw. Decomposition is exactly what the entry says and closes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T11:49:23Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally, not as a one-off: applicability.goal_shape names the generic exists-shape (∃ a b c d, IsGood a b c d max_e reached via unfold+constructor+simp), and use_when gives the portable recipe 'concrete closed-form witness known -> use w fixes the value, leaves only the defining equations, norm_num/linarith close'; the maximising/minimising framing is marked 'often'/'typically', not exhaustive, and the README states the general principle as 'exhibit the object and check it satisfies the predicate'. avoid_when is honest and specific: existence needing a theorem (intermediate value, fixed point, choice) rather than an explicit value, or a residual predicate that is itself substantial - in which case use w merely defers the difficulty and a named have/lemma belongs first. Consequences are honest and specific: a wrong witness makes the goal unprovable and must be fixed first; the witness must satisfy every conjunct; the shared '<;>' leaves a goal if one conjunct is not norm_num-solvable; and use covers only the attained half of IsGreatest, the upper-bound half being a separate argument.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T11:50:07Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T11:50:22Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passed: 1 file byte-identical at pinned commit 1745e6ced3e671bd74417548494b034eb2c87da8. Commit is consistent across entry.json source.commit, files/sites permalinks, source.json, and SOURCE.md (pinned 2026-11-12T10:23:49Z). Licence Apache-2.0 is consistent across entry.json, README, source.json, SOURCE.md, the copied file header ('Released under Apache 2.0 license') and upstream-LICENSE (Apache 2.0 text). All permalinks use the blob/commit form and resolve to Compfiles/Usa1978P1.lean. Traceable end to end.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T11:51:11Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    }
+  ]
+}

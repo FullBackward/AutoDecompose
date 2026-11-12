@@ -1,0 +1,125 @@
+{
+  "id": "lean-witness-compfiles-b724f0b7",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Witness assignment a=b=c=d=6/5 for USAMO 1978 P1",
+  "intent": "Close the membership half of IsGreatest - that max_e = 16/5 is actually attained - by naming the maximising assignment with four use (6 / 5) witnesses and discharging its two defining equations with one constructor <;> norm_num.",
+  "move": "witness",
+  "also_known_as": [
+    "use",
+    "exists introduction",
+    "existence witness"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "compfiles",
+    "url": "https://github.com/dwrensha/compfiles",
+    "commit": "1745e6ced3e671bd74417548494b034eb2c87da8",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Compfiles/Usa1978P1.lean",
+      "bytes": 1926,
+      "sha256": "007117882c7304c5b1df25aeba1107044bf2170df600087232908754af4320c3",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa1978P1.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Compfiles/Usa1978P1.lean",
+      "lines": [
+        35,
+        46
+      ],
+      "role": "parent",
+      "name": "usa1978_p1",
+      "excerpt_sha256": "50e898aa82ae4e16e2a9b2f45d59508c709a2dbfa1379ee3ad904450033518ae",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa1978P1.lean#L35-L46"
+    },
+    {
+      "path": "Compfiles/Usa1978P1.lean",
+      "lines": [
+        47,
+        67
+      ],
+      "role": "context",
+      "name": "usa1978_p1_upper_bound",
+      "excerpt_sha256": "79b68e146aedca44dbfe40c6a8a5cfbfa1f11c6a48d07e1cf1631c6ee87a7104",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa1978P1.lean#L47-L67"
+    }
+  ],
+  "parent": {
+    "name": "usa1978_p1",
+    "statement": "problem usa1978_p1 : IsGreatest { e : ℝ | ∃ a b c d : ℝ, IsGood a b c d e } max_e"
+  },
+  "children": [
+    {
+      "name": "witness a = b = c = d = 6 / 5",
+      "statement": "the four existential variables of ∃ a b c d : ℝ, IsGood a b c d max_e (e is the set's bound variable, fixed at max_e)",
+      "closed_by": "use (6 / 5), four times (lines 42-45)"
+    },
+    {
+      "name": "IsGood at the witness",
+      "statement": "IsGood (6/5) (6/5) (6/5) (6/5) max_e, i.e. a+b+c+d+e = 8 ∧ a^2+b^2+c^2+d^2+e^2 = 16",
+      "closed_by": "constructor <;> norm_num (line 46)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "∃ a b c d : ℝ, IsGood a b c d max_e (reached from IsGreatest's membership conjunct via unfold + constructor + simp only [Set.mem_ofPred_eq])",
+    "use_when": "a concrete closed-form witness is known - a maximising/minimising assignment, often with variables equal by symmetry - so use w fixes the value and leaves only the witness's defining equations, which norm_num/linarith close",
+    "avoid_when": "the object's existence needs a theorem (intermediate value, fixed point, choice) rather than an explicit value, or checking that the candidate satisfies the predicate is itself substantial"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The membership branch of usa1978_p1 closes in six lines - four use (6 / 5) and one constructor <;> norm_num - with no named lemma and no manual rewriting.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa1978P1.lean#L41-L46; the file is built by lake build in .github/workflows/push-main.yaml (lines 49-56), which runs on pushes to main"
+    },
+    {
+      "n": 2,
+      "claim": "The authors give the informal plan as a comment citing 'solution 3 from https://artofproblemsolving.com/wiki/index.php/1978_USAMO_Problems/Problem_1', and the formal use (6 / 5) reproduces that solution's assignment a = b = c = d = 6/5, e = 16/5.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa1978P1.lean#L37-L38"
+    },
+    {
+      "n": 3,
+      "claim": "The witness move carries the whole 'max_e is attained' direction in 6 lines (41-46) against 21 lines (47-67) for the upper-bound direction.",
+      "evidence_kind": "measurement",
+      "evidence": "count on the copied file Compfiles/Usa1978P1.lean (70 lines); https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa1978P1.lean#L41-L67"
+    }
+  ],
+  "metrics": {
+    "membership_branch_lines": 6,
+    "upper_bound_branch_lines": 21,
+    "use_witnesses": 4,
+    "named_lemmas_stated": 0,
+    "how_counted": "lines 41-46 and 47-67 of the copied file; use_witnesses = number of use tactics in lines 42-45"
+  },
+  "consequences": "Replaces ∃ x, P x by P w for the chosen witness, so a wrong value makes the goal unprovable and must be fixed first (6/5 is forced by e = 16/5 and the two equations; the four equalities rely on the solution's symmetry). The witness must satisfy every conjunct of the predicate: IsGood's two equations close together under constructor <;> norm_num, and if one were not norm_num-solvable the shared <;> would leave a goal. The witness only covers the attained half of IsGreatest; the upper-bound half is a separate argument.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "b724f0b762b03cb33a587ddaa02848770bb66aa8222921d6cd7ed60a2e71e493",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T11:45:27Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,metrics,consequences,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T11:51:19Z"
+}

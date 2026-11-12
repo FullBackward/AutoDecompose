@@ -1,0 +1,126 @@
+{
+  "id": "markdown-extract-have-lean4-skills-b59b032f",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Lifting an embedded have into a private lemma (strict-monotone bound)",
+  "intent": "Take the `have hk_bound` embedded in a long proof, promote its surrounding context (`m'`, `k`, `hk_mono`) into explicit parameters, and generalise the specific bound `k i ≤ k ⟨m', Nat.lt_succ_self m'⟩` to `k i ≤ k last`, so the main proof closes its strict bound `k i < n` by `omega` from a top-level `private lemma` instead of an inline calculation.",
+  "move": "extract-have",
+  "also_known_as": [
+    "have extraction",
+    "lift have to lemma",
+    "extract helper lemma",
+    "lemma extraction"
+  ],
+  "language": "markdown",
+  "source": {
+    "source_id": "lean4-skills",
+    "url": "https://github.com/cameronfreer/lean4-skills",
+    "commit": "3f913c66251b8712bb58e6ce83a453fa96e3f94f",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "plugins/lean4/skills/lean4/references/proof-refactoring.md",
+      "bytes": 28691,
+      "sha256": "94729eafa81f873172d0f98b1dd204902a33b4d14991e9250fff8d040b7be6f7",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-refactoring.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": "plugins/lean4/skills/lean4/references/proof-refactoring.md",
+      "lines": [
+        309,
+        317
+      ],
+      "role": "parent",
+      "name": "hk_bound",
+      "excerpt_sha256": "5bc09151944b898db316977dce202e0b04f5f37d4c6043a6600b4808f6f23eb0",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-refactoring.md#L309-L317"
+    },
+    {
+      "path": "plugins/lean4/skills/lean4/references/proof-refactoring.md",
+      "lines": [
+        320,
+        328
+      ],
+      "role": "child",
+      "name": "strictMono_all_lt_succ_last",
+      "excerpt_sha256": "c4f0669d7ebeed82f84d48832b10838d49b49361c6d5c1151be863ac9cce8994",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-refactoring.md#L320-L328"
+    }
+  ],
+  "parent": {
+    "name": "hk_bound",
+    "statement": "have hk_bound : ∀ i : Fin (m' + 1), k i < n := by"
+  },
+  "children": [
+    {
+      "name": "strictMono_all_lt_succ_last",
+      "statement": "private lemma strictMono_all_lt_succ_last {m : ℕ} (k : Fin m → ℕ) (hk : StrictMono k) (i : Fin m) (last : Fin m) (h_last : ∀ j, j ≤ last) : k i ≤ k last",
+      "closed_by": "apply StrictMono.monotone hk; exact h_last i"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An embedded `have` (or `assert`) inside a long proof whose conclusion uses proof-local context; the reusable content is a monotonicity fact of the form `k i ≤ k last` obtained by `StrictMono.monotone`, stated with proof-specific constants (`n`, `m'`, the last index `⟨m', Nat.lt_succ_self m'⟩`).",
+    "use_when": "the embedded fact has independent mathematical content that can be re-stated with the surrounding context promoted to parameters; the fact is reusable or would shorten and clarify the main proof; the file's own triggers apply (a large preliminary calculation, or a bound whose only proof-specific part is the choice of last index).",
+    "avoid_when": "the fact would need many parameters (the file warns against 10+ / 15+ parameter helpers); the statement depends on definitional `let` bindings (Pattern 2.3, measure theory); the `have` is short, linear and used once with no independent meaning; or the extraction would obscure the main flow."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The embedded `have hk_bound` closes with `omega` (line 316), after an inner `have : k i ≤ k ⟨m', Nat.lt_succ_self m'⟩` closed by `apply StrictMono.monotone hk_mono; exact Fin.le_last i` (lines 313-315), with `simp only [n]` discharging the `n` of the outer goal.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-refactoring.md#L310-L316"
+    },
+    {
+      "n": 2,
+      "claim": "The extracted `private lemma strictMono_all_lt_succ_last` closes with the same two-step argument `apply StrictMono.monotone hk; exact h_last i` (lines 326-327), where the specific last index `⟨m', Nat.lt_succ_self m'⟩` and the witness `Fin.le_last i` of the inner `have` become the parameters `last : Fin m` and `h_last : ∀ j, j ≤ last`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-refactoring.md#L321-L327"
+    },
+    {
+      "n": 3,
+      "claim": "The authors state the extracted lemma's meaning in its docstring, 'Strictly monotone functions satisfy k(i) ≤ k(last) for all i' (line 321), and the point of the extraction in prose, 'Result: Main proof now just calls helper, much clearer.' (line 330).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-refactoring.md#L321 and #L330"
+    },
+    {
+      "n": 4,
+      "claim": "The same file states the recipe this example follows, 'Copy have proof to new lemma; Identify required parameters; Replace original with have h := helper args' (lines 264-266), and the generalisation step is its own rule, 'Generic is better (Pattern 2.1): Remove proof-specific constraints' (line 39).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-refactoring.md#L264-L266 and #L39"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 7,
+    "child_lines": 7,
+    "explicit_parameters_added": 5,
+    "how_counted": "parent = lines 310-316 of the copied file (the before `have` block); child = lines 321-327 (the extracted lemma); the lemma takes one implicit parameter `{m : ℕ}` plus five explicit parameters `(k, hk, i, last, h_last)`."
+  },
+  "consequences": "The extracted lemma must carry the whole context as parameters: `m'` in `Fin (m' + 1)` is re-typed as the implicit `{m : ℕ}`, `k` and `hk_mono` become `k` and `hk : StrictMono k`, and the specific last index `⟨m', Nat.lt_succ_self m'⟩` is generalised to `last : Fin m` with the explicit hypothesis `h_last : ∀ j, j ≤ last` (previously supplied for free by `Fin.le_last i`). The outer `have hk_bound` is then closed by `omega` from the helper, so the caller must still supply the `last`/`h_last` pair and finish the strict bound. A helper left too specific (still naming `n` and `m'`) would not be reusable; one made too general gains a hypothesis the caller must discharge. The file's Pattern 5.1 requires recompiling after each such extraction, since a parameter mismatch or a dropped hypothesis is caught only by the compiler.",
+  "known_uses": [
+    "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-refactoring.md#L191-L213"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 4,
+    "relation": "supports"
+  },
+  "content_key": "b59b032f261d5d52ee06d75b5d53c638ad9911434196dbab4d6cf2febec607bb",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:06:46Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,known_uses,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:07:43Z"
+    }
+  ]
+}

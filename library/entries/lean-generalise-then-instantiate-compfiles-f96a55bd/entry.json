@@ -1,0 +1,154 @@
+{
+  "id": "lean-generalise-then-instantiate-compfiles-f96a55bd",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Abstract the hypothesis to a predicate, prove its API, then instantiate (IMO 2024 P2)",
+  "intent": "Hide the problem's existential hypothesis behind a predicate `Condition a b` and prove every fact about `(a, b)` as a lemma over an arbitrary witness `h : Condition a b`; only at the very end is the concrete witness built and the generalised lemmas instantiated, so no proof ever unfolds `Condition`.",
+  "move": "generalise-then-instantiate",
+  "also_known_as": [
+    "abstract-predicate API",
+    "section lemmas over a witness",
+    "interface over an existential hypothesis"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "compfiles",
+    "url": "https://github.com/dwrensha/compfiles",
+    "commit": "1745e6ced3e671bd74417548494b034eb2c87da8",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Compfiles/Imo2024P2.lean",
+      "bytes": 6976,
+      "sha256": "672150f386ef6e1d468745f365b23b58376494df8054f52f1481a5688b7875ed",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo2024P2.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Compfiles/Imo2024P2.lean",
+      "lines": [
+        197,
+        200
+      ],
+      "role": "parent",
+      "name": "imo2024_p2",
+      "excerpt_sha256": "73a683a8272d13c269d7c209cf6f41fe7f56950c10d4ef4dddb96cd148f738c3",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo2024P2.lean#L197-L200"
+    },
+    {
+      "path": "Compfiles/Imo2024P2.lean",
+      "lines": [
+        43,
+        45
+      ],
+      "role": "context",
+      "name": "condition_def",
+      "excerpt_sha256": "5871fbbbd6ac76f6faf5e30f8bff69908b1a37339afa5bb7880c114e88fc156a",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo2024P2.lean#L43-L45"
+    },
+    {
+      "path": "Compfiles/Imo2024P2.lean",
+      "lines": [
+        55,
+        94
+      ],
+      "role": "child",
+      "name": "condition_api",
+      "excerpt_sha256": "d96d98f52a47794e6bdd9c49698d4003222f6c3b1d72749cdab4dc53af8d893a",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo2024P2.lean#L55-L94"
+    },
+    {
+      "path": "Compfiles/Imo2024P2.lean",
+      "lines": [
+        206,
+        217
+      ],
+      "role": "child",
+      "name": "instantiation",
+      "excerpt_sha256": "5dd37f25953388f4c3094b8e8d7f6a98a74f426f8f1425b30c7227b15fa632e5",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo2024P2.lean#L206-L217"
+    }
+  ],
+  "parent": {
+    "name": "imo2024_p2",
+    "statement": "problem imo2024_p2 (a b : ℕ+) :\n    (a, b) ∈ solutionSet ↔\n    ∃ g N : ℕ+,\n      ∀ n : ℕ, N ≤ n → Nat.gcd (a^n + b) (b^n + a) = g"
+  },
+  "children": [
+    {
+      "name": "condition_api (generalise)",
+      "statement": "variable {a b : ℕ} (h : Condition a b)\n\nlemma gcd_eq_g {n : ℕ} (hn : h.N ≤ n) : Nat.gcd (a ^ n + b) (b ^ n + a) = h.g := h.N_spec.2.2 n hn",
+      "closed_by": "each API lemma projects from the witness and rewrites: `a_pos : 0 < a := h.1`; `b_pos : 0 < b := h.2.1`; `g : ℕ := h.2.2.choose`; `g_spec := h.2.2.choose_spec`; `N : ℕ := h.g_spec.choose`; `N_spec := h.g_spec.choose_spec`; `g_pos := h.N_spec.1`; `N_pos := h.N_spec.2.1`; `gcd_eq_g := h.N_spec.2.2 n hn`; `symm` by `refine ⟨h.b_pos, h.a_pos, h.g, h.N, h.g_pos, h.N_pos, fun n hn ↦ ?_⟩` then `rw [Nat.gcd_comm]`; `dvd_g_of_le_N_of_dvd` by `rw [← h.gcd_eq_g hn, Nat.dvd_gcd_iff]`. The definition of `Condition` is never unfolded."
+    },
+    {
+      "name": "instantiation (hc : Condition a b)",
+      "statement": "(a, b) ∈ solutionSet — the ← direction of imo2024_p2 (line 206)",
+      "closed_by": "`have hc : Condition a b := by refine ⟨ha, hb, ?_⟩; obtain ⟨g, N, HCm⟩ := h; use g, N; refine ⟨g.pos, N.pos, ?_⟩; exact fun n a ↦ HCm n a` (lines 209-214); then the two generalised lemmas `PNat.coe_eq_one_iff.mp (hc.a_eq_one)` and `PNat.coe_eq_one_iff.mp (hc.b_eq_one)` (lines 216-217)."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal whose hypothesis is an existential or other packaged condition that is used repeatedly by many lemmas with different conclusions. The move factors it into a predicate and proves all downstream facts over an arbitrary witness of that predicate, then reconstructs the concrete witness once at the end.",
+    "use_when": "the same hypothesis is needed by several lemmas; the concrete witness would clutter each statement; the needed facts can be stated as accessor lemmas (here `h.1`, `h.2.1`, `h.2.2.choose_spec`) so the predicate is never unfolded again.",
+    "avoid_when": "the witness must be chosen or transformed inside a proof in a way the accessors cannot express; the predicate is used only once (indirection is not worth it); or a proof genuinely needs to unfold the definition, in which case a different decomposition fits better."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent `imo2024_p2` closes using only the two generalised lemmas `hc.a_eq_one` and `hc.b_eq_one`, applied after the concrete witness `hc : Condition a b` is built at lines 209-214; `Condition` is never unfolded.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo2024P2.lean#L206-L217; file built by `lake build` in .github/workflows/push-main.yaml on pushes to main"
+    },
+    {
+      "n": 2,
+      "claim": "Every lemma of the API section (lines 55-94) is closed by projecting from the witness `h` and rewriting (e.g. `a_pos : 0 < a := h.1`, `b_pos : 0 < b := h.2.1`, `gcd_eq_g … := h.N_spec.2.2 n hn`), and no `unfold Condition`, `rw [Condition]`, or `simp [Condition]` occurs anywhere in the file.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo2024P2.lean#L55-L94; grep for `unfold Condition`, `rw [Condition]`, `simp [Condition]` over the copied file returns no matches"
+    },
+    {
+      "n": 3,
+      "claim": "The author names the abstraction and its derived quantities, signalling an interface meant to be used rather than unfolded: `Condition` is documented as 'The condition of the problem.' (line 43) and `g` as 'The value of `g` in the problem (determined by `a` and `b`).' (line 66).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo2024P2.lean#L43-L45 and #L66"
+    },
+    {
+      "n": 4,
+      "claim": "The generalised API is instantiated a second time inside the development itself: `symm : Condition b a` (lines 84-87) constructs a swapped witness, and the b-side results are obtained by instantiating the a-side ones — `b_eq_one := h.symm.a_eq_one` (line 189) and `ab_add_one_dvd_b_pow_large_n_add_a` via `convert h.symm.ab_add_one_dvd_a_pow_large_n_add_b` (lines 154-157).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo2024P2.lean#L84-L87, #L154-L157 and #L189"
+    }
+  ],
+  "metrics": {
+    "api_declarations_in_excerpt": 11,
+    "declarations_in_namespace": 27,
+    "instantiation_lines": 12,
+    "condition_unfoldings": 0,
+    "how_counted": "Declarations (lemma + def) counted by reading the copied file: 11 in lines 55-94 (a_pos … dvd_g_of_le_N_of_dvd), 27 in the namespace lines 55-191; instantiation = lines 206-217; unfoldings counted by grep for `unfold Condition`, `rw [Condition]`, `simp [Condition]` (0 matches)."
+  },
+  "consequences": "The move turns one existential hypothesis into a predicate plus a fixed set of accessor lemmas, so every later fact about the hypothesis must go through those accessors rather than re-deriving from the existential; adding a fact means first adding (and proving) another API lemma. `noncomputable def g`/`N` via `choose` make the API only partially computational, so each property needs `choose_spec`; that is fine here because nothing unfolds the predicate. The indirection concentrates all dependence on the concrete witness in one place (lines 209-214): the parent's sufficiency rests on `hc` satisfying exactly the same interface, and a client that later needs a stronger witness must generalise the predicate again.",
+  "known_uses": [
+    "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo2024P2.lean#L84-L87"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "f96a55bd66cae64db5c341364a8b3c6facdb6c95c333079ae2ec41cb7145506b",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T11:47:40Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T11:48:26Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T11:57:07Z"
+}

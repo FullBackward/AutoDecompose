@@ -1,0 +1,147 @@
+{
+  "id": "lean-generalise-then-instantiate-mathlib4-57b9f5e4",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Generalise IMO 1977 Q6 to f : ℕ → ℕ, then instantiate to ℕ+ via a garbage extension at 0",
+  "intent": "Solve the problem for f : ℕ+ → ℕ+ by first proving the same statement over ℕ (where an induction over the extra element 0 works), then transfer to ℕ+ by extending the given function to a total ℕ → ℕ function with a garbage value at 0 and instantiating the general theorem.",
+  "move": "generalise-then-instantiate",
+  "also_known_as": [
+    "extend-and-instantiate",
+    "garbage-value extension",
+    "generalize then specialize",
+    "prove on the ambient type, restrict to the subtype"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "mathlib4",
+    "url": "https://github.com/leanprover-community/mathlib4",
+    "commit": "e1545ebed97594477bbd88b2fe948ffce56e5af2",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Archive/Imo/Imo1977Q6.lean",
+      "bytes": 1462,
+      "sha256": "759aca6118a59d21644666592c674c8081a3250e511215f3519ec92d6bcef749",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1977Q6.lean"
+    },
+    {
+      "path": "Mathlib/Data/PNat/Defs.lean",
+      "bytes": 7390,
+      "sha256": "0f4107cb04d39fc6cff8944fcee6c7392c90e54f9a8160e0dec39a8b51ee674f",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/Data/PNat/Defs.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Archive/Imo/Imo1977Q6.lean",
+      "lines": [
+        23,
+        35
+      ],
+      "role": "parent",
+      "name": "imo1977_q6_nat",
+      "excerpt_sha256": "d11a15958dc87d7d65b5fd5befa11e8f493ad61a6b04dfe0f1f34d4543ef5bf1",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1977Q6.lean#L23-L35"
+    },
+    {
+      "path": "Archive/Imo/Imo1977Q6.lean",
+      "lines": [
+        41,
+        48
+      ],
+      "role": "child",
+      "name": "imo1977_q6",
+      "excerpt_sha256": "997d8af8133cf762a55653f43f0dc1aaba87e72d1568427d03021f9106ca24a6",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1977Q6.lean#L41-L48"
+    },
+    {
+      "path": "Archive/Imo/Imo1977Q6.lean",
+      "lines": [
+        10,
+        18
+      ],
+      "role": "context",
+      "name": "module_comment",
+      "excerpt_sha256": "90b3e61c78c707cc5b2da3818000425432a38813b26a63979c909118fd0c3f32",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1977Q6.lean#L10-L18"
+    }
+  ],
+  "parent": {
+    "name": "imo1977_q6_nat",
+    "statement": "public theorem imo1977_q6_nat (f : ℕ → ℕ) (h : ∀ n, f (f n) < f (n + 1)) : ∀ n, f n = n := by"
+  },
+  "children": [
+    {
+      "name": "imo1977_q6",
+      "statement": "public theorem imo1977_q6 (f : ℕ+ → ℕ+) (h : ∀ n, f (f n) < f (n + 1)) : ∀ n, f n = n := by",
+      "closed_by": "intro n; refine imo1977_q6_nat (fun m => if 0 < m then f m.toPNat' else 0) ?_ n; the hypothesis goal is closed by intro x; cases x; · simp; · simpa using! h _; the final goal is closed by simpa"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A statement over a subtype or restricted domain (here f : ℕ+ → ℕ+) whose proof is easier over the ambient type (here ℕ), because the ambient type has an extra element (0) usable as a default/garbage value and a recursion principle (Nat.induction) the subtype lacks.",
+    "use_when": "the generalisation over the ambient type has a proof that does not need the missing element, and the given object can be extended to the ambient type with a total, decidable default (here `if 0 < m then f m.toPNat' else 0`); the general theorem's hypothesis transfers by a case on the added element (here `cases x`).",
+    "avoid_when": "the restricted-domain object cannot be extended total (no default, or the default is not computable/decidable); the generalised hypothesis cannot be discharged for the extension without re-proving the argument; the ambient-type statement is not actually easier; or the conclusion does not coerce back with `simpa`."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The authors state the generalise-then-instantiate plan in the module comment: 'We first prove the problem statement for `f : ℕ → ℕ` then we use it to prove the statement for positive naturals.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1977Q6.lean#L16-L17"
+    },
+    {
+      "n": 2,
+      "claim": "The child `imo1977_q6` is closed by instantiating the parent `imo1977_q6_nat` at the extension `fun m => if 0 < m then f m.toPNat' else 0` (line 44); the new hypothesis is discharged by `intro x; cases x` into a `simp` case (x = 0) and a `simpa using! h _` case (positive), and `simpa` (line 48) closes the goal.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1977Q6.lean#L41-L48"
+    },
+    {
+      "n": 3,
+      "claim": "Archive/Imo/Imo1977Q6.lean builds as part of mathlib4's continuous integration: `.github/workflows/build.yml` runs on push to `master` and delegates to `build_template.yml`, which builds the Archive library (`lake-build-with-retry.sh Archive Counterexamples Wanted`) and fails the job if Archive did not build.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/.github/workflows/build_template.yml#L252 and #L410-L414; trigger in https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/.github/workflows/build.yml#L1-L5"
+    },
+    {
+      "n": 4,
+      "claim": "The instantiation adds no new mathematics: the child's proof body (lines 42-48, 7 lines) only extends `f`, applies the parent, discharges the hypothesis by `cases`, and `simpa`; the parent's 8-line induction/`calc` block (lines 24-31) is never repeated.",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1977Q6.lean#L41-L48 and #L24-L31; line counts by reading the copied file"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 13,
+    "child_lines": 8,
+    "child_body_lines": 7,
+    "parent_induction_block_lines": 8,
+    "induction_repeated_in_child": 0,
+    "how_counted": "parent = lines 23-35, child = lines 41-48 of Archive/Imo/Imo1977Q6.lean; child body = lines 42-48; parent induction/calc block = lines 24-31; counts by reading the copied file"
+  },
+  "consequences": "Creates three obligations beyond the general statement: (1) extend the given object to the ambient type with a total default (`else 0` at `m = 0`); (2) prove the general theorem's hypothesis for the extension, which is a case split on the added element (`cases x`, `simp` at 0, `simpa using! h _` otherwise); (3) coerce the ambient-type conclusion back to the subtype (`simpa`). Failure modes: the garbage value can leak into the proof if the general statement's conclusion is not literally `f n = n` (then `simpa` may not close); the extension must be decidable (`if 0 < m` needs `Decidable`); and the ambient type must genuinely be easier — if the proof needs the missing element, the generalisation is not the simplification it looks like.",
+  "known_uses": [],
+  "related": [
+    "lean-generalise-then-instantiate-compfiles-f96a55bd"
+  ],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "57b9f5e4dd5a916415e7dd2213a02ab7182007c1fc7786bac4757fa3a4d6971e",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:20:46Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:26:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T12:27:52Z"
+}

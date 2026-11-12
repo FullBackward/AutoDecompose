@@ -1,0 +1,153 @@
+{
+  "id": "lean-calc-chain-compfiles-5cbadaea",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Calc chains bound b at the min and max of a for EGMO 2023 P1",
+  "intent": "Reduce the goal ∀ i j, a i = a j to the single fact ∀ i, b i = 2 by bounding b from below at a minimum index m of a (b m ≥ 2) and from above at a maximum index M (b M ≤ 2), each bound a two-link calc chain, then closing by antisymmetry (eq_of_le_of_ge).",
+  "move": "calc-chain",
+  "also_known_as": [
+    "calculational proof",
+    "Isar also/finally chain",
+    "transitivity chain"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "compfiles",
+    "url": "https://github.com/dwrensha/compfiles",
+    "commit": "1745e6ced3e671bd74417548494b034eb2c87da8",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Compfiles/Egmo2023P1.lean",
+      "bytes": 2001,
+      "sha256": "73f959047f38aeaded46f649fa0df00b4ca290fa0668b61da7f90db079fab768",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Egmo2023P1.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Compfiles/Egmo2023P1.lean",
+      "lines": [
+        28,
+        63
+      ],
+      "role": "parent",
+      "name": "egmo2023_p1",
+      "excerpt_sha256": "60cf765b30c2f2b7c7971a95c55fd50e6c61e66669b5ea3f874cb4979bbdc45a",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Egmo2023P1.lean#L28-L63"
+    },
+    {
+      "path": "Compfiles/Egmo2023P1.lean",
+      "lines": [
+        35,
+        44
+      ],
+      "role": "child",
+      "name": "h1",
+      "excerpt_sha256": "1ea3b56168a86c55c52e1639ad064e82f3589ba0266a775fd96539e35ba70699",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Egmo2023P1.lean#L35-L44"
+    },
+    {
+      "path": "Compfiles/Egmo2023P1.lean",
+      "lines": [
+        45,
+        54
+      ],
+      "role": "child",
+      "name": "h2",
+      "excerpt_sha256": "d2badb5cbda94caa5451b2f293b2862f2b721c5856643dc583d80dccbbaef39c",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Egmo2023P1.lean#L45-L54"
+    },
+    {
+      "path": "Compfiles/Egmo2023P1.lean",
+      "lines": [
+        55,
+        63
+      ],
+      "role": "context",
+      "name": "h3",
+      "excerpt_sha256": "8e3309bffdc744e3c463a701a3263311e4f1d3beccac38548e75363ab303bdc8",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Egmo2023P1.lean#L55-L63"
+    }
+  ],
+  "parent": {
+    "name": "egmo2023_p1",
+    "statement": "problem egmo2023_p1 (n : ℕ) [NeZero n] (_ : n ≥ 3) (a : Fin n → ℝ) (ha : ∀ i, a i > 0)\n    (b : Fin n → ℝ) (hb : ∀ i, b i = (a (i - 1) + a (i + 1)) / (a i))\n    (h : ∀ i j, a i ≤ a j ↔ b i ≤ b j) : ∀ i j, a i = a j"
+  },
+  "children": [
+    {
+      "name": "h1",
+      "statement": "b m ≥ 2",
+      "closed_by": "calc: b m ≥ (a m + a m)/(a m) by rw [hb m]; gcongr (closing a m ≤ a m, a m ≤ a (m - 1), a m ≤ a (m + 1) from hm); then _ ≥ 2 by rw [← two_mul, mul_div_cancel_right₀]; positivity [ha m]"
+    },
+    {
+      "name": "h2",
+      "statement": "b M ≤ 2",
+      "closed_by": "calc: b M ≤ (a M + a M)/(a M) by rw [hb M]; gcongr (closing a (M - 1) ≤ a M, a (M + 1) ≤ a M from hM); then _ ≤ 2 by rw [← two_mul, mul_div_cancel_right₀]; positivity [ha M]"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "an inequality E ≥ c or E ≤ c over an ordered ring, where E expands to a ratio or sum that can first be bounded by a simpler expression through monotonicity (gcongr) and then reduced to a constant by rewriting plus positivity/norm_num",
+    "use_when": "the target bound factors into a monotonicity link (replace each argument by its min/max or a known ≤/≥ fact) followed by an exact algebra link (rw to a numeral); the two bounds are symmetric so one chain template serves both; the enclosing proof closes the two bounds by antisymmetry",
+    "avoid_when": "a link is not monotone in its arguments so gcongr cannot close it; a link needs its own substantial proof rather than a one-tactic block (then state it as a separate lemma); the chain is long with each link a real lemma; the bounds are strict (<) and the exactness of the constant matters"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "Each child is a calc chain of exactly two inequality links — h1 : b m ≥ (a m + a m)/(a m) ≥ 2 and h2 : b M ≤ (a M + a M)/(a M) ≤ 2 — and each link closes with one tactic block (gcongr, then rw + positivity), with no auxiliary lemma.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Egmo2023P1.lean#L35-L54; the file is built by lake build in .github/workflows/push-main.yaml on pushes to main"
+    },
+    {
+      "n": 2,
+      "claim": "The parent egmo2023_p1 closes from the two bounds: h3 : ∀ i, b i = 2 is derived by apply eq_of_le_of_ge from h2 and h1 (lines 55-59), and the goal ∀ i j, a i = a j then closes by apply eq_of_le_of_ge and rewriting with h and h3 (lines 60-63).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Egmo2023P1.lean#L55-L63"
+    },
+    {
+      "n": 3,
+      "claim": "The two calc chains occupy 20 of the 36 lines of the proof body of egmo2023_p1.",
+      "evidence_kind": "measurement",
+      "evidence": "count of the copied file Compfiles/Egmo2023P1.lean: the proof body is lines 28-63 (36 lines) and the two chains are lines 35-44 and 45-54 (20 lines)"
+    },
+    {
+      "n": 4,
+      "claim": "The author records that the proof follows an external human solution rather than an automated search: 'The solution was adapted from here: https://www.youtube.com/watch?v=PNFh789P31E.' (line 31).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Egmo2023P1.lean#L31-L32"
+    }
+  ],
+  "metrics": {
+    "chains": 2,
+    "links_per_chain": 2,
+    "proof_body_lines": 36,
+    "calc_chain_lines": 20,
+    "how_counted": "lines of the copied file: proof body = lines 28-63 (36 lines); calc chains = lines 35-44 and 45-54 (20 lines)"
+  },
+  "consequences": "Each calc chain creates one obligation per link, and transitivity of ≥/≤ is discharged by the chain itself (Lean's calc composes ≥ as well as ≤). Every link must be a one-tactic block: the monotonicity link relies on gcongr finding the ≤/≥ facts from the min/max hypotheses hm/hM, and the algebra link relies on rw [← two_mul, mul_div_cancel_right₀] plus positivity [ha i] needing a i > 0. The final close (eq_of_le_of_ge) needs both directions: a lower bound b m ≥ 2 and an upper bound b M ≤ 2; supplying only one side leaves ∀ i, b i = 2 unproved.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "5cbadaeaf8c33b9deea398f245b54719c0610f6fa7703985484b4cd2e5eb3cfb",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T11:43:21Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,also_known_as,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T11:51:43Z"
+}

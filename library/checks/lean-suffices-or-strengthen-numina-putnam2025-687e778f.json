@@ -1,0 +1,101 @@
+{
+  "entry": "lean-suffices-or-strengthen-numina-putnam2025-687e778f",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 60d33c8ba19af905bd731e938ebde1c5b8c76519",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T11:58:28Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/lean_action_ci.yml runs leanprover/lean-action@v1 (lake build) on push and pull_request; commit 60d33c8ba19af905bd731e938ebde1c5b8c76519 confirmed on default branch main via branches-where-head API",
+      "by": "verifier",
+      "at": "2026-11-12T12:00:48Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "copied file (byte-identical at pinned commit): lines 1022-1023 have hv_b := hb_val k hk and hv_A := hA_val k hk; lines 1029-1031 derive hv_prod via rw [padicValInt.mul ...] then ring",
+      "by": "verifier",
+      "at": "2026-11-12T12:00:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "copied file: line 1432 have hP, line 1434 induction j, hj using Nat.le_induction, line 1436 base cases base_case_b/base_case_A, lines 1583-1585 constructor with projections (hP j hj).1/.2",
+      "by": "verifier",
+      "at": "2026-11-12T12:00:53Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "copied file line 1429 comment reads exactly '-- The key is that these claims are interdependent and must be proven together'",
+      "by": "verifier",
+      "at": "2026-11-12T12:00:54Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "arithmetic on copied file: span 1018-1031 = 14 lines; span 1432-1585 = 154 lines (1585-1432+1); both correct",
+      "by": "verifier",
+      "at": "2026-11-12T12:00:55Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Read the copied file code/NuminaPutnam2025/putnam_2025_a6.lean. Parent putnam_2025_a6 at 974-979 matches entry.json verbatim. Skeleton 1017-1031: 'suffices h : (forall j>=1, v2(b(2^j))=j+1) & (forall j>=1, v2(A b(2^j)-1)=j+1) by' (1018-1019) then obtain<hb_val,hA_val> and instantiate at j:=k (1022-1023) and hv_prod via padicValInt.mul+ring (1029-1031) - matches claim 1 and the strengthened package. Child hP at 1432-1581 proved by 'induction j,hj using Nat.le_induction' (1434) with base base_case_b/base_case_A (1436) and succ step 'obtain <ih_b,ih_A> := ih' (1439) carrying both halves - matches child.closed_by and claim 2. Closing: 'constructor' with two projections (1583-1585) recovers the two conjuncts of h, and the suffices 'by' block closes the parent via padicValInt_add_of_lt' (1423). No sorry/admit/axiom in the file (only comments at 539/1264 mention them). Author quote 'interdependent and must be proven together' at 1429, line spans 1018-1031=14 and 1432-1585=154 verified. Decomposition is what the entry says and it closes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:03:14Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally: applicability names two reusable patterns (single-index goal whose proof needs the property at every index -> universal strengthening; mutually dependent claims bundled into one conjunction for a single simultaneous induction) and cross-references extract-have for the standalone-lemma case. When-not-to-use is honest and specific: it explicitly admits that in this example the reduction is NOT routine (error-term argument at lines 1033-1426, verified in the copied file), so the suffices only buys a clean split, plus a false strengthening is a dead end. Consequences are honest and specific: new package obligation + reduction obligation, all-indices quantification risk, coupled conjuncts, silent-dead-end failure mode. Minor caveat, not enough to object: the coupling is one-directional in the proof (the A-claim step uses ih_b at line 1517, but the b-claim step does not use ih_A), so 'each induction step uses both halves' overstates slightly; the general lesson (bundle coupled claims to share hypotheses in one induction) still holds.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:05:16Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 60d33c8ba19af905bd731e938ebde1c5b8c76519",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:05:43Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance and licence are consistent and traceable. check_provenance.py passes: the copied file code/NuminaPutnam2025/putnam_2025_a6.lean is byte-identical at commit 60d33c8ba19af905bd731e938ebde1c5b8c76519. Commit 60d33c8ba19af905bd731e938ebde1c5b8c76519 is identical across entry.json source.commit, files/sites permalinks, sources/numina-putnam2025/SOURCE.md, source.json and ledger/sources.jsonl. Licence MIT is consistent across entry.json, README, source.json, SOURCE.md, ledger, and the source note's upstream-LICENSE, which is the upstream MIT License (Copyright (c) 2025 Numina). Source URL project-numina/Numina-Putnam2025 and file path NuminaPutnam2025/putnam_2025_a6.lean match the local code path. No discrepancy found.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:06:11Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "entry": "lean-calc-chain-compfiles-5cbadaea",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T11:45:40Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push-main.yaml runs lake build on push to main; pinned commit 1745e6ced3e671bd74417548494b034eb2c87da8 is HEAD of main (compare identical)",
+      "by": "verifier",
+      "at": "2026-11-12T11:46:48Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Copied file Compfiles/Egmo2023P1.lean (byte-identical to pinned commit): h1 lines 35-44 = calc b m with two links (_ ≥ (a m+a m)/(a m) via rw[hb m];gcongr, _ ≥ 2 via rw[←two_mul,mul_div_cancel_right₀];positivity[ha m]); h2 lines 45-54 = calc b M with two links (≤). No auxiliary lemma.",
+      "by": "verifier",
+      "at": "2026-11-12T11:46:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Copied file lines 55-59: have h3 : ∀ i, b i = 2 by apply eq_of_le_of_ge with le_trans h2 (upper) and le_trans h1 (lower); lines 60-63: intro i j, apply eq_of_le_of_ge, rw [h i j, h3 i, h3 j] and rw [h j i, h3 j, h3 i].",
+      "by": "verifier",
+      "at": "2026-11-12T11:46:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Copied file: proof body lines 28-63 = 36 lines (63-28+1); calc chains lines 35-44 (10) and 45-54 (10) = 20 lines.",
+      "by": "verifier",
+      "at": "2026-11-12T11:46:53Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Copied file line 31 is exactly the comment '-- The solution was adapted from here: https://www.youtube.com/watch?v=PNFh789P31E.' (line 32 is the indexing note). Quote is verbatim.",
+      "by": "verifier",
+      "at": "2026-11-12T11:46:54Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T11:47:46Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "object",
+      "evidence": "Decomposition matches the code and closes: parent egmo2023_p1 fixes min m / max M (lines 33-34), children h1 (lines 35-44) and h2 (lines 45-54) are two-link calc chains bounding b m >= 2 and b M <= 2, and the proof closes via h3 (eq_of_le_of_ge, lines 55-59) then the goal (lines 60-63); provenance passes (byte-identical at 1745e6c) and CI push-main.yaml runs lake build. However the children's closed_by fields misdescribe the gcongr subgoals. In h1 the first gcongr goal is the denominator-positivity 0 <= a m, closed by le_of_lt (ha m) (from ha, not hm) - the entry writes 'a m <= a m ... from hm'. In h2 the corresponding 0 <= a M goal (le_of_lt (ha M)) is omitted entirely. Fix: correct the parentheticals to '0 <= a m (le_of_lt (ha m)), a m <= a (m-1), a m <= a (m+1) from hm' and '0 <= a M (le_of_lt (ha M)), a (M-1) <= a M, a (M+1) <= a M from hM'.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T11:49:11Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality holds. The move is stated beyond the example: applicability.goal_shape abstracts the domain to 'an inequality E >= c or E <= c over an ordered ring', the expression to 'a ratio or sum', and the closing tactics to 'rewriting plus positivity/norm_num' (entry.json:90-91), and use_when factors the pattern into a monotonicity link (gcongr) + an algebra link (rw/positivity) + an antisymmetry close (entry.json:92) — a reusable 'bound a derived quantity at min/max, then eq_of_le_of_ge' template, not EGMO-specific. Consequences are honest and specific: one obligation per link; transitivity discharged by calc itself; the monotonicity link needs gcongr to find hm/hM facts and the algebra link needs a i > 0 for positivity [ha i]; the close needs BOTH directions because eq_of_le_of_ge won't fire with one side (entry.json:128; README:152-160). When-not-to-use is largely specific (non-monotone link; link needing its own lemma; long chains of real lemmas). Minor imprecision only: the clause 'the bounds are strict (<) and the exactness of the constant matters' (entry.json:93) is loosely worded — it does not harm the move's general statement (the antisymmetry close genuinely requires non-strict >= / <= bounds), but could be sharpened to say 'the close needs non-strict bounds; strict-only bounds cannot feed eq_of_le_of_ge'. Not a standing objection.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T11:50:43Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T11:51:04Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes: 1 file byte-identical at pinned commit 1745e6ced3e671bd74417548494b034eb2c87da8. Commit is consistent across entry.json, README.md, sources/compfiles/source.json and SOURCE.md (all 1745e6ced3e6). Licence Apache-2.0 is recorded in entry.json, README, source.json and SOURCE.md, matches the file header 'Released under Apache 2.0 license' and the copied upstream-LICENSE (Apache License Version 2.0). Permalinks all point to the same pinned commit and correct line anchors (L28-63 parent, L35-44 h1, L45-54 h2, L55-63 h3), matching the byte-identical copied file. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T11:51:36Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    }
+  ]
+}

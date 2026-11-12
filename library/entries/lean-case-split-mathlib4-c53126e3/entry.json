@@ -1,0 +1,158 @@
+{
+  "id": "lean-case-split-mathlib4-c53126e3",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Case split on the exponent n for IMO 1961 Q3 (forward direction)",
+  "intent": "In the forward direction of IMO 1961 Q3, after the degenerate cases sin x = 0 and cos x = 0 are discharged, the remaining branch (sin x ≠ 0 and cos x ≠ 0) is shown contradictory for every n ≥ 1 by a match on n: two small exceptional cases n = 1 and n = 2 close by direct rewriting, and the residual n = m + 2 closes by one uniform bound using |cos x| < 1 and |sin x| < 1.",
+  "move": "case-split",
+  "also_known_as": [
+    "exhaustive match on ℕ",
+    "small cases plus residual case",
+    "case analysis on an exponent"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "mathlib4",
+    "url": "https://github.com/leanprover-community/mathlib4",
+    "commit": "e1545ebed97594477bbd88b2fe948ffce56e5af2",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Archive/Imo/Imo1961Q3.lean",
+      "bytes": 3079,
+      "sha256": "dd806de058b8fc018afc0a864395f40ed6f21d76a103e76944b9e771d7bb1954",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1961Q3.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Archive/Imo/Imo1961Q3.lean",
+      "lines": [
+        51,
+        71
+      ],
+      "role": "parent",
+      "name": "Imo1961Q3_forward_match",
+      "excerpt_sha256": "8821c5d1dc3efca9ebde162725257e6e43e6ac323284d7774189710540cb81f8",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1961Q3.lean#L51-L71"
+    },
+    {
+      "path": "Archive/Imo/Imo1961Q3.lean",
+      "lines": [
+        26,
+        29
+      ],
+      "role": "context",
+      "name": "Imo1961Q3_statement",
+      "excerpt_sha256": "b0d00a81c92eb1da8cf7bde0a88693fa468c64308ed1d20ce1762026fd4043d7",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1961Q3.lean#L26-L29"
+    },
+    {
+      "path": "Archive/Imo/Imo1961Q3.lean",
+      "lines": [
+        31,
+        50
+      ],
+      "role": "context",
+      "name": "forward_setup",
+      "excerpt_sha256": "ddadd607a4f4acc8cf27faa590093c431866f23f63afba255be0734ae8d6b69e",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1961Q3.lean#L31-L50"
+    }
+  ],
+  "parent": {
+    "name": "Imo1961Q3_forward",
+    "statement": "(cos x) ^ n - (sin x) ^ n = 1 → (∃ k : ℤ, k * π = x) ∧ Even n ∨ (∃ k : ℤ, k * (2 * π) = x) ∧ Odd n ∨ (∃ k : ℤ, -(π / 2) + k * (2 * π) = x) ∧ Odd n   [premise h₀ : n ≠ 0]"
+  },
+  "children": [
+    {
+      "name": "case n = 1",
+      "statement": "goal after `| 1 =>`; rewriting h to `cos x = sin x + 1` and using `cos_sq_add_sin_sq x` forces `2 * sin x * cos x = 0`, which contradicts `hsinx` and `hcosx`",
+      "closed_by": "rw [pow_one, pow_one, sub_eq_iff_eq_add] at h; have : 2 * sin x * cos x = 0 := by simpa [h, add_sq, add_assoc, ← two_mul, mul_add, mul_assoc, ← sq] using cos_sq_add_sin_sq x; simp [hsinx, hcosx] at this"
+    },
+    {
+      "name": "case n = 2",
+      "statement": "goal after `| 2 =>`; rewriting h via `cos_sq_add_sin_sq` reduces it to `sin x = 0`, contradicting `hsinx`",
+      "closed_by": "rw [← cos_sq_add_sin_sq x, sub_eq_add_neg, add_right_inj, neg_eq_self] at h; exact absurd (eq_zero_of_pow_eq_zero h) hsinx"
+    },
+    {
+      "name": "residual n = m + 2",
+      "statement": "goal after `| (n + 1 + 2) =>`; `set m := n + 1` writes the exponent as `m + 2`, and a `calc` chain proves `(cos x)^(m+2) - (sin x)^(m+2) < 1`, contradicting `h` (which says it equals 1)",
+      "closed_by": "set m := n + 1; refine absurd ?_ h.not_lt; calc … ≤ … = … < … = 1 (the two `gcongr` steps use hcos1 : |cos x| < 1 and hsin1 : |sin x| < 1)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal about `n : ℕ` (here the forward direction `(cos x)^n - (sin x)^n = 1 → …`) whose truth depends on `n` only through which small numerals `n` equals and a residual `n ≥ 3` that admits one uniform argument; the small cases are exceptional and the residual case is where a monotonic/decay bound takes over.",
+    "use_when": "the exceptional cases (`n = 1`, `n = 2`) close by short, separate rewrites, while every larger `n` shares one argument (here powers of `|cos x|` and `|sin x|` shrink because `|cos x| < 1` and `|sin x| < 1`); the split's residual pattern is written `n + 1 + 2` (an offset successor pattern), which Lean elaborates as `n + 3`.",
+    "avoid_when": "the residual case genuinely needs induction (then the recursion, not a one-shot bound, is the content); the cases do not share a residual argument; or the domain includes `n = 0` with no hypothesis excluding it, so you need an explicit `0` branch."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The `match n with` at lines 51-71 has exactly three branches — `| 1 =>` (52-57), `| 2 =>` (58-60), `| (n + 1 + 2) =>` (61-71) — and each closes on its own: `simp [hsinx, hcosx] at this` (line 57), `exact absurd (eq_zero_of_pow_eq_zero h) hsinx` (line 60), and `refine absurd ?_ h.not_lt` with a `calc` chain ending in `< 1` (lines 63-71).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1961Q3.lean#L51-L71"
+    },
+    {
+      "n": 2,
+      "claim": "The match has no `| 0 =>` branch: its three branches `1`, `2`, `n + 1 + 2` cover exactly `n ≥ 1`, matching the premise `h₀ : n ≠ 0` (line 26), so exhaustiveness is carried by the premise rather than by a separate `0` child or an exhaustiveness lemma.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1961Q3.lean#L26-L29 and https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1961Q3.lean#L51-L61"
+    },
+    {
+      "n": 3,
+      "claim": "The residual branch reuses the two strict bounds `hcos1 : |cos x| < 1` and `hsin1 : |sin x| < 1` (lines 45-50) in its two `gcongr` steps (lines 67 and 70), which is what makes the `calc` chain strictly decreasing rather than merely `≤`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1961Q3.lean#L45-L50 and https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1961Q3.lean#L63-L71"
+    },
+    {
+      "n": 4,
+      "claim": "The authors state that the solution follows an external write-up: 'The solution is based on the one at the Art of Problem Solving website' (file header).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1961Q3.lean#L19-L21"
+    },
+    {
+      "n": 5,
+      "claim": "The three match branches are 6, 3 and 11 lines long, so the residual case is the bulk of the proof and the two small cases are one-liner rewrites.",
+      "evidence_kind": "measurement",
+      "evidence": "counted in https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1961Q3.lean#L52-L71 : lines 52-57 (n=1), 58-60 (n=2), 61-71 (n=m+2)"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 21,
+    "children": 3,
+    "child_lines": {
+      "n=1": 6,
+      "n=2": 3,
+      "n=m+2": 11
+    },
+    "how_counted": "parent site = lines 51-71 of the copied file; children = the three match branches at lines 52-57, 58-60 and 61-71"
+  },
+  "consequences": "The `match` creates three goals. There is no `0` branch: exhaustiveness of the split over `n ≥ 1` rests on the premise `h₀ : n ≠ 0` (line 26), so a `0` goal never appears as a child. The residual branch introduces a fresh `n` (the pattern variable in `n + 1 + 2`) and renames it `set m := n + 1`, so the exponent is written `m + 2` before the bound is applied; forgetting that renaming breaks the head of the `calc` chain. The residual argument depends on the two strict bounds `|cos x| < 1` and `|sin x| < 1` (lines 45-50): with only `≤ 1` the `<` link would fail and the split would not close, so those bounds are a hidden obligation of this move.",
+  "known_uses": [],
+  "related": [
+    "lean-case-split-compfiles-6ac56e7f"
+  ],
+  "rule": {
+    "f10_rule": 5,
+    "relation": "supports"
+  },
+  "content_key": "c53126e3a8da2206b4b145ae022a5c05ea2ddbd5bae60e9edb4cf1c5f28d4cd4",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T11:58:25Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,metrics,consequences,known_uses,related,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T12:11:34Z"
+}

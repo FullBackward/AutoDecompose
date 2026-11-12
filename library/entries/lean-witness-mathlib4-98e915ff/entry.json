@@ -1,0 +1,138 @@
+{
+  "id": "lean-witness-mathlib4-98e915ff",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Witness n = 4000 for IMO 1982 Q3(a)",
+  "intent": "Close the existential goal ∃ n, 3.999 ≤ Σ_{k < n} x k² / x(k+1) for IMO 1982 Q3(a) by fixing the concrete witness n = 4000, transferring the already-proved general bound 4n/(n+1) (ineq) to that value, and finishing the leftover numerical comparison with norm_num.",
+  "move": "witness",
+  "also_known_as": [
+    "witness introduction",
+    "existential instantiation",
+    "provide a witness"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "mathlib4",
+    "url": "https://github.com/leanprover-community/mathlib4",
+    "commit": "e1545ebed97594477bbd88b2fe948ffce56e5af2",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Archive/Imo/Imo1982Q3.lean",
+      "bytes": 4087,
+      "sha256": "35c72bb4b6cef4c76deeca2ed50a26c09efb6284111090f6b600b5520439187b",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1982Q3.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Archive/Imo/Imo1982Q3.lean",
+      "lines": [
+        78,
+        83
+      ],
+      "role": "parent",
+      "name": "imo1982_q3a",
+      "excerpt_sha256": "8016cdcd29c12669fa827f34bf1dd900833c71c0e17ad47fba282ae623f15292",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1982Q3.lean#L78-L83"
+    },
+    {
+      "path": "Archive/Imo/Imo1982Q3.lean",
+      "lines": [
+        53,
+        74
+      ],
+      "role": "context",
+      "name": "ineq",
+      "excerpt_sha256": "a0a2962521268f082682f01aa9aeea0b73750964443ca2dfcbbc871e62571ee8",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1982Q3.lean#L53-L74"
+    }
+  ],
+  "parent": {
+    "name": "imo1982_q3a",
+    "statement": "theorem imo1982_q3a (hx : Antitone x) (h0 : x 0 = 1) (hp : ∀ k, 0 < x k) : ∃ n : ℕ, 3.999 ≤ ∑ k ∈ range n, (x k) ^ 2 / x (k + 1)"
+  },
+  "children": [
+    {
+      "name": "the witness n = 4000",
+      "statement": "n = 4000",
+      "closed_by": "use 4000"
+    },
+    {
+      "name": "the property at the witness",
+      "statement": "3.999 ≤ ∑ k ∈ range 4000, (x k) ^ 2 / x (k + 1)",
+      "closed_by": "convert! Imo1982Q3.ineq (Nat.succ_ne_zero 3998) hx h0 hp; norm_num"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "∃ n : ℕ, c ≤ S n, where S n is a sum (or other expression) already bounded below by a general function B n over all n (here ineq: 4n/(n+1) ≤ Σ_{k < n+1} x k²/x(k+1)), and c is a value B n reaches exactly at a concrete n.",
+    "use_when": "a general lower bound for the goal is already proved for all n (or all n ≠ 0); the witness is chosen by inverting the bound so it equals or exceeds the target constant; the residual is a pure numerical comparison that norm_num/norm_num1 closes.",
+    "avoid_when": "no closed-form lower bound exists (the witness then needs its own computation); the target constant is not reachable by the bound (e.g. c < 4 but the bound approaches 4 only in the limit, so an equality at a finite n is impossible); the witness is not a numeral or closed term (use cannot fix an unknown n)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The file is compiled by mathlib's CI: .github/workflows/build_template.yml builds Archive with `lake-build-with-retry.sh Archive Counterexamples Wanted` and gates on `lake build --no-build --wfail Archive`, and build.yml runs this job on push (on: push), which includes pushes to master.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/.github/workflows/build_template.yml#L247-L253 and #L291-L297; https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/.github/workflows/build.yml#L3-L35"
+    },
+    {
+      "n": 2,
+      "claim": "The parent is closed from its parts in three tactic lines with no further step, and the witness is exact: `use 4000` (line 81) fixes the witness; `ineq` is instantiated at n = 3999 (`Nat.succ_ne_zero 3998` supplies its n ≠ 0 hypothesis), so its `range (n + 1)` is `range 4000` and its bound 4·3999/4000 equals 3.999; `convert! ... ineq ...` (line 82) transfers it and `norm_num` (line 83) closes the residual comparison.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1982Q3.lean#L79-L83 and #L54-L55"
+    },
+    {
+      "n": 3,
+      "claim": "The authors record the witness choice in the doc comment: 'Part a of the problem is solved by `n = 4000`.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1982Q3.lean#L78"
+    },
+    {
+      "n": 4,
+      "claim": "The module doc comment states the strategy the witness instantiates: 'For part a, we use Sedrakyan's lemma to show the sum is bounded below by 4n/(n+1), which can be made arbitrarily close to 4 by taking large n.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1982Q3.lean#L28-L30"
+    },
+    {
+      "n": 5,
+      "claim": "The same witness move closes part (b) of the problem in the same file: `refine ⟨fun k ↦ 2⁻¹ ^ k, ...⟩` introduces the witness sequence for the existential ∃ x : ℕ → ℝ, ... .",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1982Q3.lean#L86-L88"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 6,
+    "proof_tactic_lines": 3,
+    "children": 2,
+    "how_counted": "parent = lines 78-83 of the copied file (doc comment, two-line theorem statement, and three tactic lines 81-83); children = the witness n = 4000 and the property goal it leaves"
+  },
+  "consequences": "Fixing the witness shifts the proof burden onto (a) the property at that witness and (b) any numerical residual. The witness must be concrete (a numeral or closed term), since `use` cannot fix an unknown n. Because ineq carries the hypothesis n ≠ 0, the call must supply it (Nat.succ_ne_zero 3998); a witness index of 0 would need a different hypothesis. The move only works once a general bound already exists, and the bound must actually reach the target constant at the chosen index; otherwise `convert!` leaves an unprovable residual.",
+  "known_uses": [
+    "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1982Q3.lean#L86-L88"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "98e915ff605dd2c534f593be3ef9582f736e02bb14b386a0cb7497c79314b44a",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:17:40Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,known_uses,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:30:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T12:26:29Z"
+}

@@ -1,0 +1,109 @@
+{
+  "entry": "lean-extensionality-numina-putnam2025-88be3839",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 60d33c8ba19af905bd731e938ebde1c5b8c76519",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:30:29Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/lean_action_ci.yml (leanprover/lean-action@v1 on push/PR); commit 60d33c8ba19af905bd731e938ebde1c5b8c76519 is HEAD of default branch main; NuminaPutnam2025.lean imports NuminaPutnam2025.putnam_2025_a3",
+      "by": "verifier",
+      "at": "2026-11-12T12:31:34Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "read copied code lines 95-110: ext i (97), by_cases hi (99), branch closes rw [eq1, eq2, swap12_invol] (106) and rw [eq1, eq2] (110), lemma ends at 110 with next lemma at 113",
+      "by": "verifier",
+      "at": "2026-11-12T12:31:37Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "grep -nEi 'sorry|admit|\\baxiom\\b|Admitted' on copied file: no match; fetched .github/workflows/lean_action_ci.yml (leanprover/lean-action@v1 on push/PR); NuminaPutnam2025.lean line 3 imports putnam_2025_a3",
+      "by": "verifier",
+      "at": "2026-11-12T12:31:39Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "read copied code lines 118-120: line 119 comment '-- Key insight: σ only modifies the first nonzero position' above σ_inj (121)",
+      "by": "verifier",
+      "at": "2026-11-12T12:31:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "read copied code: lines 127-128 'have h1 := σ_invol x hx'/'have h2 := σ_invol y hy'; line 560 'rw [key, σ_invol]'",
+      "by": "verifier",
+      "at": "2026-11-12T12:31:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read copied code: σ_invol lines 95-110 (16 lines); ext i at 97, by_cases at 99; one-line proofs at 72 (σ_at_firstNonzero) and 76 (σ_away_firstNonzero); branches close at 106 and 110",
+      "by": "verifier",
+      "at": "2026-11-12T12:31:42Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Read copied code/NuminaPutnam2025/putnam_2025_a3.lean: parent sigma_invol at 95-110 matches entry.json statement; ext i (97), hk_sigma from firstNonzero_sigma (98), by_cases hi (99); child at_firstNonzero (100-106) closes with rw [eq1, eq2, swap12_invol] (106); child away_firstNonzero (107-110) closes with rw [eq1, eq2] (110); lemma ends at 110 with next lemma at 113, no sorry/axiom in file. Context lemmas (swap12 27-28, swap12_invol 33-34, firstNonzero 37-41, sigma 56-57, sigma_at_firstNonzero 70-72, sigma_away_firstNonzero 74-76, firstNonzero_sigma 78-93) all match their stated line ranges. Decomposition is as described and closes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:32:16Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is generalized beyond the example: applicability.goal_shape/use_when/avoid_when abstract to 'an equality of functions f = g where f is defined pointwise by an if i = p then … else …' over 'a single canonical point p', and the README use/avoid section states the clean case (single if -> two regions) without claiming it is the only case. 'When not to use' and consequences are honest and specific: three concrete failure modes (no pointwise uniformity; canonical point not invariant under the map; equality between structured data), plus the decidable-if obligation and the mechanism hk_σ aligning outer/inner σ unfoldings. Minor non-blocking nit: 'the case split will not typecheck' in use/avoid overstates the failure — by_cases always typechecks (decidable equality on Fin n); without firstNonzero_σ what fails is that the if_pos/if_neg rewrites do not fire and the branches do not close, which the entry's own Consequences section states correctly ('the branches would not close').",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:33:53Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 60d33c8ba19af905bd731e938ebde1c5b8c76519",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:34:16Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes (1 file byte-identical at 60d33c8ba19af905bd731e938ebde1c5b8c76519); copied file is 27101 bytes with sha256 d7315cd9775c55a0297adf1ce384b1ea57fb7b9c22e4ad6860dfa402ad8dddff, matching entry.json. Commit 60d33c8ba19af905bd731e938ebde1c5b8c76519 is consistent across entry.json, sources/numina-putnam2025/source.json, SOURCE.md and the entry README. Licence MIT is recorded consistently in entry.json (source.licence), source.json, SOURCE.md and the entry README, and sources/numina-putnam2025/upstream-LICENSE carries the full MIT text (Copyright 2025 Numina). All site/context permalinks use the same repo (project-numina/Numina-Putnam2025), pinned commit and path, and the local lines 95-110 match the parent excerpt. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:34:49Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    }
+  ]
+}

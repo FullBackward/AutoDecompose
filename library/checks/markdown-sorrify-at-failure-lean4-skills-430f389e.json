@@ -1,0 +1,109 @@
+{
+  "entry": "markdown-sorrify-at-failure-lean4-skills-430f389e",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 3f913c66251b8712bb58e6ce83a453fa96e3f94f",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:13:40Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "markdown skill reference file (sorry-filling.md); not a compiled Lean module, so no CI build compiles it",
+      "by": "verifier",
+      "at": "2026-11-12T12:13:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read copied file code/plugins/lean4/skills/lean4/references/sorry-filling.md lines 88-103: five '### Type N' headings with frequencies most common / common / less common / rare / very rare in order",
+      "by": "verifier",
+      "at": "2026-11-12T12:13:53Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Read copied file lines 99-100: '### Type 4: \"Complex structural proof\" (rare)' then '**Solution:** Break into sub-sorries with clear strategy' verbatim",
+      "by": "verifier",
+      "at": "2026-11-12T12:13:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read copied file lines 102-103: '### Type 5: \"Actually needs new lemma\" (very rare)' and '**Solution:** Extract as helper lemma, prove separately' verbatim",
+      "by": "verifier",
+      "at": "2026-11-12T12:13:56Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read copied file lines 251-253: '**Escalation options:**' followed by '- Break into smaller sub-sorries' and '- Extract as helper lemma' as the first two options",
+      "by": "verifier",
+      "at": "2026-11-12T12:13:57Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 3f913c66251b8712bb58e6ce83a453fa96e3f94f",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:14:41Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Skill entry (no parent/children, so 'closes' is n/a). Copied file code/plugins/lean4/skills/lean4/references/sorry-filling.md matches the README excerpts and all four claims: lines 88-103 enumerate exactly five types with frequencies most common/common/less common/rare/very rare (claim 1); line 100 'Break into sub-sorries with clear strategy' is the Type 4 response verbatim (claim 2); line 102-103 'Actually needs new lemma (very rare)' + 'Extract as helper lemma, prove separately' (claim 3); lines 252-253 are the first two escalation options (claim 4). The README's context excerpt (242-253) and the false-statement branch note (257-261) also match. check_provenance.py passes byte-identical at 3f913c66251b.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:14:47Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "object",
+      "evidence": "Move is stated generically (replace too-large goal with sub-sorries, work one at a time; escalate to helper lemma) and consequences are honest/specific ('shrinks each obligation but not the total'; helper lemma must be stated faithfully). But 'when not to use'/avoid_when is incomplete on the one case where the move cannot work: the source's own 'When to Escalate' (lines 257-261) prescribes 'If statement may be false: run preflight falsification ... create T_salvaged' rather than keep sorrifying, and the entry's README lines 68-71 acknowledges this branch, yet neither the README 'when not' prose nor entry.json avoid_when carries it. Fix: add to 'when not to use' and avoid_when a clause like 'or when the statement may be false -- falsify and salvage (T_counterexample/T_salvaged) instead of keep sorrifying (lines 257-261)'.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:16:20Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 3f913c66251b8712bb58e6ce83a453fa96e3f94f",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:16:45Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit 3f913c66251b8712bb58e6ce83a453fa96e3f94f is consistent across entry.json, sources/lean4-skills/SOURCE.md and source.json. Licence is MIT everywhere (entry.json, source.json, SOURCE.md) and sources/lean4-skills/upstream-LICENSE holds the MIT text (c) 2025 Lean 4 Theorem Proving Skill Contributors. check_provenance.py passes: 1 file byte-identical at the pinned commit and the recorded sha256 matches; local copy is 11663 bytes as recorded. All permalinks use the same commit and the file path plugins/lean4/skills/lean4/references/sorry-filling.md, with line anchors 88-103 and 242-253 matching the copied content. Source note records repo URL, commit, licence and attribution. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:17:32Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    }
+  ]
+}

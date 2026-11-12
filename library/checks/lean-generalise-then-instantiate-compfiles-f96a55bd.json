@@ -1,0 +1,109 @@
+{
+  "entry": "lean-generalise-then-instantiate-compfiles-f96a55bd",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T11:50:06Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push-main.yaml runs 'lake build' on push to main (default branch); Compfiles/Imo2024P2.lean is imported by Compfiles.lean line 273, so lake build builds it",
+      "by": "verifier",
+      "at": "2026-11-12T11:52:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Opened copied code/Compfiles/Imo2024P2.lean lines 206-217: witness hc : Condition a b built at 209-214; parent closes via PNat.coe_eq_one_iff.mp (hc.a_eq_one) and (hc.b_eq_one) at 216-217; no unfold of Condition. File built by lake build in push-main.yaml",
+      "by": "verifier",
+      "at": "2026-11-12T11:52:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Opened lines 55-94: a_pos:=h.1, b_pos:=h.2.1, g:=h.2.2.choose, g_spec:=choose_spec, N:=h.g_spec.choose, N_spec:=choose_spec, g_pos:=h.N_spec.1, N_pos:=h.N_spec.2.1, gcd_eq_g:=h.N_spec.2.2 n hn, symm via refine+rw Nat.gcd_comm, dvd_g_of_le_N_of_dvd via rw; grep for 'unfold Condition','rw [Condition]','simp [Condition]' over copied file returns no matches",
+      "by": "verifier",
+      "at": "2026-11-12T11:52:31Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Opened lines 43 and 66: line 43 docstring \"The condition of the problem.\" on def Condition; line 66 \"The value of g in the problem (determined by a and b).\" on noncomputable def g",
+      "by": "verifier",
+      "at": "2026-11-12T11:52:38Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Opened lines 84-87 (protected lemma symm : Condition b a), line 189 (b_eq_one : b = 1 := h.symm.a_eq_one), lines 154-157 (ab_add_one_dvd_b_pow_large_n_add_a via convert h.symm.ab_add_one_dvd_a_pow_large_n_add_b using 1)",
+      "by": "verifier",
+      "at": "2026-11-12T11:52:42Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T11:53:07Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Correctness verified. Parent imo2024_p2 (L197-200), Condition def (L43-45), API child (L55-94) and instantiation child (L206-217) all match the copied code verbatim. The hard (<-) direction builds hc : Condition a b via refine/ha/hb/use g,N (L209-214) and closes by constructor + PNat.coe_eq_one_iff.mp (hc.a_eq_one) and (hc.b_eq_one) (L216-217); forward direction closes via refine <2,1>. No sorry/admit/axiom in file. Grep for unfold Condition / rw [Condition] / simp [Condition] returns 0 matches, so Condition is never unfolded. CI .github/workflows/push-main.yaml runs lake build on push to main, so the file compiles. Children and closing methods match the code; the decomposition is the generalise-then-instantiate it claims.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T11:54:20Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally: goal_shape generalises the hypothesis to 'an existential or other packaged condition used repeatedly by many lemmas', and use_when gives abstract preconditions (hypothesis needed by several lemmas, concrete witness would clutter, facts expressible as accessors so the predicate is never unfolded). 'When not to use' lists three specific, honest failure modes: witness must be chosen/transformed in a way accessors cannot express; single use makes the indirection not worth it; a proof that genuinely needs to unfold. Consequences are honest: every later fact must go through the accessors so a new fact needs a new API lemma; choose-based g/N are only partially computational so each property needs choose_spec; dependence on the concrete witness is concentrated at lines 209-214 and a client needing a stronger witness must re-generalise. Minor imprecision: avoid_when says avoid when the witness is 'chosen or transformed' while the example's own symm (lines 84-87) does transform the witness, but that transformation is itself an accessor lemma, so the 'in a way the accessors cannot express' qualifier already scopes it correctly.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T11:55:35Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T11:56:04Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes (1 file byte-identical at pinned commit 1745e6ced3e671bd74417548494b034eb2c87da8). Permalink line anchors (43-45, 55-94, 197-200, 206-217) match the copied file exactly. Licence Apache-2.0 is consistent across entry.json, sources/compfiles/SOURCE.md, source.json, upstream-LICENSE (Apache 2.0 text), and the file header (Released under Apache 2.0). Source note and commit agree with source.json pinned commit. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T11:56:59Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    }
+  ]
+}

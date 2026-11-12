@@ -1,0 +1,150 @@
+{
+  "id": "lean-suffices-or-strengthen-pfr-744a22ce",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Suffices to the bracketed conditioning for the conditional mutual information step of sum_of_rdist_eq",
+  "intent": "Prove the conditional mutual information step of the fibring identity by restating it with the conditioning rewritten from the expanded `Y 0 - Y 1 - Y 2 + Y 3` to the bracketed difference `Y 0 - Y 1 - (Y 2 - Y 3)`, so that the injective-map lemma `condMutualInfo_of_inj_map` matches; the residual difference between the two forms is discharged by `convert this using 2; abel`.",
+  "move": "suffices-or-strengthen",
+  "also_known_as": [
+    "reformulate the goal to match a rewrite",
+    "bracket a subterm to expose a difference",
+    "suffices",
+    "enough"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "pfr",
+    "url": "https://github.com/teorth/pfr",
+    "commit": "1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "PFR/Fibring.lean",
+      "bytes": 10709,
+      "sha256": "cb890f69773f78e4438274bee8943343eb5a5fd8ad245000bb5c1d67281c1f4f",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/Fibring.lean"
+    },
+    {
+      "path": "PFR/ForMathlib/Entropy/Basic.lean",
+      "bytes": 57578,
+      "sha256": "794969effe1d58fc027138f1d46f2d2aab217f030b6bb4c640d0741d5485adba",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/ForMathlib/Entropy/Basic.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "PFR/Fibring.lean",
+      "lines": [
+        120,
+        123
+      ],
+      "role": "parent",
+      "name": "sum_of_rdist_eq_step_condMutualInfo",
+      "excerpt_sha256": "42fc8ed3cb97414abbb73cd3d218cd38fb28c71640cefddb8e3ba8ba6733df92",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/Fibring.lean#L120-L123"
+    },
+    {
+      "path": "PFR/Fibring.lean",
+      "lines": [
+        124,
+        125
+      ],
+      "role": "skeleton",
+      "name": "sum_of_rdist_eq_step_condMutualInfo.suffices",
+      "excerpt_sha256": "a8f5677fd40463cbdb29c427c35ea063742810f6a6f442e97f9a6d4f382bc129",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/Fibring.lean#L124-L125"
+    },
+    {
+      "path": "PFR/Fibring.lean",
+      "lines": [
+        126,
+        145
+      ],
+      "role": "child",
+      "name": "close_suffices",
+      "excerpt_sha256": "86d2dd1090273f591dad9aa9c2d432b1169b4cc46962b75833740375baf867e1",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/Fibring.lean#L126-L145"
+    }
+  ],
+  "parent": {
+    "name": "sum_of_rdist_eq_step_condMutualInfo",
+    "statement": "lemma sum_of_rdist_eq_step_condMutualInfo {Y : Fin 4 → Ω → G}\n    (h_meas : ∀ i, Measurable (Y i)) :\n    I[⟨Y 0 - Y 1, Y 2 - Y 3⟩:⟨Y 0 - Y 2, Y 1 - Y 3⟩|Y 0 - Y 1 - (Y 2 - Y 3);μ] =\n    I[Y 0 - Y 1 : Y 1 - Y 3|Y 0 - Y 1 - Y 2 + Y 3;μ]"
+  },
+  "children": [
+    {
+      "name": "suffices goal (conditioning bracketed)",
+      "statement": "I[⟨Y 0 - Y 1, Y 2 - Y 3⟩:⟨Y 0 - Y 2, Y 1 - Y 3⟩|Y 0 - Y 1 - (Y 2 - Y 3);μ] = I[Y 0 - Y 1 : Y 1 - Y 3|Y 0 - Y 1 - (Y 2 - Y 3);μ]",
+      "closed_by": "symm (line 126); rw [← condMutualInfo_of_inj_map hmij hmij hm0123 (fun z x ↦ (x, x - z)), condMutualInfo_comm hmf hmij, ← condMutualInfo_of_inj_map hmij hmf hm0123 (fun z x ↦ (x + z, x)), condMutualInfo_comm hmg hmf] (lines 136-139); then congr! 3 with ω with the two pointwise subgoals closed by simp and rw [sub_sub, add_sub_left_comm, ← sub_sub]; simp (lines 140-143); the two injectivity obligations closed by exact fun _ _ _ h ↦ (Prod.ext_iff.1 h).2 and exact fun _ _ _ h ↦ (Prod.ext_iff.1 h).1 (lines 144-145)"
+    },
+    {
+      "name": "original goal (residual from suffices)",
+      "statement": "I[⟨Y 0 - Y 1, Y 2 - Y 3⟩:⟨Y 0 - Y 2, Y 1 - Y 3⟩|Y 0 - Y 1 - (Y 2 - Y 3);μ] = I[Y 0 - Y 1 : Y 1 - Y 3|Y 0 - Y 1 - Y 2 + Y 3;μ]",
+      "closed_by": "convert this using 2; abel (line 125)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An equality of two conditional mutual informations I[X : Y | Z; μ] = I[X' : Y' | Z'; μ] whose proof is an injective-map rewrite (`condMutualInfo_of_inj_map`, `condMutualInfo_comm`) that only matches when the conditioning variable Z is syntactically a single difference (x - z) or sum (x + z), while the goal states it as an expanded sum/difference such as ... - Y 2 + Y 3.",
+    "use_when": "the rewrite you need is syntactic (a `rw`/definitional match) and does not fire on the goal's stated form, but the form it needs differs from the goal only by a ring/abel identity; restate the whole goal via `suffices` with the subterm bracketed, prove the restated goal, and close the residual with `convert … using 2; abel`.",
+    "avoid_when": "the restated form is not actually reachable by the intended rewrites (the `suffices` goal must still close); the residual is not a ring identity that `convert`/`abel` can discharge; or the original form already matches the rewrite, in which case the `suffices` is redundant and a plain `rw`/`have` suffices (compare `sum_of_rdist_eq_step_condRuzsaDist`, lines 113-115)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The restated suffices goal closes by `symm` (line 126), then a four-lemma `rw` chain of `condMutualInfo_of_inj_map` and `condMutualInfo_comm` (lines 136-139), then `congr! 3 with ω` with the pointwise subgoals closed by `simp` and `rw [sub_sub, add_sub_left_comm, ← sub_sub]; simp` (lines 140-143), and the two injectivity side goals closed by `(Prod.ext_iff.1 h).2` and `(Prod.ext_iff.1 h).1` (lines 144-145).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/Fibring.lean#L126-L145; the file is built by the project's CI, .github/workflows/push.yml running leanprover/lean-action@v1.2.0 (lake build) on push to master and pull_request"
+    },
+    {
+      "n": 2,
+      "claim": "The residual difference between the bracketed conditioning `Y 0 - Y 1 - (Y 2 - Y 3)` and the original `Y 0 - Y 1 - Y 2 + Y 3` is discharged in one line by `convert this using 2; abel` (line 125).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/Fibring.lean#L124-L125"
+    },
+    {
+      "n": 3,
+      "claim": "The `suffices` isolates a one-line discharge (line 125) from a 20-line proof of the restated goal (lines 126-145).",
+      "evidence_kind": "measurement",
+      "evidence": "line spans in the copied file PFR/Fibring.lean: discharge = L125 (1 line), restated-goal proof = L126-L145 (20 lines)"
+    },
+    {
+      "n": 4,
+      "claim": "The same suffices-to-a-reformulated-form-then-ring-discharge move appears elsewhere in the repository: Endgame.lean line 389 has `suffices sum4 = sum1 + p.η * (sum2 + sum3) by linarith`, restating the goal into an equivalent arithmetic form and discharging the residual with `linarith`.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/Endgame.lean#L389"
+    }
+  ],
+  "metrics": {
+    "discharge_lines": 1,
+    "suffices_proof_lines": 20,
+    "children": 2,
+    "how_counted": "line spans in PFR/Fibring.lean: discharge = line 125 (`convert this using 2; abel`), restated-goal proof = lines 126-145"
+  },
+  "consequences": "Creates two obligations: (1) the restated `suffices` goal, which must be reachable by the rewrites that motivated the restatement; (2) the residual, that the restated form implies the original — here a ring identity discharged by `convert this using 2; abel`. A `suffices` whose restated form is not actually matched by the intended lemma fails only when the restated goal is attacked; the residual can silently become a stuck ring goal if the two forms are not genuinely equal. The injectivity rewrites also leave side goals (that each map is injective per fixed conditioning), closed here by `(Prod.ext_iff.1 h).2` and `(Prod.ext_iff.1 h).1`.",
+  "known_uses": [
+    "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/Endgame.lean#L389"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "744a22cedcf00b6754fb7ca637d0afb77aaa63b42ddbd624807dde0809533e1c",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:28:12Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,known_uses,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T12:39:12Z"
+}

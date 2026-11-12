@@ -1,0 +1,150 @@
+{
+  "id": "lean-interface-lemma-harmonic-imo2025-8920cc7b",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "API lemma expressing s(N) as N/d₁ + N/d₂ + N/d₃ (IMO 2025 P4)",
+  "intent": "Establish an interface for s N (the sum of the three largest proper divisors, defined by indexing into the descending sort of N.properDivisors): the lemma rewrites it as N / d₁ + N / d₂ + N / d₃ where d₁ < d₂ < d₃ are the three smallest divisors of N greater than 1, so later lemmas reason about s through this arithmetic form instead of unfolding the sort.",
+  "move": "interface-lemma",
+  "also_known_as": [
+    "API lemma",
+    "representation lemma",
+    "rewrite lemma"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "harmonic-imo2025",
+    "url": "https://github.com/harmonic-ai/IMO2025",
+    "commit": "72b62405a176a7eaeadb335a7fa6ee80b6667161",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "HarmonicLean/IMO2025P4_solve2.lean",
+      "bytes": 74500,
+      "sha256": "f58727dc3af8baf054310b8c0387cafeda3a09c137933d87c6867d7929f99c6a",
+      "permalink": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P4_solve2.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "HarmonicLean/IMO2025P4_solve2.lean",
+      "lines": [
+        74,
+        110
+      ],
+      "role": "parent",
+      "name": "lem_s_N_smallest_divisors",
+      "excerpt_sha256": "04e6c8f870089fd48ecfc594c690f4f20f559b965e1e57e7e06aab05388ade16",
+      "permalink": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P4_solve2.lean#L74-L110"
+    },
+    {
+      "path": "HarmonicLean/IMO2025P4_solve2.lean",
+      "lines": [
+        43,
+        48
+      ],
+      "role": "context",
+      "name": "def_s",
+      "excerpt_sha256": "31f60dd1d8c37294209230fdf2930b42132009bb1d2ac045332714e4d6c814e4",
+      "permalink": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P4_solve2.lean#L43-L48"
+    },
+    {
+      "path": "HarmonicLean/IMO2025P4_solve2.lean",
+      "lines": [
+        163,
+        193
+      ],
+      "role": "context",
+      "name": "lem_s_N_formula",
+      "excerpt_sha256": "212ff9f2b400184aba3162db66a1d2a544df50a8f5cbc4291ac77bc251e25582",
+      "permalink": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P4_solve2.lean#L163-L193"
+    }
+  ],
+  "parent": {
+    "name": "lem_s_N_smallest_divisors",
+    "statement": "lemma lem_s_N_smallest_divisors (N : ℕ) (h_card : 3 ≤ N.properDivisors.card) : let d₁ := ((N.divisors.erase 1).sort (· ≤ ·))[0]!; let d₂ := ((N.divisors.erase 1).sort (· ≤ ·))[1]!; let d₃ := ((N.divisors.erase 1).sort (· ≤ ·))[2]!; s N = N / d₁ + N / d₂ + N / d₃"
+  },
+  "children": [
+    {
+      "name": "h_largest",
+      "statement": "(N.properDivisors.sort (· ≥ ·))[0]! = N / ((N.divisors.erase 1).sort (· ≤ ·))[0]! ∧ (N.properDivisors.sort (· ≥ ·))[1]! = N / ((N.divisors.erase 1).sort (· ≤ ·))[1]! ∧ (N.properDivisors.sort (· ≥ ·))[2]! = N / ((N.divisors.erase 1).sort (· ≤ ·))[2]!",
+      "closed_by": "list equality (N.properDivisors.sort (· ≥ ·)) = List.map (fun d => N / d) ((N.divisors.erase 1).sort (· ≤ ·)) by List.eq_of_perm_of_sorted (Sorted+Nodup via induction, Perm via toFinset, lines 84-108), then rcases n : Finset.sort … <;> aesop (line 109)"
+    },
+    {
+      "name": "main goal",
+      "statement": "s N = N / d₁ + N / d₂ + N / d₃",
+      "closed_by": "unfold s; aesop (line 110)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal mentioning s N where s is defined by an if-guarded sum over the descending sort of N.properDivisors; the interface lemma rewrites s N into N / d₁ + N / d₂ + N / d₃ over the ascending sorted list N.divisors.erase 1.",
+    "use_when": "many client lemmas need s N in an arithmetic form and would otherwise each unfold the sort; the companion list (ascending divisors greater than 1) is the natural indexing for the argument.",
+    "avoid_when": "the sort-based form itself is what the proof needs (e.g. comparing the three largest proper divisors directly), or the side condition 3 ≤ N.properDivisors.card is hard for clients to discharge."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent lem_s_N_smallest_divisors closes from two children: the key invariant h_largest (lines 80-109) establishes that the three largest proper divisors equal N/d₁, N/d₂, N/d₃, and then unfold s; aesop (line 110) discharges the goal s N = N/d₁ + N/d₂ + N/d₃.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P4_solve2.lean#L74-L110"
+    },
+    {
+      "n": 2,
+      "claim": "The interface lemma is reused at seven sites without re-unfolding the sort: directly at lines 171 (apply lem_s_N_smallest_divisors) and 590 (convert lem_s_N_smallest_divisors N h_card using 1), and via lem_s_N_formula at lines 300, 331, 368, 551, 627.",
+      "evidence_kind": "measurement",
+      "evidence": "grep of the copied file code/HarmonicLean/IMO2025P4_solve2.lean for 'lem_s_N_smallest_divisors' (hits: 74, 171, 590) and 'lem_s_N_formula' (hits: 163, 300, 331, 368, 551, 627)"
+    },
+    {
+      "n": 3,
+      "claim": "The authors state the lemma's purpose in the doc comment above it: \"If 1 < d₁ < d₂ < d₃ < … are the positive divisors of N greater than 1 in increasing order, then the three largest proper divisors of N are N/d₁, N/d₂, and N/d₃.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P4_solve2.lean#L71-L73"
+    },
+    {
+      "n": 4,
+      "claim": "The same interface pattern recurs one level up: lem_s_N_formula (lines 163-193) is a second API lemma that rewrites s N as the rational reciprocal formula (N : ℚ) * (1/d₁ + 1/d₂ + 1/d₃), and it consumes lem_s_N_smallest_divisors at line 171 rather than unfolding s.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P4_solve2.lean#L163-L193"
+    }
+  ],
+  "metrics": {
+    "parent_proof_lines": 37,
+    "children": 2,
+    "direct_reuses": 2,
+    "reuses_via_formula": 5,
+    "how_counted": "parent_proof_lines = lines 74-110 of the copied file; children = the h_largest key invariant (lines 80-109) and the final unfold (line 110); reuses counted by grep of the copied file for 'lem_s_N_smallest_divisors' (direct: 171, 590) and 'lem_s_N_formula' (300, 331, 368, 551, 627)"
+  },
+  "consequences": "The interface lemma carries the definition's side condition 3 ≤ N.properDivisors.card as an explicit hypothesis h_card, so every client must discharge it (cheap here, since all clients already assume h_card). It changes the representation of s N from a sort-based term to an arithmetic sum: a client that needs the descending-sort form itself must unfold s or use a different lemma. It also adds a dependency on the companion list N.divisors.erase 1 sorted ascending. The proof of the interface itself is the bulk of the work (the h_largest sub-argument, lines 80-109), so the move pays off only when the interface is reused.",
+  "known_uses": [
+    "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P4_solve2.lean#L171",
+    "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P4_solve2.lean#L590",
+    "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P4_solve2.lean#L300",
+    "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P4_solve2.lean#L331",
+    "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P4_solve2.lean#L368",
+    "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P4_solve2.lean#L551",
+    "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P4_solve2.lean#L627"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "8920cc7bbc07a68f39353250cc248e4fb8aa7a4c93809e8ba3daf8182298a6fd",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T11:56:21Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,known_uses,also_known_as,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:00:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T12:05:38Z"
+}

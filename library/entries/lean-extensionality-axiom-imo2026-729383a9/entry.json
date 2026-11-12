@@ -1,0 +1,140 @@
+{
+  "id": "lean-extensionality-axiom-imo2026-729383a9",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Extensionality of prime-factor sets for Mval move-invariance (IMO 2026 Q1)",
+  "intent": "Prove the invariant Mval B = Mval B' for a single move, by first identifying the two index finsets B.prod.primeFactors and B'.prod.primeFactors by extensionality (ext p), then matching the products termwise with Finset.prod_congr and gExp_move.",
+  "move": "extensionality",
+  "also_known_as": [
+    "pointwise equality",
+    "finset extensionality",
+    "Finset.ext",
+    "Set.ext"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "axiom-imo2026",
+    "url": "https://github.com/AxiomMath/IMO2026",
+    "commit": "c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "IMO2026/Q1/solution.lean",
+      "bytes": 23769,
+      "sha256": "d9d7519dc3b55fd2f414e9b5bd8484da19d78327d7ac040bdeb236706338151a",
+      "permalink": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q1/solution.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "IMO2026/Q1/solution.lean",
+      "lines": [
+        329,
+        343
+      ],
+      "role": "parent",
+      "name": "Mval_move",
+      "excerpt_sha256": "c3bfabe4abab9102599581142f3d93c20cb8d42fb7ed968dbf752ec2b2307f4b",
+      "permalink": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q1/solution.lean#L329-L343"
+    },
+    {
+      "path": "IMO2026/Q1/solution.lean",
+      "lines": [
+        332,
+        337
+      ],
+      "role": "child",
+      "name": "hset",
+      "excerpt_sha256": "735f719590ce84deb033d61d8879f70332c9978025f3a011c6bc139abb9501e3",
+      "permalink": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q1/solution.lean#L332-L337"
+    },
+    {
+      "path": "IMO2026/Q1/solution.lean",
+      "lines": [
+        338,
+        343
+      ],
+      "role": "child",
+      "name": "Mval_termwise",
+      "excerpt_sha256": "16baa5569550591ac54cadbdbb4a0b8f4b98034b65943ac16b5943ec2aaf8d2c",
+      "permalink": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q1/solution.lean#L338-L343"
+    }
+  ],
+  "parent": {
+    "name": "Mval_move",
+    "statement": "theorem Mval_move {B B' : Board} (h : Move B B') (hB : ∀ a ∈ B, 0 < a) (hB' : ∀ a ∈ B', 0 < a) : Mval B = Mval B'"
+  },
+  "children": [
+    {
+      "name": "hset",
+      "statement": "B.prod.primeFactors = B'.prod.primeFactors",
+      "closed_by": "ext p; rw [mem_primeFactors_iff_gExp hB, mem_primeFactors_iff_gExp hB']; constructor; both directions by gExp_move hp h"
+    },
+    {
+      "name": "Mval_termwise",
+      "statement": "∏ p ∈ B'.prod.primeFactors, p ^ gExp p B = ∏ p ∈ B'.prod.primeFactors, p ^ gExp p B'",
+      "closed_by": "Finset.prod_congr rfl; intro p hp; rw [gExp_move hpp h] (hpp : p.Prime recovered from hp)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "an equality f B = f B' where f is a product (or sum) over an index finset that depends on B, e.g. ∏ p ∈ S(B), term p B",
+    "use_when": "the index finsets can be shown equal by extensionality via a shared membership characterisation, and the summed term is invariant under the step",
+    "avoid_when": "the index-set equality is not literally true; the membership characterisation is itself the hard part; or the summed term depends on the index set beyond the index variable"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent Mval_move closes from its two children: the finset equality hset (proved by ext p and gExp_move) and the termwise product equality (proved by Finset.prod_congr and gExp_move), in lines 330-343.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q1/solution.lean#L330-L343"
+    },
+    {
+      "n": 2,
+      "claim": "The copied file IMO2026/Q1/solution.lean contains no sorry, axiom, admit or Admitted, and the project's formalization.yaml records sorry_count: 0 for the solutions.",
+      "evidence_kind": "check",
+      "evidence": "grep -nE 'sorry|axiom|admit|Admitted' on the copied file returns no match; formalization.yaml line 30 'sorry_count: 0' at https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/formalization.yaml"
+    },
+    {
+      "n": 3,
+      "claim": "The authors label gExp the key invariant ('a single move preserves gExp p, for any prime p', line 85) and pre-state the membership characterisation that the ext step uses ('the primes dividing the product are exactly the primes with a nonzero valuation gcd', lines 301-302).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q1/solution.lean#L85 and #L301-L302"
+    },
+    {
+      "n": 4,
+      "claim": "The extensionality step is one line (ext p, line 333); both directions of the membership equivalence close in one line each (336-337); the product-congruence step is 6 lines (338-343).",
+      "evidence_kind": "measurement",
+      "evidence": "read of the copied file IMO2026/Q1/solution.lean lines 332-343"
+    }
+  ],
+  "metrics": {
+    "parent_proof_lines": 14,
+    "children": 2,
+    "ext_tactic_lines": 1,
+    "how_counted": "lines 330-343 of the copied file; the two children are the have hset block (332-337) and the product block (338-343); ext_tactic_lines counts the single ext p at line 333"
+  },
+  "consequences": "ext p creates a two-way membership obligation (an iff); here both directions close by gExp_move, but in general they may need different arguments. The product step needs a plain equality of index sets for rw [hset], and the summed function must be pointwise invariant. Reaching for Finset.prod_congr before identifying the index sets leaves a goal over two different finsets that prod_congr cannot compare.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "729383a92b5f71aec9f744df832dfbfb869722e9a721daf9af8e4db0b8a9901f",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-1",
+      "at": "2026-11-12T11:52:58Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12T11:55:27Z"
+    }
+  ]
+}

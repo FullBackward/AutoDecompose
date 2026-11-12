@@ -1,6 +1,20 @@
 {
-  "location": [],
+  "location": [
+    [
+      "lean-statement-object-flt-anthropic-afa74779",
+      "lean-statement-object-flt-anthropic-b51da0fb"
+    ],
+    [
+      "lean-suffices-or-strengthen-numina-putnam2025-3fe390a3",
+      "lean-suffices-or-strengthen-numina-putnam2025-687e778f"
+    ]
+  ],
   "content": [],
   "statement": [],
-  "move+shape": []
+  "move+shape": [
+    [
+      "lean-statement-object-flt-anthropic-afa74779",
+      "lean-statement-object-flt-anthropic-b51da0fb"
+    ]
+  ]
 }

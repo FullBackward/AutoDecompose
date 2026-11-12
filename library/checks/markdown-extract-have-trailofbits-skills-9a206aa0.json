@@ -1,0 +1,109 @@
+{
+  "entry": "markdown-extract-have-trailofbits-skills-9a206aa0",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:37:54Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": "Source CI .github/workflows/validate.yml runs on push/PR to default branch main. Its 'Validate SKILL.md frontmatter' step walks every plugins/**/SKILL.md, which includes this file (plugins/writing-lean-proofs/skills/writing-lean-proofs/SKILL.md), and 'Check Claude loadability' runs .github/scripts/check_claude_loadability.py. Commit e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff is head of default branch main (GitHub API: default_branch=main; branches-where-head returns main). Note: the file is Markdown, so CI validates frontmatter/loadability rather than compiling Lean.",
+      "by": "verifier",
+      "at": "2026-11-12T12:39:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read the copied code file plugins/writing-lean-proofs/skills/writing-lean-proofs/SKILL.md lines 170-184: line 172 declares 'have h : forall x y : R, min x y <= min y x'; line 179 'apply le_antisymm' creates two goals; line 181 'exact h a b' and line 183 'exact h b a' close them. h is instantiated exactly twice, no other use of h. Matches the claim.",
+      "by": "verifier",
+      "at": "2026-11-12T12:39:47Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Read copied file lines 158-193: rung 0 'Before extracting... search by shape' at line 162; rung 1 'A sub-argument repeats... local have' at line 168; rung 2 'independently interesting... standalone lemma' at line 186; rung 3 'long and unwieldy... split it' at line 190. The four rungs appear in ascending order 0-3 at exactly those line numbers.",
+      "by": "verifier",
+      "at": "2026-11-12T12:39:50Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read copied file lines 186-189: 'extraction sheds hypotheses the sub-argument does not need' (186-187) and 'Dropping unneeded hypotheses is the stronger trigger: the extracted lemma becomes more general than the proof it came from.' (187-189). Both quoted phrases present verbatim.",
+      "by": "verifier",
+      "at": "2026-11-12T12:39:53Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read copied file lines 190-192: 'This is Mathlib's review criterion, and it is deliberately qualitative — there is no line threshold.' spans lines 190-191, followed by 'Resolve doubt by attempting the extraction...'. The quoted sentence is present verbatim, stating rung 3 is qualitative with no line threshold.",
+      "by": "verifier",
+      "at": "2026-11-12T12:39:56Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read copied file line 230 in the Rationalizations-to-reject table: excuse 'This helper is too specific to be a lemma' paired with reality 'If it has a clean statement, extract it — dropping the hypotheses it doesn't need usually reveals it was general all along.' Both quoted phrases present verbatim.",
+      "by": "verifier",
+      "at": "2026-11-12T12:39:59Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Read the copied SKILL.md: lines 158-193 contain the extraction ladder with rungs 0-3 (search-by-shape L162, local-have L168, standalone-lemma L186, split-long-proof L190), matching the four children verbatim; the min_comm worked example (L171-183) instantiates have h twice via exact h a b / exact h b a and closes both le_antisymm goals, so the decomposition is what the entry says and closes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:41:11Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated as a four-rung ladder (search by shape, local have, standalone lemma, split) independent of the single min_comm worked example; applicability.goal_shape/use_when/avoid_when restate the rungs as general conditions. 'When not to use' maps each avoid-condition to a rung (existing theorem fits=rung 0; used once with no independent meaning=rung 2 negation; no hypotheses dropped; non-Mathlib house style, matching the skill's 'When NOT to Use' CONTRIBUTING caveat). Consequences are specific and honest, including the caveat that min_comm stops at rung 1 and never exercises rung 2, and an explicit under-/over-generalisation treatment.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:42:09Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:42:32Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes (1 file byte-identical at e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff). Commit e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff recorded identically in entry.json, README.md, SOURCE.md, source.json; all permalinks in files[] and sites[] use that commit and the correct path. Licence CC-BY-SA-4.0 recorded identically in all four places and matches upstream-LICENSE (Attribution-ShareAlike 4.0 International). Source note points to LICENSE and copies it as upstream-LICENSE. Everything consistent and traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:43:16Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    }
+  ]
+}

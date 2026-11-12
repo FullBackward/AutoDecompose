@@ -1,0 +1,101 @@
+{
+  "entry": "lean-iff-split-compfiles-9264faf4",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T11:46:35Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push-main.yaml runs 'lake build' on pushes to main; pinned commit 1745e6ced3e671bd74417548494b034eb2c87da8 is the tip of the default branch main (API confirms default_branch=main and main HEAD = pinned commit). File Compfiles/Imo1964P1.lean is a module built by lake build.",
+      "by": "verifier",
+      "at": "2026-11-12T11:47:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read code/Compfiles/Imo1964P1.lean: line 33 is constructor, forward child lines 34-38, reverse child lines 39-47, no auxiliary lemma between them; CI push-main.yaml runs lake build on main.",
+      "by": "verifier",
+      "at": "2026-11-12T11:47:47Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Docstring lines 21-26 quote '(a) Find all natural numbers n for which 2^n - 1 is divisible by 7'; line 30 defines solution_set as the set of n with n % 3 = 0; line 32 states the iff n in solution_set iff 2^n congruent 1 mod 7.",
+      "by": "verifier",
+      "at": "2026-11-12T11:47:57Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Line 44 mod_cases H : n % 3 splits into three residues; line 45 closes residue 0 by exact H; lines 46 and 47 close residues 1 and 2 by rw [H] at hn; norm_num at hn.",
+      "by": "verifier",
+      "at": "2026-11-12T11:48:00Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Fetched Compfiles/Usa1973P4.lean at the pinned commit: lines 29-32 state problem usa1973_p4 as a conjunction iff membership in solution_set, line 33 is constructor.",
+      "by": "verifier",
+      "at": "2026-11-12T11:48:04Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent imo1964_p1a is the iff n ∈ solution_set ↔ 2^n ≡ 1 [MOD 7]; line 33 \"constructor\" splits it into exactly the two children the entry lists (forward 34-38, reverse 39-47), matching the copied code/Compfiles/Imo1964P1.lean byte-for-byte. Forward closes via obtain ⟨m,hm⟩ := Nat.dvd_of_mod_eq_zero hn, change 2^n%7=1, rw [hm, Nat.pow_mul, Nat.pow_mod], norm_num (2^3%7=1). Reverse closes via change to n%3=0, rewrite to 2^(n%3)%7=1, mod_cases H : n%3 into 0/1/2: exact H, and rw[H] at hn; norm_num at hn (2%7≠1, 4%7≠1). All line refs in README/entry.json match the file; the argument closes and CI builds the module.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T11:49:23Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "The move is stated generically, not tied to this IMO problem: applicability.goal_shape names the general goal form 'P iff Q', use_when gives a portable criterion (the two directions want genuinely different arguments - construction vs refutation - and each closes independently), and the README adds the reusable 'characterise the solutions' framing. avoid_when is honest and specific (definitional/symmetric direction; shared rewriting provable by one rw/calc chain; definitional equivalence). Consequences are honest and concrete: two obligations, shared structure proved twice, reverse child needs a further mod_cases split and the children differ in difficulty (5 vs 9 lines, matching the copied code at lines 34-38 and 39-47), plus a real failure mode (mirror-image directions double the proof). The description clearly generalises beyond IMO 1964 P1(a).",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T11:50:49Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T11:51:16Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes: 1 file byte-identical at pinned commit 1745e6ced3e671bd74417548494b034eb2c87da8. Commit, permalinks (files + sites #L32-L47, #L30), and sha256 in entry.json all match the copied file. Licence consistent everywhere: code header says 'Released under Apache 2.0', entry.json/source.json/SOURCE.md/README all say Apache-2.0, and sources/compfiles/upstream-LICENSE is the Apache 2.0 text. Source note points to the correct repo, pinned commit and licence. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T11:51:38Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    }
+  ]
+}

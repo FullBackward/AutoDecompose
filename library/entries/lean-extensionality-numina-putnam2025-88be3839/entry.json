@@ -1,0 +1,232 @@
+{
+  "id": "lean-extensionality-numina-putnam2025-88be3839",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Function extensionality for σ_invol (Putnam 2025 A3), split at the first nonzero coordinate",
+  "intent": "Prove that the strategy map σ is an involution (σ (σ x) = x) by function extensionality: ext i reduces the function equality to a pointwise goal at an arbitrary coordinate, by_cases on i = firstNonzero x hx splits it into the coordinate σ touches and all others, and each branch closes with σ's two pointwise rewrite lemmas plus the involution of swap12.",
+  "move": "extensionality",
+  "also_known_as": [
+    "pointwise equality",
+    "function extensionality",
+    "funext",
+    "ext"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "numina-putnam2025",
+    "url": "https://github.com/project-numina/Numina-Putnam2025",
+    "commit": "60d33c8ba19af905bd731e938ebde1c5b8c76519",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a3.lean",
+      "bytes": 27101,
+      "sha256": "d7315cd9775c55a0297adf1ce384b1ea57fb7b9c22e4ad6860dfa402ad8dddff",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a3.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a3.lean",
+      "lines": [
+        95,
+        110
+      ],
+      "role": "parent",
+      "name": "σ_invol",
+      "excerpt_sha256": "fdbfc4872964004a798f7808c22bd503b38e562aea24634511c59d1801da6cc5",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a3.lean#L95-L110"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a3.lean",
+      "lines": [
+        100,
+        106
+      ],
+      "role": "child",
+      "name": "at_firstNonzero",
+      "excerpt_sha256": "c3cd47304ded09ade840003a46efee0eb4c2952afe06212b730dfaf326b67f90",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a3.lean#L100-L106"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a3.lean",
+      "lines": [
+        107,
+        110
+      ],
+      "role": "child",
+      "name": "away_firstNonzero",
+      "excerpt_sha256": "631304f0485a73189cfb575e4c4eaed4af822729ee5195cc12d536c88dd3eeb1",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a3.lean#L107-L110"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a3.lean",
+      "lines": [
+        56,
+        57
+      ],
+      "role": "context",
+      "name": "σ",
+      "excerpt_sha256": "cce588f1ca59f3e60fdcd73744be9cd5d1b0fa28887a7533026db7899a5b2e08",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a3.lean#L56-L57"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a3.lean",
+      "lines": [
+        37,
+        41
+      ],
+      "role": "context",
+      "name": "firstNonzero",
+      "excerpt_sha256": "fd06ae46294d5448954d593a1bed35135d8d9fade9953a850230ef023fce855d",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a3.lean#L37-L41"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a3.lean",
+      "lines": [
+        27,
+        28
+      ],
+      "role": "context",
+      "name": "swap12",
+      "excerpt_sha256": "e0d02b80abb4a5cebedf95d1687bf95d83604014d6b1ba7fac60fd0939b92d9f",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a3.lean#L27-L28"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a3.lean",
+      "lines": [
+        33,
+        34
+      ],
+      "role": "context",
+      "name": "swap12_invol",
+      "excerpt_sha256": "5a950f91af50db4606fdecdaf0d3457391a175f6424f074f890b223fe70a5b87",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a3.lean#L33-L34"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a3.lean",
+      "lines": [
+        70,
+        72
+      ],
+      "role": "context",
+      "name": "σ_at_firstNonzero",
+      "excerpt_sha256": "3a3de4b85a17ab801b7ee225887d38e2a862a255ca5a3b9aad1175bba1d93fd9",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a3.lean#L70-L72"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a3.lean",
+      "lines": [
+        74,
+        76
+      ],
+      "role": "context",
+      "name": "σ_away_firstNonzero",
+      "excerpt_sha256": "ccd301e2555af35841608f83bd5040c89712c88d5d7e87dd254f1f07369e8dc6",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a3.lean#L74-L76"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a3.lean",
+      "lines": [
+        78,
+        93
+      ],
+      "role": "context",
+      "name": "firstNonzero_σ",
+      "excerpt_sha256": "61a74ca604367d978e172f04ccea08eb71578a9c9ced5c8e2570812ea3fbba71",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a3.lean#L78-L93"
+    }
+  ],
+  "parent": {
+    "name": "σ_invol",
+    "statement": "lemma σ_invol {n : ℕ} (x : Fin n → Fin 3) (hx : x ≠ fun _ => 0) : σ (σ x hx) (σ_ne_zero x hx) = x"
+  },
+  "children": [
+    {
+      "name": "at_firstNonzero",
+      "statement": "pointwise goal at coordinate `firstNonzero x hx`, after ext i, by_cases hi : i = firstNonzero x hx and subst hi: (σ (σ x hx) (σ_ne_zero x hx)) (firstNonzero x hx) = x (firstNonzero x hx)",
+      "closed_by": "rw [eq1, eq2, swap12_invol], where eq1 unfolds the outer σ at that coordinate (conv_lhs => rw [σ, if_pos hk_σ.symm]) and eq2 is σ_at_firstNonzero x hx"
+    },
+    {
+      "name": "away_firstNonzero",
+      "statement": "pointwise goal at coordinate `i` under hi : i ≠ firstNonzero x hx: (σ (σ x hx) (σ_ne_zero x hx)) i = x i",
+      "closed_by": "rw [eq1, eq2], where eq1 unfolds the outer σ away from that coordinate (conv_lhs => rw [σ, if_neg (by rwa [hk_σ])]) and eq2 is σ_away_firstNonzero x hx i hi"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "an equality of functions f = g where f is defined pointwise by an `if i = p then … else …` whose test is a single canonical point p of the domain (here σ, which touches only `firstNonzero x`); the move turns it into ∀ i, f i = g i and then splits on i = p.",
+    "use_when": "the equality is between functions (so ext i applies), the function differs from the identity only at one identifiable coordinate, and the pointwise rewrite lemmas for 'at p' and 'away from p' are already stated; the canonical point must be preserved by the map (firstNonzero_σ) so the outer and inner occurrences align.",
+    "avoid_when": "the canonical point p is not invariant under the map (then the by_cases/subst will not typecheck); the two regions need genuinely different arguments beyond the function's definitional rewrites; or the equality is not between functions but between data the extensionality tactic cannot decompose."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent σ_invol is closed by its two children: ext i turns the function equality into a pointwise goal, by_cases hi : i = firstNonzero x hx yields the two branches, and each branch closes with a single rw (line 106 `rw [eq1, eq2, swap12_invol]`; line 110 `rw [eq1, eq2]`), leaving no remaining goals.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a3.lean#L95-L110"
+    },
+    {
+      "n": 2,
+      "claim": "The copied file NuminaPutnam2025/putnam_2025_a3.lean contains no sorry, axiom, admit or Admitted, and the project's CI builds it: .github/workflows/lean_action_ci.yml runs leanprover/lean-action@v1 on push/PR, and NuminaPutnam2025.lean imports NuminaPutnam2025.putnam_2025_a3.",
+      "evidence_kind": "check",
+      "evidence": "grep -nEi 'sorry|admit|\\baxiom\\b|Admitted' on the copied file returns no match; https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/.github/workflows/lean_action_ci.yml and https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025.lean#L3"
+    },
+    {
+      "n": 3,
+      "claim": "The authors state the structural fact that makes the split work, as a comment: 'Key insight: σ only modifies the first nonzero position' (above σ_inj).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a3.lean#L118-L120"
+    },
+    {
+      "n": 4,
+      "claim": "σ_invol is reused later in the same file to prove injectivity of σ: `have h1 := σ_invol x hx` and `have h2 := σ_invol y hy` (lines 127-128), and again `rw [key, σ_invol]` at line 560.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a3.lean#L127-L128 and https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a3.lean#L560"
+    },
+    {
+      "n": 5,
+      "claim": "The proof of σ_invol is 16 lines total (95-110); the extensionality step ext i and the split by_cases are 2 lines (97 and 99), and each of the two branches is closed by one rw (lines 106 and 110). The two rewrite lemmas σ_at_firstNonzero and σ_away_firstNonzero are one-line proofs (lines 72 and 76).",
+      "evidence_kind": "measurement",
+      "evidence": "read of the copied file NuminaPutnam2025/putnam_2025_a3.lean lines 95-110 and 70-76"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 16,
+    "children": 2,
+    "children_closed_by_rewriting": 2,
+    "ext_tactic_lines": 1,
+    "helper_lemmas_used": 4,
+    "how_counted": "lines 95-110 of the copied file; children = the two goals created by by_cases hi : i = firstNonzero x hx; helper lemmas used in the proof: firstNonzero_σ (for hk_σ), σ_at_firstNonzero, σ_away_firstNonzero, swap12_invol"
+  },
+  "consequences": "ext i reduces a function equality to a pointwise goal over an arbitrary i, and by_cases hi : i = firstNonzero x hx then demands that both regions are covered. The split only aligns because firstNonzero is invariant under σ (firstNonzero_σ, bound as hk_σ): without it the two σ occurrences in σ (σ x hx) would unfold at different coordinates and the rewrites would not close. Each branch must supply its own unfolding of σ (conv_lhs => rw [σ, if_pos/if_neg]); if the if-condition is not decidable, by_cases cannot split the goal at all.",
+  "known_uses": [
+    "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a3.lean#L127-L128",
+    "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a3.lean#L560"
+  ],
+  "related": [
+    "lean-extensionality-axiom-imo2026-729383a9"
+  ],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "88be3839d34cb404c111ac6722ee0ddd79832ee9fcc674f342e2e2c67b899309",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:27:38Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:35:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T12:34:55Z"
+}

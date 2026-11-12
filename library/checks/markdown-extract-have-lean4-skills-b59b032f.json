@@ -1,0 +1,101 @@
+{
+  "entry": "markdown-extract-have-lean4-skills-b59b032f",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 3f913c66251b8712bb58e6ce83a453fa96e3f94f",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:09:05Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "Source file is Markdown documentation (plugins/lean4/skills/lean4/references/proof-refactoring.md), not Lean source; no toolchain or CI workflow builds it. Checked .github/workflows/lint.yml (ruff/mypy/shellcheck/lint_docs, no md build) and lean-integration.yml (runs Lean integration/reference-snippet scripts, no md compilation).",
+      "by": "verifier",
+      "at": "2026-11-12T12:10:26Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Copied code lines 310-316: have hk_bound closes with omega (line 316); inner have (line 313) closed by apply StrictMono.monotone hk_mono (314) / exact Fin.le_last i (315); simp only [n] at line 312.",
+      "by": "verifier",
+      "at": "2026-11-12T12:10:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Copied code lines 321-327: private lemma strictMono_all_lt_succ_last closes with apply StrictMono.monotone hk / exact h_last i (326-327); params last : Fin m (323) and h_last : ∀ j, j ≤ last (324) replace the specific index and Fin.le_last witness.",
+      "by": "verifier",
+      "at": "2026-11-12T12:10:29Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Copied code: line 321 docstring reads 'Strictly monotone functions satisfy k(i) ≤ k(last) for all i'; line 330 reads 'Result: Main proof now just calls helper, much clearer.'",
+      "by": "verifier",
+      "at": "2026-11-12T12:10:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Copied code: lines 264-266 'Copy have proof to new lemma / Identify required parameters / Replace original with have h := helper args'; line 39 'Generic is better (Pattern 2.1): Remove proof-specific constraints'.",
+      "by": "verifier",
+      "at": "2026-11-12T12:10:31Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Opened the copied code file at code/plugins/lean4/skills/lean4/references/proof-refactoring.md. Parent site lines 309-317 hold the fence-to-fence before block: have hk_bound (310) with intro i (311), simp only [n] (312), inner have k i <= k <m', Nat.lt_succ_self m'> (313) closed by apply StrictMono.monotone hk_mono (314) / exact Fin.le_last i (315), then omega (316). Child site lines 320-328 hold the fence-to-fence extracted lemma: docstring (321), private lemma strictMono_all_lt_succ_last (322) with params {m} k hk i last h_last, body apply StrictMono.monotone hk (326) / exact h_last i (327). The generalisation is faithful: Fin.le_last i -> explicit h_last : forall j, j <= last, and the specific last index becomes parameter last. Both close: parent by omega, child by exact h_last i (h_last i : i <= last, then monotone gives k i <= k last). Line 330 is Result: Main proof now just calls helper; recipe at 264-266; Generic is better at 39. Decomposition matches the entry, child and closing method match the code, and it closes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:11:32Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally: applicability.use_when/avoid_when and README 'When to use/not' restate extract-have as lifting any embedded have with independent content into a parameterised lemma, citing the file's own recipe (lines 264-266) and Pattern 2.1 'Generic is better' (line 39). 'When not to use' items are honest and specific, each grounded in the copied source: 10+/15+ parameter warning (lines 184, 556, 853), definitional let bindings (Pattern 2.3, lines 569-581), short/linear have (lines 63-64), extraction obscuring flow (line 99). Consequences accurately describe promoting m'/k/hk_mono to parameters and the last/h_last obligation, and the too-specific vs too-general trade-off is honest. Minor nits only: entry.json avoid_when parenthetical '(Pattern 2.3, measure theory)' conflates 2.3 (let bindings) with 3.4 (measure theory), and use_when cites 'large preliminary calculation' though this 7-line have is not large; neither undermines the move's generality.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:12:57Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 3f913c66251b8712bb58e6ce83a453fa96e3f94f",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:13:19Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance check passes (1 file byte-identical at 3f913c66251b8712bb58e6ce83a453fa96e3f94f). Commit is consistent across entry.json, source.json and SOURCE.md. Licence is 'MIT' in entry.json/source.json/SOURCE.md and the copied upstream-LICENSE is MIT License text (copyright 2025 Lean 4 Theorem Proving Skill Contributors). Permalinks all use the same full commit and correct path; site line ranges (309-317 parent, 320-328 child) and all claim line anchors (310-316, 321-327, 321+330, 264-266+39) match the copied proof-refactoring.md exactly. Source note links LICENSE at the pinned commit and gives attribution.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:14:34Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    }
+  ]
+}

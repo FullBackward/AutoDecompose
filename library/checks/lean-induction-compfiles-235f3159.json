@@ -1,0 +1,109 @@
+{
+  "entry": "lean-induction-compfiles-235f3159",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T11:47:15Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/.github/workflows/push-main.yaml runs 'lake build' on push to main (default branch); the file Compfiles/UK2024R1P2.lean is part of the lake build",
+      "by": "verifier",
+      "at": "2026-11-12T11:47:46Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Lines 32-45 of the copied file show suffices H (l.32), induction hk using Nat.decreasingInduction (l.34), self => exact ha' (l.35), of_succ closes both obtain branches (l.36-45), and H 0 (Nat.zero_le _) at l.32; CI workflow push-main.yaml runs lake build on push to main",
+      "by": "verifier",
+      "at": "2026-11-12T11:47:50Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "l.39 obtain ha | ha := ha <;> rw [ha] at hP; l.40 forward branch rwa [two_mul, ← sub_add, sub_add_cancel_right, neg_add_eq_sub] at hP; l.43-45 backward branch rw [... abs_mul, Int.mul_eq_one_iff_eq_one_or_neg_one] at hP then obtain hP | hP <;> norm_num at hP",
+      "by": "verifier",
+      "at": "2026-11-12T11:47:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "l.41-42 comment reads 'This branch is invalid because the difference between the terms we know are consecutive is both 1 and a multiple of 2, which is a contradiction'",
+      "by": "verifier",
+      "at": "2026-11-12T11:47:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Parent excerpt is lines 32-45 = 14 lines; the only local declaration is the suffices goal H (l.32), no auxiliary lemma/have/let in the excerpt",
+      "by": "verifier",
+      "at": "2026-11-12T11:47:53Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T11:48:41Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Decomposition matches code: parent (lines 28-45) strengthens to H : forall k <= 2023, |a k - a (k+1)| = 1 and closes via H 0 (Nat.zero_le _); induction on hk with Nat.decreasingInduction has self = exact ha' (line 35) and of_succ splitting the recurrence with obtain ha | ha <;> rw [ha] at hP (line 39). Children match: self closes by 'exact ha''; forward branch by rwa [two_mul, ...] (line 40); backward branch by rw [..., abs_mul, Int.mul_eq_one_iff_eq_one_or_neg_one] then obtain/norm_num (lines 43-45), giving 2 * |a (i+1) - a i| = 1 then 2=1 / 2=-1 contradiction. Closes: no sorry/axiom in file, CI (push-main.yaml) runs lake build over the repo. Author comment (lines 41-42) and 14-line count (32-45) verified.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T11:49:43Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated transferably: applicability.use_when abstracts the example to 'relation P propagates downward through the recurrence in one direction and forces a contradiction in the other; decreasing induction from a known-high index reaches the low one; state the strengthened invariant ∀ k ≤ N, P k as a suffices', and also_known_as covers descending/decreasing induction, Nat.decreasingInduction, induction on a bound. avoid_when and consequences are honest and specific: each failure mode traces to a concrete structure (wrong recurrence branch not contradictory -> of_succ does not close; hypothesis not the exact top case / wrong bound 2023 -> self case no longer matches ha'; invariant false or too weak to propagate). The transferable insight (the two-sided role of the disjunction: one branch carries the invariant, the other is contradictory) is named in the opinion paragraph and echoed in the consequences.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T11:50:34Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T11:51:17Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent. check_provenance.py passes (file byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8). Commit 1745e6ced3e671bd74417548494b034eb2c87da8 is identical in entry.json, source.json and SOURCE.md. Licence Apache-2.0 is recorded in entry.json and README and matches the LICENSE at the pinned commit (Apache License Version 2.0, fetched and diff-identical to sources/compfiles/upstream-LICENSE). Copied file's header states 'Released under Apache 2.0 license as described in the file LICENSE'. File permalink and site permalink (#L28-L45) use the correct commit and path, and lines 28-45 match the problem statement and proof in the copied file. SOURCE.md records repo, pinned commit, licence and attribution; copied code is verbatim under the source.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T11:51:46Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    }
+  ]
+}

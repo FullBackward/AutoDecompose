@@ -1,0 +1,294 @@
+[
+  {
+    "path": "Compfiles/UK2024R1P2.lean",
+    "start": 32,
+    "end": 45,
+    "move": "induction",
+    "signal": "suffices H : forall k <= 2023, ... then induction hk using Nat.decreasingInduction with | self => | of_succ i _ hP =>",
+    "why": "Strengthens the goal to a predicate on all k <= 2023 and runs descending induction from 2023; the of_succ step splits the recurrence disjunctively and both branches close.",
+    "source": "compfiles"
+  },
+  {
+    "path": "Compfiles/Usa1973P4.lean",
+    "start": 39,
+    "end": 47,
+    "move": "key-invariant",
+    "signal": "have key : forall t, t = x or t = y or t = z -> t = 1",
+    "why": "One named auxiliary statement carries the idea; it is proved by a three-way rcases and then applied at x, y and z inside a single simp that closes the forward direction.",
+    "source": "compfiles"
+  },
+  {
+    "path": "Compfiles/Egmo2023P1.lean",
+    "start": 35,
+    "end": 54,
+    "move": "calc-chain",
+    "signal": "have h1 : b m >= 2 := calc b m _ >= ... ; have h2 : b M <= 2 := calc b M _ <= ...",
+    "why": "Two explicit calc chains, each three steps, bound b at the minimum and at the maximum of a; the proof then closes by antisymmetry.",
+    "source": "compfiles"
+  },
+  {
+    "path": "Compfiles/Usa1978P1.lean",
+    "start": 41,
+    "end": 46,
+    "move": "witness",
+    "signal": "use (6 / 5) four times, then constructor <;> norm_num",
+    "why": "The maximising assignment e = 6/5 is introduced by four explicit use witnesses and its two defining equations are discharged in one line, establishing the IsGreatest upper bound branch.",
+    "source": "compfiles"
+  },
+  {
+    "path": "Compfiles/Imo1964P1.lean",
+    "start": 32,
+    "end": 47,
+    "move": "iff-split",
+    "signal": "constructor, then intro hn / intro hn for the two directions of the iff",
+    "why": "The whole problem is an iff and is split immediately into its two directions; the forward direction builds the congruence from n % 3 = 0 and the reverse uses mod_cases, both closing.",
+    "source": "compfiles"
+  },
+  {
+    "path": "Compfiles/Imo2024P2.lean",
+    "start": 55,
+    "end": 94,
+    "move": "generalise-then-instantiate",
+    "signal": "namespace Condition, variable {a b : Nat} (h : Condition a b), section, then lemmas a_pos, b_pos, gcd_eq_g, symm, dvd_g_of_le_N_of_dvd",
+    "why": "The API of the abstract predicate Condition is proved as section lemmas over an arbitrary h; the problem later builds a concrete Condition at lines 209-217 and uses these lemmas without unfolding the definition.",
+    "source": "compfiles"
+  },
+  {
+    "path": "Archive/Imo/Imo1961Q3.lean",
+    "start": 51,
+    "end": 71,
+    "move": "case-split",
+    "name": "Imo1961Q3 (forward direction, match on n)",
+    "signal": "match n with | 1 => ... | 2 => ... | (n + 1 + 2) => ...",
+    "why": "The forward direction splits the exponent into n = 1, n = 2 and the residual n = m + 2 (m := n + 1); each child closes separately (contradiction, absurd, calc bound), so exhaustiveness of the three-way split is discharged on its own.",
+    "source": "mathlib4"
+  },
+  {
+    "name": "Mval_move",
+    "path": "IMO2026/Q1/solution.lean",
+    "start": 329,
+    "end": 343,
+    "move": "extensionality",
+    "signal": "ext p (Finset equality proved pointwise)",
+    "why": "Mval is invariant under a move: the two finite sets of prime factors are shown equal by ext p, then membership in both directions is proved and the product is taken termwise with prod_congr.",
+    "source": "axiom-imo2026"
+  },
+  {
+    "path": "NuminaPutnam2025/putnam_2025_a6.lean",
+    "start": 1017,
+    "end": 1032,
+    "move": "suffices-or-strengthen",
+    "name": "putnam_2025_a6.putnam_2025_a6.suffices",
+    "signal": "suffices h : (∀ j ≥ 1, padicValInt 2 (b (2^j)) = j + 1) ∧ (∀ j ≥ 1, padicValInt 2 (A b (2^j) - 1) = j + 1) by",
+    "why": "The main theorem reduces its single case k to a stronger package of two all-j valuation claims, unpacks them with obtain, derives v_2 of both factors and combines them with padicValInt.mul; the suffices block then proves the package by simultaneous induction.",
+    "source": "numina-putnam2025"
+  },
+  {
+    "path": "HarmonicLean/IMO2025P4_solve2.lean",
+    "start": 74,
+    "end": 110,
+    "move": "interface-lemma",
+    "name": "lem_s_N_smallest_divisors",
+    "signal": "lemma in the same section as def s (43-48), restating s N = N / d1 + N / d2 + N / d3; used at 171 and 590 and through lem_s_N_formula at 300, 331, 368, 551, 627",
+    "why": "lem_s_N_smallest_divisors is the API lemma for def s: it rewrites the implementation (the three largest entries of the descending sort of properDivisors) as N/d1 + N/d2 + N/d3 in terms of the ascending list of divisors greater than 1, so client lemmas reason about s without unfolding the sort. It is used directly at 171 and 590 and through lem_s_N_formula at 300, 331, 368, 551, 627. 37 lines, closes.",
+    "source": "harmonic-imo2025"
+  },
+  {
+    "path": "blueprint/src/chapter/pfr.tex",
+    "start": 14,
+    "end": 47,
+    "move": "blueprint-node",
+    "name": "pfr_aux",
+    "signal": "backslash-lean{PFR_conjecture_aux} and backslash-uses{entropy-pfr, unif-exist, uniform-entropy-II, jensen-bound, ruz-dist-def, ruzsa-diff, bound-conc, ruz-cov} blueprint macros",
+    "why": "The blueprint lemma pfr_aux is one node of the published dependency graph: its statement, Lean name and proof path are fixed before the proof, which cites eight upstream nodes by label.",
+    "source": "pfr"
+  },
+  {
+    "move": "statement-object",
+    "name": "Thm_fermatLastTheoremFive",
+    "path": "Theorems/Thm_fermatLastTheoremFive.lean",
+    "start": 1,
+    "end": 5,
+    "signal": "one theorem per file; `theorem fermatLastTheoremFive : FermatLastTheoremFor 5 := by p2m_exact_reverting @_root_.P2MW.S_fermatLastTheoremFive.solution`; imports Mathlib, P2M.Util, P2M.Sol.S_fermatLastTheoremFive",
+    "why": "The node fermatLastTheoremFive is stated alone in its own file and its proof is not in the file: it imports P2M.Sol.S_fermatLastTheoremFive and closes by p2m_exact_reverting on that module's solution. Minimal statement-object form: one theorem, one file, imports exactly Mathlib, P2M.Util and the module holding the proof. PROOF-PATH.md:4-5 records the convention for every node.",
+    "source": "flt-anthropic"
+  },
+  {
+    "path": "plugins/lean4/skills/lean4/references/proof-refactoring.md",
+    "start": 306,
+    "end": 328,
+    "move": "extract-have",
+    "name": "proof-refactoring-hk-bound-extraction",
+    "signal": "have hk_bound : ∀ i : Fin (m' + 1), k i < n := by ... omega  ->  private lemma strictMono_all_lt_succ_last {m : ℕ} (k : Fin m → ℕ) (hk : StrictMono k) ...",
+    "why": "Before/after of lifting an embedded have into a top-level private lemma: the surrounding context (m', k, hk_mono) becomes explicit parameters and the proof body is copied, so the main proof calls the helper; both versions close (omega before, apply/exact after).",
+    "source": "lean4-skills"
+  },
+  {
+    "path": "plugins/lean4/skills/lean4/references/sorry-filling.md",
+    "start": 88,
+    "end": 103,
+    "move": "sorrify-at-failure",
+    "name": "sorry-filling-common-sorry-types",
+    "signal": "Type 4: Complex structural proof -> Break into sub-sorries with clear strategy; Type 5: Actually needs new lemma -> Extract as helper lemma, prove separately",
+    "why": "The reference classifies why a hole resists filling and gives the sorrify response for the structural case: replace the too-large goal with sub-sorries and work them one at a time (Type 4), escalating to a separate helper lemma when the hole is a missing statement (Type 5).",
+    "source": "lean4-skills"
+  },
+  {
+    "path": "plugins/lean4/commands/refactor.md",
+    "start": 58,
+    "end": 79,
+    "move": "workflow",
+    "name": "refactor-command-actions",
+    "signal": "Actions: 1 Audit ... 2 Search ... 3 Plan ... 4 Approval ... 5 Apply ... 6 Verify ... 7 Report; Helper scope defaults: single use -> have, reused in file -> private theorem, public only with approval",
+    "why": "A harness command specifying the process for strategy-level proof change: audit for long proofs and thin definition APIs, search mathlib, plan with measured impact, approve per batch, apply behind a diagnostic gate (revert on sorry increase), then report; it also fixes the helper-scope rule (local have vs private theorem).",
+    "source": "lean4-skills"
+  },
+  {
+    "path": "skills/lean-proof/SKILL.md",
+    "start": 29,
+    "end": 44,
+    "move": "other",
+    "signal": "before: theorem main_theorem : A = C := by sorry; after: lemma1 : A = B := by sorry; lemma2 : B = C := by sorry; main_theorem := by rw [lemma1, lemma2]",
+    "why": "Lemma-splitting decomposition, which the move vocabulary does not name: one hard theorem is replaced by two helper lemmas plus a rewrite skeleton that composes them, so each remaining hole is smaller than the original. The skill frames it as moving sorries earlier in the file (go to the target theorem first), and the rewrite chain rw [lemma1, lemma2] is the whole parent proof.",
+    "source": "leanprover-skills"
+  },
+  {
+    "path": "Archive/Imo/Imo1985Q2.lean",
+    "start": 48,
+    "end": 77,
+    "move": "induction",
+    "name": "Imo1985Q2.C_mul_mod",
+    "signal": "induction k, hk.1 using Nat.le_induction with | base => ... | succ k hk₁ ih =>",
+    "why": "Induction on k with the lower bound hk.1 used as the measure (Nat.le_induction), giving the step a strengthened hypothesis 1 ≤ k < n; the step then splits on whether (k+1)j % n lies above or below j.",
+    "source": "mathlib4"
+  },
+  {
+    "path": "SeedProver/imo2025/IMO2025/P5.lean",
+    "start": 170,
+    "end": 245,
+    "move": "key-invariant",
+    "name": "round15_lemma1",
+    "signal": "round15_lemma1 preserves s1^2 <= k*s2 and s2 <= 2*k and re-establishes both at k+1; used by round15_h_main at line 273",
+    "why": "One named auxiliary statement carries the idea: step-preservation of the invariant pair s1^2 <= k*s2 and s2 <= 2*k together with not-WinA at k+1 and a chosen b_next. The main induction successor case is this lemma applied and repacked, so the invariant is what drives the contradiction. 76 lines.",
+    "source": "seed-prover"
+  },
+  {
+    "path": "Archive/Imo/Imo1964Q1.lean",
+    "start": 28,
+    "end": 33,
+    "move": "calc-chain",
+    "name": "Imo1964Q1.two_pow_mod_seven",
+    "signal": "calc 2 ^ n = 2 ^ (3 * (n / 3) + t) := by rw [Nat.div_add_mod] _ = ... _ ≡ ... _ = ...",
+    "why": "A four-step chain of equalities and congruences (div_add_mod, pow_add/pow_mul, gcongr+decide, ring), one rewrite per step, ending at 2 ^ (n % 3); the chain is the whole proof.",
+    "source": "mathlib4"
+  },
+  {
+    "path": "Archive/Imo/Imo1982Q3.lean",
+    "start": 78,
+    "end": 83,
+    "move": "witness",
+    "name": "imo1982_q3a",
+    "signal": "use 4000 ... convert! Imo1982Q3.ineq (Nat.succ_ne_zero 3998) hx h0 hp ... norm_num",
+    "why": "The existential ∃ n, 3.999 ≤ sum is closed by introducing the concrete witness n = 4000, transferring the general inequality ineq to that value, and finishing numerically; the doc comment records the witness choice.",
+    "source": "mathlib4"
+  },
+  {
+    "path": "Archive/Imo/Imo1986Q5.lean",
+    "start": 74,
+    "end": 89,
+    "move": "iff-split",
+    "name": "Imo1986Q5.isGood_iff",
+    "signal": "refine ⟨fun hf ↦ funext hf.map_eq, ?_⟩ ... constructor case map_two ... case map_ne_zero ... case map_add_rev",
+    "why": "The equivalence IsGood f ↔ f = fun x ↦ 2 / (2 - x) is split into its two directions: forward by funext of a pointwise lemma, backward by discharging the three structure fields as separate cases.",
+    "source": "mathlib4"
+  },
+  {
+    "path": "Archive/Imo/Imo1977Q6.lean",
+    "start": 23,
+    "end": 48,
+    "move": "generalise-then-instantiate",
+    "name": "imo1977_q6_nat then imo1977_q6",
+    "signal": "theorem imo1977_q6_nat (f : ℕ → ℕ) ... then imo1977_q6 (f : ℕ+ → ℕ+) ... refine imo1977_q6_nat (fun m => if 0 < m then f m.toPNat' else 0) ?_ n",
+    "why": "The statement is proved first for f : ℕ → ℕ (with a key induction hypothesis and a calc), then the ℕ+ → ℕ+ version is derived by extending f to ℕ with a garbage value at 0 and instantiating; the module comment states this two-step plan.",
+    "source": "mathlib4"
+  },
+  {
+    "name": "cut_preserves",
+    "path": "IMO2026/Q4/solution.lean",
+    "start": 61,
+    "end": 90,
+    "move": "case-split",
+    "signal": "rcases hy with h | h | h (three-way exhaustive membership split) plus constructor",
+    "why": "Lemma 2: a cut of a valid triangle yields two valid triangles; after splitting the conjunction, each membership hypothesis on the three-entry multiset is split into its three cases and every branch closes.",
+    "source": "axiom-imo2026"
+  },
+  {
+    "path": "NuminaPutnam2025/putnam_2025_a3.lean",
+    "start": 95,
+    "end": 110,
+    "move": "extensionality",
+    "name": "putnam_2025_a3.σ_invol",
+    "signal": "ext i; then by_cases hi : i = firstNonzero x hx",
+    "why": "Proves σ (σ x) = x by function extensionality at an arbitrary coordinate, splitting at the first nonzero coordinate; the two branches rewrite with σ_at_firstNonzero/swap12_invol and σ_away_firstNonzero.",
+    "source": "numina-putnam2025"
+  },
+  {
+    "path": "PFR/Fibring.lean",
+    "start": 120,
+    "end": 145,
+    "move": "suffices-or-strengthen",
+    "name": "sum_of_rdist_eq_step_condMutualInfo",
+    "signal": "suffices I[...] = I[...] by convert this using 2; abel, followed by the rest of the proof at the strengthened form",
+    "why": "The conditional mutual information step is first replaced by a suffices statement with the subtraction bracketed so that the injectivity rewrites apply, the bracket difference being discharged by convert/abel; the remainder of the proof then closes.",
+    "source": "pfr"
+  },
+  {
+    "path": "Carleson/Forest.lean",
+    "start": 43,
+    "end": 58,
+    "move": "interface-lemma",
+    "name": "Forest structure API lemmas",
+    "signal": "@[simp] lemma mem_mk ... ; @[simp] lemma mem_𝔘 ... ; @[simp] lemma mem_𝔗 ... ; lemma nonempty ... := t.nonempty ; lemma ordConnected ... := t.ordConnected ; lemma smul_four_le ... := t.smul_four_le ; lemma lt_dist ... := t.lt_dist",
+    "why": "A block of @[simp] membership lemmas and forwarding wrappers placed next to structure Forest (lines 21-33); clients use t u and the hypotheses without unfolding Forest.mk or the projections.",
+    "source": "carleson"
+  },
+  {
+    "path": "blueprint/src/chapter/main.tex",
+    "start": 444,
+    "end": 458,
+    "move": "blueprint-node",
+    "name": "finitary-Carleson blueprint node",
+    "signal": "\\begin{proposition}[finitary Carleson] \\label{finitary-Carleson} \\leanok \\lean{finitary_carleson} \\uses{discrete-Carleson, grid-existence, tile-structure, tile-sum-operator}",
+    "why": "A named node of the published blueprint dependency graph, stated before its Lean proof, tying it to declaration finitary_carleson and to its four child nodes; the Lean proof is separate in FinitaryCarleson.lean.",
+    "source": "carleson"
+  },
+  {
+    "move": "statement-object",
+    "name": "Thm_IsCyclotomicExtension_Rat_seven_pid",
+    "path": "Theorems/Thm_IsCyclotomicExtension_Rat_seven_pid.lean",
+    "start": 1,
+    "end": 6,
+    "signal": "one theorem per file; `theorem IsCyclotomicExtension.Rat.seven_pid (K : Type*) [Field K] [NumberField K] [IsCyclotomicExtension {7} ℚ K] : IsPrincipalIdealRing (𝓞 K)`; imports P2M.Sol.S_IsCyclotomicExtension_Rat_seven_pid",
+    "why": "A single theorem stated in its own six-line file, quantified over an arbitrary field K, closed only by p2m_exact_reverting against the imported solution module; the statement is the whole content and the proof lives elsewhere. PROOF-PATH.md:4-5 names this file as the statement node for the cyclotomic PID step.",
+    "source": "flt-anthropic"
+  },
+  {
+    "path": "plugins/writing-lean-proofs/skills/writing-lean-proofs/SKILL.md",
+    "start": 158,
+    "end": 193,
+    "move": "extract-have",
+    "name": "The extraction ladder",
+    "signal": "1. A sub-argument repeats within one proof -> local have. 2. Statement independently interesting, or extraction sheds hypotheses -> standalone lemma. 3. Long and unwieldy -> split it.",
+    "why": "Gives the rule for lifting a proof fragment into a local have and then into a standalone lemma; the worked min_comm example extracts a quantified have used twice and closes both directions with le_antisymm.",
+    "source": "trailofbits-skills"
+  },
+  {
+    "path": "skills/lean-proof/SKILL.md",
+    "start": 46,
+    "end": 55,
+    "move": "sorrify-at-failure",
+    "signal": "match n with | 0 => sorry -- fill in later | 1 => sorry -- fill in later | n + 2 => -- WORK ON THIS FIRST",
+    "why": "The rule places holes deliberately on the easy branches and works the hardest branch first, stating the reason: if the hard case fails, effort on easy cases is wasted. The site is the work-ordering use of sorry holes within a case split.",
+    "source": "leanprover-skills"
+  }
+]

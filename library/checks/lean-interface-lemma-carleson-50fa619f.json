@@ -1,0 +1,109 @@
+{
+  "entry": "lean-interface-lemma-carleson-50fa619f",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:32:22Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push.yml build_project job: lean-action build:true build-args 'Carleson Challenge Solution' on push to master; commit d75f54374f7f930e70a86b443f20d0e0935c275e is master HEAD (default branch, compare identical); lakefile.toml defaultTargets=['Carleson'] and lean_lib Carleson include Carleson/Forest.lean",
+      "by": "verifier",
+      "at": "2026-11-12T12:33:57Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read copied code/Carleson/Forest.lean (byte-identical to upstream at d75f543): lines 49-58 are 8 forwarders each closed by one field (nonempty=t.nonempty' hu ... ball_subset=t.ball_subset' hu hp); lines 43-47 three @[simp] lemmas closed by Iff.rfl/.rfl/.rfl. Fetched .github/workflows/push.yml: build_project uses lean-action build:true build-args 'Carleson Challenge Solution' on push to master, building Carleson/Forest.lean.",
+      "by": "verifier",
+      "at": "2026-11-12T12:34:00Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Read code/Carleson/Forest.lean: lines 25-33 declare 8 predicate fields (nonempty'..ball_subset') with hu : u ∈ 𝔘 / hp : p ∈ 𝔗 u; lines 49-58 are 8 forwarders restating each with hu : u ∈ t / hp : p ∈ t u. One-to-one by name.",
+      "by": "verifier",
+      "at": "2026-11-12T12:34:03Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read code/Carleson/Forest.lean lines 86-101: structure Row extends Forest X n (line 86), namespace Row re-declares @[simp] mem_𝔘 / mem_𝔗 (lines 97-98) and forwards pairwiseDisjoint' to pairwiseDisjoint (lines 100-101).",
+      "by": "verifier",
+      "at": "2026-11-12T12:34:06Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read code/Carleson/Forest.lean line 23: doc comment \"The value of (𝔗 u) only matters when (u ∈ 𝔘).\" annotates the 𝔗 field (line 24), matching the hu : u ∈ t hypothesis lifted by the forwarders.",
+      "by": "verifier",
+      "at": "2026-11-12T12:34:14Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read code/Carleson/Forest.lean lines 62-65: ball_subset_of_mem_𝓘 applies the forwarding lemma t.ball_subset hu hp on line 64 (via ball_subset_ball.trans), not the raw ball_subset field.",
+      "by": "verifier",
+      "at": "2026-11-12T12:34:20Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Read code/Carleson/Forest.lean: all 11 children (mem_mk, mem_𝔘, mem_𝔗, nonempty, ordConnected, 𝓘_ne_𝓘, smul_four_le, stackSize_le, dens₁_𝔗_le, lt_dist, ball_subset) match lines 43-58 verbatim, and each closed_by matches the code's proof term exactly (Iff.rfl/.rfl for the 3 simp lemmas; t.<field>' args for the 8 forwarders). Each forwarder closes: u ∈ t and t u are definitionally t.𝔘 and t.𝔗 via the CoeHead/Membership/CoeFun instances (lines 39-41), so the field applications typecheck. The parent block and 8 field forwarders correspond one-to-one to the 8 predicate fields at lines 25-33. File is built by the project's CI (push.yml).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:35:41Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated structurally (bundled structure + raw projections + predicate fields; coercions make u∈t / t u natural; recipe: coercions → one @[simp] per spelling difference → one forwarder per field), not tied to Forest n. avoid_when gives three concrete conditions (single-use = net cost; client needs projection form; coercions out of scope). Consequences honest and specific (11 lemmas at near-zero cost but must stay in sync; hypothesis re-binding needs mem_𝔘 first; @[simp] layer needs instances in scope). Minor imprecision on the exact outside-scope failure mode is not a generality defect.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:36:35Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:36:56Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit d75f54374f7f930e70a86b443f20d0e0935c275e is consistent across entry.json, sources/carleson/SOURCE.md and source.json; check_provenance.py reports the copied Carleson/Forest.lean (4670 bytes, sha256 f5539c8e...) byte-identical at that commit. Licence Apache-2.0 recorded in entry, source note and source.json, and sources/carleson/upstream-LICENSE is the Apache 2.0 text. Every permalink pins repo/commit/path with line ranges that match the copied file (sites 43-58, 19-33, 37-41; claim lines 23, 25-33, 49-58, 62-65, 86-101 all correct). Source note records attribution and licence provenance. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:37:39Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    }
+  ]
+}

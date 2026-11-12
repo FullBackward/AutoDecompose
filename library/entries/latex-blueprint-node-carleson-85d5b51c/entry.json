@@ -1,0 +1,167 @@
+{
+  "id": "latex-blueprint-node-carleson-85d5b51c",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Blueprint node finitary-Carleson: finitary Carleson bound proved from four upstream nodes",
+  "intent": "Freeze the statement and Lean name of the node `finitary-Carleson` before its proof, then prove the finitary Carleson bound by composing four already-stated upstream nodes, each declared in one `\\uses{}` line: a grid and a tile structure carry the continuous operator to a dyadic model, `discrete-Carleson` gives the dyadic bound, and `tile-sum-operator` carries it back to the original operator.",
+  "move": "blueprint-node",
+  "also_known_as": [
+    "blueprint declaration",
+    "declaration-first node",
+    "dependency-graph node"
+  ],
+  "language": "latex",
+  "source": {
+    "source_id": "carleson",
+    "url": "https://github.com/fpvandoorn/carleson",
+    "commit": "d75f54374f7f930e70a86b443f20d0e0935c275e",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "blueprint/src/chapter/main.tex",
+      "bytes": 431342,
+      "sha256": "2ab2757dc1d710d83d7e846bc669bd19928bb38c6897851d066fe158a673ec67",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/blueprint/src/chapter/main.tex"
+    },
+    {
+      "path": "Carleson/FinitaryCarleson.lean",
+      "bytes": 6481,
+      "sha256": "a498776c27854b1b3709607662c18c6e8ff4e726ad13832fbf5476ae95f4f370",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/FinitaryCarleson.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "blueprint/src/chapter/main.tex",
+      "lines": [
+        444,
+        458
+      ],
+      "role": "parent",
+      "name": "finitary-Carleson",
+      "excerpt_sha256": "71395295e2670fa73237537ff275fc34a10cb558a133c391980393895c5926e6",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/blueprint/src/chapter/main.tex#L444-L458"
+    },
+    {
+      "path": "blueprint/src/chapter/main.tex",
+      "lines": [
+        1303,
+        1320
+      ],
+      "role": "skeleton",
+      "name": "finitary-Carleson-proof",
+      "excerpt_sha256": "2b831c205a72f74f76e4b39901c639ff1ec4fcea6b7c533ad27cf34041d37df7",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/blueprint/src/chapter/main.tex#L1303-L1320"
+    },
+    {
+      "path": "blueprint/src/chapter/main.tex",
+      "lines": [
+        1261,
+        1264
+      ],
+      "role": "context",
+      "name": "finitary-Carleson-setup",
+      "excerpt_sha256": "635eb6505255ab68b36c580b7fa9106ce725399a3ce7f3f7561e4cb6fe2b0224",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/blueprint/src/chapter/main.tex#L1261-L1264"
+    }
+  ],
+  "parent": {
+    "name": "finitary-Carleson",
+    "statement": "If σ1, σ2 : X → ℤ are measurable functions with finite range and σ1 ≤ σ2, and F, G are bounded Borel sets in X, then there is a Borel set G' in X with 2μ(G') ≤ μ(G) such that for all Borel functions f : X → ℂ with |f| ≤ 1_F, ∫_{G \\ G'} |Σ_{s=σ1(x)}^{σ2(x)} ∫ K_s(x,y) f(y) e(Ϙ(x)(y)) dμ(y)| dμ(x) ≤ (2^{442a³}/(q-1)⁵) μ(G)^{1-1/q} μ(F)^{1/q} (Lean name finitary_carleson)."
+  },
+  "children": [
+    {
+      "name": "discrete-Carleson",
+      "statement": "For a grid structure (𝒟, c, s) and a tile structure (𝒫, 𝗊, ...) for it, the dyadic model bound: there is a Borel set G' with 2μ(G') ≤ μ(G) such that for all Borel f with |f| ≤ 1_F, ∫_{G \\ G'} |Σ_{p∈𝒫} T_p f(x)| dμ(x) ≤ (2^{442a³}/(q-1)⁵) μ(G)^{1-1/q} μ(F)^{1/q}.",
+      "closed_by": "cited via \\Cref{discrete-Carleson} at line 1263 to obtain the set G' and the dyadic bound (disclesssim), and again in the final estimate at line 1307; in Lean `rcases discrete_carleson X with ⟨G', hG', h2G', hfG'⟩` (FinitaryCarleson.lean L117)"
+    },
+    {
+      "name": "grid-existence",
+      "statement": "There exists a grid structure (𝒟, c, s).",
+      "closed_by": "instantiated at line 1261 ('Choose a grid structure ... with \\Cref{grid-existence}'); in Lean `have g : GridStructure X D κ S o := grid_existence X` (FinitaryCarleson.lean L114)"
+    },
+    {
+      "name": "tile-structure",
+      "statement": "For a given grid structure (𝒟, c, s), there exists a tile structure (𝒫, 𝗊, 𝓼, 𝓽, 𝓰, 𝓲).",
+      "closed_by": "instantiated for that grid at line 1262 ('a tile structure ... with \\Cref{tile-structure}'); in Lean `have t : TileStructure Q D κ S o := tile_existence X` (FinitaryCarleson.lean L115)"
+    },
+    {
+      "name": "tile-sum-operator",
+      "statement": "For all x ∈ G \\ G', Σ_{p∈𝒫} T_p f(x) = Σ_{s=σ1(x)}^{σ2(x)} ∫ K_s(x,y) f(y) e(Ϙ(x)(y) - Ϙ(x)(x)) dμ(y).",
+      "closed_by": "used at line 1307 ('We now estimate with \\Cref{tile-sum-operator} and \\Cref{discrete-Carleson}') to rewrite the tile sum as the original operator; in Lean `tile_sum_operator hx` inside the simp_rw at FinitaryCarleson.lean L120"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A lemma or theorem stated as a named node of a dependency graph, with its statement and Lean name frozen before its proof and a single \\uses{} line declaring the upstream nodes it depends on; the proof then composes those nodes by citation rather than new construction.",
+    "use_when": "the result is a known combination of already-stated (or already-proved) nodes; the statement can be frozen, with its Lean name and \\leanok, before the proof; the dependencies can be listed up front (\\uses{}) so sufficiency is checkable against a fixed list; the proof may live elsewhere (a later section, or a separate Lean file) and only cite the nodes.",
+    "avoid_when": "the proof needs a new construction or a new lemma that must itself be stated and proved (that belongs as its own node in the graph); the statement may still change (then do not fix the Lean name yet); or the cited nodes' hypotheses do not line up into a single composition, in which case forcing them into a linear citation chain leaves gaps."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent node is stated with \\lean{finitary_carleson}\\leanok (line 447) and a \\uses{discrete-Carleson, grid-existence, tile-structure, tile-sum-operator} line (line 448) naming four upstream nodes, before its proof (lines 1303-1320).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/blueprint/src/chapter/main.tex#L444-L458 and #L1303-L1320"
+    },
+    {
+      "n": 2,
+      "claim": "The proof of the node (lines 1303-1320) closes the bound by citing \\Cref{tile-sum-operator} and \\Cref{discrete-Carleson} at line 1307 and ends 'This proves ... and thus completes the proof of Proposition finitary-Carleson', introducing no new node.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/blueprint/src/chapter/main.tex#L1303-L1320"
+    },
+    {
+      "n": 3,
+      "claim": "Each of the four labels in \\uses{} is defined at its own site in the same file with a \\label{} and a \\lean{} name: discrete-Carleson (L552-556), grid-existence (L1239-1243), tile-structure (L1252-1256), tile-sum-operator (L1266-1269), so the dependency cone is a set of named nodes rather than inline proof text.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/blueprint/src/chapter/main.tex#L552-L556, #L1239-L1243, #L1252-L1256, #L1266-L1269"
+    },
+    {
+      "n": 4,
+      "claim": "The node cites 4 upstream nodes (the comma-separated \\uses{} list on line 448), with a statement of 15 lines (444-458) and a proof of 18 lines (1303-1320).",
+      "evidence_kind": "measurement",
+      "evidence": "count of labels in the \\uses{} list at https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/blueprint/src/chapter/main.tex#L448; line ranges counted in the same file at the pinned commit"
+    },
+    {
+      "n": 5,
+      "claim": "The lemma linearized-truncation (lines 1179-1196) consumes finitary-Carleson via \\uses{finitary-Carleson} on line 1183 and applies it recursively in its proof (lines 1198-1222), so the node is a reusable dependency, not a one-off.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/blueprint/src/chapter/main.tex#L1179-L1222"
+    }
+  ],
+  "metrics": {
+    "upstream_nodes_cited": 4,
+    "parent_statement_lines": 15,
+    "proof_lines": 18,
+    "how_counted": "upstream nodes counted from the comma-separated \\uses{} list on line 448; statement = lines 444-458; proof = lines 1303-1320 of blueprint/src/chapter/main.tex at the pinned commit"
+  },
+  "consequences": "Freezing the statement first means the Lean name finitary_carleson must correspond to a provable Lean statement; if the statement later changes, the name and the \\lean{} marker change with it. The four children are discharged in a fixed order — grid-existence and tile-structure produce the grid and tile structures, discrete-Carleson consumes them to give the set G' and the dyadic bound, and tile-sum-operator rewrites the tile sum back to the original operator — so each citation's hypotheses are met only in that state; invoking one earlier leaves a gap. A citation whose hypotheses do not line up leaves a silent gap, because \\leanok is a claim the project's build verifies, not something the LaTeX text itself enforces. The proof is split across two places (the LaTeX proof and Carleson/FinitaryCarleson.lean), so the two must be kept in correspondence.",
+  "known_uses": [
+    "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/blueprint/src/chapter/main.tex#L1179-L1222"
+  ],
+  "related": [
+    "latex-blueprint-node-pfr-b4120b97"
+  ],
+  "rule": {
+    "f10_rule": 15,
+    "relation": "supports"
+  },
+  "content_key": "85d5b51ce3c740e3e1c1bd6dc2b09b4f4987dd132685584472171b87026130a2",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:28:49Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:29:26Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T12:36:29Z"
+}

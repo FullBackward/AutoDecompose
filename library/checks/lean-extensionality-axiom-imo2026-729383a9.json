@@ -1,0 +1,101 @@
+{
+  "entry": "lean-extensionality-axiom-imo2026-729383a9",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T11:56:50Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "No CI workflow present: list_files.py on axiom-imo2026 shows no .github/workflows and no *.yml; README documents lake build + verify.py (external Axle service), not a CI file",
+      "by": "verifier",
+      "at": "2026-11-12T11:57:46Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read copied file IMO2026/Q1/solution.lean lines 330-343: theorem Mval_move (330-331), have hset (332-337) via ext p / mem_primeFactors_iff_gExp / constructor / gExp_move, then unfold Mval; rw [hset]; apply Finset.prod_congr rfl; intro p hp; rw [gExp_move hpp h] (338-343) closes the parent",
+      "by": "verifier",
+      "at": "2026-11-12T11:57:48Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "grep -nE 'sorry|axiom|admit|Admitted' on copied solution.lean returned no match; fetched formalization.yaml (cache/axiom-imo2026/files/formalization.yaml) line 30 reads 'sorry_count: 0'",
+      "by": "verifier",
+      "at": "2026-11-12T11:57:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read copied file line 85: '/-- The key invariant: a single move preserves gExp p, for any prime p. -/' and lines 301-302: '/-- For a board with positive entries, the primes dividing the product are exactly the primes with a nonzero valuation gcd. -/'",
+      "by": "verifier",
+      "at": "2026-11-12T11:57:53Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read copied file: line 333 is 'ext p' (one line); lines 336-337 are the two rintro/exact directions (one line each); lines 338-343 (unfold Mval, rw [hset], apply Finset.prod_congr rfl, intro p hp, have hpp, rw [gExp_move hpp h]) are 6 lines",
+      "by": "verifier",
+      "at": "2026-11-12T11:57:54Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Read code/IMO2026/Q1/solution.lean in full. Parent Mval_move (L330-331) matches entry.json parent statement exactly. Child hset (L332) states B.prod.primeFactors = B'.prod.primeFactors, closed by ext p (333), rw [mem_primeFactors_iff_gExp hB, mem_primeFactors_iff_gExp hB'] (334), constructor (335), both directions by gExp_move hp h (336-337). Child Mval_termwise is the main goal after unfold Mval (338)+rw [hset] (339), giving the stated termwise product equality, closed by apply Finset.prod_congr rfl (340), intro p hp (341), recover hpp:p.Prime (342), rw [gExp_move hpp h] (343). Children and closing methods match the code exactly, and the proof closes (each direction rewrites by the correct orientation of gExp_move). No discrepancy found.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T11:59:03Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality: the move is stated in portable terms (equality of a product/sum whose index finset depends on the state, closed by (1) identifying the index sets via ext + a shared membership characterisation, then (2) termwise prod_congr), and the two preconditions are named (a shared iff the ext step reduces to, and pointwise invariance of the summed term). 'When not to use' is specific and honest: rw [hset] needs literal equality so a bijection or cardinality-preserving map is insufficient; the membership characterisation being the hard part; and a summed term depending on the index set beyond the index variable. Consequences are accurate against the copied code: ext p creates an iff obligation (lines 333-337, closed here by the same gExp_move but noting they may differ in general), the product step needs a plain equality for rw [hset] (line 339), and the named failure mode (prod_congr before the index sets are identified leaves a goal over two finsets) matches Lean semantics. No overreach found: the prose correctly scopes the valuable part as the two-stage reduction rather than extensionality itself.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T11:59:47Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:00:18Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit and licence all consistent. entry.json/README/SOURCE.md/source.json agree on commit c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2 and licence MIT; upstream-LICENSE is the MIT text. check_provenance passes (1 file byte-identical at pinned commit); local code/IMO2026/Q1/solution.lean sha256 d9d7519d... matches entry.json and is 23769 bytes. Permalink line ranges correct against copied file (Mval_move L329-343, hset L332-337, Mval_termwise L338-343; ext p at L333). Source note correctly states code copied verbatim under MIT. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:01:01Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    }
+  ]
+}

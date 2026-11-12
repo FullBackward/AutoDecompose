@@ -1,0 +1,174 @@
+{
+  "id": "lean-case-split-axiom-imo2026-1647cf44",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Three-way membership split proves a cut yields valid triangles (IMO 2026 Q4)",
+  "intent": "Prove that an admissible cut of a valid triangle yields two valid triangles by unfolding the positivity conjunct ∀ y ∈ {a, b, c}, 0 < y of IsTriangle into a three-way disjunction via mem_triple, then splitting each of the two resulting membership hypotheses with rcases hy with h | h | h so every branch closes from the cut's interval bounds.",
+  "move": "case-split",
+  "also_known_as": [
+    "exhaustive membership split",
+    "cases on a finite disjunction"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "axiom-imo2026",
+    "url": "https://github.com/AxiomMath/IMO2026",
+    "commit": "c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "IMO2026/Q4/solution.lean",
+      "bytes": 23893,
+      "sha256": "22410574eb5b2748725b5ec4b5875a26846106f28b57ddca3640e1e6128c7896",
+      "permalink": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q4/solution.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "IMO2026/Q4/solution.lean",
+      "lines": [
+        61,
+        90
+      ],
+      "role": "parent",
+      "name": "cut_preserves",
+      "excerpt_sha256": "5ebe5f704e6913a210e79a547de0bdd799b6f60100f7813ee681546893504aa3",
+      "permalink": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q4/solution.lean#L61-L90"
+    },
+    {
+      "path": "IMO2026/Q4/solution.lean",
+      "lines": [
+        5,
+        8
+      ],
+      "role": "context",
+      "name": "IsTriangle",
+      "excerpt_sha256": "858ebddbe652a740d066ac92db66f4eb31e4ac893af37019380f9895b1ebe1a5",
+      "permalink": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q4/solution.lean#L5-L8"
+    },
+    {
+      "path": "IMO2026/Q4/solution.lean",
+      "lines": [
+        13,
+        23
+      ],
+      "role": "context",
+      "name": "IsCut",
+      "excerpt_sha256": "f114a53ed1d89a54efbc38f20b9521d969c7e72330879c61d98ce5700c50e4b9",
+      "permalink": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q4/solution.lean#L13-L23"
+    },
+    {
+      "path": "IMO2026/Q4/solution.lean",
+      "lines": [
+        47,
+        50
+      ],
+      "role": "context",
+      "name": "mem_triple",
+      "excerpt_sha256": "e1a7d49edc06cce0e0fe418f1f61c9e0a5b0af44e0ca314c2fc9e23052bf308a",
+      "permalink": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q4/solution.lean#L47-L50"
+    }
+  ],
+  "parent": {
+    "name": "cut_preserves",
+    "statement": "theorem cut_preserves {s L R : Multiset ℝ} (hs : IsTriangle s) (hcut : IsCut s L R) : IsTriangle L ∧ IsTriangle R"
+  },
+  "children": [
+    {
+      "name": "L: y = β",
+      "statement": "0 < y under h : y = β (first branch of rcases on y ∈ {β, x, 180 - β - x})",
+      "closed_by": "rw [h]; exact hβ"
+    },
+    {
+      "name": "L: y = x",
+      "statement": "0 < y under h : y = x (second branch; linarith from γ < x and 0 < γ)",
+      "closed_by": "rw [h]; linarith"
+    },
+    {
+      "name": "L: y = 180 - β - x",
+      "statement": "0 < y under h : y = 180 - β - x (third branch; linarith from x < 180 - β)",
+      "closed_by": "rw [h]; linarith"
+    },
+    {
+      "name": "R: y = γ",
+      "statement": "0 < y under h : y = γ (first branch of rcases on y ∈ {γ, 180 - x, x - γ})",
+      "closed_by": "rw [h]; exact hγ"
+    },
+    {
+      "name": "R: y = 180 - x",
+      "statement": "0 < y under h : y = 180 - x (second branch; linarith from x < 180 - β and 0 < β)",
+      "closed_by": "rw [h]; linarith"
+    },
+    {
+      "name": "R: y = x - γ",
+      "statement": "0 < y under h : y = x - γ (third branch; linarith from γ < x)",
+      "closed_by": "rw [h]; linarith"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A conjunct of the form ∀ y ∈ {a, b, c}, P y over a small fixed multiset, where membership is rewritten by an iff-lemma to y = a ∨ y = b ∨ y = c and split with rcases h with h | h | h. Here IsTriangle is s.card = 3 ∧ (∀ x ∈ s, 0 < x) ∧ s.sum = 180, and the split is applied to the positivity conjunct of IsTriangle L and IsTriangle R after unfolding L = {β, x, 180 - β - x} and R = {γ, 180 - x, x - γ}.",
+    "use_when": "the multiset is small and fixed (three elements), membership unfolds to a finite disjunction via an iff-lemma, and each element's property is already available as a hypothesis or follows by linarith from interval hypotheses in scope (here γ < x and x < 180 - β from IsCut).",
+    "avoid_when": "the multiset is large, unbounded, or described only by a general predicate (the split becomes huge or impossible); the disjunction y = a ∨ ... ∨ y = c needs its own proof (state that as a separate child); or the branches need different, non-computational arguments so a uniform rcases does not close them."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent cut_preserves closes from its children: constructor yields IsTriangle L and IsTriangle R; each refine ⟨?_, ?_, ?_⟩ yields the card, positivity and sum conjuncts, closed by card_triple, sum_triple + ring, and rcases hy with h | h | h (three branches, two by linarith and one by exact hβ/exact hγ) respectively.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q4/solution.lean#L63-L90"
+    },
+    {
+      "n": 2,
+      "claim": "The file containing cut_preserves is verified: formalization.yaml records TriangleGame.main_theorem as proved with sorry_count 0, and README.md documents verify.py (Axle verify_proof) returning Q4: okay=True (passed).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/formalization.yaml#L73-L77 and #L301-L304; https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/README.md#L40-L51"
+    },
+    {
+      "n": 3,
+      "claim": "The authors state the lemma's intent in its doc comment: 'Lemma 2 (cut preserves validity). An admissible cut of a valid triangle yields two valid triangles.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q4/solution.lean#L61-L62"
+    },
+    {
+      "n": 4,
+      "claim": "The same mem_triple-then-rcases ... with h | h | h membership split is reused in the same file: safe_child (lines 394-398) and equilateral_counterexample (lines 452 and 456-457).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q4/solution.lean#L394-L398 and #L452 and #L456-L457"
+    }
+  ],
+  "metrics": {
+    "parent_proof_lines": 28,
+    "case_split_branches": 6,
+    "branches_closed_by_linarith": 4,
+    "branches_closed_by_hypothesis": 2,
+    "auxiliary_lemmas_stated": 0,
+    "how_counted": "lines 63-90 of IMO2026/Q4/solution.lean; the six branches are the goals created by the two rcases hy with h | h | h at lines 77 and 86."
+  },
+  "consequences": "Creates one goal per element of the multiset (six in total: three for L, three for R). Exhaustiveness is free only because mem_triple is an iff that already unfolds membership to the full three-way disjunction; without such a lemma the writer must first prove y = a ∨ y = b ∨ y = c. Each branch must substitute the element it landed on (rw [h]) before the known bounds apply. The linarith branches rely on the cut's interval hypotheses γ < x and x < 180 - β (destructured from IsCut at line 65) together with the positivity hβ/hγ; if any of these is not in scope the branch will not close.",
+  "known_uses": [
+    "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q4/solution.lean#L394-L398",
+    "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q4/solution.lean#L452-L457"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 5,
+    "relation": "supports"
+  },
+  "content_key": "1647cf44de0f077a9a46028f0046b78cc1a716c922e431e8628091941cb9d5c4",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:25:32Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12"
+    }
+  ]
+}

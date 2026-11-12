@@ -1,0 +1,115 @@
+{
+  "id": "markdown-sorrify-at-failure-lean4-skills-430f389e",
+  "kind": "skill",
+  "status": "draft",
+  "title": "Sorrify-at-failure: five common sorry types and their responses",
+  "intent": "Classify why a sorry resists filling into five ordered types so the filler picks the right response: search/tactic/have for the cheap cases, and for the structural case (Type 4) replace the too-large goal with sub-sorries and work them one at a time, escalating to a separate helper lemma (Type 5) when the hole is a missing statement.",
+  "move": "sorrify-at-failure",
+  "also_known_as": [
+    "sorrify",
+    "sorry-filling",
+    "sub-sorry split"
+  ],
+  "language": "markdown",
+  "source": {
+    "source_id": "lean4-skills",
+    "url": "https://github.com/cameronfreer/lean4-skills",
+    "commit": "3f913c66251b8712bb58e6ce83a453fa96e3f94f",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "plugins/lean4/skills/lean4/references/sorry-filling.md",
+      "bytes": 11663,
+      "sha256": "a10b3248cbcf90ba4d33e2c5bae99f1e18273824a55adb40da3ad17ce191c4ba",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/sorry-filling.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": "plugins/lean4/skills/lean4/references/sorry-filling.md",
+      "lines": [
+        88,
+        103
+      ],
+      "role": "skill-text",
+      "name": "sorry-filling-common-sorry-types",
+      "excerpt_sha256": "a280ac733f12f5aaabfc7c8f4c888c871a9f4a1d4f4c9bc3959c8c8de0d442de",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/sorry-filling.md#L88-L103"
+    },
+    {
+      "path": "plugins/lean4/skills/lean4/references/sorry-filling.md",
+      "lines": [
+        242,
+        253
+      ],
+      "role": "context",
+      "name": "when-to-escalate",
+      "excerpt_sha256": "29fc16f5076b1fe2016c83ca45e0e669ca3ffd995a3d263f584e88f2a45bf955",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/sorry-filling.md#L242-L253"
+    }
+  ],
+  "parent": null,
+  "children": [],
+  "applicability": {
+    "goal_shape": "A Lean goal sitting under a `sorry` (or hole) that resists direct filling: it is a missed library search (Type 1), needs the right tactic (Type 2), misses a connecting `have` fact (Type 3), is structurally too large (Type 4), or is in fact a missing lemma (Type 5).",
+    "use_when": "a hole has resisted 2-3 direct candidates and you must choose between searching, a tactic, a `have`, a sub-sorry split, or a helper lemma; use the sub-sorry split (Type 4) only when the proof is structurally complex but does not need a new fact.",
+    "avoid_when": "the hole is only a missed search (search first), a routine goal (try the tactic), or a missing statement (extract a lemma, do not sorrify); the section orders these so the structural split is last-resort and itself marked 'rare'."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The section 'Common Sorry Types' (lines 88-103) classifies why a sorry resists filling into exactly five types, each heading stating a frequency in order: 'most common' (Type 1), 'common' (Type 2), 'less common' (Type 3), 'rare' (Type 4), 'very rare' (Type 5).",
+      "evidence_kind": "check",
+      "evidence": "read of the copied file, https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/sorry-filling.md#L88-L103"
+    },
+    {
+      "n": 2,
+      "claim": "Type 4's prescribed response is the sorrify-at-failure move verbatim: 'Break into sub-sorries with clear strategy' (lines 99-100), i.e. replace the too-large goal with several holes and work them one at a time.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/sorry-filling.md#L99-L100"
+    },
+    {
+      "n": 3,
+      "claim": "For the very rare case the authors name a missing statement and prescribe extracting it to a separate lemma: 'Actually needs new lemma (very rare)' with 'Extract as helper lemma, prove separately' (lines 102-103).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/sorry-filling.md#L102-L103"
+    },
+    {
+      "n": 4,
+      "claim": "The same two structural responses recur as the first two escalation options in 'When to Escalate': 'Break into smaller sub-sorries' and 'Extract as helper lemma' (lines 251-253).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/sorry-filling.md#L251-L253"
+    }
+  ],
+  "metrics": {
+    "types_enumerated": 5,
+    "structural_responses": 2,
+    "how_counted": "counted the five `### Type N` headings in lines 88-103 of the copied file; Types 4 and 5 are the two structural responses (sub-sorries, helper lemma)"
+  },
+  "consequences": "Sorrifying a structural goal (Type 4) creates several smaller holes, each still needing a filler and its own verification gate (`lake env lean`); it shrinks each obligation but not the total. Extracting a helper lemma (Type 5) introduces a new top-level statement that must be stated faithfully (its hypotheses and universals) and proved, with the original hole becoming an application of it. Both are marked 'rare'/'very rare', so over-applying them where a search or a tactic would close the goal is the failure mode.",
+  "known_uses": [
+    "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/sorry-filling.md#L251-L253"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 2,
+    "relation": "supports"
+  },
+  "content_key": "0d357d5803da375cf05c9ea4797c1808290288de6643f51169dcb803bcd8b39b",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:07:05Z"
+    },
+    {
+      "field": "intent,also_known_as,applicability,claims,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:10:00Z"
+    }
+  ]
+}

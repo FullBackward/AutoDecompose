@@ -1,0 +1,113 @@
+{
+  "id": "markdown-other-leanprover-skills-68f66bfd",
+  "kind": "skill",
+  "status": "draft",
+  "title": "Lemma-splitting: one hard equality into two helper lemmas joined by rw",
+  "intent": "Reduce one hard equality A = C to two simpler equalities A = B and B = C by introducing an intermediate term B, then close the parent with the single rewrite chain `rw [lemma1, lemma2]`, so the parent is fully proved and only two smaller, independent holes remain.",
+  "move": "other",
+  "also_known_as": [
+    "lemma splitting",
+    "transitivity decomposition",
+    "split on an intermediate",
+    "move sorries earlier in the file"
+  ],
+  "language": "markdown",
+  "source": {
+    "source_id": "leanprover-skills",
+    "url": "https://github.com/leanprover/skills",
+    "commit": "7d3da0282e7b724b07620e45cf212f2e05e19334",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "skills/lean-proof/SKILL.md",
+      "bytes": 3053,
+      "sha256": "362c42ddae83b8d52ceaadd6efa32f707a15ebe83e25038fc08d75a329d60a41",
+      "permalink": "https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": "skills/lean-proof/SKILL.md",
+      "lines": [
+        29,
+        44
+      ],
+      "role": "skill-text",
+      "name": "across-theorems-lemma-splitting",
+      "excerpt_sha256": "3a698f9a20699fbdf07b5ce78eaf281cba15933bb189af07e41589af47cf2492",
+      "permalink": "https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md#L29-L44"
+    }
+  ],
+  "parent": null,
+  "children": [
+    {
+      "name": "lemma1",
+      "statement": "theorem lemma1 : A = B := by sorry",
+      "closed_by": "sorry (left as a placeholder; the move deliberately defers this hole)"
+    },
+    {
+      "name": "lemma2",
+      "statement": "theorem lemma2 : B = C := by sorry",
+      "closed_by": "sorry (left as a placeholder; the move deliberately defers this hole)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal that is an equality A = C (or another relation that `rw` composes) where a natural intermediate term B makes A = B and B = C each easier than A = C; the parent is then closed by a rewrite chain `rw [lemma1, lemma2]`.",
+    "use_when": "there is a natural intermediate B (a definitional unfolding, a canonical or normal form, the midpoint of a calculation) that splits the goal into two lemmas each simpler than the whole; or when you want to work top-down and prove the target theorem first, leaving the helpers as `sorry`.",
+    "avoid_when": "no such B exists (the two halves would be as hard as the whole); the two helper lemmas are not independent (one needs the other, so the chain gives no real split); or the goal is not an equality/transitive relation that `rw` composes."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "In the After block the parent `main_theorem : A = C` is closed by the single tactic `rw [lemma1, lemma2]` (line 43), and the parent's two lines (42-43) contain no `sorry`; the only two `sorry`s in the After block are the helper lemmas `lemma1 : A = B` (line 40) and `lemma2 : B = C` (line 41).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md#L36-L44 (read of the copied file)"
+    },
+    {
+      "n": 2,
+      "claim": "The skill states the move and its reason in its own words: \"Move sorries earlier in the file by replacing a `sorry` proof with references to simpler lemmas:\" (line 33), motivated by \"Go directly to the target theorem. Don't fill in `sorry`s in helper lemmas first — Lean treats `sorry` as an axiom, so dependent theorems still work.\" (line 31).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md#L29-L33"
+    },
+    {
+      "n": 3,
+      "claim": "Counting `sorry` in the example: the Before state has one `sorry` on the whole goal (line 37); the After state has two (lines 40-41), each on an equality between adjacent terms, and the parent (lines 42-43) has none.",
+      "evidence_kind": "measurement",
+      "evidence": "count of `sorry` tokens by reading the copied file, lines 36-44, https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md#L36-L44"
+    }
+  ],
+  "metrics": {
+    "sorries_before": 1,
+    "sorries_after": 2,
+    "helper_lemmas": 2,
+    "parent_tactic_lines": 1,
+    "how_counted": "counted from the Before/After example in the copied file, lines 36-44: the Before parent (line 37) has one sorry; the After block adds two helper lemmas (lines 40-41) each with one sorry; the After parent (lines 42-43) is one tactic with no sorry."
+  },
+  "consequences": "Creates two new top-level lemmas (`lemma1`, `lemma2`) that must eventually be proved or left as `sorry`. The parent's proof now depends on the intermediate `B` and on the rewrite chain composing (transitivity): `rw [lemma1]` rewrites A to B, then `rw [lemma2]` rewrites B to C. The move closes nothing by itself — it relocates one hole into two, and is only a win if each new hole is genuinely simpler. Failure mode: if `B` is not equal to `A` and `C` via the stated lemmas, `rw [lemma1, lemma2]` fails at the first link that does not apply.",
+  "known_uses": [],
+  "related": [
+    "lean-calc-chain-compfiles-5cbadaea",
+    "markdown-extract-have-lean4-skills-b59b032f"
+  ],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "68f66bfde446d5a359c5465695f9172cc9503e5f2f755f98119e83be7b1f0408",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:10:24Z"
+    },
+    {
+      "field": "intent,also_known_as,children,applicability,claims,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12"
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "entry": "lean-suffices-or-strengthen-pfr-744a22ce",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:32:44Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push.yml at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a: 'Build project' job runs leanprover/lean-action@f807b338d95de7813c5c50d018f1c23c9b93b4ec (v1.2.0), i.e. lake build of the whole project incl. PFR/Fibring.lean, on push to master and pull_request; pinned commit is the default-branch (master) tip (source registered with ref HEAD)",
+      "by": "verifier",
+      "at": "2026-11-12T12:34:17Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Checked local copy code/PFR/Fibring.lean (provenance-pass, byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a): L126 symm; L136-139 rw [<-condMutualInfo_of_inj_map ..., condMutualInfo_comm hmf hmij, <-condMutualInfo_of_inj_map ..., condMutualInfo_comm hmg hmf] (4 lemmas); L140-143 congr! 3 with omega, subgoals simp and rw [sub_sub, add_sub_left_comm, <-sub_sub]; simp; L144-145 exact fun _ _ _ h => (Prod.ext_iff.1 h).2 / .1. CI evidence: .github/workflows/push.yml build job runs leanprover/lean-action@v1.2.0 (lake build) on push to master + pull_request",
+      "by": "verifier",
+      "at": "2026-11-12T12:34:21Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Checked local copy code/PFR/Fibring.lean L124-125: L125 is 'I[Y 0 - Y 1 : Y 1 - Y 3|Y 0 - Y 1 - (Y 2 - Y 3) ; mu] by convert this using 2; abel'; the suffices (L124-125) restates the goal with conditioning 'Y 0 - Y 1 - (Y 2 - Y 3)' vs parent L123 'Y 0 - Y 1 - Y 2 + Y 3', residual closed by convert this using 2; abel",
+      "by": "verifier",
+      "at": "2026-11-12T12:34:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Counted line spans in local copy code/PFR/Fibring.lean: discharge tactic on L125 (1 line, 'by convert this using 2; abel'); restated-goal proof spans L126 (symm) through L145 (last exact ... .1) = 20 lines (145-126+1). Matches metrics.discharge_lines=1, suffices_proof_lines=20",
+      "by": "verifier",
+      "at": "2026-11-12T12:34:28Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Fetched PFR/Endgame.lean at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a (raw view): L389 is 'suffices sum4 = sum1 + p.eta * (sum2 + sum3) by linarith' inside 'have h4 : sum4 <= ...' (L388), discharging the residual with linarith after restating into the equivalent arithmetic form",
+      "by": "verifier",
+      "at": "2026-11-12T12:34:31Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:37:13Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Correctness verified against the copied code (PFR/Fibring.lean, provenance pass: 2 files byte-identical at 1ef23c3c5a83). Parent statement (L120-123), skeleton suffices (L124-125), and child close_suffices (L126-145) are transcribed exactly. The two children match: child 1 (suffices goal, bracketed conditioning) closes by symm (L126), the four-lemma rw chain of condMutualInfo_of_inj_map/condMutualInfo_comm (L136-139), congr! 3 with omega (L140-143), and the two injectivity side goals (L144-145); child 2 (residual original goal) closes by 'convert this using 2; abel' (L125). The maps are described correctly: Y0-Y1 -> <Y0-Y1,Y2-Y3> via (x,x-z) and Y1-Y3 -> <Y0-Y2,Y1-Y3> via (x+z,x) with z = Y0-Y1-(Y2-Y3), matching hmf/hmg (L129-132). The suffices restates only the right-hand conditioning from Y0-Y1-Y2+Y3 to Y0-Y1-(Y2-Y3), exactly as the intent states. Real compiling PFR code, so the proof closes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:37:31Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated at the tactic level ('suffices to a syntactic-match form, discharge the residual with convert/abel'), so it generalizes past this example: goal_shape names the general shape (syntactic injective-map rewrite only matching a single difference/sum), and claim 4's known-use (PFR/Endgame.lean L389 'suffices sum4 = sum1 + p.eta*(sum2+sum3) by linarith', confirmed in cache) shows the same move with linarith not abel. 'When not to use' is honest and specific: three concrete failure conditions, including the redundant-suffices case contrasted with sibling sum_of_rdist_eq_step_condRuzsaDist (lines 113-115) which uses a plain have/rw. Consequences name the two obligations and two concrete failure modes (restated goal unreachable; residual silently becoming a stuck ring goal), plus the injectivity side goals. No overclaim: the why-it's-needed insight is labelled opinion.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:38:20Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:38:41Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes (2 files byte-identical at pinned commit 1ef23c3c5a83); commit 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a consistent across entry.json, source.json, SOURCE.md and every permalink; licence Apache-2.0 consistent across entry.json, README, source.json, SOURCE.md and the copied upstream-LICENSE (Apache 2.0 text); file/line permalinks match the copied Fibring.lean (parent L120-123, skeleton L124-125, child L126-145 verified line-for-line); source note present and correct.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:39:05Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    }
+  ]
+}

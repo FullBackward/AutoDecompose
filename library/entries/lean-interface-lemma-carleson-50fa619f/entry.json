@@ -1,0 +1,199 @@
+{
+  "id": "lean-interface-lemma-carleson-50fa619f",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Forest structure API lemmas: simp membership and field forwarders",
+  "intent": "Wrap the Forest n structure's raw projections and predicate fields in a block of @[simp] membership lemmas and one-line forwarding lemmas, so that every later client reads and reasons about a forest through the coercions u ∈ t and t u without unfolding Forest.mk or the projections 𝔘 / 𝔗.",
+  "move": "interface-lemma",
+  "also_known_as": [
+    "API lemma",
+    "forwarding wrapper",
+    "structure interface",
+    "simp normalisation lemma"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "carleson",
+    "url": "https://github.com/fpvandoorn/carleson",
+    "commit": "d75f54374f7f930e70a86b443f20d0e0935c275e",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Carleson/Forest.lean",
+      "bytes": 4670,
+      "sha256": "f5539c8eb46a60cf57a5dcddd8fefd15cf2c1f70a03a4e10da9b9820f895e705",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Forest.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Carleson/Forest.lean",
+      "lines": [
+        43,
+        58
+      ],
+      "role": "parent",
+      "name": "Forest-API-lemmas",
+      "excerpt_sha256": "c9b30158ad0ba102a3eb68099f91c94661cc2f28a957f182e5705de306cac49c",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Forest.lean#L43-L58"
+    },
+    {
+      "path": "Carleson/Forest.lean",
+      "lines": [
+        19,
+        33
+      ],
+      "role": "context",
+      "name": "Forest",
+      "excerpt_sha256": "0a4a071a948589f965b653af14fc7370a1c77964baccce46e6c9db18d76da8b8",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Forest.lean#L19-L33"
+    },
+    {
+      "path": "Carleson/Forest.lean",
+      "lines": [
+        37,
+        41
+      ],
+      "role": "context",
+      "name": "Forest-coercions",
+      "excerpt_sha256": "e637b7fa9a9258b8960f4fdb517bef49e1f8a3614ed0eae9f911b7e421c94eb4",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Forest.lean#L37-L41"
+    }
+  ],
+  "parent": {
+    "name": "Forest-API-lemmas",
+    "statement": "@[simp] lemma mem_mk (n 𝔘 𝔗 a b c d e f g h) (p : 𝔓 X) :\n    p ∈ Forest.mk (n := n) 𝔘 𝔗 a b c d e f g h ↔ p ∈ 𝔘 := Iff.rfl\n\n@[simp] lemma mem_𝔘 : u ∈ t.𝔘 ↔ u ∈ t := .rfl\n@[simp] lemma mem_𝔗 : p ∈ t.𝔗 u ↔ p ∈ t u := .rfl\n\nlemma nonempty (hu : u ∈ t) : (t u).Nonempty := t.nonempty' hu\nlemma ordConnected (hu : u ∈ t) : OrdConnected (t u) := t.ordConnected' hu\nlemma 𝓘_ne_𝓘 (hu : u ∈ t) (hp : p ∈ t u) : 𝓘 p ≠ 𝓘 u := t.𝓘_ne_𝓘' hu hp\nlemma smul_four_le (hu : u ∈ t) (hp : p ∈ t u) : smul 4 p ≤ smul 1 u := t.smul_four_le' hu hp\nlemma stackSize_le : stackSize t x ≤ 2 ^ n := t.stackSize_le'\nlemma dens₁_𝔗_le (hu : u ∈ t) : dens₁ (t u) ≤ 2 ^ (4 * (a : ℝ) - n + 1) := t.dens₁_𝔗_le' hu\nlemma lt_dist (hu : u ∈ t) (hu' : u' ∈ t) (huu' : u ≠ u') {p} (hp : p ∈ t u') (h : 𝓘 p ≤ 𝓘 u) :\n    2 ^ (Z * (n + 1)) < dist_(p) (𝒬 p) (𝒬 u) := t.lt_dist' hu hu' huu' hp h\nlemma ball_subset (hu : u ∈ t) (hp : p ∈ t u) : ball (𝔠 p) (8 * D ^ 𝔰 p) ⊆ 𝓘 u :=\n  t.ball_subset' hu hp"
+  },
+  "children": [
+    {
+      "name": "mem_mk",
+      "statement": "@[simp] lemma mem_mk (n 𝔘 𝔗 a b c d e f g h) (p : 𝔓 X) : p ∈ Forest.mk (n := n) 𝔘 𝔗 a b c d e f g h ↔ p ∈ 𝔘",
+      "closed_by": "Iff.rfl"
+    },
+    {
+      "name": "mem_𝔘",
+      "statement": "@[simp] lemma mem_𝔘 : u ∈ t.𝔘 ↔ u ∈ t",
+      "closed_by": ".rfl"
+    },
+    {
+      "name": "mem_𝔗",
+      "statement": "@[simp] lemma mem_𝔗 : p ∈ t.𝔗 u ↔ p ∈ t u",
+      "closed_by": ".rfl"
+    },
+    {
+      "name": "nonempty",
+      "statement": "lemma nonempty (hu : u ∈ t) : (t u).Nonempty",
+      "closed_by": "t.nonempty' hu"
+    },
+    {
+      "name": "ordConnected",
+      "statement": "lemma ordConnected (hu : u ∈ t) : OrdConnected (t u)",
+      "closed_by": "t.ordConnected' hu"
+    },
+    {
+      "name": "𝓘_ne_𝓘",
+      "statement": "lemma 𝓘_ne_𝓘 (hu : u ∈ t) (hp : p ∈ t u) : 𝓘 p ≠ 𝓘 u",
+      "closed_by": "t.𝓘_ne_𝓘' hu hp"
+    },
+    {
+      "name": "smul_four_le",
+      "statement": "lemma smul_four_le (hu : u ∈ t) (hp : p ∈ t u) : smul 4 p ≤ smul 1 u",
+      "closed_by": "t.smul_four_le' hu hp"
+    },
+    {
+      "name": "stackSize_le",
+      "statement": "lemma stackSize_le : stackSize t x ≤ 2 ^ n",
+      "closed_by": "t.stackSize_le'"
+    },
+    {
+      "name": "dens₁_𝔗_le",
+      "statement": "lemma dens₁_𝔗_le (hu : u ∈ t) : dens₁ (t u) ≤ 2 ^ (4 * (a : ℝ) - n + 1)",
+      "closed_by": "t.dens₁_𝔗_le' hu"
+    },
+    {
+      "name": "lt_dist",
+      "statement": "lemma lt_dist (hu : u ∈ t) (hu' : u' ∈ t) (huu' : u ≠ u') {p} (hp : p ∈ t u') (h : 𝓘 p ≤ 𝓘 u) : 2 ^ (Z * (n + 1)) < dist_(p) (𝒬 p) (𝒬 u)",
+      "closed_by": "t.lt_dist' hu hu' huu' hp h"
+    },
+    {
+      "name": "ball_subset",
+      "statement": "lemma ball_subset (hu : u ∈ t) (hp : p ∈ t u) : ball (𝔠 p) (8 * D ^ 𝔰 p) ⊆ 𝓘 u",
+      "closed_by": "t.ball_subset' hu hp"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A structure Forest n bundling a set 𝔘, a map 𝔗 and eight predicate fields, each field stated over the raw projections with hypotheses hu : u ∈ 𝔘 / hp : p ∈ 𝔗 u; the interface lemmas restate membership and each field over the coercions u ∈ t / t u that CoeHead / Membership / CoeFun declare.",
+    "use_when": "many client lemmas access the structure's fields or membership and would otherwise each unfold Forest.mk or the projections; the structure carries (or you add) coercions so that u ∈ t and t u are the natural spellings.",
+    "avoid_when": "the structure is used in only one place; clients genuinely need the projection form (e.g. to reason about 𝔘 as a set independent of the forest); or the coercion instances are not in scope, in which case the @[simp] lemmas do not fire."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "Each of the eight forwarding lemmas (lines 49-58) is closed by a single application of the corresponding Forest field (nonempty by t.nonempty' hu, … ball_subset by t.ball_subset' hu hp), and the three @[simp] lemmas (lines 43-47) close by Iff.rfl / .rfl; the file is built by the project's CI.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Forest.lean#L43-L58; .github/workflows/push.yml runs lean-action with build: true and build-args 'Carleson Challenge Solution' on push to master, which builds Carleson/Forest.lean"
+    },
+    {
+      "n": 2,
+      "claim": "The eight forwarding lemmas (lines 49-58) correspond one-to-one to the eight predicate fields of Forest (lines 25-33), each restating one field with hu : u ∈ t / hp : p ∈ t u in place of hu : u ∈ 𝔘 / hp : p ∈ 𝔗 u.",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Forest.lean#L25-L33 and #L49-L58"
+    },
+    {
+      "n": 3,
+      "claim": "The same interface pattern recurs for the Row structure in the same file (lines 86-101): Row extends Forest, re-declares @[simp] mem_𝔘 / mem_𝔗, and forwards pairwiseDisjoint' to pairwiseDisjoint.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Forest.lean#L86-L101"
+    },
+    {
+      "n": 4,
+      "claim": "The authors annotate the 𝔗 field with the doc comment \"The value of `𝔗 u` only matters when `u ∈ 𝔘`.\" (line 23), which is exactly the hypothesis the forwarding lemmas lift to the coercion form u ∈ t.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Forest.lean#L23"
+    },
+    {
+      "n": 5,
+      "claim": "A client in the same file consumes the interface: ball_subset_of_mem_𝓘 (lines 62-65) applies t.ball_subset hu hp (line 64) rather than unfolding the ball_subset' field.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Forest.lean#L62-L65"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 16,
+    "children": 11,
+    "fields_forwarded": 8,
+    "simp_lemmas": 3,
+    "how_counted": "parent_lines = lines 43-58 of the copied file; children = the 11 lemmas in that block (3 @[simp] membership lemmas + 8 field forwarders); fields_forwarded = the 8 predicate fields of Forest at lines 25-33"
+  },
+  "consequences": "The interface adds 11 lemmas at near-zero proof cost (each a one-line forward), but they must stay in sync if a field's statement changes. It re-binds the hypotheses from the projection form (u ∈ 𝔘, p ∈ 𝔗 u) to the coercion form (u ∈ t, p ∈ t u), so a client that still holds u ∈ 𝔘 must first rewrite via mem_𝔘 before applying a forwarder. The @[simp] lemmas make the projection/coercion translation automatic, but they only fire once the CoeHead / Membership / CoeFun instances are in scope; outside that scope the forwarders still work but the spelling does not normalise.",
+  "known_uses": [
+    "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Forest.lean#L62-L65",
+    "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Forest.lean#L86-L101"
+  ],
+  "related": [
+    "lean-interface-lemma-harmonic-imo2025-8920cc7b"
+  ],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "50fa619f2980624af282d9c0b69a1935894a0a7c4b6cca9ffc67a8b9c0796b31",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:30:20Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,known_uses,related,also_known_as,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:45:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T12:37:46Z"
+}

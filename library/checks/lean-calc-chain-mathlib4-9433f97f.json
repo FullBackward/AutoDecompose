@@ -1,0 +1,101 @@
+{
+  "entry": "lean-calc-chain-mathlib4-9433f97f",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:18:46Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml (push to master/default branch) uses build_template.yml, which builds Archive via 'lake build --no-build --wfail Archive' (build_template.yml:297); Archive.lean:20 'public import Archive.Imo.Imo1964Q1' pulls in the entry's file; commit e1545ebed97594477bbd88b2fe948ffce56e5af2 is on master (GitHub compare API: behind master by 1, merge base = the commit)",
+      "by": "verifier",
+      "at": "2026-11-12T12:20:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read local copy code/Archive/Imo/Imo1964Q1.lean lines 28-33 (byte-identical to upstream at e1545ebed per provenance). two_pow_mod_seven is exactly a let t := n%3 followed by a four-link calc: rw [Nat.div_add_mod], rw [pow_add, pow_mul], gcongr; decide, ring; no have or auxiliary lemma intervenes.",
+      "by": "verifier",
+      "at": "2026-11-12T12:20:48Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read local copy: line 45 in imo1964_q1a uses (two_pow_mod_seven n).symm.trans and .trans; line 54 in imo1964_q1b uses (two_pow_mod_seven n).symm. Two reference sites as claimed.",
+      "by": "verifier",
+      "at": "2026-11-12T12:20:50Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Read local copy lines 18-19: docstring states \"the order of 2 mod 7 is 3. Therefore for (b), it suffices to check n = 0, 1, 2.\" Matches the claim; only the LaTeX math delimiters are stripped.",
+      "by": "verifier",
+      "at": "2026-11-12T12:21:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read local copy: imo1964_q1a (lines 42-47) is a calc chain over iff; imo1964_q1b (lines 53-55) is a calc chain over Nat.ModEq congruence. Two further calc-chain uses over different relations, as claimed.",
+      "by": "verifier",
+      "at": "2026-11-12T12:21:05Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent two_pow_mod_seven (lines 28-33) is exactly a let t := n%3 followed by a four-link calc; the four children in entry.json match the copied code verbatim: link1 2^n = 2^(3*(n/3)+t) by rw [Nat.div_add_mod] (L30), link2 = (2^3)^(n/3)*2^t by rw [pow_add, pow_mul] (L31), link3 ≡ 1^(n/3)*2^t [MOD 7] by gcongr; decide (L32), link4 = 2^t by ring (L33). Closing methods match the code exactly, no auxiliary lemma/have intervenes, and the chain ends at 2^(n%3) so it closes: build is ci-record (mathlib CI builds Archive, Archive.lean imports Archive.Imo.Imo1964Q1, commit on master).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:22:40Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality lens: the move is stated beyond the 2^n mod 7 example. applicability.goal_shape abstracts to 'a congruence a ≡ b [MOD m] (or equality) where a can be rewritten so that a periodic subterm appears, collapsing to a residue depending on n only through n % k'; use_when/avoid_when are general, not number-theory-specific. Known-use claim 4 (verified) shows the calc-chain works over two further relation kinds (↔ in q1a L42-47, ≡ in q1b L53-55). When-not-to-use lists three specific, honest conditions (non-rewrite link that won't sit on one calc line; period not decide-closable i.e. symbolic base/modulus; congruence not respecting the operation used). Consequences are honest and specific: four link sub-goals, no named lemma, calc elaborator supplies transitivity, the one substantive obligation is the decide-discharged period, and the =/≡ mix typechecks only via reflexive implication so reordering breaks. No grounds to object under this lens.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:23:48Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:24:15Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit e1545ebed97594477bbd88b2fe948ffce56e5af2 is recorded identically in entry.json source.commit, sources/mathlib4/source.json and SOURCE.md; all permalinks point to that commit at Archive/Imo/Imo1964Q1.lean with line numbers matching the local copy (L28-33 parent, L30-33 children, L18-19 and L42-47/L53-55 for claims). Licence is consistent across entry source.licence=Apache-2.0, source.json licence, SOURCE.md, the file header 'Released under Apache 2.0 license' and upstream-LICENSE (Apache License 2.0). files.bytes=1755 and sha256 aee9931a... match the local copy; check_provenance reports 1 file byte-identical at the pinned commit. Everything is traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:24:43Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    }
+  ]
+}

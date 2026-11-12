@@ -1,0 +1,109 @@
+{
+  "entry": "markdown-workflow-lean4-skills-84730478",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 3f913c66251b8712bb58e6ce83a453fa96e3f94f",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:10:29Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "plugins/lean4/commands/refactor.md is a markdown skill file (kind skill, language markdown), not Lean/Rocq source; no prover toolchain compiles it and no CI builds a markdown command file",
+      "by": "verifier",
+      "at": "2026-11-12T12:12:37Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Checked the byte-identical local copy code/plugins/lean4/commands/refactor.md (provenance pass) and the raw view at the pinned commit: line 58 is '## Actions', lines 60-75 are seven numbered steps Audit/Search/Plan/Approval/Apply/Verify/Report, and step 5 (line 73) reads 'Edit files, verify with lean_diagnostic_messages after each batch; revert batch on any new diagnostic or sorry increase'",
+      "by": "verifier",
+      "at": "2026-11-12T12:12:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Line 74 reads '6. **Verify** — lake lean <file> file gate (run from project root; it builds the file's imports first, so a cross-file batch cannot false-fail against a stale .olean ...); lake build project gate if multi-file. If final gate fails, revert all batches applied in this session.' Matches all three parts",
+      "by": "verifier",
+      "at": "2026-11-12T12:12:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Line 11 reads '**Mutating command:** Edits files with user approval. Does not change theorem statements, introduce axioms, or create commits.' Quote matches",
+      "by": "verifier",
+      "at": "2026-11-12T12:12:46Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Line 79 reads '**Helper scope defaults:** Single use inside one proof -> local (have / local helper). Reused within one file -> private theorem. Public/non-private -> only with explicit user approval or clear existing API reason.' Matches all three tiers",
+      "by": "verifier",
+      "at": "2026-11-12T12:12:49Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 3f913c66251b8712bb58e6ce83a453fa96e3f94f",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:13:10Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Provenance passes (1 file byte-identical at 3f913c6). All four claims verified against copied refactor.md: seven ordered steps at lines 60-75 with Apply (step 5, line 73) requiring lean_diagnostic_messages and revert on new diagnostic/sorry; two-tier verify at line 74 (lake lean builds imports first, lake build if multi-file, final-gate failure reverts session); mutating-command invariant at line 11; helper-scope defaults at line 79. All seven children (audit..report) statements and closed_by match lines 60-75; workflow closes via the per-batch diagnostic gate and the session-level lake lean/lake build gate.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:13:40Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "The move is stated as a transferable process, not just 'run /lean4:refactor on Lean files': the README 'How the parts fit' abstracts the seven steps into a pipeline (each step's output feeds the next), and 'Why it is good' names the copyable core (per-batch diagnostic gate + session-level build gate that builds imports first, never trusting 'it looks simpler'), labelled as opinion as the protocol requires. 'When not to use' is honest and specific and matches the source: refuses on sorries/build errors (refactor.md lines 49-56), statement/axiom changes are reported or routed to the axiom-eliminator rather than applied (lines 11,13), and purely local tactic-level cleanup is /lean4:golf's job (lines 9,13). Consequences are honest and specific, including self-articulated failure modes: stale-.olean false-fail excluded by building imports first, and a line-count-reducing edit that breaks a proof is caught only by the diagnostic/sorry gate, not the line-count delta. No objection.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:14:32Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 3f913c66251b8712bb58e6ce83a453fa96e3f94f",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:15:12Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are all consistent and traceable. check_provenance.py passes: 1 file byte-identical at 3f913c66251b8712bb58e6ce83a453fa96e3f94f (sha256 13e6753636a819cd0da1371b0283ffa0b9ad1afe417d37d213db7c3a2e31b32d, 5397 bytes match the local copy). The commit hash appears identically in entry.json source.commit, files[0].permalink, all site/claim/known_use permalinks, and sources/lean4-skills/source.json+SOURCE.md. Line anchors are correct against the byte-identical local copy: L58='## Actions', L60-L75 hold the seven steps, L73=Apply, L74=Verify, L11=mutating-command invariant, L79=helper-scope. Licence 'MIT' is recorded consistently in entry.json, README, source.json, and SOURCE.md, and matches upstream-LICENSE (MIT text copied from the pinned commit's LICENSE). Source note SOURCE.md exists with attribution and licence-text link. Minor out-of-lens note: known_uses points to a self-reference (same file L13) rather than an independent use.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:15:40Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    }
+  ]
+}

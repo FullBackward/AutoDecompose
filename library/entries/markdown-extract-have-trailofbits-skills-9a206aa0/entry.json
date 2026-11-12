@@ -1,0 +1,136 @@
+{
+  "id": "markdown-extract-have-trailofbits-skills-9a206aa0",
+  "kind": "skill",
+  "status": "accepted",
+  "title": "The extraction ladder",
+  "intent": "Give a graded rule for when a proof fragment graduates from an inline argument into a local `have` and then a standalone lemma: search by shape first (rung 0), name a repeated sub-argument as a local `have` (rung 1), promote an independently interesting or hypothesis-shedding statement to a standalone lemma (rung 2), and split a proof that reads 'long and unwieldy' (rung 3).",
+  "move": "extract-have",
+  "also_known_as": [
+    "have extraction",
+    "lift have to lemma",
+    "lemma extraction",
+    "graduating a fragment to a lemma"
+  ],
+  "language": "markdown",
+  "source": {
+    "source_id": "trailofbits-skills",
+    "url": "https://github.com/trailofbits/skills",
+    "commit": "e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff",
+    "licence": "CC-BY-SA-4.0"
+  },
+  "files": [
+    {
+      "path": "plugins/writing-lean-proofs/skills/writing-lean-proofs/SKILL.md",
+      "bytes": 15997,
+      "sha256": "fb2ad9c463ac5185a014892ce33202460b3423d64405024b95b534f0d3b4d3e0",
+      "permalink": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/skills/writing-lean-proofs/SKILL.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": "plugins/writing-lean-proofs/skills/writing-lean-proofs/SKILL.md",
+      "lines": [
+        158,
+        193
+      ],
+      "role": "skill-text",
+      "name": "the-extraction-ladder",
+      "excerpt_sha256": "c4123bcae4a393f8f2407f79be4e3e98ad11a5d9ea813dfec08d0c10ed0e4190",
+      "permalink": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/skills/writing-lean-proofs/SKILL.md#L158-L193"
+    }
+  ],
+  "parent": null,
+  "children": [
+    {
+      "name": "search-by-shape",
+      "statement": "Before extracting, state the fragment's type and search by shape: run exact? and apply? on the bare goal, then a type-pattern and source search; if an existing theorem fits, use it.",
+      "closed_by": "an existing theorem matching the fragment's shape; otherwise record the searches that failed before extracting"
+    },
+    {
+      "name": "local-have",
+      "statement": "A sub-argument repeats within one proof → name it as a local `have`.",
+      "closed_by": "the min_comm example: `have h : ∀ x y : ℝ, min x y ≤ min y x` is instantiated twice, closing both `le_antisymm` directions with `exact h a b` and `exact h b a`"
+    },
+    {
+      "name": "standalone-lemma",
+      "statement": "The statement is independently interesting, or extraction sheds hypotheses the sub-argument does not need → standalone lemma; dropping unneeded hypotheses is the stronger trigger.",
+      "closed_by": "dropping unneeded hypotheses, which makes the extracted lemma more general than the proof it came from"
+    },
+    {
+      "name": "split-long-proof",
+      "statement": "The proof reads as 'long and unwieldy' → split it; deliberately qualitative, no line threshold.",
+      "closed_by": "attempting the extraction: if a fragment has a clean statement, it wanted to be a lemma"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A Lean proof whose body contains a repeated sub-argument, an independently interesting fragment, or a fragment that uses fewer hypotheses than are in scope; the fragment is a candidate to become a local `have` (rung 1) or a standalone lemma (rung 2).",
+    "use_when": "a sub-argument is needed more than once in one proof (rung 1); a fragment is independently interesting or its extraction drops hypotheses (rung 2); a proof reads 'long and unwieldy' (rung 3). Always search by shape first (rung 0) before any extraction.",
+    "avoid_when": "an existing theorem already fits the fragment's shape (rung 0, search first); the fragment is used once and has no independent meaning; extraction would drop no hypotheses and generalise nothing; or the project defers to a non-Mathlib house style (the skill's 'When NOT to Use' says check the project's CONTRIBUTING first)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "In the min_comm example the local `have h : ∀ x y : ℝ, min x y ≤ min y x` is used exactly twice, closing the two goals created by `apply le_antisymm` via `exact h a b` and `exact h b a`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/skills/writing-lean-proofs/SKILL.md#L171-L183"
+    },
+    {
+      "n": 2,
+      "claim": "The ladder's four rungs appear in order 0-3 — search by shape (line 162), local have (line 168), standalone lemma (line 186), split long proof (line 190) — so extraction is always preceded by a search and only then graduates from `have` to lemma.",
+      "evidence_kind": "check",
+      "evidence": "read of the copied file, https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/skills/writing-lean-proofs/SKILL.md#L158-L193"
+    },
+    {
+      "n": 3,
+      "claim": "The trigger for a standalone lemma is stated as dropping hypotheses: 'extraction sheds hypotheses the sub-argument does not need' and 'Dropping unneeded hypotheses is the stronger trigger: the extracted lemma becomes more general than the proof it came from.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/skills/writing-lean-proofs/SKILL.md#L186-L189"
+    },
+    {
+      "n": 4,
+      "claim": "Rung 3 is explicitly qualitative and not automated by line count: 'This is Mathlib's review criterion, and it is deliberately qualitative — there is no line threshold.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/skills/writing-lean-proofs/SKILL.md#L190-L192"
+    },
+    {
+      "n": 5,
+      "claim": "The same 'drop hypotheses → general' trigger recurs in the skill's Rationalizations to reject table: 'This helper is too specific to be a lemma' is answered by 'If it has a clean statement, extract it — dropping the hypotheses it doesn't need usually reveals it was general all along.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/skills/writing-lean-proofs/SKILL.md#L230"
+    }
+  ],
+  "metrics": {
+    "rungs": 4,
+    "worked_examples": 1,
+    "how_counted": "rungs 0-3 counted from the numbered list at lines 162, 168, 186 and 190 of the copied file; the single worked example is the min_comm proof at lines 171-183"
+  },
+  "consequences": "Lifting to a local `have` (rung 1) keeps the fragment local but requires the caller to instantiate the quantified form at each use site (`h a b`, `h b a`). Lifting to a standalone lemma (rung 2) requires stating the fragment with exactly the hypotheses it needs and dropping the rest: under-generalising keeps proof-specific constants and limits reuse, while over-generalising adds hypotheses the caller must discharge. Rung 0 is the fidelity gate — extracting before searching duplicates an existing theorem, and the skill forbids reporting an API gap without recording the failed searches. Rung 3's criterion is deliberately qualitative and so cannot be turned into a line threshold; the test is whether the fragment has a clean statement. The min_comm example stops at rung 1 (a local `have`), so it does not exercise rung 2's standalone-lemma obligations.",
+  "known_uses": [
+    "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/skills/writing-lean-proofs/SKILL.md#L230"
+  ],
+  "related": [
+    "markdown-extract-have-lean4-skills-b59b032f"
+  ],
+  "rule": {
+    "f10_rule": 4,
+    "relation": "supports"
+  },
+  "content_key": "9a206aa059a54afaee336654c531d1d6ea2267b4772a30bdb3dd3073e8c17838",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:36:32Z"
+    },
+    {
+      "field": "intent,also_known_as,children,applicability,claims,metrics,consequences,known_uses,related,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:40:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T12:43:22Z"
+}

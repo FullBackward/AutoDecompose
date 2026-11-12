@@ -1,0 +1,109 @@
+{
+  "entry": "lean-case-split-axiom-imo2026-1647cf44",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:28:42Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "No GitHub CI workflow builds this file: list_files.py at commit c5a6a089d06d shows no .github/workflows/ directory; verification is via the external Axle verify_proof service invoked by verify.py, documented in README.md, not a CI build on the default branch.",
+      "by": "verifier",
+      "at": "2026-11-12T12:29:42Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read copied code/IMO2026/Q4/solution.lean lines 63-90 (byte-identical at c5a6a089d06d per provenance): constructor (L72) yields IsTriangle L and R; two refine ⟨?_,?_,?_⟩ (L73,L82); card closed by card_triple (L74,L83); positivity closed by rcases hy with h | h | h (L77,L86) with branches rw[h];exact hβ/hγ and two linarith; sum closed by sum_triple + ring (L81,L90).",
+      "by": "verifier",
+      "at": "2026-11-12T12:29:46Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Fetched formalization.yaml at c5a6a089d06d: L74-76 declaration TriangleGame.main_theorem, file IMO2026/Q4/solution.lean, sorry_count: 0; L301-304 source 'IMO 2026 Problem 4' lean TriangleGame.main_theorem status: proved. Fetched README.md L43-51: verify.py (Axle verify_proof) output includes 'Q4: okay=True (passed)'.",
+      "by": "verifier",
+      "at": "2026-11-12T12:29:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read copied code/IMO2026/Q4/solution.lean lines 61-62: doc comment '/-- **Lemma 2 (cut preserves validity).** An admissible cut of a valid triangle yields / two valid triangles. -/' verbatim as claimed.",
+      "by": "verifier",
+      "at": "2026-11-12T12:29:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read copied code/IMO2026/Q4/solution.lean: safe_child L394-396 rw [hL, mem_triple] at haLmem; rw [hR, mem_triple] at haRmem; rcases haLmem with h | h | h (and L398 all_goals rcases haRmem with h' | h' | h'); equilateral_counterexample L452 rw [he, mem_triple] at hy; rcases hy with h | h | h; L456-457 rw [he, mem_triple] at ha; rcases ha with h | h | h. Same mem_triple-then-rcases h|h|h pattern in all three sites.",
+      "by": "verifier",
+      "at": "2026-11-12T12:29:56Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:30:20Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Read copied code/IMO2026/Q4/solution.lean (provenance pass, byte-identical at c5a6a089d06d). Parent cut_preserves (L63-90) matches entry: constructor (L72) then two refine <_,_,_> (L73,L82) split IsTriangle L/R into card, positivity, sum; card closed by card_triple (L74,L83), sum by sum_triple+ring (L81,L90), positivity by intro y hy; rw [hL/hR, mem_triple] at hy; rcases hy with h|h|h (L77,L86). All six children match the code and their closing methods exactly: L y=beta -> rw[h];exact hbeta (L78), L y=x -> rw[h];linarith (L79, from gamma<x and 0<gamma), L y=180-beta-x -> rw[h];linarith (L80, from x<180-beta), R y=gamma -> rw[h];exact hgamma (L87), R y=180-x -> rw[h];linarith (L88, from x<180-beta and 0<beta), R y=x-gamma -> rw[h];linarith (L89, from gamma<x). Each linarith branch's needed bound is in scope from the IsCut/hcut destructure (L65) and derived hbeta/hgamma (L70-71); every branch closes. Metrics verified: 28 lines, 6 branches, 4 linarith, 2 hypothesis, 0 aux lemmas. Card/sum conjuncts are non-case-split structural closings correctly excluded from the children list.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:31:05Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example: applicability/use_when frame it as '∀ y ∈ {a,b,c}, P y over a small fixed multiset/list, membership rewritten by an iff-lemma to a finite disjunction y=a∨y=b∨y=c, split with rcases h with h|h|h', not tied to the triangle specifics; the iff-lemma pairing (mem_triple) is named as the generality carrier. 'When not to use' is specific and honest: large/unbounded multiset (split huge/impossible), disjunction needing its own proof (state as separate child), non-uniform branches (uniform rcases won't close). Consequences are honest: one goal per element (6), exhaustiveness free only because mem_triple is an iff (else prove the disjunction first), each branch must rw[h] before bounds apply, and linarith branches depend on IsCut interval hypotheses hγx/hxβ plus hβ/hγ being in scope. Verified against local code: mem_triple is an iff (L48-50), pattern recurs at L394-398 and L452/456-457 supporting generality.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:32:09Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:32:29Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes (1 file byte-identical at c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2); entry.json sha256/bytes match the local copy; permalinks, entry.json source, source.json and SOURCE.md all pin the same commit; licence MIT recorded consistently in entry.json/source.json/README/SOURCE.md and upstream-LICENSE is the MIT text; site line ranges (5-8, 13-23, 47-50, 61-90) match the copied solution.lean. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:33:00Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "id": "lean-iff-split-compfiles-9264faf4",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Iff-split of IMO 1964 P1(a): n % 3 = 0 iff 2^n = 1 (mod 7)",
+  "intent": "Split the iff n ∈ solution_set ↔ 2^n ≡ 1 [MOD 7] into its two directions with constructor. The forward direction builds the congruence from a divisibility witness of n % 3 = 0; the reverse direction refutes the non-zero residues of n % 3 with a further case split.",
+  "move": "iff-split",
+  "also_known_as": [
+    "constructor on ↔",
+    "bidirectional split",
+    "iffI",
+    "split on an iff"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "compfiles",
+    "url": "https://github.com/dwrensha/compfiles",
+    "commit": "1745e6ced3e671bd74417548494b034eb2c87da8",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Compfiles/Imo1964P1.lean",
+      "bytes": 2344,
+      "sha256": "0126200aeec6ad151590c989ba60d1f42eb4cc0e88ca9de19ca902a29c92c855",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1964P1.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Compfiles/Imo1964P1.lean",
+      "lines": [
+        32,
+        47
+      ],
+      "role": "parent",
+      "name": "imo1964_p1a",
+      "excerpt_sha256": "b9c3e309b642c23a8d6ccdaae1376d1aecf6c048f4d6bca6e1476e864c1eee89",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1964P1.lean#L32-L47"
+    },
+    {
+      "path": "Compfiles/Imo1964P1.lean",
+      "lines": [
+        30,
+        30
+      ],
+      "role": "context",
+      "name": "solution_set",
+      "excerpt_sha256": "6b75a2de71e77b7254436f908cffc2b1c19f404ea9dd28f6d869cff89abc2d96",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1964P1.lean#L30-L30"
+    }
+  ],
+  "parent": {
+    "name": "imo1964_p1a",
+    "statement": "problem imo1964_p1a (n : ℕ) : n ∈ solution_set ↔ 2^n ≡ 1 [MOD 7]"
+  },
+  "children": [
+    {
+      "name": "forward",
+      "statement": "n ∈ solution_set → 2^n ≡ 1 [MOD 7] (first goal created by constructor)",
+      "closed_by": "obtain ⟨m, hm⟩ := Nat.dvd_of_mod_eq_zero hn; change 2^n % 7 = 1; rw [hm, Nat.pow_mul, Nat.pow_mod]; norm_num"
+    },
+    {
+      "name": "reverse",
+      "statement": "2^n ≡ 1 [MOD 7] → n ∈ solution_set (second goal created by constructor)",
+      "closed_by": "change n % 3 = 0; change 2^n % 7 = 1 at hn; rw [(Nat.div_add_mod' n 3).symm, pow_add, pow_mul', Nat.mul_mod, Nat.pow_mod] at hn; mod_cases H : n % 3; exact H / rw [H] at hn; norm_num at hn / rw [H] at hn; norm_num at hn"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal of the form P ↔ Q (the ↔ type). Here n ∈ solution_set ↔ 2^n ≡ 1 [MOD 7], which unfolds to n % 3 = 0 ↔ 2^n % 7 = 1.",
+    "use_when": "the two directions want genuinely different arguments — a construction (forward: a divisibility witness from n % 3 = 0) versus a refutation by cases (reverse: mod_cases on n % 3) — and each closes without reference to the other.",
+    "avoid_when": "one direction is definitional or follows by symmetry; the two directions share the same rewriting (a single rw/calc chain proves both); or the equivalence is definitional and rfl suffices."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "constructor (line 33) turns the ↔ goal into exactly two subgoals, and both close: the forward direction in lines 34-38 and the reverse in lines 39-47, with no auxiliary lemma stated between them.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1964P1.lean#L32-L47; file built by `lake build` in .github/workflows/push-main.yaml on pushes to main (workflow fetched this session)"
+    },
+    {
+      "n": 2,
+      "claim": "The problem's docstring asks '(a) Find all natural numbers n for which 2ⁿ - 1 is divisible by 7', and the formalisation answers it as the iff n ∈ solution_set ↔ 2^n ≡ 1 [MOD 7] with solution_set := { n | n % 3 = 0 }; the iff is the problem statement, not an internal helper.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1964P1.lean#L21-L26 and https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1964P1.lean#L30"
+    },
+    {
+      "n": 3,
+      "claim": "The reverse direction embeds a second decomposition: mod_cases H : n % 3 (line 44) splits into three residues; residue 0 closes by exact H, and residues 1 and 2 close by rewriting the hypothesis to a false numeral equality and norm_num (lines 45-47).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1964P1.lean#L44-L47"
+    },
+    {
+      "n": 4,
+      "claim": "The same move — state a problem as P ↔ x ∈ solution_set and split it with constructor — appears in Compfiles/Usa1973P4.lean lines 29-33.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa1973P4.lean#L29-L33"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 16,
+    "children": 2,
+    "forward_lines": 5,
+    "reverse_lines": 9,
+    "how_counted": "parent = lines 32-47 of the copied file; forward = lines 34-38, reverse = lines 39-47; children = the two goals created by constructor"
+  },
+  "consequences": "constructor on an iff creates exactly two obligations (forward and reverse implication), each to be closed on its own; shared structure between the directions is proved twice. Here the reverse direction is not self-contained: it needs a further case split mod_cases H : n % 3, so the two children differ in difficulty (5 vs 9 lines). Failure mode: splitting an iff whose two directions are the same argument in mirror image doubles the proof instead of shortening it.",
+  "known_uses": [
+    "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa1973P4.lean#L29-L33"
+  ],
+  "related": [
+    "lean-case-split-compfiles-6ac56e7f"
+  ],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "9264faf415c7e9eb69ad17dadc91f738786609a3a467ec41424f3e519fb9619b",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T11:44:15Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,known_uses,related,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T11:51:44Z"
+}

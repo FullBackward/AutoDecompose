@@ -1,0 +1,179 @@
+{
+  "id": "lean-calc-chain-mathlib4-9433f97f",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Calc chain reduces 2^n mod 7 to 2^(n % 3) (IMO 1964 Q1)",
+  "intent": "Show that 2^n mod 7 depends only on n % 3 by rewriting 2^n as 2^(3*(n/3) + n%3), then pushing the period 2^3 ≡ 1 (mod 7) through a four-link calc chain, ending at 2^(n % 3). Each link closes with one tactic and no auxiliary lemma.",
+  "move": "calc-chain",
+  "also_known_as": [
+    "calculational chain",
+    "equality/congruence chain",
+    "also ... finally"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "mathlib4",
+    "url": "https://github.com/leanprover-community/mathlib4",
+    "commit": "e1545ebed97594477bbd88b2fe948ffce56e5af2",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Archive/Imo/Imo1964Q1.lean",
+      "bytes": 1755,
+      "sha256": "aee9931a6f1309763f83f2d5986bb8bf7f6d116fe948d99b58cd31c31247ecbd",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1964Q1.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Archive/Imo/Imo1964Q1.lean",
+      "lines": [
+        28,
+        33
+      ],
+      "role": "parent",
+      "name": "two_pow_mod_seven",
+      "excerpt_sha256": "ccc4f2f78c36fb5d860eba1b5c40868d68bc5591bfc906c957c11b7cae247ba9",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1964Q1.lean#L28-L33"
+    },
+    {
+      "path": "Archive/Imo/Imo1964Q1.lean",
+      "lines": [
+        30,
+        30
+      ],
+      "role": "child",
+      "name": "step1-div-add-mod",
+      "excerpt_sha256": "afe20183b0e246b8c9d0b4f0144217d8d51e01088675ef33150f66a8e1d3d19a",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1964Q1.lean#L30-L30"
+    },
+    {
+      "path": "Archive/Imo/Imo1964Q1.lean",
+      "lines": [
+        31,
+        31
+      ],
+      "role": "child",
+      "name": "step2-pow-add-mul",
+      "excerpt_sha256": "18dd4de6df230e3930bf000c8b03f06943b73e866c907c0b24008199e0382458",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1964Q1.lean#L31-L31"
+    },
+    {
+      "path": "Archive/Imo/Imo1964Q1.lean",
+      "lines": [
+        32,
+        32
+      ],
+      "role": "child",
+      "name": "step3-gcongr",
+      "excerpt_sha256": "1fd885372f9503242567f60ca69db52d04c65a03bee1261114ef8620a93c473d",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1964Q1.lean#L32-L32"
+    },
+    {
+      "path": "Archive/Imo/Imo1964Q1.lean",
+      "lines": [
+        33,
+        33
+      ],
+      "role": "child",
+      "name": "step4-ring",
+      "excerpt_sha256": "63a43ecc0d002d8b01771e8ca2f9854dd02805331e610489079c4109e439cb77",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1964Q1.lean#L33-L33"
+    }
+  ],
+  "parent": {
+    "name": "two_pow_mod_seven",
+    "statement": "theorem two_pow_mod_seven (n : ℕ) : 2 ^ n ≡ 2 ^ (n % 3) [MOD 7]"
+  },
+  "children": [
+    {
+      "name": "link 1: expand n via div_add_mod",
+      "statement": "2 ^ n = 2 ^ (3 * (n / 3) + t)",
+      "closed_by": "rw [Nat.div_add_mod]"
+    },
+    {
+      "name": "link 2: distribute the powers",
+      "statement": "2 ^ (3 * (n / 3) + t) = (2 ^ 3) ^ (n / 3) * 2 ^ t",
+      "closed_by": "rw [pow_add, pow_mul]"
+    },
+    {
+      "name": "link 3: reduce base 2^3 to 1 mod 7",
+      "statement": "(2 ^ 3) ^ (n / 3) * 2 ^ t ≡ 1 ^ (n / 3) * 2 ^ t [MOD 7]",
+      "closed_by": "gcongr; decide"
+    },
+    {
+      "name": "link 4: evaluate 1^k * 2^t",
+      "statement": "1 ^ (n / 3) * 2 ^ t = 2 ^ t",
+      "closed_by": "ring"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "a congruence a ≡ b [MOD m] (or equality) where a can be rewritten so that a periodic subterm (here 2^3 mod 7 = 1) appears, collapsing a to a residue b that depends on n only through n % k",
+    "use_when": "the goal reduces to a chain of equalities and congruences each provable by one rewrite or normalising tactic; the period (here 2^3 ≡ 1 [MOD 7]) is a closed computation that decide closes inline",
+    "avoid_when": "a link needs a non-rewrite argument (induction, case analysis, a named lemma) that will not sit on one calc line; the period is not computable by decide (symbolic base or modulus); the congruence does not respect the operation used in a link"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The whole proof of two_pow_mod_seven is a single four-link calc chain and nothing else: after let t := n % 3, each link closes inline with one tactic (rw [Nat.div_add_mod]; rw [pow_add, pow_mul]; gcongr; decide; ring), and no auxiliary lemma or have intervenes, so the children are exactly these four links.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1964Q1.lean#L28-L33"
+    },
+    {
+      "n": 2,
+      "claim": "The module docstring states the period that the chain encodes: \"For (a), we find that the order of 2 mod 7 is 3. Therefore for (b), it suffices to check n = 0, 1, 2.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1964Q1.lean#L18-L19"
+    },
+    {
+      "n": 3,
+      "claim": "two_pow_mod_seven is referenced at two further sites in the same file — line 45 in imo1964_q1a and line 54 in imo1964_q1b — so the chain's conclusion 2^n ≡ 2^(n % 3) [MOD 7] is the exact lemma both later proofs need.",
+      "evidence_kind": "measurement",
+      "evidence": "read of the copied file Archive/Imo/Imo1964Q1.lean, lines 45 and 54"
+    },
+    {
+      "n": 4,
+      "claim": "The calc-chain move is used twice more in the same file: imo1964_q1a (lines 42-47) chains equivalences over ↔ and imo1964_q1b (lines 53-55) chains congruences over ≡ [MOD 7], so the move works for more than one relation kind.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1964Q1.lean#L42-L47 and #L53-L55"
+    }
+  ],
+  "metrics": {
+    "parent_proof_lines": 6,
+    "children": 4,
+    "auxiliary_lemmas_stated": 0,
+    "reuse_sites": 2,
+    "how_counted": "lines 28-33 of the copied file; children = the four calc links; reuse_sites = references to two_pow_mod_seven at lines 45 and 54, counted by reading the file"
+  },
+  "consequences": "The chain replaces one congruence with four sub-goals (the links), but none is a named lemma: each link's justification is an inline tactic, and the calc elaborator supplies transitivity, so no separate transitivity proof is owed. The one substantive obligation is the period 2^3 ≡ 1 [MOD 7], discharged inline by decide inside link 3; if the base or modulus were symbolic, that link would not close and would have to be extracted into its own lemma. The chain mixes = and ≡ links, which typechecks only because = implies the congruence reflexively; reordering the relations would break it.",
+  "known_uses": [
+    "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1964Q1.lean#L42-L47",
+    "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1964Q1.lean#L53-L55"
+  ],
+  "related": [
+    "lean-case-split-compfiles-6ac56e7f"
+  ],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "9433f97ffb633b21c908520ca6c822c40f414170b1b73702631a83006ed0984e",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:16:26Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,metrics,consequences,known_uses,related,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T12:24:49Z"
+}

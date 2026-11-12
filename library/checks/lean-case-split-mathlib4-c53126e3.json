@@ -1,0 +1,109 @@
+{
+  "entry": "lean-case-split-mathlib4-c53126e3",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:01:26Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": "commit e1545ebed97594477bbd88b2fe948ffce56e5af2 is on default branch master (compare base...master: behind_by 0); .github/workflows/build.yml delegates to .github/workflows/build_template.yml, which runs 'lake-build-with-retry.sh Archive Counterexamples Wanted' and 'lake build --no-build --wfail Archive', building Archive/Imo/Imo1961Q3.lean",
+      "by": "verifier",
+      "at": "2026-11-12T12:03:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "raw file at pinned commit: line 51 'match n with'; |1 => (52-57) closes at line 57 'simp [hsinx, hcosx] at this'; |2 => (58-60) closes at line 60 'exact absurd (eq_zero_of_pow_eq_zero h) hsinx'; |(n + 1 + 2) => (61-71) closes at line 63 'refine absurd ?_ h.not_lt' with calc chain lines 64-71 ending '< ... = 1'",
+      "by": "verifier",
+      "at": "2026-11-12T12:04:00Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "line 26 'public theorem Imo1961Q3 {n : Nat} {x : Real} (h0 : n != 0)'; lines 51-61 show 'match n with' branches |1, |2, |(n + 1 + 2) with no |0 branch",
+      "by": "verifier",
+      "at": "2026-11-12T12:04:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "lines 45-48 define hcos1 : |cos x| < 1 and hsin1 : |sin x| < 1; gcongr appears at lines 67 and 70 inside the residual calc chain (61-71)",
+      "by": "verifier",
+      "at": "2026-11-12T12:04:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "file header lines 19-21: 'The solution is based on the one at the Art of Problem Solving website'",
+      "by": "verifier",
+      "at": "2026-11-12T12:04:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "counted in raw file at pinned commit: branch n=1 lines 52-57 = 6 lines; n=2 lines 58-60 = 3 lines; n=m+2 lines 61-71 = 11 lines",
+      "by": "verifier",
+      "at": "2026-11-12T12:04:16Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "object",
+      "evidence": "Decomposition matches: lines 51-71 'match n with' has exactly |1 (53-57), |2 (59-60), |(n+1+2) (62-71); children n=1/n=2/residual and their closing tactics (rw/simp/absurd, exact absurd (eq_zero_of_pow_eq_zero h) hsinx, refine absurd ?_ h.not_lt with calc ending '_ = 1') are verbatim in the code, no |0 branch, and the file is built by mathlib CI so the split closes. BUT the residual child's closed_by and claim 3 say 'the two gcongr steps (lines 67 and 70) use hcos1/hsin1', which is false for line 67: that gcongr closes the '<=' step (65-68) via 'exacts [le_abs_self _, neg_le_abs _]' and uses neither bound; only the line-70 gcongr uses hcos1/hsin1 to make the '<' link strict. Fix: attribute hcos1/hsin1 to the second gcongr (line 70) only, and note the line-67 gcongr uses le_abs_self/neg_le_abs.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:07:23Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example: applicability.goal_shape/use_when abstract it to \"a goal about n : Nat depending on n only through which small numerals it equals and a residual n >= 3 admitting one uniform argument\", and also_known_as gives \"small cases plus residual case\"; the README labels the reusable shape \"enumerate the exceptions, then give one bound for everything else\" as opinion. When-not-to-use is honest and specific: residual genuinely needing induction, cases not sharing a residual argument, or domain including n = 0 without a hypothesis excluding it (then an explicit 0 branch is required). Consequences name concrete checkable obligations that match the copied code and the ci-record build: exhaustiveness of the 3-branch match rests on premise h0 : n != 0 (line 26) so no 0 child; the set m := n + 1 renaming (lines 61-62) is required or the calc head breaks; and the residual < link (line 70) needs the strict bounds (lines 45-50) since only <= 1 would fail. All specific and honest.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:10:09Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:10:46Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance re-check passes: check_provenance.py reports 1 file byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2 (commit valid, path resolves, recorded sha256 matches). Commit hash is identical across entry.json source.commit, all file/site permalinks, source.json, and SOURCE.md; README short form e1545ebed975 = first 12 chars. Permalink line ranges verified against the copied file: L51-71 match block, L26-29 statement, L31-50 forward_setup, L19-21 AoPS attribution, all exact. Licence Apache-2.0 is consistent everywhere: file header 'Released under Apache 2.0 license as described in the file LICENSE', source.json licence, SOURCE.md 'Licence (detected): Apache-2.0' with copied upstream-LICENSE (Apache License 2.0), entry.json licence, README licence column. Related entry lean-case-split-compfiles-6ac56e7f exists. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:11:27Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    }
+  ]
+}

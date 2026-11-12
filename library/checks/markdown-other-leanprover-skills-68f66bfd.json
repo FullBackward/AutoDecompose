@@ -1,0 +1,93 @@
+{
+  "entry": "markdown-other-leanprover-skills-68f66bfd",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 7d3da0282e7b724b07620e45cf212f2e05e19334",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:12:17Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "The entry's only file is a Markdown skill file (skills/lean-proof/SKILL.md), not compiled Lean code; no CI workflow builds it.",
+      "by": "verifier",
+      "at": "2026-11-12T12:12:42Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read copied file code/skills/lean-proof/SKILL.md: line 43 is '  rw [lemma1, lemma2]'; lines 42-43 ('theorem main_theorem : A = C := by' / 'rw [lemma1, lemma2]') contain no sorry; the only sorries in the After block are line 40 'theorem lemma1 : A = B := by sorry' and line 41 'theorem lemma2 : B = C := by sorry'.",
+      "by": "verifier",
+      "at": "2026-11-12T12:12:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read copied file lines 36-44: Before parent (line 37) 'theorem main_theorem : A = C := by sorry' has one sorry; After block has two sorries at lines 40-41 (lemma1, lemma2); After parent lines 42-43 have none.",
+      "by": "verifier",
+      "at": "2026-11-12T12:12:47Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Read copied file SKILL.md: line 33 says Move sorries earlier in the file by replacing a sorry proof with references to simpler lemmas, and line 31 says Go directly to the target theorem. Do not fill in sorries in helper lemmas first; Lean treats sorry as an axiom, so dependent theorems still work. Both quotes match verbatim.",
+      "by": "verifier",
+      "at": "2026-11-12T12:12:52Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Copied code skills/lean-proof/SKILL.md lines 29-44 matches the entry. Decomposition: parent main_theorem : A = C (line 37 before, 42-43 after) is split into children lemma1 : A = B (line 40) and lemma2 : B = C (line 41), joined by rw [lemma1, lemma2] (line 43); this closes the parent (rw rewrites A->B then B->C, closing by reflexivity). Children closed_by 'sorry' matches lines 40-41 verbatim; parent field null is correct for a skill. All line refs (31, 33, 37, 40, 41, 42-43) exact. Entry is honest that the two helper holes remain sorry, so the move relocates rather than eliminates the hole.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:13:52Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated abstractly (A, B, C with a natural intermediate B, or any relation rw chains), so it applies beyond the one skill file; applicability.use_when/avoid_when and the README give three specific honest 'when not to use' conditions (no natural B; helpers not independent; goal not a transitive relation rw composes). Consequences are honest and specific: the move creates two new top-level lemmas that must be proved or left as sorry, relocates one hole into two and is only a win if each hole is genuinely simpler, with a concrete failure mode (rw fails at the first inapplicable link).",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:14:49Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 7d3da0282e7b724b07620e45cf212f2e05e19334",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:15:02Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance check passes (1 file byte-identical at 7d3da0282e7b724b07620e45cf212f2e05e19334). Permalinks in entry.json (files[] and sites[]) use the same pinned commit and path skills/lean-proof/SKILL.md as the copied file; site line range 29-44 matches the copied excerpt. source.licence=Apache-2.0, README Licence=Apache-2.0, SOURCE.md licence=Apache-2.0, and upstream-LICENSE is Apache License Version 2.0 (LICENSE file). Commit is consistent across source.json, entry.json, README and SOURCE.md. Source note records repo, pinned commit, licence, licence file and attribution. Everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:15:29Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    }
+  ]
+}

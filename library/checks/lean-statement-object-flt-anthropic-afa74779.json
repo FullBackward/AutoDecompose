@@ -1,0 +1,101 @@
+{
+  "entry": "lean-statement-object-flt-anthropic-afa74779",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 6e837e75355538c7f80bab5b956861e86c4eacc2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:39:48Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "source has no CI workflow: no .github/workflows directory (root of anthropics/fermats-last-theorem at 6e837e7 lists no .github; verification/ holds local comparator/nanoda tooling, not a hosted build of this file)",
+      "by": "verifier",
+      "at": "2026-11-12T12:43:57Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Thm file line 3 imports P2M.Sol.S_IsCyclotomicExtension_Rat_seven_pid; solution module imports (lines 1-6) are 5 Mathlib files + P2M.Util, none is Theorems.Thm_IsCyclotomicExtension_Rat_seven_pid, so dependency is one-way",
+      "by": "verifier",
+      "at": "2026-11-12T12:44:02Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read code/Theorems/Thm_IsCyclotomicExtension_Rat_seven_pid.lean: 6 lines = import Mathlib, import P2M.Util, import P2M.Sol.S_IsCyclotomicExtension_Rat_seven_pid, blank, open scoped NumberField, and the single theorem with body (by p2m_exact_reverting @_root_.P2MW.S_IsCyclotomicExtension_Rat_seven_pid.solution); no other declaration",
+      "by": "verifier",
+      "at": "2026-11-12T12:44:10Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "P2M/Util.lean lines 3-16: p2m_exact_reverting folds lctx keeping only non-ImplementationDetail fvars, g.revert, elabTermEnsuringType e tgt, then throwError if hasExprMVar; S file lines 81-84 theorem solution has type (K : Type*) [Field K] [NumberField K] [IsCyclotomicExtension {7} Q K] : IsPrincipalIdealRing (O K), matching the parent statement",
+      "by": "verifier",
+      "at": "2026-11-12T12:44:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "PROOF-PATH.md lines 4-5 contain the quoted convention verbatim: \"A theorem X.y is stated in Theorems/Thm_X_y.lean and proved in P2M/Sol/S_X_y.lean, whose import Theorems.Thm_... lines are exactly the theorems it cites.\"",
+      "by": "verifier",
+      "at": "2026-11-12T12:44:13Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent file is 6 lines (imports Mathlib/P2M.Util/P2M.Sol.S_IsCyclotomicExtension_Rat_seven_pid, open scoped NumberField, one theorem) whose whole proof is p2m_exact_reverting @_root_.P2MW.S_IsCyclotomicExtension_Rat_seven_pid.solution. Child solution (S file L81-84) has type (K:Type*) [Field K] [NumberField K] [IsCyclotomicExtension {7} Q K] : IsPrincipalIdealRing (O K), textually identical to the parent statement, and closes via SevenPidPort.seven_pid K (a fully proved theorem, L59-76). p2m_exact_reverting (Util.lean L3-16) reverts context then elabTermEnsuringType e tgt and throws on residual metavariables, so the delegation closes exactly on type match. Decomposition, children and closing methods all match the copied code; it closes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:51:19Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "object",
+      "evidence": "Move is stated generically (goal_shape, use_when mention proof-path/blueprint/harness projects; author-statement shows it is a project-wide convention), so it does apply beyond the example. But 'when not to use' and consequences overstate the boundary: they say a solution 'more or less general than the statement is a hard error' (applicability.avoid_when, consequences in entry.json, and README consequences). The cited mechanism does not reject a MORE general solution: P2M/Util.lean #p2m_type_eq (L19-40) only reports P2M_TYPE_MISMATCH and P2M_UNDERGENERAL ('the proof is less general than the card'), and p2m_exact_reverting (L3-16) uses elabTermEnsuringType, which specialises a more-general term to the goal. Only a mismatch or an under-general (less general) solution is the hard error. Claiming more-general is rejected wrongly steers users away from a valid, desirable case. Fix: in applicability.avoid_when and both consequences texts, replace 'more or less general' / 'more general or less general' with 'less general (under-general)', and note a more-general proof is accepted (specialised to the statement).",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:53:27Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 6e837e75355538c7f80bab5b956861e86c4eacc2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:53:44Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance pass: 4 files byte-identical at 6e837e75355538c7f80bab5b956861e86c4eacc2. Commit 6e837e753555... is recorded identically in entry.json, README.md, SOURCE.md and source.json; every permalink (files and sites) pins that commit with correct paths and line anchors (statement L1-L6, solution L81-L84, Util L3-L16, PROOF-PATH L4-L5 all match the copied code). Licence Apache-2.0 is recorded identically in entry.json, README.md and SOURCE.md, and the copied upstream-LICENSE is the Apache-2.0 text (Copyright 2026 Anthropic, PBC); SOURCE.md names LICENSE and NOTICE, both present as upstream-LICENSE and upstream-NOTICE. Everything traceable, nothing inconsistent.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:54:24Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    }
+  ]
+}

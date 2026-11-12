@@ -1,0 +1,87 @@
+{
+  "id": "lean-suffices-or-strengthen-numina-putnam2025-3fe390a3",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Suffices to a two-claim valuation package for Putnam 2025 A6",
+  "intent": "TODO",
+  "move": "suffices-or-strengthen",
+  "also_known_as": [],
+  "language": "lean",
+  "source": {
+    "source_id": "numina-putnam2025",
+    "url": "https://github.com/project-numina/Numina-Putnam2025",
+    "commit": "60d33c8ba19af905bd731e938ebde1c5b8c76519",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a6.lean",
+      "bytes": 69703,
+      "sha256": "e1e5607394345a1f24bdc3e81b67b51ecd1b940a2769538f4fa8dba168b74a19",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a6.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a6.lean",
+      "lines": [
+        974,
+        978
+      ],
+      "role": "parent",
+      "name": "putnam_2025_a6",
+      "excerpt_sha256": "5abe5d39b4dfb454fe92ce792fb4d6da60fcb4a6cc175018f3729002c79f8d31",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a6.lean#L974-L978"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a6.lean",
+      "lines": [
+        1017,
+        1031
+      ],
+      "role": "skeleton",
+      "name": "putnam_2025_a6.suffices",
+      "excerpt_sha256": "ae7437c34c86da6d7cb048a41790ad16436cac5598e0050310e599f683f1973b",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a6.lean#L1017-L1031"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a6.lean",
+      "lines": [
+        1431,
+        1440
+      ],
+      "role": "child",
+      "name": "putnam_2025_a6.hP",
+      "excerpt_sha256": "7777fd25c08da402be5d6700a73b978f726bd2c333ac27602819165d8dc0b3c8",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a6.lean#L1431-L1440"
+    }
+  ],
+  "parent": {
+    "name": "TODO",
+    "statement": "TODO"
+  },
+  "children": [],
+  "applicability": {
+    "goal_shape": "TODO",
+    "use_when": "TODO",
+    "avoid_when": "TODO"
+  },
+  "claims": [],
+  "metrics": {},
+  "consequences": "TODO",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "3fe390a3093e0b037d5e40b55146b510c6b22eb810e320f47bb0b5892de61a3a",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-1",
+      "at": "2026-11-12T11:54:27Z"
+    }
+  ]
+}

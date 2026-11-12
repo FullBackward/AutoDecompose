@@ -1,0 +1,109 @@
+{
+  "entry": "lean-statement-object-flt-anthropic-b51da0fb",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 6e837e75355538c7f80bab5b956861e86c4eacc2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:04:43Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "No CI workflow in the source: no .github/workflows directory exists at commit 6e837e75355538c7f80bab5b956861e86c4eacc2 (pinned commit = HEAD of default branch main, per GitHub API); formalization.yaml is metadata, not CI. No local Lean toolchain installed.",
+      "by": "verifier",
+      "at": "2026-11-12T12:06:18Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read code/Theorems/Thm_fermatLastTheoremFive.lean (byte-identical to remote at commit): 5 lines = import Mathlib, import P2M.Util, import P2M.Sol.S_fermatLastTheoremFive, blank, and theorem fermatLastTheoremFive : FermatLastTheoremFor 5 := by p2m_exact_reverting @_root_.P2MW.S_fermatLastTheoremFive.solution; no other declaration.",
+      "by": "verifier",
+      "at": "2026-11-12T12:06:22Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Read code/P2M/Sol/S_fermatLastTheoremFive.lean lines 1987-1989: theorem solution : FermatLastTheoremFor 5 := by rw [fermatLastTheoremFor_iff_int]; exact FLT5.flt_five_int — type is FermatLastTheoremFor 5, matching the parent target.",
+      "by": "verifier",
+      "at": "2026-11-12T12:06:26Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read code/P2M/Util.lean lines 3-16: p2m_exact_reverting folds lctx collecting non-isImplementationDetail fvarIds (revert), reverts them, elaborates via elabTermEnsuringType e tgt against goal type, throws if v.hasExprMVar (unassigned metavariables remain).",
+      "by": "verifier",
+      "at": "2026-11-12T12:06:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read code/PROOF-PATH.md lines 4-5: \"A theorem `X.y` is stated in `Theorems/Thm_X_y.lean` and proved in `P2M/Sol/S_X_y.lean`, whose `import Theorems.Thm_…` lines are exactly the theorems it cites.\" matches the quoted author statement verbatim.",
+      "by": "verifier",
+      "at": "2026-11-12T12:06:34Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read code/P2M/Sol/S_fermatLastTheoremFive.lean lines 1-8: seven Mathlib imports (Algebra.Ring.Associated, Data.Nat.Fib.Basic, Data.ZMod.Basic, NumberTheory.FLT.Basic, RingTheory.Int.Basic, RingTheory.PrincipalIdealDomain, Tactic) plus P2M.Util; no import of Theorems.Thm_fermatLastTheoremFive — one-way dependency.",
+      "by": "verifier",
+      "at": "2026-11-12T12:06:38Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "object",
+      "evidence": "Child 'solution' closed_by field misattributes the closing method: entry.json records closed_by='p2m_exact_reverting @_root_.P2MW.S_fermatLastTheoremFive.solution', but that is the PARENT's delegation tactic (how fermatLastTheoremFive pulls the child in), not how the child closes. The code (P2M/Sol/S_fermatLastTheoremFive.lean lines 1987-1989) shows the child closes by 'rw [fermatLastTheoremFor_iff_int]; exact FLT5.flt_five_int'. Every sibling entry uses closed_by for how the child itself closes, so this contradicts the code and its own statement field. Fix: set children[0].closed_by to 'rw [fermatLastTheoremFor_iff_int]; exact FLT5.flt_five_int'. All 5 claims verified and the decomposition itself closes correctly; this is the only correctness defect.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:09:51Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is generalised beyond the FLT5 example: applicability.goal_shape abstracts to 'a theorem statement occupying its own file ... one theorem whose proof body is a single term or tactic that pulls a proof in from a separate module', with the delegation tactic flagged as 'here p2m_exact_reverting <proof-term>'. use_when/avoid_when give concrete, general conditions (immutable citable object cited before proved; vs. statement+proof best read together / proof not a single self-contained term / proof more-or-less general than the statement). The 'when not to use' and consequences are honest and specific: I opened the local copies and confirmed #p2m_type_eq genuinely reports P2M_TYPE_MISMATCH and P2M_UNDERGENERAL (P2M/Util.lean L38, L40), the solution's imports are seven Mathlib files + P2M.Util with no Theorems import (one-way split), and PROOF-PATH.md states the convention. The generalisable principle (one-way split, proof matched by type) is correctly separated from the specific tactic and labelled as opinion. Accept.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:11:50Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 6e837e75355538c7f80bab5b956861e86c4eacc2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:12:18Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are all consistent and traceable. check_provenance.py passes (4 file(s) byte-identical at 6e837e75355538c7f80bab5b956861e86c4eacc2). Local copies' sha256 and byte counts match entry.json's files array exactly (198/1e118431..., 82551/bba6572a..., 5737/66f62069..., 8666/ada9b1b2...). Commit 6e837e75355538c7f80bab5b956861e86c4eacc2 is identical across entry.json source.commit, every file/site permalink, sources/flt-anthropic/SOURCE.md and source.json. Licence Apache-2.0 is identical in entry.json source.licence, README, SOURCE.md and source.json, and upstream-LICENSE is the Apache License 2.0 text; source note lists LICENSE+NOTICE (both present locally as upstream-LICENSE/upstream-NOTICE). Repo URL anthropics/fermats-last-theorem is consistent everywhere. No provenance or licence inconsistency found.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:12:56Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    }
+  ]
+}

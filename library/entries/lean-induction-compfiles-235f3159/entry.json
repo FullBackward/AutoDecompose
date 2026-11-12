@@ -1,0 +1,125 @@
+{
+  "id": "lean-induction-compfiles-235f3159",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Descending induction on a strengthened invariant for UK BMO 2024 R1 P2",
+  "intent": "Reduce the pair-consecutiveness goal |a 0 - a 1| = 1 to the strengthened invariant ∀ k ≤ 2023, |a k - a (k+1)| = 1, then prove that invariant by descending induction from the known top case |a 2023 - a 2024| = 1, using the two-term recurrence to step down and to rule out its wrong direction by contradiction.",
+  "move": "induction",
+  "also_known_as": [
+    "descending induction",
+    "decreasing induction",
+    "Nat.decreasingInduction",
+    "induction on a bound"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "compfiles",
+    "url": "https://github.com/dwrensha/compfiles",
+    "commit": "1745e6ced3e671bd74417548494b034eb2c87da8",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Compfiles/UK2024R1P2.lean",
+      "bytes": 1652,
+      "sha256": "3a8ccb47fcb9b51cd17f16c261bf13b2c99d5bccaa0963a0c9764f5a27885615",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/UK2024R1P2.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Compfiles/UK2024R1P2.lean",
+      "lines": [
+        28,
+        45
+      ],
+      "role": "parent",
+      "name": "uk2024_r1_p2",
+      "excerpt_sha256": "f5ac9c3696ca168ac7d79af9825dd49b32e2d2f694d5e69de17ccb86e0ad5942",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/UK2024R1P2.lean#L28-L45"
+    }
+  ],
+  "parent": {
+    "name": "uk2024_r1_p2",
+    "statement": "problem uk2024_r1_p2 (a : ℕ → ℤ)\n    (ha : ∀ i ≥ 2, a i = 2 * a (i - 1) - a (i - 2) ∨ a i = 2 * a (i - 2) - a (i - 1))\n    (ha' : |a 2023 - a 2024| = 1) :\n    |a 0 - a 1| = 1"
+  },
+  "children": [
+    {
+      "name": "self (k = 2023)",
+      "statement": "|a 2023 - a 2024| = 1, the top case of the decreasing induction",
+      "closed_by": "exact ha'"
+    },
+    {
+      "name": "of_succ forward branch (a (i+2) = 2 * a (i+1) - a i)",
+      "statement": "goal |a i - a (i+1)| = 1 after rw [ha] at hP with the forward recurrence",
+      "closed_by": "rwa [two_mul, ← sub_add, sub_add_cancel_right, neg_add_eq_sub] at hP"
+    },
+    {
+      "name": "of_succ backward branch (a (i+2) = 2 * a i - a (i+1))",
+      "statement": "hP becomes 2 * |a (i+1) - a i| = 1, which is contradictory",
+      "closed_by": "rw [← sub_add, sub_add_eq_add_sub, ← two_mul, ← mul_sub_left_distrib, abs_mul, Int.mul_eq_one_iff_eq_one_or_neg_one] at hP; obtain hP | hP := hP <;> replace hP := hP.1 <;> norm_num at hP"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "P 0 where P k := |a k - a (k+1)| = 1 (a relation between consecutive terms of a sequence a : ℕ → ℤ), with a hypothesis already giving P 2023 and a two-term recurrence relating a (i+2) to a i and a (i+1)",
+    "use_when": "the relation P propagates downward through the recurrence in one direction and forces a contradiction in the other, so a decreasing induction from a known-high index reaches the low one; state the strengthened invariant ∀ k ≤ N, P k as a suffices and instantiate it at the target index",
+    "avoid_when": "the recurrence's 'wrong' branch is not contradictory (then the step needs a genuine argument, not this split); the hypothesis is not exactly the top case of the induction; or the strengthened invariant is false or too weak to propagate"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent closes from the strengthened goal H by a decreasing induction whose self case is exact ha' and whose of_succ case closes both branches, so H 0 (Nat.zero_le _) yields |a 0 - a 1| = 1 (lines 32-45).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/UK2024R1P2.lean#L32-L45; the file is built by `lake build` in https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/.github/workflows/push-main.yaml on pushes to main"
+    },
+    {
+      "n": 2,
+      "claim": "The of_succ step splits the recurrence with obtain ha | ha <;> rw [ha] at hP (line 39); the forward branch closes by the single rewrite chain rwa [...] at hP (line 40), and the backward branch closes by contradiction through Int.mul_eq_one_iff_eq_one_or_neg_one then norm_num (lines 43-45).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/UK2024R1P2.lean#L39-L45"
+    },
+    {
+      "n": 3,
+      "claim": "The author records why the backward branch is impossible: 'This branch is invalid because the difference between the terms we know are consecutive is both 1 and a multiple of 2, which is a contradiction' (lines 41-42).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/UK2024R1P2.lean#L41-L42"
+    },
+    {
+      "n": 4,
+      "claim": "The whole parent proof occupies 14 lines (32-45) and states no auxiliary lemma: the only local statement is the suffices goal H, proved in place by the induction.",
+      "evidence_kind": "measurement",
+      "evidence": "line count of the parent excerpt https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/UK2024R1P2.lean#L32-L45 (14 lines); the only local declaration in the excerpt is the suffices goal H"
+    }
+  ],
+  "metrics": {
+    "parent_proof_lines": 14,
+    "children": 3,
+    "auxiliary_lemmas_stated": 0,
+    "how_counted": "lines 32-45 of the copied file; children = the self base case plus the two branches of the obtain ha | ha case split"
+  },
+  "consequences": "The suffices creates a stronger obligation ∀ k ≤ 2023, ... that must be discharged at k = 0 (done by H 0 (Nat.zero_le _)). Decreasing induction on the bound splits into a top case, which must coincide with the hypothesis, and a step from i + 1 to i. The step splits the recurrence disjunctively; one branch must reduce the induction hypothesis to the goal, the other must be contradictory (here via Int.mul_eq_one_iff_eq_one_or_neg_one plus norm_num). Failure modes: if the 'wrong' recurrence branch is not contradictory, or the strengthened invariant does not propagate downward, the of_succ case does not close; if the bound 2023 is wrong, the self case no longer matches ha'.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "235f31591177dc42b5c3d2cb85e418db54eefca0ea22a47814eb0a96960fd480",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T11:44:51Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,metrics,consequences,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T11:51:53Z"
+}

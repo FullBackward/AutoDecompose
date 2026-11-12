@@ -106,7 +106,13 @@ needs its own normalisation and the shared step breaks.
 ## Verification
 
 <!-- verification:start -->
-Not yet verified.
+Status: **draft**
+
+| Check | Result | Evidence | By | Date |
+|---|---|---|---|---|
+| fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| provenance | pass | 1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8 | check_provenance.py | 2026-11-12 |
+| sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 <!-- verification:end -->
 
 ## Source and licence

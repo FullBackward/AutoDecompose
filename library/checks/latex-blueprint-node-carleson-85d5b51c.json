@@ -1,0 +1,109 @@
+{
+  "entry": "latex-blueprint-node-carleson-85d5b51c",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:31:09Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push.yml build_project job runs leanprover/lean-action with build:true, build-args 'Carleson Challenge Solution' on push to master; commit d75f54374f7f930e70a86b443f20d0e0935c275e is HEAD of default branch master (api default_branch=master)",
+      "by": "verifier",
+      "at": "2026-11-12T12:32:46Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "main.tex L446=\\leanok, L447=\\lean{finitary_carleson}, L448=\\uses{discrete-Carleson, grid-existence, tile-structure, tile-sum-operator} (4 upstream nodes), proof at L1303-1320; verified against local byte-identical copy",
+      "by": "verifier",
+      "at": "2026-11-12T12:32:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "main.tex L1307 'We now estimate with \\Cref{tile-sum-operator} and \\Cref{discrete-Carleson}', L1318-1319 'This proves ... and thus completes the proof of Proposition finitary-Carleson'; no new node introduced",
+      "by": "verifier",
+      "at": "2026-11-12T12:32:50Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "main.tex discrete-Carleson L552-556 (\\label{discrete-Carleson}+\\lean{discrete_carleson}), grid-existence L1239-1243 (\\label{grid-existence}+\\lean{grid_existence}), tile-structure L1252-1256 (\\label{tile-structure}+\\lean{tile_existence}), tile-sum-operator L1266-1269 (\\label{tile-sum-operator}+\\lean{tile_sum_operator, integrable_tile_sum_operator})",
+      "by": "verifier",
+      "at": "2026-11-12T12:32:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "main.tex L448 \\uses{} list has 4 comma-separated labels; statement L444-458 = 15 lines (444..458 inclusive); proof L1303-1320 = 18 lines (1303..1320 inclusive)",
+      "by": "verifier",
+      "at": "2026-11-12T12:32:53Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "main.tex linearized-truncation lemma L1179-1196, L1183 \\uses{finitary-Carleson}; proof L1198-1222 with L1200 'Applying \\Cref{finitary-Carleson} recursively'",
+      "by": "verifier",
+      "at": "2026-11-12T12:32:54Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent finitary-Carleson (main.tex L444-458) matches the entry: \\label/\\leanok/\\lean{finitary_carleson} and \\uses{discrete-Carleson, grid-existence, tile-structure, tile-sum-operator}. Proof (L1303-1320) cites tile-sum-operator and discrete-Carleson and closes the proposition. All four children match their closing in code: grid_existence X (FinitaryCarleson.lean L114), tile_existence X (L115), rcases discrete_carleson X with G' (L117), tile_sum_operator hx (L120); setup L1261-1264 confirms the same order. Lean theorem finitary_carleson closes (existential G' + three conjuncts, no sorry).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:33:58Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generically: goal_shape/use_when/avoid_when name the blueprint-node discipline (freeze statement+Lean name+\\leanok before proof, declare deps in one \\uses{} line, close by citation) with no Carleson-specific math. When-not-to-use and consequences are honest and specific: new construction belongs as its own node; don't fix the name while the statement may change; mismatched citation hypotheses leave silent gaps because \\leanok is build-verified not LaTeX-enforced; proof split across LaTeX+Lean must stay in correspondence. Checked against local code/ (main.tex L444-458, L1261-1269, L1303-1320; FinitaryCarleson.lean L114-124).",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:35:03Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:35:25Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes (2 files byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e); commit hash identical across entry.json source.commit, sources/carleson/source.json, sources/carleson/SOURCE.md and every permalink; licence Apache-2.0 recorded consistently in entry.json, source.json, SOURCE.md and matches sources/carleson/upstream-LICENSE (Apache 2.0 text); README Source-and-licence note names the same commit/licence and matches the copied code/ files; validate_entry --strict passes (excerpt hashes and permalink line anchors consistent). Everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:36:23Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    }
+  ]
+}

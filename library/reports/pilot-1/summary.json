@@ -1,0 +1,471 @@
+{
+  "run": "pilot-1",
+  "date": "2026-11-12",
+  "started": "2026-11-12T10:54:18Z",
+  "screening": {
+    "compfiles": "include",
+    "mathlib4": "include",
+    "axiom-imo2026": "include",
+    "numina-putnam2025": "include",
+    "seed-prover": "include",
+    "harmonic-imo2025": "include",
+    "pfr": "include",
+    "carleson": "include",
+    "sphere-packing": "include",
+    "flt-imperial": "include",
+    "flt-anthropic": "include",
+    "equational-theories": "include",
+    "lean4-skills": "include",
+    "trailofbits-skills": "include",
+    "leanprover-skills": "include"
+  },
+  "sites_found": 90,
+  "sites_chosen": 30,
+  "entries": [
+    {
+      "site": "compfiles:Compfiles/UK2024R1P2.lean:32",
+      "id": "lean-induction-compfiles-235f3159",
+      "status": "accepted"
+    },
+    {
+      "site": "compfiles:Compfiles/Usa1973P4.lean:39",
+      "id": "lean-key-invariant-compfiles-f9a0ece2",
+      "status": "accepted"
+    },
+    {
+      "site": "compfiles:Compfiles/Egmo2023P1.lean:35",
+      "id": "lean-calc-chain-compfiles-5cbadaea",
+      "status": "verified"
+    },
+    {
+      "site": "compfiles:Compfiles/Usa1978P1.lean:41",
+      "id": "lean-witness-compfiles-b724f0b7",
+      "status": "accepted"
+    },
+    {
+      "site": "compfiles:Compfiles/Imo1964P1.lean:32",
+      "id": "lean-iff-split-compfiles-9264faf4",
+      "status": "accepted"
+    },
+    {
+      "site": "compfiles:Compfiles/Imo2024P2.lean:55",
+      "id": "lean-generalise-then-instantiate-compfiles-f96a55bd",
+      "status": "accepted"
+    },
+    {
+      "site": "mathlib4:Archive/Imo/Imo1961Q3.lean:51",
+      "id": "lean-case-split-mathlib4-c53126e3",
+      "status": "verified"
+    },
+    {
+      "site": "axiom-imo2026:IMO2026/Q1/solution.lean:329",
+      "id": "lean-extensionality-axiom-imo2026-729383a9",
+      "status": "draft"
+    },
+    {
+      "site": "numina-putnam2025:NuminaPutnam2025/putnam_2025_a6.lean:1017",
+      "id": "lean-suffices-or-strengthen-numina-putnam2025-687e778f",
+      "status": "accepted"
+    },
+    {
+      "site": "harmonic-imo2025:HarmonicLean/IMO2025P4_solve2.lean:74",
+      "id": "lean-interface-lemma-harmonic-imo2025-8920cc7b",
+      "status": "accepted"
+    },
+    {
+      "site": "pfr:blueprint/src/chapter/pfr.tex:14",
+      "id": "latex-blueprint-node-pfr-b4120b97",
+      "status": "verified"
+    },
+    {
+      "site": "flt-anthropic:Theorems/Thm_fermatLastTheoremFive.lean:1",
+      "id": "lean-statement-object-flt-anthropic-b51da0fb",
+      "status": "draft"
+    },
+    {
+      "site": "lean4-skills:plugins/lean4/skills/lean4/references/proof-refactoring.md:306",
+      "id": "markdown-extract-have-lean4-skills-b59b032f",
+      "status": "draft"
+    },
+    {
+      "site": "lean4-skills:plugins/lean4/skills/lean4/references/sorry-filling.md:88",
+      "id": "markdown-sorrify-at-failure-lean4-skills-430f389e",
+      "status": "draft"
+    },
+    {
+      "site": "lean4-skills:plugins/lean4/commands/refactor.md:58",
+      "id": "markdown-workflow-lean4-skills-84730478",
+      "status": "draft"
+    },
+    {
+      "site": "leanprover-skills:skills/lean-proof/SKILL.md:29",
+      "id": "markdown-other-leanprover-skills-68f66bfd",
+      "status": "draft"
+    },
+    {
+      "site": "mathlib4:Archive/Imo/Imo1985Q2.lean:48",
+      "id": "lean-induction-mathlib4-7990f97f",
+      "status": "accepted"
+    },
+    {
+      "site": "seed-prover:SeedProver/imo2025/IMO2025/P5.lean:170",
+      "id": "lean-key-invariant-seed-prover-ccd41e1d",
+      "status": "draft"
+    },
+    {
+      "site": "mathlib4:Archive/Imo/Imo1964Q1.lean:28",
+      "id": "lean-calc-chain-mathlib4-9433f97f",
+      "status": "accepted"
+    },
+    {
+      "site": "mathlib4:Archive/Imo/Imo1982Q3.lean:78",
+      "id": "lean-witness-mathlib4-98e915ff",
+      "status": "verified"
+    },
+    {
+      "site": "mathlib4:Archive/Imo/Imo1986Q5.lean:74",
+      "id": "lean-iff-split-mathlib4-56646dd1",
+      "status": "accepted"
+    },
+    {
+      "site": "mathlib4:Archive/Imo/Imo1977Q6.lean:23",
+      "id": "lean-generalise-then-instantiate-mathlib4-57b9f5e4",
+      "status": "accepted"
+    },
+    {
+      "site": "axiom-imo2026:IMO2026/Q4/solution.lean:61",
+      "id": "lean-case-split-axiom-imo2026-1647cf44",
+      "status": "draft"
+    },
+    {
+      "site": "numina-putnam2025:NuminaPutnam2025/putnam_2025_a3.lean:95",
+      "id": "lean-extensionality-numina-putnam2025-88be3839",
+      "status": "accepted"
+    },
+    {
+      "site": "pfr:PFR/Fibring.lean:120",
+      "id": "lean-suffices-or-strengthen-pfr-744a22ce",
+      "status": "accepted"
+    },
+    {
+      "site": "carleson:Carleson/Forest.lean:43",
+      "id": "lean-interface-lemma-carleson-50fa619f",
+      "status": "accepted"
+    },
+    {
+      "site": "carleson:blueprint/src/chapter/main.tex:444",
+      "id": "latex-blueprint-node-carleson-85d5b51c",
+      "status": "accepted"
+    },
+    {
+      "site": "flt-anthropic:Theorems/Thm_IsCyclotomicExtension_Rat_seven_pid.lean:1",
+      "id": "lean-statement-object-flt-anthropic-afa74779",
+      "status": "draft"
+    },
+    {
+      "site": "trailofbits-skills:plugins/writing-lean-proofs/skills/writing-lean-proofs/SKILL.md:158",
+      "id": "markdown-extract-have-trailofbits-skills-9a206aa0",
+      "status": "accepted"
+    },
+    {
+      "site": "leanprover-skills:skills/lean-proof/SKILL.md:46",
+      "id": "markdown-sorrify-at-failure-leanprover-skills-9066c346",
+      "status": "draft"
+    }
+  ],
+  "gold": [
+    {
+      "source_id": "compfiles",
+      "path": "Compfiles/Imo1959P1.lean",
+      "start": 33,
+      "end": 41,
+      "move": "extract-have",
+      "why": "The divisibility computation is a top-level lemma `calculation` (33-41), and `problem imo1959_p1` (50-51) just applies `calculation n k h1 h2`."
+    },
+    {
+      "source_id": "compfiles",
+      "path": "Compfiles/Imo1964P1.lean",
+      "start": 32,
+      "end": 47,
+      "move": "iff-split",
+      "why": "`constructor` (33) splits `n ∈ solution_set ↔ 2^n ≡ 1 [MOD 7]` into both directions; the reverse direction is closed by `mod_cases H : n % 3` (44)."
+    },
+    {
+      "source_id": "compfiles",
+      "path": "Compfiles/Imo1964P1.lean",
+      "start": 75,
+      "end": 79,
+      "move": "induction",
+      "why": "`imo_1964_p1b'` is structural recursion on `n`: base cases `| 0 | 1 | 2 => by decide` and step `| n + 3 =>` using the recursive call (78-79)."
+    },
+    {
+      "source_id": "compfiles",
+      "path": "Compfiles/Imo2000P2.lean",
+      "start": 59,
+      "end": 67,
+      "move": "witness",
+      "why": "`lemma2` introduces x,y,z by `refine ⟨a, 1, (1/b), ...⟩` (63) and then proves positivity and the three product identities."
+    },
+    {
+      "source_id": "compfiles",
+      "path": "Compfiles/Imo2000P2.lean",
+      "start": 29,
+      "end": 53,
+      "move": "suffices-or-strengthen",
+      "why": "Schur's inequality is proved for all nonnegative a,b,c; two `wlog` reductions (32, 35) reduce the general case to the ordered one, a convenient stronger statement proved once."
+    },
+    {
+      "source_id": "compfiles",
+      "path": "Compfiles/Imo2024P2.lean",
+      "start": 55,
+      "end": 94,
+      "move": "interface-lemma",
+      "why": "Inside `namespace Condition` the API for the structure is stated next to it (`a_pos`, `g_spec`, `N_spec`, `gcd_eq_g`, `dvd_g_of_le_N_of_dvd`), so later proofs rewrite with these instead of unfolding `Condition`."
+    },
+    {
+      "source_id": "compfiles",
+      "path": "Compfiles/Usa2003P5.lean",
+      "start": 36,
+      "end": 49,
+      "move": "generalise-then-instantiate",
+      "why": "`bound` is proved once for arbitrary positive a,b,c (36-40) and then instantiated at the three cyclic permutations (47-49)."
+    },
+    {
+      "source_id": "mathlib4",
+      "path": "Mathlib/NumberTheory/FLT/Four.lean",
+      "start": 275,
+      "end": 281,
+      "move": "case-split",
+      "why": "`obtain hdvd | ⟨p, hpprime, hdvd, hpodd⟩ := Nat.four_dvd_or_exists_odd_prime_and_dvd_of_two_lt h` splits the exponent into a multiple of 4 or of an odd prime, each discharged by a known theorem (280-281)."
+    },
+    {
+      "source_id": "mathlib4",
+      "path": "Mathlib/NumberTheory/FLT/Four.lean",
+      "start": 63,
+      "end": 78,
+      "move": "witness",
+      "why": "`exists_minimal` uses `Nat.find` (71) to produce a minimal counterexample triple and then extracts its properties from the nonempty set of counterexamples."
+    },
+    {
+      "source_id": "axiom-imo2026",
+      "path": "IMO2026/Q1/problem.lean",
+      "start": 51,
+      "end": 69,
+      "move": "statement-object",
+      "why": "The problem statements are fixed in `problem.lean` as `:= by sorry` theorems (51-69), while `solution.lean` proves them separately, so each statement is an immutable object."
+    },
+    {
+      "source_id": "axiom-imo2026",
+      "path": "IMO2026/Q1/solution.lean",
+      "start": 86,
+      "end": 111,
+      "move": "key-invariant",
+      "why": "`gExp_move` proves the p-adic exponent `gExp p` is unchanged by any single `Move`; this is the invariant used later in the reachability induction."
+    },
+    {
+      "source_id": "axiom-imo2026",
+      "path": "IMO2026/Q1/solution.lean",
+      "start": 215,
+      "end": 219,
+      "move": "induction",
+      "why": "`induction h with | refl => rfl | tail _ hstep ih => rw [ih, gExp_move hp hstep]` proves the invariant along `Reachable`."
+    },
+    {
+      "source_id": "axiom-imo2026",
+      "path": "IMO2026/Q1/solution.lean",
+      "start": 78,
+      "end": 83,
+      "move": "case-split",
+      "why": "`rcases le_total a b with h | h` splits the gcd identity into the two possible orders, each closed by rewriting `min` and `max`."
+    },
+    {
+      "source_id": "numina-putnam2025",
+      "path": "NuminaPutnam2025/putnam_2025_b1.lean",
+      "start": 163,
+      "end": 202,
+      "move": "witness",
+      "why": "`bad_points_card_le_two` extracts three distinct points p₁,p₂,p₃ from `3 ≤ bad.ncard` and hands them to `circle_at_most_two_opposite_color` via `refine ⟨p₁, p₂, p₃, ...⟩` (196)."
+    },
+    {
+      "source_id": "numina-putnam2025",
+      "path": "NuminaPutnam2025/putnam_2025_b3.lean",
+      "start": 101,
+      "end": 119,
+      "move": "induction",
+      "why": "`induction n using Nat.strong_induction_on` (108) gives `ih : ∀ m < n`; the step is then split by `by_cases hn1` (111) and `by_cases hcop` (114)."
+    },
+    {
+      "source_id": "seed-prover",
+      "path": "SeedProver/imo2025/IMO2025/P1.lean",
+      "start": 2087,
+      "end": 2119,
+      "move": "extract-have",
+      "why": "Every `have` in the inductive step is discharged by a separately declared lemma (`..._h_main_1`, `..._h_card_erase_1`, `..._h_sum_card_1`, `..._h_translation_equivalence_1`), so the extracted lemma carries the whole local context."
+    },
+    {
+      "source_id": "seed-prover",
+      "path": "SeedProver/imo2025/IMO2025/P1.lean",
+      "start": 1571,
+      "end": 1613,
+      "move": "per-callee-lemma",
+      "why": "A family of near-identical lemmas `..._h_sum_card_h1` to `_h4`, one per micro-step (nonempty, erase card, arithmetic, combination), each with the same binder block and chained by `..._h_sum_card`."
+    },
+    {
+      "source_id": "pfr",
+      "path": "blueprint/src/chapter/pfr.tex",
+      "start": 14,
+      "end": 47,
+      "move": "blueprint-node",
+      "why": "`pfr_aux` is a blueprint node with `\\lean{PFR_conjecture_aux}` (15) and a `\\uses{...}` list of eight dependencies (25), and the main `pfr` theorem cites it at 56."
+    },
+    {
+      "source_id": "sphere-packing",
+      "path": "blueprint/src/subsections/main-result.tex",
+      "start": 5,
+      "end": 11,
+      "move": "blueprint-node",
+      "why": "`theorem:CE_Main` is a node whose `\\uses{...}` lists six earlier nodes (`E8-Lattice`, `SpherePackingConstant`, `SpherePacking.density`, `E8Packing-density`, `thm:g`, `thm:Cohn-Elkies-general`)."
+    },
+    {
+      "source_id": "flt-imperial",
+      "path": "blueprint/src/chapter/ch02reductions.tex",
+      "start": 49,
+      "end": 53,
+      "move": "blueprint-node",
+      "why": "Corollary `FermatLastTheorem.of_p_ge_5` carries `\\lean{...}` and `\\uses{fermatLastTheoremThree, FermatLastTheorem.of_odd_primes}`, a node in the reduction dependency graph."
+    },
+    {
+      "source_id": "carleson",
+      "path": "Carleson/MetricCarleson/Main.lean",
+      "start": 204,
+      "end": 242,
+      "move": "calc-chain",
+      "why": "`metric_carleson` is a four-step `calc` (212-242): biSup reformulation, enumeration, argmax simple function, and finally `linearized_metric_carleson`."
+    },
+    {
+      "source_id": "carleson",
+      "path": "Carleson/Discrete/MainTheorem.lean",
+      "start": 44,
+      "end": 68,
+      "move": "witness",
+      "why": "`discrete_carleson` proves `∃ G'` by `use G'` from `exceptional_set` (49-51), then splits the integral over `G \\ G'` into `forest_union` and `forest_complement`."
+    },
+    {
+      "source_id": "flt-anthropic",
+      "path": "Theorems/Thm_fermat_last_theorem.lean",
+      "start": 128,
+      "end": 129,
+      "move": "statement-object",
+      "why": "One theorem per file: this file only states `fermat_last_theorem` and applies `P2MW.S_fermat_last_theorem.solution`, so the import graph is the citation graph."
+    },
+    {
+      "source_id": "harmonic-imo2025",
+      "path": "HarmonicLean/StatementOnly_IMO2025P1.lean",
+      "start": 40,
+      "end": 48,
+      "move": "statement-object",
+      "why": "`main_theorem` is stated and closed by `sorry` in a `StatementOnly_` file, kept separate from the solution file that proves it."
+    },
+    {
+      "source_id": "equational-theories",
+      "path": "equational_theories/Confluence.lean",
+      "start": 26,
+      "end": 34,
+      "move": "extensionality",
+      "why": "`Everywhere_idem` is an equality of predicates, proved by `ext x` (27) and then both directions (`constructor <;> intro h`)."
+    },
+    {
+      "source_id": "equational-theories",
+      "path": "equational_theories/Confluence.lean",
+      "start": 52,
+      "end": 62,
+      "move": "induction",
+      "why": "`everywhere_of_subterm_of_everywhere` inducts on the free magma (54) and, in the fork case, splits `SubtermOf` with `obtain (rfl | hsub | hsub)` (59)."
+    },
+    {
+      "source_id": "leanprover-skills",
+      "path": "skills/lean-proof/SKILL.md",
+      "start": 77,
+      "end": 90,
+      "move": "generalise-then-instantiate",
+      "why": "The skill prescribes 'Generalize First, Instantiate Last': prove `suffices ∀ s, statement_about s` for an arbitrary parameter, then `convert` back to the specific instance."
+    },
+    {
+      "source_id": "trailofbits-skills",
+      "path": "plugins/writing-lean-proofs/skills/writing-lean-proofs/SKILL.md",
+      "start": 158,
+      "end": 193,
+      "move": "extract-have",
+      "why": "The extraction ladder moves a repeated sub-argument from a local `have` (step 1, 168-184) to a standalone lemma once its statement is independently interesting (steps 2-3)."
+    },
+    {
+      "source_id": "lean4-skills",
+      "path": "plugins/lean4/skills/lean4/references/sorry-filling.md",
+      "start": 48,
+      "end": 71,
+      "move": "workflow",
+      "why": "Todo-based workflow for many sorries: enumerate every `sorry` (54-57), fill one at a time without moving on (59-62), and gate each with `lake env lean` (64-68)."
+    },
+    {
+      "source_id": "lean4-skills",
+      "path": "plugins/lean4/skills/lean4/references/sorry-filling.md",
+      "start": 242,
+      "end": 255,
+      "move": "sorrify-at-failure",
+      "why": "When candidates fail, the escalation is to replace the stuck goal with smaller sub-sorries ('Break into smaller sub-sorries') and to retain a documented TODO strategy."
+    }
+  ],
+  "gold_recall": "7/30",
+  "gold_missed": [
+    "compfiles:Compfiles/Imo1959P1.lean:33-41 (extract-have)",
+    "compfiles:Compfiles/Imo1964P1.lean:75-79 (induction)",
+    "compfiles:Compfiles/Imo2000P2.lean:59-67 (witness)",
+    "compfiles:Compfiles/Imo2000P2.lean:29-53 (suffices-or-strengthen)",
+    "compfiles:Compfiles/Usa2003P5.lean:36-49 (generalise-then-instantiate)",
+    "mathlib4:Mathlib/NumberTheory/FLT/Four.lean:275-281 (case-split)",
+    "mathlib4:Mathlib/NumberTheory/FLT/Four.lean:63-78 (witness)",
+    "axiom-imo2026:IMO2026/Q1/problem.lean:51-69 (statement-object)",
+    "axiom-imo2026:IMO2026/Q1/solution.lean:86-111 (key-invariant)",
+    "axiom-imo2026:IMO2026/Q1/solution.lean:78-83 (case-split)",
+    "numina-putnam2025:NuminaPutnam2025/putnam_2025_b3.lean:101-119 (induction)",
+    "seed-prover:SeedProver/imo2025/IMO2025/P1.lean:2087-2119 (extract-have)",
+    "seed-prover:SeedProver/imo2025/IMO2025/P1.lean:1571-1613 (per-callee-lemma)",
+    "sphere-packing:blueprint/src/subsections/main-result.tex:5-11 (blueprint-node)",
+    "flt-imperial:blueprint/src/chapter/ch02reductions.tex:49-53 (blueprint-node)",
+    "carleson:Carleson/MetricCarleson/Main.lean:204-242 (calc-chain)",
+    "carleson:Carleson/Discrete/MainTheorem.lean:44-68 (witness)",
+    "flt-anthropic:Theorems/Thm_fermat_last_theorem.lean:128-129 (statement-object)",
+    "harmonic-imo2025:HarmonicLean/StatementOnly_IMO2025P1.lean:40-48 (statement-object)",
+    "equational-theories:equational_theories/Confluence.lean:26-34 (extensionality)",
+    "equational-theories:equational_theories/Confluence.lean:52-62 (induction)",
+    "lean4-skills:plugins/lean4/skills/lean4/references/sorry-filling.md:48-71 (workflow)",
+    "lean4-skills:plugins/lean4/skills/lean4/references/sorry-filling.md:242-255 (sorrify-at-failure)"
+  ],
+  "critic": {
+    "gaps": [
+      "per-callee-lemma: 0 sites, 0 entries anywhere — the only move absent from the whole library; the gold seed-prover per-callee-lemma was also missed.",
+      "4 moves have drafts but no accepted/verified entry: statement-object (2 draft), sorrify-at-failure (2 draft), workflow (1 draft), other (1 draft); extract-have and blueprint-node each have 1 of 2 still draft.",
+      "3 included sources yielded zero entries despite logged sites: sphere-packing (7 sites), flt-imperial (7 sites), equational-theories (8 sites) — sites found but no extraction ever ran.",
+      "45 sources pinned but only 15 screened (30 include decisions); ~30 registered sources never reached screening and are unaccounted for.",
+      "Gold recall 7/30 (23%), below the 0.8 stop threshold in protocol §8; 23 missed — 5 compfiles (extract-have/induction/witness/suffices/generalise), 2 mathlib4 (FLT case-split/witness), 3 axiom-imo2026, 2 carleson, 2 seed-prover, 1 each numina/harmonic/sphere-packing/flt-imperial/flt-anthropic/equational-theories/lean4-skills.",
+      "build=not-run on 8 entries: axiom-imo2026 x2, seed-prover, flt-anthropic x2 (no CI workflow) plus 3 markdown skill entries (no compiled target).",
+      "fidelity and sufficiency checks were never recorded for any of the 32 entries — not even as not-run, which protocol §6 requires when no toolchain is installed.",
+      "4 entries promoted to verified/accepted while a review objection still stands: lean-calc-chain-compfiles-5cbadaea, latex-blueprint-node-pfr-b4120b97, lean-case-split-mathlib4-c53126e3, lean-witness-mathlib4-98e915ff (gate 'no standing objection' violated).",
+      "Coverage matrix in flow.md counts only 'accepted', so verified entries read as empty (case-split shows 0/3 though its mathlib4 entry is verified)."
+    ],
+    "next_batch": [
+      "Extract entries for sphere-packing, flt-imperial and equational-theories directly from the sites already in ledger/sites.jsonl — no re-screening needed.",
+      "Drive site-finding/extraction at the 23 gold_missed locators first, especially the compfiles/mathlib4/axiom-imo2026/carleson moves in sources that already yielded entries.",
+      "Hunt per-callee-lemma explicitly (seed-prover P1 near-identical lemma families, mathlib4 API families) since no candidate exists yet.",
+      "Record fidelity/sufficiency as not-run on every entry, or install a Lean toolchain, so the index honestly shows which checks ran.",
+      "Stop promoting entries with open 'object' reviews: fix and re-review the 4 promoted-with-objection entries, and resolve the 3 draft-objection entries.",
+      "Screen the ~30 registered-but-unscreened sources, or log why each was dropped, to close the discovery-to-screening gap.",
+      "Before any ci-record claim, honor the screening caveats: flt-imperial sorry spine (FLT/Proof.lean) and harmonic-imo2025 module-case mismatch (HarmonicLean.lean).",
+      "Fix build_index to count verified + accepted together in the coverage matrix so promoted entries are not reported as empty cells."
+    ]
+  },
+  "calls": 197,
+  "tokens": 120161892,
+  "cost_cny": 65.17,
+  "finished": "2026-11-12T12:56:32Z"
+}

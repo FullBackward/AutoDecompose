@@ -1,0 +1,154 @@
+{
+  "id": "lean-iff-split-mathlib4-56646dd1",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Iff-split of IMO 1986 Q5: IsGood f iff f = fun x => 2 / (2 - x)",
+  "intent": "Split the characterisation IsGood f ↔ f = fun x ↦ 2 / (2 - x) into its two directions with refine ⟨·, ·⟩. The forward direction is extensionality applied to the already-proved pointwise lemma map_eq; the reverse unfolds the candidate function into the three fields of IsGood with constructor.",
+  "move": "iff-split",
+  "also_known_as": [
+    "constructor on ↔",
+    "bidirectional split",
+    "iffI",
+    "refine ⟨·, ·⟩ split"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "mathlib4",
+    "url": "https://github.com/leanprover-community/mathlib4",
+    "commit": "e1545ebed97594477bbd88b2fe948ffce56e5af2",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Archive/Imo/Imo1986Q5.lean",
+      "bytes": 2996,
+      "sha256": "81a0e1276654da6132d3ea2c197ee1fcff1a74cd3da08cbd34d6cea89dc0dfc0",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1986Q5.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Archive/Imo/Imo1986Q5.lean",
+      "lines": [
+        74,
+        89
+      ],
+      "role": "parent",
+      "name": "isGood_iff",
+      "excerpt_sha256": "0c6c6ebdec6ae467a33dbe7244d912895353fa939de30293d52002e86c84b9ac",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1986Q5.lean#L74-L89"
+    },
+    {
+      "path": "Archive/Imo/Imo1986Q5.lean",
+      "lines": [
+        67,
+        70
+      ],
+      "role": "context",
+      "name": "map_eq",
+      "excerpt_sha256": "5e14e38a42431654777061283a76d9ab598383cf58f9ce0af103363a4b98d417",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1986Q5.lean#L67-L70"
+    },
+    {
+      "path": "Archive/Imo/Imo1986Q5.lean",
+      "lines": [
+        37,
+        40
+      ],
+      "role": "context",
+      "name": "IsGood",
+      "excerpt_sha256": "8163a85d42fa315ad1a9c713e5d5aebb94029e02e9d775d122782630328a1f39",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1986Q5.lean#L37-L40"
+    }
+  ],
+  "parent": {
+    "name": "isGood_iff",
+    "statement": "theorem isGood_iff {f : ℝ≥0 → ℝ≥0} : IsGood f ↔ f = fun x ↦ 2 / (2 - x)"
+  },
+  "children": [
+    {
+      "name": "forward",
+      "statement": "IsGood f → f = fun x ↦ 2 / (2 - x) (left component of refine ⟨·, ·⟩)",
+      "closed_by": "funext hf.map_eq — extensionality applied to the pointwise lemma map_eq (lines 67-70)"
+    },
+    {
+      "name": "reverse",
+      "statement": "f = fun x ↦ 2 / (2 - x) → IsGood f (the ?_ right component of refine)",
+      "closed_by": "rintro rfl; constructor, then one case per field of IsGood: case map_two => simp [tsub_self]; case map_ne_zero => intro x hx; simpa [tsub_eq_zero_iff_le]; case map_add_rev => intro x y; cases lt_or_ge y 2 (inl: rw chain lines 85-86; inr: simp [tsub_eq_zero_of_le, *])"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal of the form P ↔ Q where P is a characterisation predicate and Q an explicit equation. Here IsGood f ↔ f = fun x ↦ 2 / (2 - x), with IsGood a Prop-valued structure (lines 37-40).",
+    "use_when": "the two directions want different tools: one direction is a pointwise equality proved by extensionality of an existing lemma, the other is showing a candidate satisfies each field of a structure, which constructor splits into named cases.",
+    "avoid_when": "one direction is definitional or symmetric; both directions need the same rewriting (a single rw/calc chain proves both); or the predicate side is not a structure, so constructor cannot split it into named fields."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The iff goal is split on line 75 by refine ⟨fun hf ↦ funext hf.map_eq, ?_⟩ into exactly two directions, and both close: the forward by funext hf.map_eq, the reverse by the ?_ hole over lines 76-89.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1986Q5.lean#L74-L89"
+    },
+    {
+      "n": 2,
+      "claim": "In the reverse direction, constructor (line 77) splits IsGood (fun x ↦ 2 / (2 - x)) into the three fields of IsGood (lines 37-40), each discharged as a separate named case: map_two by simp [tsub_self] (line 78), map_ne_zero by intro x hx; simpa [tsub_eq_zero_iff_le] (line 79), map_add_rev by cases lt_or_ge y 2 with both branches closed (lines 80-89).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1986Q5.lean#L76-L89 and https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1986Q5.lean#L37-L40"
+    },
+    {
+      "n": 3,
+      "claim": "The forward direction introduces no new pointwise argument: funext hf.map_eq applies the pointwise lemma map_eq (lines 67-70), so the iff proof reuses the already-proved fact f x = 2 / (2 - x) rather than re-deriving it.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1986Q5.lean#L67-L70 and https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1986Q5.lean#L75"
+    },
+    {
+      "n": 4,
+      "claim": "The module docstring states the plan verbatim: 'We formalize the assumptions on f in Imo1986Q5.IsGood predicate, then prove Imo1986Q5.IsGood f ↔ f = fun x ↦ 2 / (2 - x)' (lines 20-21), and the formal proof follows it.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1986Q5.lean#L20-L21"
+    },
+    {
+      "n": 5,
+      "claim": "The same iff-split by refine ⟨·, ·⟩ is used in the same file at lines 50-53 for f x = 0 ↔ 2 ≤ x, whose forward direction is not_lt.1 fun hlt ↦ hf.map_ne_zero x hlt hx₀ and reverse is closed by rcases exists_add_of_le hle plus a rewrite.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1986Q5.lean#L50-L53"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 16,
+    "children": 2,
+    "forward_lines": 1,
+    "reverse_lines": 14,
+    "structure_fields": 3,
+    "how_counted": "parent = lines 74-89 of the copied file; forward = line 75; reverse = lines 76-89; children = the two goals created by refine ⟨·, ·⟩; structure_fields = fields of the IsGood structure (lines 37-40)"
+  },
+  "consequences": "refine ⟨·, ·⟩ on an iff creates exactly two obligations — the forward and reverse implication — each to be closed on its own. The reverse direction here is not self-contained: constructor further splits it into the three fields of IsGood, so the reverse child is far larger than the forward (14 lines versus 1). Failure mode: the forward direction silently leans on an earlier pointwise lemma (map_eq), so the iff itself looks near-trivial while the real work happened earlier in the file; anyone reproducing the whole argument must also carry the upstream lemmas (map_of_lt_two, map_eq_zero, lines 50-70).",
+  "known_uses": [
+    "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1986Q5.lean#L50-L53"
+  ],
+  "related": [
+    "lean-iff-split-compfiles-9264faf4"
+  ],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "56646dd154d1c0542e285fa045f11a3f169628ed6e2f3085c7a8c75f730c941c",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:17:36Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,known_uses,related,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T12:25:21Z"
+}

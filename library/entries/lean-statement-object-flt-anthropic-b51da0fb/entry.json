@@ -1,0 +1,170 @@
+{
+  "id": "lean-statement-object-flt-anthropic-b51da0fb",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Statement-only FLT node fermatLastTheoremFive, closed by delegating to S_fermatLastTheoremFive.solution",
+  "intent": "The theorem fermatLastTheoremFive : FermatLastTheoremFor 5 is stated in its own file with no proof and closed by delegating to a separate solution module: the statement file imports P2M.Sol.S_fermatLastTheoremFive and its one proof line is p2m_exact_reverting @_root_.P2MW.S_fermatLastTheoremFive.solution, so statement and proof are two immutable files joined only by an import and a type match.",
+  "move": "statement-object",
+  "also_known_as": [
+    "one-theorem-per-file",
+    "statement/proof separation",
+    "Prove2Me statement object"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "flt-anthropic",
+    "url": "https://github.com/anthropics/fermats-last-theorem",
+    "commit": "6e837e75355538c7f80bab5b956861e86c4eacc2",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Theorems/Thm_fermatLastTheoremFive.lean",
+      "bytes": 198,
+      "sha256": "1e118431144c1e975454bbff60377cef697b57cbfbd0b90c7c7e2ed87f9fd16c",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_fermatLastTheoremFive.lean"
+    },
+    {
+      "path": "P2M/Sol/S_fermatLastTheoremFive.lean",
+      "bytes": 82551,
+      "sha256": "bba6572a76520b2373111ee540f33175b064123f1bae98bfc564f11742410213",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_fermatLastTheoremFive.lean"
+    },
+    {
+      "path": "P2M/Util.lean",
+      "bytes": 5737,
+      "sha256": "66f62069b83c0cf97531f88e5bd2c249e471df011ad873b0bd034eb959b1d8da",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Util.lean"
+    },
+    {
+      "path": "PROOF-PATH.md",
+      "bytes": 8666,
+      "sha256": "ada9b1b2f69184b9a9334d51ed9f2e2e241d16df364d9e53df418339748c6705",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/PROOF-PATH.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Theorems/Thm_fermatLastTheoremFive.lean",
+      "lines": [
+        1,
+        5
+      ],
+      "role": "parent",
+      "name": "fermatLastTheoremFive",
+      "excerpt_sha256": "57cc1d65b1f17a525a8849ab6ac9497b4d8b9dbd22d0c505632687e4b2ae9d12",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_fermatLastTheoremFive.lean#L1-L5"
+    },
+    {
+      "path": "P2M/Sol/S_fermatLastTheoremFive.lean",
+      "lines": [
+        1987,
+        1989
+      ],
+      "role": "child",
+      "name": "solution",
+      "excerpt_sha256": "a05a8cb6ac6270e25a03710986fa63735b173e0a36b0693d4095a2309e21824f",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_fermatLastTheoremFive.lean#L1987-L1989"
+    },
+    {
+      "path": "P2M/Util.lean",
+      "lines": [
+        3,
+        16
+      ],
+      "role": "context",
+      "name": "p2m-exact-reverting",
+      "excerpt_sha256": "595f7a2ef76329676dba089fa0b40b30ecc97fd205084e4135db485e5ddbf39b",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Util.lean#L3-L16"
+    },
+    {
+      "path": "PROOF-PATH.md",
+      "lines": [
+        4,
+        5
+      ],
+      "role": "context",
+      "name": "proof-path-convention",
+      "excerpt_sha256": "b00688389a0ecbea2294f7501d2ca74872138f7f0d124717396f446b8c117bde",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/PROOF-PATH.md#L4-L5"
+    }
+  ],
+  "parent": {
+    "name": "fermatLastTheoremFive",
+    "statement": "theorem fermatLastTheoremFive : FermatLastTheoremFor 5 := by p2m_exact_reverting @_root_.P2MW.S_fermatLastTheoremFive.solution"
+  },
+  "children": [
+    {
+      "name": "solution",
+      "statement": "theorem solution : FermatLastTheoremFor 5 := by rw [fermatLastTheoremFor_iff_int]; exact FLT5.flt_five_int",
+      "closed_by": "p2m_exact_reverting @_root_.P2MW.S_fermatLastTheoremFive.solution"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A theorem statement occupying its own file: the file's only content is a handful of imports and one theorem whose proof body is a single term or tactic that pulls a proof in from a separate module (here p2m_exact_reverting <proof-term>).",
+    "use_when": "You want the statement to be an immutable, citable object separate from its proof, so it can be imported and cited by other statements before it is proved and the import graph mirrors the citation graph; the delegated proof's type must equal the statement's type exactly.",
+    "avoid_when": "Statement and proof are best read together; the proof is not a single self-contained term; or the proof is more general or less general than the statement, in which case the type match (p2m_exact_reverting / #p2m_type_eq) fails and the statement must be corrected."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent file Theorems/Thm_fermatLastTheoremFive.lean is five lines — three import lines and one theorem whose whole proof is `p2m_exact_reverting @_root_.P2MW.S_fermatLastTheoremFive.solution` — with no other declaration, lemma or proof in the file.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_fermatLastTheoremFive.lean#L1-L5"
+    },
+    {
+      "n": 2,
+      "claim": "The child `solution` in P2M/Sol/S_fermatLastTheoremFive.lean is `theorem solution : FermatLastTheoremFor 5 := by rw [fermatLastTheoremFor_iff_int]; exact FLT5.flt_five_int`, so its type is exactly the parent's target FermatLastTheoremFor 5 that p2m_exact_reverting needs to close the parent.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_fermatLastTheoremFive.lean#L1987-L1989"
+    },
+    {
+      "n": 3,
+      "claim": "p2m_exact_reverting (P2M/Util.lean) reverts every non-implementation-detail hypothesis, elaborates the given term against the goal type, and throws if metavariables remain, so the parent closes only when the delegated term's type matches the statement.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Util.lean#L3-L16"
+    },
+    {
+      "n": 4,
+      "claim": "The project documents the convention: \"A theorem `X.y` is stated in `Theorems/Thm_X_y.lean` and proved in `P2M/Sol/S_X_y.lean`, whose `import Theorems.Thm_…` lines are exactly the theorems it cites.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/PROOF-PATH.md#L4-L5"
+    },
+    {
+      "n": 5,
+      "claim": "The solution module's imports are seven Mathlib files plus P2M.Util and do not include Theorems.Thm_fermatLastTheoremFive, so the dependency is one-way: the statement file imports the solution, never the reverse.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_fermatLastTheoremFive.lean#L1-L8"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 5,
+    "parent_declarations": 1,
+    "children": 1,
+    "child_proof_lines": 3,
+    "how_counted": "parent_lines = every line of Theorems/Thm_fermatLastTheoremFive.lean (wc -l = 5); parent_declarations = the single theorem in that file; children = the one solution theorem the parent delegates to; child_proof_lines = lines 1987-1989 of P2M/Sol/S_fermatLastTheoremFive.lean"
+  },
+  "consequences": "The statement file has no proof obligations of its own: its one obligation is discharged by the delegated term, and p2m_exact_reverting re-checks that term's type against the statement. Obligations created: (1) the solution module must define a term of exactly the statement's type — a mismatch, or a solution more or less general than the statement, is a hard error (see #p2m_type_eq's P2M_TYPE_MISMATCH / P2M_UNDERGENERAL in P2M/Util.lean); (2) the import must name the right module; (3) statement and solution are tied by the type match, so neither can change without the other. Failure modes: a circular import if the solution ever imports the statement; a statement that silently drifts from the proof it delegates to.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 15,
+    "relation": "supports"
+  },
+  "content_key": "b51da0fb2dffd096fe2c415ff7ed42c296390228a67b7ad9204029392f67066b",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:00:13Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,also_known_as,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:05:00Z"
+    }
+  ]
+}

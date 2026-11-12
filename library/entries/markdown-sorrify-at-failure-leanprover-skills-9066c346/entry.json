@@ -1,0 +1,134 @@
+{
+  "id": "markdown-sorrify-at-failure-leanprover-skills-9066c346",
+  "kind": "skill",
+  "status": "draft",
+  "title": "Sorrify the easy branches and work the hardest case first",
+  "intent": "Order a multi-case proof so that the recognisably hardest branch is attempted first while the easy branches are stubbed with `sorry`, so that if the hard case cannot be proved, the effort already spent on the easy cases is not wasted.",
+  "move": "sorrify-at-failure",
+  "also_known_as": [
+    "hardest-case-first",
+    "risk-first ordering",
+    "fail-fast case ordering",
+    "sorrify the easy branches"
+  ],
+  "language": "markdown",
+  "source": {
+    "source_id": "leanprover-skills",
+    "url": "https://github.com/leanprover/skills",
+    "commit": "7d3da0282e7b724b07620e45cf212f2e05e19334",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "skills/lean-proof/SKILL.md",
+      "bytes": 3053,
+      "sha256": "362c42ddae83b8d52ceaadd6efa32f707a15ebe83e25038fc08d75a329d60a41",
+      "permalink": "https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": "skills/lean-proof/SKILL.md",
+      "lines": [
+        46,
+        48
+      ],
+      "role": "skill-text",
+      "name": "work-hardest-case-first",
+      "excerpt_sha256": "e279e057eef6ff471f969014ec84d9c1e514a7965fbd8a6bcc2528d3f3f2abeb",
+      "permalink": "https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md#L46-L48"
+    },
+    {
+      "path": "skills/lean-proof/SKILL.md",
+      "lines": [
+        50,
+        55
+      ],
+      "role": "skeleton",
+      "name": "match-with-sorries",
+      "excerpt_sha256": "4ada0afc85fc381b895ee1e88fd09d947f9a93754d429c258511606b3b293fd4",
+      "permalink": "https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md#L50-L55"
+    }
+  ],
+  "parent": null,
+  "children": [
+    {
+      "name": "case n = 0",
+      "statement": "| 0 => sorry -- fill in later",
+      "closed_by": "sorry (deferred by the rule; comment '-- fill in later')"
+    },
+    {
+      "name": "case n = 1",
+      "statement": "| 1 => sorry -- fill in later",
+      "closed_by": "sorry (deferred by the rule; comment '-- fill in later')"
+    },
+    {
+      "name": "case n + 2",
+      "statement": "| n + 2 => -- WORK ON THIS FIRST",
+      "closed_by": "left open and worked first (comment '-- WORK ON THIS FIRST'; no sorry)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A Lean goal whose proof proceeds by a `match` or case split with several branches, exactly one of which is recognisably the hard case (typically the recursive/structural case `n + 2` set against easy base cases `0`, `1`).",
+    "use_when": "one branch is clearly harder than the rest and you want to discover as early as possible whether the whole proof is feasible; place `sorry` on the easy branches and prove the hard branch first.",
+    "avoid_when": "all branches are about equally hard, or all easy (the ordering then saves nothing); the 'hard' branch is not in fact the risk, e.g. the easy branches carry the only subtle content; or you already know the proof works and just need every branch filled, since the skill's own Verification rule forbids leaving any `sorry` in a completed proof."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "In the example match, exactly the two base cases carry `sorry` — `| 0 => sorry -- fill in later` (line 52) and `| 1 => sorry -- fill in later` (line 53) — while the recursive case `| n + 2 => -- WORK ON THIS FIRST` (line 54) carries no `sorry`, only the comment `-- WORK ON THIS FIRST`.",
+      "evidence_kind": "check",
+      "evidence": "read of the copied file, https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md#L50-L55"
+    },
+    {
+      "n": 2,
+      "claim": "The skill states the rule and its reason in its own words: 'When a proof has multiple cases, `sorry` the easy cases and work on the hardest one first. If the hard case fails, effort on easy cases is wasted.' (line 48).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md#L46-L48"
+    },
+    {
+      "n": 3,
+      "claim": "Two of the three branches of the example match are sorrified (carry `sorry`) and one is left open; the two sorrified branches are the base cases 0 and 1, and the single open branch is the recursive case n + 2.",
+      "evidence_kind": "measurement",
+      "evidence": "count of `sorry` tokens over lines 50-55 of the copied file: 2 `sorry` across 3 branches (lines 52-53), the third branch (line 54) has none"
+    },
+    {
+      "n": 4,
+      "claim": "The same file's Verification rule bounds the move, requiring the temporary holes to be closed before the proof counts as done: 'Never declare a proof complete while `sorry` placeholders or error diagnostics remain.' (line 93).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover/skills/blob/7d3da0282e7b724b07620e45cf212f2e05e19334/skills/lean-proof/SKILL.md#L91-L93"
+    }
+  ],
+  "metrics": {
+    "branches_total": 3,
+    "branches_sorrified": 2,
+    "branches_left_open": 1,
+    "how_counted": "counted over the example match at lines 51-54 of the copied file: two branches `| 0 => sorry` (52) and `| 1 => sorry` (53) carry `sorry`; the branch `| n + 2` (54) carries no `sorry`, only the comment `-- WORK ON THIS FIRST`"
+  },
+  "consequences": "Leaves `sorry` holes on the easy branches that must be filled later; Lean accepts `sorry` as an axiom, so the theorem type-checks while those branches are open. The `match` must still be exhaustive over `n` (the base cases `0`, `1` plus the recursive case `n + 2` cover all naturals). The move is a scheduling heuristic, not a reduction: it makes no branch smaller, it only front-loads the one most likely to kill the proof. Failure mode: misjudging which branch is hard defers the risky work instead of surfacing it, and the skill's own Verification rule (line 93) forbids leaving the deferred `sorry`s in a completed proof.",
+  "known_uses": [],
+  "related": [
+    "markdown-other-leanprover-skills-68f66bfd",
+    "markdown-sorrify-at-failure-lean4-skills-430f389e"
+  ],
+  "rule": {
+    "f10_rule": 2,
+    "relation": "supports"
+  },
+  "content_key": "9066c346e3a81832a5c5fd5f67daf19b6da31165b34833d43a17048d21c63eab",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:37:53Z"
+    },
+    {
+      "field": "intent,also_known_as,children,applicability,claims,metrics,consequences,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12"
+    }
+  ]
+}

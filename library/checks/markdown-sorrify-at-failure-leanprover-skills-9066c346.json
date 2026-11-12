@@ -1,0 +1,101 @@
+{
+  "entry": "markdown-sorrify-at-failure-leanprover-skills-9066c346",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 7d3da0282e7b724b07620e45cf212f2e05e19334",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:39:09Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "Entry's only copied file is skills/lean-proof/SKILL.md, a markdown skill file. The source leanprover/skills is not a Lean project (no lakefile.lean/lean-toolchain; its .claude/CLAUDE.md states 'There is nothing to build'). CI (.github/workflows/check-validation.yml -> scripts/check-validation) only checks that test results exist and are judged satisfactory/current; it does not compile or build the markdown file.",
+      "by": "verifier",
+      "at": "2026-11-12T12:39:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read copied file code/skills/lean-proof/SKILL.md: line 52 '| 0 => sorry -- fill in later', line 53 '| 1 => sorry -- fill in later', line 54 '| n + 2 => -- WORK ON THIS FIRST' (no sorry). Exactly matches the claim.",
+      "by": "verifier",
+      "at": "2026-11-12T12:39:54Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Copied file line 48 reads verbatim: 'When a proof has multiple cases, sorry the easy cases and work on the hardest one first. If the hard case fails, effort on easy cases is wasted.' Matches the quoted author-statement.",
+      "by": "verifier",
+      "at": "2026-11-12T12:39:56Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Counted sorry tokens over lines 50-55 of the copied file: exactly 2 (line 52 '| 0 => sorry', line 53 '| 1 => sorry') across 3 branches; third branch '| n + 2' (line 54) has none. Base cases 0 and 1 sorrified, recursive n+2 open. Matches.",
+      "by": "verifier",
+      "at": "2026-11-12T12:39:59Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Copied file line 93 reads verbatim: 'Never declare a proof complete while sorry placeholders or error diagnostics remain.' Matches the quoted author-statement.",
+      "by": "verifier",
+      "at": "2026-11-12T12:40:01Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Local copy matches: rule text at line 48, example match lines 50-55 with | 0 => sorry (52), | 1 => sorry (53), | n + 2 => -- WORK ON THIS FIRST (54, no sorry), Verification rule line 93. Children and closing methods (two base cases closed by deferred sorry, recursive case left open) match the code. Entry honestly states nothing closes (scheduling heuristic, deferred sorries must be filled); claims 1-4 all verified against the copied file.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:40:38Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated beyond the example: intent and applicability.goal_shape lift it from the specific match n with 0/1/n+2 to 'a match or case split with several branches, exactly one recognisably the hard case', and also_known_as names the transferable principle (hardest-case-first, risk-first ordering, fail-fast). avoid_when is honest and specific (equally-hard/all-easy branches save nothing; the 'hard' branch may not be the real risk; already-known-proof still must not leave sorry), and consequences are honest (sorries remain as axioms to be filled, match still exhaustive, scheduling heuristic not a reduction, failure mode is misjudging which branch is hard).",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:41:30Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 7d3da0282e7b724b07620e45cf212f2e05e19334",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:41:53Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes (SKILL.md byte-identical at 7d3da0282e7b724b07620e45cf212f2e05e19334); local sha256 362c42dd... matches entry.json; permalinks (files + sites L46-L48, L50-L55) use the pinned commit and match the copied lines; licence Apache-2.0 recorded consistently in entry.json, README, SOURCE.md, source.json and confirmed by upstream LICENSE at the commit; source note consistent.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:42:45Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:05Z"
+    }
+  ]
+}

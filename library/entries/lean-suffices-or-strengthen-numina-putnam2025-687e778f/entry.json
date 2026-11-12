@@ -1,0 +1,138 @@
+{
+  "id": "lean-suffices-or-strengthen-numina-putnam2025-687e778f",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Suffices to a two-claim valuation package for Putnam 2025 A6",
+  "intent": "Reduce the main theorem's single-index valuation goal at k to a stronger package of two claims that hold for every j ≥ 1 (the valuations of b(2^j) and of A b (2^j) - 1), so that the two interdependent claims can be proved once by simultaneous induction and the case k recovered by instantiation and padicValInt.mul.",
+  "move": "suffices-or-strengthen",
+  "also_known_as": [
+    "strengthen the goal",
+    "prove a stronger statement",
+    "suffices",
+    "enough"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "numina-putnam2025",
+    "url": "https://github.com/project-numina/Numina-Putnam2025",
+    "commit": "60d33c8ba19af905bd731e938ebde1c5b8c76519",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a6.lean",
+      "bytes": 69703,
+      "sha256": "e1e5607394345a1f24bdc3e81b67b51ecd1b940a2769538f4fa8dba168b74a19",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a6.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a6.lean",
+      "lines": [
+        974,
+        979
+      ],
+      "role": "parent",
+      "name": "putnam_2025_a6",
+      "excerpt_sha256": "533f2d1b7f2a77e750a8dbaac6bd5dd554502c5f9bd88e9d41365d91921a2010",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a6.lean#L974-L979"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a6.lean",
+      "lines": [
+        1017,
+        1031
+      ],
+      "role": "skeleton",
+      "name": "putnam_2025_a6.suffices",
+      "excerpt_sha256": "ae7437c34c86da6d7cb048a41790ad16436cac5598e0050310e599f683f1973b",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a6.lean#L1017-L1031"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_a6.lean",
+      "lines": [
+        1428,
+        1440
+      ],
+      "role": "child",
+      "name": "putnam_2025_a6.hP",
+      "excerpt_sha256": "df6e73bf9ad6a7e4d6f2bda4e5cf98657696ee1eb804de2bac67474c8096a3ed",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a6.lean#L1428-L1440"
+    }
+  ],
+  "parent": {
+    "name": "putnam_2025_a6",
+    "statement": "theorem putnam_2025_a6 (b : ℕ → ℤ)\n  (hb0 : b 0 = 0)\n  (hb : ∀ n, b (n + 1) = 2 * b n ^ 2 + b n + 1)\n  (k : ℕ)\n  (hk : k ≥ 1):\n  padicValInt 2 (b (2 ^ (k + 1)) - 2 * b (2 ^ k)) = 2 * k + 2"
+  },
+  "children": [
+    {
+      "name": "h (the strengthened valuation package)",
+      "statement": "(∀ j ≥ 1, padicValInt 2 (b (2^j)) = j + 1) ∧ (∀ j ≥ 1, padicValInt 2 (A b (2^j) - 1) = j + 1)",
+      "closed_by": "hP proved by Nat.le_induction (lines 1432-1581) with base cases base_case_b/base_case_A (line 1436) and a succ step carrying both halves of the IH together (obtain ⟨ih_b, ih_A⟩ := ih, line 1439); then constructor with two projections (lines 1583-1585) recovers the two conjuncts of h"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal fixed at a single index k (here padicValInt 2 (b (2^(k+1)) - 2*b(2^k)) = 2*k+2) whose proof needs the same valuation property at every index j ≥ 1.",
+    "use_when": "the natural statement is a universal claim over indices (∀ j ≥ 1) that strengthens the single-index goal, and two such claims are mutually dependent so they must be proved together by one induction.",
+    "avoid_when": "the strengthened statement is false or harder to prove than the original; the reduction from the package back to the goal is not routine (here it still needs the error-term analysis at lines 1033-1426); or the strengthened claim should be a reusable standalone lemma rather than an inline suffices."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "Assuming the package h, the reduction derives hv_prod : padicValInt 2 (b (2^k) * (A b (2^k) - 1)) = 2*k+2 in three lines (1029-1031) by padicValInt.mul and ring, after instantiating the two conjuncts at j := k (lines 1022-1023).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a6.lean#L1018-L1031; the file is built by the project's CI, .github/workflows/lean_action_ci.yml running leanprover/lean-action@v1 (lake build) on push and pull_request"
+    },
+    {
+      "n": 2,
+      "claim": "The package h is closed by simultaneous induction: hP (line 1432) is proved by Nat.le_induction (line 1434) with base cases base_case_b and base_case_A (line 1436), and the closing constructor with two projections (lines 1583-1585) recovers the two conjuncts of h.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a6.lean#L1432-L1440 and #L1583-L1585"
+    },
+    {
+      "n": 3,
+      "claim": "The authors state why the two claims are bundled into one suffices package: 'The key is that these claims are interdependent and must be proven together' (lines 1428-1429).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a6.lean#L1428-L1429"
+    },
+    {
+      "n": 4,
+      "claim": "The suffices step separates a short reduction from a long induction: the reduction from the package to the parent is 14 lines (1018-1031) while the induction that proves the package is 154 lines (1432-1585).",
+      "evidence_kind": "measurement",
+      "evidence": "line spans at https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_a6.lean: reduction L1018-L1031 (14 lines), induction L1432-L1585 (154 lines)"
+    }
+  ],
+  "metrics": {
+    "reduction_lines": 14,
+    "induction_proof_lines": 154,
+    "children": 1,
+    "strengthened_claims": 2,
+    "how_counted": "line spans in the copied file at commit 60d33c8: reduction 1018-1031, induction 1432-1585"
+  },
+  "consequences": "Creates one new obligation (the package h) plus the reduction obligation in the suffices' `by` block (that h implies the parent). The strengthened statement quantifies over all j ≥ 1, so it must hold at every index, not just k; a false strengthened claim makes the whole proof unprovable. The two conjuncts are coupled: each induction step of hP uses both halves of the IH (obtain ⟨ih_b, ih_A⟩ := ih, line 1439), so they cannot be split into two independent inductions. A too-strong suffices is a silent dead-end: it fails only when the package goal is attacked.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "687e778fd0eaed6e12bee5209aabbeb9c63ca1f22e3ef9d803d1081706bd08b0",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-1",
+      "at": "2026-11-12T11:54:56Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T12:06:18Z"
+}

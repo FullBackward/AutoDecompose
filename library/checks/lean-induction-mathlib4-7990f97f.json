@@ -1,0 +1,109 @@
+{
+  "entry": "lean-induction-mathlib4-7990f97f",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:19:09Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build_template.yml builds Archive via 'lake-build-with-retry.sh Archive Counterexamples Wanted' (line 252) and gates on 'lake build --no-build --wfail Archive' (line 297); Archive/Imo/Imo1985Q2.lean is part of the Archive target. Pinned commit e1545ebed97594477bbd88b2fe948ffce56e5af2 is on the default branch master (GitHub compare API e1545ebed...master: behind_by 0, ahead_by 1).",
+      "by": "verifier",
+      "at": "2026-11-12T12:20:48Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Opened copied code/Archive/Imo/Imo1985Q2.lean: line 52 'induction k, hk.1 using Nat.le_induction with'; base closes in one rewrite at line 53 'rw [one_mul, Nat.mod_eq_of_lt hj.2]'; step closes inline lines 54-77; no auxiliary top-level lemma (only inline have b1/nej/b2/q).",
+      "by": "verifier",
+      "at": "2026-11-12T12:20:50Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Opened copied file lines 28-34: 'so it suffices to show that kj mod n ~ (k-1)j mod n for 1 < k < n' and the two cases 'if kj mod n > j' / 'if kj mod n < j'; line 48 doc comment 'For 1 ≤ k < n, k * j % n has the same color as j'.",
+      "by": "verifier",
+      "at": "2026-11-12T12:20:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Opened copied file lines 79-92: C_mul_mod appears only at its definition (line 49) and at line 92 'rw [hvi, C_mul_mod hn hj cpj hC vib]' which closes theorem result; no other use in the file.",
+      "by": "verifier",
+      "at": "2026-11-12T12:20:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Opened copied file lines 66-77: after 'rcases nej.lt_or_gt with h | h' the (k+1)*j % n < j branch spans lines 67-75 (9 lines) and the j < (k+1)*j % n branch spans lines 76-77 (2 lines).",
+      "by": "verifier",
+      "at": "2026-11-12T12:20:53Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:23:02Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent statement matches code lines 49-51 verbatim; base child = line 53 'rw [one_mul, Nat.mod_eq_of_lt hj.2]' matches; step child = lines 54-77 matches (succ k hk1 ih, rw [<- ih <hk1, Nat.lt_of_succ_lt hk.2>, hC.2 _ b1 nej], rcases nej.lt_or_gt). hk.2 in step is k+1 < n (forced by Nat.mod_eq_of_lt hk.2 at line 57 and Nat.eq_zero_of_dvd_of_lt at line 63), confirming the upper bound is generalised as the entry states. No sorry/admit/axiom in the copied file; proof closes and is CI-built (Archive target).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:23:33Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Applicability states a generic goal shape (forall k, k in Set.Ico m n -> P (f k)) and use/avoid conditions parameterised by m and n, so the move is described beyond this example; also_known_as lists synonyms. 'When not to use' is honest and specific: lower bound 0 (plain induction suffices), step needing IH outside [m,n) (carried bound does not reach), and step case analysis dominating the induction (factor into a separate lemma). Consequences accurately describe the mechanism (Nat.le_induction sets base at the lower bound, step stated for k+1, upper bound generalised so the IH applies at <hk1, Nat.lt_of_succ_lt hk.2>) and give honest, specific failure modes (nej fails if j not coprime; the two arithmetic branches need non-uniform rewrite work). No overclaim of reuse: known_uses is only the one file.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:24:28Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:24:47Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit e1545ebed97594477bbd88b2fe948ffce56e5af2 is consistent across entry.json (source.commit, files/sites/claims permalinks, known_uses), README, sources/mathlib4/source.json and SOURCE.md; raw fetch at that commit succeeded and the copied code/Archive/Imo/Imo1985Q2.lean is byte-identical (sha256 7f66b1ae..., 4204 bytes, matches entry.json). Permalink line ranges match the copied file (parent 48-77, Condition 43-46, result 79-92). Licence Apache-2.0 is consistent in entry.json, README, source.json, SOURCE.md, and the file header ('Released under Apache 2.0 license'); sources/mathlib4/upstream-LICENSE holds the Apache-2.0 text. Everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:25:41Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    }
+  ]
+}

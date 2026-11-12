@@ -1,0 +1,157 @@
+{
+  "id": "lean-key-invariant-compfiles-f9a0ece2",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Key invariant: each of x, y, z is 1 for USA 1973 P4",
+  "intent": "Prove the forward direction of USA 1973 P4 — that x + y + z = x^2 + y^2 + z^2 = x^3 + y^3 + z^3 = 3 forces (x, y, z) = (1, 1, 1) — by deriving the two remaining elementary symmetric sums e2 and e3, then packaging the conclusion 'each of x, y, z equals 1' as a single invariant `∀ t, t = x ∨ t = y ∨ t = z → t = 1`, proved once and instantiated three times.",
+  "move": "key-invariant",
+  "also_known_as": [
+    "symmetric invariant",
+    "strengthened hypothesis",
+    "one statement for the whole tuple"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "compfiles",
+    "url": "https://github.com/dwrensha/compfiles",
+    "commit": "1745e6ced3e671bd74417548494b034eb2c87da8",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Compfiles/Usa1973P4.lean",
+      "bytes": 1534,
+      "sha256": "441689b33fbcfe433f105c0dbe9d5e650e6fd084df75a542fc822b8087d2d649",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa1973P4.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Compfiles/Usa1973P4.lean",
+      "lines": [
+        29,
+        49
+      ],
+      "role": "parent",
+      "name": "usa1973_p4",
+      "excerpt_sha256": "c800111df4498e1ae978e26bac758d9a8eb6d6e1d0b3594bca56abc17a62971d",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa1973P4.lean#L29-L49"
+    },
+    {
+      "path": "Compfiles/Usa1973P4.lean",
+      "lines": [
+        34,
+        38
+      ],
+      "role": "context",
+      "name": "e2_e3",
+      "excerpt_sha256": "2f902cc450257600627b17a3d34244fcb80acd000d2b3b24367dd639e4c8a96d",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa1973P4.lean#L34-L38"
+    },
+    {
+      "path": "Compfiles/Usa1973P4.lean",
+      "lines": [
+        39,
+        46
+      ],
+      "role": "child",
+      "name": "key",
+      "excerpt_sha256": "374db609eda1d0953eb7fc9c8d215b5128d287edf1ff04625c50ca94445e2273",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa1973P4.lean#L39-L46"
+    },
+    {
+      "path": "Compfiles/Usa1973P4.lean",
+      "lines": [
+        47,
+        47
+      ],
+      "role": "skeleton",
+      "name": "application",
+      "excerpt_sha256": "2d6668ba1b1e427719aefa943ede43326ac8a853893b338b903904a8536a3fff",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa1973P4.lean#L47-L47"
+    }
+  ],
+  "parent": {
+    "name": "usa1973_p4",
+    "statement": "problem usa1973_p4 (x y z : ℂ) : x + y + z = 3 ∧ x ^ 2 + y ^ 2 + z ^ 2 = 3 ∧ x ^ 3 + y ^ 3 + z ^ 3 = 3 ↔ ⟨x,y,z⟩ ∈ solution_set"
+  },
+  "children": [
+    {
+      "name": "e2",
+      "statement": "x*y + y*z + z*x = 3",
+      "closed_by": "linear_combination (1/2 : ℂ) * ((x+y+z+3) * h1 - h2)"
+    },
+    {
+      "name": "e3",
+      "statement": "x*y*z = 1",
+      "closed_by": "linear_combination (1/3 : ℂ) * (h3 - (x^2+y^2+z^2 - (x*y+y*z+z*x)) * h1 - 3 * h2 + 3 * e2)"
+    },
+    {
+      "name": "key",
+      "statement": "∀ t, t = x ∨ t = y ∨ t = z → t = 1",
+      "closed_by": "rintro t ht; have : (t - 1)^3 = 0 by rcases ht with rfl | rfl | rfl, each case linear_combination t^2 * h1 - t * e2 + e3; exact sub_eq_zero.mp (pow_eq_zero_iff (by norm_num) |>.mp this)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal over a tuple (x, y, z) that must collapse to 'each coordinate equals a fixed value', where the hypotheses fix the elementary symmetric polynomials of the tuple (here the three power sums of degree 1, 2 and 3).",
+    "use_when": "several symmetric variables must each satisfy the same conclusion; state it once as `∀ t, t = x ∨ t = y ∨ t = z → P t`, prove that single statement, then instantiate it at each variable in one closing step.",
+    "avoid_when": "the variables are not interchangeable (different hypotheses per variable), the cases of the invariant need different arguments, or the closing step is not uniform across variables — then a single `∀ t` statement buys nothing."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The invariant `key` is proved by a three-way case split `rcases ht with rfl | rfl | rfl` (line 42), and each of the three cases closes with the identical tactic `linear_combination t^2 * h1 - t * e2 + e3` (lines 43-45).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa1973P4.lean#L42-L45"
+    },
+    {
+      "n": 2,
+      "claim": "The forward direction of the parent is closed by a single `simp` that instantiates the invariant at x, y and z (`key x (by simp)`, `key y (by simp)`, `key z (by simp)`, line 47), with no further case analysis.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa1973P4.lean#L47"
+    },
+    {
+      "n": 3,
+      "claim": "The invariant `key` is instantiated exactly three times in the closing step, once per variable x, y, z.",
+      "evidence_kind": "measurement",
+      "evidence": "count of the three subterms `key x`, `key y`, `key z` on line 47 of the copied file Compfiles/Usa1973P4.lean (permalink above); total 3."
+    },
+    {
+      "n": 4,
+      "claim": "The problem statement treats x, y and z symmetrically: 'Find all complex numbers x, y, z which satisfy x + y + z = x² + y² + z² = x³ + y³ + z³ = 3.' This symmetry is what lets the three identical conclusions be packaged into one `∀ t` invariant.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Usa1973P4.lean#L21-L22"
+    }
+  ],
+  "metrics": {
+    "parent_proof_lines": 21,
+    "children": 3,
+    "invariant_instantiations": 3,
+    "how_counted": "parent_proof_lines = lines 29-49 of the copied file; children = the three `have` obligations e2, e3, key; invariant_instantiations = the subterms `key x`, `key y`, `key z` on line 47."
+  },
+  "consequences": "The move obliges the proof to first derive the other two elementary symmetric sums (e2 = x*y + y*z + z*x, e3 = x*y*z) from the given power sums, and the invariant's own proof needs a case split over the disjunction `t = x ∨ t = y ∨ t = z`. The invariant must be stated over a free `t`, and the per-case `linear_combination` must be a single identical expression; if one variable enters the symmetric relations in a different form, the shared tactic breaks and the invariant has to be split again.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 11,
+    "relation": "supports"
+  },
+  "content_key": "f9a0ece2eeb3d709f4524832a074f45155dbf94ad8c1524332e0b7ae36884b5e",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T11:45:06Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,also_known_as,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12T11:50:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T11:52:06Z"
+}

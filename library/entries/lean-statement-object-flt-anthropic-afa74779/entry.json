@@ -1,0 +1,155 @@
+{
+  "id": "lean-statement-object-flt-anthropic-afa74779",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Statement-object: IsCyclotomicExtension.Rat.seven_pid stated in its own file, proved in a solution module",
+  "intent": "The theorem IsCyclotomicExtension.Rat.seven_pid — the ring of integers of a cyclotomic field with conductor 7 is a principal ideal ring — is stated in its own six-line file with no proof and closed by delegating to a separate solution module: the statement file imports P2M.Sol.S_IsCyclotomicExtension_Rat_seven_pid and its single proof line is p2m_exact_reverting @_root_.P2MW.S_IsCyclotomicExtension_Rat_seven_pid.solution, so statement and proof are two immutable files joined only by an import and a type match.",
+  "move": "statement-object",
+  "also_known_as": [
+    "one-theorem-per-file",
+    "statement/proof separation",
+    "Prove2Me statement object"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "flt-anthropic",
+    "url": "https://github.com/anthropics/fermats-last-theorem",
+    "commit": "6e837e75355538c7f80bab5b956861e86c4eacc2",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Theorems/Thm_IsCyclotomicExtension_Rat_seven_pid.lean",
+      "bytes": 343,
+      "sha256": "9cc76a669b5ce6d87befacf5fff8a3a326c49a718142c143d06683eb185f29a9",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_IsCyclotomicExtension_Rat_seven_pid.lean"
+    },
+    {
+      "path": "P2M/Sol/S_IsCyclotomicExtension_Rat_seven_pid.lean",
+      "bytes": 3446,
+      "sha256": "c1874a40bb1d04191330b2a842218c7dafb312a68c8d38acd0da0adc09e4e14b",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_IsCyclotomicExtension_Rat_seven_pid.lean"
+    },
+    {
+      "path": "P2M/Util.lean",
+      "bytes": 5737,
+      "sha256": "66f62069b83c0cf97531f88e5bd2c249e471df011ad873b0bd034eb959b1d8da",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Util.lean"
+    },
+    {
+      "path": "PROOF-PATH.md",
+      "bytes": 8666,
+      "sha256": "ada9b1b2f69184b9a9334d51ed9f2e2e241d16df364d9e53df418339748c6705",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/PROOF-PATH.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Theorems/Thm_IsCyclotomicExtension_Rat_seven_pid.lean",
+      "lines": [
+        1,
+        6
+      ],
+      "role": "parent",
+      "name": "IsCyclotomicExtension.Rat.seven_pid",
+      "excerpt_sha256": "0ae05586f3f8150af1a00c3cfaea7854a7c04e255ef1ee8f50f9920b7b63b75d",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_IsCyclotomicExtension_Rat_seven_pid.lean#L1-L6"
+    },
+    {
+      "path": "P2M/Sol/S_IsCyclotomicExtension_Rat_seven_pid.lean",
+      "lines": [
+        81,
+        84
+      ],
+      "role": "child",
+      "name": "solution",
+      "excerpt_sha256": "7603d9b739af7c261bd9ca8bcbea4caab028503c93bf8c58c6e9cc4113a42de4",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_IsCyclotomicExtension_Rat_seven_pid.lean#L81-L84"
+    },
+    {
+      "path": "P2M/Util.lean",
+      "lines": [
+        3,
+        16
+      ],
+      "role": "context",
+      "name": "p2m_exact_reverting",
+      "excerpt_sha256": "595f7a2ef76329676dba089fa0b40b30ecc97fd205084e4135db485e5ddbf39b",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Util.lean#L3-L16"
+    }
+  ],
+  "parent": {
+    "name": "IsCyclotomicExtension.Rat.seven_pid",
+    "statement": "theorem IsCyclotomicExtension.Rat.seven_pid (K : Type*) [Field K] [NumberField K] [IsCyclotomicExtension {7} ℚ K] : IsPrincipalIdealRing (𝓞 K) := by p2m_exact_reverting @_root_.P2MW.S_IsCyclotomicExtension_Rat_seven_pid.solution"
+  },
+  "children": [
+    {
+      "name": "solution",
+      "statement": "theorem solution (K : Type*) [Field K] [NumberField K] [IsCyclotomicExtension {7} ℚ K] : IsPrincipalIdealRing (𝓞 K) := SevenPidPort.seven_pid K",
+      "closed_by": "SevenPidPort.seven_pid K"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A theorem statement occupying its own file: the file's only content is a handful of imports and one theorem whose proof body is a single term or tactic that pulls a proof in from a separate module (here p2m_exact_reverting <proof-term>).",
+    "use_when": "You want the statement to be an immutable, citable object separate from its proof, so it can be imported and cited before it is proved and the import graph mirrors the citation graph; the delegated proof's type must equal the statement's type exactly.",
+    "avoid_when": "Statement and proof are best read together; the proof is not a single self-contained term; or the proof is more general or less general than the statement, in which case the type match (p2m_exact_reverting / #p2m_type_eq) fails and the statement must be corrected."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent file Theorems/Thm_IsCyclotomicExtension_Rat_seven_pid.lean is six lines — three import lines, one `open scoped`, and one theorem whose whole proof is `p2m_exact_reverting @_root_.P2MW.S_IsCyclotomicExtension_Rat_seven_pid.solution` — with no other declaration, lemma or proof in the file.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_IsCyclotomicExtension_Rat_seven_pid.lean#L1-L6"
+    },
+    {
+      "n": 2,
+      "claim": "The statement file imports its own solution module (`import P2M.Sol.S_IsCyclotomicExtension_Rat_seven_pid`, line 3), so the statement and its proof are two files joined by an import, and the solution module's own imports are five Mathlib files plus P2M.Util and do not include Theorems.Thm_IsCyclotomicExtension_Rat_seven_pid, so the dependency is one-way.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_IsCyclotomicExtension_Rat_seven_pid.lean#L1-L6 and https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_IsCyclotomicExtension_Rat_seven_pid.lean#L1-L6"
+    },
+    {
+      "n": 3,
+      "claim": "p2m_exact_reverting (P2M/Util.lean lines 3-16) reverts every non-implementation-detail hypothesis, elaborates the given term against the goal type, and throws if metavariables remain, so the parent closes only when the delegated term's type matches the statement; the child `solution` has exactly the statement's type (lines 81-84).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Util.lean#L3-L16 and https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_IsCyclotomicExtension_Rat_seven_pid.lean#L81-L84"
+    },
+    {
+      "n": 4,
+      "claim": "The project documents the convention: \"A theorem `X.y` is stated in `Theorems/Thm_X_y.lean` and proved in `P2M/Sol/S_X_y.lean`, whose `import Theorems.Thm_…` lines are exactly the theorems it cites.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/PROOF-PATH.md#L4-L5"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 6,
+    "parent_declarations": 1,
+    "children": 1,
+    "child_proof_lines": 4,
+    "how_counted": "parent_lines = every line of Theorems/Thm_IsCyclotomicExtension_Rat_seven_pid.lean (6 lines, copied whole); parent_declarations = the single theorem in that file; children = the one solution theorem the parent delegates to; child_proof_lines = lines 81-84 of P2M/Sol/S_IsCyclotomicExtension_Rat_seven_pid.lean"
+  },
+  "consequences": "The statement file has no proof obligations of its own: its one obligation is discharged by the delegated term, and p2m_exact_reverting re-checks that term's type against the statement. Obligations created: (1) the solution module must define a term of exactly the statement's type — a mismatch, or a solution more or less general than the statement, is a hard error (see #p2m_type_eq's P2M_TYPE_MISMATCH / P2M_UNDERGENERAL in P2M/Util.lean); (2) the import must name the right module; (3) statement and solution are tied by the type match, so neither can change without the other. Failure modes: a circular import if the solution ever imports the statement; a statement that silently drifts from the proof it delegates to.",
+  "known_uses": [],
+  "related": [
+    "lean-statement-object-flt-anthropic-b51da0fb"
+  ],
+  "rule": {
+    "f10_rule": 15,
+    "relation": "supports"
+  },
+  "content_key": "afa7477951e3700974e8adb4dcfb57b82c5c2b7232193df92a63a516757bf280",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:32:37Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,also_known_as,related,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:34:28Z"
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "id": "lean-induction-mathlib4-7990f97f",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Lower-bound induction on k for IMO 1985 Q2",
+  "intent": "Prove that every number k * j % n (for 1 ≤ k < n) has the same color as j by induction on k over the lower bound 1 ≤ k, so that the base is k = 1 and the step inherits the strengthened bound 1 ≤ k < n needed to apply the induction hypothesis.",
+  "move": "induction",
+  "also_known_as": [
+    "lower-bound induction",
+    "induction from below",
+    "Nat.le_induction",
+    "leRecOn"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "mathlib4",
+    "url": "https://github.com/leanprover-community/mathlib4",
+    "commit": "e1545ebed97594477bbd88b2fe948ffce56e5af2",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Archive/Imo/Imo1985Q2.lean",
+      "bytes": 4204,
+      "sha256": "7f66b1aefb85e4d7d47ca78bec99fa9b8aaa021217f54c5e4596186643f6fc62",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1985Q2.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Archive/Imo/Imo1985Q2.lean",
+      "lines": [
+        48,
+        77
+      ],
+      "role": "parent",
+      "name": "C_mul_mod",
+      "excerpt_sha256": "ca217600a8464a51384b615494f59c3f4392912d2d2a228d404ab3bf31be4b8e",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1985Q2.lean#L48-L77"
+    },
+    {
+      "path": "Archive/Imo/Imo1985Q2.lean",
+      "lines": [
+        43,
+        46
+      ],
+      "role": "context",
+      "name": "Condition",
+      "excerpt_sha256": "7691fcf86db590b180ed5de2d228e7ffc4dceeb7283f2d46e7996ea4a64526bc",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1985Q2.lean#L43-L46"
+    },
+    {
+      "path": "Archive/Imo/Imo1985Q2.lean",
+      "lines": [
+        79,
+        92
+      ],
+      "role": "context",
+      "name": "result",
+      "excerpt_sha256": "cb9e94cd755c9419a4a838ac9bfe05a8665b6cd159c925cca0ca60980e9cdcfb",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1985Q2.lean#L79-L92"
+    }
+  ],
+  "parent": {
+    "name": "C_mul_mod",
+    "statement": "lemma C_mul_mod {n j : ℕ} (hn : 3 ≤ n) (hj : j ∈ Set.Ico 1 n) (cpj : Nat.Coprime n j)\n    {C : ℕ → Fin 2} (hC : Condition n j C) {k : ℕ} (hk : k ∈ Set.Ico 1 n) :\n    C (k * j % n) = C j := by"
+  },
+  "children": [
+    {
+      "name": "base (k = 1)",
+      "statement": "C (1 * j % n) = C j",
+      "closed_by": "rw [one_mul, Nat.mod_eq_of_lt hj.2]"
+    },
+    {
+      "name": "step (k → k + 1)",
+      "statement": "C ((k + 1) * j % n) = C j with hk₁ : 1 ≤ k and hk.2 : k + 1 < n",
+      "closed_by": "rw [← ih ⟨hk₁, Nat.lt_of_succ_lt hk.2⟩, hC.2 _ b₁ nej]; rcases nej.lt_or_gt with h | h; the two branches close by rewrite chains reducing |j − (k+1)*j % n| to k*j % n"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "∀ k, k ∈ Set.Ico m n → P (f k), a statement about f k to be proved for k in a half-open interval [m, n) with nonzero lower bound m (here m = 1, f k = k * j % n)",
+    "use_when": "the induction variable has a nonzero lower bound and the step must apply the induction hypothesis at the previous value k, which still satisfies m ≤ k < n; Nat.le_induction sets the base at the lower bound and carries the bound m ≤ k into the step",
+    "avoid_when": "the lower bound is 0 (plain induction k suffices); the step needs the IH at an index outside [m, n) so the strengthened bound does not reach; or the step's own case analysis dominates the induction, in which case it should be factored into a separate lemma"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "C_mul_mod is proved entirely by induction on the lower bound (induction k, hk.1 using Nat.le_induction): the base goal closes in one rewrite (line 53) and the step goal closes inline (lines 54-77), with no auxiliary lemma stated.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1985Q2.lean#L48-L77; the file is built by mathlib4 CI (build_template.yml line 252 runs `lake-build-with-retry.sh Archive Counterexamples Wanted`), see https://raw.githubusercontent.com/leanprover-community/mathlib4/e1545ebed97594477bbd88b2fe948ffce56e5af2/.github/workflows/build_template.yml"
+    },
+    {
+      "n": 2,
+      "claim": "The authors state the informal plan the induction follows: 'it suffices to show that kj mod n ∼ (k−1)j mod n for 1 < k < n', with the two cases 'if kj mod n > j' and 'if kj mod n < j', and the lemma's doc comment states 'For 1 ≤ k < n, k * j % n has the same color as j'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1985Q2.lean#L29-L34 and #L48"
+    },
+    {
+      "n": 3,
+      "claim": "C_mul_mod is used exactly once, in the theorem result at line 92 (rw [hvi, C_mul_mod hn hj cpj hC vib]), which closes the main result.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1985Q2.lean#L79-L92"
+    },
+    {
+      "n": 4,
+      "claim": "The step's two arithmetic branches are asymmetric: the (k+1)*j % n < j branch is 9 lines (67-75) and the j < (k+1)*j % n branch is 2 lines (76-77).",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1985Q2.lean#L66-L77, counted by hand over the copied file"
+    }
+  ],
+  "metrics": {
+    "parent_proof_lines": 29,
+    "induction_children": 2,
+    "step_case_branches": 2,
+    "auxiliary_lemmas_stated": 0,
+    "how_counted": "lines 49-77 of the copied file; induction children = the base and step goals of Nat.le_induction; step branches = the two goals of rcases nej.lt_or_gt; the haves nej and b₁ are inline, not top-level lemmas"
+  },
+  "consequences": "Induction on hk.1 with Nat.le_induction sets the base at the lower bound (k = 1, not k = 0) and carries 1 ≤ k into the step, so the step is stated for k + 1; the upper bound is generalised (the step sees hk.2 : k + 1 < n), which is what lets the IH be applied at ⟨hk₁, Nat.lt_of_succ_lt hk.2⟩. The step must then establish nej : (k+1)*j % n ≠ j (from coprimality) and b₁ : (k+1)*j % n ∈ Set.Ico 1 n before rule 2 (hC.2) can apply, and finally split on nej.lt_or_gt; each branch does a different arithmetic reduction of |j − (k+1)*j % n| to k*j % n. Failure modes: if the step needs the IH at an index outside [1, n) the strengthened bound does not reach; if j is not coprime the nej step fails; the two branches need separate, non-uniform rewrite work.",
+  "known_uses": [
+    "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1985Q2.lean#L92"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "7990f97fbf31c45e5c809c7045347afc109832d7c0ccb91c6962311b920d03db",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:16:27Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,known_uses,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:17:21Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-12T12:25:44Z"
+}

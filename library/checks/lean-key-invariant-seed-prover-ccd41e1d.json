@@ -1,0 +1,101 @@
+{
+  "entry": "lean-key-invariant-seed-prover-ccd41e1d",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 38c59cebaf969ac259196eb091757518d5b54c67",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:18:13Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "No CI workflow in the source: list_files.py seed-prover at commit 38c59cebaf969ac259196eb091757518d5b54c67 lists 579 files with no .github/workflows/ directory and no .yml/.yaml CI config, so no workflow builds SeedProver/imo2025/IMO2025/P5.lean.",
+      "by": "verifier",
+      "at": "2026-11-12T12:19:34Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Read copied P5.lean L170-L245. round15_lemma1 body references only round8_LoseA_iff (L188); h11 (L213-220) obtains witness b from round8_LoseA_iff via h5/h6 instantiated at a=0; h12 (L222-242) by_cases on (k:R)=0; h13 (L243-244) nlinarith; L245 refine <b, hb1, hb3, by linarith, h13>. Matches claim.",
+      "by": "verifier",
+      "at": "2026-11-12T12:19:38Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "grep on copied P5.lean: \"s1 ^ 2 <= (k : R) * s2\" -> 7 lines (180, 191, 226, 259, 266, 303, 311); \"s2 <= 2 * (k : R)\" -> 6 lines (181, 192, 260, 266, 304, 311). Both counts and line lists match the claim.",
+      "by": "verifier",
+      "at": "2026-11-12T12:19:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read copied P5.lean L271-L287: L273 have h6 := lemma1 k s1 s2 h5 h1 h2 h3 h4; L275 refine <s1 + b_next, s2 + b_next ^ 2, ...> then L276-287 restores 0<=s1+b_next, 0<=s2+b_next^2, both invariant conjuncts, and not-WinA (k+1). Matches claim.",
+      "by": "verifier",
+      "at": "2026-11-12T12:19:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read copied P5.lean L313-L350: h14 = round8_quadratic_growth_contradiction (L313); h15 := h_main N (L315) -> h3 : s1^2<=N*s2, h4 : s2<=2N (L316); h6 : s1 <= Real.sqrt 2 * N derived from h3,h4 (L317-328); h7 := hN s1 s2 h1 h6 h2 h4 (L329); round8_LoseA_iff .mp h5 (L339) rcases both branches end in linarith (L344, L350) contradicting h7. Matches claim.",
+      "by": "verifier",
+      "at": "2026-11-12T12:19:48Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent round15_lemma1 (code L170-245) matches entry parent.statement verbatim. Children h11/h12/h13 (L213/L222/L243) match their recorded statements. h11 closes via round8_LoseA_iff.mp at a=0 (h6), refuting the s1>(2k+1)l disjunct with h10 then tauto, rcases and ring_nf/simpa; h12 closes by by_cases (k:ℝ)=0 forcing s1=0 from h3 then nlinarith, else nlinarith with sq_nonneg(b*k-s1); h13 closes by nlinarith from h12. L245 refine <b,hb1,hb3,by linarith,h13> supplies all four conjuncts in order, so the parent closes. round15_h_main (L248-287) matches the context excerpt and applies lemma1 at L273 with args h5 h1 h2 h3 h4 in signature order, repacking the five subgoals; imo2025_p5_algebra_A (L292-350) closes via h_main N (L315) -> h3/h4 -> h6 (L317-328) -> round8_quadratic_growth_contradiction (L329) -> round8_LoseA_iff contradiction (L339-350). Claim line references (h11 213-220, h12 222-242, h13 243-244, refine 245) all accurate; grep counts in claim 2 (7 and 6 matches) verified against the copied file.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:21:23Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example: the 'When to use' abstracts to any induction/fixpoint/reachability whose plain IH is too weak, carried by a named invariant (potential / invariant pair) plus a self-contained forall k, P k -> P (k+1) step lemma that re-establishes it, with witness-production and disjunction-ruling as extra conditions rather than the whole move. 'When not to use' gives three specific, honest avoid conditions (plain induction suffices -> invariant vacuous; invariant not expressible as a self-contained step lemma because it needs outside state; invariant does not simplify the hard part). Consequences are specific and honest and match the copied code: obligation to re-establish not assume, base case discharge via h : not WinA 0 0 0, witness b_next exists only via the full invariant (a weaker s2<=2k invariant would not derive h10 so no witness), and a concrete failure mode (h12's algebraic step needs a real case split at k=0).",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:22:18Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 38c59cebaf969ac259196eb091757518d5b54c67",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:22:35Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes (1 file byte-identical at 38c59cebaf969ac259196eb091757518d5b54c67). Copied file sha256 875e09cd...e7966 and 39490 bytes match entry.json files[0]. Commit is identical across entry.json, sources/seed-prover/SOURCE.md and source.json. Licence Apache-2.0 consistent across entry.json, SOURCE.md, source.json, and sources/seed-prover/upstream-LICENSE is the Apache 2.0 text. All permalinks use the pinned commit and the path SeedProver/imo2025/IMO2025/P5.lean, matching files[0].path and both site paths.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:22:53Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    }
+  ]
+}

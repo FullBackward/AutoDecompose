@@ -1,0 +1,137 @@
+{
+  "id": "lean-key-invariant-seed-prover-ccd41e1d",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Step-preservation of the invariant pair (s1^2 <= k*s2, s2 <= 2k) for IMO 2025 P5",
+  "intent": "Carry the IMO 2025 P5 proof (case l > sqrt 2 / 2) by a single named invariant pair s1^2 <= k*s2 and s2 <= 2k together with not-WinA at k; round15_lemma1 shows the step k -> k+1 preserves all three, so an induction lifts the losing state to arbitrarily large k where round8_quadratic_growth_contradiction refutes it.",
+  "move": "key-invariant",
+  "also_known_as": [
+    "strengthened induction hypothesis",
+    "loop invariant",
+    "potential function"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "seed-prover",
+    "url": "https://github.com/ByteDance-Seed/Seed-Prover",
+    "commit": "38c59cebaf969ac259196eb091757518d5b54c67",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "SeedProver/imo2025/IMO2025/P5.lean",
+      "bytes": 39490,
+      "sha256": "875e09cd9675eff14011a8b1e8ecff099c93203b8855c8f00ac50982292e7966",
+      "permalink": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P5.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "SeedProver/imo2025/IMO2025/P5.lean",
+      "lines": [
+        170,
+        245
+      ],
+      "role": "parent",
+      "name": "round15_lemma1",
+      "excerpt_sha256": "ffda37b3816cd7f816154b3860a3e3205e4f3c63bb9495a8c3785a25fd60d2aa",
+      "permalink": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P5.lean#L170-L245"
+    },
+    {
+      "path": "SeedProver/imo2025/IMO2025/P5.lean",
+      "lines": [
+        248,
+        287
+      ],
+      "role": "context",
+      "name": "round15_h_main",
+      "excerpt_sha256": "7b5072aee07711a91ebafe7606e260b2866b97f555789a8db6de4cb38076fe66",
+      "permalink": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P5.lean#L248-L287"
+    }
+  ],
+  "parent": {
+    "name": "round15_lemma1",
+    "statement": "lemma round15_lemma1 (l : ℝ) (hl0 : l > 0) (WinA : ℕ → ℝ → ℝ → Prop)\n  (winA_iff : ∀ (n : ℕ) (sum1 sum2 : ℝ), WinA n sum1 sum2 ↔\n    ∃ a : ℝ, a ≥ 0 ∧ sum1 + a ≤ (2 * n + 1) * l ∧\n      ∀ b : ℝ, b ≥ 0 → sum2 + a ^ 2 + b ^ 2 ≤ 2 * n + 2 →\n        WinA (n + 1) (sum1 + a + b) (sum2 + a ^ 2 + b ^ 2))\n  (hl : l > √2 / 2) :\n  ∀ (k : ℕ) (s1 s2 : ℝ),\n    (¬ WinA k s1 s2) →\n    (0 ≤ s1) →\n    (0 ≤ s2) →\n    (s1 ^ 2 ≤ (k : ℝ) * s2) →\n    (s2 ≤ 2 * (k : ℝ)) →\n    ∃ (b_next : ℝ),\n      b_next ≥ 0 ∧\n      (¬ WinA (k + 1) (s1 + b_next) (s2 + b_next ^ 2)) ∧\n      (s2 + b_next ^ 2 ≤ 2 * ((k : ℝ) + 1)) ∧\n      ((s1 + b_next) ^ 2 ≤ ((k : ℝ) + 1) * (s2 + b_next ^ 2))"
+  },
+  "children": [
+    {
+      "name": "h11 (witness existence)",
+      "statement": "∃ (b : ℝ), b ≥ 0 ∧ s2 + b ^ 2 ≤ 2 * (k : ℝ) + 2 ∧ ¬ WinA (k + 1) (s1 + b) (s2 + b ^ 2)",
+      "closed_by": "round8_LoseA_iff instantiated at a = 0 (h6); the first disjunct s1 > (2*(k:ℝ)+1)*l is ruled out by h10 : s1 ≤ (2*(k:ℝ)+1)*l (tauto), then rcases + ring_nf at hb2 ⊢ <;> linarith / simpa using hb3"
+    },
+    {
+      "name": "h12 (algebraic step)",
+      "statement": "(k : ℝ) * b ^ 2 - 2 * s1 * b + s2 ≥ 0",
+      "closed_by": "by_cases h121 : (k : ℝ) = 0; if k = 0 the invariant h3 forces s1 = 0 (lines 225-232) then rw [h121, h1211] <;> nlinarith, else nlinarith with h3 and nonnegativity (lines 235-242)"
+    },
+    {
+      "name": "h13 (step-preservation of s1^2 ≤ k*s2)",
+      "statement": "(s1 + b) ^ 2 ≤ ((k : ℝ) + 1) * (s2 + b ^ 2)",
+      "closed_by": "nlinarith (from h12)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An induction (or reachability/fixpoint argument) over a natural k whose inductive hypothesis must be a strengthened invariant pair tying two quantities (s1^2 ≤ k*s2, s2 ≤ 2k) plus a reachability fact (¬ WinA k s1 s2); the step both advances the index and re-establishes the bounds by producing a witness.",
+    "use_when": "the plain induction hypothesis is too weak to take the step; the invariant can be stated as a self-contained ∀ k, P k → P (k+1) step lemma; the strengthened hypothesis is strong enough to rule out an undesired branch of a disjunction.",
+    "avoid_when": "a plain induction already goes through (the invariant would be vacuous); the invariant's step-preservation proof needs state not expressible in the hypotheses; the invariant does not actually simplify the hard part."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent round15_lemma1 closes from three intermediate goals and no further named lemma: the witness b from round8_LoseA_iff (h11, lines 213-220), the algebraic step k*b^2 - 2*s1*b + s2 ≥ 0 by a case split on (k:ℝ) = 0 (h12, lines 222-242), and the step-preservation (s1+b)^2 ≤ (k+1)*(s2+b^2) by nlinarith (h13, lines 243-244); line 245 repacks them as refine ⟨b, hb1, hb3, by linarith, h13⟩.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P5.lean#L213-L245"
+    },
+    {
+      "n": 2,
+      "claim": "The invariant pair is written out as an inductive hypothesis in three declarations — round15_lemma1 (lines 180-181), round15_h_main's lemma1 parameter (259-260) and the inlined lemma1 in imo2025_p5_algebra_A (303-304) — and as a conclusion in three places (185-186, 266, 311). grep for 's1 ^ 2 ≤ (k : ℝ) * s2' finds 7 matches (180, 191, 226, 259, 266, 303, 311) and for 's2 ≤ 2 * (k : ℝ)' finds 6 (181, 192, 260, 266, 304, 311).",
+      "evidence_kind": "measurement",
+      "evidence": "grep over the copied file SeedProver/imo2025/IMO2025/P5.lean (39490 bytes, sha256 875e09cd9675eff14011a8b1e8ecff099c93203b8855c8f00ac50982292e7966) for the two conjuncts, run in this session"
+    },
+    {
+      "n": 3,
+      "claim": "round15_h_main's successor case applies the step-preservation lemma and repacks its output: have h6 := lemma1 k s1 s2 h5 h1 h2 h3 h4 (line 273), then refine ⟨s1 + b_next, s2 + b_next ^ 2, ...⟩ (lines 275-287) restores 0 ≤ s1+b_next, 0 ≤ s2+b_next^2, the two invariant conjuncts and ¬ WinA at k+1.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P5.lean#L271-L287"
+    },
+    {
+      "n": 4,
+      "claim": "The invariant is what drives the final contradiction: in imo2025_p5_algebra_A, h_main N (line 315) yields h3 : s1^2 ≤ N*s2 and h4 : s2 ≤ 2*N, which feed round8_quadratic_growth_contradiction (line 329, needing h6 : s1 ≤ Real.sqrt 2 * N derived from h3, h4 at lines 317-328) to force s2 + ((2N+1)l - s1)^2 > 2N+2, which round8_LoseA_iff then contradicts (lines 339-350).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P5.lean#L313-L350"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 76,
+    "children": 3,
+    "invariant_hypothesis_occurrences": 3,
+    "invariant_conclusion_occurrences": 3,
+    "how_counted": "parent_lines = lines 170-245 of the copied file (statement + proof); children = the three named have/goals h11, h12, h13 inside round15_lemma1's proof; occurrences counted by grep for the two conjuncts s1 ^ 2 ≤ (k : ℝ) * s2 and s2 ≤ 2 * (k : ℝ) (see claim 2)"
+  },
+  "consequences": "The move must re-establish the invariant after the step, not merely assume it: round15_lemma1 produces b_next and proves both bounds at k+1 (h12 -> h13 and the s2 bound) plus ¬ WinA (h11). The strengthened hypothesis creates two further obligations: its base case must be discharged (round15_h_main's zero case uses h : ¬ WinA 0 0 0), and the witness b_next exists only because the WinA iff (round8_LoseA_iff) is instantiated at a = 0 and its first disjunct refuted — a weaker invariant (e.g. s2 ≤ 2k alone) would not derive h10 : s1 ≤ (2k+1)*l and no witness would follow. Failure mode: the algebraic step h12 needs a real case split at k = 0 (where h3 degenerates and forces s1 = 0), so the invariant must be stated so its boundary case is decidable.",
+  "known_uses": [
+    "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P5.lean#L271-L287",
+    "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P5.lean#L299-L316"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "ccd41e1dfd816d2d98252132c2b4ee422e644fd773038e25067a83027c0b167f",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:15:42Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,known_uses,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12"
+    }
+  ]
+}

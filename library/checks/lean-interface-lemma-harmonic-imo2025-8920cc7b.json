@@ -1,0 +1,101 @@
+{
+  "entry": "lean-interface-lemma-harmonic-imo2025-8920cc7b",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 72b62405a176a7eaeadb335a7fa6ee80b6667161",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T11:59:10Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/lean_action_ci.yml (leanprover/lean-action@v1 runs lake build on the whole HarmonicLean package, which includes HarmonicLean/IMO2025P4_solve2.lean); pinned commit 72b62405a176a7eaeadb335a7fa6ee80b6667161 is HEAD of default branch main",
+      "by": "verifier",
+      "at": "2026-11-12T12:00:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "Copied file lines 80-109 contain 'have h_largest : ...' establishing the three largest proper divisors equal N/d1,N/d2,N/d3 (with the List.eq_of_perm_of_sorted and rcases n : Finset.sort proof at 84-109), and line 110 is 'unfold s; aesop;' closing the goal. Matches the claim.",
+      "by": "verifier",
+      "at": "2026-11-12T12:00:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Copied file lines 163-193: lem_s_N_formula states (s N : ℚ) = (N : ℚ) * (1/(d₁:ℚ) + 1/(d₂:ℚ) + 1/(d₃:ℚ)), and line 171 'apply lem_s_N_smallest_divisors' consumes the interface lemma rather than unfolding s. Matches.",
+      "by": "verifier",
+      "at": "2026-11-12T12:00:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Copied file lines 71-73 doc comment reads: \"If 1 < d_1 < d_2 < d_3 < ... are the positive divisors of N greater than 1 in increasing order, then the three largest proper divisors of N are N/d_1, N/d_2, and N/d_3.\" Matches the quoted author statement.",
+      "by": "verifier",
+      "at": "2026-11-12T12:00:57Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "Grep of copied file: lem_s_N_smallest_divisors used in proof code at 171 (apply) and 590 (convert ... using 1); lem_s_N_formula used at 300, 331, 368, 551, 627 (all rw/have, no unfold of s). That is 2 direct + 5 via formula = 7 reuse sites, matching the claim.",
+      "by": "verifier",
+      "at": "2026-11-12T12:01:01Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 72b62405a176a7eaeadb335a7fa6ee80b6667161",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:01:24Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Correctness holds. Provenance passes (1 file byte-identical at 72b62405a176). Copied code lines 74-110 show lem_s_N_smallest_divisors decomposes exactly as the entry states: child h_largest (have at lines 80-82, proved 83-109 via Sorted/Nodup induction 84-94, Perm via toFinset 96-107, List.eq_of_perm_of_sorted 108, then rcases n : Finset.sort <;> aesop 109) establishes the three largest proper divisors equal N/d1,N/d2,N/d3; the main goal is then closed by 'unfold s; aesop' at line 110, which unfolds s to the guarded sum and rewrites via h_largest (d1,d2,d3 are let-bound to the sorted entries, so N/d_i is definitionally equal). This matches children[] statements and closing methods and closes the parent. Reuse sites verified by grep: lem_s_N_smallest_divisors at 171 (apply) and 590 (convert ... using 1); lem_s_N_formula at 300,331,368,551,627 = 2 direct + 5 via formula = 7. Parent line count 74-110 = 37 matches metrics. Move interface-lemma is a fair fit: an API lemma at the abstraction boundary of def s letting clients stop unfolding the sort.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:02:28Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality holds. The move is stated beyond the example: README 'When to use it' generalises to 'a definition that is a sort- or indexing-based computation that many later lemmas would otherwise each unfold, with a cleaner equivalent form over a companion list that the actual arguments use', and to carrying the definition's side condition explicitly. 'When not to use' is honest and specific: used once; the sort-based form itself is what the proof needs; or the side condition is awkward for clients to discharge. Consequences are honest and specific: every client must discharge h_card (admitted cheap here), representation changes from sort-term to arithmetic sum, a dependency on N.divisors.erase 1 is added, and the move pays off only on reuse (single-use is net-negative).",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:03:15Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance already passes (1 file byte-identical at 72b62405a176; recorded by check_provenance.py). Commit is consistent everywhere: entry.json, source.json, SOURCE.md and every permalink all use 72b62405a176a7eaeadb335a7fa6ee80b6667161. Licence 'LicenseRef-unknown' is consistent across entry.json, source.json, SOURCE.md and README, and is accurate: the root listing at the pinned commit has no LICENSE/LICENCE/COPYING file, and README.md (190 B) and lakefile.toml declare no licence. All permalinks use the same commit + path HarmonicLean/IMO2025P4_solve2.lean, and their line anchors match the copied file (def_s 43-48, doc comment 71-73, parent 74-110, lem_s_N_formula 163-193, reuse sites 171/590/300/331/368/551/627). files[0].bytes=74500 matches the file listing and local copy. Source note (SOURCE.md) correctly records repo, pinned commit, 'no licence file found at the root' and attribution, and the copied file is byte-identical to upstream. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:05:30Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    }
+  ]
+}

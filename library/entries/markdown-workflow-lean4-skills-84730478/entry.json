@@ -1,0 +1,156 @@
+{
+  "id": "markdown-workflow-lean4-skills-84730478",
+  "kind": "skill",
+  "status": "draft",
+  "title": "The /lean4:refactor workflow: strategy-level proof simplification behind a per-batch diagnostic gate",
+  "intent": "Prescribe a seven-step process for strategy-level proof simplification — audit for long proofs and thin definition APIs, search mathlib, plan with measured impact, approve per batch, apply each edit behind a diagnostic gate that reverts on any new diagnostic or sorry increase, verify through lake lean/lake build, then report — while never changing theorem statements or introducing axioms.",
+  "move": "workflow",
+  "also_known_as": [
+    "strategy-level proof refactor",
+    "proof simplification workflow",
+    "extract-and-replace workflow"
+  ],
+  "language": "markdown",
+  "source": {
+    "source_id": "lean4-skills",
+    "url": "https://github.com/cameronfreer/lean4-skills",
+    "commit": "3f913c66251b8712bb58e6ce83a453fa96e3f94f",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "plugins/lean4/commands/refactor.md",
+      "bytes": 5397,
+      "sha256": "13e6753636a819cd0da1371b0283ffa0b9ad1afe417d37d213db7c3a2e31b32d",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/commands/refactor.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": "plugins/lean4/commands/refactor.md",
+      "lines": [
+        58,
+        75
+      ],
+      "role": "skill-text",
+      "name": "actions",
+      "excerpt_sha256": "72d8db8cb1074a0bb84709d9f773ffba9ad675dace48b663a07cc30ad1ec56c7",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/commands/refactor.md#L58-L75"
+    },
+    {
+      "path": "plugins/lean4/commands/refactor.md",
+      "lines": [
+        79,
+        79
+      ],
+      "role": "skill-text",
+      "name": "helper-scope",
+      "excerpt_sha256": "609f09d061939e33ff03ab59a050b5fdea87f4e2cf8b9a755756d6f21df7769b",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/commands/refactor.md#L79-L79"
+    }
+  ],
+  "parent": null,
+  "children": [
+    {
+      "name": "audit",
+      "statement": "Read target proofs, identify repeated patterns, long proofs (>30 lines), hand-rolled arguments, case splits replaceable by congr/EqOn/EventuallyEq, thin definition APIs",
+      "closed_by": "read-only scan; produces one opportunity per finding for the Search step"
+    },
+    {
+      "name": "search",
+      "statement": "For each opportunity, search mathlib via the LSP-first protocol; --search=quick is up to 2 LSP queries per opportunity, --search=full up to 5 with module exploration",
+      "closed_by": "the bounded LSP query budget per opportunity"
+    },
+    {
+      "name": "plan",
+      "statement": "Present findings with estimated impact (Strategy Improvements, Helper Extraction, and an Estimated Impact block: Lines before: N → after: ~N | Helpers: N | New mathlib lemmas: N)",
+      "closed_by": "the plan's Estimated Impact block, which states the line-count reduction before any edit"
+    },
+    {
+      "name": "approval",
+      "statement": "Ask before each batch (--dry-run stops here); a batch groups opportunities within a single proof or closely related proofs; prompt: Apply batch N (M changes)? [yes / skip / stop]",
+      "closed_by": "the user's yes/skip/stop answer to the per-batch prompt"
+    },
+    {
+      "name": "apply",
+      "statement": "Edit files, verify with lean_diagnostic_messages after each batch; revert batch on any new diagnostic or sorry increase",
+      "closed_by": "lean_diagnostic_messages clean and no sorry increase after the batch"
+    },
+    {
+      "name": "verify",
+      "statement": "lake lean <file> file gate (run from project root; it builds the file's imports first, so a cross-file batch cannot false-fail against a stale .olean); lake build project gate if multi-file; if final gate fails, revert all batches applied in this session",
+      "closed_by": "the lake lean file gate or lake build project gate"
+    },
+    {
+      "name": "report",
+      "statement": "Summarize changes applied, helpers extracted, line count delta",
+      "closed_by": "the report summary itself, which states the line-count delta"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A set of already-compiling proofs (no sorries, no build errors) whose simplification is strategy-level rather than tactic-level: long proofs (>30 lines), repeated patterns, hand-rolled arguments replaceable by congr/EqOn/EventuallyEq or a mathlib lemma, or definitions with a thin API.",
+    "use_when": "The proofs compile and the change preserves statements and adds no axioms; a mathlib lemma or a congr/EqOn/EventuallyEq rewrite is likely to replace hand-rolled reasoning; a helper is reused within a file and should be lifted to a private theorem.",
+    "avoid_when": "The target has sorries or build errors (the command refuses); the change would alter a theorem statement or needs axiom/assumption hygiene (those are reported, or sent to the axiom-eliminator, not applied here); the cleanup is purely local tactic-level (that is /lean4:golf, which escalates to this command only for multi-file or strategy-level changes)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The ## Actions section (lines 58-75) specifies seven ordered steps — Audit, Search, Plan, Approval, Apply, Verify, Report — and the Apply step (5) requires editing, then verifying with lean_diagnostic_messages after each batch and reverting the batch on any new diagnostic or sorry increase.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/commands/refactor.md#L58-L75"
+    },
+    {
+      "n": 2,
+      "claim": "Verification is two-tier: lake lean <file> runs from the project root and builds the file's imports first so a cross-file batch cannot false-fail against a stale .olean, lake build is the project gate for multi-file changes, and a final-gate failure reverts all batches applied in the session (line 74).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/commands/refactor.md#L74-L74"
+    },
+    {
+      "n": 3,
+      "claim": "The command declares itself a mutating command that 'Does not change theorem statements, introduce axioms, or create commits' (line 11).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/commands/refactor.md#L11-L11"
+    },
+    {
+      "n": 4,
+      "claim": "The helper-scope defaults (line 79) fix the extraction decision by reuse count: single use inside one proof → local have/local helper, reused within one file → private theorem, public/non-private → only with explicit user approval or a clear existing API reason.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/commands/refactor.md#L79-L79"
+    }
+  ],
+  "metrics": {
+    "steps": 7,
+    "long_proof_threshold_lines": 30,
+    "search_budget_lsp_queries": {
+      "quick": 2,
+      "full": 5
+    },
+    "verification_tiers": 2,
+    "how_counted": "steps counted from the numbered list in refactor.md lines 60-75; the 30-line threshold and the 2/5 LSP-query budgets are the numbers the command states in lines 60-61; verification tiers are the lake lean file gate and the lake build project gate named in line 74"
+  },
+  "consequences": "Every edit must pass two gates before it stands: a per-batch lean_diagnostic_messages check with no new diagnostic and no sorry increase, and a final lake lean (single file) or lake build (multi-file) gate; a failure reverts the batch, and a final-gate failure reverts the whole session. Helper extraction carries a scoping obligation: single use stays a local have, reuse within a file becomes a private theorem, and public visibility needs explicit approval. The command never changes theorem statements, introduces axioms, or creates commits, so statement-level changes are out of scope and are reported rather than applied. Failure modes: a cross-file batch verified only by lean_diagnostic_messages could false-fail against a stale .olean, which is why the file gate builds imports first; and a batch that reduces line count but breaks a proof is caught only by the sorry/diagnostic gate, not by the line-count delta.",
+  "known_uses": [
+    "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/commands/refactor.md#L13-L13"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 4,
+    "relation": "supports"
+  },
+  "content_key": "84730478098f8e6cb9dcf51245568fe3d8030e48ed7d84fc45c10a3b6d0222b8",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:08:56Z"
+    },
+    {
+      "field": "intent,children,applicability,claims,metrics,consequences,also_known_as,rule,known_uses",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-1",
+      "at": "2026-11-12T12:15:00Z"
+    }
+  ]
+}

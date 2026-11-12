@@ -1,0 +1,117 @@
+{
+  "entry": "lean-iff-split-mathlib4-56646dd1",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:19:32Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml triggers on push to master (default branch) and delegates to .github/workflows/build_template.yml; 'build archive, counterexamples and wanted' step runs 'lake-build-with-retry.sh Archive Counterexamples Wanted' (line 252) and 'check that Archive built' runs 'lake build --no-build --wfail Archive' (line 297), building Archive/Imo/Imo1986Q5.lean. Pinned commit e1545ebed97594477bbd88b2fe948ffce56e5af2 is on master (GitHub compare master...e1545eb: status behind, ahead_by 0, behind_by 1).",
+      "by": "verifier",
+      "at": "2026-11-12T12:21:06Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "copied file (byte-identical at e1545ebed975): line 75 'refine ⟨fun hf ↦ funext hf.map_eq, ?_⟩' splits the ↔ into two directions; forward closes by 'funext hf.map_eq' (line 75); reverse closes via 'rintro rfl' + 'constructor' + three cases over lines 76-89.",
+      "by": "verifier",
+      "at": "2026-11-12T12:21:09Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "copied file: line 77 'constructor'; IsGood structure (lines 37-40) has exactly three fields map_add_rev, map_two, map_ne_zero; line 78 'case map_two => simp [tsub_self]', line 79 'case map_ne_zero => intro x hx; simpa [tsub_eq_zero_iff_le]', lines 80-89 'case map_add_rev => intro x y; cases lt_or_ge y 2 with | inl hy ... | inr hy ...' both branches closed.",
+      "by": "verifier",
+      "at": "2026-11-12T12:21:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "copied file: map_eq (lines 67-70) proves 'f x = 2 / (2 - x)'; line 75 forward uses 'funext hf.map_eq' which applies map_eq pointwise, introducing no new argument.",
+      "by": "verifier",
+      "at": "2026-11-12T12:21:15Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "copied file docstring lines 20-21: 'We formalize the assumptions on f in Imo1986Q5.IsGood predicate, then prove Imo1986Q5.IsGood f ↔ f = fun x ↦ 2 / (2 - x)'; the theorem isGood_iff at lines 74-89 proves exactly this statement.",
+      "by": "verifier",
+      "at": "2026-11-12T12:21:19Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "copied file lines 50-53: theorem map_eq_zero 'f x = 0 ↔ 2 ≤ x' uses 'refine ⟨fun hx₀ ↦ not_lt.1 fun hlt ↦ hf.map_ne_zero x hlt hx₀, fun hle ↦ ?_⟩' (forward not_lt.1...) and reverse 'rcases exists_add_of_le hle with ⟨x, rfl⟩; rw [add_comm, hf.map_add, hf.map_two, mul_zero]'.",
+      "by": "verifier",
+      "at": "2026-11-12T12:21:22Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:21:42Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Copied file (byte-identical at e1545ebed975) matches entry exactly. Line 75 'refine ⟨fun hf ↦ funext hf.map_eq, ?_⟩' splits the ↔ into exactly two children: forward closes in one line via funext hf.map_eq; reverse closes over lines 76-89 via rintro rfl; constructor; then three named cases. IsGood (lines 37-40) has exactly three fields map_add_rev/map_two/map_ne_zero, matching case map_two (l78), map_ne_zero (l79), map_add_rev (l80-89). Both children and all closing methods match the entry's parent/children fields and README; CI-recorded build passes Archive so the proof closes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-12T12:22:00Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally: 'use_when' reduces to 'the two directions want different tools' and frames it as the 'characterise the solutions' archetype (one direction shows candidates work, the other shows nothing else does), which generalises past IMO 1986; the avoid_when conditions (definitional/symmetric direction, both directions sharing one rw/calc chain, predicate side not a structure) are specific and honest heuristics. Consequences are honest and specific: exactly two obligations, the reverse child far larger (14 vs 1 lines, matching the copied code at lines 75 vs 76-89), and the failure mode that the forward direction silently leans on upstream lemmas map_eq/map_of_lt_two/map_eq_zero (lines 47-70) is accurate. Only mild generality weakness: the sole in-file known-use (lines 50-53) shares the same IsGood predicate, so cross-context generality rests on the related compfiles entry rather than this entry's own evidence; not a standing objection.",
+      "by": "reviewer-generality",
+      "at": "2026-11-12T12:23:18Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T12:23:35Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are all consistent and traceable: check_provenance.py reports the copied file byte-identical at pinned commit e1545ebed97594477bbd88b2fe948ffce56e5af2; that commit is recorded identically in entry.json, sources/mathlib4/source.json and SOURCE.md. Every permalink uses the same commit and its line ranges match the copied file (IsGood 37-40, map_eq 67-70, isGood_iff 74-89, map_eq_zero 50-53, docstring 20-21 verified against the local copy). Licence Apache-2.0 is recorded in entry.json/README/source.json/SOURCE.md, the file header declares Apache 2.0, and upstream-LICENSE is the Apache 2.0 text. bytes=2996 and file sha256 match the copied file; validate_entry.py --strict passes.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-12T12:25:13Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-12T13:34:04Z"
+    }
+  ]
+}
