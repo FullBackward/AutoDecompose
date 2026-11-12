@@ -267,6 +267,8 @@ Boundaries: edit only the README.md and entry.json of the entry you create.""", 
         if not e or not e.get("ok") or not e.get("id"):
             return out
         eid = e["id"]
+        subprocess.run([sys.executable, str(LIB / "tools" / "record_verdict.py"), eid, "--no-toolchain"],
+                       cwd=REPO, capture_output=True, text=True)
         verify = f"""{self.common()}
 Objective: verify library entry {eid} (role: verifier; SKILL.md section "Verification"). You have not seen
 how it was written. Steps: check_provenance.py {eid}; record the build (ci-record with the CI workflow path if

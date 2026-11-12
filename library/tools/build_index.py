@@ -52,14 +52,16 @@ def main() -> None:
            f"- Screening decisions: " + (", ".join(f"{k} {v}" for k, v in scr.items()) or "none"),
            f"- Candidate sites: {len(sites)}",
            f"- Entries: " + (", ".join(f"{k} {v}" for k, v in sorted(status.items())) or "none"), "",
-           "## Coverage: move by language (accepted / all)", "",
+           "## Coverage: move by language (accepted / verified / all)", "",
+           "Verified entries passed every check but still have an open review objection.", "",
            "| Move | " + " | ".join(langs) + " |", "|---" * (len(langs) + 1) + "|"]
     for move in MOVES:
         cells = []
         for lang in langs:
             es = [e for e in entries if e["move"] == move and e["language"] == lang]
             acc = sum(e["status"] == "accepted" for e in es)
-            cells.append(f"{acc} / {len(es)}" if es else ".")
+            ver = sum(e["status"] == "verified" for e in es)
+            cells.append(f"{acc} / {ver} / {len(es)}" if es else ".")
         rep.append(f"| {move} | " + " | ".join(cells) + " |")
     rules = defaultdict(lambda: Counter())
     for e in entries:

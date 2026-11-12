@@ -15,7 +15,13 @@ from common import ENTRIES, LEDGER, LIB, read_jsonl
 
 def show(run: str) -> None:
     d = LIB / "reports" / run
+    if not d.is_dir():
+        print(f"run {run}: not started (library/reports/{run}/ does not exist)")
+        return
     calls = read_jsonl(d / "calls.jsonl")
+    if not calls and not (d / "summary.json").exists():
+        print(f"run {run}: running, no call finished yet (calls are logged when they finish; "
+              "the ledger counts below grow before that)")
     cfg_p = LIB / "runs" / f"{run}.json"
     cap = json.loads(cfg_p.read_text(encoding="utf-8")).get("maxCostCNY") if cfg_p.exists() else None
     cost = sum(c.get("cost_cny") or 0 for c in calls)

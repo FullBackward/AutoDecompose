@@ -6,6 +6,8 @@
         --evidence TEXT --by ROLE
   py.sh record_verdict.py ENTRY_ID --review correctness|generality|provenance-licence \
         --decision accept|object --evidence TEXT --by ROLE
+  py.sh record_verdict.py ENTRY_ID|all --no-toolchain
+        (fidelity and sufficiency recorded as not-run where unrecorded; protocol section 6)
 
 Verifiers and reviewers never edit an entry; they call this tool. Records are
 appended to library/checks/<id>.json (latest record of each key wins) and to
@@ -64,15 +66,40 @@ def latest(eid: str) -> dict:
     return out
 
 
+NO_TOOLCHAIN = ("no Lean or Rocq toolchain on the harvest machine, so the check was not run "
+                "(protocol section 6, 'Checks without a local toolchain')")
+
+
+def record_no_toolchain(eid: str) -> list[str]:
+    """Record fidelity and sufficiency as not-run where no record exists yet; re-render the README."""
+    from set_status import render  # set_status imports this module
+    have = latest(eid)
+    done = [k for k in ("fidelity", "sufficiency") if ("check", k) not in have]
+    for k in done:
+        record(eid, check=k, status="not-run", evidence=NO_TOOLCHAIN, by="driver")
+    if done:
+        render(eid, read_json(ENTRIES / eid / "entry.json"), latest(eid))
+    return done
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("entry")
+    ap.add_argument("entry", help="entry id; with --no-toolchain, 'all' covers every entry")
+    ap.add_argument("--no-toolchain", action="store_true",
+                    help="record fidelity and sufficiency as not-run where unrecorded")
     ap.add_argument("--check"); ap.add_argument("--status")
     ap.add_argument("--claim", type=int); ap.add_argument("--verdict")
     ap.add_argument("--review"); ap.add_argument("--decision")
     ap.add_argument("--evidence", default="")
     ap.add_argument("--by", default="")
     a = ap.parse_args()
+    if a.no_toolchain:
+        ids = (sorted(p.name for p in ENTRIES.iterdir() if (p / "entry.json").exists())
+               if a.entry == "all" else [a.entry])
+        for eid in ids:
+            done = record_no_toolchain(eid)
+            print(f"{eid}: " + (", ".join(done) + " not-run" if done else "already recorded"))
+        return
     record(a.entry, check=a.check, status=a.status, claim=a.claim, verdict=a.verdict,
            review=a.review, decision=a.decision, evidence=a.evidence, by=a.by)
     print("recorded")
