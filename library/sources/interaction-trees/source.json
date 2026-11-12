@@ -1,0 +1,17 @@
+{
+  "source_id": "interaction-trees",
+  "url": "https://github.com/DeepSpec/InteractionTrees",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "DeepSpec/InteractionTrees",
+  "commit": "284d42248a3c5517cff9f582e335fcee2f6bdc1f",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-12T10:25:27Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "MIT",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

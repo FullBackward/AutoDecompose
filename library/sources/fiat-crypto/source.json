@@ -1,0 +1,20 @@
+{
+  "source_id": "fiat-crypto",
+  "url": "https://github.com/mit-plv/fiat-crypto",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "mit-plv/fiat-crypto",
+  "commit": "3d2880ef2803faa9385589a81a835d5828eb3d38",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-12T10:24:25Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "Apache-2.0 AND BSD-2-Clause AND MIT AND MIT OR Apache-2.0 OR BSD-1-Clause",
+  "licence_files": [
+    "COPYRIGHT",
+    "LICENSE-APACHE",
+    "LICENSE-BSD-1",
+    "LICENSE-MIT"
+  ]
+}

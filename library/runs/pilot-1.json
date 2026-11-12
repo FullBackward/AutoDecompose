@@ -1,0 +1,29 @@
+{
+  "run": "pilot-1",
+  "date": "2026-11-12",
+  "language": "lean",
+  "sources": [
+    "compfiles", "mathlib4", "axiom-imo2026", "numina-putnam2025", "seed-prover", "harmonic-imo2025",
+    "pfr", "carleson", "sphere-packing", "flt-imperial", "flt-anthropic", "equational-theories",
+    "lean4-skills", "trailofbits-skills", "leanprover-skills"
+  ],
+  "shards": {
+    "mathlib4": ["Archive/Imo"],
+    "flt-anthropic": ["Theorems"],
+    "trailofbits-skills": ["plugins/writing-lean-proofs"]
+  },
+  "screen": true,
+  "sitesPerShard": 6,
+  "maxEntries": 30,
+  "goldSize": 30,
+  "concurrency": 6,
+  "timeoutMinutes": 40,
+  "maxCalls": 400,
+  "maxTokens": 400000000,
+  "maxCostCNY": 200,
+  "models": {
+    "locator": "deepseek-flash",
+    "analyst": "deepseek-v4-pro",
+    "verifier": "deepseek-v4-pro"
+  }
+}

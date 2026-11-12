@@ -1,0 +1,17 @@
+{
+  "source_id": "lean-autoformalization-skills",
+  "url": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "scottnarmstrong/LeanAutoformalizationSkills",
+  "commit": "1837b95b3d5a9fd8d311367603902ad7fe261adf",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:24:11Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "CC-BY-4.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

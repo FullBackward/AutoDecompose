@@ -1,0 +1,15 @@
+{
+  "source_id": "lean-liquid",
+  "url": "https://github.com/leanprover-community/lean-liquid",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "leanprover-community/lean-liquid",
+  "commit": "ee4795874a99ea5f9d85bd0b364425f07b932377",
+  "ref": "HEAD",
+  "language": "lean3",
+  "pinned_at": "2026-11-12T10:23:47Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "LicenseRef-unknown",
+  "licence_files": []
+}

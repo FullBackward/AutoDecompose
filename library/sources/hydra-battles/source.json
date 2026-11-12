@@ -1,0 +1,17 @@
+{
+  "source_id": "hydra-battles",
+  "url": "https://github.com/coq-community/hydra-battles",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "coq-community/hydra-battles",
+  "commit": "ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-12T10:25:19Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "MIT",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

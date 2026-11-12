@@ -1,0 +1,17 @@
+{
+  "source_id": "sphere-packing",
+  "url": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "thefundamentaltheor3m/Sphere-Packing-Lean",
+  "commit": "efe3bbbc1ece548f4672a772b94d8f621c10fdda",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:23:35Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

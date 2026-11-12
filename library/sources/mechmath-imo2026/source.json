@@ -1,0 +1,15 @@
+{
+  "source_id": "mechmath-imo2026",
+  "url": "https://github.com/MechMath/IMO2026",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "MechMath/IMO2026",
+  "commit": "47ff510110dd400c98aee2ead3be0f53f7b8ba04",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:23:55Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "LicenseRef-unknown",
+  "licence_files": []
+}

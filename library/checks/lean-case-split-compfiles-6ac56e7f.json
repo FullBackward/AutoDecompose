@@ -1,0 +1,13 @@
+{
+  "entry": "lean-case-split-compfiles-6ac56e7f",
+  "records": [
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-12T10:27:44Z"
+    }
+  ]
+}

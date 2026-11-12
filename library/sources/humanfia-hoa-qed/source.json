@@ -1,0 +1,19 @@
+{
+  "source_id": "humanfia-hoa-qed",
+  "url": "https://github.com/humanfia/hoa-qed",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "humanfia/hoa-qed",
+  "commit": "1c918ec9a96c7751ce9c283304e1aebd7ffb19a3",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:23:57Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "Apache-2.0 AND CC-BY-4.0",
+  "licence_files": [
+    "LICENSE",
+    "LICENSE-CC-BY-4.0",
+    "NOTICE"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "source_id": "certicoq",
+  "url": "https://github.com/CertiCoq/certicoq",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "CertiCoq/certicoq",
+  "commit": "943b52ae654708130f241ccf8a50ecb95a7956e2",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-12T10:25:23Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "MIT",
+  "licence_files": [
+    "LICENSE.md"
+  ]
+}

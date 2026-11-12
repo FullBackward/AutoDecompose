@@ -1,0 +1,17 @@
+{
+  "source_id": "ml-hilbert",
+  "url": "https://github.com/apple/ml-hilbert",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "apple/ml-hilbert",
+  "commit": "86360f90260613d21e08a001c83971a1998a5b5e",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:24:13Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "LicenseRef-unknown",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

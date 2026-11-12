@@ -1,0 +1,17 @@
+{
+  "source_id": "dirac-imo2026",
+  "url": "https://github.com/Boundless-Intuition/IMO2026",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "Boundless-Intuition/IMO2026",
+  "commit": "37259237016275044e3905e8d537efd0eead74d2",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:23:52Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "MIT",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

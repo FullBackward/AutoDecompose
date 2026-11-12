@@ -1,0 +1,17 @@
+{
+  "source_id": "deepseek-prover-v2",
+  "url": "https://github.com/deepseek-ai/DeepSeek-Prover-V2",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "deepseek-ai/DeepSeek-Prover-V2",
+  "commit": "e598a57ea3284997d4a2a168a069fdd5064afbc8",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:24:15Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "LicenseRef-unknown",
+  "licence_files": [
+    "LICENSE-MODEL"
+  ]
+}

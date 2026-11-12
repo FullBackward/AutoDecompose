@@ -1,0 +1,17 @@
+{
+  "source_id": "trailofbits-skills",
+  "url": "https://github.com/trailofbits/skills",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "trailofbits/skills",
+  "commit": "e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:24:10Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "CC-BY-SA-4.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

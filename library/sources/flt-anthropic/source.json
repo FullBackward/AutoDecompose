@@ -1,0 +1,18 @@
+{
+  "source_id": "flt-anthropic",
+  "url": "https://github.com/anthropics/fermats-last-theorem",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "anthropics/fermats-last-theorem",
+  "commit": "6e837e75355538c7f80bab5b956861e86c4eacc2",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:23:30Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE",
+    "NOTICE"
+  ]
+}

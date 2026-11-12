@@ -1,0 +1,135 @@
+{
+  "id": "lean-case-split-compfiles-6ac56e7f",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Residue split mod 3 for IMO 1964 P1(b)",
+  "intent": "Reduce a statement about every natural number n to three closed computations by splitting on n % 3, using the period 2^3 % 7 = 1.",
+  "move": "case-split",
+  "also_known_as": [
+    "residue case analysis",
+    "case split modulo k",
+    "mod_cases"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "compfiles",
+    "url": "https://github.com/dwrensha/compfiles",
+    "commit": "1745e6ced3e671bd74417548494b034eb2c87da8",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Compfiles/Imo1964P1.lean",
+      "bytes": 2344,
+      "sha256": "0126200aeec6ad151590c989ba60d1f42eb4cc0e88ca9de19ca902a29c92c855",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1964P1.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Compfiles/Imo1964P1.lean",
+      "lines": [
+        49,
+        69
+      ],
+      "role": "parent",
+      "name": "imo1964_p1b",
+      "excerpt_sha256": "6863c00914f28655683f439bc343af41445d5ba6bff74056ea5c127f3854940f",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1964P1.lean#L49-L69"
+    },
+    {
+      "path": "Compfiles/Imo1964P1.lean",
+      "lines": [
+        75,
+        79
+      ],
+      "role": "context",
+      "name": "imo_1964_p1b'",
+      "excerpt_sha256": "96462a6db62b03934e91a060805deed53fec3da0b879afe4ddaf2e08c3be382a",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1964P1.lean#L75-L79"
+    }
+  ],
+  "parent": {
+    "name": "imo1964_p1b",
+    "statement": "problem imo1964_p1b (n : ℕ) : ¬ 7 ∣ (2^n + 1)"
+  },
+  "children": [
+    {
+      "name": "case n % 3 = 0",
+      "statement": "goal created by mod_cases h2 : n % 3 (residue 0)",
+      "closed_by": "rw [Nat.zero_mod, add_zero, Nat.add_mod, Nat.pow_mod, pow_mul, Nat.pow_mod, h1, one_pow (M := ℕ)] at h; contradiction"
+    },
+    {
+      "name": "case n % 3 = 1",
+      "statement": "goal created by mod_cases h2 : n % 3 (residue 1)",
+      "closed_by": "rw [Nat.add_mod, pow_add, pow_mul, Nat.mul_mod, Nat.pow_mod, h1, one_pow (M := ℕ)] at h; contradiction"
+    },
+    {
+      "name": "case n % 3 = 2",
+      "statement": "goal created by mod_cases h2 : n % 3 (residue 2)",
+      "closed_by": "rw [Nat.add_mod, pow_add, pow_mul, Nat.mul_mod, Nat.pow_mod, h1, one_pow (M := ℕ)] at h; contradiction"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "∀ n : ℕ, P n where P n depends on n only through n % k for a small fixed k (often a power or recurrence periodic mod m)",
+    "use_when": "the period is known and can be stated first as its own fact; every residue class closes by the same kind of computation",
+    "avoid_when": "k is large or unknown; the periodicity needs its own induction (state it first as a lemma); the residue cases need different arguments"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "After mod_cases h2 : n % 3, each of the three goals closes with one rw chain and contradiction, with no further lemma.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1964P1.lean#L59-L69; file built by lake build in .github/workflows/push-main.yaml on pushes to main"
+    },
+    {
+      "n": 2,
+      "claim": "The authors give the informal plan as a comment beside the proof ('Let n = 3m + k; k = 0, 1, or 2. 2^3 = 1 (mod 7).'), and the formal proof follows it.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1964P1.lean#L50-L58"
+    },
+    {
+      "n": 3,
+      "claim": "The same residue split proves part (a) in the same file (mod_cases H : n % 3).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1964P1.lean#L44-L47"
+    },
+    {
+      "n": 4,
+      "claim": "No separate exhaustiveness lemma for n % 3 appears in the file: mod_cases creates the residues 0, 1, 2 itself.",
+      "evidence_kind": "check",
+      "evidence": "read of the whole copied file https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1964P1.lean"
+    }
+  ],
+  "metrics": {
+    "parent_proof_lines": 21,
+    "children": 3,
+    "auxiliary_lemmas_stated": 0,
+    "how_counted": "lines 49-69 of the copied file; children = goals created by mod_cases"
+  },
+  "consequences": "Creates k goals plus an exhaustiveness obligation that mod_cases discharges itself (with rcases on a disjunction it would be a separate child). Relies on rewriting n as n / 3 * 3 + n % 3 in every case; if the residue enters a case differently, the shared <;> step breaks.",
+  "known_uses": [
+    "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1964P1.lean#L44-L47"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 5,
+    "relation": "supports"
+  },
+  "content_key": "6ac56e7f9b7cb1d0357a6e823ac138aab2fff05446415ef79b3fc4f3ebf10036",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "lead",
+      "run": "exemplar",
+      "at": "2026-11-12T10:26:54Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,rule",
+      "agent_role": "lead (exemplar)",
+      "model": "claude-opus-5-5",
+      "run": "exemplar",
+      "at": "2026-11-12"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "source_id": "formal-conjectures",
+  "url": "https://github.com/google-deepmind/formal-conjectures",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "google-deepmind/formal-conjectures",
+  "commit": "a425ca3eb797fe927cb88c950565fdcbbbbada70",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:23:42Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

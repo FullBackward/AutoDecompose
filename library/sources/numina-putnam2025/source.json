@@ -1,0 +1,17 @@
+{
+  "source_id": "numina-putnam2025",
+  "url": "https://github.com/project-numina/Numina-Putnam2025",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "project-numina/Numina-Putnam2025",
+  "commit": "60d33c8ba19af905bd731e938ebde1c5b8c76519",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:24:03Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "MIT",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "source_id": "flt-imperial",
+  "url": "https://github.com/ImperialCollegeLondon/FLT",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "ImperialCollegeLondon/FLT",
+  "commit": "a3210204ad8876e851e32f73dd97d882bf1ccd0a",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:23:28Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

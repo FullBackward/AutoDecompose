@@ -1,0 +1,18 @@
+{
+  "source_id": "vst",
+  "url": "https://github.com/PrincetonUniversity/VST",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "PrincetonUniversity/VST",
+  "commit": "c082fe210ec501219abe52b9d0f25541d7c97e59",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-12T10:24:30Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "BSD-2-Clause",
+  "licence_files": [
+    "LICENSE",
+    "LICENSE-OPAM"
+  ]
+}

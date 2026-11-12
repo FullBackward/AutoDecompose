@@ -1,0 +1,15 @@
+{
+  "source_id": "strongpnt",
+  "url": "https://github.com/math-inc/strongpnt",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "math-inc/strongpnt",
+  "commit": "2f5835c322314f55f1026ec2f139d704b7c45c69",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:23:41Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "LicenseRef-unknown",
+  "licence_files": []
+}

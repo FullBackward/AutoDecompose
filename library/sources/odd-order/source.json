@@ -1,0 +1,17 @@
+{
+  "source_id": "odd-order",
+  "url": "https://github.com/math-comp/odd-order",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "math-comp/odd-order",
+  "commit": "ba734c020d9f7dce5758fa822904dea29e2624ba",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-12T10:24:19Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "CECILL-B",
+  "licence_files": [
+    "CeCILL-B"
+  ]
+}

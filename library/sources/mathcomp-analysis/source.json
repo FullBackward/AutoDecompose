@@ -1,0 +1,17 @@
+{
+  "source_id": "mathcomp-analysis",
+  "url": "https://github.com/math-comp/analysis",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "math-comp/analysis",
+  "commit": "eca10f89bd852201c8148ff2f597c7c7346d6df2",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-12T10:24:22Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "CECILL-C",
+  "licence_files": [
+    "LICENCE"
+  ]
+}

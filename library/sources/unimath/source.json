@@ -1,0 +1,17 @@
+{
+  "source_id": "unimath",
+  "url": "https://github.com/UniMath/UniMath",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "UniMath/UniMath",
+  "commit": "7a4b03cce49449f45ce0d4285615165172f50546",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-12T10:25:18Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "MIT",
+  "licence_files": [
+    "LICENSE.md"
+  ]
+}

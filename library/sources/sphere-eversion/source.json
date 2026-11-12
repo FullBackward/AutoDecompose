@@ -1,0 +1,17 @@
+{
+  "source_id": "sphere-eversion",
+  "url": "https://github.com/leanprover-community/sphere-eversion",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "leanprover-community/sphere-eversion",
+  "commit": "33ab3d626854a0f0f04ed5772e3102d652e96475",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:23:45Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "source_id": "seed-prover",
+  "url": "https://github.com/ByteDance-Seed/Seed-Prover",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "ByteDance-Seed/Seed-Prover",
+  "commit": "38c59cebaf969ac259196eb091757518d5b54c67",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:24:04Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

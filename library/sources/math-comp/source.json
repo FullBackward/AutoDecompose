@@ -1,0 +1,17 @@
+{
+  "source_id": "math-comp",
+  "url": "https://github.com/math-comp/math-comp",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "math-comp/math-comp",
+  "commit": "3a90d8b65f77f24e4fd770453c0697233b1c791d",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-12T10:24:16Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "CECILL-B",
+  "licence_files": [
+    "LICENCE"
+  ]
+}

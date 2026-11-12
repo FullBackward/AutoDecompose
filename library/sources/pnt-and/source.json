@@ -1,0 +1,17 @@
+{
+  "source_id": "pnt-and",
+  "url": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "AlexKontorovich/PrimeNumberTheoremAnd",
+  "commit": "2c476fa6441c607096d93c8fc7ac0a227a655dae",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:23:37Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

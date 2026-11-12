@@ -1,0 +1,17 @@
+{
+  "source_id": "carleson",
+  "url": "https://github.com/fpvandoorn/carleson",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "fpvandoorn/carleson",
+  "commit": "d75f54374f7f930e70a86b443f20d0e0935c275e",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:23:23Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

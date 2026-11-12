@@ -1,0 +1,15 @@
+{
+  "source_id": "goedel-prover-v2",
+  "url": "https://github.com/Goedel-LM/Goedel-Prover-V2",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "Goedel-LM/Goedel-Prover-V2",
+  "commit": "2e9036e118464aa96a8bebaf9f5b9d091aa3585c",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:24:15Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "LicenseRef-unknown",
+  "licence_files": []
+}

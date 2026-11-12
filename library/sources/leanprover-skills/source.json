@@ -1,0 +1,17 @@
+{
+  "source_id": "leanprover-skills",
+  "url": "https://github.com/leanprover/skills",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "leanprover/skills",
+  "commit": "7d3da0282e7b724b07620e45cf212f2e05e19334",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:24:09Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

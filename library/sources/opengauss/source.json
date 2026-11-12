@@ -1,0 +1,17 @@
+{
+  "source_id": "opengauss",
+  "url": "https://github.com/math-inc/OpenGauss",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "math-inc/OpenGauss",
+  "commit": "f87633900ae185b8037bf451a914fe7eeae1eb08",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:24:12Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "MIT",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

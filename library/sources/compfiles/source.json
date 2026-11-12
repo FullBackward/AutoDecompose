@@ -1,0 +1,17 @@
+{
+  "source_id": "compfiles",
+  "url": "https://github.com/dwrensha/compfiles",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "dwrensha/compfiles",
+  "commit": "1745e6ced3e671bd74417548494b034eb2c87da8",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:23:49Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "source_id": "pramaana-imo2026",
+  "url": "https://github.com/pramaana-labs/imo2026-lean",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "pramaana-labs/imo2026-lean",
+  "commit": "788fddc53c463d5d40d4680fb9bfd7b0f96f1063",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:23:54Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "MIT",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

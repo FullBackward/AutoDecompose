@@ -1,0 +1,17 @@
+{
+  "source_id": "equational-theories",
+  "url": "https://github.com/teorth/equational_theories",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "teorth/equational_theories",
+  "commit": "8b87204d5b201e1cf6c69b8dcabb0558109bee00",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:23:25Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

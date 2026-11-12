@@ -1,0 +1,17 @@
+{
+  "source_id": "lean4-skills",
+  "url": "https://github.com/cameronfreer/lean4-skills",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "cameronfreer/lean4-skills",
+  "commit": "3f913c66251b8712bb58e6ce83a453fa96e3f94f",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:24:08Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "MIT",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "source_id": "compcert",
+  "url": "https://github.com/AbsInt/CompCert",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "AbsInt/CompCert",
+  "commit": "2685140bf72c959446981fb99b5e44a8975021bc",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-12T10:24:24Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "LicenseRef-INRIA-Non-Commercial",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

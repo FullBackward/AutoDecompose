@@ -1,0 +1,17 @@
+{
+  "source_id": "mathlib4",
+  "url": "https://github.com/leanprover-community/mathlib4",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "leanprover-community/mathlib4",
+  "commit": "e1545ebed97594477bbd88b2fe948ffce56e5af2",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:23:17Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

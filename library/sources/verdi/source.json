@@ -1,0 +1,17 @@
+{
+  "source_id": "verdi",
+  "url": "https://github.com/uwplse/verdi",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "uwplse/verdi",
+  "commit": "7e1641b758d8f0032aa7de63620bc115330e0a6b",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-12T10:24:34Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "BSD-2-Clause",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

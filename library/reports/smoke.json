@@ -1,0 +1,33 @@
+{
+  "at": "2026-11-12T10:49:32Z",
+  "exit": 0,
+  "result": "ok",
+  "models_answering": [
+    "deepseek-flash"
+  ],
+  "usage": {
+    "input_tokens": 9279,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "output_tokens": 2,
+    "output_tokens_details": {
+      "thinking_tokens": 0
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "cost_cny": 0.009287,
+  "stderr_tail": "⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors\n[claude-code:unrecognized_model] {\"model\":\"deepseek-flash\",\"query_source\":\"sdk\"}\n",
+  "stdout_head": null
+}

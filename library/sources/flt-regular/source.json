@@ -1,0 +1,17 @@
+{
+  "source_id": "flt-regular",
+  "url": "https://github.com/leanprover-community/flt-regular",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "leanprover-community/flt-regular",
+  "commit": "83f477ccc8cef9fd9a022b90d87aed49368e7bbd",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:23:46Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

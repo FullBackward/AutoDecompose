@@ -1,0 +1,17 @@
+{
+  "source_id": "fourcolor",
+  "url": "https://github.com/math-comp/fourcolor",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "math-comp/fourcolor",
+  "commit": "c1d6b1cd5288bea4b067aac13cdde3c18dffe018",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-12T10:24:20Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "CECILL-B",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

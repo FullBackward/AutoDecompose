@@ -1,0 +1,15 @@
+{
+  "source_id": "harmonic-imo2025",
+  "url": "https://github.com/harmonic-ai/IMO2025",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "harmonic-ai/IMO2025",
+  "commit": "72b62405a176a7eaeadb335a7fa6ee80b6667161",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:24:06Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "LicenseRef-unknown",
+  "licence_files": []
+}

@@ -1,0 +1,15 @@
+{
+  "source_id": "numina-lean-agent",
+  "url": "https://github.com/project-numina/numina-lean-agent",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "project-numina/numina-lean-agent",
+  "commit": "1c9af8a52e715f22fede766425ba3d3b95526132",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-12T10:24:12Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "LicenseRef-unknown",
+  "licence_files": []
+}

@@ -7,8 +7,9 @@ small-scale, controlled scaling study: the model is held fixed and only the
 harness varies, which is the experiment Prove2Me (arXiv 2608.28433) leaves open.
 
 This repository is at the design stage. It holds the research note that
-motivates the work and the six literature surveys behind it; the code layout
-is not decided yet.
+motivates the work, the six literature surveys behind it, a plan for a library
+of harvested decompositions with the three surveys behind that; the code
+layout is not decided yet.
 
 ## The question
 
@@ -68,6 +69,30 @@ nearAI_Isabelle harness, imported rather than copied.
 - `docs/research/survey-F-decomposition-procedures-2026-11-11.md`: how 33
   published and six local harnesses decompose, step by step, compared on
   eleven fields, with 18 candidate rules in their Isabelle form.
+- `docs/library-plan-2026-11-12.md`: the plan for a library of decompositions
+  and formalisation skills harvested from large projects by a swarm of agents:
+  entry kinds, skills to reuse, retrieval, the harvest protocol, the entry
+  template, the start set, build order, and the owner's open decisions.
+- `docs/research/survey-G-claude-research-skills-2026-11-12.md`: 55 Claude
+  skills, plugins and subagent definitions for broad research, with the design
+  patterns that make the good ones work.
+- `docs/research/survey-H-code-and-formal-search-2026-11-12.md`: code search
+  (GitHub, grep.app, Sourcegraph, searchcode), formal-library search (AFP,
+  FindFacts, Loogle, blueprint graphs), existing formalisation skill files,
+  bulk-access recipes and licences.
+- `docs/research/survey-I-search-orchestration-2026-11-12.md`: multi-agent
+  research architectures, systematic-review and repository-mining methodology,
+  curated catalogues, and a harvest protocol with an entry template.
+
+## The decomposition library
+
+`library/` holds harvested decompositions and formalisation skills, each with
+its code copied whole from a pinned commit and a checked specification of why
+it is good; start at `library/README.md`. The harvest follows
+`library/protocol.md` and is run by the saved workflow
+`.claude/workflows/harvest-library.js`, whose roles are defined in
+`.claude/agents/` and `.claude/skills/harvest-decompositions/`. Every run spends
+tokens and needs the owner's go-ahead.
 
 The experimental evidence the note cites (pass-1 analysis, rep-1 analysis, the
 three-run comparison table) stays in `nearAI_Isabelle/docs/`.

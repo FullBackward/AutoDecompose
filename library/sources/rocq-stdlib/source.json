@@ -1,0 +1,17 @@
+{
+  "source_id": "rocq-stdlib",
+  "url": "https://github.com/rocq-prover/stdlib",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "rocq-prover/stdlib",
+  "commit": "22fcaa27d17bc28ab4be728ed10a1fb73afb23ee",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-12T10:25:21Z",
+  "how_found": "start set",
+  "note": "",
+  "licence": "LGPL-2.1",
+  "licence_files": [
+    "LICENSE"
+  ]
+}
