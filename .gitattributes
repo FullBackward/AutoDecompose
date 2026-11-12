@@ -1,0 +1,4 @@
+# Byte-for-byte copies of upstream files. Never convert their line endings:
+# a converted copy no longer matches its source, and check_provenance.py fails.
+library/entries/*/code/** -text
+library/sources/*/upstream-* -text
