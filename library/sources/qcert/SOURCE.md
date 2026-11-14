@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/querycert/qcert/tree/e112de6d7fda1b916244a1feb08bedd7f8a96bc1
 - Language: rocq
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:40:26Z
 - How found: discovery-1: A-rocq
 
 ## Licence files

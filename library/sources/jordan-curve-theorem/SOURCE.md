@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/coq-contribs/jordan-curve-theorem/tree/906762607c3e05bedd3f9aab002172e34dd1b595
 - Language: rocq
 - Licence (detected): `LicenseRef-unknown`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:40:18Z
 - How found: discovery-1: A-rocq
 
 ## Licence files

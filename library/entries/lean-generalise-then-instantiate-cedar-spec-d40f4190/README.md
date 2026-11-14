@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [cedar-spec](../../sources/cedar-spec/SOURCE.md) at `e619491a5bfb` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T12:10:15Z |
 
 ## Intent
 

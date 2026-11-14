@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [pramaana-imo2026](../../sources/pramaana-imo2026/SOURCE.md) at `788fddc53c46` |
 | Licence | `MIT` |
+| Licence recorded | 2026-11-14T09:36:49Z |
 
 ## Intent
 

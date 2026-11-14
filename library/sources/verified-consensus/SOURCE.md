@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/sigp/verified-consensus/tree/4a3809f12d5aefac6ca47ad36cb6a1b11938bd3a
 - Language: isabelle
 - Licence (detected): `LicenseRef-unknown`; the licence text below governs.
+- Licence recorded: 2026-11-14T14:53:43Z
 - How found: discovery-2: B-isabelle, discovery-1:B-isabelle
 
 ## Licence files

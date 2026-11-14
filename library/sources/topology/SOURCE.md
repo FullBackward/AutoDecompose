@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/rocq-community/topology/tree/1e898b95f68f9ce75bf44faa8446992b03c84052
 - Language: rocq
 - Licence: `LGPL-2.1-or-later`, read from the licence files by licence audit 2026-11-14 (LICENSE opens 'Topology and Zorn's Lemma, Copyright (C) 2011-present Daniel Schepler. This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version'); the detector had `LGPL-2.1`. The licence text below governs.
+- Licence recorded: 2026-11-14T22:39:52Z
 - How found: discovery-2: A-rocq, discovery-1:B-rocq
 
 ## Licence files

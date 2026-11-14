@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/mit-plv/bedrock2/tree/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b
 - Language: rocq
 - Licence (detected): `MIT`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:25:30Z
 - How found: start set
 
 ## Licence files

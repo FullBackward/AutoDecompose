@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/leanprover-community/physlib/tree/ca577bfd34ef356be2595528da1ef13a4a405816
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:40:02Z
 - How found: discovery-1: A-agents, A-lean
 
 ## Licence files

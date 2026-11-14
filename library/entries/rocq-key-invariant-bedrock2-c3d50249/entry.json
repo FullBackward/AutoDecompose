@@ -15,7 +15,8 @@
     "source_id": "bedrock2",
     "url": "https://github.com/mit-plv/bedrock2",
     "commit": "b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b",
-    "licence": "MIT"
+    "licence": "MIT",
+    "licence_recorded_at": "2026-11-14T10:32:19Z"
   },
   "files": [
     {

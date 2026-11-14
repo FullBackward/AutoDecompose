@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [humanfia-hoa-qed](../../sources/humanfia-hoa-qed/SOURCE.md) at `1c918ec9a96c` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T22:40:52Z |
 
 ## Intent
 

@@ -15,7 +15,8 @@
     "source_id": "cvm",
     "url": "https://github.com/joewatt95/cvm",
     "commit": "aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb",
-    "licence": "BSD-2-Clause"
+    "licence": "BSD-2-Clause",
+    "licence_recorded_at": "2026-11-14T15:17:46Z"
   },
   "files": [
     {

@@ -16,7 +16,8 @@
     "source_id": "mathlib4",
     "url": "https://github.com/leanprover-community/mathlib4",
     "commit": "e1545ebed97594477bbd88b2fe948ffce56e5af2",
-    "licence": "Apache-2.0"
+    "licence": "Apache-2.0",
+    "licence_recorded_at": "2026-11-12T12:17:36Z"
   },
   "files": [
     {

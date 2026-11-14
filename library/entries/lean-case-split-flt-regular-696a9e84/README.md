@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [flt-regular](../../sources/flt-regular/SOURCE.md) at `83f477ccc8ce` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-12T15:00:24Z |
 
 ## Intent
 

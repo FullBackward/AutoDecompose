@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [carleson](../../sources/carleson/SOURCE.md) at `d75f54374f7f` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-12T12:28:49Z |
 
 ## Intent
 

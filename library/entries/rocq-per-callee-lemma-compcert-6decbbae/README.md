@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [compcert](../../sources/compcert/SOURCE.md) at `2685140bf72c` |
 | Licence | `LicenseRef-INRIA-Non-Commercial AND (LicenseRef-INRIA-Non-Commercial OR LGPL-2.1-or-later)` |
+| Licence recorded | 2026-11-14T22:40:52Z |
 
 ## Intent
 

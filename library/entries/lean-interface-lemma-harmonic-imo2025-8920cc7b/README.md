@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [harmonic-imo2025](../../sources/harmonic-imo2025/SOURCE.md) at `72b62405a176` |
 | Licence | `LicenseRef-unknown` |
+| Licence recorded | 2026-11-12T11:56:21Z |
 
 ## Intent
 

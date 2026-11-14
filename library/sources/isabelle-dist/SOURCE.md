@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/isabelle-prover/mirror-isabelle/tree/34ca456d44ca14641450b5d52f51b38688d4d1b5
 - Language: isabelle
 - Licence (detected): `BSD-3-Clause`; the licence text below governs.
+- Licence recorded: 2026-11-12T13:44:24Z
 - How found: start set
 
 ## Licence files

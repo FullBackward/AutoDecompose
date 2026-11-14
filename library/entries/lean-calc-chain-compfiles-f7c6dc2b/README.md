@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [compfiles](../../sources/compfiles/SOURCE.md) at `1745e6ced3e6` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-12T15:01:24Z |
 
 ## Intent
 

@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [metarocq](../../sources/metarocq/SOURCE.md) at `51b14e4bb5f4` |
 | Licence | `MIT` |
+| Licence recorded | 2026-11-14T12:52:56Z |
 
 ## Intent
 

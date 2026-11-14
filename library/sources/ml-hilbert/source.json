@@ -16,5 +16,6 @@
   ],
   "licence_detected": "LicenseRef-unknown",
   "licence_note": "LICENSE is the text of SPDX's AML (Apple MIT License) word for word, apart from the copyright line ('Copyright (C) 2025 Apple Inc. All Rights Reserved.') and 'Apple Inc.' in place of 'Apple Computer, Inc.'; the detector has no rule for it. The copied Python files say 'For licensing see accompanying LICENSE file.'",
-  "licence_set_by": "licence audit 2026-11-14"
+  "licence_set_by": "licence audit 2026-11-14",
+  "licence_recorded_at": "2026-11-14T22:39:52Z"
 }

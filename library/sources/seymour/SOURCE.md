@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/Ivan-Sergeyev/seymour/tree/2769b10cb73fda17bafc0f13890dc057a2f4ff2a
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:39:06Z
 - How found: discovery-1: A-lean, B-lean
 
 ## Licence files

@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [apap](../../sources/apap/SOURCE.md) at `fb5cb9c4f594` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T15:16:14Z |
 
 ## Intent
 

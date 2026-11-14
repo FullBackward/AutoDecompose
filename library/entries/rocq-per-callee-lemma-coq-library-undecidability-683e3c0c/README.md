@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [coq-library-undecidability](../../sources/coq-library-undecidability/SOURCE.md) at `c7257b736763` |
 | Licence | `MPL-2.0` |
+| Licence recorded | 2026-11-14T12:41:37Z |
 
 ## Intent
 

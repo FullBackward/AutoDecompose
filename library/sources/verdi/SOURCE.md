@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/uwplse/verdi/tree/7e1641b758d8f0032aa7de63620bc115330e0a6b
 - Language: rocq
 - Licence (detected): `BSD-2-Clause`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:24:35Z
 - How found: start set
 
 ## Licence files

@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [equational-theories](../../sources/equational-theories/SOURCE.md) at `8b87204d5b20` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T11:00:15Z |
 
 ## Intent
 

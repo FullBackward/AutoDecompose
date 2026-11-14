@@ -17,5 +17,6 @@
   ],
   "licence_detected": "BSD-2-Clause AND GPL-2.0",
   "licence_note": "per file: LICENSE_BSD2.txt and LICENSE_GPLv2.txt each cover the files 'described as being under' them; the proof theories under impl/fs/bilby/proof/ carry 'may be distributed and modified according to the terms of the GNU General Public License version 2 ... @TAG(NICTA_GPL)' with no 'or later', hence GPL-2.0-only (the detector's 'GPL-2.0' is a deprecated SPDX identifier)",
-  "licence_set_by": "licence audit 2026-11-14"
+  "licence_set_by": "licence audit 2026-11-14",
+  "licence_recorded_at": "2026-11-14T22:39:52Z"
 }

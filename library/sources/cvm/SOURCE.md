@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/joewatt95/cvm/tree/aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb
 - Language: isabelle
 - Licence (detected): `BSD-2-Clause`; the licence text below governs.
+- Licence recorded: 2026-11-14T14:52:55Z
 - How found: discovery-2: A-isabelle, B-isabelle, discovery-1:B-isabelle
 
 ## Licence files

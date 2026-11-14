@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [navierstokesandeuler](../../sources/navierstokesandeuler/SOURCE.md) at `f9e8bc5b38b6` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T15:56:36Z |
 
 ## Intent
 

@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [l4v](../../sources/l4v/SOURCE.md) at `1abfe5bce986` |
 | Licence | `GPL-2.0-only` (proof/refine/Refine.thy), `BSD-2-Clause` (lib/Simulation.thy) |
+| Licence recorded | 2026-11-14T14:02:54Z |
 
 ## Intent
 

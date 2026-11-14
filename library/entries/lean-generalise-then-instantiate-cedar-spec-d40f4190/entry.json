@@ -15,7 +15,8 @@
     "source_id": "cedar-spec",
     "url": "https://github.com/cedar-policy/cedar-spec",
     "commit": "e619491a5bfb04970ef994dbe286df0bb9d0b73f",
-    "licence": "Apache-2.0"
+    "licence": "Apache-2.0",
+    "licence_recorded_at": "2026-11-14T12:10:15Z"
   },
   "files": [
     {

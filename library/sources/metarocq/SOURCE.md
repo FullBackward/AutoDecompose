@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/MetaRocq/metarocq/tree/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56
 - Language: rocq
 - Licence (detected): `MIT`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:38:57Z
 - How found: discovery-1: A-agents, A-rocq, B-rocq
 
 ## Licence files

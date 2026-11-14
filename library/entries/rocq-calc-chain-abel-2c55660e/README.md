@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [abel](../../sources/abel/SOURCE.md) at `8c6194115397` |
 | Licence | `CECILL-B` |
+| Licence recorded | 2026-11-14T15:26:19Z |
 
 ## Intent
 

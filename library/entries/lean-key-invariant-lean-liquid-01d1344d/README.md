@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [lean-liquid](../../sources/lean-liquid/SOURCE.md) at `ee4795874a99` |
 | Licence | `LicenseRef-unknown` |
+| Licence recorded | 2026-11-14T09:32:32Z |
 
 ## Intent
 

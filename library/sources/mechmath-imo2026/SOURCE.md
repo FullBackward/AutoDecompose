@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/MechMath/IMO2026/tree/47ff510110dd400c98aee2ead3be0f53f7b8ba04
 - Language: lean
 - Licence (detected): `LicenseRef-unknown`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:23:56Z
 - How found: start set
 
 ## Licence files

@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [lean4-skills](../../sources/lean4-skills/SOURCE.md) at `3f913c66251b` |
 | Licence | `MIT` |
+| Licence recorded | 2026-11-12T12:08:56Z |
 
 ## Intent
 

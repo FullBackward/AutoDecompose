@@ -15,7 +15,8 @@
     "source_id": "isabelle-pide-ai",
     "url": "https://github.com/kappelmann/isabelle-pide-ai",
     "commit": "80ec85239c8a76d992a6f06d586cdc370934d751",
-    "licence": "LGPL-3.0-only"
+    "licence": "LGPL-3.0-only",
+    "licence_recorded_at": "2026-11-14T22:41:37Z"
   },
   "files": [
     {

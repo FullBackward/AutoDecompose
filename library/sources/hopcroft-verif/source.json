@@ -11,5 +11,6 @@
   "how_found": "discovery-1: A-isabelle, B-isabelle",
   "note": "Hopcroft DFA minimisation verified in Isabelle/HOL (Nipkow-supervised) in Automata_Malik_Tuerk/Hopcroft_Minimisation.thy including runtime analysis; paper proof in LaTeX/proof.tex",
   "licence": "LicenseRef-unknown",
-  "licence_files": []
+  "licence_files": [],
+  "licence_recorded_at": "2026-11-14T11:39:38Z"
 }

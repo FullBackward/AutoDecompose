@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [afp](../../sources/afp/SOURCE.md) at `07cd9ca548d1` |
 | Licence | `BSD-3-Clause` |
+| Licence recorded | 2026-11-14T22:40:52Z |
 
 ## Intent
 

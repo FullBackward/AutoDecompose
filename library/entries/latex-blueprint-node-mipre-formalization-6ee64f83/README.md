@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [mipre-formalization](../../sources/mipre-formalization/SOURCE.md) at `5926bdff5db6` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T16:02:57Z |
 
 ## Intent
 

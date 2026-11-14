@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [fourcolor](../../sources/fourcolor/SOURCE.md) at `c1d6b1cd5288` |
 | Licence | `CECILL-B` |
+| Licence recorded | 2026-11-12T15:32:45Z |
 
 ## Intent
 

@@ -15,7 +15,8 @@
     "source_id": "sphere-packing",
     "url": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean",
     "commit": "efe3bbbc1ece548f4672a772b94d8f621c10fdda",
-    "licence": "Apache-2.0"
+    "licence": "Apache-2.0",
+    "licence_recorded_at": "2026-11-12T14:46:26Z"
   },
   "files": [
     {

@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [certicoq](../../sources/certicoq/SOURCE.md) at `943b52ae6547` |
 | Licence | `MIT` |
+| Licence recorded | 2026-11-14T10:25:36Z |
 
 ## Intent
 

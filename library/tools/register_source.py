@@ -126,6 +126,7 @@ def register(url: str, sid: str, language: str, ref: str, how_found: str,
            "repo_path": u["path"], "commit": sha, "ref": ref, "language": language,
            "pinned_at": now(), "how_found": how_found, "note": note,
            "licence": "LicenseRef-unknown", "licence_files": []}
+    src["licence_recorded_at"] = src["pinned_at"]
     d.mkdir(parents=True, exist_ok=True)
     texts = []
     for name in [n for n in root_files(src) if LICENCE_RE.match(n)]:
@@ -186,7 +187,8 @@ def write_note(d, src: dict) -> None:
         f"- Browse at this commit: {src['base']}/{src['repo_path']}"
         f"{'/tree/' if src['host'] == 'github' else '/-/tree/'}{sha}\n"
         f"- Language: {lang}\n"
-        + lic +
+        + lic
+        + (f"- Licence recorded: {src['licence_recorded_at']}\n" if src.get("licence_recorded_at") else "") +
         f"- How found: {src.get('how_found') or 'start set'}\n\n"
         f"## Licence files\n\n{lic_links}\n\n"
         f"## Attribution\n\n"
@@ -218,12 +220,13 @@ def set_licence(sid: str, expr: str, why: str, by: str, files: list[str] = (),
         if url not in src.get("licence_urls", []):
             (d / copy_name(url)).write_bytes(http_get(url))
             src.setdefault("licence_urls", []).append(url)
+    at = now()
     src.setdefault("licence_detected", src["licence"])
-    src.update(licence=expr, licence_note=why, licence_set_by=by)
+    src.update(licence=expr, licence_note=why, licence_set_by=by, licence_recorded_at=at)
     src.pop("licence_to_read", None)
     write_json(d / "source.json", src)
     write_note(d, src)
-    append_jsonl(LEDGER / "sources.jsonl", {**src, "event": "licence", "at": now()})
+    append_jsonl(LEDGER / "sources.jsonl", {**src, "event": "licence", "at": at})
     print(f"ok {sid} licence {expr} (detected {src['licence_detected']})")
 
 

@@ -11,7 +11,8 @@
     "source_id": "jordan-curve-theorem",
     "url": "https://github.com/coq-contribs/jordan-curve-theorem",
     "commit": "906762607c3e05bedd3f9aab002172e34dd1b595",
-    "licence": "LicenseRef-unknown"
+    "licence": "LicenseRef-unknown",
+    "licence_recorded_at": "2026-11-14T12:38:48Z"
   },
   "files": [
     {

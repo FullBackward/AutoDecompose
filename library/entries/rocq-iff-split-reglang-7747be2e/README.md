@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [reglang](../../sources/reglang/SOURCE.md) at `dd7521632d84` |
 | Licence | `CECILL-B` |
+| Licence recorded | 2026-11-14T15:41:41Z |
 
 ## Intent
 

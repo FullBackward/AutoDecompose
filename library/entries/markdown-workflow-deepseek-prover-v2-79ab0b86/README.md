@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [deepseek-prover-v2](../../sources/deepseek-prover-v2/SOURCE.md) at `e598a57ea328` |
 | Licence | `LicenseRef-DeepSeek-License-1.0` |
+| Licence recorded | 2026-11-14T22:40:52Z |
 
 ## Intent
 

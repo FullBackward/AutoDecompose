@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/trailofbits/skills/tree/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff
 - Language: lean
 - Licence (detected): `CC-BY-SA-4.0`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:24:11Z
 - How found: start set
 
 ## Licence files

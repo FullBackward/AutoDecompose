@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/frenzymath/poincare-conjecture/tree/08f06794dd88b786ae560b5db1116f50322c4629
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T14:54:04Z
 - How found: discovery-2: B-lean
 
 ## Licence files

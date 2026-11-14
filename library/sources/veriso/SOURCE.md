@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/shabnamrad/veriso/tree/6407b7205c3bfc4adc62e758795a7fc5142efb33
 - Language: isabelle
 - Licence (detected): `LicenseRef-unknown`; the licence text below governs.
+- Licence recorded: 2026-11-14T14:53:42Z
 - How found: discovery-2: A-isabelle, discovery-1:A-isabelle
 
 ## Licence files

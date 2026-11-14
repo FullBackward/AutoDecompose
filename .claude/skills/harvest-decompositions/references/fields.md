@@ -12,7 +12,7 @@
 | `intent` | analyst | one or two sentences: what the decomposition achieves for the goal |
 | `move`, `also_known_as` | tool; analyst | move from protocol §3; other names in other provers or papers |
 | `language` | tool | from the file extension |
-| `source` | tool | source id, URL, full commit, licence |
+| `source` | tool | source id, URL, full commit, licence, `licence_recorded_at` (UTC time the licence was written); whoever changes `licence` sets `licence_recorded_at` to the time of the change, and the README rows `Licence` and `Licence recorded` with it |
 | `files` | tool | every copied file with size, SHA-256 and permalink |
 | `sites` | tool | path, line range, role (parent, child, skeleton, skill-text, context), name, excerpt hash, permalink |
 | `parent` | analyst | `{name, statement}`; the statement verbatim from the code, copied with `statements.py`, never retyped; `statement: null` with a `note` when the parent is a goal inside a larger proof rather than a declaration; `null` for skills |

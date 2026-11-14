@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/alpha-squared-labs/Lean-Atiyah-Singer/tree/09fc7bab3f9ff606901bde4b5a5580470da63a70
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:40:11Z
 - How found: discovery-1: A-lean
 
 ## Licence files

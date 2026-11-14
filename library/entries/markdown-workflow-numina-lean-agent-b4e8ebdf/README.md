@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [numina-lean-agent](../../sources/numina-lean-agent/SOURCE.md) at `1c9af8a52e71` |
 | Licence | `MIT` |
+| Licence recorded | 2026-11-14T22:40:52Z |
 
 ## Intent
 

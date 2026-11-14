@@ -11,5 +11,6 @@
   "how_found": "discovery-2: A-isabelle, discovery-1:A-isabelle",
   "note": "VLDB 2025 isolation-verification framework; per-protocol proof theories (S2PL_Proof.thy, Tapir.thy/Tapir_Falsification.thy) discharging RA/UA/TCC/SER guarantees from framework lemmas.",
   "licence": "LicenseRef-unknown",
-  "licence_files": []
+  "licence_files": [],
+  "licence_recorded_at": "2026-11-14T14:53:42Z"
 }

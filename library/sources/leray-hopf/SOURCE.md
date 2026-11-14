@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/uda-lab/leray-hopf/tree/e704400f2fb2f26b2ee7f4372c3e1ecbbc82f3dc
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T14:53:59Z
 - How found: discovery-2: A-lean
 
 ## Licence files

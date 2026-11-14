@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/SSProve/ssprove/tree/9a37fe0ab79d041f8d835e6cf18e37614b16a791
 - Language: rocq
 - Licence (detected): `MIT`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:39:24Z
 - How found: discovery-1: A-rocq, B-rocq
 
 ## Licence files

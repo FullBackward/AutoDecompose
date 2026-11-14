@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [jordan-curve-theorem](../../sources/jordan-curve-theorem/SOURCE.md) at `906762607c3e` |
 | Licence | `LicenseRef-unknown` |
+| Licence recorded | 2026-11-14T12:38:48Z |
 
 ## Intent
 

@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/Boundless-Intuition/IMO2026/tree/37259237016275044e3905e8d537efd0eead74d2
 - Language: lean
 - Licence (detected): `MIT`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:23:53Z
 - How found: start set
 
 ## Licence files

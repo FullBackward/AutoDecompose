@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/rocq-prover/stdlib/tree/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee
 - Language: rocq
 - Licence: `LGPL-2.1-only`, read from the licence files by licence audit 2026-11-14 (LICENSE is the LGPL version 2.1 text and the file headers read 'This file is distributed under the terms of the GNU Lesser General Public License Version 2.1' with no 'or later' (e.g. theories/Logic/WKL.v, theories/micromega/Tauto.v); the detector's 'LGPL-2.1' is a deprecated SPDX identifier); the detector had `LGPL-2.1`. The licence text below governs.
+- Licence recorded: 2026-11-14T22:39:52Z
 - How found: start set
 
 ## Licence files

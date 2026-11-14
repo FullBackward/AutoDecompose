@@ -6,7 +6,8 @@ Checks: required fields and vocabularies; every listed file exists under
 code/ with the recorded size and SHA-256; every site lies inside its file and
 its excerpt hash matches; README.md has the required sections; every prover
 code block in README.md appears verbatim in a copied file (so no code was
-retyped or invented); claims are well formed. With --strict (required before
+retyped or invented); claims are well formed; source.licence_recorded_at is a
+UTC time no older than the last logged licence change, and README.md shows it. With --strict (required before
 a status above draft) no TODO may remain outside the rendered Verification
 section, and, for an instance in a prover language (lean, rocq, isabelle):
 every parent and child statement is verbatim from a copied file or null with a
@@ -130,6 +131,14 @@ def check(eid: str, strict: bool) -> list[str]:
                 errs.append("a theorem-scale entry needs at least 2 child sites")
     if not re.fullmatch(r"[0-9a-f]{40}", e["source"].get("commit", "")):
         errs.append("source.commit is not a full 40-hex commit hash")
+    recorded = e["source"].get("licence_recorded_at") or ""
+    if not re.fullmatch(r"\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ", recorded):
+        errs.append("source.licence_recorded_at is missing or not a UTC time like 2026-11-14T12:00:00Z "
+                    "(set it to the time source.licence was last written)")
+    logged = [p.get("at") or "" for p in e.get("provenance_log") or [] if "source.licence" in p.get("field", "")]
+    if recorded and logged and recorded < max(logged):
+        errs.append(f"source.licence_recorded_at ({recorded}) is older than the last provenance_log change "
+                    f"of source.licence ({max(logged)}): set it, and the README row, to the time of that change")
 
     texts = {}
     for f in e["files"]:
@@ -170,6 +179,9 @@ def check(eid: str, strict: bool) -> list[str]:
         for sec in SECTIONS:
             if sec not in r:
                 errs.append(f"README.md lacks section '{sec}'")
+        if recorded and f"| Licence recorded | {recorded} |" not in r:
+            errs.append(f"README.md lacks the row '| Licence recorded | {recorded} |' "
+                        f"matching source.licence_recorded_at")
         corpus = "\n".join(texts.values())
         for m in re.finditer(r"^(`{3,})([a-z]*)\n(.*?)\n\1$", r, flags=re.S | re.M):
             if m[2] in PROVER_FENCES and m[3] not in corpus:

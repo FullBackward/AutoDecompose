@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/math-comp/odd-order/tree/ba734c020d9f7dce5758fa822904dea29e2624ba
 - Language: rocq
 - Licence (detected): `CECILL-B`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:24:20Z
 - How found: start set
 
 ## Licence files

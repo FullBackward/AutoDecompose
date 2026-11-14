@@ -11,5 +11,6 @@
   "how_found": "discovery-2: B-isabelle, discovery-1:B-isabelle",
   "note": "Verified C TimSort in Isabelle/HOL Simpl: the correctness proof is split into TimSortLemma, per-procedure gallop lemmas in GallopA and the TimSort/TimSortProc specifications, with generated C and random tests.",
   "licence": "LicenseRef-unknown",
-  "licence_files": []
+  "licence_files": [],
+  "licence_recorded_at": "2026-11-14T14:53:50Z"
 }

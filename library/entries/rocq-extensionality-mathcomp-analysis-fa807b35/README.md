@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [mathcomp-analysis](../../sources/mathcomp-analysis/SOURCE.md) at `eca10f89bd85` |
 | Licence | `CECILL-C` |
+| Licence recorded | 2026-11-14T09:57:52Z |
 
 ## Intent
 

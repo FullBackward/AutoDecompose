@@ -16,7 +16,8 @@
     "source_id": "vst",
     "url": "https://github.com/PrincetonUniversity/VST",
     "commit": "c082fe210ec501219abe52b9d0f25541d7c97e59",
-    "licence": "BSD-2-Clause"
+    "licence": "BSD-2-Clause",
+    "licence_recorded_at": "2026-11-14T10:12:33Z"
   },
   "files": [
     {
@@ -158,7 +159,12 @@
   "metrics": {
     "parent_lines": 9,
     "direct_lemmas": 4,
-    "child_lines": [27, 35, 25, 23],
+    "child_lines": [
+      27,
+      35,
+      25,
+      23
+    ],
     "how_counted": "parent_lines = parent site lines 4548-4556 (declaration through Qed); direct_lemmas = the four named project lemmas the glue cites; child_lines = child site line counts in children order Generate_move_v_update, G_real_is_first_hybrid, G_ideal_is_last_hybrid, Gi_adjacent_hybrids_close"
   },
   "consequences": "The move concentrates all the difficulty into one invariant, Gi_adjacent_hybrids_close, which must bound every adjacent pair uniformly; the glue is then a wrapper (three rewrites plus one specialize of distance_le_prod_f). The three endpoint lemmas (Generate_move_v_update, G_real_is_first_hybrid, G_ideal_is_last_hybrid) must each be a genuine == so that rewrite applies; if an endpoint only gives a one-sided bound, the telescope does not go through. Failure modes: the per-step bound must be uniform in i (a fixed Gi_Gi_plus_1_bound independent of i); a non-uniform or endpoint-dependent bound forces the proof back into an explicit induction over i, and the single specialize step breaks.",

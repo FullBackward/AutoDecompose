@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/uds-psl/coq-library-undecidability/tree/c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c
 - Language: rocq
 - Licence (detected): `MPL-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:40:16Z
 - How found: discovery-1: A-rocq
 
 ## Licence files

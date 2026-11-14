@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/DeepSpec/InteractionTrees/tree/284d42248a3c5517cff9f582e335fcee2f6bdc1f
 - Language: rocq
 - Licence (detected): `MIT`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:25:28Z
 - How found: start set
 
 ## Licence files

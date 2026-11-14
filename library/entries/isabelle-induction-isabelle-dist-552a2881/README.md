@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [isabelle-dist](../../sources/isabelle-dist/SOURCE.md) at `34ca456d44ca` |
 | Licence | `BSD-3-Clause` |
+| Licence recorded | 2026-11-12T16:06:53Z |
 
 ## Intent
 

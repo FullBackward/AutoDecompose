@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [munkres-isabelle](../../sources/munkres-isabelle/SOURCE.md) at `90d108779e83` |
 | Licence | `LicenseRef-unknown` |
+| Licence recorded | 2026-11-14T10:48:18Z |
 
 ## Intent
 

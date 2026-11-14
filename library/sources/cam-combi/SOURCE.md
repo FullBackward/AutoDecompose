@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/yaeldillies/cam-combi/tree/0a42535119073f677dd60a28acbbdcda11b87f60
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T14:53:12Z
 - How found: discovery-2: A-lean, B-lean
 
 ## Licence files

@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [odd-order-2](../../sources/odd-order-2/SOURCE.md) at `ba8ec35982ce` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T15:55:54Z |
 
 ## Intent
 

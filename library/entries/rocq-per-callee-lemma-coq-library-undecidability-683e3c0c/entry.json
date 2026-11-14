@@ -15,7 +15,8 @@
     "source_id": "coq-library-undecidability",
     "url": "https://github.com/uds-psl/coq-library-undecidability",
     "commit": "c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c",
-    "licence": "MPL-2.0"
+    "licence": "MPL-2.0",
+    "licence_recorded_at": "2026-11-14T12:41:37Z"
   },
   "files": [
     {

@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [seymour](../../sources/seymour/SOURCE.md) at `2769b10cb73f` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T12:12:45Z |
 
 ## Intent
 

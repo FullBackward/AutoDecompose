@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [formal-conjectures](../../sources/formal-conjectures/SOURCE.md) at `a425ca3eb797` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T09:21:40Z |
 
 ## Intent
 

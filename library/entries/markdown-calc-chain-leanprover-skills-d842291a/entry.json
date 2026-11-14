@@ -16,7 +16,8 @@
     "source_id": "leanprover-skills",
     "url": "https://github.com/leanprover/skills",
     "commit": "7d3da0282e7b724b07620e45cf212f2e05e19334",
-    "licence": "Apache-2.0"
+    "licence": "Apache-2.0",
+    "licence_recorded_at": "2026-11-12T15:23:08Z"
   },
   "files": [
     {

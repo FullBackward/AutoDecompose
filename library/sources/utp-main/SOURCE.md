@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/isabelle-utp/utp-main/tree/ffd472022798e60f0385030682b7a07fbeb49e68
 - Language: isabelle
 - Licence (detected): `BSD-3-Clause`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:39:30Z
 - How found: discovery-1: A-isabelle, B-isabelle
 
 ## Licence files

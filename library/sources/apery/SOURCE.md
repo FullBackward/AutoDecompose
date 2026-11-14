@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/rocq-community/apery/tree/97f0c01bec4282c4504c0225a71ff0e75aeab115
 - Language: rocq
 - Licence (detected): `CECILL-C`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:40:22Z
 - How found: discovery-1: A-rocq
 
 ## Licence files

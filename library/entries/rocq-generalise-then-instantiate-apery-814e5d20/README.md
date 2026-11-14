@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [apery](../../sources/apery/SOURCE.md) at `97f0c01bec42` |
 | Licence | `CECILL-C` |
+| Licence recorded | 2026-11-14T12:44:48Z |
 
 ## Intent
 

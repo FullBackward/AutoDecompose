@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/cedar-policy/cedar-spec/tree/e619491a5bfb04970ef994dbe286df0bb9d0b73f
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:39:02Z
 - How found: discovery-1: A-lean, B-lean
 
 ## Licence files

@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/yijunyuan/hardernarasimhan/tree/14b3090e1e169b77fe381102a1289f24c2b08a11
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T14:53:10Z
 - How found: discovery-2: A-lean, discovery-1:B-lean
 
 ## Licence files

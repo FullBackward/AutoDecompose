@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [bertrand](../../sources/bertrand/SOURCE.md) at `033b1a8f1a9c` |
 | Licence | `LGPL-2.1-or-later` |
+| Licence recorded | 2026-11-14T22:40:52Z |
 
 ## Intent
 

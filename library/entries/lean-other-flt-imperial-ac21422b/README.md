@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [flt-imperial](../../sources/flt-imperial/SOURCE.md) at `a3210204ad88` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T09:07:56Z |
 
 ## Intent
 

@@ -16,7 +16,8 @@
     "source_id": "l4v",
     "url": "https://github.com/seL4/l4v",
     "commit": "1abfe5bce98632a94ba52adf183045620c509340",
-    "licence": "GPL-2.0-only AND BSD-2-Clause"
+    "licence": "GPL-2.0-only AND BSD-2-Clause",
+    "licence_recorded_at": "2026-11-14T14:02:54Z"
   },
   "files": [
     {

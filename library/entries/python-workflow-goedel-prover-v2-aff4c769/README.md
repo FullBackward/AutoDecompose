@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [goedel-prover-v2](../../sources/goedel-prover-v2/SOURCE.md) at `2e9036e11846` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T22:40:52Z |
 
 ## Intent
 

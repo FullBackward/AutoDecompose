@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/leanprover-community/mathlib4/tree/e1545ebed97594477bbd88b2fe948ffce56e5af2
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:23:22Z
 - How found: start set
 
 ## Licence files

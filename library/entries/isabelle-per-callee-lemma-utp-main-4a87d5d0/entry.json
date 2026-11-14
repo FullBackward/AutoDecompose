@@ -16,7 +16,8 @@
     "source_id": "utp-main",
     "url": "https://github.com/isabelle-utp/utp-main",
     "commit": "ffd472022798e60f0385030682b7a07fbeb49e68",
-    "licence": "BSD-3-Clause"
+    "licence": "BSD-3-Clause",
+    "licence_recorded_at": "2026-11-14T12:24:00Z"
   },
   "files": [
     {

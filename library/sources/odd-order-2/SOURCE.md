@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/yawara/odd-order/tree/ba8ec35982ceecbd31ca987cbe0cee30477f4883
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T14:53:48Z
 - How found: discovery-2: A-lean
 
 ## Licence files

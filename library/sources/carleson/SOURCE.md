@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/fpvandoorn/carleson/tree/d75f54374f7f930e70a86b443f20d0e0935c275e
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:23:24Z
 - How found: start set
 
 ## Licence files

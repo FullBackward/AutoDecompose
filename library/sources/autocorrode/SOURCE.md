@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/awslabs/AutoCorrode/tree/200f1acf2d264f2dedee33792b986ebe73c224a3
 - Language: isabelle
 - Licence (detected): `MIT`; the licence text below governs.
+- Licence recorded: 2026-11-12T13:44:19Z
 - How found: start set
 
 ## Licence files

@@ -16,5 +16,6 @@
   ],
   "licence_detected": "LicenseRef-unknown",
   "licence_note": "no licence file at the root; lean3/src/starkware/cairo/lean/semantics/LICENSE (Apache 2.0; copied here) covers only that Lean 3 tree, and the entries' files (under Verification/ and Stwo/) are outside it and carry no licence header",
-  "licence_set_by": "licence audit 2026-11-14"
+  "licence_set_by": "licence audit 2026-11-14",
+  "licence_recorded_at": "2026-11-14T22:39:53Z"
 }

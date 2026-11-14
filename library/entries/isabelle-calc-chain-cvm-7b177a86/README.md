@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [cvm](../../sources/cvm/SOURCE.md) at `aee8c4ba0bdc` |
 | Licence | `BSD-2-Clause` |
+| Licence recorded | 2026-11-14T15:17:46Z |
 
 ## Intent
 

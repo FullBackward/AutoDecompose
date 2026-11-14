@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/CertiCoq/certicoq/tree/943b52ae654708130f241ccf8a50ecb95a7956e2
 - Language: rocq
 - Licence (detected): `MIT`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:25:26Z
 - How found: start set
 
 ## Licence files

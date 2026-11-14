@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [autocorrode](../../sources/autocorrode/SOURCE.md) at `200f1acf2d26` |
 | Licence | `MIT` |
+| Licence recorded | 2026-11-12T16:03:49Z |
 
 ## Intent
 

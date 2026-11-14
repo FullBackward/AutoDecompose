@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [leanprover-skills](../../sources/leanprover-skills/SOURCE.md) at `7d3da0282e7b` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-12T12:37:53Z |
 
 ## Intent
 

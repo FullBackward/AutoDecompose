@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/Paul-Lez/PersistentDecomp/tree/31b1727c64bfc7b1f6677f0c6d179efdd1b2f7ee
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:39:16Z
 - How found: discovery-1: A-lean, B-lean
 
 ## Licence files

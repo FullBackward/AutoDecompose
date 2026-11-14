@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/vidick/mipre-formalization/tree/5926bdff5db621f44682a101007ef2fe3ae8d970
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T14:53:53Z
 - How found: discovery-2: A-lean
 
 ## Licence files

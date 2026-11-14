@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/leanprover-community/sphere-eversion/tree/33ab3d626854a0f0f04ed5772e3102d652e96475
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:23:46Z
 - How found: start set
 
 ## Licence files

@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [hydra-battles](../../sources/hydra-battles/SOURCE.md) at `ed8e6048018a` |
 | Licence | `MIT` |
+| Licence recorded | 2026-11-14T10:18:07Z |
 
 ## Intent
 

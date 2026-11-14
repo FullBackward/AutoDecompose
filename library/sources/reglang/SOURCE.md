@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/rocq-community/reglang/tree/dd7521632d849ef1d143398262d0fb98e536dd6c
 - Language: rocq
 - Licence (detected): `CECILL-B`; the licence text below governs.
+- Licence recorded: 2026-11-14T14:53:31Z
 - How found: discovery-2: discovery-1:A-rocq, discovery-1:B-rocq
 
 ## Licence files

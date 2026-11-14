@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [classfieldtheory](../../sources/classfieldtheory/SOURCE.md) at `1e7f5dbe3835` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T15:17:21Z |
 
 ## Intent
 

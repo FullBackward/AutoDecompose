@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/rocq-community/gaia/tree/5f54b6ee146e86e938180f8037db411da224bb29
 - Language: rocq
 - Licence (detected): `MIT`; the licence text below governs.
+- Licence recorded: 2026-11-14T14:53:33Z
 - How found: discovery-2: discovery-1:A-rocq, discovery-1:B-rocq
 
 ## Licence files

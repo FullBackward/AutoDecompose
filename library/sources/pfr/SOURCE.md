@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/teorth/pfr/tree/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:23:23Z
 - How found: start set
 
 ## Licence files

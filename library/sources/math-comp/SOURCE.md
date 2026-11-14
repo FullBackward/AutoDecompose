@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/math-comp/math-comp/tree/3a90d8b65f77f24e4fd770453c0697233b1c791d
 - Language: rocq
 - Licence (detected): `CECILL-B`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:24:18Z
 - How found: start set
 
 ## Licence files

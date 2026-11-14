@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/tree/07ecd3a886efa3a5744caabc19fbb301a40384a5
 - Language: isabelle
 - Licence (detected): `BSD-3-Clause`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:39:35Z
 - How found: discovery-1: A-isabelle, B-isabelle
 
 ## Licence files

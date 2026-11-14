@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/yaeldillies/chandra-furst-lipton/tree/95c7ea0802c195bef2238ad962873c0907f1f8a9
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T14:53:14Z
 - How found: discovery-2: A-lean, discovery-1:B-lean
 
 ## Licence files

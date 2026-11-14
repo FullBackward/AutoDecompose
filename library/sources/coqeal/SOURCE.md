@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/rocq-community/coqeal/tree/8fd26cf416ce0dfb5e9a9745293bdedf63b56d39
 - Language: rocq
 - Licence (detected): `MIT`; the licence text below governs.
+- Licence recorded: 2026-11-14T14:53:28Z
 - How found: discovery-2: A-rocq, B-rocq
 
 ## Licence files

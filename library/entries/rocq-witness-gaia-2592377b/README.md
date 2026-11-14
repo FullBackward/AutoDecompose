@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [gaia](../../sources/gaia/SOURCE.md) at `5f54b6ee146e` |
 | Licence | `MIT` |
+| Licence recorded | 2026-11-14T15:43:26Z |
 
 ## Intent
 

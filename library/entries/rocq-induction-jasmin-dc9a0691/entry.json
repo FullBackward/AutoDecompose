@@ -15,7 +15,8 @@
     "source_id": "jasmin",
     "url": "https://github.com/jasmin-lang/jasmin",
     "commit": "211aa617685e0a0b074646fc27c85d017aced9cb",
-    "licence": "MIT"
+    "licence": "MIT",
+    "licence_recorded_at": "2026-11-14T12:33:53Z"
   },
   "files": [
     {

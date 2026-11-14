@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/math-comp/abel/tree/8c6194115397371df63cd6fae7e39009872858fd
 - Language: rocq
 - Licence (detected): `CECILL-B`; the licence text below governs.
+- Licence recorded: 2026-11-14T14:53:17Z
 - How found: discovery-2: A-rocq, B-rocq
 
 ## Licence files

@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [verdi](../../sources/verdi/SOURCE.md) at `7e1641b758d8` |
 | Licence | `BSD-2-Clause` |
+| Licence recorded | 2026-11-12T15:42:10Z |
 
 ## Intent
 

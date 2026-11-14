@@ -83,11 +83,12 @@ def main() -> None:
         files.append({"path": p, "bytes": len(b), "sha256": sha256_bytes(b),
                       "permalink": permalink(src, p)})
 
+    at = now()
     entry = {
         "id": eid, "kind": a.kind, "status": "draft", "title": a.title,
         "intent": "TODO", "move": a.move, "also_known_as": [], "language": lang,
         "source": {"source_id": a.source, "url": src["url"], "commit": src["commit"],
-                   "licence": src["licence"]},
+                   "licence": src["licence"], "licence_recorded_at": at},
         "files": files, "sites": sites,
         "parent": {"name": "TODO", "statement": "TODO"} if a.kind != "skill" else None,
         "children": [],
@@ -97,7 +98,7 @@ def main() -> None:
         "rule": {"f10_rule": None, "relation": "none"},
         "content_key": key,
         "provenance_log": [{"field": "files,sites", "agent_role": a.agent,
-                            "run": a.run, "at": now()}],
+                            "run": a.run, "at": at}],
     }
     write_json(d / "entry.json", entry)
 
@@ -107,7 +108,7 @@ def main() -> None:
            f"| Kind | {a.kind} |", f"| Move | {a.move} |", f"| Language | {lang} |",
            f"| Status | draft |",
            f"| Source | [{a.source}](../../sources/{a.source}/SOURCE.md) at `{short}` |",
-           f"| Licence | `{src['licence']}` |", "",
+           f"| Licence | `{src['licence']}` |", f"| Licence recorded | {at} |", "",
            "## Intent", "", "TODO: one or two sentences on what this decomposition achieves.", "",
            "## The decomposition", ""]
     for s, text in zip(sites, excerpts):

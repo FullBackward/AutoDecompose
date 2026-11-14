@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/VTrelat/Hopcroft_verif/tree/bed059934b6007d8dbb95852d4d5500a90ec2ddf
 - Language: isabelle
 - Licence (detected): `LicenseRef-unknown`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:39:38Z
 - How found: discovery-1: A-isabelle, B-isabelle
 
 ## Licence files

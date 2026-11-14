@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [numina-putnam2025](../../sources/numina-putnam2025/SOURCE.md) at `60d33c8ba19a` |
 | Licence | `MIT` |
+| Licence recorded | 2026-11-12T11:54:56Z |
 
 ## Intent
 

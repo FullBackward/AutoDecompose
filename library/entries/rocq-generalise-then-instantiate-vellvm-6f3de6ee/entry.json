@@ -15,7 +15,8 @@
     "source_id": "vellvm",
     "url": "https://github.com/vellvm/vellvm",
     "commit": "e25dad9af33281b2edd3c16c027f3717546a09d7",
-    "licence": "MIT"
+    "licence": "MIT",
+    "licence_recorded_at": "2026-11-14T12:20:31Z"
   },
   "files": [
     {

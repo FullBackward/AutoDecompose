@@ -14,7 +14,8 @@
     "source_id": "qcert",
     "url": "https://github.com/querycert/qcert",
     "commit": "e112de6d7fda1b916244a1feb08bedd7f8a96bc1",
-    "licence": "Apache-2.0"
+    "licence": "Apache-2.0",
+    "licence_recorded_at": "2026-11-14T12:50:00Z"
   },
   "files": [
     {

@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [lean-autoformalization-skills](../../sources/lean-autoformalization-skills/SOURCE.md) at `1837b95b3d5a` |
 | Licence | `CC-BY-4.0` |
+| Licence recorded | 2026-11-12T15:31:19Z |
 
 ## Intent
 

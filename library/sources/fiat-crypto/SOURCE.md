@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/mit-plv/fiat-crypto/tree/3d2880ef2803faa9385589a81a835d5828eb3d38
 - Language: rocq
 - Licence: `MIT OR Apache-2.0 OR BSD-1-Clause`, read from the licence files by fixer (revise-1) (COPYRIGHT: SPDX-License-Identifier MIT OR Apache-2.0 OR BSD-1-Clause, at your option; there is no BSD-2-Clause file (the file is LICENSE-BSD-1)); the detector had `Apache-2.0 AND BSD-2-Clause AND MIT AND MIT OR Apache-2.0 OR BSD-1-Clause`. The licence text below governs.
+- Licence recorded: 2026-11-14T14:38:36Z
 - How found: start set
 
 ## Licence files

@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [jasmin](../../sources/jasmin/SOURCE.md) at `211aa617685e` |
 | Licence | `MIT` |
+| Licence recorded | 2026-11-14T12:33:53Z |
 
 ## Intent
 

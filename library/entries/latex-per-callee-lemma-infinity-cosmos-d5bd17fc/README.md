@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [infinity-cosmos](../../sources/infinity-cosmos/SOURCE.md) at `89d7dc3ed861` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T12:11:57Z |
 
 ## Intent
 

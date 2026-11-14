@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/math-comp/fourcolor/tree/c1d6b1cd5288bea4b067aac13cdde3c18dffe018
 - Language: rocq
 - Licence (detected): `CECILL-B`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:24:22Z
 - How found: start set
 
 ## Licence files

@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [mechmath-imo2026](../../sources/mechmath-imo2026/SOURCE.md) at `47ff510110dd` |
 | Licence | `LicenseRef-unknown` |
+| Licence recorded | 2026-11-12T15:12:11Z |
 
 ## Intent
 

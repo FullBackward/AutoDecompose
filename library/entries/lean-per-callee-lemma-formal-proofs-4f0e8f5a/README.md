@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [formal-proofs](../../sources/formal-proofs/SOURCE.md) at `d0dd8279612a` |
 | Licence | `LicenseRef-unknown` |
+| Licence recorded | 2026-11-14T12:55:50Z |
 
 ## Intent
 

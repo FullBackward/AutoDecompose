@@ -17,7 +17,8 @@
     "source_id": "afp",
     "url": "https://github.com/isabelle-prover/mirror-afp-devel",
     "commit": "07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
-    "licence": "BSD-3-Clause"
+    "licence": "BSD-3-Clause",
+    "licence_recorded_at": "2026-11-14T22:40:52Z"
   },
   "files": [
     {

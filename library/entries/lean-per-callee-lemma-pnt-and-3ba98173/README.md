@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [pnt-and](../../sources/pnt-and/SOURCE.md) at `2c476fa6441c` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T11:04:35Z |
 
 ## Intent
 

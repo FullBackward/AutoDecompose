@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [vellvm](../../sources/vellvm/SOURCE.md) at `e25dad9af332` |
 | Licence | `MIT` |
+| Licence recorded | 2026-11-14T12:20:31Z |
 
 ## Intent
 

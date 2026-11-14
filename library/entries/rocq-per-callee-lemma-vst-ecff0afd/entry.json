@@ -17,7 +17,8 @@
     "source_id": "vst",
     "url": "https://github.com/PrincetonUniversity/VST",
     "commit": "c082fe210ec501219abe52b9d0f25541d7c97e59",
-    "licence": "BSD-2-Clause"
+    "licence": "BSD-2-Clause",
+    "licence_recorded_at": "2026-11-12T15:42:59Z"
   },
   "files": [
     {

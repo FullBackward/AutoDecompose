@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [seed-prover](../../sources/seed-prover/SOURCE.md) at `38c59cebaf96` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-12T15:16:12Z |
 
 ## Intent
 

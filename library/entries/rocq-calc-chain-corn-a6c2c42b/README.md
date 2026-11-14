@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [corn](../../sources/corn/SOURCE.md) at `f67899611292` |
 | Licence | `GPL-2.0-or-later` |
+| Licence recorded | 2026-11-14T22:40:52Z |
 
 ## Intent
 

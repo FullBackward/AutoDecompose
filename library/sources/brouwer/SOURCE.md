@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/math-xmum/Brouwer/tree/ae7cd60f7442fdc6d41d4e39e692bbcda8f1a0d0
 - Language: lean
 - Licence (detected): `MIT`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:38:59Z
 - How found: discovery-1: A-lean, B-lean
 
 ## Licence files

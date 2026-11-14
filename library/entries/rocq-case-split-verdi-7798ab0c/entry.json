@@ -15,7 +15,8 @@
     "source_id": "verdi",
     "url": "https://github.com/uwplse/verdi",
     "commit": "7e1641b758d8f0032aa7de63620bc115330e0a6b",
-    "licence": "BSD-2-Clause"
+    "licence": "BSD-2-Clause",
+    "licence_recorded_at": "2026-11-12T15:42:10Z"
   },
   "files": [
     {

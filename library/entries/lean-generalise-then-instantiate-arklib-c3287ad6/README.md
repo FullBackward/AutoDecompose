@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [arklib](../../sources/arklib/SOURCE.md) at `6f9884a95ae7` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T12:25:37Z |
 
 ## Intent
 

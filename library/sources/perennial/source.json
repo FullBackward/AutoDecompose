@@ -19,5 +19,6 @@
   "language_set_by": "fixer (after discovery-2)",
   "licence_detected": "LicenseRef-unknown",
   "licence_note": "no licence file at the root of the pinned commit (branch 'lean'); goose/LICENSE (MIT, Tej Chajed; copied here) covers only the goose/ tree, which no entry draws on, and the copied file Perennial/Proof/.../netfs/Results.lean has no licence header",
-  "licence_set_by": "licence audit 2026-11-14"
+  "licence_set_by": "licence audit 2026-11-14",
+  "licence_recorded_at": "2026-11-14T22:39:53Z"
 }

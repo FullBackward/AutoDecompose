@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/arthur742ramos/isa-blueprint/tree/6f52dc13d92d03f44a47b76609cf6ae7c55ecae2
 - Language: isabelle
 - Licence (detected): `MIT`; the licence text below governs.
+- Licence recorded: 2026-11-14T14:53:03Z
 - How found: discovery-2: A-isabelle, B-isabelle, discovery-1:B-isabelle
 
 ## Licence files

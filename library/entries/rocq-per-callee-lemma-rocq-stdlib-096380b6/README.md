@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [rocq-stdlib](../../sources/rocq-stdlib/SOURCE.md) at `22fcaa27d17b` |
 | Licence | `LGPL-2.1-only` |
+| Licence recorded | 2026-11-14T22:40:52Z |
 
 ## Intent
 

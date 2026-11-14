@@ -15,7 +15,8 @@
     "source_id": "isabelle-llvm",
     "url": "https://github.com/lammich/isabelle_llvm",
     "commit": "6be37a9c3cae74a1134dbef2979e312abb5f7f42",
-    "licence": "BSD-3-Clause"
+    "licence": "BSD-3-Clause",
+    "licence_recorded_at": "2026-11-14T15:15:47Z"
   },
   "files": [
     {

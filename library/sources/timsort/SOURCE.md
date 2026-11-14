@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/lvpgroup/timsort/tree/16437b6b6e2df9f6d32b2a32be7d0d650d83f980
 - Language: isabelle
 - Licence (detected): `LicenseRef-unknown`; the licence text below governs.
+- Licence recorded: 2026-11-14T14:53:50Z
 - How found: discovery-2: B-isabelle, discovery-1:B-isabelle
 
 ## Licence files

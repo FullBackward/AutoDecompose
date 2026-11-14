@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [topology](../../sources/topology/SOURCE.md) at `1e898b95f68f` |
 | Licence | `LGPL-2.1-or-later` |
+| Licence recorded | 2026-11-14T22:40:52Z |
 
 ## Intent
 

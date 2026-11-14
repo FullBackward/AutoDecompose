@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [vst](../../sources/vst/SOURCE.md) at `c082fe210ec5` |
 | Licence | `BSD-2-Clause` |
+| Licence recorded | 2026-11-12T15:42:59Z |
 
 ## Intent
 

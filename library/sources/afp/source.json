@@ -18,5 +18,6 @@
   ],
   "licence_detected": "LicenseRef-unknown",
   "licence_note": "per AFP entry: the mirror has no licence at its root; each entry declares its licence in metadata/entries/<entry>.toml (license = \"bsd\" or \"lgpl\"). The AFP's LICENSE (isa-afp.org, copied here) says 'All files in the Archive of Formal Proofs that are unmarked or marked with License: BSD are released under the following license', a 3-clause BSD text ('Neither the name of the Archive of Formal Proofs nor the names of its contributors ...'); its LICENSE.LGPL is the LGPL version 2.1 with no 'or later'. The AFP entries drawn on so far (IMO2019, Fishers_Inequality, Prime_Number_Theorem, Catalan_Numbers) all have license = \"bsd\". An entry directory that ships its own LICENSE or COPYING is governed by it",
-  "licence_set_by": "licence audit 2026-11-14"
+  "licence_set_by": "licence audit 2026-11-14",
+  "licence_recorded_at": "2026-11-14T22:39:52Z"
 }

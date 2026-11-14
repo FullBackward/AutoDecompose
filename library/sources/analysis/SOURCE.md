@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/teorth/analysis/tree/a19a5bfadc616467562995b75f46035232841943
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:40:14Z
 - How found: discovery-1: A-lean
 
 ## Licence files

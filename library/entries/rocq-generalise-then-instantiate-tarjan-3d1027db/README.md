@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [tarjan](../../sources/tarjan/SOURCE.md) at `34fe042cc482` |
 | Licence | `CECILL-B` |
+| Licence recorded | 2026-11-14T12:49:59Z |
 
 ## Intent
 

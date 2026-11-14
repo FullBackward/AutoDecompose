@@ -17,5 +17,6 @@
   ],
   "licence_detected": "BSD-2-Clause",
   "licence_note": "per file: the top-level LICENSE_BSD2.txt covers jormungand's own theories, but the vendored case_study/l4v/ tree ships LICENSE_GPLv2.txt (copied here) and its files carry headers such as 'This software may be distributed and modified according to the terms of the GNU General Public License version 2 ... @TAG(NICTA_GPL)' (e.g. case_study/l4v/sys-init/InitCSpace_SI.thy lines 1-8); each file's header governs",
-  "licence_set_by": "fixer (after discovery-2)"
+  "licence_set_by": "fixer (after discovery-2)",
+  "licence_recorded_at": "2026-11-14T16:19:07Z"
 }

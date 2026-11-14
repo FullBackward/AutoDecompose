@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [isabelle-llvm](../../sources/isabelle-llvm/SOURCE.md) at `6be37a9c3cae` |
 | Licence | `BSD-3-Clause` |
+| Licence recorded | 2026-11-14T15:15:47Z |
 
 ## Intent
 

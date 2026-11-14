@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/lammich/isabelle_llvm/tree/6be37a9c3cae74a1134dbef2979e312abb5f7f42
 - Language: isabelle
 - Licence (detected): `BSD-3-Clause`; the licence text below governs.
+- Licence recorded: 2026-11-14T14:53:00Z
 - How found: discovery-2: A-isabelle, B-isabelle, discovery-1:A-isabelle
 
 ## Licence files

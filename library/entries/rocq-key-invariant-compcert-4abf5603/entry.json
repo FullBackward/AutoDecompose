@@ -15,7 +15,8 @@
     "source_id": "compcert",
     "url": "https://github.com/AbsInt/CompCert",
     "commit": "2685140bf72c959446981fb99b5e44a8975021bc",
-    "licence": "LicenseRef-INRIA-Non-Commercial"
+    "licence": "LicenseRef-INRIA-Non-Commercial",
+    "licence_recorded_at": "2026-11-14T10:05:50Z"
   },
   "files": [
     {

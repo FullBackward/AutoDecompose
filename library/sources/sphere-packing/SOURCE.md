@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/tree/efe3bbbc1ece548f4672a772b94d8f621c10fdda
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:23:36Z
 - How found: start set
 
 ## Licence files

@@ -8,6 +8,7 @@
 | Status | deprecated |
 | Source | [flt-anthropic](../../sources/flt-anthropic/SOURCE.md) at `6e837e753555` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-12T14:44:44Z |
 
 ## Intent
 

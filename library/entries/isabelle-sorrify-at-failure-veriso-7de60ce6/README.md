@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [veriso](../../sources/veriso/SOURCE.md) at `6407b7205c3b` |
 | Licence | `LicenseRef-unknown` |
+| Licence recorded | 2026-11-14T15:54:16Z |
 
 ## Intent
 

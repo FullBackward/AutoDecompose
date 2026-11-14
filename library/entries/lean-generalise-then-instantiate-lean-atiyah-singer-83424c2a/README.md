@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [lean-atiyah-singer](../../sources/lean-atiyah-singer/SOURCE.md) at `09fc7bab3f9f` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T12:38:04Z |
 
 ## Intent
 

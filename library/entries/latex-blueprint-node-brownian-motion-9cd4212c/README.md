@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [brownian-motion](../../sources/brownian-motion/SOURCE.md) at `8fd8dc52830c` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T15:32:04Z |
 
 ## Intent
 

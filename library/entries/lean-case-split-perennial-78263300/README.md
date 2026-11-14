@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [perennial](../../sources/perennial/SOURCE.md) at `ddc0f0acc59a` |
 | Licence | `LicenseRef-unknown` |
+| Licence recorded | 2026-11-14T15:40:45Z |
 
 ## Intent
 

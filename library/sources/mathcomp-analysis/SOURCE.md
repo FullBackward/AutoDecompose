@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/math-comp/analysis/tree/eca10f89bd852201c8148ff2f597c7c7346d6df2
 - Language: rocq
 - Licence (detected): `CECILL-C`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:24:23Z
 - How found: start set
 
 ## Licence files

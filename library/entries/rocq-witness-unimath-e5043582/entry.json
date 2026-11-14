@@ -16,7 +16,8 @@
     "source_id": "unimath",
     "url": "https://github.com/UniMath/UniMath",
     "commit": "7a4b03cce49449f45ce0d4285615165172f50546",
-    "licence": "LicenseRef-UniMath"
+    "licence": "LicenseRef-UniMath",
+    "licence_recorded_at": "2026-11-14T22:40:52Z"
   },
   "files": [
     {

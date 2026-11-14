@@ -8,6 +8,7 @@
 | Status | verified |
 | Source | [mathlib4](../../sources/mathlib4/SOURCE.md) at `e1545ebed975` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-12T12:20:46Z |
 
 ## Intent
 

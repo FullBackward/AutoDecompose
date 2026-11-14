@@ -15,7 +15,8 @@
     "source_id": "flt-anthropic",
     "url": "https://github.com/anthropics/fermats-last-theorem",
     "commit": "6e837e75355538c7f80bab5b956861e86c4eacc2",
-    "licence": "Apache-2.0"
+    "licence": "Apache-2.0",
+    "licence_recorded_at": "2026-11-14T09:11:08Z"
   },
   "files": [
     {
@@ -183,7 +184,10 @@
     "direct_lemmas": 2,
     "depth": 3,
     "glue_lines": 5,
-    "child_lines": [1, 1]
+    "child_lines": [
+      1,
+      1
+    ]
   },
   "metrics": {
     "glue_lines": 5,

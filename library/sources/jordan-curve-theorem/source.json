@@ -11,5 +11,6 @@
   "how_found": "discovery-1: A-rocq",
   "note": "discrete Jordan curve theorem stated and proved in Jordan10.v on top of hypermap, genus/Euler-formula and face-traversal lemmas developed across Jordan1-9",
   "licence": "LicenseRef-unknown",
-  "licence_files": []
+  "licence_files": [],
+  "licence_recorded_at": "2026-11-14T11:40:18Z"
 }

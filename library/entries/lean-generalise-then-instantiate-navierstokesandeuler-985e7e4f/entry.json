@@ -15,7 +15,8 @@
     "source_id": "navierstokesandeuler",
     "url": "https://github.com/openai/NavierStokesAndEuler",
     "commit": "f9e8bc5b38b6e212696e8a30e3e91517af887bbd",
-    "licence": "Apache-2.0"
+    "licence": "Apache-2.0",
+    "licence_recorded_at": "2026-11-14T12:24:05Z"
   },
   "files": [
     {

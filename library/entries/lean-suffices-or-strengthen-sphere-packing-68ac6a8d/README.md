@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [sphere-packing](../../sources/sphere-packing/SOURCE.md) at `efe3bbbc1ece` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T09:08:56Z |
 
 ## Intent
 

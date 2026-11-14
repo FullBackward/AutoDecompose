@@ -15,7 +15,8 @@
     "source_id": "jormungand",
     "url": "https://github.com/sel4proj/jormungand",
     "commit": "bad97f9817b4034cd705cd295a1f86af880a7631",
-    "licence": "GPL-2.0-only"
+    "licence": "GPL-2.0-only",
+    "licence_recorded_at": "2026-11-14T16:19:19Z"
   },
   "files": [
     {

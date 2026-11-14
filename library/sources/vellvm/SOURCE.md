@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/vellvm/vellvm/tree/e25dad9af33281b2edd3c16c027f3717546a09d7
 - Language: rocq
 - Licence (detected): `MIT`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:39:21Z
 - How found: discovery-1: A-rocq, B-rocq
 
 ## Licence files

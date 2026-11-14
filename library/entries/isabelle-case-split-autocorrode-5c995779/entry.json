@@ -15,7 +15,8 @@
     "source_id": "autocorrode",
     "url": "https://github.com/awslabs/AutoCorrode",
     "commit": "200f1acf2d264f2dedee33792b986ebe73c224a3",
-    "licence": "MIT"
+    "licence": "MIT",
+    "licence_recorded_at": "2026-11-12T16:03:49Z"
   },
   "files": [
     {

@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/dwrensha/compfiles/tree/1745e6ced3e671bd74417548494b034eb2c87da8
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:23:50Z
 - How found: start set
 
 ## Licence files

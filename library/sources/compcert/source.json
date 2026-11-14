@@ -16,5 +16,6 @@
   ],
   "licence_detected": "LicenseRef-INRIA-Non-Commercial",
   "licence_note": "per file, from LICENSE: files not listed there are under the INRIA Non-Commercial License Agreement ('a non-free license ... for educational, research or evaluation purposes only'); 'all files in the lib/ directory', 'all files in the common/ directory', the listed cfrontend/ files, backend/Cminor.v, cparser/, export/ and the listed per-architecture files are 'dual-licensed both under the INRIA Non-Commercial License Agreement and under the ... GNU Lesser General Public License, either version 2.1 or (at your option) any later version', at the user's choice; flocq/ and MenhirLib are LGPL version 3 or later; runtime/ is BSD 3-clause",
-  "licence_set_by": "licence audit 2026-11-14"
+  "licence_set_by": "licence audit 2026-11-14",
+  "licence_recorded_at": "2026-11-14T22:39:52Z"
 }

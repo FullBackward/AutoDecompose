@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [isabelle-pide-ai](../../sources/isabelle-pide-ai/SOURCE.md) at `80ec85239c8a` |
 | Licence | `LGPL-3.0-only` |
+| Licence recorded | 2026-11-14T22:41:37Z |
 
 ## Intent
 

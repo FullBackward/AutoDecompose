@@ -15,7 +15,8 @@
     "source_id": "con-nf",
     "url": "https://github.com/leanprover-community/con-nf",
     "commit": "edbce7eb98351870f553cfab6ccb7cab327e4259",
-    "licence": "Apache-2.0 OR MIT"
+    "licence": "Apache-2.0 OR MIT",
+    "licence_recorded_at": "2026-11-14T22:40:52Z"
   },
   "files": [
     {

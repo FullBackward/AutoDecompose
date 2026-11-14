@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/math-inc/OpenGauss/tree/f87633900ae185b8037bf451a914fe7eeae1eb08
 - Language: lean
 - Licence (detected): `MIT`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:24:13Z
 - How found: start set
 
 ## Licence files

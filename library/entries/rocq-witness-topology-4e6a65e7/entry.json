@@ -15,7 +15,8 @@
     "source_id": "topology",
     "url": "https://github.com/rocq-community/topology",
     "commit": "1e898b95f68f9ce75bf44faa8446992b03c84052",
-    "licence": "LGPL-2.1-or-later"
+    "licence": "LGPL-2.1-or-later",
+    "licence_recorded_at": "2026-11-14T22:40:52Z"
   },
   "files": [
     {

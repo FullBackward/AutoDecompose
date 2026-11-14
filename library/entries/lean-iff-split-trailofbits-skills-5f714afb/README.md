@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [trailofbits-skills](../../sources/trailofbits-skills/SOURCE.md) at `e4dd0bb5b155` |
 | Licence | `CC-BY-SA-4.0` |
+| Licence recorded | 2026-11-12T15:20:58Z |
 
 ## Intent
 

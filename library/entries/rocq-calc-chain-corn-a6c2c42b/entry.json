@@ -15,7 +15,8 @@
     "source_id": "corn",
     "url": "https://github.com/rocq-community/corn",
     "commit": "f678996112929e1674e20b75fb9bd728ded35e55",
-    "licence": "GPL-2.0-or-later"
+    "licence": "GPL-2.0-or-later",
+    "licence_recorded_at": "2026-11-14T22:40:52Z"
   },
   "files": [
     {

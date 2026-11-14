@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [fiat-crypto](../../sources/fiat-crypto/SOURCE.md) at `3d2880ef2803` |
 | Licence | `MIT OR Apache-2.0 OR BSD-1-Clause` |
+| Licence recorded | 2026-11-14T14:21:33Z |
 
 ## Intent
 

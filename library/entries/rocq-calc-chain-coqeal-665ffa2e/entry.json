@@ -15,7 +15,8 @@
     "source_id": "coqeal",
     "url": "https://github.com/rocq-community/coqeal",
     "commit": "8fd26cf416ce0dfb5e9a9745293bdedf63b56d39",
-    "licence": "MIT"
+    "licence": "MIT",
+    "licence_recorded_at": "2026-11-14T15:37:33Z"
   },
   "files": [
     {

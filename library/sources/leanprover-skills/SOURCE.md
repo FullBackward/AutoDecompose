@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/leanprover/skills/tree/7d3da0282e7b724b07620e45cf212f2e05e19334
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:24:10Z
 - How found: start set
 
 ## Licence files

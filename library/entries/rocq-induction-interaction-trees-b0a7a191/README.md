@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [interaction-trees](../../sources/interaction-trees/SOURCE.md) at `284d42248a3c` |
 | Licence | `MIT` |
+| Licence recorded | 2026-11-12T15:54:43Z |
 
 ## Intent
 

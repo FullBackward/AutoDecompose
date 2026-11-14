@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/leanprover-community/flt-regular/tree/83f477ccc8cef9fd9a022b90d87aed49368e7bbd
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:23:47Z
 - How found: start set
 
 ## Licence files

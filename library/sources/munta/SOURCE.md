@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/wimmers/munta/tree/62cb1a4a4dbcfcf62c365e90faba15b0012d5a12
 - Language: isabelle
 - Licence (detected): `MIT`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:40:07Z
 - How found: discovery-1: A-agents, A-isabelle
 
 ## Licence files

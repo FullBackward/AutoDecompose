@@ -16,7 +16,8 @@
     "source_id": "goedel-prover-v2",
     "url": "https://github.com/Goedel-LM/Goedel-Prover-V2",
     "commit": "2e9036e118464aa96a8bebaf9f5b9d091aa3585c",
-    "licence": "Apache-2.0"
+    "licence": "Apache-2.0",
+    "licence_recorded_at": "2026-11-14T22:40:52Z"
   },
   "files": [
     {

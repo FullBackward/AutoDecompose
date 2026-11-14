@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/pramaana-labs/imo2026-lean/tree/788fddc53c463d5d40d4680fb9bfd7b0f96f1063
 - Language: lean
 - Licence (detected): `MIT`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:23:55Z
 - How found: start set
 
 ## Licence files

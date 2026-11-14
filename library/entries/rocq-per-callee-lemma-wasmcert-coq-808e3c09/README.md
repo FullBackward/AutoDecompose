@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [wasmcert-coq](../../sources/wasmcert-coq/SOURCE.md) at `58a3d3f8b7af` |
 | Licence | `MIT` |
+| Licence recorded | 2026-11-14T14:20:49Z |
 
 ## Intent
 

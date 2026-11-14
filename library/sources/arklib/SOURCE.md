@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/Verified-zkEVM/ArkLib/tree/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:39:41Z
 - How found: discovery-1: A-agents, A-lean
 
 ## Licence files

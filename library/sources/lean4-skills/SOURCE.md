@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/cameronfreer/lean4-skills/tree/3f913c66251b8712bb58e6ce83a453fa96e3f94f
 - Language: lean
 - Licence (detected): `MIT`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:24:09Z
 - How found: start set
 
 ## Licence files

@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [pfr](../../sources/pfr/SOURCE.md) at `1ef23c3c5a83` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-12T11:54:53Z |
 
 ## Intent
 

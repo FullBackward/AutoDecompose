@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/emilyriehl/infinity-cosmos/tree/89d7dc3ed861824535e540da489a46469dcc8e56
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:39:12Z
 - How found: discovery-1: A-lean, B-lean
 
 ## Licence files

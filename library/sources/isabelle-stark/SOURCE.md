@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/dmarmsoler/isabelle-stark/tree/181902b60a933def653274ed0a87a1a0be3b73b1
 - Language: isabelle
 - Licence (detected): `BSD-3-Clause`; the licence text below governs.
+- Licence recorded: 2026-11-14T14:53:57Z
 - How found: discovery-2: B-isabelle, discovery-1:B-isabelle
 
 ## Licence files

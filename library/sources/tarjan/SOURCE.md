@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/rocq-community/tarjan/tree/34fe042cc482e65d27bc68b455d922d47da81c9d
 - Language: rocq
 - Licence (detected): `CECILL-B`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:40:24Z
 - How found: discovery-1: A-rocq
 
 ## Licence files

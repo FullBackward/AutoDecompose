@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [lean-stat-learning-theory](../../sources/lean-stat-learning-theory/SOURCE.md) at `d0f506f0a695` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T15:59:19Z |
 
 ## Intent
 

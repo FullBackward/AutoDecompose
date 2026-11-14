@@ -15,7 +15,8 @@
     "source_id": "arklib",
     "url": "https://github.com/Verified-zkEVM/ArkLib",
     "commit": "6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6",
-    "licence": "Apache-2.0"
+    "licence": "Apache-2.0",
+    "licence_recorded_at": "2026-11-14T12:25:37Z"
   },
   "files": [
     {

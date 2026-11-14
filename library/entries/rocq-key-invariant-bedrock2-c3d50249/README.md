@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [bedrock2](../../sources/bedrock2/SOURCE.md) at `b4ec84bc6dbb` |
 | Licence | `MIT` |
+| Licence recorded | 2026-11-14T10:32:19Z |
 
 ## Intent
 

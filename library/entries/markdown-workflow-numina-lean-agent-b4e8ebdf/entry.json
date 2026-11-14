@@ -15,7 +15,8 @@
     "source_id": "numina-lean-agent",
     "url": "https://github.com/project-numina/numina-lean-agent",
     "commit": "1c9af8a52e715f22fede766425ba3d3b95526132",
-    "licence": "MIT"
+    "licence": "MIT",
+    "licence_recorded_at": "2026-11-14T22:40:52Z"
   },
   "files": [
     {

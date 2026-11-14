@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [munta](../../sources/munta/SOURCE.md) at `62cb1a4a4dbc` |
 | Licence | `MIT` |
+| Licence recorded | 2026-11-14T12:35:38Z |
 
 ## Intent
 

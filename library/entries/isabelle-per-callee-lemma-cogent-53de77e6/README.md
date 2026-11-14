@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [cogent](../../sources/cogent/SOURCE.md) at `49b6ceb0d033` |
 | Licence | `GPL-2.0-only` |
+| Licence recorded | 2026-11-14T22:40:52Z |
 
 ## Intent
 

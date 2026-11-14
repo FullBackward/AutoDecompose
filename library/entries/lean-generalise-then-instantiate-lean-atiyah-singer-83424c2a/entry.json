@@ -15,7 +15,8 @@
     "source_id": "lean-atiyah-singer",
     "url": "https://github.com/alpha-squared-labs/Lean-Atiyah-Singer",
     "commit": "09fc7bab3f9ff606901bde4b5a5580470da63a70",
-    "licence": "Apache-2.0"
+    "licence": "Apache-2.0",
+    "licence_recorded_at": "2026-11-14T12:38:04Z"
   },
   "files": [
     {
@@ -108,19 +109,23 @@
     {
       "name": "principalSymbol_eq_regularizedSymbol",
       "statement": "theorem principalSymbol_eq_regularizedSymbol\n    (A : QuantizationPresentation (n := n) (r := r) (q := q) E F) :\n    (P.toPseudodifferentialOperator μ).principalSymbol =\n      globalPrincipalSymbolClass E F (m : ℝ)\n        (A.regularizedSymbol (m : ℝ) P.principalSymbolFunction\n          P.isSmoothOffZeroGlobalSymbol_principalSymbolFunction\n          P.isHomogeneousGlobalSymbol_principalSymbolFunction)",
-      "closed_by": "rw [P.principalSymbol_toPseudodifferentialOperator μ]; exact (A.regularizedSymbol_class_eq P.principalGlobalSymbol P.isHomogeneousGlobalSymbol_principalSymbolFunction).symm"    },
+      "closed_by": "rw [P.principalSymbol_toPseudodifferentialOperator μ]; exact (A.regularizedSymbol_class_eq P.principalGlobalSymbol P.isHomogeneousGlobalSymbol_principalSymbolFunction).symm"
+    },
     {
       "name": "isElliptic_iff_isEllipticGlobalSymbol",
       "statement": "theorem isElliptic_iff_isEllipticGlobalSymbol :\n    P.IsElliptic ↔ IsEllipticGlobalSymbol E F P.principalSymbolFunction",
-      "closed_by": "exact Iff.rfl"    },
+      "closed_by": "exact Iff.rfl"
+    },
     {
       "name": "isElliptic_iff_homogeneous",
       "statement": "theorem isElliptic_iff_homogeneous (R : QuantizationPresentation (n := n) (r := r) (q := q) E F)\n    (a : homogeneousGlobalSymbolSpace (n := n) (r := r) (q := q) E F m)\n    (hP : P.principalSymbol = globalPrincipalSymbolClass E F m\n      (R.regularizedSymbol m a.val a.property.1 a.property.2)) :\n    P.IsElliptic ↔ IsEllipticGlobalSymbol E F a.val",
-      "closed_by": "exact (P.isElliptic_iff_of_principalSymbol_eq (R.regularizedSymbol m a.val a.property.1 a.property.2) hP).trans (isEllipticFullGlobalSymbol_regularizedSymbol_iff R m a.val a.property.1 a.property.2)"    },
+      "closed_by": "exact (P.isElliptic_iff_of_principalSymbol_eq (R.regularizedSymbol m a.val a.property.1 a.property.2) hP).trans (isEllipticFullGlobalSymbol_regularizedSymbol_iff R m a.val a.property.1 a.property.2)"
+    },
     {
       "name": "PseudodifferentialOperator.index_eq_cotangentTopologicalIndex",
       "statement": "theorem PseudodifferentialOperator.index_eq_cotangentTopologicalIndex {m : ℝ}\n    (P : PseudodifferentialOperator (n := n) (r := r) (q := q) E F μ m)\n    (R : QuantizationPresentation (n := n) (r := r) (q := q) E F)\n    (a : homogeneousGlobalSymbolSpace (n := n) (r := r) (q := q) E F m)\n    (hp : P.principalSymbol = globalPrincipalSymbolClass E F m\n      (R.regularizedSymbol m a.val a.property.1 a.property.2)) (hi : P.IsElliptic) :\n    P.toLinearMap.index =\n      cotangentTopologicalIndex n M (P.symbolKClassOfHomogeneous R a hp hi)",
-      "closed_by": "have heval := PseudodifferentialOperator.analyticIndexOfComponents_symbolKClassOfHomogeneous μ P R a hp hi; rw [analyticIndexOfComponents_eq_cotangentTopologicalIndex μ] at heval; exact heval.symm"    }
+      "closed_by": "have heval := PseudodifferentialOperator.analyticIndexOfComponents_symbolKClassOfHomogeneous μ P R a hp hi; rw [analyticIndexOfComponents_eq_cotangentTopologicalIndex μ] at heval; exact heval.symm"
+    }
   ],
   "applicability": {
     "goal_shape": "A theorem about a specific object (an elliptic differential operator P) whose conclusion, P.analyticIndex hP = cotangentTopologicalIndex n M (P.symbolKClass μ R hP), is exactly the instance of a general theorem P.toLinearMap.index = cotangentTopologicalIndex n M (P.symbolKClassOfHomogeneous R a hp hi) already proved for a more general class (PDOs carrying a supplied homogeneous representative a, principal-symbol equality hp and ellipticity hi).",

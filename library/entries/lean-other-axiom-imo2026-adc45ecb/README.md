@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [axiom-imo2026](../../sources/axiom-imo2026/SOURCE.md) at `c5a6a089d06d` |
 | Licence | `MIT` |
+| Licence recorded | 2026-11-14T09:32:31Z |
 
 ## Intent
 

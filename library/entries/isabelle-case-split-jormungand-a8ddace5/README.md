@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [jormungand](../../sources/jormungand/SOURCE.md) at `bad97f9817b4` |
 | Licence | `GPL-2.0-only` |
+| Licence recorded | 2026-11-14T16:19:19Z |
 
 ## Intent
 

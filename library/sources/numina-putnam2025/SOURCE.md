@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/project-numina/Numina-Putnam2025/tree/60d33c8ba19af905bd731e938ebde1c5b8c76519
 - Language: lean
 - Licence (detected): `MIT`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:24:04Z
 - How found: start set
 
 ## Licence files

@@ -16,7 +16,8 @@
     "source_id": "formal-proofs",
     "url": "https://github.com/starkware-libs/formal-proofs",
     "commit": "d0dd8279612a248cbc6bf6d286030bf0bb2a37ff",
-    "licence": "LicenseRef-unknown"
+    "licence": "LicenseRef-unknown",
+    "licence_recorded_at": "2026-11-14T12:55:50Z"
   },
   "files": [
     {

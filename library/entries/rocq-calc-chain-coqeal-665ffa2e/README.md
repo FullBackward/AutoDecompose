@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [coqeal](../../sources/coqeal/SOURCE.md) at `8fd26cf416ce` |
 | Licence | `MIT` |
+| Licence recorded | 2026-11-14T15:37:33Z |
 
 ## Intent
 

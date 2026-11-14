@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/AxiomMath/IMO2026/tree/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2
 - Language: lean
 - Licence (detected): `MIT`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:23:52Z
 - How found: start set
 
 ## Licence files

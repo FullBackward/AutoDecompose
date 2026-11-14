@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [qcert](../../sources/qcert/SOURCE.md) at `e112de6d7fda` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T12:50:00Z |
 
 ## Intent
 

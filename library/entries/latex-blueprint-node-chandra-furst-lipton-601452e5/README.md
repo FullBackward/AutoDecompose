@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [chandra-furst-lipton](../../sources/chandra-furst-lipton/SOURCE.md) at `95c7ea0802c1` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T15:17:29Z |
 
 ## Intent
 

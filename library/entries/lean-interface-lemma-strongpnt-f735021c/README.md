@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [strongpnt](../../sources/strongpnt/SOURCE.md) at `2f5835c32231` |
 | Licence | `LicenseRef-unknown` |
+| Licence recorded | 2026-11-14T09:18:37Z |
 
 ## Intent
 

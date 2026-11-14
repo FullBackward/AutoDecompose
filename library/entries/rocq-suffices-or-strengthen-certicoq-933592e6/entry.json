@@ -15,7 +15,8 @@
     "source_id": "certicoq",
     "url": "https://github.com/CertiCoq/certicoq",
     "commit": "943b52ae654708130f241ccf8a50ecb95a7956e2",
-    "licence": "MIT"
+    "licence": "MIT",
+    "licence_recorded_at": "2026-11-14T10:24:47Z"
   },
   "files": [
     {

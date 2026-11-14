@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/leanprover/sampcert/tree/a2c53bb5ff790e729e252958060699b7eff898b9
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:39:45Z
 - How found: discovery-1: A-agents, A-lean
 
 ## Licence files

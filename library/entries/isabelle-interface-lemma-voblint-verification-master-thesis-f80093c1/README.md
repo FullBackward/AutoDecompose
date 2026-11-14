@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [voblint-verification-master-thesis](../../sources/voblint-verification-master-thesis/SOURCE.md) at `07ecd3a886ef` |
 | Licence | `BSD-3-Clause` |
+| Licence recorded | 2026-11-14T15:40:46Z |
 
 ## Intent
 

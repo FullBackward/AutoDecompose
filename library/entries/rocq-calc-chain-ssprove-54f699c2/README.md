@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [ssprove](../../sources/ssprove/SOURCE.md) at `9a37fe0ab79d` |
 | Licence | `MIT` |
+| Licence recorded | 2026-11-14T15:39:15Z |
 
 ## Intent
 

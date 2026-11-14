@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/YaelDillies/apap/tree/fb5cb9c4f594cbeeb160c715618d13640984c521
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:39:08Z
 - How found: discovery-1: A-lean, B-lean
 
 ## Licence files

@@ -18,5 +18,6 @@
   ],
   "licence_detected": "Apache-2.0",
   "licence_note": "LICENSE is the Apache 2.0 text; NOTICE says the third-party portions (the FLT project, flt-regular, Mathlib) are all under Apache 2.0, and that ATTRIBUTION.md (copied here) reproduces, file by file, the attribution notices the Lean files do not carry; only the web libraries in html/assets/vendor/ are under other licences",
-  "licence_set_by": "licence audit 2026-11-14"
+  "licence_set_by": "licence audit 2026-11-14",
+  "licence_recorded_at": "2026-11-14T22:39:52Z"
 }

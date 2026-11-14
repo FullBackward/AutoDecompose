@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [math-comp](../../sources/math-comp/SOURCE.md) at `3a90d8b65f77` |
 | Licence | `CECILL-B` |
+| Licence recorded | 2026-11-12T15:31:56Z |
 
 ## Intent
 

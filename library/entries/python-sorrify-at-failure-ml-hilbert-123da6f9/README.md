@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [ml-hilbert](../../sources/ml-hilbert/SOURCE.md) at `86360f902606` |
 | Licence | `AML` |
+| Licence recorded | 2026-11-14T22:40:52Z |
 
 ## Intent
 

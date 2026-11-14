@@ -11,5 +11,6 @@
   "how_found": "discovery-2: B-isabelle, discovery-1:B-isabelle",
   "note": "Ethereum Capella consensus in Isabelle/HOL: functional-correctness proofs (Process_Epoch_O_Specs) relating the Python spec to optimised epoch processing, over Hoare/VCG and Word_Lib lemmas, ROOT session Verified_Consensus_Proofs.",
   "licence": "LicenseRef-unknown",
-  "licence_files": []
+  "licence_files": [],
+  "licence_recorded_at": "2026-11-14T14:53:43Z"
 }

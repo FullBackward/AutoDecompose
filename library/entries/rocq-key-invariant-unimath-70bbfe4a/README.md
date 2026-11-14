@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [unimath](../../sources/unimath/SOURCE.md) at `7a4b03cce494` |
 | Licence | `LicenseRef-UniMath` |
+| Licence recorded | 2026-11-14T22:40:52Z |
 
 ## Intent
 

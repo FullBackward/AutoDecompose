@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/jasmin-lang/jasmin/tree/211aa617685e0a0b074646fc27c85d017aced9cb
 - Language: rocq
 - Licence (detected): `MIT`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:40:05Z
 - How found: discovery-1: A-agents, A-rocq
 
 ## Licence files

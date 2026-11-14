@@ -16,7 +16,8 @@
     "source_id": "lean-liquid",
     "url": "https://github.com/leanprover-community/lean-liquid",
     "commit": "ee4795874a99ea5f9d85bd0b364425f07b932377",
-    "licence": "LicenseRef-unknown"
+    "licence": "LicenseRef-unknown",
+    "licence_recorded_at": "2026-11-12T15:03:36Z"
   },
   "files": [
     {

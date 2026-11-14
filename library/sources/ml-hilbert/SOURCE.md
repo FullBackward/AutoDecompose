@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/apple/ml-hilbert/tree/86360f90260613d21e08a001c83971a1998a5b5e
 - Language: lean
 - Licence: `AML`, read from the licence files by licence audit 2026-11-14 (LICENSE is the text of SPDX's AML (Apple MIT License) word for word, apart from the copyright line ('Copyright (C) 2025 Apple Inc. All Rights Reserved.') and 'Apple Inc.' in place of 'Apple Computer, Inc.'; the detector has no rule for it. The copied Python files say 'For licensing see accompanying LICENSE file.'); the detector had `LicenseRef-unknown`. The licence text below governs.
+- Licence recorded: 2026-11-14T22:39:52Z
 - How found: start set
 
 ## Licence files

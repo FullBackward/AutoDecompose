@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/yuanhez/lean-stat-learning-theory/tree/d0f506f0a695018265dccb33bcb05e2f5ca1c876
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T14:53:35Z
 - How found: discovery-2: A-lean, discovery-1:A-agents
 
 ## Licence files

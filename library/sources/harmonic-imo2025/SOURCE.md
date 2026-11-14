@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/harmonic-ai/IMO2025/tree/72b62405a176a7eaeadb335a7fa6ee80b6667161
 - Language: lean
 - Licence (detected): `LicenseRef-unknown`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:24:07Z
 - How found: start set
 
 ## Licence files

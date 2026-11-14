@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/tree/2c476fa6441c607096d93c8fc7ac0a227a655dae
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:23:40Z
 - How found: start set
 
 ## Licence files

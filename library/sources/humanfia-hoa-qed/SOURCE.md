@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/humanfia/hoa-qed/tree/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3
 - Language: lean
 - Licence: `Apache-2.0 AND CC-BY-4.0`, read from the licence files by licence audit 2026-11-14 (per file, from NOTICE: 'Code and Lean proofs in this repository are licensed under the Apache License, Version 2.0 (LICENSE). Natural-language solutions, write-ups and grading reports are licensed under Creative Commons Attribution 4.0 International (LICENSE-CC-BY-4.0). Directories that ship their own LICENSE file are covered by that file.' Third-party directories keep their owners' terms, e.g. lean-qit-qlg/QIT/, statements from QuAIR's Lean-QIT-Bench under Apache 2.0 (its LICENSE copied here)); the detector had `Apache-2.0 AND CC-BY-4.0`. The licence text below governs.
+- Licence recorded: 2026-11-14T22:39:52Z
 - How found: start set
 
 ## Licence files

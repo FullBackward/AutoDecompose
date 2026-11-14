@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [con-nf](../../sources/con-nf/SOURCE.md) at `edbce7eb9835` |
 | Licence | `Apache-2.0 OR MIT` |
+| Licence recorded | 2026-11-14T22:40:52Z |
 
 ## Intent
 

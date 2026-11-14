@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [sampcert](../../sources/sampcert/SOURCE.md) at `a2c53bb5ff79` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T12:25:20Z |
 
 ## Intent
 

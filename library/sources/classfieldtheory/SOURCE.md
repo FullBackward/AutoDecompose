@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/kbuzzard/ClassFieldTheory/tree/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-14T11:39:10Z
 - How found: discovery-1: A-lean, B-lean
 
 ## Licence files

@@ -16,5 +16,6 @@
   ],
   "licence_detected": "CC-BY-SA-4.0",
   "licence_note": "per file: LICENSE.md says proofs about the seL4 kernel code are licensed under GPL version 2 and general libraries and tools under the 2-Clause BSD license, and that each file's SPDX header governs; its own CC-BY-SA-4.0 tag licenses LICENSE.md itself, not the code",
-  "licence_set_by": "fixer (revise-1)"
+  "licence_set_by": "fixer (revise-1)",
+  "licence_recorded_at": "2026-11-14T14:38:36Z"
 }

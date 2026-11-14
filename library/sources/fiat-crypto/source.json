@@ -19,5 +19,6 @@
   ],
   "licence_detected": "Apache-2.0 AND BSD-2-Clause AND MIT AND MIT OR Apache-2.0 OR BSD-1-Clause",
   "licence_note": "COPYRIGHT: SPDX-License-Identifier MIT OR Apache-2.0 OR BSD-1-Clause, at your option; there is no BSD-2-Clause file (the file is LICENSE-BSD-1)",
-  "licence_set_by": "fixer (revise-1)"
+  "licence_set_by": "fixer (revise-1)",
+  "licence_recorded_at": "2026-11-14T14:38:36Z"
 }

@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [physlib](../../sources/physlib/SOURCE.md) at `ca577bfd34ef` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T15:59:18Z |
 
 ## Intent
 

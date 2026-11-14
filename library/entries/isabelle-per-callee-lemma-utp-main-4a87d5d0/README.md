@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [utp-main](../../sources/utp-main/SOURCE.md) at `ffd472022798` |
 | Licence | `BSD-3-Clause` |
+| Licence recorded | 2026-11-14T12:24:00Z |
 
 ## Intent
 

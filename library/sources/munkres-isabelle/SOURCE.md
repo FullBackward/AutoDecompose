@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/JUrban/isa_top_autoform1/tree/90d108779e83453e9cae2f55b513246e1cc044e0
 - Language: isabelle
 - Licence (detected): `LicenseRef-unknown`; the licence text below governs.
+- Licence recorded: 2026-11-12T13:44:20Z
 - How found: start set
 
 ## Licence files

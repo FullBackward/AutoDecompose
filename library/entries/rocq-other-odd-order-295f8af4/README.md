@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [odd-order](../../sources/odd-order/SOURCE.md) at `ba734c020d9f` |
 | Licence | `CECILL-B` |
+| Licence recorded | 2026-11-14T09:57:12Z |
 
 ## Intent
 

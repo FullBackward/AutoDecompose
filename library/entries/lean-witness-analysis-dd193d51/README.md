@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [analysis](../../sources/analysis/SOURCE.md) at `a19a5bfadc61` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-14T12:39:16Z |
 
 ## Intent
 

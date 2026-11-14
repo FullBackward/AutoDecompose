@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/coq-community/hydra-battles/tree/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8
 - Language: rocq
 - Licence (detected): `MIT`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:25:20Z
 - How found: start set
 
 ## Licence files

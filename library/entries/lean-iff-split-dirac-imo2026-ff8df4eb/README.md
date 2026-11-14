@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [dirac-imo2026](../../sources/dirac-imo2026/SOURCE.md) at `372592370162` |
 | Licence | `MIT` |
+| Licence recorded | 2026-11-12T15:02:30Z |
 
 ## Intent
 

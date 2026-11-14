@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/ByteDance-Seed/Seed-Prover/tree/38c59cebaf969ac259196eb091757518d5b54c67
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:24:06Z
 - How found: start set
 
 ## Licence files

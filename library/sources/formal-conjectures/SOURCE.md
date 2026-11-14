@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/google-deepmind/formal-conjectures/tree/a425ca3eb797fe927cb88c950565fdcbbbbada70
 - Language: lean
 - Licence (detected): `Apache-2.0`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:23:44Z
 - How found: start set
 
 ## Licence files

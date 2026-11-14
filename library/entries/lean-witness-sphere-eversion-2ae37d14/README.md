@@ -8,6 +8,7 @@
 | Status | accepted |
 | Source | [sphere-eversion](../../sources/sphere-eversion/SOURCE.md) at `33ab3d626854` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-12T15:00:42Z |
 
 ## Intent
 

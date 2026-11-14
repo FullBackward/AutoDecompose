@@ -16,7 +16,8 @@
     "source_id": "bertrand",
     "url": "https://github.com/rocq-community/bertrand",
     "commit": "033b1a8f1a9c121855b6b78cd55154d3c09e1c23",
-    "licence": "LGPL-2.1-or-later"
+    "licence": "LGPL-2.1-or-later",
+    "licence_recorded_at": "2026-11-14T22:40:52Z"
   },
   "files": [
     {

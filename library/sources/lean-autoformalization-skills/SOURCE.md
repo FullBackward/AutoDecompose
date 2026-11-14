@@ -5,6 +5,7 @@
 - Browse at this commit: https://github.com/scottnarmstrong/LeanAutoformalizationSkills/tree/1837b95b3d5a9fd8d311367603902ad7fe261adf
 - Language: lean
 - Licence (detected): `CC-BY-4.0`; the licence text below governs.
+- Licence recorded: 2026-11-12T10:24:11Z
 - How found: start set
 
 ## Licence files

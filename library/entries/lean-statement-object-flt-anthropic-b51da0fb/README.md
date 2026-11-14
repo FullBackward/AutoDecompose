@@ -8,6 +8,7 @@
 | Status | draft |
 | Source | [flt-anthropic](../../sources/flt-anthropic/SOURCE.md) at `6e837e753555` |
 | Licence | `Apache-2.0` |
+| Licence recorded | 2026-11-12T12:00:13Z |
 
 ## Intent
 
