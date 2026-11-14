@@ -3,6 +3,7 @@
   py.sh register_source.py URL --id ID --language lean|rocq|isabelle|mixed \
         [--ref HEAD] [--how-found TEXT] [--note TEXT]
   py.sh register_source.py --start-set library/sources/start-set.json [--batch 1 ...]
+  py.sh register_source.py --id ID --set-licence SPDX_EXPRESSION --why TEXT [--by NAME]
 
 Writes library/sources/<id>/source.json, the licence file(s) copied verbatim,
 and SOURCE.md (links, commit, licence, attribution), and appends one record to
@@ -112,29 +113,58 @@ def register(url: str, sid: str, language: str, ref: str, how_found: str,
         known = [i for i in ids if i != "LicenseRef-unknown"]
         src["licence"] = " AND ".join(known) if known else "LicenseRef-unknown"
     write_json(d / "source.json", src)
-    lic_links = "\n".join(f"- [{n}]({permalink(src, n)}) (copied here as `upstream-{n}`)"
-                          for n in src["licence_files"]) or "- no licence file found at the root"
-    (d / "SOURCE.md").write_text(
-        f"# Source: {sid}\n\n"
-        f"- Repository: {url}\n"
-        f"- Commit (pinned {src['pinned_at']}): `{sha}`\n"
-        f"- Browse at this commit: {src['base']}/{src['repo_path']}"
-        f"{'/tree/' if src['host'] == 'github' else '/-/tree/'}{sha}\n"
-        f"- Language: {language}\n"
-        f"- Licence (detected): `{src['licence']}`; the licence text below governs.\n"
-        f"- How found: {how_found or 'start set'}\n\n"
-        f"## Licence files\n\n{lic_links}\n\n"
-        f"## Attribution\n\n"
-        f"Code under `library/entries/*/code/` whose entry names this source is copied "
-        f"verbatim from the repository above at the pinned commit, under its licence. "
-        f"Copyright remains with its authors.\n"
-        + (f"\n## Note\n\n{note}\n" if note else ""),
-        encoding="utf-8")
+    write_note(d, src)
     rec = dict(src)
     rec["event"] = "repin" if repin else "register"
     rec["at"] = now()
     append_jsonl(LEDGER / "sources.jsonl", rec)
     print(f"ok {sid} {sha[:12]} {src['licence']}")
+
+
+def write_note(d, src: dict) -> None:
+    """SOURCE.md from source.json."""
+    sha = src["commit"]
+    lic_links = "\n".join(f"- [{n}]({permalink(src, n)}) (copied here as `upstream-{n}`)"
+                          for n in src["licence_files"]) or "- no licence file found at the root"
+    if src.get("licence_detected"):
+        lic = (f"- Licence: `{src['licence']}`, read from the licence files by {src.get('licence_set_by', 'hand')} "
+               f"({src.get('licence_note', '')}); the detector had `{src['licence_detected']}`. "
+               f"The licence text below governs.\n")
+    else:
+        lic = f"- Licence (detected): `{src['licence']}`; the licence text below governs.\n"
+    (d / "SOURCE.md").write_text(
+        f"# Source: {src['source_id']}\n\n"
+        f"- Repository: {src['url']}\n"
+        f"- Commit (pinned {src['pinned_at']}): `{sha}`\n"
+        f"- Browse at this commit: {src['base']}/{src['repo_path']}"
+        f"{'/tree/' if src['host'] == 'github' else '/-/tree/'}{sha}\n"
+        f"- Language: {src['language']}\n"
+        + lic +
+        f"- How found: {src.get('how_found') or 'start set'}\n\n"
+        f"## Licence files\n\n{lic_links}\n\n"
+        f"## Attribution\n\n"
+        f"Code under `library/entries/*/code/` whose entry names this source is copied "
+        f"verbatim from the repository above at the pinned commit, under its licence. "
+        f"Copyright remains with its authors.\n"
+        + (f"\n## Note\n\n{src['note']}\n" if src.get("note") else ""),
+        encoding="utf-8")
+
+
+def set_licence(sid: str, expr: str, why: str, by: str) -> None:
+    """Correct a detected licence after reading the copied licence files. The detected value is
+    kept in source.json (licence_detected) and the change is appended to ledger/sources.jsonl."""
+    d = SOURCES / sid
+    if not (d / "source.json").exists():
+        die(f"no source {sid}")
+    if not why:
+        die("--why is required: say which licence file shows the licence")
+    src = read_json(d / "source.json")
+    src.setdefault("licence_detected", src["licence"])
+    src.update(licence=expr, licence_note=why, licence_set_by=by)
+    write_json(d / "source.json", src)
+    write_note(d, src)
+    append_jsonl(LEDGER / "sources.jsonl", {**src, "event": "licence", "at": now()})
+    print(f"ok {sid} licence {expr} (detected {src['licence_detected']})")
 
 
 def main() -> None:
@@ -148,7 +178,15 @@ def main() -> None:
     ap.add_argument("--repin", action="store_true")
     ap.add_argument("--start-set")
     ap.add_argument("--batch", type=int, action="append", default=[])
+    ap.add_argument("--set-licence", metavar="SPDX_EXPRESSION",
+                    help="with --id: correct the detected licence of a registered source")
+    ap.add_argument("--why", default="", help="with --set-licence: the licence file and words that show it")
+    ap.add_argument("--by", default="hand", help="with --set-licence: who read the licence files")
     a = ap.parse_args()
+    if a.set_licence:
+        if not a.id:
+            die("--set-licence needs --id")
+        return set_licence(a.id, a.set_licence, a.why, a.by)
     if a.start_set:
         for s in read_json(__import__("pathlib").Path(a.start_set))["sources"]:
             if a.batch and s.get("batch") not in a.batch:
