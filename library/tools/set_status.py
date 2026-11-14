@@ -18,7 +18,7 @@ import re
 
 from common import ENTRIES, LEDGER, append_jsonl, die, now, read_json, write_json
 from record_verdict import LENSES, latest
-from validate_entry import check as validate
+from statements import PROVER
 
 
 def render(eid: str, e: dict, recs: dict) -> None:
@@ -61,6 +61,8 @@ def main() -> None:
             errs.append("provenance check has not passed")
         if v("check", "build") not in ("pass", "ci-record"):
             errs.append("build is neither pass nor ci-record")
+        if e["kind"] == "instance" and e["language"] in PROVER and e.get("children")                 and v("check", "glue-cites-children") != "pass":
+            errs.append("glue-cites-children has not passed (validate_entry.py --record-glue)")
         for c in e["claims"]:
             verdict = v("claim", str(c["n"]))
             if verdict in (None, "unverified"):
