@@ -428,7 +428,7 @@ Output: one line. Boundaries: edit only this entry's README.md and entry.json.""
             if ("review", lens) in have and lens not in redo:
                 continue
             again = (f"""
-An earlier review under this lens objected: "{redo[lens]}". The entry has since been revised to meet it.
+An earlier review under this lens objected: "{redo[lens]}". Changes have since been made to meet it.
 Judge the entry as it stands now, under the whole lens, not only that point.""" if lens in redo else "")
             out["reviews"][lens] = self.work("verifier", f"{'re-review' if lens in redo else 'review'} {lens} {eid}", f"""{self.common()}
 Objective: review library entry {eid} under the lens "{lens}" only. {q}{again}
@@ -578,8 +578,7 @@ Boundaries: repositories with code only; do not register sources; do not create 
     def revise_objections(self, eid: str) -> dict:
         """Ask the analyst to meet the entry's standing review objections. Returns {lens: objection}
         for the lenses to review again (empty if the entry has none)."""
-        obj = {k[1]: r.get("evidence") or "" for k, r in latest(eid).items()
-               if k[0] == "review" and r.get("value") == "object"}
+        obj = standing_objections(eid)
         if not obj:
             return {}
         listing = "\n".join(f"- {lens}: {ev}" for lens, ev in obj.items())
@@ -601,11 +600,12 @@ Output: one line per objection: fixed (how) or not fixed (why).
 Boundaries: edit only this entry's README.md and entry.json.""")
         return obj
 
-    def finish(self, ids: list[str], revise: bool = False):
+    def finish(self, ids: list[str], revise: bool = False, rereview: bool = False):
         """Complete entries whose chains a budget halt cut short (only the missing verification and
         reviews), promote them, rebuild the index, and run the critic if the run has no critic report.
         With revise, first have the analyst meet each entry's standing review objections, then verify
-        any new claim and review the objected lenses again (no critic). The run's summary.json gets a
+        any new claim and review the objected lenses again (no critic). With rereview, only review the
+        objected lenses again: for objections met outside the entry, such as a corrected source note. The run's summary.json gets a
         "finish" record and its totals include this pass."""
         for eid in ids:
             if not (LIB / "entries" / eid / "entry.json").exists():
@@ -621,7 +621,7 @@ Boundaries: edit only this entry's README.md and entry.json.""")
         def one(eid: str) -> tuple[str, str]:
             theorem = (read_json(LIB / "entries" / eid / "entry.json").get("shape") or {}).get("scale") == "theorem"
             try:
-                redo = self.revise_objections(eid) if revise else None
+                redo = self.revise_objections(eid) if revise else standing_objections(eid) if rereview else None
                 if redo:
                     revised[eid] = sorted(redo)
                     if not self.dry:
@@ -635,11 +635,11 @@ Boundaries: edit only this entry's README.md and entry.json.""")
         for e in summary.get("entries", []):
             if e.get("id") in statuses:
                 e["status"] = statuses[e["id"]]
-        self.assemble(summary, critic=not revise and "critic" not in summary)
+        self.assemble(summary, critic=not (revise or rereview) and "critic" not in summary)
         rec = {"at": now(), "entries": statuses, "calls": self.calls, "tokens": self.tokens,
                "cost_cny": round(self.cost, 2), "halted": self.halted}
-        if revise:
-            rec["objections_revised"] = revised
+        if revise or rereview:
+            rec["objections_revised" if revise else "objections_rereviewed"] = revised
         if "finish" in summary:  # an earlier pass: keep it
             summary.setdefault("earlier_finish", []).append(summary["finish"])
         summary["finish"] = rec
@@ -785,6 +785,12 @@ def choose_sites(found: list[dict], cap: int, weights: dict | None = None) -> li
     print(f"# sites: {len(found)} offered, {already} already in the library, {len(chosen)} chosen, "
           f"{left} left for a later run (kept in ledger/sites.jsonl)")
     return chosen
+
+
+def standing_objections(eid: str) -> dict:
+    """{lens: evidence} for each review lens whose latest decision is an objection."""
+    return {k[1]: r.get("evidence") or "" for k, r in latest(eid).items()
+            if k[0] == "review" and r.get("value") == "object"}
 
 
 def fair_order(cands: list[dict]) -> list[dict]:
@@ -957,6 +963,8 @@ def main():
                     help="complete these entries' missing verification and reviews, then rerun assemble")
     ap.add_argument("--revise", action="store_true",
                     help="with --finish: first have the analyst meet each entry's standing review objections")
+    ap.add_argument("--rereview", action="store_true",
+                    help="with --finish: review the objected lenses again, without a revision")
     ap.add_argument("--cap", type=float, default=10.0,
                     help="CNY ceiling for --finish (default 10), in place of the config's maxCostCNY")
     a = ap.parse_args()
@@ -967,7 +975,7 @@ def main():
     cfg = read_json(Path(a.config))
     if a.finish:
         cfg.update(maxCostCNY=a.cap, maxCalls=10**9, maxTokens=10**12)
-        return Runner(cfg, a.dry_run).finish(a.finish, revise=a.revise)
+        return Runner(cfg, a.dry_run).finish(a.finish, revise=a.revise, rereview=a.rereview)
     Runner(cfg, a.dry_run).go(a.only)
 
 
