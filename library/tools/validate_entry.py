@@ -11,7 +11,7 @@ a status above draft) no TODO may remain outside the rendered Verification
 section, and, for an instance in a prover language (lean, rocq, isabelle):
 every parent and child statement is verbatim from a copied file or null with a
 note; the glue (parent and skeleton sites) cites every child that is not a
-subgoal. Deprecated entries are
+subgoal; a theorem-scale shape matches the site lengths. Deprecated entries are
 kept for the record and skip the strict content checks. --record-glue records
 the glue-cites-children check for every prover instance. Exit status 1 if any
 entry fails.
@@ -77,6 +77,23 @@ def glue_check(e: dict, texts: dict[str, str]) -> tuple[str, str, list[str]]:
     ev = (f"cited: {', '.join(cited) or 'none'}; subgoals (no name to cite): {sub}"
           + (f"; NOT cited: {', '.join(missing)}" if missing else ""))
     return ("fail" if missing else "pass"), ev, missing
+
+
+def shape_errors(e: dict) -> list[str]:
+    """Theorem-scale shape numbers are the lengths of the sites, declaration included
+    (brief 2026-11-14 item 3)."""
+    sh = e.get("shape") or {}
+    if sh.get("scale") != "theorem":
+        return []
+    span = lambda s: s["lines"][1] - s["lines"][0] + 1
+    par = [s for s in e["sites"] if s.get("role") == "parent"]
+    kids = [span(s) for s in e["sites"] if s.get("role") == "child"]
+    errs = []
+    if par and sh.get("glue_lines") != span(par[0]):
+        errs.append(f"shape.glue_lines is {sh.get('glue_lines')}; the parent site has {span(par[0])} lines")
+    if sh.get("child_lines") != kids:
+        errs.append(f"shape.child_lines is {sh.get('child_lines')}; the child sites have {kids} lines")
+    return errs
 
 
 def check(eid: str, strict: bool) -> list[str]:
@@ -166,6 +183,7 @@ def check(eid: str, strict: bool) -> list[str]:
             for m in missing:
                 errs.append(f"child '{m}' is not cited by any parent or skeleton site (widen the parent "
                             f"site, add a skeleton site with new_entry.py --add-to, mark it a subgoal, or remove it)")
+        errs += shape_errors(e)
         flat = __import__("json").dumps(e)
         if "TODO" in flat:
             errs.append("entry.json still contains TODO")
