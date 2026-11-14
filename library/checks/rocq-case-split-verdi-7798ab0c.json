@@ -104,6 +104,14 @@
       "evidence": "cited: post_net_analyze_sent_packet@theories/Core/StatePacketPacketDecomposition.v:181, post_input_analyze_sent_packet@theories/Core/StatePacketPacketDecomposition.v:196, nw_nw_distinct_pairs_and_elim@theories/Core/StatePacketPacketDecomposition.v:186, distinct_pairs_and_app_cons@theories/Core/StatePacketPacketDecomposition.v:189, distinct_pairs_and_app@theories/Core/StatePacketPacketDecomposition.v:188; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:05Z"
     }
   ]
 }

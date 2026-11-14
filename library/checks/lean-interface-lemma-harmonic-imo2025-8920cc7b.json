@@ -104,6 +104,14 @@
       "evidence": "cited: h_largest@HarmonicLean/IMO2025P4_solve2.lean:80; subgoals (no name to cite): 1",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:04Z"
     }
   ]
 }

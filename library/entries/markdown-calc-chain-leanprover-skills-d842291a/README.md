@@ -112,8 +112,24 @@ Status: **draft**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
+| build | not-run | Entry code is skills/lean-proof/SKILL.md, a Markdown skill file, not Lean source, so no build applies; the embedded example deliberately uses 'by sorry' and is a teaching skeleton, not a compiling proof. No toolchain installed. | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| provenance | pass | 1 file(s) byte-identical at 7d3da0282e7b724b07620e45cf212f2e05e19334 | check_provenance.py | 2026-11-12 |
+| sorry-scan | not-run | no Lean, Rocq or Isabelle file among the copied files | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+
+| Claim | Verdict | Evidence | By |
+|---|---|---|---|
+| 1 | verified | Opened code/skills/lean-proof/SKILL.md at pinned commit: L42 'theorem main_theorem : A = C := by', L43 '  rw [lemma1, lemma2]'. The parent's entire proof is exactly rw [lemma1, lemma2], closing A = C from the two named children. | verifier |
+| 2 | verified | Opened code/skills/lean-proof/SKILL.md L40-L43: L40 'theorem lemma1 : A = B := by sorry' (one line), L41 'theorem lemma2 : B = C := by sorry' (one line), L42-L43 main_theorem with one-line glue 'rw [lemma1, lemma2]'. Two direct lemmas, neither references the other (depth 1), one line each. | verifier |
+| 3 | verified | Opened code/skills/lean-proof/SKILL.md: line 33 reads 'Move sorries earlier in the file by replacing a sorry proof with references to simpler lemmas:' and line 14 reads 'by sorry is acceptable: For placeholders you're not actively working on.' Both quotes match verbatim. | verifier |
+| 4 | verified | Opened code/skills/lean-proof/SKILL.md L40-L41: 'theorem lemma1 : A = B := by sorry' and 'theorem lemma2 : B = C := by sorry'. Both children end in 'by sorry', so neither leaf is proved; the instance is a teaching skeleton. | verifier |
+
+| Review lens | Decision | Reason | By |
+|---|---|---|---|
+| correctness | accept | Opened code/skills/lean-proof/SKILL.md at pinned commit. Parent L42-43 is 'theorem main_theorem : A = C := by' / '  rw [lemma1, lemma2]'; child lemma1 L40 'theorem lemma1 : A = B := by sorry'; child lemma2 L41 'theorem lemma2 : B = C := by sorry'. The parent proof references exactly lemma1 then lemma2 and nothing else, and rw [lemma1, lemma2] rewrites A->B then B->C, closing A = C by rfl once both leaves are filled, so children and closing method match the code. Shape numbers are right: direct_lemmas=2, depth=1 (neither leaf uses the other), glue_lines=1 (the single rw line), child_lines=[1,1]. Children are unproved (by sorry), which the entry states honestly as a teaching skeleton. | reviewer-correctness |
+| generality | accept | Move is stated generically: goal_shape covers 'an equality A = C (or any rewrite-friendly relation) that factors through an intermediate B', not just the A=B=C skeleton, and also_known_as gives the general names. avoid_when lists three specific, honest failure modes (B does not reduce either side; helpers need hypotheses/local context a bare rw cannot supply; already a single rw step), and consequences are specific and correct (matching intermediate B and orientation, typecheck-while-sorry, incomplete by design per line 93). It says what makes the lemmas good leaves for a bounded prover: self-contained statements with no hypotheses/local context, smaller than the parent, independent siblings (depth 1), each closing on its own, so the parent closes the moment both are filled. | reviewer-generality |
+| provenance-licence | accept | Permalinks, commit, licence and source note all consistent and traceable. Commit 7d3da0282e7b724b07620e45cf212f2e05e19334 is identical across entry.json, sources/leanprover-skills/source.json, SOURCE.md, and every permalink; blob URLs use the correct path skills/lean-proof/SKILL.md with correct #L anchors (verified L29,33,37,40,41,42-43 against the copied file). Licence Apache-2.0 agrees in entry.json, source.json, SOURCE.md, and the copied upstream-LICENSE (Apache License 2.0). Copied code byte-identical: sha256 362c42dd... matches the entry's recorded sha256, and check_provenance.py passes. | reviewer-provenance-licence |
 <!-- verification:end -->
 
 ## Source and licence

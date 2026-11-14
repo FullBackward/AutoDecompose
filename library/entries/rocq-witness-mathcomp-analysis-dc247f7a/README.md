@@ -284,6 +284,7 @@ Status: **accepted**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: zornS_ex@theories/functional_analysis/hahn_banach_theorem.v:310, hahn_banach_witness@theories/functional_analysis/hahn_banach_theorem.v:310, lingraphD@theories/functional_analysis/hahn_banach_theorem.v:314, lingraphZ@theories/functional_analysis/hahn_banach_theorem.v:317; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at eca10f89bd852201c8148ff2f597c7c7346d6df2 | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

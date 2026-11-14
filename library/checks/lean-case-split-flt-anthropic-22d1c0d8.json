@@ -1,0 +1,13 @@
+{
+  "entry": "lean-case-split-flt-anthropic-22d1c0d8",
+  "records": [
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:04Z"
+    }
+  ]
+}

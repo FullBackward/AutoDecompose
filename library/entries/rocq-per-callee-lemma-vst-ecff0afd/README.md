@@ -389,6 +389,7 @@ Status: **draft**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: body_malloc_large@progs/memmgr/VSU_malloc.v:46, body_malloc_small@progs/memmgr/VSU_malloc.v:47, body_free_large@progs/memmgr/VSU_malloc.v:48, body_free_small@progs/memmgr/VSU_malloc.v:49, body_bin2size@progs/memmgr/VSU_malloc.v:50, body_size2bin@progs/memmgr/VSU_malloc.v:51, body_list_from_block@progs/memmgr/VSU_malloc.v:52, body_fill_bin@progs/memmgr/VSU_malloc.v:53, body_pre_fill@progs/memmgr/VSU_malloc.v:54, body_try_pre_fill@progs/memmgr/VSU_malloc.v:55, body_malloc@progs/memmgr/VSU_malloc.v:56, body_free@progs/memmgr/VSU_malloc.v:57, create_memmgr_R@progs/memmgr/VSU_malloc.v:58; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 17 file(s) byte-identical at c082fe210ec501219abe52b9d0f25541d7c97e59 | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

@@ -107,6 +107,7 @@ Status: **draft**
 | build | not-run | Entry's only copied file is skills/lean-proof/SKILL.md, a markdown skill file. The source leanprover/skills is not a Lean project (no lakefile.lean/lean-toolchain; its .claude/CLAUDE.md states 'There is nothing to build'). CI (.github/workflows/check-validation.yml -> scripts/check-validation) only checks that test results exist and are judged satisfactory/current; it does not compile or build the markdown file. | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | provenance | pass | 1 file(s) byte-identical at 7d3da0282e7b724b07620e45cf212f2e05e19334 | check_provenance.py | 2026-11-12 |
+| sorry-scan | not-run | no Lean, Rocq or Isabelle file among the copied files | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

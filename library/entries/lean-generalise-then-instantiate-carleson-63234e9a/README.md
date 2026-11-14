@@ -341,6 +341,7 @@ Status: **accepted**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: discrete_carleson@Carleson/FinitaryCarleson.lean:117, grid_existence@Carleson/FinitaryCarleson.lean:114, tile_existence@Carleson/FinitaryCarleson.lean:115, tile_sum_operator@Carleson/FinitaryCarleson.lean:120; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 7 file(s) byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

@@ -209,6 +209,7 @@ Status: **accepted**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: isRegularOf_not_existsPolitician@Archive/Wiedijk100Theorems/FriendshipGraphs.lean:332, false_of_three_le_degree@Archive/Wiedijk100Theorems/FriendshipGraphs.lean:335, existsPolitician_of_degree_le_two@Archive/Wiedijk100Theorems/FriendshipGraphs.lean:334; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2 | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

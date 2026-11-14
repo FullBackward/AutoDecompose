@@ -104,6 +104,14 @@
       "evidence": "cited: discrete_carleson@Carleson/FinitaryCarleson.lean:117, grid_existence@Carleson/FinitaryCarleson.lean:114, tile_existence@Carleson/FinitaryCarleson.lean:115, tile_sum_operator@Carleson/FinitaryCarleson.lean:120; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:04Z"
     }
   ]
 }

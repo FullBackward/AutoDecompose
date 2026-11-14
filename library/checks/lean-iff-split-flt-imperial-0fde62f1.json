@@ -128,6 +128,14 @@
       "evidence": "cited: isIrreducible_baseChange_of_finrank_eigenspace_eq_one@FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean:488, isIrreducible_of_baseChange@FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean:492; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:04Z"
     }
   ]
 }

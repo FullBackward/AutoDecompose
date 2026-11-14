@@ -192,7 +192,11 @@ TODO: obligations created, failure modes.
 ## Verification
 
 <!-- verification:start -->
-Not yet verified.
+Status: **draft**
+
+| Check | Result | Evidence | By | Date |
+|---|---|---|---|---|
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 <!-- verification:end -->
 
 ## Source and licence

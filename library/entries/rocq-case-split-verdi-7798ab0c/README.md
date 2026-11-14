@@ -369,6 +369,7 @@ Status: **accepted**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: post_net_analyze_sent_packet@theories/Core/StatePacketPacketDecomposition.v:181, post_input_analyze_sent_packet@theories/Core/StatePacketPacketDecomposition.v:196, nw_nw_distinct_pairs_and_elim@theories/Core/StatePacketPacketDecomposition.v:186, distinct_pairs_and_app_cons@theories/Core/StatePacketPacketDecomposition.v:189, distinct_pairs_and_app@theories/Core/StatePacketPacketDecomposition.v:188; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at 7e1641b758d8f0032aa7de63620bc115330e0a6b | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

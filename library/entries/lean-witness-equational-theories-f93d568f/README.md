@@ -305,6 +305,7 @@ Status: **accepted**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: fromList_ok@equational_theories/ManuallyProved/Equation854.lean:510, fromList_eval@equational_theories/ManuallyProved/Equation854.lean:512, Extension.eq854@equational_theories/ManuallyProved/Equation854.lean:511, Extension.aux@equational_theories/ManuallyProved/Equation854.lean:517; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 3 file(s) byte-identical at 8b87204d5b201e1cf6c69b8dcabb0558109bee00 | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

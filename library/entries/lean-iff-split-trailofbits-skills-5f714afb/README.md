@@ -130,6 +130,7 @@ Status: **draft**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: gtFelt_of_gt@plugins/writing-lean-proofs/evals/cases/03-normal-form/input/WordCmp.lean:45, gtFelt_of_not_gt@plugins/writing-lean-proofs/evals/cases/03-normal-form/input/WordCmp.lean:42; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

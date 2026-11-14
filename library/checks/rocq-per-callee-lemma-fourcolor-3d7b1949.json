@@ -120,6 +120,14 @@
       "evidence": "cited: red000to214@theories/proof/reducibility.v:19, red214to234@theories/proof/reducibility.v:19, red234to282@theories/proof/reducibility.v:19, red282to302@theories/proof/reducibility.v:19, red302to322@theories/proof/reducibility.v:19, red322to485@theories/proof/reducibility.v:20, red485to506@theories/proof/reducibility.v:20, red506to541@theories/proof/reducibility.v:20, red541to588@theories/proof/reducibility.v:20, red588to633@theories/proof/reducibility.v:20; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:05Z"
     }
   ]
 }

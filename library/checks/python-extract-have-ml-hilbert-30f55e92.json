@@ -112,6 +112,14 @@
       "evidence": "check_provenance.py reports pass: 2 file(s) byte-identical at 86360f90...; sha256 in entry.json (hilbert.py bf432f7c..., HILBERTWorker.py 8fa85fd...) match local copies; commit 86360f90260613d21e08a001c83971a1998a5b5e identical in entry.json, README, source.json and SOURCE.md; licence recorded as LicenseRef-unknown consistently in all four with Apple Sample Code License text captured in sources/ml-hilbert/upstream-LICENSE; every permalink and site/claim line anchor (hilbert.py L64-87, L89-114; HILBERTWorker.py L1432-1498, L1476-1481, L1516-1535, L1986-2016, L2048-2050) resolves to the stated content in the byte-identical copies.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:37:49Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "not-run",
+      "evidence": "no Lean, Rocq or Isabelle file among the copied files",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:05Z"
     }
   ]
 }

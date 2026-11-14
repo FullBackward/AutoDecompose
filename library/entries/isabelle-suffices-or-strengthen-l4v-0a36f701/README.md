@@ -438,6 +438,7 @@ Status: **verified**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: akernel_invariant@proof/refine/Refine.thy:846, ckernel_invariant@proof/refine/Refine.thy:847, fw_sim_A_H@proof/refine/Refine.thy:848; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 2 file(s) byte-identical at 1abfe5bce98632a94ba52adf183045620c509340 | reviewer-provenance-licence | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

@@ -112,6 +112,14 @@
       "evidence": "cited: Lemma_40_1_step2@tst/Top1_Ch5_8.thy:5070, Lemma_40_1_step3@tst/Top1_Ch5_8.thy:5069; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): tst/Top1_Ch5_8.thy:12322 (sorry), tst/Top1_Ch5_8.thy:12673 (sorry), tst/Top1_Ch5_8.thy:21566 (sorry), tst/Top1_Ch5_8.thy:24906 (sorry), tst/Top1_Ch5_8.thy:25416 (sorry), tst/Top1_Ch5_8.thy:29733 (sorry)",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:04Z"
     }
   ]
 }

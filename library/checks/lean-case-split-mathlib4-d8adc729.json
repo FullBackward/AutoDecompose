@@ -104,6 +104,14 @@
       "evidence": "cited: isRegularOf_not_existsPolitician@Archive/Wiedijk100Theorems/FriendshipGraphs.lean:332, false_of_three_le_degree@Archive/Wiedijk100Theorems/FriendshipGraphs.lean:335, existsPolitician_of_degree_le_two@Archive/Wiedijk100Theorems/FriendshipGraphs.lean:334; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:04Z"
     }
   ]
 }

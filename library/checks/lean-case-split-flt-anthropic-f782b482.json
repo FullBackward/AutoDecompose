@@ -112,6 +112,14 @@
       "evidence": "cited: WeierstrassCurve.isResiduallyModular_three_and_noInertiaFixedTorsion_and_not_cube_dvd_of_isSemistableModel@P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean:172, WeierstrassCurve.isModular_map_of_mlc1@P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean:174, WeierstrassCurve.liftingAtConductor_three_of_level_hns@P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean:175, WeierstrassCurve.modThreeOrFiveIrreducible@P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean:178, WeierstrassCurve.threeFiveSwitchCurve@P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean:180, WeierstrassCurve.isResiduallyModularOfLevel_of_switch@P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean:189, WeierstrassCurve.liftingAtConductor_threeFive_of_level_not_sq_dvd@P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean:201; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:04Z"
     }
   ]
 }

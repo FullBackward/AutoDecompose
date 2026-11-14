@@ -135,6 +135,7 @@ Status: **accepted**
 | build | ci-record | Source CI .github/workflows/validate.yml runs on push/PR to default branch main. Its 'Validate SKILL.md frontmatter' step walks every plugins/**/SKILL.md, which includes this file (plugins/writing-lean-proofs/skills/writing-lean-proofs/SKILL.md), and 'Check Claude loadability' runs .github/scripts/check_claude_loadability.py. Commit e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff is head of default branch main (GitHub API: default_branch=main; branches-where-head returns main). Note: the file is Markdown, so CI validates frontmatter/loadability rather than compiling Lean. | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | provenance | pass | 1 file(s) byte-identical at e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff | check_provenance.py | 2026-11-12 |
+| sorry-scan | not-run | no Lean, Rocq or Isabelle file among the copied files | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

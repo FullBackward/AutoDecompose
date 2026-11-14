@@ -285,6 +285,7 @@ Status: **accepted**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: abs_zeta_ratio_eval@StrongPNT/PNT3_RiemannZeta.lean:647, abs_zeta_inequality@StrongPNT/PNT3_RiemannZeta.lean:649, abs_zeta_prod_prime@StrongPNT/PNT3_RiemannZeta.lean:651; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at 2f5835c322314f55f1026ec2f139d704b7c45c69 | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

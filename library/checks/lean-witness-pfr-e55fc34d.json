@@ -104,6 +104,14 @@
       "evidence": "cited: tau_minimizer_exists@PFR/EntropyPFR.lean:61, tau_strictly_decreases@PFR/EntropyPFR.lean:62, exists_isUniform_of_rdist_eq_zero@PFR/EntropyPFR.lean:63, rdist_symm@PFR/EntropyPFR.lean:64, is_tau_min@PFR/EntropyPFR.lean:65, rdist_triangle@PFR/EntropyPFR.lean:68; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:05Z"
     }
   ]
 }

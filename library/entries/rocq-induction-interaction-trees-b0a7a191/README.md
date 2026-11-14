@@ -685,6 +685,7 @@ Status: **verified**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: bisimilar_bind'@tutorial/Imp2AsmCorrectness.v:836, bisimilar_iter@tutorial/Imp2AsmCorrectness.v:901, seq_asm_correct@tutorial/Imp2AsmCorrectness.v:851, if_asm_correct@tutorial/Imp2AsmCorrectness.v:862, while_asm_correct@tutorial/Imp2AsmCorrectness.v:893, compile_expr_correct@tutorial/Imp2AsmCorrectness.v:871, compile_assign_correct@tutorial/Imp2AsmCorrectness.v:837, while_is_loop@tutorial/Imp2AsmCorrectness.v:890, fold_to_itree'@tutorial/Imp2AsmCorrectness.v:850, pure_asm_correct@tutorial/Imp2AsmCorrectness.v:968; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 2 file(s) byte-identical at 284d42248a3c5517cff9f582e335fcee2f6bdc1f | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

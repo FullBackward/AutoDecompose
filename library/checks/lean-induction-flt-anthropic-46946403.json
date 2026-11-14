@@ -120,6 +120,14 @@
       "evidence": "cited: FreyPackage.level_lowering_odd_prime_of_conductorLevel@P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean:125, FreyPackage.level_lowering_at_p_of_conductorLevel@P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean:134, FreyPackage.dvd_two_of_squarefree_of_forall_prime_eq_two₁₆@P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean:143; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:04Z"
     }
   ]
 }

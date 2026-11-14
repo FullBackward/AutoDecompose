@@ -283,6 +283,7 @@ Status: **draft**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: arithmetic_bridge@IMO2026/Q4/solution.lean:385, safe_start@IMO2026/Q4/solution.lean:389, safe_nonwin@IMO2026/Q4/solution.lean:391, universal_win@IMO2026/Q4/solution.lean:398; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at 47ff510110dd400c98aee2ead3be0f53f7b8ba04 | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

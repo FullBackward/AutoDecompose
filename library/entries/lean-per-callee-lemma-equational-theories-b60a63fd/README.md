@@ -751,6 +751,7 @@ Status: **verified**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: use_chain@equational_theories/ManuallyProved/Equation1729.lean:23, enlarge_L₀'@equational_theories/ManuallyProved/Equation1729.lean:36, enlarge_S'@equational_theories/ManuallyProved/Equation1729.lean:40, enlarge_op@equational_theories/ManuallyProved/Equation1729.lean:43, TrivialPartialSolution@equational_theories/ManuallyProved/Equation1729.lean:21; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 3 file(s) byte-identical at 8b87204d5b201e1cf6c69b8dcabb0558109bee00 | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

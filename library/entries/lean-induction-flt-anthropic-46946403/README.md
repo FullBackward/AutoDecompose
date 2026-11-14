@@ -210,6 +210,7 @@ Status: **draft**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: FreyPackage.level_lowering_odd_prime_of_conductorLevel@P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean:125, FreyPackage.level_lowering_at_p_of_conductorLevel@P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean:134, FreyPackage.dvd_two_of_squarefree_of_forall_prime_eq_two₁₆@P2M/Sol/S_FreyPackage_level_lowering_to_two_of_conductorLevel.lean:143; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 3 file(s) byte-identical at 6e837e75355538c7f80bab5b956861e86c4eacc2 | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

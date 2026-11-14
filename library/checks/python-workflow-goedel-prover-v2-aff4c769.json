@@ -112,6 +112,14 @@
       "evidence": "Permalinks, commit, licence and source note are consistent and traceable. Commit 2e9036e118464aa96a8bebaf9f5b9d091aa3585c agrees across entry.json, source.json and SOURCE.md; check_provenance.py re-fetched src/utils.py at that commit and it is byte-identical (21675 bytes, sha256 594e183d...). Every permalink uses the same commit and path with line anchors that match the local copy: file blob URL, site #L339-L350 (prover_inference), claim1 #L341 (prompt F-string), claim2 #L340-L341, claim3 #L323-L354, claim4 #L372 (correction prompt), claim5 #L340 (include-sorry comment). Licence LicenseRef-unknown is recorded identically in entry.json, source.json and SOURCE.md, and list_files.py at the pinned commit shows 22 files with no LICEN[CS]E/COPYING/COPYRIGHT/NOTICE/CeCILL, so 'no licence file found at the root' and unknown are correct (protocol decision 1 tags unknown licences). SOURCE.md attribution statement matches. Entry language 'python' is from the copied file extension (src/utils.py), per fields.md; the SOURCE.md 'Language: lean' is the project-level label and is not a provenance-licence defect.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:39:39Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "not-run",
+      "evidence": "no Lean, Rocq or Isabelle file among the copied files",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:05Z"
     }
   ]
 }

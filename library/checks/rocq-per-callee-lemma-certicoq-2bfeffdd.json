@@ -112,6 +112,14 @@
       "evidence": "cited: bs_wasm_related_Econstr@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6038, bs_wasm_related_Eproj@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6039, bs_wasm_related_Ecase@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6040, bs_wasm_related_Eapp@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6041, bs_wasm_related_Eletapp@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6042, bs_wasm_related_Efun@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6043, bs_wasm_related_Eprim_val@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6044, bs_wasm_related_Eprim@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6045, bs_wasm_related_Ehalt@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6046; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:05Z"
     }
   ]
 }

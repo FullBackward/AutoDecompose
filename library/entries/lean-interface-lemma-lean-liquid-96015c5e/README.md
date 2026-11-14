@@ -317,6 +317,7 @@ Status: **accepted**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: is_zero_iff_epi_and_is_iso@src/challenge.lean:36, epi_and_is_iso@src/challenge.lean:40, short_exact@src/challenge.lean:36; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 6 file(s) byte-identical at ee4795874a99ea5f9d85bd0b364425f07b932377 | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

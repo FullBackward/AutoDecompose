@@ -212,6 +212,7 @@ Status: **verified**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: immersionRel_satisfiesHPrincipleWith@SphereEversion/Global/Immersion.lean:324, formalEversion_hol_near_zero_one@SphereEversion/Global/Immersion.lean:327, formalEversion_zero@SphereEversion/Global/Immersion.lean:333, formalEversion_one@SphereEversion/Global/Immersion.lean:336; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 2 file(s) byte-identical at 33ab3d626854a0f0f04ed5772e3102d652e96475 | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

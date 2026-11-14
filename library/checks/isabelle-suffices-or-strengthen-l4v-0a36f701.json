@@ -120,6 +120,14 @@
       "evidence": "cited: akernel_invariant@proof/refine/Refine.thy:846, ckernel_invariant@proof/refine/Refine.thy:847, fw_sim_A_H@proof/refine/Refine.thy:848; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:04Z"
     }
   ]
 }

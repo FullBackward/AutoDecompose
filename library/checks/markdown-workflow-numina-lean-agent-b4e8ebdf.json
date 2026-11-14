@@ -96,6 +96,14 @@
       "evidence": "Permalinks and commit are consistent: check_provenance passes (1 file byte-identical at 1c9af8a52e715f22fede766425ba3d3b95526132) and entry.json/README/SOURCE.md all pin the same commit. But the licence is wrong: the entry and source note record LicenseRef-unknown with 'no licence file found at the root', while the upstream README.md at the pinned commit has a '## License' section declaring 'MIT License'. Fix: record the licence as MIT (SPDX MIT) in entry.json, README and SOURCE.md, citing the README's License section, and correct the source note's 'no licence file found' line.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:39:30Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "not-run",
+      "evidence": "no Lean, Rocq or Isabelle file among the copied files",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:05Z"
     }
   ]
 }

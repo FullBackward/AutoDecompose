@@ -112,6 +112,14 @@
       "evidence": "cited: zornS_ex@theories/functional_analysis/hahn_banach_theorem.v:310, hahn_banach_witness@theories/functional_analysis/hahn_banach_theorem.v:310, lingraphD@theories/functional_analysis/hahn_banach_theorem.v:314, lingraphZ@theories/functional_analysis/hahn_banach_theorem.v:317; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:05Z"
     }
   ]
 }

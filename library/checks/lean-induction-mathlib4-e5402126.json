@@ -104,6 +104,14 @@
       "evidence": "cited: ballot_same@Archive/Wiedijk100Theorems/BallotProblem.lean:313, ballot_edge@Archive/Wiedijk100Theorems/BallotProblem.lean:316, ballot_pos@Archive/Wiedijk100Theorems/BallotProblem.lean:327, ballot_neg@Archive/Wiedijk100Theorems/BallotProblem.lean:327, first_vote_pos@Archive/Wiedijk100Theorems/BallotProblem.lean:327, first_vote_neg@Archive/Wiedijk100Theorems/BallotProblem.lean:327; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:04Z"
     }
   ]
 }

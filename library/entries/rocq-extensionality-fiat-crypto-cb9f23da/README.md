@@ -497,6 +497,7 @@ Status: **verified**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: divstep_spec_divstep_spec_full_d@src/Arithmetic/BYInv.v:1015, divstep_d@src/Arithmetic/BYInv.v:1015, divstep_spec_divstep_spec_full_f@src/Arithmetic/BYInv.v:1016, divstep_f@src/Arithmetic/BYInv.v:1016, divstep_spec_divstep_spec_full_g@src/Arithmetic/BYInv.v:1017, divstep_g@src/Arithmetic/BYInv.v:1017, divstep_spec2_divstep_spec_full_v@src/Arithmetic/BYInv.v:1018, divstep_v@src/Arithmetic/BYInv.v:1019, divstep_spec2_divstep_spec_full_r@src/Arithmetic/BYInv.v:1020, divstep_r@src/Arithmetic/BYInv.v:1021; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 2 file(s) byte-identical at 3d2880ef2803faa9385589a81a835d5828eb3d38 | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

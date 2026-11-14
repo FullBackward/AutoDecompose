@@ -285,6 +285,7 @@ Status: **accepted**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: bs_wasm_related_Econstr@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6038, bs_wasm_related_Eproj@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6039, bs_wasm_related_Ecase@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6040, bs_wasm_related_Eapp@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6041, bs_wasm_related_Eletapp@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6042, bs_wasm_related_Efun@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6043, bs_wasm_related_Eprim_val@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6044, bs_wasm_related_Eprim@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6045, bs_wasm_related_Ehalt@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6046; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 2 file(s) byte-identical at 943b52ae654708130f241ccf8a50ecb95a7956e2 | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

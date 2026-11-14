@@ -96,6 +96,14 @@
       "evidence": "Permalinks, commit, licence and source note all consistent and traceable. Commit 7d3da0282e7b724b07620e45cf212f2e05e19334 is identical across entry.json, sources/leanprover-skills/source.json, SOURCE.md, and every permalink; blob URLs use the correct path skills/lean-proof/SKILL.md with correct #L anchors (verified L29,33,37,40,41,42-43 against the copied file). Licence Apache-2.0 agrees in entry.json, source.json, SOURCE.md, and the copied upstream-LICENSE (Apache License 2.0). Copied code byte-identical: sha256 362c42dd... matches the entry's recorded sha256, and check_provenance.py passes.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:29:03Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "not-run",
+      "evidence": "no Lean, Rocq or Isabelle file among the copied files",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:05Z"
     }
   ]
 }

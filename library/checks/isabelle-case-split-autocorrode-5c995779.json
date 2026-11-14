@@ -112,6 +112,14 @@
       "evidence": "cited: atriple_rel_eval_value_adequacy@Shallow_Separation_Logic/Adequacy.thy:65, atriple_rel_eval_return_adequacy@Shallow_Separation_Logic/Adequacy.thy:65, atriple_rel_eval_abort_adequacy@Shallow_Separation_Logic/Adequacy.thy:66, deep_evaluate_basic_no_yield'@Shallow_Separation_Logic/Adequacy.thy:64; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:04Z"
     }
   ]
 }

@@ -130,6 +130,7 @@ Status: **draft**
 | build | not-run | Source file is Markdown documentation (plugins/lean4/skills/lean4/references/proof-refactoring.md), not Lean source; no toolchain or CI workflow builds it. Checked .github/workflows/lint.yml (ruff/mypy/shellcheck/lint_docs, no md build) and lean-integration.yml (runs Lean integration/reference-snippet scripts, no md compilation). | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | provenance | pass | 1 file(s) byte-identical at 3f913c66251b8712bb58e6ce83a453fa96e3f94f | check_provenance.py | 2026-11-12 |
+| sorry-scan | not-run | no Lean, Rocq or Isabelle file among the copied files | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

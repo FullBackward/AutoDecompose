@@ -258,6 +258,7 @@ Status: **accepted**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: initial_allPositive@imo2026/gpt-5.6-solution/IMO2026Q1.lean:423, reachable_allPositive@imo2026/gpt-5.6-solution/IMO2026Q1.lean:424, statement_a_unique_large@imo2026/gpt-5.6-solution/IMO2026Q1.lean:425, terminal_prod_eq_large@imo2026/gpt-5.6-solution/IMO2026Q1.lean:426, reachable_prod_primeFactors@imo2026/gpt-5.6-solution/IMO2026Q1.lean:430, reachable_gExp@imo2026/gpt-5.6-solution/IMO2026Q1.lean:443, terminal_gExp_eq_padicValNat@imo2026/gpt-5.6-solution/IMO2026Q1.lean:444; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at 1c918ec9a96c7751ce9c283304e1aebd7ffb19a3 | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

@@ -120,6 +120,14 @@
       "evidence": "cited: PeriodicSpherePacking.density_eq@SpherePacking/Basic/E8.lean:672, E8Packing_numReps@SpherePacking/Basic/E8.lean:673, E8_ℤBasis_apply_norm@SpherePacking/Basic/E8.lean:693, E8_ℤBasis_ofZLatticeBasis_volume@SpherePacking/Basic/E8.lean:683; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): SpherePacking/Basic/PeriodicPacking.lean:1220 (sorry)",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:04Z"
     }
   ]
 }

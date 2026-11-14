@@ -104,6 +104,14 @@
       "evidence": "cited: step_1@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:461, step_2@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:463, step_3@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:466, step_4@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:469, step_5@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:472, step_6@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:474, step_7@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:476, step_8@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:478, step_9@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:480, step_10@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:482, step_11@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:484, step_12@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:486, step_13@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:487; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:631 (sorry), SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:633 (sorry)",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:04Z"
     }
   ]
 }

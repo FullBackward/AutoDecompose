@@ -237,6 +237,7 @@ Status: **verified**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: red000to214@theories/proof/reducibility.v:19, red214to234@theories/proof/reducibility.v:19, red234to282@theories/proof/reducibility.v:19, red282to302@theories/proof/reducibility.v:19, red302to322@theories/proof/reducibility.v:19, red322to485@theories/proof/reducibility.v:20, red485to506@theories/proof/reducibility.v:20, red506to541@theories/proof/reducibility.v:20, red541to588@theories/proof/reducibility.v:20, red588to633@theories/proof/reducibility.v:20; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 13 file(s) byte-identical at c1d6b1cd5288bea4b067aac13cdde3c18dffe018 | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

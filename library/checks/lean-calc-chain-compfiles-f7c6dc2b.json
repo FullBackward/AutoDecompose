@@ -112,6 +112,14 @@
       "evidence": "cited: setC_eq_union@Compfiles/Usa2020P3.lean:143, disjoint_AB@Compfiles/Usa2020P3.lean:143, two_mem_setC@Compfiles/Usa2020P3.lean:145, prod_C_erase_eq_prod_B@Compfiles/Usa2020P3.lean:147, prod_B_ne_zero@Compfiles/Usa2020P3.lean:140; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:04Z"
     }
   ]
 }

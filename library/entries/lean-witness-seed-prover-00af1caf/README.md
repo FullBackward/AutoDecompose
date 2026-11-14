@@ -680,6 +680,7 @@ Status: **draft**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: imo2025_p4_right8_h1@SeedProver/imo2025/IMO2025/P4.lean:3907, imo2025_p4_right8_h2@SeedProver/imo2025/IMO2025/P4.lean:3908, imo2025_p4_right8_h3@SeedProver/imo2025/IMO2025/P4.lean:3909, imo2025_p4_right1_main@SeedProver/imo2025/IMO2025/P4.lean:3910; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at 38c59cebaf969ac259196eb091757518d5b54c67 | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

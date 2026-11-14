@@ -104,6 +104,14 @@
       "evidence": "cited: h11@SeedProver/imo2025/IMO2025/P5.lean:213, h12@SeedProver/imo2025/IMO2025/P5.lean:222, h13@SeedProver/imo2025/IMO2025/P5.lean:243; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:05Z"
     }
   ]
 }

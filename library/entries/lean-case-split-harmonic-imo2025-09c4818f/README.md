@@ -375,6 +375,7 @@ Status: **accepted**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: lem_k0_possible@HarmonicLean/IMO2025P1.lean:1402, lem_k1_possible@HarmonicLean/IMO2025P1.lean:1409, lem_k3_possible@HarmonicLean/IMO2025P1.lean:1413, lem_k_ge_4_impossible@HarmonicLean/IMO2025P1.lean:1422, lem_k2_impossible@HarmonicLean/IMO2025P1.lean:1428; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at 72b62405a176a7eaeadb335a7fa6ee80b6667161 | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

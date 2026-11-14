@@ -88,6 +88,14 @@
       "evidence": "Permalink, commit, licence and source note are mutually consistent and traceable. entry.json source.url=https://github.com/kappelmann/isabelle-pide-ai, commit=80ec85239c8a76d992a6f06d586cdc370934d751 and licence=LGPL-3.0 all match SOURCE.md (same commit, LGPL-3.0) and source.json (licence LGPL-3.0, licence_files LICENSE.md). upstream-LICENSE.md is the GNU LGPL v3 text, so the declared licence matches the copied licence file. check_provenance.py passes (1 file byte-identical at 80ec852...), confirming the file permalink blob/80ec852.../.agents/skills/isabelle/SKILL.md and the site permalink #L15-L19 resolve to the copied file; the copied file's lines 15-19 are exactly the excerpt in README.md. All URLs are raw/blob views at the pinned commit, no unmatching hashes.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T16:11:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "not-run",
+      "evidence": "no Lean, Rocq or Isabelle file among the copied files",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:05Z"
     }
   ]
 }

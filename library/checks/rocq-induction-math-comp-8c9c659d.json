@@ -120,6 +120,14 @@
       "evidence": "cited: trivg_comps@solvable/jordanholder.v:170, simple_compsP@solvable/jordanholder.v:174, maxnormal_proper@solvable/jordanholder.v:182, maxnormalM@solvable/jordanholder.v:194, weak_second_isog@solvable/jordanholder.v:196, exists_comps@solvable/jordanholder.v:200, quotient_simple@solvable/jordanholder.v:205, section_repr_isog@solvable/jordanholder.v:219; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:05Z"
     }
   ]
 }

@@ -104,6 +104,14 @@
       "evidence": "cited: divstep_spec_divstep_spec_full_d@src/Arithmetic/BYInv.v:1015, divstep_d@src/Arithmetic/BYInv.v:1015, divstep_spec_divstep_spec_full_f@src/Arithmetic/BYInv.v:1016, divstep_f@src/Arithmetic/BYInv.v:1016, divstep_spec_divstep_spec_full_g@src/Arithmetic/BYInv.v:1017, divstep_g@src/Arithmetic/BYInv.v:1017, divstep_spec2_divstep_spec_full_v@src/Arithmetic/BYInv.v:1018, divstep_v@src/Arithmetic/BYInv.v:1019, divstep_spec2_divstep_spec_full_r@src/Arithmetic/BYInv.v:1020, divstep_r@src/Arithmetic/BYInv.v:1021; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:05Z"
     }
   ]
 }

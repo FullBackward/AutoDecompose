@@ -104,6 +104,14 @@
       "evidence": "cited: FTtypeP_pair_cases@theories/PFsection14.v:1218, not_all_FTtype1@theories/PFsection14.v:1219, typeP_pair_sym@theories/PFsection14.v:1221, typeP_pairW@theories/PFsection14.v:1232, FTtypeP_max_typeII@theories/PFsection14.v:1233, FTtypeP_min_typeII@theories/PFsection14.v:1234, compl_of_typeII@theories/PFsection14.v:1236, FTtypeII_support_facts@theories/PFsection14.v:1242, FT_Frobenius_type1@theories/PFsection14.v:1244, FTtype1_coherence@theories/PFsection14.v:1246, FTtype1_ref_irr@theories/PFsection14.v:1248, FTtype2_exclusion@theories/PFsection14.v:1250; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:05Z"
     }
   ]
 }

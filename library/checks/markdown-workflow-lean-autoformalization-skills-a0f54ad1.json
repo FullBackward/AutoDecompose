@@ -96,6 +96,14 @@
       "evidence": "Permalinks, commit, licence and source note are all consistent and traceable. check_provenance.py passes: the single copied file (6469 bytes, sha256 4b65d248...) is byte-identical at commit 1837b95b3d5a9fd8d311367603902ad7fe261adf. entry.json, README.md, sources/lean-autoformalization-skills/source.json and SOURCE.md all record the same commit. Licence CC-BY-4.0 is recorded identically in entry.json, README, source.json and SOURCE.md, and the copied upstream-LICENSE is the genuine CC-BY-4.0 text. SOURCE.md lists LICENSE copied as upstream-LICENSE and gives repo URL/commit/pinned date. The entry README's Source-and-licence section notes the derivative attribution to cameronfreer/lean4-skills, which the copied file's header (lines 3-7) also retains, so CC-BY attribution is preserved. All site permalinks use the pinned commit with line anchors that match the copied file.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:40:17Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "not-run",
+      "evidence": "no Lean, Rocq or Isabelle file among the copied files",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:05Z"
     }
   ]
 }

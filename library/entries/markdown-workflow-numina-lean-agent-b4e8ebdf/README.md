@@ -210,8 +210,24 @@ Status: **draft**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
+| build | not-run | the copied file prompts/docs/prompts/blueprint_agent.md is a Markdown prompt/documentation file (language: markdown), not a proof file that any Lean/Rocq toolchain or CI build compiles; nothing to build | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| provenance | pass | 1 file(s) byte-identical at 1c9af8a52e715f22fede766425ba3d3b95526132 | check_provenance.py | 2026-11-12 |
+| sorry-scan | not-run | no Lean, Rocq or Isabelle file among the copied files | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+
+| Claim | Verdict | Evidence | By |
+|---|---|---|---|
+| 1 | verified | read copied file lines 563-568: '## proof', 'Follows from [lem:alternating_property_maximal]:', three Step lines, 'QED.' = six lines citing the chain | verifier |
+| 2 | verified | read copied file uses fields: line 504 respects_pattern->def:alternating, line 521 count->respects_pattern, line 538 maximal->count, line 555 parent->maximal; depth-3 chain confirmed | verifier |
+| 3 | verified | read copied file line 496 '3 distinct steps → SPLIT' and line 583 'Split complex lemmas when proof has 3+ steps' | verifier |
+| 4 | verified | grep for 'sorry|admit|Admitted|oops' over the whole copied 15933-byte file returned no match; child proof bodies at lines 513, 530, 547 are '[Detailed reasoning from Gemini]' | verifier |
+
+| Review lens | Decision | Reason | By |
+|---|---|---|---|
+| correctness | object | Shape numbers are wrong and nothing actually closes. direct_lemmas is recorded as 3, but the parent's only uses edge is [[lem:alternating_property_maximal]] (line 555); the main proof uses exactly one lemma directly, the other two (count, respects_pattern) only transitively via maximal->count->respects_pattern. Per fields.md direct_lemmas is 'the count of all lemmas the main proof uses directly', so it is 1 not 3: the entry conflates the chain's 3 children with directly-used lemmas, and 1 direct lemma fails the >=2 theorem-scale bar (this is a linear chain, not a glue assembling >=2 lemmas). Closure is overstated: parent and all three children are status todo with placeholder [Detailed reasoning from Gemini] bodies and '(to be created)' files, so claim 1's 'closed by a six-line glue' and the closed_by fields describe a filled-in citation, not a closed proof. Fix: set direct_lemmas to 1 (or drop the theorem-scale shape / reclassify), and reword claim 1 and closed_by to say the parent's proof field is filled with a citation and the children are unformalised placeholders. | reviewer-correctness |
+| generality | accept | Move stated generally: goal_shape is 'a blueprint node whose proof is empty/partial and whose informal proof has N>=3 distinct steps', and use_when/avoid_when are general (README even generalises 'Gemini' to 'the LLM'). When-not-to-use and consequences are honest and specific: avoid_when grounds 'fewer than 3 steps -> refine' in the source (lines 496, 583) plus two honest inferred conditions; consequences admits each child's Gemini proof is a placeholder still to be formalised and lists grounded obligations (uses-consistency checklist lines 454/456) and concrete failure modes. On good leaves for a bounded prover it gives the right reason -- each leaf's uses cone is minimal (one definition plus one named sibling) and one step per lemma -- though it loosely says 'closes on its own' where the children are actually unformalised placeholders; the closed_by fields and consequences make that placeholder status clear, so it does not mislead. | reviewer-generality |
+| provenance-licence | object | Permalinks and commit are consistent: check_provenance passes (1 file byte-identical at 1c9af8a52e715f22fede766425ba3d3b95526132) and entry.json/README/SOURCE.md all pin the same commit. But the licence is wrong: the entry and source note record LicenseRef-unknown with 'no licence file found at the root', while the upstream README.md at the pinned commit has a '## License' section declaring 'MIT License'. Fix: record the licence as MIT (SPDX MIT) in entry.json, README and SOURCE.md, citing the README's License section, and correct the source note's 'no licence file found' line. | reviewer-provenance-licence |
 <!-- verification:end -->
 
 ## Source and licence

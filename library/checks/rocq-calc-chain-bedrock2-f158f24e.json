@@ -112,6 +112,14 @@
       "evidence": "cited: compose_phases_correct@compiler/src/compiler/Pipeline.v:637, flattening_correct@compiler/src/compiler/Pipeline.v:637, useimmediate_correct@compiler/src/compiler/Pipeline.v:638, dce_correct@compiler/src/compiler/Pipeline.v:639, regalloc_correct@compiler/src/compiler/Pipeline.v:640, spilling_correct@compiler/src/compiler/Pipeline.v:641, riscv_phase_correct@compiler/src/compiler/Pipeline.v:642; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:05Z"
     }
   ]
 }

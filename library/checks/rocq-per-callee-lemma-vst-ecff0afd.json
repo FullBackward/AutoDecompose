@@ -120,6 +120,14 @@
       "evidence": "cited: body_malloc_large@progs/memmgr/VSU_malloc.v:46, body_malloc_small@progs/memmgr/VSU_malloc.v:47, body_free_large@progs/memmgr/VSU_malloc.v:48, body_free_small@progs/memmgr/VSU_malloc.v:49, body_bin2size@progs/memmgr/VSU_malloc.v:50, body_size2bin@progs/memmgr/VSU_malloc.v:51, body_list_from_block@progs/memmgr/VSU_malloc.v:52, body_fill_bin@progs/memmgr/VSU_malloc.v:53, body_pre_fill@progs/memmgr/VSU_malloc.v:54, body_try_pre_fill@progs/memmgr/VSU_malloc.v:55, body_malloc@progs/memmgr/VSU_malloc.v:56, body_free@progs/memmgr/VSU_malloc.v:57, create_memmgr_R@progs/memmgr/VSU_malloc.v:58; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:05Z"
     }
   ]
 }

@@ -112,6 +112,14 @@
       "evidence": "check_provenance passes (README.md byte-identical at e598a57ea3284997d4a2a168a069fdd5064afbc8). Commit e598a57ea3284997d4a2a168a069fdd5064afbc8 is consistent across entry.json source.commit, sources/deepseek-prover-v2/source.json, SOURCE.md and the entry README. Licence recorded as LicenseRef-unknown consistently in entry.json, source.json and SOURCE.md, with the governing text (LICENSE-MODEL, DeepSeek License Agreement) copied to sources/deepseek-prover-v2/upstream-LICENSE-MODEL and linked in SOURCE.md, so it is traceable; the repo at the commit has no separate code-licence file (only LICENSE-MODEL), so the conservative 'unknown' tag with text attached is correct. Site permalinks (README.md L127-138, L140-149) and claim line cites (56, 64, 137, 147, 148) match the copied code/README.md. No inconsistency found.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:39:09Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "not-run",
+      "evidence": "no Lean, Rocq or Isabelle file among the copied files",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:05Z"
     }
   ]
 }

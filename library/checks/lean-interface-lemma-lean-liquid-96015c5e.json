@@ -112,6 +112,14 @@
       "evidence": "cited: is_zero_iff_epi_and_is_iso@src/challenge.lean:36, epi_and_is_iso@src/challenge.lean:40, short_exact@src/challenge.lean:36; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:05Z"
     }
   ]
 }

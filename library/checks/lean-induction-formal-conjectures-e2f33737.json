@@ -144,6 +144,14 @@
       "evidence": "cited: HasRamseyProperty.mono@FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean:252, hasRamseyProperty_zero_left@FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean:252, hasRamseyProperty_zero_right@FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean:256, HasRamseyProperty.step@FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean:271; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:04Z"
     }
   ]
 }

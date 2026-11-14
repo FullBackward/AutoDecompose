@@ -104,6 +104,14 @@
       "evidence": "cited: k_gt_T@thys/IMO2019/IMO2019_Q4.thy:246, rhs_less@thys/IMO2019/IMO2019_Q4.thy:248, fact_ge_power@thys/IMO2019/IMO2019_Q4.thy:258; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:04Z"
     }
   ]
 }

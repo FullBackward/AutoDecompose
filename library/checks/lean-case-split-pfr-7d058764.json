@@ -112,6 +112,14 @@
       "evidence": "cited: PFR_conjecture_aux@PFR/Main.lean:286, PFR_conjecture_pos_aux'@PFR/Main.lean:285; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:04Z"
     }
   ]
 }

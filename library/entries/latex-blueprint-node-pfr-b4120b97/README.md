@@ -168,6 +168,7 @@ Status: **verified**
 | build | ci-record | .github/workflows/push.yml build job -> build-docgen step (leanprover-community/docgen-action@main, blueprint:true, homepage website) compiles blueprint/src/print.tex and web.tex, which input chapter/pfr (pfr.tex); workflow runs on default branch master and commit 1ef23c3 is HEAD of master | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | provenance | pass | 1 file(s) byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a | check_provenance.py | 2026-11-12 |
+| sorry-scan | not-run | no Lean, Rocq or Isabelle file among the copied files | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

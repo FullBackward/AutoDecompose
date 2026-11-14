@@ -859,6 +859,7 @@ Status: **draft**
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: Lemma_40_1_step2@tst/Top1_Ch5_8.thy:5070, Lemma_40_1_step3@tst/Top1_Ch5_8.thy:5069; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at 90d108779e83453e9cae2f55b513246e1cc044e0 | check_provenance.py | 2026-11-12 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): tst/Top1_Ch5_8.thy:12322 (sorry), tst/Top1_Ch5_8.thy:12673 (sorry), tst/Top1_Ch5_8.thy:21566 (sorry), tst/Top1_Ch5_8.thy:24906 (sorry), tst/Top1_Ch5_8.thy:25416 (sorry), tst/Top1_Ch5_8.thy:29733 (sorry) | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |

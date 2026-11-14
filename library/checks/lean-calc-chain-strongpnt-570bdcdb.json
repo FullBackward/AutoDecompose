@@ -136,6 +136,14 @@
       "evidence": "cited: abs_zeta_ratio_eval@StrongPNT/PNT3_RiemannZeta.lean:647, abs_zeta_inequality@StrongPNT/PNT3_RiemannZeta.lean:649, abs_zeta_prod_prime@StrongPNT/PNT3_RiemannZeta.lean:651; subgoals (no name to cite): 0",
       "by": "validate_entry.py",
       "at": "2026-11-14T07:57:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T08:00:04Z"
     }
   ]
 }
