@@ -1,7 +1,7 @@
 {
   "id": "rocq-induction-interaction-trees-b0a7a191",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Induction on the Imp statement for compile_correct (Imp-to-Asm compiler)",
   "intent": "Prove the Imp-to-Asm compiler correct by induction on the Imp statement, reducing the theorem to one case per constructor (Assign, Seq, If, While, Skip), each case rewriting the target denotation with the matching linking or correctness lemma proved earlier in the same file and closing on the induction hypothesis.",
   "move": "induction",
@@ -130,6 +130,17 @@
       "name": "while_is_loop",
       "excerpt_sha256": "3c31e3b3b3e3370601ff5c92c236fd912d5277e106615208d5fba29f01d83666",
       "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/tutorial/Imp2AsmCorrectness.v#L772-L797"
+    },
+    {
+      "path": "tutorial/AsmCombinators.v",
+      "lines": [
+        296,
+        300
+      ],
+      "role": "child",
+      "name": "raw_asm_block_correct",
+      "excerpt_sha256": "b80ffd025d9dee7931cf8cc95b886753a96199dfcef73ae3d6354c4eb0e2a609",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/tutorial/AsmCombinators.v#L296-L300"
     }
   ],
   "parent": {
@@ -179,6 +190,11 @@
       "note": "Analyst's paraphrase, replaced by the declaration's text: Lemma while_is_loop {E} (body : itree E (unit+unit)) : while body ≈ iter (C := ktree _) (fun l : unit + unit => match l with | inl _ => x <- body;; match x with inl _ => Ret (inl (inl tt)) | inr _ => Ret (inr tt) end | inr _ => Ret (inl (inl tt)) end) (inr tt)."
     },
     {
+      "name": "raw_asm_block_correct",
+      "statement": "Lemma raw_asm_block_correct {A} (b : block (fin A)) : denote_asm (raw_asm_block b) f0 ≈ denote_bk b.",
+      "closed_by": "apply raw_asm_block_correct_lifted"
+    },
+    {
       "name": "fold_to_itree'",
       "statement": "Lemma fold_to_itree' {E} (f : ktree_fin E 1 1) : f f0 = to_itree' f.",
       "closed_by": "reflexivity"
@@ -196,22 +212,10 @@
   },
   "claims": [
     {
-      "n": 1,
-      "claim": "The parent compile_correct (lines 822-976) applies the ten direct lemmas directly — bisimilar_bind' (836, 854), bisimilar_iter (901), seq_asm_correct (851), if_asm_correct (862), while_asm_correct (893), compile_expr_correct (871, 927), compile_assign_correct (837), while_is_loop (892), fold_to_itree' (850, 861, 891), pure_asm_correct (968) — and each is a closed Lemma/Theorem ending in Qed. at the pinned commit, none an axiom or admit.",
-      "evidence_kind": "check",
-      "evidence": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/tutorial/Imp2AsmCorrectness.v#L822-L976 (parent); #L353-L371, #L373-L402, #L454-L462, #L466-L520, #L526-L579, #L597-L713, #L719-L753, #L772-L797 (children); #L800-L801 (fold_to_itree'); tutorial/AsmCombinators.v#L308-L314 (pure_asm_correct)"
-    },
-    {
       "n": 2,
       "claim": "The file header announces the decomposition and the proof follows it: 'The proof is essentially structured as followed: … Linking is proved in isolation … Finally, all the pieces are tied together to prove the correctness.' (lines 17-33), and just above the theorem, 'all control-flow related reasoning having been handled in isolation.' (lines 818-820).",
       "evidence_kind": "author-statement",
       "evidence": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/tutorial/Imp2AsmCorrectness.v#L17-L33 and #L818-L820"
-    },
-    {
-      "n": 3,
-      "claim": "The theorem-scale shape is 10 direct lemmas, a 153-line glue proof body (lines 824-976), child proof bodies of 13/22/6/49/44/112/31/19 lines for the 8 shown children, and a longest checked dependency chain of depth 4 below the main theorem: compile_assign_correct (719) -> compile_expr_correct (597) -> sim_rel_binary_op (271) -> sim_rel_Renv (207).",
-      "evidence_kind": "measurement",
-      "evidence": "parent body at Imp2AsmCorrectness.v#L824-L976; chain edges at #L735 (compile_assign_correct applies compile_expr_correct), #L656 (compile_expr_correct applies sim_rel_binary_op), #L281 (sim_rel_binary_op applies sim_rel_Renv), #L207-L210 (sim_rel_Renv closes on its own)"
     },
     {
       "n": 4,
@@ -224,11 +228,24 @@
       "claim": "The same move — induction on the Imp statement for a compiler-correctness theorem — is repeated in the repository's labelled variant: `Lemma compile_stmt_correct (s : stmt sensitivity_lat)` in secure_example/LabelledImp2AsmCorrectness.v is proved by `induction s` (line 1108).",
       "evidence_kind": "known-use",
       "evidence": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/secure_example/LabelledImp2AsmCorrectness.v#L1105-L1108"
+    },
+    {
+      "n": 6,
+      "claim": "The parent compile_correct proof cites raw_asm_block_correct — it is applied directly as the Assign-case linking rewrite (line 831, `rewrite raw_asm_block_correct`).",
+      "evidence_kind": "check",
+      "form": "cites(parent, raw_asm_block_correct)",
+      "evidence": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/tutorial/Imp2AsmCorrectness.v#L831"
+    },
+    {
+      "n": 7,
+      "claim": "The theorem-scale shape is 11 direct lemmas, a 153-line glue proof body (lines 824-976), child proof bodies of 13/22/6/49/44/112/31/19/3 lines for the 9 shown children, and a longest checked dependency chain of depth 4 below the main theorem: compile_assign_correct (719) -> compile_expr_correct (597) -> sim_rel_binary_op (271) -> sim_rel_Renv (207).",
+      "evidence_kind": "measurement",
+      "evidence": "parent body at Imp2AsmCorrectness.v#L824-L976; child proof bodies at #L359-L371, #L381-L402, #L457-L462, #L472-L520, #L536-L579, #L602-L713, #L723-L753, #L779-L797, and AsmCombinators.v#L298-L300; chain edges at #L735 (compile_assign_correct applies compile_expr_correct), #L656 (compile_expr_correct applies sim_rel_binary_op), #L281 (sim_rel_binary_op applies sim_rel_Renv), #L207-L210 (sim_rel_Renv closes on its own)"
     }
   ],
   "shape": {
     "scale": "theorem",
-    "direct_lemmas": 10,
+    "direct_lemmas": 11,
     "depth": 4,
     "glue_lines": 155,
     "child_lines": [
@@ -239,13 +256,14 @@
       54,
       117,
       35,
-      26
+      26,
+      5
     ]
   },
   "metrics": {
     "parent_proof_lines": 153,
-    "direct_lemmas": 10,
-    "shown_children": 8,
+    "direct_lemmas": 11,
+    "shown_children": 9,
     "child_proof_lines": [
       13,
       22,
@@ -254,11 +272,12 @@
       44,
       112,
       31,
-      19
+      19,
+      3
     ],
-    "how_counted": "parent_proof_lines = lines 824-976 of tutorial/Imp2AsmCorrectness.v (the Proof...Qed body of compile_correct); direct_lemmas = distinct named project lemmas applied in that body (including fold_to_itree' and pure_asm_correct); child_proof_lines = proof-body line counts (Proof...Qed) of the 8 shown children in the order listed"
+    "how_counted": "parent_proof_lines = lines 824-976 of tutorial/Imp2AsmCorrectness.v (the Proof...Qed body of compile_correct); direct_lemmas = distinct named project lemmas applied in that body (including fold_to_itree' and pure_asm_correct); child_proof_lines = proof-body line counts (Proof...Qed) of the 9 shown children in the order listed"
   },
-  "consequences": "The induction produces one obligation per constructor (Assign, Seq, If, While, Skip). Each obligation must first rewrite the target denotation with its matching linking lemma (raw_asm_block_correct, seq_asm_correct, if_asm_correct, while_asm_correct, pure_asm_correct) before the induction hypothesis or a bisimulation step can be applied. The While case is the hard obligation: it needs both a restructuring of the source loop (while_is_loop) and a coinductive bisimulation step (bisimilar_iter); if the loop body's denotation does not match the iter shape exactly, the bisimilar_iter application fails. Every case also depends on the trivial ktree unfolding fold_to_itree' (a reflexivity) being applied at the right point before the linking rewrite.",
+  "consequences": "The induction produces one obligation per constructor (Assign, Seq, If, While, Skip). Each obligation must first rewrite the target denotation with its matching linking lemma (raw_asm_block_correct, seq_asm_correct, if_asm_correct, while_asm_correct, pure_asm_correct) before the induction hypothesis or a bisimulation step can be applied. The While case is the hard obligation: it needs both a restructuring of the source loop (while_is_loop) and a coinductive bisimulation step (bisimilar_iter); if the loop body's denotation does not match the iter shape exactly, the bisimilar_iter application fails. The three control-flow cases (Seq, If, While) each depend on the trivial ktree unfolding fold_to_itree' (a reflexivity) being applied at the right point before the linking rewrite.",
   "known_uses": [
     "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/secure_example/LabelledImp2AsmCorrectness.v#L1105-L1108"
   ],
@@ -297,8 +316,40 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T07:58:46Z",
       "note": "typed glue_lines 153, child_lines [13, 22, 6, 49, 44, 112, 31, 19]; derived from the site ranges (declaration included): 155, [19, 30, 9, 55, 54, 117, 35, 26]"
+    },
+    {
+      "field": "sites,children",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:24:00Z",
+      "note": "added raw_asm_block_correct as an 11th child with site tutorial/AsmCombinators.v:296-300, per reviewer-correctness"
+    },
+    {
+      "field": "shape.direct_lemmas,shape.child_lines,metrics.direct_lemmas,metrics.shown_children,metrics.child_proof_lines,metrics.how_counted",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:24:00Z",
+      "note": "direct_lemmas 10->11, shown_children 8->9; child_lines and child_proof_lines gain the raw_asm_block_correct entry"
+    },
+    {
+      "field": "claims",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:24:00Z",
+      "note": "claim 1 (ten direct lemmas) rewritten under n=6 as cites(parent, raw_asm_block_correct); claim 3 (10 direct lemmas / 8 shown children) rewritten under n=7 (11 / 9); claims 2,4,5 unchanged"
+    },
+    {
+      "field": "consequences",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:24:00Z",
+      "note": "fold_to_itree' applies to the three control-flow cases (Seq, If, While), not every case, per reviewer-generality"
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-12T16:08:10Z"
+  "status_at": "2026-11-14T14:37:05Z"
 }

@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | per-callee-lemma |
 | Language | rocq |
-| Status | verified |
+| Status | accepted |
 | Source | [fourcolor](../../sources/fourcolor/SOURCE.md) at `c1d6b1cd5288` |
 | Licence | `CECILL-B` |
 
@@ -204,8 +204,12 @@ Avoid it when the cases are few (the block-and-catenate scaffolding is
 overhead), when the cases are heterogeneous (each needs its own argument, so
 the shared per-block tactic buys nothing), when the blocks cannot tile the
 parent range exactly (the combinator requires the end of one block to equal the
-start of the next), or when the per-case check is expensive and must be cached
-per component anyway, which is the situation the block lemma already encodes.
+start of the next), or when the per-case check is not uniform enough to be
+discharged by one generated tactic. An expensive per-case check is a reason to
+use it, not to avoid it: the per-block statement `reducible_in_range MMM NNN
+the_configs` is what "hides the (expensive) reducibility evaluation"
+([`cfreducible.v` L72](code/theories/proof/cfreducible.v)), and each leaf pays
+that evaluation once, by reflection, when its block lemma is proved.
 
 ## Consequences
 
@@ -229,7 +233,7 @@ block boundaries are fixed up front rather than discovered.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
@@ -251,7 +255,7 @@ Status: **verified**
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
 | correctness | accept | Opened copied code and upstream: parent reducibility.v L16-21 is Lemma the_reducibility : reducibility., whose L18 rewrite /reducibility; apply cat_reducible_range with 322 splits [0,633) at 322 (present.v L73: reducibility := reducible_in_range 0 (size the_configs) the_configs; configurations.v L2076: the_configs := @seqn config 633), closed by two CatReducible chains L19-20 naming exactly the 10 children. All 10 children's statements and closed_by match their task files verbatim (task001to214..task589to633); each is a 5-arg CatReducible chain of contiguous sub-blocks, and job leaves (e.g. job001to106, job563to588, job623to633) close with Proof. CheckReducible. Qed.; red588to633's red633 inline closes by apply check_reducible_in_range; left. Tiling is exact at every level (no gaps/overlaps). Shape numbers verified from code: direct_lemmas=10 (L19-20), depth=2 (the_reducibility->red000to214->red000to106), glue_lines=5 (L17-21), child_lines=[3,3,3,3,3,3,3,5] for the 8 shown child sites (red588to633=5 incl. red633). Provenance passes (13 files byte-identical); list_files.py confirms 49 job files, 60 total lemmas. | reviewer-correctness |
-| generality | object | Move is stated beyond the example (also_known_as: CompCert per-pass simulation, seL4 crunch; known_uses: lean equational-theories entry) and the 'Why each lemma is a good leaf' paragraph does name what makes leaves bounded-prover-sized (statement = two numeric bounds + the_configs, one mechanical tactic, no free variables). Consequences are honest/specific and match the copied code: CatReducible is fixed arity 5 (cfreducible.v L109-112), cat_reducible_range needs contiguous tiling (L101-103), red588to633 pads the empty end range (task589to633.v L15-16). But the README 'when not to use' is not honest: its 4th clause 'avoid when the per-case check is expensive and must be cached per component anyway, which is the situation the block lemma already encodes' is self-contradictory -- it warns against the move in exactly the per-component-caching situation the block lemmas provide (cfreducible.v L72 'hides the expensive reducibility evaluation'). It also diverges from entry.json avoid_when, whose 3rd clause ('per-case check not uniform enough for one generated tactic') is the honest converse and is missing from the README. Fix: replace that 4th README clause with the uniformity converse, or reword so expensive per-case checks read as a reason to use, not avoid. | reviewer-generality |
+| generality | accept | The prior objection is resolved and the lens is met overall. Move is stated beyond the example: use_when names 'one per configuration, compiler pass, or function'; also_known_as lists CompCert per-pass simulation and seL4 crunch; known_uses cites lean equational-theories entry. The 'Why each lemma is a good leaf' paragraph names what makes leaves bounded-prover-sized (statement = two numeric bounds + the_configs, one mechanical tactic CheckReducible, no free variables), verified against copied code (job001to106.v L12-13 'Proof. CheckReducible. Qed.'). 'When not to use' is now honest: the four avoid clauses (few cases, heterogeneous cases, non-tiling blocks, non-uniform per-case check) match entry.json avoid_when's three clauses, and the expensive per-case check is explicitly a reason to use, not avoid, citing cfreducible.v L72 'This predicate hides the (expensive) reducibility evaluation.' Consequences are specific and match code: CatReducible fixed arity 5 (cfreducible.v L109-112), cat_reducible_range requires contiguous tiling (L101-103), red588to633 pads empty end range red633 (task589to633.v L15-16). All cited line ranges opened and accurate. | reviewer-generality |
 | provenance-licence | accept | Provenance passes: 13 files byte-identical at c1d6b1cd5288bea4b067aac13cdde3c18dffe018 (check_provenance.py). Commit c1d6b1cd5288bea4b067aac13cdde3c18dffe018 is consistent across entry.json source, sources/fourcolor/source.json, sources/fourcolor/SOURCE.md, and every file/site permalink (all blob/c1d6b1cd.../theories/proof/*.v). Licence CECILL-B is recorded consistently in entry.json source.licence, source.json licence, and SOURCE.md, and the copied upstream-LICENSE is the CeCILL-B licence text (matches). Source note records the pinned commit, browse URL, detected licence, and licence file LICENSE->upstream-LICENSE, with attribution. All 13 code/ files match the entry files array; permalink line anchors are consistent with the copied files. Everything traceable; no gaps. | reviewer-provenance-licence |
 <!-- verification:end -->
 

@@ -1,7 +1,7 @@
 {
   "id": "lean-induction-classfieldtheory-66c37f83",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Induction on n for exactness of the inflation-restriction complex",
   "intent": "Prove that the inflation-restriction complex `inflationRestriction surj n M` is exact in every cohomological degree `n`, by induction on `n`: the base case is transported across the isomorphism `isoHInfRes` to Mathlib's `H1InfRes_exact`, and the step is transported across the dimension-shifting isomorphism `IsoNext`, which is assembled from `δUpResIso`.",
   "move": "induction",
@@ -143,7 +143,7 @@
   "shape": {
     "scale": "theorem",
     "direct_lemmas": 3,
-    "depth": 3,
+    "depth": 6,
     "glue_lines": 21,
     "child_lines": [
       13,
@@ -193,8 +193,16 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T12:12:31Z",
       "note": "parent inflation_restriction_exact: statement re-copied from code; child 'IsoNext': statement re-copied from the declaration of IsoNext; child 'isoHInfRes': statement re-copied from the declaration of isoHInfRes; child 'δUpResIso': statement re-copied from the declaration of δUpResIso"
+    },
+    {
+      "field": "shape.depth",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:08:33Z",
+      "note": "depth 3 -> 6, per correctness review: traced the project-lemma chains to their leaves. Longest chain: inflation_restriction_exact -> IsoNext -> isIso_δ_ofhM -> coind₁'_quotientToInvariants_trivialCohomology -> coind₁_quotientToInvariants_trivialCohomology -> coind₁_quotientToInvariants_iso -> coind₁_quotientToInvariants_iso_comm (7 substantive project lemmas, 6 edges). Parallel branch: ... -> IsoNext -> δUpResIso -> isIso_δ_up_res -> isZero_of_injective -> resSubtypeRangeIso (depth 5). isIso_δ_of_isZero is Mathlib, not a project lemma."
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-14T12:19:55Z"
+  "status_at": "2026-11-14T14:16:58Z"
 }

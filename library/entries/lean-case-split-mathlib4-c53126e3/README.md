@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | case-split |
 | Language | lean |
-| Status | verified |
+| Status | accepted |
 | Source | [mathlib4](../../sources/mathlib4/SOURCE.md) at `e1545ebed975` |
 | Licence | `Apache-2.0` |
 
@@ -98,9 +98,11 @@ that branch the `match n with` (line 51) shows the hypothesis
 - **`n = m + 2`** (lines 61-71). `set m := n + 1` writes the exponent
   `n + 1 + 2` as `m + 2`; a `calc` chain bounds the difference by
   `≤ |cos x|^(m+2) + |sin x|^(m+2) = |cos x|^m · cos x² + |sin x|^m · sin x² <
-  1^m · cos x² + 1^m · sin x² = 1`, using `hcos1`/`hsin1` in the two `gcongr`
-  steps; `refine absurd ?_ h.not_lt` closes it, since `h` says the difference
-  equals `1`.
+  1^m · cos x² + 1^m · sin x² = 1`. The `≤` link (lines 65-68) is closed by a
+  `gcongr` (line 67) with `exacts [le_abs_self _, neg_le_abs _]`, which uses
+  neither bound; only the `<` link's `gcongr` (line 70) uses `hcos1`/`hsin1` to
+  make the chain strict; `refine absurd ?_ h.not_lt` closes it, since `h` says
+  the difference equals `1`.
 
 There is no `| 0 =>` branch: the theorem's premise `h₀ : n ≠ 0` (line 26)
 already excludes `n = 0`, so the three branches cover the whole domain and the
@@ -116,9 +118,12 @@ split's exhaustiveness is discharged by the premise, not by a separate child.
    exactly `n ≥ 1`, matching the premise `h₀ : n ≠ 0` (line 26), so
    exhaustiveness rides on the premise rather than an extra child (`check`,
    lines 26-29 and 51-61).
-3. The residual branch reuses the two strict bounds `hcos1`/`hsin1`
-   (lines 45-50) in its two `gcongr` steps (lines 67 and 70), which is what
-   makes the chain strictly decreasing (`check`, lines 45-50 and 63-71).
+3. The residual branch's strict `<` link (line 70) is closed by a `gcongr` that
+   uses the two strict bounds `hcos1`/`hsin1` (lines 45-50), which is what makes
+   the chain strictly decreasing; the earlier `≤` link is closed by a separate
+   `gcongr` (line 67) using `le_abs_self`/`neg_le_abs` (`exacts [le_abs_self _,
+   neg_le_abs _]`, line 68), which uses neither bound (`check`, lines 45-50 and
+   63-71).
 4. The authors flag that the proof follows an external write-up: "The solution
    is based on the one at the Art of Problem Solving website" (`author-statement`,
    lines 19-21).
@@ -159,7 +164,7 @@ are a hidden obligation of this move.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
@@ -177,10 +182,12 @@ Status: **verified**
 | 3 | verified | lines 45-48 define hcos1 : |cos x| < 1 and hsin1 : |sin x| < 1; gcongr appears at lines 67 and 70 inside the residual calc chain (61-71) | verifier |
 | 4 | verified | file header lines 19-21: 'The solution is based on the one at the Art of Problem Solving website' | verifier |
 | 5 | verified | counted in raw file at pinned commit: branch n=1 lines 52-57 = 6 lines; n=2 lines 58-60 = 3 lines; n=m+2 lines 61-71 = 11 lines | verifier |
+| 6 | verified | cites(Imo1961Q3_forward_match, le_abs_self) -> cites: le_abs_self occurs at Archive/Imo/Imo1961Q3.lean:68 | check_claims.py |
+| 7 | verified | cites(Imo1961Q3_forward_match, neg_le_abs) -> cites: neg_le_abs occurs at Archive/Imo/Imo1961Q3.lean:68 | check_claims.py |
 
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
-| correctness | object | Decomposition matches: lines 51-71 'match n with' has exactly |1 (53-57), |2 (59-60), |(n+1+2) (62-71); children n=1/n=2/residual and their closing tactics (rw/simp/absurd, exact absurd (eq_zero_of_pow_eq_zero h) hsinx, refine absurd ?_ h.not_lt with calc ending '_ = 1') are verbatim in the code, no |0 branch, and the file is built by mathlib CI so the split closes. BUT the residual child's closed_by and claim 3 say 'the two gcongr steps (lines 67 and 70) use hcos1/hsin1', which is false for line 67: that gcongr closes the '<=' step (65-68) via 'exacts [le_abs_self _, neg_le_abs _]' and uses neither bound; only the line-70 gcongr uses hcos1/hsin1 to make the '<' link strict. Fix: attribute hcos1/hsin1 to the second gcongr (line 70) only, and note the line-67 gcongr uses le_abs_self/neg_le_abs. | reviewer-correctness |
+| correctness | accept | Decomposition matches the code: match n with (line 51) has exactly |1 (52-57), |2 (58-60), |(n+1+2) (61-71), no |0 branch, and the premise h0 : n != 0 (line 26) excludes n=0. Children match verbatim: n=1 closes by rw/have/simpa/simp [hsinx,hcosx] at this (57); n=2 by rw then exact absurd (eq_zero_of_pow_eq_zero h) hsinx (60); residual by set m := n+1, refine absurd ?_ h.not_lt, calc ending '_ = 1' (62-71). The prior objection is fully met: residual closed_by and README now attribute the line-67 gcongr (with exacts [le_abs_self _, neg_le_abs _], line 68) to the '<=' step using neither bound, and only the line-70 gcongr to hcos1/hsin1 for the '<' step; false claim 3 removed and replaced by cites claims 6/7 (le_abs_self, neg_le_abs at line 68), both check_claims-verified. Build is ci-record on mathlib master, no sorry in the range, so the split closes. | reviewer-correctness |
 | generality | accept | Move is stated beyond the example: applicability.goal_shape/use_when abstract it to "a goal about n : Nat depending on n only through which small numerals it equals and a residual n >= 3 admitting one uniform argument", and also_known_as gives "small cases plus residual case"; the README labels the reusable shape "enumerate the exceptions, then give one bound for everything else" as opinion. When-not-to-use is honest and specific: residual genuinely needing induction, cases not sharing a residual argument, or domain including n = 0 without a hypothesis excluding it (then an explicit 0 branch is required). Consequences name concrete checkable obligations that match the copied code and the ci-record build: exhaustiveness of the 3-branch match rests on premise h0 : n != 0 (line 26) so no 0 child; the set m := n + 1 renaming (lines 61-62) is required or the calc head breaks; and the residual < link (line 70) needs the strict bounds (lines 45-50) since only <= 1 would fail. All specific and honest. | reviewer-generality |
 | provenance-licence | accept | Provenance re-check passes: check_provenance.py reports 1 file byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2 (commit valid, path resolves, recorded sha256 matches). Commit hash is identical across entry.json source.commit, all file/site permalinks, source.json, and SOURCE.md; README short form e1545ebed975 = first 12 chars. Permalink line ranges verified against the copied file: L51-71 match block, L26-29 statement, L31-50 forward_setup, L19-21 AoPS attribution, all exact. Licence Apache-2.0 is consistent everywhere: file header 'Released under Apache 2.0 license as described in the file LICENSE', source.json licence, SOURCE.md 'Licence (detected): Apache-2.0' with copied upstream-LICENSE (Apache License 2.0), entry.json licence, README licence column. Related entry lean-case-split-compfiles-6ac56e7f exists. Fully traceable. | reviewer-provenance-licence |
 <!-- verification:end -->

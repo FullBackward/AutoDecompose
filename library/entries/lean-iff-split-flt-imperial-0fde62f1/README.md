@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | iff-split |
 | Language | lean |
-| Status | verified |
+| Status | accepted |
 | Source | [flt-imperial](../../sources/flt-imperial/SOURCE.md) at `a3210204ad88` |
 | Licence | `Apache-2.0` |
 
@@ -188,7 +188,8 @@ creates exactly two goals; each is closed by instantiating one named lemma at
   `AlgebraicClosure k`;
 - the **easy** direction `IsAbsolutelyIrreducible ρ ⇒ ρ.IsIrreducible` is
   `isIrreducible_of_baseChange` (lines 405-440), which descends irreducibility
-  from the base change.
+  from the base change and, like the hard direction, is stated over an
+  arbitrary extension `l/k`.
 
 The lemma graph (arrows read "is called by"):
 
@@ -240,9 +241,11 @@ their own.
    re-exports this split unchanged as a one-line appeal (`known-use`,
    `FLT/KnownIn1980s/RepresentationTheory/OddAbsIrred.lean` lines 45-49).
 
-In my opinion the detail worth copying is that the hard direction is stated
-over an arbitrary extension `l/k`, not just `AlgebraicClosure k`, which is what
-keeps the lemma reusable and the glue to a single instantiation.
+In my opinion the detail worth copying is that both directions are stated over
+an arbitrary extension `l/k` rather than just `AlgebraicClosure k`, so the glue
+stays a single instantiation per direction; only the hard direction's proof
+genuinely needs the general `l` (through `adjoinRange_baseChange_eq_top`), while
+the easy direction's descent does not.
 
 ## When to use it, and when not
 
@@ -252,8 +255,12 @@ its own named lemma — the forward direction a real theorem, the reverse a shor
 descent. A `constructor` plus one `exact` per direction is then all the glue
 needed. Avoid it when the two directions share intermediate facts (then the
 reverse is not a leaf and a plain `constructor` hides the shared work), or when
-one direction is not naturally stated at the same generality as the other, so
-the glue has to do more than instantiate a lemma.
+one direction genuinely needs a statement at a different generality than the
+other, so the glue has to do more than instantiate a lemma. Here the two
+directions are stated at the same generality — an arbitrary extension `l/k`,
+specialised to `AlgebraicClosure k` in the glue — so this failure mode does not
+apply to this entry; only the hard direction's proof actually uses the general
+`l`, via `adjoinRange_baseChange_eq_top`.
 
 ## Consequences
 
@@ -269,7 +276,7 @@ independent and the `constructor` split would be misleading.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
@@ -292,7 +299,7 @@ Status: **verified**
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
 | correctness | accept | Correctness verified against copied file code/FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean: parent (480-492) is exactly unfold+constructor iff-split, each bullet intro+single exact instantiating a named lemma at AlgebraicClosure k (hard: isIrreducible_baseChange_of_finrank_eigenspace_eq_one, easy: isIrreducible_of_baseChange); goal shapes match so it closes. Children are exactly the two lemmas the glue uses. Child statements match code; closed_by matches (hard chains exists_smul_eq_of_commute@456, adjoinRange_eq_top@458, adjoinRange_baseChange_eq_top@460, isIrreducible_iff_forall@462, isIrreducible_of_adjoinRange_eq_top@474; easy uses isIrreducible_iff_forall@408 and Submodule.baseChange_injective@437,439). No sorry/admit/axiom. Shape right: glue_lines=9 (484-492), child_lines=[22,33] (453-474, 408-440), direct_lemmas=2, depth=3. | reviewer-correctness |
-| generality | object | The move is generalised well (biconditional between a property and its base-change/'lifted' analogue; use_when/avoid_when are general conditions), the consequences are honest, and 'Why each leaf is a good leaf' covers self-containedness/closure-on-own, which is what makes them good bounded-prover leaves. But the entry.json applicability.avoid_when parenthetical is factually wrong: it says 'here the hard direction is over any l/k, the easy direction only needs l = AlgebraicClosure k', implying the two directions are at different generality, whereas the copied file shows BOTH children are stated over an arbitrary extension l/k (isIrreducible_of_baseChange at line 405 and isIrreducible_baseChange_of_finrank_eigenspace_eq_one at lines 447-449 each take (l : Type*) [Field l] [Algebra k l]), and the parent instantiates both at AlgebraicClosure k (488-489, 492). Fix: reword the avoid_when example to say both directions here ARE stated at the same generality (arbitrary l/k, specialised to AlgebraicClosure k in the glue), and state the 'not at the same generality' failure mode with a correct or no example (e.g. note the hard direction's proof genuinely needs general l via adjoinRange_baseChange_eq_top, the easy direction's does not). | reviewer-generality |
+| generality | accept | Generality lens: the move is stated to apply beyond this example (goal_shape: a biconditional between a property and its base-changed/'lifted' analogue; README generalises to any property and its lifted analogue, use_when/avoid_when are general conditions), consequences are honest (constructor on an iff gives exactly two goals and no exhaustiveness obligation; the hard direction is stated over arbitrary l/k for reusability; the easy direction is a leaf only because its descent closes on its own), and 'Why each leaf is a good leaf' names self-containedness and closure-on-own as what makes them good bounded-prover leaves. The prior objection is fixed: the avoid_when now says both directions ARE stated at the same generality (arbitrary extension l/k, specialised to AlgebraicClosure k in the glue), matching the copied file (isIrreducible_of_baseChange line 405 and isIrreducible_baseChange_of_finrank_eigenspace_eq_one lines 447-449 each take (l : Type*) [Field l] [Algebra k l]; parent instantiates both at AlgebraicClosure k at 488-489 and 492), and the 'different generality' failure mode is stated with the correct nuance that only the hard direction's proof uses the general l via adjoinRange_baseChange_eq_top (line 460), while the easy direction's descent does not. | reviewer-generality |
 | provenance-licence | accept | Provenance and licence are consistent and traceable. check_provenance.py passes: the copied file code/FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean is byte-identical at commit a3210204ad8876e851e32f73dd97d882bf1ccd0a (sha256 4715d179... matches entry.json files[0].sha256; 23691 bytes match). The commit hash is recorded identically in entry.json source.commit, sources/flt-imperial/source.json, and sources/flt-imperial/SOURCE.md. Licence 'Apache-2.0' is recorded identically in all three and matches the copied upstream-LICENSE (standard Apache-2.0 text, linked from SOURCE.md as the LICENSE at the pinned commit). Every permalink (files, sites, claims, known_uses) uses the same commit and the correct repo path, and the file has 495 lines so all cited line ranges (up to L492) are in range. The source note's attribution paragraph matches the entry's README 'Source and licence' section. Nothing inconsistent or untraceable found. | reviewer-provenance-licence |
 <!-- verification:end -->
 

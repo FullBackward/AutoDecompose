@@ -128,6 +128,54 @@
       "evidence": "Permalinks, commit, licence and source note are consistent and traceable. All four site permalinks point at pinned commit 1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7 with line ranges that match the copied files verbatim (parent 143-163, IsoNext 89-101, isoHInfRes 105-119 in InflationRestriction.lean; dUpResIso 148-151 in UpDown.lean). check_provenance.py reports both files byte-identical at that commit. Licence recorded as Apache-2.0 in entry.json, README and source.json/SOURCE.md; sources/classfieldtheory/upstream-LICENSE is the Apache-2.0 text. Byte counts in entry.json (7589, 16556) match the copied files.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-14T12:19:48Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:12:43Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: IsoNext@ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean:163, isoHInfRes@ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean:158, δUpResIso@ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean:161; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:12:43Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:12:43Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: IsoNext@ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean:163, isoHInfRes@ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean:158, δUpResIso@ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean:161; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:12:44Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:12:59Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Decomposition, children, closing methods and closing all check out against the copied code: parent inflation_restriction_exact is InflationRestriction.lean 143-163 (21 lines), 'induction n generalizing M'; zero branch closes with 'exact ShortComplex.exact_of_iso (isoHInfRes surj 0 M).symm (H1InfRes_exact M φ.ker)' (158), succ branch with 'exact ShortComplex.exact_of_iso (IsoNext surj n M (hM 0 (by omega))) ih' (163); no sorry (sorry-scan pass). The three children are exactly the project defs the parent cites (IsoNext@163, isoHInfRes@158, δUpResIso@161), statements and closed_by verbatim, child_lines [13,15,4] and glue_lines 21 match the site ranges, direct_lemmas=3 correct. The previously-objected shape.depth is now right: I traced the claimed longest chain in the source (isIso_δ_ofhM uses coind₁'_quotientToInvariants_trivialCohomology at InflationRestriction.lean 84; coind₁'_quotientToInvariants_trivialCohomology uses coind₁_quotientToInvariants_trivialCohomology at TrivialCohomology.lean 222; that instance uses Rep.coind₁_quotientToInvariants_iso at line 215; coind₁_quotientToInvariants_iso uses coind₁_quotientToInvariants_iso_comm at Finite.lean 452; coind₁_quotientToInvariants_iso_comm closes by obtain/ext/simp over rfl lemmas at 433-445), giving inflation_restriction_exact → IsoNext → isIso_δ_ofhM → coind₁' → coind₁ → iso → iso_comm = 7 project lemmas, 6 edges = depth 6, matching shape.depth=6 and README. Parallel branch ...→δUpResIso→isIso_δ_up_res→isZero_of_injective→resSubtypeRangeIso is depth 5 (isIso_δ_of_isZero is Mathlib, not project). No longer chain exists.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T14:16:48Z"
     }
   ]
 }

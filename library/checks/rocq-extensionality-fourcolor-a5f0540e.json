@@ -128,6 +128,70 @@
       "evidence": "Permalinks all pin commit c1d6b1cd5288bea4b067aac13cdde3c18dffe018 and the cited line ranges match the local copies (parent 203-211, children 166-167, 338-344, 849-863); check_provenance reports 4 files byte-identical at that commit; entry licence CECILL-B agrees with source.json, SOURCE.md, and upstream-LICENSE (CeCILL-B); source note, commit and licence are consistent and traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-14T10:10:26Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:23:39Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: reals_classic@theories/reals/realcategorical.v:209, ratR_dense@theories/reals/realcategorical.v:209, Rmorph_rat@theories/reals/realcategorical.v:210; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:23:39Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:23:39Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: reals_classic@theories/reals/realcategorical.v:209, ratR_dense@theories/reals/realcategorical.v:209, Rmorph_rat@theories/reals/realcategorical.v:210; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:23:39Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at c1d6b1cd5288bea4b067aac13cdde3c18dffe018",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:23:47Z"
+    },
+    {
+      "type": "claim",
+      "key": "6",
+      "value": "verified",
+      "evidence": "Read the copied code line ranges. Direct calls confirmed: realcategorical.v:209 applies reals_classic and ratR_dense, :210 rewrites with Rmorph_rat (3 project lemmas). Depth-9 chain each edge read: ratR_dense:852,856 -> find_range1z; find_range1z:846 -> int_floor; int_floor:812 -> sup_total; sup_total:527 -> reals_classic; reals_classic:342 -> ltR01; ltR01:317 -> ltR_total; ltR_total:119 -> leR_total; leR_total:105 -> real_sup_total; real_sup_total:100 -> Real.sup_total (axiom). reals_classic-only chain depth 5 (338->ltR01->ltR_total->leR_total->real_sup_total) confirmed. 9 is the longest chain (Rmorph_rat branch is shallower).",
+      "by": "verifier",
+      "at": "2026-11-14T14:26:11Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at c1d6b1cd5288bea4b067aac13cdde3c18dffe018",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:26:35Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent Rmorph_uniq (realcategorical.v:203-211) and children reals_classic (realprop.v:338-344), ratR_dense (849-863), Rmorph_rat (realcategorical.v:166-167) match the copied code verbatim; proof ends in Qed so it closes. Glue cites exactly the three children (reals_classic and ratR_dense at :209, Rmorph_rat at :210), plus the view ltRW at :209, uncounted. Shape numbers now correct: direct_lemmas=3, glue_lines=9 (203-211), child_lines=[7,15,2] (338-344, 849-863, 166-167), and depth=9 matches the verified chain ratR_dense->find_range1z(852,856)->int_floor(846)->sup_total(812)->reals_classic(527)->ltR01(342)->ltR_total(317)->leR_total(119)->real_sup_total(105)->Real.sup_total(100); the reals_classic-only chain is depth 5. Claim 4 removed, claim 6 states depth 9 correctly. closed_by refs check out (real_sup_ub:96, leR_lt_trans:125, real_sup_total:99).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T14:27:45Z"
     }
   ]
 }

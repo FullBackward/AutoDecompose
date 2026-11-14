@@ -1,7 +1,7 @@
 {
   "id": "lean-other-flt-imperial-ac21422b",
   "kind": "instance",
-  "status": "draft",
+  "status": "accepted",
   "title": "support_eq_top: the patched module's support is all of Spec R0 via faithfulSMul and smul_lemma",
   "intent": "Prove that the support of the patched module M₀ over R₀ is all of Spec R₀ by factoring the argument into two named lemmas — PatchingAlgebra.faithfulSMul (the patching module is faithful over the patching algebra) and smul_lemma (the compatibility of the patching data, which is exactly the map_smul of a quotient equivalence) — and then finishing by a prime-spectrum rewrite that transports the triviality of the annihilator along that equivalence and pulls it back along the surjection f₀.",
   "move": "other",
@@ -181,5 +181,7 @@
       "at": "2026-11-14T13:42:33Z",
       "note": "added lean-other-flt-imperial-4b2bc017 and -978f1e8a: empty shells of the same site left by the timed-out extraction, deprecated"
     }
-  ]
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T14:00:19Z"
 }

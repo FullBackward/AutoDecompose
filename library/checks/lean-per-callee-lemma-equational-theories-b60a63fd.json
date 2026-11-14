@@ -112,6 +112,54 @@
       "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
       "by": "sorry_scan.py",
       "at": "2026-11-14T08:00:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:11:47Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: use_chain@equational_theories/ManuallyProved/Equation1729.lean:23, enlarge_L₀'@equational_theories/ManuallyProved/Equation1729.lean:36, enlarge_S'@equational_theories/ManuallyProved/Equation1729.lean:40, enlarge_op@equational_theories/ManuallyProved/Equation1729.lean:43, TrivialPartialSolution@equational_theories/ManuallyProved/Equation1729.lean:21; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:11:48Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:11:48Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: use_chain@equational_theories/ManuallyProved/Equation1729.lean:23, enlarge_L₀'@equational_theories/ManuallyProved/Equation1729.lean:36, enlarge_S'@equational_theories/ManuallyProved/Equation1729.lean:40, enlarge_op@equational_theories/ManuallyProved/Equation1729.lean:43, TrivialPartialSolution@equational_theories/ManuallyProved/Equation1729.lean:21; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:11:48Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 8b87204d5b201e1cf6c69b8dcabb0558109bee00",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:12:31Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Re-verified against the copied code: parent not_817 (Equation1729.lean 14-43) closes with no sorry/admit, using TrivialPartialSolution@21, use_chain@23, enlarge_L0'@36, enlarge_S'@40, enlarge_op@43 in a match-b-with dispatch at L33. All five child statements are verbatim. Closed_by now matches: TrivialPartialSolution has eleven axiom fields (ten via Finset.notMem_empty, axiom_L via simp); enlarge_S' calls enlarge_S'_induction at 2047 and 2051; enlarge_op wlogs call enlarge_S' at 2056/2060 and enlarge_L0' at 2065; use_chain applies reduce_to_new_axioms. Depth chain verified to 5: not_817->enlarge_op(2056/2060/2065)->enlarge_S'(2047/2051)->enlarge_S'_induction(enlarge_L0'_multiple@1996)->enlarge_L0'_multiple(enlarge_L0'@569)->enlarge_L0'. Shape numbers right: direct_lemmas 5, depth 5, glue_lines 30 (= parent site 14-43), child_lines [53,71,50,10,367] recomputed by validate_entry.py --strict (passes). Claim 2 match-b-with now line 33 (intro sol b at 32). All prior objection points resolved.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T14:14:07Z"
     }
   ]
 }

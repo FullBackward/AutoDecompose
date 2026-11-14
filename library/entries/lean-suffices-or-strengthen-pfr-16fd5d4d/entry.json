@@ -1,7 +1,7 @@
 {
   "id": "lean-suffices-or-strengthen-pfr-16fd5d4d",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Strengthen to the not-in-coset case, then strong-induct, for asymmetric weak PFR over Z^d",
   "intent": "Prove the asymmetric weak PFR theorem over a free ℤ-module by first strengthening the goal to the case where A, B are not in a coset of a proper subgroup (an extra `NotInCoset A B` hypothesis), strong-inducting on `Nat.card A + Nat.card B` over that strengthened statement, and then transferring the conclusion back to the original A, B.",
   "move": "suffices-or-strengthen",
@@ -79,7 +79,7 @@
     {
       "name": "wlog_notInCoset",
       "statement": "lemma wlog_notInCoset (hA : A.Nonempty) (hB : B.Nonempty) :\n    ∃ (G' : AddSubgroup G) (A' B' : Set (G' : Set G)),\n    IsShift A A' ∧ IsShift B B' ∧ NotInCoset A' B'",
-      "closed_by": "its own proof (lines 52-81): sets `G' := AddSubgroup.closure ((A - A) ∪ (B - B))`, shows the shifts `-x +ᵥ A`, `-y +ᵥ B` lie in `range G'.subtype`, and closes `NotInCoset A' B'` with `convert! AddSubgroup.closure_preimage_eq_top ((A - A) ∪ (B - B))` (line 161)",
+      "closed_by": "its own proof (lines 52-81): sets `G' := AddSubgroup.closure ((A - A) ∪ (B - B))`, shows the shifts `-x +ᵥ A`, `-y +ᵥ B` lie in `range G'.subtype`, and closes `NotInCoset A' B'` with `convert! AddSubgroup.closure_preimage_eq_top ((A - A) ∪ (B - B))` (line 72)",
       "note": "Analyst's paraphrase, replaced by the declaration's text: moves A, B (up to translation and embedding) into a subgroup G' where they are not in a coset of a proper subgroup"
     },
     {
@@ -206,8 +206,16 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T10:57:26Z",
       "note": "parent weak_PFR_asymm: statement re-copied from code; child 'wlog_notInCoset': statement re-copied from the declaration of wlog_notInCoset; child 'weak_PFR_asymm_prelim': statement re-copied from the declaration of weak_PFR_asymm_prelim; child 'conclusion_transfers': statement re-copied from the declaration of conclusion_transfers"
+    },
+    {
+      "field": "children[0].closed_by",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:09:43Z",
+      "note": "corrected the line of `AddSubgroup.closure_preimage_eq_top` from 161 to 72 (it is applied at line 72 of PFR/WeakPFR.lean, inside wlog_notInCoset; 161 was a locator error). Matching fix applied to README 'How the parts fit'."
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-14T11:09:19Z"
+  "status_at": "2026-11-14T14:12:23Z"
 }

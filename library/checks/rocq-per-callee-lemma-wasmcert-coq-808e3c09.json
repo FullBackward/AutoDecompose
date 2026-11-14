@@ -128,6 +128,102 @@
       "evidence": "Permalinks, commit and source note are consistent and traceable (check_provenance: 4 files byte-identical at 58a3d3f8b7af4dc8aa9351f254a9e672643b21f8; the same commit appears in entry.json, source.json and SOURCE.md; parent lemma is at interp_instantiate_sound.v:246-402 and the cited comment at :263). Licence is wrong: entry.json, source.json and SOURCE.md record LGPL-2.1, but upstream-LICENSE.txt states the project is MIT except src/Parray/ which is LGPL-2.1+; all four copied files are under theories/ (interp_instantiate_sound.v, type_checker_reflects_typing.v, instantiation_properties.v, instantiation_spec.v), so they are MIT, not LGPL. Fix: change the licence to MIT (or 'MIT; LGPL-2.1+ only for src/Parray/') in entry.json and the source note.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-14T12:49:54Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:21:22Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: module_type_checker_sound@theories/interp_instantiate_sound.v:264, external_type_checker_sound@theories/interp_instantiate_sound.v:277, interp_alloc_sound@theories/interp_instantiate_sound.v:267, module_typecheck_glob_aux@theories/interp_instantiate_sound.v:325, module_typecheck_elem_aux@theories/interp_instantiate_sound.v:358, b_e_type_checker_reflects_typing@theories/interp_instantiate_sound.v:331, alloc_func_iota_N@theories/interp_instantiate_sound.v:306, alloc_global_iota_N@theories/interp_instantiate_sound.v:309; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:21:22Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:21:23Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: module_type_checker_sound@theories/interp_instantiate_sound.v:264, external_type_checker_sound@theories/interp_instantiate_sound.v:277, interp_alloc_sound@theories/interp_instantiate_sound.v:267, module_typecheck_glob_aux@theories/interp_instantiate_sound.v:325, module_typecheck_elem_aux@theories/interp_instantiate_sound.v:358, b_e_type_checker_reflects_typing@theories/interp_instantiate_sound.v:331, alloc_func_iota_N@theories/interp_instantiate_sound.v:306, alloc_global_iota_N@theories/interp_instantiate_sound.v:309; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:21:23Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 58a3d3f8b7af4dc8aa9351f254a9e672643b21f8",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:22:06Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "object",
+      "evidence": "Provenance is consistent and traceable: check_provenance passes (4 files byte-identical at 58a3d3f8b7af4dc8aa9351f254a9e672643b21f8); the same commit appears in entry.json, README, source.json and SOURCE.md; permalinks and cited line ranges resolve to the copied code. entry.json (source.licence) and the README now correctly record MIT, consistent with upstream-LICENSE.txt (all four copied files are under theories/ — interp_instantiate_sound.v, type_checker_reflects_typing.v, instantiation_properties.v, instantiation_spec.v — which are MIT; only src/Parray/ is LGPL-2.1+). But the source note is still inconsistent: SOURCE.md line 7 still reads 'Licence (detected): LGPL-2.1' and source.json still records 'licence': 'LGPL-2.1', contradicting the entry's MIT and the README's 'Source and licence' section, which tells the reader the files are MIT and points to the source note. The prior objection's fix explicitly asked for the source note to be corrected too, but only entry.json and the README were changed. Fix: update SOURCE.md's licence line and source.json's licence field to MIT (or 'MIT; LGPL-2.1+ only for src/Parray/') to match entry.json and README.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T14:22:28Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:39:01Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: module_type_checker_sound@theories/interp_instantiate_sound.v:264, external_type_checker_sound@theories/interp_instantiate_sound.v:277, interp_alloc_sound@theories/interp_instantiate_sound.v:267, module_typecheck_glob_aux@theories/interp_instantiate_sound.v:325, module_typecheck_elem_aux@theories/interp_instantiate_sound.v:358, b_e_type_checker_reflects_typing@theories/interp_instantiate_sound.v:331, alloc_func_iota_N@theories/interp_instantiate_sound.v:306, alloc_global_iota_N@theories/interp_instantiate_sound.v:309; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:39:01Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:39:01Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: module_type_checker_sound@theories/interp_instantiate_sound.v:264, external_type_checker_sound@theories/interp_instantiate_sound.v:277, interp_alloc_sound@theories/interp_instantiate_sound.v:267, module_typecheck_glob_aux@theories/interp_instantiate_sound.v:325, module_typecheck_elem_aux@theories/interp_instantiate_sound.v:358, b_e_type_checker_reflects_typing@theories/interp_instantiate_sound.v:331, alloc_func_iota_N@theories/interp_instantiate_sound.v:306, alloc_global_iota_N@theories/interp_instantiate_sound.v:309; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:39:01Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 58a3d3f8b7af4dc8aa9351f254a9e672643b21f8",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:39:25Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance and licence are now consistent and traceable. check_provenance passes (4 files byte-identical at 58a3d3f8b7af4dc8aa9351f254a9e672643b21f8); the same commit appears in entry.json, README, source.json and SOURCE.md. The prior licence inconsistency is resolved: SOURCE.md's licence line and source.json's licence field no longer read LGPL-2.1 but now record 'MIT AND LGPL-2.1-or-later' (with an explanatory note that only src/Parray/ is LGPL), which is correct for the whole repository. entry.json source.licence and the README record MIT, correct for the four copied files (interp_instantiate_sound.v, type_checker_reflects_typing.v, instantiation_properties.v, instantiation_spec.v), all under theories/; upstream-LICENSE.txt confirms MIT except src/Parray/ (LGPL-2.1+), so the copied files are MIT. The README's 'Source and licence' section states this split explicitly. Cited line ranges resolve to the copied code (parent site 246 begins 'Lemma interp_instantiate_imp_instantiate'; instantiation_spec.v 629-643 is the existential+conjunction Definition instantiate).",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T14:39:52Z"
     }
   ]
 }

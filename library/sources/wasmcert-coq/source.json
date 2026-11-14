@@ -10,8 +10,11 @@
   "pinned_at": "2026-11-14T11:40:19Z",
   "how_found": "discovery-1: A-rocq",
   "note": "WebAssembly 2.0: type safety, interpreter soundness against WasmCert, type-checker soundness and completeness, and module-instantiation soundness, each proved from named lemmas",
-  "licence": "LGPL-2.1",
+  "licence": "MIT AND LGPL-2.1-or-later",
   "licence_files": [
     "LICENSE.txt"
-  ]
+  ],
+  "licence_detected": "LGPL-2.1",
+  "licence_note": "LICENSE.txt: most of the project is MIT; only files vendored under src/Parray/ are LGPL v2.1 or later",
+  "licence_set_by": "fixer (revise-1)"
 }

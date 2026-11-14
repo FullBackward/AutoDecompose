@@ -136,6 +136,46 @@
       "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
       "by": "sorry_scan.py",
       "at": "2026-11-14T08:00:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:04:30Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: isIrreducible_baseChange_of_finrank_eigenspace_eq_one@FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean:488, isIrreducible_of_baseChange@FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean:492; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:04:30Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:04:31Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: isIrreducible_baseChange_of_finrank_eigenspace_eq_one@FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean:488, isIrreducible_of_baseChange@FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean:492; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:04:31Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality lens: the move is stated to apply beyond this example (goal_shape: a biconditional between a property and its base-changed/'lifted' analogue; README generalises to any property and its lifted analogue, use_when/avoid_when are general conditions), consequences are honest (constructor on an iff gives exactly two goals and no exhaustiveness obligation; the hard direction is stated over arbitrary l/k for reusability; the easy direction is a leaf only because its descent closes on its own), and 'Why each leaf is a good leaf' names self-containedness and closure-on-own as what makes them good bounded-prover leaves. The prior objection is fixed: the avoid_when now says both directions ARE stated at the same generality (arbitrary extension l/k, specialised to AlgebraicClosure k in the glue), matching the copied file (isIrreducible_of_baseChange line 405 and isIrreducible_baseChange_of_finrank_eigenspace_eq_one lines 447-449 each take (l : Type*) [Field l] [Algebra k l]; parent instantiates both at AlgebraicClosure k at 488-489 and 492), and the 'different generality' failure mode is stated with the correct nuance that only the hard direction's proof uses the general l via adjoinRange_baseChange_eq_top (line 460), while the easy direction's descent does not.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T14:05:49Z"
     }
   ]
 }

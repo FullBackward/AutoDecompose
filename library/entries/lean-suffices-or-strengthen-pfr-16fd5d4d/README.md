@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | suffices-or-strengthen |
 | Language | lean |
-| Status | verified |
+| Status | accepted |
 | Source | [pfr](../../sources/pfr/SOURCE.md) at `1ef23c3c5a83` |
 | Licence | `Apache-2.0` |
 
@@ -433,7 +433,7 @@ Why each child is a good leaf:
 
 - `wlog_notInCoset` is self-contained: it closes on its own by constructing the
   subgroup `G' := AddSubgroup.closure ((A - A) ∪ (B - B))` and reducing the
-  `NotInCoset` obligation to `AddSubgroup.closure_preimage_eq_top` (line 161).
+  `NotInCoset` obligation to `AddSubgroup.closure_preimage_eq_top` (line 72).
   It is exactly the reduction the `suffices` needs and nothing more.
 - `weak_PFR_asymm_prelim` is the hard leaf, but it is *one statement* whose
   proof closes from named siblings lower in the file (`PFR_projection`,
@@ -524,7 +524,7 @@ statement about different sets than the original.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
@@ -549,7 +549,7 @@ Status: **verified**
 
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
-| correctness | object | Decomposition, children, closing and shape all correct: parent weak_PFR_asymm (859-971 = 113 lines) cites wlog_notInCoset@874, conclusion_transfers@902, weak_PFR_asymm_prelim@905; child sites 50-81/625-782/813-857 = 32/158/45 lines; chain weak_PFR_asymm->weak_PFR_asymm_prelim(905)->PFR_projection(651)->PFR_projection'(396)->app_ent_PFR(321)->app_ent_PFR'(295)->ent_of_proj_le(265-266) gives depth 6; four_logs@408 is a shared utility, excluded with justification. One factual error: entry.json children[0].closed_by and README 'How the parts fit' cite the NotInCoset closure at 'line 161', but AddSubgroup.closure_preimage_eq_top is applied at line 72 (line 161 is inside an unrelated entropy proof). Fix: change 161 to 72 in both places. | reviewer-correctness |
+| correctness | accept | Correctness re-verified against the local copy code/PFR/WeakPFR.lean. Parent weak_PFR_asymm is one suffices strengthening the goal with NotInCoset, cites exactly the three children. Children and closing match the code; the prior line-161 error is now line-72 in both entry.json and README. Shape numbers right: direct_lemmas 3, depth 6, glue 113, children 32/158/45. It closes. | reviewer-correctness |
 | generality | accept | Generality lens. (1) Move stated beyond the example: applicability.goal_shape/use_when/avoid_when and README 'When to use it, and when not' describe the move generally — an extra hypothesis added via suffices/wlog plus two cheap lemmas (reduce wlog_notInCoset, transfer conclusion_transfers); the suffices re-abstracts G and instance args (verified sed 859-873), so re-generalisation is real, not asserted. (2) when-not-to-use and consequences are honest and specific: avoid_when names two failure modes (hard reduce/transfer; recursion not decreasing) and README adds a third (transfer must be bijection-preserving / Ruzsa-invariant), which conclusion_transfers actually satisfies via Injective f/g + setRuzsaDist_of_inj/add_const; consequences names the three obligations and the failure mode (one-sided inequality silently weakening the bound). (3) 'Why each child is a good leaf' answers the bounded-prover question: wlog_notInCoset and conclusion_transfers are self-contained (close on their own), and the hard leaf weak_PFR_asymm_prelim is one named statement packaging subgroup+fibres+bounds behind one name, with thin 113-line glue over 235 lines of children (measurement claims 4/6, depth-6 chain). Minor non-blocking nit: the prose bullet cites AddSubgroup.closure_preimage_eq_top at 'line 161' but it sits at ~line 70 of the file — a locator typo, not a generality defect. | reviewer-generality |
 | provenance-licence | accept | Permalinks, commit, licence and source note all consistent and traceable. Commit 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a is identical in entry.json, source.json, SOURCE.md, and every permalink (README header's short 1ef23c3c5a83 is the same commit's prefix). Licence Apache-2.0 matches entry.json, README, source.json and SOURCE.md, and sources/pfr/upstream-LICENSE is genuinely Apache License 2.0. Copied code/PFR/WeakPFR.lean is 60974 bytes with sha256 f5bf403c...660, matching files[0] (bytes 60974, same sha256); check_provenance.py passes byte-identical at the pinned commit. Source note ../../sources/pfr/SOURCE.md exists and carries the licence text and attribution. All four site permalinks resolve to the cited line ranges of the same file at the same commit. | reviewer-provenance-licence |
 <!-- verification:end -->

@@ -1,7 +1,7 @@
 {
   "id": "lean-key-invariant-numina-putnam2025-7117dd00",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Weighted-average key invariant closes Putnam 2025 B2 (centroid x₁ < x₂)",
   "intent": "Prove Putnam 2025 B2 — that the centroid of the region under a strictly increasing, non-negative, continuous curve f on [0,1] lies to the left of the centroid of its solid of revolution (x₁ < x₂) — by carrying the whole proof on one auxiliary inequality, weighted_average_lt_of_strictMono: the f-weighted average of x is strictly less than the f²-weighted average. Two positivity lemmas discharge the centroid formulas' hypotheses, the two centroid lemmas identify x₁ and x₂ with the two sides of that inequality, and one rewrite followed by exact closes the goal.",
   "move": "key-invariant",
@@ -131,8 +131,8 @@
   ],
   "applicability": {
     "goal_shape": "A competition problem comparing two derived quantities (here the centroid x₁ of a planar region and the centroid x₂ of its solid of revolution) that both reduce to ratios of the same four single integrals; the comparison becomes a single strict inequality between two weighted averages that a strictly monotone non-negative weight separates.",
-    "use_when": "the goal's two sides can both be identified, by formula lemmas, with the two sides of one auxiliary inequality that carries the whole idea (here the f- vs f²-weighted average of x for strictly increasing f ≥ 0); the auxiliary statement is self-contained enough to prove once and cite, and the side conditions on the formulas are discharged by short positivity lemmas.",
-    "avoid_when": "the identification of the two sides is not routine (here each centroid formula needs its own Fubini / measure-theoretic proof, and those two proofs are most of the file); the auxiliary inequality does not isolate the monotonicity hypothesis that makes the strict comparison true; or the denominators' positivity cannot be separated into short lemmas."
+    "use_when": "the goal's two sides can both be identified, by formula lemmas, with the two sides of one auxiliary inequality that carries the whole idea (here the f- vs f²-weighted average of x for strictly increasing f ≥ 0); the auxiliary statement is self-contained enough to prove once and cite, and the side conditions on the formulas are discharged by short positivity lemmas. The identification lemmas themselves may be large: in the exemplar centroid_2d_formula (143 lines) and centroid_3d_formula (341 lines) each need their own Fubini / measure-theoretic proof and are most of the file — that is the price of the shape, paid once and walled off behind the two formula lemmas rather than spread through the main proof.",
+    "avoid_when": "the auxiliary inequality does not isolate the monotonicity hypothesis that makes the strict comparison true (a merely non-decreasing weight would collapse the comparison); or the denominators' positivity cannot be separated into short lemmas."
   },
   "claims": [
     {
@@ -219,8 +219,16 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T09:44:18Z",
       "note": "parent putnam_2025_b2: statement re-copied from code; child 'integral_f_pos': statement re-copied from the declaration of integral_f_pos; child 'integral_f_sq_pos': statement re-copied from the declaration of integral_f_sq_pos; child 'weighted_average_lt_of_strictMono': statement re-copied from the declaration of weighted_average_lt_of_strictMono; child 'centroid_2d_formula': statement re-copied from the declaration of centroid_2d_formula; child 'centroid_3d_formula': statement re-copied from the declaration of centroid_3d_formula"
+    },
+    {
+      "field": "applicability.use_when,applicability.avoid_when",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:08:00Z",
+      "note": "Met the generality objection: use_when now acknowledges the two centroid formulas as large identification lemmas whose Fubini / measure-theoretic proof is the price of the shape (paid once, walled off behind the two formula lemmas), not a disqualifier; avoid_when drops the 'identification of the two sides is not routine' clause that described the exemplar itself and keeps only the monotonicity-isolation and positivity-separation conditions."
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-14T09:50:50Z"
+  "status_at": "2026-11-14T14:09:06Z"
 }

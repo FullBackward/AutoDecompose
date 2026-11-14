@@ -1,7 +1,7 @@
 {
   "id": "rocq-per-callee-lemma-fourcolor-3d7b1949",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Per-block C-reducibility lemmas collated into the four-colour the_reducibility",
   "intent": "Prove that all 633 configurations of `the_configs` are C-reducible by splitting the index range [0, 633) into ten contiguous blocks, giving one generated lemma per block (`red000to214` … `red588to633`), each itself a `CatReducible` chain of smaller generated block lemmas whose leaves close by computational reflection (`CheckReducible`).",
   "move": "per-callee-lemma",
@@ -348,8 +348,16 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T07:58:46Z",
       "note": "typed glue_lines 5, child_lines [3, 3, 3, 3, 3, 3, 3, 5]; derived from the site ranges (declaration included): 6, [4, 4, 4, 4, 4, 4, 4, 6]"
+    },
+    {
+      "field": "applicability.avoid_when",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:19:56Z",
+      "note": "generality objection: the README's 4th avoid clause warned against the move when 'the per-case check is expensive and must be cached per component anyway', which is exactly the per-block situation the move provides (cfreducible.v L72 'This predicate hides the (expensive) reducibility evaluation'). Replaced that clause in README.md with the uniformity converse already present in entry.json avoid_when ('the per-case check is not uniform enough to be discharged by one generated tactic') and stated that an expensive per-case check is a reason to use the move, not avoid it. entry.json avoid_when itself was already correct and is unchanged."
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-12T15:45:02Z"
+  "status_at": "2026-11-14T14:22:25Z"
 }

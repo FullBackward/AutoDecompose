@@ -184,6 +184,62 @@
       "evidence": "Permalinks, commit, licence and source note all consistent and traceable. Commit 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a is identical in entry.json, source.json, SOURCE.md, and every permalink (README header's short 1ef23c3c5a83 is the same commit's prefix). Licence Apache-2.0 matches entry.json, README, source.json and SOURCE.md, and sources/pfr/upstream-LICENSE is genuinely Apache License 2.0. Copied code/PFR/WeakPFR.lean is 60974 bytes with sha256 f5bf403c...660, matching files[0] (bytes 60974, same sha256); check_provenance.py passes byte-identical at the pinned commit. Source note ../../sources/pfr/SOURCE.md exists and carries the licence text and attribution. All four site permalinks resolve to the cited line ranges of the same file at the same commit.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-14T11:09:12Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:10:10Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: wlog_notInCoset@PFR/WeakPFR.lean:874, weak_PFR_asymm_prelim@PFR/WeakPFR.lean:905, conclusion_transfers@PFR/WeakPFR.lean:902; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:10:10Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:10:11Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: wlog_notInCoset@PFR/WeakPFR.lean:874, weak_PFR_asymm_prelim@PFR/WeakPFR.lean:905, conclusion_transfers@PFR/WeakPFR.lean:902; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:10:11Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Correctness re-verified against the local copy code/PFR/WeakPFR.lean. Parent weak_PFR_asymm is one suffices strengthening the goal with NotInCoset, cites exactly the three children. Children and closing match the code; the prior line-161 error is now line-72 in both entry.json and README. Shape numbers right: direct_lemmas 3, depth 6, glue 113, children 32/158/45. It closes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T14:12:10Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:12:15Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Correctness re-verified against the local copy code/PFR/WeakPFR.lean. Parent weak_PFR_asymm is one suffices strengthening the goal with NotInCoset, cites exactly the three children. Children and closing match the code; the prior line-161 error is now line-72 in both entry.json and README. Shape numbers right: direct_lemmas 3, depth 6, glue 113, children 32/158/45. It closes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T14:12:18Z"
     }
   ]
 }

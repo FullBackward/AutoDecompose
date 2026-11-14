@@ -1,7 +1,7 @@
 {
   "id": "lean-interface-lemma-equational-theories-048d3d79",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Interface lemma models_def' re-expresses entailment over all universes for Birkhoff completeness",
   "intent": "`Completeness'` is Birkhoff's completeness theorem, and its proof is two lines of glue with no case analysis or induction: the hypothesis `h : Γ ⊧ E` is re-expressed through the interface lemma `models_def'` into a statement about the free magma with laws (quantified over every universe), instantiated at `FreeMagmaWithLaws β Γ` using `isModel` (that this magma satisfies `Γ`), and converted to a derivation with `isDerives`. The interface lemma `models_def'` is the abstraction boundary: it reformulates the bundled `models` relation, which quantifies only over `Type` (universe 0), as a universal statement over `Type*` (all universes), so the client stops unfolding `models` and stops reasoning about universes.",
   "move": "interface-lemma",
@@ -151,22 +151,22 @@
       "evidence": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/Completeness.lean#L158"
     },
     {
-      "n": 3,
-      "claim": "The parent Completeness' is 3 lines (156-158) and the three children are 8 (models_def', 147-154), 10 (FreeMagmaWithLaws.isDerives, 100-109) and 7 (FreeMagmaWithLaws.isModel, 123-129) lines; the glue uses these three lemmas directly, and the longest checked chain below the parent is Completeness' -> models_def' -> FreeMagmaWithLaws.isDerives -> FreeMagmaWithLaws.evalInMagmaIsQuot (84-94), depth 3.",
-      "evidence_kind": "measurement",
-      "evidence": "read of the copied file equational_theories/Completeness.lean lines 84-158"
-    },
-    {
       "n": 4,
       "claim": "The authors name the result in its docstring ('/-- Birkhoff's completeness theorem -/', line 156) and flag the proof's one use of choice with a comment ('Sadly, we falter here and use choice. Somewhat confident it's not needed.', line 111).",
       "evidence_kind": "author-statement",
       "evidence": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/Completeness.lean#L111 and #L156"
+    },
+    {
+      "n": 5,
+      "claim": "The parent Completeness' is 3 lines (156-158) and the three children are 8 (models_def', 147-154), 10 (FreeMagmaWithLaws.isDerives, 100-109) and 7 (FreeMagmaWithLaws.isModel, 123-129) lines; the glue uses these three lemmas directly, and the longest checked chain below the parent is Completeness' -> models_def' (147-154) -> FreeMagmaWithLaws.models_iff_u (131-135) -> FreeMagmaWithLaws.isModel (123-129) -> PhiAsSubst (118-121) -> PhiAsSubst_aux (112-116), depth 5.",
+      "evidence_kind": "measurement",
+      "evidence": "read of the copied file equational_theories/Completeness.lean lines 84-158"
     }
   ],
   "shape": {
     "scale": "theorem",
     "direct_lemmas": 3,
-    "depth": 3,
+    "depth": 5,
     "glue_lines": 3,
     "child_lines": [
       8,
@@ -176,14 +176,14 @@
   },
   "metrics": {
     "direct_lemmas": 3,
-    "depth": 3,
+    "depth": 5,
     "glue_lines": 3,
     "child_lines": [
       8,
       10,
       7
     ],
-    "how_counted": "glue = parent site 156-158 (3 lines); children = child sites models_def' 147-154 (8), FreeMagmaWithLaws.isDerives 100-109 (10), FreeMagmaWithLaws.isModel 123-129 (7). Longest checked chain below the parent: models_def' -> FreeMagmaWithLaws.isDerives -> FreeMagmaWithLaws.evalInMagmaIsQuot (84-94), depth 3."
+    "how_counted": "glue = parent site 156-158 (3 lines); children = child sites models_def' 147-154 (8), FreeMagmaWithLaws.isDerives 100-109 (10), FreeMagmaWithLaws.isModel 123-129 (7). Longest checked chain below the parent: Completeness' -> models_def' (147-154) -> FreeMagmaWithLaws.models_iff_u (131-135) -> FreeMagmaWithLaws.isModel (123-129) -> PhiAsSubst (118-121) -> PhiAsSubst_aux (112-116), depth 5; the alternative chain Completeness' -> models_def' -> FreeMagmaWithLaws.models_iff_u -> FreeMagmaWithLaws.isDerives -> FreeMagmaWithLaws.evalInMagmaIsQuot (84-94) is depth 4."
   },
   "consequences": "Creates three obligations, one per direct child: (1) the interface equivalence `models_def'` — an iff, so two directions, the forward one still needing the completeness core and the backward one a soundness fact; (2) `isModel`, that the constructed magma satisfies the laws; (3) `isDerives`, that satisfaction in the constructed magma yields a derivation. The proof relies on the axiom of choice: `isModel` reaches `PhiAsSubst_aux`, whose proof uses `Classical.axiomOfChoice` (the authors flag it at line 111: 'Sadly, we falter here and use choice. Somewhat confident it's not needed.'). It pins the reformulation: after `models_def'`, a client that wants entailment over `Type` only must still go through the `Type*` form. The sibling theorem `Completeness` (160-162) is the immediate specialisation to `derive`, so any change to the `models` definition must keep `models_def'` in sync.",
   "known_uses": [
@@ -216,8 +216,16 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T11:02:01Z",
       "note": "parent Completeness': statement re-copied from code; child \"models_def'\": statement re-copied from the declaration of models_def'; child 'FreeMagmaWithLaws.isDerives': statement re-copied from the declaration of FreeMagmaWithLaws.isDerives; child 'FreeMagmaWithLaws.isModel': statement re-copied from the declaration of FreeMagmaWithLaws.isModel"
+    },
+    {
+      "field": "shape.depth,metrics.depth,metrics.how_counted,claims",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:10:27Z",
+      "note": "correctness objection: the depth was under-counted. shape.depth and metrics.depth 3 -> 5; metrics.how_counted longest-chain corrected to Completeness' -> models_def' -> FreeMagmaWithLaws.models_iff_u -> FreeMagmaWithLaws.isModel -> PhiAsSubst -> PhiAsSubst_aux (depth 5). Claim 3 (depth 3) removed and rewritten as claim 5 with the corrected chain and depth; the README lemma graph gained the edges models_iff_u -> isModel and models_iff_u -> isDerives, and 'Why it is good' point 3 was corrected to depth 5."
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-14T11:07:53Z"
+  "status_at": "2026-11-14T14:18:58Z"
 }

@@ -112,6 +112,54 @@
       "evidence": "Permalinks, commit and line ranges are consistent and traceable: check_provenance passes (code/proof/invariant-abstract/Deterministic_AI.thy byte-identical at 1abfe5bce98632a94ba52adf183045620c509340), and the cited ranges (4322-4337, 4303-4320, 1602-1629, 1631-1665, 206-257) open on the declared lemmas. But the licence is wrong: the entry (README.md, entry.json source.licence, sources/l4v/SOURCE.md) records CC-BY-SA-4.0, while the copied file's own header reads 'SPDX-License-Identifier: GPL-2.0-only' (Deterministic_AI.thy lines 1-5), and upstream LICENSE.md says proof files are typically GPL v2. CC-BY-SA-4.0 was evidently picked up from the LICENSE.md document's own comment header, not the code. Fix: record the file's actual licence GPL-2.0-only in entry.json, the README licence field, and the source note (or mark this file GPL-2.0-only per its SPDX tag).",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-14T10:49:02Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:01:36Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: next_slot_no_loop@proof/invariant-abstract/Deterministic_AI.thy:4335, cte_at_next_slot@proof/invariant-abstract/Deterministic_AI.thy:4330, cte_at_next_slot'@proof/invariant-abstract/Deterministic_AI.thy:4330, finite_depth@proof/invariant-abstract/Deterministic_AI.thy:4330; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:01:36Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:01:37Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: next_slot_no_loop@proof/invariant-abstract/Deterministic_AI.thy:4335, cte_at_next_slot@proof/invariant-abstract/Deterministic_AI.thy:4330, cte_at_next_slot'@proof/invariant-abstract/Deterministic_AI.thy:4330, finite_depth@proof/invariant-abstract/Deterministic_AI.thy:4330; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:01:37Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1abfe5bce98632a94ba52adf183045620c509340",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:01:55Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance and licence are now consistent and traceable. check_provenance passes (Deterministic_AI.thy byte-identical at 1abfe5bce98632a94ba52adf183045620c509340); the commit is pinned identically across README, entry.json and sources/l4v/SOURCE.md. entry.json source.licence and the README licence field both now record GPL-2.0-only, matching the copied file's own header (SPDX-License-Identifier: GPL-2.0-only, lines 1-5) and upstream LICENSE.md (proofs about the seL4 kernel code licensed under GPL version 2; its own document header is CC-BY-SA-4.0, the source of the earlier error). Cited ranges open on the declared lemmas (206/257 finite_depth, 1602/1629 cte_at_next_slot, 1631/1665 cte_at_next_slot', 4303/4320 next_slot_no_loop, 4322/4337 wf_next_slot). The README source note records GPL-2.0-only for the copied file and explicitly flags the residual sources/l4v/SOURCE.md 'Licence (detected): CC-BY-SA-4.0' as out-of-scope, with the correct explanation.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T14:02:35Z"
     }
   ]
 }

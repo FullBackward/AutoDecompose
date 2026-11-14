@@ -1,7 +1,7 @@
 {
   "id": "lean-iff-split-flt-imperial-0fde62f1",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Iff-split of irreducibility ↔ absolute irreducibility (FLT odd representation)",
   "intent": "Split the main result 'ρ is irreducible iff it is absolutely irreducible' into its two directions and close each by one named lemma: the hard direction base-changes irreducibility to the algebraic closure, and the easy direction descends irreducibility from the base change. The glue is a nine-line `constructor` proof that instantiates both lemmas at `AlgebraicClosure k`.",
   "move": "iff-split",
@@ -112,7 +112,7 @@
   "applicability": {
     "goal_shape": "A biconditional P ↔ Q where one side is defined as the other after base change to an algebraic closure (IsAbsolutelyIrreducible ρ := (baseChange (AlgebraicClosure k) ρ).IsIrreducible); each direction is stated as a named lemma over an arbitrary field extension l/k.",
     "use_when": "both directions are genuinely independent named lemmas: the forward direction needs a chain of auxiliary results while the reverse is a short descent, so a `constructor` plus one `exact` per direction is all the glue needed.",
-    "avoid_when": "the reverse direction reuses intermediate facts of the forward direction (then it is not a leaf); the two directions are not stated at the same generality (here the hard direction is over any l/k, the easy direction only needs l = AlgebraicClosure k); the definitional side of the iff is not a simple `unfold` away."
+    "avoid_when": "the reverse direction reuses intermediate facts of the forward direction (then it is not a leaf and a plain `constructor` hides the shared work); one direction genuinely needs a statement at a different generality than the other, so the glue must do more than instantiate two lemmas at the same base — here the two directions ARE stated at the same generality, an arbitrary extension l/k specialised to AlgebraicClosure k in the glue (lines 488-489 and 492), though only the hard direction's proof actually uses the general l, via adjoinRange_baseChange_eq_top; the definitional side of the iff is not a simple `unfold` away."
   },
   "claims": [
     {
@@ -201,8 +201,16 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T07:58:46Z",
       "note": "typed glue_lines 9, child_lines [22, 33]; derived from the site ranges (declaration included): 13, [28, 36]"
+    },
+    {
+      "field": "applicability.avoid_when",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:03:50Z",
+      "note": "corrected the false asymmetry claim: both children are stated over an arbitrary extension l/k (isIrreducible_of_baseChange line 405, isIrreducible_baseChange_of_finrank_eigenspace_eq_one lines 447-449), and the parent instantiates both at AlgebraicClosure k (488-489, 492); the 'different generality' failure mode is now stated with the correct subtlety that only the hard direction's proof uses the general l via adjoinRange_baseChange_eq_top."
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-12T16:27:06Z"
+  "status_at": "2026-11-14T14:05:58Z"
 }

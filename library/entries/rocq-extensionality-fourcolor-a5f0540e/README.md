@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | extensionality |
 | Language | rocq |
-| Status | verified |
+| Status | accepted |
 | Source | [fourcolor](../../sources/fourcolor/SOURCE.md) at `c1d6b1cd5288` |
 | Licence | `CECILL-B` |
 
@@ -93,23 +93,28 @@ The one remaining direction is closed by excluded middle and density:
   real.v:191-192) then pulls the comparison back through the morphisms; the
   result closes against `lexa` and the negated case.
 
-The lemma graph (which project lemma uses which, direct edges only):
+The lemma graph (which project lemma uses which, direct edges only; the longest
+chains are stated in claim 6 and `shape.depth`):
 
 ```
-Rmorph_uniq ──┬─ reals_classic ── real_sup_total, real_sup_ub      (realprop.v)
-              ├─ ratR_dense ── find_range1z, ltRW, leR_lt_trans, ltR0Sn (realprop.v)
-              └─ Rmorph_rat ── Rmorph_inv ── Rmorph_neq0 ── Rmorph_eq   (realcategorical.v)
-                              └─ Rmorph_int                              (realcategorical.v)
+Rmorph_uniq ──┬─ reals_classic ── ltR01 ── ltR_total ── leR_total ── real_sup_total   (realprop.v)
+              ├─ ratR_dense ── find_range1z ── int_floor ── sup_total ── reals_classic  (realprop.v, re-entry)
+              └─ Rmorph_rat ── Rmorph_inv ── Rmorph_neq0 ── Rmorph_eq                 (realcategorical.v)
+                              └─ Rmorph_int                                             (realcategorical.v)
 ```
 
 `Rmorph_eq` closes by `rewrite /Real.eq !Real.morph_le` on the morphism field
 `Real.morph_le` alone, and `real_sup_total` / `real_sup_ub` close on the
-`Real.sup_total` / `Real.sup_upper_bound` axioms, so the chain bottoms out in
-the model's axioms. Each of the three children is a good leaf: a
+`Real.sup_total` / `Real.sup_upper_bound` axioms, so the chains bottom out in
+the model's axioms. The longest chain of project lemmas below `Rmorph_uniq` is
+depth 9: `ratR_dense → find_range1z → int_floor → sup_total → reals_classic →
+ltR01 → ltR_total → leR_total → real_sup_total`, where `sup_total` re-enters the
+sibling child `reals_classic`. Each of the three children is a good leaf: a
 self-contained statement whose proof closes on its own or from named siblings
-in the same project — `reals_classic` on the sup axioms via `real_sup_total`,
-`ratR_dense` on the Archimedean floor machinery via `find_range1z`, and
-`Rmorph_rat` on the morphism field lemmas `phiM`, `Rmorph_inv`, `Rmorph_int`.
+in the same project — `reals_classic` on the sup axioms via `ltR01` and
+`real_sup_total`, `ratR_dense` on the Archimedean floor machinery via
+`find_range1z`, and `Rmorph_rat` on the morphism field lemmas `phiM`,
+`Rmorph_inv`, `Rmorph_int`.
 
 ## Why it is good
 
@@ -120,10 +125,13 @@ in the same project — `reals_classic` on the sup axioms via `real_sup_total`,
 3. The `Rmorph_uniq` site is 9 lines long — the whole glue, declaration and
    proof included ([permalink](https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/reals/realcategorical.v#L203-L211); form `lines(Rmorph_uniq, 9)`).
 4. (measurement) `Rmorph_uniq`'s proof calls three project lemmas directly —
-   `reals_classic`, `ratR_dense`, `Rmorph_rat` — and the longest checked chain
-   of project lemmas below it is `Rmorph_rat → Rmorph_inv → Rmorph_neq0 →
-   Rmorph_eq`, depth 4 (realcategorical.v:203-211, 166-167, 159-164, 77-78,
-   50-51).
+   `reals_classic`, `ratR_dense`, `Rmorph_rat` — and the longest chain of
+   project lemmas below it is depth 9: `ratR_dense → find_range1z → int_floor →
+   sup_total → reals_classic → ltR01 → ltR_total → leR_total → real_sup_total`,
+   bottoming out in the `Real.sup_total` axiom (realcategorical.v:209-210 for
+   the calls; realprop.v edges at 852/856, 846, 812, 527, 342, 317, 119, 105,
+   100). The `reals_classic`-only chain is depth 5 (`reals_classic → ltR01 →
+   ltR_total → leR_total → real_sup_total`).
 5. (known-use) `Rmorph_uniq` is reused at realcategorical.v:377 (inside
    `Rmorph_to_inv`) and realcategorical.v:382 (inside `Rmorph_to_id`), the two
    lemmas that make `Rmorph_to` an isomorphism between any two real models
@@ -165,7 +173,7 @@ intensional `=`.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
@@ -183,10 +191,11 @@ Status: **verified**
 | 3 | verified | lines(Rmorph_uniq, 9) -> lines: site Rmorph_uniq has 9 lines | check_claims.py |
 | 4 | verified | read realcategorical.v:209-210 (calls reals_classic, ratR_dense, Rmorph_rat = 3 project lemmas); Rmorph_rat:166-167 uses Rmorph_inv; Rmorph_inv:160-164 uses Rmorph_neq0; Rmorph_neq0:77-78 rewrites -phi_eq where 'Let phi_eq := Rmorph_eq phiP' (realcategorical.v:64); Rmorph_eq:50-51 base (Real.morph_le). Chain depth 4 confirmed. | verifier |
 | 5 | verified | read realcategorical.v:377 'apply: Rmorph_uniq ...' in Rmorph_to_inv and :382 'exact: Rmorph_uniq ...' in Rmorph_to_id; both reuse Rmorph_uniq | verifier |
+| 6 | verified | Read the copied code line ranges. Direct calls confirmed: realcategorical.v:209 applies reals_classic and ratR_dense, :210 rewrites with Rmorph_rat (3 project lemmas). Depth-9 chain each edge read: ratR_dense:852,856 -> find_range1z; find_range1z:846 -> int_floor; int_floor:812 -> sup_total; sup_total:527 -> reals_classic; reals_classic:342 -> ltR01; ltR01:317 -> ltR_total; ltR_total:119 -> leR_total; leR_total:105 -> real_sup_total; real_sup_total:100 -> Real.sup_total (axiom). reals_classic-only chain depth 5 (338->ltR01->ltR_total->leR_total->real_sup_total) confirmed. 9 is the longest chain (Rmorph_rat branch is shallower). | verifier |
 
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
-| correctness | object | Parent Rmorph_uniq (realcategorical.v:203-211) and the three children (reals_classic 338-344, ratR_dense 849-863, Rmorph_rat 166-167) match the copied code verbatim; glue-cites-children and sorry-scan pass and the proof ends in Qed, so it closes and the three children are exactly the project lemmas the glue applies (plus the view ltRW at line 209, uncounted). BUT shape.depth=4 and claim 4 are wrong: the longest chain of project lemmas below Rmorph_uniq exceeds 4. reals_classic (realprop.v:342) uses ltR01 (315) -> ltR_total (117) -> leR_total (102) -> real_sup_total (99), depth 5; and ratR_dense -> find_range1z (844) -> int_floor (807) -> sup_total (525), where sup_total applies reals_classic at realprop.v:527, reaches depth 9. Fix: recompute shape.depth to the true longest chain (>=5, or 9 counting re-entry of the sibling reals_classic) and correct claim 4's 'depth 4'. | reviewer-correctness |
+| correctness | accept | Parent Rmorph_uniq (realcategorical.v:203-211) and children reals_classic (realprop.v:338-344), ratR_dense (849-863), Rmorph_rat (realcategorical.v:166-167) match the copied code verbatim; proof ends in Qed so it closes. Glue cites exactly the three children (reals_classic and ratR_dense at :209, Rmorph_rat at :210), plus the view ltRW at :209, uncounted. Shape numbers now correct: direct_lemmas=3, glue_lines=9 (203-211), child_lines=[7,15,2] (338-344, 849-863, 166-167), and depth=9 matches the verified chain ratR_dense->find_range1z(852,856)->int_floor(846)->sup_total(812)->reals_classic(527)->ltR01(342)->ltR_total(317)->leR_total(119)->real_sup_total(105)->Real.sup_total(100); the reals_classic-only chain is depth 5. Claim 4 removed, claim 6 states depth 9 correctly. closed_by refs check out (real_sup_ub:96, leR_lt_trans:125, real_sup_total:99). | reviewer-correctness |
 | generality | accept | Generality is honest and specific. The move is stated abstractly in 'When to use it': pointwise setoid equality built from order antisymmetry, two maps that reflect the order and preserve a dense subset (here the rationals), excluded middle in the codomain, and a statement symmetric under swapping the maps so wlog applies. This generalizes past the example (the dense subset is named as a parameter, 'here the rationals'). 'When not to use' names four concrete failure points that match the copied code: codomain only Real.structure not Real.model (reals_classic/ratR_dense live on the model's sup axioms / find_range1z), maps that do not reflect the order (Real.morph_le is the iff that pulls the gap back), intensional = instead of Real.eq (real.v:121 defines eq as le x y AND le y x), and asymmetric directions defeating wlog. Consequences restate the same obligations and failure modes consistently. Good-leaf question is answered explicitly (README lines 108-112): each child is a self-contained statement whose proof closes on its own or from named siblings and bottoms out in the model's axioms (reals_classic via real_sup_total, ratR_dense via find_range1z, Rmorph_rat via phiM/Rmorph_inv/Rmorph_int), which I confirmed by reading the cited line ranges. Minor non-blocking note: the consequences parenthetical attributes the step '~(phi x <= psi x) is psi x < phi x' to totality, but that is definitional (real.v:212 lt is ~ le y x); totality is instead needed for the density/order-reflection substance, so the generalization still stands. | reviewer-generality |
 | provenance-licence | accept | Permalinks all pin commit c1d6b1cd5288bea4b067aac13cdde3c18dffe018 and the cited line ranges match the local copies (parent 203-211, children 166-167, 338-344, 849-863); check_provenance reports 4 files byte-identical at that commit; entry licence CECILL-B agrees with source.json, SOURCE.md, and upstream-LICENSE (CeCILL-B); source note, commit and licence are consistent and traceable. | reviewer-provenance-licence |
 <!-- verification:end -->

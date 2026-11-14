@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | witness |
 | Language | lean |
-| Status | verified |
+| Status | accepted |
 | Source | [sphere-eversion](../../sources/sphere-eversion/SOURCE.md) at `33ab3d626854` |
 | Licence | `Apache-2.0` |
 
@@ -131,7 +131,7 @@ value at 1, and immersion.
   endpoint lemma is stated for the reparametrized `formalEversion`).
 - *`f 1 = antipodal`* (334-336): the same, via `formalEversion_one`.
 - *every `f t` is an immersion* (337-340): an `Immersion` structure built
-  field-by-field from `h₁` (smoothness) and `h₅` (injectivity).
+  field-by-field from `h₁.uncurry_left` (smoothness) and `h₅` (injectivity).
 
 Each child is a good leaf — a self-contained statement whose proof closes on its own or
 from named siblings:
@@ -157,10 +157,13 @@ blueprint lemmas the node's proof `\uses` (`thm:open_ample`,
 
 ## Why it is good
 
-1. The parent closes from exactly four same-file lemmas, none of which the proof
-   unfolds: `immersionRel_satisfiesHPrincipleWith` yields the witness, and
-   `formalEversion_hol_near_zero_one`, `formalEversion_zero`, `formalEversion_one`
-   discharge the holonomicity and the two endpoint conjuncts
+1. The parent closes from four named children plus the same-file helper
+   `ContMDiff.uncurry_left`, none of which the proof unfolds:
+   `immersionRel_satisfiesHPrincipleWith` yields the witness,
+   `formalEversion_hol_near_zero_one` supplies its holonomicity hypothesis,
+   `formalEversion_zero` and `formalEversion_one` close the two endpoint conjuncts,
+   and `ContMDiff.uncurry_left` (line 338) turns the smoothness projection `h₁` into
+   the `contMDiff` field of each `f t`
    (*check*, [lines 307-340](https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/Immersion.lean#L307-L340)).
 2. The file has no `sorry`, `admit`, `Admitted` or `axiom` token, and the project CI
    builds it (`lake build SphereEversion`) on every push and PR to `master`
@@ -194,8 +197,8 @@ assembled from several independent choices rather than produced by one lemma.
 The ∃-goal becomes a `refine ⟨f, …⟩` with one obligation per conjunct, so a missing
 conjunct is a missing leaf rather than a partial proof. The witness's usable properties
 are only what the source lemma's bundle exposes (`h₁` smoothness, `h₂` agreement near
-`C`, `h₅` injectivity); here the immersion conjunct is reconstructed from `h₁` and `h₅`
-rather than taken as a single field. One field of the bundle is dropped with `-`, so if
+`C`, `h₅` injectivity); here the immersion conjunct is reconstructed from `h₁.uncurry_left`
+and `h₅` rather than taken as a single field. One field of the bundle is dropped with `-`, so if
 a later conjunct had needed it the `rcases` would have to be restructured. Definitional
 gaps between the witness and the goal's endpoint statement are bridged with `convert!`
 (lines 333, 336): the endpoint lemmas are stated for the reparametrized
@@ -204,14 +207,14 @@ gaps between the witness and the goal's endpoint statement are bridged with `con
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/blueprint.yml triggers push and pull_request on master and runs ~/.elan/bin/lake build SphereEversion (builds SphereEversion incl. Global/Immersion.lean); pinned commit 33ab3d626854a0f0f04ed5772e3102d652e96475 is HEAD of default branch master (compare status identical) | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: immersionRel_satisfiesHPrincipleWith@SphereEversion/Global/Immersion.lean:324, formalEversion_hol_near_zero_one@SphereEversion/Global/Immersion.lean:327, formalEversion_zero@SphereEversion/Global/Immersion.lean:333, formalEversion_one@SphereEversion/Global/Immersion.lean:336; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
-| provenance | pass | 2 file(s) byte-identical at 33ab3d626854a0f0f04ed5772e3102d652e96475 | check_provenance.py | 2026-11-12 |
+| provenance | pass | 2 file(s) byte-identical at 33ab3d626854a0f0f04ed5772e3102d652e96475 | check_provenance.py | 2026-11-14 |
 | sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
@@ -221,10 +224,11 @@ Status: **verified**
 | 2 | verified | grep of the copied 350-line file found no sorry/admit/Admitted/axiom token; .github/workflows/blueprint.yml triggers push and pull_request on master and runs lake build SphereEversion (command on line 36, "Build project" name on line 35; claim cited lines 34-35) | verifier |
 | 3 | verified | global_convex_integration.tex at pinned commit: line 737 \begin{theorem}[Smale 1958], line 738 \label{thm:sphere_eversion}, line 739 \lean{sphere_eversion}\leanok (claim said line 738), line 746 \uses{thm:open_ample, lem:open_ample_immersion}; matches the open+ample h-principle instantiated by immersionRel_satisfiesHPrincipleWith (uses immersionRel_ample + immersionRel_open) | verifier |
 | 4 | verified | counted in copied file: glue 307-340 = 34 lines; children immersionRel_satisfiesHPrincipleWith 119-124 = 6, formalEversion_hol_near_zero_one 243-256 = 14, formalEversion_zero 209 = 1, formalEversion_one 211 = 1; lines 209 and 211 close by simp alone | verifier |
+| 5 | verified | cites(parent, ContMDiff.uncurry_left) -> cites: ContMDiff.uncurry_left occurs at SphereEversion/Global/Immersion.lean:338 | check_claims.py |
 
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
-| correctness | object | Decomposition, children, closing methods and most shape numbers match the copied code verbatim: parent statement (307-310) and all four child statements + closed_by match their cited lines; glue_lines=34 (307-340), child_lines=[6,14,1,1] (119-124, 243-256, 209, 211), depth=2 (hol_near_zero_one -> holAtZero/holAtOne) are all correct, and the file has no sorry/admit/Admitted/axiom. One correctness error: claim 1 says the parent closes from 'exactly four same-file lemmas' and shape.direct_lemmas=4, but the glue also directly invokes the same-file theorem ContMDiff.uncurry_left (line 299) at line 338 (contMDiff := h1.uncurry_left ...), so the parent actually closes from five same-file named theorems and the smoothness projection h1 does not close the contMDiff field by itself. Fix: set shape.direct_lemmas=5, or amend claim 1 to 'four named children plus the same-file helper ContMDiff.uncurry_left' and describe the smoothness step as h1.uncurry_left rather than h1 alone. | reviewer-correctness |
+| correctness | accept | Provenance passes (2 files byte-identical). Parent statement (307-310) and all four child statements match entry.json verbatim; closed_by matches the code (immersionRel_satisfiesHPrincipleWith 119-124 closes via immersionRel_ample/immersionRel_open at line 124; formalEversion_hol_near_zero_one 243-256 via filter_upwards then rcases into formalEversionHolAtZero/HolAtOne at 255-256; formalEversion_zero 209 and formalEversion_one 211 each 'by simp'). Glue (311-340) cites all four children at 324/327/333/336 and closes all three subgoal bullets with no sorry. Shape numbers all correct: glue_lines=34 (307-340), child_lines=[6,14,1,1] (119-124, 243-256, 209, 211), depth=2 (hol_near_zero_one -> holAtZero/holAtOne). The prior objection is fixed: shape.direct_lemmas is now 5, matching the five same-file named theorems the glue invokes (the four children plus ContMDiff.uncurry_left at line 338), and claim 5 correctly says the immersion conjunct's contMDiff field is closed by h1.uncurry_left, not h1 alone; the goal's own smoothness conjunct (CMDiff inf uf) is still correctly described as closed by h1 directly at line 330. children=4 vs direct_lemmas=5 is consistent (four children + one helper). | reviewer-correctness |
 | generality | accept | Move stated beyond the example: applicability.goal_shape and use_when abstract to 'an existential goal whose body is a conjunction, witness produced by one named construction', and generalise the source to 'a h-principle, a structure-inhabiting lemma, a universal property' whose bundle of projections matches the conjuncts. avoid_when is specific and honest (property not exposed by the bundle; conjuncts interact so cannot be filled independently; witness assembled from several choices rather than one lemma). Consequences are tied to the actual proof, not generic: the dropped '-' field, the immersion conjunct rebuilt from h1/h5 rather than a single field, and the convert! definitional gap (lines 333/336) are all real. Good-leaf criterion is stated ('self-contained statement whose proof closes on its own or from named siblings') and made concrete per leaf, confirmed against the copied code: formalEversion_zero/one close by simp alone, immersionRel_satisfiesHPrincipleWith closes in one line from same-file immersionRel_ample/immersionRel_open without unfolding, formalEversion_hol_near_zero_one is a 14-line case split on sibling lemmas; shape.child_lines=[6,14,1,1] and children_closed_by_automation=2 give the budget-relevant numbers. | reviewer-generality |
 | provenance-licence | accept | check_provenance passes (2 files byte-identical at 33ab3d626854a0f0f04ed5772e3102d652e96475). Commit, URL, licence are consistent across entry.json, sources/sphere-eversion/source.json and SOURCE.md; upstream-LICENSE is Apache-2.0 text matching the recorded 'Apache-2.0'. Both copied files' sha256 in entry.json match the local copies. All file/site permalinks use the same commit, correct paths, and line ranges verified against the local copies (parent 307-340, children 119-124/209/211/243-256). Evidence permalinks resolve: blueprint.yml:34-35 has 'lake build SphereEversion'; global_convex_integration.tex:737-746 has thm:sphere_eversion + leanok + uses. Fully traceable. | reviewer-provenance-licence |
 <!-- verification:end -->

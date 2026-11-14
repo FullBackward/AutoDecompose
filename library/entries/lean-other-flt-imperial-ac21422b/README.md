@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | other |
 | Language | lean |
-| Status | draft |
+| Status | accepted |
 | Source | [flt-imperial](../../sources/flt-imperial/SOURCE.md) at `a3210204ad88` |
 | Licence | `Apache-2.0` |
 
@@ -239,10 +239,30 @@ support would come out as a proper closed subset rather than `Set.univ`.
 ## Verification
 
 <!-- verification:start -->
-Status: **draft**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
+| build | ci-record | .github/workflows/blueprint.yml runs leanprover/lean-action@v1 with build:true (builds the whole project, which includes FLT/Patching/System.lean); pinned commit a3210204ad8876e851e32f73dd97d882bf1ccd0a is the head of default branch main | verifier | 2026-11-14 |
+| fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-14 |
+| glue-cites-children | pass | cited: PatchingAlgebra.faithfulSMul@FLT/Patching/System.lean:433, smul_lemma@FLT/Patching/System.lean:450; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
+| provenance | pass | 1 file(s) byte-identical at a3210204ad8876e851e32f73dd97d882bf1ccd0a | check_provenance.py | 2026-11-14 |
+| sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
+| sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-14 |
+
+| Claim | Verdict | Evidence | By |
+|---|---|---|---|
+| 1 | verified | declared(support_eq_top, FLT/Patching/System.lean, 422-422) -> declared: support_eq_top is declared at FLT/Patching/System.lean:422 | check_claims.py |
+| 2 | verified | cites(parent, PatchingAlgebra.faithfulSMul) -> cites: PatchingAlgebra.faithfulSMul occurs at FLT/Patching/System.lean:433 | check_claims.py |
+| 3 | verified | cites(parent, smul_lemma) -> cites: smul_lemma occurs at FLT/Patching/System.lean:450 | check_claims.py |
+| 4 | verified | no_sorry(FLT/Patching/System.lean, 422-457) -> no_sorry: none of sorry, admit, axiom in FLT/Patching/System.lean:422-457 | check_claims.py |
+| 5 | verified | grep -n smul_lemma in code/FLT/Patching/System.lean: line 310 'lemma smul_lemma₀', line 387 'lemma smul_lemma', line 403 'convert smul_lemma₀ ...' (smul_lemma calls smul_lemma₀), line 450 'map_smul' := smul_lemma ...' (support_eq_top calls smul_lemma); support_eq_top declared at 422; all three in the same file System.lean | verifier |
+
+| Review lens | Decision | Reason | By |
+|---|---|---|---|
+| correctness | accept | Verified against code/FLT/Patching/System.lean: parent support_eq_top declared at 422-457 (36 lines) cites the two children at 433 (PatchingAlgebra.faithfulSMul) and 450 (smul_lemma). Children declared at 246-284 (39 lines) and 387-418 (32 lines), matching child_lines [39,32] and statements verbatim. smul_lemma closes via smul_lemma0 at 403 and smul_lemma1 at 409, giving depth 2. faithfulSMul closes on its own (depth 1). No sorry/admit/axiom in any site; all proofs complete. Shape numbers right: direct_lemmas=2, depth=2, glue_lines=36 (parent site), child_lines=[39,32]. | reviewer-correctness |
+| generality | accept | Move is stated beyond the example: applicability.goal_shape generalises from R0/M0 to 'Module.support A M = Set.univ' with a surjection from the covering ring and annihilator triviality as the crux, and use_when/avoid_when give the general recipe (derive finiteness -> named faithfulness lemma -> quotient equivalence from named compatibility lemma -> zero-locus rewrite -> pull back along a surjection). 'When not to use' is honest and specific: three concrete avoid conditions (faithfulness is the hard content; two actions don't agree through one named lemma so map_smul' goes inline and a leaf-hole vanishes; support doesn't factor through one quotient equivalence). Consequences are specific with failure modes (wrong scalar in smul_lemma breaks the map_smul' field; a non-faithful module makes annihilator_eq_bot.mpr fail and support becomes a proper closed subset). It states why the leaves suit a bounded prover: each child is a named statement closing on its own (faithfulSMul, 249-284) or from named siblings (smul_lemma via smul_lemma0 at 403 and smul_lemma1 := rfl at 372-376, confirmed in code), neither unfolds the patching construction in the glue, and the structure literal's map_smul' := smul_lemma makes the compatibility obligation an actual lemma hole rather than an inline sub-proof. The generality is honestly bounded rather than over-claimed. | reviewer-generality |
+| provenance-licence | accept | provenance check passes (code/FLT/Patching/System.lean byte-identical at pinned commit a3210204ad8876e851e32f73dd97d882bf1ccd0a). Commit is consistent across README, entry.json source.commit, source.json, SOURCE.md and every permalink. Licence Apache-2.0 is consistent across README, entry.json, source.json, SOURCE.md; upstream-LICENSE is the Apache 2.0 text. Permalink line anchors verified against the local copy: support_eq_top at 422, PatchingAlgebra.faithfulSMul at 246, smul_lemma at 387, smul_lemma_0 at 310, smul_lemma_1 at 372. Source note (sources/flt-imperial/SOURCE.md) records commit, licence and the LICENSE copy; everything is traceable. | reviewer-provenance-licence |
 <!-- verification:end -->
 
 ## Source and licence

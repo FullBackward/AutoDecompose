@@ -120,6 +120,62 @@
       "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
       "by": "sorry_scan.py",
       "at": "2026-11-14T08:00:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:07:54Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: none; subgoals (no name to cite): 3",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:07:54Z"
+    },
+    {
+      "type": "claim",
+      "key": "6",
+      "value": "verified",
+      "evidence": "cites(Imo1961Q3_forward_match, le_abs_self) -> cites: le_abs_self occurs at Archive/Imo/Imo1961Q3.lean:68",
+      "by": "check_claims.py",
+      "at": "2026-11-14T14:07:54Z"
+    },
+    {
+      "type": "claim",
+      "key": "7",
+      "value": "verified",
+      "evidence": "cites(Imo1961Q3_forward_match, neg_le_abs) -> cites: neg_le_abs occurs at Archive/Imo/Imo1961Q3.lean:68",
+      "by": "check_claims.py",
+      "at": "2026-11-14T14:07:54Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:07:55Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: none; subgoals (no name to cite): 3",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:07:55Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Decomposition matches the code: match n with (line 51) has exactly |1 (52-57), |2 (58-60), |(n+1+2) (61-71), no |0 branch, and the premise h0 : n != 0 (line 26) excludes n=0. Children match verbatim: n=1 closes by rw/have/simpa/simp [hsinx,hcosx] at this (57); n=2 by rw then exact absurd (eq_zero_of_pow_eq_zero h) hsinx (60); residual by set m := n+1, refine absurd ?_ h.not_lt, calc ending '_ = 1' (62-71). The prior objection is fully met: residual closed_by and README now attribute the line-67 gcongr (with exacts [le_abs_self _, neg_le_abs _], line 68) to the '<=' step using neither bound, and only the line-70 gcongr to hcos1/hsin1 for the '<' step; false claim 3 removed and replaced by cites claims 6/7 (le_abs_self, neg_le_abs at line 68), both check_claims-verified. Build is ci-record on mathlib master, no sorry in the range, so the split closes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T14:10:03Z"
     }
   ]
 }

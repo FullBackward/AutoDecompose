@@ -1,7 +1,7 @@
 {
   "id": "rocq-extensionality-fourcolor-a5f0540e",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Pointwise equality of two Real.morphisms into a model (Rmorph_uniq)",
   "intent": "Prove that there is at most one Real.morphism from a Real.structure S into a Real.model R, by showing any two such morphisms phi, psi agree pointwise in the setoid sense. The proof halves the work by symmetry (wlog), then rules out a strict separation psi x < phi x by interpolating a rational, which morphisms preserve and whose order they reflect.",
   "move": "extensionality",
@@ -137,22 +137,22 @@
       "form": "lines(Rmorph_uniq, 9)"
     },
     {
-      "n": 4,
-      "claim": "Rmorph_uniq's proof calls three project lemmas directly (reals_classic, ratR_dense, Rmorph_rat), and the longest checked chain of project lemmas below it is Rmorph_rat -> Rmorph_inv -> Rmorph_neq0 -> Rmorph_eq, depth 4.",
-      "evidence_kind": "measurement",
-      "evidence": "realcategorical.v:203-211 (the three calls), realcategorical.v:166-167 (Rmorph_rat), 159-164 (Rmorph_inv), 77-78 (Rmorph_neq0), 50-51 (Rmorph_eq); counted by reading the copied files at commit c1d6b1cd5288bea4b067aac13cdde3c18dffe018"
-    },
-    {
       "n": 5,
       "claim": "Rmorph_uniq is reused at realcategorical.v:377 (in Rmorph_to_inv) and realcategorical.v:382 (in Rmorph_to_id).",
       "evidence_kind": "known-use",
       "evidence": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/reals/realcategorical.v#L375-L382"
+    },
+    {
+      "n": 6,
+      "claim": "Rmorph_uniq's proof calls three project lemmas directly (reals_classic, ratR_dense, Rmorph_rat), and the longest chain of project lemmas below it is depth 9: ratR_dense → find_range1z → int_floor → sup_total → reals_classic → ltR01 → ltR_total → leR_total → real_sup_total, which bottoms out in the Real.sup_total axiom.",
+      "evidence_kind": "measurement",
+      "evidence": "counted on the copied files at commit c1d6b1cd5288bea4b067aac13cdde3c18dffe018. Direct calls: realcategorical.v:209 (reals_classic, ratR_dense) and :210 (Rmorph_rat). Depth-9 chain, each edge the use line in realprop.v: ratR_dense (849) uses find_range1z (852, 856); find_range1z (844) uses int_floor (846); int_floor (807) uses sup_total (812); sup_total (525) uses reals_classic (527); reals_classic (338) uses ltR01 (342); ltR01 (315) uses ltR_total (317); ltR_total (117) uses leR_total (119); leR_total (102) uses real_sup_total (105); real_sup_total (99) uses Real.sup_total (100). The reals_classic-only chain is depth 5: reals_classic (338) → ltR01 (315) → ltR_total (117) → leR_total (102) → real_sup_total (99)."
     }
   ],
   "shape": {
     "scale": "theorem",
     "direct_lemmas": 3,
-    "depth": 4,
+    "depth": 9,
     "glue_lines": 9,
     "child_lines": [
       7,
@@ -196,8 +196,24 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T10:00:24Z",
       "note": "parent Rmorph_uniq: statement re-copied from code; child 'reals_classic': statement re-copied from the declaration of reals_classic; child 'ratR_dense': statement re-copied from the declaration of ratR_dense; child 'Rmorph_rat': statement re-copied from the declaration of Rmorph_rat"
+    },
+    {
+      "field": "shape",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:22:07Z",
+      "note": "correctness objection: depth 4 -> 9 (recomputed longest chain of project lemmas below Rmorph_uniq: ratR_dense -> find_range1z -> int_floor -> sup_total -> reals_classic -> ltR01 -> ltR_total -> leR_total -> real_sup_total, where sup_total re-enters the sibling child reals_classic; the reals_classic-only chain is depth 5)"
+    },
+    {
+      "field": "claims",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:22:07Z",
+      "note": "correctness objection: claim 4 (depth 4) removed and its corrected meaning rewritten under a new number as claim 6 (depth 9, with the depth-5 reals_classic chain named in the evidence)"
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-14T10:10:32Z"
+  "status_at": "2026-11-14T14:27:54Z"
 }

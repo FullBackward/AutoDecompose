@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | key-invariant |
 | Language | rocq |
-| Status | verified |
+| Status | accepted |
 | Source | [verdi](../../sources/verdi/SOURCE.md) at `7e1641b758d8` |
 | Licence | `BSD-2-Clause` |
 
@@ -80,6 +80,21 @@ unfold the network or the handlers.
   Qed.
 ```
 
+### child `inductive_invariant_true_in_reachable`: [`theories/Core/Net.v` lines 174-183](https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/Net.v#L174-L183) ([local copy](code/theories/Core/Net.v))
+
+```coq
+  Theorem inductive_invariant_true_in_reachable :
+    forall step init P,
+      inductive_invariant step init P ->
+      true_in_reachable step init P.
+  Proof using.
+    unfold inductive_invariant, true_in_reachable, reachable, inductive in *. intros.
+    break_exists.
+    match goal with H : refl_trans_1n_trace _ _ _ _ |- _ => induction H end;
+      intuition eauto.
+  Qed.
+```
+
 ### child `locks_correct_implies_mutex`: [`theories/Systems/LiveLockServ.v` lines 190-201](https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Systems/LiveLockServ.v#L190-L201) ([local copy](code/theories/Systems/LiveLockServ.v))
 
 ```coq
@@ -104,6 +119,7 @@ true_in_reachable_mutual_exclusion (parent)
 ├── decomposition_invariant (child)                     ── the key invariant holds
 │     └── state_invariant_init → locks_correct_init      (LiveLockServ.v:241-245)
 │         and the other Decomposition fields             (LiveLockServ.v:838-864)
+├── inductive_invariant_true_in_reachable (child, a leaf) ── invariant ⇒ reachable (Net.v:174-183)
 └── locks_correct_implies_mutex (child, a leaf)          ── the invariant implies the goal
 ```
 
@@ -129,6 +145,12 @@ Why each child is a good leaf:
   `post_input_analyze_sent_packet`, `nw_nw_distinct_pairs_and_elim`,
   `distinct_pairs_and_app(_cons)`). It never mentions `locks_correct`, so it is
   reusable by every system that builds a `Decomposition` instance.
+- `inductive_invariant_true_in_reachable` is the generic reachability lemma
+  (`Core/Net.v:174-183`): an inductive invariant holds in every reachable
+  state. It closes on its own — `unfold`, `intros`, `break_exists`, induction
+  on the `refl_trans_1n_trace` hypothesis, `intuition eauto` — with no named
+  lemma and no mention of the system, so it is reusable by every Verdi system
+  that reasons through `inductive_invariant`.
 - `locks_correct_implies_mutex` closes on its own — `unfold`, `intros`,
   `repeat find_apply_hyp_hyp`, `break_exists`, `find_rewrite`,
   `find_inversion`, `auto` — with no named lemma. It is the only place the
@@ -143,12 +165,15 @@ Why each child is a good leaf:
    `theories/Systems/LiveLockServ.v` (`check`, lines 190-201).
 4. The parent site contains no `admit`, `Admitted`, `sorry` or `axiom`
    (`check`, lines 866-878).
-5. The decomposition is thin glue over two children: the parent is 13 lines and
-   the two children 36 and 12 lines, declaration-inclusive, with the longest
-   chain below the main theorem being two lemmas (`measurement`, the three site
-   ranges; the chain is `decomposition_invariant` → `state_invariant_init` →
-   `locks_correct_init` at StatePacketPacketDecomposition.v:176-177,
-   LiveLockServ.v:844 and LiveLockServ.v:241-245).
+5. `inductive_invariant_true_in_reachable` is declared in the copied file
+   `theories/Core/Net.v` (`check`, lines 174-183).
+6. The decomposition is thin glue over three children: the parent is 13 lines
+   and the three children 36, 10 and 12 lines, declaration-inclusive, with the
+   longest chain below the main theorem being two lemmas (`measurement`, the
+   four site ranges; the chain is `decomposition_invariant` →
+   `state_invariant_init` → `locks_correct_init` at
+   StatePacketPacketDecomposition.v:176-177, LiveLockServ.v:844 and
+   LiveLockServ.v:241-245).
 
 The reuse that makes this a key invariant, stated here rather than as a claim:
 the single `decomposition_invariant` instantiation is reused by three other
@@ -193,13 +218,13 @@ field proof fails; either way the invariant itself must be corrected.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
-| build | ci-record | .github/workflows/docker-action.yml (Docker CI) triggers on push to master (default branch) and pull_request, and runs coq-community/docker-coq-action@v1 with opam_file 'coq-verdi.opam', which installs and builds the opam package (running make); the Makefile runs 'coq_makefile -f _CoqProject' and builds every file listed in _CoqProject, including theories/Systems/LiveLockServ.v (line 34) and theories/Core/StatePacketPacketDecomposition.v (line 17). Pinned commit 7e1641b758d8f0032aa7de63620bc115330e0a6b is the default-branch HEAD (source registered with ref HEAD, resolved via git ls-remote). | verifier | 2026-11-14 |
+| build | ci-record | .github/workflows/docker-action.yml triggers on push to master (default branch) and pull_request, runs coq-community/docker-coq-action@v1 with opam_file 'coq-verdi.opam', which builds the opam package via make -> 'coq_makefile -f _CoqProject', building every file listed in _CoqProject including theories/Systems/LiveLockServ.v (line 34), theories/Core/StatePacketPacketDecomposition.v (line 17) and theories/Core/Net.v (line 5). Pinned commit 7e1641b758d8f0032aa7de63620bc115330e0a6b is on master (default branch). Workflow and _CoqProject fetched at the pinned commit. | verifier | 2026-11-14 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-14 |
-| glue-cites-children | pass | cited: decomposition_invariant@theories/Systems/LiveLockServ.v:869, locks_correct_implies_mutex@theories/Systems/LiveLockServ.v:873; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
+| glue-cites-children | pass | cited: decomposition_invariant@theories/Systems/LiveLockServ.v:869, inductive_invariant_true_in_reachable@theories/Systems/LiveLockServ.v:870, locks_correct_implies_mutex@theories/Systems/LiveLockServ.v:873; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 3 file(s) byte-identical at 7e1641b758d8f0032aa7de63620bc115330e0a6b | check_provenance.py | 2026-11-14 |
 | sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-14 |
@@ -210,11 +235,12 @@ Status: **verified**
 | 2 | verified | declared(decomposition_invariant, theories/Core/StatePacketPacketDecomposition.v, 172-207) -> declared: decomposition_invariant is declared at theories/Core/StatePacketPacketDecomposition.v:172 | check_claims.py |
 | 3 | verified | declared(locks_correct_implies_mutex, theories/Systems/LiveLockServ.v, 190-201) -> declared: locks_correct_implies_mutex is declared at theories/Systems/LiveLockServ.v:190 | check_claims.py |
 | 4 | verified | no_sorry(theories/Systems/LiveLockServ.v, 866-878) -> no_sorry: none of admit, Admitted, Axiom, axiom in theories/Systems/LiveLockServ.v:866-878 | check_claims.py |
-| 5 | verified | Counted from the copied code: parent site theories/Systems/LiveLockServ.v:866-878 is 13 lines (878-866+1); child decomposition_invariant theories/Core/StatePacketPacketDecomposition.v:172-207 is 36 lines; child locks_correct_implies_mutex theories/Systems/LiveLockServ.v:190-201 is 12 lines. Chain verified: StatePacketPacketDecomposition.v:176-177 (inside decomposition_invariant, line 172) discharges the init case with 'intuition auto using state_invariant_init'; LiveLockServ.v:844 is the state_invariant_init field of the LockServ_Decompositition instance (state_invariant := locks_correct at line 839), closed by 'auto using locks_correct_init'; locks_correct_init is declared at LiveLockServ.v:241-245. So the chain below the main theorem is decomposition_invariant -> state_invariant_init field -> locks_correct_init = two lemmas. | verifier |
+| 5 | verified | declared(inductive_invariant_true_in_reachable, theories/Core/Net.v, 174-183) -> declared: inductive_invariant_true_in_reachable is declared at theories/Core/Net.v:174 | check_claims.py |
+| 6 | verified | Counted from the copied code: parent site theories/Systems/LiveLockServ.v:866-878 is 13 lines (Qed at 878); children decomposition_invariant theories/Core/StatePacketPacketDecomposition.v:172-207 is 36 lines, inductive_invariant_true_in_reachable theories/Core/Net.v:174-183 is 10 lines, locks_correct_implies_mutex theories/Systems/LiveLockServ.v:190-201 is 12 lines. Parent site cites all three children: LiveLockServ.v:869 'pose proof decomposition_invariant', :870 'find_apply_lem_hyp inductive_invariant_true_in_reachable', :873 'apply locks_correct_implies_mutex'. Chain below the main theorem: decomposition_invariant's init case at StatePacketPacketDecomposition.v:177 'intuition auto using state_invariant_init'; Decomposition field order (StatePacketPacketDecomposition.v:11-22: network_network_invariant_sym, then state_invariant_init) makes LiveLockServ.v:844 the state_invariant_init field of LockServ_Decompositition (2nd bullet after the three 'with' bindings), closed 'auto using locks_correct_init'; locks_correct_init declared at LiveLockServ.v:241-245. Longest chain = decomposition_invariant -> state_invariant_init -> locks_correct_init, two lemmas. | verifier |
 
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
-| correctness | object | Provenance pass (3 files byte-identical at 7e1641b7). Statements verbatim; closing methods match the code; parent (866-878) is 13 lines ending in Qed, no admit/Admitted/sorry/axiom; depth-2 chain decomposition_invariant->state_invariant_init->locks_correct_init (StatePacketPacketDecomposition.v:177, LiveLockServ.v:844, 241-245) checks out; glue_lines=13 and child_lines=[36,12] are right. Objection: shape.direct_lemmas=2 is wrong. The main proof directly uses THREE named Verdi lemmas: decomposition_invariant (LiveLockServ.v:869), inductive_invariant_true_in_reachable (Core/Net.v:174-183, applied at LiveLockServ.v:870), and locks_correct_implies_mutex (LiveLockServ.v:873). The entry lists only two children and counts direct_lemmas=2, so the children are not exactly the lemmas the main proof uses and the shape number undercounts by one. Fix: either add inductive_invariant_true_in_reachable as a third child (with its statement and closed_by) or otherwise account for it, and set direct_lemmas=3. | reviewer-correctness |
+| correctness | accept | Correctness lens re-check after revise-1. Provenance pass (3 files byte-identical at 7e1641b7). The prior objection is fixed: the glue now lists all THREE named lemmas the parent applies — decomposition_invariant (LiveLockServ.v:869), inductive_invariant_true_in_reachable (LiveLockServ.v:870, decl Net.v:174-183), locks_correct_implies_mutex (LiveLockServ.v:873) — as three children, and shape.direct_lemmas=3. Sites verbatim: parent 866-878 (13 lines), children StatePacketPacketDecomposition.v:172-207 (36), Net.v:174-183 (10), LiveLockServ.v:190-201 (12), so glue_lines=13 and child_lines=[36,10,12] are right and match site order. Statements in entry.json are verbatim to the declarations; each child's closed_by matches its proof script (decomposition_invariant: unfold+intuition+invcs+eauto over Decomposition fields and the four helper lemmas; inductive_invariant_true_in_reachable: unfold+intros+break_exists+induction on refl_trans_1n_trace+intuition eauto; locks_correct_implies_mutex: unfold+intros+repeat find_apply_hyp_hyp+break_exists+find_rewrite+find_inversion+auto). All three close with Qed, no admit/Admitted/sorry/axiom. depth-2 chain decomposition_invariant->state_invariant_init->locks_correct_init (StatePacketPacketDecomposition.v:177 'auto using state_invariant_init'; LiveLockServ.v:844 'auto using locks_correct_init' inside the Decomposition instance 838-864, state_invariant:=locks_correct at 839; locks_correct_init 241-245) checks out; known_uses 964-976/998-1008/1010-1019 reuse the same preamble. Children are exactly the lemmas the main proof uses; shape numbers correct. | reviewer-correctness |
 | generality | accept | Generality lens: the move is stated beyond the example via applicability.goal_shape ('true_in_reachable step init P safety property') plus use_when/avoid_when, which abstract to 'any distributed system with a generic invariant framework to instantiate'. When-not-to-use is honest and specific: it flags the case where the invariant must mention in-flight packets / split into state/network/network-network parts, and where inductiveness is the hard theorem so thin glue hides the real work. Consequences are honest and code-verified: the Decomposition instance (LiveLockServ.v 838-864) still needs one field proof per handler, and a too-weak/too-strong invariant fails the conversion or a field proof. Leaf quality for a bounded prover is stated: decomposition_invariant closes by eauto over a finite named sibling set (typeclass fields + 4 helper lemmas) and never mentions locks_correct (reusable); locks_correct_implies_mutex closes on its own via unfold+auto with no named lemma and is the only conversion site. Verified cited ranges 190-201, 241-245, 838-864, 866-878, 964-976, 998-1008, 1010-1019, StatePacketPacketDecomposition.v 172-207, Net.v 174-183 all match the entry. | reviewer-generality |
 | provenance-licence | accept | Provenance check passes (3 files byte-identical at 7e1641b758d8f0032aa7de63620bc115330e0a6b); commit pinned identically in source.json, SOURCE.md and entry.json; all permalinks use the full pinned commit; licence BSD-2-Clause consistent across entry.json, source.json, SOURCE.md, and upstream-LICENSE is genuine BSD-2-Clause text; code/ holds exactly the 3 files listed in entry.json. | reviewer-provenance-licence |
 <!-- verification:end -->

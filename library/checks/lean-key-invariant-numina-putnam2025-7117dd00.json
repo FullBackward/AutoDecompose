@@ -112,6 +112,46 @@
       "evidence": "Commit 60d33c8ba19af905bd731e938ebde1c5b8c76519 is consistent across entry.json source.commit, sources/numina-putnam2025/source.json, and SOURCE.md. Licence recorded as MIT in entry.json, README, source.json (licence_files=[LICENSE]) and SOURCE.md; upstream-LICENSE is a genuine MIT text (Copyright (c) 2025 Numina). Every permalink (file + 6 sites) uses the pinned commit hash with matching line ranges. Copied file code/NuminaPutnam2025/putnam_2025_b2.lean is 53575 bytes matching entry.json bytes, and check_provenance.py already passed (1 file byte-identical at the pinned commit). Source note SOURCE.md records repo URL, pinned commit, browse-at-commit link, licence, and attribution; README Source and licence section points to it. Fully traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-14T09:50:45Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:07:47Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: integral_f_pos@NuminaPutnam2025/putnam_2025_b2.lean:1056, integral_f_sq_pos@NuminaPutnam2025/putnam_2025_b2.lean:1057, weighted_average_lt_of_strictMono@NuminaPutnam2025/putnam_2025_b2.lean:1059, centroid_2d_formula@NuminaPutnam2025/putnam_2025_b2.lean:1065, centroid_3d_formula@NuminaPutnam2025/putnam_2025_b2.lean:1071; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:07:47Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:07:47Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: integral_f_pos@NuminaPutnam2025/putnam_2025_b2.lean:1056, integral_f_sq_pos@NuminaPutnam2025/putnam_2025_b2.lean:1057, weighted_average_lt_of_strictMono@NuminaPutnam2025/putnam_2025_b2.lean:1059, centroid_2d_formula@NuminaPutnam2025/putnam_2025_b2.lean:1065, centroid_3d_formula@NuminaPutnam2025/putnam_2025_b2.lean:1071; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:07:48Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example: use_when/avoid_when and the 'In my opinion' paragraph reduce it to a reusable shape (one auxiliary inequality whose two sides are the goal's two quantities, proved once and cited in a short glue), with avoid_when naming two specific honest conditions (monotonicity hypothesis not isolated; denominators' positivity not separable into short lemmas). Consequences are specific and honest about the strictMono crux and the non-reducibility of differently-shaped regions. The bounded-prover leaf criterion is now stated explicitly ('bounded size - a leaf the prover can be expected to close in one sitting'), and the revision restricts 'good leaf' to the three short children (integral_f_pos 16L, integral_f_sq_pos 16L, weighted_average_lt_of_strictMono 11L) while correctly marking centroid_2d_formula (143L) and centroid_3d_formula (341L) as large identification lemmas 'not bounded leaves'. The exemplar's cost is acknowledged as the price of the reusable shape ('paid once and walled off behind the two formula lemmas'), not a disqualifier. Verified in copied code: key_product_ineq (L106-~215+) is the heavy symmetrization double-integral argument; weighted_average_lt_of_strictMono L431-441 cites integral_f_pos/integral_f_sq_pos/key_product_ineq and closes with div_lt_div_iff0+linarith; line counts match shape.child_lines [16,16,11,143,341].",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T14:08:57Z"
     }
   ]
 }

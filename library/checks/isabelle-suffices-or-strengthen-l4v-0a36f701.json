@@ -128,6 +128,54 @@
       "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
       "by": "sorry_scan.py",
       "at": "2026-11-14T08:00:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:03:56Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: akernel_invariant@proof/refine/Refine.thy:846, ckernel_invariant@proof/refine/Refine.thy:847, fw_sim_A_H@proof/refine/Refine.thy:848; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:03:56Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:03:57Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: akernel_invariant@proof/refine/Refine.thy:846, ckernel_invariant@proof/refine/Refine.thy:847, fw_sim_A_H@proof/refine/Refine.thy:848; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:03:57Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 1abfe5bce98632a94ba52adf183045620c509340",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:04:10Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance and licence are now consistent and traceable. check_provenance.py passes (2 files byte-identical at 1abfe5bce98632a94ba52adf183045620c509340); entry.json source.commit and all 10 permalinks (2 file + 8 site) use that pinned commit, matching sources/l4v/SOURCE.md and source.json. Licence is now recorded per-file and matches the copied headers I opened: code/proof/refine/Refine.thy line 6 'SPDX-License-Identifier: GPL-2.0-only' and code/lib/Simulation.thy line 5 'SPDX-License-Identifier: BSD-2-Clause'; entry.json source.licence 'GPL-2.0-only AND BSD-2-Clause' and files[].licence agree, and the README's Licence row and Source-and-licence section cite those headers and quote upstream LICENSE.md verbatim ('Typically, proofs about the seL4 kernel code itself are licensed under GPL version 2, and general libraries and tools under the 2-Clause BSD license.'), which the copied upstream-LICENSE.md contains word-for-word. The GPL-2.0-only file makes the entry copyleft, and source.licence records it per protocol decision 1. Residual, not an objection: sources/l4v/SOURCE.md and source.json still record 'CC-BY-SA-4.0' as the detected licence (the SPDX tag of the LICENSE.md document's own header, not the code); the entry README flags this explicitly and it is outside the entry's editable scope.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T14:07:38Z"
     }
   ]
 }

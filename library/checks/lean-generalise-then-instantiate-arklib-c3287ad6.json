@@ -120,6 +120,46 @@
       "evidence": "Permalinks, commit, licence and source note are all consistent and traceable. check_provenance.py passes: 2 files byte-identical at pinned commit 6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6. Copied code/ files have sha256 fb9b4d4e... for SingleRound.lean (60585 B) and 9147d076... for OracleReduction.lean (22155 B), matching entry.json files[].sha256/bytes. Commit hash is identical across SOURCE.md, source.json, entry.json and every permalink; permalink line anchors (1180-1191, 893-928, 1115-1131, 583-587, 1146-1157, and OracleReduction.lean 388-408) all resolve to the named declarations. Licence recorded as Apache-2.0 in SOURCE.md, source.json, entry.json and README, and library/sources/arklib/upstream-LICENSE is the standard Apache-2.0 text, with the upstream LICENSE file listed. Minor cosmetic note: the README source table abbreviates the commit to 6f9884a95ae7 while the full hash is given in the Source-and-licence section and everywhere else; not material to traceability.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-14T12:36:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:01:17Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: oracleVerifier_eq_liftContext@ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean:1184, extractorLens_rbr_knowledge_soundness@ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean:1190, oracleVerifier_rbrKnowledgeSoundness@ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean:1180; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:01:17Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:01:18Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: oracleVerifier_eq_liftContext@ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean:1184, extractorLens_rbr_knowledge_soundness@ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean:1190, oracleVerifier_rbrKnowledgeSoundness@ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean:1180; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:01:18Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality holds across the whole lens. Move is stated over any lifted object (X.liftContext lens output / transport of a general construction), use_when names four concrete ingredients, and the opinion paragraph generalises to 'any target object that is a liftContext/transport of a simpler object with a general transport lemma in the library' - applies beyond this example. The prior objection is fixed: avoid_when #3 (README 203-211 and entry.json applicability.avoid_when) now targets non-separability (equivalence cannot be a self-contained lemma and must be proved inline), and explicitly notes the equivalence being a hard proof is NOT a reason to avoid; I confirmed oracleVerifier_eq_liftContext (893-928) is a 36-line induction, not rfl/simp, matching the text. Consequences are honest and specific (three named obligations + the lensKS-simpa failure mode). Good-leaves paragraph (README 130-153) answers the bounded-prover question: each child is self-contained and closes on its own or from named siblings. Known-use verified at 1146-1157 (verifier_rbrKnowledgeSoundness applies Verifier.liftContext_rbrKnowledgeSoundness with the same lens certificate).",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T14:01:52Z"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "id": "rocq-key-invariant-verdi-09db5810",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Key invariant locks_correct for Verdi's LiveLockServ mutual exclusion",
   "intent": "Prove that every async-reachable state of Verdi's LiveLockServ satisfies mutual exclusion by routing the claim through one key invariant, `locks_correct` (any client that believes it holds the lock is at the head of the server's queue): the project's generic `decomposition_invariant` proves the invariant holds inductively, and `locks_correct_implies_mutex` turns the invariant into the safety goal. The 13-line proof never unfolds the network or the handlers.",
   "move": "key-invariant",
@@ -60,6 +60,17 @@
       "permalink": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v#L172-L207"
     },
     {
+      "path": "theories/Core/Net.v",
+      "lines": [
+        174,
+        183
+      ],
+      "role": "child",
+      "name": "inductive_invariant_true_in_reachable",
+      "excerpt_sha256": "9f02956e1438f211b6b59b286c716666619de1c25ac055f9309eabd91c5c6a3c",
+      "permalink": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/Net.v#L174-L183"
+    },
+    {
       "path": "theories/Systems/LiveLockServ.v",
       "lines": [
         190,
@@ -81,6 +92,12 @@
       "statement": "Theorem decomposition_invariant :\n    inductive_invariant step_async step_async_init composed_invariant.",
       "closed_by": "unfold inductive_invariant. intuition; match goal with H : step_async _ _ _ |- _ => invcs H end; eauto using the Decomposition typeclass fields and the helper lemmas post_net_analyze_sent_packet, post_input_analyze_sent_packet, nw_nw_distinct_pairs_and_elim, distinct_pairs_and_app, distinct_pairs_and_app_cons",
       "note": "The project-level theorem: `composed_invariant` — the conjunction of the state invariant, the per-packet network invariant and the packet-pair invariant, with `state_invariant` instantiated to `locks_correct` — is an inductive invariant of `step_async`/`step_async_init`. Its proof discharges the `Decomposition` typeclass fields (one per input/deliver case) and never unfolds the handlers."
+    },
+    {
+      "name": "inductive_invariant_true_in_reachable",
+      "statement": "Theorem inductive_invariant_true_in_reachable :\n    forall step init P,\n      inductive_invariant step init P ->\n      true_in_reachable step init P.",
+      "closed_by": "unfold inductive_invariant, true_in_reachable, reachable, inductive; intros; break_exists; induction on the refl_trans_1n_trace hypothesis; intuition eauto",
+      "note": "The generic reachability lemma (Core/Net.v:174-183): if a predicate is an inductive invariant of `step`/`init` then it holds in every reachable state. It turns the composed invariant's inductiveness into `true_in_reachable`, and closes with no system-specific reasoning and no named lemma. Analyst's paraphrase, replaced by the declaration's text: an inductive invariant holds in every reachable state"
     },
     {
       "name": "locks_correct_implies_mutex",
@@ -125,26 +142,34 @@
     },
     {
       "n": 5,
-      "claim": "The decomposition is thin glue over two children: the parent site is 13 lines and the two child sites are 36 and 12 lines (shape glue_lines=13, child_lines=[36, 12], direct_lemmas=2), counted declaration-inclusive from the site ranges; the longest dependency chain below the main theorem is two lemmas (decomposition_invariant, then locks_correct_init through the state_invariant_init field).",
+      "claim": "`inductive_invariant_true_in_reachable` is declared in the copied file `theories/Core/Net.v`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/Net.v#L174-L183",
+      "form": "declared(inductive_invariant_true_in_reachable, theories/Core/Net.v, 174-183)"
+    },
+    {
+      "n": 6,
+      "claim": "The decomposition is thin glue over three children: the parent site is 13 lines and the three child sites are 36, 10 and 12 lines (shape glue_lines=13, child_lines=[36, 10, 12], direct_lemmas=3), counted declaration-inclusive from the site ranges; the longest dependency chain below the main theorem is two lemmas (decomposition_invariant, then locks_correct_init through the state_invariant_init field).",
       "evidence_kind": "measurement",
-      "evidence": "parent https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Systems/LiveLockServ.v#L866-L878 (13 lines); children https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v#L172-L207 (36 lines) and https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Systems/LiveLockServ.v#L190-L201 (12 lines); the chain decomposition_invariant -> state_invariant_init -> locks_correct_init is at https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v#L176-L177 and https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Systems/LiveLockServ.v#L844 and #L241-L245"
+      "evidence": "parent https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Systems/LiveLockServ.v#L866-L878 (13 lines); children https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v#L172-L207 (36 lines), https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/Net.v#L174-L183 (10 lines) and https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Systems/LiveLockServ.v#L190-L201 (12 lines); the chain decomposition_invariant -> state_invariant_init -> locks_correct_init is at https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v#L176-L177 and https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Systems/LiveLockServ.v#L844 and #L241-L245"
     }
   ],
   "shape": {
     "scale": "theorem",
-    "direct_lemmas": 2,
+    "direct_lemmas": 3,
     "depth": 2,
     "glue_lines": 13,
     "child_lines": [
       36,
+      10,
       12
     ]
   },
   "metrics": {
     "parent_lines": 13,
-    "children": 2,
-    "children_closed_by_automation": 1,
-    "how_counted": "parent_lines = the parent site (866-878); children = the two child sites; locks_correct_implies_mutex closes by unfold + intros + repeat find_apply_hyp_hyp + break_exists + find_rewrite + find_inversion + auto with no named lemma, decomposition_invariant by eauto over the Decomposition typeclass fields"
+    "children": 3,
+    "children_closed_by_automation": 2,
+    "how_counted": "parent_lines = the parent site (866-878); children = the three child sites; inductive_invariant_true_in_reachable and locks_correct_implies_mutex close with no named lemma (inductive_invariant_true_in_reachable by unfold + intros + break_exists + induction on the refl_trans_1n_trace hypothesis + intuition eauto, locks_correct_implies_mutex by unfold + intros + repeat find_apply_hyp_hyp + break_exists + find_rewrite + find_inversion + auto), decomposition_invariant by eauto over the Decomposition typeclass fields"
   },
   "consequences": "The move commits to one invariant that must both be inductive and imply the goal. Inductiveness is delegated to the generic `Decomposition` framework, but that framework still needs one proof per handler (the fields of the `LockServ_Decompositition` instance, lines 838-864); a new or changed handler needs a new field proof. The glue also relies on the generic reachability lemma `inductive_invariant_true_in_reachable` (Core/Net.v) to turn `inductive_invariant` into `true_in_reachable`, and on the syntactic conversion `locks_correct_implies_mutex`; if the invariant is too weak to imply the goal or too strong to be inductive, one of these steps fails and the invariant must be corrected.",
   "known_uses": [
@@ -188,8 +213,24 @@
       "run": "pilot-3",
       "at": "2026-11-14T13:44:12Z",
       "note": "added rocq-case-split-verdi-7798ab0c: the level below: this entry's child decomposition_invariant is that entry's parent; not a duplicate"
+    },
+    {
+      "field": "sites,children,shape,metrics,claims",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:18:00Z",
+      "note": "correctness objection: added inductive_invariant_true_in_reachable (Net.v:174-183) as a third child site and child, set shape.direct_lemmas=3 and child_lines=[36,10,12], metrics.children=3 and children_closed_by_automation=2, replaced the measurement claim under a new number (6) and added a declared check claim (5) for the third child."
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T14:20:55Z",
+      "note": "child 'inductive_invariant_true_in_reachable': statement re-copied from the declaration of inductive_invariant_true_in_reachable"
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-14T10:21:28Z"
+  "status_at": "2026-11-14T14:25:12Z"
 }

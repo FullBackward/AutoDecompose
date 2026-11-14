@@ -128,6 +128,46 @@
       "evidence": "Permalinks, commit, licence and source note are consistent. check_provenance.py reports the copied file byte-identical at pinned commit 22fcaa27d17bc28ab4be728ed10a1fb73afb23ee; local sha256 11cd2ef3...6aeab9 and 18080 bytes match entry.json. All permalinks use that commit and theories/Logic/ConstructiveEpsilon.v; cited line ranges verified against the copied file (R=315-323 with Let R at 321, acc at 323; P_implies_acc=325-329; P_eventually_implies_acc=331-338; P_eventually_implies_acc_ex=340-344; acc_implies_P_eventually=349-360; parent=362-367, 6 lines). Licence LGPL-2.1 consistent across entry.json, README, source.json, SOURCE.md; sources/rocq-stdlib/upstream-LICENSE is the LGPL-2.1 text. Source note records repo, pinned commit, language, licence and attribution; relative links resolve.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-14T10:27:27Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:16:22Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: P_eventually_implies_acc_ex@theories/Logic/ConstructiveEpsilon.v:366, acc_implies_P_eventually@theories/Logic/ConstructiveEpsilon.v:365; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:16:22Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:16:22Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: P_eventually_implies_acc_ex@theories/Logic/ConstructiveEpsilon.v:366, acc_implies_P_eventually@theories/Logic/ConstructiveEpsilon.v:365; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:16:23Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally: goal_shape is (exists x:A, P x) -> {x:A | P x} over a decidable P on a natural-indexed/countable domain, with the invariant as a well-founded relation (acc 0 = Acc R 0) proved in two directions; also_known_as lists termination certificate / well-founded ranking / accessibility argument. 'When not to use' is now honest and specific: it drops the unsupported 'shorter alternative' and author attribution, and instead says avoid the longer, more ad-hoc direct development (Direct version section 109-295 vs Acc section 301-369, ~186 vs ~68 lines, confirmed against the copied file: before_witness/O_witness/inv_before_witness/prog_linear_search/rel_ls live at 120-146+ vs 4 short Acc lemmas at 325-360), or when P is not decidable / only Prop-level existence is needed. Consequences are honest and specific: only acc_implies_P_eventually (349-360) branches on P_decidable (line 353), matching the author comment at 346-347 'This is also where decidability of [P] is used'; the well-foundedness requirement is stated (R = step-to-successor-when-P-fails, so Acc R x iff P holds at/after x). 'How the parts fit' names what makes the lemmas good leaves for a bounded prover: self-contained (closes via Fix_F), one-step, only place decidability is used, parent glue is two applys + Defined, depth 3. Objection resolved.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T14:18:05Z"
     }
   ]
 }

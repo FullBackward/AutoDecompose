@@ -1,7 +1,7 @@
 {
   "id": "lean-calc-chain-compfiles-5cbadaea",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Calc chains bound b at the min and max of a for EGMO 2023 P1",
   "intent": "Reduce the goal ∀ i j, a i = a j to the single fact ∀ i, b i = 2 by bounding b from below at a minimum index m of a (b m ≥ 2) and from above at a maximum index M (b M ≤ 2), each bound a two-link calc chain, then closing by antisymmetry (eq_of_le_of_ge).",
   "move": "calc-chain",
@@ -79,12 +79,12 @@
     {
       "name": "h1",
       "statement": "b m ≥ 2",
-      "closed_by": "calc: b m ≥ (a m + a m)/(a m) by rw [hb m]; gcongr (closing a m ≤ a m, a m ≤ a (m - 1), a m ≤ a (m + 1) from hm); then _ ≥ 2 by rw [← two_mul, mul_div_cancel_right₀]; positivity [ha m]"
+      "closed_by": "calc: b m ≥ (a m + a m)/(a m) by rw [hb m]; gcongr (closing 0 ≤ a m (le_of_lt (ha m)), a m ≤ a (m - 1), a m ≤ a (m + 1) from hm); then _ ≥ 2 by rw [← two_mul, mul_div_cancel_right₀]; positivity [ha m]"
     },
     {
       "name": "h2",
       "statement": "b M ≤ 2",
-      "closed_by": "calc: b M ≤ (a M + a M)/(a M) by rw [hb M]; gcongr (closing a (M - 1) ≤ a M, a (M + 1) ≤ a M from hM); then _ ≤ 2 by rw [← two_mul, mul_div_cancel_right₀]; positivity [ha M]"
+      "closed_by": "calc: b M ≤ (a M + a M)/(a M) by rw [hb M]; gcongr (closing 0 ≤ a M (le_of_lt (ha M)), a (M - 1) ≤ a M, a (M + 1) ≤ a M from hM); then _ ≤ 2 by rw [← two_mul, mul_div_cancel_right₀]; positivity [ha M]"
     }
   ],
   "applicability": {
@@ -146,8 +146,16 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-1",
       "at": "2026-11-12"
+    },
+    {
+      "field": "children",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:02:57Z",
+      "note": "correctness objection: closed_by gcongr subgoals corrected. h1 first gcongr goal is 0 <= a m (le_of_lt (ha m)), not a m <= a m from hm; h2 adds the omitted 0 <= a M (le_of_lt (ha M)). README 'How the parts fit' sharpened to name the denominator-positivity goal."
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-12T11:51:43Z"
+  "status_at": "2026-11-14T14:04:26Z"
 }

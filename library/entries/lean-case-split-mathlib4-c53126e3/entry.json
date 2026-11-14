@@ -1,7 +1,7 @@
 {
   "id": "lean-case-split-mathlib4-c53126e3",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Case split on the exponent n for IMO 1961 Q3 (forward direction)",
   "intent": "In the forward direction of IMO 1961 Q3, after the degenerate cases sin x = 0 and cos x = 0 are discharged, the remaining branch (sin x ≠ 0 and cos x ≠ 0) is shown contradictory for every n ≥ 1 by a match on n: two small exceptional cases n = 1 and n = 2 close by direct rewriting, and the residual n = m + 2 closes by one uniform bound using |cos x| < 1 and |sin x| < 1.",
   "move": "case-split",
@@ -83,7 +83,7 @@
     {
       "name": "residual n = m + 2",
       "statement": null,
-      "closed_by": "set m := n + 1; refine absurd ?_ h.not_lt; calc … ≤ … = … < … = 1 (the two `gcongr` steps use hcos1 : |cos x| < 1 and hsin1 : |sin x| < 1)",
+      "closed_by": "set m := n + 1; refine absurd ?_ h.not_lt; calc … ≤ … = … < … = 1 (the `≤` step is closed by `gcongr` with `exacts [le_abs_self _, neg_le_abs _]`; only the `<` step's `gcongr` uses hcos1 : |cos x| < 1 and hsin1 : |sin x| < 1)",
       "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: goal after `| (n + 1 + 2) =>`; `set m := n + 1` writes the exponent as `m + 2`, and a `calc` chain proves `(cos x)^(m+2) - (sin x)^(m+2) < 1`, contradicting `h` (which says it equals 1)",
       "subgoal": true
     }
@@ -107,12 +107,6 @@
       "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1961Q3.lean#L26-L29 and https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1961Q3.lean#L51-L61"
     },
     {
-      "n": 3,
-      "claim": "The residual branch reuses the two strict bounds `hcos1 : |cos x| < 1` and `hsin1 : |sin x| < 1` (lines 45-50) in its two `gcongr` steps (lines 67 and 70), which is what makes the `calc` chain strictly decreasing rather than merely `≤`.",
-      "evidence_kind": "check",
-      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1961Q3.lean#L45-L50 and https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1961Q3.lean#L63-L71"
-    },
-    {
       "n": 4,
       "claim": "The authors state that the solution follows an external write-up: 'The solution is based on the one at the Art of Problem Solving website' (file header).",
       "evidence_kind": "author-statement",
@@ -123,6 +117,20 @@
       "claim": "The three match branches are 6, 3 and 11 lines long, so the residual case is the bulk of the proof and the two small cases are one-liner rewrites.",
       "evidence_kind": "measurement",
       "evidence": "counted in https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1961Q3.lean#L52-L71 : lines 52-57 (n=1), 58-60 (n=2), 61-71 (n=m+2)"
+    },
+    {
+      "n": 6,
+      "claim": "The parent site `Imo1961Q3_forward_match` cites `le_abs_self`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1961Q3.lean#L51-L71",
+      "form": "cites(Imo1961Q3_forward_match, le_abs_self)"
+    },
+    {
+      "n": 7,
+      "claim": "The parent site `Imo1961Q3_forward_match` cites `neg_le_abs`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1961Q3.lean#L51-L71",
+      "form": "cites(Imo1961Q3_forward_match, neg_le_abs)"
     }
   ],
   "metrics": {
@@ -166,8 +174,16 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T07:53:36Z",
       "note": "parent Imo1961Q3_forward: a goal inside a declaration, not a declaration; child 'case n = 1': a subgoal made inside the parent's proof; child 'case n = 2': a subgoal made inside the parent's proof; child 'residual n = m + 2': a subgoal made inside the parent's proof"
+    },
+    {
+      "field": "children,claims",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:06:02Z",
+      "note": "Correctness objection met: attributed hcos1/hsin1 to the second gcongr (line 70) only and le_abs_self/neg_le_abs to the first gcongr (line 67). Fixed child 'residual n = m + 2'.closed_by; removed claim 3 (false: 'two gcongr steps use hcos1/hsin1') and rewrote it under new numbers 6 and 7 as cites claims on le_abs_self and neg_le_abs."
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-12T12:11:34Z"
+  "status_at": "2026-11-14T14:10:12Z"
 }

@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | key-invariant |
 | Language | lean |
-| Status | verified |
+| Status | accepted |
 | Source | [numina-putnam2025](../../sources/numina-putnam2025/SOURCE.md) at `60d33c8ba19a` |
 | Licence | `MIT` |
 
@@ -640,18 +640,23 @@ putnam_2025_b2
 └── centroid_3d_formula             (line 1074)
 ```
 
-Each of the five direct children is a good leaf. `integral_f_pos` and
-`integral_f_sq_pos` are short, self-contained statements whose proofs close on
-the hypotheses alone via one library theorem,
-`intervalIntegral.intervalIntegral_pos_of_pos_on`. `weighted_average_lt_of_strictMono`
-is the key invariant: its own proof closes from two siblings (`integral_f_pos`,
-`integral_f_sq_pos`) plus the project lemma `key_product_ineq`, which does the
-hard double-integral work — so the main theorem only has to match its two sides.
-`centroid_2d_formula` and `centroid_3d_formula` each close by
-`MeasureTheory.setAverage_eq` plus a Fubini computation (`setIntegral_fst_regionBetween`
-for the 2D region; the internal disk-volume slice computation for the 3D
-solid), and are self-contained given their hypotheses — the parent discharges
-their `hI_pos` hypotheses with the two positivity lemmas.
+Three of the five direct children are good leaves for a bounded prover, where
+the criterion is bounded size — a leaf the prover can be expected to close in
+one sitting. `integral_f_pos` (16 lines) and `integral_f_sq_pos` (16 lines) are
+short, self-contained statements whose proofs close on the hypotheses alone via
+one library theorem, `intervalIntegral.intervalIntegral_pos_of_pos_on`.
+`weighted_average_lt_of_strictMono` (11 lines) is the key invariant: its own
+proof closes from two siblings (`integral_f_pos`, `integral_f_sq_pos`) plus the
+project lemma `key_product_ineq`, which does the hard double-integral work — so
+the main theorem only has to match its two sides. The other two children are
+not bounded leaves: `centroid_2d_formula` (143 lines) and `centroid_3d_formula`
+(341 lines) are large identification lemmas, the bulk of the file. Each closes
+by `MeasureTheory.setAverage_eq` plus a Fubini computation
+(`setIntegral_fst_regionBetween` for the 2D region; the internal disk-volume
+slice computation for the 3D solid), and each is self-contained given its
+hypotheses — the parent discharges their `hI_pos` hypotheses with the two
+positivity lemmas — but a bounded prover could not be expected to produce them
+from the theorem statement alone.
 
 ## Why it is good
 
@@ -689,11 +694,15 @@ with the two sides of one auxiliary inequality that carries the whole idea
 (here the `f`- vs `f²`-weighted average of `x` for strictly increasing
 `f ≥ 0`), the auxiliary statement is self-contained enough to prove once and
 cite, and the formulas' side conditions are discharged by short positivity
-lemmas. Avoid it when identifying the two sides is not routine — here each
-centroid formula needs its own Fubini / measure-theoretic proof, and those two
-proofs are most of the file; when the auxiliary inequality does not isolate
-the monotonicity hypothesis that makes the strict comparison true; or when the
-denominators' positivity cannot be separated into short lemmas.
+lemmas. The exemplar pays a real price for this shape: the two identification
+lemmas (`centroid_2d_formula`, 143 lines, and `centroid_3d_formula`, 341 lines)
+each need their own Fubini / measure-theoretic proof and are most of the file.
+That is the cost of reducing the whole theorem to a 35-line glue, paid once and
+walled off behind the two formula lemmas rather than spread through the main
+proof. Avoid it when the auxiliary inequality does not isolate the monotonicity
+hypothesis that makes the strict comparison true (a merely non-decreasing
+weight would collapse the comparison); or when the denominators' positivity
+cannot be separated into short lemmas.
 
 ## Consequences
 
@@ -712,7 +721,7 @@ formulas would not meet the key inequality.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
@@ -734,7 +743,7 @@ Status: **verified**
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
 | correctness | accept | Decomposition faithful: parent putnam_2025_b2 (L1044-1078, 35 lines) cites exactly the 5 named children integral_f_pos (L1056), integral_f_sq_pos (L1057), weighted_average_lt_of_strictMono (L1062), centroid_2d_formula (L1068), centroid_3d_formula (L1074) and closes via rw [hx1_eq,hx2_eq]; exact hkey. Each child's statement and closed_by match the copied code (verified at L24-39, 41-56, 431-441, 549-691, 702-1042). Shape numbers correct: direct_lemmas=5, glue_lines=35, child_lines=[16,16,11,143,341] (24-39,41-56,431-441,549-691,702-1042), depth=3 (b2->weighted_average_lt_of_strictMono L439 -> key_product_ineq L165 cites integral_f_pos). | reviewer-correctness |
-| generality | object | Move is well-generalised ('use_when' and the 'In my opinion' paragraph reduce it to a reusable shape, one key statement proved once and cited in a short glue), and consequences honestly name the strictMono crux. But the generality section overstates leaf quality. 'Each of the five direct children is a good leaf' is false for a bounded prover: centroid_2d_formula (143 lines, 549-691) and centroid_3d_formula (341 lines, 702-1042) are the bulk of the file, which the 'avoid_when' clause itself concedes ('those two proofs are most of the file'). The entry never states the criterion that makes a leaf good for a bounded prover (bounded size), and its first avoid-condition ('identification of the two sides is not routine - here each centroid formula needs its own Fubini proof') describes the exemplar itself, so the entry both praises and disqualifies the same shape. Fix: restrict 'good leaf' to the three short children (integral_f_pos, integral_f_sq_pos, weighted_average_lt_of_strictMono) and state that the two centroid formulas are large identification lemmas, not bounded leaves; rephrase the avoid-condition so the exemplar's cost is acknowledged as the price of the reusable shape rather than a disqualifier. | reviewer-generality |
+| generality | accept | Move is stated beyond the example: use_when/avoid_when and the 'In my opinion' paragraph reduce it to a reusable shape (one auxiliary inequality whose two sides are the goal's two quantities, proved once and cited in a short glue), with avoid_when naming two specific honest conditions (monotonicity hypothesis not isolated; denominators' positivity not separable into short lemmas). Consequences are specific and honest about the strictMono crux and the non-reducibility of differently-shaped regions. The bounded-prover leaf criterion is now stated explicitly ('bounded size - a leaf the prover can be expected to close in one sitting'), and the revision restricts 'good leaf' to the three short children (integral_f_pos 16L, integral_f_sq_pos 16L, weighted_average_lt_of_strictMono 11L) while correctly marking centroid_2d_formula (143L) and centroid_3d_formula (341L) as large identification lemmas 'not bounded leaves'. The exemplar's cost is acknowledged as the price of the reusable shape ('paid once and walled off behind the two formula lemmas'), not a disqualifier. Verified in copied code: key_product_ineq (L106-~215+) is the heavy symmetrization double-integral argument; weighted_average_lt_of_strictMono L431-441 cites integral_f_pos/integral_f_sq_pos/key_product_ineq and closes with div_lt_div_iff0+linarith; line counts match shape.child_lines [16,16,11,143,341]. | reviewer-generality |
 | provenance-licence | accept | Commit 60d33c8ba19af905bd731e938ebde1c5b8c76519 is consistent across entry.json source.commit, sources/numina-putnam2025/source.json, and SOURCE.md. Licence recorded as MIT in entry.json, README, source.json (licence_files=[LICENSE]) and SOURCE.md; upstream-LICENSE is a genuine MIT text (Copyright (c) 2025 Numina). Every permalink (file + 6 sites) uses the pinned commit hash with matching line ranges. Copied file code/NuminaPutnam2025/putnam_2025_b2.lean is 53575 bytes matching entry.json bytes, and check_provenance.py already passed (1 file byte-identical at the pinned commit). Source note SOURCE.md records repo URL, pinned commit, browse-at-commit link, licence, and attribution; README Source and licence section points to it. Fully traceable. | reviewer-provenance-licence |
 <!-- verification:end -->
 

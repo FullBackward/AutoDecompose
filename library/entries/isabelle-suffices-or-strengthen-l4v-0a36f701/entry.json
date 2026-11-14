@@ -1,7 +1,7 @@
 {
   "id": "isabelle-suffices-or-strengthen-l4v-0a36f701",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Strengthen the seL4 abstract-to-design refinement to an invariant-guarded forward simulation",
   "intent": "Reduce the headline refinement `ADT_H uop \\<sqsubseteq> ADT_A uop` (a global property over all executions) to a stronger, decomposable statement — an invariant-guarded forward simulation — by applying two library rules backwards, so that the single goal becomes three named lemmas: the abstract invariant, the concrete invariant, and the simulation.",
   "move": "suffices-or-strengthen",
@@ -16,19 +16,21 @@
     "source_id": "l4v",
     "url": "https://github.com/seL4/l4v",
     "commit": "1abfe5bce98632a94ba52adf183045620c509340",
-    "licence": "CC-BY-SA-4.0"
+    "licence": "GPL-2.0-only AND BSD-2-Clause"
   },
   "files": [
     {
       "path": "proof/refine/Refine.thy",
       "bytes": 40323,
       "sha256": "615078e897c6e25be0a06076e7d139fd1862b7d32c1af7b5ac66e89c7c851539",
+      "licence": "GPL-2.0-only",
       "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/Refine.thy"
     },
     {
       "path": "lib/Simulation.thy",
       "bytes": 12814,
       "sha256": "46723b5dfda09ee7b4d832acaf1d3c4c17423f550e88989de96e5af498fe8fa9",
+      "licence": "BSD-2-Clause",
       "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/lib/Simulation.thy"
     }
   ],
@@ -226,8 +228,16 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T07:58:46Z",
       "note": "typed glue_lines 6, child_lines [31, 114, 72]; derived from the site ranges (declaration included): 8, [31, 114, 72]"
+    },
+    {
+      "field": "source.licence,files[].licence",
+      "agent_role": "fixer",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:02:54Z",
+      "note": "licence corrected from CC-BY-SA-4.0 to the per-file SPDX licences of the two copied files: code/proof/refine/Refine.thy carries 'SPDX-License-Identifier: GPL-2.0-only' (header lines 1-7) and code/lib/Simulation.thy carries 'SPDX-License-Identifier: BSD-2-Clause' (header lines 1-5). source.licence records the combined expression 'GPL-2.0-only AND BSD-2-Clause', and each file entry records its own licence. CC-BY-SA-4.0 is only the SPDX tag of the LICENSE.md document's own comment header (upstream-LICENSE.md lines 1-5), not the code; upstream LICENSE.md states 'Typically, proofs about the seL4 kernel code itself are licensed under GPL version 2, and general libraries and tools under the 2-Clause BSD license.'"
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-12T16:10:27Z"
+  "status_at": "2026-11-14T14:07:48Z"
 }

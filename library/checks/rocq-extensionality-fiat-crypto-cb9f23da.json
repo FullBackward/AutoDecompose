@@ -112,6 +112,102 @@
       "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
       "by": "sorry_scan.py",
       "at": "2026-11-14T08:00:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:13:35Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: divstep_spec_divstep_spec_full_d@src/Arithmetic/BYInv.v:1015, divstep_d@src/Arithmetic/BYInv.v:1015, divstep_spec_divstep_spec_full_f@src/Arithmetic/BYInv.v:1016, divstep_f@src/Arithmetic/BYInv.v:1016, divstep_spec_divstep_spec_full_g@src/Arithmetic/BYInv.v:1017, divstep_g@src/Arithmetic/BYInv.v:1017, divstep_spec2_divstep_spec_full_v@src/Arithmetic/BYInv.v:1018, divstep_v@src/Arithmetic/BYInv.v:1019, divstep_spec2_divstep_spec_full_r@src/Arithmetic/BYInv.v:1020, divstep_r@src/Arithmetic/BYInv.v:1021; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:13:36Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:13:36Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: divstep_spec_divstep_spec_full_d@src/Arithmetic/BYInv.v:1015, divstep_d@src/Arithmetic/BYInv.v:1015, divstep_spec_divstep_spec_full_f@src/Arithmetic/BYInv.v:1016, divstep_f@src/Arithmetic/BYInv.v:1016, divstep_spec_divstep_spec_full_g@src/Arithmetic/BYInv.v:1017, divstep_g@src/Arithmetic/BYInv.v:1017, divstep_spec2_divstep_spec_full_v@src/Arithmetic/BYInv.v:1018, divstep_v@src/Arithmetic/BYInv.v:1019, divstep_spec2_divstep_spec_full_r@src/Arithmetic/BYInv.v:1020, divstep_r@src/Arithmetic/BYInv.v:1021; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:13:36Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 3d2880ef2803faa9385589a81a835d5828eb3d38",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:13:49Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "object",
+      "evidence": "Permalinks and commit are consistent and traceable: check_provenance.py passed (2 files byte-identical at 3d2880ef2803faa9385589a81a835d5828eb3d38), and commit 3d2880ef2803faa9385589a81a835d5828eb3d38 is recorded identically in entry.json, README, SOURCE.md and source.json. The licence fix is only half-applied: entry.json source.licence and README now correctly read 'MIT OR Apache-2.0 OR BSD-1-Clause', matching upstream COPYRIGHT ('SPDX-License-Identifier: MIT OR Apache-2.0 OR BSD-1-Clause' ... 'at your option'). But the source note and source.json still record the old string 'Apache-2.0 AND BSD-2-Clause AND MIT AND MIT OR Apache-2.0 OR BSD-1-Clause' (SOURCE.md line 7 'Licence (detected)', source.json line 13 'licence'), which still carries the phantom BSD-2-Clause (there is no LICENSE-BSD-2 file; the file is LICENSE-BSD-1) and the 'AND' framing that contradicts the COPYRIGHT's 'at your option'. Fix: set SOURCE.md's licence line and source.json's 'licence' field to 'MIT OR Apache-2.0 OR BSD-1-Clause' (drop the phantom BSD-2-Clause and the AND framing) so the source note agrees with entry.json, README and COPYRIGHT.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T14:14:34Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:39:01Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: divstep_spec_divstep_spec_full_d@src/Arithmetic/BYInv.v:1015, divstep_d@src/Arithmetic/BYInv.v:1015, divstep_spec_divstep_spec_full_f@src/Arithmetic/BYInv.v:1016, divstep_f@src/Arithmetic/BYInv.v:1016, divstep_spec_divstep_spec_full_g@src/Arithmetic/BYInv.v:1017, divstep_g@src/Arithmetic/BYInv.v:1017, divstep_spec2_divstep_spec_full_v@src/Arithmetic/BYInv.v:1018, divstep_v@src/Arithmetic/BYInv.v:1019, divstep_spec2_divstep_spec_full_r@src/Arithmetic/BYInv.v:1020, divstep_r@src/Arithmetic/BYInv.v:1021; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:39:01Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:39:01Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: divstep_spec_divstep_spec_full_d@src/Arithmetic/BYInv.v:1015, divstep_d@src/Arithmetic/BYInv.v:1015, divstep_spec_divstep_spec_full_f@src/Arithmetic/BYInv.v:1016, divstep_f@src/Arithmetic/BYInv.v:1016, divstep_spec_divstep_spec_full_g@src/Arithmetic/BYInv.v:1017, divstep_g@src/Arithmetic/BYInv.v:1017, divstep_spec2_divstep_spec_full_v@src/Arithmetic/BYInv.v:1018, divstep_v@src/Arithmetic/BYInv.v:1019, divstep_spec2_divstep_spec_full_r@src/Arithmetic/BYInv.v:1020, divstep_r@src/Arithmetic/BYInv.v:1021; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:39:01Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 3d2880ef2803faa9385589a81a835d5828eb3d38",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:39:19Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance and licence are now consistent and traceable. check_provenance.py passes (2 files byte-identical at 3d2880ef2803faa9385589a81a835d5828eb3d38). Commit 3d2880ef2803faa9385589a81a835d5828eb3d38 is recorded identically in entry.json (source.commit), README (L519), SOURCE.md (L4) and source.json (commit). Licence now agrees everywhere: entry.json source.licence, README L10 and L519, SOURCE.md L7 and source.json 'licence' all read 'MIT OR Apache-2.0 OR BSD-1-Clause', matching upstream COPYRIGHT (SPDX-License-Identifier: MIT OR Apache-2.0 OR BSD-1-Clause, 'at your option'). The phantom BSD-2-Clause and 'AND' framing are gone from the recorded licence; the old detector string survives only as source.json 'licence_detected' (a raw detector artifact, with 'licence_note' explaining the correction) and as a clearly-marked aside in SOURCE.md L7, neither of which governs. Licence files confirm the triple: LICENSE-MIT, LICENSE-APACHE (Apache 2.0), LICENSE-BSD-1 (BSD 1-Clause; no BSD-2 file exists). Permalinks in entry.json files/sites and README all point at the pinned commit with correct paths and line ranges.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T14:39:52Z"
     }
   ]
 }

@@ -5,9 +5,9 @@
 | Kind | instance |
 | Move | suffices-or-strengthen |
 | Language | isabelle |
-| Status | verified |
+| Status | accepted |
 | Source | [l4v](../../sources/l4v/SOURCE.md) at `1abfe5bce986` |
-| Licence | `CC-BY-SA-4.0` |
+| Licence | `GPL-2.0-only` (proof/refine/Refine.thy), `BSD-2-Clause` (lib/Simulation.thy) |
 
 ## Intent
 
@@ -430,14 +430,14 @@ make the rule's premises into the children exactly as the rule describes
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/proof-deploy.yml runs the 'Proofs' job (seL4/ci-actions/aws-proofs) on push to master, the default branch; it builds the full proof session set including session Refine (proof/ROOT lines 29-42), which compiles proof/refine/Refine.thy. Pinned commit 1abfe5bce98632a94ba52adf183045620c509340 is on the default branch (source registered with ref=HEAD, resolved by git ls-remote HEAD). | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: akernel_invariant@proof/refine/Refine.thy:846, ckernel_invariant@proof/refine/Refine.thy:847, fw_sim_A_H@proof/refine/Refine.thy:848; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
-| provenance | pass | 2 file(s) byte-identical at 1abfe5bce98632a94ba52adf183045620c509340 | reviewer-provenance-licence | 2026-11-12 |
+| provenance | pass | 2 file(s) byte-identical at 1abfe5bce98632a94ba52adf183045620c509340 | check_provenance.py | 2026-11-14 |
 | sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
@@ -453,9 +453,14 @@ Status: **verified**
 |---|---|---|---|
 | correctness | accept | Verified against copied code: parent theorem refinement (Refine.thy 842-849) states ADT_H uop <sqsubseteq> ADT_A uop and closes in 6 proof lines (844-849) by rule sim_imp_refines then rule L_invariantI, then exactly three project lemmas akernel_invariant (L846), ckernel_invariant (L847), fw_sim_A_H (L848), then done; no other step. Children match the code verbatim: akernel_invariant (232-262, ADT_A uop |= full_invs), ckernel_invariant (652-765, ADT_H uop |= full_invs'), fw_sim_A_H (769-840, LI (ADT_A uop) (ADT_H uop) (lift_state_relation state_relation) (full_invs x full_invs')); each is lemma..done and closes on its own. L_invariantI (Simulation.thy 267-272) yields exactly the three subgoals the three children discharge; sim_imp_refines (140-152) is the strengthening rule. grep over the file finds no sorry/oops/admit. Shape numbers all correct: direct_lemmas=3 (the three children, each used directly), depth=4 (chain fw_sim_A_H->entry_corres->kernel_corres->kernel_corres' via L848/L784/L483/L443), glue_lines=6 (844-849), child_lines=[31,114,72] (232-262, 652-765, 769-840). | reviewer-correctness |
 | generality | accept | Generalizes beyond the example: applicability.goal_shape and use_when/avoid_when restate the move for any relation between two transition systems (refinement/simulation/bisimulation) too hard to show pointwise, scoped honestly to invariant-guarded forward simulation rather than all 'suffices' uses; intent frames it as backward application of two library rules making premises into children. When-not-to-use is honest and specific (no invariant that actually weakens the simulation; invariants that depend on each other; goal already as easy; README adds: invariant must stay in scope across every transition case). Consequences are specific with a real failure mode (invariant too weak => fw_sim_A_H unprovable, too strong => invariant lemmas unprovable) and name the concrete leak (concrete side must carry ex_abs einvs, Refine.thy 560-570), all consistent with the shown LI/L_invariantI code. It says what makes the leaves good for a bounded prover: each child's statement is self-contained (an invariant |= or LI), closes on its own from earlier/imported lemmas never a sibling, and the three children are independent so parallelisable. | reviewer-generality |
-| provenance-licence | object | Permalinks, commit (1abfe5bce98632a94ba52adf183045620c509340) and source-note URL are consistent and traceable: check_provenance.py reports both copied files byte-identical at the pinned commit, and every site permalink uses that commit. But the recorded licence is wrong. entry.json source.licence, SOURCE.md and the README all record CC-BY-SA-4.0, which is only the licence of the LICENSE.md document itself, not the code. The two copied files carry their own SPDX headers: proof/refine/Refine.thy is GPL-2.0-only and lib/Simulation.thy is BSD-2-Clause; the upstream LICENSE.md (copied as upstream-LICENSE.md) states this exactly ('proofs about the seL4 kernel code itself are licensed under GPL version 2, and general libraries and tools under the 2-Clause BSD license'). Fix: record the per-file licences (GPL-2.0-only for Refine.thy, BSD-2-Clause for Simulation.thy) and mark the entry copyleft in the index per protocol decision 1. | reviewer-provenance-licence |
+| provenance-licence | accept | Provenance and licence are now consistent and traceable. check_provenance.py passes (2 files byte-identical at 1abfe5bce98632a94ba52adf183045620c509340); entry.json source.commit and all 10 permalinks (2 file + 8 site) use that pinned commit, matching sources/l4v/SOURCE.md and source.json. Licence is now recorded per-file and matches the copied headers I opened: code/proof/refine/Refine.thy line 6 'SPDX-License-Identifier: GPL-2.0-only' and code/lib/Simulation.thy line 5 'SPDX-License-Identifier: BSD-2-Clause'; entry.json source.licence 'GPL-2.0-only AND BSD-2-Clause' and files[].licence agree, and the README's Licence row and Source-and-licence section cite those headers and quote upstream LICENSE.md verbatim ('Typically, proofs about the seL4 kernel code itself are licensed under GPL version 2, and general libraries and tools under the 2-Clause BSD license.'), which the copied upstream-LICENSE.md contains word-for-word. The GPL-2.0-only file makes the entry copyleft, and source.licence records it per protocol decision 1. Residual, not an objection: sources/l4v/SOURCE.md and source.json still record 'CC-BY-SA-4.0' as the detected licence (the SPDX tag of the LICENSE.md document's own header, not the code); the entry README flags this explicitly and it is outside the entry's editable scope. | reviewer-provenance-licence |
 <!-- verification:end -->
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/seL4/l4v at commit `1abfe5bce98632a94ba52adf183045620c509340`, under `CC-BY-SA-4.0`; see the [source note](../../sources/l4v/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/seL4/l4v at commit `1abfe5bce98632a94ba52adf183045620c509340`. The two copied files carry their own SPDX headers, which set their licences:
+
+- `proof/refine/Refine.thy` is `GPL-2.0-only` — its header reads `SPDX-License-Identifier: GPL-2.0-only` (lines 1-7 of the [local copy](code/proof/refine/Refine.thy)).
+- `lib/Simulation.thy` is `BSD-2-Clause` — its header reads `SPDX-License-Identifier: BSD-2-Clause` (lines 1-5 of the [local copy](code/lib/Simulation.thy)).
+
+Upstream [`LICENSE.md`](https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/LICENSE.md) states this exactly: "Typically, proofs about the seL4 kernel code itself are licensed under GPL version 2, and general libraries and tools under the 2-Clause BSD license." (The [source note](../../sources/l4v/SOURCE.md) still records `CC-BY-SA-4.0`, which is only the SPDX tag of the `LICENSE.md` document's own header, not the code, and is outside this entry's editable scope.)

@@ -1,7 +1,7 @@
 {
   "id": "rocq-key-invariant-rocq-stdlib-9cc84753",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Well-founded accessibility R as the key invariant for constructive indefinite ground description over nat",
   "intent": "Reduce the constructive description (exists n : nat, P n) -> {n : nat | P n} to the accessibility of 0 for the relation R (x = S y /\\ ~ P y): the key invariant that turns 'P holds somewhere' into 'the linear search from 0 terminates'. The parent glues the two directions of that equivalence (existence -> acc 0, and acc 0 -> witness) into one Defined proof.",
   "move": "key-invariant",
@@ -90,7 +90,7 @@
   "applicability": {
     "goal_shape": "A goal of the form (exists x : A, P x) -> {x : A | P x} (Prop-existence to Type/sigma-existence) over a decidable predicate on a natural-indexed domain, where eliminating the Prop existential directly is blocked because the goal is in Type.",
     "use_when": "the domain supports a linear search (a decidable P over nat or a countable domain) and you want the search's termination certified by a well-founded relation; the key invariant (here acc 0 = Acc R 0) has two directions that can each be proved separately and then glued.",
-    "avoid_when": "a simpler termination certificate suffices (the file's earlier before_witness section, lines 121-147, is the direct alternative); P is not decidable; or you need only the Prop-level existence and not the computational witness {x : A | P x}."
+    "avoid_when": "you want a directly executable linear-search program and accept the longer, more ad-hoc direct development (the file's 'Direct version' section, lines 110-295, programs the search as prog_linear_search over the ad-hoc before_witness predicate, and is far longer than the Acc section at lines 301-369); P is not decidable; or you need only the Prop-level existence and not the computational witness {x : A | P x}."
   },
   "shape": {
     "scale": "theorem",
@@ -177,8 +177,16 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T10:21:20Z",
       "note": "parent constructive_indefinite_ground_description_nat_Acc: statement re-copied from code; child 'P_eventually_implies_acc_ex': statement re-copied from the declaration of P_eventually_implies_acc_ex; child 'acc_implies_P_eventually': statement re-copied from the declaration of acc_implies_P_eventually"
+    },
+    {
+      "field": "applicability",
+      "agent_role": "fixer",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:15:46Z",
+      "note": "avoid_when reworded to drop the unsupported 'shorter alternative' and author attribution (reviewer-generality objection): the code only labels the sections 'Direct version' (line 108) and 'Version using the predicate [Acc]' (line 299), and the Direct section (lines 110-295) is far longer than the Acc section (lines 301-369)."
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-14T10:27:35Z"
+  "status_at": "2026-11-14T14:18:15Z"
 }

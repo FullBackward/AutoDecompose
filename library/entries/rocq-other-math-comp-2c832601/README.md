@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | other |
 | Language | rocq |
-| Status | verified |
+| Status | accepted |
 | Source | [math-comp](../../sources/math-comp/SOURCE.md) at `3a90d8b65f77` |
 | Licence | `CECILL-B` |
 
@@ -77,9 +77,16 @@ Lemma graph (which project lemma uses which), line numbers in `solvable/alt.v`:
 solvable_SymF (592)  — the glue applies series_sol and cites both children
  ├── Alt_normal (54)          closed by exact: ker_normal
  └── solvable_AltF (579)      closed by simple_Alt5, simple_sol_prime, card_Alt, even_prime
-      ├── simple_Alt5 (395)   -> simple_Alt5_base (186) -> Alt_trans (98) -> Sym_trans (86)
-      └── card_Alt (81)
+      ├── simple_Alt5 (395)   closed by induction on #|T| - 5; base case exact: simple_Alt5_base
+      │    └── simple_Alt5_base (186)   (the case #|T| = 5)
+      │         ├── Alt_trans (98)      -> Sym_trans (86)
+      │         └── card_Alt (81)       -> Alt_index (62) -> Alt_norm (57) -> Alt_normal (54)
+      └── card_Alt (81)       -> Alt_index (62) -> Alt_norm (57) -> Alt_normal (54)
 ```
+
+`card_Alt` is cited by both `solvable_AltF` (line 585) and `simple_Alt5_base`
+(line 189); the depth-7 chain below `solvable_SymF` is `solvable_AltF -> simple_Alt5 ->
+simple_Alt5_base -> card_Alt -> Alt_index -> Alt_norm -> Alt_normal`.
 
 Both children are good leaves — self-contained statements whose proofs close on
 their own or from named siblings, not from `solvable_SymF`:
@@ -87,10 +94,12 @@ their own or from named siblings, not from `solvable_SymF`:
 - `Alt_normal` closes in one line by `ker_normal`, a library fact about kernels
   of morphisms; it names no project lemma.
 - `solvable_AltF` depends only on earlier lemmas of the same file (`simple_Alt5`,
-  `card_Alt`) and library lemmas (`simple_sol_prime`, `even_prime`). Its chain
-  bottoms out at `Sym_trans` (line 86), which is proved from library facts
-  alone. So the two children could be discharged by independent provers and
-  recombined by the one-line glue.
+  `card_Alt`) and library lemmas (`simple_sol_prime`, `even_prime`). Its
+  dependency chain bottoms out at leaves proved from library facts alone —
+  `Sym_trans` (line 86) on the `simple_Alt5`/`Alt_trans` branch and `Alt_normal`
+  (line 54, closed by the library `ker_normal`) on the `card_Alt -> Alt_index ->
+  Alt_norm` branch. So the two children could be discharged by independent
+  provers and recombined by the one-line glue.
 
 The only non-project lemma the glue applies is `series_sol`; it is the mechanism
 of the move and is not counted as a child.
@@ -127,9 +136,12 @@ is already known non-solvable, stated as `solvable H = false`. `series_sol`
 rewrites `solvable G` to `solvable H && solvable (G / H)`, and the `false`
 collapses the conjunction, so the quotient never has to be analysed.
 
-Avoid it when the quotient matters — in particular the downward direction
-`solvable G -> solvable H` forces you to prove `solvable (G / H)` as well and the
-one-line glue no longer closes. Avoid it when the subgroup is not normal (then
+Avoid it when the quotient must be proved — that is, in the upward direction
+`solvable H && solvable (G / H) -> solvable G`, where proving `solvable G`
+requires proving `solvable (G / H)` as a conjunct and the one-line glue no
+longer closes. (The downward direction `solvable G -> solvable H` is cheap:
+rewriting the hypothesis yields `solvable H && solvable (G / H)`, so `solvable H`
+follows with no quotient proof.) Avoid it when the subgroup is not normal (then
 `series_sol` does not apply), or when the subgroup's non-solvability is not yet a
 rewrite lemma of the shape `solvable H = false` that a view such as
 `/solvable_AltF->` can fire on.
@@ -147,7 +159,7 @@ is no longer a single line.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
@@ -171,8 +183,8 @@ Status: **verified**
 
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
-| correctness | object | Decomposition matches the code and closes: glue 'rewrite (series_sol (Alt_normal T)) => /solvable_AltF->' with series_sol G H : H <| G -> solvable G = solvable H && solvable (G / H) (nilpotent.v:735) rewrites solvable 'Sym_T to solvable 'Alt_T && solvable ('Sym_T/'Alt_T); solvable_AltF view turns solvable 'Alt_T into false, so 'false && _ = false' closes. Children are exactly the two lemmas the glue cites (Alt_normal, solvable_AltF); their statements and closed_by are verbatim-correct. However shape.depth=5 is wrong: the longest chain of project lemmas below solvable_SymF is 7, not 5, via solvable_AltF(579)->simple_Alt5(582 'have/simple_Alt5')->simple_Alt5_base(397 'exact: simple_Alt5_base')->card_Alt(189 'rewrite -mul2n card_Alt')->Alt_index(82 'move/Alt_index')->Alt_norm(62 '?Alt_norm')->Alt_normal(57 'case/andP: Alt_normal'). The README lemma graph also mislabels card_Alt(81) as a leaf and omits the simple_Alt5_base->card_Alt and card_Alt->Alt_index->Alt_norm->Alt_normal edges. Fix: recompute depth=7 and correct the graph. | reviewer-correctness |
-| generality | object | Move is stated generally (goal_shape and use_when in terms of arbitrary G, H) and the good-leaves question is answered (children close from siblings/library, not the parent). But 'when not to use' misstates the costly direction: it says 'downward direction solvable G -> solvable H forces proving solvable (G / H)', yet series_sol G H : H <| G -> solvable G = solvable H && solvable (G / H) gives solvable (G/H) as a free conjunct of the rewritten hypothesis, so that direction needs no quotient proof. The costly direction is the upward one (solvable H && solvable (G/H) -> solvable G), which the Consequences section already states correctly — so avoid_when contradicts Consequences. Fix: in README 'When to use' and entry.json applicability.avoid_when, replace the downward-direction claim with the upward/positive direction (proving solvable G) as the case where the quotient must be proved. | reviewer-generality |
+| correctness | accept | Verified against local copies. Parent solvable_SymF (alt.v:592-593) is a one-line glue 'rewrite (series_sol (Alt_normal T)) => /solvable_AltF->' citing exactly the two children: Alt_normal (54-55, exact: ker_normal) and solvable_AltF (579-590, proof matches closed_by simple_Alt5/simple_sol_prime/card_Alt/even_prime); series_sol (nilpotent.v:735) is a library lemma correctly not a child. It closes: series_sol rewrites solvable 'Sym_T to solvable 'Alt_T && solvable ('Sym_T/'Alt_T), the solvable_AltF view gives false, and false && _ = false. Shape numbers are now right: direct_lemmas=2, glue_lines=2, child_lines=[2,12]; depth=7 is correct, the longest project chain being solvable_AltF(579)->simple_Alt5(582 'have/simple_Alt5')->simple_Alt5_base(397 'exact: simple_Alt5_base')->card_Alt(189 'rewrite -mul2n card_Alt')->Alt_index(83 'move/Alt_index')->Alt_norm(64 '?Alt_norm')->Alt_normal(58 'case/andP: Alt_normal') = 7 lemmas. README lemma graph is corrected: card_Alt(81) is no longer a leaf, now shown as card_Alt->Alt_index(62)->Alt_norm(57)->Alt_normal(54), with the simple_Alt5_base->card_Alt edge present, and card_Alt cited by both solvable_AltF(585) and simple_Alt5_base(189). Previous objection is fully met. | reviewer-correctness |
+| generality | accept | Move is stated generally: applicability.goal_shape and use_when are phrased over arbitrary G and a normal H <| G with solvable H = false, not just 'Alt_T/'Sym_T; the title/intent anchor the example while applicability generalises it. 'When not to use' is now honest and consistent with Consequences: avoid_when names the upward direction (solvable H && solvable (G / H) -> solvable G) as the case where the quotient must be proved, and correctly labels the downward direction cheap (rewriting the hypothesis series_sol yields solvable H && solvable (G / H) as free conjuncts). I checked series_sol at nilpotent.v:735 (Lemma series_sol G H : H <| G -> solvable G = solvable H && solvable (G / H)) — an equality, so the direction analysis is right and the earlier contradiction is gone. The other avoid conditions (H not normal, non-solvability not an equation solvable H = false the view can fire on) are specific and honest. The good-leaves question is answered: 'How the parts fit' says the children close from siblings/library, not the parent, and I confirmed Alt_normal closes by library ker_normal and the solvable_AltF chain bottoms out at Sym_trans (86) and Alt_normal, both library-closed, so the children could be discharged by independent provers and recombined by the one-line glue. | reviewer-generality |
 | provenance-licence | accept | Permalinks, commit, licence and source note are consistent and traceable: check_provenance passed (2 files byte-identical at 3a90d8b65f77f24e4fd770453c0697233b1c791d); that commit matches SOURCE.md and source.json; licence CECILL-B matches the source note and the copied upstream-LICENCE (CeCILL-B text); every cited line range verified in the local copies (alt.v:592-593, 54-55, 579-590; nilpotent.v:735, 749, 768) shows exactly the quoted code. | reviewer-provenance-licence |
 <!-- verification:end -->
 

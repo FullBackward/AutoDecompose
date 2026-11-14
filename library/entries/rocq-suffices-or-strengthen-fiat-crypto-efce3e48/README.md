@@ -5,9 +5,9 @@
 | Kind | instance |
 | Move | suffices-or-strengthen |
 | Language | rocq |
-| Status | verified |
+| Status | accepted |
 | Source | [fiat-crypto](../../sources/fiat-crypto/SOURCE.md) at `3d2880ef2803` |
-| Licence | `Apache-2.0 AND BSD-2-Clause AND MIT AND MIT OR Apache-2.0 OR BSD-1-Clause` |
+| Licence | `MIT OR Apache-2.0 OR BSD-1-Clause` |
 
 ## Intent
 
@@ -181,7 +181,7 @@ rewrite `!Z.mul_assoc`, as this proof does at line 1164).
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
@@ -204,9 +204,9 @@ Status: **verified**
 |---|---|---|---|
 | correctness | accept | Opened the local code copy at the cited ranges. Parent mulmod_correct (1156-1167, 12 lines, Qed at 1167) is exactly as quoted and cites both children: eval_from_montgomerymod at line 1162 (rewrite ?eval_from_montgomerymod) and mulmod_correct0 at 1163 (try apply) and 1166 (apply inside etransitivity). Child mulmod_correct0 (1095-1107, 13 lines) and eval_from_montgomerymod (1146-1149, 4 lines) match the quoted statements verbatim; their closed_by matches the code (small_redc/redc_bound_N/redc_mod_N+t_fin; apply from_montgomerymod_correct; assumption). All three close with Qed. The children are exactly the two project lemmas the glue uses. Shape is right: direct_lemmas 2, glue_lines 12, child_lines [13,4], depth 3 = chain eval_from_montgomerymod(1148)->from_montgomerymod_correct(1136-1144, applies mulmod_correct0 at 1143)->mulmod_correct0, verified in code. No correctness defect found. | reviewer-correctness |
 | generality | accept | Move is stated abstractly (operation/raw form/wrapper/rewrite lemma), not just about Montgomery: applicability.goal_shape/use_when/avoid_when generalise to any wrapped operation with a pre-proved raw congruence. When-not-to-use is specific and honest (raw lemma missing; wrapper rewrite not landing on the raw form; validity vs value side needing different arguments; residual f_equal2/lia reassociation), and Consequences admits the glue is not pure rewriting, naming the concrete fix (state raw lemma in the association the wrapper needs, or rewrite !Z.mul_assoc at line 1164). Leaves-good-for-a-bounded-prover is addressed: mulmod_correct0 is self-contained and closes by named prior lemmas + t_fin with no manual arithmetic; eval_from_montgomerymod is a one-line projection of from_montgomerymod_correct; metrics records children_closed_by_automation=2. Code at 1095-1107, 1136-1149, 1156-1167 confirms the cited structure. | reviewer-generality |
-| provenance-licence | object | Commit and permalinks are consistent and traceable: check_provenance.py passes (1 file byte-identical at 3d2880ef2803faa9385589a81a835d5828eb3d38), all permalinks/known_uses use that full commit, and the local copy is 66865 bytes. The licence string, however, is not consistent with the licence files it cites: the recorded expression 'Apache-2.0 AND BSD-2-Clause AND MIT AND MIT OR Apache-2.0 OR BSD-1-Clause' lists 'BSD-2-Clause', but no BSD-2-Clause text exists among the source's licence files (COPYRIGHT, LICENSE-APACHE, LICENSE-BSD-1, LICENSE-MIT). LICENSE-BSD-1 is titled 'The BSD 1-Clause License (BSD-1-Clause)', and COPYRIGHT's SPDX identifier is 'MIT OR Apache-2.0 OR BSD-1-Clause'; the 'BSD-2-Clause' is a misdetection of that BSD-1-Clause file. Fix: drop 'BSD-2-Clause' and record the licence as the COPYRIGHT tri-licence 'MIT OR Apache-2.0 OR BSD-1-Clause' (in source.json, SOURCE.md, entry.json and README). | reviewer-provenance-licence |
+| provenance-licence | accept | Prior objection fixed: sources/fiat-crypto/SOURCE.md line 7 and sources/fiat-crypto/source.json 'licence' now record 'MIT OR Apache-2.0 OR BSD-1-Clause' (no BSD-2-Clause, no AND framing). source.json's remaining 'licence_detected' field keeps the detector's raw output but is now paired with licence_note 'there is no BSD-2-Clause file (the file is LICENSE-BSD-1)', so it is a labelled historical record, not the entry's licence. Consistency confirmed across all four records: entry.json source.licence, README header row and 'Source and licence' section, source.json licence, SOURCE.md line 7 all read MIT OR Apache-2.0 OR BSD-1-Clause. Copied licence files corroborate: upstream-COPYRIGHT SPDX-License-Identifier 'MIT OR Apache-2.0 OR BSD-1-Clause', upstream-LICENSE-MIT ('The MIT License (MIT)'), upstream-LICENSE-APACHE ('Apache-2.0'), upstream-LICENSE-BSD-1 ('The BSD 1-Clause License (BSD-1-Clause)'); no BSD-2-Clause file exists. Provenance: check_provenance.py passes (1 file byte-identical at 3d2880ef2803faa9385589a81a835d5828eb3d38); local copy 66865 bytes, sha256 ea50cdb5a1f725a759b79cf7403b43123db4aa23f5ed28a640c9d9b1521ac572 matches entry.json files[].sha256. All permalinks and known_uses carry the full commit; the cited line ranges (1156-1167, 1095-1107, 1146-1149, 1133-1134, 1084-1093, and known_uses 1136-1144, 1175-1181) read verbatim as quoted in the README. | reviewer-provenance-licence |
 <!-- verification:end -->
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/mit-plv/fiat-crypto at commit `3d2880ef2803faa9385589a81a835d5828eb3d38`, under `Apache-2.0 AND BSD-2-Clause AND MIT AND MIT OR Apache-2.0 OR BSD-1-Clause`; see the [source note](../../sources/fiat-crypto/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/mit-plv/fiat-crypto at commit `3d2880ef2803faa9385589a81a835d5828eb3d38`, under `MIT OR Apache-2.0 OR BSD-1-Clause`; see the [source note](../../sources/fiat-crypto/SOURCE.md) for the licence text and attribution.

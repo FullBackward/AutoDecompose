@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | generalise-then-instantiate |
 | Language | lean |
-| Status | verified |
+| Status | accepted |
 | Source | [arklib](../../sources/arklib/SOURCE.md) at `6f9884a95ae7` |
 | Licence | `Apache-2.0` |
 
@@ -201,8 +201,14 @@ once, and every round's soundness is an instantiation.
 Avoid it when the lens is not executable or not knowledge-sound (the `lensKS`
 argument would be missing), when the inner object's property is not already
 proved (you would still have to do the hard work, just relocated), or when the
-equivalence rewrite does not hold by `rfl`/`simp` and needs a real argument of
-its own — then the "instantiate" step stops being cheap.
+equivalence showing the target object is the context-lift cannot be stated as
+its own self-contained lemma and would have to be proved inline in the glue.
+The equivalence being a hard proof is *not* by itself a reason to avoid the
+move: here `oracleVerifier_eq_liftContext` (lines 893-928) is a 36-line
+induction, plainly not `rfl`/`simp`, yet the move still works because that
+equivalence is a named child leaf, so the glue stays an assembly of lemmas.
+The move breaks down only when the equivalence cannot be separated out that
+way.
 
 ## Consequences
 
@@ -220,7 +226,7 @@ step before the transport can be applied.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
@@ -242,7 +248,7 @@ Status: **verified**
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
 | correctness | accept | Parent (1180-1191) and three children (oracleVerifier_eq_liftContext 893-928, extractorLens_rbr_knowledge_soundness 1115-1131, Simple.oracleVerifier_rbrKnowledgeSoundness 583-587) match entry.json verbatim; closing methods match (eq_liftContext: apply OracleVerifier.ext + induction citing Simple.oracleVerifier_only_message_queries 309-384; extractorLens: proj cites verifier_polynomial 1034/output_projection 1023, lift cites input_projection 1011; Simple child: rw oracleVerifier_eq_verifier + exact verifier_rbrKnowledgeSoundness 564-580). Parent closes via rw [oracleVerifier_eq_liftContext] then exact OracleVerifier.liftContext_rbrKnowledgeSoundness whose signature (OracleReduction.lean 388-408) matches the named args. Glue cites exactly the 3 children plus the general transport theorem (correctly classed as the reusable schema, not a child). Shape numbers correct: glue_lines 12 (1180-1191), child_lines [36,17,5] (893-928/1115-1131/583-587), depth 4 (extractorLens->output_projection->relationRound_output_iff 675->relationRound_projected_output 652, closing at library lemmas), direct_lemmas 3. No sorry/admit/axiom in copied files. | reviewer-correctness |
-| generality | object | Generality is mostly strong: the move is stated over any lifted object (X.liftContext lens output / transport of a general construction), use_when names four concrete ingredients, consequences list three named obligations plus a specific lensKS-simpa failure mode, and the good-leaves paragraph (README 130-146) explicitly answers the bounded-prover question by saying each child is self-contained and closes from named siblings — I confirmed this against the cited code. Known-use is real and verified (SingleRound.lean 1146-1157 reuses the transport shape with Verifier.liftContext_rbrKnowledgeSoundness and the same lens certificate). BUT avoid_when #3 is contradicted by the entry's own example: it says avoid when 'the equivalence rewrite does not hold by rfl/simp and needs a real argument', yet the example's equivalence oracleVerifier_eq_liftContext (893-928) is a 36-line induction, plainly not rfl/simp, and the move is still presented as working because that equivalence is factored into a self-contained child leaf. FIX: reword avoid_when #3 (README and entry.json) to target non-separability — the equivalence cannot be extracted into its own self-contained lemma and would have to be proved inline in the glue — instead of rfl/simp-ness. | reviewer-generality |
+| generality | accept | Generality holds across the whole lens. Move is stated over any lifted object (X.liftContext lens output / transport of a general construction), use_when names four concrete ingredients, and the opinion paragraph generalises to 'any target object that is a liftContext/transport of a simpler object with a general transport lemma in the library' - applies beyond this example. The prior objection is fixed: avoid_when #3 (README 203-211 and entry.json applicability.avoid_when) now targets non-separability (equivalence cannot be a self-contained lemma and must be proved inline), and explicitly notes the equivalence being a hard proof is NOT a reason to avoid; I confirmed oracleVerifier_eq_liftContext (893-928) is a 36-line induction, not rfl/simp, matching the text. Consequences are honest and specific (three named obligations + the lensKS-simpa failure mode). Good-leaves paragraph (README 130-153) answers the bounded-prover question: each child is self-contained and closes on its own or from named siblings. Known-use verified at 1146-1157 (verifier_rbrKnowledgeSoundness applies Verifier.liftContext_rbrKnowledgeSoundness with the same lens certificate). | reviewer-generality |
 | provenance-licence | accept | Permalinks, commit, licence and source note are all consistent and traceable. check_provenance.py passes: 2 files byte-identical at pinned commit 6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6. Copied code/ files have sha256 fb9b4d4e... for SingleRound.lean (60585 B) and 9147d076... for OracleReduction.lean (22155 B), matching entry.json files[].sha256/bytes. Commit hash is identical across SOURCE.md, source.json, entry.json and every permalink; permalink line anchors (1180-1191, 893-928, 1115-1131, 583-587, 1146-1157, and OracleReduction.lean 388-408) all resolve to the named declarations. Licence recorded as Apache-2.0 in SOURCE.md, source.json, entry.json and README, and library/sources/arklib/upstream-LICENSE is the standard Apache-2.0 text, with the upstream LICENSE file listed. Minor cosmetic note: the README source table abbreviates the commit to 6f9884a95ae7 while the full hash is given in the Source-and-licence section and everywhere else; not material to traceability. | reviewer-provenance-licence |
 <!-- verification:end -->
 

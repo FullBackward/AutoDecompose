@@ -1,7 +1,7 @@
 {
   "id": "lean-calc-chain-carleson-eeedf502",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Calc chain assembling forest-union and forest-complement bounds for the discrete Carleson theorem (Prop 2.0.2)",
   "intent": "Prove the discrete Carleson theorem (Proposition 2.0.2), the headline dyadic bound on the Carleson operator, by splitting carlesonSum over the forest tiles 𝔓₁ and their complement, bounding each half with a named project lemma (forest_union, forest_complement), and folding the two constants C5_1_2 + C5_1_3 into C2_0_2 with le_C2_0_2.",
   "move": "calc-chain",
@@ -133,12 +133,6 @@
   },
   "claims": [
     {
-      "n": 1,
-      "claim": "The parent discrete_carleson closes from exactly four named project lemmas — exceptional_set (line 49), forest_union and forest_complement (line 63), and le_C2_0_2 (line 68) — and its calc chain uses no other bound-carrying lemma.",
-      "evidence_kind": "check",
-      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Discrete/MainTheorem.lean#L44-L68 (the file is 69 lines and was read whole)"
-    },
-    {
       "n": 2,
       "claim": "Below the main theorem, the longest chain of project lemmas is 6 deep: discrete_carleson → forest_union (applies forest_union_optimized, ForestUnion.lean 1045) → forest_union_optimized (applies forest_union_aux, 974) → forest_union_aux (applies lintegral_carlesonSum_forest', 865) → lintegral_carlesonSum_forest' (applies lintegral_carlesonSum_forest, 800) → lintegral_carlesonSum_forest (uses forest_operator_le_volume, 774).",
       "evidence_kind": "check",
@@ -161,6 +155,19 @@
       "claim": "The same calc-chain move reappears one level down: the child exceptional_set proves volume G' ≤ 2 ^ (-1) * volume G by a 4-link calc that splits G' into G₁, G₂, G₃ and folds the three constants with first_exception, second_exception, third_exception.",
       "evidence_kind": "known-use",
       "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Discrete/ExceptionalSet.lean#L977-L989"
+    },
+    {
+      "n": 6,
+      "claim": "The parent discrete_carleson closes from four bound-carrying project lemmas — exceptional_set (line 49), forest_union and forest_complement (line 63), and le_C2_0_2 (line 68) — and its calc chain uses no other bound-carrying project lemma; the one other named project lemma it cites directly is the measurability lemma measurable_G' (line 51), which closes the MeasurableSet G' conjunct rather than carrying a bound.",
+      "evidence_kind": "measurement",
+      "evidence": "counted by reading MainTheorem.lean 44-68 whole: the five named project lemmas cited are the four bound-carrying above plus measurable_G' (line 51); the remaining identifiers are Mathlib lemmas (setLIntegral_mono, lintegral_add_left, ENNReal.mul_le_of_le_div', Finset.sum_filter_add_sum_filter_not, add_le_add), the project definition carlesonSum, the typeclass projection enorm_add_le, and the structure fields four_le_a and q_mem_Ioc"
+    },
+    {
+      "n": 7,
+      "claim": "`measurable_G'` occurs in the parent site.",
+      "evidence_kind": "check",
+      "form": "cites(parent, measurable_G')",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/Discrete/MainTheorem.lean#L44-L68 (line 51)"
     }
   ],
   "shape": {
@@ -173,7 +180,8 @@
       13,
       6,
       6
-    ]
+    ],
+    "note": "direct_lemmas counts the four bound-carrying children (exceptional_set, forest_union, forest_complement, le_C2_0_2). The main proof additionally cites the measurability lemma measurable_G' (Carleson/Discrete/Defs.lean 351-352) directly to close the MeasurableSet G' conjunct; it is a measurability fact, not a bound, so it is not a bound-carrying child and is not counted here."
   },
   "metrics": {
     "parent_proof_lines": 20,
@@ -220,8 +228,24 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T07:58:46Z",
       "note": "typed glue_lines 20, child_lines [14, 12, 3, 3]; derived from the site ranges (declaration included): 25, [16, 13, 6, 6]"
+    },
+    {
+      "field": "claims",
+      "agent_role": "fixer",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:09:53Z",
+      "note": "removed claim 1 (refuted by the correctness review: the parent also cites measurable_G', so 'exactly four named project lemmas' is false); added claim 6 (narrowed to four bound-carrying project lemmas plus the measurability lemma measurable_G') and claim 7 (check, form cites(parent, measurable_G'))"
+    },
+    {
+      "field": "shape.note",
+      "agent_role": "fixer",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:09:53Z",
+      "note": "kept direct_lemmas=4 and added a note: direct_lemmas counts the four bound-carrying children; measurable_G' is an additional directly-used measurability lemma, not a bound-carrying child"
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-12T14:58:31Z"
+  "status_at": "2026-11-14T14:20:30Z"
 }

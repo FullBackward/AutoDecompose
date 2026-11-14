@@ -5,9 +5,9 @@
 | Kind | instance |
 | Move | per-callee-lemma |
 | Language | rocq |
-| Status | verified |
+| Status | accepted |
 | Source | [wasmcert-coq](../../sources/wasmcert-coq/SOURCE.md) at `58a3d3f8b7af` |
-| Licence | `LGPL-2.1` |
+| Licence | `MIT` |
 
 ## Intent
 
@@ -735,7 +735,7 @@ store component requires another near-identical lemma.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
@@ -758,9 +758,9 @@ Status: **verified**
 |---|---|---|---|
 | correctness | accept | Parent interp_instantiate_imp_instantiate is at interp_instantiate_sound.v 246-402 and ends Qed at 402 with no admit/Admitted/Axiom; it destructs the executable pipeline then exists+repeat split, discharging each conjunct with a per-component lemma exactly as the README describes. All 8 child sites' statements match their declarations verbatim (module_type_checker_sound 16-174, external_type_checker_sound 176-183, interp_alloc_sound 185-216, module_typecheck_glob_aux 220-231, module_typecheck_elem_aux 233-244, b_e_type_checker_reflects_typing 1527-1610, alloc_func_iota_N 211-236, alloc_global_iota_N 315-352) and each closes with Qed; closed_by descriptions match the code. The parent cites all 8 children plus 4 further per-component lemmas (alloc_table/mem/elem/data_iota_N at 307/308/310/311), so direct_lemmas=12 is correct and documented; glue_lines=157 (402-246+1) and child_lines=[159,8,32,12,12,84,26,38] equal the site line counts; depth=3 (parent->interp_alloc_sound line 267 -> alloc_global_iota_N line 206 -> combine_snoc line 338, which closes by induction) is verified. | reviewer-correctness |
 | generality | accept | Move stated generally: 'when to use' names the reusable shape (executable option-returning pipeline vs relational existential+fixed-conjunction spec, one soundness lemma per component, witnesses read off by destruct), and related links to CompCert. Avoid-when is specific and honest (component needs a sibling's intermediate state; exe/relational diverge so no destruct witnesses; open-ended obligation list). Consequences are honest (two large children carry content; alloc_*_iota_N near-duplicates buy width not depth). 'Why each child is a good leaf' answers the bounded-prover question: small (8-38 lines), self-contained, closed by one tactic/lemma. Verified cited ranges: instantiation_spec.v 629-643 is an existential+conjunction; interp_instantiate_sound.v header has 'breaking circularities' comment. | reviewer-generality |
-| provenance-licence | object | Permalinks, commit and source note are consistent and traceable (check_provenance: 4 files byte-identical at 58a3d3f8b7af4dc8aa9351f254a9e672643b21f8; the same commit appears in entry.json, source.json and SOURCE.md; parent lemma is at interp_instantiate_sound.v:246-402 and the cited comment at :263). Licence is wrong: entry.json, source.json and SOURCE.md record LGPL-2.1, but upstream-LICENSE.txt states the project is MIT except src/Parray/ which is LGPL-2.1+; all four copied files are under theories/ (interp_instantiate_sound.v, type_checker_reflects_typing.v, instantiation_properties.v, instantiation_spec.v), so they are MIT, not LGPL. Fix: change the licence to MIT (or 'MIT; LGPL-2.1+ only for src/Parray/') in entry.json and the source note. | reviewer-provenance-licence |
+| provenance-licence | accept | Provenance and licence are now consistent and traceable. check_provenance passes (4 files byte-identical at 58a3d3f8b7af4dc8aa9351f254a9e672643b21f8); the same commit appears in entry.json, README, source.json and SOURCE.md. The prior licence inconsistency is resolved: SOURCE.md's licence line and source.json's licence field no longer read LGPL-2.1 but now record 'MIT AND LGPL-2.1-or-later' (with an explanatory note that only src/Parray/ is LGPL), which is correct for the whole repository. entry.json source.licence and the README record MIT, correct for the four copied files (interp_instantiate_sound.v, type_checker_reflects_typing.v, instantiation_properties.v, instantiation_spec.v), all under theories/; upstream-LICENSE.txt confirms MIT except src/Parray/ (LGPL-2.1+), so the copied files are MIT. The README's 'Source and licence' section states this split explicitly. Cited line ranges resolve to the copied code (parent site 246 begins 'Lemma interp_instantiate_imp_instantiate'; instantiation_spec.v 629-643 is the existential+conjunction Definition instantiate). | reviewer-provenance-licence |
 <!-- verification:end -->
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/WasmCert/WasmCert-Coq at commit `58a3d3f8b7af4dc8aa9351f254a9e672643b21f8`, under `LGPL-2.1`; see the [source note](../../sources/wasmcert-coq/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/WasmCert/WasmCert-Coq at commit `58a3d3f8b7af4dc8aa9351f254a9e672643b21f8`, under `MIT`. The upstream [LICENSE.txt](../../sources/wasmcert-coq/upstream-LICENSE.txt) states the project is MIT except `src/Parray/`, which is LGPL-2.1+; all four copied files are under `theories/` (`interp_instantiate_sound.v`, `type_checker_reflects_typing.v`, `instantiation_properties.v`, `instantiation_spec.v`), so they are MIT, not LGPL. See the [source note](../../sources/wasmcert-coq/SOURCE.md) for the licence text and attribution.

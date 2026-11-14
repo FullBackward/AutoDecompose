@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | induction |
 | Language | lean |
-| Status | verified |
+| Status | accepted |
 | Source | [mathlib4](../../sources/mathlib4/SOURCE.md) at `e1545ebed975` |
 | Licence | `Apache-2.0` |
 
@@ -214,6 +214,13 @@ ballot_problem'
    └─ ballot_neg      B-branch ≅ countedSequence (p+1) q        (uses countedSequence_int_neg_counted_succ_succ → counted_succ_succ)
 ```
 
+The parent's proof also cites two support lemmas directly as side conditions —
+`countedSequence_finite` (lines 322, 324, 326) and `countedSequence_nonempty`
+(lines 322, 324), feeding `isProbabilityMeasure_uniformOn` and
+`uniformOn_add_compl_eq`. They are generic facts about `countedSequence`, reused
+across the file rather than written for this goal, so they are among the 8
+`direct_lemmas` but are not children of the decomposition.
+
 Each leaf is a self-contained statement whose proof closes on its own or from
 named siblings in the same file:
 
@@ -249,11 +256,15 @@ diagonal induction is the whole content of the move.
    (`∀ b, motive 0 (b+1)`) and step `ind` (`∀ a b, a < b → motive (a+1) b →
    motive a (b+1) → motive (a+1) (b+1)`)
    ([`Mathlib/Data/Nat/Init.lean` lines 358-366](https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/Data/Nat/Init.lean#L358-L366)).
-3. (measurement) The glue is 36 lines (309-344) assembling 6 direct lemmas,
-   and the longest chain of file-local lemmas below the main theorem has depth
-   4: `ballot_problem' → first_vote_neg → first_vote_pos →
-   count_countedSequence → counted_succ_succ` (edges at lines 234, 154/217 and
-   182 of `BallotProblem.lean`).
+3. (measurement) The glue is 36 lines (309-344) assembling 8 direct lemmas —
+   the six children plus `countedSequence_finite` and
+   `countedSequence_nonempty`, the finiteness/non-emptiness side conditions the
+   parent cites at lines 322, 324 and 326 — and the longest chain of file-local
+   lemmas below the main theorem has depth 8: `ballot_problem' → first_vote_neg
+   → first_vote_pos → count_countedSequence → counted_succ_succ →
+   counted_ne_nil_left → counted_eq_nil_iff → length_of_mem_countedSequence →
+   mem_countedSequence_iff_perm` (edges at lines 327, 234, 217, 182, 115, 103,
+   100 and 96 of `BallotProblem.lean`).
 4. (author-statement) The mathlib authors document the principle in the
    docstring: "Given a predicate on two naturals `motive : ℕ → ℕ → Prop`,
    `motive a b` is true for all `a < b` if `motive (a + 1) (a + 1)` is true
@@ -291,14 +302,14 @@ breaks the final `ring`. The asymmetry that `ballot_neg` needs `q < p` while
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
-| build | ci-record | .github/workflows/build.yml triggers on push to master (default branch) and calls build_template.yml; build_template.yml line 252 runs 'lake-build-with-retry.sh Archive Counterexamples Wanted' and line 297 gates on 'lake build --no-build --wfail Archive'. Archive.lean line 79 'public import Archive.Wiedijk100Theorems.BallotProblem' puts this file in the Archive target, so CI builds it. Pinned commit e1545ebed97594477bbd88b2fe948ffce56e5af2 is the default-branch HEAD (source.json ref=HEAD, pinned via git ls-remote HEAD). | verifier | 2026-11-12 |
+| build | ci-record | .github/workflows/build.yml defines a 'build' job with a push trigger (branches-ignore lists bors/staging/trying and ci-dev/**, but not master) that 'uses: ./.github/workflows/build_template.yml'. build_template.yml step 'build archive, counterexamples and wanted' runs 'lake-build-with-retry.sh Archive Counterexamples Wanted' (~line 252) and the parallel gate 'check that Archive built' runs 'lake build --no-build --wfail Archive' (~line 297). Archive.lean line 79 is 'public import Archive.Wiedijk100Theorems.BallotProblem', so CI builds this file in the Archive target. Pinned commit e1545ebed97594477bbd88b2fe948ffce56e5af2 is the default-branch (master) HEAD. Verified by fetching the three files at the pinned commit. | verifier | 2026-11-14 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: ballot_same@Archive/Wiedijk100Theorems/BallotProblem.lean:313, ballot_edge@Archive/Wiedijk100Theorems/BallotProblem.lean:316, ballot_pos@Archive/Wiedijk100Theorems/BallotProblem.lean:327, ballot_neg@Archive/Wiedijk100Theorems/BallotProblem.lean:327, first_vote_pos@Archive/Wiedijk100Theorems/BallotProblem.lean:327, first_vote_neg@Archive/Wiedijk100Theorems/BallotProblem.lean:327; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
-| provenance | pass | 2 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2 | check_provenance.py | 2026-11-12 |
+| provenance | pass | 2 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2 | check_provenance.py | 2026-11-14 |
 | sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
@@ -308,10 +319,11 @@ Status: **verified**
 | 2 | verified | Opened copied code/Mathlib/Data/Nat/Init.lean lines 358-366: 'theorem diag_induction (motive : Nat -> Nat -> Prop) (diag : forall a, motive (a + 1) (a + 1)) (zero_succ : forall b, motive 0 (b + 1)) (ind : forall a b, a < b -> motive (a + 1) b -> motive a (b + 1) -> motive (a + 1) (b + 1)) : forall a b, a < b -> motive a b'. Premises diag, zero_succ, ind match the claim exactly (two base cases plus one two-IH step). | verifier |
 | 3 | verified | Opened copied BallotProblem.lean: parent block 309-344 is 36 lines (344-309+1). Six direct lemmas cited by the parent's rw at lines 313 (ballot_same), 316 (ballot_edge), 327 (first_vote_pos, first_vote_neg, ballot_pos, ballot_neg). Chain edges verified: ballot_problem' uses first_vote_neg/first_vote_pos at line 327; first_vote_neg uses first_vote_pos at line 234 'rw [compl_compl, first_vote_pos _ _ h] at this'; first_vote_pos uses count_countedSequence at line 217 'count_countedSequence, count_countedSequence'; count_countedSequence uses counted_succ_succ at line 182 'rw [counted_succ_succ, ...]'. So the 4-edge chain ballot_problem' -> first_vote_neg -> first_vote_pos -> count_countedSequence -> counted_succ_succ is real. Note: the claim's evidence locator 'lines 154/217' is slightly off -- line 154 shows first_vote_pos using counted_succ_succ, not count_countedSequence; the correct locator is line 217, which does not change the measured depth. | verifier |
 | 4 | verified | Opened copied Mathlib/Data/Nat/Init.lean lines 358-361: the docstring states "Given a predicate on two naturals motive : Nat -> Nat -> Prop, motive a b is true for all a < b if motive (a + 1) (a + 1) is true for all a, motive 0 (b + 1) is true for all b and for all a < b, motive (a + 1) b is true and motive a (b + 1) is true implies motive (a + 1) (b + 1) is true." This matches the claim quoted text verbatim. | verifier |
+| 5 | verified | Checked copied code/Archive/Wiedijk100Theorems/BallotProblem.lean at the pinned commit. (1) Glue = 36 lines: parent block 309-344, theorem ballot_problem' at 309 to 'all_goals exact ENNReal.mul_ne_top ...' at 344 (344-309+1=36). (2) 8 direct lemmas cited by the parent's proof, all at the cited lines: ballot_same (313), ballot_edge (316), countedSequence_finite (322, 324, 326), countedSequence_nonempty (322, 324), first_vote_pos (327), first_vote_neg (327), ballot_pos (327), ballot_neg (327). (3) Depth-8 chain edges all present: 327 'first_vote_pos _ _ h3, first_vote_neg _ _ h3, ballot_pos, ballot_neg _ _ qp'; 234 'rw [compl_compl, first_vote_pos _ _ h] at this'; 217 'count_countedSequence, count_countedSequence'; 182 'rw [counted_succ_succ, ...]'; 115 'have hlnil := counted_ne_nil_left (Nat.succ_ne_zero p) hl'; 103 'by simp [counted_eq_nil_iff hl, hp]'; 100 'by simp [length_of_mem_countedSequence hl]'; 96 'by simp [(mem_countedSequence_iff_perm.1 hl).length_eq]'. Chain = 9 lemmas / 8 edges, matching depth 8. | verifier |
 
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
-| correctness | object | Parent and children are verbatim-correct against the copied code: ballot_problem' (309-310) matches; all six children (ballot_same 239, ballot_edge 248, ballot_pos 266, ballot_neg 293, first_vote_pos 188, first_vote_neg 229) match their statements and closed_by; the parent closes via apply Nat.diag_induction, bases by ballot_same/ballot_edge (312-319), step by first_vote_pos/first_vote_neg/ballot_pos/ballot_neg then ring (320-344); diag_induction premise shape (Init.lean 363-366) matches claim 2, docstring 358-361 matches claim 4; glue_lines=36 and child_lines=[8,6,14,15,36,9] match line ranges. OBJECTION (correctness, shape numbers): shape.depth=4 (and metrics.depth, claim 3) is wrong. The longest chain of file-local lemmas below ballot_problem' is ballot_problem' -> first_vote_neg (234) -> first_vote_pos (217) -> count_countedSequence (182) -> counted_succ_succ (115, uses counted_ne_nil_left) -> counted_ne_nil_left (103, uses counted_eq_nil_iff) -> counted_eq_nil_iff (100, uses length_of_mem_countedSequence) -> length_of_mem_countedSequence (96, uses mem_countedSequence_iff_perm) -> mem_countedSequence_iff_perm (78), i.e. depth 8, not 4. Fix: recompute depth=8 and correct shape.depth, metrics.depth and claim 3 (or restate claim 3 as the chain actually checked). Secondary: direct_lemmas=6 omits countedSequence_finite and countedSequence_nonempty, which ballot_problem' also cites directly (322-323, 326); either include them (direct_lemmas=8) or state the scoping in how_counted. | reviewer-correctness |
+| correctness | accept | Re-verified the revised shape numbers against the copied code. depth=8 is correct: the chain ballot_problem' (309) -> first_vote_neg (327) -> first_vote_pos (234) -> count_countedSequence (217) -> counted_succ_succ (182) -> counted_ne_nil_left (115) -> counted_eq_nil_iff (103) -> length_of_mem_countedSequence (100) -> mem_countedSequence_iff_perm (96) is real (all 8 edges confirmed by line-exact lookups); mem_countedSequence_iff_perm is a leaf (uses only List.perm_replicate_append_replicate), and no file-local chain below ballot_problem' is longer (the countedSequence_finite/nonempty and ballot_pos/ballot_neg paths top out at 6-7 lemmas). direct_lemmas=8 is correct: the parent cites ballot_same (313), ballot_edge (316), countedSequence_finite (322,324,326), countedSequence_nonempty (322,324), first_vote_pos/first_vote_neg/ballot_pos/ballot_neg (327), excluding imported Nat.diag_induction (311). glue_lines=36 (309-344) and child_lines=[8,6,14,15,36,9] match the six child line ranges. Parent/children statements unchanged and verbatim-correct; parent closes via apply Nat.diag_induction (311), bases by ballot_same/ballot_edge (312-319), step by first_vote_pos/first_vote_neg/ballot_pos/ballot_neg then ring (320-344). Prior objection's two points (depth, direct_lemmas) fully fixed. Non-blocking note for lead/verifier: README verification table still lists a stale Claim-3 row with old depth-4 evidence and the new claim 5 (measurement) has no verdict row; claim n-numbering in entry.json (1,2,4,5) no longer matches the README 'Why it is good' list (1-4). | reviewer-correctness |
 | generality | accept | Move is stated beyond the example: applicability.use_when abstracts to a recurrence on a pair (a,b) stepping both coordinates from (a+1,b+1) with diagonal (a=b) and edge (a=0) bases, and the README names Nat.diag_induction (two bases + one two-IH step) and maps the recurrence to Pascal/binomial. 'when not to use' gives three concrete conditions (no diagonal/edge closure; only one IH needed -> single-coordinate induction; ordering mismatch) and consequences are honest and specific (three obligations, accumulating side conditions h3-h6/ne-inf, and the ballot_neg-needs-q<p vs ballot_pos-doesn't asymmetry). Good-leaf criterion is conveyed descriptively: each leaf is a self-contained statement closing on its own or from named siblings, hypothesis-minimal (ballot_pos takes no q<p), with short bounded closures (image/count rewrites, complementing) - verified against the copied code in the README. Minor gap: 'bounded prover' is never named and the leaf criterion is descriptive rather than a prescriptive rule, but this does not break the lens. | reviewer-generality |
 | provenance-licence | accept | Provenance pass: check_provenance.py reports 2 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2. SHA-256 in entry.json files[] match the copied files exactly (BallotProblem.lean a90aa888…, Init.lean 2537d5b0…). Commit is recorded consistently across entry.json source.commit, README, sources/mathlib4/SOURCE.md and source.json (e1545ebed97594477bbd88b2fe948ffce56e5af2, pinned via HEAD). Licence Apache-2.0 recorded in entry.json, README and source.json; upstream-LICENSE is genuine Apache-2.0 text. All permalinks (entry.json files[] and sites[], README links) use the same commit hash and correct repo/file paths; spot-checked line anchors match the copied files (parent 309-344, ballot_same 239-246, diag_induction 358-366). Everything traceable. | reviewer-provenance-licence |
 <!-- verification:end -->

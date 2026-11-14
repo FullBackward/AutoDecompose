@@ -1,7 +1,7 @@
 {
   "id": "lean-per-callee-lemma-cedar-spec-ffe042b1",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Per-component order and duplicate independence for Cedar's isAuthorized",
   "intent": "The head theorem `order_and_dup_independent` shows that Cedar's authorizer response does not depend on policy order or duplicates. It is proved component-wise: one lemma each for the forbid-satisfied, permit-satisfied and erroring components of `isAuthorized`, and the glue reassembles `isAuthorized` from the three equalities in a single `simp`.",
   "move": "per-callee-lemma",
@@ -105,7 +105,7 @@
   "applicability": {
     "goal_shape": "An equality `f x = f y` (or a congruence) for a composite function `f` built as a `let`-bound/branching combination of a fixed set of named components; here `f = isAuthorized`, a combination of `satisfiedPolicies .forbid`, `satisfiedPolicies .permit` and `errorPolicies`.",
     "use_when": "the composite is generated from a fixed structure, so per-component lemmas mirror it one-to-one; each component is itself `Set.make (policies.filterMap g)`, so its invariance reduces to a single `List.filterMap_equiv` rewrite; the glue then closes with one `simp [f, h₁ … hₙ]`.",
-    "avoid_when": "the composite's body branches on more than the equality of its components (e.g. on their contents or sizes), or the components do not share one lemma shape, so each needs a distinct argument rather than a template."
+    "avoid_when": "the composite's body reads anything other than its components — the raw policies list directly, or an argument the per-component lemmas do not hold equal — because the per-component equalities only licence rewriting the components, and a body that depends on something else cannot be closed by the simp. (Branching on the components themselves is fine: isAuthorized branches on forbids.isEmpty && !permits.isEmpty yet the simp still closes, since any property of a component is preserved by component equality.) Avoid it too when the components do not share one lemma shape, so each needs a distinct argument rather than a template."
   },
   "claims": [
     {
@@ -199,8 +199,16 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T12:53:06Z",
       "note": "parent order_and_dup_independent: statement re-copied from code; child 'satisfiedPolicies_order_and_dup_independent': statement re-copied from the declaration of satisfiedPolicies_order_and_dup_independent; child 'errorPolicies_order_and_dup_independent': statement re-copied from the declaration of errorPolicies_order_and_dup_independent"
+    },
+    {
+      "field": "applicability.avoid_when",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:08:43Z",
+      "note": "generality objection: reworded avoid_when so it no longer says to avoid branching on the contents/size of the components (isAuthorized branches on forbids.isEmpty && !permits.isEmpty and still closes); it now says the body must depend only on the components and fails when it reads anything outside the per-component equalities"
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-14T12:59:44Z"
+  "status_at": "2026-11-14T14:10:02Z"
 }

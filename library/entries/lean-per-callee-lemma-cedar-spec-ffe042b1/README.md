@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | per-callee-lemma |
 | Language | lean |
-| Status | verified |
+| Status | accepted |
 | Source | [cedar-spec](../../sources/cedar-spec/SOURCE.md) at `e619491a5bfb` |
 | Licence | `Apache-2.0` |
 
@@ -136,11 +136,15 @@ when each component's invariance reduces to a short, uniform rewrite (here
 single `simp [f, h₁ … hₙ]` that unfolds `f` and drops in the per-component
 equalities.
 
-Avoid it when the composite's body branches on more than the equality of its
-components — for example on the *contents* or *size* of the component sets —
-because then the per-component equalities are not enough and the `simp` cannot
-close. Avoid it too when the components do not share one lemma shape, since the
-whole point is one template per component.
+Avoid it when the composite's body reads anything other than its components —
+the raw `policies` list directly, or an argument the per-component lemmas do
+not hold equal — because the per-component equalities only licence rewriting
+the components, and a body that depends on something else cannot be closed by
+the `simp`. (Branching on the components themselves is fine: `isAuthorized`
+branches on `forbids.isEmpty && !permits.isEmpty`, yet the `simp` still
+closes, because any property of a component is preserved by component
+equality.) Avoid it too when the components do not share one lemma shape,
+since the whole point is one template per component.
 
 ## Consequences
 
@@ -160,7 +164,7 @@ infrastructure breaks the whole family at once.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
@@ -183,7 +187,7 @@ Status: **verified**
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
 | correctness | accept | Decomposition matches the code. Parent order_and_dup_independent (Authorization.lean 158-166) is 9 lines whose glue is exactly three have's -- satisfiedPolicies_order_and_dup_independent .forbid/.permit and errorPolicies_order_and_dup_independent -- then simp [isAuthorized, hf, hp, he]; the isAuthorized context (Spec/Authorizer.lean 56-62) is a let-bound combination of those three components, so the glue closes. Children and closed_by match verbatim (Authorizer.lean 62-69 and 71-78; exact List.filterMap_equiv ... at lines 69/78). Children are exactly the lemmas the proof cites (no others; satisfiedPolicies used twice, noted). Shape numbers right: glue_lines 9 (158-166), child_lines [8,8] (62-69, 71-78), direct_lemmas 2, depth 3 (child -> Set.make_make_eqv (Set.lean 303-318, calls List.canonicalize_equiv at 310-311) -> List.canonicalize_equiv (Canonical.lean 468-480)); List.filterMap_equiv is external (Batteries), not a project lemma. | reviewer-correctness |
-| generality | object | Move is stated generally (per-component lemmas mirror a structured definition; glue is a fixed simp [f, h1..hn]), consequences are specific, and the 'good leaf' question is answered (self-contained statement, 3-step proof, needs no sibling). But the 'when not to use' example is wrong: it says avoid when the body 'branches on ... the contents or size of the component sets', yet isAuthorized's own body branches on forbids.isEmpty && !permits.isEmpty (size/emptiness of the components) and the simp still closes, because any property of a component is preserved by component equality (congruence). The real break is when the body depends on something other than the components (the raw policies list, or an argument not held equal). Fix: reword the first avoid-when to say the body must depend only on the components, and it fails when the body reads anything outside the per-component equalities or the components don't share one lemma shape. | reviewer-generality |
+| generality | accept | Move stated generally (one lemma per component of a structured definition; glue a fixed simp [f, h1..hn]; use_when names goal_shape f x = f y / congruence over let-bound+branching composites). The avoid_when is now correct: it says the body must depend only on the components and fails when it reads anything outside the per-component equalities (raw policies, or an argument not held equal), and explicitly notes branching on the components themselves (isAuthorized branches on forbids.isEmpty && !permits.isEmpty) is fine by congruence -- verified against Spec/Authorizer.lean:56-62. Consequences are specific and honest: cover every component, components must be Set.make (filterMap g), glue closes only because isAuthorized is literally the three components, and the near-identical-template failure mode is named. The good-leaf question is answered: self-contained statement, 3-step proof (unfold / rw Set.make_make_eqv / exact List.filterMap_equiv), no sibling needed, and it names the shared template with different predicates. Minor wording blemish only: consequence (3) says 'branches on more than set-equality' where it means 'reads something beyond the component equalities'; not misleading given the avoid_when parenthetical, so not a standing objection. | reviewer-generality |
 | provenance-licence | accept | check_provenance.py passes: 3 copied files byte-identical at commit e619491a5bfb04970ef994dbe286df0bb9d0b73f. Commit is pinned and consistent across entry.json source.commit, README, source note, and source.json. Licence Apache-2.0 recorded identically in entry.json, README and SOURCE.md, and upstream-LICENSE is the Apache 2.0 text with upstream-NOTICE present. All permalinks use the same commit; the cited line ranges (Authorization.lean 158-166, Authorizer.lean 62-78 and 80-126, Spec/Authorizer.lean 56-62) match the local copies and README excerpts verbatim. Source note links the entry to the repo, commit, licence files and attribution. | reviewer-provenance-licence |
 <!-- verification:end -->
 

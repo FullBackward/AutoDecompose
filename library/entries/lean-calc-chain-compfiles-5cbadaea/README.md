@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | calc-chain |
 | Language | lean |
-| Status | verified |
+| Status | accepted |
 | Source | [compfiles](../../sources/compfiles/SOURCE.md) at `1745e6ced3e6` |
 | Licence | `Apache-2.0` |
 
@@ -107,10 +107,14 @@ How the parts fit. The parent first fixes a minimum index `m` and a maximum
 index `M` of the finite sequence `a` (`obtain ⟨m, hm⟩ := Finite.exists_min a`,
 `obtain ⟨M, hM⟩ := Finite.exists_max a`). Child `h1` uses the minimum property
 `hm` to bound `b m` from below: expanding by `hb m` gives
-`(a (m - 1) + a (m + 1)) / (a m)`, and since both `a (m - 1)` and `a (m + 1)`
-are at least `a m`, `gcongr` lowers the ratio to `(a m + a m) / (a m)`, which
-`rw [← two_mul, mul_div_cancel_right₀]` then `positivity [ha m]` reduces to `2`.
-Child `h2` is the mirror image at the maximum `M`, bounding `b M ≤ 2`. Then
+`(a (m - 1) + a (m + 1)) / (a m)`, and `gcongr` lowers the ratio to
+`(a m + a m) / (a m)` by discharging three goals — the denominator
+nonnegativity `0 ≤ a m` (`le_of_lt (ha m)`) and the numerator comparisons
+`a m ≤ a (m - 1)` and `a m ≤ a (m + 1)` (`hm`) — after which
+`rw [← two_mul, mul_div_cancel_right₀]` then `positivity [ha m]` reduces the
+result to `2`. Child `h2` is the mirror image at the maximum `M`, bounding
+`b M ≤ 2` from the corresponding goals `0 ≤ a M` (`le_of_lt (ha M)`),
+`a (M - 1) ≤ a M` and `a (M + 1) ≤ a M` (`hM`). Then
 `h3` closes `∀ i, b i = 2` by `eq_of_le_of_ge`: the upper direction is
 `b i ≤ b M ≤ 2` via `(h i M).mp (hM i)` (using `h : a i ≤ a j ↔ b i ≤ b j`) and
 `h2`; the lower direction is `2 ≤ b m ≤ b i` via `h1` and `(h m i).mp (hm i)`.
@@ -162,7 +166,7 @@ directions — a lower bound `b m ≥ 2` and an upper bound `b M ≤ 2` — beca
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
@@ -182,7 +186,7 @@ Status: **verified**
 
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
-| correctness | object | Decomposition matches the code and closes: parent egmo2023_p1 fixes min m / max M (lines 33-34), children h1 (lines 35-44) and h2 (lines 45-54) are two-link calc chains bounding b m >= 2 and b M <= 2, and the proof closes via h3 (eq_of_le_of_ge, lines 55-59) then the goal (lines 60-63); provenance passes (byte-identical at 1745e6c) and CI push-main.yaml runs lake build. However the children's closed_by fields misdescribe the gcongr subgoals. In h1 the first gcongr goal is the denominator-positivity 0 <= a m, closed by le_of_lt (ha m) (from ha, not hm) - the entry writes 'a m <= a m ... from hm'. In h2 the corresponding 0 <= a M goal (le_of_lt (ha M)) is omitted entirely. Fix: correct the parentheticals to '0 <= a m (le_of_lt (ha m)), a m <= a (m-1), a m <= a (m+1) from hm' and '0 <= a M (le_of_lt (ha M)), a (M-1) <= a M, a (M+1) <= a M from hM'. | reviewer-correctness |
+| correctness | accept | Decomposition matches the copied code and closes. Copied Compfiles/Egmo2023P1.lean lines 28-63 (byte-identical, provenance pass) are exactly the README/entry citations: parent egmo2023_p1 fixes min m/max M via Finite.exists_min/exists_max (lines 33-34), children h1 (35-44) and h2 (45-54) are two-link calc chains bounding b m >= 2 and b M <= 2, and the proof closes via h3 : forall i, b i = 2 by eq_of_le_of_ge (55-59) then the goal by the same antisymmetry plus rw (60-63). The prior objection is fixed: h1 closed_by now reads the gcongr goals as '0 <= a m (le_of_lt (ha m)), a m <= a (m-1), a m <= a (m+1) from hm', and h2 now includes '0 <= a M (le_of_lt (ha M)), a (M-1) <= a M, a (M+1) <= a M from hM' — matching the code's three bullets le_of_lt (ha m)/hm (m-1)/hm (m+1) and le_of_lt (ha M)/hM (M-1)/hM (M+1); the README 'How the parts fit' text is likewise corrected. No other correctness defect found under the whole lens. | reviewer-correctness |
 | generality | accept | Generality holds. The move is stated beyond the example: applicability.goal_shape abstracts the domain to 'an inequality E >= c or E <= c over an ordered ring', the expression to 'a ratio or sum', and the closing tactics to 'rewriting plus positivity/norm_num' (entry.json:90-91), and use_when factors the pattern into a monotonicity link (gcongr) + an algebra link (rw/positivity) + an antisymmetry close (entry.json:92) — a reusable 'bound a derived quantity at min/max, then eq_of_le_of_ge' template, not EGMO-specific. Consequences are honest and specific: one obligation per link; transitivity discharged by calc itself; the monotonicity link needs gcongr to find hm/hM facts and the algebra link needs a i > 0 for positivity [ha i]; the close needs BOTH directions because eq_of_le_of_ge won't fire with one side (entry.json:128; README:152-160). When-not-to-use is largely specific (non-monotone link; link needing its own lemma; long chains of real lemmas). Minor imprecision only: the clause 'the bounds are strict (<) and the exactness of the constant matters' (entry.json:93) is loosely worded — it does not harm the move's general statement (the antisymmetry close genuinely requires non-strict >= / <= bounds), but could be sharpened to say 'the close needs non-strict bounds; strict-only bounds cannot feed eq_of_le_of_ge'. Not a standing objection. | reviewer-generality |
 | provenance-licence | accept | check_provenance passes: 1 file byte-identical at pinned commit 1745e6ced3e671bd74417548494b034eb2c87da8. Commit is consistent across entry.json, README.md, sources/compfiles/source.json and SOURCE.md (all 1745e6ced3e6). Licence Apache-2.0 is recorded in entry.json, README, source.json and SOURCE.md, matches the file header 'Released under Apache 2.0 license' and the copied upstream-LICENSE (Apache License Version 2.0). Permalinks all point to the same pinned commit and correct line anchors (L28-63 parent, L35-44 h1, L45-54 h2, L55-63 h3), matching the byte-identical copied file. Fully traceable. | reviewer-provenance-licence |
 <!-- verification:end -->

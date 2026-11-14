@@ -120,6 +120,46 @@
       "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
       "by": "sorry_scan.py",
       "at": "2026-11-14T08:00:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:11:11Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: none; subgoals (no name to cite): 2",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:11:11Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:11:11Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: none; subgoals (no name to cite): 2",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:11:12Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally (goal shape exists n, c <= S n with a general lower bound B n <= S n already proved; witness found by inverting the bound to equal or exceed c), and consequences are honest and specific (witness must be concrete, ineq's n != 0 hypothesis must be supplied, bound must reach the target, off-by-one between range n and range(n+1)). The previously-objected 'when not to use' illustration is now factually correct: 4n/(n+1) = 4 - 4/(n+1) is strictly below 4 at every finite n, so a target of 4 itself is never attained and the comparison will not close. This matches the code (ineq L54-55, module doc L28-30 'arbitrarily close to 4'), the README 'When to use it, and when not', and entry.json avoid_when, which are now consistent with each other and with the entry's own point that 4*3999/4000 = 3.999 is attained exactly.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T14:11:36Z"
     }
   ]
 }

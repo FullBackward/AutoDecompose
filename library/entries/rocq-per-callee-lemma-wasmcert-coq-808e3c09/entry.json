@@ -1,7 +1,7 @@
 {
   "id": "rocq-per-callee-lemma-wasmcert-coq-808e3c09",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Executable instantiation soundness assembled from per-component lemmas",
   "intent": "Prove that the executable instantiation interp_instantiate implies the relational instantiate by unfolding the relation into its conjuncts and discharging each with one soundness lemma per component (module type checker, external type checker, allocator, global and element initialisers, plus the bit-level type-checker reflection), so the headline theorem is a 157-line glue of asserts and specializes.",
   "move": "per-callee-lemma",
@@ -14,7 +14,7 @@
     "source_id": "wasmcert-coq",
     "url": "https://github.com/WasmCert/WasmCert-Coq",
     "commit": "58a3d3f8b7af4dc8aa9351f254a9e672643b21f8",
-    "licence": "LGPL-2.1"
+    "licence": "MIT"
   },
   "files": [
     {
@@ -298,8 +298,16 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T12:43:22Z",
       "note": "parent interp_instantiate_imp_instantiate: statement re-copied from code"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:20:49Z",
+      "note": "licence corrected from LGPL-2.1 to MIT per provenance-licence review: upstream LICENSE.txt states the project is MIT except src/Parray/ (LGPL-2.1+); all four copied files are under theories/, hence MIT"
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-14T12:50:01Z"
+  "status_at": "2026-11-14T14:40:00Z"
 }

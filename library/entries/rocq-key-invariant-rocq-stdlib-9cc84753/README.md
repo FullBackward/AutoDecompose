@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | key-invariant |
 | Language | rocq |
-| Status | verified |
+| Status | accepted |
 | Source | [rocq-stdlib](../../sources/rocq-stdlib/SOURCE.md) at `22fcaa27d17b` |
 | Licence | `LGPL-2.1` |
 
@@ -130,11 +130,13 @@ supports a linear search (a decidable `P` over `nat` or a countable domain), and
 the search's termination can be certified by a well-founded relation that you
 state once as a key invariant and prove in both directions.
 
-Avoid it when a simpler termination certificate suffices — the same file's
-earlier `before_witness` section (lines 121-147) certifies termination with an
-ad-hoc inductive predicate instead of `Acc`, and the authors offer it as the
-shorter alternative. Also avoid it when `P` is not decidable or when you need
-only the `Prop`-level existence and not the computational witness `{x : A | P x}`.
+Avoid it when you want a directly executable linear-search program and accept
+the longer, more ad-hoc direct development: the same file's "Direct version"
+section (lines 110-295) programs the search explicitly (`prog_linear_search`,
+lines 142-147) over the ad-hoc inductive predicate `before_witness` instead of
+`Acc`, and is far longer than the `Acc` section (lines 301-369). Also avoid it
+when `P` is not decidable, or when you need only the `Prop`-level existence and
+not the computational witness `{x : A | P x}`.
 
 ## Consequences
 
@@ -150,7 +152,7 @@ well-founded the accessibility hypothesis would be unprovable.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
@@ -172,7 +174,7 @@ Status: **verified**
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
 | correctness | accept | Verified against code/theories/Logic/ConstructiveEpsilon.v: parent constructive_indefinite_ground_description_nat_Acc (362-367) is 6 lines, glues exactly two children — apply acc_implies_P_eventually at 365 then apply P_eventually_implies_acc_ex;assumption at 366 — matching the entry's decomposition (existence -> acc 0 -> witness). Child statements verbatim (340, 349); closed_by fields match code (P_eventually_implies_acc_ex: apply P_eventually_implies_acc with (n:=x); replace (x+0) with x; auto; acc_implies_P_eventually: Fix_F R + destruct P_decidable x, ~P x branch via IH y Ryx). Section closes with Defined./Qed., no sorry/admit/Admitted/axiom in 301-369. Children are exactly the two lemmas the parent cites, no others. Shape numbers right: direct_lemmas=2, glue_lines=6 (362-367), child_lines=[5,12] (340-344, 349-360), depth=3 via P_eventually_implies_acc_ex -> P_eventually_implies_acc(331-338) -> P_implies_acc(325-329). | reviewer-correctness |
-| generality | object | Move is stated generally (goal shape (exists x, P x) -> {x | P x}, decidable P, countable domain, well-founded relation as the invariant with two directions), and 'How the parts fit' does say what makes the lemmas good leaves (self-contained, one-step, only place decidability is used). Consequences are honest and specific (verified: only acc_implies_P_eventually uses P_decidable; comment at 344-345 confirms 'This is also where decidability of P is used'). But 'when not to use' is not honest on one point: it calls the earlier before_witness section (121-147) 'the shorter alternative' and attributes this to the authors. The code contradicts this: the Direct section (110-295, ~185 lines, with before_witness/O_witness/inv_before_witness/prog_linear_search/rel_ls/rel_ls_post/rel_ls_lower_bound and two 'direct' theorem variants) is far longer than the Acc section (301-369, ~68 lines, 4 short lemmas). The comments only label them 'Direct version' and 'Version using the predicate [Acc]'; no author text says the direct one is shorter. Fix: drop the 'shorter alternative' and author attribution; frame the avoid-when as 'when you want a directly executable linear-search program and accept the longer, more ad-hoc direct development (before_witness), or when P is not decidable / only Prop-level existence is needed'. | reviewer-generality |
+| generality | accept | Move is stated generally: goal_shape is (exists x:A, P x) -> {x:A | P x} over a decidable P on a natural-indexed/countable domain, with the invariant as a well-founded relation (acc 0 = Acc R 0) proved in two directions; also_known_as lists termination certificate / well-founded ranking / accessibility argument. 'When not to use' is now honest and specific: it drops the unsupported 'shorter alternative' and author attribution, and instead says avoid the longer, more ad-hoc direct development (Direct version section 109-295 vs Acc section 301-369, ~186 vs ~68 lines, confirmed against the copied file: before_witness/O_witness/inv_before_witness/prog_linear_search/rel_ls live at 120-146+ vs 4 short Acc lemmas at 325-360), or when P is not decidable / only Prop-level existence is needed. Consequences are honest and specific: only acc_implies_P_eventually (349-360) branches on P_decidable (line 353), matching the author comment at 346-347 'This is also where decidability of [P] is used'; the well-foundedness requirement is stated (R = step-to-successor-when-P-fails, so Acc R x iff P holds at/after x). 'How the parts fit' names what makes the lemmas good leaves for a bounded prover: self-contained (closes via Fix_F), one-step, only place decidability is used, parent glue is two applys + Defined, depth 3. Objection resolved. | reviewer-generality |
 | provenance-licence | accept | Permalinks, commit, licence and source note are consistent. check_provenance.py reports the copied file byte-identical at pinned commit 22fcaa27d17bc28ab4be728ed10a1fb73afb23ee; local sha256 11cd2ef3...6aeab9 and 18080 bytes match entry.json. All permalinks use that commit and theories/Logic/ConstructiveEpsilon.v; cited line ranges verified against the copied file (R=315-323 with Let R at 321, acc at 323; P_implies_acc=325-329; P_eventually_implies_acc=331-338; P_eventually_implies_acc_ex=340-344; acc_implies_P_eventually=349-360; parent=362-367, 6 lines). Licence LGPL-2.1 consistent across entry.json, README, source.json, SOURCE.md; sources/rocq-stdlib/upstream-LICENSE is the LGPL-2.1 text. Source note records repo, pinned commit, language, licence and attribution; relative links resolve. | reviewer-provenance-licence |
 <!-- verification:end -->
 

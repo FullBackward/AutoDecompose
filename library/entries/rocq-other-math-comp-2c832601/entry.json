@@ -1,7 +1,7 @@
 {
   "id": "rocq-other-math-comp-2c832601",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Transport non-solvability from the normal subgroup 'Alt_T to 'Sym_T via series_sol",
   "intent": "To prove 'Sym_T is not solvable for 4 < #|T|, reduce solvability of the whole symmetric group to solvability of its normal subgroup 'Alt_T through the normal-series equivalence series_sol, then supply the already-proved non-solvability of 'Alt_T; the one-line glue never analyses the quotient 'Sym_T / 'Alt_T, which is dropped by false && _.",
   "move": "other",
@@ -87,7 +87,7 @@
   "applicability": {
     "goal_shape": "A goal solvable G = false (or ~ solvable G) for a group G that has a normal subgroup H <| G whose non-solvability is already proved as solvable H = false.",
     "use_when": "You can exhibit a normal subgroup H of G known to be non-solvable; series_sol rewrites solvable G to solvable H && solvable (G / H), and solvable H = false collapses the conjunction, so the quotient G / H never has to be analysed.",
-    "avoid_when": "The quotient G / H matters (e.g. the downward direction solvable G -> solvable H forces proving solvability of G / H too); H is not normal, so series_sol does not apply; or the subgroup's non-solvability is not yet a rewrite lemma of the shape solvable H = false that a view like /solvable_AltF-> can fire on."
+    "avoid_when": "The quotient G / H must be proved: in the upward direction solvable H && solvable (G / H) -> solvable G, proving solvable G forces proving solvable (G / H) as a conjunct, so the one-line glue no longer closes (the downward direction solvable G -> solvable H is cheap, since rewriting the hypothesis yields solvable H && solvable (G / H) and solvable H follows with no quotient proof). Also avoid when H is not normal, so series_sol does not apply; or the subgroup's non-solvability is not yet a rewrite lemma of the shape solvable H = false that a view like /solvable_AltF-> can fire on."
   },
   "claims": [
     {
@@ -148,7 +148,7 @@
   "shape": {
     "scale": "theorem",
     "direct_lemmas": 2,
-    "depth": 5,
+    "depth": 7,
     "glue_lines": 2,
     "child_lines": [
       2,
@@ -184,8 +184,16 @@
       "agent_role": "analyst",
       "run": "pilot-3",
       "at": "2026-11-14T09:59:00Z"
+    },
+    {
+      "field": "shape.depth,applicability.avoid_when",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:19:14Z",
+      "note": "reviewer-correctness: depth 5 -> 7 (longest chain below solvable_SymF is solvable_AltF -> simple_Alt5 -> simple_Alt5_base -> card_Alt -> Alt_index -> Alt_norm -> Alt_normal); reviewer-generality: avoid_when now names the upward direction (proving solvable G requires proving the quotient) as the costly case, the downward direction is free."
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-14T10:08:06Z"
+  "status_at": "2026-11-14T14:23:31Z"
 }

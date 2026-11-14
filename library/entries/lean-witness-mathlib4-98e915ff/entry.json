@@ -1,7 +1,7 @@
 {
   "id": "lean-witness-mathlib4-98e915ff",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Witness n = 4000 for IMO 1982 Q3(a)",
   "intent": "Close the existential goal ∃ n, 3.999 ≤ Σ_{k < n} x k² / x(k+1) for IMO 1982 Q3(a) by fixing the concrete witness n = 4000, transferring the already-proved general bound 4n/(n+1) (ineq) to that value, and finishing the leftover numerical comparison with norm_num.",
   "move": "witness",
@@ -72,7 +72,7 @@
   "applicability": {
     "goal_shape": "∃ n : ℕ, c ≤ S n, where S n is a sum (or other expression) already bounded below by a general function B n over all n (here ineq: 4n/(n+1) ≤ Σ_{k < n+1} x k²/x(k+1)), and c is a value B n reaches exactly at a concrete n.",
     "use_when": "a general lower bound for the goal is already proved for all n (or all n ≠ 0); the witness is chosen by inverting the bound so it equals or exceeds the target constant; the residual is a pure numerical comparison that norm_num/norm_num1 closes.",
-    "avoid_when": "no closed-form lower bound exists (the witness then needs its own computation); the target constant is not reachable by the bound (e.g. c < 4 but the bound approaches 4 only in the limit, so an equality at a finite n is impossible); the witness is not a numeral or closed term (use cannot fix an unknown n)."
+    "avoid_when": "no closed-form lower bound exists (the witness then needs its own computation); the target constant is a value the bound never reaches (e.g. the bound 4n/(n+1) is strictly below 4 at every finite n, so a target of 4 itself is never attained and the comparison will not close); the witness is not a numeral or closed term (use cannot fix an unknown n)."
   },
   "claims": [
     {
@@ -151,8 +151,16 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T07:55:48Z",
       "note": "child 'the witness n = 4000': named by a description, so a subgoal (statement kept)"
+    },
+    {
+      "field": "applicability.avoid_when",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:10:52Z",
+      "note": "generality objection: the avoid_when example claimed an exact 3.999 is unattainable at finite n, contradicting the entry's point that 4*3999/4000 = 3.999 exactly. Reworded the example to a target the bound never reaches (4 itself). Also aligned the matching prose in README.md 'When to use it, and when not'."
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-12T12:26:29Z"
+  "status_at": "2026-11-14T14:11:44Z"
 }

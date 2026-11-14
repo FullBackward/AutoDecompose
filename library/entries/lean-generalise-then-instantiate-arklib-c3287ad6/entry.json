@@ -1,7 +1,7 @@
 {
   "id": "lean-generalise-then-instantiate-arklib-c3287ad6",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Sum-check single round: transport the simple verifier's knowledge soundness to the lifted oracle verifier",
   "intent": "Prove round-by-round knowledge soundness of the full single-round oracle verifier by first rewriting it to its context-lifted form, then instantiating the general transport theorem OracleVerifier.liftContext_rbrKnowledgeSoundness with the simple round's certificate and the lens's knowledge-soundness certificate.",
   "move": "generalise-then-instantiate",
@@ -105,7 +105,7 @@
   "applicability": {
     "goal_shape": "A soundness/security property (here rbrKnowledgeSoundness) of a *lifted* object `X.liftContext lens output`, where the same property is already proved for the inner object `X` and for the lens itself.",
     "use_when": "there is a general transport theorem that lifts the property across a lens (here OracleVerifier.liftContext_rbrKnowledgeSoundness), an equivalence showing the target object is exactly the context-lift (oracleVerifier_eq_liftContext), a certificate that the lens is knowledge-sound (extractorLens_rbr_knowledge_soundness), and the inner object's certificate (Simple.oracleVerifier_rbrKnowledgeSoundness).",
-    "avoid_when": "the lens is not executable or not knowledge-sound; the inner object's property is not already proved; the equivalence rewrite does not hold by rfl/simp and needs its own argument."
+    "avoid_when": "the lens is not executable or not knowledge-sound; the inner object's property is not already proved; the equivalence showing the target object is the context-lift cannot be stated as its own self-contained lemma and would have to be proved inline in the glue (the equivalence being a hard proof is not by itself a reason to avoid the move: here oracleVerifier_eq_liftContext is a 36-line induction, plainly not rfl/simp, yet the move works because it is a named child leaf)."
   },
   "claims": [
     {
@@ -188,8 +188,16 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T12:27:37Z",
       "note": "parent oracleVerifier_rbrKnowledgeSoundness: statement re-copied from code; child 'oracleVerifier_eq_liftContext': statement re-copied from the declaration of oracleVerifier_eq_liftContext; child 'extractorLens_rbr_knowledge_soundness': statement re-copied from the declaration of extractorLens_rbr_knowledge_soundness; child 'oracleVerifier_rbrKnowledgeSoundness': statement re-copied from the declaration of oracleVerifier_rbrKnowledgeSoundness"
+    },
+    {
+      "field": "applicability",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:00:58Z",
+      "note": "reworded avoid_when (README and entry.json) to target non-separability of the equivalence: it must be statable as its own self-contained lemma rather than proved inline in the glue, in place of the old rfl/simp-ness criterion, per the reviewer-generality objection."
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-14T12:36:12Z"
+  "status_at": "2026-11-14T14:01:56Z"
 }

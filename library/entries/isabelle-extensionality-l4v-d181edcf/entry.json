@@ -1,7 +1,7 @@
 {
   "id": "isabelle-extensionality-l4v-d181edcf",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Fieldwise record equality between the abstract and executable seL4 states (absKState_correct)",
   "intent": "Prove that the executable specification's observable state `absKState s'` equals the abstract state `abs_state s` by `state.equality`, which splits the equality of the two state records into one subgoal per field; each non-trivial field is closed by a named, independently proved lemma, so the headline correspondence becomes nine field lemmas joined by a 28-line glue.",
   "move": "extensionality",
@@ -15,7 +15,7 @@
     "source_id": "l4v",
     "url": "https://github.com/seL4/l4v",
     "commit": "1abfe5bce98632a94ba52adf183045620c509340",
-    "licence": "CC-BY-SA-4.0"
+    "licence": "GPL-2.0-only"
   },
   "files": [
     {
@@ -280,8 +280,16 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T10:43:04Z",
       "note": "parent absKState_correct: statement re-copied from code; child 'absIsOriginalCap_correct': statement re-copied from the declaration of absIsOriginalCap_correct; child 'absSchedulerAction_correct': statement re-copied from the declaration of absSchedulerAction_correct; child 'domSchedule_map_relation': statement re-copied from the declaration of domSchedule_map_relation; child 'absInterruptIRQNode_correct': statement re-copied from the declaration of absInterruptIRQNode_correct; child 'absInterruptStates_correct': statement re-copied from the declaration of absInterruptStates_correct; child 'absExst_correct': statement re-copied from the declaration of absExst_correct"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:01:45Z",
+      "note": "Changed from CC-BY-SA-4.0 to GPL-2.0-only to meet the provenance-licence objection: both copied files carry 'SPDX-License-Identifier: GPL-2.0-only' in their headers (code/proof/refine/Refine.thy line 6; code/proof/refine/ADT_H.thy line 5), while CC-BY-SA-4.0 is only the SPDX tag of LICENSE.md itself (upstream-LICENSE.md). README's Licence row and Source-and-licence section updated to match."
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-14T10:49:12Z"
+  "status_at": "2026-11-14T14:39:54Z"
 }

@@ -5,9 +5,9 @@
 | Kind | instance |
 | Move | suffices-or-strengthen |
 | Language | isabelle |
-| Status | verified |
+| Status | accepted |
 | Source | [l4v](../../sources/l4v/SOURCE.md) at `1abfe5bce986` |
-| Licence | `CC-BY-SA-4.0` |
+| Licence | `GPL-2.0-only` |
 
 ## Intent
 
@@ -282,7 +282,7 @@ well-founded orders.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
@@ -304,9 +304,9 @@ Status: **verified**
 |---|---|---|---|
 | correctness | accept | Parent wf_next_slot (4322-4337, 16 lines) and all four children (next_slot_no_loop 4303-4320=18, cte_at_next_slot 1602-1629=28, cte_at_next_slot' 1631-1665=35, finite_depth 206-257=52) read verbatim from the copied file and match the entry's statements and closed_by. The glue cites exactly these four project lemmas (finite_depth/cte_at_next_slot/cte_at_next_slot' at 4330, next_slot_no_loop at 4335) plus library facts; every proof ends in done and sorry-scan is clean, so it closes. Shape numbers recompute: glue_lines 16, child_lines [18,28,35,52], direct_lemmas 4; the depth chain wf_next_slot -> next_slot_no_loop -> next_slot_set_after_in_list(4263) -> next_slot_setD(4123) -> next_not_childD(617) -> next_not_childD'(551) is verified in the code, giving depth 5. wf_last_child (4575-4587) reuses finite_acyclic_wf + last_child_no_loop as the known-use claim states. | reviewer-correctness |
 | generality | accept | Generality holds. The move is stated as a reusable rule (replace wf R by finite R & acyclic R via finite_acyclic_wf) not tied to next_slot; applicability.use_when/avoid_when give concrete conditions (finite carrier bound, acyclicity as a no-loop fact), and a known-use (wf_last_child 4575-4587, verified: uses finite_acyclic_wf, pairs with last_child_no_loop 4565, consumed by last_child_induct 4589/4594) shows reuse beyond the example. avoid_when and consequences are honest and specific: they name the failure mode that finite_depth is the real 52-line content inherited by both halves, and that finite_acyclic_wf yields wf only for literally finite relations, so infinite/measure-based orders are out of reach. The 'Why each child is a good leaf' section answers the bounded-prover question: next_slot_no_loop is self-contained closing from two named siblings, the cte_at_next_slot pair are direction-matching endpoints, finite_depth is the shared depth-descent leaf. | reviewer-generality |
-| provenance-licence | object | Permalinks, commit and line ranges are consistent and traceable: check_provenance passes (code/proof/invariant-abstract/Deterministic_AI.thy byte-identical at 1abfe5bce98632a94ba52adf183045620c509340), and the cited ranges (4322-4337, 4303-4320, 1602-1629, 1631-1665, 206-257) open on the declared lemmas. But the licence is wrong: the entry (README.md, entry.json source.licence, sources/l4v/SOURCE.md) records CC-BY-SA-4.0, while the copied file's own header reads 'SPDX-License-Identifier: GPL-2.0-only' (Deterministic_AI.thy lines 1-5), and upstream LICENSE.md says proof files are typically GPL v2. CC-BY-SA-4.0 was evidently picked up from the LICENSE.md document's own comment header, not the code. Fix: record the file's actual licence GPL-2.0-only in entry.json, the README licence field, and the source note (or mark this file GPL-2.0-only per its SPDX tag). | reviewer-provenance-licence |
+| provenance-licence | accept | Provenance and licence are now consistent and traceable. check_provenance passes (Deterministic_AI.thy byte-identical at 1abfe5bce98632a94ba52adf183045620c509340); the commit is pinned identically across README, entry.json and sources/l4v/SOURCE.md. entry.json source.licence and the README licence field both now record GPL-2.0-only, matching the copied file's own header (SPDX-License-Identifier: GPL-2.0-only, lines 1-5) and upstream LICENSE.md (proofs about the seL4 kernel code licensed under GPL version 2; its own document header is CC-BY-SA-4.0, the source of the earlier error). Cited ranges open on the declared lemmas (206/257 finite_depth, 1602/1629 cte_at_next_slot, 1631/1665 cte_at_next_slot', 4303/4320 next_slot_no_loop, 4322/4337 wf_next_slot). The README source note records GPL-2.0-only for the copied file and explicitly flags the residual sources/l4v/SOURCE.md 'Licence (detected): CC-BY-SA-4.0' as out-of-scope, with the correct explanation. | reviewer-provenance-licence |
 <!-- verification:end -->
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/seL4/l4v at commit `1abfe5bce98632a94ba52adf183045620c509340`, under `CC-BY-SA-4.0`; see the [source note](../../sources/l4v/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/seL4/l4v at commit `1abfe5bce98632a94ba52adf183045620c509340`. The only copied file here, `proof/invariant-abstract/Deterministic_AI.thy`, is licensed `GPL-2.0-only`, as its own header declares (`SPDX-License-Identifier: GPL-2.0-only`, lines 1-5 of the [local copy](code/proof/invariant-abstract/Deterministic_AI.thy)). Upstream [`LICENSE.md`](https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/LICENSE.md) confirms this: "proofs about the seL4 kernel code itself are licensed under GPL version 2". (Note: the [source note](../../sources/l4v/SOURCE.md) still records `CC-BY-SA-4.0`, which is the licence of the `LICENSE.md` document's own comment header — not of the code — and is outside this entry's editable scope.)

@@ -1,7 +1,7 @@
 {
   "id": "latex-blueprint-node-pfr-b4120b97",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Blueprint node pfr_aux (PFR_conjecture_aux): fixed statement proved from eight labelled upstream nodes",
   "intent": "Freeze the statement and Lean name of the node `pfr_aux` before its proof, then prove it by composing eight already-stated upstream nodes, each cited by label and declared in one `\\uses{}` line, so the proof is a linear chain of citations rather than new constructions.",
   "move": "blueprint-node",
@@ -107,7 +107,7 @@
     }
   ],
   "applicability": {
-    "goal_shape": "A covering/transfer theorem whose hypotheses are about a set A (non-empty, doubling |A+A| ≤ K|A|) and whose conclusion quantifies over a witness H (existence of a subspace with a size bound), proved by a linear chain of citations to already-stated nodes.",
+    "goal_shape": "A lemma/theorem stated as a node with a frozen Lean name and a fixed statement, whose proof is a chain of citations to already-stated upstream nodes, all declared up front in a single `\\uses{}` line.",
     "use_when": "the result is a known combination of already-proved (or already-stated) lemmas; the proof is a sequence in which each step invokes exactly one upstream node; the statement can be frozen, with its Lean name and `\\leanok`, before the proof is written.",
     "avoid_when": "the proof needs a new construction or a new lemma that must itself be stated and proved (that belongs as its own node in the graph); the statement may still change (then do not fix the Lean name yet); or the hypotheses of the cited lemmas do not line up into a single chain."
   },
@@ -172,8 +172,15 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-1",
       "at": "2026-11-12T12:10:00Z"
+    },
+    {
+      "field": "applicability.goal_shape",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:00:58Z"
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-12T12:05:41Z"
+  "status_at": "2026-11-14T14:02:11Z"
 }

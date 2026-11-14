@@ -120,6 +120,102 @@
       "evidence": "Licence is recorded inconsistently with the copied files. Both copied files carry 'SPDX-License-Identifier: GPL-2.0-only' in their headers (code/proof/refine/Refine.thy line 6; code/proof/refine/ADT_H.thy line 6), yet entry.json source.licence, README's Licence row, SOURCE.md 'Licence (detected)' and source.json all record 'CC-BY-SA-4.0'. That tag is only the SPDX header of LICENSE.md itself; the upstream LICENSE.md (copied as upstream-LICENSE.md) states proofs about the seL4 kernel are GPL v2, libraries BSD-2-Clause. Permalinks and commit are otherwise consistent and traceable (check_provenance.py: 2 files byte-identical at 1abfe5bce98632a94ba52adf183045620c509340). Fix: set the licence to GPL-2.0-only in source.json, SOURCE.md, entry.json and README (or record per-file licences), and correct the source note's licence description.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-14T10:49:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:02:18Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: absHeap_correct@proof/refine/Refine.thy:100, absCDT_correct@proof/refine/Refine.thy:101, absIsOriginalCap_correct@proof/refine/Refine.thy:102, absSchedulerAction_correct@proof/refine/Refine.thy:106, domSchedule_map_relation@proof/refine/Refine.thy:107, absInterruptIRQNode_correct@proof/refine/Refine.thy:117, absInterruptStates_correct@proof/refine/Refine.thy:118, absExst_correct@proof/refine/Refine.thy:120; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:02:19Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:02:19Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: absHeap_correct@proof/refine/Refine.thy:100, absCDT_correct@proof/refine/Refine.thy:101, absIsOriginalCap_correct@proof/refine/Refine.thy:102, absSchedulerAction_correct@proof/refine/Refine.thy:106, domSchedule_map_relation@proof/refine/Refine.thy:107, absInterruptIRQNode_correct@proof/refine/Refine.thy:117, absInterruptStates_correct@proof/refine/Refine.thy:118, absExst_correct@proof/refine/Refine.thy:120; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:02:19Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 1abfe5bce98632a94ba52adf183045620c509340",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:02:32Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "object",
+      "evidence": "Entry-level licence is now consistent with the copied files (entry.json source.licence=GPL-2.0-only; README Licence row and Source-and-licence section=GPL-2.0-only; copied files carry SPDX GPL-2.0-only at Refine.thy:6 and ADT_H.thy:5; permalinks and commit traceable, check_provenance.py pass byte-identical at 1abfe5bce98632a94ba52adf183045620c509340). But the objection's fix is incomplete: the source note library/sources/l4v/SOURCE.md still records 'Licence (detected): CC-BY-SA-4.0' and library/sources/l4v/source.json still has 'licence': 'CC-BY-SA-4.0', contradicting the copied files' GPL-2.0-only headers and the entry's own recorded licence. Fix: set GPL-2.0-only (or per-file licences) in SOURCE.md and source.json to match.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T14:03:16Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:39:01Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: absHeap_correct@proof/refine/Refine.thy:100, absCDT_correct@proof/refine/Refine.thy:101, absIsOriginalCap_correct@proof/refine/Refine.thy:102, absSchedulerAction_correct@proof/refine/Refine.thy:106, domSchedule_map_relation@proof/refine/Refine.thy:107, absInterruptIRQNode_correct@proof/refine/Refine.thy:117, absInterruptStates_correct@proof/refine/Refine.thy:118, absExst_correct@proof/refine/Refine.thy:120; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:39:01Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:39:01Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: absHeap_correct@proof/refine/Refine.thy:100, absCDT_correct@proof/refine/Refine.thy:101, absIsOriginalCap_correct@proof/refine/Refine.thy:102, absSchedulerAction_correct@proof/refine/Refine.thy:106, domSchedule_map_relation@proof/refine/Refine.thy:107, absInterruptIRQNode_correct@proof/refine/Refine.thy:117, absInterruptStates_correct@proof/refine/Refine.thy:118, absExst_correct@proof/refine/Refine.thy:120; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:39:01Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 1abfe5bce98632a94ba52adf183045620c509340",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:39:23Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance and licence now consistent and traceable. check_provenance.py passes: 2 file(s) byte-identical at commit 1abfe5bce98632a94ba52adf183045620c509340, so the pinned commit and all permalinks resolve. Both copied files carry SPDX-License-Identifier: GPL-2.0-only in their headers (Refine.thy:6, ADT_H.thy:5), matching entry.json source.licence=GPL-2.0-only, the README Licence row, and the Source-and-licence section. The earlier objection is met: SOURCE.md now records Licence GPL-2.0-only AND BSD-2-Clause and source.json licence=GPL-2.0-only AND BSD-2-Clause (the old CC-BY-SA-4.0 survives only as licence_detected with a licence_note explaining the supersession). The entry-level GPL-2.0-only is a correct subset of the source-level per-file licences (proof files GPL-2.0, libraries BSD-2-Clause), confirmed against upstream-LICENSE.md: its CC-BY-SA-4.0 SPDX tag licenses LICENSE.md itself, not the code. No contradiction remains.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T14:39:46Z"
     }
   ]
 }

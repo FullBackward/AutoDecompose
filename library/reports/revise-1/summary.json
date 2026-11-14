@@ -1,0 +1,169 @@
+{
+  "run": "revise-1",
+  "date": "2026-11-14",
+  "started": "2026-11-14T14:00:20Z",
+  "gold_recall": "no gold standard",
+  "gold_missed": [],
+  "finish": {
+    "at": "2026-11-14T14:40:15Z",
+    "entries": {
+      "isabelle-extensionality-l4v-d181edcf": "accepted",
+      "rocq-extensionality-fiat-crypto-cb9f23da": "accepted",
+      "rocq-per-callee-lemma-wasmcert-coq-808e3c09": "accepted",
+      "rocq-suffices-or-strengthen-fiat-crypto-efce3e48": "accepted"
+    },
+    "calls": 4,
+    "tokens": 1269679,
+    "cost_cny": 1.13,
+    "halted": null,
+    "objections_rereviewed": {
+      "isabelle-extensionality-l4v-d181edcf": [
+        "provenance-licence"
+      ],
+      "rocq-per-callee-lemma-wasmcert-coq-808e3c09": [
+        "provenance-licence"
+      ],
+      "rocq-extensionality-fiat-crypto-cb9f23da": [
+        "provenance-licence"
+      ],
+      "rocq-suffices-or-strengthen-fiat-crypto-efce3e48": [
+        "provenance-licence"
+      ]
+    }
+  },
+  "calls": 71,
+  "tokens": 56923239,
+  "cost_cny": 40.45,
+  "finished": "2026-11-14T14:40:15Z",
+  "earlier_finish": [
+    {
+      "at": "2026-11-14T14:37:05Z",
+      "entries": {
+        "isabelle-extensionality-l4v-d181edcf": "verified",
+        "isabelle-suffices-or-strengthen-l4v-0a36f701": "accepted",
+        "isabelle-suffices-or-strengthen-l4v-d7945679": "accepted",
+        "latex-blueprint-node-pfr-b4120b97": "accepted",
+        "lean-calc-chain-carleson-eeedf502": "accepted",
+        "lean-calc-chain-compfiles-5cbadaea": "accepted",
+        "lean-case-split-mathlib4-c53126e3": "accepted",
+        "lean-generalise-then-instantiate-arklib-c3287ad6": "accepted",
+        "lean-iff-split-flt-imperial-0fde62f1": "accepted",
+        "lean-induction-classfieldtheory-66c37f83": "accepted",
+        "lean-induction-mathlib4-e5402126": "accepted",
+        "lean-induction-sampcert-9437187d": "accepted",
+        "lean-interface-lemma-equational-theories-048d3d79": "accepted",
+        "lean-key-invariant-numina-putnam2025-7117dd00": "accepted",
+        "lean-per-callee-lemma-cedar-spec-ffe042b1": "accepted",
+        "lean-per-callee-lemma-equational-theories-b60a63fd": "accepted",
+        "lean-suffices-or-strengthen-pfr-16fd5d4d": "accepted",
+        "lean-witness-mathlib4-98e915ff": "accepted",
+        "lean-witness-sphere-eversion-2ae37d14": "accepted",
+        "rocq-extensionality-fiat-crypto-cb9f23da": "verified",
+        "rocq-extensionality-fourcolor-a5f0540e": "accepted",
+        "rocq-induction-interaction-trees-b0a7a191": "accepted",
+        "rocq-key-invariant-rocq-stdlib-9cc84753": "accepted",
+        "rocq-key-invariant-verdi-09db5810": "accepted",
+        "rocq-other-math-comp-2c832601": "accepted",
+        "rocq-per-callee-lemma-fourcolor-3d7b1949": "accepted",
+        "rocq-per-callee-lemma-metarocq-861d7783": "accepted",
+        "rocq-per-callee-lemma-wasmcert-coq-808e3c09": "verified",
+        "rocq-suffices-or-strengthen-fiat-crypto-efce3e48": "verified"
+      },
+      "calls": 67,
+      "tokens": 55653560,
+      "cost_cny": 39.32,
+      "halted": null,
+      "objections_revised": {
+        "lean-generalise-then-instantiate-arklib-c3287ad6": [
+          "generality"
+        ],
+        "latex-blueprint-node-pfr-b4120b97": [
+          "generality"
+        ],
+        "isabelle-suffices-or-strengthen-l4v-d7945679": [
+          "provenance-licence"
+        ],
+        "isabelle-extensionality-l4v-d181edcf": [
+          "provenance-licence"
+        ],
+        "lean-calc-chain-compfiles-5cbadaea": [
+          "correctness"
+        ],
+        "isabelle-suffices-or-strengthen-l4v-0a36f701": [
+          "provenance-licence"
+        ],
+        "lean-iff-split-flt-imperial-0fde62f1": [
+          "generality"
+        ],
+        "lean-induction-sampcert-9437187d": [
+          "correctness"
+        ],
+        "lean-key-invariant-numina-putnam2025-7117dd00": [
+          "generality"
+        ],
+        "lean-case-split-mathlib4-c53126e3": [
+          "correctness"
+        ],
+        "lean-per-callee-lemma-cedar-spec-ffe042b1": [
+          "generality"
+        ],
+        "lean-induction-mathlib4-e5402126": [
+          "correctness"
+        ],
+        "lean-suffices-or-strengthen-pfr-16fd5d4d": [
+          "correctness"
+        ],
+        "lean-witness-mathlib4-98e915ff": [
+          "generality"
+        ],
+        "lean-per-callee-lemma-equational-theories-b60a63fd": [
+          "correctness"
+        ],
+        "lean-induction-classfieldtheory-66c37f83": [
+          "correctness"
+        ],
+        "rocq-extensionality-fiat-crypto-cb9f23da": [
+          "provenance-licence"
+        ],
+        "lean-interface-lemma-equational-theories-048d3d79": [
+          "correctness"
+        ],
+        "lean-calc-chain-carleson-eeedf502": [
+          "correctness"
+        ],
+        "rocq-key-invariant-rocq-stdlib-9cc84753": [
+          "generality"
+        ],
+        "lean-witness-sphere-eversion-2ae37d14": [
+          "correctness"
+        ],
+        "rocq-other-math-comp-2c832601": [
+          "correctness",
+          "generality"
+        ],
+        "rocq-per-callee-lemma-fourcolor-3d7b1949": [
+          "generality"
+        ],
+        "rocq-per-callee-lemma-wasmcert-coq-808e3c09": [
+          "provenance-licence"
+        ],
+        "rocq-key-invariant-verdi-09db5810": [
+          "correctness"
+        ],
+        "rocq-suffices-or-strengthen-fiat-crypto-efce3e48": [
+          "provenance-licence"
+        ],
+        "rocq-extensionality-fourcolor-a5f0540e": [
+          "correctness"
+        ],
+        "rocq-per-callee-lemma-metarocq-861d7783": [
+          "correctness"
+        ],
+        "rocq-induction-interaction-trees-b0a7a191": [
+          "correctness",
+          "generality"
+        ]
+      }
+    }
+  ]
+}

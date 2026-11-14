@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | induction |
 | Language | lean |
-| Status | verified |
+| Status | accepted |
 | Source | [classfieldtheory](../../sources/classfieldtheory/SOURCE.md) at `1e7f5dbe3835` |
 | Licence | `Apache-2.0` |
 
@@ -116,16 +116,43 @@ Lemma graph (which project lemma uses which):
 
 ```
 inflation_restriction_exact
- ├─ IsoNext ── δUpResIso ── isIso_δ_up_res      (UpDown.lean 143-146)
- │            └ isIso_δ_ofhM                    (InflationRestriction.lean 81-87)
- ├─ isoHInfRes
- └─ δUpResIso ─ isIso_δ_up_res                  (UpDown.lean 143-146)
+ ├─ isoHInfRes                       (leaf: Mathlib-closing)
+ ├─ IsoNext ── δUpResIso ── isIso_δ_up_res ── isZero_of_injective ── resSubtypeRangeIso
+ │            ├─ isIso_δ_ofhM ── isZero_of_trivialCohomology ── isZero_of_injective ── resSubtypeRangeIso
+ │            ├─ isIso_δ_ofhM ── coind₁'_quotientToInvariants_trivialCohomology ── coind₁_quotientToInvariants_trivialCohomology
+ │            │               ── coind₁_quotientToInvariants_iso ── coind₁_quotientToInvariants_iso_comm
+ │            ├─ infl_δ_naturality    (leaf: Mathlib-closing)
+ │            └─ rest_δ_naturality    (leaf: Mathlib-closing)
+ └─ δUpResIso ── isIso_δ_up_res ── isZero_of_injective ── resSubtypeRangeIso
 ```
 
-`IsoNext` also cites Mathlib's `infl_δ_naturality` and `rest_δ_naturality` for
-its two commutation fields; the longest checked chain of project lemmas below
-the main theorem is `inflation_restriction_exact → IsoNext → δUpResIso →
-isIso_δ_up_res` (depth 3).
+`IsoNext` also cites the project lemmas `infl_δ_naturality`
+([Inflation.lean 132-149](https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/Functors/Inflation.lean#L132-L149))
+and `rest_δ_naturality`
+([Restriction.lean 167-182](https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/Functors/Restriction.lean#L167-L182))
+for its two commutation fields; each closes by one Mathlib application of
+`HomologySequence.δ_naturality`, so each is a leaf at depth 2.
+
+The longest chain of project lemmas below the main theorem is
+
+`inflation_restriction_exact → IsoNext → isIso_δ_ofhM →
+coind₁'_quotientToInvariants_trivialCohomology →
+coind₁_quotientToInvariants_trivialCohomology →
+coind₁_quotientToInvariants_iso → coind₁_quotientToInvariants_iso_comm`
+
+(depth 6): seven project lemmas and six edges. It bottoms out at
+`coind₁_quotientToInvariants_iso_comm`
+([IndCoind/Finite.lean 433-445](https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/IndCoind/Finite.lean#L433-L445)),
+whose proof closes by `obtain`/`ext`/`simp` over Mathlib and the `rfl` lemmas
+`coind₁_quotientToInvariants_iso_equiv_apply_val` and
+`coind₁_quotientToInvariants_iso_aux1_apply_val`, so the chain ends there. The
+parallel branch `inflation_restriction_exact → IsoNext → δUpResIso →
+isIso_δ_up_res → isZero_of_injective → resSubtypeRangeIso` has depth 5, ending
+at `resSubtypeRangeIso`
+([Restriction.lean 184-197](https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/Functors/Restriction.lean#L184-L197)),
+which closes over Mathlib's `groupCohomology.map` API. (`isIso_δ_of_isZero`,
+used by both `isIso_δ_up_res` and `isIso_δ_ofhM`, is a Mathlib lemma, not a
+project lemma.)
 
 Why each child is a good leaf:
 
@@ -196,7 +223,7 @@ content would go; if the step cannot be phrased as isomorphism transport
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
@@ -217,7 +244,7 @@ Status: **verified**
 
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
-| correctness | object | Decomposition, children, closing methods, closing, and direct_lemmas/glue_lines/child_lines all check out: parent inflation_restriction_exact is at InflationRestriction.lean 143-163 (21 lines), induction n generalizing M; zero branch uses isoHInfRes (105-119, 15 lines), succ branch uses IsoNext (89-101, 13 lines) and deltaUpResIso (UpDown.lean 148-151, 4 lines); all three children are exactly the project lemmas the parent cites, statements and closed_by match the code verbatim, both branches close with exact and there is no sorry. One shape number is wrong: shape.depth=3 understates the longest chain of project lemmas below the theorem. isIso_delta_up_res (UpDown.lean 143-146), which ends the entry's claimed longest chain, itself delegates to project lemmas isIso_delta_of_isZero and isZero_of_injective (lines 145-146), and the child IsoNext also uses isIso_delta_ofhM (InflationRestriction.lean 81-87) which uses coind1'_quotientToInvariants_trivialCohomology and isZero_of_trivialCohomology (lines 84,87); these are project lemmas (not Mathlib), so the true longest chain is at least inflation_restriction_exact -> IsoNext -> deltaUpResIso -> isIso_delta_up_res -> isZero_of_injective, depth >= 4. Fix: trace the chains to their project-lemma leaves and set shape.depth (and README's 'depth 3' text) to the true value (>= 4). | reviewer-correctness |
+| correctness | accept | Decomposition, children, closing methods and closing all check out against the copied code: parent inflation_restriction_exact is InflationRestriction.lean 143-163 (21 lines), 'induction n generalizing M'; zero branch closes with 'exact ShortComplex.exact_of_iso (isoHInfRes surj 0 M).symm (H1InfRes_exact M φ.ker)' (158), succ branch with 'exact ShortComplex.exact_of_iso (IsoNext surj n M (hM 0 (by omega))) ih' (163); no sorry (sorry-scan pass). The three children are exactly the project defs the parent cites (IsoNext@163, isoHInfRes@158, δUpResIso@161), statements and closed_by verbatim, child_lines [13,15,4] and glue_lines 21 match the site ranges, direct_lemmas=3 correct. The previously-objected shape.depth is now right: I traced the claimed longest chain in the source (isIso_δ_ofhM uses coind₁'_quotientToInvariants_trivialCohomology at InflationRestriction.lean 84; coind₁'_quotientToInvariants_trivialCohomology uses coind₁_quotientToInvariants_trivialCohomology at TrivialCohomology.lean 222; that instance uses Rep.coind₁_quotientToInvariants_iso at line 215; coind₁_quotientToInvariants_iso uses coind₁_quotientToInvariants_iso_comm at Finite.lean 452; coind₁_quotientToInvariants_iso_comm closes by obtain/ext/simp over rfl lemmas at 433-445), giving inflation_restriction_exact → IsoNext → isIso_δ_ofhM → coind₁' → coind₁ → iso → iso_comm = 7 project lemmas, 6 edges = depth 6, matching shape.depth=6 and README. Parallel branch ...→δUpResIso→isIso_δ_up_res→isZero_of_injective→resSubtypeRangeIso is depth 5 (isIso_δ_of_isZero is Mathlib, not project). No longer chain exists. | reviewer-correctness |
 | generality | accept | Move stated beyond the example: goal_shape abstracts to 'P n on a complex indexed by degree n with a named base case and a step expressible as transport along an isomorphism', with also_known_as linking to Lean generalizing / Isabelle arbitrary, and a verified known-use (sibling inflation_restriction_mono, lines 121-141, confirmed in code to reuse the identical skeleton). When-not-to-use and consequences are honest and specific: avoid_when flags the three real failure modes (base case not already a named lemma, step needing a new argument rather than iso transport, generalised hypothesis at up.obj M not dischargeable by one dimension shift), and consequences states the obligations (proving hM at up.obj M via IsZero.of_iso + δUpResIso; generalizing M forces a strong enough IH). It does say what makes these good bounded-prover leaves: each child is a self-contained statement with a term-level (not tactic) proof delegating to already-proved lemmas (isoHInfRes packages the base case as a reduction to Mathlib's H1InfRes_exact; IsoNext is pure ShortComplex.isoMk assembly of asIso terms + naturality lemmas; δUpResIso closes in two lines via isIso_δ_up_res). | reviewer-generality |
 | provenance-licence | accept | Permalinks, commit, licence and source note are consistent and traceable. All four site permalinks point at pinned commit 1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7 with line ranges that match the copied files verbatim (parent 143-163, IsoNext 89-101, isoHInfRes 105-119 in InflationRestriction.lean; dUpResIso 148-151 in UpDown.lean). check_provenance.py reports both files byte-identical at that commit. Licence recorded as Apache-2.0 in entry.json, README and source.json/SOURCE.md; sources/classfieldtheory/upstream-LICENSE is the Apache-2.0 text. Byte counts in entry.json (7589, 16556) match the copied files. | reviewer-provenance-licence |
 <!-- verification:end -->

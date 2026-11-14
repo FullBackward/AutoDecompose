@@ -112,6 +112,70 @@
       "evidence": "Commit 8b87204d5b201e1cf6c69b8dcabb0558109bee00 is consistent across entry.json source/files/sites, every permalink, and sources/equational-theories/SOURCE.md; check_provenance.py reports 5 files byte-identical at that commit; recorded sha256/byte counts match the local code copies (Completeness 9008B, MagmaLaw 14231B, Magma 1436B, Homomorphisms 11972B, FreeMagma 10073B); licence Apache-2.0 in entry.json matches SOURCE.md ('Apache-2.0 (detected)') and upstream-LICENSE (Apache License 2.0); all cited line ranges (Completeness.lean 100-109, 123-129, 147-154, 156-158; MagmaLaw.lean 96-98) exist and match the README excerpts; SOURCE.md records the pin timestamp and attribution. Everything traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-14T11:07:47Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:13:59Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: models_def'@equational_theories/Completeness.lean:158, FreeMagmaWithLaws.isDerives@equational_theories/Completeness.lean:158, FreeMagmaWithLaws.isModel@equational_theories/Completeness.lean:158; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:13:59Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:14:00Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: models_def'@equational_theories/Completeness.lean:158, FreeMagmaWithLaws.isDerives@equational_theories/Completeness.lean:158, FreeMagmaWithLaws.isModel@equational_theories/Completeness.lean:158; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:14:00Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "5 file(s) byte-identical at 8b87204d5b201e1cf6c69b8dcabb0558109bee00",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:14:09Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/blueprint-paper.yml, job build_project (step 'Build project') runs '~/.elan/bin/lake build equational_theories' on push to main with paths including '**/*.lean'; Completeness.lean is inside the equational_theories package; default branch is main; commit 8b87204d5b201e1cf6c69b8dcabb0558109bee00",
+      "by": "verifier",
+      "at": "2026-11-14T14:15:34Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read code/equational_theories/Completeness.lean 96-162: Completeness' = 156-158 (3 lines); models_def' = 147-154 (8); FreeMagmaWithLaws.isDerives = 100-109 (10); FreeMagmaWithLaws.isModel = 123-129 (7); glue line 158 'FreeMagmaWithLaws.isDerives (models_def'.1 h _ (FreeMagmaWithLaws.isModel β Γ))' cites all three children directly; chain Completeness'(158 -> models_def'.1) -> models_def'(152 -> models_iff_u.1) -> models_iff_u(133 -> isModel) -> isModel(126 -> PhiAsSubst) -> PhiAsSubst(120 -> PhiAsSubst_aux) -> PhiAsSubst_aux, 5 edges = depth 5",
+      "by": "verifier",
+      "at": "2026-11-14T14:15:36Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Prior depth objection fully addressed. Verified against copied code Completeness.lean 84-162 and MagmaLaw.lean 96-98: glue line 158 cites exactly the three children models_def', FreeMagmaWithLaws.isDerives, FreeMagmaWithLaws.isModel and nothing else; their statements in entry.json/README match the code verbatim; the glue type-checks/closes (isModel: FreeMagmaWithLaws beta Gamma |= Gamma; models_def'.1 h _ (..): FreeMagmaWithLaws beta Gamma |= E; isDerives (..): Nonempty (Gamma |-' E)). Shape numbers now right: direct_lemmas 3, glue_lines 3 (156-158), child_lines [8,10,7] (147-154, 100-109, 123-129), depth 5 = longest chain Completeness'->models_def'(152)->models_iff_u(131-135)->isModel(133)->PhiAsSubst(126)->PhiAsSubst_aux(120); I confirmed each citation; alternative chain via models_iff_u->isDerives->evalInMagmaIsQuot is depth 4, and Soundness'_u (11-30) is a leaf (induction over the derivation, no named project lemmas) so no longer chain exists. README lemma graph now has models_iff_u->isModel and models_iff_u->isDerives edges; Why-it-is-good point 3 says depth 5; claim 5 records the corrected chain.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T14:18:47Z"
     }
   ]
 }

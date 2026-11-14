@@ -128,6 +128,94 @@
       "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
       "by": "sorry_scan.py",
       "at": "2026-11-14T08:00:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:30:48Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: bisimilar_bind'@tutorial/Imp2AsmCorrectness.v:836, bisimilar_iter@tutorial/Imp2AsmCorrectness.v:901, seq_asm_correct@tutorial/Imp2AsmCorrectness.v:851, if_asm_correct@tutorial/Imp2AsmCorrectness.v:862, while_asm_correct@tutorial/Imp2AsmCorrectness.v:893, compile_expr_correct@tutorial/Imp2AsmCorrectness.v:871, compile_assign_correct@tutorial/Imp2AsmCorrectness.v:837, while_is_loop@tutorial/Imp2AsmCorrectness.v:890, raw_asm_block_correct@tutorial/Imp2AsmCorrectness.v:831, fold_to_itree'@tutorial/Imp2AsmCorrectness.v:850, pure_asm_correct@tutorial/Imp2AsmCorrectness.v:968; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:30:48Z"
+    },
+    {
+      "type": "claim",
+      "key": "6",
+      "value": "verified",
+      "evidence": "cites(parent, raw_asm_block_correct) -> cites: raw_asm_block_correct occurs at tutorial/Imp2AsmCorrectness.v:831",
+      "by": "check_claims.py",
+      "at": "2026-11-14T14:30:49Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:30:49Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: bisimilar_bind'@tutorial/Imp2AsmCorrectness.v:836, bisimilar_iter@tutorial/Imp2AsmCorrectness.v:901, seq_asm_correct@tutorial/Imp2AsmCorrectness.v:851, if_asm_correct@tutorial/Imp2AsmCorrectness.v:862, while_asm_correct@tutorial/Imp2AsmCorrectness.v:893, compile_expr_correct@tutorial/Imp2AsmCorrectness.v:871, compile_assign_correct@tutorial/Imp2AsmCorrectness.v:837, while_is_loop@tutorial/Imp2AsmCorrectness.v:890, raw_asm_block_correct@tutorial/Imp2AsmCorrectness.v:831, fold_to_itree'@tutorial/Imp2AsmCorrectness.v:850, pure_asm_correct@tutorial/Imp2AsmCorrectness.v:968; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:30:49Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 284d42248a3c5517cff9f582e335fcee2f6bdc1f",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:30:58Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": "Pinned commit 284d42248a3c5517cff9f582e335fcee2f6bdc1f on default branch master; .github/workflows/docker-action.yml (on push to master) builds via coq-itree.opam (dune build -p coq-itree @install @runtest @doc), which includes tutorial/dune (coq.theory (name ITreeTutorial) (theories ITree)) covering tutorial/Imp2AsmCorrectness.v; .github/workflows/build-with-make.yml (on push to master) runs make all.",
+      "by": "verifier",
+      "at": "2026-11-14T14:33:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "7",
+      "value": "verified",
+      "evidence": "Read the entry's byte-identical code. Parent glue body Imp2AsmCorrectness.v L824-L976 = 153 lines (Proof. at 824, Qed. at 976). It cites 11 distinct project lemmas: raw_asm_block_correct L831, bisimilar_bind' L836/L854, compile_assign_correct L837, fold_to_itree' L850/L861/L891, seq_asm_correct L851, if_asm_correct L862, compile_expr_correct L871/L927, while_is_loop L892, while_asm_correct L893, bisimilar_iter L901, pure_asm_correct L968. Child proof bodies (Proof..Qed) match: bisimilar_bind' L359-L371=13, bisimilar_iter L381-L402=22, seq_asm_correct L457-L462=6, if_asm_correct L472-L520=49, while_asm_correct L536-L579=44, compile_expr_correct L602-L713=112, compile_assign_correct L723-L753=31, while_is_loop L779-L797=19, raw_asm_block_correct AsmCombinators.v L298-L300=3. Dependency chain depth 4: compile_assign_correct applies compile_expr_correct at L735; compile_expr_correct applies sim_rel_binary_op at L656; sim_rel_binary_op applies sim_rel_Renv at L281; sim_rel_Renv closes on its own (L207-L210, Proof at 209, apply H).",
+      "by": "verifier",
+      "at": "2026-11-14T14:33:39Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 284d42248a3c5517cff9f582e335fcee2f6bdc1f",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:34:23Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Prior objection fixed: raw_asm_block_correct is now the 11th child (site AsmCombinators.v#L296-L300), direct_lemmas=11 in shape and metrics, claim 6 records cites(parent, raw_asm_block_correct) at Imp2AsmCorrectness.v#L831. Re-verified whole lens against copied code: parent compile_correct is induction s (L826) with one case per constructor, closes at Qed L976, no admit/axiom in either copied file. The 11 direct lemmas applied in the glue are exactly the 11 children (raw_asm_block_correct L831, bisimilar_bind' L836/L854, compile_assign_correct L837, fold_to_itree' L850/L861/L891, seq_asm_correct L851, if_asm_correct L862, compile_expr_correct L871/L927, while_is_loop L892, while_asm_correct L893, bisimilar_iter L901, pure_asm_correct L968); no extra child, none missing, and all 11 child statements and closed_by fields match the code verbatim. Shape numbers right: glue_lines=155 = parent site 822-976 (declaration-included), child_lines=[19,30,9,55,54,117,35,26,5] = the 9 child sites (bisimilar_bind' 353-371=19, bisimilar_iter 373-402=30, seq_asm_correct 454-462=9, if_asm_correct 466-520=55, while_asm_correct 526-579=54, compile_expr_correct 597-713=117, compile_assign_correct 719-753=35, while_is_loop 772-797=26, raw_asm_block_correct 296-300=5); metrics proof-body counts 153 and [13,22,6,49,44,112,31,19,3] all match; depth-4 chain verified (compile_assign_correct L735 -> compile_expr_correct L656 -> sim_rel_binary_op L281 -> sim_rel_Renv L207-211).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T14:36:01Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated transferably: goal_shape is 'forall s : stmt, equivalent s (compile s)' over an inductive syntax type proved by induction s, and use_when/avoid_when name the enabling conditions (per-constructor linking lemmas raw_asm_block_correct/seq_asm_correct/if_asm_correct/while_asm_correct/pure_asm_correct, leaf correctness lemmas, a library bind/iter bisimulation lemma bisimilar_bind'/bisimilar_iter). When-not-to-use is honest and specific (unproved linking lemmas; non-uniform target semantics; diverging constructor without coinductive iter/eutt_iter'). Good-leaves question answered at README L612-622 (self-contained statements; linking lemmas close on library lemmas; compile_* close by own induction/eutt_clo_bind; bisimilar_* close on eutt_clo_bind/eutt_iter'; fold_to_itree'/pure_asm_correct are reflexivity). Prior objection's fix is correctly applied: both README Consequences (L684-686) and entry.json consequences (L280) now say 'the three control-flow cases (Seq, If, While) each depend on fold_to_itree''; verified against local copy that fold_to_itree' appears only at L850/861/891 (Assign uses raw_asm_block_correct L831, Skip uses pure_asm_correct L968).",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T14:36:57Z"
     }
   ]
 }

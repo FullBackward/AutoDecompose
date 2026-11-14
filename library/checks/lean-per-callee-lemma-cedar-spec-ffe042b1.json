@@ -128,6 +128,46 @@
       "evidence": "check_provenance.py passes: 3 copied files byte-identical at commit e619491a5bfb04970ef994dbe286df0bb9d0b73f. Commit is pinned and consistent across entry.json source.commit, README, source note, and source.json. Licence Apache-2.0 recorded identically in entry.json, README and SOURCE.md, and upstream-LICENSE is the Apache 2.0 text with upstream-NOTICE present. All permalinks use the same commit; the cited line ranges (Authorization.lean 158-166, Authorizer.lean 62-78 and 80-126, Spec/Authorizer.lean 56-62) match the local copies and README excerpts verbatim. Source note links the entry to the repo, commit, licence files and attribution.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-14T12:59:38Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:09:00Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: satisfiedPolicies_order_and_dup_independent@cedar-lean/Cedar/Thm/Authorization.lean:163, errorPolicies_order_and_dup_independent@cedar-lean/Cedar/Thm/Authorization.lean:165; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:09:00Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:09:01Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: satisfiedPolicies_order_and_dup_independent@cedar-lean/Cedar/Thm/Authorization.lean:163, errorPolicies_order_and_dup_independent@cedar-lean/Cedar/Thm/Authorization.lean:165; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:09:01Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generally (one lemma per component of a structured definition; glue a fixed simp [f, h1..hn]; use_when names goal_shape f x = f y / congruence over let-bound+branching composites). The avoid_when is now correct: it says the body must depend only on the components and fails when it reads anything outside the per-component equalities (raw policies, or an argument not held equal), and explicitly notes branching on the components themselves (isAuthorized branches on forbids.isEmpty && !permits.isEmpty) is fine by congruence -- verified against Spec/Authorizer.lean:56-62. Consequences are specific and honest: cover every component, components must be Set.make (filterMap g), glue closes only because isAuthorized is literally the three components, and the near-identical-template failure mode is named. The good-leaf question is answered: self-contained statement, 3-step proof (unfold / rw Set.make_make_eqv / exact List.filterMap_equiv), no sibling needed, and it names the shared template with different predicates. Minor wording blemish only: consequence (3) says 'branches on more than set-equality' where it means 'reads something beyond the component equalities'; not misleading given the avoid_when parenthetical, so not a standing objection.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T14:09:53Z"
     }
   ]
 }

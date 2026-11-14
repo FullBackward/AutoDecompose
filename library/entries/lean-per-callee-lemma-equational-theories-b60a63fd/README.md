@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | per-callee-lemma |
 | Language | lean |
-| Status | verified |
+| Status | accepted |
 | Source | [equational-theories](../../sources/equational-theories/SOURCE.md) at `8b87204d5b20` |
 | Licence | `Apache-2.0` |
 
@@ -654,7 +654,7 @@ The lemma graph, in text:
   and `IsChain.IsDirected` (MagmaConstruction.lean:129).
 - `enlarge_op` uses `enlarge_S'` (lines 2056, 2060) and `enlarge_L₀'` (line
   2065).
-- `enlarge_S'` uses `enlarge_S'_induction` (lines 2049, 2053), which uses
+- `enlarge_S'` uses `enlarge_S'_induction` (lines 2047, 2051), which uses
   `enlarge_S'_induction_with_axioms` (lines 1990, 2038) and
   `enlarge_L₀'_multiple` (line 1996); `enlarge_L₀'_multiple` uses `enlarge_L₀'`
   (line 569).
@@ -663,14 +663,14 @@ The lemma graph, in text:
 
 The longest chain of project lemmas below `not_817` that I checked is
 `not_817 → enlarge_op → enlarge_S' → enlarge_S'_induction →
-enlarge_S'_induction_with_axioms`, four levels deep.
+enlarge_L₀'_multiple → enlarge_L₀'`, five levels deep.
 
 Why each direct lemma is a good leaf — a self-contained statement whose proof
 closes on its own or from named siblings:
 
-- `TrivialPartialSolution` — the empty partial solution; every `axiom_*` field
-  closes from `Finset.notMem_empty`. It is the base of the chain, not a
-  theorem.
+- `TrivialPartialSolution` — the empty partial solution; ten of its eleven
+  `axiom_*` fields close from `Finset.notMem_empty` and `axiom_L` from `simp`.
+  It is the base of the chain, not a theorem.
 - `use_chain` — takes a chain plus three totality hypotheses and returns the
   goal type; its proof is a filter limit plus `reduce_to_new_axioms`,
   independent of how the totality was achieved.
@@ -690,7 +690,7 @@ closes on its own or from named siblings:
    40) and `enlarge_op` (line 43) in the `match b with` dispatch (`check`, the
    parent permalink in `sites`).
 2. The glue dispatches over the three components of `β = N ⊕ N ⊕ (N × N)` (the
-   `match b with` at lines 32-43), one enlargement lemma per component, and the
+   `match b with` at line 33, dispatch spanning lines 32-43), one enlargement lemma per component, and the
    whole main proof is 29 lines, lines 15-43 (`measurement`, the parent
    permalink plus the three child permalinks in `sites`).
 3. The authors' blueprint node `1729_refute_817` lists the proof dependencies
@@ -743,14 +743,14 @@ extending `Dom_op`.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/blueprint-paper.yml (job build_project, '~/.elan/bin/lake build equational_theories' line 110) triggers on push to main with paths '**/*.lean'; pinned commit 8b87204d5b201e1cf6c69b8dcabb0558109bee00 is HEAD of main (compare status identical) | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: use_chain@equational_theories/ManuallyProved/Equation1729.lean:23, enlarge_L₀'@equational_theories/ManuallyProved/Equation1729.lean:36, enlarge_S'@equational_theories/ManuallyProved/Equation1729.lean:40, enlarge_op@equational_theories/ManuallyProved/Equation1729.lean:43, TrivialPartialSolution@equational_theories/ManuallyProved/Equation1729.lean:21; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
-| provenance | pass | 3 file(s) byte-identical at 8b87204d5b201e1cf6c69b8dcabb0558109bee00 | check_provenance.py | 2026-11-12 |
+| provenance | pass | 3 file(s) byte-identical at 8b87204d5b201e1cf6c69b8dcabb0558109bee00 | check_provenance.py | 2026-11-14 |
 | sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
@@ -763,7 +763,7 @@ Status: **verified**
 
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
-| correctness | object | Decomposition is correct and closes: no sorry/admit/Admitted; parent not_817 closes from exists_greedy_chain, TrivialPartialSolution, use_chain, enlarge_L0', enlarge_S', enlarge_op; all five children statements match code verbatim and are exactly what the main proof uses. glue_lines 29, child_lines [53,71,50,10,367], direct_lemmas 5 are right. But shape.depth is 4 while the entry's own README documents a 5-level chain: not_817 -> enlarge_op (wlog calls enlarge_S' at 2056/2060) -> enlarge_S' (calls enlarge_S'_induction at 2051) -> enlarge_S'_induction (calls enlarge_L0'_multiple at 1996) -> enlarge_L0'_multiple (calls enlarge_L0' at 569) -> enlarge_L0'. Fix: recompute depth to at least 5. Minor: TrivialPartialSolution has eleven axiom fields and axiom_L closes with simp not Finset.notMem_empty, so closed_by ten-fields-each-by-notMem_empty is wrong; enlarge_S' closed_by cites call sites 2049/2053 but enlarge_S'_induction is called at 2047/2051; claim 2 places match b with at line 32 but it is line 33. | reviewer-correctness |
+| correctness | accept | Re-verified against the copied code: parent not_817 (Equation1729.lean 14-43) closes with no sorry/admit, using TrivialPartialSolution@21, use_chain@23, enlarge_L0'@36, enlarge_S'@40, enlarge_op@43 in a match-b-with dispatch at L33. All five child statements are verbatim. Closed_by now matches: TrivialPartialSolution has eleven axiom fields (ten via Finset.notMem_empty, axiom_L via simp); enlarge_S' calls enlarge_S'_induction at 2047 and 2051; enlarge_op wlogs call enlarge_S' at 2056/2060 and enlarge_L0' at 2065; use_chain applies reduce_to_new_axioms. Depth chain verified to 5: not_817->enlarge_op(2056/2060/2065)->enlarge_S'(2047/2051)->enlarge_S'_induction(enlarge_L0'_multiple@1996)->enlarge_L0'_multiple(enlarge_L0'@569)->enlarge_L0'. Shape numbers right: direct_lemmas 5, depth 5, glue_lines 30 (= parent site 14-43), child_lines [53,71,50,10,367] recomputed by validate_entry.py --strict (passes). Claim 2 match-b-with now line 33 (intro sol b at 32). All prior objection points resolved. | reviewer-correctness |
 | generality | accept | Move generalized beyond the example: README 'When to use it' abstracts goal 1729-not-817 to '∃ G, P G ∧ ¬ Q G via a greedy/back-and-forth limit of finite partial solutions' and the concrete index to 'a sum-indexed totality condition with one enlargement lemma per component, glue = dispatch over the index'; applicability.goal_shape/use_when restate it. avoid_when names three specific honest failures (components with genuinely different arguments → not one family; no off-the-shelf combinator → glue carries the work; many components → generated/folded form wins). Consequences list concrete obligations (instantiate exists_greedy_chain, seed nonempty, exhaustiveness via match coverage check) plus the domain-preservation failure mode with specifics (enlarge_L₀' returns Dom_S'=Dom_S'; enlarge_op wlogs via enlarge_S'/enlarge_L₀'). Good-leaf section states the bounded-prover criterion ('self-contained statement whose proof closes on its own or from named siblings') per lemma. | reviewer-generality |
 | provenance-licence | accept | check_provenance.py passes: all 3 copied files byte-identical at pinned commit 8b87204d5b201e1cf6c69b8dcabb0558109bee00, and recorded sha256 hashes match the local copies; commit agrees across entry.json, source.json and SOURCE.md; licence Apache-2.0 consistent across entry.json, source.json, SOURCE.md and the copied upstream-LICENSE (Apache 2.0 text with Equational Theories Project copyright); every file and site permalink points at github.com/teorth/equational_theories/blob/<commit>/<path> matching the copied paths. | reviewer-provenance-licence |
 <!-- verification:end -->

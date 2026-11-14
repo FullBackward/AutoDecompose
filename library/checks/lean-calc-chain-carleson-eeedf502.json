@@ -128,6 +128,102 @@
       "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
       "by": "sorry_scan.py",
       "at": "2026-11-14T08:00:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:15:06Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: le_C2_0_2@Carleson/Discrete/MainTheorem.lean:68, exceptional_set@Carleson/Discrete/MainTheorem.lean:49, forest_union@Carleson/Discrete/MainTheorem.lean:63, forest_complement@Carleson/Discrete/MainTheorem.lean:63; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:15:06Z"
+    },
+    {
+      "type": "claim",
+      "key": "7",
+      "value": "verified",
+      "evidence": "cites(parent, measurable_G') -> cites: measurable_G' occurs at Carleson/Discrete/MainTheorem.lean:51",
+      "by": "check_claims.py",
+      "at": "2026-11-14T14:15:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:15:07Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: le_C2_0_2@Carleson/Discrete/MainTheorem.lean:68, exceptional_set@Carleson/Discrete/MainTheorem.lean:49, forest_union@Carleson/Discrete/MainTheorem.lean:63, forest_complement@Carleson/Discrete/MainTheorem.lean:63; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:15:07Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:15:35Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push.yml builds the Carleson library on push to master via leanprover/lean-action (build: true, build-args 'Carleson Challenge Solution'); commit d75f54374f7f930e70a86b443f20d0e0935c275e is on master, the default branch (verified via GitHub API: default_branch=master, compare d75f543...master = ahead_by 1 / behind_by 0, so the commit is an ancestor of master)",
+      "by": "verifier",
+      "at": "2026-11-14T14:17:10Z"
+    },
+    {
+      "type": "claim",
+      "key": "6",
+      "value": "verified",
+      "evidence": "Read MainTheorem.lean 44-68 whole (copied file, 69 lines): the parent proof cites exactly the four bound-carrying project lemmas — exceptional_set (line 49 'have exc := exceptional_set'), forest_union and forest_complement (line 63 'add_le_add (forest_union hf measf) (forest_complement hf measf)'), and le_C2_0_2 (line 68 'apply le_C2_0_2 ...'); the calc chain (53-68) uses no other bound-carrying project lemma (exceptional_set is used at 49-50, outside the calc). The only other named project lemma cited directly is measurable_G' (line 51 'use G', measurable_G', ...'), which closes the MeasurableSet G' conjunct, not a bound. Remaining identifiers match the claim: Mathlib lemmas setLIntegral_mono (55), lintegral_add_left (60), ENNReal.mul_le_of_le_div' (51), Finset.sum_filter_add_sum_filter_not (56), add_le_add (63); project definition carlesonSum (56-57); typeclass projection enorm_add_le (58); structure fields four_le_a and q_mem_Ioc (68).",
+      "by": "verifier",
+      "at": "2026-11-14T14:17:14Z"
+    },
+    {
+      "type": "claim",
+      "key": "6",
+      "value": "verified",
+      "evidence": "x",
+      "by": "verifier",
+      "at": "2026-11-14T14:17:16Z"
+    },
+    {
+      "type": "claim",
+      "key": "6",
+      "value": "verified",
+      "evidence": "Read MainTheorem.lean 44-68 whole (copied file, 69 lines): the parent proof cites exactly the four bound-carrying project lemmas — exceptional_set (line 49 'have exc := exceptional_set'), forest_union and forest_complement (line 63 'add_le_add (forest_union hf measf) (forest_complement hf measf)'), and le_C2_0_2 (line 68 'apply le_C2_0_2 ...'); the calc chain (53-68) uses no other bound-carrying project lemma (exceptional_set is used at 49-50, outside the calc). The only other named project lemma cited directly is measurable_G' (line 51 'use G', measurable_G', ...'), which closes the MeasurableSet G' conjunct, not a bound. Remaining identifiers match the claim: Mathlib lemmas setLIntegral_mono (55), lintegral_add_left (60), ENNReal.mul_le_of_le_div' (51), Finset.sum_filter_add_sum_filter_not (56), add_le_add (63); project definition carlesonSum (56-57); typeclass projection enorm_add_le (58); structure fields four_le_a and q_mem_Ioc (68).",
+      "by": "verifier",
+      "at": "2026-11-14T14:17:29Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:17:56Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Prior objection addressed: claim 1 removed, narrowed claim 6 (four bound-carrying lemmas + measurable_G' as measurability side-lemma) and check claim 7 (cites(parent, measurable_G')) added, shape.note + README 'Note on the shape numbers' document measurable_G'. Provenance passes (4 files byte-identical). Verified against local copies: parent discrete_carleson (MainTheorem 43-68) is a 4-link calc that closes (link1 setLIntegral_mono+enorm_add_le+split at 54, link2 lintegral_add_left at 59-60, link3 add_le_add (forest_union hf measf) (forest_complement hf measf) at 63, link4 le_C2_0_2 at 68); witness G' via exceptional_set (49) and measurable_G' closes MeasurableSet G' (51), ENNReal.mul_le_of_le_div' exc closes 2*volume bound. Four children match code statements+closed_by exactly. Depth-6 chain verified: forest_union 1045 -> forest_union_optimized 974 -> forest_union_aux 865 -> lintegral_carlesonSum_forest' 800 -> lintegral_carlesonSum_forest 774 -> forest_operator_le_volume. Shape numbers right: glue_lines=25 (site 44-68), child_lines=[16,13,6,6] (sites 21-36, 977-989, 1042-1047, 1176-1181, declaration included), depth=6. direct_lemmas=4 counts the four bound-carrying children; measurable_G' (Defs.lean 351-352, not copied) is honestly documented as a 5th directly-cited measurability lemma and not counted, per the note - acceptable under the objection's own option-2 fix.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T14:20:20Z"
     }
   ]
 }

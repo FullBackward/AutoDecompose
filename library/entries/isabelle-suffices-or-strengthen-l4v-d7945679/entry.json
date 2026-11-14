@@ -1,7 +1,7 @@
 {
   "id": "isabelle-suffices-or-strengthen-l4v-d7945679",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Well-foundedness of the next_slot order by strengthening to finite-and-acyclic",
   "intent": "Replace the goal `wf {(next, p). next_slot p (cdt_list s) (cdt s) = Some next}` in one step by the stronger conjunction `finite ... ∧ acyclic ...` through the library rule `finite_acyclic_wf`, so well-foundedness of the next-slot traversal is assembled from two independent halves: a finiteness bound (via `cte_at_next_slot`, `cte_at_next_slot'` and `finite_depth`) and a no-loop fact (`next_slot_no_loop`).",
   "move": "suffices-or-strengthen",
@@ -15,7 +15,7 @@
     "source_id": "l4v",
     "url": "https://github.com/seL4/l4v",
     "commit": "1abfe5bce98632a94ba52adf183045620c509340",
-    "licence": "CC-BY-SA-4.0"
+    "licence": "GPL-2.0-only"
   },
   "files": [
     {
@@ -196,8 +196,16 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T10:42:53Z",
       "note": "parent wf_next_slot: statement re-copied from code; child 'next_slot_no_loop': statement re-copied from the declaration of next_slot_no_loop; child 'cte_at_next_slot': statement re-copied from the declaration of cte_at_next_slot; child \"cte_at_next_slot'\": statement re-copied from the declaration of cte_at_next_slot'; child 'finite_depth': statement re-copied from the declaration of finite_depth"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "fixer",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:01:07Z",
+      "note": "licence corrected from CC-BY-SA-4.0 to GPL-2.0-only: the copied file code/proof/invariant-abstract/Deterministic_AI.thy carries 'SPDX-License-Identifier: GPL-2.0-only' in its header (lines 1-5), and upstream LICENSE.md says proofs about the seL4 kernel are typically licensed under GPL v2; CC-BY-SA-4.0 is the LICENSE.md document's own comment header (upstream-LICENSE.md lines 1-5), not the code licence."
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-14T10:49:09Z"
+  "status_at": "2026-11-14T14:02:42Z"
 }

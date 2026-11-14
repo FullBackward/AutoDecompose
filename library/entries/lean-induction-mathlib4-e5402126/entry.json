@@ -1,7 +1,7 @@
 {
   "id": "lean-induction-mathlib4-e5402126",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Diagonal induction on (p, q) for the ballot problem",
   "intent": "Reduce the ballot problem — the probability that candidate A (p votes) is strictly ahead of B (q votes, q < p) throughout the count equals (p − q)/(p + q) — to a diagonal induction on the pair (q, p) with two base cases and one two-induction-hypothesis step, then discharge each case with a named lemma written for it.",
   "move": "induction",
@@ -165,22 +165,22 @@
       "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/Data/Nat/Init.lean#L358-L366"
     },
     {
-      "n": 3,
-      "claim": "The glue is 36 lines (309-344) assembling 6 direct lemmas, and the longest chain of file-local lemmas below the main theorem has depth 4: ballot_problem' → first_vote_neg → first_vote_pos → count_countedSequence → counted_succ_succ.",
-      "evidence_kind": "measurement",
-      "evidence": "counted on the copied file: parent block 309-344 = 36 lines; the 6 direct lemmas are the named lemmas cited by the parent's rw at lines 313, 316 and 327; chain edges are line 234 (first_vote_neg uses first_vote_pos), lines 154/217 (first_vote_pos uses count_countedSequence) and line 182 (count_countedSequence uses counted_succ_succ) in https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/BallotProblem.lean"
-    },
-    {
       "n": 4,
       "claim": "The mathlib authors document the induction principle in the docstring: 'Given a predicate on two naturals motive : ℕ → ℕ → Prop, motive a b is true for all a < b if motive (a + 1) (a + 1) is true for all a, motive 0 (b + 1) is true for all b and for all a < b, motive (a + 1) b is true and motive a (b + 1) is true implies motive (a + 1) (b + 1) is true.'",
       "evidence_kind": "author-statement",
       "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/Data/Nat/Init.lean#L358-L361"
+    },
+    {
+      "n": 5,
+      "claim": "The glue is 36 lines (309-344) assembling 8 direct lemmas, and the longest chain of file-local lemmas below the main theorem has depth 8: ballot_problem' → first_vote_neg → first_vote_pos → count_countedSequence → counted_succ_succ → counted_ne_nil_left → counted_eq_nil_iff → length_of_mem_countedSequence → mem_countedSequence_iff_perm.",
+      "evidence_kind": "measurement",
+      "evidence": "counted on the copied file Archive/Wiedijk100Theorems/BallotProblem.lean: parent block 309-344 = 36 lines; the 8 direct lemmas are the named file-local lemmas cited directly by the parent's proof — ballot_same (313), ballot_edge (316), countedSequence_finite (322, 324, 326), countedSequence_nonempty (322, 324), first_vote_pos (327), first_vote_neg (327), ballot_pos (327), ballot_neg (327) — excluding the imported induction principle Nat.diag_induction (311) and mathlib lemmas; the depth-8 chain's edges are line 327 (ballot_problem' uses first_vote_neg), 234 (first_vote_neg uses first_vote_pos), 217 (first_vote_pos uses count_countedSequence), 182 (count_countedSequence uses counted_succ_succ), 115 (counted_succ_succ uses counted_ne_nil_left), 103 (counted_ne_nil_left uses counted_eq_nil_iff), 100 (counted_eq_nil_iff uses length_of_mem_countedSequence), 96 (length_of_mem_countedSequence uses mem_countedSequence_iff_perm), in https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/BallotProblem.lean"
     }
   ],
   "shape": {
     "scale": "theorem",
-    "direct_lemmas": 6,
-    "depth": 4,
+    "direct_lemmas": 8,
+    "depth": 8,
     "glue_lines": 36,
     "child_lines": [
       8,
@@ -194,8 +194,8 @@
   "metrics": {
     "parent_lines": 36,
     "children": 6,
-    "depth": 4,
-    "how_counted": "parent = lines 309-344 of Archive/Wiedijk100Theorems/BallotProblem.lean; children = the 6 named lemmas the parent's rw cites at lines 313/316/327; depth = longest chain of file-local lemmas below ballot_problem' (ballot_problem' → first_vote_neg → first_vote_pos → count_countedSequence → counted_succ_succ)"
+    "depth": 8,
+    "how_counted": "parent = lines 309-344 of Archive/Wiedijk100Theorems/BallotProblem.lean; children = the 6 named lemmas of the decomposition (ballot_same, ballot_edge, first_vote_pos, first_vote_neg, ballot_pos, ballot_neg); direct_lemmas = 8, the 6 children plus the support lemmas countedSequence_finite and countedSequence_nonempty, all named file-local lemmas cited directly by the parent (lines 313, 316, 322, 324, 326, 327), excluding the imported induction principle Nat.diag_induction (311) and mathlib lemmas; depth = 8, the longest chain of file-local lemmas below ballot_problem' (ballot_problem' → first_vote_neg → first_vote_pos → count_countedSequence → counted_succ_succ → counted_ne_nil_left → counted_eq_nil_iff → length_of_mem_countedSequence → mem_countedSequence_iff_perm, edges at lines 327, 234, 217, 182, 115, 103, 100, 96)"
   },
   "consequences": "The move creates three obligations: a diagonal base, an edge base, and a step carrying two induction hypotheses. Both bases must close with no induction hypothesis, and the step must produce the two smaller pairs (a+1, b) and (a, b+1) from (a+1, b+1) — here the 'condition on the first vote' split. Side conditions accumulate in the step: finiteness/non-emptiness of the count spaces (countedSequence_finite, countedSequence_nonempty), positivity of the vote count (h₃), non-zero denominators (h₄, h₅, h₆) and ≠ ∞ conditions for the ENNReal.toReal_* rewrites; one missing side condition breaks the final ring. The asymmetry that ballot_neg needs q < p while ballot_pos does not is a real obligation to track.",
   "known_uses": [],
@@ -218,8 +218,32 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-2",
       "at": "2026-11-12T16:20:00Z"
+    },
+    {
+      "field": "shape",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:06:54Z",
+      "note": "correctness objection: direct_lemmas 6 -> 8 (added countedSequence_finite and countedSequence_nonempty, cited directly at lines 322/324/326); depth 4 -> 8 (recomputed longest file-local chain below ballot_problem')"
+    },
+    {
+      "field": "metrics",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:06:54Z",
+      "note": "correctness objection: depth 4 -> 8; how_counted updated for the depth-8 chain and the 8 direct lemmas (6 children plus the two support lemmas), with the Nat.diag_induction / mathlib-lemma scoping made explicit"
+    },
+    {
+      "field": "claims",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:06:54Z",
+      "note": "correctness objection: claim 3 (depth 4, 6 direct lemmas) removed and its corrected meaning rewritten under a new number as claim 5 (depth 8, 8 direct lemmas)"
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-12T16:22:37Z"
+  "status_at": "2026-11-14T14:15:08Z"
 }

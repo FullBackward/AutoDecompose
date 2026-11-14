@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | induction |
 | Language | lean |
-| Status | verified |
+| Status | accepted |
 | Source | [sampcert](../../sources/sampcert/SOURCE.md) at `a2c53bb5ff79` |
 | Licence | `Apache-2.0` |
 
@@ -117,13 +117,17 @@ geometric_characterization (parent, 272-290)
 - The **step case** is `geometric_preservation'`: the induction hypothesis
   `IH'` is at fuel `extra + n + 1`, and the goal at `succ extra + (n + 1)`.
   After `rw [A]` re-associates the fuel, `rw [← geometric_preservation']`
-  rewrites the goal backwards through the preservation lemma, leaving three
-  goals: two arithmetic identities closed by `trivial` and the side condition
-  `extra ≥ n` (the lemma's `n ≥ m` with `m := n`) closed by
-  `Nat.le_add_left n extra`. The preservation lemma's own proof closes by
-  specialising `geometric_preservation` to `(n - 1, m - 1, 0)`, proving
-  `¬ n = 0` from `n ≥ m` and `¬ m = 0`, rewriting the fuel arithmetic, then
-  `apply prog; exact Nat.sub_le_sub_right h2 1`.
+  rewrites the induction hypothesis backwards through the preservation lemma,
+  leaving three goals: the main goal, closed by the fuel identity
+  `B : succ extra + (n + 1) = extra + n + 2` (from
+  `succ_add_eq_add_succ extra (n + 1)`) and then `trivial` (the goal now
+  matches `IH'`); the side condition `¬ n = 0` (the lemma's `h1 : ¬ m = 0`
+  with `m := n`), closed by `trivial`; and the side condition
+  `extra + n ≥ n` (the lemma's `h2 : n ≥ m` with `n := extra + n, m := n`),
+  closed by `Nat.le_add_left n extra`. The preservation lemma's own proof
+  closes by specialising `geometric_preservation` to `(n - 1, m - 1, 0)`,
+  proving `¬ n = 0` from `n ≥ m` and `¬ m = 0`, rewriting the fuel
+  arithmetic, then `apply prog; exact Nat.sub_le_sub_right h2 1`.
 
 Each child is a good leaf because its statement is self-contained — a closed
 form at one fuel bound, and a "one more step of fuel does nothing" equation —
@@ -180,7 +184,7 @@ of lemmas rather than one.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
@@ -201,7 +205,7 @@ Status: **verified**
 
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
-| correctness | object | Correctness review. The decomposition is as described and closes: parent geometric_characterization (272-290) is an induction on extra after 'revert n'; the glue cites exactly the two children, geometric_progress' (base, line 278) and geometric_preservation' (step, line 285), and the step closes with trivial / trivial / exact Nat.le_add_left n extra (no sorry). Child statements match code verbatim; shape numbers are right (direct_lemmas=2, glue_lines 272-290 = 19, child_lines 186-194 = 9 and 235-267 = 33). Objection: the README step-case bullet says the parent discharges the side condition 'extra >= n', but the code discharges 'n >= m' instantiated with n := extra + n, m := n (the fuel (extra + n) + 1 matches the lemma's n' + 1), i.e. 'extra + n >= n', closed by Nat.le_add_left n extra. Fix: change 'extra >= n' to 'extra + n >= n' (lemma n := extra + n, m := n), and describe the three goals as one fuel identity (succ extra + (n+1) = extra + n + 2 via succ_add_eq_add_succ), one not-n=0 via trivial, and one extra + n >= n via Nat.le_add_left n extra. | reviewer-correctness |
+| correctness | accept | Correctness review (re-check after revision). Opened the local copy at the cited ranges. Parent geometric_characterization (Properties.lean 272-290) is 'revert n; induction extra' (274-275); base case cites geometric_progress' (278, 'apply geometric_progress' trial _ h'), step case cites geometric_preservation' (285, 'rw [<- geometric_preservation'] at IH''); no other lemma is the glue. The step closes with the three goals exactly as the README now states: main goal via B : succ extra + (n+1) = extra + n + 2 (succ_add_eq_add_succ) then rw [B]; trivial; side condition ¬ n = 0 (h1 with m := n) by trivial; side condition extra + n ≥ n (h2 : n ≥ m with n := extra + n, m := n) by exact Nat.le_add_left n extra (proves n ≤ extra + n). No sorry. Child statements match code verbatim (geometric_progress' 186-194, geometric_preservation' 235-267), each closing as claimed (trivial after succ_pred/succ_inj rewrites; apply prog then exact Nat.sub_le_sub_right h2 1). Shape numbers are right: direct_lemmas=2, glue_lines 272-290 = 19, child_lines 186-194 = 9 and 235-267 = 33; depth 2 confirmed (geometric_progress' cites geometric_progress declared 162; geometric_preservation' cites geometric_preservation declared 199). The earlier objection is fixed: the step-case bullet no longer says 'extra >= n'; it now says 'extra + n >= n ... closed by Nat.le_add_left n extra', matching the code. | reviewer-correctness |
 | generality | accept | Move is stated generically, not just as this probGeometric case: applicability gives a goal_shape/use_when in terms of 'a value computed by unrolling a loop fuel times' plus a base lemma and a preservation lemma, and also_known_as names fuel induction / induction on a surplus counter / generalising the loop counter before induction (revert n; induction extra). 'When not to use' is honest and specific: it admits the real work is one level down in the unprimed siblings, and that the induction cannot close when the value depends on the surplus fuel. Consequences are honest and specific, including the concrete failure mode that rw [<- geometric_preservation'] needs the parent's fuel term to match the lemma's n+2 shape exactly. README explicitly states what makes the children good leaves for a bounded prover: self-contained statements (a closed form at one fuel bound; a one-more-fuel-step-does-nothing equation), each closing on its own from a single sibling without exposing the induction to the parent. Code excerpts at the cited ranges (272-290, 186-194, 235-267) match the descriptions. | reviewer-generality |
 | provenance-licence | accept | commit a2c53bb5ff790e729e252958060699b7eff898b9 is identical across entry.json, source.json and SOURCE.md; all permalinks use that commit; licence Apache-2.0 recorded in entry.json, source.json and SOURCE.md and matches upstream-LICENSE (Apache-2.0 text); check_provenance passes (Code.lean 920B and Properties.lean 13085B byte-identical at the commit); cited line ranges 272-290, 186-194, 235-267 and 312 verified against the local copy and match the README excerpts and entry statements. | reviewer-provenance-licence |
 <!-- verification:end -->

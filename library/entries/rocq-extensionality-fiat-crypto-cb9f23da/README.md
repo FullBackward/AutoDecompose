@@ -5,9 +5,9 @@
 | Kind | instance |
 | Move | extensionality |
 | Language | rocq |
-| Status | verified |
+| Status | accepted |
 | Source | [fiat-crypto](../../sources/fiat-crypto/SOURCE.md) at `3d2880ef2803` |
-| Licence | `Apache-2.0 AND BSD-2-Clause AND MIT AND MIT OR Apache-2.0 OR BSD-1-Clause` |
+| Licence | `MIT OR Apache-2.0 OR BSD-1-Clause` |
 
 ## Intent
 
@@ -489,14 +489,14 @@ left and right tuples must be printed in the same nesting order.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/coq-debian.yml (push branches: master, sp2019latest) runs 'etc/ci/github-actions-make.sh -j2 all-except-generated-and-js-of-ocaml'; Makefile target 'coq' builds REGULAR_VOFILES = all src/**/*.v (coq_makefile from 'find src -type f -name *.v'), which includes src/Arithmetic/BYInv.v; pinned commit 3d2880ef is HEAD of default branch master | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 | glue-cites-children | pass | cited: divstep_spec_divstep_spec_full_d@src/Arithmetic/BYInv.v:1015, divstep_d@src/Arithmetic/BYInv.v:1015, divstep_spec_divstep_spec_full_f@src/Arithmetic/BYInv.v:1016, divstep_f@src/Arithmetic/BYInv.v:1016, divstep_spec_divstep_spec_full_g@src/Arithmetic/BYInv.v:1017, divstep_g@src/Arithmetic/BYInv.v:1017, divstep_spec2_divstep_spec_full_v@src/Arithmetic/BYInv.v:1018, divstep_v@src/Arithmetic/BYInv.v:1019, divstep_spec2_divstep_spec_full_r@src/Arithmetic/BYInv.v:1020, divstep_r@src/Arithmetic/BYInv.v:1021; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
-| provenance | pass | 2 file(s) byte-identical at 3d2880ef2803faa9385589a81a835d5828eb3d38 | check_provenance.py | 2026-11-12 |
+| provenance | pass | 2 file(s) byte-identical at 3d2880ef2803faa9385589a81a835d5828eb3d38 | check_provenance.py | 2026-11-14 |
 | sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
@@ -511,9 +511,9 @@ Status: **verified**
 |---|---|---|---|
 | correctness | accept | Verified against copied code/src/Arithmetic/BYInv.v: parent divstep_correct_full (975-1021) and all 10 child statements/proofs match entry.json verbatim. Glue (1012-1021) = assert (0 < machine_wordsize) by lia; repeat apply injective_projections; 7 rewrite lines (1015-1021) closing 5 coordinates by projection+component lemma pairs (d/f/g via divstep_spec_divstep_spec_full_*, v/r via divstep_spec2_divstep_spec_full_*), each auto/lia, ends Qed so it closes. The 10 children are exactly the lemmas the glue uses (plus stdlib injective_projections, correctly not a child). Shape numbers right: parent_proof_lines=10 (1012-1021), glue_lines=8 (1014-1021), direct_lemmas=10, child_lines=[24,18,60,12,51,2,2,2] = Proof.through-Qed. counts at sites 720-755,757-784,638-718,818-856,870-948,950-953,955-958,960-963; depth=4 chain holds (divstep_correct_full->divstep_g@1017->eval_twos_complement_sat_arithmetic_shiftr1@674->eval_sat_arithmetic_shiftr1@522->eval_testbit@277/115). | reviewer-correctness |
 | generality | accept | Move is stated generically (tuple equality -> per-coordinate via injective_projections, not divstep-specific): applicability.goal_shape/use_when use general conditions (same-arity nested products, per-coordinate lemma with hypotheses a subset of the parent's, same nesting order). When-not-to-use is honest and specific (entangled coordinates; record/dependent types where injective_projections doesn't apply; incompatible side conditions breaking uniform auto). Consequences match (side conditions must be subset or derived first, e.g. assert 0<machine_wordsize; nesting-order requirement). Good-leaf rationale present: projection lemmas close in 2 lines (unfold/destruct/reflexivity), component lemmas are self-contained and close by case-split + lia/reflexivity, with depth 4 chain cited; known-use divstep_correct (3-tuple) confirms the move generalises. Verified the section header (L573), divstep_correct injective_projections use (L810-816) and parent glue (L1012-1021) in the copied code. | reviewer-generality |
-| provenance-licence | object | Permalinks, commit and copied files are consistent: check_provenance.py passed (2 files byte-identical at 3d2880ef); every site permalink's line range matches the local copy (divstep_g 638-718, divstep_d 720-755, divstep_f 757-784, divstep_v 818-856, divstep_r 870-948, projections 950-953/955-958/960-963, parent divstep_correct_full 975-1021, glue 1012-1021), and the section header 572-574 is as claimed. The source note and source.json agree on commit and licence string. Objection: the recorded licence 'Apache-2.0 AND BSD-2-Clause AND MIT AND MIT OR Apache-2.0 OR BSD-1-Clause' is inconsistent with the copied licence files -- there is no BSD-2-Clause file (the file is LICENSE-BSD-1 declaring BSD-1-Clause), and the 'AND' conjunction contradicts the COPYRIGHT's 'MIT OR Apache-2.0 OR BSD-1-Clause' ('at your option'). Fix: set the licence field to 'MIT OR Apache-2.0 OR BSD-1-Clause' per COPYRIGHT, dropping the phantom BSD-2-Clause and the 'AND' framing, in entry.json, the README and the source note. | reviewer-provenance-licence |
+| provenance-licence | accept | Provenance and licence are now consistent and traceable. check_provenance.py passes (2 files byte-identical at 3d2880ef2803faa9385589a81a835d5828eb3d38). Commit 3d2880ef2803faa9385589a81a835d5828eb3d38 is recorded identically in entry.json (source.commit), README (L519), SOURCE.md (L4) and source.json (commit). Licence now agrees everywhere: entry.json source.licence, README L10 and L519, SOURCE.md L7 and source.json 'licence' all read 'MIT OR Apache-2.0 OR BSD-1-Clause', matching upstream COPYRIGHT (SPDX-License-Identifier: MIT OR Apache-2.0 OR BSD-1-Clause, 'at your option'). The phantom BSD-2-Clause and 'AND' framing are gone from the recorded licence; the old detector string survives only as source.json 'licence_detected' (a raw detector artifact, with 'licence_note' explaining the correction) and as a clearly-marked aside in SOURCE.md L7, neither of which governs. Licence files confirm the triple: LICENSE-MIT, LICENSE-APACHE (Apache 2.0), LICENSE-BSD-1 (BSD 1-Clause; no BSD-2 file exists). Permalinks in entry.json files/sites and README all point at the pinned commit with correct paths and line ranges. | reviewer-provenance-licence |
 <!-- verification:end -->
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/mit-plv/fiat-crypto at commit `3d2880ef2803faa9385589a81a835d5828eb3d38`, under `Apache-2.0 AND BSD-2-Clause AND MIT AND MIT OR Apache-2.0 OR BSD-1-Clause`; see the [source note](../../sources/fiat-crypto/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/mit-plv/fiat-crypto at commit `3d2880ef2803faa9385589a81a835d5828eb3d38`, under `MIT OR Apache-2.0 OR BSD-1-Clause`; see the [source note](../../sources/fiat-crypto/SOURCE.md) for the licence text and attribution.

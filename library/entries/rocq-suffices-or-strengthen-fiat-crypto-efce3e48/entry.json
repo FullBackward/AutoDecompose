@@ -1,7 +1,7 @@
 {
   "id": "rocq-suffices-or-strengthen-fiat-crypto-efce3e48",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "WordByWordMontgomery mulmod_correct from the stronger raw congruence mulmod_correct0",
   "intent": "Prove the interface theorem mulmod_correct (value equality and validity, both about from_montgomerymod (mulmod a b)) by reducing it to the already-proved raw congruence mulmod_correct0 through the wrapper-rewrite eval_from_montgomerymod, instead of re-proving the Montgomery reduction.",
   "move": "suffices-or-strengthen",
@@ -16,7 +16,7 @@
     "source_id": "fiat-crypto",
     "url": "https://github.com/mit-plv/fiat-crypto",
     "commit": "3d2880ef2803faa9385589a81a835d5828eb3d38",
-    "licence": "Apache-2.0 AND BSD-2-Clause AND MIT AND MIT OR Apache-2.0 OR BSD-1-Clause"
+    "licence": "MIT OR Apache-2.0 OR BSD-1-Clause"
   },
   "files": [
     {
@@ -192,8 +192,16 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T10:10:40Z",
       "note": "parent mulmod_correct: statement re-copied from code; child 'mulmod_correct0': statement re-copied from the declaration of mulmod_correct0; child 'eval_from_montgomerymod': statement re-copied from the declaration of eval_from_montgomerymod"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:21:33Z",
+      "note": "provenance-licence objection: dropped the BSD-2-Clause misdetection; the licence is the COPYRIGHT tri-licence 'MIT OR Apache-2.0 OR BSD-1-Clause' (SPDX-License-Identifier in upstream COPYRIGHT)"
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-14T10:17:55Z"
+  "status_at": "2026-11-14T14:40:14Z"
 }

@@ -972,8 +972,18 @@
       "Obtain a Lean/Rocq/Isabelle toolchain (or decide ci-record is final) so fidelity and sufficiency stop being not-run — the largest evidence gap, since no entry has machine evidence its children close its parent."
     ]
   },
-  "calls": 447,
-  "tokens": 646730688,
-  "cost_cny": 230.31,
-  "finished": "2026-11-14T11:29:48Z"
+  "calls": 451,
+  "tokens": 647953557,
+  "cost_cny": 231.6,
+  "finished": "2026-11-14T14:00:19Z",
+  "finish": {
+    "at": "2026-11-14T14:00:19Z",
+    "entries": {
+      "lean-other-flt-imperial-ac21422b": "accepted"
+    },
+    "calls": 4,
+    "tokens": 1222869,
+    "cost_cny": 1.29,
+    "halted": null
+  }
 }

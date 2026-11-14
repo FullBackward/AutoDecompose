@@ -1,7 +1,7 @@
 {
   "id": "lean-per-callee-lemma-equational-theories-b60a63fd",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Per-component enlargement lemmas assemble the greedy chain for equation 1729 not implying 817",
   "intent": "Reduce the existence of a magma satisfying equation 1729 but not 817 to a greedy chain over a sum-indexed task beta = N + N + (N x N), seeded by TrivialPartialSolution and turned into a magma by use_chain, with each component of the index closed by its own enlargement lemma.",
   "move": "per-callee-lemma",
@@ -123,7 +123,7 @@
     {
       "name": "enlarge_S'",
       "statement": "lemma enlarge_S' (sol : PartialSolution) (x : N) :\n    ∃ sol', sol ≤ sol' ∧ x ∈ sol'.Dom_S'",
-      "closed_by": "`apply WellFoundedLT.induction x`; both the base (z = 1) and step cases call `enlarge_S'_induction` (lines 2049 and 2053)"
+      "closed_by": "`apply WellFoundedLT.induction x`; both the base (z = 1) and step cases call `enlarge_S'_induction` (lines 2047 and 2051)"
     },
     {
       "name": "enlarge_op",
@@ -133,7 +133,7 @@
     {
       "name": "TrivialPartialSolution",
       "statement": "def TrivialPartialSolution : PartialSolution",
-      "closed_by": "each of the ten `axiom_*` fields is closed by `contrapose! h; exact Finset.notMem_empty _`, since every domain field is `Finset.empty`",
+      "closed_by": "each of the ten `axiom_*` fields `axiom_i''` through `axiom_P''` is closed by `contrapose! h; exact Finset.notMem_empty _`, since every domain field is `Finset.empty`; the eleventh field `axiom_L` closes by `contrapose! h; simp`",
       "note": "Analyst's paraphrase, replaced by the declaration's text: def TrivialPartialSolution : PartialSolution := { L₀' := fun _ ↦ 1, op := fun _ ↦ fun _ ↦ Sum.inl 0, S' := fun _ ↦ 0, I := Finset.empty, Predom_L₀' := Finset.empty, Dom_op := Finset.empty, Dom_S' := Finset.empty, ... }"
     }
   ],
@@ -145,7 +145,7 @@
   "shape": {
     "scale": "theorem",
     "direct_lemmas": 5,
-    "depth": 4,
+    "depth": 5,
     "glue_lines": 30,
     "child_lines": [
       53,
@@ -178,7 +178,7 @@
     },
     {
       "n": 2,
-      "claim": "The glue dispatches over the three components of β = N ⊕ N ⊕ (N × N) (the `match b with` at lines 32-43), one enlargement lemma per component, and the whole main proof is 29 lines (lines 15-43).",
+      "claim": "The glue dispatches over the three components of β = N ⊕ N ⊕ (N × N) (the `match b with` at line 33, the dispatch spanning lines 32-43), one enlargement lemma per component, and the whole main proof is 29 lines (lines 15-43).",
       "evidence_kind": "measurement",
       "evidence": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation1729.lean#L15-L43 (glue line count) together with the three child permalinks in `sites`"
     },
@@ -231,8 +231,29 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T07:58:46Z",
       "note": "typed glue_lines 29, child_lines [53, 71, 50, 10, 367]; derived from the site ranges (declaration included): 30, [53, 71, 50, 10, 367]"
+    },
+    {
+      "field": "shape.depth",
+      "agent_role": "analyst",
+      "run": "revise-1",
+      "at": "2026-11-14T14:10:19Z",
+      "note": "depth 4 -> 5: longest chain below not_817 is not_817 -> enlarge_op -> enlarge_S' -> enlarge_S'_induction -> enlarge_L0'_multiple -> enlarge_L0' (five project lemmas)"
+    },
+    {
+      "field": "children",
+      "agent_role": "analyst",
+      "run": "revise-1",
+      "at": "2026-11-14T14:10:19Z",
+      "note": "enlarge_S' closed_by call sites 2049/2053 -> 2047/2051; TrivialPartialSolution closed_by ten fields -> eleven (ten via Finset.notMem_empty, axiom_L via simp)"
+    },
+    {
+      "field": "claims",
+      "agent_role": "analyst",
+      "run": "revise-1",
+      "at": "2026-11-14T14:10:19Z",
+      "note": "claim 2: 'match b with' at line 33, not line 32 (line 32 is 'intro sol b')"
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-12T14:58:50Z"
+  "status_at": "2026-11-14T14:14:12Z"
 }

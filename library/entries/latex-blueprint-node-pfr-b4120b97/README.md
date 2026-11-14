@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | blueprint-node |
 | Language | latex |
-| Status | verified |
+| Status | accepted |
 | Source | [pfr](../../sources/pfr/SOURCE.md) at `1ef23c3c5a83` |
 | Licence | `Apache-2.0` |
 
@@ -161,7 +161,7 @@ verified by the project's build, not something the LaTeX text itself enforces.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
@@ -182,7 +182,7 @@ Status: **verified**
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
 | correctness | accept | Read the local code/blueprint/src/chapter/pfr.tex (the whole copied file). Parent (L14-22) matches entry.json: \lean{PFR_conjecture_aux}\leanok, hypothesis |A+A|<=K|A|, conclusion K^{13/2}|A|^{1/2}/|H|^{1/2} and |H|/|A| in [K^{-11},K^{11}]. Proof \uses{} list (L25) names exactly 8 labels; the body has exactly 9 \Cref{} calls all to those 8 (ruz-dist-def twice), matching claim 1, ending 'This proves the claim.' with no new node. Each child's closed_by matches the code: unif-exist/uniform-entropy-II/jensen-bound/ruz-dist-def at L26; entropy-pfr at L28 giving d[U_A;U_H]<=1/2 C' log K (C'=11); ruzsa-diff at L31 closing eq(ah); ruz-dist-def again at L36; bound-conc at L38; ruz-cov at L42. The covering bound closes as K^{C'/2+1}=K^{13/2}|A|^{1/2}/|H|^{1/2}. Sibling theorem pfr consumes pfr_aux via \uses{pfr_aux} at L56. Decomposition is faithful and closes. | reviewer-correctness |
-| generality | object | use_when, avoid_when and consequences are general, honest and specific (new-construction/statement-still-changing/hypotheses-don't-line-up as avoid conditions; silent-gap failure mode as consequence). But the applicability.goal_shape field states the move applies to 'a covering/transfer theorem whose hypotheses are about a set A (non-empty, doubling |A+A| ≤ K|A|) and whose conclusion quantifies over a witness H (existence of a subspace with a size bound)' — that is the concrete math of this one instance, not the shape of the blueprint-node move, which is 'a lemma/theorem stated as a node with a frozen Lean name, whose proof is a chain of citations to already-stated upstream nodes declared in one \uses{} line'. As written it would wrongly imply the move is limited to covering/transfer theorems with a doubling hypothesis. Fix: rewrite goal_shape to the general goal class and drop (or clearly mark as this instance) the covering/transfer/doubling/subspace content. | reviewer-generality |
+| generality | accept | goal_shape now states the general class ('a lemma/theorem stated as a node with a frozen Lean name and a fixed statement, whose proof is a chain of citations to already-stated upstream nodes, all declared up front in a single \uses{} line'); the covering/transfer/doubling/subspace content is dropped. use_when and avoid_when are general, honest and specific (already-stated-lemma combination; frozen statement; new-construction/statement-still-changing/hypotheses-don't-line-up as avoid conditions). consequences are honest and specific: name-change ripple, per-citation hypothesis discharge (entropy-pfr applied only after ruz-dist-def converts the doubling bound, confirmed at pfr.tex L26-28), and the silent-gap failure mode tied to \leanok being build-verified, not text-enforced. Move is stated to apply beyond this instance. | reviewer-generality |
 | provenance-licence | accept | Provenance check passes (check_provenance.py: 1 file byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a); recorded sha256 a827deb5... matches local copy. Commit 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a is identical in entry.json, sources/pfr/source.json and sources/pfr/SOURCE.md. Licence Apache-2.0 recorded consistently in entry.json, README, SOURCE.md, source.json; upstream-LICENSE is genuine Apache 2.0 text. Permalinks use the pinned commit and correct path blueprint/src/chapter/pfr.tex (local code path matches). Source note SOURCE.md present with repo URL, browse-at-commit, licence files and attribution. Everything traceable and consistent. | reviewer-provenance-licence |
 <!-- verification:end -->
 

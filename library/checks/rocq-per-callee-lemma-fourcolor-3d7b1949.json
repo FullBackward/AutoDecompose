@@ -128,6 +128,46 @@
       "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
       "by": "sorry_scan.py",
       "at": "2026-11-14T08:00:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:21:13Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: red000to214@theories/proof/reducibility.v:19, red214to234@theories/proof/reducibility.v:19, red234to282@theories/proof/reducibility.v:19, red282to302@theories/proof/reducibility.v:19, red302to322@theories/proof/reducibility.v:19, red322to485@theories/proof/reducibility.v:20, red485to506@theories/proof/reducibility.v:20, red506to541@theories/proof/reducibility.v:20, red541to588@theories/proof/reducibility.v:20, red588to633@theories/proof/reducibility.v:20; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:21:13Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:21:13Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: red000to214@theories/proof/reducibility.v:19, red214to234@theories/proof/reducibility.v:19, red234to282@theories/proof/reducibility.v:19, red282to302@theories/proof/reducibility.v:19, red302to322@theories/proof/reducibility.v:19, red322to485@theories/proof/reducibility.v:20, red485to506@theories/proof/reducibility.v:20, red506to541@theories/proof/reducibility.v:20, red541to588@theories/proof/reducibility.v:20, red588to633@theories/proof/reducibility.v:20; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:21:14Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "The prior objection is resolved and the lens is met overall. Move is stated beyond the example: use_when names 'one per configuration, compiler pass, or function'; also_known_as lists CompCert per-pass simulation and seL4 crunch; known_uses cites lean equational-theories entry. The 'Why each lemma is a good leaf' paragraph names what makes leaves bounded-prover-sized (statement = two numeric bounds + the_configs, one mechanical tactic CheckReducible, no free variables), verified against copied code (job001to106.v L12-13 'Proof. CheckReducible. Qed.'). 'When not to use' is now honest: the four avoid clauses (few cases, heterogeneous cases, non-tiling blocks, non-uniform per-case check) match entry.json avoid_when's three clauses, and the expensive per-case check is explicitly a reason to use, not avoid, citing cfreducible.v L72 'This predicate hides the (expensive) reducibility evaluation.' Consequences are specific and match code: CatReducible fixed arity 5 (cfreducible.v L109-112), cat_reducible_range requires contiguous tiling (L101-103), red588to633 pads empty end range red633 (task589to633.v L15-16). All cited line ranges opened and accurate.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T14:22:16Z"
     }
   ]
 }

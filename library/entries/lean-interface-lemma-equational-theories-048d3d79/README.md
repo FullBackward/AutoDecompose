@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | interface-lemma |
 | Language | lean |
-| Status | verified |
+| Status | accepted |
 | Source | [equational-theories](../../sources/equational-theories/SOURCE.md) at `8b87204d5b20` |
 | Licence | `Apache-2.0` |
 
@@ -108,6 +108,8 @@ Completeness' (156-158)
 │     ├── FreeMagmaWithLaws.isDerives (100-109)     ── satisfaction in the free magma ⇒ derivable
 │     │     └── FreeMagmaWithLaws.evalInMagmaIsQuot (84-94)
 │     ├── FreeMagmaWithLaws.models_iff_u (131-135)   ── universal form ⇔ free magma
+│     │     ├── FreeMagmaWithLaws.isModel (123-129)   ── the free magma with laws satisfies Γ (line 133)
+│     │     └── FreeMagmaWithLaws.isDerives (100-109) ── satisfaction in the free magma ⇒ derivable (line 134)
 │     ├── Soundness'_u (11-30)                        ── derivability ⇒ satisfaction
 │     └── models_toNat / satisfies_toNat / satisfies_equiv / satisfiesSet_equiv (MagmaLaw.lean)
 ├── FreeMagmaWithLaws.isDerives (100-109)
@@ -146,11 +148,11 @@ entailment is witnessed by a derivation.
    158), and the same line also cites `FreeMagmaWithLaws.isDerives` and
    `FreeMagmaWithLaws.isModel` (the `glue-cites-children` check records all
    three).
-3. The shape is small and shallow: the glue is 3 lines, the children 8, 10 and
-   7 lines, and the longest checked chain below the parent is
-   `Completeness' → models_def' → FreeMagmaWithLaws.isDerives →
-   FreeMagmaWithLaws.evalInMagmaIsQuot`, depth 3 (measured from the copied
-   file, lines 84-158).
+3. The shape is small: the glue is 3 lines, the children 8, 10 and 7 lines,
+   and the longest checked chain of project lemmas below the parent is
+   `Completeness' → models_def' → FreeMagmaWithLaws.models_iff_u →
+   FreeMagmaWithLaws.isModel → PhiAsSubst → PhiAsSubst_aux`, depth 5 (measured
+   from the copied file, lines 84-158).
 4. The authors name the result in its docstring (`/-- Birkhoff's completeness
    theorem -/`, line 156) and flag the proof's one non-constructive step with
    a comment (`-- Sadly, we falter here and use choice. Somewhat confident
@@ -201,11 +203,11 @@ change to the `models` definition must keep `models_def'` in sync.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
-| build | ci-record | .github/workflows/blueprint-paper.yml build_project job runs 'lake build equational_theories' on push to main; Completeness.lean is inside the equational_theories package; default branch is main; commit 8b87204d5b201e1cf6c69b8dcabb0558109bee00 | verifier | 2026-11-14 |
+| build | ci-record | .github/workflows/blueprint-paper.yml, job build_project (step 'Build project') runs '~/.elan/bin/lake build equational_theories' on push to main with paths including '**/*.lean'; Completeness.lean is inside the equational_theories package; default branch is main; commit 8b87204d5b201e1cf6c69b8dcabb0558109bee00 | verifier | 2026-11-14 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-14 |
 | glue-cites-children | pass | cited: models_def'@equational_theories/Completeness.lean:158, FreeMagmaWithLaws.isDerives@equational_theories/Completeness.lean:158, FreeMagmaWithLaws.isModel@equational_theories/Completeness.lean:158; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 5 file(s) byte-identical at 8b87204d5b201e1cf6c69b8dcabb0558109bee00 | check_provenance.py | 2026-11-14 |
@@ -218,10 +220,11 @@ Status: **verified**
 | 2 | verified | cites(equational_theories/Completeness.lean:156-158, models_def') -> cites: models_def' occurs at equational_theories/Completeness.lean:158 | check_claims.py |
 | 3 | verified | read code/equational_theories/Completeness.lean 84-158: Completeness' 156-158 (3 lines); models_def' 147-154 (8); isDerives 100-109 (10); isModel 123-129 (7); glue line 158 'FreeMagmaWithLaws.isDerives (models_def'.1 h _ (FreeMagmaWithLaws.isModel β Γ))' cites all three; chain Completeness'->models_def'(152 uses isDerives)->isDerives(105 uses evalInMagmaIsQuot)->evalInMagmaIsQuot 84-94, depth 3 | verifier |
 | 4 | verified | read code/equational_theories/Completeness.lean: line 156 '/-- Birkhoff's completeness theorem -/'; line 111 '-- Sadly, we falter here and use choice. Somewhat confident it's not needed.' | verifier |
+| 5 | verified | read code/equational_theories/Completeness.lean 96-162: Completeness' = 156-158 (3 lines); models_def' = 147-154 (8); FreeMagmaWithLaws.isDerives = 100-109 (10); FreeMagmaWithLaws.isModel = 123-129 (7); glue line 158 'FreeMagmaWithLaws.isDerives (models_def'.1 h _ (FreeMagmaWithLaws.isModel β Γ))' cites all three children directly; chain Completeness'(158 -> models_def'.1) -> models_def'(152 -> models_iff_u.1) -> models_iff_u(133 -> isModel) -> isModel(126 -> PhiAsSubst) -> PhiAsSubst(120 -> PhiAsSubst_aux) -> PhiAsSubst_aux, 5 edges = depth 5 | verifier |
 
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
-| correctness | object | Decomposition is otherwise correct: glue Completeness.lean:158 cites exactly the three children models_def', FreeMagmaWithLaws.isDerives, FreeMagmaWithLaws.isModel; their statements match the code verbatim and the glue closes. But the shape.depth (and measurement claim 3) under-counts the depth. Entry says depth 3 with longest chain Completeness'->models_def'->isDerives->evalInMagmaIsQuot, but models_def' also cites FreeMagmaWithLaws.models_iff_u (line 152), whose proof (131-135) itself cites isModel (133) and isDerives (134). Longest chain is therefore Completeness'->models_def'->models_iff_u->isModel->PhiAsSubst->PhiAsSubst_aux, depth 5 (and via models_iff_u->isDerives->evalInMagmaIsQuot depth 4). Fix: set shape.depth and metrics.depth to 5, correct claim 3's longest-chain, and add edges models_iff_u->isModel and models_iff_u->isDerives to the README lemma graph. | reviewer-correctness |
+| correctness | accept | Prior depth objection fully addressed. Verified against copied code Completeness.lean 84-162 and MagmaLaw.lean 96-98: glue line 158 cites exactly the three children models_def', FreeMagmaWithLaws.isDerives, FreeMagmaWithLaws.isModel and nothing else; their statements in entry.json/README match the code verbatim; the glue type-checks/closes (isModel: FreeMagmaWithLaws beta Gamma |= Gamma; models_def'.1 h _ (..): FreeMagmaWithLaws beta Gamma |= E; isDerives (..): Nonempty (Gamma |-' E)). Shape numbers now right: direct_lemmas 3, glue_lines 3 (156-158), child_lines [8,10,7] (147-154, 100-109, 123-129), depth 5 = longest chain Completeness'->models_def'(152)->models_iff_u(131-135)->isModel(133)->PhiAsSubst(126)->PhiAsSubst_aux(120); I confirmed each citation; alternative chain via models_iff_u->isDerives->evalInMagmaIsQuot is depth 4, and Soundness'_u (11-30) is a leaf (induction over the derivation, no named project lemmas) so no longer chain exists. README lemma graph now has models_iff_u->isModel and models_iff_u->isDerives edges; Why-it-is-good point 3 says depth 5; claim 5 records the corrected chain. | reviewer-correctness |
 | generality | accept | Move generalises past the example: applicability/use_when/avoid_when restate it in terms of any bundled or universe-restricted definition needing one canonical re-expression (API lemma) so clients stop unfolding, not just models. avoid_when is specific and honest (no lift needed when a Type model works; skip if the reformulation is not the stable client form; skip if the iff's two directions hide real work). Consequences are honest: the iff is two-directional with the forward still needing the completeness core, the proof depends on Classical.axiomOfChoice (flagged at line 111), the reformulation is pinned, and sibling Completeness (160-162) is the specialisation. 'Why each child is a good leaf' plus point 4 name the bounded-prover properties: self-contained single-direction statements that close on named siblings/project lemmas, one concern each (universe lift vs quotient unwind vs substitution), reusable, leaving a one-line parent. Verified against copied code 84-162 and MagmaLaw.lean 96-98. | reviewer-generality |
 | provenance-licence | accept | Commit 8b87204d5b201e1cf6c69b8dcabb0558109bee00 is consistent across entry.json source/files/sites, every permalink, and sources/equational-theories/SOURCE.md; check_provenance.py reports 5 files byte-identical at that commit; recorded sha256/byte counts match the local code copies (Completeness 9008B, MagmaLaw 14231B, Magma 1436B, Homomorphisms 11972B, FreeMagma 10073B); licence Apache-2.0 in entry.json matches SOURCE.md ('Apache-2.0 (detected)') and upstream-LICENSE (Apache License 2.0); all cited line ranges (Completeness.lean 100-109, 123-129, 147-154, 156-158; MagmaLaw.lean 96-98) exist and match the README excerpts; SOURCE.md records the pin timestamp and attribution. Everything traceable. | reviewer-provenance-licence |
 <!-- verification:end -->

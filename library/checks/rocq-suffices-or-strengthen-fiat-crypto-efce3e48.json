@@ -120,6 +120,102 @@
       "evidence": "Commit and permalinks are consistent and traceable: check_provenance.py passes (1 file byte-identical at 3d2880ef2803faa9385589a81a835d5828eb3d38), all permalinks/known_uses use that full commit, and the local copy is 66865 bytes. The licence string, however, is not consistent with the licence files it cites: the recorded expression 'Apache-2.0 AND BSD-2-Clause AND MIT AND MIT OR Apache-2.0 OR BSD-1-Clause' lists 'BSD-2-Clause', but no BSD-2-Clause text exists among the source's licence files (COPYRIGHT, LICENSE-APACHE, LICENSE-BSD-1, LICENSE-MIT). LICENSE-BSD-1 is titled 'The BSD 1-Clause License (BSD-1-Clause)', and COPYRIGHT's SPDX identifier is 'MIT OR Apache-2.0 OR BSD-1-Clause'; the 'BSD-2-Clause' is a misdetection of that BSD-1-Clause file. Fix: drop 'BSD-2-Clause' and record the licence as the COPYRIGHT tri-licence 'MIT OR Apache-2.0 OR BSD-1-Clause' (in source.json, SOURCE.md, entry.json and README).",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-14T10:17:48Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:22:02Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: mulmod_correct0@src/Arithmetic/WordByWordMontgomery.v:1163, eval_from_montgomerymod@src/Arithmetic/WordByWordMontgomery.v:1162; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:22:02Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:22:03Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: mulmod_correct0@src/Arithmetic/WordByWordMontgomery.v:1163, eval_from_montgomerymod@src/Arithmetic/WordByWordMontgomery.v:1162; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:22:03Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 3d2880ef2803faa9385589a81a835d5828eb3d38",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:22:37Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "object",
+      "evidence": "Commit and permalinks are consistent and traceable: check_provenance.py passes (1 file byte-identical at 3d2880ef2803faa9385589a81a835d5828eb3d38, re-run 14:22:37Z), all permalinks and known_uses carry that full commit, local copy is 66865 bytes with sha256 ea50cdb5a1f7... matching entry.json files[].sha256. The entry's own licence is now correct: entry.json source.licence and README (header row and 'Source and licence' section) record 'MIT OR Apache-2.0 OR BSD-1-Clause', matching upstream COPYRIGHT's SPDX-License-Identifier (verified against the copied upstream-COPYRIGHT, upstream-LICENSE-BSD-1 titled 'The BSD 1-Clause License (BSD-1-Clause)', upstream-LICENSE-MIT, upstream-LICENSE-APACHE). However the source note the entry points to is still inconsistent: sources/fiat-crypto/SOURCE.md line 7 and sources/fiat-crypto/source.json 'licence' still record the misdetected expression 'Apache-2.0 AND BSD-2-Clause AND MIT AND MIT OR Apache-2.0 OR BSD-1-Clause', whose 'BSD-2-Clause' matches none of the four licence files (COPYRIGHT, LICENSE-APACHE, LICENSE-BSD-1, LICENSE-MIT). The prior objection's fix named all four files (source.json, SOURCE.md, entry.json, README) but only the two entry files were corrected, so the source note is not yet consistent with the copied licence files. Fix: in sources/fiat-crypto/source.json and sources/fiat-crypto/SOURCE.md, drop 'BSD-2-Clause' and the 'AND' framing and record 'MIT OR Apache-2.0 OR BSD-1-Clause'.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T14:23:55Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:39:01Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: mulmod_correct0@src/Arithmetic/WordByWordMontgomery.v:1163, eval_from_montgomerymod@src/Arithmetic/WordByWordMontgomery.v:1162; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:39:01Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:39:01Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: mulmod_correct0@src/Arithmetic/WordByWordMontgomery.v:1163, eval_from_montgomerymod@src/Arithmetic/WordByWordMontgomery.v:1162; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:39:01Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 3d2880ef2803faa9385589a81a835d5828eb3d38",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:39:18Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Prior objection fixed: sources/fiat-crypto/SOURCE.md line 7 and sources/fiat-crypto/source.json 'licence' now record 'MIT OR Apache-2.0 OR BSD-1-Clause' (no BSD-2-Clause, no AND framing). source.json's remaining 'licence_detected' field keeps the detector's raw output but is now paired with licence_note 'there is no BSD-2-Clause file (the file is LICENSE-BSD-1)', so it is a labelled historical record, not the entry's licence. Consistency confirmed across all four records: entry.json source.licence, README header row and 'Source and licence' section, source.json licence, SOURCE.md line 7 all read MIT OR Apache-2.0 OR BSD-1-Clause. Copied licence files corroborate: upstream-COPYRIGHT SPDX-License-Identifier 'MIT OR Apache-2.0 OR BSD-1-Clause', upstream-LICENSE-MIT ('The MIT License (MIT)'), upstream-LICENSE-APACHE ('Apache-2.0'), upstream-LICENSE-BSD-1 ('The BSD 1-Clause License (BSD-1-Clause)'); no BSD-2-Clause file exists. Provenance: check_provenance.py passes (1 file byte-identical at 3d2880ef2803faa9385589a81a835d5828eb3d38); local copy 66865 bytes, sha256 ea50cdb5a1f725a759b79cf7403b43123db4aa23f5ed28a640c9d9b1521ac572 matches entry.json files[].sha256. All permalinks and known_uses carry the full commit; the cited line ranges (1156-1167, 1095-1107, 1146-1149, 1133-1134, 1084-1093, and known_uses 1136-1144, 1175-1181) read verbatim as quoted in the README.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T14:40:07Z"
     }
   ]
 }

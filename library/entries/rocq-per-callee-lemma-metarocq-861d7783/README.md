@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | per-callee-lemma |
 | Language | rocq |
-| Status | verified |
+| Status | accepted |
 | Source | [metarocq](../../sources/metarocq/SOURCE.md) at `51b14e4bb5f4` |
 | Licence | `MIT` |
 
@@ -1417,7 +1417,7 @@ Definition ExtractTransformCorrect `{wcbvf : EWcbvEval.WcbvFlags} (transform : E
     trans_env Σopt e⊢ tConst kn ⇓ tConstruct ind c [].
 ```
 
-How the parts fit. The glue (lines 545-579) threads seven named lemmas, one
+How the parts fit. The glue (lines 545-579) threads eight named lemmas, one
 per pass plus the side conditions they need. The graph:
 
 ```
@@ -1454,7 +1454,7 @@ discharges a shelved freshness goal with `fresh_globals_erase_global_decl_rec`
 (578).
 
 Each child is a self-contained statement whose proof closes on its own (all
-seven are `Qed.`), so the glue never opens a pass's internals:
+eight are `Qed.`), so the glue never opens a pass's internals:
 
 - `erases_correct` — the erasure pass: a well-typed `t` erasing to `t'` and
   evaluating to `v` yields a `v'` with `v` erasing to `v'` and `t'` evaluating
@@ -1480,6 +1480,10 @@ seven are `Qed.`), so the glue never opens a pass's internals:
   includes its dependencies", an 8-line wrapper over its `_gen` variant.
 - `inversion_Const` — typing inversion for `tConst` (`invtac h`), giving the
   `declared_constant` that the erases_deps hypothesis needs.
+- `fresh_globals_erase_global_decl_rec` — "the recursively erased environment
+  is fresh", by induction over declarations plus
+  `fresh_global_erase_global_decl_rec`. Discharges the shelved freshness
+  obligation of the parent's final `Unshelve`.
 
 The context excerpt `ExtractTransformCorrect` is the shared signature every
 pass lemma discharges: a transform is correct when, if the source evaluates
@@ -1495,18 +1499,18 @@ blindly.
 2. No `admit`, `Admitted` or `Axiom` closes any goal in `extract_correct`'s
    proof, lines 530-580 (`check`, `no_sorry`).
 3. `erases_correct` is cited by the parent site (`check`, `cites`); the other
-   six children are likewise each cited once by the glue (lines 550-578).
-4. The main theorem composes 7 direct project lemmas in a 51-line parent site;
-   the seven children (declaration and proof) span 1182, 22, 22, 37, 12, 8 and
-   11 lines (1294 in total); the deepest chain below the theorem is
-   `extract_correct → erases_correct → inversion_App` and
-   `extract_correct → dearg_transform_correct → dearg_correct`, depth 2
-   (`measurement`).
+   seven children are likewise each cited once by the glue (lines 550-578).
 5. The same per-pass composition is codified as a reusable combinator:
    `compose_transforms_correct` proves that a list of `ExtractTransformCorrect`
    transforms composes to an `ExtractTransformCorrect` transform, generalising
    the one-lemma-per-pass pattern `extract_correct` uses by hand
    (`known-use`, `Transform.v` lines 35-44).
+6. The main theorem composes 8 direct project lemmas in a 51-line parent site;
+   the eight children (declaration and proof) span 1182, 22, 22, 37, 12, 8, 11
+   and 19 lines (1313 in total); the deepest chain below the theorem is
+   `extract_correct → erases_correct → inversion_App` and
+   `extract_correct → dearg_transform_correct → dearg_correct`, depth 2
+   (`measurement`).
 
 ## When to use it, and when not
 
@@ -1542,13 +1546,13 @@ them instead of one independent lemma per pass.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/build.yml (MetaRocq CI) runs on push to the default branch 9.1; 'make ci-local'/'ci-opam' builds 'make all' which includes the 'erasure' target (erasure/theories/Typed/ExtractionCorrectness.v); pinned commit 51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56 is the head of default branch 9.1 | verifier | 2026-11-14 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-14 |
-| glue-cites-children | pass | cited: erases_correct@erasure/theories/Typed/ExtractionCorrectness.v:550, dearg_transform_correct@erasure/theories/Typed/ExtractionCorrectness.v:556, optimize_correct@erasure/theories/Typed/ExtractionCorrectness.v:558, wf_erase_global_decls_recursive@erasure/theories/Typed/ExtractionCorrectness.v:561, global_erased_with_deps_erases_deps_tConst@erasure/theories/Typed/ExtractionCorrectness.v:567, erase_global_decls_deps_recursive_correct@erasure/theories/Typed/ExtractionCorrectness.v:571, inversion_Const@erasure/theories/Typed/ExtractionCorrectness.v:565; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
+| glue-cites-children | pass | cited: erases_correct@erasure/theories/Typed/ExtractionCorrectness.v:550, dearg_transform_correct@erasure/theories/Typed/ExtractionCorrectness.v:556, optimize_correct@erasure/theories/Typed/ExtractionCorrectness.v:558, wf_erase_global_decls_recursive@erasure/theories/Typed/ExtractionCorrectness.v:561, global_erased_with_deps_erases_deps_tConst@erasure/theories/Typed/ExtractionCorrectness.v:567, erase_global_decls_deps_recursive_correct@erasure/theories/Typed/ExtractionCorrectness.v:571, inversion_Const@erasure/theories/Typed/ExtractionCorrectness.v:565, fresh_globals_erase_global_decl_rec@erasure/theories/Typed/ExtractionCorrectness.v:578; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 9 file(s) byte-identical at 51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56 | check_provenance.py | 2026-11-14 |
 | sorry-scan | pass | inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): erasure/theories/Typed/Extraction.v:170 (Axiom) | sorry_scan.py | 2026-11-14 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-14 |
@@ -1560,10 +1564,11 @@ Status: **verified**
 | 3 | verified | cites(parent, erases_correct) -> cites: erases_correct occurs at erasure/theories/Typed/ExtractionCorrectness.v:550 | check_claims.py |
 | 4 | verified | parent site ExtractionCorrectness.v 530-580 (51 lines) composes 7 lemmas in the glue (erases_correct@549, dearg_transform_correct@559, optimize_correct@561, wf_erase_global_decls_recursive@567/570, inversion_Const@573, global_erased_with_deps_erases_deps_tConst@575, erase_global_decls_deps_recursive_correct@578); child spans 1182/22/22/37/12/8/11 = 1294 (51-1232, 5179-5200, 506-527, 440-476, 66-77, 296-303, 211-221); depth chain: erases_correct applies inversion_App at ErasureCorrectness.v:64 and dearg_transform_correct applies dearg_correct at OptimizeCorrectness.v:5199 | verifier |
 | 5 | verified | Transform.v:35-44 declares compose_transforms_correct: 'All ExtractTransformCorrect transforms -> ExtractTransformCorrect (compose_transforms transforms)', the reusable list-composition combinator generalising extract_correct's per-pass pattern | verifier |
+| 6 | verified | Parent site ExtractionCorrectness.v 530-580 = 51 lines (grep: 'Theorem extract_correct' at 530, Qed at 580). 8 children cited in the glue (glue-cites-children pass: erases_correct@550, dearg_transform_correct@556, optimize_correct@558, wf_erase_global_decls_recursive@561, inversion_Const@565, global_erased_with_deps_erases_deps_tConst@567, erase_global_decls_deps_recursive_correct@571, fresh_globals_erase_global_decl_rec@578). Child spans read from code: erases_correct 51-1232 (1182), dearg_transform_correct 5179-5200 (22), optimize_correct 506-527 (22), wf_erase_global_decls_recursive 440-476 (37), global_erased_with_deps_erases_deps_tConst 66-77 (12), erase_global_decls_deps_recursive_correct 296-303 (8), inversion_Const 211-221 (11), fresh_globals_erase_global_decl_rec 66-84 (19); sum 1313. Depth chains: erases_correct applies inversion_App at ErasureCorrectness.v:64 ('eapply inversion_App in Hty'); dearg_transform_correct applies dearg_correct at OptimizeCorrectness.v:5199 ('apply dearg_correct; eauto'); depth 2. | verifier |
 
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
-| correctness | object | Decomposition is faithful and closes: parent extract_correct (ExtractionCorrectness.v 530-580, Qed.) eapplies erases_correct(550), dearg_transform_correct(556), optimize_correct(558), wf_erase_global_decls_recursive(561,563), inversion_Const(565), global_erased_with_deps_erases_deps_tConst(567), erase_global_decls_deps_recursive_correct(571); all 7 child statements and closed_by match their local code and end in Qed; glue_lines=51, child_lines=[1182,22,22,37,12,8,11] and depth=2 all check out. However the shape/measurement undercounts by one: the glue also directly applies the project lemma fresh_globals_erase_global_decl_rec (declared erasure/theories/Typed/Extraction.v:66, eapplied at ExtractionCorrectness.v:578 in the Unshelve), which is not among the children, so shape.direct_lemmas=7 and claim 4's '7 direct project lemmas' should be 8. Fix: either add fresh_globals_erase_global_decl_rec as an 8th child (statement+closed_by, its line count in child_lines) and set direct_lemmas=8 (and fix claim 4's count), or amend claim 4 and shape to state the 7 children exclude this freshness side-discharge. | reviewer-correctness |
+| correctness | accept | Decomposition is faithful and closes, and the prior objection is fully met. Parent extract_correct (ExtractionCorrectness.v 530-580) ends in Qed at 580 and the glue eapplies all 8 children verbatim: erases_correct@550, dearg_transform_correct@556, optimize_correct@558, wf_erase_global_decls_recursive@561/563, inversion_Const@565, global_erased_with_deps_erases_deps_tConst@567, erase_global_decls_deps_recursive_correct@571, fresh_globals_erase_global_decl_rec@578 (Unshelve). The 8th child is now present: site erasure/theories/Typed/Extraction.v 66-84 (Lemma at 66, Qed at 84, 19 lines), its statement copied verbatim from the declaration, closed_by 'induction Σ0; ... fresh_global_erase_global_decl_rec (Qed.)' matching the code. Every child statement and closed_by matches the local code and ends in Qed (checked line ranges: erases_correct 51-1232, dearg_transform_correct 5179-5200, optimize_correct 506-527, wf_erase_global_decls_recursive 440-476, global_erased_with_deps_erases_deps_tConst 66-77, erase_global_decls_deps_recursive_correct 296-303, inversion_Const 211-221). Shape numbers are right: direct_lemmas=8 (8 children), glue_lines=51 (530-580), child_lines=[1182,22,22,37,12,8,11,19]=1313, depth=2 (erases_correct applies inversion_App at ErasureCorrectness.v:64; dearg_transform_correct applies dearg_correct at OptimizeCorrectness.v:5199). Claim 6, metrics (1313), README point 6 and the glue-cites-children check (now lists fresh_globals_erase_global_decl_rec@578) are all consistent at 8. Generic metatheory lemmas also applied in the glue (wellformed_closed_env, wf_ext_wf, lookup_global_In_wf, KernameSet.singleton_spec, wf_fresh_globals) are library plumbing, not per-pass or side-condition lemmas of this decomposition, so they are correctly not counted as children. | reviewer-correctness |
 | generality | accept | Move is stated beyond the example: applicability.goal_shape/use_when abstract to 'a pipeline = fixed sequence of independently specifiable passes, each a function on a global environment with one shared correctness predicate (ExtractTransformCorrect)'; the known-use compose_transforms_correct (Transform.v:35-44, verified) codifies the pattern as a reusable combinator. avoid_when is specific (pass depends on next pass's output -> no self-contained per-pass statement; side conditions not statable as own lemmas) and consequences are honest (erases_correct 1182 lines vs 22-line dearg/optimize; exact-shape eapply; shared-state failure mode needing a threaded invariant). Good-leaf properties are stated: children are self-contained and each Qed.-closed so the glue never opens a pass's internals; dearg is a good leaf because proven against its own analysis not the erased term's shape; optimize because it needs only closedness/well-formedness; the shared ExtractTransformCorrect signature lets the glue compose them blindly. | reviewer-generality |
 | provenance-licence | accept | Commit, licence and links are consistent and traceable. Pinned commit 51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56 is identical across source.json, SOURCE.md, entry.json and every permalink in README/entry.json (the README source row uses the unambiguous 12-char prefix 51b14e4bb5f4). Licence is MIT everywhere (entry.json source.licence, README licence row, source.json, SOURCE.md) and matches sources/metarocq/upstream-LICENSE, which is the MIT text copied from the pinned LICENSE per SOURCE.md. check_provenance.py returns pass: 9 files byte-identical at the pinned commit, matching the 9 files/sites listed and the code/ tree. Source note records repository, pinned commit, browse URL, detected licence, licence file, and attribution. | reviewer-provenance-licence |
 <!-- verification:end -->

@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | witness |
 | Language | lean |
-| Status | verified |
+| Status | accepted |
 | Source | [mathlib4](../../sources/mathlib4/SOURCE.md) at `e1545ebed975` |
 | Licence | `Apache-2.0` |
 
@@ -116,10 +116,11 @@ Use it when the goal is an existential `∃ n, c ≤ S n` and a general lower bo
 witness is found by solving `c ≤ B n` for a concrete `n` — ideally one where
 `B n = c` exactly, so the residual is a bare `norm_num` comparison. Avoid it
 when no closed-form bound exists (the witness would then carry its own proof
-burden), when the target constant is not attained by the bound at any finite
-index (e.g. the bound only approaches `4` in the limit — an exact `3.999` at a
-finite `n` is then impossible and the comparison will not close), or when the
-witness is not a numeral or closed term that `use` can fix.
+burden), when the target constant is a value the bound never actually reaches
+(e.g. the bound `4n/(n+1)` only approaches `4` from below — it is strictly
+less than `4` at every finite `n`, so a target of `4` itself is never attained
+and the comparison will not close), or when the witness is not a numeral or
+closed term that `use` can fix.
 
 ## Consequences
 
@@ -137,7 +138,7 @@ the goal is one more than the bound's parameter.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
@@ -159,7 +160,7 @@ Status: **verified**
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
 | correctness | accept | Read copied code Archive/Imo/Imo1982Q3.lean: parent imo1982_q3a (L78-83) states exists n, 3.999 <= sum k in range n, (x k)^2 / x(k+1); proof is use 4000 (L81), convert! Imo1982Q3.ineq (Nat.succ_ne_zero 3998) hx h0 hp (L82), norm_num (L83). ineq (L54-55) bounds sum over range(n+1) by 4n/(n+1); Nat.succ_ne_zero 3998 : 3999 != 0 instantiates n=3999 so range(n+1)=range 4000 and 4*3999/4000=3.999 exactly. Children match the code: witness n=4000 closed by 'use 4000'; property at witness closed by the convert!/norm_num transfer. Decomposition is what the entry says and closes. | reviewer-correctness |
-| generality | object | Move is stated generally (goal shape ∃ n, c ≤ S n with a general lower bound B n ≤ S n; witness found by inverting the bound), and consequences are honest and grounded. But the 'when not to use' clause contains a factually wrong illustration: it says 'the bound only approaches 4 in the limit — an exact 3.999 at a finite n is then impossible', yet the entry's own point is that 4·3999/4000 = 3.999 exactly, i.e. 3.999 IS attained at finite n (n=4000). This directly contradicts the entry and would mislead a reader about when the move applies. Fix: reword the example to a target the bound genuinely never reaches, e.g. 'the bound 4n/(n+1) only approaches 4 from below, so a target of 4 itself is never attained at any finite n and the comparison will not close'. | reviewer-generality |
+| generality | accept | Move is stated generally (goal shape exists n, c <= S n with a general lower bound B n <= S n already proved; witness found by inverting the bound to equal or exceed c), and consequences are honest and specific (witness must be concrete, ineq's n != 0 hypothesis must be supplied, bound must reach the target, off-by-one between range n and range(n+1)). The previously-objected 'when not to use' illustration is now factually correct: 4n/(n+1) = 4 - 4/(n+1) is strictly below 4 at every finite n, so a target of 4 itself is never attained and the comparison will not close. This matches the code (ineq L54-55, module doc L28-30 'arbitrarily close to 4'), the README 'When to use it, and when not', and entry.json avoid_when, which are now consistent with each other and with the entry's own point that 4*3999/4000 = 3.999 is attained exactly. | reviewer-generality |
 | provenance-licence | accept | Provenance-licence lens: check_provenance.py passes (1 file byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2); copied file Archive/Imo/Imo1982Q3.lean has bytes 4087 and sha256 35c72bb4...29187b, both matching entry.json files[0]. Commit e1545ebed...56e5af2 is used consistently in source.commit, files.permalink, both sites.permalink, and all claim evidence URLs. Site line ranges are correct against the copied code (parent L78-83: doc comment, two-line statement, three tactic lines; context L53-74: doc comment + lemma). Licence Apache-2.0 is recorded in entry.json and SOURCE.md (detected), matches the file header 'Released under Apache 2.0 license' and the copied upstream-LICENSE (Apache License 2.0). SOURCE.md records repo, pinned commit, browse link, licence and attribution, consistent with the entry. Everything traceable. | reviewer-provenance-licence |
 <!-- verification:end -->
 

@@ -5,9 +5,9 @@
 | Kind | instance |
 | Move | extensionality |
 | Language | isabelle |
-| Status | verified |
+| Status | accepted |
 | Source | [l4v](../../sources/l4v/SOURCE.md) at `1abfe5bce986` |
-| Licence | `CC-BY-SA-4.0` |
+| Licence | `GPL-2.0-only` |
 
 ## Intent
 
@@ -296,7 +296,7 @@ shared `simp_all` must then handle.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
@@ -319,9 +319,9 @@ Status: **verified**
 |---|---|---|---|
 | correctness | accept | Parent Refine.thy:94-121 is a single record equality opened by 'intro state.equality, simp_all add: absKState_def abs_state_def' then one apply per field, matching the stated decomposition; all 9 named lemmas cited in the glue (absHeap, absCDT, absIsOriginalCap, absSchedulerAction, domSchedule_map, absInterruptIRQNode, absInterruptStates, absArchState, absExst) are exactly the lemmas the proof uses, with 8 shown as child sites and absArchState_correct (ADT_H.thy:81-82, locale ADT_H) listed in the README. Each child's closing method matches the code: absHeap_correct is an 'assumes' of locale ADT_H_2 (1076+, 1080-1085), absCDT_correct = 'lemmas absCDT_correct = absCDT_correct'(1)' (726) with absCDT_correct' (549-723) closing by 'apply (rule ext)' (643) using cteMap_correct (569); absIsOriginalCap_correct (456-515) by 'apply (rule ext)' + case on caps_of_state; absSchedulerAction/domSchedule_map/absInterruptIRQNode close by their recorded by/apply; absExst_correct (1050-1060) by 'rule det_ext.equality'. Proof closes ('done'/'qed', no sorry). Shape numbers verified: glue_lines 28 (94-121), child_lines [6,1,60,3,3,4,9,11] sum 97 = shown_child_total_lines, direct_lemmas 9, depth 4 chain absKState_correct->absCDT_correct(Refine:101)->absCDT_correct'(ADT:726)->cteMap_correct(ADT:569)->cte_at_CNodeI(ADT:345) all confirmed. | reviewer-correctness |
 | generality | accept | Move generalises cleanly beyond seL4: 'When to use it' abstracts to any equality of large record-typed states whose fields are fixed by an existing relation, and applicability.goal_shape/use_when/avoid_when repeat it independently of the example. 'When not to use' is specific and honest (interacting fields, no fieldwise relation, too-small record, architecture-specific field without a locale parameter), and consequences name concrete failure modes (field missing from state_relation, child slightly weaker than the field equality, record extension silently adding a subgoal). Good-leaf question answered explicitly: each leaf is self-contained, stated in its own field's relation, closes on its own without referring to other fields, and the two heavy fields are deferred as locale parameters discharged per architecture - exactly the bounded-context property a bounded prover needs. Verified parent glue (Refine.thy 94-121) and exemplar children (absHeap, absSchedulerAction, absExst) in the local code match the description. | reviewer-generality |
-| provenance-licence | object | Licence is recorded inconsistently with the copied files. Both copied files carry 'SPDX-License-Identifier: GPL-2.0-only' in their headers (code/proof/refine/Refine.thy line 6; code/proof/refine/ADT_H.thy line 6), yet entry.json source.licence, README's Licence row, SOURCE.md 'Licence (detected)' and source.json all record 'CC-BY-SA-4.0'. That tag is only the SPDX header of LICENSE.md itself; the upstream LICENSE.md (copied as upstream-LICENSE.md) states proofs about the seL4 kernel are GPL v2, libraries BSD-2-Clause. Permalinks and commit are otherwise consistent and traceable (check_provenance.py: 2 files byte-identical at 1abfe5bce98632a94ba52adf183045620c509340). Fix: set the licence to GPL-2.0-only in source.json, SOURCE.md, entry.json and README (or record per-file licences), and correct the source note's licence description. | reviewer-provenance-licence |
+| provenance-licence | accept | Provenance and licence now consistent and traceable. check_provenance.py passes: 2 file(s) byte-identical at commit 1abfe5bce98632a94ba52adf183045620c509340, so the pinned commit and all permalinks resolve. Both copied files carry SPDX-License-Identifier: GPL-2.0-only in their headers (Refine.thy:6, ADT_H.thy:5), matching entry.json source.licence=GPL-2.0-only, the README Licence row, and the Source-and-licence section. The earlier objection is met: SOURCE.md now records Licence GPL-2.0-only AND BSD-2-Clause and source.json licence=GPL-2.0-only AND BSD-2-Clause (the old CC-BY-SA-4.0 survives only as licence_detected with a licence_note explaining the supersession). The entry-level GPL-2.0-only is a correct subset of the source-level per-file licences (proof files GPL-2.0, libraries BSD-2-Clause), confirmed against upstream-LICENSE.md: its CC-BY-SA-4.0 SPDX tag licenses LICENSE.md itself, not the code. No contradiction remains. | reviewer-provenance-licence |
 <!-- verification:end -->
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/seL4/l4v at commit `1abfe5bce98632a94ba52adf183045620c509340`, under `CC-BY-SA-4.0`; see the [source note](../../sources/l4v/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/seL4/l4v at commit `1abfe5bce98632a94ba52adf183045620c509340`. Both copied files carry `SPDX-License-Identifier: GPL-2.0-only` in their headers ([`Refine.thy` line 6](code/proof/refine/Refine.thy), [`ADT_H.thy` line 5](code/proof/refine/ADT_H.thy)), so this entry's code is under `GPL-2.0-only`. The upstream [LICENSE.md](https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/LICENSE.md) states that proofs about the seL4 kernel are GPL v2 and general libraries/tools BSD-2-Clause; its own `SPDX-License-Identifier: CC-BY-SA-4.0` tag is the licence of LICENSE.md only, not of these proof files. See the [source note](../../sources/l4v/SOURCE.md) for attribution.

@@ -1,7 +1,7 @@
 {
   "id": "lean-induction-sampcert-9437187d",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Induction on the fuel extra for the closed form of truncated probGeometric",
   "intent": "Prove a closed form for every terminating run of the truncated probGeometric loop by induction on the surplus fuel `extra`: the value at `extra + (n + 1)` steps is already known at the minimal fuel by one lemma, and a second lemma says one more step of fuel does not change it.",
   "move": "induction",
@@ -175,5 +175,5 @@
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-14T12:35:34Z"
+  "status_at": "2026-11-14T14:07:37Z"
 }

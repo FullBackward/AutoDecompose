@@ -1,7 +1,7 @@
 {
   "id": "rocq-extensionality-fiat-crypto-cb9f23da",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Component-wise equality of divstep against divstep_spec_full via injective_projections",
   "intent": "Reduce the headline correctness theorem of BYInv.v -- that one Bernstein-Yang divstep on the 5-tuple (d,f,g,v,r) equals the full specification divstep_spec_full -- to five independent coordinate equalities, one per tuple slot, by applying Coq's injective_projections component-wise, then closing each coordinate with one rewrite of a matching pair of lemmas (a trivial projection lemma plus a component-correctness lemma).",
   "move": "extensionality",
@@ -16,7 +16,7 @@
     "source_id": "fiat-crypto",
     "url": "https://github.com/mit-plv/fiat-crypto",
     "commit": "3d2880ef2803faa9385589a81a835d5828eb3d38",
-    "licence": "Apache-2.0 AND BSD-2-Clause AND MIT AND MIT OR Apache-2.0 OR BSD-1-Clause"
+    "licence": "MIT OR Apache-2.0 OR BSD-1-Clause"
   },
   "files": [
     {
@@ -278,8 +278,16 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T07:58:46Z",
       "note": "typed glue_lines 8, child_lines [24, 18, 60, 12, 51, 2, 2, 2]; derived from the site ranges (declaration included): 47, [36, 28, 81, 39, 79, 4, 4, 4]"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "fixer",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:12:42Z",
+      "note": "set to 'MIT OR Apache-2.0 OR BSD-1-Clause' per upstream COPYRIGHT (SPDX-License-Identifier: MIT OR Apache-2.0 OR BSD-1-Clause, 'at your option'); dropped the phantom BSD-2-Clause and the 'AND' framing"
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-12T15:58:12Z"
+  "status_at": "2026-11-14T14:39:59Z"
 }

@@ -112,6 +112,30 @@
       "evidence": "no Lean, Rocq or Isabelle file among the copied files",
       "by": "sorry_scan.py",
       "at": "2026-11-14T08:00:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "not-run",
+      "evidence": "no Lean, Rocq or Isabelle file among the copied files",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:01:18Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "not-run",
+      "evidence": "no Lean, Rocq or Isabelle file among the copied files",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:01:19Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "goal_shape now states the general class ('a lemma/theorem stated as a node with a frozen Lean name and a fixed statement, whose proof is a chain of citations to already-stated upstream nodes, all declared up front in a single \\uses{} line'); the covering/transfer/doubling/subspace content is dropped. use_when and avoid_when are general, honest and specific (already-stated-lemma combination; frozen statement; new-construction/statement-still-changing/hypotheses-don't-line-up as avoid conditions). consequences are honest and specific: name-change ripple, per-citation hypothesis discharge (entropy-pfr applied only after ruz-dist-def converts the doubling bound, confirmed at pfr.tex L26-28), and the silent-gap failure mode tied to \\leanok being build-verified, not text-enforced. Move is stated to apply beyond this instance.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T14:02:02Z"
     }
   ]
 }

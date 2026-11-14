@@ -112,6 +112,62 @@
       "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
       "by": "sorry_scan.py",
       "at": "2026-11-14T08:00:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:18:22Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: immersionRel_satisfiesHPrincipleWith@SphereEversion/Global/Immersion.lean:324, formalEversion_hol_near_zero_one@SphereEversion/Global/Immersion.lean:327, formalEversion_zero@SphereEversion/Global/Immersion.lean:333, formalEversion_one@SphereEversion/Global/Immersion.lean:336; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:18:22Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "cites(parent, ContMDiff.uncurry_left) -> cites: ContMDiff.uncurry_left occurs at SphereEversion/Global/Immersion.lean:338",
+      "by": "check_claims.py",
+      "at": "2026-11-14T14:18:22Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:18:22Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: immersionRel_satisfiesHPrincipleWith@SphereEversion/Global/Immersion.lean:324, formalEversion_hol_near_zero_one@SphereEversion/Global/Immersion.lean:327, formalEversion_zero@SphereEversion/Global/Immersion.lean:333, formalEversion_one@SphereEversion/Global/Immersion.lean:336; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:18:22Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 33ab3d626854a0f0f04ed5772e3102d652e96475",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T14:18:34Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Provenance passes (2 files byte-identical). Parent statement (307-310) and all four child statements match entry.json verbatim; closed_by matches the code (immersionRel_satisfiesHPrincipleWith 119-124 closes via immersionRel_ample/immersionRel_open at line 124; formalEversion_hol_near_zero_one 243-256 via filter_upwards then rcases into formalEversionHolAtZero/HolAtOne at 255-256; formalEversion_zero 209 and formalEversion_one 211 each 'by simp'). Glue (311-340) cites all four children at 324/327/333/336 and closes all three subgoal bullets with no sorry. Shape numbers all correct: glue_lines=34 (307-340), child_lines=[6,14,1,1] (119-124, 243-256, 209, 211), depth=2 (hol_near_zero_one -> holAtZero/holAtOne). The prior objection is fixed: shape.direct_lemmas is now 5, matching the five same-file named theorems the glue invokes (the four children plus ContMDiff.uncurry_left at line 338), and claim 5 correctly says the immersion conjunct's contMDiff field is closed by h1.uncurry_left, not h1 alone; the goal's own smoothness conjunct (CMDiff inf uf) is still correctly described as closed by h1 directly at line 330. children=4 vs direct_lemmas=5 is consistent (four children + one helper).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T14:19:50Z"
     }
   ]
 }

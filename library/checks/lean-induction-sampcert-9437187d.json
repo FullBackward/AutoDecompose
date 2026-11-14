@@ -120,6 +120,46 @@
       "evidence": "commit a2c53bb5ff790e729e252958060699b7eff898b9 is identical across entry.json, source.json and SOURCE.md; all permalinks use that commit; licence Apache-2.0 recorded in entry.json, source.json and SOURCE.md and matches upstream-LICENSE (Apache-2.0 text); check_provenance passes (Code.lean 920B and Properties.lean 13085B byte-identical at the commit); cited line ranges 272-290, 186-194, 235-267 and 312 verified against the local copy and match the README excerpts and entry statements.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-14T12:35:28Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:05:44Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: geometric_progress'@SampCert/Samplers/Geometric/Properties.lean:278, geometric_preservation'@SampCert/Samplers/Geometric/Properties.lean:285; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:05:44Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T14:05:44Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: geometric_progress'@SampCert/Samplers/Geometric/Properties.lean:278, geometric_preservation'@SampCert/Samplers/Geometric/Properties.lean:285; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T14:05:45Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Correctness review (re-check after revision). Opened the local copy at the cited ranges. Parent geometric_characterization (Properties.lean 272-290) is 'revert n; induction extra' (274-275); base case cites geometric_progress' (278, 'apply geometric_progress' trial _ h'), step case cites geometric_preservation' (285, 'rw [<- geometric_preservation'] at IH''); no other lemma is the glue. The step closes with the three goals exactly as the README now states: main goal via B : succ extra + (n+1) = extra + n + 2 (succ_add_eq_add_succ) then rw [B]; trivial; side condition ¬ n = 0 (h1 with m := n) by trivial; side condition extra + n ≥ n (h2 : n ≥ m with n := extra + n, m := n) by exact Nat.le_add_left n extra (proves n ≤ extra + n). No sorry. Child statements match code verbatim (geometric_progress' 186-194, geometric_preservation' 235-267), each closing as claimed (trivial after succ_pred/succ_inj rewrites; apply prog then exact Nat.sub_le_sub_right h2 1). Shape numbers are right: direct_lemmas=2, glue_lines 272-290 = 19, child_lines 186-194 = 9 and 235-267 = 33; depth 2 confirmed (geometric_progress' cites geometric_progress declared 162; geometric_preservation' cites geometric_preservation declared 199). The earlier objection is fixed: the step-case bullet no longer says 'extra >= n'; it now says 'extra + n >= n ... closed by Nat.le_add_left n extra', matching the code.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T14:07:27Z"
     }
   ]
 }

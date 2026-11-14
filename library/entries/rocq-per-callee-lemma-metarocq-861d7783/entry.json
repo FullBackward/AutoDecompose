@@ -1,7 +1,7 @@
 {
   "id": "rocq-per-callee-lemma-metarocq-861d7783",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Per-pass correctness lemmas for erasure, dearging and match-on-box removal, composed in extract_correct",
   "intent": "Reduce the end-to-end correctness of the verified extraction pipeline — that a PCUIC constant evaluating to a constructor extracts to an erased, dearged, match-on-box-removed λ□ term evaluating to the same constructor — to one correctness lemma per pass (erases_correct, dearg_transform_correct, optimize_correct) plus the typing, well-formedness and dependency-closure lemmas their premises need, so extract_correct is a 51-line composition that never re-proves a pass.",
   "move": "per-callee-lemma",
@@ -163,6 +163,17 @@
       "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/PCUICInversion.v#L211-L221"
     },
     {
+      "path": "erasure/theories/Typed/Extraction.v",
+      "lines": [
+        66,
+        84
+      ],
+      "role": "child",
+      "name": "fresh_globals_erase_global_decl_rec",
+      "excerpt_sha256": "cc7bc4a78123d0012b7db40925d493ab061e182dd883548c9155500ccc2e7d5d",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Typed/Extraction.v#L66-L84"
+    },
+    {
       "path": "erasure/theories/Typed/Transform.v",
       "lines": [
         15,
@@ -220,6 +231,12 @@
       "statement": "Lemma inversion_Const :\n    forall {Γ c u T},\n      Σ ;;; Γ |- tConst c u : T ->\n      ∑ decl,\n        wf_local Σ Γ ×\n        declared_constant Σ c decl ×\n        (consistent_instance_ext Σ decl.(cst_universes) u) ×\n        Σ ;;; Γ ⊢ subst_instance u (cst_type decl) ≤ T.",
       "closed_by": "invtac h",
       "note": "Typing inversion for tConst, from the PCUIC metatheory (PCUICInversion.v); gives the declared_constant that erases_correct's erases_deps hypothesis needs."
+    },
+    {
+      "name": "fresh_globals_erase_global_decl_rec",
+      "statement": "Lemma fresh_globals_erase_global_decl_rec :\n    forall X_type X (Σ0 : global_declarations) (universes0 : ContextSet.t) (retroknowledge0 : Retroknowledge.t)\n           wfΣ\n           (seeds : KernameSet.t) (ignore : kername -> bool),\n      EnvMap.EnvMap.fresh_globals Σ0 ->\n      ExAst.fresh_globals (@erase_global_decls_deps_recursive X_type X Σ0 universes0 retroknowledge0 wfΣ seeds ignore).",
+      "closed_by": "induction Σ0; in the cons case constructor with IHΣ0 and fresh_global_erase_global_decl_rec (Qed.)",
+      "note": "Discharges the shelved freshness obligation of the parent's final Unshelve (ExtractionCorrectness.v:578). Analyst's paraphrase, replaced by the declaration's text: Freshness of the recursively erased global environment."
     }
   ],
   "applicability": {
@@ -250,21 +267,21 @@
       "form": "cites(parent, erases_correct)"
     },
     {
-      "n": 4,
-      "claim": "The main theorem extract_correct composes 7 direct project lemmas in a 51-line parent site; the seven children (declaration and proof) span 1182, 22, 22, 37, 12, 8 and 11 lines (1294 in total); the deepest chain below the theorem is extract_correct -> erases_correct -> inversion_App and extract_correct -> dearg_transform_correct -> dearg_correct, depth 2.",
-      "evidence_kind": "measurement",
-      "evidence": "site line ranges in the copied files at commit 51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56: parent ExtractionCorrectness.v 530-580 (51 lines); children ErasureCorrectness.v 51-1232 (1182), OptimizeCorrectness.v 5179-5200 (22), ExtractionCorrectness.v 506-527 (22), 440-476 (37), 66-77 (12), Typed/ErasureCorrectness.v 296-303 (8), PCUICInversion.v 211-221 (11). Depth chain: erases_correct applies inversion_App (ErasureCorrectness.v:64); dearg_transform_correct applies dearg_correct (OptimizeCorrectness.v:5199)."
-    },
-    {
       "n": 5,
       "claim": "The same per-pass composition is codified as a reusable combinator: compose_transforms_correct proves that a list of ExtractTransformCorrect transforms composes to an ExtractTransformCorrect transform, generalising the one-lemma-per-pass pattern extract_correct uses by hand.",
       "evidence_kind": "known-use",
       "evidence": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Typed/Transform.v#L35-L44"
+    },
+    {
+      "n": 6,
+      "claim": "The main theorem extract_correct composes 8 direct project lemmas in a 51-line parent site; the eight children (declaration and proof) span 1182, 22, 22, 37, 12, 8, 11 and 19 lines (1313 in total); the deepest chain below the theorem is extract_correct -> erases_correct -> inversion_App and extract_correct -> dearg_transform_correct -> dearg_correct, depth 2.",
+      "evidence_kind": "measurement",
+      "evidence": "site line ranges in the copied files at commit 51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56: parent ExtractionCorrectness.v 530-580 (51 lines); children ErasureCorrectness.v 51-1232 (1182), OptimizeCorrectness.v 5179-5200 (22), ExtractionCorrectness.v 506-527 (22), 440-476 (37), 66-77 (12), Typed/ErasureCorrectness.v 296-303 (8), PCUICInversion.v 211-221 (11), Typed/Extraction.v 66-84 (19). Depth chain: erases_correct applies inversion_App (ErasureCorrectness.v:64); dearg_transform_correct applies dearg_correct (OptimizeCorrectness.v:5199)."
     }
   ],
   "shape": {
     "scale": "theorem",
-    "direct_lemmas": 7,
+    "direct_lemmas": 8,
     "depth": 2,
     "glue_lines": 51,
     "child_lines": [
@@ -274,14 +291,15 @@
       37,
       12,
       8,
-      11
+      11,
+      19
     ]
   },
   "metrics": {
     "glue_body_lines": 35,
     "pass_lemmas": 3,
-    "child_lines_total": 1294,
-    "how_counted": "parent site 530-580 (51 lines: 14-line statement 530-543, 35-line proof body 545-579); child sites 51-1232, 5179-5200, 506-527, 440-476, 66-77, 296-303, 211-221 = 1182 + 22 + 22 + 37 + 12 + 8 + 11 = 1294. pass_lemmas = erases_correct, dearg_transform_correct, optimize_correct."
+    "child_lines_total": 1313,
+    "how_counted": "parent site 530-580 (51 lines: 14-line statement 530-543, 35-line proof body 545-579); child sites 51-1232, 5179-5200, 506-527, 440-476, 66-77, 296-303, 211-221, 66-84 = 1182 + 22 + 22 + 37 + 12 + 8 + 11 + 19 = 1313. pass_lemmas = erases_correct, dearg_transform_correct, optimize_correct."
   },
   "consequences": "The move produces one obligation per pass plus its side conditions. The three pass lemmas differ hugely in size: erases_correct is 1182 lines (erasure correctness is the hard part), while dearg_transform_correct and optimize_correct are 22 lines each because they reduce to a single existing lemma (dearg_correct, remove_match_on_box_correct). The glue must discharge each pass's hypotheses in the exact shape the pass lemma expects (wf_glob via wf_erase_global_decls_recursive, erases_deps via inversion_Const + global_erased_with_deps_erases_deps_tConst + erase_global_decls_deps_recursive_correct); a wrong shape fails the eapply. A failure mode: if the passes share state, their lemmas are not self-contained and the composition needs an invariant threaded through all of them instead.",
   "known_uses": [
@@ -316,8 +334,24 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T12:55:10Z",
       "note": "parent extract_correct: statement re-copied from code; child 'erases_correct': statement re-copied from the declaration of erases_correct; child 'dearg_transform_correct': statement re-copied from the declaration of dearg_transform_correct; child 'optimize_correct': statement re-copied from the declaration of optimize_correct; child 'wf_erase_global_decls_recursive': statement re-copied from the declaration of wf_erase_global_decls_recursive; child 'global_erased_with_deps_erases_deps_tConst': statement re-copied from the declaration of global_erased_with_deps_erases_deps_tConst; child 'erase_global_decls_deps_recursive_correct': statement re-copied from the declaration of erase_global_decls_deps_recursive_correct; child 'inversion_Const': statement re-copied from the declaration of inversion_Const"
+    },
+    {
+      "field": "children,sites,shape,metrics,claims",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "revise-1",
+      "at": "2026-11-14T14:26:26Z",
+      "note": "correctness objection met: added fresh_globals_erase_global_decl_rec (erasure/theories/Typed/Extraction.v:66-84) as the 8th child and child site; shape.direct_lemmas 7->8 and shape.child_lines += 19; metrics.child_lines_total 1294->1313; measurement claim rewritten under a new number (claim 4 removed, claim 6 added with the corrected count of 8 direct project lemmas)."
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T14:27:04Z",
+      "note": "child 'fresh_globals_erase_global_decl_rec': statement re-copied from the declaration of fresh_globals_erase_global_decl_rec"
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-14T13:30:31Z"
+  "status_at": "2026-11-14T14:34:42Z"
 }
