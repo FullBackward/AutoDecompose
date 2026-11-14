@@ -1,7 +1,7 @@
 {
   "id": "isabelle-case-split-jormungand-a8ddace5",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Per-slot CNode initialisation split on original_cap_at",
   "intent": "Reduce the per-slot CNode-initialisation theorem -- a Hoare triple that init_cnode_slot ... Move turns a half-initialised slot into an initialised slot -- to a case split on whether the slot holds an original capability, dispatching each branch to one of two framed separation-logic lemmas already proved for exactly that case.",
   "move": "case-split",
@@ -194,5 +194,5 @@
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-14T16:00:47Z"
+  "status_at": "2026-11-14T22:33:02Z"
 }

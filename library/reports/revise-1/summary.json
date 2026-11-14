@@ -5,36 +5,24 @@
   "gold_recall": "no gold standard",
   "gold_missed": [],
   "finish": {
-    "at": "2026-11-14T14:40:15Z",
+    "at": "2026-11-14T22:33:02Z",
     "entries": {
-      "isabelle-extensionality-l4v-d181edcf": "accepted",
-      "rocq-extensionality-fiat-crypto-cb9f23da": "accepted",
-      "rocq-per-callee-lemma-wasmcert-coq-808e3c09": "accepted",
-      "rocq-suffices-or-strengthen-fiat-crypto-efce3e48": "accepted"
+      "isabelle-case-split-jormungand-a8ddace5": "accepted"
     },
-    "calls": 4,
-    "tokens": 1269679,
-    "cost_cny": 1.13,
+    "calls": 1,
+    "tokens": 306934,
+    "cost_cny": 0.25,
     "halted": null,
     "objections_rereviewed": {
-      "isabelle-extensionality-l4v-d181edcf": [
-        "provenance-licence"
-      ],
-      "rocq-per-callee-lemma-wasmcert-coq-808e3c09": [
-        "provenance-licence"
-      ],
-      "rocq-extensionality-fiat-crypto-cb9f23da": [
-        "provenance-licence"
-      ],
-      "rocq-suffices-or-strengthen-fiat-crypto-efce3e48": [
+      "isabelle-case-split-jormungand-a8ddace5": [
         "provenance-licence"
       ]
     }
   },
-  "calls": 71,
-  "tokens": 56923239,
-  "cost_cny": 40.45,
-  "finished": "2026-11-14T14:40:15Z",
+  "calls": 74,
+  "tokens": 57533749,
+  "cost_cny": 41.16,
+  "finished": "2026-11-14T22:33:02Z",
   "earlier_finish": [
     {
       "at": "2026-11-14T14:37:05Z",
@@ -161,6 +149,48 @@
         ],
         "rocq-induction-interaction-trees-b0a7a191": [
           "correctness",
+          "generality"
+        ]
+      }
+    },
+    {
+      "at": "2026-11-14T14:40:15Z",
+      "entries": {
+        "isabelle-extensionality-l4v-d181edcf": "accepted",
+        "rocq-extensionality-fiat-crypto-cb9f23da": "accepted",
+        "rocq-per-callee-lemma-wasmcert-coq-808e3c09": "accepted",
+        "rocq-suffices-or-strengthen-fiat-crypto-efce3e48": "accepted"
+      },
+      "calls": 4,
+      "tokens": 1269679,
+      "cost_cny": 1.13,
+      "halted": null,
+      "objections_rereviewed": {
+        "isabelle-extensionality-l4v-d181edcf": [
+          "provenance-licence"
+        ],
+        "rocq-per-callee-lemma-wasmcert-coq-808e3c09": [
+          "provenance-licence"
+        ],
+        "rocq-extensionality-fiat-crypto-cb9f23da": [
+          "provenance-licence"
+        ],
+        "rocq-suffices-or-strengthen-fiat-crypto-efce3e48": [
+          "provenance-licence"
+        ]
+      }
+    },
+    {
+      "at": "2026-11-14T22:32:22Z",
+      "entries": {
+        "rocq-calc-chain-ssprove-54f699c2": "accepted"
+      },
+      "calls": 2,
+      "tokens": 303576,
+      "cost_cny": 0.46,
+      "halted": null,
+      "objections_revised": {
+        "rocq-calc-chain-ssprove-54f699c2": [
           "generality"
         ]
       }

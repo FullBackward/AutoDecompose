@@ -120,6 +120,54 @@
       "evidence": "Licence recorded (BSD-2-Clause, from LICENSE_BSD2.txt) is inconsistent with the copied files: all four files under code/case_study/l4v/sys-init/ carry GPL-2.0 headers (@TAG(NICTA_GPL); seen in each file's top comment). GPL-2.0 is copyleft, and protocol section 2 decision 1 requires copyleft entries to be marked so they can be withheld on publication; recording BSD-2-Clause means this entry would not be flagged. The README disclosure also understates it (says only InitCSpace_SI.thy carries the GPL header; actually all four do), and sources/jormungand/SOURCE.md lists only LICENSE_BSD2.txt, so the licence that actually governs the copied files is not recorded or traceable. Fix: set entry source.licence (and the README licence row) to GPL-2.0 for these files (or record both licences with these files flagged copyleft), add LICENSE_GPLv2.txt to the source note's licence_files (and copy its text), and correct the README note to say all four files carry the GPL-2.0 header. Permalinks and commit are otherwise consistent: check_provenance reports all 4 files byte-identical at bad97f9817b4034cd705cd295a1f86af880a7631, and that commit string matches across entry.json, README and SOURCE.md.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-14T16:00:38Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T22:32:23Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: init_cnode_slot_move_original_sep@case_study/l4v/sys-init/InitCSpace_SI.thy:1229, init_cnode_slot_move_not_original_sep@case_study/l4v/sys-init/InitCSpace_SI.thy:1230; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T22:32:23Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T22:32:23Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: init_cnode_slot_move_original_sep@case_study/l4v/sys-init/InitCSpace_SI.thy:1229, init_cnode_slot_move_not_original_sep@case_study/l4v/sys-init/InitCSpace_SI.thy:1230; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T22:32:23Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at bad97f9817b4034cd705cd295a1f86af880a7631",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T22:32:43Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Objection resolved. check_provenance.py passes: 4 files byte-identical at bad97f9817b4034cd705cd295a1f86af880a7631, and that commit matches across entry.json source.commit, README (abbreviated bad97f9817b4), sources/jormungand/SOURCE.md and source.json. Licence now consistent: all four copied files under code/case_study/l4v/sys-init/ carry the GPL-2.0 header (@TAG(NICTA_GPL), 'GNU General Public License version 2') at lines 1-9 (tag at line 8), verified by reading each. entry.json source.licence is GPL-2.0-only, README licence row and Source-and-licence section both say GPL-2.0-only and state all four files carry the GPL header, and SOURCE.md/source.json record 'BSD-2-Clause AND GPL-2.0-only' with licence_files listing both LICENSE_BSD2.txt and case_study/l4v/LICENSE_GPLv2.txt, both copied (upstream-LICENSE_BSD2.txt, upstream-case_study--l4v--LICENSE_GPLv2.txt, the latter the real GPL v2 text). GPL-2.0-only is copyleft so the index will flag it (protocol 2.1). Minor non-objection: README says the header is 'lines 1-8' but the closing '*)' is line 9 and the tag line 8; immaterial to traceability.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T22:32:56Z"
     }
   ]
 }

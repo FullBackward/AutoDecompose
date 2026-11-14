@@ -1,7 +1,7 @@
 {
   "id": "rocq-calc-chain-ssprove-54f699c2",
   "kind": "instance",
-  "status": "verified",
+  "status": "accepted",
   "title": "Hybrid game-hop chain bounds CCA advantage by the MAC and CPA epsilons",
   "intent": "Prove the CCA-security bound of the MAC-then-CPA construction (CCA_EVAL) as a chain of game hops: one ssprove triangle turns Advantage CCA_EVAL A into a sum over six intermediate packages, and four named program-equivalence lemmas, one per hop, collapse that chain to mac_epsilon (A ∘ CCA_EVAL_TAG_pkg_tt) + cpa_epsilon (A ∘ CCA_EVAL_HYB_pkg) + mac_epsilon (A ∘ CCA_EVAL_TAG_pkg_ff).",
   "move": "calc-chain",
@@ -213,5 +213,5 @@
     }
   ],
   "status_reason": "",
-  "status_at": "2026-11-14T15:47:58Z"
+  "status_at": "2026-11-14T22:32:22Z"
 }

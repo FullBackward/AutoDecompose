@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | calc-chain |
 | Language | rocq |
-| Status | verified |
+| Status | accepted |
 | Source | [ssprove](../../sources/ssprove/SOURCE.md) at `9a37fe0ab79d` |
 | Licence | `MIT` |
 
@@ -263,9 +263,10 @@ theorem is 1.
    (author-statement; [lines 1-11](https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/MACCCA.v#L1-L11)).
 
 In my opinion the detail worth copying is that the six packages of the hybrid
-argument split into two kinds of leaf: three of the four hops close by
-reflexivity after unfolding, and only the CPA hop (and its mirror) needs a
-real invariant. The `ssprove triangle` tactic carries all of the transitivity,
+argument split into two kinds of leaf: two of the four hops close by
+reflexivity after unfolding, and only the two CPA hops
+(`CCA_EVAL_HYB_equiv_true`, `CCA_EVAL_HYB_equiv_false`) need a real
+invariant. The `ssprove triangle` tactic carries all of the transitivity,
 so the glue is nothing but the triangle plus one rewrite per hop.
 
 ## When to use it, and when not
@@ -302,7 +303,7 @@ term that no later rewrite removes.
 ## Verification
 
 <!-- verification:start -->
-Status: **verified**
+Status: **accepted**
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
@@ -324,7 +325,7 @@ Status: **verified**
 | Review lens | Decision | Reason | By |
 |---|---|---|---|
 | correctness | accept | Verified against the local copy code/theories/Crypt/examples/MACCCA.v: parent security_based_on_mac is exactly lines 434-470 (Qed. at 470); the four children are declared at 303-314, 316-358, 360-402, 404-415 with statements matching entry.json verbatim; the glue cites all four by name (rewrite -> CCA_EVAL_equiv_true/HYB_equiv_true/HYB_equiv_false/equiv_false by ssprove_valid) and no other project lemma, so children are exactly the lemmas used; closing methods match (reflexive hops close by eq_rel_perf_ind_eq + rreflexivity_rule, hybrid hops by eq_rel_perf_ind with couple_lhs/couple_rhs invariant + r_get/r_put + rewrite Hinv); all proofs end in Qed. with no admit/Admitted/Axiom in 303-470, so it closes. Shape numbers are right: direct_lemmas=4, depth=1, glue_lines=37 (parent site 434-470), child_lines=[12,43,43,12], all matching fields.md's definition and validate_entry's recomputation. | reviewer-correctness |
-| generality | object | Use_when/avoid_when and consequences are honest and specific, and the move is abstracted to hybrid-argument/game-hopping beyond this construction ('ssprove triangle (or the equivalent triangle inequality)'). But the leaf-quality summary misstates the split: 'In my opinion' says 'three of the four hops close by reflexivity after unfolding, and only the CPA hop (and its mirror) needs a real invariant', which is internally contradictory and refuted by the copied code — CCA_EVAL_equiv_true and CCA_EVAL_equiv_false close by eq_rel_perf_ind_eq/rreflexivity_rule (2 reflexive), while CCA_EVAL_HYB_equiv_true/false use eq_rel_perf_ind with a couple_lhs/couple_rhs invariant (2 invariant). Fix: change 'three of the four' to 'two of the four' and name the two invariant hops. | reviewer-generality |
+| generality | accept | Leaf-quality summary fixed and now matches the copied code: 'two of the four hops close by reflexivity after unfolding, and only the two CPA hops (CCA_EVAL_HYB_equiv_true, CCA_EVAL_HYB_equiv_false) need a real invariant' — confirmed by grep of the local copy: equiv_true/equiv_false use eq_rel_perf_ind_eq + rreflexivity_rule (2 reflexive), HYB_equiv_true/false use eq_rel_perf_ind with couple_lhs/couple_rhs (2 invariant). The 'Why each is a good leaf' prose agrees (two reflexive 12-line, two hybrid 43-line, self-contained, depth 1, no cross-citation). Move is abstracted beyond the example via also_known_as (hybrid argument, game hopping, triangle inequality over advantages) and use_when's 'ssprove triangle (or the equivalent triangle inequality) lists a chain of intermediate packages...'; avoid_when is honest and specific (bad-event/non-trivial reduction hops, non-definitional advantage terms, non-adjacent hops); consequences name concrete failure modes (exact ≈₀ per hop, rewrite/list/definitions must agree, ssprove_code_simpl needed, wrong b flag or composition order). Leaf-quality for a bounded prover is stated: each hop is one bounded ≈₀ program-equivalence proof, self-contained with no other project-lemma citation. | reviewer-generality |
 | provenance-licence | accept | Provenance pass: check_provenance.py reports 1 file byte-identical at 9a37fe0ab79d041f8d835e6cf18e37614b16a791. All permalinks (files, 5 sites, 5 claim evidence URLs) use the same commit and the correct path theories/Crypt/examples/MACCCA.v; line ranges match the copied file (theorem at 434-470, four lemmas at 303-314/316-358/360-402/404-415, header comment at 1-11). Licence recorded MIT in entry.json, README, source.json and SOURCE.md, and sources/ssprove/upstream-LICENSE is the MIT text (Copyright 2021 SSProve) matching source.json licence_files [LICENSE]. Local copy is 14016 bytes matching the entry's files[0].bytes. Everything traceable. | reviewer-provenance-licence |
 <!-- verification:end -->
 

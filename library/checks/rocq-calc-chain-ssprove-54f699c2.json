@@ -120,6 +120,46 @@
       "evidence": "Provenance pass: check_provenance.py reports 1 file byte-identical at 9a37fe0ab79d041f8d835e6cf18e37614b16a791. All permalinks (files, 5 sites, 5 claim evidence URLs) use the same commit and the correct path theories/Crypt/examples/MACCCA.v; line ranges match the copied file (theorem at 434-470, four lemmas at 303-314/316-358/360-402/404-415, header comment at 1-11). Licence recorded MIT in entry.json, README, source.json and SOURCE.md, and sources/ssprove/upstream-LICENSE is the MIT text (Copyright 2021 SSProve) matching source.json licence_files [LICENSE]. Local copy is 14016 bytes matching the entry's files[0].bytes. Everything traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-14T15:47:51Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T22:31:52Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: CCA_EVAL_equiv_true@theories/Crypt/examples/MACCCA.v:463, CCA_EVAL_HYB_equiv_true@theories/Crypt/examples/MACCCA.v:464, CCA_EVAL_HYB_equiv_false@theories/Crypt/examples/MACCCA.v:465, CCA_EVAL_equiv_false@theories/Crypt/examples/MACCCA.v:466; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T22:31:52Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T22:31:52Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: CCA_EVAL_equiv_true@theories/Crypt/examples/MACCCA.v:463, CCA_EVAL_HYB_equiv_true@theories/Crypt/examples/MACCCA.v:464, CCA_EVAL_HYB_equiv_false@theories/Crypt/examples/MACCCA.v:465, CCA_EVAL_equiv_false@theories/Crypt/examples/MACCCA.v:466; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T22:31:53Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Leaf-quality summary fixed and now matches the copied code: 'two of the four hops close by reflexivity after unfolding, and only the two CPA hops (CCA_EVAL_HYB_equiv_true, CCA_EVAL_HYB_equiv_false) need a real invariant' — confirmed by grep of the local copy: equiv_true/equiv_false use eq_rel_perf_ind_eq + rreflexivity_rule (2 reflexive), HYB_equiv_true/false use eq_rel_perf_ind with couple_lhs/couple_rhs (2 invariant). The 'Why each is a good leaf' prose agrees (two reflexive 12-line, two hybrid 43-line, self-contained, depth 1, no cross-citation). Move is abstracted beyond the example via also_known_as (hybrid argument, game hopping, triangle inequality over advantages) and use_when's 'ssprove triangle (or the equivalent triangle inequality) lists a chain of intermediate packages...'; avoid_when is honest and specific (bad-event/non-trivial reduction hops, non-definitional advantage terms, non-adjacent hops); consequences name concrete failure modes (exact ≈₀ per hop, rewrite/list/definitions must agree, ssprove_code_simpl needed, wrong b flag or composition order). Leaf-quality for a bounded prover is stated: each hop is one bounded ≈₀ program-equivalence proof, self-contained with no other project-lemma citation.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T22:32:20Z"
     }
   ]
 }
