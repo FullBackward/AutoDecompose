@@ -3,7 +3,9 @@
   py.sh register_source.py URL --id ID --language lean|rocq|isabelle|mixed \
         [--ref HEAD] [--how-found TEXT] [--note TEXT]
   py.sh register_source.py --start-set library/sources/start-set.json [--batch 1 ...]
-  py.sh register_source.py --id ID --set-licence SPDX_EXPRESSION --why TEXT [--by NAME]
+  py.sh register_source.py --id ID --set-licence SPDX_EXPRESSION --why TEXT [--by NAME] \
+        [--licence-file PATH ...]
+  py.sh register_source.py --id ID --set-language lean|rocq|isabelle|mixed --why TEXT [--by NAME]
 
 Writes library/sources/<id>/source.json, the licence file(s) copied verbatim,
 and SOURCE.md (links, commit, licence, attribution), and appends one record to
@@ -121,11 +123,18 @@ def register(url: str, sid: str, language: str, ref: str, how_found: str,
     print(f"ok {sid} {sha[:12]} {src['licence']}")
 
 
+def copy_name(path: str) -> str:
+    """The local name of a copied licence file; a file below the root keeps its path, flattened."""
+    return "upstream-" + path.replace("/", "--")
+
+
 def write_note(d, src: dict) -> None:
     """SOURCE.md from source.json."""
     sha = src["commit"]
-    lic_links = "\n".join(f"- [{n}]({permalink(src, n)}) (copied here as `upstream-{n}`)"
+    lic_links = "\n".join(f"- [{n}]({permalink(src, n)}) (copied here as `{copy_name(n)}`)"
                           for n in src["licence_files"]) or "- no licence file found at the root"
+    lang = src["language"] + (f" (registered as {src['language_registered']}; {src.get('language_note', '')})"
+                              if src.get("language_registered") else "")
     if src.get("licence_detected"):
         lic = (f"- Licence: `{src['licence']}`, read from the licence files by {src.get('licence_set_by', 'hand')} "
                f"({src.get('licence_note', '')}); the detector had `{src['licence_detected']}`. "
@@ -138,7 +147,7 @@ def write_note(d, src: dict) -> None:
         f"- Commit (pinned {src['pinned_at']}): `{sha}`\n"
         f"- Browse at this commit: {src['base']}/{src['repo_path']}"
         f"{'/tree/' if src['host'] == 'github' else '/-/tree/'}{sha}\n"
-        f"- Language: {src['language']}\n"
+        f"- Language: {lang}\n"
         + lic +
         f"- How found: {src.get('how_found') or 'start set'}\n\n"
         f"## Licence files\n\n{lic_links}\n\n"
@@ -150,21 +159,44 @@ def write_note(d, src: dict) -> None:
         encoding="utf-8")
 
 
-def set_licence(sid: str, expr: str, why: str, by: str) -> None:
+def set_licence(sid: str, expr: str, why: str, by: str, files: list[str] = ()) -> None:
     """Correct a detected licence after reading the copied licence files. The detected value is
-    kept in source.json (licence_detected) and the change is appended to ledger/sources.jsonl."""
+    kept in source.json (licence_detected) and the change is appended to ledger/sources.jsonl.
+    FILES are further licence files below the root (a vendored tree's own licence, say), copied
+    verbatim at the pinned commit like the root ones."""
     d = SOURCES / sid
     if not (d / "source.json").exists():
         die(f"no source {sid}")
     if not why:
         die("--why is required: say which licence file shows the licence")
     src = read_json(d / "source.json")
+    for name in files:
+        if name not in src["licence_files"]:
+            (d / copy_name(name)).write_bytes(http_get(raw_url(src, name)))
+            src["licence_files"].append(name)
     src.setdefault("licence_detected", src["licence"])
     src.update(licence=expr, licence_note=why, licence_set_by=by)
     write_json(d / "source.json", src)
     write_note(d, src)
     append_jsonl(LEDGER / "sources.jsonl", {**src, "event": "licence", "at": now()})
     print(f"ok {sid} licence {expr} (detected {src['licence_detected']})")
+
+
+def set_language(sid: str, lang: str, why: str, by: str) -> None:
+    """Correct the language a source was registered under (the locator's guess), keeping the
+    old value in source.json (language_registered) and appending the change to the ledger."""
+    d = SOURCES / sid
+    if not (d / "source.json").exists():
+        die(f"no source {sid}")
+    if not why:
+        die("--why is required: say what at the pinned commit shows the language")
+    src = read_json(d / "source.json")
+    src.setdefault("language_registered", src["language"])
+    src.update(language=lang, language_note=why, language_set_by=by)
+    write_json(d / "source.json", src)
+    write_note(d, src)
+    append_jsonl(LEDGER / "sources.jsonl", {**src, "event": "language", "at": now()})
+    print(f"ok {sid} language {lang} (registered as {src['language_registered']})")
 
 
 def main() -> None:
@@ -180,13 +212,21 @@ def main() -> None:
     ap.add_argument("--batch", type=int, action="append", default=[])
     ap.add_argument("--set-licence", metavar="SPDX_EXPRESSION",
                     help="with --id: correct the detected licence of a registered source")
-    ap.add_argument("--why", default="", help="with --set-licence: the licence file and words that show it")
-    ap.add_argument("--by", default="hand", help="with --set-licence: who read the licence files")
+    ap.add_argument("--licence-file", action="append", default=[], metavar="PATH",
+                    help="with --set-licence: also copy this licence file below the root")
+    ap.add_argument("--set-language", choices=["lean", "rocq", "isabelle", "mixed"],
+                    help="with --id: correct the language a source was registered under")
+    ap.add_argument("--why", default="", help="with --set-licence or --set-language: the evidence")
+    ap.add_argument("--by", default="hand", help="with --set-licence or --set-language: who read it")
     a = ap.parse_args()
-    if a.set_licence:
+    if a.set_licence or a.set_language:
         if not a.id:
-            die("--set-licence needs --id")
-        return set_licence(a.id, a.set_licence, a.why, a.by)
+            die("--set-licence and --set-language need --id")
+        if a.set_language:
+            set_language(a.id, a.set_language, a.why, a.by)
+        if a.set_licence:
+            set_licence(a.id, a.set_licence, a.why, a.by, a.licence_file)
+        return
     if a.start_set:
         for s in read_json(__import__("pathlib").Path(a.start_set))["sources"]:
             if a.batch and s.get("batch") not in a.batch:
