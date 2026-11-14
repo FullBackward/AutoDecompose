@@ -10,6 +10,7 @@ survey F §10. Status is read from entry.json; nothing here changes an entry.
 """
 from __future__ import annotations
 
+import statistics
 from collections import Counter, defaultdict
 
 from common import ENTRIES, LEDGER, LIB, MOVES, REPORTS, load_entries, read_json, read_jsonl
@@ -20,6 +21,38 @@ ORDER = {"accepted": 0, "verified": 1, "draft": 2, "flagged": 3, "deprecated": 4
 def scale_of(e: dict) -> str:
     """Entries before pilot-2 carry no shape; they are tactic scale."""
     return (e.get("shape") or {}).get("scale", "tactic")
+
+
+def quartiles(xs) -> str:
+    xs = sorted(x for x in xs if isinstance(x, (int, float)))
+    if not xs:
+        return "."
+    if len(xs) == 1:
+        return f"{xs[0]} / {xs[0]} / {xs[0]} (max {xs[0]})"
+    a, b, c = statistics.quantiles(xs, n=4, method="inclusive")
+    return f"{a:g} / {b:g} / {c:g} (max {xs[-1]})"
+
+
+def shape_table(entries: list[dict]) -> list[str]:
+    """Quartiles of the theorem-scale shape numbers: the first measured sizes of a student
+    task for AutoDecompose (fixes brief 2026-11-14, item 8)."""
+    th = [e for e in entries if scale_of(e) == "theorem" and e["status"] != "deprecated"]
+    out = ["", "## Shape of theorem-scale entries", "",
+           "Q1 / median / Q3 (and the maximum) of each shape number. glue_lines and child_lines are the "
+           "line counts of the parent and child sites, declaration included; child_lines pools every "
+           "child of every entry. Deprecated entries are left out.", "",
+           "| Language | Status | Entries | direct_lemmas | depth | glue_lines | child_lines |",
+           "|---|---|---|---|---|---|---|"]
+    for lang in sorted({e["language"] for e in th}) + ["all"]:
+        for label in ("accepted", "all"):
+            es = [e for e in th if lang in ("all", e["language"]) and label in ("all", e["status"])]
+            if not es:
+                continue
+            sh = [e["shape"] for e in es]
+            out.append(f"| {lang} | {label} | {len(es)} | {quartiles(s.get('direct_lemmas') for s in sh)} | "
+                       f"{quartiles(s.get('depth') for s in sh)} | {quartiles(s.get('glue_lines') for s in sh)} | "
+                       f"{quartiles(x for s in sh for x in (s.get('child_lines') or []))} |")
+    return out
 
 
 def main() -> None:
@@ -84,6 +117,7 @@ def main() -> None:
         sa = c[("supports", "accepted")]; st = sum(v for (rel, _), v in c.items() if rel == "supports")
         ca = c[("contradicts", "accepted")]; ct = sum(v for (rel, _), v in c.items() if rel == "contradicts")
         rep.append(f"| {n} | {sa} / {st} | {ca} / {ct} |")
+    rep += shape_table(entries)
     REPORTS.mkdir(parents=True, exist_ok=True)
     (REPORTS / "flow.md").write_text("\n".join(rep) + "\n", encoding="utf-8")
     print(f"INDEX.md: {len(entries)} entries; reports/flow.md written")
