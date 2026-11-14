@@ -1,0 +1,16 @@
+{
+  "run": "revise-1",
+  "date": "2026-11-14",
+  "language": "mixed",
+  "scale": "theorem",
+  "note": "Objection pass: run_harvest.py runs/revise-1.json --finish <ids> --revise --cap 50. The analyst meets each standing review objection, then new claims are verified and the objected lenses reviewed again.",
+  "concurrency": 8,
+  "timeoutMinutes": 40,
+  "maxCostCNY": 50,
+  "offPeakOnly": true,
+  "models": {
+    "locator": "deepseek-flash",
+    "analyst": "deepseek-v4-pro",
+    "verifier": "deepseek-v4-pro"
+  }
+}
