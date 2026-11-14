@@ -1,7 +1,7 @@
 {
   "id": "lean-generalise-then-instantiate-mathlib4-57b9f5e4",
   "kind": "instance",
-  "status": "accepted",
+  "status": "verified",
   "title": "Generalise IMO 1977 Q6 to f : ℕ → ℕ, then instantiate to ℕ+ via a garbage extension at 0",
   "intent": "Solve the problem for f : ℕ+ → ℕ+ by first proving the same statement over ℕ (where an induction over the extra element 0 works), then transfer to ℕ+ by extending the given function to a total ℕ → ℕ function with a garbage value at 0 and instantiating the general theorem.",
   "move": "generalise-then-instantiate",
@@ -151,6 +151,6 @@
       "note": "parent and child were reversed (glue-cites-children failed: the goal's proof cites the general lemma); roles, fields and the words parent/child in claims and README swapped"
     }
   ],
-  "status_reason": "",
-  "status_at": "2026-11-12T12:27:52Z"
+  "status_reason": "parent and child were reversed until 2026-11-14 (found by glue-cites-children); the correctness review accepted the reversed description, so acceptance waits for a new review",
+  "status_at": "2026-11-14T08:03:41Z"
 }

@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | generalise-then-instantiate |
 | Language | lean |
-| Status | accepted |
+| Status | verified |
 | Source | [mathlib4](../../sources/mathlib4/SOURCE.md) at `e1545ebed975` |
 | Licence | `Apache-2.0` |
 
@@ -141,7 +141,7 @@ the simplification it looks like.
 ## Verification
 
 <!-- verification:start -->
-Status: **accepted**
+Status: **verified** (parent and child were reversed until 2026-11-14 (found by glue-cites-children); the correctness review accepted the reversed description, so acceptance waits for a new review)
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
