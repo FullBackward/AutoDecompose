@@ -77,7 +77,11 @@ Python 3 interpreter). No tool uses an API token or a model.
 | `fetch_file.py` | fetches files at the pinned commit into the cache, for searching |
 | `ledger.py` | appends a checked record to a ledger |
 | `new_entry.py` | creates an entry: copies whole files and inserts verbatim excerpts |
-| `validate_entry.py` | checks an entry's structure, hashes and that its code blocks are verbatim |
+| `validate_entry.py` | checks an entry's structure, hashes and that its code blocks are verbatim; with `--strict`, verbatim statements, the glue's citation of each child and the shape numbers; `--record-glue` records `glue-cites-children` |
+| `statements.py` | copies parent and child statements from the code; marks subgoals |
+| `sorry_scan.py` | records `sorry-scan`: no sorry, admit, Admitted or axiom inside a site |
+| `check_claims.py` | decides `check` claims written as `declared`, `cites`, `no_sorry`, `count` or `lines`, without a model |
+| `status.py` | shows a run's progress (calls, cost, entries, ledgers); `--watch` refreshes |
 | `check_provenance.py` | re-fetches an entry's files and compares bytes |
 | `record_verdict.py` | records a check result, a claim verdict or a review decision |
 | `set_status.py` | promotes or flags an entry, refusing when a gate is not met |

@@ -160,7 +160,7 @@ not a model, decides it:
 - `count(NAME, N, PATH_GLOB)`: NAME occurs N times in the matching files;
 - `lines(SITE, N)`: the site is N lines long.
 
-`check_claims.py <id>` (to be written before that run) evaluates them against
+`check_claims.py <id>` evaluates them against
 `code/` and records verdicts by `check_claims.py`; the model verifier is then
 briefed only with the `author-statement`, `measurement` and `known-use`
 claims, and given excerpts, not whole files. Claims written before keep
@@ -224,3 +224,11 @@ glue's citation of each non-subgoal child and the shape numbers, and
 `verified` requires the recorded checks `glue-cites-children` (prover
 instances) and `sorry-scan`, and no unmerged duplicate (fields reference;
 tools `statements.py`, `sorry_scan.py`).
+(iv) Later the same day: `check_claims.py` is written and `run_harvest.py`
+runs it, with `sorry_scan.py` and the glue check, after every extraction, so
+the model verifier sees only claims still without a verdict and reads line
+ranges, not whole files; site budgets scale with shard size; the ledger's
+unextracted theorem-scale sites are reused; and discovery (section 5) is a
+phase of the driver: discoverers per strategy log candidates, the driver
+registers the new ones found by most strategies, and the overlap of
+strategies A and B gives a Lincoln-Petersen estimate of the population.

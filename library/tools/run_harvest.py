@@ -28,6 +28,19 @@ maxTokens, maxCostCNY, softStopCNY (default 85% of maxCostCNY: no new entry is
 started past it, so entries in flight can finish under the cap), offPeakOnly
 (bool: wait for DeepSeek's off-peak prices before starting, and start no new
 entry once peak hours begin), models {locator, analyst, verifier}.
+
+Added 2026-11-14 (fixes brief, items 6 and 7): goldSize 0 skips the gold
+builder; siteBudget {min, max, linesPerSite} scales each shard's site budget
+by the size of its prover files instead of the flat sitesPerShard;
+findSitesFor (list of source ids; default all) limits fresh site finding,
+while reuseSites (bool) adds the ledger's unextracted theorem-scale sites of
+every included source; sourceWeight {id: k} lets a source give k sites per
+round of the breadth-first choice; discover {strategies: [...],
+maxNewSources} runs discovery first (protocol section 5) and harvests only
+the sources it registers. After extraction the driver runs, without a
+model, the no-toolchain record, sorry_scan.py, the glue check and
+check_claims.py; the model verifier then sees only claims still without a
+verdict.
 """
 from __future__ import annotations
 
@@ -43,7 +56,9 @@ import threading
 import time
 from pathlib import Path
 
-from common import LEDGER, LIB, MOVES, REPO, append_jsonl, die, now, read_json, read_jsonl
+from collections import Counter
+
+from common import LEDGER, LIB, MOVES, REPO, append_jsonl, die, load_entries, now, read_json, read_jsonl
 
 ENDPOINT = "https://api.deepseek.com/anthropic"
 T = "library/tools/py.sh library/tools"
@@ -85,7 +100,8 @@ ROLE_TOOLS = {
                 ("list_files", "fetch_file", "ledger", "register_source")],
     "gold": READ + ["Write(library/gold/**)"] + [tool(t) for t in ("list_files", "fetch_file")],
     "analyst": READ + ["WebFetch", "Edit(library/entries/**)", "Write(library/entries/**)"] +
-               [tool(t) for t in ("list_files", "fetch_file", "new_entry", "validate_entry")],
+               [tool(t) for t in ("list_files", "fetch_file", "new_entry", "validate_entry", "statements",
+                                  "check_claims")],
     "verifier": READ + ["WebFetch"] + [tool(t) for t in
                 ("list_files", "fetch_file", "check_provenance", "record_verdict", "validate_entry")],
     "critic": READ,
@@ -111,6 +127,8 @@ VERIFY = S({"provenance": {"enum": ["pass", "fail"]},
             "unverifiable": {"type": "array", "items": INT}})
 REVIEW = S({"decision": {"enum": ["accept", "object"]}, "reason": STR})
 CRITIC = S({"gaps": {"type": "array", "items": STR}, "next_batch": {"type": "array", "items": STR}})
+CANDS = S({"candidates": {"type": "array", "items": S({"url": STR, "language": STR, "why": STR,
+                                                        "found_by": STR}, ["url", "why"])}})
 
 
 class Halt(Exception):
@@ -247,8 +265,23 @@ Check the disputed point in the files. Output: log ledger.py screening (by "adju
                         SCREEN)
         return (adj or {}).get("decision", "unsure")
 
+    def shard_budget(self, sid: str, d: str) -> int:
+        """Sites to ask of one shard: one per linesPerSite lines of its prover files, within
+        [min, max] (fixes brief item 7); the flat sitesPerShard without a siteBudget."""
+        b = self.cfg.get("siteBudget")
+        if not b:
+            return self.cfg.get("sitesPerShard", 6)
+        p = LIB / "cache" / sid / "files.json"
+        files = []
+        if p.exists():
+            data = read_json(p)
+            files = data["files"] if isinstance(data, dict) else data
+        files = [f for f in files if f["path"].startswith(d) and Path(f["path"]).suffix in (".lean", ".v", ".thy")]
+        lines = sum((f.get("bytes") or 10000) for f in files) / 35
+        return int(min(b.get("max", 10), max(b.get("min", 3), round(lines / b.get("linesPerSite", 400)))))
+
     def sites(self, sid: str, d: str) -> list[dict]:
-        n = self.cfg.get("sitesPerShard", 6)
+        n = self.shard_budget(sid, d)
         moves = ", ".join(self.cfg.get("moves", MOVES))
         if self.theorem_scale():
             r = self.work("locator", f"sites {sid}{':' + d if d else ''}", f"""{self.common()}
@@ -258,10 +291,14 @@ chapter or blueprint node) whose proof is assembled from at least two named lemm
 same file or project (not general library lemmas). The site's lines are the main theorem's statement and
 proof, the glue; name the lemmas the glue uses directly in "lemmas". Prefer sites whose glue is short
 (it mostly applies the lemmas), whose lemmas each close (no sorry, admit, Admitted or oops) and read on
-their own, and which have 2 to 12 direct lemmas. Where to look: the project's published structure first
-(main-theorem files, blueprint \\uses{{}}, proof-path files, Compiler.v-style files that chain per-pass
-lemmas, Isabelle theories whose final theorem uses lemmas proved above it); then grep the files you fetch
-into library/cache/{sid}/files/. Set "move" to how the glue combines the lemmas, from: {moves}. Skill files
+their own, and which have 2 to 12 direct lemmas. Where to look, in this order (protocol section 6, phase
+2b): (1) a blueprint: read its \\uses{{}} graph first; every node with two or more \\uses targets is a
+candidate; (2) one theorem per file (Mathlib Archive, compfiles, competition repositories): the file's
+main theorem is the candidate, its named lemmas the children; (3) Isabelle sessions: the ROOT file and the
+theory that ends the session, whose final theorems use lemmas proved above them; (4) main-theorem and
+proof-path files, Compiler.v-style files that chain per-pass lemmas; only then grep the files you fetch
+into library/cache/{sid}/files/. Skip sites already in the library (grep library/INDEX.md and
+library/entries/*/entry.json for the file). Set "move" to how the glue combines the lemmas, from: {moves}. Skill files
 and harness prompts that teach how to split a theorem into lemmas count too (move "workflow" or the move
 they teach). Prefer variety of moves and of files.
 Output: log each with ledger.py sites (source_id {sid}; add "scale": "theorem" and the "lemmas" list to the
@@ -319,7 +356,12 @@ Steps: read the file (fetch_file.py); fix the exact parent and child line ranges
 off); run new_entry.py with every --site and --file the reader needs; fill README.md and entry.json: intent,
 how the parts fit, parent and children with how each closed, applicability, consequences, 2 to 5 checkable
 claims with locators (at least one 'check' and one of another kind), the survey F section 10 rule it supports
-or contradicts if any. The exemplar library/entries/lean-case-split-compfiles-6ac56e7f shows the expected
+or contradicts if any. Statements are verbatim from the code, never retyped: after filling entry.json run
+statements.py <id> --write, which copies them (a subgoal child gets "subgoal": true). Give every claim of kind check a "form" field in one of these
+shapes, which a tool decides (protocol section 7): declared(NAME, PATH, A-B), cites(SITE, NAME),
+no_sorry(PATH, A-B), count(NAME, N, PATH_GLOB), lines(SITE, N); PATH is relative to code/, SITE is a site
+name, a role (parent, skeleton) or PATH:A-B; the claim's prose must say no more than its form. Check your
+forms with check_claims.py <id> --dry-run. The exemplar library/entries/lean-case-split-compfiles-6ac56e7f shows the expected
 standard. Finish with validate_entry.py <id> --strict passing.
 Output: ok, the entry id, a one-line note; ok=false with the reason if the site is unsuitable.
 Boundaries: edit only the README.md and entry.json of the entry you create.""", ENTRY)
@@ -327,22 +369,26 @@ Boundaries: edit only the README.md and entry.json of the entry you create.""", 
         if not e or not e.get("ok") or not e.get("id"):
             return out
         eid = e["id"]
-        subprocess.run([sys.executable, str(LIB / "tools" / "record_verdict.py"), eid, "--no-toolchain"],
-                       cwd=REPO, capture_output=True, text=True)
+        mechanical(eid)
         verify = f"""{self.common()}
 Objective: verify library entry {eid} (role: verifier; SKILL.md section "Verification"). You have not seen
 how it was written. Steps: check_provenance.py {eid}; record the build (ci-record with the CI workflow path if
 the source's CI builds this file on its default branch, otherwise not-run with the reason); for every claim
-in entry.json without a verdict, open its evidence and record verified, refuted or unverifiable with
-record_verdict.py, saying what you checked. Output: provenance, build, claim numbers by verdict.
+in entry.json still without a verdict, open its evidence and record verified, refuted or unverifiable with
+record_verdict.py, saying what you checked. Claims already decided by check_claims.py (see
+library/checks/{eid}.json) are settled: do not re-check them. Read only the line ranges you need
+(sed -n 'A,Bp' library/entries/{eid}/code/<path>), never whole files.
+Output: provenance, build, claim numbers by verdict.
 Boundaries: never edit the entry."""
         v = self.work("verifier", f"verify {eid}", verify, VERIFY)
-        if v and v.get("refuted"):
+        refuted = refuted_claims(eid)
+        if refuted:
             self.work("analyst", f"revise {eid}", f"""{self.common()}
-Objective: entry {eid} has refuted claims {v['refuted']}; the verifier's reasons are in library/checks/{eid}.json.
+Objective: entry {eid} has refuted claims {refuted}; the reasons are in library/checks/{eid}.json.
 Remove each refuted claim, or rewrite it to say only what the evidence shows (a rewritten claim gets a new
 number); update README.md "Why it is good" to match; run validate_entry.py {eid} --strict.
 Output: one line. Boundaries: edit only this entry's README.md and entry.json.""")
+            mechanical(eid)
             v = self.work("verifier", f"re-verify {eid}", verify, VERIFY) or v
         out["verify"] = v
         lenses = {
@@ -358,6 +404,7 @@ Output: one line. Boundaries: edit only this entry's README.md and entry.json.""
         for lens, q in lenses.items():
             out["reviews"][lens] = self.work("verifier", f"review {lens} {eid}", f"""{self.common()}
 Objective: review library entry {eid} under the lens "{lens}" only. {q}
+Read README.md and entry.json, and only the line ranges they cite (sed -n 'A,Bp'), never whole files.
 Output: run record_verdict.py {eid} --review {lens} --decision accept|object --evidence "<reason; for an
 objection, what would fix it>" --by reviewer-{lens}; return the decision and reason.
 Boundaries: one lens; never edit the entry.""", REVIEW)
@@ -365,6 +412,58 @@ Boundaries: one lens; never edit the entry.""", REVIEW)
         return out
 
     # ------------------------------------------------------------ the batch
+    def discover(self, pool, summary: dict) -> list[str]:
+        """Protocol section 5: discoverers per strategy, then register the new candidates found
+        by most strategies. Strategy A and B overlap gives a capture-recapture estimate."""
+        d = self.cfg["discover"]
+        strategies, n = d["strategies"], d.get("candidatesPerStrategy", 15)
+        prompt = lambda st: f"""{self.common()}
+Objective: discovery for the decomposition library (protocol section 5), strategy {st['strategy']}
+({'search strings and indexes' if st['strategy'] == 'A' else 'snowballing from the registered sources'}):
+{st['focus']}
+Find public repositories (GitHub or GitLab) that are not yet registered (registered: the directories of
+library/sources/; the start set: library/sources/start-set.json) whose proofs are in Lean 4, Rocq/Coq or
+Isabelle and show theorem-scale decompositions: a main theorem proved from named lemmas written for it
+(competition solutions, formalised papers and textbooks, blueprint projects, verified software), or skills
+and prompts that teach splitting a theorem into lemmas.
+How: {st['how']} You have WebFetch and `curl -s`; there is no web search engine and no GitHub token (the
+GitHub API allows about 60 requests an hour, shared by all workers), so prefer web pages and raw files.
+Log each index page or query you read with ledger.py queries (engine = the site, hits = what it gave) and
+each candidate with ledger.py candidates (url, language, why, found_by "{st['id']}").
+Output: up to {n} candidates, best first: url (https://github.com/<owner>/<repo>), language
+(lean, rocq, isabelle or mixed), why (one line: which decompositions it holds), found_by "{st['id']}".
+Boundaries: repositories with code only; do not register sources; do not create entries."""
+        results = list(pool.map(lambda st: self.work("locator", f"discover {st['id']}", prompt(st), CANDS) or {},
+                                strategies))
+        cands: dict[str, dict] = {}
+        for st, r in zip(strategies, results):
+            for x in r.get("candidates", []):
+                u = norm_url(x.get("url", ""))
+                if not u:
+                    continue
+                c = cands.setdefault(u, {"url": u, "language": x.get("language") or "mixed",
+                                         "why": x.get("why", ""), "found_by": [], "strategies": []})
+                c["found_by"] = sorted(set(c["found_by"]) | {st["id"]})
+                c["strategies"] = sorted(set(c["strategies"]) | {st["strategy"]})
+        known = registered_urls()
+        new = sorted((c for u, c in cands.items() if u not in known),
+                     key=lambda c: (-len(c["strategies"]), -len(c["found_by"])))
+        A = {u for u, c in cands.items() if "A" in c["strategies"]}
+        B = {u for u, c in cands.items() if "B" in c["strategies"]}
+        disc = {"candidates": len(cands), "already_registered": len(cands) - len(new),
+                "strategy_A": len(A), "strategy_B": len(B), "found_by_both": len(A & B),
+                "lincoln_petersen_estimate": round(len(A) * len(B) / len(A & B)) if A & B else None,
+                "new": new, "registered": [], "registration_failed": []}
+        summary["discovery"] = disc
+        if self.dry:
+            return []
+        for c in new[: d.get("maxNewSources", 30)]:
+            sid = register_candidate(c, self.run)
+            (disc["registered"] if sid else disc["registration_failed"]).append(sid or c["url"])
+        print(f"# discovery: {len(cands)} candidates ({disc['already_registered']} already registered); "
+              f"registered {len(disc['registered'])} new sources", flush=True)
+        return disc["registered"]
+
     def go(self, only: str | None):
         c = self.cfg
         if c.get("offPeakOnly") and not self.dry and is_peak():
@@ -375,7 +474,14 @@ Boundaries: one lens; never edit the entry.""", REVIEW)
         pool = cf.ThreadPoolExecutor(max_workers=c.get("concurrency", 6))
         summary = {"run": self.run, "date": c.get("date"), "started": now()}
         try:
-            gold_f = pool.submit(self.gold) if only in (None, "gold") else None
+            if c.get("discover"):
+                dpath = self.out / "discovered-sources.json"
+                if only in (None, "discover"):
+                    c["sources"] = self.discover(pool, summary)
+                    dpath.write_text(json.dumps(summary["discovery"], indent=2, ensure_ascii=False), encoding="utf-8")
+                elif dpath.exists():
+                    c["sources"] = read_json(dpath).get("registered", [])
+            gold_f = pool.submit(self.gold) if only in (None, "gold") and c.get("goldSize", 30) > 0 else None
             included = c["sources"]
             if c.get("screen", True) and only in (None, "screen"):
                 prior = prior_screening(self.run) if c.get("reuseScreening", True) else {}
@@ -387,10 +493,12 @@ Boundaries: one lens; never edit the entry.""", REVIEW)
                 included = [s for s in c["sources"] if decisions[s] == "include"]
                 summary["screening"] = decisions
             if only in (None, "sites"):
-                shards = [(s, d) for s in included for d in (c.get("shards", {}).get(s) or [""])]
+                find = set(c.get("findSitesFor") or included)
+                shards = [(s, d) for s in included if s in find for d in (c.get("shards", {}).get(s) or [""])]
                 found = [x for lst in pool.map(lambda sd: self.sites(*sd), shards) for x in lst]
-                chosen = choose_sites(found, c.get("maxEntries", 30))
-                summary.update(sites_found=len(found), sites_chosen=len(chosen))
+                reused = ledger_sites(included) if c.get("reuseSites") else []
+                chosen = choose_sites(found + reused, c.get("maxEntries", 30), c.get("sourceWeight") or {})
+                summary.update(sites_found=len(found), sites_reused=len(reused), sites_chosen=len(chosen))
                 (self.out / "chosen-sites.json").write_text(json.dumps(chosen, indent=2, ensure_ascii=False), encoding="utf-8")
             if only in (None, "entries"):
                 chosen = json.loads((self.out / "chosen-sites.json").read_text(encoding="utf-8"))
@@ -435,7 +543,9 @@ Boundaries: one lens; never edit the entry.""", REVIEW)
         try:
             crit = self.work("critic", "completeness critic", f"""{self.common()}
 Objective: completeness critic for run {self.run}. Read library/reports/flow.md, library/INDEX.md and this
-summary: {json.dumps({k: summary.get(k) for k in ('screening', 'sites_found', 'sites_chosen', 'gold_recall', 'gold_missed')})}.
+summary: {json.dumps({k: summary.get(k) for k in ('discovery', 'screening', 'sites_found', 'sites_reused', 'sites_chosen', 'gold_recall', 'gold_missed', 'skipped_at_soft_stop')})}.
+For any entry you call unfinished, read its current claims and the latest verdict per claim in
+library/checks/<id>.json, not the ledger history.
 Say what the batch missed (moves without entries, sources that yielded nothing, checks that could not run)
 and what the next batch should do differently. Output: gaps and next_batch, short items.""", CRITIC)
             summary["critic"] = crit
@@ -501,14 +611,30 @@ def round_robin(groups: dict[str, list], cap: int) -> list:
     return out
 
 
-def choose_sites(found: list[dict], cap: int) -> list[dict]:
-    """Drop overlapping spans in the same file, then take breadth first: round-robin over
-    sources, and within a source round-robin over moves. Entries start in this order, so a
-    run stopped by its budget has still covered as many sources as it could."""
+def choose_sites(found: list[dict], cap: int, weights: dict | None = None) -> list[dict]:
+    """Drop sites overlapping an entry already in the library or an earlier site in the same
+    file; then take breadth first: round-robin over sources (a source with weight k gives k
+    sites a round), and within a source the moves the library has fewest entries of first.
+    Entries start in this order, so a run stopped by its budget has covered as many sources as
+    it could."""
+    entries, _ = load_entries()
+    live = [e for e in entries if e["status"] != "deprecated"]
+    taken: dict[str, list] = {}
+    for e in live:
+        for s in e["sites"]:
+            if s.get("role") == "parent":
+                taken.setdefault(f"{e['source']['source_id']}:{s['path']}", []).append(
+                    {"start": s["lines"][0], "end": s["lines"][1]})
+    move_count = Counter(e["move"] for e in live)
+    overlaps = lambda s, spans: any(not (s["end"] < p["start"] or s["start"] > p["end"]) for p in spans)
     kept: dict[str, list] = {}
+    already = 0
     for s in found:
         k = f"{s['source']}:{s['path']}"
-        if any(not (s["end"] < p["start"] or s["start"] > p["end"]) for p in kept.get(k, [])):
+        if overlaps(s, taken.get(k, [])):
+            already += 1
+            continue
+        if overlaps(s, kept.get(k, [])):
             continue
         kept.setdefault(k, []).append(s)
     by_source: dict[str, list] = {}
@@ -518,12 +644,96 @@ def choose_sites(found: list[dict], cap: int) -> list[dict]:
         by_move: dict[str, list] = {}
         for s in lst:
             by_move.setdefault(s["move"], []).append(s)
+        by_move = dict(sorted(by_move.items(), key=lambda kv: move_count[kv[0]]))
         by_source[src] = round_robin(by_move, len(lst))
-    chosen = round_robin(by_source, cap)
-    dropped = sum(len(v) for v in kept.values()) - len(chosen)
-    if dropped:
-        print(f"# {dropped} non-overlapping sites not chosen this batch (kept in ledger/sites.jsonl)")
+    weights = weights or {}
+    chosen = []
+    while len(chosen) < cap and any(by_source.values()):
+        for src, v in by_source.items():
+            for _ in range(max(1, int(weights.get(src, 1)))):
+                if v and len(chosen) < cap:
+                    chosen.append(v.pop(0))
+    left = sum(len(v) for v in by_source.values())
+    print(f"# sites: {len(found)} offered, {already} already in the library, {len(chosen)} chosen, "
+          f"{left} left for a later run (kept in ledger/sites.jsonl)")
     return chosen
+
+
+def ledger_sites(sources: list[str]) -> list[dict]:
+    """Theorem-scale sites logged by earlier runs for these sources, newest last."""
+    out = []
+    for r in read_jsonl(LEDGER / "sites.jsonl"):
+        ln = r.get("lines") or []
+        if r.get("scale") != "theorem" or r.get("source_id") not in sources or len(ln) != 2:
+            continue
+        out.append({"source": r["source_id"], "path": r["path"], "start": ln[0], "end": ln[1],
+                    "move": r.get("move") if r.get("move") in MOVES else "other", "name": r.get("name", ""),
+                    "why": r.get("why") or r.get("signal", ""), "lemmas": r.get("lemmas") or [],
+                    "scale": "theorem", "reused": True})
+    return out
+
+
+def norm_url(u: str) -> str | None:
+    m = re.match(r"\s*https?://(?:www\.)?(github\.com|gitlab\.[\w.]+)/([\w.\-]+)/([\w.\-]+)", u or "")
+    if not m:
+        return None
+    repo = re.sub(r"\.git$", "", m[3])
+    return f"https://{m[1].lower()}/{m[2]}/{repo}"
+
+
+def registered_urls() -> set[str]:
+    urls = set()
+    for p in (LIB / "sources").glob("*/source.json"):
+        u = norm_url(read_json(p).get("url", ""))
+        if u:
+            urls.add(u.lower())
+    ss = LIB / "sources" / "start-set.json"
+    if ss.exists():
+        urls |= {norm_url(s["url"]).lower() for s in read_json(ss)["sources"] if norm_url(s.get("url", ""))}
+    return urls
+
+
+def register_candidate(c: dict, run: str) -> str | None:
+    """Pin and register a discovered repository (network only, no model), then list its files.
+    Returns the source id, or None if either step failed."""
+    base = re.sub(r"[^a-z0-9]+", "-", c["url"].rsplit("/", 1)[1].lower()).strip("-") or "source"
+    sid, k = base, 2
+    while (LIB / "sources" / sid).exists():
+        sid, k = f"{base}-{k}", k + 1
+    lang = c.get("language") if c.get("language") in ("lean", "rocq", "isabelle") else "mixed"
+    tools = lambda *a: subprocess.run([sys.executable, str(LIB / "tools" / a[0]), *a[1:]], cwd=REPO,
+                                      capture_output=True, text=True, timeout=900)
+    try:
+        r = tools("register_source.py", c["url"], "--id", sid, "--language", lang,
+                  "--how-found", f"{run}: {', '.join(c['found_by'])}", "--note", c.get("why", "")[:300])
+        if r.returncode != 0 or not (LIB / "sources" / sid / "source.json").exists():
+            return None
+        if tools("list_files.py", sid).returncode != 0:
+            return None
+    except subprocess.TimeoutExpired:
+        return None
+    return sid
+
+def mechanical(eid: str) -> None:
+    """The checks that need no model: fidelity/sufficiency not-run, the sorry scan, the glue
+    check and the machine-checkable claims (fixes brief 2026-11-14)."""
+    for args in (["record_verdict.py", eid, "--no-toolchain"], ["sorry_scan.py", eid],
+                 ["validate_entry.py", eid, "--record-glue"], ["check_claims.py", eid]):
+        subprocess.run([sys.executable, str(LIB / "tools" / args[0]), *args[1:]],
+                       cwd=REPO, capture_output=True, text=True)
+
+
+def refuted_claims(eid: str) -> list[int]:
+    """Claims of the entry whose latest verdict is refuted."""
+    p = LIB / "checks" / f"{eid}.json"
+    if not p.exists():
+        return []
+    last = {}
+    for r in read_json(p)["records"]:
+        if r["type"] == "claim":
+            last[r["key"]] = r["value"]
+    ns = {str(c["n"]) for c in read_json(LIB / "entries" / eid / "entry.json")["claims"]}
+    return sorted(int(k) for k, v in last.items() if v == "refuted" and k in ns)
 
 
 def promote(eid: str) -> str:
@@ -569,7 +779,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("config", nargs="?")
     ap.add_argument("--smoke", action="store_true")
-    ap.add_argument("--only", choices=["gold", "screen", "sites", "entries", "assemble"])
+    ap.add_argument("--only", choices=["discover", "gold", "screen", "sites", "entries", "assemble"])
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
     if a.smoke:
