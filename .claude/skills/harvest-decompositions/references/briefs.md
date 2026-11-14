@@ -31,7 +31,18 @@ the files it names, nothing else.
   <id>, directories <dirs>.
 - **Output**: one `ledger.py sites` record per site. Return the count.
 - **Tools and sources**: `list_files.py`, `fetch_file.py`, grep on
-  `library/cache/<id>/files/`; the project's published structure first.
+  `library/cache/<id>/files/`; the project's published structure first,
+  in this order (protocol §6, phase 2b, amended 2026-11-14):
+  - a source with a blueprint: list sites from the `\uses{}` graph first;
+    every node with two or more `\uses` targets is a theorem-scale
+    candidate; grep only after;
+  - Mathlib `Archive/` and compfiles (one theorem per file): the file's main
+    theorem is the candidate, its named lemmas the children;
+  - the AFP and `l4v`: one shard per session (`ROOT`) and file, with a site
+    budget scaled by size (one site per 400 lines, at least 3, at most 15)
+    instead of a flat cap;
+  - for a source the last gold standard missed, the critic's `next_batch`
+    list in the last `reports/<run>/summary.json` is the work order.
 - **Boundaries**: only the named directories; prefer small, clear, closed
   sites; do not create entries.
 

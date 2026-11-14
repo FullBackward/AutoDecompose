@@ -121,7 +121,7 @@ pins its commit.
 | 0 Protocol | owner, lead | — | this file; hidden gold standard | owner approval |
 | 1 Discovery | discoverer A, discoverer B (`harvest-locator`) | web search, `ledger.py`, `register_source.py` | `ledger/queries`, `ledger/candidates`, `sources/` | upstream resolved; commit pinned |
 | 2 Screening | two screeners, adjudicator (`harvest-locator`) | `list_files.py`, `fetch_file.py` | `ledger/screening` | criterion code per decision |
-| 2b Site finding | site finders, one per source shard (`harvest-locator`) | `list_files.py`, `fetch_file.py`, grep | `ledger/sites` | each site has a move and a signal |
+| 2b Site finding | site finders, one per source shard (`harvest-locator`); published structure first: blueprint `\uses{}` graph, one-theorem-per-file layouts, AFP and `l4v` sessions (amended 2026-11-14) | `list_files.py`, `fetch_file.py`, grep | `ledger/sites` | each site has a move and a signal |
 | 3 Extraction | one extractor per site (`harvest-analyst`) | `new_entry.py`, `validate_entry.py` | `entries/<id>/` | validates; code copied by tool |
 | 4 Verification | verifier, who never sees the extractor's reasoning (`harvest-verifier`) | `check_provenance.py`, `record_verdict.py` | `checks/<id>.json` | provenance pass; build pass or CI record; a verdict per claim |
 | 5 Specification | one writer per entry (`harvest-analyst`) | edits `README.md`, `entry.json` only | the "why it is good" text | every claim tied to evidence; refuted claims removed |
@@ -149,6 +149,22 @@ Each claim in `entry.json → claims` has one evidence kind:
 - `measurement`: a number with its budget and source (proof size before and
   after; how many places reuse the lemma, counted by a stated search).
 - `known-use`: another, independent place where the same move works.
+
+From the run after 2026-11-14, a `check` claim is written in one of five
+machine-checkable forms, each with its evidence as a locator, so that a tool,
+not a model, decides it:
+
+- `declared(NAME, PATH, A-B)`: a declaration named NAME starts in lines A-B;
+- `cites(PARENT_SITE, NAME)`: NAME occurs in the parent's site lines;
+- `no_sorry(PATH, A-B)`: no closing-by-sorry token in the range;
+- `count(NAME, N, PATH_GLOB)`: NAME occurs N times in the matching files;
+- `lines(SITE, N)`: the site is N lines long.
+
+`check_claims.py <id>` (to be written before that run) evaluates them against
+`code/` and records verdicts by `check_claims.py`; the model verifier is then
+briefed only with the `author-statement`, `measurement` and `known-use`
+claims, and given excerpts, not whole files. Claims written before keep
+their recorded verdicts.
 
 An entry is accepted only with one verified `check` claim and one verified
 claim of another kind. Judgements of the writer's own (style, elegance) go in
@@ -188,3 +204,23 @@ as it could; no new entry starts past the soft stop (85% of the cap). (iv) A
 source screened in an earlier run keeps its decision. (v) The six Isabelle
 sources of batch 3 are registered; protocol section 2's "Lean first, then
 Rocq" order is met, since pilot-1 was Lean only.
+
+**2026-11-14, after the fixes brief (`docs/library-fixes-2026-11-14.md`).**
+(i) Section 7: from the next run a `check` claim takes one of five
+machine-checkable forms (`declared`, `cites`, `no_sorry`, `count`, `lines`),
+decided by `check_claims.py`, to be written before that run; the model
+verifier then sees only author-statement, measurement and known-use claims,
+with excerpts. In pilot-2 the verifier role cost 90 of 179 CNY, mostly on
+claims that are line lookups. Existing claims keep their verdicts. (ii)
+Section 6, phase 2b: site finders use the published structure first, the
+blueprint `\uses{}` graph (a node with two or more targets is a
+theorem-scale candidate), the one-theorem-per-file layout of Mathlib
+`Archive/` and compfiles, and AFP and `l4v` sessions sharded by `ROOT` and
+file with one site per 400 lines (at least 3, at most 15); the critic's
+`next_batch` is the work order for sources the gold standard missed. Gold
+recall was 7/30 in pilot-1 and 12/24 in pilot-2, and discovery (section 5)
+never ran. (iii) Strict validation now also checks verbatim statements, the
+glue's citation of each non-subgoal child and the shape numbers, and
+`verified` requires the recorded checks `glue-cites-children` (prover
+instances) and `sorry-scan`, and no unmerged duplicate (fields reference;
+tools `statements.py`, `sorry_scan.py`).
