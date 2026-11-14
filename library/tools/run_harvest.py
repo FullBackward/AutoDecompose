@@ -2,8 +2,9 @@
 
   py.sh run_harvest.py --smoke                 one tiny call: checks the key and the routing
   py.sh run_harvest.py CONFIG.json [--only gold|screen|sites|entries|assemble] [--dry-run]
-  py.sh run_harvest.py CONFIG.json --finish ENTRY_ID... [--cap CNY] [--dry-run]
-                                               complete entries a budget halt cut short, rerun the critic
+  py.sh run_harvest.py CONFIG.json --finish ENTRY_ID... [--revise] [--cap CNY] [--dry-run]
+                                               complete entries a budget halt cut short, rerun the critic;
+                                               with --revise, meet standing review objections first
 
 Each worker is Claude Code in headless mode (`claude -p`) pointed at DeepSeek's
 Anthropic-compatible API, so the cost is billed to DeepSeek, not to a Claude
@@ -39,7 +40,12 @@ while reuseSites (bool) adds the ledger's unextracted theorem-scale sites of
 every included source; sourceWeight {id: k} lets a source give k sites per
 round of the breadth-first choice; discover {strategies: [...],
 maxNewSources} runs discovery first (protocol section 5) and harvests only
-the sources it registers. After extraction the driver runs, without a
+the sources it registers. Added after discovery-1: discover.seedFrom [runs]
+adds those runs' unregistered candidates; registration takes candidates found
+by both strategies first, then A-only and B-only alternately;
+discover.keepSources (bool) harvests the config's sources as well as the new
+ones; findSitesFor "discovered" finds sites only in the new sources; fresh and
+reused sites are interleaved source by source before the breadth-first choice. After extraction the driver runs, without a
 model, the no-toolchain record, sorry_scan.py, the glue check and
 check_claims.py; the model verifier then sees only claims still without a
 verdict.
@@ -373,9 +379,13 @@ Boundaries: edit only the README.md and entry.json of the entry you create.""", 
             return out
         return self.check_entry(e["id"], s.get("scale") == "theorem", out)
 
-    def check_entry(self, eid: str, theorem: bool, out: dict, resume: bool = False) -> dict:
+    def check_entry(self, eid: str, theorem: bool, out: dict, resume: bool = False,
+                    redo: dict | None = None) -> dict:
         """Verification, revision of refuted claims, the three reviews and promotion. With resume,
-        steps already on record are skipped: for entries whose chain a budget halt cut short."""
+        steps already on record are skipped: for entries whose chain a budget halt cut short.
+        redo {lens: earlier objection} reruns those lenses after a revision, showing the reviewer
+        the objection it must now judge."""
+        redo = redo or {}
         if not self.dry:
             mechanical(eid)
         have = latest(eid) if resume else {}
@@ -415,10 +425,13 @@ Output: one line. Boundaries: edit only this entry's README.md and entry.json.""
         }
         out["reviews"] = {}
         for lens, q in lenses.items():
-            if ("review", lens) in have:
+            if ("review", lens) in have and lens not in redo:
                 continue
-            out["reviews"][lens] = self.work("verifier", f"review {lens} {eid}", f"""{self.common()}
-Objective: review library entry {eid} under the lens "{lens}" only. {q}
+            again = (f"""
+An earlier review under this lens objected: "{redo[lens]}". The entry has since been revised to meet it.
+Judge the entry as it stands now, under the whole lens, not only that point.""" if lens in redo else "")
+            out["reviews"][lens] = self.work("verifier", f"{'re-review' if lens in redo else 'review'} {lens} {eid}", f"""{self.common()}
+Objective: review library entry {eid} under the lens "{lens}" only. {q}{again}
 Read README.md and entry.json, and only the line ranges they cite (sed -n 'A,Bp'), never whole files.
 Output: run record_verdict.py {eid} --review {lens} --decision accept|object --evidence "<reason; for an
 objection, what would fix it>" --by reviewer-{lens}; return the decision and reason.
@@ -461,14 +474,32 @@ Boundaries: repositories with code only; do not register sources; do not create 
                 c["found_by"] = sorted(set(c["found_by"]) | {st["id"]})
                 c["strategies"] = sorted(set(c["strategies"]) | {st["strategy"]})
         known = registered_urls()
-        new = sorted((c for u, c in cands.items() if u not in known),
-                     key=lambda c: (-len(c["strategies"]), -len(c["found_by"])))
         A = {u for u, c in cands.items() if "A" in c["strategies"]}
         B = {u for u, c in cands.items() if "B" in c["strategies"]}
-        disc = {"candidates": len(cands), "already_registered": len(cands) - len(new),
+        disc = {"candidates": len(cands), "already_registered": len([u for u in cands if u in known]),
                 "strategy_A": len(A), "strategy_B": len(B), "found_by_both": len(A & B),
-                "lincoln_petersen_estimate": round(len(A) * len(B) / len(A & B)) if A & B else None,
-                "new": new, "registered": [], "registration_failed": []}
+                "lincoln_petersen_estimate": round(len(A) * len(B) / len(A & B)) if A & B else None}
+        # Candidates an earlier discovery found but did not register (seedFrom) join this round's.
+        # Its unregistered candidates and this round's are two samples of the unregistered sources,
+        # so their overlap gives a second capture-recapture estimate.
+        fresh = {u for u in cands if u not in known}
+        seeds = {}
+        for run in d.get("seedFrom", []):
+            sp = LIB / "reports" / run / "discovered-sources.json"
+            for x in (read_json(sp).get("new", []) if sp.exists() else []):
+                u = norm_url(x.get("url", ""))
+                if u and u not in known:
+                    seeds[u] = x
+                    c = cands.setdefault(u, {"url": u, "language": x.get("language") or "mixed",
+                                             "why": x.get("why", ""), "found_by": [], "strategies": []})
+                    c["found_by"] = sorted(set(c["found_by"]) | {f"{run}:{f}" for f in x.get("found_by", [])})
+                    c["strategies"] = sorted(set(c["strategies"]) | set(x.get("strategies", [])))
+        if seeds:
+            m = len(fresh & set(seeds))
+            disc.update(seeded=len(seeds), seeds_found_again=m,
+                        unregistered_estimate=round(len(fresh) * len(seeds) / m) if m else None)
+        new = fair_order([c for u, c in cands.items() if u not in known])
+        disc.update(new=new, registered=[], registration_failed=[])
         summary["discovery"] = disc
         if self.dry:
             return []
@@ -491,11 +522,16 @@ Boundaries: repositories with code only; do not register sources; do not create 
         try:
             if c.get("discover"):
                 dpath = self.out / "discovered-sources.json"
+                found_new = None
                 if only in (None, "discover"):
-                    c["sources"] = self.discover(pool, summary)
+                    found_new = self.discover(pool, summary)
                     dpath.write_text(json.dumps(summary["discovery"], indent=2, ensure_ascii=False), encoding="utf-8")
                 elif dpath.exists():
-                    c["sources"] = read_json(dpath).get("registered", [])
+                    found_new = read_json(dpath).get("registered", [])
+                if found_new is not None:
+                    self.discovered = found_new
+                    kept = c.get("sources", []) if c["discover"].get("keepSources") else []
+                    c["sources"] = found_new + [s for s in kept if s not in found_new]
             gold_f = pool.submit(self.gold) if only in (None, "gold") and c.get("goldSize", 30) > 0 else None
             included = c["sources"]
             if c.get("screen", True) and only in (None, "screen"):
@@ -508,11 +544,12 @@ Boundaries: repositories with code only; do not register sources; do not create 
                 included = [s for s in c["sources"] if decisions[s] == "include"]
                 summary["screening"] = decisions
             if only in (None, "sites"):
-                find = set(c.get("findSitesFor") or included)
+                fs = c.get("findSitesFor")
+                find = set(getattr(self, "discovered", []) if fs == "discovered" else (fs or included))
                 shards = [(s, d) for s in included if s in find for d in (c.get("shards", {}).get(s) or [""])]
                 found = [x for lst in pool.map(lambda sd: self.sites(*sd), shards) for x in lst]
                 reused = ledger_sites(included) if c.get("reuseSites") else []
-                chosen = choose_sites(found + reused, c.get("maxEntries", 30), c.get("sourceWeight") or {})
+                chosen = choose_sites(interleave(found, reused), c.get("maxEntries", 30), c.get("sourceWeight") or {})
                 summary.update(sites_found=len(found), sites_reused=len(reused), sites_chosen=len(chosen))
                 (self.out / "chosen-sites.json").write_text(json.dumps(chosen, indent=2, ensure_ascii=False), encoding="utf-8")
             if only in (None, "entries"):
@@ -538,9 +575,37 @@ Boundaries: repositories with code only; do not register sources; do not create 
         (self.out / "summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
         print(json.dumps({k: v for k, v in summary.items() if k not in ("gold", "entries")}, indent=2))
 
-    def finish(self, ids: list[str]):
+    def revise_objections(self, eid: str) -> dict:
+        """Ask the analyst to meet the entry's standing review objections. Returns {lens: objection}
+        for the lenses to review again (empty if the entry has none)."""
+        obj = {k[1]: r.get("evidence") or "" for k, r in latest(eid).items()
+               if k[0] == "review" and r.get("value") == "object"}
+        if not obj:
+            return {}
+        listing = "\n".join(f"- {lens}: {ev}" for lens, ev in obj.items())
+        self.work("analyst", f"revise-objections {eid}", f"""{self.common()}
+Objective: entry {eid} is held back from accepted by review objections. Each reviewer's reason and
+suggested fix:
+{listing}
+Revise README.md and entry.json so that each objection is met where the reviewer is right. Rules: never
+edit code/ and never retype code; statements come from the code (run statements.py {eid} --write after
+touching parent or children); a claim whose meaning changes is rewritten under a new number, never edited
+in place, and a new check claim needs a "form" (test it with check_claims.py {eid} --dry-run). If the fix
+needs code that is not in code/ (a new site or file), take the narrower fix the reviewer offers, or make
+the text and claims say only what the copied code shows and name the missing piece in README.md with a
+permalink. In shape, glue_lines and child_lines are derived from the sites; direct_lemmas and depth are
+yours to correct. If you judge an objection wrong, leave that point unchanged and say why. Append a
+provenance_log record for each field you change. Create no other file. Finish with
+validate_entry.py {eid} --strict passing.
+Output: one line per objection: fixed (how) or not fixed (why).
+Boundaries: edit only this entry's README.md and entry.json.""")
+        return obj
+
+    def finish(self, ids: list[str], revise: bool = False):
         """Complete entries whose chains a budget halt cut short (only the missing verification and
-        reviews), promote them, rebuild the index and run the critic. The run's summary.json gets a
+        reviews), promote them, rebuild the index, and run the critic if the run has no critic report.
+        With revise, first have the analyst meet each entry's standing review objections, then verify
+        any new claim and review the objected lenses again (no critic). The run's summary.json gets a
         "finish" record and its totals include this pass."""
         for eid in ids:
             if not (LIB / "entries" / eid / "entry.json").exists():
@@ -548,13 +613,20 @@ Boundaries: repositories with code only; do not register sources; do not create 
         if self.cfg.get("offPeakOnly") and not self.dry and is_peak():
             die("DeepSeek peak hours (Beijing Mon-Fri 09-12, 14-18): run --finish off-peak")
         path = self.out / "summary.json"
-        summary = read_json(path) if path.exists() else {"run": self.run}
+        summary = read_json(path) if path.exists() else {"run": self.run, "date": self.cfg.get("date"),
+                                                          "started": now()}
         before = {k: summary.get(k) or 0 for k in ("calls", "tokens", "cost_cny")}
+        revised: dict[str, list] = {}
 
         def one(eid: str) -> tuple[str, str]:
             theorem = (read_json(LIB / "entries" / eid / "entry.json").get("shape") or {}).get("scale") == "theorem"
             try:
-                return eid, self.check_entry(eid, theorem, {}, resume=True).get("status")
+                redo = self.revise_objections(eid) if revise else None
+                if redo:
+                    revised[eid] = sorted(redo)
+                    if not self.dry:
+                        mechanical(eid)
+                return eid, self.check_entry(eid, theorem, {}, resume=True, redo=redo).get("status")
             except Halt:
                 return eid, promote(eid) if not self.dry else "dry"
 
@@ -563,16 +635,21 @@ Boundaries: repositories with code only; do not register sources; do not create 
         for e in summary.get("entries", []):
             if e.get("id") in statuses:
                 e["status"] = statuses[e["id"]]
-        self.assemble(summary)
-        summary["finish"] = {"at": now(), "entries": statuses, "calls": self.calls, "tokens": self.tokens,
-                             "cost_cny": round(self.cost, 2), "halted": self.halted}
+        self.assemble(summary, critic=not revise and "critic" not in summary)
+        rec = {"at": now(), "entries": statuses, "calls": self.calls, "tokens": self.tokens,
+               "cost_cny": round(self.cost, 2), "halted": self.halted}
+        if revise:
+            rec["objections_revised"] = revised
+        if "finish" in summary:  # an earlier pass: keep it
+            summary.setdefault("earlier_finish", []).append(summary["finish"])
+        summary["finish"] = rec
         summary.update(calls=before["calls"] + self.calls, tokens=before["tokens"] + self.tokens,
-                       cost_cny=round(before["cost_cny"] + self.cost, 2))
+                       cost_cny=round(before["cost_cny"] + self.cost, 2), finished=now())
         if not self.dry:
             path.write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
         print(json.dumps({k: summary.get(k) for k in ("finish", "calls", "cost_cny")}, indent=2))
 
-    def assemble(self, summary: dict):
+    def assemble(self, summary: dict, critic: bool = True):
         tools = lambda *a: subprocess.run([sys.executable, *a], cwd=REPO, capture_output=True, text=True)
         tools(str(LIB / "tools" / "dedupe.py"), "--write")
         tools(str(LIB / "tools" / "build_index.py"))
@@ -589,6 +666,8 @@ Boundaries: repositories with code only; do not register sources; do not create 
         summary["gold_recall"] = f"{len(found)}/{len(gold)}" if gold else "no gold standard"
         summary["gold_missed"] = [f"{g['source_id']}:{g['path']}:{g['start']}-{g['end']} ({g['move']})"
                                   for g in gold if not hit(g)]
+        if not critic:
+            return
         try:
             crit = self.work("critic", "completeness critic", f"""{self.common()}
 Objective: completeness critic for run {self.run}. Read library/reports/flow.md, library/INDEX.md and this
@@ -706,6 +785,36 @@ def choose_sites(found: list[dict], cap: int, weights: dict | None = None) -> li
     print(f"# sites: {len(found)} offered, {already} already in the library, {len(chosen)} chosen, "
           f"{left} left for a later run (kept in ledger/sites.jsonl)")
     return chosen
+
+
+def fair_order(cands: list[dict]) -> list[dict]:
+    """Registration order: candidates found by both strategies first, then A-only and B-only
+    alternately, each by number of finders, so that one strategy's several finders cannot crowd out
+    the other strategy (discovery-1 registered no B-only candidate)."""
+    key = lambda c: -len(c["found_by"])
+    both = sorted((c for c in cands if {"A", "B"} <= set(c["strategies"])), key=key)
+    a = sorted((c for c in cands if c["strategies"] == ["A"]), key=key)
+    b = sorted((c for c in cands if c["strategies"] == ["B"]), key=key)
+    out = list(both)
+    for i in range(max(len(a), len(b))):
+        out += a[i:i + 1] + b[i:i + 1]
+    return out + [c for c in cands if c not in out]
+
+
+def interleave(found: list[dict], reused: list[dict]) -> list[dict]:
+    """Freshly found and reused sites, source by source alternately, so that the breadth-first
+    choice starts on both kinds instead of using up the budget on the first."""
+    def groups(lst):
+        g: dict[str, list] = {}
+        for s in lst:
+            g.setdefault(s["source"], []).append(s)
+        return list(g.values())
+    f, r = groups(found), groups(reused)
+    out = []
+    for i in range(max(len(f), len(r))):
+        for g in f[i:i + 1] + r[i:i + 1]:
+            out += g
+    return out
 
 
 def ledger_sites(sources: list[str]) -> list[dict]:
@@ -846,6 +955,8 @@ def main():
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--finish", nargs="+", metavar="ENTRY_ID",
                     help="complete these entries' missing verification and reviews, then rerun assemble")
+    ap.add_argument("--revise", action="store_true",
+                    help="with --finish: first have the analyst meet each entry's standing review objections")
     ap.add_argument("--cap", type=float, default=10.0,
                     help="CNY ceiling for --finish (default 10), in place of the config's maxCostCNY")
     a = ap.parse_args()
@@ -856,7 +967,7 @@ def main():
     cfg = read_json(Path(a.config))
     if a.finish:
         cfg.update(maxCostCNY=a.cap, maxCalls=10**9, maxTokens=10**12)
-        return Runner(cfg, a.dry_run).finish(a.finish)
+        return Runner(cfg, a.dry_run).finish(a.finish, revise=a.revise)
     Runner(cfg, a.dry_run).go(a.only)
 
 
