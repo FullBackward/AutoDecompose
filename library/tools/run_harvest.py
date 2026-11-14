@@ -2,6 +2,8 @@
 
   py.sh run_harvest.py --smoke                 one tiny call: checks the key and the routing
   py.sh run_harvest.py CONFIG.json [--only gold|screen|sites|entries|assemble] [--dry-run]
+  py.sh run_harvest.py CONFIG.json --finish ENTRY_ID... [--cap CNY] [--dry-run]
+                                               complete entries a budget halt cut short, rerun the critic
 
 Each worker is Claude Code in headless mode (`claude -p`) pointed at DeepSeek's
 Anthropic-compatible API, so the cost is billed to DeepSeek, not to a Claude
@@ -59,6 +61,7 @@ from pathlib import Path
 from collections import Counter
 
 from common import LEDGER, LIB, MOVES, REPO, append_jsonl, die, load_entries, now, read_json, read_jsonl
+from record_verdict import latest
 
 ENDPOINT = "https://api.deepseek.com/anthropic"
 T = "library/tools/py.sh library/tools"
@@ -368,8 +371,17 @@ Boundaries: edit only the README.md and entry.json of the entry you create.""", 
         out["entry"] = e
         if not e or not e.get("ok") or not e.get("id"):
             return out
-        eid = e["id"]
-        mechanical(eid)
+        return self.check_entry(e["id"], s.get("scale") == "theorem", out)
+
+    def check_entry(self, eid: str, theorem: bool, out: dict, resume: bool = False) -> dict:
+        """Verification, revision of refuted claims, the three reviews and promotion. With resume,
+        steps already on record are skipped: for entries whose chain a budget halt cut short."""
+        if not self.dry:
+            mechanical(eid)
+        have = latest(eid) if resume else {}
+        claims = [str(c["n"]) for c in read_json(LIB / "entries" / eid / "entry.json")["claims"]]
+        verified = all(("check", k) in have for k in ("provenance", "build")) and \
+            all(("claim", n) in have for n in claims)
         verify = f"""{self.common()}
 Objective: verify library entry {eid} (role: verifier; SKILL.md section "Verification"). You have not seen
 how it was written. Steps: check_provenance.py {eid}; record the build (ci-record with the CI workflow path if
@@ -380,35 +392,38 @@ library/checks/{eid}.json) are settled: do not re-check them. Read only the line
 (sed -n 'A,Bp' library/entries/{eid}/code/<path>), never whole files.
 Output: provenance, build, claim numbers by verdict.
 Boundaries: never edit the entry."""
-        v = self.work("verifier", f"verify {eid}", verify, VERIFY)
-        refuted = refuted_claims(eid)
-        if refuted:
-            self.work("analyst", f"revise {eid}", f"""{self.common()}
+        if not verified:
+            v = self.work("verifier", f"verify {eid}", verify, VERIFY)
+            refuted = refuted_claims(eid)
+            if refuted:
+                self.work("analyst", f"revise {eid}", f"""{self.common()}
 Objective: entry {eid} has refuted claims {refuted}; the reasons are in library/checks/{eid}.json.
 Remove each refuted claim, or rewrite it to say only what the evidence shows (a rewritten claim gets a new
 number); update README.md "Why it is good" to match; run validate_entry.py {eid} --strict.
 Output: one line. Boundaries: edit only this entry's README.md and entry.json.""")
-            mechanical(eid)
-            v = self.work("verifier", f"re-verify {eid}", verify, VERIFY) or v
-        out["verify"] = v
+                mechanical(eid)
+                v = self.work("verifier", f"re-verify {eid}", verify, VERIFY) or v
+            out["verify"] = v
         lenses = {
             "correctness": "Is the decomposition what the entry says; do children and closing methods match the code; does it close?"
                            + (" Are the children exactly lemmas the main proof uses, and are the shape numbers in entry.json right?"
-                              if s.get("scale") == "theorem" else ""),
+                              if theorem else ""),
             "generality": "Is the move described so it applies beyond this example; are 'when not to use' and consequences honest and specific?"
                           + (" Does it say what makes these lemmas good leaves for a bounded prover?"
-                             if s.get("scale") == "theorem" else ""),
+                             if theorem else ""),
             "provenance-licence": "Are permalinks, commit, licence and source note consistent with the copied files; is everything traceable?",
         }
         out["reviews"] = {}
         for lens, q in lenses.items():
+            if ("review", lens) in have:
+                continue
             out["reviews"][lens] = self.work("verifier", f"review {lens} {eid}", f"""{self.common()}
 Objective: review library entry {eid} under the lens "{lens}" only. {q}
 Read README.md and entry.json, and only the line ranges they cite (sed -n 'A,Bp'), never whole files.
 Output: run record_verdict.py {eid} --review {lens} --decision accept|object --evidence "<reason; for an
 objection, what would fix it>" --by reviewer-{lens}; return the decision and reason.
 Boundaries: one lens; never edit the entry.""", REVIEW)
-        out["status"] = promote(eid)
+        out["status"] = promote(eid) if not self.dry else "dry"
         return out
 
     # ------------------------------------------------------------ the batch
@@ -522,6 +537,40 @@ Boundaries: repositories with code only; do not register sources; do not create 
         summary.update(calls=self.calls, tokens=self.tokens, cost_cny=round(self.cost, 2), finished=now())
         (self.out / "summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
         print(json.dumps({k: v for k, v in summary.items() if k not in ("gold", "entries")}, indent=2))
+
+    def finish(self, ids: list[str]):
+        """Complete entries whose chains a budget halt cut short (only the missing verification and
+        reviews), promote them, rebuild the index and run the critic. The run's summary.json gets a
+        "finish" record and its totals include this pass."""
+        for eid in ids:
+            if not (LIB / "entries" / eid / "entry.json").exists():
+                die(f"no entry {eid}")
+        if self.cfg.get("offPeakOnly") and not self.dry and is_peak():
+            die("DeepSeek peak hours (Beijing Mon-Fri 09-12, 14-18): run --finish off-peak")
+        path = self.out / "summary.json"
+        summary = read_json(path) if path.exists() else {"run": self.run}
+        before = {k: summary.get(k) or 0 for k in ("calls", "tokens", "cost_cny")}
+
+        def one(eid: str) -> tuple[str, str]:
+            theorem = (read_json(LIB / "entries" / eid / "entry.json").get("shape") or {}).get("scale") == "theorem"
+            try:
+                return eid, self.check_entry(eid, theorem, {}, resume=True).get("status")
+            except Halt:
+                return eid, promote(eid) if not self.dry else "dry"
+
+        with cf.ThreadPoolExecutor(max_workers=self.cfg.get("concurrency", 6)) as pool:
+            statuses = dict(pool.map(one, ids))
+        for e in summary.get("entries", []):
+            if e.get("id") in statuses:
+                e["status"] = statuses[e["id"]]
+        self.assemble(summary)
+        summary["finish"] = {"at": now(), "entries": statuses, "calls": self.calls, "tokens": self.tokens,
+                             "cost_cny": round(self.cost, 2), "halted": self.halted}
+        summary.update(calls=before["calls"] + self.calls, tokens=before["tokens"] + self.tokens,
+                       cost_cny=round(before["cost_cny"] + self.cost, 2))
+        if not self.dry:
+            path.write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
+        print(json.dumps({k: summary.get(k) for k in ("finish", "calls", "cost_cny")}, indent=2))
 
     def assemble(self, summary: dict):
         tools = lambda *a: subprocess.run([sys.executable, *a], cwd=REPO, capture_output=True, text=True)
@@ -781,12 +830,20 @@ def main():
     ap.add_argument("--smoke", action="store_true")
     ap.add_argument("--only", choices=["discover", "gold", "screen", "sites", "entries", "assemble"])
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--finish", nargs="+", metavar="ENTRY_ID",
+                    help="complete these entries' missing verification and reviews, then rerun assemble")
+    ap.add_argument("--cap", type=float, default=10.0,
+                    help="CNY ceiling for --finish (default 10), in place of the config's maxCostCNY")
     a = ap.parse_args()
     if a.smoke:
         return smoke()
     if not a.config:
         die("give a config file, or --smoke")
-    Runner(read_json(Path(a.config)), a.dry_run).go(a.only)
+    cfg = read_json(Path(a.config))
+    if a.finish:
+        cfg.update(maxCostCNY=a.cap, maxCalls=10**9, maxTokens=10**12)
+        return Runner(cfg, a.dry_run).finish(a.finish)
+    Runner(cfg, a.dry_run).go(a.only)
 
 
 if __name__ == "__main__":

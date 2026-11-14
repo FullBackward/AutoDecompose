@@ -87,7 +87,7 @@ Python 3 interpreter). No tool uses an API token or a model.
 | `set_status.py` | promotes or flags an entry, refusing when a gate is not met |
 | `dedupe.py` | finds duplicate entries |
 | `build_index.py` | writes `INDEX.md` and `reports/flow.md` |
-| `run_harvest.py` | runs one batch with DeepSeek workers (headless Claude Code on DeepSeek's Anthropic-compatible API); config in `runs/<run>.json`, logs in `reports/<run>/`; `--smoke` checks the routing, `--dry-run` the plumbing |
+| `run_harvest.py` | runs one batch with DeepSeek workers (headless Claude Code on DeepSeek's Anthropic-compatible API); config in `runs/<run>.json`, logs in `reports/<run>/`; `--smoke` checks the routing, `--dry-run` the plumbing; `--finish ID... [--cap CNY]` completes entries a budget halt cut short and reruns the critic |
 
 Two ways to run a batch: the saved workflow `.claude/workflows/harvest-library.js`
 (Claude workers, billed to the Claude plan), or `tools/run_harvest.py` (DeepSeek
