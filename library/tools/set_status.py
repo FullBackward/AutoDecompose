@@ -63,6 +63,10 @@ def main() -> None:
             errs.append("build is neither pass nor ci-record")
         if e["kind"] == "instance" and e["language"] in PROVER and e.get("children")                 and v("check", "glue-cites-children") != "pass":
             errs.append("glue-cites-children has not passed (validate_entry.py --record-glue)")
+        if v("check", "sorry-scan") is None:
+            errs.append("sorry-scan has not been recorded (sorry_scan.py)")
+        elif v("check", "sorry-scan") == "fail":
+            errs.append("sorry-scan found a sorry, admit or axiom inside a parent or child site")
         for c in e["claims"]:
             verdict = v("claim", str(c["n"]))
             if verdict in (None, "unverified"):

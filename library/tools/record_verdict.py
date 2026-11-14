@@ -1,6 +1,6 @@
 """Record a check result, a claim verdict or a review decision for an entry.
 
-  py.sh record_verdict.py ENTRY_ID --check build|fidelity|sufficiency|children|glue-cites-children \
+  py.sh record_verdict.py ENTRY_ID --check build|fidelity|sufficiency|children|glue-cites-children|sorry-scan \
         --status pass|fail|not-run|ci-record --evidence TEXT --by ROLE
   py.sh record_verdict.py ENTRY_ID --claim N --verdict verified|refuted|unverifiable \
         --evidence TEXT --by ROLE
@@ -22,7 +22,7 @@ from common import (CHECK_STATUSES, ENTRIES, LEDGER, LIB, VERDICTS, append_jsonl
 
 CHECKS_DIR = LIB / "checks"
 CHECK_NAMES = ["provenance", "build", "fidelity", "sufficiency", "children",
-               "glue-cites-children"]
+               "glue-cites-children", "sorry-scan"]
 LENSES = ["correctness", "generality", "provenance-licence"]
 
 
