@@ -110,6 +110,9 @@ def check(eid: str, strict: bool) -> list[str]:
         return errs
     if e["id"] != eid:
         errs.append(f"id '{e['id']}' does not match directory")
+    stray = sorted(p.name for p in d.iterdir() if p.name not in ("README.md", "entry.json", "code"))
+    if stray:
+        errs.append(f"files other than README.md, entry.json and code/: {', '.join(stray)} (remove them)")
     if e["kind"] not in KINDS: errs.append(f"bad kind {e['kind']}")
     if e["status"] not in STATUSES: errs.append(f"bad status {e['status']}")
     if e["move"] not in MOVES: errs.append(f"bad move {e['move']}")
