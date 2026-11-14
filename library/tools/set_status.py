@@ -64,47 +64,62 @@ def render(eid: str, e: dict, recs: dict) -> None:
     rp.write_text(text, encoding="utf-8")
 
 
+def gate_errors(eid: str, e: dict, status: str) -> list[str]:
+    """Why ENTRY cannot become STATUS (verified or accepted); empty if it can."""
+    recs = latest(eid)
+    v = lambda t, k: recs.get((t, k), {}).get("value")
+    errs = validate(eid, strict=True)
+    if v("check", "provenance") != "pass":
+        errs.append("provenance check has not passed")
+    if v("check", "build") not in ("pass", "ci-record"):
+        errs.append("build is neither pass nor ci-record")
+    if e["kind"] == "instance" and e["language"] in PROVER and e.get("children") \
+            and v("check", "glue-cites-children") != "pass":
+        errs.append("glue-cites-children has not passed (validate_entry.py --record-glue)")
+    if v("check", "sorry-scan") is None:
+        errs.append("sorry-scan has not been recorded (sorry_scan.py)")
+    elif v("check", "sorry-scan") == "fail":
+        errs.append("sorry-scan found a sorry, admit or axiom inside a parent or child site")
+    clash = dedupe_clash(eid, e)
+    if clash:
+        errs.append(f"duplicate of non-deprecated {', '.join(clash)} (reports/dedupe.json) "
+                    f"not listed in known_uses: merge first")
+    for c in e["claims"]:
+        verdict = v("claim", str(c["n"]))
+        if verdict in (None, "unverified"):
+            errs.append(f"claim {c['n']} has no verdict")
+        elif verdict == "refuted":
+            errs.append(f"claim {c['n']} is refuted: remove or rewrite it")
+    if status == "accepted":
+        ok = [c for c in e["claims"] if v("claim", str(c["n"])) == "verified"]
+        if not any(c["evidence_kind"] == "check" for c in ok):
+            errs.append("no verified claim backed by a check")
+        if not any(c["evidence_kind"] != "check" for c in ok):
+            errs.append("no verified claim of a second kind of evidence")
+        for lens in LENSES:
+            if v("review", lens) != "accept":
+                errs.append(f"review lens '{lens}' has not accepted")
+    return errs
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("entry")
     ap.add_argument("status", choices=["verified", "accepted", "flagged", "deprecated"])
     ap.add_argument("--reason", default="")
+    ap.add_argument("--dry-run", action="store_true", help="only say whether the gates allow it")
     a = ap.parse_args()
     p = ENTRIES / a.entry / "entry.json"
     e = read_json(p)
     recs = latest(a.entry)
     v = lambda t, k: recs.get((t, k), {}).get("value")
     if a.status in ("verified", "accepted"):
-        errs = validate(a.entry, strict=True)
-        if v("check", "provenance") != "pass":
-            errs.append("provenance check has not passed")
-        if v("check", "build") not in ("pass", "ci-record"):
-            errs.append("build is neither pass nor ci-record")
-        if e["kind"] == "instance" and e["language"] in PROVER and e.get("children")                 and v("check", "glue-cites-children") != "pass":
-            errs.append("glue-cites-children has not passed (validate_entry.py --record-glue)")
-        if v("check", "sorry-scan") is None:
-            errs.append("sorry-scan has not been recorded (sorry_scan.py)")
-        elif v("check", "sorry-scan") == "fail":
-            errs.append("sorry-scan found a sorry, admit or axiom inside a parent or child site")
-        clash = dedupe_clash(a.entry, e)
-        if clash:
-            errs.append(f"duplicate of non-deprecated {', '.join(clash)} (reports/dedupe.json) "
-                        f"not listed in known_uses: merge first")
-        for c in e["claims"]:
-            verdict = v("claim", str(c["n"]))
-            if verdict in (None, "unverified"):
-                errs.append(f"claim {c['n']} has no verdict")
-            elif verdict == "refuted":
-                errs.append(f"claim {c['n']} is refuted: remove or rewrite it")
-        if a.status == "accepted":
-            ok = [c for c in e["claims"] if v("claim", str(c["n"])) == "verified"]
-            if not any(c["evidence_kind"] == "check" for c in ok):
-                errs.append("no verified claim backed by a check")
-            if not any(c["evidence_kind"] != "check" for c in ok):
-                errs.append("no verified claim of a second kind of evidence")
-            for lens in LENSES:
-                if v("review", lens) != "accept":
-                    errs.append(f"review lens '{lens}' has not accepted")
+        errs = gate_errors(a.entry, e, a.status)
+        if a.dry_run:
+            print(("ok " if not errs else "NO ") + f" {a.entry} -> {a.status}")
+            for x in errs:
+                print(f"  - {x}")
+            raise SystemExit(1 if errs else 0)
         if errs:
             print(f"refused: {a.entry} cannot become {a.status}")
             for x in errs:
