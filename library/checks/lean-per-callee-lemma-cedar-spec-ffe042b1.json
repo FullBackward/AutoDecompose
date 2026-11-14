@@ -1,0 +1,133 @@
+{
+  "entry": "lean-per-callee-lemma-cedar-spec-ffe042b1",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:54:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:54:04Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:54:04Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: satisfiedPolicies_order_and_dup_independent@cedar-lean/Cedar/Thm/Authorization.lean:163, errorPolicies_order_and_dup_independent@cedar-lean/Cedar/Thm/Authorization.lean:165; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:54:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(order_and_dup_independent, cedar-lean/Cedar/Thm/Authorization.lean, 158-166) -> declared: order_and_dup_independent is declared at cedar-lean/Cedar/Thm/Authorization.lean:158",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:54:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, satisfiedPolicies_order_and_dup_independent) -> cites: satisfiedPolicies_order_and_dup_independent occurs at cedar-lean/Cedar/Thm/Authorization.lean:163",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:54:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, errorPolicies_order_and_dup_independent) -> cites: errorPolicies_order_and_dup_independent occurs at cedar-lean/Cedar/Thm/Authorization.lean:165",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:54:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "no_sorry(cedar-lean/Cedar/Thm/Authorization/Authorizer.lean, 62-78) -> no_sorry: none of sorry, admit, axiom in cedar-lean/Cedar/Thm/Authorization/Authorizer.lean:62-78",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:54:04Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at e619491a5bfb04970ef994dbe286df0bb9d0b73f",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:54:11Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/ci.yml job build_and_test_lean runs 'lake build Cedar SymCC' in ./cedar-lean, which builds Cedar/Thm/Authorization.lean and Cedar/Thm/Authorization/Authorizer.lean; commit e619491a5bfb04970ef994dbe286df0bb9d0b73f is on default branch main (compare main...e619491 is identical)",
+      "by": "verifier",
+      "at": "2026-11-14T12:55:54Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "parent cedar-lean/Cedar/Thm/Authorization.lean:158-166 is 9 lines (theorem through 'simp [isAuthorized, hf, hp, he]'); children Authorizer.lean:62-69 and 71-78 are 8 lines each; both child proofs are unfold/rw [Set.make_make_eqv]/exact List.filterMap_equiv; Set.make_make_eqv declared at Thm/Data/Set.lean:303-317 (318 blank) and its proof calls List.canonicalize_equiv (Set.lean:309-310); List.canonicalize_equiv declared at Thm/Data/List/Canonical.lean:468-480",
+      "by": "verifier",
+      "at": "2026-11-14T12:55:56Z"
+    },
+    {
+      "type": "claim",
+      "key": "6",
+      "value": "verified",
+      "evidence": "cedar-lean/Cedar/Thm/Authorization/Authorizer.lean:80-89 declares satisfied_policies_congr_evaluate, :91-102 declares error_policies_congr_evaluate, :117-126 declares is_authorized_congr_evaluate whose proof is 'simp only [isAuthorized]' then 'rw [satisfied_policies_congr_evaluate .permit heq, satisfied_policies_congr_evaluate .forbid heq, error_policies_congr_evaluate heq]'",
+      "by": "verifier",
+      "at": "2026-11-14T12:55:57Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Decomposition matches the code. Parent order_and_dup_independent (Authorization.lean 158-166) is 9 lines whose glue is exactly three have's -- satisfiedPolicies_order_and_dup_independent .forbid/.permit and errorPolicies_order_and_dup_independent -- then simp [isAuthorized, hf, hp, he]; the isAuthorized context (Spec/Authorizer.lean 56-62) is a let-bound combination of those three components, so the glue closes. Children and closed_by match verbatim (Authorizer.lean 62-69 and 71-78; exact List.filterMap_equiv ... at lines 69/78). Children are exactly the lemmas the proof cites (no others; satisfiedPolicies used twice, noted). Shape numbers right: glue_lines 9 (158-166), child_lines [8,8] (62-69, 71-78), direct_lemmas 2, depth 3 (child -> Set.make_make_eqv (Set.lean 303-318, calls List.canonicalize_equiv at 310-311) -> List.canonicalize_equiv (Canonical.lean 468-480)); List.filterMap_equiv is external (Batteries), not a project lemma.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:57:36Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "object",
+      "evidence": "Move is stated generally (per-component lemmas mirror a structured definition; glue is a fixed simp [f, h1..hn]), consequences are specific, and the 'good leaf' question is answered (self-contained statement, 3-step proof, needs no sibling). But the 'when not to use' example is wrong: it says avoid when the body 'branches on ... the contents or size of the component sets', yet isAuthorized's own body branches on forbids.isEmpty && !permits.isEmpty (size/emptiness of the components) and the simp still closes, because any property of a component is preserved by component equality (congruence). The real break is when the body depends on something other than the components (the raw policies list, or an argument not held equal). Fix: reword the first avoid-when to say the body must depend only on the components, and it fails when the body reads anything outside the per-component equalities or the components don't share one lemma shape.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:58:48Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at e619491a5bfb04970ef994dbe286df0bb9d0b73f",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:59:07Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes: 3 copied files byte-identical at commit e619491a5bfb04970ef994dbe286df0bb9d0b73f. Commit is pinned and consistent across entry.json source.commit, README, source note, and source.json. Licence Apache-2.0 recorded identically in entry.json, README and SOURCE.md, and upstream-LICENSE is the Apache 2.0 text with upstream-NOTICE present. All permalinks use the same commit; the cited line ranges (Authorization.lean 158-166, Authorizer.lean 62-78 and 80-126, Spec/Authorizer.lean 56-62) match the local copies and README excerpts verbatim. Source note links the entry to the repo, commit, licence files and attribution.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:59:38Z"
+    }
+  ]
+}

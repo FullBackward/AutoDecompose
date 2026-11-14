@@ -1,0 +1,170 @@
+{
+  "id": "isabelle-iff-split-munkres-isabelle-05cdf9d1",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Iff-split of the sequential characterization of continuity into forward and metric converse",
+  "intent": "Prove the sequential characterization of continuity (continuous iff it maps convergent sequences to convergent sequences, the converse under metrizability) by splitting it into its forward implication and its metric converse, each stated and proved as its own named lemma, and gluing them as the two `shows` clauses of Theorem_21_3.",
+  "move": "iff-split",
+  "also_known_as": [
+    "bidirectional split",
+    "forward/backward implication split",
+    "iff on a characterization with a side condition"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "munkres-isabelle",
+    "url": "https://github.com/JUrban/isa_top_autoform1",
+    "commit": "90d108779e83453e9cae2f55b513246e1cc044e0",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "tst/i/Top1_Ch2.thy",
+      "bytes": 865621,
+      "sha256": "59d6fe19d01e31a43ceec056c8affaaf9a278daa7c6201c7aaf46f47deb2f5f1",
+      "permalink": "https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/i/Top1_Ch2.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "tst/i/Top1_Ch2.thy",
+      "lines": [
+        17155,
+        17209
+      ],
+      "role": "parent",
+      "name": "Theorem_21_3",
+      "excerpt_sha256": "e7c7db2ce1d707b2fc5f8d544e0f2b9a56b2e094a192f5d1d7a7530f5f6910aa",
+      "permalink": "https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/i/Top1_Ch2.thy#L17155-L17209"
+    },
+    {
+      "path": "tst/i/Top1_Ch2.thy",
+      "lines": [
+        17055,
+        17096
+      ],
+      "role": "child",
+      "name": "Theorem_21_3_forward",
+      "excerpt_sha256": "39707b55a02246bd8c8ae09c9bb6ce627459cd3dd70cb261ac5580d7af52522e",
+      "permalink": "https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/i/Top1_Ch2.thy#L17055-L17096"
+    },
+    {
+      "path": "tst/i/Top1_Ch2.thy",
+      "lines": [
+        17098,
+        17152
+      ],
+      "role": "child",
+      "name": "Theorem_21_3_converse_metric",
+      "excerpt_sha256": "39715853957639551763e9bb25c7f284210481b2c68d386dc8ce1025e180d20a",
+      "permalink": "https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/i/Top1_Ch2.thy#L17098-L17152"
+    }
+  ],
+  "parent": {
+    "name": "Theorem_21_3",
+    "statement": "theorem Theorem_21_3:\n  assumes hTX: \"is_topology_on X TX\"\n  assumes hTY: \"is_topology_on Y TY\"\n  assumes hmap: \"\\<forall>x\\<in>X. f x \\<in> Y\"\n  shows \"top1_continuous_map_on X TX Y TY f\n          \\<longrightarrow> (\\<forall>s x. seq_converges_to_on s x X TX\n                 \\<longrightarrow> seq_converges_to_on (\\<lambda>n. f (s n)) (f x) Y TY)\"\n    and \"top1_metrizable_on X TX\n          \\<longrightarrow> (\\<forall>s x. seq_converges_to_on s x X TX\n                 \\<longrightarrow> seq_converges_to_on (\\<lambda>n. f (s n)) (f x) Y TY)\n          \\<longrightarrow> top1_continuous_map_on X TX Y TY f\""
+  },
+  "children": [
+    {
+      "name": "Theorem_21_3_forward",
+      "statement": "theorem Theorem_21_3_forward:\n  assumes hTX: \"is_topology_on X TX\"\n  assumes hTY: \"is_topology_on Y TY\"\n  assumes hcont: \"top1_continuous_map_on X TX Y TY f\"\n  assumes hx: \"seq_converges_to_on s x X TX\"\n  shows \"seq_converges_to_on (\\<lambda>n. f (s n)) (f x) Y TY\"",
+      "closed_by": "structured proof that unfolds seq_converges_to_on_def, top1_continuous_map_on_def and neighborhood_of_def and closes each conjunct from the local hypotheses by blast/simp; no project lemma is cited",
+      "note": "Self-contained leaf: the proof is definition-unfolding plus automation on the hypotheses, so a bounded prover can close it on its own."
+    },
+    {
+      "name": "Theorem_21_3_converse_metric",
+      "statement": "theorem Theorem_21_3_converse_metric:\n  assumes hd: \"top1_metric_on X d\"\n  assumes hTY: \"is_topology_on Y TY\"\n  assumes hmap: \"\\<forall>x\\<in>X. f x \\<in> Y\"\n  assumes hseq:\n    \"\\<forall>s x. seq_converges_to_on s x X (top1_metric_topology_on X d)\n          \\<longrightarrow> seq_converges_to_on (\\<lambda>n. f (s n)) (f x) Y TY\"\n  shows \"top1_continuous_map_on X (top1_metric_topology_on X d) Y TY f\"",
+      "closed_by": "top1_metric_topology_on_is_topology_on, then the closure criterion Theorem_18_1(1), with Lemma_21_2_sequence and Lemma_21_2_sequence_converse establishing the closure inclusion",
+      "note": "Closes from named project lemmas only: it does not re-prove the sequence lemmas, it wires them to the closure criterion."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A characterization P iff Q, or the two implications P ⟶ Q and (side condition ⟶ Q ⟶ P), where the two directions need different arguments; here continuous ⟺ sequential, with the converse conditional on top1_metrizable_on X TX.",
+    "use_when": "the two directions have different proofs (forward is definitional — a continuous preimage of a neighbourhood; converse needs the metric sequence lemma), so each deserves its own named lemma; and one direction carries an extra hypothesis (metrizability) used only by that direction.",
+    "avoid_when": "a single argument proves both directions (then state one lemma); the directions share so much that a plain iffI/intro with no intermediate lemmas is clearer; or the side condition must be threaded through the whole theorem instead of being isolated in one child."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "Theorem_21_3_forward occurs in the parent site's lines.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/i/Top1_Ch2.thy#L17155-L17209",
+      "form": "cites(parent, Theorem_21_3_forward)"
+    },
+    {
+      "n": 2,
+      "claim": "Theorem_21_3_converse_metric occurs in the parent site's lines.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/i/Top1_Ch2.thy#L17155-L17209",
+      "form": "cites(parent, Theorem_21_3_converse_metric)"
+    },
+    {
+      "n": 3,
+      "claim": "No 'sorry' occurs in lines 17055-17209 of tst/i/Top1_Ch2.thy (the parent and both children).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/i/Top1_Ch2.thy#L17055-L17209",
+      "form": "no_sorry(tst/i/Top1_Ch2.thy, 17055-17209)"
+    },
+    {
+      "n": 4,
+      "claim": "The theorem-scale shape, measured from the copied file: the glue (parent site) is 55 lines, the two children 42 and 55 lines, and the longest chain of project lemmas below Theorem_21_3 is 3 deep — Theorem_21_3 → Theorem_21_3_converse_metric → Lemma_21_2_sequence_converse → Theorem_17_5a — counted by following the rule-citations at lines 17205, 17120 and 16906.",
+      "evidence_kind": "measurement",
+      "evidence": "Citations read from the copied file: line 17205 (by (rule Theorem_21_3_converse_metric[OF hd hTY hmap hseq'])), line 17120 (using Lemma_21_2_sequence_converse[OF hd hxcl hAX] by blast), line 16906 (by (rule iffD1[OF Theorem_17_5a[OF hTop hxX hAX], OF hxcl])); Theorem_17_5a is declared at line 5439. Line counts: parent 17155-17209 = 55, forward 17055-17096 = 42, converse_metric 17098-17152 = 55."
+    },
+    {
+      "n": 5,
+      "claim": "The same bidirectional split — two implications each glued from a named lemma — is used for the Sequence lemma immediately above: Lemma_21_2 shows its two directions by Lemma_21_2_sequence and Lemma_21_2_sequence_converse.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/i/Top1_Ch2.thy#L17012-L17052"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 3,
+    "glue_lines": 55,
+    "child_lines": [
+      42,
+      55
+    ]
+  },
+  "metrics": {
+    "parent_lines": 55,
+    "direct_lemmas": 2,
+    "depth": 3,
+    "how_counted": "parent_lines = span of the parent site 17155-17209; direct_lemmas = the two theorem names the parent proof cites by rule (Theorem_21_3_forward at 17178, Theorem_21_3_converse_metric at 17205); depth = length of the longest chain of project lemmas below the theorem followed via their rule-citations (Theorem_21_3 → Theorem_21_3_converse_metric → Lemma_21_2_sequence_converse → Theorem_17_5a)."
+  },
+  "consequences": "Splitting a characterization into two named lemmas obliges the glue to state each `shows` clause exactly matching a lemma's conclusion, and to feed each lemma the hypotheses it lists (hTX, hTY, hcont, hx for the forward; hd, hTY, hmap, hseq' for the converse). The converse direction forces the metrizability hypothesis into its own child, so the glue must first unfold top1_metrizable_on_def to obtain a metric d, then re-wrap the sequential hypothesis over the metric topology (hseq') before applying the converse lemma. Failure mode: if the side condition is not isolated in its own child, the unconditional forward direction would also carry it, weakening the theorem.",
+  "known_uses": [
+    "https://github.com/JUrban/isa_top_autoform1/blob/90d108779e83453e9cae2f55b513246e1cc044e0/tst/i/Top1_Ch2.thy#L17012-L17052"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "05cdf9d1f17534d2ddc6474036d2707afeeffa482cde0b93b2de3ec77615d8cd",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:48:18Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:52:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:49:49Z",
+      "note": "parent Theorem_21_3: statement re-copied from code; child 'Theorem_21_3_forward': statement re-copied from the declaration of Theorem_21_3_forward; child 'Theorem_21_3_converse_metric': statement re-copied from the declaration of Theorem_21_3_converse_metric"
+    }
+  ]
+}

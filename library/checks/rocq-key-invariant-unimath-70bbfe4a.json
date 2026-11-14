@@ -1,0 +1,133 @@
+{
+  "entry": "rocq-key-invariant-unimath-70bbfe4a",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:22:30Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:22:30Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:22:31Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: AC_to_choice_fun@UniMath/OrderTheory/OrderedSets/WellOrderedSets.v:1174, guided_WOSubset_total@UniMath/OrderTheory/OrderedSets/WellOrderedSets.v:1176, chain_union_le@UniMath/OrderTheory/OrderedSets/WellOrderedSets.v:1185, upto'_eqn@UniMath/OrderTheory/OrderedSets/WellOrderedSets.v:1186, WOSubset_plus_point@UniMath/OrderTheory/OrderedSets/WellOrderedSets.v:1201, TOSubset_plus_point_incl@UniMath/OrderTheory/OrderedSets/WellOrderedSets.v:1203, TOSubset_plus_point_le@UniMath/OrderTheory/OrderedSets/WellOrderedSets.v:1215, TOSubset_plus_point_initial@UniMath/OrderTheory/OrderedSets/WellOrderedSets.v:1221; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:22:31Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "no_sorry(UniMath/OrderTheory/OrderedSets/WellOrderedSets.v, 1169-1263) -> no_sorry: none of admit, Admitted, Axiom, axiom in UniMath/OrderTheory/OrderedSets/WellOrderedSets.v:1169-1263",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:22:31Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, guided_WOSubset_total) -> cites: guided_WOSubset_total occurs at UniMath/OrderTheory/OrderedSets/WellOrderedSets.v:1176",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:22:31Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "declared(guided_WOSubset_total, UniMath/OrderTheory/OrderedSets/WellOrderedSets.v, 976-977) -> declared: guided_WOSubset_total is declared at UniMath/OrderTheory/OrderedSets/WellOrderedSets.v:976",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:22:31Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 7a4b03cce49449f45ce0d4285615165172f50546",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:22:37Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build-unimath.yml: job build-Unimath-ubuntu runs 'opam exec -- dune build -j 2 --display=short --cache=enabled' (default target) over the full UniMath tree, which includes UniMath/OrderTheory/OrderedSets/WellOrderedSets.v; the workflow runs on default branch master",
+      "by": "verifier",
+      "at": "2026-11-14T10:23:59Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Shape numbers cross-checked against code/UniMath/OrderTheory/OrderedSets/WellOrderedSets.v: 8 children in entry.json; parent 1169-1263 = 95 lines; child line counts 938-944=7, 976-1165=190, 913-920=8, 953-965=13, 461-466=6, 307-311=5, 313-319=7, 321-329=9; depth-2 chain: glue applies upto'_eqn at line 1186 and 1213, and upto'_eqn applies upto_eqn at line 963",
+      "by": "verifier",
+      "at": "2026-11-14T10:24:02Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Comment at lines 946-948 of code/UniMath/OrderTheory/OrderedSets/WellOrderedSets.v reads verbatim: 'Given a choice function g, we single out well ordered subsets C of X that follow the choice functions advice when constructed by adding one element at a time to the top. We may say that C is \"guided\" by g.'",
+      "by": "verifier",
+      "at": "2026-11-14T10:24:04Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 7a4b03cce49449f45ce0d4285615165172f50546",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:24:21Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Provenance passes (1 file byte-identical at 7a4b03c). Read parent site 1169-1263 and all eight child sites in the local copy: parent statement and all eight child statements match entry.json verbatim, and each child's closed_by matches the code (AC_to_choice_fun's exact ... hinhpr at 941-943; TOSubset_plus_point_incl's apply subtype_plus_incl at 310; TOSubset_plus_point_le's use tpair at 316-318; TOSubset_plus_point_initial's squash/fromempty at 325-328; chain_union_le's exists+split at 916-919; upto'_eqn's assert e'/upto_eqn at 958-963; WOSubset_plus_point's assembly at 463-466). The parent proof closes with Defined at 1263, contains no admit/Admitted/Axiom/axiom, and cites all eight children by name (1174, 1176, 1185/1246, 1186/1213, 1201, 1203, 1215, 1221). Shape numbers recomputed from the sites are right: glue_lines=1263-1169+1=95, child_lines=[7,190,8,13,6,5,7,9] equal the eight child ranges, direct_lemmas=8, and depth=2 is real (parent applies upto'_eqn at 1186/1213; upto'_eqn applies upto_eqn at 963, upto_eqn declared at 602). The only other in-file lemma the parent reaches, chain_union_WOSubset (via the union notation at 1178), is disclosed as a non-child dependency, so the 8-child decomposition is honest.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:26:00Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is generalized beyond Zermelo: 'When to use it' abstracts to maximality/universality goals with a good/guided approximation closed under chain unions and extendable by one element, and applicability.goal_shape names a Zorn-style maximality argument; also_known_as ties it to 'strengthen the hypothesis' and 'invariant/potential'. When-not-to-use is honest and specific: three conditions including the candid admission that the invariant lemma is 190 lines and 'concentrates, not removes, the difficulty'. Consequences are specific (union-of-chain closure, transport through hSet univalence; failure mode that an opaque invariant buys nothing). Good-leaf criterion is stated: each child is self-contained, closes on its own or from a named same-file sibling, without unfolding the parent's strategy. Verifier note: author-statement quote matches lines 946-951 and known_uses (transfiniteRecursion, lines 1487-1501) shows the same guided-maximality move reused, supporting generality. The one soft spot is listing the 190-line invariant as a 'leaf' closing from isInterval/max_common_initial, which undersells its size, but the when-not-to-use and consequences sections already disclose it, so no standing objection.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:26:55Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 7a4b03cce49449f45ce0d4285615165172f50546",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:27:13Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance pass: 1 file byte-identical at pinned commit 7a4b03cce49449f45ce0d4285615165172f50546. Commit is consistent across entry.json source.commit, source.json, SOURCE.md and all 10 permalinks (file + 9 sites), which share the same blob hash and line anchors (spot-checked declarations at 1169, 976, 938, 913, 953, 461, 307, 313, 321, and author comment 946-951). Licence recorded as MIT in entry.json, README table, source.json and SOURCE.md, with the licence text captured verbatim in sources/unimath/upstream-LICENSE.md (a permissive MIT-style licence). Source note carries repo URL, pinned commit, licence and attribution. Everything traceable and consistent.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:27:47Z"
+    }
+  ]
+}

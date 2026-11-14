@@ -1,0 +1,177 @@
+{
+  "id": "rocq-per-callee-lemma-rocq-stdlib-096380b6",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Per-pass soundness lemmas for micromega's tauto_checker",
+  "intent": "Soundness of micromega's tauto checker is reduced to the two pass lemmas the checker is built from — xcnf_correct for the formula-to-CNF translation and cnf_checker_sound for the per-clause oracle — so the top-level theorem is a two-step composition with no case analysis of its own.",
+  "move": "per-callee-lemma",
+  "also_known_as": [
+    "per-pass lemma",
+    "compositional correctness",
+    "per-pass simulation lemma (CompCert)"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "rocq-stdlib",
+    "url": "https://github.com/rocq-prover/stdlib",
+    "commit": "22fcaa27d17bc28ab4be728ed10a1fb73afb23ee",
+    "licence": "LGPL-2.1"
+  },
+  "files": [
+    {
+      "path": "theories/micromega/Tauto.v",
+      "bytes": 65586,
+      "sha256": "8688f102f581da30db82949405aaf9ed8b918bac419fa84b9eff2ff7d657689c",
+      "permalink": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/micromega/Tauto.v"
+    },
+    {
+      "path": "theories/micromega/Refl.v",
+      "bytes": 4611,
+      "sha256": "7fd79640792f09f0778c919729c4cfd1334e121da5ed6d85fd977ba63e8b4b2d",
+      "permalink": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/micromega/Refl.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/micromega/Tauto.v",
+      "lines": [
+        2060,
+        2067
+      ],
+      "role": "parent",
+      "name": "tauto_checker_sound",
+      "excerpt_sha256": "d85aa34d9a49df239c2b6f944ba2252b55903d221840621e7e53bf62d82f5478",
+      "permalink": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/micromega/Tauto.v#L2060-L2067"
+    },
+    {
+      "path": "theories/micromega/Tauto.v",
+      "lines": [
+        1894,
+        2016
+      ],
+      "role": "child",
+      "name": "xcnf_correct",
+      "excerpt_sha256": "e812151e14300861427cfaa53024ce38056fa965f57eaaf7eb86a4dd31dbd8ff",
+      "permalink": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/micromega/Tauto.v#L1894-L2016"
+    },
+    {
+      "path": "theories/micromega/Tauto.v",
+      "lines": [
+        2035,
+        2055
+      ],
+      "role": "child",
+      "name": "cnf_checker_sound",
+      "excerpt_sha256": "cb9cf3fdb12e108a5d2581c9746d87fb0fea236accabb79a080b7f6704df5d52",
+      "permalink": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/micromega/Tauto.v#L2035-L2055"
+    }
+  ],
+  "parent": {
+    "name": "tauto_checker_sound",
+    "statement": "Lemma tauto_checker_sound : forall t  w, tauto_checker t w = true -> forall env, eval_f e_rtyp (eval env)  t."
+  },
+  "children": [
+    {
+      "name": "xcnf_correct",
+      "statement": "Lemma xcnf_correct : forall (k: kind) (f : @GFormula Term rtyp Annot unit k)  pol env,\n      eval_cnf env (xcnf pol f) -> hold k (eval_f e_rtyp (eval env) (if pol then f else NOT f)).",
+      "closed_by": "induction f; the A case applies normalise_correct / negate_correct, the AND/OR/NOT cases close from the IHs and hold_e* lemmas, and the IMPL/IFF cases delegate to xcnf_impl / xcnf_iff",
+      "note": "Pass 1: correctness of the formula-to-CNF translation xcnf; the two structural cases IMPL and IFF are factored out as the induction helpers xcnf_impl (1791) and xcnf_iff (1853). Analyst's paraphrase, replaced by the declaration's text: If the CNF of xcnf pol f is valid in env, then f (negated when pol = false) holds."
+    },
+    {
+      "name": "cnf_checker_sound",
+      "statement": "Lemma cnf_checker_sound : forall t  w, cnf_checker t w = true -> forall env, eval_cnf  env  t.",
+      "closed_by": "induction t; per clause case_eq (checker a w), generalize (@checker_sound _ _ H env), rewrite <- make_conj_impl, tauto",
+      "note": "Pass 2: correctness of the CNF oracle checker, lifting the per-clause section hypothesis checker_sound (2021) to a whole CNF via make_conj_impl (Refl.v). Analyst's paraphrase, replaced by the declaration's text: If cnf_checker accepts witnesses w for the CNF t, then t is valid in every environment."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A soundness theorem for a certified (reflexive) procedure built as sequential passes over an intermediate representation: here `tauto_checker t w = true -> forall env, eval_f e_rtyp (eval env) t`, where tauto_checker is `cnf_checker (xcnf true f) w` and each pass has its own correctness lemma stated over the shared predicate `eval_cnf env (xcnf pol f)`.",
+    "use_when": "the procedure is a composition of passes whose correctness lemmas already exist or are worth stating separately, and the top-level proof only has to line the passes up (an `unfold` and a `change`, then `apply`/`eapply`); each pass's statement is self-contained in terms of the intermediate predicate it shares with the next pass.",
+    "avoid_when": "the passes' statements do not share an intermediate predicate (then the glue must reason inside a pass, not just compose); a pass has no independent, reusable statement worth naming; or the top-level proof must do genuine work in the middle rather than only compose the two lemmas."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The top-level theorem is 8 lines of glue composing 2 direct lemmas, whose child sites span 123 and 21 lines; below the main theorem is a chain of 6 project lemmas, xcnf_correct down to add_term_correct.",
+      "evidence_kind": "measurement",
+      "evidence": "parent site theories/micromega/Tauto.v#L2060-L2067 (8 lines); children xcnf_correct #L1894-L2016 (123 lines) and cnf_checker_sound #L2035-L2055 (21 lines); the depth-6 chain tauto_checker_sound -> xcnf_correct -> xcnf_impl -> or_cnf_correct -> or_clause_cnf_correct -> or_clause_correct -> add_term_correct is visible at #L2065, #L1987, #L1813, #L1681, #L1634, #L1598"
+    },
+    {
+      "n": 2,
+      "claim": "tauto_checker_sound is declared at line 2060 of theories/micromega/Tauto.v.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/micromega/Tauto.v#L2060",
+      "form": "declared(tauto_checker_sound, theories/micromega/Tauto.v, 2060-2060)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site cites xcnf_correct.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/micromega/Tauto.v#L2060-L2067",
+      "form": "cites(parent, xcnf_correct)"
+    },
+    {
+      "n": 4,
+      "claim": "The parent site cites cnf_checker_sound.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/micromega/Tauto.v#L2060-L2067",
+      "form": "cites(parent, cnf_checker_sound)"
+    },
+    {
+      "n": 5,
+      "claim": "CompCert's transf_c_program_match chains one per-pass `transf_program_match` lemma per compilation pass — SimplExprproof through Asmgenproof — the same per-callee-lemma composition this entry records.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/driver/Compiler.v#L265-L318"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 6,
+    "glue_lines": 8,
+    "child_lines": [
+      123,
+      21
+    ]
+  },
+  "metrics": {
+    "children": 2,
+    "children_closed_by_automation": 0,
+    "how_counted": "glue = tauto_checker_sound (lines 2060-2067); children = xcnf_correct (1894-2016) and cnf_checker_sound (2035-2055), declaration included in each; neither child closes by a single automation tactic — both are inductions over a formula/CNF with per-case rewrites"
+  },
+  "consequences": "The glue concentrates everything into aligning the two pass lemmas: it unfolds tauto_checker and `change`s `eval_f ... t` into `eval_f ... (if true then t else TT isProp)` so that xcnf_correct's conclusion and cnf_checker_sound's hypothesis both mention `eval_cnf env (xcnf true t)`. The obligations move down: xcnf_correct must hold for the polarity `true` that tauto_checker fixes, and cnf_checker_sound is parametric in the oracle's soundness, which is the section hypothesis `checker_sound` (the checker itself is assumed sound, not proved here). Failure mode: if a pass's correctness statement does not line up with the next pass's input, the glue gains a pile of `change`/rewrites or the composition breaks entirely.",
+  "known_uses": [
+    "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/driver/Compiler.v#L265-L318"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 4,
+    "relation": "supports"
+  },
+  "content_key": "096380b698e1e245a90f977f8c41f9959a5a4bbdf134978099cdd3f829716eb5",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:23:35Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:25:02Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:25:25Z",
+      "note": "parent tauto_checker_sound: statement re-copied from code; child 'xcnf_correct': statement re-copied from the declaration of xcnf_correct; child 'cnf_checker_sound': statement re-copied from the declaration of cnf_checker_sound"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:37:53Z"
+}

@@ -1,0 +1,283 @@
+{
+  "id": "lean-key-invariant-sphere-eversion-6e399f2e",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Gromov's h-principle for open ample relations via the key invariant P₀ P₁ P₂",
+  "intent": "Reduce Gromov's h-principle for open ample first-order differential relations to a generic induction over the manifold by choosing three germ predicates P₀ P₁ P₂ (the invariant) that a local improvement step preserves and whose conjunction is exactly the conclusion, so the whole proof becomes 'define the invariant, prove it survives one step, hand it to the induction engine'.",
+  "move": "key-invariant",
+  "also_known_as": [
+    "strengthened induction hypothesis",
+    "loop invariant (program verification)",
+    "potential method"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "sphere-eversion",
+    "url": "https://github.com/leanprover-community/sphere-eversion",
+    "commit": "33ab3d626854a0f0f04ed5772e3102d652e96475",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "SphereEversion/Global/Gromov.lean",
+      "bytes": 11104,
+      "sha256": "de47ace80bebfff123fd46eb4e66a62a40cc249bfa04e6cf8657b2488a12a5a2",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/Gromov.lean"
+    },
+    {
+      "path": "SphereEversion/Global/Relation.lean",
+      "bytes": 35069,
+      "sha256": "1eb934b1ebce4907083d161579ebe32f6812119f89405223a274bcc5f6b8f555",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/Relation.lean"
+    },
+    {
+      "path": "SphereEversion/Global/LocalisationData.lean",
+      "bytes": 7746,
+      "sha256": "eb3e27ab8e3207e358d9e0c3ad10681ff811dc61aa6a33a49d3baeb5d4c9ca2d",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/LocalisationData.lean"
+    },
+    {
+      "path": "SphereEversion/Global/LocalizedConstruction.lean",
+      "bytes": 5340,
+      "sha256": "4439229c2809f373c94dff63e09c8884aa6b84a0c7e217f68ad19edc7752b1dd",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/LocalizedConstruction.lean"
+    },
+    {
+      "path": "SphereEversion/InductiveConstructions.lean",
+      "bytes": 26917,
+      "sha256": "8cda96f71774faf4b389640c26291059b8f239e276b303e0ef12c5c6709739d4",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/InductiveConstructions.lean"
+    },
+    {
+      "path": "SphereEversion/Global/SmoothEmbedding.lean",
+      "bytes": 21997,
+      "sha256": "f9a911ad4a3bcc37682f48c74ad43553c2f26f2e3d4e6bbb7236868a1b14861b",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/SmoothEmbedding.lean"
+    },
+    {
+      "path": "SphereEversion/Global/OneJetSec.lean",
+      "bytes": 12059,
+      "sha256": "2b176d0cefdd9394c6977790225c795a235eb2d37720a91bbd9829db01e0a6f2",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/OneJetSec.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "SphereEversion/Global/Gromov.lean",
+      "lines": [
+        37,
+        178
+      ],
+      "role": "parent",
+      "name": "RelMfld.Ample.satisfiesHPrinciple",
+      "excerpt_sha256": "31e5e554fea7dc589649237f7f976a4866cc1cecc712139b2d1d830fbb57cd50",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/Gromov.lean#L37-L178"
+    },
+    {
+      "path": "SphereEversion/Global/Relation.lean",
+      "lines": [
+        353,
+        360
+      ],
+      "role": "child",
+      "name": "RelMfld.satisfiesHPrinciple_of_weak",
+      "excerpt_sha256": "fec26f9036430847accae3b6c34e76bf6faa75bb82e95c357c7a5240683ad4c9",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/Relation.lean#L353-L360"
+    },
+    {
+      "path": "SphereEversion/Global/LocalisationData.lean",
+      "lines": [
+        174,
+        187
+      ],
+      "role": "child",
+      "name": "_root_.exists_stability_dist",
+      "excerpt_sha256": "400ec1b0f6f3102647ef49cd06986710f0154751286e0b5d916f3e293c2ed4c8",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/LocalisationData.lean#L174-L187"
+    },
+    {
+      "path": "SphereEversion/Global/LocalizedConstruction.lean",
+      "lines": [
+        22,
+        114
+      ],
+      "role": "child",
+      "name": "OpenSmoothEmbedding.improve_formalSol",
+      "excerpt_sha256": "b267b90067919017c226505881b1ad5cb7685d6b91d8aae5d3afb77e8f789508",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/LocalizedConstruction.lean#L22-L114"
+    },
+    {
+      "path": "SphereEversion/InductiveConstructions.lean",
+      "lines": [
+        424,
+        467
+      ],
+      "role": "child",
+      "name": "inductive_htpy_construction",
+      "excerpt_sha256": "13558a843c8e2095af3284052ae37c9458b98fac65412ccb4a331981cf5b62c5",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/InductiveConstructions.lean#L424-L467"
+    },
+    {
+      "path": "SphereEversion/Global/Relation.lean",
+      "lines": [
+        311,
+        315
+      ],
+      "role": "child",
+      "name": "emptyHtpyFormalSol",
+      "excerpt_sha256": "94591604727654267988cd66752470ec784852d5be1d0f877f1176a65dd5c97f",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/Relation.lean#L311-L315"
+    },
+    {
+      "path": "SphereEversion/Global/Relation.lean",
+      "lines": [
+        274,
+        289
+      ],
+      "role": "child",
+      "name": "mkHtpyFormalSol",
+      "excerpt_sha256": "323856d41d749910f788d6458e79ce1b057bfaf2a1f1f1abccabdf0942069dc3",
+      "permalink": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/Relation.lean#L274-L289"
+    }
+  ],
+  "parent": {
+    "name": "RelMfld.Ample.satisfiesHPrinciple",
+    "statement": "theorem RelMfld.Ample.satisfiesHPrinciple (hRample : R.Ample) (hRopen : IsOpen R) (hA : IsClosed A)\n    (hδ_pos : ∀ x, 0 < δ x) (hδ_cont : Continuous δ) : R.SatisfiesHPrinciple A δ"
+  },
+  "children": [
+    {
+      "name": "RelMfld.satisfiesHPrinciple_of_weak",
+      "statement": "theorem RelMfld.satisfiesHPrinciple_of_weak [FiniteDimensional ℝ E] [T2Space M]\n    [SigmaCompactSpace M] {R : RelMfld I M IX X} {ε : M → ℝ} {C : Set M} (hC : IsClosed C)\n    (h : ∀ A : Set M, IsClosed A → R.SatisfiesHPrincipleWeak A ε) : R.SatisfiesHPrinciple C ε",
+      "closed_by": "exact ⟨𝓕, h1, h2, eventually_of_mem hCC' h3, h4⟩",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the strong h-principle follows from the weak one proved for every closed set"
+    },
+    {
+      "name": "_root_.exists_stability_dist",
+      "statement": "theorem _root_.exists_stability_dist {f : M → M'} (hf : Continuous f) :\n    ∃ ε : M → ℝ, (∀ m, 0 < ε m) ∧ Continuous ε ∧\n      ∀ x : M,\n        ∃ φ : OpenSmoothEmbedding 𝓘(ℝ, E) E I M,\n        ∃ ψ : OpenSmoothEmbedding 𝓘(ℝ, E') E' I' M',\n          x ∈ range φ ∧\n          ∀ (g : M → M'), (∀ m, dist (g m) (f m) < ε m) → range (g ∘ φ) ⊆ range ψ",
+      "closed_by": "tauto (with have := L.ε_spec, from stdLocalisationData)",
+      "note": "`_root_.` is a namespace qualifier: the theorem is `exists_stability_dist` in the root namespace, written fully qualified because of the `open LocalisationData in` on the preceding line. Analyst's paraphrase, replaced by the declaration's text: every continuous map admits a positive continuous stability distance"
+    },
+    {
+      "name": "OpenSmoothEmbedding.improve_formalSol",
+      "statement": "theorem OpenSmoothEmbedding.improve_formalSol (φ : OpenSmoothEmbedding 𝓘(ℝ, EM) EM IM M)\n    (ψ : OpenSmoothEmbedding 𝓘(ℝ, EX) EX IX X) {R : RelMfld IM M IX X} (hRample : R.Ample)\n    (hRopen : IsOpen R) {C : Set M} (hC : IsClosed C) {δ : M → ℝ} (hδ_pos : ∀ x, 0 < δ x)\n    (hδ_cont : Continuous δ) {F : FormalSol R} (hFφψ : F.bs '' range φ ⊆ range ψ)\n    (hFC : ∀ᶠ x near C, F.IsHolonomicAt x) {K₀ K₁ : Set EM} (hK₀ : IsCompact K₀)\n    (hK₁ : IsCompact K₁) (hK₀K₁ : K₀ ⊆ interior K₁) :\n    ∃ F' : HtpyFormalSol R,\n      (∀ᶠ t near Iic (0 : ℝ), F' t = F) ∧\n        (∀ᶠ t near Ici (1 : ℝ), F' t = F' 1) ∧\n          (∀ᶠ x near C, ∀ t, F' t x = F x) ∧\n            (∀ t, ∀ x ∉ φ '' K₁, F' t x = F x) ∧\n              (∀ t x, dist ((F' t).bs x) (F.bs x) < δ x) ∧\n                ∀ᶠ x near C ∪ φ '' K₀, (F' 1).IsHolonomicAt x",
+      "closed_by": "𝓕.improve_htpy' (the local h-principle) plus ChartPair.mkHtpy, dist_update' and the mkHtpy_* projection lemmas",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: one local step improves a formal solution to a homotopy holonomic near C ∪ φ K₀"
+    },
+    {
+      "name": "inductive_htpy_construction",
+      "statement": "theorem inductive_htpy_construction {X Y : Type*}\n    [EMetricSpace X] [LocallyCompactSpace X] [SecondCountableTopology X]\n    (P₀ P₁ : ∀ x : X, Germ (𝓝 x) Y → Prop)\n    (P₂ : ∀ p : ℝ × X, Germ (𝓝 p) Y → Prop)\n    (hP₂ : ∀ (a b) (p : ℝ × X) (f : ℝ × X → Y), P₂ (a * p.1 + b, p.2) f →\n      P₂ p fun p : ℝ × X ↦ f (a * p.1 + b, p.2))\n    (hP₂' : ∀ t x (f : X → Y), P₀ x f → P₂ (t, x) fun p : ℝ × X ↦ f p.2)\n    {f₀ : X → Y} (init : ∀ x, P₀ x f₀)\n    (ind : ∀ x, ∃ V ∈ 𝓝 x, ∀ K₁ ⊆ V, ∀ K₀ ⊆ interior K₁, IsCompact K₀ → IsCompact K₁ →\n      ∀ (C : Set X) (f : X → Y), IsClosed C → (∀ x, P₀ x f) →\n      (∀ᶠ x near C, P₁ x f) → ∃ F : ℝ → X → Y, (∀ t, ∀ x, P₀ x <| F t)\n        ∧ (∀ᶠ x near C ∪ K₀, P₁ x <| F 1) ∧\n      (∀ p, P₂ p ↿F) ∧ (∀ t, ∀ x ∉ K₁, F t x = f x) ∧\n      (∀ᶠ t near Iic 0, F t = f) ∧ ∀ᶠ t near Ici 1, F t = F 1) :\n    ∃ F : ℝ → X → Y, F 0 = f₀ ∧ (∀ t x, P₀ x (F t)) ∧ (∀ x, P₁ x (F 1)) ∧ ∀ p, P₂ p ↿F",
+      "closed_by": "apply inductive_htpy_construction' … (line 285) via exists_locallyFinite_subcover_of_locally, then refine ⟨F, hF₀, ?_, hF₂, ?_, ht⟩",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: an invariant preserved by a local step assembles into a homotopy P₀-everywhere and P₁ at t = 1"
+    },
+    {
+      "name": "emptyHtpyFormalSol",
+      "statement": "def emptyHtpyFormalSol [IsEmpty M] : HtpyFormalSol R",
+      "closed_by": "(IsEmpty.false x).elim",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the homotopy of formal solutions when the source manifold is empty"
+    },
+    {
+      "name": "mkHtpyFormalSol",
+      "statement": "def mkHtpyFormalSol (F : ℝ → M → OneJetBundle I M I' M') (hsec : ∀ t x, (F t x).1.1 = x)\n    (hsol : ∀ t x, F t x ∈ R)\n    (hsmooth : ContMDiff (𝓘(ℝ).prod I) ((I.prod I').prod 𝓘(ℝ, E →L[ℝ] E')) ∞ ↿F) : HtpyFormalSol R",
+      "closed_by": "convert hsmooth / hsol, then all_goals rfl",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: a smooth family in the relation wraps into a homotopy of formal solutions"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A theorem of the form 'for every formal solution there is a homotopy to a holonomic one' (an h-principle / local-to-global statement), proved by a generic induction engine parameterized by predicates over germs.",
+    "use_when": "the theorem is proved by an induction whose step does one local improvement, and the real content is a predicate (the invariant) that (a) implies the conclusion at the end, (b) is satisfied initially, and (c) is preserved by one step; the invariant is a conjunction of the target property with the side conditions (smoothness, agreement on a closed set, closeness) that make the step re-appliable.",
+    "avoid_when": "there is no generic engine to hand the predicates to (then the induction itself is the work); the invariant is just the conclusion with no extra side conditions (the move collapses to plain induction); or the step changes the invariant in a way that needs per-index bookkeeping, which the engine's fixed three-predicate signature does not express."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "RelMfld.Ample.satisfiesHPrinciple is declared in SphereEversion/Global/Gromov.lean, lines 37-178.",
+      "evidence_kind": "check",
+      "form": "declared(RelMfld.Ample.satisfiesHPrinciple, SphereEversion/Global/Gromov.lean, 37-178)",
+      "evidence": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/Gromov.lean#L37-L178"
+    },
+    {
+      "n": 2,
+      "claim": "inductive_htpy_construction occurs in the parent site (Gromov.lean 37-178), the line where the invariant P₀ P₁ P₂ is handed to the induction engine.",
+      "evidence_kind": "check",
+      "form": "cites(parent, inductive_htpy_construction)",
+      "evidence": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/Gromov.lean#L166"
+    },
+    {
+      "n": 3,
+      "claim": "No closing-by-sorry token occurs in the parent proof, Gromov.lean lines 37-178.",
+      "evidence_kind": "check",
+      "form": "no_sorry(SphereEversion/Global/Gromov.lean, 37-178)",
+      "evidence": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/Gromov.lean#L37-L178"
+    },
+    {
+      "n": 4,
+      "claim": "The glue is 142 lines and cites six named project lemmas; the longest checked chain of project lemmas below it is three (inductive_htpy_construction → inductive_htpy_construction' → inductive_construction, all in InductiveConstructions.lean).",
+      "evidence_kind": "measurement",
+      "evidence": "Parent site https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/Gromov.lean#L37-L178 is 142 lines. The six lemmas cited there: satisfiesHPrinciple_of_weak (L43), emptyHtpyFormalSol (L45), exists_stability_dist (L54), improve_formalSol (L137), inductive_htpy_construction (L166), mkHtpyFormalSol (L169). The chain: InductiveConstructions.lean L424 (inductive_htpy_construction) calls L285 (inductive_htpy_construction'), which calls L66 (inductive_construction)."
+    },
+    {
+      "n": 5,
+      "claim": "The authors state the weak/strong split as a design choice: 'The weak version has ∀ x ∈ C, ∀ t : ℝ, 𝓕 t x = 𝓕₀ x while the strong one has ∀ᶠ x near C, ∀ t, 𝓕 t x = 𝓕₀ x. The strong version is easy to derive from the weak one if we prove the weak one for *all* closed sets, see RelMfld.satisfiesHPrinciple_of_weak below.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/Relation.lean#L326-L329"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 6,
+    "depth": 3,
+    "glue_lines": 142,
+    "child_lines": [
+      8,
+      14,
+      93,
+      44,
+      5,
+      16
+    ]
+  },
+  "metrics": {
+    "glue_lines": 142,
+    "direct_lemmas": 6,
+    "trivial_children": 2,
+    "how_counted": "glue_lines = parent site Gromov.lean 37-178; direct_lemmas = the named project lemmas the glue cites directly; trivial_children = emptyHtpyFormalSol and mkHtpyFormalSol, closed by elim / rfl"
+  },
+  "consequences": "The move replaces 'prove the h-principle' with three obligations: prove the invariant holds initially (init, Gromov.lean L79-84), prove it is preserved by one local step (the ind block, L87-165), and prove the two compatibility facts the engine needs (hP₂ affine-reindex, L67-78, and hP₂' slice, L85-86). The predicates must match the engine's exact signature (three predicates P₀ P₁ P₂ with the P₂ reindex and slice conditions). Failure mode: an invariant too weak to survive the step makes ind unprovable; too strong makes init or the boundary agreement fail. The empty-manifold corner still needs its own witness (emptyHtpyFormalSol).",
+  "known_uses": [
+    "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/InductiveConstructions.lean#L198-L236 (relative_inductive_construction_of_loc strengthens the same kind of germ predicate)",
+    "https://github.com/leanprover-community/sphere-eversion/blob/33ab3d626854a0f0f04ed5772e3102d652e96475/SphereEversion/Global/Gromov.lean#L192-L199 (satisfiesHPrincipleWith reuses satisfiesHPrinciple at the relativized relation)"
+  ],
+  "related": [
+    "lean-witness-sphere-eversion-2ae37d14"
+  ],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "6e399f2e02df3d845f7621c0d543a8e09f7884b109b30352c6d4beaeb2eec5ad",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:28:00Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:30:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:31:15Z",
+      "note": "parent RelMfld.Ample.satisfiesHPrinciple: statement re-copied from code; child 'RelMfld.satisfiesHPrinciple_of_weak': statement re-copied from the declaration of RelMfld.satisfiesHPrinciple_of_weak; child '_root_.exists_stability_dist': statement re-copied from the declaration of _root_.exists_stability_dist; child 'OpenSmoothEmbedding.improve_formalSol': statement re-copied from the declaration of OpenSmoothEmbedding.improve_formalSol; child 'inductive_htpy_construction': statement re-copied from the declaration of inductive_htpy_construction; child 'emptyHtpyFormalSol': statement re-copied from the declaration of emptyHtpyFormalSol; child 'mkHtpyFormalSol': statement re-copied from the declaration of mkHtpyFormalSol"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T09:43:38Z"
+}

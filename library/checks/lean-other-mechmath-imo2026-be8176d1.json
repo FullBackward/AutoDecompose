@@ -1,0 +1,117 @@
+{
+  "entry": "lean-other-mechmath-imo2026-be8176d1",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:41:53Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:41:53Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:41:53Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: normalized_reduction@IMO2026/Q2/solution.lean:1187, circumcenter_determinant@IMO2026/Q2/solution.lean:1189, distance_bridge@IMO2026/Q2/solution.lean:1190; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:41:53Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, normalized_reduction) -> cites: normalized_reduction occurs at IMO2026/Q2/solution.lean:1187",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:41:53Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(IMO2026/Q2/solution.lean, 61-1191) -> no_sorry: none of sorry, admit, axiom in IMO2026/Q2/solution.lean:61-1191",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:41:53Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 47ff510110dd400c98aee2ead3be0f53f7b8ba04",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:42:05Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI workflow in MechMath/IMO2026 (no .github/workflows directory at default branch main; checked via GitHub API contents); no local Lean toolchain on the harvest machine",
+      "by": "verifier",
+      "at": "2026-11-14T09:43:29Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "line counts checked against code/IMO2026/Q2/solution.lean: parent 1167-1191=25 lines (grep/sed), proof body 1185-1191=7 lines applying normalized_reduction@1187, circumcenter_determinant@1189, distance_bridge@1190; children 957-1160=204, 92-114=23, 61-70=10 lines; 204+23+10=237",
+      "by": "verifier",
+      "at": "2026-11-14T09:43:32Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "grep -n on code/IMO2026/Q2/solution.lean: section headers at 116 '## The algebra certificate (proven)', 255 '## The crux lemma', 954 '## The reduction lemma', 1162 '## Assembly of main_theorem'; docstrings 'Proof pasted from scratch/distance_bridge.lean' at 60 and 'Proof pasted from scratch/circumcenter_determinant.lean' at 91 (2 of 3 children; normalized_reduction has no such docstring)",
+      "by": "verifier",
+      "at": "2026-11-14T09:43:35Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Decomposition matches code: parent main_theorem (1167-1191) and children normalized_reduction (957-1160), circumcenter_determinant (92-114), distance_bridge (61-70) are copied verbatim and each closes on its own term/tactic (exact <c,k,l,o,hOk,hOl,hΔ,hC,hiff>; mul_right_cancel₀ hΔ key then linarith; rw Complex.dist_eq ... hsq). Glue (1185-1191, 7 lines) applies exactly those three named lemmas (1187, 1189, 1190) then exact hiff.mpr hbridge, so the three children are exactly the lemmas the main proof uses and it closes. Shape numbers correct: direct_lemmas=3, glue_lines=25 (1167-1191), child_lines=[204,23,10] (957-1160, 92-114, 61-70), depth=4 (main_theorem→normalized_reduction→certificate_from_angles(1156)→certificate_pos(935/952)→algebra_certificate(854), which is a leaf; no deeper chain).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:45:08Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example: applicability.goal_shape generalises to any geometric equality that becomes an algebraic identity under an explicit coordinate normalisation, use_when/avoid_when are phrased generally ('the geometry admits an isometry into coordinates', 'the normalisation returns an iff'), and the reusable detail is named as the reduction-iff shape 'reduce → evaluate → pull back'. When-not-to-use is specific and honest (one-direction reduction; normalisation itself carrying the difficulty; certificate too large to state/prove as its own lemma). Consequences are honest: they admit the move 'pushes depth down rather than away' (204-line normalized_reduction chaining three lemmas) and name concrete failure modes (dropped hypothesis, one-way iff breaking hiff.mpr, unwieldy linear_combination). I opened the cited lines: line 201 is the 'KEY' identity closed by an enormous linear_combination, genuinely unwieldy, and the docstrings (60, 91) and section headers (116, 255, 954, 1162) match claim 4. Good-leaf rationale is present: each child is called self-contained, closes on its own from named siblings/library lemmas with no sorry, and a concrete closing tactic per leaf (linear_combination + mul_right_cancel₀; normSq expansion + nlinarith) — i.e. small well-typed independently-closeable holes, exactly what a bounded prover needs.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:46:10Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 47ff510110dd400c98aee2ead3be0f53f7b8ba04",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:46:29Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes (1 file byte-identical at commit 47ff510110dd400c98aee2ead3be0f53f7b8ba04); local sha256 64d618b92e38cded413969679d68f5c67ec19987f0fed2eda419005d9afb1ed6 and 84355 bytes match entry.json. Commit 47ff510110dd400c98aee2ead3be0f53f7b8ba04 is consistent across README, entry.json source block and sources/mechmath-imo2026/SOURCE.md. Licence LicenseRef-unknown is consistent across the same three places, and SOURCE.md records 'no licence file found at the root', so the unknown licence is tagged per protocol. All site permalinks' line ranges match the copied file: distance_bridge 61-70, circumcenter_determinant 92-114, normalized_reduction 957-1160, main_theorem 1167-1191 (verified start/end lines), and the author-statement lines 60, 91, 114, 116, 255, 954, 1160, 1162, 1191 all show the cited content. Everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:46:56Z"
+    }
+  ]
+}

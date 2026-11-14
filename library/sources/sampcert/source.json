@@ -1,0 +1,17 @@
+{
+  "source_id": "sampcert",
+  "url": "https://github.com/leanprover/sampcert",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "leanprover/sampcert",
+  "commit": "a2c53bb5ff790e729e252958060699b7eff898b9",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T11:39:44Z",
+  "how_found": "discovery-1: A-agents, A-lean",
+  "note": "Verified differential privacy: discrete Gaussian sampler and DP query results proved from Mathlib lemmas, used in AWS Clean Rooms",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

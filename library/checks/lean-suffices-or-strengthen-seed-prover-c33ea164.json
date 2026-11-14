@@ -1,0 +1,125 @@
+{
+  "entry": "lean-suffices-or-strengthen-seed-prover-c33ea164",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:49:27Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:49:27Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:49:27Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: non_sunny_lines_cover_at_most_2_points_on_boundary_h_main@SeedProver/imo2025/IMO2025/P1.lean:3437, non_sunny_lines_cover_at_most_2_points_on_boundary_h_final@SeedProver/imo2025/IMO2025/P1.lean:3439; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:49:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(parent, 8) -> lines: site parent has 8 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:49:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, non_sunny_lines_cover_at_most_2_points_on_boundary_h_main) -> cites: non_sunny_lines_cover_at_most_2_points_on_boundary_h_main occurs at SeedProver/imo2025/IMO2025/P1.lean:3437",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:49:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, non_sunny_lines_cover_at_most_2_points_on_boundary_h_final) -> cites: non_sunny_lines_cover_at_most_2_points_on_boundary_h_final occurs at SeedProver/imo2025/IMO2025/P1.lean:3439",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:49:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "no_sorry(SeedProver/imo2025/IMO2025/P1.lean, 3261-3439) -> no_sorry: none of sorry, admit, axiom in SeedProver/imo2025/IMO2025/P1.lean:3261-3439",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:49:27Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 38c59cebaf969ac259196eb091757518d5b54c67",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:49:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read code/SeedProver/imo2025/IMO2025/P1.lean: parent site 3432-3439 is 8 lines and cites h_main (3437) and h_final (3439) -> direct_lemmas=2, glue_lines=8; child sites h_main 3285-3430 (146 lines) and h_final 3261-3283 (23 lines) -> child_lines=[146,23]; depth chain confirmed by reading: parent(3432) -> h_main(3285) cites contradiction_from_conditions(3235) -> final(3214) cites main(2975), all project lemmas, 4 edges.",
+      "by": "verifier",
+      "at": "2026-11-14T09:50:38Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "source ByteDance-Seed/Seed-Prover has no CI workflow: no .github directory and no .github/workflows (GitHub API 404 for both at commit 38c59cebaf969ac259196eb091757518d5b54c67, default branch main); root listing shows only DeltaProver, SeedProver-1.5, SeedProver, imgs, .gitignore, LICENSE, README.md.",
+      "by": "verifier",
+      "at": "2026-11-14T09:50:39Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent (3432-3439) is 8 lines of glue doing exactly two things: 'have h_main ... := by exact ...h_main...' (line 3437) then 'exact ...h_final ... h_main' (line 3439), so the children are exactly the two lemmas the glue cites. Child h_main (3285-3430, 146 lines) statement matches entry.json verbatim and closes by 3x3x3 rcases citing same_boundary_condition_implies_eq (tauto) and contradiction_from_conditions (exfalso). Child h_final (3261-3283, 23 lines) statement matches and closes by by_contra, with h_main passed unchanged into its h_main hypothesis. Chain verified: contradiction_from_conditions (3235-3258) cites final (3214-3233), which cites main (2975-3212), so depth 4 is right. Shape numbers all correct: direct_lemmas=2, glue_lines=8, child_lines=[146,23], depth=4. It closes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:51:58Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalises beyond the geometry: 'When to use it' abstracts to any (Finset.filter P s).card ≤ 2 with pairwise non-distinctness equivalent, and 'Why it is good' labels the transferable move as the strengthen-then-convert split with h_final generic in P (opinion-labelled). avoid_when is honest and specific (bound=1, infinite set, multiset break the equivalence; strengthening pays off only if the case split is simpler than counting). Consequences state the two halves meet exactly, the finiteness reliance, and two failure modes. The 'Why each lemma is a good leaf' section names the self-contained leaves (same_boundary_condition_implies_eq, main, h_final) and what closes each, and notes h_main is not a leaf; verified in code that the leaves cite no project lemma (self-contained), which is the bounded-prover criterion.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:53:09Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 38c59cebaf969ac259196eb091757518d5b54c67",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:53:28Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance and licence are consistent and traceable. check_provenance passes (copied file byte-identical at pinned commit 38c59cebaf969ac259196eb091757518d5b54c67); the copied P1.lean sha256 41e8474f... matches entry.json. Commit 38c59ce... is identical across entry.json, sources/seed-prover/source.json, SOURCE.md and every permalink. Licence is Apache-2.0 in entry.json, source.json, SOURCE.md and README; sources/seed-prover/upstream-LICENSE is the Apache-2.0 text and the LICENSE at the pinned commit (raw view) is Apache-2.0. Permalinks point to the correct commit and the cited line ranges match the copied file (parent 3432-3439=8 lines, h_final 3261-3283=23, h_main 3285-3430=146), matching the shape numbers. Source note cites LICENSE and the pinned commit.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:54:23Z"
+    }
+  ]
+}

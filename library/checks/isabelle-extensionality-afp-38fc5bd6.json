@@ -1,0 +1,125 @@
+{
+  "entry": "isabelle-extensionality-afp-38fc5bd6",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:41:33Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:41:33Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:41:33Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: block_mat_cond_rev@thys/Fishers_Inequality/Incidence_Matrices.thy:2028, block_mat_cond_rep'@thys/Fishers_Inequality/Incidence_Matrices.thy:2033; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:41:33Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(equal_inc_mat_isomorphism, thys/Fishers_Inequality/Incidence_Matrices.thy, 1997-2040) -> declared: equal_inc_mat_isomorphism is declared at thys/Fishers_Inequality/Incidence_Matrices.thy:1997",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:41:34Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, block_mat_cond_rev) -> cites: block_mat_cond_rev occurs at thys/Fishers_Inequality/Incidence_Matrices.thy:2028",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:41:34Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, block_mat_cond_rep') -> cites: block_mat_cond_rep' occurs at thys/Fishers_Inequality/Incidence_Matrices.thy:2033",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:41:34Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "lines(parent, 44) -> lines: site parent has 44 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:41:34Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:41:42Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no Isabelle toolchain on the harvest machine; mirror-afp-devel (source afp, pinned commit 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df, on default branch master) has no in-repo CI workflow to cite (no .github/workflows, no Jenkins/Travis/GitLab config at root or under admin/), so build is not-run",
+      "by": "verifier",
+      "at": "2026-11-14T10:43:21Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read byte-identical copied code code/thys/Fishers_Inequality/Incidence_Matrices.thy: L1112 'using assms inc_matrix_point_in_block by blast' (inside block_mat_cond_rev, L1105-1125) and L103 'using inc_matrix_point_not_in_block_zero by (metis zero_neq_one)' (inside inc_matrix_point_in_block, L101-103). Chain equal_inc_mat_isomorphism -> block_mat_cond_rev (already settled cites@2028) -> inc_matrix_point_in_block@1112 -> inc_matrix_point_not_in_block_zero@103 = 3 edges below the parent; all four declarations are in this one file",
+      "by": "verifier",
+      "at": "2026-11-14T10:43:24Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent equal_inc_mat_isomorphism (1997-2040, 44 lines), child block_mat_cond_rev (1105-1125, 21 lines), child block_mat_cond_rep' (1102-1103, 2 lines) and context block_mat_cond_rep (1089-1100) all match the cited ranges and the statements in entry.json verbatim. Parent glue cites exactly the two children: D1.block_mat_cond_rev at line 2028 and D2.block_mat_cond_rep' at line 2033; no other named lemma is a direct child. Closing methods match: block_mat_cond_rev closes by 'intro Set.set_eqI iffI' then inc_matrix_point_in_block (l.1112) and inc_matrix_point_in_block_one (l.1122); block_mat_cond_rep' closes by 'simp add: block_mat_cond_rep setcompr_eq_image' (l.1103). The proof closes (unfold_locales yields two obligations, both shown; qed at 2040; no sorry). Shape numbers are right: glue_lines 44, child_lines [21,2], direct_lemmas 2, depth 3 along equal_inc_mat_isomorphism -> block_mat_cond_rev -> inc_matrix_point_in_block (cited l.1112) -> inc_matrix_point_not_in_block_zero (cited l.103).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:44:27Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally: applicability.goal_shape lifts it from the specific incidence-matrix example to any equality of images (image_mset f Bs = Bs', map f Bs = Bs') proved pointwise on indices and lifted by nth_equalityI/mset_map. use_when pins the transfer condition (both sides rewrite to the same common index-set form by one named lemma, so the pointwise step closes by rewriting alone); avoid_when is specific and honest (no bridging lemma between unlike representations; not an image-of-common-index equality; README adds the distinctness of the point list, which the code confirms via bij_betw_index from D1.distinct). consequences are honest: per-index fix j obligations, the length obligation nth_equalityI needs, the list-to-multiset lift via mset_map, and the bijection dependency, plus the admission that the bijection half of the locale is a separate obligation, not extensionality. Good-leaf question answered: block_mat_cond_rep' closes by simp (one line, no new mathematics); block_mat_cond_rev closes via Set.set_eqI iffI into two already-proved project lemmas that terminate on the definition, and the fix j subgoals are identified as the pointwise obligations, not named lemmas -- i.e. each leaf is dischargeable by rewriting/automation alone, which is the bounded-prover-friendly property. Verified against the cited code line ranges (parent 1997-2040, children 1089-1125); quotes match.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:45:37Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:45:58Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df is consistent across README (short prefix), entry.json, SOURCE.md and every permalink. check_provenance passes (1 file byte-identical at the commit). Permalinks' line ranges match the copied code: 1997-2040 equal_inc_mat_isomorphism, 1105-1125 block_mat_cond_rev, 1102-1103 block_mat_cond_rep', 1089-1100 block_mat_cond_rep. Licence LicenseRef-unknown recorded consistently in README/entry.json/SOURCE.md, and SOURCE.md records no root licence file plus attribution, matching the entry's source note.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:46:23Z"
+    }
+  ]
+}

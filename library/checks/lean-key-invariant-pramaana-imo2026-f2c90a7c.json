@@ -1,0 +1,133 @@
+{
+  "entry": "lean-key-invariant-pramaana-imo2026-f2c90a7c",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:42:03Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:42:03Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:42:03Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: isTerminal_iff@IMO2026/Q1/solution.lean:269, pos_of_move@IMO2026/Q1/solution.lean:316, one_le_bigCount_of_move@IMO2026/Q1/solution.lean:273, mu_lt_of_move@IMO2026/Q1/solution.lean:322, pos_rtg@IMO2026/Q1/solution.lean:297, pinv_rtg@IMO2026/Q1/solution.lean:306, exists_terminal@IMO2026/Q1/solution.lean:309; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:42:03Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(answer_correctness, 91) -> lines: site answer_correctness has 91 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:42:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(answer_correctness, pinv_rtg) -> cites: pinv_rtg occurs at IMO2026/Q1/solution.lean:306",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:42:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(answer_correctness, mu_lt_of_move) -> cites: mu_lt_of_move occurs at IMO2026/Q1/solution.lean:322",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:42:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "no_sorry(IMO2026/Q1/solution.lean, 248-338) -> no_sorry: none of sorry, admit, axiom in IMO2026/Q1/solution.lean:248-338",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:42:04Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 788fddc53c463d5d40d4680fb9bfd7b0f96f1063",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:42:11Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "No CI builds this file: the source pramaana-labs/imo2026-lean has no GitHub Actions workflow (GitHub API returns 404 for .github/workflows, and jsDelivr lists no .github/workflows/ files). No local Lean toolchain on the harvest machine, so the file cannot be built (protocol section 6).",
+      "by": "verifier",
+      "at": "2026-11-14T09:43:13Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "7 direct lemmas = the 7 child sites (isTerminal_iff, pos_of_move, one_le_bigCount_of_move, mu_lt_of_move, pos_rtg, pinv_rtg, exists_terminal); 91-line glue = parent lines 248-338 (check_claims already verified). Depth chain confirmed in code: exists_terminal (244-246) cites exists_terminal_aux at line 246; exists_terminal_aux (221-242) cites mu_lt_of_move at line 240; mu_lt_of_move (125-173) cites move_decomp at line 126.",
+      "by": "verifier",
+      "at": "2026-11-14T09:43:16Z"
+    },
+    {
+      "type": "claim",
+      "key": "6",
+      "value": "verified",
+      "evidence": "Line 146: '· -- coprime case: product unchanged, bigCount drops by one'; line 159: '· -- gcd > 1: product strictly decreases'. Both comments are present verbatim in IMO2026/Q1/solution.lean within the cited range 146-159.",
+      "by": "verifier",
+      "at": "2026-11-14T09:43:17Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent answer_correctness (248-338) and all 7 children match their entry.json statements verbatim. The glue cites each child directly at the stated lines and no other substantive project lemma: isTerminal_iff@269, one_le_bigCount_of_move@273, pos_rtg@297, pinv_rtg@306, exists_terminal@309, pos_of_move@316, mu_lt_of_move@322. Every child's closed_by matches the code: isTerminal_iff constructor+omega (fwd exists_move_of_two_le, rev move_decomp+bigCount_cons_big); pos_of_move move_decomp+rcases with gcd/lcm/div-pos then hp; one_le_bigCount_of_move by_cases 1<gcd then bigCount_cons_big/small+omega; mu_lt_of_move move_decomp then by_cases g=1, unfold mu; omega; pos_rtg/pinv_rtg induction refl/tail via pos_of_move/pinv_move; exists_terminal = exists_terminal_aux (mu s) s le_rfl hp. All proofs close, no sorry/admit/axiom. Shape numbers exact: glue_lines 91 = 338-248+1; child_lines [11,14,12,49,4,5,3] = 80-90,92-105,107-118,125-173,210-213,215-219,244-246; direct_lemmas 7; depth 4 = answer_correctness->exists_terminal->exists_terminal_aux->mu_lt_of_move->move_decomp (verified cites at 309,246,240,126). Note: the glue also unfolds the trivial rfl alias gcd_coe (177) in a simp-only at 303, but it is definitional plumbing (also used by pinv_move), not a decomposition hole.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:46:14Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example: 'When to use it' generalises to any rewriting/game process shown terminating and confluent from one potential-plus-invariant pair, and the transferable trick (mix a multiplicative term s.prod with an additive term bigCount so whichever move applies forces one to drop) matches the code (mu = 2*s.prod + bigCount, line 123; the two mu_lt_of_move cases at lines 146/159). 'When not to use' is honest and specific: three conditions, the third naming the exact library lemmas pinv leans on (factorization_gcd/lcm/div, gcd_min_sub), confirmed in pinv_move lines 191-208. Consequences are specific (four obligations) and restate the real failure mode (a move raising product while lowering count breaks the single scalar). 'Why each child is a good leaf' answers the bounded-prover question: each is self-contained and closes on its own or a named sibling, with per-child closing tactics.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:47:39Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 788fddc53c463d5d40d4680fb9bfd7b0f96f1063",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:47:56Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent and traceable. check_provenance.py passes (1 file byte-identical at 788fddc53c463d5d40d4680fb9bfd7b0f96f1063). entry.json source.commit, source.json commit, and SOURCE.md all pin 788fddc53c463d5d40d4680fb9bfd7b0f96f1063; README's '788fddc53c46' is a 12-char prefix of the same hash. Licence MIT is recorded identically in entry.json, source.json, SOURCE.md and the upstream-LICENSE file (real MIT text, Copyright (c) 2026 Pramaana Labs). The 7 site permalinks point at github.com/pramaana-labs/imo2026-lean/blob/<full-commit>/IMO2026/Q1/solution.lean with line anchors within the 338-line copied file (parent 248-338 ends at the last line). Source note at sources/pramaana-imo2026/SOURCE.md exists and carries attribution.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:48:30Z"
+    }
+  ]
+}

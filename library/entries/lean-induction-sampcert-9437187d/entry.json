@@ -1,0 +1,179 @@
+{
+  "id": "lean-induction-sampcert-9437187d",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Induction on the fuel extra for the closed form of truncated probGeometric",
+  "intent": "Prove a closed form for every terminating run of the truncated probGeometric loop by induction on the surplus fuel `extra`: the value at `extra + (n + 1)` steps is already known at the minimal fuel by one lemma, and a second lemma says one more step of fuel does not change it.",
+  "move": "induction",
+  "also_known_as": [
+    "fuel induction",
+    "induction on a surplus counter",
+    "generalising the loop counter before induction (revert n; induction extra)"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "sampcert",
+    "url": "https://github.com/leanprover/sampcert",
+    "commit": "a2c53bb5ff790e729e252958060699b7eff898b9",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "SampCert/Samplers/Geometric/Properties.lean",
+      "bytes": 13085,
+      "sha256": "531f6b806958b7b87f0d809f3c224f159782b79d75baf42552d0a99ffb5bb2aa",
+      "permalink": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Geometric/Properties.lean"
+    },
+    {
+      "path": "SampCert/Samplers/Geometric/Code.lean",
+      "bytes": 920,
+      "sha256": "fc255a658e9e865932f999f36b9792a7cb7dcd4b8e0a4e80983fccc3d1df14de",
+      "permalink": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Geometric/Code.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "SampCert/Samplers/Geometric/Properties.lean",
+      "lines": [
+        272,
+        290
+      ],
+      "role": "parent",
+      "name": "geometric_characterization",
+      "excerpt_sha256": "2bf65115c186c925e4045d2c7843c532c7d7e0793661266d6465f482d513cf41",
+      "permalink": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Geometric/Properties.lean#L272-L290"
+    },
+    {
+      "path": "SampCert/Samplers/Geometric/Properties.lean",
+      "lines": [
+        186,
+        194
+      ],
+      "role": "child",
+      "name": "geometric_progress'",
+      "excerpt_sha256": "b2e7daf59c7548844c6b2fef01adc208731a9465deea90c8b754ba3fde9a5bf0",
+      "permalink": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Geometric/Properties.lean#L186-L194"
+    },
+    {
+      "path": "SampCert/Samplers/Geometric/Properties.lean",
+      "lines": [
+        235,
+        267
+      ],
+      "role": "child",
+      "name": "geometric_preservation'",
+      "excerpt_sha256": "2ae6280c5149736a186496fff793ce4441c82f030fb65afd77c14769df52aa3d",
+      "permalink": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Geometric/Properties.lean#L235-L267"
+    }
+  ],
+  "parent": {
+    "name": "geometric_characterization",
+    "statement": "theorem geometric_characterization (n extra : ℕ) (h : ¬ n = 0) :\n  probWhileCut geoLoopCond (geoLoopBody trial) (extra + (n + 1)) (true,0) (false,n) = (trial true)^(n-1) * (trial false)"
+  },
+  "children": [
+    {
+      "name": "geometric_progress'",
+      "statement": "theorem geometric_progress' (n : ℕ) (h : ¬ n = 0) :\n  probWhileCut geoLoopCond (geoLoopBody trial) (n + 1) (true, 0) (false, n) = (trial true)^(n-1) * (trial false)",
+      "closed_by": "trivial, after `have prog := geometric_progress trial (n - 1) 0` and rewrites with `succ_pred h` and `succ_inj.mpr A`",
+      "note": "Base case of the parent's induction: the closed form at the minimal fuel `n + 1`, specialising `geometric_progress` to the run `(true, 0) → (false, n)`."
+    },
+    {
+      "name": "geometric_preservation'",
+      "statement": "theorem geometric_preservation' (n m : ℕ) (h1 : ¬ m = 0) (h2 : n ≥ m) :\n  probWhileCut geoLoopCond (geoLoopBody trial) (n + 2) (true,0) (false,m)\n  =\n  probWhileCut geoLoopCond (geoLoopBody trial) (n + 1) (true,0) (false,m)",
+      "closed_by": "`apply prog; exact Nat.sub_le_sub_right h2 1`, where `prog := geometric_preservation trial (n - 1) (m - 1) 0`",
+      "note": "Step case lemma: one more unit of fuel does not change the value at a `(false, m)` state, under `¬ m = 0` and `n ≥ m`; the parent rewrites the induction hypothesis backwards through it and discharges the side conditions `¬ m = 0` and `n ≥ m`."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A closed form for a value computed by unrolling a loop `fuel` times (`probWhileCut ... (extra + (n + 1)) ...`), to be shown independent of the surplus fuel `extra`.",
+    "use_when": "the value is already known at one fuel bound by a base lemma, and a second lemma says one more step of fuel leaves the value unchanged; then induction on the surplus fuel carries the base to every larger fuel, with the parent only doing the fuel arithmetic.",
+    "avoid_when": "the base value or the preservation step is not already proved (here each child closes only by specialising the unprimed `geometric_progress` / `geometric_preservation`, so the real work is one level down); when the value genuinely depends on the surplus fuel, the induction cannot close."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The declaration `geometric_characterization` starts within lines 272-290 of `SampCert/Samplers/Geometric/Properties.lean`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Geometric/Properties.lean#L272-L290",
+      "form": "declared(geometric_characterization, SampCert/Samplers/Geometric/Properties.lean, 272-290)"
+    },
+    {
+      "n": 2,
+      "claim": "`geometric_progress'` occurs in the parent site `geometric_characterization`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Geometric/Properties.lean#L278",
+      "form": "cites(geometric_characterization, geometric_progress')"
+    },
+    {
+      "n": 3,
+      "claim": "`geometric_preservation'` occurs in the parent site `geometric_characterization`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Geometric/Properties.lean#L285",
+      "form": "cites(geometric_characterization, geometric_preservation')"
+    },
+    {
+      "n": 4,
+      "claim": "The decomposition has 2 direct lemmas, a longest checked project-lemma chain of depth 2, a 19-line glue, and child proofs of 9 and 33 lines.",
+      "evidence_kind": "measurement",
+      "evidence": "entry.json shape field: parent site 272-290 (19 lines), child sites 186-194 (9 lines) and 235-267 (33 lines); the children sit one level above `geometric_progress` (162-181) and `geometric_preservation` (199-230)."
+    },
+    {
+      "n": 5,
+      "claim": "`geometric_characterization` is reused at line 312 to prove the limit theorem `geometric_pwc_sup`.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Geometric/Properties.lean#L312"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 2,
+    "glue_lines": 19,
+    "child_lines": [
+      9,
+      33
+    ]
+  },
+  "metrics": {
+    "parent_lines": 19,
+    "children": 2,
+    "direct_lemmas": 2,
+    "depth": 2,
+    "how_counted": "parent site = Properties.lean 272-290 (19 lines); child sites 186-194 (9 lines) and 235-267 (33 lines); depth 2 = geometric_characterization -> geometric_progress' -> geometric_progress (likewise via geometric_preservation' -> geometric_preservation)."
+  },
+  "consequences": "The induction produces a base case that must equal the value at the minimal fuel (discharged by `geometric_progress'`) and a step case that rewrites the induction hypothesis backwards through `geometric_preservation'`; the parent then owes the side conditions `¬ m = 0` and `n ≥ m`, discharged here by `trivial` and `Nat.le_add_left`. Failure mode: because the preservation lemma is applied backwards (`rw [← geometric_preservation']`), the parent's arithmetic `B : succ extra + (n + 1) = extra + n + 2` must exactly match the lemma's left-hand fuel `n + 2`; if the loop's fuel term has a different shape the rewrite does not fire.",
+  "known_uses": [
+    "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Geometric/Properties.lean#L312"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "9437187dae805c5710b1d5dc01217ba958e211f6529a39fe7395db9c295739f3",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:25:20Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,shape,consequences,known_uses,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:30:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:26:29Z",
+      "note": "parent geometric_characterization: statement re-copied from code; child \"geometric_progress'\": statement re-copied from the declaration of geometric_progress'; child \"geometric_preservation'\": statement re-copied from the declaration of geometric_preservation'"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T12:35:34Z"
+}

@@ -1,0 +1,185 @@
+{
+  "id": "lean-other-flt-imperial-ac21422b",
+  "kind": "instance",
+  "status": "draft",
+  "title": "support_eq_top: the patched module's support is all of Spec R0 via faithfulSMul and smul_lemma",
+  "intent": "Prove that the support of the patched module M₀ over R₀ is all of Spec R₀ by factoring the argument into two named lemmas — PatchingAlgebra.faithfulSMul (the patching module is faithful over the patching algebra) and smul_lemma (the compatibility of the patching data, which is exactly the map_smul of a quotient equivalence) — and then finishing by a prime-spectrum rewrite that transports the triviality of the annihilator along that equivalence and pulls it back along the surjection f₀.",
+  "move": "other",
+  "also_known_as": [
+    "assemble a support-vanishing theorem from a faithfulness lemma and a smul-compatibility lemma",
+    "transport triviality of the annihilator along a quotient equivalence"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "flt-imperial",
+    "url": "https://github.com/ImperialCollegeLondon/FLT",
+    "commit": "a3210204ad8876e851e32f73dd97d882bf1ccd0a",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "FLT/Patching/System.lean",
+      "bytes": 22293,
+      "sha256": "bce45a4397075670eb01cc091acc6d9edff70389fb4301965b1b1a1f933510bb",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Patching/System.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "FLT/Patching/System.lean",
+      "lines": [
+        422,
+        457
+      ],
+      "role": "parent",
+      "name": "support_eq_top",
+      "excerpt_sha256": "57d1e9b27a174836737ed392774df40b450b31ecf0205c688aa9d6a8a5cb01cb",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Patching/System.lean#L422-L457"
+    },
+    {
+      "path": "FLT/Patching/System.lean",
+      "lines": [
+        246,
+        284
+      ],
+      "role": "child",
+      "name": "PatchingAlgebra.faithfulSMul",
+      "excerpt_sha256": "663e1bca64ce5e4b1ea8d66726c400c6b13740c5180e52a1357adfdc562577b0",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Patching/System.lean#L246-L284"
+    },
+    {
+      "path": "FLT/Patching/System.lean",
+      "lines": [
+        387,
+        418
+      ],
+      "role": "child",
+      "name": "smul_lemma",
+      "excerpt_sha256": "3bc1f28072ddbf9399fe1d4202f6013907bc6586be6f1f66dbdd2c286eb501f0",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Patching/System.lean#L387-L418"
+    }
+  ],
+  "parent": {
+    "name": "support_eq_top",
+    "statement": "lemma support_eq_top\n    (HCompat : ∀ i m (r : R i), sM i (Submodule.Quotient.mk (r • m)) =\n      sR i (Ideal.Quotient.mk _ r) • sM i (Submodule.Quotient.mk m))\n    (H₀ : ringKrullDim Rₒₒ < ⊤)\n    (H : .some (Module.depth Λ Λ) = ringKrullDim Rₒₒ) : Module.support R₀ M₀ = Set.univ"
+  },
+  "children": [
+    {
+      "name": "PatchingAlgebra.faithfulSMul",
+      "statement": "lemma PatchingAlgebra.faithfulSMul\n    (H₀ : ringKrullDim Rₒₒ < ⊤)\n    (H : .some (Module.depth Λ Λ) = ringKrullDim Rₒₒ) :\n    FaithfulSMul (PatchingAlgebra R F) (PatchingModule Λ M F)",
+      "closed_by": "its own proof (System.lean 249-284): build a surjection f := PatchingAlgebra.lift via lift_surjective, prove Nontrivial, IsScalarTower and Module.Finite over Rₒₒ, then apply Module.faithfulSMul_of_depth_eq_ringKrullDim and close the depth inequality with Module.depth_le_of_free and Module.depth_of_isScalarTower"
+    },
+    {
+      "name": "smul_lemma",
+      "statement": "lemma smul_lemma\n    (HCompat : ∀ i m (r : R i), sM i (Submodule.Quotient.mk (r • m)) =\n      sR i (Ideal.Quotient.mk _ r) • sM i (Submodule.Quotient.mk m))\n    (m : PatchingAlgebra R F)\n      (x : PatchingModule Λ M F ⧸ (𝔫 • ⊤ : Submodule (PatchingAlgebra R F)\n      (PatchingModule Λ M F))) :\n      PatchingModule.quotientEquivOver Λ M F 𝔫 sM (m • x) =\n      ((PatchingAlgebra.quotientToOver Λ R F 𝔫 sR).comp (Ideal.Quotient.mk _)) m •\n       PatchingModule.quotientEquivOver Λ M F 𝔫 sM x",
+      "closed_by": "its own proof (System.lean 396-418): convert smul_lemma₀ (line 403) closes the generic side, rw [smul_lemma₁] (line 409) closes the constant-module side, then congr 1 and unfolding via PatchingModule.ofPi_surjective / PatchingAlgebra.ofPi_surjective"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal Module.support A M = Set.univ (or, more generally, 'the support of a finite module over a local ring is everything'), where M is a quotient or limit module, a surjection f₀ from the covering ring to the ring A whose spectrum is under consideration exists, and the triviality of M's annihilator is the crux.",
+    "use_when": "the module is a limit/quotient whose faithfulness over the covering ring is already available as a named lemma (here faithfulSMul); the action-compatibility needed to build the quotient equivalence is exactly a named lemma (here smul_lemma); and the rest is a standard zero-locus rewrite along that equivalence and a pull-back along a surjective map.",
+    "avoid_when": "the faithfulness itself is the hard content rather than a known lemma, so the 'assemble from named lemmas' shape is lost; the compatibility of the two actions does not come from a single named lemma (then map_smul' must be filled inline and one of the two leaf-holes disappears); or the support does not factor through a single quotient equivalence (the computation then needs a different transport)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "support_eq_top is declared in FLT/Patching/System.lean at line 422.",
+      "evidence_kind": "check",
+      "form": "declared(support_eq_top, FLT/Patching/System.lean, 422-422)",
+      "evidence": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Patching/System.lean#L422"
+    },
+    {
+      "n": 2,
+      "claim": "PatchingAlgebra.faithfulSMul occurs in the parent site.",
+      "evidence_kind": "check",
+      "form": "cites(parent, PatchingAlgebra.faithfulSMul)",
+      "evidence": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Patching/System.lean#L433"
+    },
+    {
+      "n": 3,
+      "claim": "smul_lemma occurs in the parent site.",
+      "evidence_kind": "check",
+      "form": "cites(parent, smul_lemma)",
+      "evidence": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Patching/System.lean#L450"
+    },
+    {
+      "n": 4,
+      "claim": "No sorry, admit, or axiom occurs in lines 422-457 of FLT/Patching/System.lean.",
+      "evidence_kind": "check",
+      "form": "no_sorry(FLT/Patching/System.lean, 422-457)",
+      "evidence": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Patching/System.lean#L422-L457"
+    },
+    {
+      "n": 5,
+      "claim": "The decomposition is 2 project lemmas deep below the main theorem: support_eq_top (System.lean:422) cites smul_lemma (System.lean:387), which cites smul_lemma₀ (System.lean:310); all three are proved in the same file.",
+      "evidence_kind": "measurement",
+      "evidence": "call chain visible at https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Patching/System.lean#L450 (support_eq_top calls smul_lemma), #L403 (smul_lemma calls smul_lemma₀), #L310 (smul_lemma₀ declared)"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 2,
+    "glue_lines": 36,
+    "child_lines": [
+      39,
+      32
+    ]
+  },
+  "metrics": {
+    "parent_lines": 36,
+    "direct_project_lemmas": 2,
+    "children_closed_by_own_proof": 2,
+    "how_counted": "parent_lines = lines 422-457 of System.lean (declaration + proof); direct_project_lemmas = the two project lemmas named in the glue (PatchingAlgebra.faithfulSMul at line 433, smul_lemma at line 450); children_closed_by_own_proof = both child sites end in a complete proof (faithfulSMul 249-284, smul_lemma 396-418) with no sorry"
+  },
+  "consequences": "The two leaf-holes are real obligations: faithfulSMul must deliver FaithfulSMul (PatchingAlgebra R F) (PatchingModule Λ M F) from only H₀ and the depth equality H, and smul_lemma must deliver the exact map_smul equation so that the quotient equivalence e' is a linear equivalence over the patching algebra. If the compatibility equation in smul_lemma is stated with the wrong scalar (for instance on PatchingModule.constEquiv rather than quotientEquivOver), the map_smul' field of e' will not close, and the whole support computation fails at the structure literal. The remaining obligations are side conditions: the finiteness of M₀ over R₀ (lines 431-432) and the surjectivity of f₀ (line 437-438) are discharged before the transport; the final pull-back needs PrimeSpectrum.comap_injective_of_surjective, which is available because f₀ is surjective. Failure mode: this shape works only when the annihilator of M₀ is exactly the annihilator transported along the equivalence; a module that is not faithful (annihilator non-trivial) would make Module.annihilator_eq_bot.mpr fail and the support would come out as a proper closed subset.",
+  "known_uses": [
+    "lean-other-flt-imperial-4b2bc017",
+    "lean-other-flt-imperial-978f1e8a"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 15,
+    "relation": "supports"
+  },
+  "content_key": "ac21422b786bea4610706efcdd849c41948d303e2a717eb85d20d39273b031fd",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:07:56Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:08:30Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:10:18Z",
+      "note": "parent support_eq_top: statement re-copied from code; child 'PatchingAlgebra.faithfulSMul': statement re-copied from the declaration of PatchingAlgebra.faithfulSMul; child 'smul_lemma': statement re-copied from the declaration of smul_lemma"
+    },
+    {
+      "field": "sites.smul_lemma.excerpt_sha256",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "pilot-3",
+      "at": "2026-11-14T13:42:33Z",
+      "note": "stored hash 3bc1f28072ddbf9399fe1f4202d6013907bc6586be6f1f66dbdd2c286eb501f0 was mistyped (two characters swapped); recomputed from code/ lines 387-418, which are unchanged"
+    },
+    {
+      "field": "known_uses",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "pilot-3",
+      "at": "2026-11-14T13:42:33Z",
+      "note": "added lean-other-flt-imperial-4b2bc017 and -978f1e8a: empty shells of the same site left by the timed-out extraction, deprecated"
+    }
+  ]
+}

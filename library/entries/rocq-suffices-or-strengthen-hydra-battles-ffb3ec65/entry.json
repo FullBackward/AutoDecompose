@@ -1,0 +1,189 @@
+{
+  "id": "rocq-suffices-or-strengthen-hydra-battles-ffb3ec65",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Strengthen the goal to A = ordinal for the converse of Schutte 13.6",
+  "intent": "Prove the converse half of Schutte's characterisation of normal ordering functions by strengthening the goal to the convenient equality `A = ordinal` (from `segment A` and `Unbounded A`), which collapses `normal f B` to facts already at hand: `ordering_function f ordinal B` and the already-proved continuity lemma `Th_13_5_2`.",
+  "move": "suffices-or-strengthen",
+  "also_known_as": [
+    "suffices",
+    "enough",
+    "prove a more convenient statement first",
+    "strengthen the goal"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "hydra-battles",
+    "url": "https://github.com/coq-community/hydra-battles",
+    "commit": "ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "theories/ordinals/Schutte/Ordering_Functions.v",
+      "bytes": 34476,
+      "sha256": "bbfcfa46d023a722840c3bc7ac39d86f236e1853b57f48da690bead356f6ea26",
+      "permalink": "https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/ordinals/Schutte/Ordering_Functions.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/ordinals/Schutte/Ordering_Functions.v",
+      "lines": [
+        1159,
+        1169
+      ],
+      "role": "parent",
+      "name": "TH_13_6R",
+      "excerpt_sha256": "d7fcba008d9ca565570452952c13630586fab0d919359e2d8f1e549c93e3272c",
+      "permalink": "https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/ordinals/Schutte/Ordering_Functions.v#L1159-L1169"
+    },
+    {
+      "path": "theories/ordinals/Schutte/Ordering_Functions.v",
+      "lines": [
+        216,
+        224
+      ],
+      "role": "child",
+      "name": "segment_unbounded",
+      "excerpt_sha256": "774c36d6e410c386828fd4fe54d29c6a5cc03c1b77979dbc863dbd6e2a01b24c",
+      "permalink": "https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/ordinals/Schutte/Ordering_Functions.v#L216-L224"
+    },
+    {
+      "path": "theories/ordinals/Schutte/Ordering_Functions.v",
+      "lines": [
+        261,
+        262
+      ],
+      "role": "child",
+      "name": "SA1",
+      "excerpt_sha256": "bcef9619b47f7ae18e8bdf893b69e6741b0d51adc42d169f508cc5c361d1e1fb",
+      "permalink": "https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/ordinals/Schutte/Ordering_Functions.v#L261-L262"
+    },
+    {
+      "path": "theories/ordinals/Schutte/Ordering_Functions.v",
+      "lines": [
+        1139,
+        1156
+      ],
+      "role": "child",
+      "name": "ordering_unbounded_unbounded",
+      "excerpt_sha256": "556447858a9400fd126cd448e6bd742f8d14e2937de47e427af7e1f6693372d0",
+      "permalink": "https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/ordinals/Schutte/Ordering_Functions.v#L1139-L1156"
+    },
+    {
+      "path": "theories/ordinals/Schutte/Ordering_Functions.v",
+      "lines": [
+        1107,
+        1115
+      ],
+      "role": "child",
+      "name": "Th_13_5_2",
+      "excerpt_sha256": "ca1d86479bad75627483c13304f1e06efdf394beba66b68ff04d9c7bb9f84344",
+      "permalink": "https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/ordinals/Schutte/Ordering_Functions.v#L1107-L1115"
+    }
+  ],
+  "parent": {
+    "name": "TH_13_6R",
+    "statement": "Theorem TH_13_6R (A B : Ensemble Ord) (f : Ord -> Ord) :\n  ordering_function f A B ->\n  Closed B ->    Unbounded B ->   normal f B."
+  },
+  "children": [
+    {
+      "name": "segment_unbounded",
+      "statement": "Theorem segment_unbounded : forall A:Ensemble Ord, segment A ->\n                                        Unbounded A ->\n                                        A = ordinal.",
+      "closed_by": "apply Extensionality_Ensembles; split; the two inclusions close by `eauto with schutte` (the `intros; split` direction) and `destruct (H0 x) ... now apply H with x0` (the other direction)."
+    },
+    {
+      "name": "SA1",
+      "statement": "Remark SA1 : segment A1.",
+      "closed_by": "case O1;intuition",
+      "note": "Declared inside `Section ordering_function_unicity_1` with section variables `B A1 A2`, `f1 f2` and hypothesis `O1 : ordering_function f1 A1 B`, so outside the section it generalises to `forall B A1 f1, ordering_function f1 A1 B -> segment A1`; that is the exact shape the parent consumes with `eapply SA1; apply H0`."
+    },
+    {
+      "name": "ordering_unbounded_unbounded",
+      "statement": "Lemma ordering_unbounded_unbounded :\n  forall A B f,  ordering_function f A B ->\n                 (Unbounded B <-> Unbounded A).",
+      "closed_by": "split; each direction applies `not_countable_unbounded` after asserting `Countable` via `countable_bij_fun`/`countable_bij_funR` with `Ordering_bijection`, then `countable_not_Unbounded`."
+    },
+    {
+      "name": "Th_13_5_2",
+      "statement": "Lemma Th_13_5_2 : continuous f A B.",
+      "closed_by": "split; the first conjunct by `red; case f_ord;tauto`, the second by `eapply A_closed` and `symmetry; apply f_sup_commutes`.",
+      "note": "Declared inside `Section verso` (hypothesis `B_closed : Closed B`) inside `Section Th13_5` (variables `A B`, `f`, hypothesis `f_ord : ordering_function f A B`), so outside the section it generalises to `forall A B f, ordering_function f A B -> Closed B -> continuous f A B`; the parent applies it after `subst A` with `H0` and `H1`."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal `normal f B` (a conjunction `ordering_function f ordinal B /\\ continuous f ordinal B`) under hypotheses `ordering_function f A B`, `Closed B`, `Unbounded B`, where `A` is a free set known only through those hypotheses and the goal's inconvenient form names the fixed object `ordinal`.",
+    "use_when": "The goal is phrased over a fixed object (`ordinal`) while the hypotheses and the lemmas already proved are phrased over a free set `A`; replacing `A` by that object is what makes an already-proved lemma (stated over `A`) apply. Use when one strengthening equality makes the whole goal fall out of the hypotheses plus one reuse of a proved direction.",
+    "avoid_when": "The strengthened equality (`A = ordinal`) needs a proof of its own that is no easier than the original goal; or the goal does not actually collapse to a known lemma after the substitution, so the strengthening does not line the goal up with existing facts."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "TH_13_6R is declared in lines 1159-1169 of Ordering_Functions.v.",
+      "evidence_kind": "check",
+      "form": "declared(TH_13_6R, theories/ordinals/Schutte/Ordering_Functions.v, 1159-1169)",
+      "evidence": "https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/ordinals/Schutte/Ordering_Functions.v#L1159-L1169"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site (the proof of TH_13_6R) cites Th_13_5_2.",
+      "evidence_kind": "check",
+      "form": "cites(parent, Th_13_5_2)",
+      "evidence": "https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/ordinals/Schutte/Ordering_Functions.v#L1159-L1169"
+    },
+    {
+      "n": 3,
+      "claim": "The parent proof cites 4 named lemmas directly — segment_unbounded, SA1, ordering_unbounded_unbounded, Th_13_5_2 — and the longest project-lemma chain below TH_13_6R has 11 links: TH_13_6R → Th_13_5_2 → f_sup_commutes → R42 → R7 → R6 → R5 → alpha_sup → R3 → R2 → R1_aux → Ordering_bijection, each link a citation in the copied file.",
+      "evidence_kind": "measurement",
+      "evidence": "counted line by line in theories/ordinals/Schutte/Ordering_Functions.v: the 4 direct citations at lines 1164-1168; the 11 chain links at lines 1168, 1114, 1099, 1086, 1040, 1018, 1010, 1004, 985, 979, 956 (permalink https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/ordinals/Schutte/Ordering_Functions.v)."
+    },
+    {
+      "n": 4,
+      "claim": "The author describes the module as Schutte's construction of the ordering function of any subset of Ord: 'Every subset [A] of [Ord] can be enumerated in an unique way by a segment of [Ord] ... following Schutte's definitions'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/coq-community/hydra-battles/blob/ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8/theories/ordinals/Schutte/Ordering_Functions.v#L4-L14"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 11,
+    "glue_lines": 11,
+    "child_lines": [
+      9,
+      2,
+      18,
+      9
+    ]
+  },
+  "metrics": {
+    "parent_lines": 11,
+    "direct_children": 4,
+    "how_counted": "parent site 1159-1169 is 11 lines (3 declaration + 8 proof lines 1162-1169); direct children are the four lemmas cited by the proof at lines 1164-1168."
+  },
+  "consequences": "The move replaces the two conjuncts of `normal f B` by one obligation `A = ordinal` plus two side conditions (`segment A`, `Unbounded A`). It is sound only because `segment A` + `Unbounded A` force `A = ordinal`; if `A` were merely a subset of `ordinal`, the `subst A` would not be valid. The single strengthened equality is then discharged by two further lemmas (`segment_unbounded` needs `SA1` and `ordering_unbounded_unbounded`), so the glue stays short but the real content lives in the children, and the payoff — the continuity conjunct — is a wholesale reuse of `Th_13_5_2`.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "ffb3ec6571acab4c0a56e47402e3ace62c86351f8276d4ef3031c7dc04cdfaf8",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:18:07Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:25:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:28:11Z"
+}

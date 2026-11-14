@@ -1,0 +1,133 @@
+{
+  "entry": "lean-generalise-then-instantiate-navierstokesandeuler-985e7e4f",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:26:55Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:26:55Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:26:55Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: properties_of_schedule@NavierStokes/LocalPaperTheorem.lean:184, selected_schedule@NavierStokes/LocalPaperTheorem.lean:183; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:26:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(local_theorem, properties_of_schedule) -> cites: properties_of_schedule occurs at NavierStokes/LocalPaperTheorem.lean:184",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:26:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(local_theorem, selected_schedule) -> cites: selected_schedule occurs at NavierStokes/LocalPaperTheorem.lean:183",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:26:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(NavierStokes/LocalPaperTheorem.lean, 126-184) -> no_sorry: none of sorry, admit, axiom in NavierStokes/LocalPaperTheorem.lean:126-184",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:26:55Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at f9e8bc5b38b6e212696e8a30e3e91517af887bbd",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:27:02Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "source openai/NavierStokesAndEuler at f9e8bc5b38b6e212696e8a30e3e91517af887bbd has no CI workflow: no .github/workflows directory on default branch main, so no CI record builds NavierStokes/LocalPaperTheorem.lean",
+      "by": "verifier",
+      "at": "2026-11-14T12:28:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Checked copied code: parent site LocalPaperTheorem.lean L178-L184 is 7 lines (178-184); child properties_of_schedule L126-L176 is 51 lines; child selected_schedule LocalResidualFlatness.lean L111-L129 is 19 lines; 2 direct lemmas; depth 2 via local_theorem -> properties_of_schedule -> selected_exterior_residual_zero (cited in properties_of_schedule exterior bullet)",
+      "by": "verifier",
+      "at": "2026-11-14T12:28:10Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Checked copied code LocalPaperTheorem.lean L126-L127: doc comment reads '/-- All local properties are retained by any actual schedule with the proved all-order residual bounds. -/'",
+      "by": "verifier",
+      "at": "2026-11-14T12:28:11Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at f9e8bc5b38b6e212696e8a30e3e91517af887bbd",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:28:32Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent local_theorem (LocalPaperTheorem.lean 178-184) cites exactly the two children and nothing else: obtain LocalResidualFlatness.selected_schedule (183) then exact <9 underscores> properties_of_schedule hs hr (184). Child statements in entry.json match the declarations verbatim (properties_of_schedule 126-176; selected_schedule 111-129). Closing methods match: properties_of_schedule is refine{...} filling all 20 Properties fields with 4 ?_ holes (direct_angular, residual_flatness, exterior, angular_growth) closed by 4 bullets; selected_schedule closes by exists_schedule_all_jetRates selectedEstimates ... (qbig_pos _ _). It closes: Selected a is an abbrev for MixedCandidateWitness.SelectedSchedule at fixed stages, so hs from the obtain has exactly the hypothesis type, hr is the AllResidualJetRates conjunct, and the 9 underscores are inferable. Shape numbers correct: glue 7 (178-184), child_lines [51,19] (126-176, 111-129), direct_lemmas 2, depth 2 (local_theorem->properties_of_schedule->selected_exterior_residual_zero).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:31:15Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generically (existence goal over a big-conjunction predicate buildable for any class element; generalise over a free variable, certify one element, parent = obtain + one application), not tied to Navier-Stokes. When-not-to-use is specific and honest: class too weak to carry the proof; element used incompatibly across clauses; certificate conclusion not shaped like the lemma's hypotheses. Consequences match and add the exact-discharge obligation. Bounded-prover question answered: child 'closes on its own from named siblings' as 'a self-contained statement over a free variable' (README lines 143-153), shape 2 direct lemmas depth 2. Excerpts verified verbatim against local copies.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:31:58Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at f9e8bc5b38b6e212696e8a30e3e91517af887bbd",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:32:22Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes (2 files byte-identical at f9e8bc5b38b6e212696e8a30e3e91517af887bbd). Commit is identical across source.json, SOURCE.md, entry.json and every permalink (README's short prefix f9e8bc5b38b6 matches). Licence Apache-2.0 recorded in entry.json, README, SOURCE.md, source.json and confirmed by upstream-LICENSE (Apache License Version 2.0). Permalink line anchors match the cited ranges, which I confirmed against the copied files (LocalPaperTheorem.lean 126-184 and LocalResidualFlatness.lean 111-129). SOURCE.md attribution and licence text are present. Everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:32:38Z"
+    }
+  ]
+}

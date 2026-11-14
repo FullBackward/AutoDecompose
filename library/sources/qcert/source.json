@@ -1,0 +1,17 @@
+{
+  "source_id": "qcert",
+  "url": "https://github.com/querycert/qcert",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "querycert/qcert",
+  "commit": "e112de6d7fda1b916244a1feb08bedd7f8a96bc1",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-14T11:40:25Z",
+  "how_found": "discovery-1: A-rocq",
+  "note": "verified query compiler with per-pass correctness lemmas along the sql -> nraenv -> nnrc -> nnrc_core pipeline",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "entry": "lean-per-callee-lemma-pnt-and-3ba98173",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T11:16:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T11:16:05Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T11:16:05Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: corollary_24_row1@PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean:37, corollary_24_row2@PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean:38, corollary_24_row3@PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean:39, corollary_24_row4@PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean:40, corollary_24_row5@PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean:41, corollary_24_row6@PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean:42, corollary_24_row10@PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean:46, corollary_24_row11@PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean:47; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T11:16:05Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(corollary_24_all, PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean, 31-48) -> declared: corollary_24_all is declared at PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean:31",
+      "by": "check_claims.py",
+      "at": "2026-11-14T11:16:05Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean, 1-50) -> no_sorry: none of sorry, admit, axiom in PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean:1-50",
+      "by": "check_claims.py",
+      "at": "2026-11-14T11:16:05Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "12 file(s) byte-identical at 2c476fa6441c607096d93c8fc7ac0a227a655dae",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T11:16:20Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": ".github/workflows/build.yml (runs on main) builds 'lake build :blueprint' (LeanArchitect blueprint target), not the default target PrimeNumberTheoremAnd; the generated blueprint/src/blueprint.tex at the pinned commit lists ~18 inputleanmodule entries and does not include PrimeNumberTheoremAnd.IEANTN.FKS2Cor24All.lean, so the CI does not build this file",
+      "by": "verifier",
+      "at": "2026-11-14T11:21:06Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "glue FKS2Cor24All.lean L31-L48 is 18 lines; body has 11 'exact corollary_24_rowN x hx' dispatch lines (row1..row11 at L37-L47). Child site line counts: row1 29 (L91-119), row2 30 (L97-126), row3 30 (L112-141), row4 29 (L239-267), row5 29 (L91-119), row6 32 (L121-152), row10 32 (L122-153), row11 32 (L441-472) -> 29,30,30,29,29,32,32,32. Chain (depth 5): corollary_24_all cites corollary_24_row4 at All.lean L40; corollary_24_row4 (Row4 L239) cites floor_row4 at L266; floor_row4 (L186) cites floor_xhalf_of_check at L202; floor_xhalf_of_check (L122) cites Epi_le_evalLhsE_wide at L155; Epi_le_evalLhsE_wide (L48) cites Buthe.theorem_2e at L53",
+      "by": "verifier",
+      "at": "2026-11-14T11:21:11Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "doc comment FKS2Cor24All.lean L13-L24 states it \"dispatches the 11 rows to corollary_24_row1 … row11 (each proved in its own file FKS2Cor24Row1 through Row11 .lean)\" (L18-19) and that it \"Mirrors FKS2Cor23All.lean's Table-6 dispatch for Corollary 23\" (L23)",
+      "by": "verifier",
+      "at": "2026-11-14T11:21:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "FKS2Cor23All.lean at the pinned commit (fetched raw) declares corollary_23_all (Aπ B C x₀ : ℝ) (h : [Aπ, B, C, x₀] ∈ table6) and, after fin_cases h, dispatches nine rows via exact corollary_23_row1 .. corollary_23_row9; the doc comment says \"It dispatches the 9 rows to corollary_23_row1 … row9\". Same per-row dispatch as the entry's Corollary 24",
+      "by": "verifier",
+      "at": "2026-11-14T11:21:27Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Decomposition matches code: parent corollary_24_all (FKS2Cor24All.lean 31-48) is an 11-way rcases over (B,I) in table7 with one 'exact corollary_24_rowN x hx' per row plus 'absurd h (by simp)', closing exhaustively; no other lemma cited. All 8 child sites (row1 91-119, row2 97-126, row3 112-141, row4 239-267, row5 91-119, row6 121-152, row10 122-153, row11 441-472) match entry.json statements verbatim and closed_by names match the dispatched lemmas (floor_trusted/floor_checked/floor/band/mid/sliver_*). Rows 7/8/9 (README-listed clones) declared at 121-152 with n=4/5/10 as stated, so the children are exactly the 11 lemmas the parent uses. Shape numbers verified: direct_lemmas=11 (all rows cited), glue_lines=18 (31-48), child_lines=[29,30,30,29,29,32,32,32] by line count, depth=5 via chain corollary_24_all(#40)->corollary_24_row4(#266)->floor_row4(#202)->floor_xhalf_of_check(#154-155)->Epi_le_evalLhsE_wide(#53)->Buthe.theorem_2e, confirmed against declarations at lines 48/122/186/239. No sorry/admit/axiom in parent 1-50.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T11:23:21Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalises from Table-7 rows to 'any finite, explicit case table where each case is substantial and a template file carries shared machinery', and the avoid_when is honest and specific: parameterise when cases differ only in a scalar/numeric bound, and skip the split when the case set is open-ended. It is even self-aware that its own rows 6-11 are clones of row6 at different n, flagging the exact boundary of the move. Consequences are specific (18-line mechanical dispatch via simp/rcases, exhaustiveness closed by the final absurd branch, duplication risk unless machinery is lifted into Table4Ext, and the sorry-closed Cor24Trusted/Cor24Checked trust boundary). Leaf-goodness is described by the properties a bounded prover needs - named, self-contained statements, trivial parent, and 'nothing shared across rows except the Table4Ext machinery' - though it does not use the term 'bounded prover' explicitly.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T11:24:33Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "12 file(s) byte-identical at 2c476fa6441c607096d93c8fc7ac0a227a655dae",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T11:24:56Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "commit 2c476fa6441c607096d93c8fc7ac0a227a655dae is consistent across entry.json, sources/pnt-and/source.json and SOURCE.md; check_provenance.py passes (12 files byte-identical at the pinned commit, so the commit is real and reachable); every permalink (files and sites, incl. line anchors L31-L48, L13-L24, L91-L119 verified against local copies) uses that commit; licence Apache-2.0 recorded identically in entry.json, README, SOURCE.md and source.json, and upstream-LICENSE is the genuine Apache-2.0 text; SOURCE.md carries the attribution note and points to the copied LICENSE.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T11:25:22Z"
+    }
+  ]
+}

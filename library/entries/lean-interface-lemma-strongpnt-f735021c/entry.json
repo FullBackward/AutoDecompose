@@ -1,0 +1,191 @@
+{
+  "id": "lean-interface-lemma-strongpnt-f735021c",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "API lemma lem_Bf_off_K expands the Blaschke product Bf off the zero set",
+  "intent": "Capture the abstraction boundary of the Blaschke product `Bf`: one lemma, `lem_Bf_off_K`, states the expansion `Bf z = f z * ∏ (Blaschke factors)` once, off the zero set, so that every client of `Bf` rewrites by this lemma instead of unfolding the definitions `Bf` and `Cf`.",
+  "move": "interface-lemma",
+  "also_known_as": [
+    "API lemma",
+    "definitional expansion lemma",
+    "unfolding boundary lemma"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "strongpnt",
+    "url": "https://github.com/math-inc/strongpnt",
+    "commit": "2f5835c322314f55f1026ec2f139d704b7c45c69",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "StrongPNT/PNT2_LogDerivative.lean",
+      "bytes": 206324,
+      "sha256": "77116ddbdf215d948059d51b38334cd2d5a62fe0f7e626c7611518e82bed789d",
+      "permalink": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT2_LogDerivative.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "StrongPNT/PNT2_LogDerivative.lean",
+      "lines": [
+        967,
+        987
+      ],
+      "role": "parent",
+      "name": "lem_Bf_off_K",
+      "excerpt_sha256": "b8984005265e5ea1286e63fd7b5ce53496632a66a937d347f23c044dbd0cd219",
+      "permalink": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT2_LogDerivative.lean#L967-L987"
+    },
+    {
+      "path": "StrongPNT/PNT2_LogDerivative.lean",
+      "lines": [
+        912,
+        936
+      ],
+      "role": "child",
+      "name": "lem_BfCf",
+      "excerpt_sha256": "9b1b4077b1afe0672f63faa6f73603e783721a1a165529714cf4e23706aa73c5",
+      "permalink": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT2_LogDerivative.lean#L912-L936"
+    },
+    {
+      "path": "StrongPNT/PNT2_LogDerivative.lean",
+      "lines": [
+        938,
+        951
+      ],
+      "role": "child",
+      "name": "lem_Bf_div",
+      "excerpt_sha256": "c8cd3c61a5d29ddabc17f289804ea27a0e4e3605b80ee211a9ed93c1ab8cf411",
+      "permalink": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT2_LogDerivative.lean#L938-L951"
+    },
+    {
+      "path": "StrongPNT/PNT2_LogDerivative.lean",
+      "lines": [
+        953,
+        965
+      ],
+      "role": "child",
+      "name": "lem_Bf_prodpow",
+      "excerpt_sha256": "e32fd38ec2c89811888216900c9c295b6df8d131ba1fee61e913e092848d0eb4",
+      "permalink": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT2_LogDerivative.lean#L953-L965"
+    },
+    {
+      "path": "StrongPNT/PNT2_LogDerivative.lean",
+      "lines": [
+        897,
+        910
+      ],
+      "role": "context",
+      "name": "Bf",
+      "excerpt_sha256": "c0c6b2adff5e68877a8a1f45b4aef4653c13a62609c03832992620f6094ebbdb",
+      "permalink": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT2_LogDerivative.lean#L897-L910"
+    }
+  ],
+  "parent": {
+    "name": "lem_Bf_off_K",
+    "statement": "lemma lem_Bf_off_K\n    {R R1 : ℝ} {hR1_pos : 0 < R1} {hR1_lt_R : R1 < R} {hR_lt_1 : R < 1}\n    {f : ℂ → ℂ}\n    {h_f_analytic : ∀ z ∈ Metric.closedBall (0 : ℂ) 1, AnalyticAt ℂ f z}\n    {h_f_nonzero_at_zero : f 0 ≠ 0}\n    (h_finite_zeros : (zerosetKfR R1 (by linarith) f).Finite)\n    (h_σ : ℂ → (ℂ → ℂ))\n    (z : ℂ) (hz : z ∈ Metric.closedBall (0 : ℂ) R \\ zerosetKfR R1 (by linarith) f) :\n    Bf R R1 hR1_pos hR1_lt_R hR_lt_1 f h_f_analytic h_f_nonzero_at_zero h_finite_zeros h_σ z =\n    f z * ∏ ρ ∈ h_finite_zeros.toFinset,\n      (((R : ℂ) - star ρ * z / (R : ℂ)) / (z - ρ)) ^ (analyticOrderAt f ρ).toNat"
+  },
+  "children": [
+    {
+      "name": "lem_BfCf",
+      "statement": "lemma lem_BfCf\n    {R R1 : ℝ} {hR1_pos : 0 < R1} {hR1_lt_R : R1 < R} {hR_lt_1 : R < 1}\n    {f : ℂ → ℂ}\n    {h_f_analytic : ∀ z ∈ Metric.closedBall (0 : ℂ) 1, AnalyticAt ℂ f z}\n    {h_f_nonzero_at_zero : f 0 ≠ 0}\n    (h_finite_zeros : (zerosetKfR R1 (by linarith) f).Finite)\n    (h_σ : ℂ → (ℂ → ℂ))\n    (z : ℂ) (hz : z ∈ Metric.closedBall (0 : ℂ) R \\ zerosetKfR R1 (by linarith) f) :\n    Bf R R1 hR1_pos hR1_lt_R hR_lt_1 f h_f_analytic h_f_nonzero_at_zero h_finite_zeros h_σ z =\n    f z * (∏ ρ ∈ h_finite_zeros.toFinset,\n      ((R : ℂ) - star ρ * z / (R : ℂ)) ^ (analyticOrderAt f ρ).toNat) /\n    (∏ ρ ∈ h_finite_zeros.toFinset, (z - ρ) ^ (analyticOrderAt f ρ).toNat)",
+      "closed_by": "exact div_mul_eq_mul_div _ _ _",
+      "note": "The only child that unfolds the definitions Bf and Cf; after it, no client unfolds them. Off the zero set, Cf takes its else branch (simp [hz_not_in]) and the product of Blaschke factors is left standing. Analyst's paraphrase, replaced by the declaration's text: Bf z expressed as f z times the quotient of the numerator and denominator products, off the zero set."
+    },
+    {
+      "name": "lem_Bf_div",
+      "statement": "lemma lem_Bf_div\n    {R R1 : ℝ} {hR1_pos : 0 < R1} {hR1_lt_R : R1 < R} {hR_lt_1 : R < 1}\n    {f : ℂ → ℂ}\n    {h_f_analytic : ∀ z ∈ Metric.closedBall (0 : ℂ) 1, AnalyticAt ℂ f z}\n    {h_f_nonzero_at_zero : f 0 ≠ 0}\n    (h_finite_zeros : (zerosetKfR R1 (by linarith) f).Finite)\n    (z : ℂ) (hz : z ∈ Metric.closedBall (0 : ℂ) R \\ zerosetKfR R1 (by linarith) f) :\n    (∏ ρ ∈ h_finite_zeros.toFinset,\n      ((R : ℂ) - star ρ * z / (R : ℂ)) ^ (analyticOrderAt f ρ).toNat) /\n    (∏ ρ ∈ h_finite_zeros.toFinset, (z - ρ) ^ (analyticOrderAt f ρ).toNat) =\n    ∏ ρ ∈ h_finite_zeros.toFinset,\n      (((R : ℂ) - star ρ * z / (R : ℂ)) ^ (analyticOrderAt f ρ).toNat /\n       (z - ρ) ^ (analyticOrderAt f ρ).toNat)",
+      "closed_by": "rw [Finset.prod_div_distrib]",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The quotient of the two products equals the product of the quotients."
+    },
+    {
+      "name": "lem_Bf_prodpow",
+      "statement": "lemma lem_Bf_prodpow\n    {R R1 : ℝ} {hR1_pos : 0 < R1} {hR1_lt_R : R1 < R} {hR_lt_1 : R < 1}\n    {f : ℂ → ℂ}\n    {h_f_analytic : ∀ z ∈ Metric.closedBall (0 : ℂ) 1, AnalyticAt ℂ f z}\n    {h_f_nonzero_at_zero : f 0 ≠ 0}\n    (h_finite_zeros : (zerosetKfR R1 (by linarith) f).Finite)\n    (z : ℂ) (hz : z ∈ Metric.closedBall (0 : ℂ) R \\ zerosetKfR R1 (by linarith) f) :\n    ∏ ρ ∈ h_finite_zeros.toFinset,\n      (((R : ℂ) - star ρ * z / (R : ℂ)) ^ (analyticOrderAt f ρ).toNat /\n       (z - ρ) ^ (analyticOrderAt f ρ).toNat) =\n    ∏ ρ ∈ h_finite_zeros.toFinset,\n      (((R : ℂ) - star ρ * z / (R : ℂ)) / (z - ρ)) ^ (analyticOrderAt f ρ).toNat",
+      "closed_by": "simp only [div_pow]",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The product of quotients equals the product of the quotient raised to the analytic order."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An equality `F z = G z` where `F` is a `noncomputable def` (here `Bf`, a composite of `Cf` and a finite product) and `G` is the intended closed form; the equality holds only off a distinguished subset (the zero set `zerosetKfR`), which appears as a hypothesis.",
+    "use_when": "A definition's unfolding is wanted by many downstream clients, but you want them to cite one canonical expansion rather than unfold it each time; the expansion factors into a short chain of algebraic rewrites (division over a product, division over a power), each closable by a single Mathlib lemma.",
+    "avoid_when": "The expansion needs a case analysis or a non-algebraic argument (then the leaves are not single rewrites and the interface lemma hides real work); the closed form is needed in only one place (unfold locally instead); or the boundary statement is not yet the stable form clients actually consume, so it would be rewritten again downstream."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "Lines 912-987 of StrongPNT/PNT2_LogDerivative.lean contain no closing-by-sorry token.",
+      "evidence_kind": "check",
+      "form": "no_sorry(StrongPNT/PNT2_LogDerivative.lean, 912-987)",
+      "evidence": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT2_LogDerivative.lean#L912-L987"
+    },
+    {
+      "n": 2,
+      "claim": "lem_BfCf occurs in the parent site StrongPNT/PNT2_LogDerivative.lean:967-987.",
+      "evidence_kind": "check",
+      "form": "cites(StrongPNT/PNT2_LogDerivative.lean:967-987, lem_BfCf)",
+      "evidence": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT2_LogDerivative.lean#L979"
+    },
+    {
+      "n": 3,
+      "claim": "The glue (the parent's proof, lines 967-987) is 21 lines, and the three child declarations are 25 (lem_BfCf, 912-936), 14 (lem_Bf_div, 938-951) and 13 (lem_Bf_prodpow, 953-965) lines; the three children sit one step below the parent (depth 1).",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT2_LogDerivative.lean#L912-L987"
+    },
+    {
+      "n": 4,
+      "claim": "The blueprint states the lemma and its dependency graph explicitly: the node lem:Bf_off_K ('B off K') is proved \"By \\cref{lem:BfCf} and \\cref{lem:Bf_div,lem:Bf_prodpow}\" and carries \"\\uses{lem:BfCf, lem:Bf_div, lem:Bf_prodpow}\".",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/blueprint/src/PNT/PNT2_LogDerivative.tex#L569-L579"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 1,
+    "glue_lines": 21,
+    "child_lines": [
+      25,
+      14,
+      13
+    ]
+  },
+  "metrics": {
+    "children": 3,
+    "children_closed_by_automation": 3,
+    "how_counted": "All three children close by a single rewrite/exact to a Mathlib lemma (div_mul_eq_mul_div, Finset.prod_div_distrib, div_pow); no child needs a further project lemma, so the chain below the parent has depth 1."
+  },
+  "consequences": "Pins the closed form: after `lem_Bf_off_K`, a client that rewrites with it gets the `((R - ρ̄ z / R) / (z - ρ)) ^ m` factor form, so a later result that needs a different grouping must re-split. The lemma holds only off the zero set: the hypothesis `z ∉ zerosetKfR R1 f` is a side condition every client must supply. Unfolding is deferred, not removed — `lem_BfCf` still unfolds `Bf` and `Cf`, so the interface lemma hides the definitions from clients but not from the library. The `congr 1` step silently assumes the two sides agree up to the scalar `f z` and one factor; if the statement changes shape that step needs re-checking.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "f735021c910530aa05eeeaaf0032dac79a18cae568cfb16cac93f71ea3036d14",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:18:37Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:20:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:21:45Z",
+      "note": "parent lem_Bf_off_K: statement re-copied from code; child 'lem_BfCf': statement re-copied from the declaration of lem_BfCf; child 'lem_Bf_div': statement re-copied from the declaration of lem_Bf_div; child 'lem_Bf_prodpow': statement re-copied from the declaration of lem_Bf_prodpow"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T09:27:08Z"
+}

@@ -1,0 +1,177 @@
+{
+  "id": "lean-blueprint-node-flt-regular-5f4403ff",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Blueprint node for Hilbert 94 part 1: a norm-one unit (Hilbert 92) feeds the capitulating-ideal lemma",
+  "intent": "Reduce the first part of Hilbert Theorem 94 — an unramified cyclic extension L/K of number fields of odd prime degree has an ideal that capitulates — to two project lemmas: Hilbert92 supplies the norm-one unit η not of the form ε/σ ε, and exists_not_isPrincipal_and_isPrincipal_map_aux turns such a unit into the non-principal-but-capitulating ideal; the three-line glue only unpacks cyclicity and forwards the hypotheses.",
+  "move": "blueprint-node",
+  "also_known_as": [
+    "blueprint \\uses{} node",
+    "dependency-graph node",
+    "stated before proved"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "flt-regular",
+    "url": "https://github.com/leanprover-community/flt-regular",
+    "commit": "83f477ccc8cef9fd9a022b90d87aed49368e7bbd",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "FltRegular/NumberTheory/Hilbert94.lean",
+      "bytes": 5887,
+      "sha256": "c8d0f9343e53f093a4103e90529b0dc31ee3f741e04e353d641722f719255620",
+      "permalink": "https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/NumberTheory/Hilbert94.lean"
+    },
+    {
+      "path": "FltRegular/NumberTheory/Hilbert92.lean",
+      "bytes": 34828,
+      "sha256": "9efddc053857b90857450d827d1fc2a929e345ac729e7df8c61cdae2da16774c",
+      "permalink": "https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/NumberTheory/Hilbert92.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "FltRegular/NumberTheory/Hilbert94.lean",
+      "lines": [
+        94,
+        105
+      ],
+      "role": "parent",
+      "name": "exists_not_isPrincipal_and_isPrincipal_map",
+      "excerpt_sha256": "9169c6598b17ee6b7809d8544969957995688ebd309b4f846b828be33e85591b",
+      "permalink": "https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/NumberTheory/Hilbert94.lean#L94-L105"
+    },
+    {
+      "path": "FltRegular/NumberTheory/Hilbert94.lean",
+      "lines": [
+        51,
+        80
+      ],
+      "role": "child",
+      "name": "exists_not_isPrincipal_and_isPrincipal_map_aux",
+      "excerpt_sha256": "c6fd631af2cf711b0ccc8bbbcb529aec3737292a13d9a83c25ddadc2c0ea638a",
+      "permalink": "https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/NumberTheory/Hilbert94.lean#L51-L80"
+    },
+    {
+      "path": "FltRegular/NumberTheory/Hilbert92.lean",
+      "lines": [
+        726,
+        733
+      ],
+      "role": "child",
+      "name": "Hilbert92",
+      "excerpt_sha256": "20cbf6f220f08758b796ce44e0d8938a5c8ed3fcdee84bedc567e9859497aad5",
+      "permalink": "https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/NumberTheory/Hilbert92.lean#L726-L733"
+    }
+  ],
+  "parent": {
+    "name": "exists_not_isPrincipal_and_isPrincipal_map",
+    "statement": "theorem exists_not_isPrincipal_and_isPrincipal_map (K L : Type)\n    [Field K] [Field L] [NumberField K] [NumberField L] [Algebra K L]\n    [FiniteDimensional K L] [IsGalois K L] [Algebra.Unramified (𝓞 K) (𝓞 L)]\n    [h : IsCyclic (L ≃ₐ[K] L)] (hKL : Nat.Prime (finrank K L)) (hKL' : finrank K L ≠ 2) :\n    ∃ I : Ideal (𝓞 K), ¬I.IsPrincipal ∧\n      (I.map (algebraMap (𝓞 K) (𝓞 L))).IsPrincipal"
+  },
+  "children": [
+    {
+      "name": "Hilbert92",
+      "statement": "lemma Hilbert92 [Algebra k K] [IsGalois k K] [NumberField k] [NumberField K]\n    (hKL : Nat.Prime (finrank k K)) (hpodd : finrank k K ≠ 2)\n    (σ : K ≃ₐ[k] K) (hσ : ∀ x, x ∈ Subgroup.zpowers σ) :\n    ∃ η : (𝓞 K)ˣ, Algebra.norm k (η : K) = 1 ∧\n      ∀ ε : (𝓞 K)ˣ, (η : K) ≠ ε / (σ ε : K)",
+      "closed_by": "almostHilbert92 (finrank k K) hKL rfl σ hσ hpodd",
+      "note": "the norm-one unit η that is not of the form ε/σ ε, closed from the sibling almostHilbert92 (Hilbert92.lean:619)"
+    },
+    {
+      "name": "exists_not_isPrincipal_and_isPrincipal_map_aux",
+      "statement": "theorem exists_not_isPrincipal_and_isPrincipal_map_aux\n    [IsDedekindDomain A] [Algebra.Unramified A B] (η : Bˣ)\n    (hη : Algebra.norm K (algebraMap B L η) = 1)\n    (hη' : ¬∃ α : Bˣ, algebraMap B L η = (algebraMap B L α) / σ (algebraMap B L α)) :\n    ∃ I : Ideal A, ¬I.IsPrincipal ∧ (I.map (algebraMap A B)).IsPrincipal",
+      "closed_by": "refine ⟨(Ideal.span {β}).comap (algebraMap A B), ?_, ?_⟩; the ¬IsPrincipal goal closes by apply hη' (using the witness a from hβ'), the IsPrincipal goal by rw [hβ']; exact ⟨⟨_, rfl⟩⟩",
+      "note": "the construction of the non-principal-but-capitulating ideal from such a unit, closed from the siblings comap_span_galRestrict_eq_of_cyclic (Hilbert94.lean:25) and comap_map_eq_of_unramified (Unramified.lean:40)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "∃ I : Ideal (𝓞 K), ¬I.IsPrincipal ∧ (I.map (algebraMap (𝓞 K) (𝓞 L))).IsPrincipal — an existence goal for an ideal with two properties, one in the base field (non-principal) and one after base change (principal), under Galois/cyclic/unramified hypotheses and a prime odd degree",
+    "use_when": "the theorem is one node of a published result (here Hilbert's Satz 94) whose proof splits into two named project lemmas with self-contained statements — one producing a norm-one unit, one building the ideal from it — so the main proof is a short forward of hypotheses",
+    "avoid_when": "the two obligations cannot be stated independently (the unit and the ideal construction are entangled); the child lemmas are not reusable elsewhere; or the node is not part of a documented dependency graph, in which case the split is a plain suffices rather than a blueprint node"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent theorem exists_not_isPrincipal_and_isPrincipal_map is declared in FltRegular/NumberTheory/Hilbert94.lean, lines 94-105.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/NumberTheory/Hilbert94.lean#L94-L105",
+      "form": "declared(exists_not_isPrincipal_and_isPrincipal_map, FltRegular/NumberTheory/Hilbert94.lean, 94-105)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent proof cites Hilbert92.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/NumberTheory/Hilbert94.lean#L104",
+      "form": "cites(parent, Hilbert92)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent proof cites exists_not_isPrincipal_and_isPrincipal_map_aux.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/NumberTheory/Hilbert94.lean#L105",
+      "form": "cites(parent, exists_not_isPrincipal_and_isPrincipal_map_aux)"
+    },
+    {
+      "n": 4,
+      "claim": "The source documents the theorem as the first part of Hilbert Theorem 94: \"This is the first part of Hilbert Theorem 94, which states that if L/K is an unramified cyclic finite extension of number fields of odd prime degree, then there is an ideal that capitulates in K.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "doc comment at https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/NumberTheory/Hilbert94.lean#L94-L96"
+    },
+    {
+      "n": 5,
+      "claim": "The main theorem assembles 2 direct project lemmas (Hilbert92 and exists_not_isPrincipal_and_isPrincipal_map_aux), and the longest checked chain of project lemmas below it is 2 deep: exists_not_isPrincipal_and_isPrincipal_map → exists_not_isPrincipal_and_isPrincipal_map_aux → comap_span_galRestrict_eq_of_cyclic.",
+      "evidence_kind": "measurement",
+      "evidence": "read of the copied files: the parent proof (Hilbert94.lean lines 103-105) names exactly Hilbert92 and exists_not_isPrincipal_and_isPrincipal_map_aux; the aux proof (line 61) cites comap_span_galRestrict_eq_of_cyclic, declared at Hilbert94.lean line 25. Permalinks: https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/NumberTheory/Hilbert94.lean#L103-L105 and #L51-L80"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 2,
+    "glue_lines": 12,
+    "child_lines": [
+      30,
+      8
+    ]
+  },
+  "metrics": {
+    "children": 2,
+    "children_closed_by_named_sibling": 2,
+    "how_counted": "Hilbert92 closes by almostHilbert92 (Hilbert92.lean:733); exists_not_isPrincipal_and_isPrincipal_map_aux closes from comap_map_eq_of_unramified and comap_span_galRestrict_eq_of_cyclic (Hilbert94.lean:60-61), among other named lemmas"
+  },
+  "consequences": "The move creates two obligations: (1) produce a norm-one unit η with the 'not a quotient' property, discharged by Hilbert92 (which needs the odd/prime-degree hypotheses); (2) turn such a unit into the ideal, discharged by the aux lemma. The glue must discharge every hypothesis of the aux lemma (IsDedekindDomain, unramified, norm-one, not-a-quotient), which it does by forwarding hσ, hη, and not_exists.mpr hη' — the last flips the ∀ into a ¬∃. Failure mode: if Hilbert92's statement changes (e.g. a different quotient condition on the unit), the not_exists.mpr flip in the glue breaks.",
+  "known_uses": [
+    "https://github.com/leanprover-community/flt-regular/blob/83f477ccc8cef9fd9a022b90d87aed49368e7bbd/FltRegular/NumberTheory/Hilbert94.lean#L107-L119"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 4,
+    "relation": "supports"
+  },
+  "content_key": "5f4403ffc4695bbbf6b67fa04515b9668788891cdbdbaa96283149cc400b2f91",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:25:31Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:30:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:29:10Z",
+      "note": "parent exists_not_isPrincipal_and_isPrincipal_map: statement re-copied from code; child 'Hilbert92': statement re-copied from the declaration of Hilbert92; child 'exists_not_isPrincipal_and_isPrincipal_map_aux': statement re-copied from the declaration of exists_not_isPrincipal_and_isPrincipal_map_aux"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T09:34:55Z"
+}

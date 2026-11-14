@@ -1,0 +1,200 @@
+{
+  "id": "lean-induction-classfieldtheory-66c37f83",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Induction on n for exactness of the inflation-restriction complex",
+  "intent": "Prove that the inflation-restriction complex `inflationRestriction surj n M` is exact in every cohomological degree `n`, by induction on `n`: the base case is transported across the isomorphism `isoHInfRes` to Mathlib's `H1InfRes_exact`, and the step is transported across the dimension-shifting isomorphism `IsoNext`, which is assembled from `δUpResIso`.",
+  "move": "induction",
+  "also_known_as": [
+    "dimension-shifting induction",
+    "induction with a generalised variable (Lean `generalizing`, Isabelle `arbitrary`)"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "classfieldtheory",
+    "url": "https://github.com/kbuzzard/ClassFieldTheory",
+    "commit": "1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean",
+      "bytes": 7589,
+      "sha256": "f5c17f7c27e9a0567b609d22992fba2291ef87564ed8b0c37355193ee911daf7",
+      "permalink": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean"
+    },
+    {
+      "path": "ClassFieldTheory/Cohomology/Functors/UpDown.lean",
+      "bytes": 16556,
+      "sha256": "4cb803d742f23ce8de53e103a5a3ea43ca699b43f195a4faae75a016624bf10e",
+      "permalink": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/Functors/UpDown.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean",
+      "lines": [
+        143,
+        163
+      ],
+      "role": "parent",
+      "name": "inflation_restriction_exact",
+      "excerpt_sha256": "11c3ae21af2e6ef42d6e927b5d8198e73af5b30bbafd502ae1301f095078722b",
+      "permalink": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean#L143-L163"
+    },
+    {
+      "path": "ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean",
+      "lines": [
+        89,
+        101
+      ],
+      "role": "child",
+      "name": "IsoNext",
+      "excerpt_sha256": "457e8db2cfde746d1766833ebdb56649473cbf463a5ac014cbc1e06ac0e37ad4",
+      "permalink": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean#L89-L101"
+    },
+    {
+      "path": "ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean",
+      "lines": [
+        105,
+        119
+      ],
+      "role": "child",
+      "name": "isoHInfRes",
+      "excerpt_sha256": "db726f307c276212eeeb0f7386ddb8dc636567c5c985671a7a52b3183051585d",
+      "permalink": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean#L105-L119"
+    },
+    {
+      "path": "ClassFieldTheory/Cohomology/Functors/UpDown.lean",
+      "lines": [
+        148,
+        151
+      ],
+      "role": "child",
+      "name": "δUpResIso",
+      "excerpt_sha256": "03e1da1b92f74586d3c5bcc889fa7ef8e88e7fefc8faef129228cca6b752c44f",
+      "permalink": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/Functors/UpDown.lean#L148-L151"
+    }
+  ],
+  "parent": {
+    "name": "inflation_restriction_exact",
+    "statement": "theorem inflation_restriction_exact (n : ℕ) {M : Rep R G}\n    (hM : ∀ i : ℕ, i < n → IsZero (groupCohomology (M ↓ φ.ker.subtype) (i + 1))) :\n    (inflationRestriction surj n M).Exact"
+  },
+  "children": [
+    {
+      "name": "IsoNext",
+      "statement": "def IsoNext (n) (M : Rep R G) (hM : IsZero (H1 (M ↓ φ.ker.subtype))) :\n    inflationRestriction surj n (up.obj M) ≅ inflationRestriction surj (n + 1) M",
+      "closed_by": "definition (not a theorem): its body is `ShortComplex.isoMk` taking three component isomorphisms — `asIso (δ (quotientToInvariantsFunctor'_shortExact_ofShortExact …))`, `asIso (δ (shortExact_upSES M) …)`, `δUpResIso` — with the two commutation fields supplied by `infl_δ_naturality` and `rest_δ_naturality`",
+      "note": "A `def`, so it closes by constructing a term (an isomorphism), not by a tactic proof; it cites `δUpResIso` and the in-file helper `isIso_δ_ofhM` (lines 81-87)."
+    },
+    {
+      "name": "isoHInfRes",
+      "statement": "def isoHInfRes (n : ℕ) (M : Rep R G) :\n    inflationRestriction surj n M ≅ HInfRes M φ.ker (n + 1)",
+      "closed_by": "definition (not a theorem): its body is `ShortComplex.isoMk (resEquiv_inv …) (Iso.refl _) (Iso.refl _)` with the two commutation fields closed by `rw`/`map_congr`/`ext`/`simp`",
+      "note": "A `def`; carries the whole base case by identifying the inflation-restriction complex with Mathlib's `HInfRes`."
+    },
+    {
+      "name": "δUpResIso",
+      "statement": "def δUpResIso {S : Type u} [Group S] {φ : S →* G} (inj : Function.Injective φ) (n : ℕ) [NeZero n] :\n    groupCohomology (up.obj M ↓ φ) n ≅ groupCohomology (M ↓ φ) (n + 1)",
+      "closed_by": "`have := isIso_δ_up_res M inj n; apply asIso (δ ((shortExact_res φ).2 <| shortExact_upSES M) n (n + 1) rfl)`",
+      "note": "Declared in namespace `Rep.dimensionShift` (fully qualified `Rep.dimensionShift.δUpResIso`); its proof delegates to the in-file instance `isIso_δ_up_res` (lines 143-146)."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A statement `P n` about a complex indexed by a cohomological degree `n` (here `(inflationRestriction surj n M).Exact`) that has a known base case `P 0` and a step `P n → P (n+1)` expressible as transport of the property along an isomorphism between complexes.",
+    "use_when": "The base case is already a named lemma (here Mathlib's `H1InfRes_exact`), and each step is `ShortComplex.exact_of_iso` along an isomorphism (`IsoNext`) built from dimension-shifting isos; generalise the representation `M` so the induction hypothesis is usable at the shifted object `up.obj M`.",
+    "avoid_when": "The base case is not available and must be proved inside the `zero` branch; the step needs a genuinely new argument rather than isomorphism transport; or the generalised hypothesis at `up.obj M` cannot be discharged from the original hypothesis by one dimension shift."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent's proof cites `IsoNext`.",
+      "evidence_kind": "check",
+      "form": "cites(parent, IsoNext)",
+      "evidence": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean#L143-L163"
+    },
+    {
+      "n": 2,
+      "claim": "No closing-by-sorry token occurs in `ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean` lines 89-163.",
+      "evidence_kind": "check",
+      "form": "no_sorry(ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean, 89-163)",
+      "evidence": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean#L89-L163"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site is 21 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(parent, 21)",
+      "evidence": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean#L143-L163"
+    },
+    {
+      "n": 4,
+      "claim": "The authors state the induction plan in the theorem's doc comment: \"The proof is by induction on `n`. The `H¹` case (i.e. `n = 0`) is in Mathlib. For the inductive step, use the fact that the following diagram commutes by `infl_δ_naturality` and `rest_δ_naturality`. … The vertical maps are the dimension-shifting isomorphisms.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean#L146-L156"
+    },
+    {
+      "n": 5,
+      "claim": "The sibling theorem `inflation_restriction_mono` (lines 121-141) is proved by the same induction skeleton: `isoHInfRes` for the `zero` case and `IsoNext` together with `δUpResIso` for the `succ` case.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean#L121-L141"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 3,
+    "glue_lines": 21,
+    "child_lines": [
+      13,
+      15,
+      4
+    ]
+  },
+  "metrics": {
+    "parent_lines": 21,
+    "children": 3,
+    "glue_lines": 21,
+    "child_lines": [
+      13,
+      15,
+      4
+    ],
+    "how_counted": "parent site lines 143-163; child sites lines 89-101 (IsoNext), 105-119 (isoHInfRes), 148-151 (δUpResIso), declaration and proof included in each"
+  },
+  "consequences": "Induction creates a `zero` base case and a `succ` step with an induction hypothesis. The step obliges proving the hypothesis `hM` at the shifted representation `up.obj M` (discharged here by `IsZero.of_iso` plus `δUpResIso`, one `omega` per index), and the `generalizing M` means the IH must be stated strongly enough to apply at `up.obj M`. Failure mode: if the base case is not already a named lemma, the `zero` branch is where the real content would go; if the step cannot be phrased as isomorphism transport (`ShortComplex.exact_of_iso`), the shared skeleton breaks.",
+  "known_uses": [
+    "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean#L121-L141"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "66c37f83d52e88bb287f87eaa2f5311a2d2d0494b83012b70cc511cbbc4ec8fb",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:11:02Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:13:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:12:31Z",
+      "note": "parent inflation_restriction_exact: statement re-copied from code; child 'IsoNext': statement re-copied from the declaration of IsoNext; child 'isoHInfRes': statement re-copied from the declaration of isoHInfRes; child 'δUpResIso': statement re-copied from the declaration of δUpResIso"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T12:19:55Z"
+}

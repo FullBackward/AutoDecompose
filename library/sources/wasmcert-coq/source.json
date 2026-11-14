@@ -1,0 +1,17 @@
+{
+  "source_id": "wasmcert-coq",
+  "url": "https://github.com/WasmCert/WasmCert-Coq",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "WasmCert/WasmCert-Coq",
+  "commit": "58a3d3f8b7af4dc8aa9351f254a9e672643b21f8",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-14T11:40:19Z",
+  "how_found": "discovery-1: A-rocq",
+  "note": "WebAssembly 2.0: type safety, interpreter soundness against WasmCert, type-checker soundness and completeness, and module-instantiation soundness, each proved from named lemmas",
+  "licence": "LGPL-2.1",
+  "licence_files": [
+    "LICENSE.txt"
+  ]
+}

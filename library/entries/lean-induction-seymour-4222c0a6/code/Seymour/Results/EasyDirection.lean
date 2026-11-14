@@ -1,0 +1,35 @@
+import Seymour.Matroid.Sum1
+import Seymour.Matroid.Sum2
+import Seymour.Matroid.Sum3
+import Seymour.Matroid.Graphicness
+import Seymour.Matroid.Comatroids
+import Seymour.Matroid.R10
+
+
+variable {α : Type*} [DecidableEq α]
+
+/-- Given matroid can be constructed from graphic matroids & cographics matroids & R10 using 1-sums & 2-sums & 3-sums. -/
+inductive Matroid.IsGood : Matroid α → Prop
+-- leaf constructors
+| graphic {M : Matroid α} (hM : M.IsGraphic) : M.IsGood
+| cographic {M : Matroid α} (hM : M.IsCographic) (hM' : M.Finite) : M.IsGood
+| isomorphicR10 {M : Matroid α} {e : α ≃ Fin 10} (hM : M.mapEquiv e = matroidR10.toMatroid) : M.IsGood
+-- fork constructors
+| is1sum {M Mₗ Mᵣ : Matroid α} (hMMM : M.IsSum1of Mₗ Mᵣ) (hM : M.RankFinite) (hMₗ : Mₗ.IsGood) (hMᵣ : Mᵣ.IsGood) : M.IsGood
+| is2sum {M Mₗ Mᵣ : Matroid α} (hMMM : M.IsSum2of Mₗ Mᵣ) (hM : M.RankFinite) (hMₗ : Mₗ.IsGood) (hMᵣ : Mᵣ.IsGood) : M.IsGood
+| is3sum {M Mₗ Mᵣ : Matroid α} (hMMM : M.IsSum3of Mₗ Mᵣ) (hM : M.RankFinite) (hMₗ : Mₗ.IsGood) (hMᵣ : Mᵣ.IsGood) : M.IsGood
+
+/-- Corollary of the easy direction of the Seymour's theorem. -/
+theorem Matroid.IsGood.isRegular {M : Matroid α} (hM : M.IsGood) : M.IsRegular := by
+  induction hM with
+  | graphic hM => exact hM.isRegular
+  | cographic hM hM' => exact hM.isRegular hM'
+  | @isomorphicR10 M e hM => simp [←M.isRegular_mapEquiv_iff e, hM]
+  | is1sum hMMM hM _ _ ihₗ ihᵣ => exact hMMM.isRegular hM ihₗ ihᵣ
+  | is2sum hMMM hM _ _ ihₗ ihᵣ => exact hMMM.isRegular hM ihₗ ihᵣ
+  | is3sum hMMM hM _ _ ihₗ ihᵣ => exact hMMM.isRegular hM ihₗ ihᵣ
+
+/-- Every good matroid is binary. -/
+lemma Matroid.IsGood.isBinary {M : Matroid α} (hM : M.IsGood) :
+    ∃ X Y : Set α, ∃ A : Matrix X Y Z2, A.toMatroid = M :=
+  hM.isRegular.isBinary

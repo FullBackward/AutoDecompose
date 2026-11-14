@@ -1,0 +1,190 @@
+{
+  "id": "latex-blueprint-node-equational-theories-0fe29dc5",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Blueprint node greedy-iterate: iterating the greedy extension to a complete 1323 magma",
+  "intent": "The blueprint node greedy-iterate closes the chapter's construction by citing three already-stated nodes (greedy-1323, build-magma, partial-1323-sound) and adding one sentence of glue, so every partial solution extends to a complete 1323 magma with no new argument.",
+  "move": "blueprint-node",
+  "also_known_as": [
+    "blueprint \\uses{} node (Numina-Lean-Agent)",
+    "Goedel-Architect @[blueprint] lemma",
+    "Prove2Me statement object"
+  ],
+  "language": "latex",
+  "source": {
+    "source_id": "equational-theories",
+    "url": "https://github.com/teorth/equational_theories",
+    "commit": "8b87204d5b201e1cf6c69b8dcabb0558109bee00",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "blueprint/src/chapter/1323.tex",
+      "bytes": 8243,
+      "sha256": "f3fc985ccf7b6cbf0c6a087662ce874cf197e19d504eec4264daa0722fa9b9db",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/blueprint/src/chapter/1323.tex"
+    },
+    {
+      "path": "equational_theories/ManuallyProved/Equation1323.lean",
+      "bytes": 26133,
+      "sha256": "d9a08c0aa02f5084000bfe3cb2483cef6468756e84b5363208d19e6d9d8cb47b",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/ManuallyProved/Equation1323.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "blueprint/src/chapter/1323.tex",
+      "lines": [
+        111,
+        115
+      ],
+      "role": "parent",
+      "name": "greedy-iterate",
+      "excerpt_sha256": "02029b63689721f4cf573da35dded7bf6a34cfb9c76d89ed82c6546e08c2a010",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/blueprint/src/chapter/1323.tex#L111-L115"
+    },
+    {
+      "path": "blueprint/src/chapter/1323.tex",
+      "lines": [
+        101,
+        109
+      ],
+      "role": "child",
+      "name": "greedy-1323",
+      "excerpt_sha256": "8c156ce53153f9dc7c1c7bf48269af653359a95c4f50c8db5f7ea9f1a8ca45db",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/blueprint/src/chapter/1323.tex#L101-L109"
+    },
+    {
+      "path": "blueprint/src/chapter/1323.tex",
+      "lines": [
+        37,
+        85
+      ],
+      "role": "child",
+      "name": "build-magma",
+      "excerpt_sha256": "7aa200492eff96f45760d43f61b0b248c30e7ae7cf154ca671e552639230fa14",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/blueprint/src/chapter/1323.tex#L37-L85"
+    },
+    {
+      "path": "blueprint/src/chapter/1323.tex",
+      "lines": [
+        91,
+        99
+      ],
+      "role": "child",
+      "name": "partial-1323-sound",
+      "excerpt_sha256": "e8ca22d3182faae46c81ff1173235ebfd8b14b432c68b012f0ff708518d6ea6e",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/blueprint/src/chapter/1323.tex#L91-L99"
+    }
+  ],
+  "parent": {
+    "name": "greedy-iterate",
+    "statement": "Every partial solution can be extended to a complete solution that satisfies (lr) and (lr-simp), and hence 1323.",
+    "note": "Blueprint corollary node. The annotation \\lean{Eq1323.exists_complete_function} maps it to the Lean theorem exists_complete_function (equational_theories/ManuallyProved/Equation1323.lean:536-560)."
+  },
+  "children": [
+    {
+      "name": "greedy-1323",
+      "statement": "If the operation op is defined by a partial solution and (x,a) op (y,b) is undefined for some nonzero rationals x,y and distinct nonzero a,b in G, then the partial solution can be extended so that (x,a) op (y,b) is now defined.",
+      "closed_by": "its own proof (1323.tex:104-108), which selects a fresh c and arbitrary z, adds the tuple (x,y,z,a,b,c), and argues the new infinite orbit does not collide because c is novel and phi_b(c) has fresh primes",
+      "note": "Blueprint lemma node. The annotation \\lean{Eq1323.extend} maps it to the Lean theorem extend (Equation1323.lean:523-530); its \\uses{partial-1323-sound} gives the chain greedy-iterate -> greedy-1323 -> partial-1323-sound."
+    },
+    {
+      "name": "build-magma",
+      "statement": "For a countably infinite abelian torsion group G of exponent 2 with the bijections phi_a of the previous lemma, any operation op on M (the disjoint union of G and the set N of pairs) satisfying axioms (i), (ii), (iii) makes (lr) and (lr-simp), and hence 1323, hold.",
+      "closed_by": "its own proof (1323.tex:62-85) using \\uses{bij}: verify (lr), then (lr-simp) case by case, with the distinct-a,b case discharged by axiom (iii)",
+      "note": "Blueprint lemma node. The annotations \\lean{Eq1323.op}, \\lean{Eq1323.op_RSy_LSy_eq_Id}, \\lean{Eq1323.op_Ly_Ry_eq_LSy} map it to the Lean def op (Equation1323.lean:570-577) and the operator identities op_RSy_LSy_eq_Id (579-580) and op_Ly_Ry_eq_LSy (595-610)."
+    },
+    {
+      "name": "partial-1323-sound",
+      "statement": "For a partial solution F, defining the partial operation op on M by axioms (i), (ii) and the three additional assignment families, and no other operations, gives a well-defined partial operation satisfying axiom (iii) whenever it is defined.",
+      "closed_by": "the one-word proof 'Routine.' (1323.tex:98)",
+      "note": "Blueprint lemma node with no \\lean{} annotation: its content is folded into the Lean def Axiom3 (Equation1323.lean:533-534) and the conclusion Axiom3 f of exists_complete_function."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A node of a published blueprint dependency graph (a corollary or lemma whose proof is a \\uses{...} clause plus at most one sentence), where the node's whole content is the composition of a small set of already-stated siblings.",
+    "use_when": "the blueprint's \\uses{} edges and \\lean{} annotations are the source of truth; the node's proof names its children and adds no new argument; each child is a self-contained statement that closes on its own or from named siblings.",
+    "avoid_when": "the \\uses{} edges are missing or wrong; the proof carries real content that deserves its own node rather than a one-line glue; a child has no \\lean{} mapping and its formal counterpart is not otherwise locatable."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The site `greedy-iterate` is 5 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(greedy-iterate, 5)",
+      "evidence": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/blueprint/src/chapter/1323.tex#L111-L115"
+    },
+    {
+      "n": 2,
+      "claim": "The site `greedy-iterate` cites `greedy-1323`.",
+      "evidence_kind": "check",
+      "form": "cites(greedy-iterate, greedy-1323)",
+      "evidence": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/blueprint/src/chapter/1323.tex#L111-L115"
+    },
+    {
+      "n": 3,
+      "claim": "The site `greedy-iterate` cites `build-magma`.",
+      "evidence_kind": "check",
+      "form": "cites(greedy-iterate, build-magma)",
+      "evidence": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/blueprint/src/chapter/1323.tex#L111-L115"
+    },
+    {
+      "n": 4,
+      "claim": "The site `greedy-iterate` cites `partial-1323-sound`.",
+      "evidence_kind": "check",
+      "form": "cites(greedy-iterate, partial-1323-sound)",
+      "evidence": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/blueprint/src/chapter/1323.tex#L111-L115"
+    },
+    {
+      "n": 5,
+      "claim": "The corollary's glue directly cites 3 project lemmas, and the longest chain of project lemmas below the corollary has depth 2.",
+      "evidence_kind": "measurement",
+      "evidence": "direct lemmas: the three names in the \\uses{} clause at https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/blueprint/src/chapter/1323.tex#L114; depth 2: greedy-1323 \\uses{partial-1323-sound} at #L101 and build-magma \\uses{bij} at #L62"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 2,
+    "glue_lines": 5,
+    "child_lines": [
+      9,
+      49,
+      9
+    ]
+  },
+  "metrics": {
+    "direct_lemmas": 3,
+    "depth": 2,
+    "lean_counterparts": "exists_complete_function (536-560), extend (523-530), op (570-577), op_RSy_LSy_eq_Id (579-580), op_Ly_Ry_eq_LSy (595-610)",
+    "how_counted": "direct lemmas from the \\uses{} clause at 1323.tex:114; depth from \\uses{partial-1323-sound} at :101 and \\uses{bij} at :62; Lean line ranges from the copied Equation1323.lean"
+  },
+  "consequences": "Each node must state its children before it is proved and keep the \\uses{} edges acyclic and complete (every lemma the proof uses must be named). A child whose \\lean{} annotation is missing (partial-1323-sound here) leaves its formal counterpart implicit, so a reader cannot navigate straight to the code. If the one-sentence glue is wrong about which siblings suffice, the node fails even though every child is true.",
+  "known_uses": [
+    "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/blueprint/src/chapter/1323.tex#L117-L129"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 14,
+    "relation": "supports"
+  },
+  "content_key": "0fe29dc5be4e44e05361afc10dbdc8d8771126732362d276bceb2a8d0c26b1e4",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:09:18Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:14:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T09:17:04Z"
+}

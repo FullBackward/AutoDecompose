@@ -1,0 +1,270 @@
+{
+  "id": "lean-key-invariant-pramaana-imo2026-f2c90a7c",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Key invariants mu (potential) and pinv (p-adic) close IMO 2026 Problem 1",
+  "intent": "Prove that IMO 2026 Problem 1's answer is `true` together with the full end-state characterisation (no infinite play, a terminal board exists, every terminal board has `bigCount` 1, and all terminal boards share the same `bigPart`) by carrying the whole proof on two conserved quantities: a potential `mu s = 2 * s.prod + bigCount s` that strictly decreases along every move, and a p-adic invariant `pinv p s` that pins the surviving entry's prime factorization.",
+  "move": "key-invariant",
+  "also_known_as": [
+    "potential function",
+    "descent function",
+    "invariant",
+    "conserved quantity"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "pramaana-imo2026",
+    "url": "https://github.com/pramaana-labs/imo2026-lean",
+    "commit": "788fddc53c463d5d40d4680fb9bfd7b0f96f1063",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "IMO2026/Q1/solution.lean",
+      "bytes": 14257,
+      "sha256": "e2e46608065b914c847011e2309acbde96112076c09caa539d154771e3a3f5d2",
+      "permalink": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q1/solution.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "IMO2026/Q1/solution.lean",
+      "lines": [
+        248,
+        338
+      ],
+      "role": "parent",
+      "name": "answer_correctness",
+      "excerpt_sha256": "03843072f4374eabae99b2e45fca0689651457bd44d30a3beac628c110e3d9e1",
+      "permalink": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q1/solution.lean#L248-L338"
+    },
+    {
+      "path": "IMO2026/Q1/solution.lean",
+      "lines": [
+        80,
+        90
+      ],
+      "role": "child",
+      "name": "isTerminal_iff",
+      "excerpt_sha256": "545c6cd3676536f93d2672f44127fd171902416a38d9653a233b7b2121a112d5",
+      "permalink": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q1/solution.lean#L80-L90"
+    },
+    {
+      "path": "IMO2026/Q1/solution.lean",
+      "lines": [
+        92,
+        105
+      ],
+      "role": "child",
+      "name": "pos_of_move",
+      "excerpt_sha256": "a94d0ec08fba7c2a997fb6faaacaa11891c1fc92b5ef782826e27120fff053ae",
+      "permalink": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q1/solution.lean#L92-L105"
+    },
+    {
+      "path": "IMO2026/Q1/solution.lean",
+      "lines": [
+        107,
+        118
+      ],
+      "role": "child",
+      "name": "one_le_bigCount_of_move",
+      "excerpt_sha256": "bfb53031aed428009ba1843b09938f6d9d2d640874c15dbe4b278cde921547c6",
+      "permalink": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q1/solution.lean#L107-L118"
+    },
+    {
+      "path": "IMO2026/Q1/solution.lean",
+      "lines": [
+        125,
+        173
+      ],
+      "role": "child",
+      "name": "mu_lt_of_move",
+      "excerpt_sha256": "8f6d21954aef03045743f689e865fc8b45318cfc791b5b5e53f92568a28ab296",
+      "permalink": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q1/solution.lean#L125-L173"
+    },
+    {
+      "path": "IMO2026/Q1/solution.lean",
+      "lines": [
+        210,
+        213
+      ],
+      "role": "child",
+      "name": "pos_rtg",
+      "excerpt_sha256": "d4fb7ab7dd8ab9827961712b0eac7ca69dea6b0e973bdcd2af155c0fc75d1df0",
+      "permalink": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q1/solution.lean#L210-L213"
+    },
+    {
+      "path": "IMO2026/Q1/solution.lean",
+      "lines": [
+        215,
+        219
+      ],
+      "role": "child",
+      "name": "pinv_rtg",
+      "excerpt_sha256": "bdd2c74b8498417b9bfd644a2f58fd481b529629384a3189f1463ef9c3c733c6",
+      "permalink": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q1/solution.lean#L215-L219"
+    },
+    {
+      "path": "IMO2026/Q1/solution.lean",
+      "lines": [
+        244,
+        246
+      ],
+      "role": "child",
+      "name": "exists_terminal",
+      "excerpt_sha256": "4581ae41e3be5a6ef48958afc69b060edbbf63131390aa925482a16d5b4645e8",
+      "permalink": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q1/solution.lean#L244-L246"
+    }
+  ],
+  "parent": {
+    "name": "answer_correctness",
+    "statement": "theorem answer_correctness\n    (s₀ : Board)\n    (h_card : Fact_card s₀)\n    (h_all_gt1 : Fact_all_gt1 s₀)\n    : answer = true ↔\n        ( (¬ ∃ f : ℕ → Board, f 0 = s₀ ∧ ∀ k, Move (f k) (f (k + 1)))\n          ∧ (∃ t, Relation.ReflTransGen Move s₀ t ∧ IsTerminal t)\n          ∧ (∀ t, Relation.ReflTransGen Move s₀ t → IsTerminal t → bigCount t = 1)\n          ∧ (∀ t₁ t₂, Relation.ReflTransGen Move s₀ t₁ → IsTerminal t₁ →\n               Relation.ReflTransGen Move s₀ t₂ → IsTerminal t₂ →\n               bigPart t₁ = bigPart t₂) )"
+  },
+  "children": [
+    {
+      "name": "isTerminal_iff",
+      "statement": "lemma isTerminal_iff {s : Board} : IsTerminal s ↔ bigCount s ≤ 1",
+      "closed_by": "constructor, then omega closes both directions (forward via exists_move_of_two_le, reverse via move_decomp and bigCount_cons_big)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: IsTerminal s iff bigCount s <= 1"
+    },
+    {
+      "name": "pos_of_move",
+      "statement": "lemma pos_of_move {s t : Board} (hp : Pos s) (h : Move s t) : Pos t",
+      "closed_by": "move_decomp then rcases on Multiset.mem_cons; the three entries of t are positive by Nat.gcd_pos_of_pos_left, Nat.lcm_pos + Nat.div_pos, and hp",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: Pos s -> Move s t -> Pos t"
+    },
+    {
+      "name": "one_le_bigCount_of_move",
+      "statement": "lemma one_le_bigCount_of_move {s t : Board} (h : Move s t) : 1 ≤ bigCount t",
+      "closed_by": "by_cases hgb : 1 < Nat.gcd m n, then bigCount_cons_big / bigCount_cons_small and omega",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: Move s t -> 1 <= bigCount t"
+    },
+    {
+      "name": "mu_lt_of_move",
+      "statement": "lemma mu_lt_of_move {s t : Board} (hp : Pos s) (h : Move s t) : mu t < mu s",
+      "closed_by": "move_decomp, then by_cases hg1 : g = 1; unfold mu and omega in each case",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: Pos s -> Move s t -> mu t < mu s"
+    },
+    {
+      "name": "pos_rtg",
+      "statement": "lemma pos_rtg {s t : Board} (hp : Pos s) (h : Relation.ReflTransGen Move s t) : Pos t",
+      "closed_by": "induction h with refl => hp, tail => pos_of_move",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: Pos s -> ReflTransGen Move s t -> Pos t"
+    },
+    {
+      "name": "pinv_rtg",
+      "statement": "lemma pinv_rtg {p : ℕ} {s t : Board}\n    (h : Relation.ReflTransGen Move s t) : pinv p t = pinv p s",
+      "closed_by": "induction h with refl => rfl, tail => pinv_move",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: ReflTransGen Move s t -> pinv p t = pinv p s"
+    },
+    {
+      "name": "exists_terminal",
+      "statement": "lemma exists_terminal {s : Board} (hp : Pos s) :\n    ∃ t, Relation.ReflTransGen Move s t ∧ IsTerminal t",
+      "closed_by": "exists_terminal_aux (mu s) s le_rfl hp",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: Pos s -> exists t, ReflTransGen Move s t /\\ IsTerminal t"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A competition problem whose answer is a Boolean plus a characterisation of the end state of a terminating multiset-rewriting process, stated as an iff between `answer = true` and a conjunction (no infinite play, a terminal state exists, every terminal state has `bigCount` 1, and all terminal states share the same `bigPart`). The glue is carried by two conserved quantities: a potential `mu s = 2 * s.prod + bigCount s` that strictly decreases along every move, and a p-adic invariant `pinv p s` (the gcd of p-adic valuations of the entries) that pins the surviving entry's factorization.",
+    "use_when": "the process is a finite rewriting system whose termination and confluence can both be shown from one potential and one invariant; the potential is a linear combination of a strictly-decreasing quantity and a bounded one (here 2 * prod plus bigCount); and the invariant factors through every prime, so equality of two end states follows from equality of all p-adic valuations.",
+    "avoid_when": "the move does not change the potential monotonically (so descent needs a different measure); the invariant is too weak to distinguish the end states (so confluence needs a separate argument); or the end-state characterisation is not expressible as gcd/factorization facts already in the library (here `pinv` needs `Nat.factorization_gcd`, `Nat.factorization_lcm`, `Nat.factorization_div`, and the custom `gcd_min_sub`)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site `answer_correctness` is 91 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(answer_correctness, 91)",
+      "evidence": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q1/solution.lean#L248-L338"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites `pinv_rtg`.",
+      "evidence_kind": "check",
+      "form": "cites(answer_correctness, pinv_rtg)",
+      "evidence": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q1/solution.lean#L248-L338"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site cites `mu_lt_of_move`.",
+      "evidence_kind": "check",
+      "form": "cites(answer_correctness, mu_lt_of_move)",
+      "evidence": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q1/solution.lean#L248-L338"
+    },
+    {
+      "n": 4,
+      "claim": "Lines 248-338 of `IMO2026/Q1/solution.lean` contain no `sorry`, `admit`, or `axiom`.",
+      "evidence_kind": "check",
+      "form": "no_sorry(IMO2026/Q1/solution.lean, 248-338)",
+      "evidence": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q1/solution.lean"
+    },
+    {
+      "n": 5,
+      "claim": "The decomposition has 7 direct lemmas, a 91-line glue, and depth 4: the main theorem cites `exists_terminal`, which cites `exists_terminal_aux`, which cites `mu_lt_of_move`, which cites `move_decomp`.",
+      "evidence_kind": "measurement",
+      "evidence": "counted from the entry's sites: parent lines 248-338 (91 lines); child sites lines 80-90, 92-105, 107-118, 125-173, 210-213, 215-219, 244-246; `exists_terminal` (lines 244-246) cites `exists_terminal_aux` at line 246; `exists_terminal_aux` (lines 221-242) cites `mu_lt_of_move` at line 240; `mu_lt_of_move` (lines 125-173) cites `move_decomp` at line 126"
+    },
+    {
+      "n": 6,
+      "claim": "The authors mark the two descent cases with comments: \"coprime case: product unchanged, bigCount drops by one\" and \"gcd > 1: product strictly decreases\".",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/pramaana-labs/imo2026-lean/blob/788fddc53c463d5d40d4680fb9bfd7b0f96f1063/IMO2026/Q1/solution.lean#L146-L159"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 7,
+    "depth": 4,
+    "glue_lines": 91,
+    "child_lines": [
+      11,
+      14,
+      12,
+      49,
+      4,
+      5,
+      3
+    ]
+  },
+  "metrics": {
+    "parent_lines": 91,
+    "children": 7,
+    "depth": 4,
+    "how_counted": "parent_lines = lines 248-338 of the copied file; children = the 7 named lemmas the glue cites directly (isTerminal_iff, pos_of_move, one_le_bigCount_of_move, mu_lt_of_move, pos_rtg, pinv_rtg, exists_terminal); depth = the chain answer_correctness -> exists_terminal -> exists_terminal_aux -> mu_lt_of_move -> move_decomp, four project lemmas below the theorem"
+  },
+  "consequences": "The move obliges the writer to (i) prove the potential strictly decreases along every move (`mu_lt_of_move`), a two-case analysis on whether `gcd m n = 1`; (ii) prove the invariant is preserved along a move and along its reflexive-transitive closure (`pinv_move`, `pinv_rtg`); (iii) prove positivity propagates along moves (`pos_of_move`) so the potential stays defined and non-negative; and (iv) lift the single-step facts to the reflexive-transitive closure by induction (`pos_rtg`, `pinv_rtg`) and to termination by well-founded induction on the potential (`exists_terminal_aux`). Failure mode: `mu` mixes a multiplicative quantity (`s.prod`) with an additive one (`bigCount`); if the move could increase the product while decreasing `bigCount`, a single potential would no longer be monotone and the two quantities would have to be tracked separately.",
+  "known_uses": [],
+  "related": [
+    "lean-key-invariant-mathlib4-3f171129",
+    "lean-key-invariant-compfiles-f9a0ece2",
+    "lean-key-invariant-seed-prover-ccd41e1d"
+  ],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "f2c90a7c4d90b426959e8ee30aa2bbc6c59d97c7f80910ae591747ee283ba5f0",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:36:49Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,also_known_as,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:45:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:40:38Z",
+      "note": "parent answer_correctness: statement re-copied from code; child 'isTerminal_iff': statement re-copied from the declaration of isTerminal_iff; child 'pos_of_move': statement re-copied from the declaration of pos_of_move; child 'one_le_bigCount_of_move': statement re-copied from the declaration of one_le_bigCount_of_move; child 'mu_lt_of_move': statement re-copied from the declaration of mu_lt_of_move; child 'pos_rtg': statement re-copied from the declaration of pos_rtg; child 'pinv_rtg': statement re-copied from the declaration of pinv_rtg; child 'exists_terminal': statement re-copied from the declaration of exists_terminal"
+    }
+  ]
+}

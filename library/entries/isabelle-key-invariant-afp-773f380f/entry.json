@@ -1,0 +1,233 @@
+{
+  "id": "isabelle-key-invariant-afp-773f380f",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Strong absolute form of Mertens' First Theorem via a key identity",
+  "intent": "Prove the absolute bound ℳ(n) − ln n ∈ (−1 − 9/π², ln 4] by routing the target remainder through one key identity ℳ n − ln n = ln (fact n) / n − ln n + r / n − R / n, so that three already-proved project lemmas bound the three terms on the right and a single transitivity step closes the interval.",
+  "move": "key-invariant",
+  "also_known_as": [
+    "route through a key identity",
+    "estimate-and-combine"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "afp",
+    "url": "https://github.com/isabelle-prover/mirror-afp-devel",
+    "commit": "07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "thys/Prime_Number_Theorem/Mertens_Theorems.thy",
+      "bytes": 40094,
+      "sha256": "16c4e022ecff3ef3e1ffb3876d80648e1cad692660bc23bf7b0773d0aedac120",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Prime_Number_Theorem/Mertens_Theorems.thy"
+    },
+    {
+      "path": "thys/Prime_Number_Theorem/Prime_Number_Theorem_Library.thy",
+      "bytes": 74652,
+      "sha256": "5f0192512b42a16e6915b3d895311d5295e8f3a98f2427f32d204f38c59e7fc7",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Prime_Number_Theorem/Prime_Number_Theorem_Library.thy"
+    },
+    {
+      "path": "thys/Prime_Number_Theorem/Prime_Counting_Functions.thy",
+      "bytes": 84377,
+      "sha256": "6eaa719aae15718f09e4ad7d80604f97eb08634afe9530aa6c84425072f4767d",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Prime_Number_Theorem/Prime_Counting_Functions.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "thys/Prime_Number_Theorem/Mertens_Theorems.thy",
+      "lines": [
+        250,
+        374
+      ],
+      "role": "parent",
+      "name": "mertens_bound_strong",
+      "excerpt_sha256": "50a7a3dee419a0090210cf0a9778a6969f81c30fa0575e18ad2510e39dc7868a",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Prime_Number_Theorem/Mertens_Theorems.thy#L250-L374"
+    },
+    {
+      "path": "thys/Prime_Number_Theorem/Mertens_Theorems.thy",
+      "lines": [
+        118,
+        236
+      ],
+      "role": "child",
+      "name": "mertens_remainder_aux_bound",
+      "excerpt_sha256": "dc4d1d1bf9f21bfd58930464f3f9dfbdfd93676874c27d22e61b1ed5fb4c7d68",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Prime_Number_Theorem/Mertens_Theorems.thy#L118-L236"
+    },
+    {
+      "path": "thys/Prime_Number_Theorem/Prime_Number_Theorem_Library.thy",
+      "lines": [
+        1226,
+        1245
+      ],
+      "role": "child",
+      "name": "primepows_le_subset",
+      "excerpt_sha256": "12f5b9b8d57b38b884eca82c6bc55007cc9117fb78629af1b1a0375d38e9f1d0",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Prime_Number_Theorem/Prime_Number_Theorem_Library.thy#L1226-L1245"
+    },
+    {
+      "path": "thys/Prime_Number_Theorem/Prime_Number_Theorem_Library.thy",
+      "lines": [
+        45,
+        55
+      ],
+      "role": "child",
+      "name": "ln_fact_conv_sum_upto_mangoldt",
+      "excerpt_sha256": "79c7e3feab22daf669a15cd69dd0c11fa3532110829c9ad80d5d10f168d722fb",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Prime_Number_Theorem/Prime_Number_Theorem_Library.thy#L45-L55"
+    },
+    {
+      "path": "thys/Prime_Number_Theorem/Prime_Counting_Functions.thy",
+      "lines": [
+        923,
+        943
+      ],
+      "role": "child",
+      "name": "\\<theta>_upper_bound",
+      "excerpt_sha256": "7e4aacc83e7c071fd56693329c5992d65cab5459188027b4b8d1a87ddb46dc0d",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Prime_Number_Theorem/Prime_Counting_Functions.thy#L923-L943"
+    },
+    {
+      "path": "thys/Prime_Number_Theorem/Prime_Counting_Functions.thy",
+      "lines": [
+        99,
+        117
+      ],
+      "role": "child",
+      "name": "sum_upto_primepows",
+      "excerpt_sha256": "7b4e27196499ea09ecba71703abed3625017dfd6ae5ee330799cf3285082714f",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Prime_Number_Theorem/Prime_Counting_Functions.thy#L99-L117"
+    }
+  ],
+  "parent": {
+    "name": "mertens_bound_strong",
+    "statement": "theorem mertens_bound_strong:\n  fixes n :: nat assumes n: \"n > 0\"\n  shows   \"\\<MM> n - ln n \\<in> {-1 - 9 / pi\\<^sup>2<..ln 4}\""
+  },
+  "children": [
+    {
+      "name": "mertens_remainder_aux_bound",
+      "statement": "lemma mertens_remainder_aux_bound:\n  fixes x :: real\n  defines \"R \\<equiv> (\\<Sum>(p,i) | prime p \\<and> i > 1 \\<and> real (p ^ i) \\<le> x. ln (real p) / p ^ i)\"\n  shows   \"R < 9 / pi\\<^sup>2\"",
+      "closed_by": "finally show ?thesis by simp (the last estimate uses deriv_zeta_2_bound)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the prime-power remainder R = ∑ ln p / p^i over p prime, i > 1, p^i ≤ x is < 9/π²"
+    },
+    {
+      "name": "primepows_le_subset",
+      "statement": "lemma primepows_le_subset:\n  assumes x: \"x > 0\" and l: \"l > 0\"\n  shows   \"{(p, i). prime p \\<and> l \\<le> i \\<and> real (p ^ i) \\<le> x} \\<subseteq> {..nat \\<lfloor>root l x\\<rfloor>} \\<times> {..nat \\<lfloor>log 2 x\\<rfloor>}\"",
+      "closed_by": "proof safe … qed (two goals, each closed by auto/intro)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the prime powers {(p,i) | prime p ∧ l ≤ i ∧ p^i ≤ x} lie in a finite rectangle"
+    },
+    {
+      "name": "ln_fact_conv_sum_upto_mangoldt",
+      "statement": "lemma ln_fact_conv_sum_upto_mangoldt:\n  \"ln (fact n) = sum_upto (\\<lambda>k. mangoldt k * (n div k)) n\"",
+      "closed_by": "finally show ?thesis . (via sum_upto_ln_conv_sum_upto_mangoldt)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: ln (fact n) = sum_upto (λk. mangoldt k * (n div k)) n"
+    },
+    {
+      "name": "\\<theta>_upper_bound",
+      "statement": "lemma \\<theta>_upper_bound:\n  assumes x: \"x \\<ge> 1\"\n  shows   \"\\<theta> x < ln 4 * x\"",
+      "closed_by": "by (subst (asm) powr_less_cancel_iff) (auto simp: field_simps) (using prod_primes_upto_less)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: θ x < ln 4 * x for x ≥ 1"
+    },
+    {
+      "name": "sum_upto_primepows",
+      "statement": "lemma sum_upto_primepows:\n  fixes f :: \"nat \\<Rightarrow> 'a :: comm_monoid_add\"\n  assumes \"\\<And>n. \\<not>primepow n \\<Longrightarrow> f n = 0\" \"\\<And>p i. prime p \\<Longrightarrow> i > 0 \\<Longrightarrow> f (p ^ i) = g p i\"\n  shows   \"sum_upto f x = (\\<Sum>(p, i) | prime p \\<and> i > 0 \\<and> real (p ^ i) \\<le> x. g p i)\"",
+      "closed_by": "finally show ?thesis . (via sum.reindex_bij_witness over p ↦ (p, multiplicity))",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: sum_upto f x = ∑ g p i over prime powers (p, i) with i > 0, p^i ≤ x, when f vanishes off prime powers"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An absolute (not asymptotic) bound on a remainder of the form ℳ(n) − ln n, or more generally a sum over primes, that must hold on the whole domain, expressed as an interval membership ∈ (a, b].",
+    "use_when": "The target quantity can be rewritten through one key identity into a few terms, each of which is bounded by a named lemma that was proved independently (here: log factorial via Stirling, a Chebyshev θ bound, and the prime-power remainder R); the combination of the estimates is a short transitivity step.",
+    "avoid_when": "Only an asymptotic (Big-O) bound is needed, where the careful absolute estimates are overkill; or the terms are not genuinely independent so the leaves cannot be proved before the parent is assembled; or the key identity itself needs a non-trivial proof that dominates the work."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site (the glue) is 125 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Prime_Number_Theorem/Mertens_Theorems.thy#L250-L374",
+      "form": "lines(parent, 125)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent proof cites `mertens_remainder_aux_bound`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Prime_Number_Theorem/Mertens_Theorems.thy#L250-L374",
+      "form": "cites(parent, mertens_remainder_aux_bound)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent theorem `mertens_bound_strong` is declared at `thys/Prime_Number_Theorem/Mertens_Theorems.thy` lines 250-374.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Prime_Number_Theorem/Mertens_Theorems.thy#L250-L374",
+      "form": "declared(mertens_bound_strong, thys/Prime_Number_Theorem/Mertens_Theorems.thy, 250-374)"
+    },
+    {
+      "n": 4,
+      "claim": "The authors describe the decomposition plan in a comment: they will \"estimate both sides in different ways\" and \"split the sum into those $p^i$ with $i = 1$ and those with $i \\geq 2$\", then \"Applying the bound we have just shown and some more routine estimates\".",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Prime_Number_Theorem/Mertens_Theorems.thy#L238-L249"
+    },
+    {
+      "n": 5,
+      "claim": "The decomposition is shallow: 5 direct lemmas, longest project-lemma chain of length 3, glue 125 lines, child proofs of 119, 20, 11, 21 and 19 lines.",
+      "evidence_kind": "measurement",
+      "evidence": "Line counts of the sites (declaration through qed): parent 250-374; children 118-236, 1226-1245, 45-55, 923-943, 99-117. The depth chain is mertens_bound_strong -> mertens_remainder_aux_bound -> deriv_zeta_2_bound (Mertens_Theorems.thy 61-111) -> ln_powr_has_integral_at_top (Prime_Number_Theorem_Library.thy 1414)."
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 5,
+    "depth": 3,
+    "glue_lines": 125,
+    "child_lines": [
+      119,
+      20,
+      11,
+      21,
+      19
+    ]
+  },
+  "metrics": {
+    "parent_lines": 125,
+    "direct_children": 5,
+    "depth": 3,
+    "how_counted": "parent site 250-374; child sites 118-236, 1226-1245, 45-55, 923-943, 99-117 (each declaration through its qed); depth is the chain mertens_bound_strong -> mertens_remainder_aux_bound -> deriv_zeta_2_bound -> ln_powr_has_integral_at_top"
+  },
+  "consequences": "The move creates two kinds of obligation. First, the small cases (n = 1 and n = 2) must be closed by direct arithmetic, outside the key identity. Second, each of the three terms the identity exposes must be bounded into a non-negative interval of the right width, so that their combination via the identity lands in the target interval: R/n ∈ [0, 9/π²), r/n ∈ [0, ln 4), and ln n − ln(fact n)/n ∈ [0, 1]. Failure mode: if any one estimate is not tight enough or has the wrong sign, the final `with ... by simp` no longer closes the interval, and the whole theorem must be re-proved around a tighter bound.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "773f380f8ea76128d776a9d9044dcaabc76b23fca9b53428ce4676d02835e523",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:31:01Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:45:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:33:36Z",
+      "note": "parent mertens_bound_strong: statement re-copied from code; child 'mertens_remainder_aux_bound': statement re-copied from the declaration of mertens_remainder_aux_bound; child 'primepows_le_subset': statement re-copied from the declaration of primepows_le_subset; child 'ln_fact_conv_sum_upto_mangoldt': statement re-copied from the declaration of ln_fact_conv_sum_upto_mangoldt; child '\\\\<theta>_upper_bound': statement re-copied from the declaration of \\<theta>_upper_bound; child 'sum_upto_primepows': statement re-copied from the declaration of sum_upto_primepows"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "entry": "isabelle-per-callee-lemma-munkres-isabelle-97b8b78b",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:47:27Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:47:27Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:47:27Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: Theorem_19_2_box@tst/i/Top1_Ch2.thy:11394, Theorem_19_2_product@tst/i/Top1_Ch2.thy:11398; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:47:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, Theorem_19_2_box) -> cites: Theorem_19_2_box occurs at tst/i/Top1_Ch2.thy:11394",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:47:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, Theorem_19_2_product) -> cites: Theorem_19_2_product occurs at tst/i/Top1_Ch2.thy:11398",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:47:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(tst/i/Top1_Ch2.thy:9286-9450, Lemma_13_2) -> cites: Lemma_13_2 occurs at tst/i/Top1_Ch2.thy:9439",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:47:27Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 90d108779e83453e9cae2f55b513246e1cc044e0",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:47:38Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI workflow in the source repository: list_files.py at commit 90d1087 lists 13 files with none under .github/workflows (no .yml/.yaml), so no CI builds this file",
+      "by": "verifier",
+      "at": "2026-11-14T10:48:34Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "line counts checked against code/tst/i/Top1_Ch2.thy: Theorem_19_2_box spans 9286-9450 (qed at 9450) = 165 lines; Theorem_19_2_product spans 9452-9743 (qed at 9743) = 292 lines; 165+292=457; parent 11382-11399 (qed at 11399) = 18 lines; parent proof body is two show-by-rule applications",
+      "by": "verifier",
+      "at": "2026-11-14T10:48:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read lines 11401-11442: Theorem_19_3 (11401-11415) closed by by (rule Theorem_19_3_box[OF hTop hA]) and by (rule Theorem_19_3_product[OF hTop hA]); Theorem_19_4 (11417-11426) by Theorem_19_4_box[OF hH]/Theorem_19_4_product[OF hH]; Theorem_19_5 (11428-11442) by Theorem_19_5_box[OF hTop hA]/Theorem_19_5_product[OF hTop hA]; each is a conjunction wrapper with one box and one product conjunct",
+      "by": "verifier",
+      "at": "2026-11-14T10:48:37Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 90d108779e83453e9cae2f55b513246e1cc044e0",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:48:57Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Provenance passes (1 file byte-identical at 90d1087). Parent 11382-11399: Theorem_19_2 is a two-conjunct 'shows ... and ...', closed by 'by (rule Theorem_19_2_box[OF hB])' (11394) and 'by (rule Theorem_19_2_product[OF hB])' (11398), qed; matches entry.json parent.statement. Child Theorem_19_2_box (9286-9450) declares the matching statement, applies Lemma_13_2 at 9439, closes 'show ?thesis by (rule hBF[unfolded Cc_def])' then qed; closed_by matches. Child Theorem_19_2_product (9452-9743) declares matching statement, applies Lemma_13_2 at 9732, closes the same way, qed. Lemma_13_2 (1257-1364) declares the four assumptions and closes qed. The parent cites exactly the two children and no other lemma, so children == lemmas the main proof uses. Shape numbers right: direct_lemmas=2; depth=2 (parent->children->Lemma_13_2); glue_lines=18 = parent site 11399-11382+1 (fields.md defines glue_lines as parent-site lines); child_lines [165,292] = 9450-9286+1, 9743-9452+1. Known-use 11401-11442: 19.3/19.4/19.5 repeat the box+product wrapper closed by _box/_product[OF ...]. No sorry in the cited ranges.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:49:45Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example: 'When to use it' generalizes to compiler passes and crunch components (matching the protocol's per-callee-lemma definition), and the 'Why it is good' opinion names the wrapper-plus-family shape as the reusable detail, not any single theorem. When-not-to-use is honest and specific with three conditions each carrying a remedy (factor a common sub-proof into a shared lemma first, as Lemma_13_2; too-short cases favor intro conjI; non-shared hypothesis context prevents uniform [OF hB]). Consequences are honest and specific (exact hypothesis restatement required or [OF hB] breaks; drifting child fails silently at parent; both children share Lemma_13_2 so a defect there breaks both; Isabelle shows-and = two goals so exhaustiveness is not silent). It says what makes the leaves good for a bounded prover: each child is a self-contained theorem..qed that closes on its own and never cites its sibling or the parent, and the depth-2 leaf Lemma_13_2 closes purely by unfolding definitions citing no further project lemma; line counts are disclosed (165/292/108), so no smallness is hidden. Verified parent site 11382-11399, children 9286-9450 and 9452-9743 (same assumes hB, no sibling citation), and known-use 11401-11442 (Theorem_19_3/4/5 each repeat the box+product conjunction wrapper).",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:50:43Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent and traceable. (1) Commit: entry.json source.commit 90d108779e83453e9cae2f55b513246e1cc044e0 matches sources/munkres-isabelle/SOURCE.md (pinned 2026-11-12) and README ('90d108779e83'), and every permalink uses it. (2) Permalinks: all point at the same commit + path tst/i/Top1_Ch2.thy; I verified the line anchors against the byte-identical local copy — 11382=theorem Theorem_19_2, 11399=qed; 9286=theorem Theorem_19_2_box, 9450=qed; 9452=theorem Theorem_19_2_product, 9743=qed; 1257=theorem Lemma_13_2, 1364=qed; 11401/11442 = Theorem_19_3/qed. (3) Licence: LicenseRef-unknown is consistent across entry.json, README and SOURCE.md, and is accurate — list_files.py at the pinned commit lists 13 files with no LICENSE/COPYING/LICENCE at the root. (4) Traceability: copied code/tst/i/Top1_Ch2.thy is sha256 59d6fe19... and 865621 bytes, matching files[0]; check_provenance.py already recorded byte-identical at the commit. (5) Source note carries repo URL, pinned commit, language and attribution. No objection.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:52:01Z"
+    }
+  ]
+}

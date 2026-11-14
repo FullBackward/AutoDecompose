@@ -1,0 +1,17 @@
+{
+  "source_id": "ssprove",
+  "url": "https://github.com/SSProve/ssprove",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "SSProve/ssprove",
+  "commit": "9a37fe0ab79d041f8d835e6cf18e37614b16a791",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-14T11:39:23Z",
+  "how_found": "discovery-1: A-rocq, B-rocq",
+  "note": "modular cryptographic proofs: ElGamal, Schnorr, secret-sharing and KEM-DEM security theorems built from named composition and game-hop lemmas; one admitted interchange_psum lemma (E3 check)",
+  "licence": "MIT",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

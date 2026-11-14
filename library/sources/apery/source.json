@@ -1,0 +1,17 @@
+{
+  "source_id": "apery",
+  "url": "https://github.com/rocq-community/apery",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "rocq-community/apery",
+  "commit": "97f0c01bec4282c4504c0225a71ff0e75aeab115",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-14T11:40:21Z",
+  "how_found": "discovery-1: A-rocq",
+  "note": "irrationality of zeta(3) following Apery/Beukers, the main theorem built from recurrence and Diophantine-approximation lemmas in theories/",
+  "licence": "CECILL-C",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

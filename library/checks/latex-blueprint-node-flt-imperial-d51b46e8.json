@@ -1,0 +1,117 @@
+{
+  "entry": "latex-blueprint-node-flt-imperial-d51b46e8",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T11:03:14Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T11:03:14Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "not-run",
+      "evidence": "no Lean, Rocq or Isabelle file among the copied files",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T11:03:14Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(frey_curve_hardly_ramified, Elliptic_curve_det_n_torsion) -> cites: Elliptic_curve_det_n_torsion occurs at blueprint/src/chapter/ch03freyold.tex:294",
+      "by": "check_claims.py",
+      "at": "2026-11-14T11:03:15Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "count(\\item, 4, blueprint/src/chapter/ch03freyold.tex) -> count: \\item occurs 4 times in 1 file(s) matching blueprint/src/chapter/ch03freyold.tex",
+      "by": "check_claims.py",
+      "at": "2026-11-14T11:03:15Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at a3210204ad8876e851e32f73dd97d882bf1ccd0a",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T11:03:27Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/blueprint.yml (workflow 'Build project', step 'Compile documentation' uses leanprover-community/docgen-action with blueprint:true, triggered on push/PR to main for paths blueprint/**) builds the blueprint including blueprint/src/chapter/ch03freyold.tex on the default branch main; pinned commit a3210204ad8876e851e32f73dd97d882bf1ccd0a is the tip of default branch main (GitHub compare main...a3210204 identical, established for this source)",
+      "by": "verifier",
+      "at": "2026-11-14T11:04:25Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Line counts read from copied ch03freyold.tex: parent frey_curve_hardly_ramified L290-L299 = 10 lines (theorem 290-293 + proof 294-299); children Elliptic_curve_det_n_torsion L44-L48 = 5, frey_curve_unramified L255-L258 = 4, frey_curve_at_2 L264-L272 = 9, Frey_curve_mod_ell_rep_at_ell L274-L286 = 13; child sum 31 under a 10-line glue",
+      "by": "verifier",
+      "at": "2026-11-14T11:04:28Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read copied ch03freyold.tex: L186 reads 'is said to be hardly ramified if it satisfies the following four axioms' (definition hardly_ramified, within L184-L193 context site); L288 reads 'We have now proved the first main result of this chapter.' Both quoted sentences present at the cited lines",
+      "by": "verifier",
+      "at": "2026-11-14T11:04:31Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read copied ch03freyold.tex L323-L331: theorem Frey_characters_are_unramified begins L323, its proof (L326) opens with \\uses{frey_curve_unramified, frey_curve_at_2} and cites both by \\ref in the body; both are children of the entry, confirming the known-use",
+      "by": "verifier",
+      "at": "2026-11-14T11:04:35Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Decomposition matches the code: the parent theorem frey_curve_hardly_ramified (L290-299) is marked notready and its proof \\uses{} exactly the four children Elliptic_curve_det_n_torsion, frey_curve_unramified, frey_curve_at_2, Frey_curve_mod_ell_rep_at_ell, one per axiom of hardly_ramified (L184-193, four \\item entries). Each child's closed_by matches its proof \\uses{} verbatim (Weil-pairing sketch; Frey_curve_good+Frey_curve_unram; multiplicative_reduction_torsion; good_reduction_implies_flat+multiplicative_reduction_torsion), and the side condition l>=5 follows from FreyPackage (ch02reductions.tex L59-61). Shape numbers verified: direct_lemmas=4, glue_lines=10 (L290-299), child_lines=[5,4,9,13] (L44-48, L255-258, L264-272, L274-286); depth=4 matches the documented chain frey_curve_unramified->Frey_curve_unram->FreyCurve.j_valuation_of_bad_prime->Frey_curve_j read off the \\uses lines. Entry is honest that the node is notready/unformalised, so it closes in blueprint terms only.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T11:06:01Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalizes to 'rho has P' where P is a short conjunction of named axioms with a theorem per axiom; avoid_when is specific (overlapping/shared hypotheses that must be proved together; or one axiom carrying all the difficulty makes the split noise). Consequences are honest: node is notready so a wrong/too-weak cited theorem fails silently, and the children are deep/sketched so the cost is deferred to their sub-decompositions. Good leaves are explained: each child is self-contained with hypotheses independent of the other axioms and closes from its own dependencies (one is a general field-level fact with no Frey hypothesis, one joins two cases, one is separated because at 2 only the semisimplification holds, one case-splits good vs multiplicative reduction), and the one-to-one axiom-to-citation lockstep is what makes it safe to hand one hole per bounded prover.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T11:06:43Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at a3210204ad8876e851e32f73dd97d882bf1ccd0a",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T11:06:59Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance-licence consistent: check_provenance.py passes (2 files byte-identical at a3210204ad8876e851e32f73dd97d882bf1ccd0a). Both copied files' sha256 match entry.json (ch03freyold.tex ace6e25e..., ch02reductions.tex ea42852a...). All six site permalinks use the pinned commit and path blueprint/src/chapter/ch03freyold.tex with line ranges that match the local copies verbatim (parent L290-299, context L184-193, children L44-48/255-258/264-272/274-286); claim locators L186/L288/L323-331/L326 and ch02reductions.tex L59-61 also match. Licence Apache-2.0 is consistent across SOURCE.md (detected + upstream-LICENSE, whose text I confirmed is Apache 2.0), source.json, entry.json and README. All traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T11:07:33Z"
+    }
+  ]
+}

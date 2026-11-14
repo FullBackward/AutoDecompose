@@ -1,0 +1,275 @@
+{
+  "id": "rocq-key-invariant-unimath-70bbfe4a",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Key invariant: the guided well-ordered subsets form a chain (Zermelo's well-ordering theorem)",
+  "intent": "Prove Zermelo's well-ordering theorem (from the axiom of choice every hSet carries a well-ordering) by carrying the whole argument on one auxiliary notion, the 'guided' well-ordered subsets — those whose elements are the choice function's picks — and on their invariant, that these guided subsets form a chain under inclusion; the main theorem then becomes a skeleton that applies this invariant and a small set of surrounding lemmas.",
+  "move": "key-invariant",
+  "also_known_as": [
+    "strengthen the hypothesis",
+    "identify the invariant / potential",
+    "guided subset construction"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "unimath",
+    "url": "https://github.com/UniMath/UniMath",
+    "commit": "7a4b03cce49449f45ce0d4285615165172f50546",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "UniMath/OrderTheory/OrderedSets/WellOrderedSets.v",
+      "bytes": 58767,
+      "sha256": "a2e9d8d18c23bc835c53a316c1e5f113cbc2a3382d41f4f8b225b19be5eeaf43",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/OrderTheory/OrderedSets/WellOrderedSets.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "UniMath/OrderTheory/OrderedSets/WellOrderedSets.v",
+      "lines": [
+        1169,
+        1263
+      ],
+      "role": "parent",
+      "name": "ZermeloWellOrdering",
+      "excerpt_sha256": "6874e19967d69395395901334692d5debb18e444733576592e6757a4d6f8fa9c",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/OrderTheory/OrderedSets/WellOrderedSets.v#L1169-L1263"
+    },
+    {
+      "path": "UniMath/OrderTheory/OrderedSets/WellOrderedSets.v",
+      "lines": [
+        938,
+        944
+      ],
+      "role": "child",
+      "name": "AC_to_choice_fun",
+      "excerpt_sha256": "69dc49b77e996804b2ffd720a3be444234656765e83a5b9d50eedeec92763e4c",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/OrderTheory/OrderedSets/WellOrderedSets.v#L938-L944"
+    },
+    {
+      "path": "UniMath/OrderTheory/OrderedSets/WellOrderedSets.v",
+      "lines": [
+        976,
+        1165
+      ],
+      "role": "child",
+      "name": "guided_WOSubset_total",
+      "excerpt_sha256": "3e4ba1bb44da76de872e86bf13510ca14f945e0622aef1102727f750a8e935cb",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/OrderTheory/OrderedSets/WellOrderedSets.v#L976-L1165"
+    },
+    {
+      "path": "UniMath/OrderTheory/OrderedSets/WellOrderedSets.v",
+      "lines": [
+        913,
+        920
+      ],
+      "role": "child",
+      "name": "chain_union_le",
+      "excerpt_sha256": "03f9a976012fe6aeb9bae22b7deea81a7f037ecffd33ebde7766cf1fd46b286a",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/OrderTheory/OrderedSets/WellOrderedSets.v#L913-L920"
+    },
+    {
+      "path": "UniMath/OrderTheory/OrderedSets/WellOrderedSets.v",
+      "lines": [
+        953,
+        965
+      ],
+      "role": "child",
+      "name": "upto'_eqn",
+      "excerpt_sha256": "2af9256a6bf33d626666a8346d45c9643f64b70feeaf5cf034e84d7e5147e954",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/OrderTheory/OrderedSets/WellOrderedSets.v#L953-L965"
+    },
+    {
+      "path": "UniMath/OrderTheory/OrderedSets/WellOrderedSets.v",
+      "lines": [
+        461,
+        466
+      ],
+      "role": "child",
+      "name": "WOSubset_plus_point",
+      "excerpt_sha256": "8df5ba1f5615e31b899eb7ac9594d7da3657f655d0336bd4645e50ba3c73f744",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/OrderTheory/OrderedSets/WellOrderedSets.v#L461-L466"
+    },
+    {
+      "path": "UniMath/OrderTheory/OrderedSets/WellOrderedSets.v",
+      "lines": [
+        307,
+        311
+      ],
+      "role": "child",
+      "name": "TOSubset_plus_point_incl",
+      "excerpt_sha256": "798c2b9ab5a1db48fbcb595e9d8c7786e77ce44c0f7a464eaa24636fcf193eaf",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/OrderTheory/OrderedSets/WellOrderedSets.v#L307-L311"
+    },
+    {
+      "path": "UniMath/OrderTheory/OrderedSets/WellOrderedSets.v",
+      "lines": [
+        313,
+        319
+      ],
+      "role": "child",
+      "name": "TOSubset_plus_point_le",
+      "excerpt_sha256": "210a70e3e6d6a86290bbc73bcebdf94b8bc9791d0c6ce8375d8f1c6156701c51",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/OrderTheory/OrderedSets/WellOrderedSets.v#L313-L319"
+    },
+    {
+      "path": "UniMath/OrderTheory/OrderedSets/WellOrderedSets.v",
+      "lines": [
+        321,
+        329
+      ],
+      "role": "child",
+      "name": "TOSubset_plus_point_initial",
+      "excerpt_sha256": "5f6dcb9af72605147fc2683499a6c0c715dd679b9225b2512caf97984ab38ef0",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/OrderTheory/OrderedSets/WellOrderedSets.v#L321-L329"
+    }
+  ],
+  "parent": {
+    "name": "ZermeloWellOrdering",
+    "statement": "Theorem ZermeloWellOrdering {X:hSet} : AxiomOfChoice ⇒ ∃ R : hrel X, isWellOrder R."
+  },
+  "children": [
+    {
+      "name": "AC_to_choice_fun",
+      "statement": "Lemma AC_to_choice_fun (X:hSet) : AxiomOfChoice ⇒ ∥ choice_fun X ∥.",
+      "closed_by": "exact (squash_to_hProp (ac (proper_subtypes_set X) (λ S, ∑ x, hProp_to_hSet (¬ (pr1 S x))) pr2) hinhpr) — the axiom of choice instantiated at the hSet of proper subsets, choosing an element not in each",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: From the axiom of choice, X has a choice function choosing an element outside each proper subset."
+    },
+    {
+      "name": "guided_WOSubset_total",
+      "statement": "Lemma guided_WOSubset_total {X:hSet} (g : choice_fun X) :\n  LEM -> is_wosubset_chain (guidedFamily g).",
+      "closed_by": "proof_by_contradiction on W ≡ C ∨ W ≡ D (via isInterval, which gives the two guided points c, d whose guided-ness equations gC c and gD d contradict), then each disjunct assembles C ≼ D or D ≼ C from the common-initial data WCD, WCi, WDi",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: Assuming LEM, the guided well-ordered subsets of X form a chain."
+    },
+    {
+      "name": "chain_union_le",
+      "statement": "Lemma chain_union_le {X:hSet} {I:UU} (S : I -> WOSubset X) (Schain : is_wosubset_chain S) :\n  ∀ i, S i ≼ ⋃ Schain.",
+      "closed_by": "exists (subtype_union_containedIn S i); split; the order-compatibility is pr2 (chain_union_tosub_le _ i), the initial-segment part is chain_union_rel_initial",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: Every member of a chain of well-ordered subsets sits below the union."
+    },
+    {
+      "name": "upto'_eqn",
+      "statement": "Lemma upto'_eqn {X:hSet} (g : choice_fun X) (C D : WOSubset X) (j : C ≼ D)\n      (c : C) (d : D) :\n  pr1 (subtype_inc (pr1 j) c) = pr1 d ->\n  pr1 (g (upto' c)) = pr1 (g (upto' d)).",
+      "closed_by": "assert e' : upto' c = upto' d by subtypePath_prop, reducing to upto c = upto d, then upto_eqn under induction e'",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: If subtype_inc j c = d then the guided choices of upto' c and upto' d agree."
+    },
+    {
+      "name": "WOSubset_plus_point",
+      "statement": "Definition WOSubset_plus_point {X:hSet}\n           (S:WOSubset X) (z:X) (nSz : ¬ S z) : LEM -> WOSubset X\n  := λ lem, subtype_plus S z,,\n            TOSrel (TOSubset_plus_point S z nSz),,\n            TOtotal (TOSubset_plus_point S z nSz),,\n            hasSmallest_WOSubset_plus_point S z nSz lem.",
+      "closed_by": "a definitional assembly: subtype_plus S z paired with the order of TOSubset_plus_point (TOSrel, TOtotal) and the smallest-element proof hasSmallest_WOSubset_plus_point S z nSz lem",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: Appending a point z to a well-ordered subset, assuming LEM, gives a well-ordered subset."
+    },
+    {
+      "name": "TOSubset_plus_point_incl",
+      "statement": "Lemma TOSubset_plus_point_incl {X:hSet} (S:TOSubset X) (z:X) (nSz : ¬ S z) :\n  S ⊆ TOSubset_plus_point S z nSz.",
+      "closed_by": "apply subtype_plus_incl",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: A totally ordered subset is included in the subset with one point added."
+    },
+    {
+      "name": "TOSubset_plus_point_le",
+      "statement": "Lemma TOSubset_plus_point_le {X:hSet} (S:TOSubset X) (z:X) (nSz : ¬ S z) :\n  S ≼ TOSubset_plus_point S z nSz.",
+      "closed_by": "use tpair; [apply TOSubset_plus_point_incl | intros s t le; exact le]",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: Adding a point preserves the order-inclusion relation."
+    },
+    {
+      "name": "TOSubset_plus_point_initial",
+      "statement": "Lemma TOSubset_plus_point_initial {X:hSet} (S:TOSubset X) (z:X) (nSz : ¬ S z) :\n  sub_initial (TOSubset_plus_point_incl S z nSz).",
+      "closed_by": "intros s t Ss Tt le; squash Tt to St or ezt; [exact St | fromempty le]",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The old subset is an initial segment of the subset with one point added."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An existence theorem of the shape AxiomOfChoice ⇒ ∃ R : hrel X, isWellOrder R (more generally, build a maximal or universal object by a Zorn-style maximality argument) where the object cannot be built all at once but its totality follows from maximality.",
+    "use_when": "There is a notion of 'good' or 'guided' approximation that is closed under unions of chains, and every non-universal approximation extends by one element. State the invariant (the approximations form a chain) as its own lemma, and let the main proof be a skeleton over it plus the extension lemmas.",
+    "avoid_when": "The approximations do not form a chain, or the invariant lemma itself is the hard part and does not decompose further (here guided_WOSubset_total is 190 lines — the move concentrates, not removes, the difficulty); or a direct transfinite recursion is more natural than a maximality argument."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent proof (lines 1169-1263) contains no admit, Admitted, Axiom or axiom closing token.",
+      "evidence_kind": "check",
+      "form": "no_sorry(UniMath/OrderTheory/OrderedSets/WellOrderedSets.v, 1169-1263)",
+      "evidence": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/OrderTheory/OrderedSets/WellOrderedSets.v#L1169-L1263"
+    },
+    {
+      "n": 2,
+      "claim": "guided_WOSubset_total occurs in the parent site.",
+      "evidence_kind": "check",
+      "form": "cites(parent, guided_WOSubset_total)",
+      "evidence": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/OrderTheory/OrderedSets/WellOrderedSets.v#L1176"
+    },
+    {
+      "n": 3,
+      "claim": "guided_WOSubset_total is declared in UniMath/OrderTheory/OrderedSets/WellOrderedSets.v within lines 976-977.",
+      "evidence_kind": "check",
+      "form": "declared(guided_WOSubset_total, UniMath/OrderTheory/OrderedSets/WellOrderedSets.v, 976-977)",
+      "evidence": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/OrderTheory/OrderedSets/WellOrderedSets.v#L976"
+    },
+    {
+      "n": 4,
+      "claim": "The decomposition is shaped as 8 direct lemmas, a 95-line glue, child sites of 7, 190, 8, 13, 6, 5, 7 and 9 lines, and a longest checked chain below the theorem of depth 2 (ZermeloWellOrdering → upto'_eqn → upto_eqn).",
+      "evidence_kind": "measurement",
+      "evidence": "site line ranges in entry.json: parent 1169-1263 (95 lines); children 938-944, 976-1165, 913-920, 953-965, 461-466, 307-311, 313-319, 321-329. The depth-2 chain is read at line 1186 and line 1213 (upto'_eqn applied in the glue) and line 963 (upto'_eqn applies upto_eqn)."
+    },
+    {
+      "n": 5,
+      "claim": "The authors name the auxiliary notion that carries the argument: \"Given a choice function g, we single out well ordered subsets C of X that follow the choice functions advice when constructed by adding one element at a time to the top. We may say that C is 'guided' by g.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/OrderTheory/OrderedSets/WellOrderedSets.v#L946-L951"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 8,
+    "depth": 2,
+    "glue_lines": 95,
+    "child_lines": [
+      7,
+      190,
+      8,
+      13,
+      6,
+      5,
+      7,
+      9
+    ]
+  },
+  "metrics": {},
+  "consequences": "The move concentrates the difficulty into the invariant lemma guided_WOSubset_total (190 lines) and reduces the main theorem to a 95-line skeleton that applies it. It creates the obligation to show the union of a chain of guided subsets is itself guided (and well ordered via chain_union_WOSubset), and to transport the induced well-ordering from the maximal guided subset W back to the whole set X through an hSet univalence equivalence. Failure mode: if the invariant is left as a single opaque block, the decomposition buys nothing — the children (upto'_eqn, the TOSubset_plus_point lemmas, chain_union_le) must be standalone lemmas for the invariant to be re-assembled and re-used.",
+  "known_uses": [
+    "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/OrderTheory/OrderedSets/WellOrderedSets.v#L1487-L1501"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "70bbfe4a153c51d8295dca2e41ac5cf228992edb85d3c73bc96813c8cdc57ae6",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:19:25Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:20:14Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:21:19Z",
+      "note": "parent ZermeloWellOrdering: statement re-copied from code; child 'AC_to_choice_fun': statement re-copied from the declaration of AC_to_choice_fun; child 'guided_WOSubset_total': statement re-copied from the declaration of guided_WOSubset_total; child 'chain_union_le': statement re-copied from the declaration of chain_union_le; child \"upto'_eqn\": statement re-copied from the declaration of upto'_eqn; child 'WOSubset_plus_point': statement re-copied from the declaration of WOSubset_plus_point; child 'TOSubset_plus_point_incl': statement re-copied from the declaration of TOSubset_plus_point_incl; child 'TOSubset_plus_point_le': statement re-copied from the declaration of TOSubset_plus_point_le; child 'TOSubset_plus_point_initial': statement re-copied from the declaration of TOSubset_plus_point_initial"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:27:51Z"
+}

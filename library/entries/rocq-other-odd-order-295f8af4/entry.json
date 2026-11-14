@@ -1,0 +1,176 @@
+{
+  "id": "rocq-other-odd-order-295f8af4",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Quotient-and-lift: Puig_factorization G = O_p^'(G) * N_G(Z(L(S))) via the Frattini argument",
+  "intent": "Prove the Bender-Glauberman factorization 'O_p^'(G) * 'N_G('Z('L(S))) = G (Theorem B.4(a)) for an odd, solvable group G by proving the key normality Z / D <| G / D in the quotient by D := 'O_p^'(G) — where Puig_center_normal supplies the normality in the quotient and Puig_sub identifies the quotient's center — and then lifting that normality back to G with the Frattini argument and the coset-preimage correspondence.",
+  "move": "other",
+  "also_known_as": [
+    "quotient-and-lift",
+    "prove-in-the-quotient-then-lift",
+    "Frattini argument"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "odd-order",
+    "url": "https://github.com/math-comp/odd-order",
+    "commit": "ba734c020d9f7dce5758fa822904dea29e2624ba",
+    "licence": "CECILL-B"
+  },
+  "files": [
+    {
+      "path": "theories/BGappendixAB.v",
+      "bytes": 24394,
+      "sha256": "5a89d43643eceea3a946cf49c61727c61b7b21afdd773b15c122a7c3802d01e9",
+      "permalink": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/BGappendixAB.v"
+    },
+    {
+      "path": "theories/BGsection1.v",
+      "bytes": 63867,
+      "sha256": "d624fbfea7986d88608de113777eb4ce176857ecef841b52260714b98becb6b1",
+      "permalink": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/BGsection1.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/BGappendixAB.v",
+      "lines": [
+        483,
+        506
+      ],
+      "role": "parent",
+      "name": "Puig_factorization",
+      "excerpt_sha256": "07dda843f4a5ae41b56864f6092c754d58062253456ddb636be8504e97dce82d",
+      "permalink": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/BGappendixAB.v#L483-L506"
+    },
+    {
+      "path": "theories/BGsection1.v",
+      "lines": [
+        1296,
+        1297
+      ],
+      "role": "child",
+      "name": "Puig_sub",
+      "excerpt_sha256": "be756012dec95b7660ff3c80aede8debced7cdc5a83852f77d078578a8d6a94f",
+      "permalink": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/BGsection1.v#L1296-L1297"
+    },
+    {
+      "path": "theories/BGappendixAB.v",
+      "lines": [
+        428,
+        473
+      ],
+      "role": "child",
+      "name": "Puig_center_normal",
+      "excerpt_sha256": "251c1a7bef9434ae6af055e1e09980249bf9f4df18d4e5ea623029c9963c06c9",
+      "permalink": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/BGappendixAB.v#L428-L473"
+    }
+  ],
+  "parent": {
+    "name": "Puig_factorization",
+    "statement": "Theorem Puig_factorization : 'O_p^'(G) * 'N_G('Z('L(S))) = G."
+  },
+  "children": [
+    {
+      "name": "Puig_sub",
+      "statement": "Lemma Puig_sub G : 'L(G) \\subset G.",
+      "closed_by": "exact: Puig_at_sub",
+      "note": "L(G) is the last term of the Puig series of G; this lemma is the functoriality/subgroup fact the parent uses (through injmF and morphim_restrm) to identify the quotient's center Z / D with 'Z('L(S / D)) and to show Z is a subgroup of S. Analyst's paraphrase, replaced by the declaration's text: the Puig subgroup L(G) is a subgroup of G"
+    },
+    {
+      "name": "Puig_center_normal",
+      "statement": "Theorem Puig_center_normal : 'Z(L) <| G.",
+      "closed_by": "a 45-line proof assembling pcore_Sylow_Puig_sub, inv_quotientN, Sylow_setI_normal and the Frattini argument (Frattini_arg _ sylCS at line 468), ending in `by rewrite (subset_trans sZY) // centsC subsetIr.`",
+      "note": "Declared inside Section AppendixB under hypotheses oddG, solG, sylS and p'G1 : 'O_p^'(G) = 1, with the section abbreviations T := 'O_p(G), Y := 'Z('L(T)) and L := 'L(S). The parent instantiates it at the quotient G / D with the odd/solvable quotient, sylSq, and the p'G1 hypothesis discharged by trivg_pcore_quotient. Analyst's paraphrase, replaced by the declaration's text: the center of the Puig subgroup L(S) is normal in G (Theorem B.4(b))"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An equality of a group G with a product A * B — here 'O_p^'(G) * 'N_G('Z('L(S))) = G — where one factor is a normal subgroup D and the other a normalizer 'N_G(H), and the crux is a normality H / D <| G / D that is easier to prove in the quotient G / D because quotienting kills the obstruction (here D = 'O_p^'(G), so 'O_p^'(G / D) = 1).",
+    "use_when": "a theorem about G is already proved for the case where a normal subgroup D is trivial (Puig_center_normal assumes 'O_p^'(G) = 1), and the general case reduces to it by quotienting out D; the lift back needs a Frattini-argument / coset-preimage step that a Sylow argument (morphim_pHall, Sylow_setI_normal, Frattini_arg) discharges.",
+    "avoid_when": "the quotient does not kill the obstruction (here trivg_pcore_quotient must give 'O_p^'(G / D) = 1), or the lifted subgroup is not determined by its preimage (the coset-preimage step needs quotientK / quotientGK to apply); when the normality to lift is not itself obtained from a normality in the quotient plus a Frattini argument, the glue breaks."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "Puig_factorization is declared in theories/BGappendixAB.v lines 483-506.",
+      "evidence_kind": "check",
+      "form": "declared(Puig_factorization, theories/BGappendixAB.v, 483-506)",
+      "evidence": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/BGappendixAB.v#L483-L506"
+    },
+    {
+      "n": 2,
+      "claim": "The parent Puig_factorization cites Puig_center_normal.",
+      "evidence_kind": "check",
+      "form": "cites(parent, Puig_center_normal)",
+      "evidence": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/BGappendixAB.v#L496"
+    },
+    {
+      "n": 3,
+      "claim": "The parent Puig_factorization cites Puig_sub.",
+      "evidence_kind": "check",
+      "form": "cites(parent, Puig_sub)",
+      "evidence": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/BGappendixAB.v#L492"
+    },
+    {
+      "n": 4,
+      "claim": "The theorem-scale shape is direct_lemmas = 2 (child sites of 2 and 46 lines), glue_lines = 24, depth = 2: Puig_factorization cites Puig_center_normal, which cites pcore_Sylow_Puig_sub.",
+      "evidence_kind": "measurement",
+      "evidence": "counted from the entry's sites: parent lines 483-506 of theories/BGappendixAB.v; child sites theories/BGsection1.v:1296-1297 and theories/BGappendixAB.v:428-473; the depth chain is Puig_factorization -> Puig_center_normal (cited at BGappendixAB.v:496) -> pcore_Sylow_Puig_sub (cited at BGappendixAB.v:430)"
+    },
+    {
+      "n": 5,
+      "claim": "The authors label the two theorems with their source in the Bender-Glauberman paper: \"This is B & G, Theorem B.4(a)\" (line 482) and \"This is B & G, Theorem B.4(b)\" (line 427).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/BGappendixAB.v#L482 and https://github.com/math-comp/odd-order/blob/ba734c020d9f7dce5758fa822904dea29e2624ba/theories/BGappendixAB.v#L427"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 2,
+    "glue_lines": 24,
+    "child_lines": [
+      2,
+      46
+    ]
+  },
+  "metrics": {
+    "parent_lines": 24,
+    "children": 2,
+    "depth": 2,
+    "how_counted": "parent_lines = lines 483-506 of theories/BGappendixAB.v; children = the two named project lemmas the glue cites directly (Puig_sub, Puig_center_normal); depth = the chain Puig_factorization -> Puig_center_normal -> pcore_Sylow_Puig_sub, two project lemmas below the theorem"
+  },
+  "consequences": "The move creates three obligations: (i) identify the quotient's center, Z / D = 'Z('L(S / D)) (here def_Zq), discharged by Puig_sub through injmF and morphim_restrm; (ii) prove a normality in the quotient, Z / D <| G / D (here nZq), discharged by Puig_center_normal applied to the quotient whose p-core is trivial; (iii) lift the normality back to G, which here needs the Frattini argument (Frattini_arg p) plus the coset-preimage correspondence (cosetpre_normal, quotientK, quotientGK). Failure mode: the lift fails if the lifted subgroup is not determined by its preimage, or if the quotient has not actually trivialised the hypothesis Puig_center_normal requires (trivg_pcore_quotient).",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "295f8af4098c303f90bb6980535dbb5906dd67516ae4b1a1e1b14329e4501f8a",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:57:12Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,also_known_as,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:05:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:58:37Z",
+      "note": "parent Puig_factorization: statement re-copied from code; child 'Puig_sub': statement re-copied from the declaration of Puig_sub; child 'Puig_center_normal': statement re-copied from the declaration of Puig_center_normal"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:08:02Z"
+}

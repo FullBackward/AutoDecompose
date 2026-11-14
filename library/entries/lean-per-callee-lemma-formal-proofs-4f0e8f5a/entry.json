@@ -1,0 +1,382 @@
+{
+  "id": "lean-per-callee-lemma-formal-proofs-4f0e8f5a",
+  "kind": "instance",
+  "status": "draft",
+  "title": "One soundness lemma per Opcode constructor, glued by a bare cases-dispatch",
+  "intent": "Reduce the soundness of a single Cairo VM opcode step — that the output state is bounded and related to the input by NextState — to one named lemma per constructor of the Opcode inductive. The glue exec_step_sound is a bare cases o with one apply per constructor and no other proof work, so the decomposition is read straight off the Opcode type.",
+  "move": "per-callee-lemma",
+  "also_known_as": [
+    "one lemma per constructor",
+    "structure-driven lemma family",
+    "crunch-style (seL4)",
+    "per-pass simulation lemma (CompCert)"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "formal-proofs",
+    "url": "https://github.com/starkware-libs/formal-proofs",
+    "commit": "d0dd8279612a248cbc6bf6d286030bf0bb2a37ff",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean",
+      "bytes": 30017,
+      "sha256": "26fde0196c65f8014d9f813a0a04765b6bf4d6799d3fe51000cac2dc1b55c462",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Soundness/Components.lean",
+      "bytes": 1940,
+      "sha256": "9958d5043ca29bea9097d9ee6493399f438e1446c4840369027245c2039a405d",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/Components.lean"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Airs/Casm/Opcodes/GenericOpcode/GenericOpcode.lean",
+      "bytes": 37105,
+      "sha256": "593daa52d956da2c6eeb1cd77a95b0a8ddec91821e2bed36792ca6f445221552",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/GenericOpcode/GenericOpcode.lean"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Airs/Casm/Opcodes/CallOpcode.lean",
+      "bytes": 24575,
+      "sha256": "174f2bbab830c511cba60d414ac2bcfa1b78cd3663f3d5fc85be0983b6e9d963",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/CallOpcode.lean"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Airs/Casm/Opcodes/RetOpcode.lean",
+      "bytes": 10842,
+      "sha256": "0d7e5a8a4af0702e358a4715d60cf9c4b9182a6317c6b0ebc52d08da06c1bc4a",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/RetOpcode.lean"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Airs/Casm/Opcodes/AssertEqOpcode.lean",
+      "bytes": 28706,
+      "sha256": "af13960f17d80dd5df7707abbbd821a444aafd97c773715e2e5a9e754e44b71b",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/AssertEqOpcode.lean"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Airs/Casm/Opcodes/JumpOpcode.lean",
+      "bytes": 36685,
+      "sha256": "3d20374a82d8f877662f82affd3f2af121397814b2dc095e8a99e314105bc7d3",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/JumpOpcode.lean"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Airs/Casm/Opcodes/JnzOpcode.lean",
+      "bytes": 41299,
+      "sha256": "5163f01b86d7a553e59b05adfee690a62c6a9f3569d0cb2f045284175fd9c0c4",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/JnzOpcode.lean"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Airs/Casm/Opcodes/AddApOpcode.lean",
+      "bytes": 25614,
+      "sha256": "90651ff83533c237340b2e307e0931db426627898f6942125ee3fa7b54a7bd2a",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/AddApOpcode.lean"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Airs/Casm/Opcodes/AddOpcode.lean",
+      "bytes": 73320,
+      "sha256": "0eb59eaf8632e88a9f3c41ab8d23a3391a3f653b11a52ec1e3ea9475d684f271",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/AddOpcode.lean"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Airs/Casm/Opcodes/MulOpcode.lean",
+      "bytes": 79899,
+      "sha256": "f411ee963f1fb1d3d7fda98e5d5644461f41019b002efa863530350cc8aa17fd",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/MulOpcode.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean",
+      "lines": [
+        317,
+        403
+      ],
+      "role": "parent",
+      "name": "exec_step_sound",
+      "excerpt_sha256": "8e876bbe3b61398472971f97c6a8438810d49853d80d60afd063756d95db6c84",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean#L317-L403"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Soundness/Components.lean",
+      "lines": [
+        9,
+        29
+      ],
+      "role": "context",
+      "name": "Opcode",
+      "excerpt_sha256": "a058d317208619a0ebbbe4cdbfe66568a4d68d5355a330eb8b4b725c16a41516",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/Components.lean#L9-L29"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Airs/Casm/Opcodes/GenericOpcode/GenericOpcode.lean",
+      "lines": [
+        735,
+        765
+      ],
+      "role": "child",
+      "name": "sound_generic",
+      "excerpt_sha256": "4888ad7b9b83b1980bdaf7b69d9e572b7983083c239cbf6950f1e8422ebda1e5",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/GenericOpcode/GenericOpcode.lean#L735-L765"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Airs/Casm/Opcodes/CallOpcode.lean",
+      "lines": [
+        398,
+        431
+      ],
+      "role": "child",
+      "name": "sound_call_rel",
+      "excerpt_sha256": "977f3f5f0563fcdf32c5fe1efab508a3677df179d2f348d3cca0a77b58901e7f",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/CallOpcode.lean#L398-L431"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Airs/Casm/Opcodes/RetOpcode.lean",
+      "lines": [
+        195,
+        225
+      ],
+      "role": "child",
+      "name": "sound_ret",
+      "excerpt_sha256": "bb2306b1de44189df647b9e6fc22d42656644d105233fa495abc4d66bafaafe6",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/RetOpcode.lean#L195-L225"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Airs/Casm/Opcodes/AssertEqOpcode.lean",
+      "lines": [
+        471,
+        505
+      ],
+      "role": "child",
+      "name": "sound_assert_eq",
+      "excerpt_sha256": "9560f155c6dff6729752a667681dd59051564db6ccaa2fc69a7e3c108931338f",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/AssertEqOpcode.lean#L471-L505"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Airs/Casm/Opcodes/JumpOpcode.lean",
+      "lines": [
+        597,
+        631
+      ],
+      "role": "child",
+      "name": "sound_jump_imm",
+      "excerpt_sha256": "b84225ffb6a24ff99705f9b10899bad7604f309575d47b6076e225e683ae4595",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/JumpOpcode.lean#L597-L631"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Airs/Casm/Opcodes/JnzOpcode.lean",
+      "lines": [
+        559,
+        589
+      ],
+      "role": "child",
+      "name": "sound_jnz_not_taken",
+      "excerpt_sha256": "bad30fcd02e6e616cdcc600a36f2ff8f9682967a352f4f4369d4fcf2ae5c9bac",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/JnzOpcode.lean#L559-L589"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Airs/Casm/Opcodes/AddApOpcode.lean",
+      "lines": [
+        604,
+        634
+      ],
+      "role": "child",
+      "name": "sound_add_ap",
+      "excerpt_sha256": "97cb393e7e3423d72e6bbda75690356c7f0c546df28ccc41b8cda62c4259ae88",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/AddApOpcode.lean#L604-L634"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Airs/Casm/Opcodes/AddOpcode.lean",
+      "lines": [
+        1772,
+        1802
+      ],
+      "role": "child",
+      "name": "sound_add_252",
+      "excerpt_sha256": "34ae070258118bd140b5720c7236dc6222c35efca8f3fe27f0636f9ae1146381",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/AddOpcode.lean#L1772-L1802"
+    }
+  ],
+  "parent": {
+    "name": "exec_step_sound",
+    "statement": "lemma exec_step_sound [Fact (Nat.Prime Stwo.P)] [Fact (Nat.Prime Felt252Prime)] {t n_s : ℕ}\n      {o : Opcode}\n      {v : VarAssign}\n      -- memory\n      {memAssign : Felt252IdMemoryAssign}\n      {mem : Felt252 → Felt252}\n      (h_mem_agrees : memAssign.Agrees mem)\n      -- Lookups\n      {h_satisfied : LookupsSatisfied t n_s NUM_PARTITIONS NUM_LOOKUP_REL_MINUS_ONE partition_lengths rel_partition chain_rels}\n      -- opcode constraints\n      (h_opcode_satisfied : (OpcodeAirFns o).1.SatisfiedBy v)\n      -- Terms agree\n      (h_lookup_terms_agree : (OpcodeAirFns o).2.1.UseAgree v h_satisfied.values h_satisfied.partitions h_satisfied.tuples)\n      -- other relations\n      (h_rc : RangeCheckYields h_satisfied.values (h_satisfied.tuples RANGE_CHECK_REL_INDEX))\n      (h_mem : AirLookupTerms.MemYieldsAgreeAndRangeChecked memAssign h_satisfied.values\n          (h_satisfied.tuples RANGE_CHECK_REL_INDEX)\n          (h_satisfied.tuples MEMORY_ADDR_TO_ID_REL_INDEX)\n          (h_satisfied.tuples MEMORY_ID_TO_VALUE_REL_INDEX))\n      (h_verify_instr : AirLookupTerms.VerifyInstrYieldAgrees h_satisfied.tuples)\n      (num_steps : Nat)\n      (h_num_steps : num_steps < 2 ^ 29) :\n      (OpcodeInStateVal (o, v)).strongly_bounded₀ num_steps →\n        (OpcodeOutStateVal (o, v)).strongly_bounded (num_steps + 1)\n          ∧ NextState mem (OpcodeInStateVal (o, v)).toRegisterStateFelt252 (OpcodeOutStateVal (o, v)).toRegisterStateFelt252"
+  },
+  "children": [
+    {
+      "name": "sound_generic",
+      "statement": "theorem sound_generic [Fact (Nat.Prime Stwo.P)] [Fact (Nat.Prime Felt252Prime)] {t n_s : Nat}\n      (varAssign : VarAssign)\n      {memAssign : Felt252IdMemoryAssign}\n      {mem : Felt252 → Felt252}\n      (h_mem_agrees : memAssign.Agrees mem)\n      (ab : AirBuilder)\n      (lt : AirLookupTerms)\n      {h_satisfied : LookupsSatisfied t n_s NUM_PARTITIONS NUM_LOOKUP_REL_MINUS_ONE partition_lengths rel_partition chain_rels}\n      (h_rc : RangeCheckYields h_satisfied.values (h_satisfied.tuples RANGE_CHECK_REL_INDEX))\n      (h_mem : AirLookupTerms.MemYieldsAgreeAndRangeChecked memAssign h_satisfied.values\n            (h_satisfied.tuples RANGE_CHECK_REL_INDEX)\n            (h_satisfied.tuples MEMORY_ADDR_TO_ID_REL_INDEX)\n            (h_satisfied.tuples MEMORY_ID_TO_VALUE_REL_INDEX))\n      (h_verify_instr : AirLookupTerms.VerifyInstrYieldAgrees h_satisfied.tuples)\n      {casmState : CasmState}\n      {num_steps: Nat} :\n    let ⟨new_ab, new_lt, ρCasmState⟩ := call ab lt casmState\n    num_steps < 2^29 →\n    (casmState.eval varAssign).strongly_bounded₀ num_steps →\n    new_ab.SatisfiedBy varAssign →\n    new_lt.UseAgree varAssign h_satisfied.values h_satisfied.partitions h_satisfied.tuples →\n      (ρCasmState.eval varAssign).strongly_bounded (num_steps+1) ∧\n      NextState mem (casmState.eval varAssign).toRegisterStateFelt252 (ρCasmState.eval varAssign).toRegisterStateFelt252",
+      "closed_by": "applies GenericOpcode.sound_auto, then use h_bound; use instr; use h_instr",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the Generic opcode's per-constructor soundness lemma: a thin wrapper over GenericOpcode.sound_auto that unwraps its spec into boundedness and NextState"
+    },
+    {
+      "name": "sound_call_rel",
+      "statement": "theorem sound_call_rel [Fact (Nat.Prime Felt252Prime)] {t n_s : Nat}\n      (varAssign : VarAssign)\n      {memAssign : Felt252IdMemoryAssign}\n      {mem : Felt252 → Felt252}\n      (h_mem_agrees : memAssign.Agrees mem)\n      (ab : AirBuilder)\n      (lt : AirLookupTerms)\n      {h_satisfied : LookupsSatisfied t n_s NUM_PARTITIONS NUM_LOOKUP_REL_MINUS_ONE partition_lengths rel_partition chain_rels}\n      (h_rc : RangeCheckYields h_satisfied.values (h_satisfied.tuples RANGE_CHECK_REL_INDEX))\n      (h_mem : AirLookupTerms.MemYieldsAgreeAndRangeChecked memAssign h_satisfied.values\n            (h_satisfied.tuples RANGE_CHECK_REL_INDEX)\n            (h_satisfied.tuples MEMORY_ADDR_TO_ID_REL_INDEX)\n            (h_satisfied.tuples MEMORY_ID_TO_VALUE_REL_INDEX))\n      (h_verify_instr : AirLookupTerms.VerifyInstrYieldAgrees h_satisfied.tuples)\n      {casmState : CasmState}\n      {num_steps: Nat} :\n    let ⟨new_ab, new_lt, ρCasmState⟩ := call true false ab lt casmState\n    num_steps < 2^29 →\n    (casmState.eval varAssign).strongly_bounded₀ num_steps →\n    new_ab.SatisfiedBy varAssign →\n    new_lt.UseAgree varAssign h_satisfied.values h_satisfied.partitions h_satisfied.tuples →\n      (ρCasmState.eval varAssign).strongly_bounded (num_steps+1) ∧\n      NextState mem (casmState.eval varAssign).toRegisterStateFelt252 (ρCasmState.eval varAssign).toRegisterStateFelt252",
+      "closed_by": "applies CallOpcode.sound_auto with flags true false, then use h_bound; use (call_instr …).toInstruction; use h_instr",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the Call opcode's relative-call soundness lemma (flags true false): wraps CallOpcode.sound_auto"
+    },
+    {
+      "name": "sound_ret",
+      "statement": "theorem sound_ret [Fact (Nat.Prime Stwo.P)] [Fact (Nat.Prime Felt252Prime)] {t n_s : Nat}\n      (varAssign : VarAssign)\n      {memAssign : Felt252IdMemoryAssign}\n      {mem : Felt252 → Felt252}\n      (h_mem_agrees : memAssign.Agrees mem)\n      (ab : AirBuilder)\n      (lt : AirLookupTerms)\n      {h_satisfied : LookupsSatisfied t n_s NUM_PARTITIONS NUM_LOOKUP_REL_MINUS_ONE partition_lengths rel_partition chain_rels}\n      (h_rc : RangeCheckYields h_satisfied.values (h_satisfied.tuples RANGE_CHECK_REL_INDEX))\n      (h_mem : AirLookupTerms.MemYieldsAgreeAndRangeChecked memAssign h_satisfied.values\n            (h_satisfied.tuples RANGE_CHECK_REL_INDEX)\n            (h_satisfied.tuples MEMORY_ADDR_TO_ID_REL_INDEX)\n            (h_satisfied.tuples MEMORY_ID_TO_VALUE_REL_INDEX))\n      (h_verify_instr : AirLookupTerms.VerifyInstrYieldAgrees h_satisfied.tuples)\n      {casmState : CasmState}\n      {num_steps: Nat} :\n    let ⟨new_ab, new_lt, ρCasmState⟩ := call ab lt casmState\n    num_steps < 2^29 →\n    (casmState.eval varAssign).strongly_bounded₀ num_steps →\n    new_ab.SatisfiedBy varAssign →\n    new_lt.UseAgree varAssign h_satisfied.values h_satisfied.partitions h_satisfied.tuples →\n      (ρCasmState.eval varAssign).strongly_bounded (num_steps+1) ∧\n      NextState mem (casmState.eval varAssign).toRegisterStateFelt252 (ρCasmState.eval varAssign).toRegisterStateFelt252",
+      "closed_by": "applies RetOpcode.sound_auto, then use h_bound; use retInstr.toInstruction; use h_instr",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the Ret opcode's soundness lemma: wraps RetOpcode.sound_auto and builds retInstr.toInstruction"
+    },
+    {
+      "name": "sound_assert_eq",
+      "statement": "theorem sound_assert_eq [Fact (Nat.Prime Stwo.P)] [Fact (Nat.Prime Felt252Prime)] {t n_s : Nat}\n      (varAssign : VarAssign)\n      {memAssign : Felt252IdMemoryAssign}\n      {mem : Felt252 → Felt252}\n      (h_mem_agrees : memAssign.Agrees mem)\n      (ab : AirBuilder)\n      (lt : AirLookupTerms)\n      {h_satisfied : LookupsSatisfied t n_s NUM_PARTITIONS NUM_LOOKUP_REL_MINUS_ONE partition_lengths rel_partition chain_rels}\n      (h_rc : RangeCheckYields h_satisfied.values (h_satisfied.tuples RANGE_CHECK_REL_INDEX))\n      (h_mem : AirLookupTerms.MemYieldsAgreeAndRangeChecked memAssign h_satisfied.values\n            (h_satisfied.tuples RANGE_CHECK_REL_INDEX)\n            (h_satisfied.tuples MEMORY_ADDR_TO_ID_REL_INDEX)\n            (h_satisfied.tuples MEMORY_ID_TO_VALUE_REL_INDEX))\n      (h_verify_instr : AirLookupTerms.VerifyInstrYieldAgrees h_satisfied.tuples)\n      {casmState : CasmState}\n      {num_steps: Nat} :\n    let ⟨new_ab, new_lt, ρCasmState⟩ := call false false ab lt casmState\n    num_steps < 2^29 →\n    (casmState.eval varAssign).strongly_bounded₀ num_steps →\n    new_ab.SatisfiedBy varAssign →\n    new_lt.UseAgree varAssign h_satisfied.values h_satisfied.partitions h_satisfied.tuples →\n      (ρCasmState.eval varAssign).strongly_bounded (num_steps+1) ∧\n      NextState mem (casmState.eval varAssign).toRegisterStateFelt252 (ρCasmState.eval varAssign).toRegisterStateFelt252",
+      "closed_by": "applies AssertEqOpcode.sound_auto with flags false false, then use h_bound; use (mkAssertEqInstr …).toInstruction; use h_instr",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the AssertEq opcode's soundness lemma (flags false false): wraps AssertEqOpcode.sound_auto"
+    },
+    {
+      "name": "sound_jump_imm",
+      "statement": "theorem sound_jump_imm [Fact (Nat.Prime Felt252Prime)] {t n_s : Nat}\n      (varAssign : VarAssign)\n      {memAssign : Felt252IdMemoryAssign}\n      {mem : Felt252 → Felt252}\n      (h_mem_agrees : memAssign.Agrees mem)\n      (ab : AirBuilder)\n      (lt : AirLookupTerms)\n      {h_satisfied : LookupsSatisfied t n_s NUM_PARTITIONS NUM_LOOKUP_REL_MINUS_ONE partition_lengths rel_partition chain_rels}\n      (h_rc : RangeCheckYields h_satisfied.values (h_satisfied.tuples RANGE_CHECK_REL_INDEX))\n      (h_mem : AirLookupTerms.MemYieldsAgreeAndRangeChecked memAssign h_satisfied.values\n            (h_satisfied.tuples RANGE_CHECK_REL_INDEX)\n            (h_satisfied.tuples MEMORY_ADDR_TO_ID_REL_INDEX)\n            (h_satisfied.tuples MEMORY_ID_TO_VALUE_REL_INDEX))\n      (h_verify_instr : AirLookupTerms.VerifyInstrYieldAgrees h_satisfied.tuples)\n      {casmState : CasmState}\n      {num_steps: Nat} :\n    let ⟨new_ab, new_lt, ρCasmState⟩ := call true true false ab lt casmState\n    num_steps < 2^29 →\n    (casmState.eval varAssign).strongly_bounded₀ num_steps →\n    new_ab.SatisfiedBy varAssign →\n    new_lt.UseAgree varAssign h_satisfied.values h_satisfied.partitions h_satisfied.tuples →\n      (ρCasmState.eval varAssign).strongly_bounded (num_steps+1) ∧\n      NextState mem (casmState.eval varAssign).toRegisterStateFelt252 (ρCasmState.eval varAssign).toRegisterStateFelt252",
+      "closed_by": "applies JumpOpcode.sound_auto with flags true true false, then use h_bound; use (mkJumpInstr …).toInstruction; use h_instr",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the Jump opcode's immediate-jump soundness lemma (flags true true false): wraps JumpOpcode.sound_auto"
+    },
+    {
+      "name": "sound_jnz_not_taken",
+      "statement": "theorem sound_jnz_not_taken [Fact (Nat.Prime Stwo.P)] [Fact (Nat.Prime Felt252Prime)] {t n_s : Nat}\n      (varAssign : VarAssign)\n      {memAssign : Felt252IdMemoryAssign}\n      {mem : Felt252 → Felt252}\n      (h_mem_agrees : memAssign.Agrees mem)\n      (ab : AirBuilder)\n      (lt : AirLookupTerms)\n      {h_satisfied : LookupsSatisfied t n_s NUM_PARTITIONS NUM_LOOKUP_REL_MINUS_ONE partition_lengths rel_partition chain_rels}\n      (h_rc : RangeCheckYields h_satisfied.values (h_satisfied.tuples RANGE_CHECK_REL_INDEX))\n      (h_mem : AirLookupTerms.MemYieldsAgreeAndRangeChecked memAssign h_satisfied.values\n            (h_satisfied.tuples RANGE_CHECK_REL_INDEX)\n            (h_satisfied.tuples MEMORY_ADDR_TO_ID_REL_INDEX)\n            (h_satisfied.tuples MEMORY_ID_TO_VALUE_REL_INDEX))\n      (h_verify_instr : AirLookupTerms.VerifyInstrYieldAgrees h_satisfied.tuples)\n      {casmState : CasmState}\n      {num_steps: Nat} :\n    let ⟨new_ab, new_lt, ρCasmState⟩ := call ab lt casmState\n    num_steps < 2^29 →\n    (casmState.eval varAssign).strongly_bounded₀ num_steps →\n    new_ab.SatisfiedBy varAssign →\n    new_lt.UseAgree varAssign h_satisfied.values h_satisfied.partitions h_satisfied.tuples →\n      (ρCasmState.eval varAssign).strongly_bounded (num_steps+1) ∧\n      NextState mem (casmState.eval varAssign).toRegisterStateFelt252 (ρCasmState.eval varAssign).toRegisterStateFelt252",
+      "closed_by": "applies JnzNotTakenOpcode.sound_auto, then use h_bound; use (jnz_instr …).toInstruction; use h_instr",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the Jnz opcode's not-taken branch soundness lemma: wraps JnzNotTakenOpcode.sound_auto"
+    },
+    {
+      "name": "sound_add_ap",
+      "statement": "theorem sound_add_ap [Fact (Nat.Prime Felt252Prime)] {t n_s : Nat}\n      (varAssign : VarAssign)\n      {memAssign : Felt252IdMemoryAssign}\n      {mem : Felt252 → Felt252}\n      (h_mem_agrees : memAssign.Agrees mem)\n      (ab : AirBuilder)\n      (lt : AirLookupTerms)\n      {h_satisfied : LookupsSatisfied t n_s NUM_PARTITIONS NUM_LOOKUP_REL_MINUS_ONE partition_lengths rel_partition chain_rels}\n      (h_rc : RangeCheckYields h_satisfied.values (h_satisfied.tuples RANGE_CHECK_REL_INDEX))\n      (h_mem : AirLookupTerms.MemYieldsAgreeAndRangeChecked memAssign h_satisfied.values\n            (h_satisfied.tuples RANGE_CHECK_REL_INDEX)\n            (h_satisfied.tuples MEMORY_ADDR_TO_ID_REL_INDEX)\n            (h_satisfied.tuples MEMORY_ID_TO_VALUE_REL_INDEX))\n      (h_verify_instr : AirLookupTerms.VerifyInstrYieldAgrees h_satisfied.tuples)\n      {casmState : CasmState}\n      {num_steps: Nat} :\n    let ⟨new_ab, new_lt, ρCasmState⟩ := call ab lt casmState\n    num_steps < 2^29 →\n    (casmState.eval varAssign).strongly_bounded₀ num_steps →\n    new_ab.SatisfiedBy varAssign →\n    new_lt.UseAgree varAssign h_satisfied.values h_satisfied.partitions h_satisfied.tuples →\n      (ρCasmState.eval varAssign).strongly_bounded (num_steps+1) ∧\n      NextState mem (casmState.eval varAssign).toRegisterStateFelt252 (ρCasmState.eval varAssign).toRegisterStateFelt252",
+      "closed_by": "applies AddApOpcode.sound_auto, then use h_bound; use (add_ap_instr …).toInstruction; use h_instr",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the AddAp opcode's soundness lemma: wraps AddApOpcode.sound_auto and builds add_ap_instr"
+    },
+    {
+      "name": "sound_add_252",
+      "statement": "theorem sound_add_252 [Fact (Nat.Prime Stwo.P)] [Fact (Nat.Prime Felt252Prime)] {t n_s : Nat}\n      (varAssign : VarAssign)\n      {memAssign : Felt252IdMemoryAssign}\n      {mem : Felt252 → Felt252}\n      (h_mem_agrees : memAssign.Agrees mem)\n      (ab : AirBuilder)\n      (lt : AirLookupTerms)\n      {h_satisfied : LookupsSatisfied t n_s NUM_PARTITIONS NUM_LOOKUP_REL_MINUS_ONE partition_lengths rel_partition chain_rels}\n      (h_rc : RangeCheckYields h_satisfied.values (h_satisfied.tuples RANGE_CHECK_REL_INDEX))\n      (h_mem : AirLookupTerms.MemYieldsAgreeAndRangeChecked memAssign h_satisfied.values\n            (h_satisfied.tuples RANGE_CHECK_REL_INDEX)\n            (h_satisfied.tuples MEMORY_ADDR_TO_ID_REL_INDEX)\n            (h_satisfied.tuples MEMORY_ID_TO_VALUE_REL_INDEX))\n      (h_verify_instr : AirLookupTerms.VerifyInstrYieldAgrees h_satisfied.tuples)\n      {casmState : CasmState}\n      {num_steps: Nat} :\n    let ⟨new_ab, new_lt, ρCasmState⟩ := call ab lt casmState\n    num_steps < 2^29 →\n    (casmState.eval varAssign).strongly_bounded₀ num_steps →\n    new_ab.SatisfiedBy varAssign →\n    new_lt.UseAgree varAssign h_satisfied.values h_satisfied.partitions h_satisfied.tuples →\n      (ρCasmState.eval varAssign).strongly_bounded (num_steps+1) ∧\n      NextState mem (casmState.eval varAssign).toRegisterStateFelt252 (ρCasmState.eval varAssign).toRegisterStateFelt252",
+      "closed_by": "applies Add252Opcode.sound_auto, then use h_bound; use (add_instr …).toInstruction; use h_instr",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the Add opcode's 252-bit-add soundness lemma: wraps Add252Opcode.sound_auto and builds add_instr"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal parameterised by a finite inductive type (here Opcode, 19 constructors) whose claim must hold for every constructor; here the claim is (OpcodeInStateVal (o, v)).strongly_bounded₀ num_steps → (OpcodeOutStateVal (o, v)).strongly_bounded (num_steps+1) ∧ NextState mem …, i.e. one step of the opcode is bounded and matches NextState.",
+    "use_when": "the target is a finite inductive/enumeration and each constructor already has a pre-written lemma of exactly the goal's shape (here one sound_X per constructor, all sharing the identical statement template); the glue is then a cases plus one apply per constructor, and exhaustiveness is discharged by the type's totality.",
+    "avoid_when": "the constructors do not share one statement template, so each case needs a different argument rather than a bare apply; or the per-constructor lemmas do not exist yet (the cost is N proofs, one per constructor); or the glue must do real work besides dispatching, such as rearranging hypotheses per case."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent exec_step_sound is declared in Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean lines 317-403.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean#L317-L403",
+      "form": "declared(exec_step_sound, Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean, 317-403)"
+    },
+    {
+      "n": 2,
+      "claim": "sound_generic occurs in the parent site (the glue's Generic case).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean#L317-L403",
+      "form": "cites(parent, sound_generic)"
+    },
+    {
+      "n": 3,
+      "claim": "Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean lines 317-403 contain no sorry, admit or axiom.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean#L317-L403",
+      "form": "no_sorry(Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean, 317-403)"
+    },
+    {
+      "n": 4,
+      "claim": "The decomposition is 19 wide and 3 deep: the glue's cases o has one case per Opcode constructor (19 case blocks, one apply each, lines 347-403, matching the 19 constructors of Opcode in Components.lean lines 9-29), and the longest project-lemma chain below exec_step_sound that I traced runs 3 lemmas — sound_generic (applied at FinalSoundness.lean line 349) → GenericOpcode.sound_auto (applied at GenericOpcode.lean line 759) → DecodeGenericInstruction.sound_auto (applied at GenericOpcode.lean line 722).",
+      "evidence_kind": "measurement",
+      "evidence": "counted from the copied files: 19 case blocks in Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean lines 347-403; Opcode constructors in Stwo/Verification/AirInfra/Soundness/Components.lean lines 9-29; the depth chain at https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean#L349 and https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/GenericOpcode/GenericOpcode.lean#L759 and #L722."
+    },
+    {
+      "n": 5,
+      "claim": "The same per-opcode lemma shape — a module-level sound_auto lemma plus 1-4 sound_X wrappers that fix the opcode's flag values and unwrap the spec — is repeated across 9 opcode modules for 19 wrappers total; the 11 wrappers not shown as sites are sound_call_abs_base_fp (CallOpcode.lean:433), sound_call_abs_base_ap (CallOpcode.lean:468), sound_assert_eq_imm (AssertEqOpcode.lean:507), sound_assert_eq_double_deref (AssertEqOpcode.lean:543), sound_jump_double_deref (JumpOpcode.lean:633), sound_jump_rel (JumpOpcode.lean:669), sound_jump_abs (JumpOpcode.lean:705), sound_jnz_taken (JnzOpcode.lean:972), sound_add_small (AddOpcode.lean:893), sound_mul_small (MulOpcode.lean:970) and sound_mul_252 (MulOpcode.lean:1899).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/CallOpcode.lean#L433-L501 (two call wrappers), AssertEqOpcode.lean#L507-L577 (two assert-eq wrappers), JumpOpcode.lean#L633-L739 (three jump wrappers), JnzOpcode.lean#L972, AddOpcode.lean#L893, MulOpcode.lean#L970 and #L1899"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 19,
+    "depth": 3,
+    "glue_lines": 87,
+    "child_lines": [
+      31,
+      34,
+      31,
+      35,
+      35,
+      31,
+      31,
+      31
+    ]
+  },
+  "metrics": {
+    "parent_lines": 87,
+    "child_lines": [
+      31,
+      34,
+      31,
+      35,
+      35,
+      31,
+      31,
+      31
+    ],
+    "children": 8,
+    "direct_lemmas_total": 19,
+    "how_counted": "line spans of the parent and 8 child sites, declaration included; direct_lemmas_total = 19 Opcode constructors, one apply per case in the glue (lines 347-403)"
+  },
+  "consequences": "One lemma per Opcode constructor, so the obligations are: (1) exhaustiveness — every constructor must be covered, which cases o discharges by the type's totality (19/19 constructors, no separate exhaustiveness child); (2) each constructor's lemma must have exactly the goal's shape (strongly_bounded₀ num_steps → strongly_bounded (num_steps+1) ∧ NextState after the opcode's call), or the bare apply will not match; (3) adding a constructor to Opcode forces a new sound_X lemma and a new case, so the decomposition is coupled to the opcode set. Failure mode: the 19 lemmas are near-identical templates, so a change to the shared sound_auto/spec infrastructure breaks the whole family at once.",
+  "known_uses": [
+    "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/CallOpcode.lean#L433-L501",
+    "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/AssertEqOpcode.lean#L507-L577",
+    "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/JumpOpcode.lean#L633-L739",
+    "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/JnzOpcode.lean#L972-L1000",
+    "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/AddOpcode.lean#L893-L925",
+    "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Airs/Casm/Opcodes/MulOpcode.lean#L970-L1020",
+    "lean-induction-formal-proofs-ffaeb961"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 5,
+    "relation": "supports"
+  },
+  "content_key": "4f0e8f5acddc94cec7752eca28f2fc3fabcdc500ffe03abed5ad1d0267e96341",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:55:50Z"
+    },
+    {
+      "field": "intent,parent,children,also_known_as,applicability,claims,consequences,shape,metrics,rule,known_uses",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:56:49Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:57:22Z",
+      "note": "child 'sound_generic': statement re-copied from the declaration of sound_generic; child 'sound_call_rel': statement re-copied from the declaration of sound_call_rel; child 'sound_ret': statement re-copied from the declaration of sound_ret; child 'sound_assert_eq': statement re-copied from the declaration of sound_assert_eq; child 'sound_jump_imm': statement re-copied from the declaration of sound_jump_imm; child 'sound_jnz_not_taken': statement re-copied from the declaration of sound_jnz_not_taken; child 'sound_add_ap': statement re-copied from the declaration of sound_add_ap; child 'sound_add_252': statement re-copied from the declaration of sound_add_252"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:57:49Z",
+      "note": "parent exec_step_sound: statement re-copied from code"
+    },
+    {
+      "field": "known_uses",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "discovery-1",
+      "at": "2026-11-14T13:28:12Z",
+      "note": "added lean-induction-formal-proofs-ffaeb961: the level above (this entry's parent exec_step_sound is that entry's per-step child under exec_sound); not a duplicate"
+    }
+  ]
+}

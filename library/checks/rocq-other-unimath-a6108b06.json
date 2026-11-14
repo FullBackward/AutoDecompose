@@ -1,0 +1,133 @@
+{
+  "entry": "rocq-other-unimath-a6108b06",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:15:17Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:15:17Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:15:17Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: Monad_law_1_from_hss@UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v:551, Monad_law_2_from_hss@UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v:552, μ_3_T_μ_2_μ_2@UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v:556, μ_3_μ_2_T_μ_2@UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v:559; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:15:17Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(disp_Monad_laws_from_hss, 16) -> lines: site disp_Monad_laws_from_hss has 16 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:15:17Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(disp_Monad_laws_from_hss, intermediate_path) -> cites: intermediate_path occurs at UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v:555",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:15:17Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v, 163-562) -> no_sorry: none of admit, Admitted, Axiom, axiom in UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v:163-562",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:15:17Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 7a4b03cce49449f45ce0d4285615165172f50546",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:15:27Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": "CI workflow .github/workflows/build-unimath.yml runs on push/PR to master (default branch); commit 7a4b03cce49449f45ce0d4285615165172f50546 is on master (branches-where-head=master). Main build runs 'dune build' over the default UniMath target, which compiles UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v.",
+      "by": "verifier",
+      "at": "2026-11-14T10:16:46Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Line counts checked against the copied file: Monad_law_1_from_hss 163-172 = 10 lines (Lemma at 163, Qed at 172); Monad_law_2_from_hss 177-244 = 68 lines; mu_3_T_mu_2_mu_2 286-336 = 51 lines; mu_3_mu_2_T_mu_2 347-447 = 101 lines; children sum 230; parent 547-562 = 16 lines; 4 direct lemmas.",
+      "by": "verifier",
+      "at": "2026-11-14T10:16:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read lines 282-283 of the copied file: comment 'Proof of the third monad law via transitivity' and 'We show that both sides are equal to [mu_3 = fbracket mu_2]'; line 545: 'Finally putting together all the preparatory results to obtain a monad'. Matches the claim verbatim.",
+      "by": "verifier",
+      "at": "2026-11-14T10:16:52Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 7a4b03cce49449f45ce0d4285615165172f50546",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:17:09Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Provenance pass (1 file byte-identical at 7a4b03cce494). Parent site 547-562 (16 lines) matches code: split -> unfold/split -> apply Monad_law_1_from_hss (551) and Monad_law_2_from_hss (552); associativity branch intro c, intermediate_path (pr1 mu_3 c) then mu_3_T_mu_2_mu_2 (556) and mu_3_mu_2_T_mu_2 (559) via pathsinv0. All 4 children are exactly the lemmas the glue cites, and each ends in Qed (closes). Child statements and closed_by match code: Monad_law_1 (apply pathsinv0/apply H2 with prejoin_from_hetsubst_eta T), Monad_law_2 (apply mu_1_identity' at 243), mu_3 lemmas (apply fbracket_unique T mu_2_ptd). Shape numbers correct: glue 16 lines, child sites 10/68/51/101 = 230 (163-172, 177-244, 286-336, 347-447), depth 3 via Monad_law_2 -> mu_1_identity' (124-129) -> mu_1_identity (101-121). Author comments at 282-283 and 545 read as quoted; known_uses third_monad_law_from_hss 453-458 reuses both mu_3 lemmas.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:18:04Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example: applicability.goal_shape/use_when/also_known_as generalize to any structure/record of law fields closed by a backward split with one named lemma per field, plus a transitivity bridge for an equality field. 'When not to use' is honest and specific: (1) a single lemma would be shorter/clearer, (2) sides equal to different representatives so intermediate_path won't typecheck, (3) fields trivial enough for one automation pass. Consequences are specific and verified in code: both μ_3 equations must land on the same intermediate μ_3 (sed 547-562 confirmed intermediate_path (pr1 μ_3 c) plus pathsinv0 on each side), and the failure mode names third_monad_law_from_hss inserting rassociator_CAT (sed 453-458 confirmed). Good-leaf rationale for a bounded prover is explicit: 'Why each lemma is a good leaf' shows Monad_law_1 closes from one imported fact (prejoin_from_hetsubst_η), Monad_law_2 from named facts (fbracket_unique_target_pointwise + sibling μ_1_identity'), and both μ_3 lemmas are instances of the single fbracket_unique principle; metrics note no child closes by a single automation tactic — each applies a named project lemma. No standing objection for generality.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:18:59Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 7a4b03cce49449f45ce0d4285615165172f50546",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:19:20Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance pass: check_provenance reports the 1 copied file byte-identical at pinned commit 7a4b03cce49449f45ce0d4285615165172f50546. Copied file sha256 4b9391c5...b400b6 and 21145 bytes match entry.json files[0]. Commit identical across entry.json, sources/unimath/source.json and SOURCE.md. Licence MIT consistent across entry.json, source.json, SOURCE.md and upstream-LICENSE.md (MIT text). All permalinks use the pinned commit; cited line ranges verified against the local copy: parent 547-562, children 163-172/177-244/286-336/347-447, author-statement lines 282-283 and 545, and known_uses 453-458 all match the README excerpts and claims.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:19:53Z"
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "id": "latex-blueprint-node-flt-imperial-d51b46e8",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "The l-torsion of the Frey curve is hardly ramified: a blueprint node assembled from four lemmas",
+  "intent": "Prove the chapter's first main result -- that the l-torsion of the Frey curve is hardly ramified -- by unfolding the definition `hardly_ramified` (a conjunction of four axioms) and discharging each axiom with one named theorem, so the proof is a one-to-one match of axiom to lemma with no other content.",
+  "move": "blueprint-node",
+  "also_known_as": [
+    "dependency-graph node",
+    "unfold-definition-to-axioms",
+    "one-lemma-per-condition"
+  ],
+  "language": "latex",
+  "source": {
+    "source_id": "flt-imperial",
+    "url": "https://github.com/ImperialCollegeLondon/FLT",
+    "commit": "a3210204ad8876e851e32f73dd97d882bf1ccd0a",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "blueprint/src/chapter/ch03freyold.tex",
+      "bytes": 28146,
+      "sha256": "ace6e25e431f0f7a08c7547b9424dc0114020a2e19dfd22fd9e1921b38c81fed",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/blueprint/src/chapter/ch03freyold.tex"
+    },
+    {
+      "path": "blueprint/src/chapter/ch02reductions.tex",
+      "bytes": 12090,
+      "sha256": "ea42852a952a53bda8ba5e72349bee1ef02192c5b43dc8f7736ddcd2855425a1",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/blueprint/src/chapter/ch02reductions.tex"
+    }
+  ],
+  "sites": [
+    {
+      "path": "blueprint/src/chapter/ch03freyold.tex",
+      "lines": [
+        290,
+        299
+      ],
+      "role": "parent",
+      "name": "frey_curve_hardly_ramified",
+      "excerpt_sha256": "b83b788154a55914a8fe9d1803be39ab9e4de64bdb602cad6c65ae4384ecb565",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/blueprint/src/chapter/ch03freyold.tex#L290-L299"
+    },
+    {
+      "path": "blueprint/src/chapter/ch03freyold.tex",
+      "lines": [
+        184,
+        193
+      ],
+      "role": "context",
+      "name": "hardly_ramified",
+      "excerpt_sha256": "b391bae4fffa3e0a700ed783d01bf00dad15ba7df4ad15ad3de818ff08b55a64",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/blueprint/src/chapter/ch03freyold.tex#L184-L193"
+    },
+    {
+      "path": "blueprint/src/chapter/ch03freyold.tex",
+      "lines": [
+        44,
+        48
+      ],
+      "role": "child",
+      "name": "Elliptic_curve_det_n_torsion",
+      "excerpt_sha256": "429b64d26203cfed235b4cd20d6e8fdd0a336581edda8a7399a385b64e7a527e",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/blueprint/src/chapter/ch03freyold.tex#L44-L48"
+    },
+    {
+      "path": "blueprint/src/chapter/ch03freyold.tex",
+      "lines": [
+        255,
+        258
+      ],
+      "role": "child",
+      "name": "frey_curve_unramified",
+      "excerpt_sha256": "dfcfcfe80313bf2f2e7c5d31937eec573609e19c2f55de86efbc47819815cb35",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/blueprint/src/chapter/ch03freyold.tex#L255-L258"
+    },
+    {
+      "path": "blueprint/src/chapter/ch03freyold.tex",
+      "lines": [
+        264,
+        272
+      ],
+      "role": "child",
+      "name": "frey_curve_at_2",
+      "excerpt_sha256": "b85ea1ae86ea3cc901c84f87f7c9da8095664c990843501a1101adb85b4edc1c",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/blueprint/src/chapter/ch03freyold.tex#L264-L272"
+    },
+    {
+      "path": "blueprint/src/chapter/ch03freyold.tex",
+      "lines": [
+        274,
+        286
+      ],
+      "role": "child",
+      "name": "Frey_curve_mod_ell_rep_at_ell",
+      "excerpt_sha256": "221482f88a174ac328feb5fabb36449c2941e3ea42e5d1920c1c50b83e90767d",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/blueprint/src/chapter/ch03freyold.tex#L274-L286"
+    }
+  ],
+  "parent": {
+    "name": "frey_curve_hardly_ramified",
+    "statement": "Let rho be the Galois representation on the l-torsion of the Frey curve coming from a Frey package (a,b,c,l). Then rho is hardly ramified.",
+    "note": "A blueprint node marked notready (not yet tied to a Lean declaration). Its proof is the glue: it unfolds the four axioms of the definition hardly_ramified and cites one theorem per axiom."
+  },
+  "children": [
+    {
+      "name": "Elliptic_curve_det_n_torsion",
+      "statement": "If E is an elliptic curve over a field k, and n is a positive integer which is nonzero in k, then the determinant of the 2-dimensional representation of Gal(k^sep/k) on E(k^sep)[n] is the mod n cyclotomic character.",
+      "closed_by": "the Weil pairing",
+      "note": "Discharges the first axiom (det(rho) is the mod l cyclotomic character). A node with \\uses{Elliptic_curve_n_torsion_2d}; its proof sketch reads 'This presumably should be done via the Weil pairing', not yet formalised."
+    },
+    {
+      "name": "frey_curve_unramified",
+      "statement": "If (a,b,c,l) is a Frey package, then the l-torsion in the Frey curve is unramified at all primes p not equal to 2,l.",
+      "closed_by": "Frey_curve_good, Frey_curve_unram",
+      "note": "Discharges the second axiom (rho unramified outside 2l). A corollary whose proof cites Frey_curve_good (primes not dividing abc) and Frey_curve_unram (odd primes dividing abc)."
+    },
+    {
+      "name": "frey_curve_at_2",
+      "statement": "If (a,b,c,l) is a Frey package, then the semisimplification of the restriction of the l-torsion rho in the associated Frey curve to Gal(Qbar_2/Q_2) is unramified.",
+      "closed_by": "multiplicative_reduction_torsion",
+      "note": "Discharges the third axiom (semisimplification of the restriction at 2 is unramified). A corollary proved from the Tate-curve description multiplicative_reduction_torsion."
+    },
+    {
+      "name": "Frey_curve_mod_ell_rep_at_ell",
+      "statement": "Let rho be the l-torsion in the Frey curve associated to a Frey package (a,b,c,l). Then the restriction of rho to G_Q_l comes from a finite flat group scheme.",
+      "closed_by": "good_reduction_implies_flat, multiplicative_reduction_torsion",
+      "note": "Discharges the fourth axiom (finite flat at l). A theorem splitting into case 1 (good reduction, via good_reduction_implies_flat) and case 2 (multiplicative reduction, via the Tate curve)."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal 'rho is P' where P is a definition given as a short conjunction of N named axioms; the goal reduces to one obligation per axiom.",
+    "use_when": "The target property is a definition with a small fixed set of conditions (here four), and each condition already has a named theorem in the blueprint, so the proof is a one-to-one match of condition to theorem.",
+    "avoid_when": "The conditions overlap or share hypotheses that must be proved together, so they cannot be discharged by independent citations; or a single condition is the real hard content and the others are trivial, in which case the split is not the interesting part."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The proof of frey_curve_hardly_ramified names Elliptic_curve_det_n_torsion.",
+      "evidence_kind": "check",
+      "form": "cites(frey_curve_hardly_ramified, Elliptic_curve_det_n_torsion)",
+      "evidence": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/blueprint/src/chapter/ch03freyold.tex#L290-L299"
+    },
+    {
+      "n": 2,
+      "claim": "The file ch03freyold.tex contains exactly four \\item entries.",
+      "evidence_kind": "check",
+      "form": "count(\\item, 4, blueprint/src/chapter/ch03freyold.tex)",
+      "evidence": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/blueprint/src/chapter/ch03freyold.tex#L184-L193"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site is 10 lines and the four child sites are 5, 4, 9 and 13 lines (declaration and proof included): four lemma holes of 31 lines sit under a 10-line glue.",
+      "evidence_kind": "measurement",
+      "evidence": "Line counts of the sites in blueprint/src/chapter/ch03freyold.tex at a3210204: parent L290-L299 (10 lines); children L44-L48 (5), L255-L258 (4), L264-L272 (9), L274-L286 (13)."
+    },
+    {
+      "n": 4,
+      "claim": "The authors define 'hardly ramified' as a representation that 'satisfies the following four axioms' and advertise this result as 'the first main result of this chapter'.",
+      "evidence_kind": "author-statement",
+      "evidence": "blueprint/src/chapter/ch03freyold.tex L186 ('... is said to be hardly ramified if it satisfies the following four axioms') and L288 ('We have now proved the first main result of this chapter.')."
+    },
+    {
+      "n": 5,
+      "claim": "Two of the children, frey_curve_unramified and frey_curve_at_2, are reused in the next section: the proof of Frey_characters_are_unramified cites both in its \\uses line.",
+      "evidence_kind": "known-use",
+      "evidence": "blueprint/src/chapter/ch03freyold.tex L323-L331; the \\uses{frey_curve_unramified, frey_curve_at_2} is at L326."
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 4,
+    "glue_lines": 10,
+    "child_lines": [
+      5,
+      4,
+      9,
+      13
+    ]
+  },
+  "metrics": {
+    "parent_site_lines": 10,
+    "children": 4,
+    "child_site_lines": [
+      5,
+      4,
+      9,
+      13
+    ],
+    "depth_below_main": 4,
+    "how_counted": "site line counts (declarations included) from entry.json sites; depth_below_main is the chain frey_curve_unramified -> Frey_curve_unram -> FreyCurve.j_valuation_of_bad_prime -> Frey_curve_j, read off the \\uses{} lines of ch03freyold.tex."
+  },
+  "consequences": "Unfolding hardly_ramified creates four obligations plus the side condition l >= 5, which the proof discharges for free from the definition of a Frey package (a Frey package has prime p >= 5; ch02reductions.tex L59-L61). Each obligation is handed to a single named theorem, so the glue has no mathematical content of its own: if one of the four cited theorems is wrong or too weak for its axiom, the node fails silently (it is notready, so Lean checks nothing). The four children are themselves deep and only sketched, so the node is a promise to the dependency graph, not a proof.",
+  "known_uses": [
+    "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/blueprint/src/chapter/ch03freyold.tex#L323-L331"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "d51b46e86967cdc77334a6555fe7719a3bbd8e9278b5b50c243997c6469da8db",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T11:00:35Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,also_known_as,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T11:01:50Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T11:07:36Z"
+}

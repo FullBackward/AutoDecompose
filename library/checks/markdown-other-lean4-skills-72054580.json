@@ -1,0 +1,109 @@
+{
+  "entry": "markdown-other-lean4-skills-72054580",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:50:32Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:50:32Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "not-run",
+      "evidence": "no Lean, Rocq or Isabelle file among the copied files",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:50:32Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, combine) -> cites: combine occurs at plugins/lean4/skills/lean4/references/proof-golfing.md:253",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:50:33Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "lines(parent, 3) -> lines: site parent has 3 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:50:33Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 3f913c66251b8712bb58e6ce83a453fa96e3f94f",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:50:41Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "copied file is a Markdown skill reference (entry language 'markdown'), not a Lean/Rocq/Isabelle source file, so there is no proof code to compile; none of the source's CI workflows (.github/workflows/lean-integration.yml compiles only test fixtures/reference snippets; lint.yml runs ruff/mypy/shellcheck/actionlint) builds this markdown reference",
+      "by": "verifier",
+      "at": "2026-11-14T09:51:34Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "opened the copied file (byte-identical per check_provenance): line 244 reads 'If inlining creates unreadable proof, keep intermediate steps:' and lines 250-253 are '-- Good - clear intent' followed by exactly 'have h1 : A := ...', 'have h2 : B := ...', 'exact combine h1 h2'",
+      "by": "verifier",
+      "at": "2026-11-14T09:51:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "counted on the copied file: parent site lines 251-253 are 3 lines (glue_lines=3); child sites h1(251), h2(252), combine(253) are one line each (direct_lemmas=3, child_lines=[1,1,1]); h1/h2 are independent named haves and combine is applied directly by exact, so no project-lemma chain below the parent exceeds length 1 (depth=1)",
+      "by": "verifier",
+      "at": "2026-11-14T09:51:41Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Copied file proof-golfing.md lines 250-253 read exactly '-- ✅ Good - clear intent / have h1 : A := ... / have h2 : B := ... / exact combine h1 h2', so parent site 251-253 (3 lines) and child sites h1(251), h2(252), combine(253) match verbatim; closing methods match (h1/h2 proofs elided by '...', combine applied by the glue). The three names the parent's body actually uses are exactly h1, h2, combine — children list matches with no extra/missing. Parent closes by exact combine h1 h2 given combine : A → B → goal (stated in note). Shape numbers are right: glue_lines=3 matches the 3-line parent, child_lines=[1,1,1] matches the three 1-line child sites, direct_lemmas=3 matches the 3 children, depth=1 is the protocol minimum and is explained. Claim 3 quote at line 244 verbatim; bad-inline (247-248) and name-earlier-fact (256-266) context sites match. Minor note: combine is modelled as a child/direct-lemma though it is applied (not proved) and h1/h2 are named have's not top-level lemmas, but the entry documents this explicitly in notes and the children list is exactly the names the glue cites, so no correctness defect.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:53:27Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated abstractly (placeholders A, B, combine; 'two (or more)' arity), so it generalizes past the one example. 'When not to use' cites the file's real Tier 3 threshold ('Single-use `have` inline (term < 40 chars)', line 41, verified in copied file) and consequences (two extra have lines; dead-binding and broken-inline failure modes) are honest and specific. It says what makes the leaves good for a bounded prover: each leaf is self-contained and independent of the others, and combine's arguments are manifestly available as h1/h2, so a bounded prover fills each leaf independently without touching the glue (README 93-99, 125-128).",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:54:16Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 3f913c66251b8712bb58e6ce83a453fa96e3f94f",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:54:33Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes (1 file byte-identical at pinned commit). Commit 3f913c66251b8712bb58e6ce83a453fa96e3f94f is consistent across entry.json, source.json, SOURCE.md and every permalink. Licence MIT in entry.json/README/SOURCE.md/source.json matches upstream-LICENSE (MIT License, Lean 4 Theorem Proving Skill Contributors). Source note present with licence text and attribution. Cited line ranges verified against the copied file: 242 '### Don't Over-Inline', 244 rule sentence, 247-248 Bad example, 251-253 three Good lines (h1/h2/exact combine), 256-266 Don't Remove Helpful Names; all match.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:55:00Z"
+    }
+  ]
+}

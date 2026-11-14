@@ -1,0 +1,201 @@
+{
+  "id": "isabelle-other-isabelle-dist-cb5b330e",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Reduce-solve-transfer proves the Cubic Formula",
+  "intent": "Prove the closed-form Cubic Formula by a reduce-solve-transfer composition: the glue rewrites the general cubic a*x^3 + b*x^2 + c*x + d = 0 into the depressed form y^3 + 3*p*y - 2*q = 0 through cubic_reduction, solves that depressed form with the three candidate roots s1, s2, s3 through cubic_basic (whose cube-root witness is supplied by ccbrt), then transfers the solution back to x through the same substitution.",
+  "move": "other",
+  "also_known_as": [
+    "reduce-solve-transfer",
+    "reduce to a normal form, solve the normal form, transfer back through the reduction equivalence"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "isabelle-dist",
+    "url": "https://github.com/isabelle-prover/mirror-isabelle",
+    "commit": "34ca456d44ca14641450b5d52f51b38688d4d1b5",
+    "licence": "BSD-3-Clause"
+  },
+  "files": [
+    {
+      "path": "src/HOL/ex/Cubic_Quartic.thy",
+      "bytes": 5705,
+      "sha256": "cd4170a8d05bab99e7098ec101df02182bf5c58199ebb81134b557416d67884e",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/ex/Cubic_Quartic.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "src/HOL/ex/Cubic_Quartic.thy",
+      "lines": [
+        88,
+        137
+      ],
+      "role": "parent",
+      "name": "cubic",
+      "excerpt_sha256": "7ebbf264de00c4bb0a3887779c699fad6340fed5d0ca6b707c75fbbcbbc8b2fd",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/ex/Cubic_Quartic.thy#L88-L137"
+    },
+    {
+      "path": "src/HOL/ex/Cubic_Quartic.thy",
+      "lines": [
+        15,
+        27
+      ],
+      "role": "child",
+      "name": "ccbrt",
+      "excerpt_sha256": "200b277bb81ff72db0cdee000ae229e2a6e3fd4772daa9c7ee4ae2226b61dca1",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/ex/Cubic_Quartic.thy#L15-L27"
+    },
+    {
+      "path": "src/HOL/ex/Cubic_Quartic.thy",
+      "lines": [
+        32,
+        48
+      ],
+      "role": "child",
+      "name": "cubic_reduction",
+      "excerpt_sha256": "96204d88c2baf2d80f57439c13f053dced1023318abbb75bf68c0272f09a6e7c",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/ex/Cubic_Quartic.thy#L32-L48"
+    },
+    {
+      "path": "src/HOL/ex/Cubic_Quartic.thy",
+      "lines": [
+        53,
+        83
+      ],
+      "role": "child",
+      "name": "cubic_basic",
+      "excerpt_sha256": "8f557b39cefb850227c66c3efe22a89a05f7916d94198c469ff10bbdae978e97",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/ex/Cubic_Quartic.thy#L53-L83"
+    },
+    {
+      "path": "src/HOL/ex/Cubic_Quartic.thy",
+      "lines": [
+        13,
+        13
+      ],
+      "role": "context",
+      "name": "ccbrt-def",
+      "excerpt_sha256": "ecdb1a76847ec4cdd0b5f1dbc6b0907beaca84c86c3f8dae3bc743a2f14c9758",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/ex/Cubic_Quartic.thy#L13-L13"
+    }
+  ],
+  "parent": {
+    "name": "cubic",
+    "statement": "lemma cubic:\n  assumes a0: \"a \\<noteq> 0\"\n  shows\n    \"let\n      p = (3 * a * c - b^2) / (9 * a^2);\n      q = (9 * a * b * c - 2 * b^3 - 27 * a^2 * d) / (54 * a^3);\n      s = csqrt(q^2 + p^3);\n      s1 = (if p = 0 then ccbrt(2 * q) else ccbrt(q + s));\n      s2 = -s1 * (1 + \\<i> * csqrt 3) / 2;\n      s3 = -s1 * (1 - \\<i> * csqrt 3) / 2\n     in\n      if p = 0 then\n        a * x^3 + b * x^2 + c * x + d = 0 \\<longleftrightarrow>\n          x = s1 - b / (3 * a) \\<or>\n          x = s2 - b / (3 * a) \\<or>\n          x = s3 - b / (3 * a)\n      else\n        s1 \\<noteq> 0 \\<and>\n          (a * x^3 + b * x^2 + c * x + d = 0 \\<longleftrightarrow>\n            x = s1 - p / s1 - b / (3 * a) \\<or>\n            x = s2 - p / s2 - b / (3 * a) \\<or>\n            x = s3 - p / s3 - b / (3 * a))\""
+  },
+  "children": [
+    {
+      "name": "ccbrt",
+      "statement": "lemma ccbrt: \"(ccbrt z) ^ 3 = z\"",
+      "closed_by": "its own proof: rcis_Ex gives the polar form z = rcis r a, the witness r' and a/3 are built so that rcis r' (a/3)^3 = rcis r a by (cases \"r < 0\") (simp_all add: DeMoivre2), giving EX w. w^3 = z, and someI_ex [OF *] closes it by unfolding ccbrt_def",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the cube-root witness: (ccbrt z)^3 = z for any complex z (the statement is copied by statements.py)"
+    },
+    {
+      "name": "cubic_reduction",
+      "statement": "lemma cubic_reduction:\n  fixes a :: complex\n  assumes\n    \"a \\<noteq> 0 \\<and> x = y - b / (3 * a) \\<and>  p = (3* a * c - b^2) / (9 * a^2) \\<and>\n      q = (9 * a * b * c - 2 * b^3 - 27 * a^2 * d) / (54 * a^3)\"\n  shows \"a * x^3 + b * x^2 + c * x + d = 0 \\<longleftrightarrow> y^3 + 3 * p * y - 2 * q = 0\"",
+      "closed_by": "by algebra: the three divisions in the assumptions are first turned into products with field_simps, then `from assms [unfolded *] show ?thesis by algebra`",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the reduction: a*x^3 + b*x^2 + c*x + d = 0 <-> y^3 + 3*p*y - 2*q = 0 under x = y - b/(3*a) and the definitions of p and q (the statement is copied by statements.py)"
+    },
+    {
+      "name": "cubic_basic",
+      "statement": "lemma cubic_basic:\n  fixes s :: complex\n  assumes\n    \"s^2 = q^2 + p^3 \\<and>\n      s1^3 = (if p = 0 then 2 * q else q + s) \\<and>\n      s2 = -s1 * (1 + i * t) / 2 \\<and>\n      s3 = -s1 * (1 - i * t) / 2 \\<and>\n      i^2 + 1 = 0 \\<and>\n      t^2 = 3\"\n  shows\n    \"if p = 0\n     then y^3 + 3 * p * y - 2 * q = 0 \\<longleftrightarrow> y = s1 \\<or> y = s2 \\<or> y = s3\n     else s1 \\<noteq> 0 \\<and>\n      (y^3 + 3 * p * y - 2 * q = 0 \\<longleftrightarrow> (y = s1 - p / s1 \\<or> y = s2 - p / s2 \\<or> y = s3 - p / s3))\"",
+      "closed_by": "a case split on p = 0; each branch closes by (simp add: field_simps) algebra, the False branch first deriving s1 /= 0, s2 /= 0, s3 /= 0 and the three rewrites y = si - p/si <-> si*y = si^2 - p",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the solution of the depressed form: y^3 + 3*p*y - 2*q = 0 <-> y = s1 | y = s2 | y = s3 (if p = 0) or the analogous y = si - p/si disjunction (if p /= 0) (the statement is copied by statements.py)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A closed-form solution of a general polynomial equation, stated as an equivalence poly(a,b,c,d,x) = 0 <-> x = r1 | x = r2 | x = r3 between the equation and a disjunction of explicit root expressions, over an algebraically closed coefficient type (complex here), with the roots given by a let-block of auxiliary expressions (p, q, s, s1, s2, s3).",
+    "use_when": "the target equation reduces by an invertible change of variable to a normal form with a known, self-contained solution; the reduction is an iff (<->), so the transfer back is pure rewriting; the normal form's solution and the witness that makes it concrete can each be stated as their own lemma with no reference to the original goal.",
+    "avoid_when": "the reduction is one-way (an implication, not an iff), so the normal form's solutions need not be the original's; the normal form's solution needs the original goal's hypotheses (so it cannot be stated separately); the transfer step itself is non-trivial and needs its own lemma."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site `cubic` is 50 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/ex/Cubic_Quartic.thy#L88-L137",
+      "form": "lines(cubic, 50)"
+    },
+    {
+      "n": 2,
+      "claim": "`cubic_reduction` occurs in the parent site `cubic`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/ex/Cubic_Quartic.thy#L88-L137",
+      "form": "cites(cubic, cubic_reduction)"
+    },
+    {
+      "n": 3,
+      "claim": "`cubic_basic` occurs in the parent site `cubic`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/ex/Cubic_Quartic.thy#L88-L137",
+      "form": "cites(cubic, cubic_basic)"
+    },
+    {
+      "n": 4,
+      "claim": "The shape of the decomposition: `cubic` uses exactly three direct project lemmas (cubic_reduction, ccbrt, cubic_basic), the longest chain of project lemmas below it has depth 1 (none of the three children cites another project lemma), and the sites are 50 lines for the parent and 13, 17, 31 lines for the three children.",
+      "evidence_kind": "measurement",
+      "evidence": "counted in the copied file src/HOL/ex/Cubic_Quartic.thy: parent lines 88-137 (50 lines), children 15-27 (ccbrt, 13), 32-48 (cubic_reduction, 17), 53-83 (cubic_basic, 31); depth 1 because none of the three child proofs cites another project lemma (they use only field_simps, algebra, and library facts rcis_Ex/DeMoivre2/someI_ex/power2_csqrt)"
+    },
+    {
+      "n": 5,
+      "claim": "The author labels the three stages of the composition in the file: \"The reduction to a simpler form\" (line 30), \"The solutions of the special form\" (line 51), and \"Explicit formula for the roots\" (line 86).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/ex/Cubic_Quartic.thy#L30 and #L51 and #L86"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 1,
+    "glue_lines": 50,
+    "child_lines": [
+      13,
+      17,
+      31
+    ]
+  },
+  "metrics": {
+    "direct_lemmas": 3,
+    "depth": 1,
+    "parent_lines": 50,
+    "child_lines": [
+      13,
+      17,
+      31
+    ],
+    "how_counted": "parent lines 88-137 and child lines 15-27 (ccbrt), 32-48 (cubic_reduction), 53-83 (cubic_basic) in the copied file; depth = cubic -> {cubic_reduction, ccbrt, cubic_basic}, all leaves (none cites another project lemma)"
+  },
+  "consequences": "Creates three obligations: the reduction equivalence (cubic_reduction), the witness (ccbrt), and the normal-form solution (cubic_basic); the glue then only has to instantiate and rewrite. The transfer depends on the reduction being an iff and on the branch condition p = 0 vs p /= 0 being expressed consistently in the normal-form lemma (there p = 0 directly) and in the glue (there re-expressed as a * (c * 3) = b^2); a mismatch between the two branch conditions breaks the final `cases` step. The witness ccbrt is defined with SOME, so the glue can use it only because the lemma ccbrt has already discharged its existence obligation; without that lemma the value of ccbrt is under-determined.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "cb5b330e1b69ea4230fddabd85173473d400452071175a1660f2c1b56dc5b7bb",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:49:34Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:55:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:51:24Z",
+      "note": "parent cubic: statement re-copied from code; child 'ccbrt': statement re-copied from the declaration of ccbrt; child 'cubic_reduction': statement re-copied from the declaration of cubic_reduction; child 'cubic_basic': statement re-copied from the declaration of cubic_basic"
+    }
+  ]
+}

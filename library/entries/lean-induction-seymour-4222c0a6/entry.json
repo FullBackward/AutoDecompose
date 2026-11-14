@@ -1,0 +1,308 @@
+{
+  "id": "lean-induction-seymour-4222c0a6",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Induction on the construction predicate IsGood for the easy direction of Seymour's theorem",
+  "intent": "Reduce the easy direction of Seymour's theorem — every matroid built from graphic, cographic and R10 matroids by 1-, 2- and 3-sums is regular — to one induction on the construction predicate Matroid.IsGood, with one case per constructor, each closed by the regularity lemma written for that constructor.",
+  "move": "induction",
+  "also_known_as": [
+    "structural induction over a construction predicate",
+    "recursion over a generated matroid",
+    "induction on an inductive predicate (one lemma per constructor)"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "seymour",
+    "url": "https://github.com/Ivan-Sergeyev/seymour",
+    "commit": "2769b10cb73fda17bafc0f13890dc057a2f4ff2a",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Seymour/Results/EasyDirection.lean",
+      "bytes": 1837,
+      "sha256": "0c4b52fdb7664add0819a1e826f3e570c506301f6f21210171287b2b67612811",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Results/EasyDirection.lean"
+    },
+    {
+      "path": "Seymour/Matroid/Graphicness.lean",
+      "bytes": 8457,
+      "sha256": "9ab0b78babe625edfe25187271eb27a3c6360f6d164f5efc701800f50c850076",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Matroid/Graphicness.lean"
+    },
+    {
+      "path": "Seymour/Matroid/Comatroids.lean",
+      "bytes": 18958,
+      "sha256": "feee52280da2a146df7503654c07455802b652f3958cfc79c00459f7d11ef0b4",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Matroid/Comatroids.lean"
+    },
+    {
+      "path": "Seymour/Matroid/Regularity.lean",
+      "bytes": 13930,
+      "sha256": "d0abb86fb32e7b5f27aaa33e1c35d1fa7374bcde8d4fe12a2f105216c258f907",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Matroid/Regularity.lean"
+    },
+    {
+      "path": "Seymour/Matroid/Sum1.lean",
+      "bytes": 13305,
+      "sha256": "8c8980e9f2311ae74bb7a51b9cd534f8caa58e6b10e05d0f94db2799e818cb58",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Matroid/Sum1.lean"
+    },
+    {
+      "path": "Seymour/Matroid/Sum2.lean",
+      "bytes": 19842,
+      "sha256": "d749c3c8284f52e2fd3d8f530e147c5c15b8f3345812187a178fc7d3130144de",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Matroid/Sum2.lean"
+    },
+    {
+      "path": "Seymour/Matroid/Sum3.lean",
+      "bytes": 178200,
+      "sha256": "457df74edfaf6525983861964a553a5bc8d4d9289e2ed70dbef270fd815c24fe",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Matroid/Sum3.lean"
+    },
+    {
+      "path": "Seymour/Matroid/R10.lean",
+      "bytes": 1979,
+      "sha256": "8408205ca190fb1ea199e876c124b6a8812e0a2e71ebff608feba5d67ec07517",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Matroid/R10.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Seymour/Results/EasyDirection.lean",
+      "lines": [
+        22,
+        30
+      ],
+      "role": "parent",
+      "name": "Matroid.IsGood.isRegular",
+      "excerpt_sha256": "27a78b2c23af2d771f6fb488491c461d7a7831e4f956c6f99013a2455d2e4996",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Results/EasyDirection.lean#L22-L30"
+    },
+    {
+      "path": "Seymour/Results/EasyDirection.lean",
+      "lines": [
+        11,
+        20
+      ],
+      "role": "context",
+      "name": "Matroid.IsGood",
+      "excerpt_sha256": "15121a40695b7fc48cfed2b2ce9e8d4e01d3dbd329c3663f28bcaa804e2bfbd7",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Results/EasyDirection.lean#L11-L20"
+    },
+    {
+      "path": "Seymour/Matroid/Graphicness.lean",
+      "lines": [
+        174,
+        177
+      ],
+      "role": "child",
+      "name": "Matroid.IsGraphic.isRegular",
+      "excerpt_sha256": "04ee121a1a115a935ed07dba6694909eabbddee226ecbddc7231bd918a1a1455",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Matroid/Graphicness.lean#L174-L177"
+    },
+    {
+      "path": "Seymour/Matroid/Comatroids.lean",
+      "lines": [
+        390,
+        392
+      ],
+      "role": "child",
+      "name": "Matroid.IsCographic.isRegular",
+      "excerpt_sha256": "39d219e2b396f1f58661234dfb8456101c5c1d5d5e304d0d03380cc24641303f",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Matroid/Comatroids.lean#L390-L392"
+    },
+    {
+      "path": "Seymour/Matroid/Regularity.lean",
+      "lines": [
+        92,
+        100
+      ],
+      "role": "child",
+      "name": "Matroid.isRegular_mapEquiv_iff",
+      "excerpt_sha256": "00a2a2c2e5b99d65001e60b7d485767c10c25d981d3ef9ff1b620cef90fbde69",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Matroid/Regularity.lean#L92-L100"
+    },
+    {
+      "path": "Seymour/Matroid/Sum1.lean",
+      "lines": [
+        235,
+        243
+      ],
+      "role": "child",
+      "name": "Matroid.IsSum1of.isRegular",
+      "excerpt_sha256": "c86f532adade04290315b6269084b618d796fc54b020253b6ccb7d2cd8f1ea41",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Matroid/Sum1.lean#L235-L243"
+    },
+    {
+      "path": "Seymour/Matroid/Sum2.lean",
+      "lines": [
+        400,
+        408
+      ],
+      "role": "child",
+      "name": "Matroid.IsSum2of.isRegular",
+      "excerpt_sha256": "291d1ac2c731362a958fa385bec69e667401e12aa627f8d800ab20575e99cf11",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Matroid/Sum2.lean#L400-L408"
+    },
+    {
+      "path": "Seymour/Matroid/Sum3.lean",
+      "lines": [
+        3469,
+        3477
+      ],
+      "role": "child",
+      "name": "Matroid.IsSum3of.isRegular",
+      "excerpt_sha256": "e752e267525c44ef70b6e2dc0701b6d878316a5fa8168a7206b975341e3b33bb",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Matroid/Sum3.lean#L3469-L3477"
+    },
+    {
+      "path": "Seymour/Matroid/R10.lean",
+      "lines": [
+        51,
+        61
+      ],
+      "role": "context",
+      "name": "matroidR10.isRegular",
+      "excerpt_sha256": "4c05ce14dac26f08b3d98d12c3c52adf8194f94fa99c083729726f2a984a3c58",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Matroid/R10.lean#L51-L61"
+    }
+  ],
+  "parent": {
+    "name": "Matroid.IsGood.isRegular",
+    "statement": "theorem Matroid.IsGood.isRegular {M : Matroid α} (hM : M.IsGood) : M.IsRegular"
+  },
+  "children": [
+    {
+      "name": "Matroid.IsGraphic.isRegular",
+      "statement": "theorem Matroid.IsGraphic.isRegular {M : Matroid α} (hM : M.IsGraphic) :\n    M.IsRegular",
+      "closed_by": "obtain ⟨X, Y, A, hA, hMA⟩ := hM; exact ⟨X, Y, A, hA.isTotallyUnimodular, hMA⟩",
+      "note": "Leaf for the graphic constructor: unfolds IsGraphic to a totally-unimodular matrix representation, which is exactly IsRegular. Analyst's paraphrase, replaced by the declaration's text: A graphic matroid is regular"
+    },
+    {
+      "name": "Matroid.IsCographic.isRegular",
+      "statement": "lemma Matroid.IsCographic.isRegular {M : Matroid α} (hM_fin : M.Finite) (hM : M.IsCographic) :\n    M.IsRegular",
+      "closed_by": "M.dual_dual ▸ (Matroid.IsGraphic.isRegular hM).dual M.dual_finite",
+      "note": "Leaf for the cographic constructor: a cographic matroid is the dual of a graphic one, and regularity is closed under dual, so it reuses the sibling Matroid.IsGraphic.isRegular. Analyst's paraphrase, replaced by the declaration's text: A finite cographic matroid is regular"
+    },
+    {
+      "name": "Matroid.isRegular_mapEquiv_iff",
+      "statement": "lemma Matroid.isRegular_mapEquiv_iff {α β : Type*} (M : Matroid α) (e : α ≃ β) : (M.mapEquiv e).IsRegular ↔ M.IsRegular",
+      "closed_by": "constructor <;> intro ⟨X, Y, A, hA, hAM⟩; reindex the representation (A.reindex) along e and e.symm, then aesop",
+      "note": "Leaf for the isomorphicR10 constructor: regularity is invariant under mapEquiv, so the R10 matroid's regularity transfers to any isomorphic copy. Analyst's paraphrase, replaced by the declaration's text: Regularity is preserved under remapping"
+    },
+    {
+      "name": "Matroid.IsSum1of.isRegular",
+      "statement": "theorem Matroid.IsSum1of.isRegular {M Mₗ Mᵣ : Matroid α}\n    (hMMM : M.IsSum1of Mₗ Mᵣ) (hM : M.RankFinite) (hMₗ : Mₗ.IsRegular) (hMᵣ : Mᵣ.IsRegular) :\n    M.IsRegular",
+      "closed_by": "rw [StandardRepr.toMatroid_isRegular_iff_hasTuSigning] at hMₗ hMᵣ ⊢; exact standardReprSum1_hasTuSigning hMₗ hMᵣ hSSS",
+      "note": "Fork for the 1-sum constructor: reduces regularity to a totally-unimodular signing, supplied by standardReprSum1_hasTuSigning from the two inductive hypotheses. Analyst's paraphrase, replaced by the declaration's text: A 1-sum of regular matroids is regular"
+    },
+    {
+      "name": "Matroid.IsSum2of.isRegular",
+      "statement": "theorem Matroid.IsSum2of.isRegular {M Mₗ Mᵣ : Matroid α}\n    (hMMM : M.IsSum2of Mₗ Mᵣ) (hM : M.RankFinite) (hMₗ : Mₗ.IsRegular) (hMᵣ : Mᵣ.IsRegular) :\n    M.IsRegular",
+      "closed_by": "rw [StandardRepr.toMatroid_isRegular_iff_hasTuSigning] at hMₗ hMᵣ ⊢; exact standardReprSum2_hasTuSigning hMₗ hMᵣ hSSS",
+      "note": "Fork for the 2-sum constructor: same shape, closed by standardReprSum2_hasTuSigning. Analyst's paraphrase, replaced by the declaration's text: A 2-sum of regular matroids is regular"
+    },
+    {
+      "name": "Matroid.IsSum3of.isRegular",
+      "statement": "theorem Matroid.IsSum3of.isRegular {M Mₗ Mᵣ : Matroid α}\n    (hMMM : M.IsSum3of Mₗ Mᵣ) (hM : M.RankFinite) (hMₗ : Mₗ.IsRegular) (hMᵣ : Mᵣ.IsRegular) :\n    M.IsRegular",
+      "closed_by": "rw [StandardRepr.toMatroid_isRegular_iff_hasTuSigning] at hMₗ hMᵣ ⊢; exact standardReprSum3_hasTuSigning hMₗ hMᵣ hSSS",
+      "note": "Fork for the 3-sum constructor: same shape, closed by standardReprSum3_hasTuSigning. Analyst's paraphrase, replaced by the declaration's text: A 3-sum of regular matroids is regular"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "∀ M, M.IsGood → P M, where IsGood is an inductive construction predicate (leaf constructors graphic/cographic/isomorphicR10, fork constructors is1sum/is2sum/is3sum) and P is a property of Matroid α (here IsRegular).",
+    "use_when": "a property P is already proved for each leaf constructor and preserved by each fork constructor, so the induction has exactly one case per constructor and each closes by the regularity lemma written for that constructor.",
+    "avoid_when": "some constructor's case needs genuinely new work, or a leaf's regularity lemma is missing. The fork cases each demand a RankFinite side condition plus two inductive hypotheses, so the sum lemmas must be stated to take those hypotheses; if they are not, the induction stalls on the fork cases."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The main theorem `Matroid.IsGood.isRegular` is declared in `Seymour/Results/EasyDirection.lean`, lines 22-30.",
+      "evidence_kind": "check",
+      "form": "declared(Matroid.IsGood.isRegular, Seymour/Results/EasyDirection.lean, 22-30)",
+      "evidence": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Results/EasyDirection.lean#L22-L30"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site (the glue) is 9 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(parent, 9)",
+      "evidence": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Results/EasyDirection.lean#L22-L30"
+    },
+    {
+      "n": 3,
+      "claim": "No `sorry`, `admit` or `axiom` occurs in `Seymour/Results/EasyDirection.lean`, lines 1-36.",
+      "evidence_kind": "check",
+      "form": "no_sorry(Seymour/Results/EasyDirection.lean, 1-36)",
+      "evidence": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Results/EasyDirection.lean"
+    },
+    {
+      "n": 4,
+      "claim": "The name `isRegular_mapEquiv_iff` occurs in the parent site (the glue).",
+      "evidence_kind": "check",
+      "form": "cites(parent, isRegular_mapEquiv_iff)",
+      "evidence": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Results/EasyDirection.lean#L27"
+    },
+    {
+      "n": 5,
+      "claim": "The authors annotate the construction predicate 'Given matroid can be constructed from graphic matroids & cographics matroids & R10 using 1-sums & 2-sums & 3-sums' (line 11) and title the theorem a 'Corollary of the easy direction of the Seymour's theorem' (line 22).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/Seymour/Results/EasyDirection.lean#L11 and #L22"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 6,
+    "depth": 3,
+    "glue_lines": 9,
+    "child_lines": [
+      4,
+      3,
+      9,
+      9,
+      9,
+      9
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 9,
+    "children": 6,
+    "leaf_children": 3,
+    "fork_children": 3,
+    "how_counted": "parent_proof_lines = lines 22-30 of Seymour/Results/EasyDirection.lean; children = the six constructor-case lemmas the glue cites (three leaf constructors graphic/cographic/isomorphicR10, three fork constructors is1sum/is2sum/is3sum)."
+  },
+  "consequences": "The induction creates one goal per constructor of IsGood (three leaves, three forks). Each fork case carries two inductive hypotheses (ihₗ, ihᵣ) and a RankFinite hypothesis, all fed to the matching sum lemma; each leaf case is closed by a regularity lemma for that leaf (graphic, cographic, R10-up-to-mapEquiv). Failure mode: the induction closes only if a regularity lemma exists per constructor and the sum lemmas' side conditions are supplied by the constructor's own hypotheses; a constructor whose property is not already a lemma leaves that case open.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "4222c0a6faa8ad33bf4488ca31f1568c132f1bd00e6003432a2bc35fded841a9",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:12:45Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:20:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:14:33Z",
+      "note": "parent Matroid.IsGood.isRegular: statement re-copied from code; child 'Matroid.IsGraphic.isRegular': statement re-copied from the declaration of Matroid.IsGraphic.isRegular; child 'Matroid.IsCographic.isRegular': statement re-copied from the declaration of Matroid.IsCographic.isRegular; child 'Matroid.isRegular_mapEquiv_iff': statement re-copied from the declaration of Matroid.isRegular_mapEquiv_iff; child 'Matroid.IsSum1of.isRegular': statement re-copied from the declaration of Matroid.IsSum1of.isRegular; child 'Matroid.IsSum2of.isRegular': statement re-copied from the declaration of Matroid.IsSum2of.isRegular; child 'Matroid.IsSum3of.isRegular': statement re-copied from the declaration of Matroid.IsSum3of.isRegular"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T12:20:46Z"
+}

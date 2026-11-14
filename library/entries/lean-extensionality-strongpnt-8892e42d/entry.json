@@ -1,0 +1,225 @@
+{
+  "id": "lean-extensionality-strongpnt-8892e42d",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Extensionality over the prime index for the zeta ratio identity",
+  "intent": "Reduce the equality between the zeta ratio and an Euler product over primes to a pointwise equality over the prime index p (via congr/ext), then close the single pointwise factor with the ratio identity (1 - p^{-2s})^{-1}/(1 - p^{-s})^{-1} = (1 + p^{-s})^{-1}.",
+  "move": "extensionality",
+  "also_known_as": [
+    "pointwise equality over an index",
+    "congr; ext",
+    "funext",
+    "Set.ext / Finset.ext"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "strongpnt",
+    "url": "https://github.com/math-inc/strongpnt",
+    "commit": "2f5835c322314f55f1026ec2f139d704b7c45c69",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "StrongPNT/PNT3_RiemannZeta.lean",
+      "bytes": 238015,
+      "sha256": "6b7192b8aa016bef8e0a50358965c0b7b890a66942aab07996c828f9d276b87f",
+      "permalink": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean"
+    },
+    {
+      "path": "blueprint/src/PNT/PNT3_RiemannZeta.tex",
+      "bytes": 47856,
+      "sha256": "011b1565d92f082e25b363d0982979da5bcfca48ee054e911876b4147688ef45",
+      "permalink": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/blueprint/src/PNT/PNT3_RiemannZeta.tex"
+    }
+  ],
+  "sites": [
+    {
+      "path": "StrongPNT/PNT3_RiemannZeta.lean",
+      "lines": [
+        264,
+        269
+      ],
+      "role": "parent",
+      "name": "zeta_ratio_identity",
+      "excerpt_sha256": "85258bc9baa5a2ca77a93553a0453edc7f2d9f080cd965643c4d000c6ff51408",
+      "permalink": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean#L264-L269"
+    },
+    {
+      "path": "StrongPNT/PNT3_RiemannZeta.lean",
+      "lines": [
+        225,
+        228
+      ],
+      "role": "child",
+      "name": "zeta_ratios",
+      "excerpt_sha256": "7d852784401e48d27c728b0344a141889cafa482e6097e7c935a7674fecae34e",
+      "permalink": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean#L225-L228"
+    },
+    {
+      "path": "StrongPNT/PNT3_RiemannZeta.lean",
+      "lines": [
+        258,
+        262
+      ],
+      "role": "child",
+      "name": "complex_cpow_neg_two_mul",
+      "excerpt_sha256": "4bd8d28cbc2149a64cd8801299a25489ce4a93d6e1501e49e16fc8fc866b3eae",
+      "permalink": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean#L258-L262"
+    },
+    {
+      "path": "StrongPNT/PNT3_RiemannZeta.lean",
+      "lines": [
+        7,
+        27
+      ],
+      "role": "child",
+      "name": "p_s_abs_1",
+      "excerpt_sha256": "e5152cd3fc7b949776e68801c6f639cf7273737d2d251fad33e5760f54e28b50",
+      "permalink": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean#L7-L27"
+    },
+    {
+      "path": "StrongPNT/PNT3_RiemannZeta.lean",
+      "lines": [
+        251,
+        254
+      ],
+      "role": "child",
+      "name": "ratio_invs",
+      "excerpt_sha256": "9450db25af2991e325d95e24ebc05dd68864b60460f1642e6fd74c6cfd180fc7",
+      "permalink": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean#L251-L254"
+    },
+    {
+      "path": "blueprint/src/PNT/PNT3_RiemannZeta.tex",
+      "lines": [
+        227,
+        236
+      ],
+      "role": "context",
+      "name": "zeta_ratio_identity_node",
+      "excerpt_sha256": "52630debc11349f76016856e8d9bd65d6aef39b0c9bcce8c517380593779b7ba",
+      "permalink": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/blueprint/src/PNT/PNT3_RiemannZeta.tex#L227-L236"
+    }
+  ],
+  "parent": {
+    "name": "zeta_ratio_identity",
+    "statement": "theorem zeta_ratio_identity (s : ℂ) (hs : 1 < s.re) : riemannZeta (2 * s) / riemannZeta s = ∏' p : ℙ, (1 + ((p : ℕ) : ℂ) ^ (-s : ℂ))⁻¹"
+  },
+  "children": [
+    {
+      "name": "zeta_ratios",
+      "statement": "lemma zeta_ratios (s : ℂ) (hs : 1 < s.re) : riemannZeta (2 * s) / riemannZeta s = ∏' p : ℙ, ((1 - ((p : ℕ) : ℂ) ^ (-(2 * s) : ℂ))⁻¹ / (1 - ((p : ℕ) : ℂ) ^ (-s : ℂ))⁻¹)",
+      "closed_by": "exact h1.trans h2, from zeta_ratio_prod and simplify_prod_ratio",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: expand the zeta ratio into a product of ratios over primes"
+    },
+    {
+      "name": "complex_cpow_neg_two_mul",
+      "statement": "lemma complex_cpow_neg_two_mul (z w : ℂ) (hz : z ≠ 0) : z^(-(2*w)) = (z^(-w))^2",
+      "closed_by": "rw [h2, Complex.cpow_nat_mul], after ring and norm_cast",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: z^{-(2w)} = (z^{-w})^2 for a nonzero complex z"
+    },
+    {
+      "name": "p_s_abs_1",
+      "statement": "lemma p_s_abs_1 (p : ℙ) (s : ℂ) (hs : 1 < s.re) : norm (((p : ℕ) : ℂ) ^ (-s : ℂ)) < 1",
+      "closed_by": "Complex.norm_cpow_eq_rpow_re_of_pos and Real.rpow_lt_one_of_one_lt_of_neg",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: norm (p^{-s}) < 1 for a prime p and Re s > 1"
+    },
+    {
+      "name": "ratio_invs",
+      "statement": "lemma ratio_invs (z : ℂ) (hz : norm z < 1) : (1 - z^2)⁻¹ / (1 - z)⁻¹ = (1 + z)⁻¹",
+      "closed_by": "one_sub_ne_zero_of_abs_lt_one, diff_of_squares, inv_mul_div_cancel_right_of_ne_zero",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: (1 - z^2)^{-1}/(1 - z)^{-1} = (1 + z)^{-1} for norm z < 1"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "an equality between two indexed products (or two functions) whose two sides differ only inside the index: after a rewrite, the goal is (f p = g p) for every index p",
+    "use_when": "the equality reduces to a single self-contained pointwise identity (a named lemma in the index variable) that closes uniformly for every p",
+    "avoid_when": "the two products are over different index types or weights (ext will not apply), or the pointwise factor still shares structure that needs a further split per p"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent `zeta_ratio_identity` is declared at StrongPNT/PNT3_RiemannZeta.lean lines 264-269.",
+      "evidence_kind": "check",
+      "form": "declared(zeta_ratio_identity, StrongPNT/PNT3_RiemannZeta.lean, 264-269)",
+      "evidence": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean#L264-L269"
+    },
+    {
+      "n": 2,
+      "claim": "StrongPNT/PNT3_RiemannZeta.lean lines 264-269 (the parent's proof) contain no sorry, admit or axiom.",
+      "evidence_kind": "check",
+      "form": "no_sorry(StrongPNT/PNT3_RiemannZeta.lean, 264-269)",
+      "evidence": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean#L264-L269"
+    },
+    {
+      "n": 3,
+      "claim": "The theorem-scale shape of `zeta_ratio_identity` is 4 direct lemmas, a 6-line glue, child proofs of 4, 5, 21 and 4 lines, and depth 5 below the main theorem.",
+      "evidence_kind": "measurement",
+      "evidence": "glue = parent site 264-269; child sites 225-228 (zeta_ratios), 258-262 (complex_cpow_neg_two_mul), 7-27 (p_s_abs_1), 251-254 (ratio_invs); depth chain zeta_ratios -> simplify_prod_ratio -> prod_of_ratios -> prod_of_ratios_simplified -> lift_multipliable_of_nonzero at lines 225 -> 189 -> 164 -> 131 -> 98 of StrongPNT/PNT3_RiemannZeta.lean"
+    },
+    {
+      "n": 4,
+      "claim": "The authors' blueprint proof of the same theorem cites the same named lemmas the glue uses: \"\\uses{lem:zeta_ratios, lem:ratio_invs, lem:p_s_abs_1}\" and \"Apply Lemma \\ref{lem:zeta_ratios} and Lemma \\ref{lem:ratio_invs} with $z=p^{-s}$. We verify condition using \\cref{lem:p_s_abs_1}.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/blueprint/src/PNT/PNT3_RiemannZeta.tex#L234-L235"
+    },
+    {
+      "n": 5,
+      "claim": "The same pointwise reduction (`congr 1` then `ext p` over the prime index) is used in the same file to prove `abs_zeta_prod_prime` at lines 65-66.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean#L62-L67"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 5,
+    "glue_lines": 6,
+    "child_lines": [
+      4,
+      5,
+      21,
+      4
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 6,
+    "children": 4,
+    "children_closed_by_automation": 4,
+    "how_counted": "parent site 264-269; child sites 225-228, 258-262, 7-27, 251-254 of StrongPNT/PNT3_RiemannZeta.lean; all four children close by rw/simp/ring/exact, none by induction or case split"
+  },
+  "consequences": "The move turns one product equality into one pointwise goal per index (here a single p, bound by ext). It depends on a prior rewrite (zeta_ratios) putting the two sides into the same product shape; ext only applies because both sides are products over the same index type P. If the pointwise factor does not close by one named lemma (as ratio_invs does here), the per-index goal needs a further split, and the move does not help with that.",
+  "known_uses": [
+    "https://github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean#L62-L67"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "8892e42d804697c40bbdedd2855998d588c8365becedef7788d2792f3ad9970f",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:19:34Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:30:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:20:56Z",
+      "note": "parent zeta_ratio_identity: statement re-copied from code; child 'zeta_ratios': statement re-copied from the declaration of zeta_ratios; child 'complex_cpow_neg_two_mul': statement re-copied from the declaration of complex_cpow_neg_two_mul; child 'p_s_abs_1': statement re-copied from the declaration of p_s_abs_1; child 'ratio_invs': statement re-copied from the declaration of ratio_invs"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T09:26:58Z"
+}

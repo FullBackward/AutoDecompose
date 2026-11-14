@@ -1,0 +1,133 @@
+{
+  "entry": "rocq-induction-jordan-curve-theorem-3e5df212",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:42:47Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:42:47Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:42:47Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: Jordan1@Jordan10.v:8777, nc_Br1@Jordan10.v:8795, ring1_ring3_connect@Jordan10.v:8788, inv_hmap_Br1@Jordan10.v:8807, planar_Br1@Jordan10.v:8809, ring_Br1@Jordan10.v:8816; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:42:47Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(parent, 57) -> lines: site parent has 57 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:42:47Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, nc_Br1) -> cites: nc_Br1 occurs at Jordan10.v:8795",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:42:47Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(Jordan10.v, 4229-8819) -> no_sorry: none of admit, Admitted, Axiom, axiom in Jordan10.v:4229-8819",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:42:47Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 906762607c3e05bedd3f9aab002172e34dd1b595",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:42:55Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no Rocq toolchain on the harvest machine (protocol section 6); the source repository has no CI workflow at pinned commit 906762607c3e05bedd3f9aab002172e34dd1b595 (default branch master; file listing shows only description, Jordan1-10.v, Make, Makefile, README - no .github/workflows or other CI config)",
+      "by": "verifier",
+      "at": "2026-11-14T12:44:38Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "line counts in byte-identical code/Jordan10.v: Jordan1 5994-6030=37, nc_Br1 5379-5601=223, ring1_ring3_connect 6296-6329=34, inv_hmap_Br1 4229-4255=27, planar_Br1 4257-4307=51, ring_Br1 8714-8759=46 (sum 418), glue 8763-8819=57",
+      "by": "verifier",
+      "at": "2026-11-14T12:44:39Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "README line 7 at pinned commit 906762607c3e05bedd3f9aab002172e34dd1b595 contains verbatim: 'When the hypermap is planar and is broken at these edges, the number of its connected components increases by one, which is a discrete version of the famous Jordan curve theorem.'",
+      "by": "verifier",
+      "at": "2026-11-14T12:44:40Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 906762607c3e05bedd3f9aab002172e34dd1b595",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:45:35Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent Jordan (8763-8819, 57 lines) closes with Qed; glue cites exactly six named lemmas once each, at the recorded lines: Jordan1@8777, ring1_ring3_connect@8788, nc_Br1@8795, inv_hmap_Br1@8807, planar_Br1@8809, ring_Br1@8816, and no other named lemma. All six child statements match entry.json verbatim and each closes with Qed; closed_by glosses match the code (e.g. Jordan1: rewrite nc_Br1; elim (expf_dec m y y'); apply expf_symm; tauto; ring1_ring3_connect: apply expf_trans with y'; tauto). Shape numbers correct: glue_lines 57, child_lines [37,223,34,27,51,46] (sum 418), direct_lemmas 6; depth 4 consistent with Jordan->ring_Br1->ring_Br1_aux->pre_ring3_Br1->pre_ring3_Br1_aux_bis, and ring_Br1 cites ring_Br1_aux at 8748. No admit/Admitted/Axiom in the ranges.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:46:18Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalises beyond nc/Br1/ring: use_when abstracts to 'a quantity changing by a fixed increment per cons-step' plus 'side conditions already proved as named one-step lemmas about the single operation', and notes the base case need not be degenerate. avoid_when gives three specific, honest conditions each tied to a named lemma (ring_Br1 for hypothesis preservation, ring1_ring3_connect for the excluded expf case, additivity of nc). Consequences list the three obligations the induction creates and a concrete failure mode. Leaf-quality for a bounded prover is explicit: 'Why each child is a good leaf, i.e. a self-contained statement that closes on its own or from named siblings', with each child's closing tactic named and the 418-vs-57 line split quantified.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:47:07Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 906762607c3e05bedd3f9aab002172e34dd1b595",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:47:31Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent. check_provenance.py passes: code/Jordan10.v is byte-identical at pinned commit 906762607c3e05bedd3f9aab002172e34dd1b595 (sha256 8c5ddfa9... matches entry.json, bytes 182104 match). All permalinks in README.md and entry.json use the same full commit hash. Source note and entry record licence as LicenseRef-unknown with 'no licence file found at the root'; verified against the repo root (no LICENSE/COPYING, README mentions no licence), consistent with protocol decision 1. Source note link and code/ file both present.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:48:06Z"
+    }
+  ]
+}

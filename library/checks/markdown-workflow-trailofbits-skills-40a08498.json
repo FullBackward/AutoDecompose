@@ -1,0 +1,117 @@
+{
+  "entry": "markdown-workflow-trailofbits-skills-40a08498",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:52:38Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:52:38Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "not-run",
+      "evidence": "no Lean, Rocq or Isabelle file among the copied files",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:52:38Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(plugins/writing-lean-proofs/skills/writing-lean-proofs/references/llm-techniques.md:57-73, 17) -> lines: site plugins/writing-lean-proofs/skills/writing-lean-proofs/references/llm-techniques.md:57-73 has 17 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:52:38Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "count(sorry, 2, plugins/writing-lean-proofs/skills/writing-lean-proofs/references/llm-techniques.md) -> count: sorry occurs 2 times in 1 file(s) matching plugins/writing-lean-proofs/skills/writing-lean-proofs/references/llm-techniques.md",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:52:38Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:52:47Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "the only copied file is a markdown skill reference (llm-techniques.md), not a Lean/Rocq source, so no CI builds it; no local toolchain per protocol section 6",
+      "by": "verifier",
+      "at": "2026-11-14T09:53:05Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "read code/plugins/writing-lean-proofs/skills/writing-lean-proofs/references/llm-techniques.md lines 72-73: '- Prefer many small stubs over few large ones: the granularity criterion is' / '  \"one agent can discharge one stub without global context\".' — the quoted phrase appears verbatim",
+      "by": "verifier",
+      "at": "2026-11-14T09:53:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "read code/plugins/writing-lean-proofs/skills/writing-lean-proofs/references/llm-techniques.md lines 69-71: '- A filled sorry must not change any statement — statements are frozen' / '  interface; if a statement is wrong, that is a design change, surfaced' / '  rather than silently patched.' — the quoted phrase appears verbatim",
+      "by": "verifier",
+      "at": "2026-11-14T09:53:10Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read code/plugins/writing-lean-proofs/skills/writing-lean-proofs/references/llm-techniques.md lines 63-66: 'individual sorries with no shared context beyond the file. This is exactly' / 'how PFR ran ~20 human contributors in parallel — the proof assistant' / 'verifies each contribution independently, so contributors need not' / 'understand the whole. Rules:' — PFR named at line 64, quoted phrase verbatim",
+      "by": "verifier",
+      "at": "2026-11-14T09:53:13Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Site lines 57-73 are exactly 17 lines (heading '## Sorry skeletons are the multi-agent protocol' through the 'many small stubs' bullet). 'sorry' occurs exactly 2 times (line 62 'compiling `sorry` stubs', line 69 'filled sorry'), matching the count check. The three children map one-to-one to the three bullets: compile-before-fan-out (line 68), frozen-statements (lines 69-71), many-small-stubs (lines 72-73), with statements quoting the code verbatim. Author-statement claims 3-5 quote lines 72-73, 69-71 and 63-66 faithfully. As a workflow skill (kind=skill, move=workflow) there is no theorem-scale shape or lemma list; metrics rules=3 and precedent_named=1 (PFR, line 64) are correct.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:54:04Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalises beyond the PFR example: the entry abstracts to three generic rules (compile-before-fan-out, frozen-statements, many-small-stubs) and states explicitly that none names a concrete lemma, with goal_shape/use_when/avoid_when written for any theorem-scale proof. When-not-to-use is specific and honest (statements in flux become design changes; single small proof; skeleton cannot compile first). Consequences are honest, including the key caveat that a wrong frozen statement propagates to the assembled theorem undetected. The bounded-prover leaf property is stated in the authors' own words (lines 72-73: 'one agent can discharge one stub without global context'), identified as the sizing rule that turns a monolithic theorem into one-hole-per-bounded-prover.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:54:40Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:54:57Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes: 1 file byte-identical at e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff; the local copy lines 57-73 match the README excerpt verbatim. Commit hash is the same full 40-char hash in entry.json, README and SOURCE.md (README line 9 abbreviates to e4dd0bb5b155, same commit). Licence CC-BY-SA-4.0 is recorded identically in entry.json source.licence, README line 10 and SOURCE.md line 7, and the copied upstream-LICENSE is the CC BY-SA 4.0 text. Permalinks use the pinned commit and correct path. All traceable and consistent.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:55:16Z"
+    }
+  ]
+}

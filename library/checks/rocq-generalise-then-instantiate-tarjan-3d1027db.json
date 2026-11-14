@@ -1,0 +1,133 @@
+{
+  "entry": "rocq-generalise-then-instantiate-tarjan-3d1027db",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:52:49Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:52:49Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:52:49Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: sccs_acyclicE@theories/acyclic_tsorted.v:62, kosaraju_correct@theories/acyclic_tsorted.v:62; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:52:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, sccs_acyclicE) -> cites: sccs_acyclicE occurs at theories/acyclic_tsorted.v:62",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:52:50Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, kosaraju_correct) -> cites: kosaraju_correct occurs at theories/acyclic_tsorted.v:62",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:52:50Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(theories/kosaraju.v, 716-783) -> no_sorry: none of admit, Admitted, Axiom, axiom in theories/kosaraju.v:716-783",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:52:50Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 34fe042cc482e65d27bc68b455d922d47da81c9d",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:52:56Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/docker-action.yml runs on push to master (default branch) and builds via coq-community/docker-coq-action from the opam file, compiling every file in _CoqProject including theories/acyclic_tsorted.v; commit 34fe042cc482e65d27bc68b455d922d47da81c9d is on master (branches-where-head = master)",
+      "by": "verifier",
+      "at": "2026-11-14T12:54:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "parent site acyclic_tsorted.v:61-62 is 2 lines (Lemma + one-line Proof/Qed); children acyclic.v:363-371 is 9 lines (sccs_acyclicE) and kosaraju.v:716-783 is 68 lines (kosaraju_correct); 2 direct lemmas; depth-3 chain confirmed: sccs_acyclicE proof applies preacyclic_sccsP (acyclic.v:223), whose proof applies preacyclicP (acyclic.v:213)",
+      "by": "verifier",
+      "at": "2026-11-14T12:54:58Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "acyclic_tsorted.v:9-33 Section AcyclicTSorted has Variables (V:finType)(g:rel V) and vs:seq V with Hypotheses vs_all, vs_tsorted; acyclic_connect_before (line 30) proved over abstract vs; tseq_connect_before (line 39) does move=> acycg; have [sorted all] := tseq_correct g; by apply: acyclic_connect_before, instantiating at tseq g and supplying vs_all/vs_tsorted from tseq_correct",
+      "by": "verifier",
+      "at": "2026-11-14T12:55:00Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 34fe042cc482e65d27bc68b455d922d47da81c9d",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:55:25Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent acyclic_tsorted.v:61-62 is one glue line 'move=> g; rewrite [LHS]sccs_acyclicE; case: (kosaraju_correct g)' citing exactly the two children, and the three hypotheses uniq_flatten/all_in_flatten/class_symconnect (acyclic.v:323-326) match kosaraju_correct's three conjuncts (kosaraju.v:716-720), so the case discharges the rewrite's side conditions and it closes. Child closed_by strings match code verbatim: sccs_acyclicE at acyclic.v:365, kosaraju_correct's 'elim: tseq p' at kosaraju.v:743. Statements match the declarations. Shape numbers correct: glue_lines 2 (61-62), child_lines [9,68] (363-371 and 716-783), direct_lemmas 2, depth 3 (sccs_acyclicE rewrites preacyclic_sccsP acyclic.v:365 -> preacyclic_sccsP applies preacyclicP acyclic.v:226). Children are exactly the lemmas the parent uses (no others).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:56:26Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated abstractly (prove over section variables under an interface of three hypotheses, then specialise); also_known_as gives cross-language names; a real second instance of the move is cited and present at acyclic_tsorted.v:18-51 (acyclic_connect_before over abstract vs, instantiated at tseq g via tseq_correct), so it is not a one-off. 'When not to use' names concrete failure modes (instances needing different arguments; correctness lemma not exposing the interface facts in the exact shape -> adapter lemma; single instance -> indirection). Consequences are specific and honest (obligation to re-supply the three facts; weakened general statement loses the concrete theorem's strength; pure-glue parent means failure lies in a child). It states why each child is a good bounded leaf: sccs_acyclicE is self-contained over same-file acyclicity predicates with no reference to a concrete algorithm, kosaraju_correct closes by induction over tseq from pdfs_connect/tseq_correct with no reference to acyclicity.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:57:18Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 34fe042cc482e65d27bc68b455d922d47da81c9d",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:57:34Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance and licence consistent and traceable. check_provenance passes: 4 files (acyclic_tsorted.v, acyclic.v, kosaraju.v, extra.v) byte-identical at commit 34fe042cc482e65d27bc68b455d922d47da81c9d; source.json, SOURCE.md and entry.json all pin the same full commit hash; every permalink uses that commit with the correct path and line range (parent acyclic_tsorted.v:61-62, context 59-59, child sccs_acyclicE acyclic.v:363-371, contexts 320-326 and 361-361, child kosaraju_correct kosaraju.v:716-783, context 710-714) and each cited range matches the local copy. Licence CECILL-B is recorded identically in source.json, SOURCE.md, entry.json and README, and upstream-LICENSE (copied from LICENSE) is the CeCILL-B text.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:58:06Z"
+    }
+  ]
+}

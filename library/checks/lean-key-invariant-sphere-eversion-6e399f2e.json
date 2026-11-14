@@ -1,0 +1,125 @@
+{
+  "entry": "lean-key-invariant-sphere-eversion-6e399f2e",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:36:39Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:36:39Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:36:39Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: RelMfld.satisfiesHPrinciple_of_weak@SphereEversion/Global/Gromov.lean:43, _root_.exists_stability_dist@SphereEversion/Global/Gromov.lean:54, OpenSmoothEmbedding.improve_formalSol@SphereEversion/Global/Gromov.lean:137, inductive_htpy_construction@SphereEversion/Global/Gromov.lean:166, emptyHtpyFormalSol@SphereEversion/Global/Gromov.lean:45, mkHtpyFormalSol@SphereEversion/Global/Gromov.lean:169; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:36:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(RelMfld.Ample.satisfiesHPrinciple, SphereEversion/Global/Gromov.lean, 37-178) -> declared: RelMfld.Ample.satisfiesHPrinciple is declared at SphereEversion/Global/Gromov.lean:37",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:36:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, inductive_htpy_construction) -> cites: inductive_htpy_construction occurs at SphereEversion/Global/Gromov.lean:166",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:36:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(SphereEversion/Global/Gromov.lean, 37-178) -> no_sorry: none of sorry, admit, axiom in SphereEversion/Global/Gromov.lean:37-178",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:36:40Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "7 file(s) byte-identical at 33ab3d626854a0f0f04ed5772e3102d652e96475",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:36:49Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/blueprint.yml 'Build project' step runs 'lake build SphereEversion' on branch master (the default branch; source pinned ref HEAD = 33ab3d6). SphereEversion target includes SphereEversion/Global/Gromov.lean, so CI builds the parent file.",
+      "by": "verifier",
+      "at": "2026-11-14T09:38:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Parent site Gromov.lean 37-178 is 142 lines (178-37+1). Six lemmas cited at the stated lines: satisfiesHPrinciple_of_weak L43, emptyHtpyFormalSol L45, exists_stability_dist L54, improve_formalSol L137, inductive_htpy_construction L166, mkHtpyFormalSol L169 (grep -n). Chain of 3 in InductiveConstructions.lean: inductive_htpy_construction (L424) calls inductive_htpy_construction' (L455), which calls inductive_construction (L412); inductive_htpy_construction' declared L285, inductive_construction declared L66.",
+      "by": "verifier",
+      "at": "2026-11-14T09:38:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Relation.lean L326-L329 comment matches verbatim (modulo Lean backticks around code): 'The weak version has ... while the strong one has ... The strong version is easy to derive from the weak one if we prove the weak one for *all* closed sets, see RelMfld.satisfiesHPrinciple_of_weak below.'",
+      "by": "verifier",
+      "at": "2026-11-14T09:38:33Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Verified parent site Gromov.lean 37-178 (theorem RelMfld.Ample.satisfiesHPrinciple): statement matches entry.json verbatim, ends at line 178 with a complete proof (no sorry/admit/axiom). All 6 children statements match the copied code verbatim, and each closing method matches: satisfiesHPrinciple_of_weak -> exact <F,h1,h2,eventually_of_mem hCC' h3,h4>; exists_stability_dist -> have := L.eps_spec; tauto; improve_formalSol -> F.improve_htpy' + p.mkHtpy/dist_update'/mkHtpy_*; inductive_htpy_construction -> apply inductive_htpy_construction'; emptyHtpyFormalSol -> (IsEmpty.false x).elim; mkHtpyFormalSol -> convert/rfl. All 6 children are cited in the glue at exactly the claimed lines (43,45,54,137,166,169); none is extra. Shape numbers right: glue_lines 178-37+1=142; child_lines [8,14,93,44,5,16] match the cited ranges; depth 3 confirmed (inductive_htpy_construction@424 -> inductive_htpy_construction'@285/455 -> inductive_construction@66/412). Minor note (not material): the glue also uses the trivial def mkFormalSol (Relation.lean 83) at line 115, transparently mentioned in the README, so direct_lemmas=6 counts the six decomposition leaves, not this internal constructor.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:41:49Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalised beyond the example: 'use when' abstracts to any local-to-global theorem proved by an induction whose step does one local improvement, with the invariant = target property + side conditions (smoothness, agreement on a closed set, closeness) that make the step re-appliable; also_known_as (loop invariant, potential method, strengthened IH) and rule F10.6 'strengthen the hypothesis' tie it to the wider technique. When-not-to-use is specific and honest: no generic engine (collapses to plain induction), invariant = bare conclusion, or per-index bookkeeping the fixed three-predicate signature P0 P1 P2 + hP2/hP2' cannot express. Consequences are specific: three obligations (init, ind, two compatibility facts) plus the failure modes (P0 too weak => ind unprovable, too strong => init/boundary fails) and honest about what is NOT absorbed (empty-manifold corner, weak->strong reduction). Good-leaf/bounded-prover question answered in 'Why each child is a good leaf' (self-contained, closes on its own) plus honest shape metrics child_lines [8,14,93,44,5,16] and trivial_children=2, flagging improve_formalSol as the one 93-line leaf. Author-statement quote and both known_uses verified against code.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:42:46Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "7 file(s) byte-identical at 33ab3d626854a0f0f04ed5772e3102d652e96475",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:43:05Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "provenance pass: 7 files byte-identical at pinned commit 33ab3d626854a0f0f04ed5772e3102d652e96475. Commit hash is consistent across entry.json, README, SOURCE.md and every permalink. Licence Apache-2.0 is consistent: entry.json, SOURCE.md and upstream-LICENSE (Apache License 2.0 text) all agree. All cited line ranges verified against the copied files (Gromov.lean 37-178, Relation.lean 353-360/311-315/274-289/326-329, LocalisationData.lean 174-187, LocalizedConstruction.lean 22-114, InductiveConstructions.lean 424-467). Everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:43:32Z"
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "entry": "rocq-suffices-or-strengthen-interaction-trees-afae2097",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:31:54Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:31:54Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:31:54Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: well_typed_skip@secure_example/LabelledImpTypes.v:1093, seq_well_typed_correct@secure_example/LabelledImpTypes.v:1095, assign_well_typed_correct@secure_example/LabelledImpTypes.v:1097, output_well_typed_correct@secure_example/LabelledImpTypes.v:1100, if_well_typed_correct@secure_example/LabelledImpTypes.v:1104, while_well_typed_correct@secure_example/LabelledImpTypes.v:1107, well_typed_raise@secure_example/LabelledImpTypes.v:1109, try_catch_throw_secure_stmt@secure_example/LabelledImpTypes.v:1112; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:31:54Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(well_typed_stmt_sound, 25) -> lines: site well_typed_stmt_sound has 25 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:31:54Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "declared(well_typed_stmt_sound, secure_example/LabelledImpTypes.v, 1089-1113) -> declared: well_typed_stmt_sound is declared at secure_example/LabelledImpTypes.v:1089",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:31:54Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(secure_example/LabelledImpTypes.v, 1089-1113) -> no_sorry: none of admit, Admitted, Axiom, axiom in secure_example/LabelledImpTypes.v:1089-1113",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:31:54Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "cites(parent, try_catch_throw_secure_stmt) -> cites: try_catch_throw_secure_stmt occurs at secure_example/LabelledImpTypes.v:1112",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:31:54Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 284d42248a3c5517cff9f582e335fcee2f6bdc1f",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:32:02Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build-with-make.yml runs 'make all' on push to master (default branch); 'make all' -> 'make -C secure_example' -> builds every .v listed in secure_example/_CoqProject, including LabelledImpTypes.v",
+      "by": "verifier",
+      "at": "2026-11-14T10:33:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read code/secure_example/LabelledImpTypes.v lines 1091-1112: all 9 names occur (well_typed_skip L1093, seq_well_typed_correct L1095, assign_well_typed_correct L1097, output_well_typed_correct L1100, if_well_typed_correct L1104, while_well_typed_correct L1107, well_typed_raise L1109, try_catch_throw_secure_stmt L1112, well_typed_expr_correct L1098/1101/1103/1106); 8 constructor lemmas each cite a primed throw twin in the same lines",
+      "by": "verifier",
+      "at": "2026-11-14T10:33:04Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 284d42248a3c5517cff9f582e335fcee2f6bdc1f",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:33:44Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent site (1089-1113, 25 lines) strengthens via 'enough (secure_stmt s pc and secure_throw_stmt s pc); try tauto' then 'induction Htype; eauto', closing each of the 8 constructors by a split + unprimed/primed eapply pair; Qed. at 1113. All 8 child statements and closed_by match the code verbatim (well_typed_skip 901, seq 569, assign 297, output 457, if 623, while 724, raise 796, try_catch 845); each closes by Qed. The 8 throw twins exist at cited lines 912,598,388,513,667,752,810,863. well_typed_expr_correct (1016) is the documented 9th direct lemma, not a child. Shape numbers correct: direct_lemmas=9, glue_lines=25, child_lines=[10,28,45,47,43,27,13,17] match site spans; depth=4 chain assign->secure_expr_upward_close (305/162) -> expr_only_ret (169/157) -> expr_only_ret_aux1 (159/125) verified. All 5 claims accurate; provenance pass.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:34:52Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalizes beyond the example: applicability.goal_shape and README 'When to use it' abstract to 'a soundness statement well_typed P -> secure P over an inductively defined typing relation whose target property has two paired forms proved in lockstep', with 'normal and exceptional termination here' marking the example as one instance. 'When not to use' is specific and honest (three conditions: unneeded form -> over-proving; side conditions induction cannot supply; strengthened goal not cheaply recoverable). Consequences name real obligations (both lemmas per constructor, recoverability via try tauto) and failure modes (too weak -> stuck, too strong -> over-prove), all consistent with the copied code where While/TryCatch destruct their IHs into the throw form. Good-leaf question answered explicitly: 'self-contained statement whose proof closes on its own, or from a named sibling', plus per-child good-leaf notes and shape numbers (child_lines, depth) for the bounded-prover framing.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:35:27Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 284d42248a3c5517cff9f582e335fcee2f6bdc1f",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:35:50Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance pass: check_provenance.py reports 1 file byte-identical at 284d42248a3c5517cff9f582e335fcee2f6bdc1f. Commit recorded in entry.json source.commit and in every permalink (README + entry.json) matches the source note's pinned commit 284d42248a3c5517cff9f582e335fcee2f6bdc1f. Licence MIT is consistent across entry.json, README header, and SOURCE.md, and matches the copied upstream-LICENSE (MIT License, Copyright 2018 DeepSpec). Spot-checked cited line ranges against the local copy: parent 1089-1113 begins 'Lemma well_typed_stmt_sound', well_typed_skip at 901, seq_well_typed_correct at 569, well_typed_expr_correct at 1016, try_catch_public_exc at 825; all match their declarations. Source note, permalinks, commit and licence are consistent and fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:36:26Z"
+    }
+  ]
+}

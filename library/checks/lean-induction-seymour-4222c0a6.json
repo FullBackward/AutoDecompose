@@ -1,0 +1,125 @@
+{
+  "entry": "lean-induction-seymour-4222c0a6",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:15:58Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:15:58Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:15:58Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: Matroid.IsGraphic.isRegular@Seymour/Results/EasyDirection.lean:23, Matroid.IsCographic.isRegular@Seymour/Results/EasyDirection.lean:23, Matroid.isRegular_mapEquiv_iff@Seymour/Results/EasyDirection.lean:27, Matroid.IsSum1of.isRegular@Seymour/Results/EasyDirection.lean:23, Matroid.IsSum2of.isRegular@Seymour/Results/EasyDirection.lean:23, Matroid.IsSum3of.isRegular@Seymour/Results/EasyDirection.lean:23; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:15:58Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(Matroid.IsGood.isRegular, Seymour/Results/EasyDirection.lean, 22-30) -> declared: Matroid.IsGood.isRegular is declared at Seymour/Results/EasyDirection.lean:23",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:15:58Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "lines(parent, 9) -> lines: site parent has 9 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:15:58Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(Seymour/Results/EasyDirection.lean, 1-36) -> no_sorry: none of sorry, admit, axiom in Seymour/Results/EasyDirection.lean:1-36",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:15:58Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "cites(parent, isRegular_mapEquiv_iff) -> cites: isRegular_mapEquiv_iff occurs at Seymour/Results/EasyDirection.lean:27",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:15:58Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "8 file(s) byte-identical at 2769b10cb73fda17bafc0f13890dc057a2f4ff2a",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:16:11Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/blueprint.yml (Compile blueprint): builds the Lean project via leanprover/lean-action on push/PR to main; pinned commit 2769b10cb73fda17bafc0f13890dc057a2f4ff2a is the tip of main (identical to main)",
+      "by": "verifier",
+      "at": "2026-11-14T12:17:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Seymour/Results/EasyDirection.lean line 11 docstring: '/-- Given matroid can be constructed from graphic matroids & cographics matroids & R10 using 1-sums & 2-sums & 3-sums. -/' and line 22 docstring: '/-- Corollary of the easy direction of the Seymour's theorem. -/' (confirmed by grep -n against code/)",
+      "by": "verifier",
+      "at": "2026-11-14T12:17:31Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Opened code/Seymour/Results/EasyDirection.lean (parent 22-30, context 11-20), Graphicness.lean 174-177, Comatroids.lean 390-392, Regularity.lean 92-100, Sum1.lean 235-243, Sum2.lean 400-408, Sum3.lean 3469-3477, R10.lean 51-61; all match the README excerpts verbatim. The glue cites exactly six lemmas: graphic->Matroid.IsGraphic.isRegular, cographic->Matroid.IsCographic.isRegular, isomorphicR10->Matroid.isRegular_mapEquiv_iff (simp, also uses matroidR10.isRegular, disclosed as context), is1/2/3sum->Matroid.IsSum1of/2of/3of.isRegular; each branch is a single exact/simp, all 6 constructors covered, so it closes (no_sorry verified). child_lines [4,3,9,9,9,9] match site ranges; glue_lines 9 matches parent site 22-30; direct_lemmas 6 correct; depth 3 matches the documented chain IsGood.isRegular->IsCographic.isRegular->IsGraphic.isRegular->Matrix.IsGraphic.isTotallyUnimodular (Graphicness.lean ~136-171, verified), honestly marked 'continues below it'.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:18:57Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generally: induction on an inductive construction predicate, one case per constructor, each closed by the lemma written for that constructor; use_when/avoid_when are phrased for an arbitrary property P over a construction predicate, not just IsRegular/IsGood. 'When not to use' is honest and specific: missing leaf lemma stalls the induction, and side conditions (RankFinite) must come from the constructor's own hypotheses - confirmed, the IsGood fork constructors carry hM : M.RankFinite and the Sum1/2/3of.isRegular lemmas take exactly (hMMM, hM, hM_l, hM_r). Consequences are honest: one goal per constructor, no leftover exhaustiveness obligation, failure mode = open case. It states what makes these good leaves for a bounded prover: each child is a self-contained statement that never names the IsGood predicate (verified from code - none of the six child declarations mentions IsGood), so it can be stated/proved or handed to a prover independently, and the forks have a bounded shape (unfold sum, obtain finiteness, rewrite both sides to hasTuSigning, apply precomputed signing lemma).",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:19:51Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "8 file(s) byte-identical at 2769b10cb73fda17bafc0f13890dc057a2f4ff2a",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:20:13Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes (8 files byte-identical at 2769b10cb73fda17bafc0f13890dc057a2f4ff2a), so every permalink resolves to the pinned commit and matches the copied files. Commit is identical in entry.json source.commit, SOURCE.md, source.json and every permalink. Licence Apache-2.0 in entry.json/SOURCE.md/source.json matches sources/seymour/upstream-LICENSE (Apache License Version 2.0). Source note records commit, licence, licence_files=[LICENSE] and attribution, consistent with the README Source-and-licence section.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:20:40Z"
+    }
+  ]
+}

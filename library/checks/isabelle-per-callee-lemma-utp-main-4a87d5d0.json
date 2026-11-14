@@ -1,0 +1,133 @@
+{
+  "entry": "isabelle-per-callee-lemma-utp-main-4a87d5d0",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:26:36Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:26:36Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none; oops (listed, not failed): fmi/Interlocking.thy:387 (oops), fmi/Interlocking.thy:424 (oops)",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:26:36Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: set_relays_type_inv@fmi/Interlocking.thy:196, clear_relays_type_inv@fmi/Interlocking.thy:197, set_switches_type_inv@fmi/Interlocking.thy:198, set_signals_type_inv@fmi/Interlocking.thy:199; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:26:36Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, set_relays_type_inv) -> cites: set_relays_type_inv occurs at fmi/Interlocking.thy:196",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:26:36Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(fmi/Interlocking.thy, 173-200) -> no_sorry: none of sorry in fmi/Interlocking.thy:173-200",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:26:36Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at ffd472022798e60f0385030682b7a07fbeb49e68",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:26:47Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "No CI workflow in the repository (list_files.py shows no .github/workflows, .travis.yml, or CI config; only bin/build.sh and ROOT), and no Isabelle toolchain on the harvest machine, so the file cannot be built here.",
+      "by": "verifier",
+      "at": "2026-11-14T12:27:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read code/fmi/Interlocking.thy lines 173-200: parent lemma at 193-200 is 8 lines (lemma statement + unfold + hoare_split + four rule applications + done); each child is 4 lines (173-176, 178-181, 183-186, 188-191). direct_lemmas=4, glue_lines=8, child_lines=[4,4,4,4] all match.",
+      "by": "verifier",
+      "at": "2026-11-14T12:27:47Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read code/fmi/Interlocking.thy line 89: 'text <open>We break down the cyclic behaviour into four separate operations.</close>' matches the quoted author comment.",
+      "by": "verifier",
+      "at": "2026-11-14T12:27:48Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read code/fmi/Interlocking.thy lines 292-315: set_relays_relays_inv (292-294), clear_relays_relays_inv (296-298), set_switches_relays_inv (300-302), set_signals_relays_inv (304-306), each 'unfolding set_X_def by (ilock_relays_inv_tac)'; anonymous lemma 308-315 unfolds ilock_cycle_def, hoare_split, then applies the four relays_inv lemmas.",
+      "by": "verifier",
+      "at": "2026-11-14T12:27:49Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent 193-200 is the anonymous lemma {ilock_type_inv}ilock_cycle{ilock_type_inv}, closed by unfold ilock_cycle_def, hoare_split, then apply rule for set_relays/clear_relays/set_switches/set_signals_type_inv (196-199) and done; the four children at 173-176, 178-181, 183-186, 188-191 are exactly those lemmas, each closing by 'unfolding <op>_def by (ilock_type_inv_tac)', matching closed_by verbatim. Contexts ilock_cycle_def (133-134), ilock_type_inv (144-150), ilock_type_inv_rules (154-161), ilock_type_inv_tac (165-166), inv_subst_weakening_lemma (17-20) all match. Author comment at 89 reads exactly 'We break down the cyclic behaviour into four separate operations.' Known-use 292-315 is the relays_inv analogue with the same four rule applications and ilock_relays_inv_tac. Shape numbers are right: parent 200-193+1=8 glue_lines, child_lines [4,4,4,4], direct_lemmas 4, depth 3 (children -> ilock_type_inv_rules -> inv_subst_weakening_lemma). No sorry in 173-200; parent closes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:28:54Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at ffd472022798e60f0385030682b7a07fbeb49e68",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:29:23Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generically (unfold <def>; hoare_split; one rule per component, each operation gets its own preservation lemma), and corroborated beyond the single example by a second invariant (relays_inv at 292-315 reuses the identical 4-child shape). 'When not to use' is honest and grounded: the switches/signals sections (317-424) genuinely need a stronger precondition and fall back to hoare_relays_inv_tac, and the shared sub-proof is correctly factored into ilock_type_inv_rules/inv_subst_weakening_lemma. Consequences are specific: a missing child leaves an unproved goal (not a silent gap), shared dependency ilock_type_inv_rules is a single point of failure breaking all four, +1 operation = +1 child +1 rule line. Good leaves for a bounded prover are named: self-contained, statement is that operation's own Hoare triple, closes on its own citing no sibling or parent, bounded and independently checkable.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:29:56Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at ffd472022798e60f0385030682b7a07fbeb49e68",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:30:20Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit ffd472022798e60f0385030682b7a07fbeb49e68 is consistent across entry.json, README.md, SOURCE.md and source.json; every permalink (files, sites, claims) uses that commit and path fmi/Interlocking.thy with line ranges I confirmed against the local copy (193-200 parent, 173-176/178-181/183-186/188-191 children, 133-134, 144-150, 154-161, 163-166, 17-20 contexts, plus claim lines 89 and 292-315 and oops at 387/424). check_provenance reports 1 file byte-identical at the pinned commit; local sha256 4482974a... and 19879 bytes match entry.json's files record. Licence BSD-3-Clause is recorded in entry.json/source.json/SOURCE.md and the copied upstream-COPYING is the 3-clause BSD text. Source note points to the same repo/commit/COPYING. Everything is traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:30:48Z"
+    }
+  ]
+}

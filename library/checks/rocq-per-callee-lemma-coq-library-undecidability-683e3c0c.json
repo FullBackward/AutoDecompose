@@ -1,0 +1,125 @@
+{
+  "entry": "rocq-per-callee-lemma-coq-library-undecidability-683e3c0c",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:46:48Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:46:48Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:46:49Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: fst_ok@theories/Shared/Libs/DLW/Code/compiler_correction.v:307, out_ok@theories/Shared/Libs/DLW/Code/compiler_correction.v:307, sound@theories/Shared/Libs/DLW/Code/compiler_correction.v:307, complete@theories/Shared/Libs/DLW/Code/compiler_correction.v:307; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:46:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(parent, 4) -> lines: site parent has 4 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:46:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(theories/Shared/Libs/DLW/Code/compiler_correction.v, 168-312) -> no_sorry: none of admit, Admitted, Axiom, axiom in theories/Shared/Libs/DLW/Code/compiler_correction.v:168-312",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:46:49Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:46:56Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml (coq-library-undecidability CI) runs 'opam exec -- make -j 2 all TIMED=1' (Rocq 9.2) on default branch rocq-9.2; theories/_CoqProject explicitly lists Shared/Libs/DLW/Code/compiler_correction.v; pinned commit c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c is head of rocq-9.2",
+      "by": "verifier",
+      "at": "2026-11-14T12:49:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Copied file line numbers confirm: parent 309-312 = 4 lines (309 Theorem generic_compiler, 310 Proof using, 311 'exists link code; auto.', 312 Defined); children 271-272 (2), 274-281 (8), 283-287 (5), 289-305 (17); chain: complete@293 'destruct compiler_complete''', compiler_complete'@236 'destruct compiler_complete', compiler_complete@220 'destruct compiler_complete_step' (depth 4)",
+      "by": "verifier",
+      "at": "2026-11-14T12:49:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Lines 134-137 comment verbatim: 'From semantic correctness of individually compiled instructions and syntactic correctness of the whole compiled program, we derive soundness and completeness of the compiled program Q wrt the source program P'",
+      "by": "verifier",
+      "at": "2026-11-14T12:49:15Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Lines 375-390: Theorem compiler_t_simul_equiv; 380 'intros E [ gc_link gc_code gc_fst gc_out gc_sound gc_complete ].' destructs the record; 381 'exists gc_link gc_code; auto.'; two non-auto fields proved explicitly: gc_sound (382-385) and gc_complete (386-389)",
+      "by": "verifier",
+      "at": "2026-11-14T12:49:18Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent (309-312) is exactly 'Theorem generic_compiler : compiler_t.' with body 'exists link code; auto.'; skeleton (307) is the Hint Resolve registering all four children; children fst_ok/out_ok/sound/complete (271-272,274-281,283-287,289-305) have statements and closing tactics matching entry.json, and their statements are exactly the four propositional record fields after gc_link:=link, gc_code:=code, so auto closes each via the hint and the proof is Defined (no admit). Shape numbers confirmed: glue_lines=4, child_lines=[2,8,5,17], direct_lemmas=4, depth=4 (complete->compiler_complete' at 293->236->compiler_complete at 220->compiler_complete_step).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:50:58Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generally: one lemma per propositional field of a record, registered in a Hint Resolve db, closed by a single exists/auto — 'When to use' and applicability.use_when abstract to any record/structure with a small fixed set of independent propositional fields, not just compiler_t. Avoid-when is specific and honest (shared invariant -> key-invariant; one field's proof needs another's statement; hint db too broad for auto). Consequences are honest and specific (hidden Hint Resolve dependency breaks glue silently; field-order obscures which lemma closes which field; exact-type-match and independence failure modes). Says what makes leaves good for a bounded prover: self-contained statements closing on their own or from a named sibling, quantified (1/8/5/17 proof lines; 4 children closed by automation). Minor caveat, not blocking: known-use at 375-390 is a parameterized compiler_t where auto closes only the 2 sim-independent fields (2 explicit), and the four Local Facts are used once, so 'per-field lemmas pay for themselves' is aspirational rather than demonstrated by this example.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:52:36Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:52:55Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance is fully consistent and traceable. check_provenance.py passes (1 file byte-identical at c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c). Copied file sha256 4e3719b0... matches entry.json files[0].sha256 and bytes 17450 matches. Commit c7257b7... is identical in entry.json source.commit, SOURCE.md, and every permalink. Licence MPL-2.0 is consistent across entry.json, README, SOURCE.md, and sources/coq-library-undecidability/upstream-LICENSE (Mozilla Public License Version 2.0). All cited line ranges verified verbatim in the copied file (parent 309-312, skeleton 307, children 271-272/274-281/283-287/289-305, record 252-259, Lets 267-269, author-statement 134-137, known-use 375-390).",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:53:27Z"
+    }
+  ]
+}

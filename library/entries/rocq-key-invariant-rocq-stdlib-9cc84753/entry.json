@@ -1,0 +1,184 @@
+{
+  "id": "rocq-key-invariant-rocq-stdlib-9cc84753",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Well-founded accessibility R as the key invariant for constructive indefinite ground description over nat",
+  "intent": "Reduce the constructive description (exists n : nat, P n) -> {n : nat | P n} to the accessibility of 0 for the relation R (x = S y /\\ ~ P y): the key invariant that turns 'P holds somewhere' into 'the linear search from 0 terminates'. The parent glues the two directions of that equivalence (existence -> acc 0, and acc 0 -> witness) into one Defined proof.",
+  "move": "key-invariant",
+  "also_known_as": [
+    "termination certificate",
+    "well-founded ranking",
+    "accessibility argument"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "rocq-stdlib",
+    "url": "https://github.com/rocq-prover/stdlib",
+    "commit": "22fcaa27d17bc28ab4be728ed10a1fb73afb23ee",
+    "licence": "LGPL-2.1"
+  },
+  "files": [
+    {
+      "path": "theories/Logic/ConstructiveEpsilon.v",
+      "bytes": 18080,
+      "sha256": "11cd2ef32451c05c4432c8a9158985428970a58f8d193cba98784df58d6aeab9",
+      "permalink": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/ConstructiveEpsilon.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/Logic/ConstructiveEpsilon.v",
+      "lines": [
+        362,
+        367
+      ],
+      "role": "parent",
+      "name": "constructive_indefinite_ground_description_nat_Acc",
+      "excerpt_sha256": "9569e000da852b4132eb82f9cfe6f58a0abb91e1844595c849a9e15eb5262012",
+      "permalink": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/ConstructiveEpsilon.v#L362-L367"
+    },
+    {
+      "path": "theories/Logic/ConstructiveEpsilon.v",
+      "lines": [
+        340,
+        344
+      ],
+      "role": "child",
+      "name": "P_eventually_implies_acc_ex",
+      "excerpt_sha256": "63921f2b842dfb3ebc867106aedc3d6d5453a78da78b8f2091500a2a8f2f970c",
+      "permalink": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/ConstructiveEpsilon.v#L340-L344"
+    },
+    {
+      "path": "theories/Logic/ConstructiveEpsilon.v",
+      "lines": [
+        349,
+        360
+      ],
+      "role": "child",
+      "name": "acc_implies_P_eventually",
+      "excerpt_sha256": "3003f6a4112108249522434ac9c5e83ed7e13f21f0d8b6ae4e43dac978ee04f5",
+      "permalink": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/ConstructiveEpsilon.v#L349-L360"
+    },
+    {
+      "path": "theories/Logic/ConstructiveEpsilon.v",
+      "lines": [
+        315,
+        323
+      ],
+      "role": "context",
+      "name": "R",
+      "excerpt_sha256": "a1b9715d7dae347e27768ecc2e26bb47b919e9efc7ade4fffa1672502decbb79",
+      "permalink": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/ConstructiveEpsilon.v#L315-L323"
+    }
+  ],
+  "parent": {
+    "name": "constructive_indefinite_ground_description_nat_Acc",
+    "statement": "Theorem constructive_indefinite_ground_description_nat_Acc :\n  (exists n : nat, P n) -> {n : nat | P n}."
+  },
+  "children": [
+    {
+      "name": "P_eventually_implies_acc_ex",
+      "statement": "Corollary P_eventually_implies_acc_ex : (exists n : nat, P n) -> acc 0.",
+      "closed_by": "apply P_eventually_implies_acc with (n := x); replace (x + 0) with x; auto"
+    },
+    {
+      "name": "acc_implies_P_eventually",
+      "statement": "Theorem acc_implies_P_eventually : acc 0 -> {n : nat | P n}.",
+      "closed_by": "well-founded recursion via Fix_F R; destruct (P_decidable x); the ~P x branch closes with IH y Ryx"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal of the form (exists x : A, P x) -> {x : A | P x} (Prop-existence to Type/sigma-existence) over a decidable predicate on a natural-indexed domain, where eliminating the Prop existential directly is blocked because the goal is in Type.",
+    "use_when": "the domain supports a linear search (a decidable P over nat or a countable domain) and you want the search's termination certified by a well-founded relation; the key invariant (here acc 0 = Acc R 0) has two directions that can each be proved separately and then glued.",
+    "avoid_when": "a simpler termination certificate suffices (the file's earlier before_witness section, lines 121-147, is the direct alternative); P is not decidable; or you need only the Prop-level existence and not the computational witness {x : A | P x}."
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 3,
+    "glue_lines": 6,
+    "child_lines": [
+      5,
+      12
+    ]
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent's proof cites the child acc_implies_P_eventually.",
+      "evidence_kind": "check",
+      "form": "cites(parent, acc_implies_P_eventually)",
+      "evidence": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/ConstructiveEpsilon.v#L362-L367"
+    },
+    {
+      "n": 2,
+      "claim": "The parent's proof cites the child P_eventually_implies_acc_ex.",
+      "evidence_kind": "check",
+      "form": "cites(parent, P_eventually_implies_acc_ex)",
+      "evidence": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/ConstructiveEpsilon.v#L362-L367"
+    },
+    {
+      "n": 3,
+      "claim": "The Acc section of the copied file (lines 301-369) has no closing-by-sorry token.",
+      "evidence_kind": "check",
+      "form": "no_sorry(theories/Logic/ConstructiveEpsilon.v, 301-369)",
+      "evidence": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/ConstructiveEpsilon.v#L301-L369"
+    },
+    {
+      "n": 4,
+      "claim": "The parent site is 6 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(parent, 6)",
+      "evidence": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/ConstructiveEpsilon.v#L362-L367"
+    },
+    {
+      "n": 5,
+      "claim": "The authors state the key invariant explicitly: the relation R ties 'the absence of an infinite [R]-descending chain from 0' to 'the termination of our searching algorithm'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/rocq-prover/stdlib/blob/22fcaa27d17bc28ab4be728ed10a1fb73afb23ee/theories/Logic/ConstructiveEpsilon.v#L315-L319"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 6,
+    "children": 2,
+    "child_lines": [
+      5,
+      12
+    ],
+    "depth": 3,
+    "how_counted": "line spans of the parent and child sites (declaration + proof + Defined) from the copied file; depth is the chain parent -> P_eventually_implies_acc_ex -> P_eventually_implies_acc -> P_implies_acc checked by hand (lines 362-367, 340-344, 331-338, 325-329)"
+  },
+  "consequences": "The move splits the goal into the two directions of an equivalence through the key invariant acc 0, each a lemma that must close on its own. The acc 0 -> witness direction is the only place decidability of P is used (Fix_F branches on P_decidable). The whole argument rests on R being well-founded: here R is 'step to successor when P fails', so Acc R x holds exactly when P holds somewhere at or after x; if R were not well-founded the accessibility hypothesis would be unprovable.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "9cc84753c2d2496677f230c2310e0073dd1ac0bae06cd466a838e932ed1d4a1e",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:20:05Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,shape,claims,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:20:50Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:21:20Z",
+      "note": "parent constructive_indefinite_ground_description_nat_Acc: statement re-copied from code; child 'P_eventually_implies_acc_ex': statement re-copied from the declaration of P_eventually_implies_acc_ex; child 'acc_implies_P_eventually': statement re-copied from the declaration of acc_implies_P_eventually"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:27:35Z"
+}

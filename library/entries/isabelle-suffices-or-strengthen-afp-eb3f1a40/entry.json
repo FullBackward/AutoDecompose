@@ -1,0 +1,160 @@
+{
+  "id": "isabelle-suffices-or-strengthen-afp-eb3f1a40",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Suffices on the convenient I n-scaled integral for the Catalan integral formula",
+  "intent": "Prove the Catalan integral formula (the density x powr (real n - 1/2) * sqrt (4 - x) / (2*pi) has integral real (catalan n) over {0..4}) by first proving the more convenient statement in terms of the auxiliary integral I n — the same density times inverse (2*pi) integrates to I n * inverse (2*pi) — and then rewriting I n / (2*pi) to real (catalan n) through the bridge lemma catalan_eq_I.",
+  "move": "suffices-or-strengthen",
+  "also_known_as": [
+    "prove a convenient restatement first",
+    "strengthen the goal",
+    "have key ... then bridge"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "afp",
+    "url": "https://github.com/isabelle-prover/mirror-afp-devel",
+    "commit": "07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "thys/Catalan_Numbers/Catalan_Numbers.thy",
+      "bytes": 19847,
+      "sha256": "1faad986db5162a31668890ef3f7817a856cf41a9eb41cc3d5e0aee58ea93c3e",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Catalan_Numbers/Catalan_Numbers.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "thys/Catalan_Numbers/Catalan_Numbers.thy",
+      "lines": [
+        345,
+        353
+      ],
+      "role": "parent",
+      "name": "catalan_integral_form",
+      "excerpt_sha256": "458b6824a2f3a512e856cde85e8f60ca9c6a60ee36f5fe56f22bf31f336f5519",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Catalan_Numbers/Catalan_Numbers.thy#L345-L353"
+    },
+    {
+      "path": "thys/Catalan_Numbers/Catalan_Numbers.thy",
+      "lines": [
+        269,
+        278
+      ],
+      "role": "child",
+      "name": "integrable_I",
+      "excerpt_sha256": "f8c9c9dc10e54e77cc461111ccac9e8c8491b4c90a27806074b6c2a74873691a",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Catalan_Numbers/Catalan_Numbers.thy#L269-L278"
+    },
+    {
+      "path": "thys/Catalan_Numbers/Catalan_Numbers.thy",
+      "lines": [
+        336,
+        343
+      ],
+      "role": "child",
+      "name": "catalan_eq_I",
+      "excerpt_sha256": "6f2c8d8961513dbd0075decb72c3cb9f741a6c2e838902819ba40e5ec5bb73af",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Catalan_Numbers/Catalan_Numbers.thy#L336-L343"
+    }
+  ],
+  "parent": {
+    "name": "catalan_integral_form",
+    "statement": "theorem catalan_integral_form:\n  \"((\\<lambda>x. x powr (real n - 1 / 2) * sqrt (4 - x) / (2*pi)) \n       has_integral real (catalan n)) {0..4}\""
+  },
+  "children": [
+    {
+      "name": "integrable_I",
+      "statement": "private lemma integrable_I: \n  \"(\\<lambda>x. x powr (of_nat n - 1/2) * sqrt (4 - x)) integrable_on {0..4}\"",
+      "closed_by": "proof (cases \"n = 0\"); case True closed by has_integral_I0 via has_integral_integrable; case False closed by integrable_continuous_real continuous_on_mult continuous_on_powr' (auto intro!: continuous_intros)"
+    },
+    {
+      "name": "catalan_eq_I",
+      "statement": "private lemma catalan_eq_I: \"real (catalan n) = I n / (2 * pi)\"",
+      "closed_by": "proof (induction n); base case 0 by has_integral_I0 with I_def integral_unique; step case by of_nat_catalan_Suc' Suc.IH I_Suc"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An identity whose right-hand side involves a constant you also have an auxiliary definition for (here the unnormalized integral I n), so the goal can be restated in terms of that auxiliary quantity and then bridged back by one rewrite; concretely a `... has_integral real (catalan n) {0..4}` goal with a normalizing constant 1/(2*pi).",
+    "use_when": "the more convenient statement is genuinely easier than the original (here it needs only integrability integrable_I plus the rule has_integral_mult_left), and the bridge identity (catalan_eq_I) is already proved or provable on its own; the constant you rewrite away has an established equivalence with the goal's constant.",
+    "avoid_when": "the bridge identity is the hard part and is not already available (then the suffices just moves the difficulty without reducing it); the convenient statement is not actually easier; or the goal can be closed by a single direct rule so the detour through the auxiliary quantity adds nothing."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent proof cites the child integrable_I.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Catalan_Numbers/Catalan_Numbers.thy#L345-L353",
+      "form": "cites(parent, integrable_I)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent proof cites the child catalan_eq_I.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Catalan_Numbers/Catalan_Numbers.thy#L345-L353",
+      "form": "cites(parent, catalan_eq_I)"
+    },
+    {
+      "n": 3,
+      "claim": "The theorem catalan_integral_form is declared at thys/Catalan_Numbers/Catalan_Numbers.thy within lines 345-353.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Catalan_Numbers/Catalan_Numbers.thy#L345-L353",
+      "form": "declared(catalan_integral_form, thys/Catalan_Numbers/Catalan_Numbers.thy, 345-353)"
+    },
+    {
+      "n": 4,
+      "claim": "The decomposition is minimal and shallow: glue 9 lines (345-353), 2 direct lemmas, child proofs of 10 (integrable_I, 269-278) and 8 (catalan_eq_I, 336-343) lines, and the longest checked chain of same-file project lemmas below the theorem has depth 4.",
+      "evidence_kind": "measurement",
+      "evidence": "line counts at the pinned commit: parent 345-353 = 9; integrable_I 269-278 = 10; catalan_eq_I 336-343 = 8. Depth chain (same file): catalan_integral_form -> catalan_eq_I (L352) -> I_Suc (L342) -> integrable_I (L321) -> has_integral_I0 (L273)."
+    },
+    {
+      "n": 5,
+      "claim": "The authors state the integral formula is derived from the recursive formula just proved: 'The recursive formula we have just proven allows us to derive an integral formula for the Catalan numbers.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Catalan_Numbers/Catalan_Numbers.thy#L251-L253"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 4,
+    "glue_lines": 9,
+    "child_lines": [
+      10,
+      8
+    ]
+  },
+  "metrics": {
+    "glue_lines": 9,
+    "direct_lemmas": 2,
+    "depth": 4,
+    "how_counted": "parent site 345-353 (declaration through qed); child sites 269-278 (integrable_I) and 336-343 (catalan_eq_I), each declaration through its qed; depth = the same-file chain catalan_integral_form -> catalan_eq_I -> I_Suc -> integrable_I -> has_integral_I0"
+  },
+  "consequences": "The move creates two obligations from one: (a) the convenient restatement must be proved, which here needs the integrability premise integrable_I and the scaling rule has_integral_mult_left; (b) the bridge identity catalan_eq_I must hold, and it is the only place the reader sees why the result is about the Catalan number at all. Failure modes: if the bridge constant were wrong (a sign or normalization error in catalan_eq_I), the final `simp add: catalan_eq_I field_simps` would fail or rewrite to the wrong value; and if integrable_I were stated for the wrong exponent, the `intro ... integrable_I` step in the convenient statement would not apply.",
+  "known_uses": [],
+  "related": [
+    "isabelle-suffices-or-strengthen-l4v-0a36f701"
+  ],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "eb3f1a406870f512a07e350fcdecac480a2845e97f715f2fc1d6125ba89095b9",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:39:02Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:52:00Z"
+    }
+  ]
+}

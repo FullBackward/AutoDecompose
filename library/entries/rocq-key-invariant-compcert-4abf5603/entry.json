@@ -1,0 +1,258 @@
+{
+  "id": "rocq-key-invariant-compcert-4abf5603",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Key invariant sound_state prog for CompCert's constant-propagation forward simulation",
+  "intent": "Assemble the constant-propagation pass's main correctness theorem — a forward_simulation between RTL and the transformed program — from six named lemmas, four of which (initial/final/step/senv) supply the mechanical simulation fields while the analysis invariant sound_state prog, established on initial states (sound_initial) and preserved by every step (sound_step), is what carries the argument through the simulation diagram.",
+  "move": "key-invariant",
+  "also_known_as": [
+    "simulation invariant",
+    "strengthened simulation relation",
+    "forward-simulation invariant"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "compcert",
+    "url": "https://github.com/AbsInt/CompCert",
+    "commit": "2685140bf72c959446981fb99b5e44a8975021bc",
+    "licence": "LicenseRef-INRIA-Non-Commercial"
+  },
+  "files": [
+    {
+      "path": "backend/Constpropproof.v",
+      "bytes": 24655,
+      "sha256": "fe65e349e0b13c47f0ed4710072da2cce4aa97819aa5040d9bdab11373a6a3b7",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/Constpropproof.v"
+    },
+    {
+      "path": "backend/ValueAnalysis.v",
+      "bytes": 73530,
+      "sha256": "14da05f2485b990be4f77d508127ef0bd7a457a92c39e6d254a4340762790ca0",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/ValueAnalysis.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "backend/Constpropproof.v",
+      "lines": [
+        607,
+        623
+      ],
+      "role": "parent",
+      "name": "transf_program_correct",
+      "excerpt_sha256": "16e05565b424b74c80a61f8cd2169b48d2ecaea765aa322cd520f1a6266bcb04",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/Constpropproof.v#L607-L623"
+    },
+    {
+      "path": "backend/Constpropproof.v",
+      "lines": [
+        581,
+        595
+      ],
+      "role": "child",
+      "name": "transf_initial_states",
+      "excerpt_sha256": "68bedcbf716efee7cd746577fa3a32a9a0b4f961af6d214262e2ac00b1625149",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/Constpropproof.v#L581-L595"
+    },
+    {
+      "path": "backend/Constpropproof.v",
+      "lines": [
+        597,
+        602
+      ],
+      "role": "child",
+      "name": "transf_final_states",
+      "excerpt_sha256": "0abfab484267d56729ccadede896a87a8053881db9e729918800d8bdb2b91e02",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/Constpropproof.v#L597-L602"
+    },
+    {
+      "path": "backend/Constpropproof.v",
+      "lines": [
+        350,
+        579
+      ],
+      "role": "child",
+      "name": "transf_step_correct",
+      "excerpt_sha256": "06985e5f3573bb1913562ddd0538709e2970891d88f46d5420ee88d911ab40b8",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/Constpropproof.v#L350-L579"
+    },
+    {
+      "path": "backend/ValueAnalysis.v",
+      "lines": [
+        1896,
+        1914
+      ],
+      "role": "child",
+      "name": "sound_initial",
+      "excerpt_sha256": "8e84d1115dce35697828df8076d5895a5d6a11e528b0f0937e1f86e636f1d5e5",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/ValueAnalysis.v#L1896-L1914"
+    },
+    {
+      "path": "backend/ValueAnalysis.v",
+      "lines": [
+        1530,
+        1534
+      ],
+      "role": "child",
+      "name": "sound_step",
+      "excerpt_sha256": "767362304f3c556b68a2c5b37105b5057775335f26488b17c7aa6729e3b37801",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/ValueAnalysis.v#L1530-L1534"
+    },
+    {
+      "path": "backend/Constpropproof.v",
+      "lines": [
+        49,
+        51
+      ],
+      "role": "child",
+      "name": "senv_preserved",
+      "excerpt_sha256": "5704468159022eb8162f0347c1e4304a055021102d893ad4afc081d391637ff0",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/Constpropproof.v#L49-L51"
+    },
+    {
+      "path": "backend/ValueAnalysis.v",
+      "lines": [
+        1525,
+        1528
+      ],
+      "role": "context",
+      "name": "sound_state",
+      "excerpt_sha256": "15589bd97bea8c7e0b574a08a5d7f7a7224f648627da62c884033607ace5adc7",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/ValueAnalysis.v#L1525-L1528"
+    }
+  ],
+  "parent": {
+    "name": "transf_program_correct",
+    "statement": "Theorem transf_program_correct:\n  forward_simulation (RTL.semantics prog) (RTL.semantics tprog)."
+  },
+  "children": [
+    {
+      "name": "transf_initial_states",
+      "statement": "Lemma transf_initial_states:\n  forall st1, initial_state prog st1 ->\n  exists n, exists st2, initial_state tprog st2 /\\ match_states n st1 st2.",
+      "closed_by": "inversion H; exploit function_ptr_translated; eauto; then econstructor with the witness (Callstate nil (transf_fundef (romem_for cu) f) nil m0), closing initial_state with Genv.init_mem_match, symbols_preserved, match_program_main and sig_function_translated, and match_states with Mem.extends_refl"
+    },
+    {
+      "name": "transf_final_states",
+      "statement": "Lemma transf_final_states:\n  forall n st1 st2 r,\n  match_states n st1 st2 -> final_state st1 r -> final_state st2 r.",
+      "closed_by": "intros; inv H0; inv H; inv STACKS; inv RES; constructor"
+    },
+    {
+      "name": "transf_step_correct",
+      "statement": "Lemma transf_step_correct:\n  forall s1 t s2,\n  step ge s1 t s2 ->\n  forall n1 s1' (SS: sound_state prog s1) (MS: match_states n1 s1 s1'),\n  (exists n2, exists s2', step tge s1' t s2' /\\ match_states n2 s2 s2')\n  \\/ (exists n2, n2 < n1 /\\ t = E0 /\\ match_states n2 s2 s1')%nat.",
+      "closed_by": "induction 1 on step ge s1 t s2; intros; inv MS; InvSoundState; then one bullet per RTL transition, each closing by eapply exec_<instr> plus match_states_succ / match_states_intro and the per-instruction soundness lemmas (const_for_result_correct, op_strength_reduction_correct, addr_strength_reduction_correct, transf_ros_correct, sig_function_translated, builtin_strength_reduction_correct, cond_strength_reduction_correct, match_successor, init_regs_lessdef, senv_preserved)"
+    },
+    {
+      "name": "sound_initial",
+      "statement": "Theorem sound_initial:\n  forall prog st, initial_state prog st -> sound_state prog st.",
+      "closed_by": "destruct 1; exploit initial_mem_matches; then apply sound_call_state with bc, closing its subgoals with constructor, simpl; tauto, RM, mmatch_inj_top with Genv.initmem_inject, exact GE and exact NOSTACK"
+    },
+    {
+      "name": "sound_step",
+      "statement": "Theorem sound_step:\n  forall st t st', RTL.step ge st t st' -> sound_state st -> sound_state st'.",
+      "closed_by": "intros; inv H0; constructor; intros; eapply sound_step_base; eauto"
+    },
+    {
+      "name": "senv_preserved",
+      "statement": "Lemma senv_preserved:\n  Senv.equiv ge tge.",
+      "closed_by": "exact (Genv.senv_match TRANSL)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A Theorem whose conclusion is a forward_simulation (RTL.semantics prog) (RTL.semantics tprog) between a source and a transformed program, assembled by the Forward_simulation constructor from an order lt, a simulation invariant (sound_state prog s1 /\\ match_states n s1 s2), and the five record fields: order well-foundedness (lt_wf), match_initial_states, match_final_states, the simulation diagram, and symbol/senv preservation.",
+    "use_when": "The argument can be carried by one predicate (here the analysis-soundness predicate sound_state prog) that is established once on initial states (sound_initial) and preserved by every step (sound_step), while the mechanical simulation obligations (initial/final/step matching and senv preservation) are already proved as named lemmas whose statements line up with the record fields.",
+    "avoid_when": "The invariant cannot be stated once and reused, or the step-preservation proof cannot be separated from the simulation diagram (here it is separated: transf_step_correct takes sound_state prog s1 as a hypothesis and never proves it), or the simulation needs a different invariant per instruction rather than one per state."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "transf_program_correct is declared at backend/Constpropproof.v lines 607-623.",
+      "evidence_kind": "check",
+      "form": "declared(transf_program_correct, backend/Constpropproof.v, 607-623)",
+      "evidence": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/Constpropproof.v#L607-L623"
+    },
+    {
+      "n": 2,
+      "claim": "backend/Constpropproof.v lines 49-623 contain no sorry/admit/Admitted/axiom token.",
+      "evidence_kind": "check",
+      "form": "no_sorry(backend/Constpropproof.v, 49-623)",
+      "evidence": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/Constpropproof.v#L49-L623"
+    },
+    {
+      "n": 3,
+      "claim": "The theorem-scale shape is 6 direct lemmas, depth 3, glue 17 lines, child proof lengths [15, 6, 230, 19, 5, 3] (in the order transf_initial_states, transf_final_states, transf_step_correct, sound_initial, sound_step, senv_preserved); the depth chain is transf_program_correct -> transf_step_correct -> transf_ros_correct -> functions_translated, all in backend/Constpropproof.v.",
+      "evidence_kind": "measurement",
+      "evidence": "copied files code/backend/Constpropproof.v (parent 607-623; children 581-595, 597-602, 350-579, 49-51) and code/backend/ValueAnalysis.v (children 1896-1914, 1530-1534); the chain is Constpropproof.v line 618 (transf_step_correct) -> 457/467 (transf_ros_correct) -> 107 (functions_translated)"
+    },
+    {
+      "n": 4,
+      "claim": "The authors describe the argument as a simulation carried by an invariant between source and target states: 'The proof of semantic preservation is a simulation argument based on \"option\" diagrams of the following form' and 'the state [st1] must match its compile-time approximations at the current program point'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/Constpropproof.v#L258-L282 (quotes from lines 258-259 and 278)"
+    },
+    {
+      "n": 5,
+      "claim": "sound_initial and sound_step, declared once in ValueAnalysis.v, are reused by the CSE pass: CSEproof.v's transf_program_correct applies sound_initial (line 1579) and sound_step (lines 1586, 1589-1590) over the invariant match_states s1 s2 /\\ sound_state prog s1.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/CSEproof.v#L1572-L1591"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 6,
+    "depth": 3,
+    "glue_lines": 17,
+    "child_lines": [
+      15,
+      6,
+      230,
+      19,
+      5,
+      3
+    ]
+  },
+  "metrics": {
+    "parent_lines": 17,
+    "direct_lemmas": 6,
+    "child_proof_lines": [
+      15,
+      6,
+      230,
+      19,
+      5,
+      3
+    ],
+    "depth": 3,
+    "depth_chain": "transf_program_correct -> transf_step_correct -> transf_ros_correct -> functions_translated",
+    "how_counted": "parent_lines = parent site lines 607-623 (two-line statement plus proof through Qed); direct_lemmas = the six lemmas the glue cites by name; child_proof_lines = child site spans in the order transf_initial_states (581-595), transf_final_states (597-602), transf_step_correct (350-579), sound_initial (1896-1914), sound_step (1530-1534), senv_preserved (49-51); depth_chain counted over backend/Constpropproof.v"
+  },
+  "consequences": "The move creates one invariant obligation that the glue must thread through the whole simulation: sound_state prog must hold on the initial state (sound_initial) and be preserved by each step (sound_step), and the glue must carry it alongside match_states through the Forward_simulation record. The record itself forces five field proofs (lt_wf, match_initial_states, match_final_states, the simulation diagram, senv preservation), and the simulation diagram must handle both cases of transf_step_correct — the target advances to a related state, or the source stutters with a strictly decreasing measure n2 < n1. Failure modes: if any instruction does not preserve the analysis invariant, sound_step fails, and its real content is sound_step_base (a ~260-line case analysis in ValueAnalysis.v); if the invariant is not compatible with match_states (the conjunction must line up for every field), the single Forward_simulation application does not go through. The per-instruction lemmas of transf_step_correct are all stated and proved inside the same file, so a reader who wants the argument must descend into that 230-line body and then into ValueAnalysis.v's sound_step_base.",
+  "known_uses": [
+    "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/CSEproof.v#L1572-L1591"
+  ],
+  "related": [
+    "rocq-interface-lemma-compcert-eda26107",
+    "rocq-key-invariant-rocq-stdlib-1a358d2f"
+  ],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "4abf5603d8ca542d7eb40b49fdb3864af9694d5f85f518f804bd128f4c9310c0",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:05:50Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:20:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:15:21Z"
+}

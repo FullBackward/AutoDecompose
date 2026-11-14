@@ -1,0 +1,17 @@
+{
+  "source_id": "persistentdecomp",
+  "url": "https://github.com/Paul-Lez/PersistentDecomp",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "Paul-Lez/PersistentDecomp",
+  "commit": "31b1727c64bfc7b1f6677f0c6d179efdd1b2f7ee",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T11:39:15Z",
+  "how_found": "discovery-1: A-lean, B-lean",
+  "note": "Structure theorem for pointwise finite-dimensional persistence modules, with named files EndoRingIsLocal and MaximalDecompExists; proof in progress",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

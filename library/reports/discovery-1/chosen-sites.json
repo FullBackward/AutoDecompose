@@ -1,0 +1,1077 @@
+[
+  {
+    "path": "pcuic/theories/PCUICConfluence.v",
+    "start": 3936,
+    "end": 3944,
+    "move": "generalise-then-instantiate",
+    "name": "red_confluence",
+    "signal": "Lemma red_confluence, statement 3936-3938, proof 3939-3943, Qed 3944, closing Section ConfluenceFacts (Arguments at 3948). Glue: move/red_ws_red_left twice (3940-3941) transports plain red into ws_red on well-scoped terms, ws_red_confluence (3916-3923) gives the diamond witness nf, ws_red_red (3404) transports both legs back inside the final exists (3943). No sorry, admit, Admitted or oops in range.",
+    "why": "Theorem scale: confluence of PCUIC reduction, the main exported result of PCUICConfluence.v. Glue is 8 lines that only transports to and from the well-scoped presentation and applies the diamond lemma; 3 direct project lemmas, all closed with Qed.",
+    "lemmas": [
+      "red_ws_red_left",
+      "ws_red_confluence",
+      "ws_red_red"
+    ],
+    "source": "metarocq",
+    "scale": "theorem"
+  },
+  {
+    "path": "cedar-lean/Cedar/Thm/PolicySlice.lean",
+    "start": 131,
+    "end": 137,
+    "move": "generalise-then-instantiate",
+    "name": "isAuthorized_eq_for_scope_based_policy_slice",
+    "signal": "main theorem at 131; proof 134-137 is apply isAuthorized_eq_for_sound_policy_slice, apply sound_bound_analysis_produces_sound_slices, exact scope_analysis_is_sound",
+    "why": "Docstring (29-37) says the proof is based on the general sound_bound_analysis_produces_sound_slices and that bounds are currently extracted only from scope constraints; the three children are at 48-56, 61-86 and 121-124 of the same file and each supplies the next premise. Glue 4 lines; file sorry-free.",
+    "lemmas": [
+      "isAuthorized_eq_for_sound_policy_slice",
+      "sound_bound_analysis_produces_sound_slices",
+      "scope_analysis_is_sound"
+    ],
+    "source": "cedar-spec",
+    "scale": "theorem"
+  },
+  {
+    "path": "Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean",
+    "start": 405,
+    "end": 497,
+    "name": "exec_sound",
+    "move": "induction",
+    "signal": "lemma exec_sound ... := by have h_verify_instr := VerifyInstrYieldAgrees_of_agree_and_satisfy ...; have h_opcode_agree := OpcodeStatesAgree_of_lookups_agree ...; cases exec_path ...; induction i using Fin.induction",
+    "why": "Core S-two soundness result (declared lemma). Builds each side condition with one named lemma, obtains the opcode path from exec_path, then proves the step relation along the path by Fin.induction, applying exec_step_sound at zero and at succ with the hypothesis.",
+    "lemmas": [
+      "exec_path",
+      "exec_step_sound",
+      "mem_extends_pub_mem",
+      "memory_assign_MemYieldsAgreeAndRangeChecked_of_agrees",
+      "range_checked_yields_of_range_check_assign",
+      "partition_tuples_disjoint_of_rel_in_rel",
+      "OpcodeStatesAgree_of_lookups_agree",
+      "UseAgree_of_RelLookupsAgree",
+      "VerifyInstrYieldAgrees_of_agree_and_satisfy"
+    ],
+    "source": "formal-proofs",
+    "scale": "theorem"
+  },
+  {
+    "path": "Seymour/Results/EasyDirection.lean",
+    "start": 22,
+    "end": 30,
+    "name": "Matroid.IsGood.isRegular",
+    "move": "induction",
+    "signal": "induction hM with | graphic hM => exact hM.isRegular | cographic hM hMprim => exact hM.isRegular hMprim | @isomorphicR10 M e hM => simp [<-M.isRegular_mapEquiv_iff e, hM] | is1sum hMMM hM _ _ ihl ihr => exact hMMM.isRegular hM ihl ihr | is2sum ... | is3sum ...",
+    "why": "The easy direction of the Seymour theorem, proved by induction on the inductive predicate IsGood: one case per constructor, each closed by a regularity lemma written for that constructor (graphic, cographic, R10 up to mapEquiv, and the 1-, 2-, 3-sum theorems), the two inductive hypotheses fed to the sum lemmas. Glue is 8 lines; file has no sorry.",
+    "lemmas": [
+      "Matroid.IsGraphic.isRegular",
+      "Matroid.IsCographic.isRegular",
+      "Matroid.isRegular_mapEquiv_iff",
+      "Matroid.IsSum1of.isRegular",
+      "Matroid.IsSum2of.isRegular",
+      "Matroid.IsSum3of.isRegular"
+    ],
+    "source": "seymour",
+    "scale": "theorem"
+  },
+  {
+    "path": "APAP/FiniteField.lean",
+    "start": 511,
+    "end": 645,
+    "name": "ff",
+    "move": "induction",
+    "signal": "have ind (i : ℕ) : ∃ (V : Type u) ... := by induction i with | zero => ... | succ i ih => ... obtain ⟨V', _, hVV', hv'⟩ := di_in_ff ... ; rw [hB.wInner_one_mu_ddconv_mu_mu_two_smul_mu]",
+    "why": "Blueprint node ff: the headline finite-field bound is proved by induction on the codimension-increase step, the successor case applying di_in_ff to raise the density factor, and the base/limit case closing with the three-AP-free inner-product identity; two project lemmas, glue 135 lines.",
+    "lemmas": [
+      "di_in_ff",
+      "ThreeAPFree.wInner_one_mu_ddconv_mu_mu_two_smul_mu"
+    ],
+    "source": "apap",
+    "scale": "theorem"
+  },
+  {
+    "path": "ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean",
+    "start": 143,
+    "end": 163,
+    "move": "induction",
+    "lemmas": [
+      "IsoNext",
+      "isoHInfRes",
+      "Rep.dimensionShift.δUpResIso"
+    ],
+    "signal": "theorem inflation_restriction_exact at 143; blueprint node thm:inflation restriction sequence (blueprint/src/_2_cohomology.tex:1310-1318) names this theorem; proof 145-163 is induction n generalizing M, base exact ShortComplex.exact_of_iso (isoHInfRes surj 0 M).symm, step exact ShortComplex.exact_of_iso (IsoNext surj n M ...) ih",
+    "why": "Theorem scale: the file headline theorem, exactness of the inflation-restriction complex, is the blueprinted node and is assembled from named helpers IsoNext (89-101) and isoHInfRes (105-119) in this file plus Rep.dimensionShift.δUpResIso (Cohomology/Functors/UpDown.lean:148-153) in the same project. Glue is 21 lines, one exact per induction branch; the sibling inflation_restriction_mono (121-141) has the same shape. Cached file has no sorry/admit/axiom.",
+    "source": "classfieldtheory",
+    "scale": "theorem"
+  },
+  {
+    "path": "blueprint/src/content.tex",
+    "start": 845,
+    "end": 901,
+    "move": "per-callee-lemma",
+    "name": "prop:sliced-cosmoi",
+    "signal": "Proposition prop:sliced-cosmoi at 845 with seven enumerated axiom components; proof 881-901 handles them one at a time and its uses-line at 882 names lem:trivial-fib-conical and lem:brown-fact; Lemma lem:equiv-htpy-equiv is appealed to at 894.",
+    "why": "The chapter's main construction: isofibrations over B form an infinity-cosmos. The glue verifies each component of the cosmos structure in turn; the nontrivial components are each one named lemma (trivial-fib-conical and brown-fact for pullback stability, equiv-htpy-equiv for the converse). Statement, proof and lemmas are all in the same blueprint.",
+    "lemmas": [
+      "lem:trivial-fib-conical",
+      "lem:brown-fact",
+      "lem:equiv-htpy-equiv"
+    ],
+    "source": "infinity-cosmos",
+    "scale": "theorem"
+  },
+  {
+    "path": "BrownianMotion/StochasticIntegral/DoobMeyer.lean",
+    "start": 2901,
+    "end": 2954,
+    "move": "witness",
+    "signal": "the proof builds the decomposition witness: defines L as limsup of predictableConvexStep, G, A as G.indicator L, then refine with a 9-tuple for the subtraction, martingale, cadlag, predictability, monotonicity and bottom properties; each field closed by a named lemma",
+    "why": "Doob-Meyer decomposition of a cadlag class D submartingale, assembled field by field from the martingale-part and predictable-part lemmas",
+    "name": "ClassD.doob_meyer",
+    "lemmas": [
+      "isCadlag_martingalePartLim",
+      "martingale_martingalePartLim",
+      "isCadlag_predictablePartLim_ae",
+      "predictablePartLim_monotone_ae",
+      "isStronglyPredictable_limsup_predictableConvexStep",
+      "predictableConvexStep_bot",
+      "limsup_predictableConvexStep_eq_predictablePartLim",
+      "measurableSet_predictable_univ_prod"
+    ],
+    "source": "brownian-motion",
+    "scale": "theorem"
+  },
+  {
+    "path": "src/rocq/Theory/I2F/I2F_toplevel.v",
+    "start": 455,
+    "end": 463,
+    "name": "I2F_interpreter_param",
+    "move": "generalise-then-instantiate",
+    "signal": "Theorem I2F_interpreter_param at 455; proof is apply I2F_interpreter_gen, I2F_build_main_args, instantiating the arg-generic lemma (437) at the concrete main-argument generator (231)",
+    "why": "Headline I2F soundness result: interpreter_param refines between infinite and finite instantiations. Three-line glue, two named lemmas in the same file, both close; no sorry or admit in the file.",
+    "lemmas": [
+      "I2F_interpreter_gen",
+      "I2F_build_main_args"
+    ],
+    "source": "vellvm",
+    "scale": "theorem"
+  },
+  {
+    "path": "theories/Crypt/examples/PRFPRG.v",
+    "start": 314,
+    "end": 339,
+    "name": "hyb_security_based_on_prf",
+    "move": "induction",
+    "signal": "Theorem hyb_security_based_on_prf at 314; elim: q => [|q IHq]; base by rewrite big_ord0 /AdvantageE GRing.subrr normr0; step ssprove triangle, rewrite -> GEN_GEN_HYB_equiv, GEN_GEN_HYB_EVAL_equiv, rewrite big_ord_recr lerD //",
+    "why": "Hybrid bound for the PRF-to-PRG construction, by induction on q; base sum is zero, each step replaces two adjacent hybrids by the per-step equivalences (218, 259), both Qed; the file final theorem at 347 consumes it.",
+    "lemmas": [
+      "GEN_GEN_HYB_equiv",
+      "GEN_GEN_HYB_EVAL_equiv"
+    ],
+    "source": "ssprove",
+    "scale": "theorem"
+  },
+  {
+    "path": "impl/fs/bilby/proof/refine/OstoreR.thy",
+    "start": 2379,
+    "end": 2487,
+    "move": "per-callee-lemma",
+    "signal": "apply (rule prepare_wbuf_ret); apply (rule ostore_sync_summary_if_eb_new_ret); apply (rule ostore_write_buf_ret); preconditions discharged by invariant projections",
+    "why": "Refinement lemma for the generated ostore sync; its glue is one correctness lemma per callee function (prepare_wbuf, summary, write_buf), plus padding and post-state lemmas, with a case split on sync_offs = used. Each child closes; the later ostore_write_ret in this file ends in oops (2510) and is not used here.",
+    "lemmas": [
+      "prepare_wbuf_ret",
+      "ostore_sync_summary_if_eb_new_ret",
+      "ostore_write_buf_ret",
+      "extra_padding_is_aligned",
+      "ostore_sync_\\<alpha>_ostore_uptodate",
+      "\\<alpha>_updates_buf_prepare_eq",
+      "used_neq_sync_offs_means_updates_not_Nil"
+    ],
+    "source": "cogent",
+    "scale": "theorem"
+  },
+  {
+    "path": "fmi/Interlocking.thy",
+    "start": 193,
+    "end": 200,
+    "move": "per-callee-lemma",
+    "signal": "Isabelle: anonymous lemma about ilock_cycle; apply (hoare_split) then one apply (rule <op>_type_inv) per sequential component",
+    "why": "Type invariant of the cyclic interlocking controller: the glue unfolds ilock_cycle and applies one operation lemma per component, the four lemmas at 173-191 each closed by ilock_type_inv_tac; glue 5 lines, 4 children, no oops in the cone",
+    "name": "ilock_cycle preserves ilock_type_inv",
+    "lemmas": [
+      "set_relays_type_inv",
+      "clear_relays_type_inv",
+      "set_switches_type_inv",
+      "set_signals_type_inv"
+    ],
+    "source": "utp-main",
+    "scale": "theorem"
+  },
+  {
+    "path": "src/Abstract_Interpreter/Solver/Globals_Rule.thy",
+    "start": 157,
+    "end": 165,
+    "move": "generalise-then-instantiate",
+    "name": "td_certified_solver",
+    "signal": "certified_solver (TD_side_rule_Interp_solve r) ... by unfold_locales (erule ...partial_post_solution ..., erule ...finite_stabl_solve, erule ...solve_dom_of_solve_c, simp add: ...solve_code_equation)",
+    "why": "Proves the pipeline's solver contract once for the single interpretation parameterised by the globals_rule value, rather than once per merge rule: join, per-origin, warrow, warrow-per-origin and bounded narrowing are all instances of r. Glue is four eliminations of the interpreted locale facts.",
+    "lemmas": [
+      "TD_side_rule_Interp.partial_post_solution",
+      "TD_side_rule_Interp.finite_stabl_solve",
+      "TD_side_rule_Interp.solve_dom_of_solve_c",
+      "TD_side_rule_Interp.solve_code_equation"
+    ],
+    "source": "voblint-verification-master-thesis",
+    "scale": "theorem"
+  },
+  {
+    "path": "ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean",
+    "start": 1180,
+    "end": 1191,
+    "name": "Sumcheck.Spec.SingleRound.oracleVerifier_rbrKnowledgeSoundness",
+    "move": "generalise-then-instantiate",
+    "signal": "rw [oracleVerifier_eq_liftContext]; exact OracleVerifier.liftContext_rbrKnowledgeSoundness (stmtLens := oStmtExecutableLens ...) (Simple.oracleVerifier R deg D oSpec) ... (Simple.oracleVerifier_rbrKnowledgeSoundness ...)",
+    "why": "Blueprint node thm:sumcheck_single_round_soundness (blueprint/src/proof_systems/sumcheck.tex:66-71) names this declaration. The full round verifier is rewritten to its context-lifted form, then the round-by-round certificate of the simpler virtual protocol Simple.oracleVerifier is transported along the oracle-statement lens; the lens certificate is the in-file instance extractorLens_rbr_knowledge_soundness. 12-line glue, three named lemmas.",
+    "lemmas": [
+      "oracleVerifier_eq_liftContext",
+      "extractorLens_rbr_knowledge_soundness",
+      "Simple.oracleVerifier_rbrKnowledgeSoundness"
+    ],
+    "source": "arklib",
+    "scale": "theorem"
+  },
+  {
+    "path": "NavierStokes/LocalPaperTheorem.lean",
+    "start": 179,
+    "end": 184,
+    "move": "generalise-then-instantiate",
+    "name": "local_theorem",
+    "signal": "obtain (a, hs, _, hr) := LocalResidualFlatness.selected_schedule; exact (_, _, _, _, _, _, _, _, _, properties_of_schedule hs hr)",
+    "why": "properties_of_schedule proves the full Properties structure for an arbitrary selected schedule with all-order residual rates; local_theorem instantiates it at the schedule certified by selected_schedule.",
+    "lemmas": [
+      "LocalResidualFlatness.selected_schedule",
+      "properties_of_schedule"
+    ],
+    "source": "navierstokesandeuler",
+    "scale": "theorem"
+  },
+  {
+    "path": "SampCert/Samplers/Geometric/Properties.lean",
+    "start": 272,
+    "end": 290,
+    "move": "induction",
+    "signal": "theorem geometric_characterization: revert n; induction extra; · intro n h; apply geometric_progress' trial _ h; · rename_i extra IH; rw [← geometric_preservation'] at IH'; ...",
+    "why": "Closed form for terminating runs of the truncated probGeometric loop, stated over the fuel extra. The glue is an induction on extra whose base case is exactly geometric_progress' (186-197) and whose step case rewrites the goal with geometric_preservation' (235-271) before applying the hypothesis. Both are named lemmas about the loop proved above in the same file and each closes; the parent only carries the fuel arithmetic.",
+    "lemmas": [
+      "geometric_progress'",
+      "geometric_preservation'"
+    ],
+    "name": "geometric_characterization",
+    "source": "sampcert",
+    "scale": "theorem"
+  },
+  {
+    "path": "QuantumInfo/ResourceTheory/SteinsLemma.lean",
+    "start": 2114,
+    "end": 2123,
+    "name": "limit_hypotesting_eq_limit_rel_entropy",
+    "move": "witness",
+    "signal": "theorem limit_hypotesting_eq_limit_rel_entropy ... ∃ d : ℝ≥0, Tendsto (fun n ↦ —log β_ ε(ρ ⊗ᵣ^[n]‖IsFree) / n) (𝓝 d) ∧ Tendsto (fun n ↦ (⨅ σ ∈ IsFree, 𝐃(ρ ⊗ᵣ^[n]‖σ)) / n) (𝓝 d) := by use 𝑅ᵣ∞ ρ constructor · exact GeneralizedQSteinsLemma ρ hε · exact RelativeEntResource.tendsto_ennreal ρ",
+    "why": "Theorem 4, the paper form of the generalized quantum Steins lemma as an equality of two limits. The glue names the witness d = 𝑅ᵣ∞ ρ and discharges the two convergences of the conjunction by GeneralizedQSteinsLemma (Theorem 1, proved above in the same file) and RelativeEntResource.tendsto_ennreal. Five lines of glue, two named project lemmas, both closed; the statement is the file headline.",
+    "lemmas": [
+      "GeneralizedQSteinsLemma",
+      "RelativeEntResource.tendsto_ennreal"
+    ],
+    "source": "physlib",
+    "scale": "theorem"
+  },
+  {
+    "name": "it_add_init_callP",
+    "path": "proofs/compiler/array_init_proof.v",
+    "start": 200,
+    "end": 254,
+    "move": "induction",
+    "signal": "apply (cmd_rect ...) then case heqi: add_init_i / case heqc: add_init_c; 1-4, 6-8: apply/it_aux; apply add_init_auxP; cmpl_inv_incl between branches",
+    "why": "Per-pass correctness of the add-init pass (used as it_add_init_callP by the compiler chain at it_compiler_proof.v:615); the cmd_rect induction step applies the in-file lemmas it_aux and add_init_auxP and weakens the invariant with cmpl_inv_incl, three named lemmas all closing",
+    "lemmas": [
+      "it_aux",
+      "add_init_auxP",
+      "cmpl_inv_incl"
+    ],
+    "source": "jasmin",
+    "scale": "theorem"
+  },
+  {
+    "name": "fw_correct",
+    "path": "DBM/Floyd_Warshall.thy",
+    "start": 1077,
+    "end": 1114,
+    "move": "induction",
+    "signal": "1076 text 'Main theorem under the absence of negative cycles.'; 1081 proof (induction k); 1084 fwi_cyc_free_subs fwi_canonical_extend; 1094 fwi_canonical_extend; 1098 cyc_free_subs_diag; 1105 fw_neg_diag_neg_cycle; 1110 fwi_cyc_free_subs'",
+    "why": "File's main theorem: Floyd-Warshall preserves canonical form and cycle-freeness. Glue is induction on k with a negative-diagonal case split; 38 lines, five dedicated lemmas, all proved above in the same file.",
+    "lemmas": [
+      "fwi_canonical_extend",
+      "fwi_cyc_free_subs",
+      "cyc_free_subs_diag",
+      "fw_neg_diag_neg_cycle",
+      "fwi_cyc_free_subs'"
+    ],
+    "source": "munta",
+    "scale": "theorem"
+  },
+  {
+    "path": "AtiyahSinger/Analysis/DifferentialIndexTheorem.lean",
+    "start": 107,
+    "end": 138,
+    "move": "generalise-then-instantiate",
+    "name": "DifferentialOperator.index_eq_cotangentTopologicalIndex",
+    "signal": "let a : homogeneousGlobalSymbolSpace ... := <P.principalSymbolFunction, ...>; have hp := P.principalSymbol_eq_regularizedSymbol μ R; have hi := ((P.toPseudodifferentialOperator μ).isElliptic_iff_homogeneous R a hp).mpr (P.isElliptic_iff_isEllipticGlobalSymbol.mp hP); exact PseudodifferentialOperator.index_eq_cotangentTopologicalIndex μ (P.toPseudodifferentialOperator μ) R a hp hi",
+    "why": "T01 for differential operators: the file specialises the general PDO index theorem to the unchanged differential operator, deriving the homogeneous representative and its ellipticity from the principal polynomial with three boundary lemmas and then instantiating index_eq_cotangentTopologicalIndex; 4 direct lemmas.",
+    "lemmas": [
+      "principalSymbol_eq_regularizedSymbol",
+      "isElliptic_iff_homogeneous",
+      "isElliptic_iff_isEllipticGlobalSymbol",
+      "index_eq_cotangentTopologicalIndex"
+    ],
+    "source": "lean-atiyah-singer",
+    "scale": "theorem"
+  },
+  {
+    "path": "Analysis/Section_5_5.lean",
+    "start": 166,
+    "end": 189,
+    "move": "witness",
+    "name": "Real.LUB_exist",
+    "signal": "set m := fun n => (LUB_claim1 n hE hbound).exists.choose; have claim2 (N:Nat) := LUB_claim2 N ...; have claim3 : (a:Sequence).IsCauchy := (LIM_of_Cauchy claim2).1; set S := LIM a; use S",
+    "why": "Theorem 5.5.9 (existence of least upper bound): the glue builds the rational approximation a from the rounding lemma LUB_claim1, obtains Cauchyness from the adjacent-term bound LUB_claim2 via LIM_of_Cauchy, and exhibits S := LIM a as the least upper bound, with LIM_of_ge and LIM_of_le supplying the upper-bound and minimality halves. 24 lines, closes at 189. LUB_claim1 and LUB_claim2 close; LIM_of_Cauchy is by sorry here and LIM.harmonic by sorry in Section_5_3.",
+    "lemmas": [
+      "Real.LUB_claim1",
+      "Real.LUB_claim2",
+      "Real.LIM_of_Cauchy",
+      "Real.LIM.harmonic",
+      "Real.LIM_of_ge",
+      "Real.LIM_of_le"
+    ],
+    "source": "analysis",
+    "scale": "theorem"
+  },
+  {
+    "path": "theories/Shared/Libs/DLW/Code/compiler_correction.v",
+    "start": 309,
+    "end": 312,
+    "move": "per-callee-lemma",
+    "name": "generic_compiler",
+    "signal": "`exists link code; auto` discharges the remaining fields of the compiler_t record from four `Local Fact`s, one lemma per field",
+    "why": "Builds the compiler record with one Local Fact per obligation (start address, end address, soundness, completeness), each proved above it; the glue is a 2-line record assembly, one hole per field.",
+    "lemmas": [
+      "fst_ok",
+      "out_ok",
+      "sound",
+      "complete"
+    ],
+    "source": "coq-library-undecidability",
+    "scale": "theorem"
+  },
+  {
+    "path": "Jordan10.v",
+    "start": 8763,
+    "end": 8819,
+    "move": "induction",
+    "name": "Theorem Jordan",
+    "signal": "induction l. ... generalize (Jordan1 m x x'). ... rewrite IHl ... rewrite nc_Br1 ... apply inv_hmap_Br1 ... apply planar_Br1 ... generalize (ring_Br1 m (cons x x' (cons xs xs' l)))",
+    "why": "Theorem Jordan is the project headline (README:5-6, the discrete Jordan curve theorem). Induction on the ring list: the empty case is tauto; the length-one base case cites Jordan1 (Jordan10.v:5994); the step case uses IHl and nc_Br1 (:5379) after asserting the key ~expf through ring1_ring3_connect (:6296), with inv_hmap_Br1 (:4229) and planar_Br1 (:4257) discharging hypotheses and ring_Br1 (:8714) rebuilding the ring invariant for the tail. All six lemmas are proved above in the same file and close by Qed.",
+    "lemmas": [
+      "Jordan1",
+      "nc_Br1",
+      "ring_Br1",
+      "ring1_ring3_connect",
+      "inv_hmap_Br1",
+      "planar_Br1"
+    ],
+    "source": "jordan-curve-theorem",
+    "scale": "theorem"
+  },
+  {
+    "path": "theories/interp_instantiate_sound.v",
+    "start": 246,
+    "end": 402,
+    "move": "per-callee-lemma",
+    "name": "interp_instantiate_imp_instantiate",
+    "signal": "one soundness lemma per checked component is asserted in turn: module_type_checker_sound, external_type_checker_sound, interp_alloc_sound, module_typecheck_glob_aux, module_typecheck_elem_aux, then the six alloc_*_iota_N lemmas",
+    "why": "interp_instantiate_imp_instantiate, the executable-instantiation soundness headline, mirrors the executable pipeline with one soundness lemma per component (module checker, external checker, allocator, global and element initialisers) plus the bit-level reflect lemma; the glue is the existential assembly, and the per-component lemmas close.",
+    "lemmas": [
+      "module_type_checker_sound",
+      "external_type_checker_sound",
+      "interp_alloc_sound",
+      "module_typecheck_glob_aux",
+      "module_typecheck_elem_aux",
+      "b_e_type_checker_reflects_typing",
+      "alloc_func_iota_N",
+      "alloc_table_iota_N",
+      "alloc_mem_iota_N",
+      "alloc_global_iota_N",
+      "alloc_elem_iota_N",
+      "alloc_data_iota_N"
+    ],
+    "source": "wasmcert-coq",
+    "scale": "theorem"
+  },
+  {
+    "path": "theories/b_over_a_props.v",
+    "start": 24,
+    "end": 58,
+    "name": "ba_casoratianE",
+    "move": "generalise-then-instantiate",
+    "signal": "Lemma ba_casoratianE (24); have uUrec : Urec ba_casoratian, using b_Sn2 and a_Sn2 (33-40); have vUrec : Urec v, by field (41-44); suff Urec1P (w1 w2) : w1 2 = w2 2 -> Urec w1 -> Urec w2 -> forall k, w1 k = w2 k (47-48); apply: (Urec1P _ v); initial values b2_eq b3_eq a2_eq a3_eq (49-50)",
+    "why": "The casoratian identity is obtained by proving a general order-1 recurrence uniqueness statement Urec1P and instantiating it at ba_casoratian and the closed form 6/(n+1)^3: b_Sn2 and a_Sn2 give the recurrence for ba_casoratian, field gives it for the closed form, and b2_eq, b3_eq, a2_eq, a3_eq match the initial value. Glue 35 lines, six project lemmas, all close.",
+    "lemmas": [
+      "b_Sn2",
+      "a_Sn2",
+      "b2_eq",
+      "b3_eq",
+      "a2_eq",
+      "a3_eq"
+    ],
+    "source": "apery",
+    "scale": "theorem"
+  },
+  {
+    "path": "theories/acyclic_tsorted.v",
+    "start": 59,
+    "end": 62,
+    "move": "generalise-then-instantiate",
+    "name": "kosaraju_acyclicE",
+    "signal": "`rewrite [LHS]sccs_acyclicE; case: (kosaraju_correct g)` at 62: a section-general predicate instantiated at @kosaraju with its three hypotheses discharged",
+    "why": "kosaraju_acyclicE is the project guarantee for acyclic graphs: Kosaraju output also decides acyclicity. sccs_acyclicE at acyclic.v:363 is proved in a section for an arbitrary scc_seq with three hypotheses; here the sequence is instantiated at kosaraju and the hypotheses are supplied by kosaraju_correct. One line of glue, two project lemmas, both close.",
+    "lemmas": [
+      "sccs_acyclicE",
+      "kosaraju_correct"
+    ],
+    "source": "tarjan",
+    "scale": "theorem"
+  },
+  {
+    "path": "compiler/core/Translation/Lang/NNRCtoDNNRC.v",
+    "start": 532,
+    "end": 557,
+    "move": "generalise-then-instantiate",
+    "name": "nnrc_to_dnnrc_top_correct",
+    "signal": "unfold to the general annotated translation at 538-542; rewrite rec_sort_unlocalize_constants_comm (497) at 547; carry wf_cdenv through rec_sort with wf_cdenv_rec_sort (511) at 548; instantiate nnrc_to_dnnrc_base_correct_lift (473) at annotation tt at 549",
+    "why": "top correctness of the NNRC -> DNNRC pass: the general annotated, localization-parameterised theorem is specialised to the concrete top translation; 26 lines, closes at 557.",
+    "lemmas": [
+      "nnrc_to_dnnrc_base_correct_lift",
+      "rec_sort_unlocalize_constants_comm",
+      "wf_cdenv_rec_sort"
+    ],
+    "source": "qcert",
+    "scale": "theorem"
+  },
+  {
+    "path": "erasure/theories/Typed/ExtractionCorrectness.v",
+    "start": 530,
+    "end": 580,
+    "move": "per-callee-lemma",
+    "name": "extract_correct",
+    "signal": "Theorem extract_correct, statement 530-543, proof 544-580, Qed 580: an evaluation in PCUIC of a constant maps through the extracted environment to an evaluation of the erased constant. Glue composes one correctness lemma per pass: erases_correct (erasure/theories/ErasureCorrectness.v:51) at 550-553, dearg_transform_correct (OptimizeCorrectness.v:5179) at 556, optimize_correct (same file 506-527) at 558, with environment facts from wf_erase_global_decls_recursive (440), global_erased_with_deps_erases_deps_tConst (66), erase_global_decls_deps_recursive_correct (Typed/ErasureCorrectness.v:296) and inversion_Const (PCUICInversion.v:211). No sorry, admit, Admitted or oops in range.",
+    "why": "Theorem scale: end-to-end correctness of the verified extraction pipeline. Move per-callee-lemma: each compiler pass has its own correctness lemma written for it (erasure, dearging, match-on-box removal) and the parent is their composition; 7 direct project lemmas, all closed with Qed.",
+    "lemmas": [
+      "erases_correct",
+      "dearg_transform_correct",
+      "optimize_correct",
+      "wf_erase_global_decls_recursive",
+      "global_erased_with_deps_erases_deps_tConst",
+      "erase_global_decls_deps_recursive_correct",
+      "inversion_Const"
+    ],
+    "source": "metarocq",
+    "scale": "theorem"
+  },
+  {
+    "path": "cedar-lean/Cedar/Thm/Authorization.lean",
+    "start": 158,
+    "end": 166,
+    "move": "per-callee-lemma",
+    "name": "order_and_dup_independent",
+    "signal": "theorem at 158; glue 162-166 is have hf, have hp, have he then simp [isAuthorized, hf, hp, he], one lemma per result component of isAuthorized",
+    "why": "Children are Cedar/Thm/Authorization/Authorizer.lean:62-69 (satisfiedPolicies, used for .forbid and .permit) and 71-78 (errorPolicies), one per component of isAuthorized. Both close; cached files have no sorry/admit/axiom.",
+    "lemmas": [
+      "satisfiedPolicies_order_and_dup_independent",
+      "errorPolicies_order_and_dup_independent"
+    ],
+    "source": "cedar-spec",
+    "scale": "theorem"
+  },
+  {
+    "path": "Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean",
+    "start": 317,
+    "end": 403,
+    "name": "exec_step_sound",
+    "move": "per-callee-lemma",
+    "signal": "lemma exec_step_sound ... := by revert h_opcode_satisfied h_agree; cases o; case Generic => apply GenericOpcode.sound_generic ...; case CallRel => apply CallOpcode.sound_call_rel ...; ... case Mul252 => apply MulOpcode.Mul252Opcode.sound_mul_252 ...",
+    "why": "One soundness lemma per Opcode constructor, each written in its opcode module. The glue is a bare cases-dispatch with one apply per constructor and no other proof work, so the decomposition is generated by the Opcode inductive (19 callees, above the 2-12 preference).",
+    "lemmas": [
+      "GenericOpcode.sound_generic",
+      "CallOpcode.sound_call_rel",
+      "CallOpcode.sound_call_abs_base_fp",
+      "CallOpcode.sound_call_abs_base_ap",
+      "RetOpcode.sound_ret",
+      "AssertEqOpcode.sound_assert_eq",
+      "AssertEqOpcode.sound_assert_eq_imm",
+      "AssertEqOpcode.sound_assert_eq_double_deref",
+      "JumpOpcode.sound_jump_imm",
+      "JumpOpcode.sound_jump_double_deref",
+      "JumpOpcode.sound_jump_rel",
+      "JumpOpcode.sound_jump_abs",
+      "JnzOpcode.JnzNotTakenOpcode.sound_jnz_not_taken",
+      "JnzOpcode.JnzTakenOpcode.sound_jnz_taken",
+      "AddApOpcode.sound_add_ap",
+      "AddOpcode.AddSmallOpcode.sound_add_small",
+      "AddOpcode.Add252Opcode.sound_add_252",
+      "MulOpcode.MulSmallOpcode.sound_mul_small",
+      "MulOpcode.Mul252Opcode.sound_mul_252"
+    ],
+    "source": "formal-proofs",
+    "scale": "theorem"
+  },
+  {
+    "path": "blueprint/src/sum_3.tex",
+    "start": 591,
+    "end": 604,
+    "name": "MatrixSum3.IsCanonicalSigning.isTotallyUnimodular",
+    "move": "blueprint-node",
+    "signal": "lemma node with proof uses targets MatrixSum3.IsCanonicalSigning.toMatrixLikeSum3 and MatrixLikeSum3.isTotallyUnimodular; proof text: Combine the results of Lemmas ...",
+    "why": "A small node of the published 3-sum dependency graph: the canonical signing of a 3-sum of matrices is TU. The one-sentence proof combines two earlier nodes: toMatrixLikeSum3 puts B in the 3-sum-like family, MatrixLikeSum3.isTotallyUnimodular says every member is TU. Two direct lemmas, both earlier in the same file, leanok.",
+    "lemmas": [
+      "MatrixSum3.IsCanonicalSigning.toMatrixLikeSum3",
+      "MatrixLikeSum3.isTotallyUnimodular"
+    ],
+    "source": "seymour",
+    "scale": "theorem"
+  },
+  {
+    "path": "APAP/Physics/AlmostPeriodicity.lean",
+    "start": 391,
+    "end": 424,
+    "name": "almost_periodicity",
+    "move": "witness",
+    "signal": "obtain ⟨a, ha, hL'⟩ := big_shifts S _ hk hL (filter_subset _ _); refine ⟨({t | (a + fun _ ↦ -t) ∈ L} : Finset _), ?_, ?_⟩ ... T_bound ... just_the_triangle_inequality",
+    "why": "Blueprint node lp_ap: the glue applies lemma28 for the density of good tuples, picks a tuple with big_shifts, defines T as the set of shifts that keep it good, bounds #T with T_bound and the norm with just_the_triangle_inequality; four named lemmas, glue 34 lines.",
+    "lemmas": [
+      "lemma28",
+      "big_shifts",
+      "T_bound",
+      "just_the_triangle_inequality"
+    ],
+    "source": "apap",
+    "scale": "theorem"
+  },
+  {
+    "path": "ClassFieldTheory/Cohomology/FiniteCyclic/HerbrandQuotient/SES.lean",
+    "start": 114,
+    "end": 130,
+    "move": "per-callee-lemma",
+    "lemmas": [
+      "herbrandSixTermSequence_sc'_5_0_1",
+      "herbrandSixTermSequence_sc'_0_1_2",
+      "herbrandSixTermSequence_sc'_1_2_3",
+      "herbrandSixTermSequence_sc'_2_3_4",
+      "herbrandSixTermSequence_sc'_3_4_5",
+      "herbrandSixTermSequence_sc'_4_5_0",
+      "exact_map_δ_periodicCohomology",
+      "exact_δ_periodicCohomology_map"
+    ],
+    "signal": "lemma herbrandSixTermSequence_exactAt at 114; proof is fin_cases i over Fin 6, each branch rw [herbrandSixTermSequence_sc_i_j_k] then exact one named exactness lemma",
+    "why": "Theorem scale: exactness of the six-term period-six sequence, the structural theorem the file multiplicativity result herbrandQuotient_eq_of_shortExact (171-207) consumes. Six near-identical unfolding lemmas, one per index, at 72-94, and two delta-periodicity exactness lemmas at 98-112; glue is 17 lines, one rewrite and one exact per branch. Remaining branches close with the Mathlib lemmas exact_map_δ, exact_δ_map and mapShortComplex₂_exact. Cached file has no sorry/admit/axiom.",
+    "source": "classfieldtheory",
+    "scale": "theorem"
+  },
+  {
+    "path": "InfinityCosmos/ForMathlib/InfinityCosmos/CotensorPointIso.lean",
+    "start": 104,
+    "end": 109,
+    "move": "witness",
+    "name": "cotensorPointIso",
+    "signal": "Def cotensorPointIso at 104, the file headline: hom := cotensorPointIsoHom B, inv := cotensorPointMap (𝟙 B), with the two inverse laws by cotensorPointIso_hom_inv_id (77) and cotensorPointIso_inv_hom_id (99).",
+    "why": "The explicit comparison isomorphism between the point cotensor of B and B. The five-line structure exhibits the two maps as witnesses; its two obligations are exactly the named inverse-identity lemmas proved earlier in the same file, and inv_hom_id reduces to cotensorPointMap_comp_cotensorPointIsoHom. No sorry or admit.",
+    "lemmas": [
+      "cotensorPointIso_hom_inv_id",
+      "cotensorPointIso_inv_hom_id"
+    ],
+    "source": "infinity-cosmos",
+    "scale": "theorem"
+  },
+  {
+    "path": "blueprint/src/chapters/brownian.tex",
+    "start": 101,
+    "end": 113,
+    "move": "blueprint-node",
+    "signal": "blueprint node lem:isHolderWith_brownian names its dependencies in uses: bounded covering number, the Kolmogorov process property, and the localized Holder modification theorem; the proof text applies the latter with exponent (n+1)/(2n+4)",
+    "why": "Blueprint node for the Holder regularity of Brownian motion, whose proof is three named inputs plus arithmetic",
+    "name": "lem:isHolderWith_brownian",
+    "lemmas": [
+      "lem:hasBoundedCoveringNumberCover_nnreal",
+      "lem:isKolmogorovProcess_preBrownian",
+      "thm:localized_holder_modification_sup"
+    ],
+    "source": "brownian-motion",
+    "scale": "theorem"
+  },
+  {
+    "path": "src/rocq/Theory/I2F/I2F_memory.v",
+    "start": 1070,
+    "end": 1102,
+    "name": "I2F_handle_intrinsicM",
+    "move": "per-callee-lemma",
+    "signal": "Theorem I2F_handle_intrinsicM at 1070; dispatches on is_memcpy_name, is_memmove_name, is_memset_name, malloc and free, one lemma per intrinsic (I2F_handle_memcpy 998, I2F_handle_memmove 1003, I2F_handle_memset 1008, I2F_handle_malloc 1038, I2F_handle_free 1053)",
+    "why": "Intrinsic handler of the finite instantiation simulates the infinite one. Name dispatch with one lemma per intrinsic, each proved just above for this theorem; five direct lemmas, about 30 glue lines; no sorry or admit.",
+    "lemmas": [
+      "I2F_handle_memcpy",
+      "I2F_handle_memmove",
+      "I2F_handle_memset",
+      "I2F_handle_malloc",
+      "I2F_handle_free"
+    ],
+    "source": "vellvm",
+    "scale": "theorem"
+  },
+  {
+    "path": "theories/Crypt/examples/MACCCA.v",
+    "start": 434,
+    "end": 470,
+    "name": "security_based_on_mac",
+    "move": "calc-chain",
+    "signal": "Theorem security_based_on_mac at 434; glue is ssprove triangle (CCA_EVAL true) [:: CCA_EVAL_TAG_pkg_tt ∘ TAG true ; ... ; CCA_EVAL_TAG_pkg_ff ∘ TAG true ] (CCA_EVAL false) A as ineq; apply: le_trans; then rewrite -> CCA_EVAL_equiv_true, CCA_EVAL_HYB_equiv_true, CCA_EVAL_HYB_equiv_false, CCA_EVAL_equiv_false",
+    "why": "Main MAC-plus-CPA composition bound; hybrid triangle over six packages with one rewrite per hop lemma, each a program-equivalence proof closed in the same file (303, 316, 360, 404); no admit in the file.",
+    "lemmas": [
+      "CCA_EVAL_equiv_true",
+      "CCA_EVAL_HYB_equiv_true",
+      "CCA_EVAL_HYB_equiv_false",
+      "CCA_EVAL_equiv_false"
+    ],
+    "source": "ssprove",
+    "scale": "theorem"
+  },
+  {
+    "path": "impl/fs/bilby/proof/refine/FsopSyncR.thy",
+    "start": 53,
+    "end": 116,
+    "move": "interface-lemma",
+    "signal": "sole theory of ROOT session BilbyFsSync; lemma refine_sync: cogent_corres rsync_res (afs_sync afs) (fsop_sync_fs (FsopFsP.make ex fs_st)), proved by cogent_corres_conc_let_exec, cogent_corres_if, then rule ostore_sync_ret",
+    "why": "Function-boundary lemma that lets the parent system-call refinement proof use fsop_sync without unfolding it; the glue peels the monadic code with the generic correspondence rules and finishes with ostore_sync_ret, using five same-file helpers for the error branch and update-list arithmetic.",
+    "lemmas": [
+      "fold_comp",
+      "corres_sync_err",
+      "length_updates_eqD",
+      "afs_fsop_match_updates",
+      "afs_inv_steps_updated_afsD",
+      "ostore_sync_ret"
+    ],
+    "source": "cogent",
+    "scale": "theorem"
+  },
+  {
+    "path": "dynamics/Timed_Traces.thy",
+    "start": 738,
+    "end": 741,
+    "move": "iff-split",
+    "signal": "Isabelle: lemma named piecewise_continuous_cat_iff; using <lemma> <lemma> <lemma> by blast",
+    "why": "Equivalence of piecewise continuity under trace concatenation: the forward direction is piecewise_continuous_cat (728), the backward direction the two projection lemmas at 601 and 611; glue 2 lines, 3 children, file has no sorry or oops",
+    "name": "piecewise_continuous_cat_iff",
+    "lemmas": [
+      "piecewise_continuous_cat",
+      "piecewise_continuous_cat_left",
+      "piecewise_continuous_cat_right"
+    ],
+    "source": "utp-main",
+    "scale": "theorem"
+  },
+  {
+    "path": "src/Executable_Surface/CLI/Analysis_Run_Ctx_Sound.thy",
+    "start": 23,
+    "end": 44,
+    "move": "per-callee-lemma",
+    "name": "mcp_es_rule_table",
+    "signal": "activation_table.intro, goal_cases; case (1 t) by rule ...entry_state_has_context_of_terminates; case (2 u ctx) using ...entry_state_activation_collect_sound_of_terminates; case 3 using ...vars_finite_of_terminates",
+    "why": "One of a family of four near-identical table lemmas in this file (entry-state and call-string, each at the flow-sensitive and shared-globals registrations), one per registration and context policy; each closes the same three activation_table obligations by naming its registration's three published facts, generated by rule from the configuration.",
+    "lemmas": [
+      "mcp_es_rule.entry_state_has_context_of_terminates",
+      "mcp_es_rule.entry_state_activation_collect_sound_of_terminates",
+      "mcp_es_rule.vars_finite_of_terminates"
+    ],
+    "source": "voblint-verification-master-thesis",
+    "scale": "theorem"
+  },
+  {
+    "path": "ArkLib/ProofSystem/Plonk/Assembly/Reduction.lean",
+    "start": 216,
+    "end": 235,
+    "name": "Plonk.Assembly.oracleVerifier_rbrKnowledgeSoundnessWith",
+    "move": "per-callee-lemma",
+    "signal": "refine OracleVerifier.seqCompose_rbrKnowledgeSoundnessWith_of_guarded ... ?_; intro i; fin_cases i; · exact SendWitness.oracleVerifier_rbrKnowledgeSoundnessWith ... · exact GrandProduct... · exact Batch... · exact Quotient...",
+    "why": "Blueprint node thm:plonk_knowledge_soundness (blueprint/src/proof_systems/plonk.tex:51-68) names this declaration. The six-round reduction is the sequential composition of four stages; the proof hands one fixed-prefix knowledge certificate per stage, read off by fin_cases from the four stage files, to the composition combinator. All four stage lemmas are written for these stages and close.",
+    "lemmas": [
+      "SendWitness.oracleVerifier_rbrKnowledgeSoundnessWith",
+      "GrandProduct.oracleVerifier_rbrKnowledgeSoundnessWith",
+      "Batch.oracleVerifier_rbrKnowledgeSoundnessWith",
+      "Quotient.oracleVerifier_rbrKnowledgeSoundnessWith"
+    ],
+    "source": "arklib",
+    "scale": "theorem"
+  },
+  {
+    "path": "Euler/Solution.lean",
+    "start": 43,
+    "end": 69,
+    "move": "witness",
+    "name": "exists_compact_smooth_euler_singularity",
+    "signal": "theorem exists_compact_smooth_euler_singularity ... := by refine (initialDatum.field, lifespan.duration, maximalVelocityExtension lifespan, maximalPressureExtension lifespan, ?_, initialDatum_compact, initialDatum_nonzero, lifespan.duration_pos, lifespan_le_one, maximal_sobolevSolution lifespan, maximalVelocityExtension_bounded_energy lifespan, ?_, ?_, maximalVelocityExtension_c1_limsup lifespan, maximalVelocityExtension_vorticity_integral lifespan, initialDatum_no_global_solution)",
+    "why": "Declared alternative form of the Euler main theorem: a 13-field existential introduced in one refine, each field closed by a named project lemma (plus three intro lines for the remaining obligations).",
+    "lemmas": [
+      "initialVelocityConditionDecay_of_compact",
+      "initialDatum_compact",
+      "initialDatum_nonzero",
+      "lifespan.duration_pos",
+      "lifespan_le_one",
+      "maximal_sobolevSolution",
+      "maximalVelocityExtension_bounded_energy",
+      "maximal_sobolev_existence_iff",
+      "maximalVelocityExtension_c1_locally_bounded",
+      "maximalVelocityExtension_vorticity_locally_integrable",
+      "maximalVelocityExtension_c1_limsup",
+      "maximalVelocityExtension_vorticity_integral",
+      "initialDatum_no_global_solution"
+    ],
+    "source": "navierstokesandeuler",
+    "scale": "theorem"
+  },
+  {
+    "path": "SampCert/Samplers/Gaussian/Properties.lean",
+    "start": 60,
+    "end": 91,
+    "move": "calc-chain",
+    "signal": "theorem DiscreteGaussianSampleLoop_normalizes: simp only [DiscreteGaussianSampleLoop, ...]; rw [DiscreteLaplaceSampleMixed_equiv]; ... rw [ite_simpl_gaussian_1] / [ite_simpl_gaussian_2]; rw [BernoulliExpNegSample_normalizes]; rw [DiscreteLaplaceSample_normalizes]",
+    "why": "Normalization of the discrete Gaussian sampler loop, the lemma the file's closed-form theorem DiscreteGaussianSample_apply consumes at line 245. The proof is a chain of equalities on the sum: rewrite the mixed Laplace sampler by its equivalence, drop the off-diagonal masses with the two same-file ite_simpl lemmas, combine the remaining sums with mul_add, then close each factor by one project normalization lemma - BernoulliExpNegSample_normalizes (SampCert/Samplers/BernoulliNegativeExponential/Properties.lean:1148) and DiscreteLaplaceSample_normalizes (SampCert/Samplers/Laplace/Properties.lean:420). Each step is one rewrite and each of the five cited lemmas closes.",
+    "lemmas": [
+      "DiscreteLaplaceSampleMixed_equiv",
+      "ite_simpl_gaussian_1",
+      "ite_simpl_gaussian_2",
+      "BernoulliExpNegSample_normalizes",
+      "DiscreteLaplaceSample_normalizes"
+    ],
+    "name": "DiscreteGaussianSampleLoop_normalizes",
+    "source": "sampcert",
+    "scale": "theorem"
+  },
+  {
+    "path": "QuantumInfo/Entropy/DPI.lean",
+    "start": 1349,
+    "end": 1378,
+    "name": "sandwichedRenyiEntropy_DPI_gt_one",
+    "move": "calc-chain",
+    "signal": "calc D̃_ α(Φ ρ‖Φ σ) = D̃_ α((Φ.purify ((prep ∘ₘ append) ρ)).traceLeft.traceLeft‖...) := ... _ = D̃_ α(((ρ ⊗ᴹ τ).uConj U).traceLeft.traceLeft‖...) := prep_append_eq_tensor_pure ... _ ≤ ... := sandwichedRenyiEntropy_mono_traceLeft hα .. _ ≤ ... := sandwichedRenyiEntropy_mono_traceLeft hα .. _ = ... := sandwichedRenyiEntropy_conj_unitary ... _ = D̃_ α(ρ‖σ) := sandwichedRenyiEntropy_tensor_pure ...",
+    "why": "Headline Data Processing Inequality for the sandwiched Rényi divergence at α greater than 1, proved by the Stinespring purification reduction described in the doc comment. The glue is a six-step calc chain: purify the channel, rewrite the output by prep_append_eq_tensor_pure, apply monotonicity under partial trace twice (sandwichedRenyiEntropy_mono_traceLeft), invariance under unitary conjugation (sandwichedRenyiEntropy_conj_unitary) and tensor with a pure ancilla (sandwichedRenyiEntropy_tensor_pure). Four named in-file lemmas, one per calc step, plus two purification lemmas used in the first two steps; glue mostly applies them.",
+    "lemmas": [
+      "prep_append_eq_tensor_pure",
+      "sandwichedRenyiEntropy_mono_traceLeft",
+      "sandwichedRenyiEntropy_conj_unitary",
+      "sandwichedRenyiEntropy_tensor_pure",
+      "CPTPMap.purify_IsUnitary",
+      "CPTPMap.purify_trace"
+    ],
+    "source": "physlib",
+    "scale": "theorem"
+  },
+  {
+    "name": "it_compiler_back_endP",
+    "path": "proofs/compiler/it_compiler_proof.v",
+    "start": 1333,
+    "end": 1478,
+    "move": "calc-chain",
+    "signal": "wkequiv_io_trans chains over tunnel_funcs, ovm_pre/ovm_post, lin_sz_pre/lin_sz_post and lin_pre/lin_post/sz_pre/sz_post, each side condition closed by trans_pre_ovm_lin_sz, trans_post_ovm_lin, trans_pre_lin_sz_lin_sz, trans_post_lin_sz",
+    "why": "Headline back-end correctness theorem; glue chains the per-pass equivalences (merge_varmaps_export_call_checkP, linear_exportcallP, istack_zeroization_lprogP, tunnel_program_invariants) with wkequiv_io_trans through four in-file relation lemmas, eight named lemmas, all closing, no sorry/admit/Admitted in the file",
+    "lemmas": [
+      "merge_varmaps_export_call_checkP",
+      "linear_exportcallP",
+      "istack_zeroization_lprogP",
+      "it_tunneling_proof.tunnel_program_invariants",
+      "trans_pre_ovm_lin_sz",
+      "trans_post_ovm_lin",
+      "trans_pre_lin_sz_lin_sz",
+      "trans_post_lin_sz"
+    ],
+    "source": "jasmin",
+    "scale": "theorem"
+  },
+  {
+    "name": "model_check'",
+    "path": "Simple_Networks/Simple_Network_Language_Model_Checking.thy",
+    "start": 1052,
+    "end": 1219,
+    "move": "per-callee-lemma",
+    "signal": "1052 theorem model_check'; 1072-1077 interpret ta_bisim by (rule ta_bisimulation); 1082 start_sim; 1091 bisims; 1122 deadlock_bisim; 1137-1138 deadlock_start_iff and models_correct; 1149/1191 pw_impl_hnr_F_reachable; 1152/1194 Ex_ev_impl_hnr; 1161/1181 Alw_ev_impl_hnr; 1212/1214 leadsto_impl_hnr' and leadsto_impl_hnr",
+    "why": "Model-checker correctness of the theory that ends the Simple_Networks session. The glue splits on the formula constructor and discharges each case with the refinement lemma for that checker, one per callee, over the shared models_correct, deadlock_start_iff and bisimulation lemmas; 168 lines.",
+    "lemmas": [
+      "models_correct",
+      "deadlock_start_iff",
+      "pw_impl_hnr_F_reachable",
+      "Ex_ev_impl_hnr",
+      "Alw_ev_impl_hnr",
+      "leadsto_impl_hnr"
+    ],
+    "source": "munta",
+    "scale": "theorem"
+  },
+  {
+    "path": "AtiyahSinger/Analysis/FullSymbolCohomologicalIndexTheorem.lean",
+    "start": 101,
+    "end": 119,
+    "move": "interface-lemma",
+    "name": "AtlasPseudodifferentialOperator.index_eq_tangent_characteristic_number_fullSymbol",
+    "signal": "have hindex := P.index_eq_cotangentTopologicalIndex_fullSymbol hi; rw [cotangentTopologicalIndex_eq (indexTangentMetric ...), AddMonoidHom.comp_apply] at hindex; ... rw [hindex, cotangentIndexCharacteristicClass]; exact topologicalIndex_eq_tangent_characteristic_number ...",
+    "why": "T02 in atlas form: the glue transports the integer index equality to the tangent K group through the cotangent/tangent interface lemma cotangentTopologicalIndex_eq instead of unfolding either index, then applies the tangent characteristic-number formula to the same full-symbol class; 3 direct lemmas and an 18-line proof.",
+    "lemmas": [
+      "index_eq_cotangentTopologicalIndex_fullSymbol",
+      "cotangentTopologicalIndex_eq",
+      "topologicalIndex_eq_tangent_characteristic_number"
+    ],
+    "source": "lean-atiyah-singer",
+    "scale": "theorem"
+  },
+  {
+    "path": "Analysis/Section_8_3.lean",
+    "start": 66,
+    "end": 157,
+    "move": "calc-chain",
+    "name": "Uncountable.real",
+    "signal": "have : Function.Injective f := by intro A B hAB; by_contra!; set n0 := Nat.min (symmDiff A B); have : (0:Real) > 0 := calc ... splitting both tsums at n0 and evaluating the geometric tail; replace := (equiv this).mp power_set_nat",
+    "why": "Corollary 8.3.4 (the reals are uncountable): the glue proves injectivity of A => tsum over A of 10^(-n) by one long calc chain that splits the two tsums at the least differing index and sums the geometric tail, then transports uncountability of Set Nat along the resulting equinumerosity. 92 lines, closes at 157; Uncountable.equiv and Uncountable.power_set_nat close.",
+    "lemmas": [
+      "Uncountable.equiv",
+      "Uncountable.power_set_nat"
+    ],
+    "source": "analysis",
+    "scale": "theorem"
+  },
+  {
+    "path": "theories/MinskyMachines/MMA/mma_k_mma_2_compiler.v",
+    "start": 226,
+    "end": 233,
+    "move": "interface-lemma",
+    "name": "mma_k_mma_2_compiler",
+    "signal": "`apply generic_compiler with icomp ilen` leaves four bullets, each comment-labelled with the obligation it discharges",
+    "why": "The k-counter to 2-counter compiler is obtained by instantiating the generic compiler interface, with two locally proved facts about icomp plus totality and functionality of the MMA semantics; six lines of glue, no case analysis leaks out.",
+    "lemmas": [
+      "icomp_length_eq",
+      "mma_sss_total_ni",
+      "mma_sss_fun",
+      "icomp_sound"
+    ],
+    "source": "coq-library-undecidability",
+    "scale": "theorem"
+  },
+  {
+    "path": "Jordan1.v",
+    "start": 1907,
+    "end": 1917,
+    "move": "interface-lemma",
+    "name": "Theorem bij_cA",
+    "signal": "Theorem bij_cA ... unfold bij_dart. split. apply inj_cA. apply surj_cA.",
+    "why": "Theorem bij_cA states the bijection API of cA on exd m and sits immediately after Definition surj_dart (Jordan1.v:1865) and Definition bij_dart (:1903), so later files use bijectivity without unfolding: Jordan2.v:4373 defines the functor instance McA bij_f as bij_cA m Md.k. Its proof packages the two API lemmas inj_cA (:1537) and surj_cA (:1871), each closing by Qed; the glue is six lines.",
+    "lemmas": [
+      "inj_cA",
+      "surj_cA"
+    ],
+    "source": "jordan-curve-theorem",
+    "scale": "theorem"
+  },
+  {
+    "path": "theories/type_checker_reflects_typing.v",
+    "start": 1527,
+    "end": 1610,
+    "move": "iff-split",
+    "name": "b_e_type_checker_reflects_typing",
+    "signal": "apply ReflectT then apply ReflectF: the boolean checker is proved equivalent to the typing relation in its two directions",
+    "why": "b_e_type_checker_reflects_typing is the type-checker soundness and completeness headline: ReflectT applies tc_to_bet_list (which packages the large tc_to_bet_conj above it), ReflectF inducts on the typing derivation and closes each rule by a named checker or subtyping lemma; glue 84 lines, all children close.",
+    "lemmas": [
+      "tc_to_bet_list",
+      "values_subtyping_rev",
+      "instr_subtyping_weaken1",
+      "common_lab_cond",
+      "common_lab_rev",
+      "consume_subtyping",
+      "check_single_subtyping",
+      "check_subtyping",
+      "check_extend",
+      "c_types_agree_subtyping",
+      "values_subtyping_trans",
+      "values_subtyping_cat"
+    ],
+    "source": "wasmcert-coq",
+    "scale": "theorem"
+  },
+  {
+    "path": "theories/multinomial.v",
+    "start": 147,
+    "end": 192,
+    "name": "generalizedNewton",
+    "move": "induction",
+    "signal": "Lemma generalizedNewton (147); elim/last_ind: l n m (153); base case by multi_nil and monom_nill (154-155); rcons step splits the tuple sum over the last coefficient by partition_big (162); rewrites the summand with multi_rcons, tmap_val_rcons and monom_rcons (189)",
+    "why": "The multinomial theorem is proved by induction on the list of exponents (last_ind): the base case closes by multi_nil and monom_nill, and the rcons step splits the tuple sum over the last coefficient with partition_big and rewrites the summand with multi_rcons, tmap_val_rcons and monom_rcons. Glue 46 lines, five in-file lemmas, all close.",
+    "lemmas": [
+      "multi_nil",
+      "multi_rcons",
+      "monom_nill",
+      "monom_rcons",
+      "tmap_val_rcons"
+    ],
+    "source": "apery",
+    "scale": "theorem"
+  },
+  {
+    "path": "theories/kosaraju.v",
+    "start": 716,
+    "end": 783,
+    "move": "induction",
+    "name": "kosaraju_correct",
+    "signal": "`elim: tseq p` at line 743 carrying four hypotheses; per element `case: pdfs` from pdfs_connect at 752, tsorted_symconnect at 760 and tsorted_inv at 771",
+    "why": "kosaraju_correct is the headline theorem of the file: Kosaraju output is a partition of V into symconnect classes. The glue inducts over the topological order list tseq, each step calling pdfs_connect for the new class, re-deriving sortedness of the remainder with tsorted_symconnect and tsorted_inv, and using connect_to_rev to pass between the restricted and reversed relations. 68 lines, closes at 783; no sorry anywhere in theories/.",
+    "lemmas": [
+      "tseq_correct",
+      "pdfs_connect",
+      "connect_to_rev",
+      "tsorted_symconnect",
+      "tsorted_inv",
+      "eq_tsorted"
+    ],
+    "source": "tarjan",
+    "scale": "theorem"
+  },
+  {
+    "path": "compiler/core/Translation/Lang/OQLtoNRAEnv.v",
+    "start": 2046,
+    "end": 2100,
+    "move": "induction",
+    "name": "oql_to_nraenv_query_program_correct",
+    "signal": "induction oq at 2053; both query-program cases rewrite with oql_to_nraenv_expr_correct (2054, 2099); environment bookkeeping with rec_concat_sort_domain_app_commutatuve_equiv (2035, used 2062) and oql_to_nraenv_query_program_proper (2019, used 2063)",
+    "why": "correctness of the OQL query-program translation, consumed by the top-level OQL theorem at 2109; induction with the expression-correctness theorem as the per-case lemma; 55 lines, closes at 2100.",
+    "lemmas": [
+      "oql_to_nraenv_expr_correct",
+      "rec_concat_sort_domain_app_commutatuve_equiv",
+      "oql_to_nraenv_query_program_proper"
+    ],
+    "source": "qcert",
+    "scale": "theorem"
+  },
+  {
+    "path": "pcuic/theories/PCUICCanonicity.v",
+    "start": 20,
+    "end": 36,
+    "move": "witness",
+    "name": "pcuic_canonicity",
+    "signal": "Lemma pcuic_canonicity, statement 20-23, proof 24-35, Qed 36, the whole content of the file. Sigma conclusion: a term typed at mkApps (tInd i u) args, =s to the input, with construct_cofix_discr of its head. Glue: wh_normalization (PCUICNormalization.v:24), subject_reduction (PCUICSR.v:3129, line 30), whnf_classification (PCUICClassification.v:821, line 31), cumulAlgo_cumulSpec and red_ws_cumul_pb (PCUICWellScopedCumulativity.v:355, lines 33-34). No sorry, admit, Admitted or oops in range.",
+    "why": "Theorem scale: canonicity of closed well-typed terms, the head result of the PCUIC metatheory that the file exists for. Glue is 12 lines: normalise, transfer typing along the reduction, classify the normal form, build the witness; 5 direct project lemmas, each closed in its own file.",
+    "lemmas": [
+      "wh_normalization",
+      "subject_reduction",
+      "whnf_classification",
+      "red_ws_cumul_pb",
+      "cumulAlgo_cumulSpec"
+    ],
+    "source": "metarocq",
+    "scale": "theorem"
+  },
+  {
+    "path": "cedar-lean/Cedar/Thm/TPE/Soundness.lean",
+    "start": 64,
+    "end": 111,
+    "move": "induction",
+    "name": "partial_evaluate_is_sound",
+    "signal": "theorem at 64; proof 75-111 is induction h1 on Residual.WellTyped, one case per constructor, each case a single exact of partial_evaluate_is_sound_<constructor>",
+    "why": "Main lemma of the TPE soundness development; 13 per-constructor children are declared under Cedar/Thm/TPE/Soundness/ (imports at 27-39) and partial_evaluate_is_sound_error is at 48-57 of the same file. All 14 confirmed; the fetched TPE files have no sorry/admit/axiom.",
+    "lemmas": [
+      "partial_evaluate_is_sound_val",
+      "partial_evaluate_is_sound_var",
+      "partial_evaluate_is_sound_ite",
+      "partial_evaluate_is_sound_and",
+      "partial_evaluate_is_sound_or",
+      "partial_evaluate_is_sound_unary_app",
+      "partial_evaluate_is_sound_binary_app",
+      "partial_evaluate_is_sound_has_attr",
+      "partial_evaluate_is_sound_ext_has_attr",
+      "partial_evaluate_is_sound_get_attr",
+      "partial_evaluate_is_sound_set",
+      "partial_evaluate_is_sound_record",
+      "partial_evaluate_is_sound_call",
+      "partial_evaluate_is_sound_error"
+    ],
+    "source": "cedar-spec",
+    "scale": "theorem"
+  },
+  {
+    "path": "Verification/Semantics/AirEncoding/FinalCorrectness.lean",
+    "start": 35,
+    "end": 87,
+    "name": "final_correctness",
+    "move": "witness",
+    "signal": "theorem final_correctness ... := by use bad1 ...; use bad2 ...; use bad3 ...; use bad1_bound ...; use bad2_bound ...; use bad3_bound ...; exact execution_exists char_ge (inp.toInputDataAux ...) (toConstraints ...) ...",
+    "why": "File calls it the main correctness theorem of the Stone AIR encoding. 53-line glue: introduce the three bad sets with use, discharge each cardinality bound with its own lemma, then pass the autogenerated constraints to execution_exists through toConstraints.",
+    "lemmas": [
+      "bad1_bound",
+      "bad2_bound",
+      "bad3_bound",
+      "execution_exists",
+      "toConstraints"
+    ],
+    "source": "formal-proofs",
+    "scale": "theorem"
+  },
+  {
+    "path": "Seymour/Matroid/Comatroids.lean",
+    "start": 361,
+    "end": 388,
+    "name": "Matroid.IsRegular.dual",
+    "move": "witness",
+    "signal": "obtain ⟨X, Y, A, hTU, hAM⟩ := hM; obtain ⟨G, hG⟩ := A.toMatroid.exists_isBase; obtain ⟨S, -, hS, hSTU⟩ := A.exists_standardRepr_isBase_isTotallyUnimodular hG hTU; let Sp := S.dual; refine ⟨Sp.X, Sp.X ∪ Sp.Y, Sp.toFull, ?_, ?_⟩; ... exact h1SB.comp_cols Subtype.toSum; convert_to S.dual.toMatroid = M.dual; rw [StandardRepr.dual_toMatroid, hS, hAM]",
+    "why": "File headline that regularity is preserved by duality, proved by exhibiting the dual standard representation S.dual as witness. The two witness obligations are one named lemma each: TUness of Sp.toFull by transpose/neg/one_fromCols/comp_cols, and matroid equality by StandardRepr.dual_toMatroid. Closes.",
+    "lemmas": [
+      "Matrix.exists_standardRepr_isBase_isTotallyUnimodular",
+      "Matrix.transpose_isTotallyUnimodular_iff",
+      "Matrix.IsTotallyUnimodular.neg",
+      "Matrix.IsTotallyUnimodular.one_fromCols",
+      "Matrix.IsTotallyUnimodular.comp_cols",
+      "StandardRepr.dual_toMatroid"
+    ],
+    "source": "seymour",
+    "scale": "theorem"
+  },
+  {
+    "path": "APAP/Physics/AlmostPeriodicity.lean",
+    "start": 284,
+    "end": 318,
+    "name": "lemma28",
+    "move": "calc-chain",
+    "signal": "refine lemma28_markov hε hm ?_ ... lemma28_part_one hm ... lemma28_part_two hm hA ... using lemma28_end hε hm hk",
+    "why": "Blueprint node random_approx_expect: the glue splits on A empty, reduces to the Markov bound lemma28_markov, then chains lemma28_part_one (per-x Marcinkiewicz-Zygmund bound), lemma28_part_two (translate norm bound) and lemma28_end (final arithmetic) into the counting conclusion; four named lemmas written in this file, glue 35 lines.",
+    "lemmas": [
+      "lemma28_markov",
+      "lemma28_part_one",
+      "lemma28_part_two",
+      "lemma28_end"
+    ],
+    "source": "apap",
+    "scale": "theorem"
+  },
+  {
+    "path": "ClassFieldTheory/Cohomology/LocalInv.lean",
+    "start": 172,
+    "end": 177,
+    "move": "witness",
+    "lemmas": [
+      "carryH2Aux",
+      "rightInverse_carryH2Aux_localInvAux",
+      "leftInverse_carryH2Aux_localInvAux"
+    ],
+    "signal": "def localInv at 172: an AddEquiv whose fields are toFun := localInvAux n, invFun := carryH2Aux, left_inv := leftInverse_carryH2Aux_localInvAux, right_inv := rightInverse_carryH2Aux_localInvAux",
+    "why": "Theorem scale: the local invariant isomorphism H2(ZMod n, Z) =+ ZMod n, the headline computation of the file (docstring 167-171). The witness carryH2Aux (145-146) is introduced and its two inverse obligations are proved as named lemmas just above: rightInverse_carryH2Aux_localInvAux (149-153) by computation and leftInverse_carryH2Aux_localInvAux (157-163) by a finite-cardinality argument. Glue is 6 lines and is exactly the witness plus its two obligations; localInvIso (192-194) wraps it. Cached file has no sorry/admit/axiom.",
+    "source": "classfieldtheory",
+    "scale": "theorem"
+  }
+]

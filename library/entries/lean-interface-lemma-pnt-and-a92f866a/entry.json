@@ -1,0 +1,230 @@
+{
+  "id": "lean-interface-lemma-pnt-and-a92f866a",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Interface lemmas bridge logDeriv and MeromorphicOn.divisor for the rectangle argument principle",
+  "intent": "Reduce the rectangle argument principle — the contour integral of logDeriv over a rectangle equals a finite sum of divisor orders — to a finite sum a downstream theorem can already consume, by routing the proof through three interface lemmas that relate `logDeriv` to `MeromorphicOn.divisor`. The glue never unfolds either definition.",
+  "move": "interface-lemma",
+  "also_known_as": [
+    "bridge lemma",
+    "API lemma",
+    "boundary lemma"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "pnt-and",
+    "url": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd",
+    "commit": "2c476fa6441c607096d93c8fc7ac0a227a655dae",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean",
+      "bytes": 16683,
+      "sha256": "73de21046e3df8fbdd7c3602ffb5380f7b7d271eae20e9c0ad2e5197f7238348",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean",
+      "bytes": 65137,
+      "sha256": "31d2a5b29ed79f39b1a9a88eb3adc435a743ec162d3ad4894e35bb1bdb9914e4",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/Rectangle.lean",
+      "bytes": 13721,
+      "sha256": "ded715907b18b6d9765631302a39487fa161fda6988e7d9bd99ebab3a9fd590e",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/Rectangle.lean"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/Mathlib/Analysis/Meromorphic/DivisorSupport.lean",
+      "bytes": 5318,
+      "sha256": "fd1f0e1bbb4ca0d93b273b2cc301277b7084180d989e47a71796dd146db0cac1",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/Mathlib/Analysis/Meromorphic/DivisorSupport.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean",
+      "lines": [
+        278,
+        341
+      ],
+      "role": "parent",
+      "name": "rectangleIntegral_logDeriv_eq_sum_meromorphicOrderAt",
+      "excerpt_sha256": "f3d60bcfa952e757ea38c7b24c1c19307c5e69b5ed619fb8ad9015f38b401935",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean#L278-L341"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean",
+      "lines": [
+        119,
+        126
+      ],
+      "role": "child",
+      "name": "logDeriv_residue_eq_meromorphicOrderAt",
+      "excerpt_sha256": "93c302acc248fcb2431b99627091b6803b03a43f7d2843baf75c271ca493e2b2",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean#L119-L126"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean",
+      "lines": [
+        196,
+        212
+      ],
+      "role": "child",
+      "name": "logDeriv_hasSimplePolesOn_of_meromorphicOrderAt_ne_top",
+      "excerpt_sha256": "89992348ec8a9c4240ea1b0c0aca1119f9fffa881e95a2892b6ef883e7ebbaaa",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean#L196-L212"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean",
+      "lines": [
+        214,
+        254
+      ],
+      "role": "child",
+      "name": "logDeriv_poles_eq_divisor_support",
+      "excerpt_sha256": "1049e0f08ed85d4506cf08a9802a1232f5a95b2b47c4fd1cbd4a08f5f58f7a18",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean#L214-L254"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean",
+      "lines": [
+        266,
+        276
+      ],
+      "role": "child",
+      "name": "divisor_support_rectangle_finite",
+      "excerpt_sha256": "7fb5a2215f533ddfacb9992cf4dc5dcb381356cf44e76f9cb6bb922bd4480268",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean#L266-L276"
+    }
+  ],
+  "parent": {
+    "name": "rectangleIntegral_logDeriv_eq_sum_meromorphicOrderAt",
+    "statement": "theorem rectangleIntegral_logDeriv_eq_sum_meromorphicOrderAt\n    {f : ℂ → ℂ} {z w : ℂ}\n    (zRe_le_wRe : z.re ≤ w.re) (zIm_le_wIm : z.im ≤ w.im)\n    (hf : MeromorphicOn f (Rectangle z w))\n    (hlog : MeromorphicOn (logDeriv f) (Rectangle z w))\n    (hfinite_order : ∀ p ∈ Rectangle z w, meromorphicOrderAt f p ≠ ⊤)\n    (hno_boundary :\n      Disjoint (RectangleBorder z w) (MeromorphicOn.divisor f (Rectangle z w)).support) :\n    RectangleIntegral' (logDeriv f) z w =\n      ∑ p ∈\n        ((divisor_support_rectangle_finite f z w).toFinset),\n          ((MeromorphicOn.divisor f (Rectangle z w)) p : ℂ)"
+  },
+  "children": [
+    {
+      "name": "logDeriv_residue_eq_meromorphicOrderAt",
+      "statement": "theorem logDeriv_residue_eq_meromorphicOrderAt\n    {f : ℂ → ℂ} {p : ℂ} {n : ℤ}\n    (hf : MeromorphicAt f p)\n    (hord : meromorphicOrderAt f p = (n : WithTop ℤ)) :\n    residue (logDeriv f) p = (n : ℂ)",
+      "closed_by": "residue_eq_of_tendsto (tendsto_mul_self_of_sub_principal_isBigO_one (logDeriv_sub_principal_isBigO_one_of_meromorphicOrderAt hf hord))",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the residue of logDeriv f at p equals the meromorphic order n of f at p, as a complex number"
+    },
+    {
+      "name": "logDeriv_hasSimplePolesOn_of_meromorphicOrderAt_ne_top",
+      "statement": "theorem logDeriv_hasSimplePolesOn_of_meromorphicOrderAt_ne_top\n    {f : ℂ → ℂ} {R : Set ℂ}\n    (hf : MeromorphicOn f R) (hlog : MeromorphicOn (logDeriv f) R)\n    (hfinite_order : ∀ p ∈ R, meromorphicOrderAt f p ≠ ⊤) :\n    HasSimplePolesOn (logDeriv f) R",
+      "closed_by": "by_cases hn0 : n = 0; logDeriv_meromorphicOrderAt_nonneg_of_order_zero, else logDeriv_meromorphicOrderAt_eq_neg_one_of_order_ne_zero",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: logDeriv f has simple poles on R whenever f is meromorphic on R and no order equals top"
+    },
+    {
+      "name": "logDeriv_poles_eq_divisor_support",
+      "statement": "theorem logDeriv_poles_eq_divisor_support\n    {f : ℂ → ℂ} {R : Set ℂ}\n    (hf : MeromorphicOn f R) (hlog : MeromorphicOn (logDeriv f) R)\n    (hfinite_order : ∀ p ∈ R, meromorphicOrderAt f p ≠ ⊤) :\n    R ∩ {p | meromorphicOrderAt (logDeriv f) p < 0} =\n      (MeromorphicOn.divisor f R).support",
+      "closed_by": "ext p; constructor; each direction by_cases on the order n = 0 vs n ≠ 0",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the poles of logDeriv f inside R are exactly the support of the divisor of f on R"
+    },
+    {
+      "name": "divisor_support_rectangle_finite",
+      "statement": "lemma divisor_support_rectangle_finite (f : ℂ → ℂ) (z w : ℂ) :\n    (MeromorphicOn.divisor f (Rectangle z w)).support.Finite",
+      "closed_by": "MeromorphicOn.divisor_support_inter_compact_finite",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the divisor support of f on a rectangle is finite"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An equality where one side is a contour/residue expression (`RectangleIntegral'`, `residue`, `logDeriv`) and the other is a finite sum over the support of `MeromorphicOn.divisor`; the proof must move back and forth between the `logDeriv`/`meromorphicOrderAt` language and the divisor-support language.",
+    "use_when": "Two abstraction layers meet in one theorem and the client would otherwise unfold one layer's definitions into the other. Write one bridge lemma per direction of the crossing (residue↔order, poles↔support, order→simple-poles) plus the finiteness fact the sum needs, so the client becomes a chain of `have`s citing them.",
+    "avoid_when": "The boundary is crossed only once (a single inline rewrite suffices); the bridge lemmas are not self-contained (their statements need hypotheses the client cannot discharge without unfolding); or the finiteness of the support needs a substantial separate argument that dominates the proof — then the finiteness lemma, not the bridge, is the real content."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent proof `rectangleIntegral_logDeriv_eq_sum_meromorphicOrderAt` closes without a `sorry`, `admit` or `axiom` token in lines 278-341.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean#L278-L341",
+      "form": "no_sorry(PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean, 278-341)"
+    },
+    {
+      "n": 2,
+      "claim": "The glue (the parent site) is 64 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean#L278-L341",
+      "form": "lines(parent, 64)"
+    },
+    {
+      "n": 3,
+      "claim": "The decomposition is theorem-scale with shape direct_lemmas = 4, depth = 4, glue_lines = 64, child_lines = [8, 17, 41, 11], counted from the parent site (278-341) and the four child sites (119-126, 196-212, 214-254, 266-276) in the copied file; depth is the chain rectangleIntegral_logDeriv_eq_sum_meromorphicOrderAt → logDeriv_hasSimplePolesOn_of_meromorphicOrderAt_ne_top → logDeriv_meromorphicOrderAt_eq_neg_one_of_order_ne_zero → meromorphicOrderAt_eq_neg_one_of_sub_principal_isBigO_one → meromorphicOrderAt_nonneg_of_isBigO_one.",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean#L278-L341 and #L119-L126 #L196-L212 #L214-L254 #L266-L276, with the depth chain at #L196-L212 → #L186-L194 → #L140-L154 → #L128-L138"
+    },
+    {
+      "n": 4,
+      "claim": "The parent lemma is reused immediately: the next theorem `rectangle_argumentChange_eq_two_pi_sum_meromorphicOrderAt` (lines 343-368) proves the argument-change form by citing `rectangleIntegral_logDeriv_eq_sum_meromorphicOrderAt` at line 365.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean#L343-L368"
+    },
+    {
+      "n": 5,
+      "claim": "The authors state the file's purpose in its module docstring: \"This file isolates the local logarithmic-derivative residue calculation and the rectangle-facing finite divisor sum used by the Kadiri contour lanes.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean#L8-L13"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 4,
+    "glue_lines": 64,
+    "child_lines": [
+      8,
+      17,
+      41,
+      11
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 64,
+    "children": 4,
+    "children_proof_lines": [
+      8,
+      17,
+      41,
+      11
+    ],
+    "how_counted": "parent = lines 278-341 of the copied file; children = the four child sites 119-126, 196-212, 214-254, 266-276, declaration included"
+  },
+  "consequences": "The move creates three named bridge lemmas plus a finiteness lemma, each carrying hypotheses the client must discharge: `MeromorphicAt`/`MeromorphicOn` at every point and the finite-order condition `meromorphicOrderAt f p ≠ ⊤`. The client therefore spends most of its length assembling those hypotheses into the rectangle residue theorem's inputs (`hlog_simple`, `hlog_no_boundary`, `hlog_poles_finite`) before a final `Finset.sum_congr` rewrites each residue as a divisor order. Failure modes: a bridge lemma stated too strongly (e.g. assuming all orders finite when the client only has that on a subset) becomes un-appliable and forces either a weaker lemma or unfolding; the border-disjointness obligation (`hno_boundary`) must be re-derived in the divisor language via `hlog_poles_eq`, which fails if the poles/support correspondence is not already an equality.",
+  "known_uses": [
+    "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean#L343-L368"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "a92f866ab0ba6f799cfe0fde0d635cf58e757a11ca31d00e5346e18bdea6eb96",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T11:07:18Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,known_uses,rule,shape",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T11:12:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T11:10:07Z",
+      "note": "parent rectangleIntegral_logDeriv_eq_sum_meromorphicOrderAt: statement re-copied from code; child 'logDeriv_residue_eq_meromorphicOrderAt': statement re-copied from the declaration of logDeriv_residue_eq_meromorphicOrderAt; child 'logDeriv_hasSimplePolesOn_of_meromorphicOrderAt_ne_top': statement re-copied from the declaration of logDeriv_hasSimplePolesOn_of_meromorphicOrderAt_ne_top; child 'logDeriv_poles_eq_divisor_support': statement re-copied from the declaration of logDeriv_poles_eq_divisor_support; child 'divisor_support_rectangle_finite': statement re-copied from the declaration of divisor_support_rectangle_finite"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T11:15:35Z"
+}

@@ -1,0 +1,171 @@
+{
+  "id": "rocq-induction-ssprove-47a61d8e",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Induction on the hybrid count for the PRF-to-PRG advantage bound",
+  "intent": "Turn the PRF-to-PRG advantage bound into a telescoping sum of per-step PRF advantages by induction on the number of hybrid steps q, so that the only remaining content is two named per-step equivalences between adjacent hybrids.",
+  "move": "induction",
+  "also_known_as": [
+    "hybrid argument",
+    "game hopping"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "ssprove",
+    "url": "https://github.com/SSProve/ssprove",
+    "commit": "9a37fe0ab79d041f8d835e6cf18e37614b16a791",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "theories/Crypt/examples/PRFPRG.v",
+      "bytes": 10251,
+      "sha256": "031bd87758e821b698bcd2abf39a6a5634c334caad7dfe28fc557785e49eebe8",
+      "permalink": "https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/PRFPRG.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/Crypt/examples/PRFPRG.v",
+      "lines": [
+        314,
+        339
+      ],
+      "role": "parent",
+      "name": "hyb_security_based_on_prf",
+      "excerpt_sha256": "0a295dedf17f6d0990edee18d095e8610786576b0cb03883d1a9e3b7a495e7fc",
+      "permalink": "https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/PRFPRG.v#L314-L339"
+    },
+    {
+      "path": "theories/Crypt/examples/PRFPRG.v",
+      "lines": [
+        218,
+        253
+      ],
+      "role": "child",
+      "name": "GEN_GEN_HYB_equiv",
+      "excerpt_sha256": "e75e7b71b32604e8384b7840d68ee6f08f43c5e3e0c9270f972ea5c8f08faa41",
+      "permalink": "https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/PRFPRG.v#L218-L253"
+    },
+    {
+      "path": "theories/Crypt/examples/PRFPRG.v",
+      "lines": [
+        259,
+        299
+      ],
+      "role": "child",
+      "name": "GEN_GEN_HYB_EVAL_equiv",
+      "excerpt_sha256": "a0bef63f016d04d9bce1b42f600ee37aea9393937560cfcfc4d5f0c323ffacf9",
+      "permalink": "https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/PRFPRG.v#L259-L299"
+    }
+  ],
+  "parent": {
+    "name": "hyb_security_based_on_prf",
+    "statement": "Theorem hyb_security_based_on_prf LA A q:\n  ValidPackage LA\n    [interface #val #[query]: 'unit → 'word × 'word ]\n    A_export A ->\n  fseparate LA EVAL_locs_tt ->\n  fseparate LA EVAL_locs_ff ->\n  fseparate LA GEN_HYB_locs ->\n  AdvantageE (GEN_HYB_pkg 0) (GEN_HYB_pkg q) A <=\n  \\sum_(i < q) prf_epsilon (A ∘ GEN_HYB_EVAL_pkg i)."
+  },
+  "children": [
+    {
+      "name": "GEN_GEN_HYB_equiv",
+      "statement": "Lemma GEN_GEN_HYB_equiv i:\n  GEN_HYB_pkg i ≈₀ GEN_HYB_EVAL_pkg i ∘ EVAL true.",
+      "closed_by": "Qed (its own proof: apply eq_rel_perf_ind with the coupling count <= i -> k = None, then case: (eq_dec count i))",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: GEN_HYB_pkg i is perfectly indistinguishable (≈₀) from GEN_HYB_EVAL_pkg i composed with EVAL true, for every i."
+    },
+    {
+      "name": "GEN_GEN_HYB_EVAL_equiv",
+      "statement": "Lemma GEN_GEN_HYB_EVAL_equiv i:\n  GEN_HYB_EVAL_pkg i ∘ EVAL false ≈₀ GEN_HYB_pkg i.+1.",
+      "closed_by": "Qed (its own proof: apply eq_rel_perf_ind with the coupling count <= i -> T = emptym, then case: (eq_dec count i))",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: GEN_HYB_EVAL_pkg i composed with EVAL false is perfectly indistinguishable (≈₀) from GEN_HYB_pkg i.+1, for every i."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A `<=` inequality between an `AdvantageE` over the two end hybrids (`GEN_HYB_pkg 0`, `GEN_HYB_pkg q`) and a `\\sum_(i < q)` of a per-step advantage; `q` is the induction variable, a natural number under the `\\sum` that unfolds with `big_ord_recr`.",
+    "use_when": "every adjacent pair of hybrids is related by an equivalence already stated as its own lemma (here `GEN_GEN_HYB_equiv` for the EVAL-true edge and `GEN_GEN_HYB_EVAL_equiv` for the EVAL-false edge), and the base case is the empty sum (`big_ord0`).",
+    "avoid_when": "the per-step advantage is not uniform enough to be a single reusable equivalence, the step needs a different coupling each time, the base case is not the empty sum, or `q` is not a natural-number induction variable."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "A declaration named `hyb_security_based_on_prf` starts in `theories/Crypt/examples/PRFPRG.v` lines 314-339.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/PRFPRG.v#L314-L339",
+      "form": "declared(hyb_security_based_on_prf, theories/Crypt/examples/PRFPRG.v, 314-339)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites `GEN_GEN_HYB_equiv`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/PRFPRG.v#L314-L339",
+      "form": "cites(parent, GEN_GEN_HYB_equiv)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site cites `GEN_GEN_HYB_EVAL_equiv`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/PRFPRG.v#L314-L339",
+      "form": "cites(parent, GEN_GEN_HYB_EVAL_equiv)"
+    },
+    {
+      "n": 4,
+      "claim": "The glue (parent site, lines 314-339) is 26 lines and the two child sites are 36 lines (218-253) and 41 lines (259-299); the glue combines 2 direct lemmas with no deeper project-lemma chain below the main theorem (depth 1).",
+      "evidence_kind": "measurement",
+      "evidence": "site line ranges: https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/PRFPRG.v#L314-L339 (glue) and #L218-L253, #L259-L299 (children); the only named lemmas cited in the proof are the two GEN_GEN_HYB lemmas (lines 335-336), which close on library tactics."
+    },
+    {
+      "n": 5,
+      "claim": "The authors state the induction plan in a comment above the parent: \"First we prove a bound on the hybrid packages. Since q can be any number the bound is a sum of prf_epsilon, and the proof is by induction.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/PRFPRG.v#L310-L313"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 1,
+    "glue_lines": 26,
+    "child_lines": [
+      36,
+      41
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 17,
+    "parent_statement_lines": 9,
+    "children": 2,
+    "how_counted": "parent statement = lines 314-322, parent proof = lines 323-339 of the copied file; children = the two GEN_GEN_HYB lemmas"
+  },
+  "consequences": "The move creates a base obligation (q = 0, discharged by big_ord0 plus AdvantageE's self-distance being 0) and a step obligation. The step relies on `ssprove triangle` to insert the intermediate hybrids, then two rewrites `GEN_GEN_HYB_equiv` and `GEN_GEN_HYB_EVAL_equiv`, each with a validity side condition discharged by `ssprove_valid`. If either equivalence is missing or its package is not valid the rewrite fails. The bound transfers to the full PRG only through the final theorem `security_based_on_prf` (line 347), which additionally needs the unformalised hypothesis that the last hybrid is perfectly indistinguishable from `GEN false` (comment at lines 341-346).",
+  "known_uses": [
+    "The final theorem `security_based_on_prf` consumes the parent as a one-line rewrite: https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/PRFPRG.v#L347-L369"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "47a61d8e597690a891d7fdb7f15c4230b3857994c468990bdb4e079b96dc7fdf",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:21:46Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:23:16Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:23:48Z",
+      "note": "parent hyb_security_based_on_prf: statement re-copied from code; child 'GEN_GEN_HYB_equiv': statement re-copied from the declaration of GEN_GEN_HYB_equiv; child 'GEN_GEN_HYB_EVAL_equiv': statement re-copied from the declaration of GEN_GEN_HYB_EVAL_equiv"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T12:29:12Z"
+}

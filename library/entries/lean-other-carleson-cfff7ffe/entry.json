@@ -1,0 +1,175 @@
+{
+  "id": "lean-other-carleson-cfff7ffe",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Exponent interpolation of the f- and g-side estimates for the forest operator bound",
+  "intent": "Bound the mixed norm ‖∫ x, conj (g x) * ∑ u, carlesonSum (𝔉 u) f x‖ₑ for every exponent q in (1, 2] by proving two separate estimates — forest_operator_g, which carries the bound on g (sharp near q = 2), and forest_operator_f, which carries the bound on f (sharp near q = 1) — then raising them to the complementary powers 2 - 2/q and 2/q - 1, whose sum is 1 and whose product yields the target dens₂ exponent q⁻¹ - 2⁻¹.",
+  "move": "other",
+  "also_known_as": [
+    "exponent interpolation",
+    "interpolation between complementary exponents",
+    "convexity interpolation"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "carleson",
+    "url": "https://github.com/fpvandoorn/carleson",
+    "commit": "d75f54374f7f930e70a86b443f20d0e0935c275e",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Carleson/ForestOperator/Forests.lean",
+      "bytes": 60944,
+      "sha256": "c34aa8ccea986cf7e2d88844f089312c73b0fd925aa784cf14ee5bfcc8a33bc0",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/ForestOperator/Forests.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Carleson/ForestOperator/Forests.lean",
+      "lines": [
+        1024,
+        1070
+      ],
+      "role": "parent",
+      "name": "forest_operator",
+      "excerpt_sha256": "118b75d8be280f1f7016b60b026b3dcccdd2756d5361976fea231911653ab601",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/ForestOperator/Forests.lean#L1024-L1070"
+    },
+    {
+      "path": "Carleson/ForestOperator/Forests.lean",
+      "lines": [
+        830,
+        841
+      ],
+      "role": "child",
+      "name": "forest_operator_g",
+      "excerpt_sha256": "545cb8f5ac274288b0f0fee097fbab1e27545a1396a2f005ebec29a5051aa7e2",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/ForestOperator/Forests.lean#L830-L841"
+    },
+    {
+      "path": "Carleson/ForestOperator/Forests.lean",
+      "lines": [
+        997,
+        1009
+      ],
+      "role": "child",
+      "name": "forest_operator_f",
+      "excerpt_sha256": "a22420dd965883ae046293abf61703ed26f15d41b6d4e6b3879ab6d29919e8ce",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/ForestOperator/Forests.lean#L997-L1009"
+    }
+  ],
+  "parent": {
+    "name": "forest_operator",
+    "statement": "theorem forest_operator {n : ℕ} (𝔉 : Forest X n) {f g : X → ℂ}\n    (hf : Measurable f) (h2f : ∀ x, ‖f x‖ ≤ F.indicator 1 x)\n    (hg : Measurable g) (h2g : ∀ x, ‖g x‖ ≤ G.indicator 1 x) :\n    ‖∫ x, conj (g x) * ∑ u with u ∈ 𝔉, carlesonSum (𝔉 u) f x‖ₑ ≤\n    C2_0_4 a q n * (dens₂ (⋃ u ∈ 𝔉, 𝔉 u)) ^ (q⁻¹ - 2⁻¹) *\n    eLpNorm f 2 volume * eLpNorm g 2 volume"
+  },
+  "children": [
+    {
+      "name": "forest_operator_g",
+      "statement": "lemma forest_operator_g (t : Forest X n)\n    (hf : Measurable f) (h2f : ∀ x, ‖f x‖ ≤ F.indicator 1 x)\n    (hg : Measurable g) (h2g : ∀ x, ‖g x‖ ≤ G.indicator 1 x) :\n    ‖∫ x, conj (g x) * ∑ u with u ∈ t, carlesonSum (t u) f x‖ₑ ≤\n    G2_0_4 a n * eLpNorm f 2 volume * eLpNorm g 2 volume",
+      "closed_by": "calc; forest_operator_g_prelude hf h2f hg h2g, then forest_operator_g_main hg h2g",
+      "note": "The g-side estimate: bounds the integral with constant G2_0_4 a n and no dens₂ factor, sharp near q = 2."
+    },
+    {
+      "name": "forest_operator_f",
+      "statement": "lemma forest_operator_f (t : Forest X n)\n    (hf : Measurable f) (h2f : ∀ x, ‖f x‖ ≤ F.indicator 1 x)\n    (hg : Measurable g) (h2g : ∀ x, ‖g x‖ ≤ G.indicator 1 x) :\n    ‖∫ x, conj (g x) * ∑ u with u ∈ t, carlesonSum (t u) f x‖ₑ ≤\n    C2_0_4_aux a * dens₂ (⋃ u ∈ t, t u) ^ (2 : ℝ)⁻¹ *\n    eLpNorm f 2 volume * eLpNorm g 2 volume",
+      "closed_by": "calc; forest_operator_f_prelude hf h2f hg h2g, then forest_operator_f_main hf h2f",
+      "note": "The f-side estimate: bounds the integral with constant C2_0_4_aux a * dens₂^(1/2), sharp near q = 1."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A bound on a bilinear expression ‖∫ x, conj (g x) * (∑ᵢ Fᵢ f x)‖ₑ (here the forest operator applied to f and tested against g) that must hold for a parameter q in (1, 2], where two complementary estimates of the same quantity are available: one carrying only g (forest_operator_g), one carrying f plus a dens₂ factor (forest_operator_f).",
+    "use_when": "Two bounds on the same quantity hold with complementary strengths and the target bound is a geometric mean of them: there are exponents θ and 1 - θ with θ + (1 - θ) = 1 such that raising the two bounds to those powers and multiplying gives the target exponent and constant.",
+    "avoid_when": "Only one side has a useful estimate, or the two estimates do not bound the same object so their product cannot be formed; the bookkeeping that the product of the two constants equals the target constant is non-trivial and needs its own calc; the interpolation degenerates at an endpoint (q = 2), which must be split off as a separate case."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site `forest_operator` (the theorem with its proof) is 47 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/ForestOperator/Forests.lean#L1024-L1070",
+      "form": "lines(parent, 47)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent's proof cites the g-side estimate `forest_operator_g`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/ForestOperator/Forests.lean#L1030",
+      "form": "cites(parent, forest_operator_g)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent's proof cites the f-side estimate `forest_operator_f`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/ForestOperator/Forests.lean#L1031",
+      "form": "cites(parent, forest_operator_f)"
+    },
+    {
+      "n": 4,
+      "claim": "`forest_operator_f` is declared in `Carleson/ForestOperator/Forests.lean` at lines 997-1009.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/ForestOperator/Forests.lean#L997-L1009",
+      "form": "declared(forest_operator_f, Carleson/ForestOperator/Forests.lean, 997-1009)"
+    },
+    {
+      "n": 5,
+      "claim": "The authors label the two children as the two sides of Proposition 2.0.4: 'The `f` side of Proposition 2.0.4.' (doc comment above `forest_operator_f`) and 'The `g` side of Proposition 2.0.4.' (doc comment above `forest_operator_g`).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/ForestOperator/Forests.lean#L996 and https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/ForestOperator/Forests.lean#L829"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 47,
+    "direct_lemmas": 2,
+    "child_lines": [
+      12,
+      13
+    ],
+    "depth": 3,
+    "how_counted": "line counts of the parent site (1024-1070) and child sites (830-841, 997-1009); depth is the chain forest_operator -> forest_operator_f -> forest_operator_f_main -> forest_operator_f_inner, all in the copied file."
+  },
+  "consequences": "Creates two named estimates plus three arithmetic side-conditions the glue must discharge: the two powers are positive (egpos, efpos, needed for rpow_le_rpow_iff), they sum to 1 (esum), and the product of the two constants equals the target C2_0_4 (the final calc). At the endpoint q = 2 the power 2 - 2/q is 0, so the interpolation degenerates and the theorem branches on rcases (q_le_two X).eq_or_lt, closing the endpoint by convert g_part using 6; ring instead. If the two sides did not share the same eLpNorm f 2 * eLpNorm g 2 tail, their product would not simplify to the target form.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 3,
+    "glue_lines": 47,
+    "child_lines": [
+      12,
+      13
+    ]
+  },
+  "content_key": "cfff7ffe37907e32cf32967f020c1990efb531db65e574d46ebd24c200a07819",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:07:56Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:09:46Z",
+      "note": "parent forest_operator: statement re-copied from code; child 'forest_operator_g': statement re-copied from the declaration of forest_operator_g; child 'forest_operator_f': statement re-copied from the declaration of forest_operator_f"
+    },
+    {
+      "field": "intent,parent.name,children,applicability,claims,metrics,consequences,rule,shape,also_known_as,known_uses",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:12:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T09:14:43Z"
+}

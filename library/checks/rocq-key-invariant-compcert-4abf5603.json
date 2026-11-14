@@ -1,0 +1,125 @@
+{
+  "entry": "rocq-key-invariant-compcert-4abf5603",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:09:57Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:09:57Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:09:57Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: transf_initial_states@backend/Constpropproof.v:612, transf_final_states@backend/Constpropproof.v:614, transf_step_correct@backend/Constpropproof.v:618, sound_initial@backend/Constpropproof.v:613, sound_step@backend/Constpropproof.v:616, senv_preserved@backend/Constpropproof.v:622; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:09:57Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(transf_program_correct, backend/Constpropproof.v, 607-623) -> declared: transf_program_correct is declared at backend/Constpropproof.v:607",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:09:57Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(backend/Constpropproof.v, 49-623) -> no_sorry: none of admit, Admitted, Axiom, axiom in backend/Constpropproof.v:49-623",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:09:57Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 2685140bf72c959446981fb99b5e44a8975021bc",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:10:04Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml runs tools/runner.sh build (full project, incl. backend/Constpropproof.v) on push to master; pinned commit 2685140bf72c959446981fb99b5e44a8975021bc is on default branch master",
+      "by": "verifier",
+      "at": "2026-11-14T10:11:48Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "child spans confirmed in copied code: transf_initial_states 581-595 (15), transf_final_states 597-602 (6), transf_step_correct 350-579 (230), sound_initial (ValueAnalysis.v) 1896-1914 (19), sound_step 1530-1534 (5), senv_preserved 49-51 (3); depth chain confirmed: transf_program_correct cites transf_step_correct at 618, transf_step_correct cites transf_ros_correct at 457/467, transf_ros_correct (declared 89) cites functions_translated (declared 53) at 107",
+      "by": "verifier",
+      "at": "2026-11-14T10:11:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "copied backend/Constpropproof.v lines 258-282 contain both quotes verbatim: 'The proof of semantic preservation is a simulation argument / based on \"option\" diagrams of the following form' at 258-259, and 'the state [st1] must match its compile-time approximations at the current program point' at 276-277 (evidence field says line 278, off by one)",
+      "by": "verifier",
+      "at": "2026-11-14T10:11:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "fetched backend/CSEproof.v at pinned commit 2685140b; transf_program_correct (1572) uses invariant 'match_states s1 s2 and sound_state prog s1' (1576) and applies sound_initial at 1579 (auto using sound_initial) and sound_step at 1586 (eauto using sound_step), 1589 (apply sound_step), 1590 (eapply sound_step)",
+      "by": "verifier",
+      "at": "2026-11-14T10:12:02Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent transf_program_correct (Constpropproof.v 607-623) is verbatim and its glue cites exactly six project lemmas: transf_initial_states (612), sound_initial (613), transf_final_states (614), sound_step (616), transf_step_correct (618), senv_preserved (622); lt_wf (611) is stdlib, correctly not a child. All six children are listed and each closing method matches the code (e.g. transf_final_states closed by 'inv H0; inv H; inv STACKS; inv RES; constructor'; senv_preserved by 'exact (Genv.senv_match TRANSL)'). Every site ends in Qed and no admit/Admitted/axiom/sorry token appears anywhere in Constpropproof.v, so it closes. Shape numbers are right: glue_lines=17 (parent span 607-623), child_lines=[15,6,230,19,5,3] matching spans 581-595, 597-602, 350-579, 1896-1914, 1530-1534, 49-51; direct_lemmas=6 and depth=3 confirmed by the chain 618 -> 457/467 -> 107 (transf_step_correct uses transf_ros_correct which uses functions_translated).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:13:20Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example: use_when and README 'When to use' abstract sound_state prog to 'one predicate established on initial states and preserved by every step', for 'a simulation between two programs (or two transition systems)'; also_known_as gives general terms and claim 5 records reuse in CSEproof. avoid_when is specific and honest (invariant not statable/reusable once, step-preservation inseparable from the diagram, per-instruction invariant), grounded in the code: transf_step_correct takes sound_state prog s1 as a hypothesis (line 353) and never proves it. Consequences are specific (five Forward_simulation fields, plus_one/star_refl diagram cases, failure modes: sound_step_base ~260-line case analysis, invariant/match_states incompatibility blocking the single application). 'Why each child is a good leaf' gives per-leaf size and self-containedness and honestly flags transf_step_correct (230 lines) as the large non-bounded leaf.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:14:25Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 2685140bf72c959446981fb99b5e44a8975021bc",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:14:45Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance pass: 2 files (backend/Constpropproof.v, backend/ValueAnalysis.v) byte-identical at pinned commit 2685140bf72c959446981fb99b5e44a8975021bc and recorded sha256 match. Commit hash is consistent across source.json, sources/compcert/SOURCE.md, entry.json source.commit, every permalink, and the README. Licence LicenseRef-INRIA-Non-Commercial is consistent across source.json, SOURCE.md, entry.json and README; the copied upstream-LICENSE confirms the INRIA Non-Commercial License Agreement and backend/ is not in the dual-licensed LGPL list, so the non-commercial tag is correct. Source note links to the copied licence text; permalink line ranges spot-checked via sed (607-623, 49-51, 1525-1534, 1896-1914) match the README excerpts verbatim.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:15:15Z"
+    }
+  ]
+}

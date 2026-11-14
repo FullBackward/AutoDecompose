@@ -1,0 +1,149 @@
+{
+  "entry": "lean-witness-brownian-motion-8893edf0",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:14:54Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:14:54Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): BrownianMotion/StochasticIntegral/DoobMeyer.lean:2970 (sorry)",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:14:55Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: isCadlag_martingalePartLim@BrownianMotion/StochasticIntegral/DoobMeyer.lean:2947, martingale_martingalePartLim@BrownianMotion/StochasticIntegral/DoobMeyer.lean:2942, isCadlag_predictablePartLim_ae@BrownianMotion/StochasticIntegral/DoobMeyer.lean:2917, predictablePartLim_monotone_ae@BrownianMotion/StochasticIntegral/DoobMeyer.lean:2917, isStronglyPredictable_limsup_predictableConvexStep@BrownianMotion/StochasticIntegral/DoobMeyer.lean:2912, predictableConvexStep_bot@BrownianMotion/StochasticIntegral/DoobMeyer.lean:2938, limsup_predictableConvexStep_eq_predictablePartLim@BrownianMotion/StochasticIntegral/DoobMeyer.lean:2916, measurableSet_predictable_univ_prod@BrownianMotion/StochasticIntegral/DoobMeyer.lean:2932; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:14:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(ProbabilityTheory.ClassD.doob_meyer, BrownianMotion/StochasticIntegral/DoobMeyer.lean, 2901-2954) -> declared: ProbabilityTheory.ClassD.doob_meyer is declared at BrownianMotion/StochasticIntegral/DoobMeyer.lean:2901",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:14:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, martingale_martingalePartLim) -> cites: martingale_martingalePartLim occurs at BrownianMotion/StochasticIntegral/DoobMeyer.lean:2942",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:14:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, limsup_predictableConvexStep_eq_predictablePartLim) -> cites: limsup_predictableConvexStep_eq_predictablePartLim occurs at BrownianMotion/StochasticIntegral/DoobMeyer.lean:2916",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:14:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "no_sorry(BrownianMotion/StochasticIntegral/DoobMeyer.lean, 2901-2954) -> no_sorry: none of sorry, admit, axiom in BrownianMotion/StochasticIntegral/DoobMeyer.lean:2901-2954",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:14:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "lines(parent, 54) -> lines: site parent has 54 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:14:55Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 8fd8dc52830cdd07cf9cc8eadd533e284425fa6f",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:15:01Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/blueprint.yml builds the project (lean-action build:true lint:true) on pushes/PRs to master; commit 8fd8dc52830cdd07cf9cc8eadd533e284425fa6f on default branch master",
+      "by": "verifier",
+      "at": "2026-11-14T12:16:33Z"
+    },
+    {
+      "type": "claim",
+      "key": "6",
+      "value": "verified",
+      "evidence": "DoobMeyer.lean line 2900 docstring reads '/-- **Doob–Meyer decomposition** of a càdlàg submartingale of class D. -/'",
+      "by": "verifier",
+      "at": "2026-11-14T12:16:34Z"
+    },
+    {
+      "type": "claim",
+      "key": "7",
+      "value": "verified",
+      "evidence": "chain of 4 checked: doob_meyer cites martingale_martingalePartLim at DoobMeyer.lean:2942; martingale_martingalePartLim cites stronglyAdapted_martingalePartLim at :1545; stronglyAdapted_martingalePartLim cites stronglyAdapted_cadlagModifReal at :1538; stronglyAdapted_cadlagModifReal cites stronglyAdapted_cadlagModifOf at CadlagModification.lean:1410",
+      "by": "verifier",
+      "at": "2026-11-14T12:16:35Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 8fd8dc52830cdd07cf9cc8eadd533e284425fa6f",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:17:02Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Provenance pass (2 files byte-identical at 8fd8dc52830cdd07cf9cc8eadd533e284425fa6f). Parent doob_meyer at DoobMeyer.lean 2901-2954 matches README excerpt and entry.json statement verbatim; docstring line 2900 confirms the Doob-Meyer name. All 8 children read at their cited ranges match code and entry statements/closing methods: isCadlag_martingalePartLim 1524-1526 (=isCadlag_cadlagModifReal), martingale_martingalePartLim 1542-1551 (refine/calc), isCadlag_predictablePartLim_ae 1635-1642 (hω.sub), predictablePartLim_monotone_ae 2275-2284, isStronglyPredictable_limsup_predictableConvexStep 2352-2358, predictableConvexStep_bot 2656-2659, limsup_predictableConvexStep_eq_predictablePartLim 2854-2894 (le_antisymm/debut), measurableSet_predictable_univ_prod Predictable.lean 129-134. Glue cites all 8 (each conjunct discharged; refine ⟨S-A,A,...⟩ closes 7 conjuncts; no sorry/admit/axiom in 2901-2954). Shape numbers correct: direct_lemmas=8, glue_lines=54 (2954-2901+1), child_lines=[3,10,8,10,7,4,41,6] each matching its site length; depth=4 consistent with claim 7 chain (martingale_martingalePartLim@1545 -> stronglyAdapted_martingalePartLim@1535/1538 -> stronglyAdapted_cadlagModifReal). Children are exactly the project lemmas the glue uses.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:18:07Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example: applicability/use-when abstracts to 'existence goal whose witnesses factor through objects with already-proved properties' plus a canonical witness, and the good-set trick (A := G.indicator L) is generalised to 'full-measure good set + trivial zero fallback'. When-not-to-use is honest and specific: non-canonical/unlemmatised witnesses, too-weak existence statement, and non-full-measure good set forcing real content in the complement branches. Consequences name concrete failure modes (a predictable part not monotone off G; G not full measure). The 'Why each child is a good leaf' section answers the bounded-prover question: each child is self-contained and closes in one line or from named siblings (verified against the copied code: isCadlag_martingalePartLim one-liner, martingale_martingalePartLim calc, sibling reuse via hω.sub, simp closes), and the one deep leaf (limsup_predictableConvexStep_eq_predictablePartLim, 41 lines, debut-time) is flagged so a bounded prover knows to budget more there. No generality objection.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:18:54Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 8fd8dc52830cdd07cf9cc8eadd533e284425fa6f",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:19:13Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are mutually consistent and traceable. All 9 site permalinks and both file permalinks pin commit 8fd8dc52830cdd07cf9cc8eadd533e284425fa6f, matching source.json, sources/brownian-motion/SOURCE.md and entry.json source.commit. check_provenance.py passes: 2 files byte-identical at that commit. sha256 of the copied DoobMeyer.lean and Predictable.lean match entry.json files[].sha256. Licence is Apache-2.0 consistently in entry.json, README, SOURCE.md, source.json, and upstream-LICENSE is the Apache License 2.0 text. Source note names the right repo (RemyDegenne/brownian-motion), commit, licence files, and attribution.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:19:32Z"
+    }
+  ]
+}

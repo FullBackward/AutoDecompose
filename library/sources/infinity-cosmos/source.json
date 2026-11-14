@@ -1,0 +1,17 @@
+{
+  "source_id": "infinity-cosmos",
+  "url": "https://github.com/emilyriehl/infinity-cosmos",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "emilyriehl/infinity-cosmos",
+  "commit": "89d7dc3ed861824535e540da489a46469dcc8e56",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T11:39:11Z",
+  "how_found": "discovery-1: A-lean, B-lean",
+  "note": "Blueprint for infinity-cosmos theory with blueprint/src node graph; Lean 4 toolchain v4.34.0-rc1",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

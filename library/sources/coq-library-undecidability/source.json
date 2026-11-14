@@ -1,0 +1,17 @@
+{
+  "source_id": "coq-library-undecidability",
+  "url": "https://github.com/uds-psl/coq-library-undecidability",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "uds-psl/coq-library-undecidability",
+  "commit": "c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-14T11:40:15Z",
+  "how_found": "discovery-1: A-rocq",
+  "note": "undecidability theorems (HaltTM, FOL, PCP, Diophantine) obtained by many-one reduction chains from named seed problems, one main theorem per reduction built from lemmas",
+  "licence": "MPL-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

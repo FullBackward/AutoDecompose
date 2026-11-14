@@ -1,0 +1,176 @@
+{
+  "id": "lean-generalise-then-instantiate-navierstokesandeuler-985e7e4f",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Generalise over the schedule, then instantiate at the certified one: Navier-Stokes local theorem",
+  "intent": "The parent `local_theorem` asserts the existence of fields realising the paper's full `Properties` structure with no schedule hypotheses left. The decomposition builds that structure once for an arbitrary schedule (`properties_of_schedule`), obtains one concrete certified schedule (`selected_schedule`), and instantiates the general result at it.",
+  "move": "generalise-then-instantiate",
+  "also_known_as": [
+    "generalize-then-instantiate",
+    "prove the general statement then specialise",
+    "Generalise / strengthen (survey F section 8)"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "navierstokesandeuler",
+    "url": "https://github.com/openai/NavierStokesAndEuler",
+    "commit": "f9e8bc5b38b6e212696e8a30e3e91517af887bbd",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "NavierStokes/LocalPaperTheorem.lean",
+      "bytes": 10445,
+      "sha256": "b8b950018545b2e3d6803c4c494cdbe0ee45bf58c3c4fd1ab9b91e8d68d58d74",
+      "permalink": "https://github.com/openai/NavierStokesAndEuler/blob/f9e8bc5b38b6e212696e8a30e3e91517af887bbd/NavierStokes/LocalPaperTheorem.lean"
+    },
+    {
+      "path": "NavierStokes/LocalResidualFlatness.lean",
+      "bytes": 7522,
+      "sha256": "9ed6088668ebf983e24a376d163bf401375e65bc878b388992653e37c9bf3c67",
+      "permalink": "https://github.com/openai/NavierStokesAndEuler/blob/f9e8bc5b38b6e212696e8a30e3e91517af887bbd/NavierStokes/LocalResidualFlatness.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "NavierStokes/LocalPaperTheorem.lean",
+      "lines": [
+        178,
+        184
+      ],
+      "role": "parent",
+      "name": "local_theorem",
+      "excerpt_sha256": "c6e1adfbf140900d3f3f7d0b63725542f218f0f77e0e9250044f864c2999bb90",
+      "permalink": "https://github.com/openai/NavierStokesAndEuler/blob/f9e8bc5b38b6e212696e8a30e3e91517af887bbd/NavierStokes/LocalPaperTheorem.lean#L178-L184"
+    },
+    {
+      "path": "NavierStokes/LocalPaperTheorem.lean",
+      "lines": [
+        126,
+        176
+      ],
+      "role": "child",
+      "name": "properties_of_schedule",
+      "excerpt_sha256": "7567a55dbe6fd3cb6a637ad79716d4957a52be37cf82a209f499322e828aae7c",
+      "permalink": "https://github.com/openai/NavierStokesAndEuler/blob/f9e8bc5b38b6e212696e8a30e3e91517af887bbd/NavierStokes/LocalPaperTheorem.lean#L126-L176"
+    },
+    {
+      "path": "NavierStokes/LocalResidualFlatness.lean",
+      "lines": [
+        111,
+        129
+      ],
+      "role": "child",
+      "name": "selected_schedule",
+      "excerpt_sha256": "331655cb0210445612c18b956700d7a02a12e8743a8aafa3706cd2122fe9849c",
+      "permalink": "https://github.com/openai/NavierStokesAndEuler/blob/f9e8bc5b38b6e212696e8a30e3e91517af887bbd/NavierStokes/LocalResidualFlatness.lean#L111-L129"
+    }
+  ],
+  "parent": {
+    "name": "local_theorem",
+    "statement": "theorem local_theorem :\n    ∃ h qstar Xa Xext heatNormalization : ℝ,\n      ∃ A D u : VelocityField, ∃ p : PressureField,\n        Properties h qstar Xa Xext heatNormalization A D u p"
+  },
+  "children": [
+    {
+      "name": "properties_of_schedule",
+      "statement": "theorem properties_of_schedule {a : ℕ → ℕ} (hs : LocalScheduleWitness.Selected a)\n    (hr : LocalResidualFlatness.AllResidualJetRates ActualPrimary.h\n      ActualCandidateAssembly.selectedPotentialStages ActualCandidateAssembly.selectedDirectStages\n      ActualCandidateAssembly.selectedPressureStages a) :\n    Properties ActualPrimary.h (LocalPaperDomain.qstar a) LocalPaperDomain.innerEdge\n      LocalPaperDomain.outerEdge (BaseExterior.nominalHeatNormalization ActualPrimary.nominal)\n      (LocalPotentialRebundle.potential a) (LocalPotentialRebundle.direct a)\n      (LocalAngularGrowth.selectedRawVelocity a) (LocalPotentialRebundle.pressure a)",
+      "closed_by": "a `refine { … }` that fills each field of `Properties` from imported lemmas, then four bulleted sub-proofs closing the `?_` holes (`direct_angular`, `residual_flatness`, `exterior`, `angular_growth`)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: For any schedule a with a Selected witness and all-order residual jet rates, the fields rebuilt from a satisfy Properties (analyst's paraphrase, to be replaced by the declaration's text)."
+    },
+    {
+      "name": "selected_schedule",
+      "statement": "theorem selected_schedule :\n    ∃ a : ℕ → ℕ,\n      MixedCandidateWitness.SelectedSchedule CorrectionInitialization.ActualPrimary.h\n        ActualCandidateConstruction.selectedQbig ActualCandidateAssembly.selectedPotentialStages\n        ActualCandidateAssembly.selectedDirectStages ActualCandidateAssembly.selectedPressureStages a ∧\n      MixedDiagonalSchedule.ThreeCutBounds a CorrectionInitialization.ActualPrimary.h\n        ActualCandidateAssembly.selectedPotentialStages ActualCandidateAssembly.selectedDirectStages\n        ActualCandidateAssembly.selectedPressureStages (fun j => selectedEstimates.gain j / 2)\n        (MixedDiagonalSchedule.commonLoss selectedEstimates.potentialLoss selectedEstimates.directLoss\n          selectedEstimates.pressureLoss) PhysicalWaveSum.preterminal ∧\n      AllResidualJetRates CorrectionInitialization.ActualPrimary.h\n        ActualCandidateAssembly.selectedPotentialStages ActualCandidateAssembly.selectedDirectStages\n        ActualCandidateAssembly.selectedPressureStages a",
+      "closed_by": "exists_schedule_all_jetRates selectedEstimates ActualPrimary.outgoing.data.h_pos ActualPrimary.outgoing.data.h_lt_half (ActualCandidateConstruction.qbig_pos _ _)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: There exists a schedule a carrying the SelectedSchedule witness, ThreeCutBounds and AllResidualJetRates for the repository's fixed selected estimates (analyst's paraphrase, to be replaced by the declaration's text)."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An existence goal `∃ x : σ, P x` where `P` is a big conjunction (a structure) that can be built for any element of a class, from a small set of hypotheses on that element.",
+    "use_when": "The heavy structure is assembled once, parameterised by an element `a` of a class (here any schedule with a `Selected` witness and all-order residual rates); a separate lemma certifies a concrete element; the glue is then one `obtain` plus one application of the general lemma.",
+    "avoid_when": "The class is too weak to carry the proof, so the generalised statement does not close; the concrete element must be used in incompatible ways in different clauses (generalising then loses information); or the generalisation forces re-deriving per-instance side conditions that the concrete case would have discharged directly."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "`properties_of_schedule` occurs in the `local_theorem` site.",
+      "evidence_kind": "check",
+      "form": "cites(local_theorem, properties_of_schedule)",
+      "evidence": "https://github.com/openai/NavierStokesAndEuler/blob/f9e8bc5b38b6e212696e8a30e3e91517af887bbd/NavierStokes/LocalPaperTheorem.lean#L178-L184"
+    },
+    {
+      "n": 2,
+      "claim": "`selected_schedule` occurs in the `local_theorem` site.",
+      "evidence_kind": "check",
+      "form": "cites(local_theorem, selected_schedule)",
+      "evidence": "https://github.com/openai/NavierStokesAndEuler/blob/f9e8bc5b38b6e212696e8a30e3e91517af887bbd/NavierStokes/LocalPaperTheorem.lean#L178-L184"
+    },
+    {
+      "n": 3,
+      "claim": "No `sorry`/`admit`/`axiom` token occurs in `NavierStokes/LocalPaperTheorem.lean` lines 126-184.",
+      "evidence_kind": "check",
+      "form": "no_sorry(NavierStokes/LocalPaperTheorem.lean, 126-184)",
+      "evidence": "https://github.com/openai/NavierStokesAndEuler/blob/f9e8bc5b38b6e212696e8a30e3e91517af887bbd/NavierStokes/LocalPaperTheorem.lean#L126-L184"
+    },
+    {
+      "n": 4,
+      "claim": "The shape of this theorem-scale decomposition: 2 direct lemmas, glue 7 lines, child proofs 51 and 19 lines, depth 2.",
+      "evidence_kind": "measurement",
+      "evidence": "Copied files at f9e8bc5b38b6e212696e8a30e3e91517af887bbd: parent site NavierStokes/LocalPaperTheorem.lean L178-L184 (7 lines); child sites NavierStokes/LocalPaperTheorem.lean L126-L176 (51 lines) and NavierStokes/LocalResidualFlatness.lean L111-L129 (19 lines); depth checked along local_theorem -> properties_of_schedule -> selected_exterior_residual_zero."
+    },
+    {
+      "n": 5,
+      "claim": "The authors state the generalisation's design in the doc comment on `properties_of_schedule`: 'All local properties are retained by any actual schedule with the proved all-order residual bounds.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/openai/NavierStokesAndEuler/blob/f9e8bc5b38b6e212696e8a30e3e91517af887bbd/NavierStokes/LocalPaperTheorem.lean#L126-L127"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 2,
+    "glue_lines": 7,
+    "child_lines": [
+      51,
+      19
+    ]
+  },
+  "metrics": {
+    "parent_lines": 7,
+    "children": 2,
+    "children_closed_by_automation": 0,
+    "how_counted": "parent = lines 178-184 of NavierStokes/LocalPaperTheorem.lean; children = properties_of_schedule lines 126-176 and selected_schedule lines 111-129; each child closes by an explicit structure or a named lemma application, not by a single automation tactic (simp/aesop/omega)."
+  },
+  "consequences": "The move splits the existence proof into a general lemma (all the mathematics, over a free variable `a`) and a certificate lemma (existence of one concrete instance). Obligations: the general lemma's hypotheses must be discharged exactly once at the instantiation site, and the certified element must satisfy the same hypothesis type as the general lemma's parameter (here `Selected a` and `AllResidualJetRates`). Failure mode: if the certificate's conclusion is weaker than or differently shaped from the general lemma's hypotheses, the `obtain` pattern breaks and the glue must re-derive hypotheses by hand.",
+  "known_uses": [
+    "https://github.com/openai/NavierStokesAndEuler/blob/f9e8bc5b38b6e212696e8a30e3e91517af887bbd/NavierStokes/LocalResidualFlatness.lean#L126-L129"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "985e7e4f5abff28f428bff297732aa50409b7c1240dba6c87fe9a51a9a0d40b9",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:24:05Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,rule,shape",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:35:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:25:44Z",
+      "note": "parent local_theorem: statement re-copied from code; child 'properties_of_schedule': statement re-copied from the declaration of properties_of_schedule; child 'selected_schedule': statement re-copied from the declaration of selected_schedule"
+    }
+  ]
+}

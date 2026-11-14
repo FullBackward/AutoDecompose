@@ -1,0 +1,184 @@
+{
+  "id": "isabelle-extensionality-autocorrode-f2cdee86",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Extensionality for shareable red-black maps via rbt_ext_eqI and shareable_value_option_inj",
+  "intent": "Reduce the user-facing equality rm0 = rm1 of two share maps to the pointwise equality of their rbt_share_map_α abstraction, then close it with two lemmas — the injectivity of the shareable_value_option wrap and the quotient extensionality rbt_ext_eqI of the underlying red-black tree — so that every later equality of share maps is proved by intro!: rbt_share_map_eqI instead of unfolding the representation.",
+  "move": "extensionality",
+  "also_known_as": [
+    "extensionality principle",
+    "interface lemma"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "autocorrode",
+    "url": "https://github.com/awslabs/AutoCorrode",
+    "commit": "200f1acf2d264f2dedee33792b986ebe73c224a3",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "Shallow_Separation_Logic/Share_Map.thy",
+      "bytes": 31712,
+      "sha256": "3a645a300e9ff768ace272993f1dc10db83be3dd4ac579dc8ec4b72d297f38ab",
+      "permalink": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Share_Map.thy"
+    },
+    {
+      "path": "Data_Structures/RedBlackTree_Extensional.thy",
+      "bytes": 9973,
+      "sha256": "a077e045927559f827635f79a2751c66030b95e64c879c800a79c4bdb98d514b",
+      "permalink": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Data_Structures/RedBlackTree_Extensional.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Shallow_Separation_Logic/Share_Map.thy",
+      "lines": [
+        117,
+        121
+      ],
+      "role": "parent",
+      "name": "rbt_share_map_eqI",
+      "excerpt_sha256": "e24da1c5b97553a21cd0228346572bc2a2ee0340f887976fb6af6bfc3061e51c",
+      "permalink": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Share_Map.thy#L117-L121"
+    },
+    {
+      "path": "Data_Structures/RedBlackTree_Extensional.thy",
+      "lines": [
+        157,
+        160
+      ],
+      "role": "child",
+      "name": "rbt_ext_eqI",
+      "excerpt_sha256": "97ff37ded844fe48ab30c39f2ca8184d96e860edb4350608d95efcec1783a0b0",
+      "permalink": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Data_Structures/RedBlackTree_Extensional.thy#L157-L160"
+    },
+    {
+      "path": "Shallow_Separation_Logic/Share_Map.thy",
+      "lines": [
+        77,
+        80
+      ],
+      "role": "child",
+      "name": "shareable_value_option_inj",
+      "excerpt_sha256": "ff495e1511fac08d867b7f46b21b76d4ae182bd8d25d5c693a8c96e0440012fc",
+      "permalink": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Share_Map.thy#L77-L80"
+    }
+  ],
+  "parent": {
+    "name": "rbt_share_map_eqI",
+    "statement": "lemma rbt_share_map_eqI:\n  assumes \\<open>rbt_share_map_\\<alpha> rm0 = rbt_share_map_\\<alpha> rm1\\<close>\n  shows \\<open>rm0 = rm1\\<close>"
+  },
+  "children": [
+    {
+      "name": "rbt_ext_eqI",
+      "statement": "lemma rbt_ext_eqI:\n  assumes \\<open>rbt_ext_\\<alpha> rm0 = rbt_ext_\\<alpha> rm1\\<close>\n    shows \\<open>rm0 = rm1\\<close>",
+      "closed_by": "transfer (simp add: rbt_ext_eq_def)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: rm0 = rm1 of the rbt_ext quotient follows from pointwise equality of rbt_ext_α of the two trees"
+    },
+    {
+      "name": "shareable_value_option_inj",
+      "statement": "lemma shareable_value_option_inj:\n  assumes \\<open>shareable_value_option a = shareable_value_option b\\<close>\n    shows \\<open>a = b\\<close>",
+      "closed_by": "auto simp add: shareable_value_option_def split!: option.splits",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: a = b of the options follows from equality of their shareable_value_option images"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An equality x = y on a record- or quotient-wrapped map-like type, decided by pointwise equality of an abstraction α :: T ⇒ 'k ⇒ 'v that is injective up to an extensionality principle for the underlying representation.",
+    "use_when": "The abstraction has an extensionality or injectivity lemma (here rbt_ext_eqI plus shareable_value_option_inj); the equality of the representation is needed many times (here 13), so a once-proved principle pays off; clients should not unfold the representation.",
+    "avoid_when": "The abstraction is not injective (two distinct structures can share it, making the principle false); the underlying type has no quotient or extensionality lemma; the equality is needed only once, where the lemma is overhead."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "rbt_share_map_eqI is declared in Shallow_Separation_Logic/Share_Map.thy at lines 117-121.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Share_Map.thy#L117-L121",
+      "form": "declared(rbt_share_map_eqI, Shallow_Separation_Logic/Share_Map.thy, 117-121)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent's lines cite rbt_ext_eqI.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Share_Map.thy#L117-L121",
+      "form": "cites(parent, rbt_ext_eqI)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent's lines cite shareable_value_option_inj.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Share_Map.thy#L117-L121",
+      "form": "cites(parent, shareable_value_option_inj)"
+    },
+    {
+      "n": 4,
+      "claim": "rbt_share_map_eqI occurs 13 times in Shallow_Separation_Logic/Share_Map.thy.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Share_Map.thy",
+      "form": "count(rbt_share_map_eqI, 13, Shallow_Separation_Logic/Share_Map.thy)"
+    },
+    {
+      "n": 5,
+      "claim": "The move is theorem-scale: 2 direct lemmas (rbt_ext_eqI, shareable_value_option_inj), the longest checked chain of project lemmas below the main theorem is 1, the glue is 5 lines, and the children are 4 and 4 lines.",
+      "evidence_kind": "measurement",
+      "evidence": "parent https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Share_Map.thy#L117-L121 (5 lines); child rbt_ext_eqI https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Data_Structures/RedBlackTree_Extensional.thy#L157-L160 (4 lines); child shareable_value_option_inj https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Share_Map.thy#L77-L80 (4 lines)"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 1,
+    "glue_lines": 5,
+    "child_lines": [
+      4,
+      4
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 5,
+    "children": 2,
+    "child_proof_lines": [
+      4,
+      4
+    ],
+    "uses_of_rbt_share_map_eqI_in_file": 13,
+    "how_counted": "site line spans (declaration included); uses counted by grep for the identifier rbt_share_map_eqI in Shallow_Separation_Logic/Share_Map.thy"
+  },
+  "consequences": "Creates two obligations that the abstraction be sound: injectivity of the value-option wrap (shareable_value_option_inj) and extensionality of the underlying red-black-tree quotient (rbt_ext_eqI, itself resting on the rbt_ext_eq quotient). Once proved, every client equality closes by intro!: rbt_share_map_eqI plus ext and the abstraction's simp lemmas, without unfolding RmShareMap or rbt_ext. Failure modes: the principle gives the forward direction only (rbt_share_map_eqE, the reverse, is a separate lemma); it applies only to equalities already shaped as rbt_share_map_α x = rbt_share_map_α y, so a goal not of that form must unfold the representation instead.",
+  "known_uses": [
+    "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Share_Map.thy#L141",
+    "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Share_Map.thy#L228",
+    "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Share_Map.thy#L242"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "f2cdee86d94f52df2ff1e47db7059aa9a71f2def83a2aeeb0740f770d3917840",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:41:09Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:50:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:42:59Z",
+      "note": "parent rbt_share_map_eqI: statement re-copied from code; child 'rbt_ext_eqI': statement re-copied from the declaration of rbt_ext_eqI; child 'shareable_value_option_inj': statement re-copied from the declaration of shareable_value_option_inj"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:47:32Z"
+}

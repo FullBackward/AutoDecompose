@@ -1,0 +1,231 @@
+{
+  "id": "rocq-key-invariant-bedrock2-c3d50249",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "The event-loop invariant runsToGood_Invariant preserved by one machine step",
+  "intent": "Name the event loop's invariant `runsToGood_Invariant` (the machine runs to a good-ready state and is valid) and prove it is preserved by one machine step, so that ToplevelLoop instantiates it for a concrete loop and thereby shows an infinite loop never reaches a bad state.",
+  "move": "key-invariant",
+  "also_known_as": [
+    "loop invariant",
+    "inductive invariant",
+    "one-step invariant preservation"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "bedrock2",
+    "url": "https://github.com/mit-plv/bedrock2",
+    "commit": "b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "compiler/src/compiler/RiscvEventLoop.v",
+      "bytes": 6092,
+      "sha256": "c42ac942271363089ab35381498836358b242545694b869b3471e87b8e245f2f",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/RiscvEventLoop.v"
+    },
+    {
+      "path": "compiler/src/compiler/GoFlatToRiscv.v",
+      "bytes": 35271,
+      "sha256": "eb3873f236a80fb5a324aded9cc1f061af57ea7de911a9b177e1dea7300b1766",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/GoFlatToRiscv.v"
+    },
+    {
+      "path": "compiler/src/compiler/ForeverSafe.v",
+      "bytes": 5130,
+      "sha256": "37aecd8b8e14e56b2366f08bcba23535fd3680a1e2f74b7bc46b0731dd3957b3",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/ForeverSafe.v"
+    },
+    {
+      "path": "compiler/src/compiler/RunInstruction.v",
+      "bytes": 19417,
+      "sha256": "0c978b10e7f363e1a0c97f63e00d22cd7df1a69120f881164fb725ab9e889cd6",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/RunInstruction.v"
+    },
+    {
+      "path": "compiler/src/compiler/ToplevelLoop.v",
+      "bytes": 25670,
+      "sha256": "352214e89886d61608f83f93a538ca37cf92bc7fecee1864ec2b5a075ddedb82",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/ToplevelLoop.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "compiler/src/compiler/RiscvEventLoop.v",
+      "lines": [
+        104,
+        152
+      ],
+      "role": "parent",
+      "name": "runsToGood_is_Invariant",
+      "excerpt_sha256": "68dead1c4d63ac4107471d58e8ee26ac3d3faa0e0fa46a74372063c94e97adf3",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/RiscvEventLoop.v#L104-L152"
+    },
+    {
+      "path": "compiler/src/compiler/RiscvEventLoop.v",
+      "lines": [
+        99,
+        100
+      ],
+      "role": "context",
+      "name": "runsToGood_Invariant",
+      "excerpt_sha256": "79b1a901df1a6e62640c8a96e627f797d602d27c4639a9fae35480df9d471bb8",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/RiscvEventLoop.v#L99-L100"
+    },
+    {
+      "path": "compiler/src/compiler/GoFlatToRiscv.v",
+      "lines": [
+        79,
+        97
+      ],
+      "role": "child",
+      "name": "run1_get_sane",
+      "excerpt_sha256": "a185dc2f57a4169900c6986ec88641ad8d9497874628e2af717dc054a82c4be4",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/GoFlatToRiscv.v#L79-L97"
+    },
+    {
+      "path": "compiler/src/compiler/ForeverSafe.v",
+      "lines": [
+        108,
+        120
+      ],
+      "role": "child",
+      "name": "runsTo_safe1_inv",
+      "excerpt_sha256": "7fad18edd9f2794a592b8f6eae2f672e89ef6252e0f492500503d4f3ca455e9c",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/ForeverSafe.v#L108-L120"
+    },
+    {
+      "path": "compiler/src/compiler/RunInstruction.v",
+      "lines": [
+        363,
+        374
+      ],
+      "role": "child",
+      "name": "run_Jal0",
+      "excerpt_sha256": "199f970458d4d8ea60fa623ce62fd0f0b7cde7d38d394825e341ee22043a6629",
+      "permalink": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/RunInstruction.v#L363-L374"
+    }
+  ],
+  "parent": {
+    "name": "runsToGood_is_Invariant",
+    "statement": "Lemma runsToGood_is_Invariant: forall (st: RiscvMachineL),\n      runsToGood_Invariant st -> mcomp_sat (run1 iset) st runsToGood_Invariant."
+  },
+  "children": [
+    {
+      "name": "run1_get_sane",
+      "statement": "Lemma run1_get_sane: forall iset (P Q: RiscvMachineL -> Prop) mach,\n      valid_machine mach ->\n      mcomp_sat (run1 iset) mach P ->\n      (forall mach': RiscvMachineL,\n          (exists diff, mach'.(getLog) = diff ++ mach.(getLog)) ->\n          valid_machine mach' ->\n          P mach' ->\n          Q mach') ->\n      mcomp_sat (run1 iset) mach Q.",
+      "closed_by": "pose proof run1_sane as A; unfold mcomp_sane in A; apply proj2 in A; eapply mcomp_sat_weaken",
+      "note": "Project lemma in GoFlatToRiscv.v: attaches the sanity conclusions of run1_sane (valid_machine and a log prefix) to a run1 step."
+    },
+    {
+      "name": "runsTo_safe1_inv",
+      "statement": "Lemma runsTo_safe1_inv: forall (st: RiscvMachineL),\n      runsTo (mcomp_sat (run1 iset)) st safe1 ->\n      mcomp_sat (run1 iset) st (fun st' => runsTo (mcomp_sat (run1 iset)) st' safe1).",
+      "closed_by": "destruct R (on the runsTo hypothesis); the done case by run_1_2 then eapply run_pong, the step case by eapply mcomp_sat_weaken",
+      "note": "Project lemma in ForeverSafe.v: turns a `runsTo ... safe1` hypothesis into a one-step `mcomp_sat (run1 iset)` that lands back in `runsTo ... safe1`."
+    },
+    {
+      "name": "run_Jal0",
+      "statement": "Lemma run_Jal0: run_Jal0_spec.",
+      "closed_by": "get_run1_valid_for_free; destruct (invert_ptsto_program1 iset A); t0",
+      "note": "Project lemma in RunInstruction.v: the per-instruction execution lemma for `Jal Register0 jimm20` (the loop's jump-back)."
+    },
+    {
+      "name": "runsToStep",
+      "statement": null,
+      "closed_by": "eapply runsToStep",
+      "note": "Constructor of the inductive `runsTo` relation, declared in the external riscv-coq library (imported as riscv.Utility.runsToNonDet / riscv.Platform.Run), not part of the bedrock2 source; the glue cites it to unfold one step of the runsTo relation."
+    },
+    {
+      "name": "runsToDone",
+      "statement": null,
+      "closed_by": "apply runsToDone; ssplit",
+      "note": "Constructor of the inductive `runsTo` relation, declared in the external riscv-coq library (imported as riscv.Utility.runsToNonDet / riscv.Platform.Run), not part of the bedrock2 source; the glue cites it to close the runsTo relation once the state satisfies the predicate."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A stepwise 'eventually reaches P' relation (here `runsTo (mcomp_sat (run1 iset))` over the metric RISC-V machine) where the goal is to show a predicate `I` is preserved by one transition `run1`.",
+    "use_when": "the property to preserve has a natural one-step formulation (`runsToGood_Invariant` = runs-to-good and valid_machine); the per-instruction behaviour is already proved elsewhere (run_Jal0 and its siblings in RunInstruction.v); the invariant is a strengthening of the target (runs-to-good, not merely not-bad).",
+    "avoid_when": "the invariant itself needs an induction over the loop body (then that induction is the real content); the one-step execution lemmas for the relevant instructions do not exist; the machine step cannot be expressed as a single `run1` transition."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site cites `runsTo_safe1_inv`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/RiscvEventLoop.v#L104-L152",
+      "form": "cites(parent, runsTo_safe1_inv)"
+    },
+    {
+      "n": 2,
+      "claim": "No `sorry`, `admit` or `Admitted` appears in compiler/src/compiler/RiscvEventLoop.v lines 104-152.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/RiscvEventLoop.v#L104-L152",
+      "form": "no_sorry(compiler/src/compiler/RiscvEventLoop.v, 104-152)"
+    },
+    {
+      "n": 3,
+      "claim": "The glue (`runsToGood_is_Invariant`, RiscvEventLoop.v 104-152) is 49 lines; its three project-lemma children `run1_get_sane` (GoFlatToRiscv.v 79-97), `runsTo_safe1_inv` (ForeverSafe.v 108-120) and `run_Jal0` (RunInstruction.v 363-374) are 19, 13 and 12 lines; five named lemmas are used directly, and the longest checked chain is runsToGood_is_Invariant -> runsTo_safe1_inv -> run_pong (depth 2).",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/RiscvEventLoop.v#L104-L152 ; GoFlatToRiscv.v#L79-L97 ; ForeverSafe.v#L108-L120 ; RunInstruction.v#L363-L374 ; run_pong at ForeverSafe.v#L78-L87, cited by runsTo_safe1_inv at ForeverSafe.v#L117"
+    },
+    {
+      "n": 5,
+      "claim": "The invariant is reused in ToplevelLoop.v: `ll_inv` is defined as `runsToGood_Invariant ll_good iset` (line 160), and `ll_inv_is_invariant` is proved by instantiating `runsToGood_is_Invariant` (lines 418-422).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/ToplevelLoop.v#L160 and #L418-L422"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 49,
+    "children": 5,
+    "children_in_project": 3,
+    "children_external": 2,
+    "how_counted": "parent site = RiscvEventLoop.v 104-152; children = the five names cited by the glue (run1_get_sane, runsTo_safe1_inv, runsToStep, run_Jal0, runsToDone); three are declared in bedrock2 (the child sites), two (runsToStep, runsToDone) are the constructors of `runsTo` in the external riscv-coq library"
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 5,
+    "depth": 2,
+    "glue_lines": 49,
+    "child_lines": [
+      19,
+      13,
+      12
+    ]
+  },
+  "consequences": "The move isolates the loop argument into (a) the invariant predicate `runsToGood_Invariant`, (b) the one-step preservation lemma, and (c) per-case execution lemmas. Obligations it creates: the two cases of a step must be distinguished (loop body vs jump-back, via the `done` flag and `goodReadyState_checks_PC`), and the preservation proof must discharge `valid_machine` on both the step and the stop (`run1_get_sane` and `runsToDone`). Failure modes: an invariant too weak to be preserved (the proof gets stuck at `goodReadyState_preserved_by_jump_back`), or a step lemma whose side conditions (jimm20 mod 4 = 0, footprint subset) the glue cannot discharge.",
+  "known_uses": [
+    "https://github.com/mit-plv/bedrock2/blob/b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b/compiler/src/compiler/ToplevelLoop.v#L418-L422"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "c3d502495dcbadd7b4887c6fadaf35d5b2badb10c9829047d0de811ee70874a2",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:32:19Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,shape,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:40:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:33:25Z",
+      "note": "parent runsToGood_is_Invariant: statement re-copied from code; child 'run1_get_sane': statement re-copied from the declaration of run1_get_sane; child 'runsTo_safe1_inv': statement re-copied from the declaration of runsTo_safe1_inv; child 'run_Jal0': statement re-copied from the declaration of run_Jal0"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:47:40Z"
+}

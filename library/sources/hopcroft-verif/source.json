@@ -1,0 +1,15 @@
+{
+  "source_id": "hopcroft-verif",
+  "url": "https://github.com/VTrelat/Hopcroft_verif",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "VTrelat/Hopcroft_verif",
+  "commit": "bed059934b6007d8dbb95852d4d5500a90ec2ddf",
+  "ref": "HEAD",
+  "language": "isabelle",
+  "pinned_at": "2026-11-14T11:39:36Z",
+  "how_found": "discovery-1: A-isabelle, B-isabelle",
+  "note": "Hopcroft DFA minimisation verified in Isabelle/HOL (Nipkow-supervised) in Automata_Malik_Tuerk/Hopcroft_Minimisation.thy including runtime analysis; paper proof in LaTeX/proof.tex",
+  "licence": "LicenseRef-unknown",
+  "licence_files": []
+}

@@ -1,0 +1,191 @@
+{
+  "id": "lean-other-dirac-imo2026-04ba762f",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Three-stage lemma pipeline for IMO 2026 Q6 (purely periodic consecutive differences)",
+  "intent": "Prove the headline theorem of IMO 2026 Q6 — that a valid sequence's consecutive differences are purely periodic — by composing three independently stated lemmas, each taking the previous one's conclusion as an explicit hypothesis: prime supports stabilise, the admissible set becomes shift-invariant, and shift invariance upgrades to pure periodicity.",
+  "move": "other",
+  "also_known_as": [
+    "pipeline of stage lemmas",
+    "sequential composition",
+    "backward chain of suffices",
+    "lemma pipeline"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "dirac-imo2026",
+    "url": "https://github.com/Boundless-Intuition/IMO2026",
+    "commit": "37259237016275044e3905e8d537efd0eead74d2",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "IMO2026/Q6/solution.lean",
+      "bytes": 32068,
+      "sha256": "5111f9054677c1607dbb56a4869cc92dc4a595fdc7a74c4ec140a06ae17a1f3b",
+      "permalink": "https://github.com/Boundless-Intuition/IMO2026/blob/37259237016275044e3905e8d537efd0eead74d2/IMO2026/Q6/solution.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "IMO2026/Q6/solution.lean",
+      "lines": [
+        700,
+        705
+      ],
+      "role": "parent",
+      "name": "main_theorem",
+      "excerpt_sha256": "9f6b4796385fa4cefbdc038c326c07d0fc3ce216781748d6573007514b24d911",
+      "permalink": "https://github.com/Boundless-Intuition/IMO2026/blob/37259237016275044e3905e8d537efd0eead74d2/IMO2026/Q6/solution.lean#L700-L705"
+    },
+    {
+      "path": "IMO2026/Q6/solution.lean",
+      "lines": [
+        599,
+        610
+      ],
+      "role": "child",
+      "name": "exists_stable",
+      "excerpt_sha256": "3c6412d90973c90944677f1a717d83933083f1624aa58f1678ba052baa450b53",
+      "permalink": "https://github.com/Boundless-Intuition/IMO2026/blob/37259237016275044e3905e8d537efd0eead74d2/IMO2026/Q6/solution.lean#L599-L610"
+    },
+    {
+      "path": "IMO2026/Q6/solution.lean",
+      "lines": [
+        614,
+        655
+      ],
+      "role": "child",
+      "name": "exists_period",
+      "excerpt_sha256": "bb4a0a05ca7843ac770d111801f791a3f17e9e906871f10beb7c5f278a4e4397",
+      "permalink": "https://github.com/Boundless-Intuition/IMO2026/blob/37259237016275044e3905e8d537efd0eead74d2/IMO2026/Q6/solution.lean#L614-L655"
+    },
+    {
+      "path": "IMO2026/Q6/solution.lean",
+      "lines": [
+        660,
+        698
+      ],
+      "role": "child",
+      "name": "main_of_period",
+      "excerpt_sha256": "dafd9d697510058af301fccf944f0dd7b2813a0251f179f581b04881d9f9e13c",
+      "permalink": "https://github.com/Boundless-Intuition/IMO2026/blob/37259237016275044e3905e8d537efd0eead74d2/IMO2026/Q6/solution.lean#L660-L698"
+    }
+  ],
+  "parent": {
+    "name": "main_theorem",
+    "statement": "theorem main_theorem (a : ℕ → ℕ) (ha : IsValidSeq a) :\n    ∃ T L : ℕ, 0 < T ∧ 0 < L ∧ ∀ n, a (n + T) = a n + L"
+  },
+  "children": [
+    {
+      "name": "exists_stable",
+      "statement": "theorem exists_stable (a : ℕ → ℕ) (ha : IsValidSeq a) :\n    ∃ N, ∀ n, ∃ i ≤ N, (a i).primeFactors ⊆ (a n).primeFactors",
+      "closed_by": "exact exists_stable_of a ha hbound hreal hminsub, after discharging hkill/hminsub/hreal/hbound from killed_early, exists_minMem_subset, trans_realized, prime_bound",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: there is a bound N such that every prime support contains the support of one of the first N terms"
+    },
+    {
+      "name": "exists_period",
+      "statement": "theorem exists_period (a : ℕ → ℕ) (ha : IsValidSeq a)\n    (hstab : ∃ N, ∀ n, ∃ i ≤ N, (a i).primeFactors ⊆ (a n).primeFactors) :\n    ∃ L, 0 < L ∧ ∀ b, (Adm a b ↔ Adm a (b + L))",
+      "closed_by": "self-contained proof: witness `∏ i ∈ Finset.range (N + 1), a i`, both directions of the `Adm` equivalence via the `key` gcd ↔ common-prime-divisor dictionary",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: there is a positive L such that admissibility is invariant under translation by L"
+    },
+    {
+      "name": "main_of_period",
+      "statement": "theorem main_of_period (a : ℕ → ℕ) (ha : IsValidSeq a)\n    (hper : ∃ L, 0 < L ∧ ∀ b, (Adm a b ↔ Adm a (b + L))) :\n    ∃ T L : ℕ, 0 < T ∧ 0 < L ∧ ∀ n, a (n + T) = a n + L",
+      "closed_by": "self-contained proof: `T` is the index where `a 0 + L` occurs (via `adm_enum`), then induction on `n` bounded on both sides by `succ_le_of_adm`",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: there are positive T and L such that a (n + T) = a n + L for every n"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An ∃-goal reached through a chain of strengthenings: each stage is a named theorem of the form `premise → conclusion`, and the conclusions link the stages (stability ⇒ shift-invariance ⇒ pure periodicity). The glue is a single nested application `exact lemma3 (lemma2 (lemma1))`.",
+    "use_when": "the target property is the composition of a short sequence of intermediate properties, each expressible as a self-contained named theorem whose hypothesis is exactly the previous theorem's conclusion; each stage closes on its own (or from named siblings), so the glue carries no argument of its own.",
+    "avoid_when": "the intermediate properties are not natural standalone statements (an inline `suffices` is cleaner), a stage needs shared notation or context that cannot be stated independently, or the chain is long enough that the composed glue becomes hard to read."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site cites `main_of_period`.",
+      "evidence_kind": "check",
+      "form": "cites(parent, main_of_period)",
+      "evidence": "https://github.com/Boundless-Intuition/IMO2026/blob/37259237016275044e3905e8d537efd0eead74d2/IMO2026/Q6/solution.lean#L705"
+    },
+    {
+      "n": 2,
+      "claim": "No closing-by-sorry token (`sorry`, `admit`, `axiom`) occurs in lines 599-705 of IMO2026/Q6/solution.lean.",
+      "evidence_kind": "check",
+      "form": "no_sorry(IMO2026/Q6/solution.lean, 599-705)",
+      "evidence": "https://github.com/Boundless-Intuition/IMO2026/blob/37259237016275044e3905e8d537efd0eead74d2/IMO2026/Q6/solution.lean#L599-L705"
+    },
+    {
+      "n": 3,
+      "claim": "The decomposition is a pipeline of depth 3: `main_of_period` takes `hper` (the conclusion of `exists_period`) as a hypothesis, `exists_period` takes `hstab` (the conclusion of `exists_stable`) as a hypothesis, and `exists_stable` has no stage hypothesis.",
+      "evidence_kind": "measurement",
+      "evidence": "glue https://github.com/Boundless-Intuition/IMO2026/blob/37259237016275044e3905e8d537efd0eead74d2/IMO2026/Q6/solution.lean#L705; `hper` hypothesis at https://github.com/Boundless-Intuition/IMO2026/blob/37259237016275044e3905e8d537efd0eead74d2/IMO2026/Q6/solution.lean#L661; `hstab` hypothesis at https://github.com/Boundless-Intuition/IMO2026/blob/37259237016275044e3905e8d537efd0eead74d2/IMO2026/Q6/solution.lean#L615"
+    },
+    {
+      "n": 4,
+      "claim": "The authors label the three stages in comments: 'THE CRUX' above `exists_stable`, the stabilise-then-period remark above `exists_period`, and 'Pure-periodicity lemma P' above `main_of_period`.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/Boundless-Intuition/IMO2026/blob/37259237016275044e3905e8d537efd0eead74d2/IMO2026/Q6/solution.lean#L598 and https://github.com/Boundless-Intuition/IMO2026/blob/37259237016275044e3905e8d537efd0eead74d2/IMO2026/Q6/solution.lean#L612-L613 and https://github.com/Boundless-Intuition/IMO2026/blob/37259237016275044e3905e8d537efd0eead74d2/IMO2026/Q6/solution.lean#L657"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 3,
+    "glue_lines": 6,
+    "child_lines": [
+      12,
+      42,
+      39
+    ]
+  },
+  "metrics": {
+    "direct_lemmas": 3,
+    "stage_chain_depth": 3,
+    "glue_lines": 6,
+    "children_closed_by_automation": 0,
+    "how_counted": "direct_lemmas and glue_lines match shape; stage_chain_depth counts the lemmas in the single pipeline main_of_period → exists_period → exists_stable; all three children are full human-written proofs, none closed by a single tactic or automation"
+  },
+  "consequences": "Each stage becomes an independent, reusable theorem with an explicit hypothesis that the next-lower stage must discharge; a missed or mis-typed discharge is caught as a type error at the glue line. The glue carries no argument of its own — all the mathematical content lives in the three lemmas. Failure mode: a stage stated a little too strong or too weak silently breaks the chain, since the only contract between stages is the hypothesis (`hstab`, `hper`); a subtle mismatch does not produce a counterexample, only a type error at composition.",
+  "known_uses": [
+    "lean-other-axiom-imo2026-adc45ecb"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "04ba762f932067582d47e6815f1635024b624c900e9275854b2f9bbe1a4c351d",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:37:47Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:39:04Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:39:25Z",
+      "note": "parent main_theorem: statement re-copied from code; child 'exists_stable': statement re-copied from the declaration of exists_stable; child 'exists_period': statement re-copied from the declaration of exists_period; child 'main_of_period': statement re-copied from the declaration of main_of_period"
+    },
+    {
+      "field": "known_uses",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "pilot-3",
+      "at": "2026-11-14T13:44:12Z",
+      "note": "added lean-other-axiom-imo2026-adc45ecb: another team's decomposition of IMO 2026 Q6 (eventual_periodicity from good_stabilizes_core and eventual_periodicity_from_stable); not a duplicate"
+    }
+  ]
+}

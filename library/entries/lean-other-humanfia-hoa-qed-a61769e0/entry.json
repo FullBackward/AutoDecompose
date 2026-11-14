@@ -1,0 +1,183 @@
+{
+  "id": "lean-other-humanfia-hoa-qed-a61769e0",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Lower-and-upper-bound sandwich for the Fuchs-van de Graaf inequalities",
+  "intent": "Assemble the Fuchs-van de Graaf inequalities, the two-sided comparison 1 − F ≤ D ≤ √(1 − F²) between trace distance D and quantum fidelity F, as a conjunction of a lower bound and an upper bound, each proved by its own dedicated lemma, and close the whole by `exact ⟨fuchsVanDeGraaf_lower rho sigma, fuchsVanDeGraaf_upper rho sigma⟩`.",
+  "move": "other",
+  "also_known_as": [
+    "two-sided inequality",
+    "sandwich bound",
+    "squeeze inequality",
+    "lower-and-upper bound assembly"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "humanfia-hoa-qed",
+    "url": "https://github.com/humanfia/hoa-qed",
+    "commit": "1c918ec9a96c7751ce9c283304e1aebd7ffb19a3",
+    "licence": "Apache-2.0 AND CC-BY-4.0"
+  },
+  "files": [
+    {
+      "path": "lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean",
+      "bytes": 32276,
+      "sha256": "18910a81967bf96b6c0e6821c765268929e8220c73d8bfb059f972823cc79fff",
+      "permalink": "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean",
+      "lines": [
+        790,
+        796
+      ],
+      "role": "parent",
+      "name": "fuchsVanDeGraafInequalities",
+      "excerpt_sha256": "8a9b2a3212018572e2759daa821262a398fb2b1c03144a307265b8e2329e37b9",
+      "permalink": "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean#L790-L796"
+    },
+    {
+      "path": "lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean",
+      "lines": [
+        467,
+        590
+      ],
+      "role": "child",
+      "name": "fuchsVanDeGraaf_lower",
+      "excerpt_sha256": "b3fadb00de138a88970efb5523744287ab6b6d1d9a4293c1601347c7e277302c",
+      "permalink": "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean#L467-L590"
+    },
+    {
+      "path": "lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean",
+      "lines": [
+        615,
+        787
+      ],
+      "role": "child",
+      "name": "fuchsVanDeGraaf_upper",
+      "excerpt_sha256": "5637da90f6692225d9b6c979c3834dfb7b6958e96ef22f1852833d7a6bf94b1a",
+      "permalink": "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean#L615-L787"
+    },
+    {
+      "path": "lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean",
+      "lines": [
+        23,
+        25
+      ],
+      "role": "context",
+      "name": "traceDistance",
+      "excerpt_sha256": "92b94a276d44e85fe2ad2e184021942c4e20844953fc981cfd53f9d7a154d0a4",
+      "permalink": "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean#L23-L25"
+    }
+  ],
+  "parent": {
+    "name": "fuchsVanDeGraafInequalities",
+    "statement": "theorem fuchsVanDeGraafInequalities (rho sigma : State d) :\n    1 - QITBench.OneShot.quantumFidelity rho.matrix sigma.matrix ≤\n        traceDistance rho sigma ∧\n      traceDistance rho sigma ≤\n        Real.sqrt\n          (1 - (QITBench.OneShot.quantumFidelity rho.matrix sigma.matrix) ^ 2)"
+  },
+  "children": [
+    {
+      "name": "fuchsVanDeGraaf_lower",
+      "statement": "theorem fuchsVanDeGraaf_lower (rho sigma : State d) :\n    1 - QITBench.OneShot.quantumFidelity rho.matrix sigma.matrix ≤\n      traceDistance rho sigma",
+      "closed_by": "a chain of have/calc facts (htotal_le_projected, hprojected_le_delta, hdelta_le_posPart, hmain, htrace_le_fidelity, hposPart_eq_distance) closed by `rw [← hposPart_eq_distance]; linarith` (line 590); the private lemmas it cites — re_trace_mul_nonneg_of_posSemidef, re_trace_mul_le_posPart, quantumFidelity_eq_traceNorm_sqrt_mul_sqrt, traceNorm_eq_max_re_trace_unitary, traceNorm_eq_two_re_trace_posPart_of_trace_zero and the positiveSupport lemmas — all live in this same file",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: 1 - quantumFidelity rho.matrix sigma.matrix ≤ traceDistance rho sigma"
+    },
+    {
+      "name": "fuchsVanDeGraaf_upper",
+      "statement": "theorem fuchsVanDeGraaf_upper (rho sigma : State d) :\n    traceDistance rho sigma ≤\n      Real.sqrt\n        (1 - (QITBench.OneShot.quantumFidelity rho.matrix sigma.matrix) ^ 2)",
+      "closed_by": "a calc chain (lines 775-787) from traceDistance to Real.sqrt (1 - F^2) through the frobenius norms of X := R - C and Y := R + C, closed by `linarith` (line 743) and `rfl` (line 787); the private lemmas it cites — traceNorm_two_smul, traceNorm_add_le, traceNorm_conjTranspose_mul_le, traceNorm_eq_max_re_trace_unitary, quantumFidelity_eq_traceNorm_sqrt_mul_sqrt and the frobeniusSq lemmas — all live in this same file",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: traceDistance rho sigma ≤ Real.sqrt (1 - (quantumFidelity rho.matrix sigma.matrix) ^ 2)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A conjunction P ≤ x ∧ x ≤ Q (a two-sided bound / sandwich) where x is a distance- or norm-like quantity and P, Q are two different functions of a shared parameter (here the quantum fidelity F): P = 1 − F and Q = √(1 − F²).",
+    "use_when": "each side has an independent, self-contained proof (here two long matrix-norm developments) and the two bounds are genuinely different expressions, so neither an iff-split nor an order antisymmetry (both directions are a ≤ b and b ≤ a) applies; the conjunction is then closed by one `exact ⟨lower, upper⟩`.",
+    "avoid_when": "the two sides share a substantial argument that is not first lifted into a private lemma (here the SVD / trace-norm / frobenius infrastructure is factored out first, so each side only assembles it); or when only one side is nontrivial and the other follows by a one-liner such as `linarith`; or when the statement is a single inequality rather than a pair."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The declaration fuchsVanDeGraafInequalities starts in lines 790-796 of the copied file.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean#L790-L796",
+      "form": "declared(fuchsVanDeGraafInequalities, lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean, 790-796)"
+    },
+    {
+      "n": 2,
+      "claim": "The copied file contains no sorry, admit, or axiom.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean",
+      "form": "no_sorry(lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean, 1-800)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site cites fuchsVanDeGraaf_lower.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean#L796",
+      "form": "cites(parent, fuchsVanDeGraaf_lower)"
+    },
+    {
+      "n": 4,
+      "claim": "The decomposition has 2 direct lemmas (fuchsVanDeGraaf_lower and fuchsVanDeGraaf_upper), a 7-line glue (lines 790-796), child sites of 124 and 173 lines, and the longest checked chain of project lemmas below the main theorem has depth 5: fuchsVanDeGraafInequalities → fuchsVanDeGraaf_upper → traceNorm_conjTranspose_mul_le → traceNorm_eq_max_re_trace_unitary → exists_svd_sqrt_eigenvalues → inner_mulVec_eq.",
+      "evidence_kind": "measurement",
+      "evidence": "direct lemmas are the two names cited at line 796; the chain follows the citations at line 719 (traceNorm_conjTranspose_mul_le inside fuchsVanDeGraaf_upper), line 422 (traceNorm_eq_max_re_trace_unitary inside traceNorm_conjTranspose_mul_le), line 287 (exists_svd_sqrt_eigenvalues inside traceNorm_eq_max_re_trace_unitary), and line 64 (inner_mulVec_eq inside exists_svd_sqrt_eigenvalues) of https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean"
+    },
+    {
+      "n": 5,
+      "claim": "The authors state the intent of the file as a two-sided comparison: \"This file states the two-sided comparison between trace distance and unsquared quantum fidelity for finite-dimensional density states.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "module doc comment, lines 7-8, https://github.com/humanfia/hoa-qed/blob/1c918ec9a96c7751ce9c283304e1aebd7ffb19a3/lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean#L7-L8"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 5,
+    "glue_lines": 7,
+    "child_lines": [
+      124,
+      173
+    ]
+  },
+  "metrics": {
+    "parent_lines": 7,
+    "children": 2,
+    "lower_lines": 124,
+    "upper_lines": 173,
+    "how_counted": "parent_lines = parent site lines 790-796; children = the 2 named lemmas cited by the glue; lower_lines = child site 467-590; upper_lines = child site 615-787 (declaration included in each)"
+  },
+  "consequences": "The move creates exactly two obligations — the lower bound and the upper bound — and no side conditions or exhaustiveness obligations of its own; the conjunction is discharged by `exact ⟨lower, upper⟩`. The cost is that the two children are large (124 and 173 lines) and each carries a full matrix-norm development, so the same SVD / trace-norm / frobenius infrastructure is factored into the file's earlier private lemmas first and both children assemble from them. A failure mode: if the lower and upper bounds need the same intermediate fact and it is not lifted into a shared private lemma, that argument is duplicated across the two children.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "a61769e0d525a7adfbc6861c07886a5decbddcca090dd50afa17405713031af8",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:43:59Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:52:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:45:10Z",
+      "note": "parent fuchsVanDeGraafInequalities: statement re-copied from code; child 'fuchsVanDeGraaf_lower': statement re-copied from the declaration of fuchsVanDeGraaf_lower; child 'fuchsVanDeGraaf_upper': statement re-copied from the declaration of fuchsVanDeGraaf_upper"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T09:51:37Z"
+}

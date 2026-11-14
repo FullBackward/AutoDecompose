@@ -209,7 +209,9 @@
     "how_counted": "proof body = lines 174-207 of the copied file (statement at 172-173 not counted); case_count = the 6 `+` bullets opened by `invcs H` at line 179; children = the 5 same-file lemmas the proof cites; each child's proof is a single induction + `intuition`/`in_crush`/`eauto`, i.e. closed by automation with no intervening named lemma."
   },
   "consequences": "`invcs H` on `step_async` creates one goal per constructor and `intuition` further fans each into the three conjuncts of `composed_invariant`, so the case count is constructors x conjuncts (here 6). Exhaustiveness is the whole obligation: the split is sound only because `invcs` enumerates every constructor of `step_async`; adding a constructor to `step_async` later breaks the `Qed`. The glue carries no mathematics of its own — every `eauto using` names a `Decomposition` class field or one of the five list lemmas — so it breaks if a field's statement is reworded or a lemma is generalised (the author's comment at lines 135-136 warns of exactly this).",
-  "known_uses": [],
+  "known_uses": [
+    "rocq-key-invariant-verdi-09db5810"
+  ],
   "related": [
     "lean-case-split-compfiles-6ac56e7f"
   ],
@@ -239,6 +241,14 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T07:58:46Z",
       "note": "typed glue_lines 34, child_lines [4, 4, 4, 3, 5]; derived from the site ranges (declaration included): 36, [8, 8, 10, 8, 14]"
+    },
+    {
+      "field": "known_uses",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "pilot-3",
+      "at": "2026-11-14T13:44:12Z",
+      "note": "added rocq-key-invariant-verdi-09db5810: the level above: that entry's child decomposition_invariant is this entry's parent; not a duplicate"
     }
   ],
   "status_reason": "",

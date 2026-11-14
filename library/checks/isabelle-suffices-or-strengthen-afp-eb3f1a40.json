@@ -1,0 +1,133 @@
+{
+  "entry": "isabelle-suffices-or-strengthen-afp-eb3f1a40",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:41:37Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:41:37Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:41:37Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: integrable_I@thys/Catalan_Numbers/Catalan_Numbers.thy:351, catalan_eq_I@thys/Catalan_Numbers/Catalan_Numbers.thy:352; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:41:37Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, integrable_I) -> cites: integrable_I occurs at thys/Catalan_Numbers/Catalan_Numbers.thy:351",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:41:37Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, catalan_eq_I) -> cites: catalan_eq_I occurs at thys/Catalan_Numbers/Catalan_Numbers.thy:352",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:41:37Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "declared(catalan_integral_form, thys/Catalan_Numbers/Catalan_Numbers.thy, 345-353) -> declared: catalan_integral_form is declared at thys/Catalan_Numbers/Catalan_Numbers.thy:345",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:41:37Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:41:44Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no in-repo CI workflow to cite: list_files.py afp at pinned commit 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df shows zero entries under .github/ and no Jenkinsfile/.travis.yml/.gitlab-ci.yml; the only CI-like hit (thys/FOL_Seq_Calc2/.hlint.yaml) is a Haskell lint config, not CI. The AFP's CI is an external Jenkins testboard, so ci-record has no workflow file to cite.",
+      "by": "verifier",
+      "at": "2026-11-14T10:42:58Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read the byte-identical copied code (check_provenance pass). Parent 345-353 = 9 lines (theorem decl L345 through qed L353); integrable_I 269-278 = 10 lines (L269 decl, L278 qed); catalan_eq_I 336-343 = 8 lines (L336 decl, L343 qed); 2 direct lemmas (glue-cites-children passes: integrable_I@351, catalan_eq_I@352). Depth chain verified line-by-line: catalan_integral_form cites catalan_eq_I at L352, catalan_eq_I cites I_Suc at L342, I_Suc cites integrable_I at L321, integrable_I cites has_integral_I0 at L273 = 4 edges below the theorem, depth 4. All numbers match the claim.",
+      "by": "verifier",
+      "at": "2026-11-14T10:43:02Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read the byte-identical copied code at thys/Catalan_Numbers/Catalan_Numbers.thy L251-253 (L251 'text \\<open>', L252 'The recursive formula we have just proven allows us to derive an integral formula for ', L253 'the Catalan numbers. The proof was adapted from a textbook proof by Steven Roman...'). The quoted sentence is present, word-wrapped across L252-253.",
+      "by": "verifier",
+      "at": "2026-11-14T10:43:03Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:43:44Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent site 345-353 is theorem catalan_integral_form (9 lines, decl at 345 through qed at 353); proof body cites integrable_I at 351 and catalan_eq_I at 352, and no other same-file project lemma. Child integrable_I 269-278 (10 lines) and catalan_eq_I 336-343 (8 lines) match the recorded statements and closing methods verbatim (cases n=0 via has_integral_I0/has_integral_integrable; continuity otherwise; induction with has_integral_I0+integral_unique base and of_nat_catalan_Suc'+I_Suc step). The parent's have/simp closes: integrable_I supplies the integrability premise for has_integral_mult_left, then simp add catalan_eq_I field_simps rewrites I n*inverse(2*pi) to real(catalan n). Shape numbers correct: direct_lemmas 2, glue_lines 9, child_lines [10,8], depth 4 matching the chain catalan_integral_form->catalan_eq_I(352)->I_Suc(342)->integrable_I(321)->has_integral_I0(273), all verified in the local copy. Author-statement quote at 251-252 exact. Provenance pass.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:43:52Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality holds. The move is generalised in applicability.goal_shape and README 'When to use': prove an identity whose RHS constant has an auxiliary definition/equivalent form (here I n) by restating in that quantity and bridging back with one named identity, flagged as especially fitting normalising-constant goals (1/(2*pi)). 'When not to use' is honest and specific: avoid when the bridge identity is the hard, unproved part (the suffices only moves difficulty), when the restatement is not genuinely easier, or when a single direct rule closes the goal. Consequences name two concrete obligations (integrability premise integrable_I + scaling rule has_integral_mult_left; the bridge catalan_eq_I) and concrete failure modes (wrong bridge constant -> simp fails/rewrites wrong; wrong exponent in integrable_I -> intro step fails). Good-leaf rationale is explicit: each child is self-contained, closes on its own or from named siblings, has a single job, and is small (10 and 8 lines) with glue 9 lines and depth 4 (verified against code at pinned commit; line cites 345-353/269-278/336-343 and depth chain 352->342->321->273 all match).",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:44:59Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:45:17Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes (1 file byte-identical at 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df). Permalinks resolve to the same repo/commit/path (mirror-afp-devel, thys/Catalan_Numbers/Catalan_Numbers.thy) and the cited line ranges match the copied file: parent catalan_integral_form at 345-353, integrable_I at 269-278, catalan_eq_I at 336-343, author-statement at 251-253 all match verbatim. Commit is consistent: README short 07cd9ca548d1 = prefix of full 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df in entry.json and SOURCE.md. Licence LicenseRef-unknown recorded consistently in entry.json, README and SOURCE.md, tagged unknown per protocol decision 1. Source note (sources/afp/SOURCE.md) records repo, commit, licence and attribution and is linked from the README. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:45:35Z"
+    }
+  ]
+}

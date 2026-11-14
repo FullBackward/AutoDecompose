@@ -1,0 +1,166 @@
+{
+  "id": "lean-suffices-or-strengthen-compfiles-25eb18ba",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Strengthen to 'only the last lamp on' then convert to all-on: IMO 1993 P6(b)",
+  "intent": "Prove part (b) of IMO 1993 P6 — when n = 2^k, all lamps are on after n^2 − 1 steps — by strengthening the target to the intermediate state 'after n·(n−1) steps only the last lamp is on', which the glue hands from last_lamp_only_of_two_pow (the ZMod-2 core) to all_on_of_last_only (the final sweep that converts 'only the last lamp on' into 'all lamps on').",
+  "move": "suffices-or-strengthen",
+  "also_known_as": [
+    "strengthen the goal",
+    "prove a stronger intermediate state",
+    "strengthen then convert"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "compfiles",
+    "url": "https://github.com/dwrensha/compfiles",
+    "commit": "1745e6ced3e671bd74417548494b034eb2c87da8",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Compfiles/Imo1993P6.lean",
+      "bytes": 53690,
+      "sha256": "2c1651a9aa910600d2baf38f48a4f6353fd581b7be19c6866ace728dec670831",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1993P6.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Compfiles/Imo1993P6.lean",
+      "lines": [
+        1233,
+        1240
+      ],
+      "role": "parent",
+      "name": "imo1993_p6_b",
+      "excerpt_sha256": "9d6472bbf58f6288cbc3da1a56c64727946714e171ac8cb799080ad4082d12d1",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1993P6.lean#L1233-L1240"
+    },
+    {
+      "path": "Compfiles/Imo1993P6.lean",
+      "lines": [
+        143,
+        225
+      ],
+      "role": "child",
+      "name": "all_on_of_last_only",
+      "excerpt_sha256": "3f416e146167fca8a3b856165e5123926ec07326c13811638b7ac0dcb4b13245",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1993P6.lean#L143-L225"
+    },
+    {
+      "path": "Compfiles/Imo1993P6.lean",
+      "lines": [
+        1002,
+        1023
+      ],
+      "role": "child",
+      "name": "last_lamp_only_of_two_pow",
+      "excerpt_sha256": "2a12cf3af979772f1f2d430fec0781bf40a61d0c773164c8294ce63fb255b044",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1993P6.lean#L1002-L1023"
+    }
+  ],
+  "parent": {
+    "name": "imo1993_p6_b",
+    "statement": "problem imo1993_p6_b (n k : ℕ) [NeZero n] (hn : n = 2 ^ k) (hk : 0 < k) :\n    ∀ i : Fin n, lampsAfter n (n ^ 2 - 1) i = true"
+  },
+  "children": [
+    {
+      "name": "all_on_of_last_only",
+      "statement": "lemma all_on_of_last_only {n : ℕ} [NeZero n] (hn : 1 < n)\n    (h : ∀ i : Fin n, lampsAfter n (n * (n - 1)) i = decide (i.val = n - 1)) :\n    ∀ i : Fin n, lampsAfter n (n ^ 2 - 1) i = true",
+      "closed_by": "`key (n - 1) le_rfl i` (the internal induction over the position j), then `lia`",
+      "note": "The final phase: given that after n·(n−1) steps only the last lamp L_{n−1} is on, the lamps turn on one by one and after n²−1 steps all are on. Proved by an internal induction on the position j, using the project lemmas pos_after, step_lamps and bool_toggle."
+    },
+    {
+      "name": "last_lamp_only_of_two_pow",
+      "statement": "theorem last_lamp_only_of_two_pow (n k : ℕ) [NeZero n] (hk : 0 < k) (hn : n = 2 ^ k) :\n    ∀ i : Fin n, lampsAfter n (n * (n - 1)) i = decide (i.val = n - 1)",
+      "closed_by": "`core` (the ZMod-2 induction), the correspondence `glue`/`aux`, closed by `simp` on `by_cases hi : i = lasti (2 ^ k)`",
+      "note": "The strengthened core: after n·(n−1) steps only the last lamp L_{n−1} is on, proved by induction on k via the ZMod 2 model (core), transported back to Bool by glue and aux."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "∀ i, P(i) after a fixed number of steps (a final-time condition), reached by first proving an intermediate state — 'only one distinguished lamp is on' — that is stronger in structure and easier to reach by a model or induction argument, then converting that state to the target by a deterministic sweep.",
+    "use_when": "The final state ('all on') is the result of a uniform sweep from a simpler distinguished state ('only the last lamp on'), and that distinguished state is exactly what a stronger induction (here over k via a ZMod 2 model) produces for free — i.e. when the target is reachable as strengthen-then-convert.",
+    "avoid_when": "The intermediate state is not actually stronger or more convenient; the conversion sweep is not uniform in n (here all_on_of_last_only needs its own induction over the position, which only works because the sweep is one lamp at a time around the circle); or the strengthened core would need the very theorem being proved."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "last_lamp_only_of_two_pow occurs in the parent site.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1993P6.lean#L1233-L1240",
+      "form": "cites(parent, last_lamp_only_of_two_pow)"
+    },
+    {
+      "n": 2,
+      "claim": "all_on_of_last_only occurs in the parent site.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1993P6.lean#L1233-L1240",
+      "form": "cites(parent, all_on_of_last_only)"
+    },
+    {
+      "n": 3,
+      "claim": "No sorry/admit/axiom occurs in the parent site (lines 1233-1240).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1993P6.lean#L1233-L1240",
+      "form": "no_sorry(Compfiles/Imo1993P6.lean, 1233-1240)"
+    },
+    {
+      "n": 4,
+      "claim": "The glue is 8 lines (1233-1240); the two children it joins are 83 lines (all_on_of_last_only, 143-225) and 22 lines (last_lamp_only_of_two_pow, 1002-1023), matching the theorem-scale shape direct_lemmas=2, glue_lines=8, child_lines=[83,22].",
+      "evidence_kind": "measurement",
+      "evidence": "counted from the copied file code/Compfiles/Imo1993P6.lean at commit 1745e6ced3e671bd74417548494b034eb2c87da8"
+    },
+    {
+      "n": 5,
+      "claim": "The authors state the two-half structure in a comment: the cores of (b) and (c) are proved by 'induction on `k` via a `ZMod 2` model of the process (toggling is adding the predecessor)', with '`all_on_of_last_only` and `all_on_of_lamp1_only` for the final phases'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1993P6.lean#L365-L368"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 4,
+    "glue_lines": 8,
+    "child_lines": [
+      83,
+      22
+    ]
+  },
+  "metrics": {
+    "glue_lines": 8,
+    "child_lines": [
+      83,
+      22
+    ],
+    "direct_lemmas": 2,
+    "depth_checked": 4,
+    "how_counted": "Line spans of the parent site (1233-1240) and the two child sites (143-225, 1002-1023) of the copied file; depth via the chain imo1993_p6_b -> last_lamp_only_of_two_pow -> core -> stepLemma -> catL, each citation found by hand."
+  },
+  "consequences": "Splits the goal into a strengthened core (after n·(n−1) steps exactly 'only the last lamp is on') and a final phase (a deterministic sweep that turns that state into 'all on'). Each half carries its own induction: the core by induction on k over a ZMod 2 model, the final phase by induction on the position j. The halves must agree on the intermediate state — last_lamp_only_of_two_pow's conclusion is exactly all_on_of_last_only's hypothesis h, and the glue also discharges a side condition hn2 : 1 < n that all_on_of_last_only needs. Failure modes: if the strengthened state does not match the conversion lemma's hypothesis exactly (same step count, same 'only lamp L_{n−1}' predicate), the glue needs an extra rewrite; if the conversion is not uniform in n it cannot be a standalone lemma.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "25eb18ba9b2810d38b72016ac64c6496a87a7d0b121fee34634e0152fc004474",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:29:55Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:30:04Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T09:36:29Z"
+}

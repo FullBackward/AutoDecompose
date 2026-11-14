@@ -1,0 +1,195 @@
+{
+  "id": "lean-generalise-then-instantiate-arklib-c3287ad6",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Sum-check single round: transport the simple verifier's knowledge soundness to the lifted oracle verifier",
+  "intent": "Prove round-by-round knowledge soundness of the full single-round oracle verifier by first rewriting it to its context-lifted form, then instantiating the general transport theorem OracleVerifier.liftContext_rbrKnowledgeSoundness with the simple round's certificate and the lens's knowledge-soundness certificate.",
+  "move": "generalise-then-instantiate",
+  "also_known_as": [
+    "context lifting",
+    "transport along a lens",
+    "reusable schema instantiation"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "arklib",
+    "url": "https://github.com/Verified-zkEVM/ArkLib",
+    "commit": "6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean",
+      "bytes": 60585,
+      "sha256": "fb9b4d4e2d689fa271fe8c15cc17b3ddb3262b42ab4b186a1f7a45dca052ea81",
+      "permalink": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean"
+    },
+    {
+      "path": "ArkLib/OracleReduction/LiftContext/OracleReduction.lean",
+      "bytes": 22155,
+      "sha256": "9147d0767b3d1b5ea44c5cdac27236b6602fc4f8156229374c61af7594cf982c",
+      "permalink": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/OracleReduction/LiftContext/OracleReduction.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean",
+      "lines": [
+        1180,
+        1191
+      ],
+      "role": "parent",
+      "name": "oracleVerifier_rbrKnowledgeSoundness",
+      "excerpt_sha256": "feb7d977447f885e0c3c85e74dc3097c16ad51e87398edf6514f9fed95347575",
+      "permalink": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean#L1180-L1191"
+    },
+    {
+      "path": "ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean",
+      "lines": [
+        893,
+        928
+      ],
+      "role": "child",
+      "name": "oracleVerifier_eq_liftContext",
+      "excerpt_sha256": "004630e652aa69b21a1e12df7b91cda3b9d5e0d5bd6cdedd747a33d37e3255c9",
+      "permalink": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean#L893-L928"
+    },
+    {
+      "path": "ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean",
+      "lines": [
+        1115,
+        1131
+      ],
+      "role": "child",
+      "name": "extractorLens_rbr_knowledge_soundness",
+      "excerpt_sha256": "1b35cf3b530d582f64a47ac26accc357595fdda3153fbd8c67ac58d9d454053a",
+      "permalink": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean#L1115-L1131"
+    },
+    {
+      "path": "ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean",
+      "lines": [
+        583,
+        587
+      ],
+      "role": "child",
+      "name": "oracleVerifier_rbrKnowledgeSoundness",
+      "excerpt_sha256": "64986cc2482a8e01a9838e4d1c6b312008217f220122c1efb5bed836bcdd69e4",
+      "permalink": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean#L583-L587"
+    }
+  ],
+  "parent": {
+    "name": "oracleVerifier_rbrKnowledgeSoundness",
+    "statement": "theorem oracleVerifier_rbrKnowledgeSoundness [Fintype R] [IsDomain R] :\n    (oracleVerifier R n deg D oSpec i).toVerifier.rbrKnowledgeSoundness init impl\n    (relationRound R n deg D i.castSucc) (relationRound R n deg D i.succ)\n    (fun _ => (deg : ℝ≥0) / Fintype.card R)",
+    "note": "Fully qualified name Sumcheck.Spec.SingleRound.oracleVerifier_rbrKnowledgeSoundness (the Security section's oracle-verifier round); not to be confused with the child of the same short name in namespace Simple."
+  },
+  "children": [
+    {
+      "name": "oracleVerifier_eq_liftContext",
+      "statement": "theorem oracleVerifier_eq_liftContext (i : Fin n) :\n    oracleVerifier R n deg D oSpec i =\n      (Simple.oracleVerifier R deg D oSpec).liftContext\n        (oStmtExecutableLens R n deg D i) (liftContextOutput R n deg D oSpec i)",
+      "closed_by": "apply OracleVerifier.ext, then induction oa using OracleComp.inductionOn (the query case cites Simple.oracleVerifier_only_message_queries)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The full round's oracle verifier equals the simple oracle verifier context-lifted along the executable oracle-statement lens"
+    },
+    {
+      "name": "extractorLens_rbr_knowledge_soundness",
+      "statement": "instance extractorLens_rbr_knowledge_soundness :\n    Extractor.Lens.IsKnowledgeSound\n      (relationRound R n deg D i.castSucc) (Simple.inputRelation R deg D)\n      (relationRound R n deg D i.succ) (Simple.outputRelation R deg)\n      ((Simple.oracleVerifier R deg D oSpec).toVerifier.compatStatement (oStmtLens R n deg D i))\n      (fun _ _ => True)\n      ⟨oStmtLens R n deg D i, Witness.InvLens.trivial⟩",
+      "closed_by": "fields proj_knowledgeSound (citing verifier_polynomial and output_projection) and lift_knowledgeSound (citing input_projection)",
+      "note": "An `instance` of Extractor.Lens.IsKnowledgeSound, not a `theorem`. Analyst's paraphrase, replaced by the declaration's text: The oracle-statement lens is knowledge-sound for the simple verifier's compatStatement"
+    },
+    {
+      "name": "oracleVerifier_rbrKnowledgeSoundness",
+      "statement": "theorem oracleVerifier_rbrKnowledgeSoundness [Fintype R] [IsDomain R] :\n    (oracleVerifier R deg D oSpec).toVerifier.rbrKnowledgeSoundness init impl\n    (inputRelation R deg D) (outputRelation R deg) (fun _ => (deg : ℝ≥0) / Fintype.card R)",
+      "closed_by": "rw [oracleVerifier_eq_verifier]; exact verifier_rbrKnowledgeSoundness R deg D oSpec",
+      "note": "Declared in namespace Sumcheck.Spec.SingleRound.Simple (lines 583-587); the glue cites it as Simple.oracleVerifier_rbrKnowledgeSoundness. Analyst's paraphrase, replaced by the declaration's text: Round-by-round knowledge soundness of the simple oracle verifier over the univariate input/output relation"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A soundness/security property (here rbrKnowledgeSoundness) of a *lifted* object `X.liftContext lens output`, where the same property is already proved for the inner object `X` and for the lens itself.",
+    "use_when": "there is a general transport theorem that lifts the property across a lens (here OracleVerifier.liftContext_rbrKnowledgeSoundness), an equivalence showing the target object is exactly the context-lift (oracleVerifier_eq_liftContext), a certificate that the lens is knowledge-sound (extractorLens_rbr_knowledge_soundness), and the inner object's certificate (Simple.oracleVerifier_rbrKnowledgeSoundness).",
+    "avoid_when": "the lens is not executable or not knowledge-sound; the inner object's property is not already proved; the equivalence rewrite does not hold by rfl/simp and needs its own argument."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent theorem `oracleVerifier_rbrKnowledgeSoundness` is declared at lines 1180-1191 of ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean#L1180-L1191",
+      "form": "declared(oracleVerifier_rbrKnowledgeSoundness, ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean, 1180-1191)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites the lens certificate `extractorLens_rbr_knowledge_soundness`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean#L1180-L1191",
+      "form": "cites(parent, extractorLens_rbr_knowledge_soundness)"
+    },
+    {
+      "n": 3,
+      "claim": "The glue (the parent site, 12 lines) is shorter than the children it cites: the three child sites are 36, 17 and 5 lines, 58 lines in total, so the argument is carried by the children and the glue only assembles them.",
+      "evidence_kind": "measurement",
+      "evidence": "site line ranges in entry.json: parent 1180-1191 (12 lines); children 893-928 (36), 1115-1131 (17), 583-587 (5)"
+    },
+    {
+      "n": 4,
+      "claim": "The same move - transport the soundness bound from the simple round to the full round along the statement lens - is applied again at `verifier_rbrKnowledgeSoundness` (lines 1146-1157), with Verifier.liftContext_rbrKnowledgeSoundness in place of the oracle-verifier transport.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean#L1146-L1157"
+    },
+    {
+      "n": 5,
+      "claim": "The blueprint documents the move: node `thm:sumcheck_single_round_soundness` names `Sumcheck.Spec.SingleRound.oracleVerifier_rbrKnowledgeSoundness` and states 'The round is obtained by lifting the virtual round below along a context lens, which transfers both properties.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/blueprint/src/proof_systems/sumcheck.tex#L184-L191"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 4,
+    "glue_lines": 12,
+    "child_lines": [
+      36,
+      17,
+      5
+    ]
+  },
+  "metrics": {
+    "parent_lines": 12,
+    "child_lines_total": 58,
+    "how_counted": "site line ranges (declaration plus proof), taken from entry.json sites"
+  },
+  "consequences": "The move turns one soundness proof into three named obligations: (1) an equivalence showing the target object is the context-lift (oracleVerifier_eq_liftContext), (2) a lens knowledge-soundness certificate (extractorLens_rbr_knowledge_soundness, with its own projection and lift fields), and (3) the inner object's certificate (Simple.oracleVerifier_rbrKnowledgeSoundness). Failure mode: the `lensKS := by simpa using extractorLens_rbr_knowledge_soundness i` argument only closes if the lens definition simplifies to the exact class instance; a lens that is not simp-normal would need its own rewrite.",
+  "known_uses": [
+    "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean#L1146-L1157"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "c3287ad6a889ac8d63ca2f6709c43d94fae8707a9dca8b8804c529d7a6af6ff8",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:25:37Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:40:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:27:37Z",
+      "note": "parent oracleVerifier_rbrKnowledgeSoundness: statement re-copied from code; child 'oracleVerifier_eq_liftContext': statement re-copied from the declaration of oracleVerifier_eq_liftContext; child 'extractorLens_rbr_knowledge_soundness': statement re-copied from the declaration of extractorLens_rbr_knowledge_soundness; child 'oracleVerifier_rbrKnowledgeSoundness': statement re-copied from the declaration of oracleVerifier_rbrKnowledgeSoundness"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T12:36:12Z"
+}

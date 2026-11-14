@@ -1,0 +1,201 @@
+{
+  "id": "markdown-other-lean4-skills-72054580",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Keep named intermediates for the combining lemma",
+  "intent": "When golfing a proof whose goal closes by one application of a combining lemma `combine` over two intermediate facts, keep those intermediates as named `have`s (`h1 : A`, `h2 : B`) and close with `exact combine h1 h2`, rather than inlining them into a single opaque `exact combine (...)`: the decomposition into two leaf facts plus the combining application stays visible.",
+  "move": "other",
+  "also_known_as": [
+    "don't over-inline",
+    "keep named intermediates",
+    "don't remove helpful names"
+  ],
+  "language": "markdown",
+  "source": {
+    "source_id": "lean4-skills",
+    "url": "https://github.com/cameronfreer/lean4-skills",
+    "commit": "3f913c66251b8712bb58e6ce83a453fa96e3f94f",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "plugins/lean4/skills/lean4/references/proof-golfing.md",
+      "bytes": 15110,
+      "sha256": "4b0d54a1415002685a7e5defbf142d10c1e51f00f8732fded56602389122845e",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-golfing.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": "plugins/lean4/skills/lean4/references/proof-golfing.md",
+      "lines": [
+        251,
+        253
+      ],
+      "role": "parent",
+      "name": "combining-goal",
+      "excerpt_sha256": "1af9ab7f135d35f55b0c6ed4e6b7351814a61d8c7d005e2a21035ee8ee2a08c3",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-golfing.md#L251-L253"
+    },
+    {
+      "path": "plugins/lean4/skills/lean4/references/proof-golfing.md",
+      "lines": [
+        251,
+        251
+      ],
+      "role": "child",
+      "name": "h1",
+      "excerpt_sha256": "138f28669927878572562880bd2e39fdec3d5528fe6c9fd39441ce3e191a4f67",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-golfing.md#L251-L251"
+    },
+    {
+      "path": "plugins/lean4/skills/lean4/references/proof-golfing.md",
+      "lines": [
+        252,
+        252
+      ],
+      "role": "child",
+      "name": "h2",
+      "excerpt_sha256": "adbc62a8cc36384272af1b31f20eee587b3438e32ecf21fe0aeaeda78a14ed3f",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-golfing.md#L252-L252"
+    },
+    {
+      "path": "plugins/lean4/skills/lean4/references/proof-golfing.md",
+      "lines": [
+        253,
+        253
+      ],
+      "role": "child",
+      "name": "combine",
+      "excerpt_sha256": "0e53b4fe78a219f778d8f5e5eb2b2de7cebe481af6ce0c50117145545ec4bf89",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-golfing.md#L253-L253"
+    },
+    {
+      "path": "plugins/lean4/skills/lean4/references/proof-golfing.md",
+      "lines": [
+        247,
+        248
+      ],
+      "role": "context",
+      "name": "bad-inline",
+      "excerpt_sha256": "33699e5a78a31ff7eb614c57a5b510f18e8ca76068771f04c05fc067a76dda77",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-golfing.md#L247-L248"
+    },
+    {
+      "path": "plugins/lean4/skills/lean4/references/proof-golfing.md",
+      "lines": [
+        256,
+        266
+      ],
+      "role": "context",
+      "name": "name-earlier-fact",
+      "excerpt_sha256": "e251d9e5c2364acf437baf05d3545bb8fa44cc201097fa12a7e2b10c244ef6d9",
+      "permalink": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-golfing.md#L256-L266"
+    }
+  ],
+  "parent": {
+    "name": "combining-goal",
+    "statement": null,
+    "note": "The site is an illustrative proof fragment inside a Markdown skill reference: no enclosing `theorem` declaration is shown, only the proof body `have h1 : A := ...`, `have h2 : B := ...`, `exact combine h1 h2` that closes the enclosing goal."
+  },
+  "children": [
+    {
+      "name": "h1",
+      "statement": "have h1 : A := ...",
+      "closed_by": "the proof of A, elided by the `...` placeholder in the source",
+      "note": "A named intermediate `have`: the first leaf fact, of type A."
+    },
+    {
+      "name": "h2",
+      "statement": "have h2 : B := ...",
+      "closed_by": "the proof of B, elided by the `...` placeholder in the source",
+      "note": "A named intermediate `have`: the second leaf fact, of type B."
+    },
+    {
+      "name": "combine",
+      "statement": null,
+      "closed_by": "applied by `exact combine h1 h2` (a pre-existing combining lemma, not proved in the site)",
+      "note": "The combining lemma the glue applies; its statement is not given in the site — for `exact combine h1 h2` to type-check it must be A → B → goal. It is declared outside the copied excerpt."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A proof whose final step is one application of a combining lemma `combine` to two (or more) intermediate facts, where inlining those intermediates into the application would produce a single long or nested term; the intermediates are stated as named `have`s (`h1 : A`, `h2 : B`) and the goal closes by `exact combine h1 h2`.",
+    "use_when": "the intermediate facts are meaningful on their own and worth naming for re-reading; the combined application would be long or nested (the file's Bad example is 'obscure nested lambdas spanning 100+ chars', line 248); or a later step must refer back to an earlier fact (the companion 'Don't Remove Helpful Names' rule, lines 256-266).",
+    "avoid_when": "the intermediate is short and used exactly once (the file's Tier 3 prescribes inlining single-use `have` terms under 40 chars), the name adds no meaning, or the goal is trivial enough that the named intermediates are noise."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent's proof cites the combining lemma `combine`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-golfing.md#L251-L253",
+      "form": "cites(parent, combine)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site `combining-goal` (the main proof) is 3 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-golfing.md#L251-L253",
+      "form": "lines(parent, 3)"
+    },
+    {
+      "n": 3,
+      "claim": "The file states the rule in its own words — 'If inlining creates unreadable proof, keep intermediate steps' (line 244) — and the Good example that follows it is exactly the parent's three lines (`have h1 : A := ...`, `have h2 : B := ...`, `exact combine h1 h2`, lines 251-253).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/cameronfreer/lean4-skills/blob/3f913c66251b8712bb58e6ce83a453fa96e3f94f/plugins/lean4/skills/lean4/references/proof-golfing.md#L244 and #L250-L253"
+    },
+    {
+      "n": 4,
+      "claim": "The theorem-scale shape is 3 direct lemmas (`h1`, `h2`, `combine`) with no chain of project lemmas below the main theorem (depth 1): direct_lemmas=3, depth=1, glue_lines=3, child_lines=[1,1,1].",
+      "evidence_kind": "measurement",
+      "evidence": "counted on the copied file: the parent site (lines 251-253) is 3 lines; each child site is its own single line (h1 at 251, h2 at 252, combine at 253); h1 and h2 are independent named `have`s and combine is applied directly, so no project-lemma chain below the parent exceeds length 1."
+    }
+  ],
+  "metrics": {
+    "direct_lemmas": 3,
+    "depth": 1,
+    "glue_lines": 3,
+    "child_lines": [
+      1,
+      1,
+      1
+    ],
+    "how_counted": "parent site lines 251-253 (3 lines); child sites h1 (251), h2 (252), combine (253) one line each; h1 and h2 are independent named `have`s and combine is applied directly, so the longest chain of project lemmas below the parent is 1."
+  },
+  "consequences": "Keeping the intermediates named preserves the dependency structure — which fact feeds which argument of `combine` — at the cost of two extra `have` lines versus the inlined one-liner. The companion obligation is that a later step can use an earlier fact only if that fact was named first: an anonymous `have : ...` cannot be cited (the 'Don't Remove Helpful Names' Bad example shows a second anonymous `have` silently depending on the first, lines 259-261). Failure modes: naming an intermediate that is never used again leaves a dead binding the golfer's Tier 3 would inline; inlining a fact that a later step needs breaks the proof.",
+  "known_uses": [],
+  "related": [
+    "markdown-extract-have-lean4-skills-2f8b180f"
+  ],
+  "rule": {
+    "f10_rule": 4,
+    "relation": "contradicts"
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 1,
+    "glue_lines": 3,
+    "child_lines": [
+      1,
+      1,
+      1
+    ]
+  },
+  "content_key": "72054580c803058bf516358ec3b19663d828b642cab540ceada4f585059a4ffe",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:48:40Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,metrics,consequences,known_uses,related,rule,shape",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:52:00Z"
+    }
+  ]
+}

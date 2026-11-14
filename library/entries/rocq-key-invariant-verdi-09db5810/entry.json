@@ -1,0 +1,195 @@
+{
+  "id": "rocq-key-invariant-verdi-09db5810",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Key invariant locks_correct for Verdi's LiveLockServ mutual exclusion",
+  "intent": "Prove that every async-reachable state of Verdi's LiveLockServ satisfies mutual exclusion by routing the claim through one key invariant, `locks_correct` (any client that believes it holds the lock is at the head of the server's queue): the project's generic `decomposition_invariant` proves the invariant holds inductively, and `locks_correct_implies_mutex` turns the invariant into the safety goal. The 13-line proof never unfolds the network or the handlers.",
+  "move": "key-invariant",
+  "also_known_as": [
+    "safety invariant as the proof carrier",
+    "inductive invariant"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "verdi",
+    "url": "https://github.com/uwplse/verdi",
+    "commit": "7e1641b758d8f0032aa7de63620bc115330e0a6b",
+    "licence": "BSD-2-Clause"
+  },
+  "files": [
+    {
+      "path": "theories/Systems/LiveLockServ.v",
+      "bytes": 79095,
+      "sha256": "08d2958f127c0699f886182fa564c21be8f7662f22c466e54e6112c47e9b1920",
+      "permalink": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Systems/LiveLockServ.v"
+    },
+    {
+      "path": "theories/Core/StatePacketPacketDecomposition.v",
+      "bytes": 7751,
+      "sha256": "22689ceca7a5922b1f136d71c19acdc13b14b8dca64a251bbae80c8f38bd1d53",
+      "permalink": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v"
+    },
+    {
+      "path": "theories/Core/Net.v",
+      "bytes": 28297,
+      "sha256": "930a23946d91624b41ae379e15a6a0180b7cca147e3f4e8aa368c686a3f7475b",
+      "permalink": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/Net.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/Systems/LiveLockServ.v",
+      "lines": [
+        866,
+        878
+      ],
+      "role": "parent",
+      "name": "true_in_reachable_mutual_exclusion",
+      "excerpt_sha256": "5fdff425593d0034adf504ec60f5c0999acbdfae128a180d87fcc9aa21cd8e00",
+      "permalink": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Systems/LiveLockServ.v#L866-L878"
+    },
+    {
+      "path": "theories/Core/StatePacketPacketDecomposition.v",
+      "lines": [
+        172,
+        207
+      ],
+      "role": "child",
+      "name": "decomposition_invariant",
+      "excerpt_sha256": "bb020afbb279370374f9266f3f1376c8188983124209b7a2551cdc017da07757",
+      "permalink": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v#L172-L207"
+    },
+    {
+      "path": "theories/Systems/LiveLockServ.v",
+      "lines": [
+        190,
+        201
+      ],
+      "role": "child",
+      "name": "locks_correct_implies_mutex",
+      "excerpt_sha256": "12c87acc3af38b3b4bfdd46095876b0653b3733dcdcbb4850672eab41525c364",
+      "permalink": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Systems/LiveLockServ.v#L190-L201"
+    }
+  ],
+  "parent": {
+    "name": "true_in_reachable_mutual_exclusion",
+    "statement": "Theorem true_in_reachable_mutual_exclusion :\n    true_in_reachable step_async step_async_init (fun net => mutual_exclusion (nwState net))."
+  },
+  "children": [
+    {
+      "name": "decomposition_invariant",
+      "statement": "Theorem decomposition_invariant :\n    inductive_invariant step_async step_async_init composed_invariant.",
+      "closed_by": "unfold inductive_invariant. intuition; match goal with H : step_async _ _ _ |- _ => invcs H end; eauto using the Decomposition typeclass fields and the helper lemmas post_net_analyze_sent_packet, post_input_analyze_sent_packet, nw_nw_distinct_pairs_and_elim, distinct_pairs_and_app, distinct_pairs_and_app_cons",
+      "note": "The project-level theorem: `composed_invariant` — the conjunction of the state invariant, the per-packet network invariant and the packet-pair invariant, with `state_invariant` instantiated to `locks_correct` — is an inductive invariant of `step_async`/`step_async_init`. Its proof discharges the `Decomposition` typeclass fields (one per input/deliver case) and never unfolds the handlers."
+    },
+    {
+      "name": "locks_correct_implies_mutex",
+      "statement": "Lemma locks_correct_implies_mutex :\n    forall sigma,\n      locks_correct sigma ->\n      mutual_exclusion sigma.",
+      "closed_by": "unfold locks_correct, mutual_exclusion; intros; repeat find_apply_hyp_hyp; break_exists; find_rewrite; find_inversion; auto",
+      "note": "The conversion step: the syntactic lock invariant implies the safety goal. If every client that holds the lock is at the head of the server's queue, then two clients both at the head force their indices to be equal."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "a `true_in_reachable step init P` (equivalently `reachable step init st -> P st`) safety property of a distributed system whose step relation is given as input and network handlers; P depends on the state only through a predicate closed under every handler step.",
+    "use_when": "the safety property follows from a single state predicate (the invariant) that is inductive — closed under every input and network handler — and that implies the property; and the project already supplies a generic invariant framework (here Verdi's `Decomposition` typeclass) to instantiate at that predicate.",
+    "avoid_when": "no single state predicate both is inductive and implies the property (the invariant may have to mention in-flight packets, or be split into state / network / network-network parts as `composed_invariant` does); or the invariant's own inductiveness is the hard theorem rather than a framework's routine check, in which case the thin glue is hiding the real work."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site is 13 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Systems/LiveLockServ.v#L866-L878",
+      "form": "lines(parent, 13)"
+    },
+    {
+      "n": 2,
+      "claim": "`decomposition_invariant` is declared in the copied file `theories/Core/StatePacketPacketDecomposition.v`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v#L172-L207",
+      "form": "declared(decomposition_invariant, theories/Core/StatePacketPacketDecomposition.v, 172-207)"
+    },
+    {
+      "n": 3,
+      "claim": "`locks_correct_implies_mutex` is declared in the copied file `theories/Systems/LiveLockServ.v`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Systems/LiveLockServ.v#L190-L201",
+      "form": "declared(locks_correct_implies_mutex, theories/Systems/LiveLockServ.v, 190-201)"
+    },
+    {
+      "n": 4,
+      "claim": "The parent site contains no `admit`, `Admitted`, `sorry` or `axiom`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Systems/LiveLockServ.v#L866-L878",
+      "form": "no_sorry(theories/Systems/LiveLockServ.v, 866-878)"
+    },
+    {
+      "n": 5,
+      "claim": "The decomposition is thin glue over two children: the parent site is 13 lines and the two child sites are 36 and 12 lines (shape glue_lines=13, child_lines=[36, 12], direct_lemmas=2), counted declaration-inclusive from the site ranges; the longest dependency chain below the main theorem is two lemmas (decomposition_invariant, then locks_correct_init through the state_invariant_init field).",
+      "evidence_kind": "measurement",
+      "evidence": "parent https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Systems/LiveLockServ.v#L866-L878 (13 lines); children https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v#L172-L207 (36 lines) and https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Systems/LiveLockServ.v#L190-L201 (12 lines); the chain decomposition_invariant -> state_invariant_init -> locks_correct_init is at https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Core/StatePacketPacketDecomposition.v#L176-L177 and https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Systems/LiveLockServ.v#L844 and #L241-L245"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 2,
+    "glue_lines": 13,
+    "child_lines": [
+      36,
+      12
+    ]
+  },
+  "metrics": {
+    "parent_lines": 13,
+    "children": 2,
+    "children_closed_by_automation": 1,
+    "how_counted": "parent_lines = the parent site (866-878); children = the two child sites; locks_correct_implies_mutex closes by unfold + intros + repeat find_apply_hyp_hyp + break_exists + find_rewrite + find_inversion + auto with no named lemma, decomposition_invariant by eauto over the Decomposition typeclass fields"
+  },
+  "consequences": "The move commits to one invariant that must both be inductive and imply the goal. Inductiveness is delegated to the generic `Decomposition` framework, but that framework still needs one proof per handler (the fields of the `LockServ_Decompositition` instance, lines 838-864); a new or changed handler needs a new field proof. The glue also relies on the generic reachability lemma `inductive_invariant_true_in_reachable` (Core/Net.v) to turn `inductive_invariant` into `true_in_reachable`, and on the syntactic conversion `locks_correct_implies_mutex`; if the invariant is too weak to imply the goal or too strong to be inductive, one of these steps fails and the invariant must be corrected.",
+  "known_uses": [
+    "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Systems/LiveLockServ.v#L964-L976",
+    "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Systems/LiveLockServ.v#L998-L1008",
+    "https://github.com/uwplse/verdi/blob/7e1641b758d8f0032aa7de63620bc115330e0a6b/theories/Systems/LiveLockServ.v#L1010-L1019",
+    "rocq-case-split-verdi-7798ab0c"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 15,
+    "relation": "supports"
+  },
+  "content_key": "09db5810deb065923722af6bf703a77eed71f69b0aa4d0c132731a25a567af3e",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:10:52Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:15:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:14:19Z",
+      "note": "parent true_in_reachable_mutual_exclusion: statement re-copied from code; child 'decomposition_invariant': statement re-copied from the declaration of decomposition_invariant; child 'locks_correct_implies_mutex': statement re-copied from the declaration of locks_correct_implies_mutex"
+    },
+    {
+      "field": "known_uses",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "pilot-3",
+      "at": "2026-11-14T13:44:12Z",
+      "note": "added rocq-case-split-verdi-7798ab0c: the level below: this entry's child decomposition_invariant is that entry's parent; not a duplicate"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:21:28Z"
+}

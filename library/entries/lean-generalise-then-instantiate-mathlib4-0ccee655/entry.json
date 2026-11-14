@@ -1,0 +1,218 @@
+{
+  "id": "lean-generalise-then-instantiate-mathlib4-0ccee655",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Abel-Ruffini: instantiate the general non-solvability statement at the quintic Φ 4 2",
+  "intent": "Reduce the Abel-Ruffini theorem — there is an algebraic complex number not solvable by radicals — to instantiating the general non-solvability statement `not_solvable_by_rad`, proved for any p, a, b under the Eisenstein conditions, at the concrete quintic Φ ℚ 4 2, through the instantiation lemma `not_solvable_by_rad'` and three coefficient lemmas (`map_Phi`, `monic_Phi`, `degree_Phi`) that connect Φ 4 2 to the general family.",
+  "move": "generalise-then-instantiate",
+  "also_known_as": [
+    "generalize then specialize",
+    "schema instantiation",
+    "prove on a parameterised family, instantiate at the concrete case"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "mathlib4",
+    "url": "https://github.com/leanprover-community/mathlib4",
+    "commit": "e1545ebed97594477bbd88b2fe948ffce56e5af2",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Archive/Wiedijk100Theorems/AbelRuffini.lean",
+      "bytes": 8284,
+      "sha256": "89347cbe7a9b502c2c5c6fe7a5d69b916805c49b5e413c4bb6dcb8a25bc776a8",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AbelRuffini.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Archive/Wiedijk100Theorems/AbelRuffini.lean",
+      "lines": [
+        169,
+        173
+      ],
+      "role": "parent",
+      "name": "exists_not_solvable_by_rad",
+      "excerpt_sha256": "1833608289bb779b8a100456289cf58b4cb8d5d729119da2d5ada25fe0d3ef3c",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AbelRuffini.lean#L169-L173"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/AbelRuffini.lean",
+      "lines": [
+        166,
+        167
+      ],
+      "role": "child",
+      "name": "not_solvable_by_rad'",
+      "excerpt_sha256": "bc503d1025758f181dbdbbbedde92da126268e657c63416d84f9c1fbb1443ea3",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AbelRuffini.lean#L166-L167"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/AbelRuffini.lean",
+      "lines": [
+        47,
+        48
+      ],
+      "role": "child",
+      "name": "map_Phi",
+      "excerpt_sha256": "c952bfcdd98e9ca7fe7959b0f8ed133f94aed93ea0d657e47e03670ea99b5ba0",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AbelRuffini.lean#L47-L48"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/AbelRuffini.lean",
+      "lines": [
+        72,
+        73
+      ],
+      "role": "child",
+      "name": "monic_Phi",
+      "excerpt_sha256": "78cb3fb084704168dd0b38c7b28da4210a697228bc2ddade5c423c9a217b9827",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AbelRuffini.lean#L72-L73"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/AbelRuffini.lean",
+      "lines": [
+        59,
+        64
+      ],
+      "role": "child",
+      "name": "degree_Phi",
+      "excerpt_sha256": "2db0b321c167d49f8329228227f00842d20080f30e833c78b8807b629f3f0995",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AbelRuffini.lean#L59-L64"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/AbelRuffini.lean",
+      "lines": [
+        157,
+        164
+      ],
+      "role": "context",
+      "name": "not_solvable_by_rad",
+      "excerpt_sha256": "3bf0c6e3d157eba3ce78da027e5d1f217e3aadb6e62ed9bea210f5810b69b4eb",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AbelRuffini.lean#L157-L164"
+    }
+  ],
+  "parent": {
+    "name": "exists_not_solvable_by_rad",
+    "statement": "theorem exists_not_solvable_by_rad : ∃ x : ℂ, IsAlgebraic ℚ x ∧ x ∉ solvableByRad ℚ ℂ"
+  },
+  "children": [
+    {
+      "name": "not_solvable_by_rad'",
+      "statement": "theorem not_solvable_by_rad' (x : ℂ) (hx : aeval x (Φ ℚ 4 2) = 0) : x ∉ solvableByRad ℚ ℂ",
+      "closed_by": "apply not_solvable_by_rad 4 2 2 x hx <;> decide",
+      "note": "The instantiation lemma: applies the general not_solvable_by_rad at p = 2, a = 4, b = 2 and closes the Eisenstein side conditions (2.Prime, 2 ∣ 4, 2 ∣ 2, ¬4 ∣ 2, 2 < 4) by decide."
+    },
+    {
+      "name": "map_Phi",
+      "statement": "theorem map_Phi {S : Type*} [CommRing S] (f : R →+* S) : (Φ R a b).map f = Φ S a b",
+      "closed_by": "by simp [Φ]",
+      "note": "Φ commutes with ring-homomorphism base change; used in the parent to transfer the complex root back to Φ ℚ 4 2."
+    },
+    {
+      "name": "monic_Phi",
+      "statement": "theorem monic_Phi : (Φ R a b).Monic",
+      "closed_by": "leadingCoeff_Phi a b",
+      "note": "Φ is monic; used in the parent to give (Φ ℚ 4 2).ne_zero for the IsAlgebraic witness."
+    },
+    {
+      "name": "degree_Phi",
+      "statement": "theorem degree_Phi : (Φ R a b).degree = ((5 : ℕ) : WithBot ℕ)",
+      "closed_by": "suffices degree (X ^ 5 - C (a : R) * X) = 5 by rwa [Φ, degree_add_eq_left_of_degree_lt] · rw [degree_sub_eq_left_of_degree_lt] <;> rw [degree_X_pow]",
+      "note": "Φ has degree 5; used in the parent to show Φ ℂ 4 2 is non-constant so a complex root exists."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A headline existence statement ∃ x, P x about a concrete object (here a root of the quintic Φ ℚ 4 2) that is proved by instantiating a general theorem already proved for a parameterised family (not_solvable_by_rad over p, a, b under the Eisenstein conditions) plus coefficient facts that connect the concrete object to that family.",
+    "use_when": "the general statement is already proved for a parameterised family with side conditions, and the concrete case only needs (a) an instantiation lemma that closes the side conditions by computation (not_solvable_by_rad' with <;> decide) and (b) coefficient lemmas establishing degree, monicity and base change, so the parent proof is pure instantiation with no new mathematics.",
+    "avoid_when": "the side conditions of the general statement cannot be discharged by computation (then the instantiation lemma is itself substantial); the concrete object is not literally an instance of the general statement (then the connecting lemmas must be more than simp/rw); or the general statement is not already proved, in which case proving it is the real content and not the instantiation."
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 7,
+    "glue_lines": 5,
+    "child_lines": [
+      2,
+      2,
+      2,
+      6
+    ]
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "`not_solvable_by_rad'` occurs in the parent site.",
+      "evidence_kind": "check",
+      "form": "cites(parent, not_solvable_by_rad')",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AbelRuffini.lean#L169-L173"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site is 5 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(parent, 5)",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AbelRuffini.lean#L169-L173"
+    },
+    {
+      "n": 3,
+      "claim": "The `degree_Phi` site is 6 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(degree_Phi, 6)",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AbelRuffini.lean#L59-L64"
+    },
+    {
+      "n": 4,
+      "claim": "Below the main theorem the longest chain of project lemmas has 7 links: exists_not_solvable_by_rad → not_solvable_by_rad' → not_solvable_by_rad → irreducible_Phi → monic_Phi → leadingCoeff_Phi → natDegree_Phi → degree_Phi, each link a use in the copied file.",
+      "evidence_kind": "measurement",
+      "evidence": "uses at lines 173 (not_solvable_by_rad'), 167 (not_solvable_by_rad), 159 (irreducible_Phi), 94 (monic_Phi), 73 (leadingCoeff_Phi), 70 (natDegree_Phi), 67 (degree_Phi) of Archive/Wiedijk100Theorems/AbelRuffini.lean; counted by reading the copied file"
+    },
+    {
+      "n": 5,
+      "claim": "The module comment states the decomposition: three general ingredients (isSolvable_gal_of_irreducible, galActionHom_bijective_of_prime_degree', Equiv.Perm.not_solvable) and then 'all that remains is the construction of a specific polynomial satisfying the conditions of galActionHom_bijective_of_prime_degree', which is done in this file'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AbelRuffini.lean#L20-L28"
+    }
+  ],
+  "metrics": {
+    "glue_body_lines": 3,
+    "direct_lemmas": 4,
+    "how_counted": "glue body = lines 171-173 of the parent site (the three tactic lines after the declaration); direct lemmas = the four project lemmas the parent proof cites (not_solvable_by_rad', map_Phi, monic_Phi, degree_Phi), counted by reading the parent site"
+  },
+  "consequences": "Creates four obligations beyond the headline statement: (1) a complex root of Φ ℂ 4 2 exists, discharged by IsAlgClosed.splits together with degree_Phi (degree 5, so non-constant); (2) that root is algebraic over ℚ, discharged by monic_Phi giving (Φ ℚ 4 2).ne_zero; (3) the root is rational-coefficient, transferred through map_Phi (the base change ℚ → ℂ) so the witness is a root of Φ ℚ 4 2; (4) the non-solvability comes from not_solvable_by_rad', which instantiates the general statement and must discharge its Eisenstein side conditions (p.Prime, p ∣ a, p ∣ b, ¬p² ∣ b, b < a at p=2, a=4, b=2) by decide. Failure modes: if the concrete a, b fail a side condition, decide fails and the instantiation lemma needs a real argument; if the polynomial is not monic, the IsAlgebraic witness loses its .ne_zero; if the base change is in the wrong direction, map_Phi does not apply.",
+  "known_uses": [],
+  "related": [
+    "lean-generalise-then-instantiate-mathlib4-57b9f5e4"
+  ],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "0ccee655885e821af67439bf6682d4686036bf566d90e570f49ac32e81511d9f",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:53:38Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,shape,claims,metrics,consequences,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:58:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:55:56Z",
+      "note": "parent exists_not_solvable_by_rad: statement re-copied from code; child \"not_solvable_by_rad'\": statement re-copied from the declaration of not_solvable_by_rad'; child 'map_Phi': statement re-copied from the declaration of map_Phi; child 'monic_Phi': statement re-copied from the declaration of monic_Phi; child 'degree_Phi': statement re-copied from the declaration of degree_Phi"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T11:02:24Z"
+}

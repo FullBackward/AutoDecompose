@@ -1,0 +1,17 @@
+{
+  "source_id": "brouwer",
+  "url": "https://github.com/math-xmum/Brouwer",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "math-xmum/Brouwer",
+  "commit": "ae7cd60f7442fdc6d41d4e39e692bbcda8f1a0d0",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T11:38:58Z",
+  "how_found": "discovery-1: A-lean, B-lean",
+  "note": "Nash equilibrium existence via named chain Scarf -> Brouwer -> Brouwer_Product -> ExistsNashEq; theorem-scale glue over four project theorems, CI",
+  "licence": "MIT",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

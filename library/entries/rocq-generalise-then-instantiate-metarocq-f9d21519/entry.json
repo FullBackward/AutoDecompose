@@ -1,0 +1,190 @@
+{
+  "id": "rocq-generalise-then-instantiate-metarocq-f9d21519",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Confluence of PCUIC reduction, transported to the well-scoped presentation",
+  "intent": "The main theorem `red_confluence` (confluence of the raw reduction `red` on PCUIC terms) is proved with no reduction reasoning in its own proof: the glue transports its two `red` hypotheses into the well-scoped presentation `ws_red`, applies the already-proven confluence of `ws_red`, and transports the two `ws_red` conclusions back to `red`.",
+  "move": "generalise-then-instantiate",
+  "also_known_as": [
+    "transport across a presentation",
+    "prove in the well-scoped presentation, specialise to the raw relation"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "metarocq",
+    "url": "https://github.com/MetaRocq/metarocq",
+    "commit": "51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "pcuic/theories/PCUICConfluence.v",
+      "bytes": 153276,
+      "sha256": "1fe81ffe471fd8e78e579fb5a68c0b81abf50c7e7b84ca161cd8284cb9ee0479",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/PCUICConfluence.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "pcuic/theories/PCUICConfluence.v",
+      "lines": [
+        3936,
+        3944
+      ],
+      "role": "parent",
+      "name": "red_confluence",
+      "excerpt_sha256": "53576a95f2606e832ed5271890fe1cc8b4c75ad080cf5c001b22296044a9e5d4",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/PCUICConfluence.v#L3936-L3944"
+    },
+    {
+      "path": "pcuic/theories/PCUICConfluence.v",
+      "lines": [
+        3927,
+        3934
+      ],
+      "role": "child",
+      "name": "red_ws_red_left",
+      "excerpt_sha256": "628cc837fba1c889f8602865c1b2a7130e8ff359dddedfa4f15ce398e4d71a4e",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/PCUICConfluence.v#L3927-L3934"
+    },
+    {
+      "path": "pcuic/theories/PCUICConfluence.v",
+      "lines": [
+        3916,
+        3923
+      ],
+      "role": "child",
+      "name": "ws_red_confluence",
+      "excerpt_sha256": "b2dd74ff5ed2f2220dec154d5d7198fcb429fc55990d394c1e9c41bb368606e9",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/PCUICConfluence.v#L3916-L3923"
+    },
+    {
+      "path": "pcuic/theories/PCUICConfluence.v",
+      "lines": [
+        3404,
+        3416
+      ],
+      "role": "child",
+      "name": "ws_red_red",
+      "excerpt_sha256": "c6291740329e4ca7b2638e8ef15e9fd2221b80e733f3671b29781ab370e26736",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/PCUICConfluence.v#L3404-L3416"
+    }
+  ],
+  "parent": {
+    "name": "red_confluence",
+    "statement": "Lemma red_confluence {Γ : closed_context} {t : open_term Γ} {u v} :\n    red Σ Γ t u -> red Σ Γ t v ->\n    ∑ v', red Σ Γ u v' * red Σ Γ v v'."
+  },
+  "children": [
+    {
+      "name": "red_ws_red_left",
+      "statement": "Lemma red_ws_red_left {Γ : closed_context} {x : ws_term (shiftnP #|Γ| xpred0)} {y} :\n    red Σ Γ x y -> ∑ prf, ws_red Σ xpred0 Γ x (exist y prf).",
+      "closed_by": "eapply red_ws_red (after `have ony : on_free_vars (shiftnP #|Γ| xpred0) y by eauto with fvs`)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: red Σ Γ x y gives ws_red Σ xpred0 Γ x (exist y prf), returning a proof that the reduct y is well-scoped"
+    },
+    {
+      "name": "ws_red_confluence",
+      "statement": "Lemma ws_red_confluence {Γ t u v} :\n    ws_red Σ xpred0 Γ t u -> ws_red Σ xpred0 Γ t v ->\n    ∑ v', ws_red Σ xpred0 Γ u v' * ws_red Σ xpred0 Γ v v'.",
+      "closed_by": "red1_confluent (one-step confluence of ws_red1), closed by `exists nf; intuition auto`",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: ws_red Σ xpred0 Γ is confluent"
+    },
+    {
+      "name": "ws_red_red",
+      "statement": "Lemma ws_red_red Γ t u :\n    ws_red Σ xpred0 Γ t u ->\n    red Σ Γ t u.",
+      "closed_by": "dependent induction `depind H` on the clos_refl_trans proof, closing its three constructors (uses its own IH `IHclos_refl_trans1`; `Proof using Type`, no wfΣ)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: ws_red Σ xpred0 Γ t u implies red Σ Γ t u"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 6,
+    "glue_lines": 9,
+    "child_lines": [
+      8,
+      8,
+      13
+    ]
+  },
+  "applicability": {
+    "goal_shape": "Confluence (or any closure property) of a raw relation `red` on open terms, when `red` is the same reduction as a well-scoped presentation `ws_red` restricted to terms that carry a proof of an invariant (here `on_free_vars`), and the two presentations are linked by transport lemmas `red ⇒ ws_red` and `ws_red ⇒ red`.",
+    "use_when": "the invariant (well-scopedness) is preserved by the relation, so the transport lemmas are easy and the heavy confluence work can be done once in the well-scoped presentation where a diamond lemma (`red1_confluent`, ultimately `pred1_diamond`) is available.",
+    "avoid_when": "the invariant does not hold on the raw relation's range or is not preserved by reduction, so `red_ws_red_left` cannot be stated; or when the transport lemmas are themselves as hard as the target, in which case there is no saving from the round-trip."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "`red_confluence` is declared in `pcuic/theories/PCUICConfluence.v` within lines 3936-3944.",
+      "evidence_kind": "check",
+      "form": "declared(red_confluence, pcuic/theories/PCUICConfluence.v, 3936-3944)",
+      "evidence": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/PCUICConfluence.v#L3936-L3944"
+    },
+    {
+      "n": 2,
+      "claim": "No `admit`, `Admitted`, `Axiom` or `axiom` token occurs in `pcuic/theories/PCUICConfluence.v` lines 3404-3944.",
+      "evidence_kind": "check",
+      "form": "no_sorry(pcuic/theories/PCUICConfluence.v, 3404-3944)",
+      "evidence": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/PCUICConfluence.v#L3404-L3944"
+    },
+    {
+      "n": 3,
+      "claim": "`red1_confluent` occurs in the site `ws_red_confluence`.",
+      "evidence_kind": "check",
+      "form": "cites(ws_red_confluence, red1_confluent)",
+      "evidence": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/PCUICConfluence.v#L3916-L3923"
+    },
+    {
+      "n": 4,
+      "claim": "The theorem-scale shape is: 3 direct lemmas (`red_ws_red_left`, `ws_red_confluence`, `ws_red_red`), a longest project-lemma chain of depth 6 below `red_confluence`, a 9-line parent site and child sites of 8, 8 and 13 lines.",
+      "evidence_kind": "measurement",
+      "evidence": "depth counted by following the citations: red_confluence→ws_red_confluence (L3942)→red1_confluent (L3921)→pred_rel_confluent (L3709)→pred1_rel_alpha_confluent (L3269)→diamond_pred1_rel_alpha (L3263)→ws_pred1_diamond (L3246); site lengths at https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/PCUICConfluence.v#L3404-L3944"
+    },
+    {
+      "n": 5,
+      "claim": "The file header states the plan: confluence is shown on well-scoped terms (`ws_red_confluence`) and `red_confluence` then follows by dropping the free-variable invariants.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/PCUICConfluence.v#L11-L18 — 'we use confluence of reduction on well-scoped terms [ws_red_confluence] … We can drop the invariants on free variables at each step as reduction preserves free-variables, so we also have [red_confluence]: as long as the starting contexts and terms are well-scoped confluence holds.'"
+    }
+  ],
+  "metrics": {
+    "glue_proof_lines": 4,
+    "direct_children": 3,
+    "children_closed_by_Qed": 3,
+    "how_counted": "glue proof = lines 3940-3943 of the parent site (the four tactic lines between `Proof` and `Qed`); children = the three child sites, each ending in `Qed`"
+  },
+  "consequences": "The move relies on the invariant being preserved by reduction: `red_ws_red_left` must recover `on_free_vars … y` for the reduct `y`, which holds only because reduction preserves free variables (discharged by `eauto with fvs`). The parent is therefore restricted to a well-scoped starting term (`t : open_term Γ`); a raw term outside that presentation cannot be transported. The glue is only as good as the well-scoped confluence `ws_red_confluence`, which itself rests on the deep parallel-reduction diamond `pred1_diamond` (imported from `PCUICParallelReductionConfluence`); any strengthening of the reduction relation has to be re-proven there, not in this glue.",
+  "known_uses": [
+    "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/PCUICConfluence.v#L3706-L3719 (red1_confluent transports through ws_red_red / red_ws_red)",
+    "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/PCUICConfluence.v#L3721-L3741 (pred_red transports pred1 to red through ws_pair)"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 14,
+    "relation": "supports"
+  },
+  "content_key": "f9d2151905721cc7ec43a5649fa8f1ce39e9e128e4da63724774ac9465db842d",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:11:19Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,shape,applicability,claims,metrics,consequences,known_uses,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:14:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:14:29Z",
+      "note": "parent red_confluence: statement re-copied from code; child 'red_ws_red_left': statement re-copied from the declaration of red_ws_red_left; child 'ws_red_confluence': statement re-copied from the declaration of ws_red_confluence; child 'ws_red_red': statement re-copied from the declaration of ws_red_red"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T12:21:16Z"
+}

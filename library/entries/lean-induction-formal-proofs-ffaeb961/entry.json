@@ -1,0 +1,299 @@
+{
+  "id": "lean-induction-formal-proofs-ffaeb961",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Fin.induction along an opcode execution path for the Stwo AIR soundness lemma (exec_sound)",
+  "intent": "Reduce the Stwo AIR soundness lemma to a path of opcode steps: obtain an execution path (exec_path), then prove that the step relation NextState holds along it by Fin.induction, each step closed by the per-step soundness lemma exec_step_sound whose side conditions are built one-per-named-lemma.",
+  "move": "induction",
+  "also_known_as": [
+    "Fin.induction",
+    "step induction over an execution path"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "formal-proofs",
+    "url": "https://github.com/starkware-libs/formal-proofs",
+    "commit": "d0dd8279612a248cbc6bf6d286030bf0bb2a37ff",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean",
+      "bytes": 30017,
+      "sha256": "26fde0196c65f8014d9f813a0a04765b6bf4d6799d3fe51000cac2dc1b55c462",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Soundness/ComponentLookupCall.lean",
+      "bytes": 71576,
+      "sha256": "1dc28e792a67a2e7dd849e648b047b3bf90356e8def888949bc9886e10a35cba",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/ComponentLookupCall.lean"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Soundness/OpcodeLookupCall.lean",
+      "bytes": 18824,
+      "sha256": "12cc2fd8ad47fb56f77362cda1a4fd67e7139b219c9a80c8202a0fb773f390a4",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/OpcodeLookupCall.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean",
+      "lines": [
+        405,
+        497
+      ],
+      "role": "parent",
+      "name": "exec_sound",
+      "excerpt_sha256": "1dc508d311ec729e76a4c2814c4d67a399ec3c432c5af3da034454399c614957",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean#L405-L497"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean",
+      "lines": [
+        272,
+        315
+      ],
+      "role": "child",
+      "name": "exec_path",
+      "excerpt_sha256": "c0ac914ff1f8556cfe32f531af700e8d171e317887351b23bbe17634081a77c9",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean#L272-L315"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean",
+      "lines": [
+        317,
+        403
+      ],
+      "role": "child",
+      "name": "exec_step_sound",
+      "excerpt_sha256": "8e876bbe3b61398472971f97c6a8438810d49853d80d60afd063756d95db6c84",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean#L317-L403"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Soundness/ComponentLookupCall.lean",
+      "lines": [
+        317,
+        349
+      ],
+      "role": "child",
+      "name": "UseAgree_of_RelLookupsAgree",
+      "excerpt_sha256": "bdeeccb3b52b82278abeff030a21ff0dc570813d2f318f28de699cdf1f4dfc6e",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/ComponentLookupCall.lean#L317-L349"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Soundness/ComponentLookupCall.lean",
+      "lines": [
+        471,
+        501
+      ],
+      "role": "child",
+      "name": "VerifyInstrYieldAgrees_of_agree_and_satisfy",
+      "excerpt_sha256": "140c7c1c87297abde8759932266b9b4f68f2aa8bdd88a330071340cba8c91b3c",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/ComponentLookupCall.lean#L471-L501"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Soundness/ComponentLookupCall.lean",
+      "lines": [
+        726,
+        738
+      ],
+      "role": "child",
+      "name": "OpcodeStatesAgree_of_lookups_agree",
+      "excerpt_sha256": "a983f436b67aed1f645d764ee6381df0c69824471cf8638ef8655d4385b6ebd3",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/ComponentLookupCall.lean#L726-L738"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Soundness/ComponentLookupCall.lean",
+      "lines": [
+        1186,
+        1208
+      ],
+      "role": "child",
+      "name": "memory_assign_MemYieldsAgreeAndRangeChecked_of_agrees",
+      "excerpt_sha256": "3c6f28bb10411c6e334c200ce8feedc71c4215977f764fa1e37db501ea8f406c",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/ComponentLookupCall.lean#L1186-L1208"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Soundness/ComponentLookupCall.lean",
+      "lines": [
+        1327,
+        1350
+      ],
+      "role": "child",
+      "name": "range_checked_yields_of_range_check_assign",
+      "excerpt_sha256": "3764620d7ffd86b509dcce3c585d64bc145700983e385d78bfdd84447163cd53",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/ComponentLookupCall.lean#L1327-L1350"
+    },
+    {
+      "path": "Stwo/Verification/AirInfra/Soundness/ComponentLookupCall.lean",
+      "lines": [
+        1506,
+        1541
+      ],
+      "role": "child",
+      "name": "partition_tuples_disjoint_of_rel_in_rel",
+      "excerpt_sha256": "785827f58bf081924fb8a67947f8552f24e090e538e9a18166c86b71c3e4d9fd",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/ComponentLookupCall.lean#L1506-L1541"
+    }
+  ],
+  "parent": {
+    "name": "exec_sound",
+    "statement": "lemma exec_sound [Fact (Nat.Prime Stwo.P)] [Fact (Nat.Prime Felt252Prime)] {t n_s : ℕ}\n\n      {inp : InputData}\n      {pubMemLookups : PublicMem.Lookups}\n      {varAssigns : Component → Array VarAssign}\n\n      (h_pubMem : PublicMem.LookupsAgree inp.mStar pubMemLookups)\n\n      -- Lookups are satisfied\n      (h_satisfied: LookupsSatisfied t n_s NUM_PARTITIONS NUM_LOOKUP_REL_MINUS_ONE partition_lengths rel_partition chain_rels)\n\n      -- Lookups agree with the assignments to the lookup terms\n      (h_use_agree : ∀ rel, RelUseLookupsAgree inp pubMemLookups varAssigns rel (h_satisfied.tuples rel))\n      (h_yield_agree : ∀ rel, RelYieldLookupsAgree inp pubMemLookups varAssigns rel (h_satisfied.tuples rel))\n      -- Memory assignments are functions.\n      (h_is_mem_addr_to_id : IsMemAssign (varAssigns .MemoryAddrToId))\n      (h_is_mem_id_to_value : IsMemAssign (varAssigns .MemoryIdToValue))\n      -- Range check rows are range checked.\n      (h_rc : IsRangeCheckAssign (varAssigns .RangeCheck))\n      -- The constraints of the components are satisfied.\n      (h_components: ComponentsSatisfied varAssigns)\n\n      -- Number of steps\n      (h_num_steps :  (RelLookups inp pubMemLookups varAssigns OPCODE_TRACE_REL_INDEX .use).size ≤ 2^29)\n      (h_state_bound : (initialState inp).strongly_bounded₀ 0) :\n\n    ∃ memAssign : Felt252IdMemoryAssign,\n      ∀ mem : Felt252 → Felt252,\n        memAssign.Agrees mem →\n          Option.FnExtends mem inp.mStar ∧\n          (initialState inp = finalState inp ∨\n              ∃ n : Nat, n < (RelLookups inp pubMemLookups varAssigns OPCODE_TRACE_REL_INDEX .use).size\n              ∧ ∃ exec : Fin (n + 1) → (Opcode × VarAssign),\n                (∀ i, (exec i).2 ∈ varAssigns (.Opcode (exec i).1))\n                ∧ OpcodeInStateVal (exec 0) = initialState inp\n                ∧ OpcodeOutStateVal (exec (Fin.last n)) = finalState inp\n                ∧ (∀ i : Fin n, OpcodeOutStateVal (exec i.castSucc)  = OpcodeInStateVal (exec i.succ))\n                ∧ ∀ i : Fin (n + 1),\n                  (OpcodeOutStateVal (exec i)).strongly_bounded (i.val + 1) ∧\n                  NextState mem (OpcodeInStateVal (exec i)).toRegisterStateFelt252 (OpcodeOutStateVal (exec i)).toRegisterStateFelt252)"
+  },
+  "children": [
+    {
+      "name": "exec_path",
+      "statement": "lemma exec_path [Fact (Nat.Prime Stwo.P)] {t n_s : ℕ}\n      {values : LookupValues t n_s NUM_PARTITIONS}\n      (h_constraints : LookupConstraints values)\n      {partition : LookupPartition values (rel_partition OPCODE_TRACE_REL_INDEX) (rel_lengths OPCODE_TRACE_REL_INDEX)}\n      {h_tuples : RelationTuples partition}\n      (h_disjoint : ∀ i ∈ h_tuples.use_i ∪ h_tuples.yield_i, ∀ j ∉ h_tuples.use_i ∪ h_tuples.yield_i, partition.tuples i ≠ partition.tuples j)\n      (h_bad : NotInBadSet OPCODE_TRACE_REL_INDEX chain_rels h_tuples)\n      (h_inj : (fun (i : {i // i ∈ h_tuples.use_i ∪ h_tuples.yield_i}) => partition.to_all_indxs i).Injective)\n      (h_y : ∀ i ∈ h_tuples.yield_i, values.m (partition.to_all_indxs i) = -1)\n      (inp : InputData)\n      (varAssigns : Opcode → Array VarAssign)\n      (h_agree : OpcodeStatesAgree inp h_tuples varAssigns) :\n    initialState inp = finalState inp ∨\n    ∃ n : Nat, n < (OpcodeStatePairVals varAssigns).size\n      ∧ ∃ path : Fin (n + 1) → (Opcode × VarAssign),\n        (∀ i, (path i).2 ∈ varAssigns (path i).1)\n        ∧ OpcodeInStateVal (path 0) = initialState inp\n        ∧ OpcodeOutStateVal (path (Fin.last n)) = finalState inp\n        ∧ ∀ i : Fin n, OpcodeOutStateVal (path i.castSucc)  = OpcodeInStateVal (path i.succ)",
+      "closed_by": "cases cycle_through_state_pairs h_constraints h_disjoint h_bad h_inj h_y inp varAssigns h_agree; in the inr case, rcases opcode_path_of_tuple_path h_path_mem to obtain the opcode path, each conjunct closed by CasmStateValTuple_inj",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: initialState = finalState or there is a path of opcode steps from the initial to the final state (analyst gloss)"
+    },
+    {
+      "name": "exec_step_sound",
+      "statement": "lemma exec_step_sound [Fact (Nat.Prime Stwo.P)] [Fact (Nat.Prime Felt252Prime)] {t n_s : ℕ}\n      {o : Opcode}\n      {v : VarAssign}\n      -- memory\n      {memAssign : Felt252IdMemoryAssign}\n      {mem : Felt252 → Felt252}\n      (h_mem_agrees : memAssign.Agrees mem)\n      -- Lookups\n      {h_satisfied : LookupsSatisfied t n_s NUM_PARTITIONS NUM_LOOKUP_REL_MINUS_ONE partition_lengths rel_partition chain_rels}\n      -- opcode constraints\n      (h_opcode_satisfied : (OpcodeAirFns o).1.SatisfiedBy v)\n      -- Terms agree\n      (h_lookup_terms_agree : (OpcodeAirFns o).2.1.UseAgree v h_satisfied.values h_satisfied.partitions h_satisfied.tuples)\n      -- other relations\n      (h_rc : RangeCheckYields h_satisfied.values (h_satisfied.tuples RANGE_CHECK_REL_INDEX))\n      (h_mem : AirLookupTerms.MemYieldsAgreeAndRangeChecked memAssign h_satisfied.values\n          (h_satisfied.tuples RANGE_CHECK_REL_INDEX)\n          (h_satisfied.tuples MEMORY_ADDR_TO_ID_REL_INDEX)\n          (h_satisfied.tuples MEMORY_ID_TO_VALUE_REL_INDEX))\n      (h_verify_instr : AirLookupTerms.VerifyInstrYieldAgrees h_satisfied.tuples)\n      (num_steps : Nat)\n      (h_num_steps : num_steps < 2 ^ 29) :\n      (OpcodeInStateVal (o, v)).strongly_bounded₀ num_steps →\n        (OpcodeOutStateVal (o, v)).strongly_bounded (num_steps + 1)\n          ∧ NextState mem (OpcodeInStateVal (o, v)).toRegisterStateFelt252 (OpcodeOutStateVal (o, v)).toRegisterStateFelt252",
+      "closed_by": "cases o; each opcode case applies its per-opcode sound lemma (GenericOpcode.sound_generic, CallOpcode.sound_call_rel, ..., MulOpcode.Mul252Opcode.sound_mul_252)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: one opcode step maps a strongly_bounded0 input to a strongly_bounded output and a NextState transition (analyst gloss)"
+    },
+    {
+      "name": "UseAgree_of_RelLookupsAgree",
+      "statement": "lemma UseAgree_of_RelLookupsAgree [Fact (Nat.Prime Stwo.P)] {t n_s : ℕ}\n      {inp : InputData}\n      {pubMemLookups : PublicMem.Lookups}\n      {varAssigns : Component → Array VarAssign}\n      {values : LookupValues t n_s NUM_PARTITIONS}\n      {partitions : (p : Fin (NUM_PARTITIONS + 1)) → LookupPartition values p (partition_lengths p)}\n      {tuples : (k : Fin (NUM_LOOKUP_REL_MINUS_ONE + 1)) → RelationTuples (partitions (rel_partition k))}\n      (h_agree : ∀ rel, RelUseLookupsAgree inp pubMemLookups varAssigns rel (tuples rel)) :\n    ∀ c, ∀ v ∈ varAssigns c, (ComponentLookupCall c).2.UseAgree v values partitions tuples",
+      "closed_by": "intro t h_t_mem h_t_use; rw [use_mem_iff_mem, h_agree t.rel]; exhibits t.eval v as the witness; simp",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: per-relation use agreement lifts to ComponentLookupCall UseAgree for every component assignment (analyst gloss)"
+    },
+    {
+      "name": "VerifyInstrYieldAgrees_of_agree_and_satisfy",
+      "statement": "lemma VerifyInstrYieldAgrees_of_agree_and_satisfy [Fact (Nat.Prime Stwo.P)] {t n_s : ℕ}\n      {inp : InputData}\n      {pubMemLookups : PublicMem.Lookups}\n      (varAssigns : Component → Array VarAssign)\n      {values : LookupValues t n_s NUM_PARTITIONS}\n      {partitions : (p : Fin (NUM_PARTITIONS + 1)) → LookupPartition values p (partition_lengths p)}\n      {tuples : (k : Fin (NUM_LOOKUP_REL_MINUS_ONE + 1)) → RelationTuples (partitions (rel_partition k))}\n      (h_components: ComponentsSatisfied varAssigns)\n      (h_use_agree : ∀ rel, RelUseLookupsAgree inp pubMemLookups varAssigns rel (tuples rel))\n      (h_agree : RelYieldLookupsAgree inp pubMemLookups varAssigns VERIFY_INSTR_REL_INDEX (tuples VERIFY_INSTR_REL_INDEX)) :\n    AirLookupTerms.VerifyInstrYieldAgrees tuples",
+      "closed_by": "unfold AirLookupTerms.VerifyInstrYieldAgrees; rcases mem_VerifyInstrLookups; use h_components .VerifyInstr v h_v_mem and UseAgree_of_RelLookupsAgree h_use_agree",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: verify-instruction yield agreement follows from the yield agreement and the satisfied component (analyst gloss)"
+    },
+    {
+      "name": "OpcodeStatesAgree_of_lookups_agree",
+      "statement": "lemma OpcodeStatesAgree_of_lookups_agree [Fact (Nat.Prime Stwo.P)] {t n_s : Nat}\n      {inp: InputData}\n      {pubMemLookups : PublicMem.Lookups}\n      {varAssigns : Component → Array VarAssign}\n      {values : LookupValues t n_s NUM_PARTITIONS}\n      {partition : LookupPartition values (rel_partition OPCODE_TRACE_REL_INDEX) (rel_lengths OPCODE_TRACE_REL_INDEX)}\n      (h_tuples : RelationTuples partition)\n      (h_use_agree : RelUseLookupsAgree inp pubMemLookups varAssigns OPCODE_TRACE_REL_INDEX h_tuples)\n      (h_yield_agree : RelYieldLookupsAgree inp pubMemLookups varAssigns OPCODE_TRACE_REL_INDEX h_tuples) :\n    OpcodeStatesAgree inp h_tuples (OpcodeVarAssigns varAssigns)",
+      "closed_by": "constructor; exact InOpcodeStatesAgree_of_RelUseLookupsAgree h_use_agree; exact OutOpcodeStatesAgree_of_RelYieldLookupsAgree h_yield_agree",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: opcode state agreement follows from the use and yield lookups agreement (analyst gloss)"
+    },
+    {
+      "name": "memory_assign_MemYieldsAgreeAndRangeChecked_of_agrees",
+      "statement": "lemma memory_assign_MemYieldsAgreeAndRangeChecked_of_agrees [Fact (Nat.Prime Stwo.P)] {t n_s : ℕ}\n      {inp : InputData}\n      {pubMemLookups : PublicMem.Lookups}\n      (varAssigns : Component → Array VarAssign)\n      {values : LookupValues t n_s NUM_PARTITIONS}\n      {partitions : (p : Fin (NUM_PARTITIONS + 1)) → LookupPartition values p (partition_lengths p)}\n      {tuples : (k : Fin (NUM_LOOKUP_REL_MINUS_ONE + 1)) → RelationTuples (partitions (rel_partition k))}\n      (h_use_agree : ∀ rel, RelUseLookupsAgree inp pubMemLookups varAssigns rel (tuples rel))\n      (h_yield_agree : ∀ rel, RelYieldLookupsAgree inp pubMemLookups varAssigns rel (tuples rel))\n      (h_is_mem_addr_to_id : IsMemAssign (varAssigns .MemoryAddrToId))\n      (h_is_mem_id_to_value : IsMemAssign (varAssigns .MemoryIdToValue)) :\n      AirLookupTerms.MemYieldsAgreeAndRangeChecked\n        (MemAssignFromVarAssigns (varAssigns .MemoryAddrToId) (varAssigns .MemoryIdToValue))\n        values\n        (tuples RANGE_CHECK_REL_INDEX)\n        (tuples MEMORY_ADDR_TO_ID_REL_INDEX)\n        (tuples MEMORY_ID_TO_VALUE_REL_INDEX)",
+      "closed_by": "unfold AirLookupTerms.MemYieldsAgreeAndRangeChecked; constructor; use memory_assign_addr_to_id_of_mem_yields_agree ...; use memory_assign_id_to_value_of_mem_yields_agree ...; use memory_assign_addr_range_checked_of_agrees ...; exact memory_assign_value_range_checked_of_agrees ...",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the memory assignment satisfies MemYieldsAgreeAndRangeChecked from the memory agree and range-check hypotheses (analyst gloss)"
+    },
+    {
+      "name": "range_checked_yields_of_range_check_assign",
+      "statement": "lemma range_checked_yields_of_range_check_assign [Fact (Nat.Prime Stwo.P)] {t n_s : ℕ}\n      {inp : InputData}\n      {pubMemLookups : PublicMem.Lookups}\n      (varAssigns : Component → Array VarAssign)\n      {values : LookupValues t n_s NUM_PARTITIONS}\n      {partitions : (p : Fin (NUM_PARTITIONS + 1)) → LookupPartition values p (partition_lengths p)}\n      {tuples : (k : Fin (NUM_LOOKUP_REL_MINUS_ONE + 1)) → RelationTuples (partitions (rel_partition k))}\n      (h_yield_agree : ∀ rel, RelYieldLookupsAgree inp pubMemLookups varAssigns rel (tuples rel))\n      (h_rc : IsRangeCheckAssign (varAssigns .RangeCheck)) :\n    RangeCheckYields _ (tuples RANGE_CHECK_REL_INDEX)",
+      "closed_by": "rcases mem_RangeCheckYieldLookups'; rw [h_tuple, p_tuple_one_eq_tuple_zero, p_tuple_two_eq_tuple_one]; exact h_rc i h_i_lt",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: range-check yields are range checked from the range-check assignment (analyst gloss)"
+    },
+    {
+      "name": "partition_tuples_disjoint_of_rel_in_rel",
+      "statement": "lemma partition_tuples_disjoint_of_rel_in_rel [Fact (Nat.Prime Stwo.P)] {t n_s : ℕ}\n      {values : LookupValues t n_s NUM_PARTITIONS}\n      {partitions : (p : Fin (NUM_PARTITIONS + 1)) → LookupPartition values p (partition_lengths p)}\n      {tuples : (k : Fin (NUM_LOOKUP_REL_MINUS_ONE + 1)) → RelationTuples (partitions (rel_partition k))}\n      (covering: RelationsCoverPartitions tuples)\n      {inp : InputData}\n      {pubMemLookups : PublicMem.Lookups}\n      {varAssigns : Component → Array VarAssign}\n      (h_use_agree : ∀ rel, RelUseLookupsAgree inp pubMemLookups varAssigns rel (tuples rel))\n      (h_yield_agree : ∀ rel, RelYieldLookupsAgree inp pubMemLookups varAssigns rel (tuples rel)) :\n    ∀ k, ∀ i ∈ (tuples k).use_i ∪ (tuples k).yield_i,\n      ∀ j ∉ (tuples k).use_i ∪ (tuples k).yield_i, (partitions (rel_partition k)).tuples i ≠ (partitions (rel_partition k)).tuples j",
+      "closed_by": "rcases covering (rel_partition k) j; use partition_tuple_mem_RelLookupTuples ...; derive h_0_eq_k and h_0_eq_k_j and close by contradiction",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: tuples in the use/yield set differ from those outside it, for each relation (analyst gloss)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A reachability/soundness goal of the form 'initial = final ∨ ∃ path of length n, (∀ i, path i ∈ V) ∧ path 0 = initial ∧ path (last n) = final ∧ (∀ i < n, path i.castSucc ~> path i.succ)', where the step obligation (~> = NextState, plus a bound) is uniform over the path index.",
+    "use_when": "a uniform per-step lemma already exists or can be stated (here exec_step_sound over an opcode); the path is obtained from an existence lemma (exec_path) so the induction only has to discharge the step relation; the induction variable is the path index i : Fin (n + 1) with a strong Fin.induction that gives an induction hypothesis at i.castSucc.",
+    "avoid_when": "the step obligation varies along the path, so no single per-step lemma applies and a case split replaces the induction; there is no path-existence lemma and the induction must itself construct the path (a different, existence argument); the per-step lemma is not yet proved, so the induction reduces to an unclosed leaf."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "exec_sound is declared at Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:405-497.",
+      "evidence_kind": "check",
+      "form": "declared(exec_sound, Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean, 405-497)",
+      "evidence": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean#L405-L497"
+    },
+    {
+      "n": 2,
+      "claim": "exec_step_sound occurs in the parent exec_sound.",
+      "evidence_kind": "check",
+      "form": "cites(exec_sound, exec_step_sound)",
+      "evidence": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean#L405-L497"
+    },
+    {
+      "n": 3,
+      "claim": "No sorry/admit/axiom token occurs in Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:405-497.",
+      "evidence_kind": "check",
+      "form": "no_sorry(Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean, 405-497)",
+      "evidence": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean#L405-L497"
+    },
+    {
+      "n": 4,
+      "claim": "exec_sound is assembled from 9 named lemmas: its glue is the 93-line site FinalSoundness.lean:405-497 and the Fin.induction applies exec_step_sound twice, at line 481 (zero) and line 486 (succ).",
+      "evidence_kind": "measurement",
+      "evidence": "Counted by reading FinalSoundness.lean:405-497. The 9 named lemmas referenced in the proof body (lines 444-497) are VerifyInstrYieldAgrees_of_agree_and_satisfy, UseAgree_of_RelLookupsAgree, OpcodeStatesAgree_of_lookups_agree, memory_assign_MemYieldsAgreeAndRangeChecked_of_agrees, range_checked_yields_of_range_check_assign, partition_tuples_disjoint_of_rel_in_rel, mem_extends_pub_mem, exec_path, exec_step_sound; the two applications of exec_step_sound are at lines 481 and 486."
+    },
+    {
+      "n": 5,
+      "claim": "The theorem trace_sound (FinalSoundness.lean:499-573), the file's trace-level soundness theorem, consumes exec_sound via `rcases exec_sound ...` at line 532.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean#L499-L573"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 9,
+    "depth": 5,
+    "glue_lines": 93,
+    "child_lines": [
+      44,
+      87,
+      33,
+      31,
+      13,
+      23,
+      24,
+      36
+    ]
+  },
+  "metrics": {
+    "glue_lines": 93,
+    "direct_lemmas": 9,
+    "children_shown": 8,
+    "induction_applications": 2,
+    "how_counted": "glue_lines = the parent site FinalSoundness.lean:405-497 (declaration + proof, 93 lines); direct_lemmas = the named lemmas referenced in the proof body (lines 444-497); induction_applications = the zero and succ uses of exec_step_sound at lines 481 and 486"
+  },
+  "consequences": "Creates one obligation per path position, all closed by the same per-step lemma exec_step_sound. The induction hypothesis must be exactly the boundedness predicate of the previous step (strongly_bounded₀ num_steps → strongly_bounded (num_steps + 1)), so the succ case composes through CasmStateVal.strongly_bounded₀_of_strongly_bounded. The zero case needs the initial bound (h_state_bound) transferred through h_path_start; the succ case needs h_path_succ to connect the previous output to the current input. Failure mode: if the per-step lemma's input/output bounds do not match the induction-hypothesis shape, the succ case cannot use ih.1.",
+  "known_uses": [
+    "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean#L499-L573",
+    "lean-per-callee-lemma-formal-proofs-4f0e8f5a"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "ffaeb96183f0d8634a917bfc4f10479eb32f0786a56e32e63e08937b7ca44198",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:12:07Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:13:23Z",
+      "note": "parent exec_sound: statement re-copied from code; child 'exec_path': statement re-copied from the declaration of exec_path; child 'exec_step_sound': statement re-copied from the declaration of exec_step_sound; child 'UseAgree_of_RelLookupsAgree': statement re-copied from the declaration of UseAgree_of_RelLookupsAgree; child 'VerifyInstrYieldAgrees_of_agree_and_satisfy': statement re-copied from the declaration of VerifyInstrYieldAgrees_of_agree_and_satisfy; child 'OpcodeStatesAgree_of_lookups_agree': statement re-copied from the declaration of OpcodeStatesAgree_of_lookups_agree; child 'memory_assign_MemYieldsAgreeAndRangeChecked_of_agrees': statement re-copied from the declaration of memory_assign_MemYieldsAgreeAndRangeChecked_of_agrees; child 'range_checked_yields_of_range_check_assign': statement re-copied from the declaration of range_checked_yields_of_range_check_assign; child 'partition_tuples_disjoint_of_rel_in_rel': statement re-copied from the declaration of partition_tuples_disjoint_of_rel_in_rel"
+    },
+    {
+      "field": "known_uses",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "discovery-1",
+      "at": "2026-11-14T13:28:12Z",
+      "note": "added lean-per-callee-lemma-formal-proofs-4f0e8f5a: the next level down of the same proof (its parent exec_step_sound is this entry's child); not a duplicate"
+    }
+  ]
+}

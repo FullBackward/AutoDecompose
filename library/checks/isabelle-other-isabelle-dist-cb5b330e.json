@@ -1,0 +1,125 @@
+{
+  "entry": "isabelle-other-isabelle-dist-cb5b330e",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:52:29Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:52:29Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:52:30Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: ccbrt@src/HOL/ex/Cubic_Quartic.thy:95, cubic_reduction@src/HOL/ex/Cubic_Quartic.thy:121, cubic_basic@src/HOL/ex/Cubic_Quartic.thy:129; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:52:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(cubic, 50) -> lines: site cubic has 50 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:52:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(cubic, cubic_reduction) -> cites: cubic_reduction occurs at src/HOL/ex/Cubic_Quartic.thy:121",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:52:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(cubic, cubic_basic) -> cites: cubic_basic occurs at src/HOL/ex/Cubic_Quartic.thy:129",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:52:30Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 34ca456d44ca14641450b5d52f51b38688d4d1b5",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:52:40Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "mirror-isabelle has no CI workflow file (no .github/workflows, no Jenkinsfile); Isabelle's continuous build is the external testboard (Jenkins), not a workflow file inside the repository, so there is no workflow path to cite that builds src/HOL/ex/Cubic_Quartic.thy on the default branch",
+      "by": "verifier",
+      "at": "2026-11-14T10:53:33Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "checked copied file src/HOL/ex/Cubic_Quartic.thy: cubic site lines 88-137 = 50 lines; ccbrt lines 15-27 = 13; cubic_reduction lines 32-48 = 17; cubic_basic lines 53-83 = 31. cubic proof cites exactly three project lemmas: cubic_reduction (rule cubic_reduction, line 121), cubic_basic (from cubic_basic[OF th0], line 129), ccbrt (simp add: ... ccbrt, lines 130/132); power2_csqrt is a library fact. None of the three children cites another project lemma (ccbrt uses rcis_Ex/DeMoivre2/someI_ex/ccbrt_def; cubic_reduction and cubic_basic use only field_simps/algebra/power2_eq_square), so depth = 1.",
+      "by": "verifier",
+      "at": "2026-11-14T10:53:36Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "checked copied file src/HOL/ex/Cubic_Quartic.thy: line 30 = 'text <open>The reduction to a simpler form:</close>', line 51 = 'text <open>The solutions of the special form:</close>', line 86 = 'text <open>Explicit formula for the roots:</close>' — the three stage labels exactly as quoted.",
+      "by": "verifier",
+      "at": "2026-11-14T10:53:37Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent cubic (88-137), children ccbrt (15-27), cubic_reduction (32-48), cubic_basic (53-83) and context ccbrt-def (13) match the copied file verbatim; closing methods match the code (ccbrt: rcis_Ex/DeMoivre2/someI_ex; cubic_reduction: field_simps then algebra; cubic_basic: cases p=0 then (simp add: field_simps) algebra); glue cites all three (cubic_reduction@121, cubic_basic@129, ccbrt as simp rule@128/132); no sorry/oops in any site and parent ends done/qed; the only other declaration quartic (142) is unrelated and unused, so the three children are exactly the lemmas the main proof uses; shape numbers correct: parent 50 lines (88-137), children 13/17/31, direct_lemmas 3, depth 1 (no child cites another project lemma).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:55:07Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generally: 'When to use it' and applicability.use_when abstract to any target equation with an invertible change of variable to a normal form whose solution plus its witness are stateable as standalone lemmas with no reference to the original goal, not just the cubic. 'When not to use' is honest and specific (one-way/implication reduction, normal form needing the original hypotheses, non-trivial transfer). Consequences name three concrete obligations and a real failure mode (branch condition p=0 vs a*(c*3)=b^2 mismatch breaking the final cases) plus the SOME-witness under-determination. Leaves: README explicitly says each child is a good leaf because its proof closes without referencing any other project lemma, i.e. a bounded hole for an independent prover.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:55:50Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 34ca456d44ca14641450b5d52f51b38688d4d1b5",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:56:11Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance check passes (1 file byte-identical at 34ca456d44ca14641450b5d52f51b38688d4d1b5). Commit hash identical across entry.json source.commit, README, SOURCE.md, source.json and all five site/file permalinks. Licence BSD-3-Clause recorded consistently and matches upstream-COPYRIGHT (3-clause BSD text). Source note lists repo, commit, licence and COPYRIGHT attribution. Cited line ranges resolve to claimed content: L13 ccbrt def, L15 ccbrt lemma, L30/51/86 the three stage labels, L88 lemma cubic, L137 qed.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:56:42Z"
+    }
+  ]
+}

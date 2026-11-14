@@ -1,0 +1,202 @@
+{
+  "id": "rocq-per-callee-lemma-compcert-6decbbae",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Forward simulation of the inlining pass assembled from four per-obligation lemmas",
+  "intent": "Reduce the semantics-preservation theorem of the RTL inlining pass to the four named obligations of a forward simulation (symbol environment, initial states, final states, and the step-simulation diagram), each proved as its own lemma, so the headline theorem is a five-line glue.",
+  "move": "per-callee-lemma",
+  "also_known_as": [
+    "per-pass simulation lemma",
+    "forward-simulation record discharged field by field"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "compcert",
+    "url": "https://github.com/AbsInt/CompCert",
+    "commit": "2685140bf72c959446981fb99b5e44a8975021bc",
+    "licence": "LicenseRef-INRIA-Non-Commercial"
+  },
+  "files": [
+    {
+      "path": "backend/Inliningproof.v",
+      "bytes": 49274,
+      "sha256": "a5a81b893ebe5285e991d04e00526e2a40d8817151d483a453705a3e8cd9887f",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/Inliningproof.v"
+    },
+    {
+      "path": "common/Smallstep.v",
+      "bytes": 74444,
+      "sha256": "3279079eafb097a919f1e774a44200a59017a7f7edc665cc708b30c026c3e1b3",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/common/Smallstep.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "backend/Inliningproof.v",
+      "lines": [
+        1253,
+        1261
+      ],
+      "role": "parent",
+      "name": "transf_program_correct",
+      "excerpt_sha256": "bd0d12dc9aeff0f387b463f063ad89ebb6f76e8b810f608f1deea16512617607",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/Inliningproof.v#L1253-L1261"
+    },
+    {
+      "path": "backend/Inliningproof.v",
+      "lines": [
+        41,
+        43
+      ],
+      "role": "child",
+      "name": "senv_preserved",
+      "excerpt_sha256": "e3c41e497b21c2058679846b41cbb169abfa4fe159690a8fb4ccb13bb8565553",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/Inliningproof.v#L41-L43"
+    },
+    {
+      "path": "backend/Inliningproof.v",
+      "lines": [
+        1226,
+        1242
+      ],
+      "role": "child",
+      "name": "transf_initial_states",
+      "excerpt_sha256": "7bd4eddfb2f3032d07797fe98cd5a42250a2c7055b3cad40881b6e4c5d71a9cf",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/Inliningproof.v#L1226-L1242"
+    },
+    {
+      "path": "backend/Inliningproof.v",
+      "lines": [
+        1244,
+        1251
+      ],
+      "role": "child",
+      "name": "transf_final_states",
+      "excerpt_sha256": "5ddb07f08205e18121691b39ba2875cdd71a10276c76582e7d852c5383db1be2",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/Inliningproof.v#L1244-L1251"
+    },
+    {
+      "path": "backend/Inliningproof.v",
+      "lines": [
+        874,
+        1224
+      ],
+      "role": "child",
+      "name": "step_simulation",
+      "excerpt_sha256": "822907858bbb5dde1ba926c5d2cee0330ce3438532f99cf943334f6b10080802",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/Inliningproof.v#L874-L1224"
+    },
+    {
+      "path": "common/Smallstep.v",
+      "lines": [
+        617,
+        695
+      ],
+      "role": "context",
+      "name": "forward_simulation_star",
+      "excerpt_sha256": "816e40638f86f2cad32a22da589a71b4eb01f442626e61bb5bff0c17567c2819",
+      "permalink": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/common/Smallstep.v#L617-L695"
+    }
+  ],
+  "parent": {
+    "name": "transf_program_correct",
+    "statement": "Theorem transf_program_correct:\n  forward_simulation (semantics prog) (semantics tprog)."
+  },
+  "children": [
+    {
+      "name": "senv_preserved",
+      "statement": "Lemma senv_preserved:\n  Senv.equiv ge tge.",
+      "closed_by": "exact (Genv.senv_match TRANSF)"
+    },
+    {
+      "name": "transf_initial_states",
+      "statement": "Lemma transf_initial_states:\n  forall st1, initial_state prog st1 -> exists st2, initial_state tprog st2 /\\ match_states st1 st2.",
+      "closed_by": "function_ptr_translated, (Genv.init_mem_match TRANSF), symbols_preserved, sig_function_translated, match_stacks_nil, Genv.initmem_inject"
+    },
+    {
+      "name": "transf_final_states",
+      "statement": "Lemma transf_final_states:\n  forall st1 st2 r,\n  match_states st1 st2 -> final_state st1 r -> final_state st2 r.",
+      "closed_by": "match_stacks_empty, match_stacks_inside_empty"
+    },
+    {
+      "name": "step_simulation",
+      "statement": "Theorem step_simulation:\n  forall S1 t S2,\n  step ge S1 t S2 ->\n  forall S1' (MS: match_states S1 S1'),\n  (exists S2', plus step tge S1' t S2' /\\ match_states S2 S2')\n  \\/ (measure S2 < measure S1 /\\ t = E0 /\\ match_states S2 S1')%nat.",
+      "closed_by": "induction on the step relation, then one case per RTL instruction; each case by tr_funbody_inv plus the match_stacks_* / agree_* / Mem.inject lemmas"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A simulation theorem forward_simulation (semantics prog) (semantics tprog) for one compiler pass (more generally, a goal whose head is a record or inductive with a small fixed set of fields).",
+    "use_when": "The target is a forward_simulation with a fixed set of obligations (symbol environment, initial states, final states, simulation diagram) that can each be stated and proved independently, and the simulation relation plus a well-founded measure can be fixed up front.",
+    "avoid_when": "The obligations share substantial auxiliary state that would have to be re-derived in each lemma (then the lemmas are not self-contained); the simulation relation is still unstable while the diagram is being proved; the record has many or unknown fields."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "transf_program_correct is declared at backend/Inliningproof.v lines 1253-1261.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/Inliningproof.v#L1253-L1261",
+      "form": "declared(transf_program_correct, backend/Inliningproof.v, 1253-1261)"
+    },
+    {
+      "n": 2,
+      "claim": "No admit, Admitted or Axiom occurs in the step_simulation range backend/Inliningproof.v lines 874-1224.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/backend/Inliningproof.v#L874-L1224",
+      "form": "no_sorry(backend/Inliningproof.v, 874-1224)"
+    },
+    {
+      "n": 3,
+      "claim": "direct_lemmas = 4 and glue_lines = 9: the glue names four lemmas (senv_preserved, transf_initial_states, transf_final_states, step_simulation) in five tactic lines (1256-1260) inside a nine-line parent site (1253-1261), while the four children span 3, 17, 8 and 351 lines.",
+      "evidence_kind": "measurement",
+      "evidence": "line counts in the copied file backend/Inliningproof.v at commit 2685140bf72c959446981fb99b5e44a8975021bc: parent site 1253-1261 (9 lines) with proof body 1256-1260 (5 lines); child sites 41-43 (3), 1226-1242 (17), 1244-1251 (8), 874-1224 (351)."
+    },
+    {
+      "n": 4,
+      "claim": "The authors frame the star-simulation obligation as a distinct concept the lemmas discharge: 'Simulation when one transition in the first program corresponds to zero, one or several transitions in the second program.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/AbsInt/CompCert/blob/2685140bf72c959446981fb99b5e44a8975021bc/common/Smallstep.v#L637-L641 (in the context site common/Smallstep.v 617-695)"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 3,
+    "glue_lines": 9,
+    "child_lines": [
+      3,
+      17,
+      8,
+      351
+    ]
+  },
+  "metrics": {
+    "glue_body_lines": 5,
+    "child_lines_total": 379,
+    "how_counted": "parent site 1253-1261 (9 lines, declaration included; proof body lines 1256-1260); child sites 41-43, 1226-1242, 1244-1251, 874-1224 (3 + 17 + 8 + 351 = 379)."
+  },
+  "consequences": "The move creates one obligation per field of the simulation record, each closed by a named lemma. Three are small (3, 17, 8 lines); the step-simulation diagram is the real content (351 lines) and needs a well-founded measure (measure, lines 860-865). The glue eapply forward_simulation_star fixes the diagram shape (a plus/star simulation with a measure), so the simulation lemma must be stated in exactly that shape; if the diagram cannot be put in that shape the glue does not apply. A failure mode: a pass whose step-simulation needs the same large machinery as its initial/final lemmas ends up with one giant lemma rather than four.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "6decbbaec1e072571a4ef9ad5e84fcb54fcf6cff0d160b19460f74284214f23e",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:07:10Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:09:25Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:15:38Z"
+}

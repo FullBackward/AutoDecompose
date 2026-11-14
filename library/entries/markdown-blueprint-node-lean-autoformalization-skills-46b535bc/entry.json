@@ -1,0 +1,218 @@
+{
+  "id": "markdown-blueprint-node-lean-autoformalization-skills-46b535bc",
+  "kind": "skill",
+  "status": "draft",
+  "title": "Model a proof faithfully as a dependency graph of step nodes (blueprint node)",
+  "intent": "Prescribe how to turn a root theorem's proof into a source-level dependency graph: the root is author-frozen before its proof, the proof is modelled as a conjunction of substantive step nodes consumed through a DEPS edge set, and the glue is the edges, one direct-use locator per edge — so a later Lean orchestrator gets a checked skeleton with one bounded, independently failing obligation per step.",
+  "move": "blueprint-node",
+  "also_known_as": [
+    "proof dependency graph",
+    "source-level proof graph",
+    "step-node decomposition",
+    "direct-use dependency edge"
+  ],
+  "language": "markdown",
+  "source": {
+    "source_id": "lean-autoformalization-skills",
+    "url": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills",
+    "commit": "1837b95b3d5a9fd8d311367603902ad7fe261adf",
+    "licence": "CC-BY-4.0"
+  },
+  "files": [
+    {
+      "path": "skills/build-proof-dependency-graph/SKILL.md",
+      "bytes": 18642,
+      "sha256": "236f48c6f28249a8a471ac521395c94b65a678631e22a3460a9dcd209396d5f4",
+      "permalink": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/build-proof-dependency-graph/SKILL.md"
+    },
+    {
+      "path": "skills/build-proof-dependency-graph/assets/DEPGRAPH.template.md",
+      "bytes": 6429,
+      "sha256": "d3dcafd06ec6c18cf0bcdcf332128b38b2f248884e994177eb67d3fa4a5722ff",
+      "permalink": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/build-proof-dependency-graph/assets/DEPGRAPH.template.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": "skills/build-proof-dependency-graph/SKILL.md",
+      "lines": [
+        184,
+        234
+      ],
+      "role": "parent",
+      "name": "model-the-proof-faithfully",
+      "excerpt_sha256": "3fec9fa1c38a85b4955563ce14112d7b7926d7c66e407adadeacbc9da8557101",
+      "permalink": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/build-proof-dependency-graph/SKILL.md#L184-L234"
+    },
+    {
+      "path": "skills/build-proof-dependency-graph/SKILL.md",
+      "lines": [
+        191,
+        196
+      ],
+      "role": "child",
+      "name": "step-node-nontrivial-estimate-or-construction",
+      "excerpt_sha256": "8b8810105134cceec8eda508bb6d30f7af5d3d9b3479319810e02574e06c1439",
+      "permalink": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/build-proof-dependency-graph/SKILL.md#L191-L196"
+    },
+    {
+      "path": "skills/build-proof-dependency-graph/SKILL.md",
+      "lines": [
+        191,
+        196
+      ],
+      "role": "child",
+      "name": "step-node-case-split-or-witness-choice",
+      "excerpt_sha256": "8b8810105134cceec8eda508bb6d30f7af5d3d9b3479319810e02574e06c1439",
+      "permalink": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/build-proof-dependency-graph/SKILL.md#L191-L196"
+    },
+    {
+      "path": "skills/build-proof-dependency-graph/SKILL.md",
+      "lines": [
+        191,
+        196
+      ],
+      "role": "child",
+      "name": "step-node-theorem-application",
+      "excerpt_sha256": "8b8810105134cceec8eda508bb6d30f7af5d3d9b3479319810e02574e06c1439",
+      "permalink": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/build-proof-dependency-graph/SKILL.md#L191-L196"
+    },
+    {
+      "path": "skills/build-proof-dependency-graph/SKILL.md",
+      "lines": [
+        191,
+        196
+      ],
+      "role": "child",
+      "name": "step-node-quantifier-closure-or-carrier-change",
+      "excerpt_sha256": "8b8810105134cceec8eda508bb6d30f7af5d3d9b3479319810e02574e06c1439",
+      "permalink": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/build-proof-dependency-graph/SKILL.md#L191-L196"
+    },
+    {
+      "path": "skills/build-proof-dependency-graph/SKILL.md",
+      "lines": [
+        191,
+        196
+      ],
+      "role": "child",
+      "name": "step-node-reused-intermediate-claim",
+      "excerpt_sha256": "8b8810105134cceec8eda508bb6d30f7af5d3d9b3479319810e02574e06c1439",
+      "permalink": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/build-proof-dependency-graph/SKILL.md#L191-L196"
+    }
+  ],
+  "parent": null,
+  "children": [
+    {
+      "name": "step-node-nontrivial-estimate-or-construction",
+      "statement": "a step node for a nontrivial estimate or construction — one of the substantive proof-step kinds the threshold names as \"a nontrivial estimate, construction\" (SKILL.md lines 192-193), created because omitting it would hide \"a plausible Lean lemma or an independently failing obligation\" (lines 191-192).",
+      "closed_by": "the step's own proof, supplied by the later Lean orchestrator; this source-extraction skill only records the node and makes no claim that the proof is complete (SKILL.md lines 10-11)."
+    },
+    {
+      "name": "step-node-case-split-or-witness-choice",
+      "statement": "a step node for a case split or a parameter/witness choice — named in the threshold's examples as \"case split, parameter or witness choice\" (SKILL.md line 193).",
+      "closed_by": "the step's own proof, supplied by the later Lean orchestrator; the skill records the node and does not prove it (SKILL.md lines 10-11)."
+    },
+    {
+      "name": "step-node-theorem-application",
+      "statement": "a step node for an application of a theorem — named in the threshold's examples as \"theorem application\" (SKILL.md lines 193-194).",
+      "closed_by": "the applied theorem plus its premise-discharge steps; the skill records the node and does not prove it (SKILL.md lines 10-11)."
+    },
+    {
+      "name": "step-node-quantifier-closure-or-carrier-change",
+      "statement": "a step node for a quantifier closure or a carrier change — named in the threshold's examples as \"quantifier closure, carrier change\" (SKILL.md line 194).",
+      "closed_by": "the step's own proof, supplied by the later Lean orchestrator; the skill records the node and does not prove it (SKILL.md lines 10-11)."
+    },
+    {
+      "name": "step-node-reused-intermediate-claim",
+      "statement": "a step node for a reused intermediate claim — named in the threshold's examples as \"reused intermediate claim\" (SKILL.md line 194).",
+      "closed_by": "the intermediate claim's own proof, supplied by the later Lean orchestrator; the skill records the node and does not prove it (SKILL.md lines 10-11)."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A proof of a root theorem (an author-frozen, one-declaration anchor) that must be turned into a machine-checked dependency graph for a later Lean orchestrator, where the proof is line-addressable source (LaTeX or Markdown) and each substantive step can become one node.",
+    "use_when": "you must trace a proof's dependencies at source level without deciding whether any theorem is proved; the root is already frozen as an exact Lean declaration (Phase 0, SKILL.md lines 63-107); you want a bounded number of lemma-sized step nodes per proof, each an independently failing obligation, plus explicit leaf nodes for standing assumptions and external results.",
+    "avoid_when": "you are inspecting implementation Lean code or deciding whether a theorem is proved (the skill forbids this, SKILL.md lines 16-21); the step is routine algebra or a purely syntactic rewrite that changes no hypothesis, constant, carrier or quantifier strength (lines 195-196); or there is no author-frozen root anchor to root the graph."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site names `DEPS`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/build-proof-dependency-graph/SKILL.md#L184-L234",
+      "form": "cites(model-the-proof-faithfully, DEPS)"
+    },
+    {
+      "n": 2,
+      "claim": "`DEPS` occurs 4 times in the SKILL.md file.",
+      "evidence_kind": "check",
+      "evidence": "counted by check_claims.py over code/skills/build-proof-dependency-graph/SKILL.md at the pinned commit",
+      "form": "count(DEPS, 4, skills/build-proof-dependency-graph/SKILL.md)"
+    },
+    {
+      "n": 3,
+      "claim": "The recorded theorem-scale shape is direct_lemmas = 5 (the five step-node kinds the site enumerates), depth = 1 (each step node is a direct leaf of the root and none depends on another), glue_lines = 51 (the parent site, SKILL.md lines 184-234), and child_lines = [6, 6, 6, 6, 6] (each child site is the threshold paragraph, lines 191-196).",
+      "evidence_kind": "measurement",
+      "evidence": "counted on the copied file: the parent site SKILL.md 184-234 spans 51 lines; each of the five child sites spans SKILL.md 191-196 (6 lines); the five step-node kinds are enumerated together in one sentence (lines 192-194) as sibling leaves below the root, with no step-node-to-step-node edge in the site, hence depth = 1."
+    },
+    {
+      "n": 4,
+      "claim": "The skill states the step-node threshold in its own words: \"Create a step node when omitting the step would hide a plausible Lean lemma or an independently failing obligation\", and excludes routine steps: \"Do not create nodes for routine algebra or purely syntactic rewrites unless they change hypotheses, constants, carriers, or quantifier strength\".",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/build-proof-dependency-graph/SKILL.md#L191-L196"
+    },
+    {
+      "n": 5,
+      "claim": "The skill keeps proof topology out of the statement: \"Keep source-statement fields and proof topology separate. `DEPS` names results the source proof consumes; it never enlarges `SOURCE_HYPOTHESES`\", and \"Never use an edge to launder proof content into a statement\".",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/1837b95b3d5a9fd8d311367603902ad7fe261adf/skills/build-proof-dependency-graph/SKILL.md#L229-L234"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 5,
+    "depth": 1,
+    "glue_lines": 51,
+    "child_lines": [
+      6,
+      6,
+      6,
+      6,
+      6
+    ]
+  },
+  "metrics": {
+    "parent_lines": 51,
+    "children": 5,
+    "child_lines_each": 6,
+    "children_closed_by_automation": 0,
+    "how_counted": "parent_lines = span of the parent site (SKILL.md 184-234); children = the five step-node kinds the threshold paragraph (191-196) enumerates, each given a child site of 6 lines; the skill is source-extraction only, so no child is closed here — the later Lean orchestrator closes them."
+  },
+  "consequences": "Creates obligations: every substantive step must become a node with a stable ID and statement/proof locators; every DEPS or ROUTES entry needs one EDGE record with a direct-use locator (the glue, SKILL.md lines 186-189 and the EDGE schema in DEPGRAPH.template.md); standing assumptions and external results must be explicit leaf nodes (lines 215-218). Failure modes the skill names: adding a prerequisite merely because it appears earlier in the paper (lines 186-187); putting alternatives in one comma-separated DEPS list instead of separate ROUTE nodes (lines 208-211); turning a theorem-local premise into a node (lines 220-221); and laundering proof content into a statement — DEPS must never enlarge SOURCE_HYPOTHESES (lines 229-234).",
+  "known_uses": [
+    "lean-blueprint-node-flt-regular-5f4403ff"
+  ],
+  "related": [
+    "markdown-workflow-lean-autoformalization-skills-a0f54ad1",
+    "lean-blueprint-node-flt-regular-5f4403ff"
+  ],
+  "rule": {
+    "f10_rule": 4,
+    "relation": "supports"
+  },
+  "content_key": "46b535bcca495e64439619e6bf139c26a9c09c5ea2edf44387c93a08ea56bd28",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:54:52Z"
+    },
+    {
+      "field": "intent,also_known_as,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:00:00Z"
+    }
+  ]
+}

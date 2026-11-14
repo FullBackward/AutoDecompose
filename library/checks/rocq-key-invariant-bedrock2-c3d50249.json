@@ -1,0 +1,149 @@
+{
+  "entry": "rocq-key-invariant-bedrock2-c3d50249",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:35:11Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:35:11Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:35:11Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: run1_get_sane@compiler/src/compiler/RiscvEventLoop.v:109, runsTo_safe1_inv@compiler/src/compiler/RiscvEventLoop.v:111, run_Jal0@compiler/src/compiler/RiscvEventLoop.v:119, runsToStep@compiler/src/compiler/RiscvEventLoop.v:115, runsToDone@compiler/src/compiler/RiscvEventLoop.v:128; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:35:11Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, runsTo_safe1_inv) -> cites: runsTo_safe1_inv occurs at compiler/src/compiler/RiscvEventLoop.v:111",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:35:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(compiler/src/compiler/RiscvEventLoop.v, 104-152) -> no_sorry: none of admit, Admitted, Axiom, axiom in compiler/src/compiler/RiscvEventLoop.v:104-152",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:35:12Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "5 file(s) byte-identical at b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:35:23Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/coq-docker.yml (and debian.yml, alpine.yml) run 'make -k' at the repo root on default branch master; the top-level Makefile 'all' target builds 'compiler_ex' -> 'make -C compiler', which compiles compiler/src/compiler/RiscvEventLoop.v. Pinned commit b4ec84bc is on master (2 commits behind master tip fdf045fd).",
+      "by": "verifier",
+      "at": "2026-11-14T10:36:58Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Checked copied code: parent glue RiscvEventLoop.v 104-152 = 49 lines (Lemma at 104, Qed at 152); run1_get_sane GoFlatToRiscv.v 79-97 = 19 lines; runsTo_safe1_inv ForeverSafe.v 108-120 = 13 lines; run_Jal0 RunInstruction.v 363-374 = 12 lines. Glue cites five named lemmas: run1_get_sane (L108), runsTo_safe1_inv (L110), runsToStep (L115), run_Jal0 (L119), runsToDone (L128). runsTo_safe1_inv cites run_pong at ForeverSafe.v L117, and run_pong is at 78-87. Depth-2 chain confirmed.",
+      "by": "verifier",
+      "at": "2026-11-14T10:40:48Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "refuted",
+      "evidence": "ToplevelLoop parts check out in copied code: L160 'Definition ll_inv: MetricRiscvMachine -> Prop := runsToGood_Invariant ll_good iset.' and L418-422 'Lemma ll_inv_is_invariant' with 'eapply runsToGood_is_Invariant'. But the end2end part does not: End2EndPipeline.v (fetched raw at b4ec84bc) line ~315 is 'specialize_first P1 (ll_inv compile_ext_call ml spec).' — ll_inv applied to three args (compile_ext_call ml spec), and CompilerInvariant.v uses 'll_inv compile_ext_call ml spec st'. That 3-argument ll_inv is not ToplevelLoop's 1-argument 'runsToGood_Invariant ll_good iset', so 'end2end threads the same ll_inv' is wrong.",
+      "by": "verifier",
+      "at": "2026-11-14T10:40:50Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:42:52Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: run1_get_sane@compiler/src/compiler/RiscvEventLoop.v:109, runsTo_safe1_inv@compiler/src/compiler/RiscvEventLoop.v:111, run_Jal0@compiler/src/compiler/RiscvEventLoop.v:119, runsToStep@compiler/src/compiler/RiscvEventLoop.v:115, runsToDone@compiler/src/compiler/RiscvEventLoop.v:128; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:42:53Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "5 file(s) byte-identical at b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:43:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Checked copied ToplevelLoop.v: line 160 'Definition ll_inv: MetricRiscvMachine -> Prop := runsToGood_Invariant ll_good iset.' and line 418 'Lemma ll_inv_is_invariant: forall (st: MetricRiscvMachine), ll_inv st -> GoFlatToRiscv.mcomp_sat (run1 iset) st ll_inv.' whose proof eapply's runsToGood_is_Invariant at line 422. Both match the claim exactly.",
+      "by": "verifier",
+      "at": "2026-11-14T10:43:36Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent runsToGood_is_Invariant (RiscvEventLoop.v 104-152) matches its entry statement and closes with Qed (no sorry/admit). Glue cites exactly five named lemmas/constructors: run1_get_sane@109, runsTo_safe1_inv@111, runsToStep@115, run_Jal0@119, runsToDone@128; the other cited names (body_correct, goodReadyState_*_checks_PC/preserved_by_jump_back/implies_jump_back_instr) are Section Hypotheses (RiscvEventLoop.v 60-95), not lemmas, so they are correctly not children. All three project-child statements and closing methods match code: run1_get_sane GoFlatToRiscv.v 79-97 (pose proof run1_sane; proj2; eapply mcomp_sat_weaken), runsTo_safe1_inv ForeverSafe.v 108-120 (destruct R; done case run_1_2+run_pong, step case mcomp_sat_weaken; the earlier 89-105 attempt ends Succeed Qed. Abort. and is outside the cited site), run_Jal0 RunInstruction.v 363-374 (get_run1_valid_for_free; invert_ptsto_program1; t0). Shape numbers correct: glue_lines 49 (104-152), child_lines [19,13,12] (79-97, 108-120, 363-374), direct_lemmas 5, depth 2 via runsTo_safe1_inv->run_pong (ForeverSafe.v 78-87, cited at 117).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:45:53Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalises beyond the example: 'When to use it' frames it as a natural one-step formulation over an 'eventually reaches P' relation with per-instruction lemmas already proved elsewhere, and avoid_when gives three concrete negative conditions (invariant needs induction over the loop body; per-instruction lemmas absent; step not expressible as a single run1). Consequences are honest and specific, naming code-tied obligations (discharge valid_machine on step and stop) and failure modes (stuck at goodReadyState_preserved_by_jump_back; jimm20 mod 4 = 0 / footprint subset). 'Why each child is a good leaf' answers the bounded-prover question: each leaf is self-contained, needs nothing from the parent, and closes by a small finite set of facts (proj2+mcomp_sat_weaken; case-split+run_pong+mcomp_sat_weaken; decode+t0). Honesty: records rule: none and labels the survey-F mapping as 'my reading' (opinion), not a claim.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:46:44Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "5 file(s) byte-identical at b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:47:01Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent and traceable. check_provenance.py passes: 5 files byte-identical at b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b. All permalinks pin that commit with correct paths; line anchors verified against the copied files via sed: RiscvEventLoop.v 99-100 (context) and 104-152 (parent), GoFlatToRiscv.v 79-97, ForeverSafe.v 108-120, RunInstruction.v 363-374, ToplevelLoop.v 160 and 418-422. Licence MIT is consistent across entry.json, README, source.json and upstream-LICENSE (MIT text). bedrock2/SOURCE.md matches the entry's commit and licence.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:47:34Z"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "source_id": "classfieldtheory",
+  "url": "https://github.com/kbuzzard/ClassFieldTheory",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "kbuzzard/ClassFieldTheory",
+  "commit": "1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T11:39:09Z",
+  "how_found": "discovery-1: A-lean, B-lean",
+  "note": "Clay summer school local and global class field theory formalization with blueprint directory and published blueprint site",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "entry": "rocq-induction-jasmin-dc9a0691",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:36:18Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:36:18Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:36:18Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: it_aux@proofs/compiler/array_init_proof.v:239, add_init_auxP@proofs/compiler/array_init_proof.v:243, cmpl_inv_incl@proofs/compiler/array_init_proof.v:251; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:36:18Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "no_sorry(proofs/compiler/array_init_proof.v, 138-254) -> no_sorry: none of admit, Admitted, Axiom, axiom in proofs/compiler/array_init_proof.v:138-254",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:36:18Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(it_aux, add_init_auxP) -> cites: add_init_auxP occurs at proofs/compiler/array_init_proof.v:188",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:36:18Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 211aa617685e0a0b074646fc27c85d017aced9cb",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:36:29Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".gitlab-ci.yml coq-proof job runs 'make -C proofs', which builds proofs/_CoqProject including compiler/array_init_proof.v (and it_compiler_proof.v); pinned commit 211aa617685e0a0b074646fc27c85d017aced9cb is the tip of main (default branch, compare main...commit = identical)",
+      "by": "verifier",
+      "at": "2026-11-14T12:38:38Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "grep add_init_auxP in code/proofs/compiler/array_init_proof.v: 3 matches at lines 156 (Lemma declaration), 188 (inside it_aux), 243 (inside parent it_add_init_callP) — matches 'used twice below the parent'",
+      "by": "verifier",
+      "at": "2026-11-14T12:38:39Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "code/proofs/compiler/it_compiler_proof.v line 615 reads 'apply: wiequiv_f_trans_EE_EU; first exact: it_add_init_callP.' — matches the quoted chain step exactly",
+      "by": "verifier",
+      "at": "2026-11-14T12:38:39Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 211aa617685e0a0b074646fc27c85d017aced9cb",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:38:59Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Provenance pass (3 files byte-identical at 211aa617685e). Read the cited ranges in the local copies: parent it_add_init_callP (200-254) applies cmd_rect and cites all three children (it_aux@239, add_init_auxP@243, cmpl_inv_incl@251,253); closing methods match the code (it_aux -> apply add_init_auxP@188 then wkequivP'@189; add_init_auxP -> elim Sv.elements@164, wequiv_cat@170/wequiv_assign_right@171; cmpl_inv_incl -> SvD.fsetdec@141). No admit/Admitted/Axiom in 138-254; parent ends Qed@254. Shape numbers verified: direct_lemmas=3, depth=2 (parent->it_aux->add_init_auxP), glue_lines=55 (200-254), child_lines=[16,26,5] (=183-198,156-181,138-142). known-use line 615 in it_compiler_proof.v confirmed (apply: ...; first exact: it_add_init_callP).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:40:29Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality is stated beyond the example: applicability/use_when give 'syntax-directed pass -> induction follows the definition', 'invariant = relation indexed by a live-variable set', and the per-pass pattern (one induction theorem per pass in a simulation chain). avoid_when is specific and honest (non-local effect, invariant not indexable by syntax, constructors needing divergent reasoning). Consequences are accurate against the code: cmd_rect yields 10 goals (nil+cons+8 instrs, verified in lines 230-253), the 1-4,6-8 dispatch closes 7 (line 239), Cif splits into two branch subgoals weakened by cmpl_inv_incl (lines 249-253). Good leaves for a bounded prover are stated: self-contained statements that close on their own or from a sibling, with short proofs (cmpl_inv_incl by fsetdec alone, add_init_auxP by a short elim + two wequiv lemmas) and child_lines 5/26/16. Minor imprecision, not an objection: the 'reads and writes overlapping variables' example of a differing effect is off, since it_aux already unions write_i/read_i so overlap is handled; a differing effect is really exemplified by Cif (recursion).",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:42:12Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit 211aa617685e0a0b074646fc27c85d017aced9cb is consistent across entry.json, source.json, SOURCE.md and every permalink. Licence MIT is recorded in entry.json, source.json and SOURCE.md and the upstream-LICENSE copy is a genuine MIT licence. All three copied files' sha256 match entry.json exactly; every cited line range (138-142 cmpl_inv_incl, 156 add_init_auxP, 183 it_aux, 200-254 it_add_init_callP, it_compiler_proof.v:615) points to the declared statement.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:42:50Z"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "entry": "rocq-generalise-then-instantiate-vellvm-6f3de6ee",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:27:07Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:27:07Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:27:08Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: I2F_interpreter_gen@src/rocq/Theory/I2F/I2F_toplevel.v:462, I2F_build_main_args@src/rocq/Theory/I2F/I2F_toplevel.v:462; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:27:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(I2F_interpreter_param, src/rocq/Theory/I2F/I2F_toplevel.v, 455-463) -> declared: I2F_interpreter_param is declared at src/rocq/Theory/I2F/I2F_toplevel.v:455",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:27:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, I2F_interpreter_gen) -> cites: I2F_interpreter_gen occurs at src/rocq/Theory/I2F/I2F_toplevel.v:462",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:27:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, I2F_build_main_args) -> cites: I2F_build_main_args occurs at src/rocq/Theory/I2F/I2F_toplevel.v:462",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:27:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "no_sorry(src/rocq/Theory/I2F/I2F_toplevel.v, 231-463) -> no_sorry: none of admit, Admitted, Axiom, axiom in src/rocq/Theory/I2F/I2F_toplevel.v:231-463",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:27:08Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at e25dad9af33281b2edd3c16c027f3717546a09d7",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:27:16Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/vellvm.yml (Vellvm Compilation Test) triggers on push to main (default branch) and builds rocq-vellvm.opam via 'make -C src all', which compiles src/rocq/Theory/I2F/I2F_toplevel.v; pinned commit e25dad9af33281b2edd3c16c027f3717546a09d7 is on the default branch",
+      "by": "verifier",
+      "at": "2026-11-14T12:28:47Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Checked copied code src/rocq/Theory/I2F/I2F_toplevel.v: parent site L455-463 is 9 lines (Theorem I2F_interpreter_param, L462 'apply I2F_interpreter_gen, I2F_build_main_args.'); child I2F_interpreter_gen L437-453 is 17 lines (L452 'now apply I2F_denote_vellvm.'); child I2F_build_main_args L231-239 is 9 lines; I2F_denote_vellvm declared at L404 and applies I2F_denote_mcfg at L428 -> chain I2F_interpreter_param -> I2F_interpreter_gen -> I2F_denote_vellvm -> I2F_denote_mcfg is depth 3; 2 direct lemmas and site lengths 9/17/9 all match",
+      "by": "verifier",
+      "at": "2026-11-14T12:28:49Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent I2F_interpreter_param (455-463) is proved by 'apply I2F_interpreter_gen, I2F_build_main_args', and interpreter_param is defined (TopLevel.v:328-332) as interpreter_gen (DTYPE_I 32) (Name main) (build_main_args args) prog, so the general-then-instantiate decomposition is exactly as stated. Children are verbatim: I2F_interpreter_gen (437-453) and I2F_build_main_args (231-239), and their closed_by matches the code (gen: eapply I2F_interp_mcfg_bind; apply I2F_initial_FusedS; now apply I2F_denote_vellvm; build_main_args: rbind I2F_dvalue; apply I2F_allocate_args; apply ruttc_ret; repeat constructor; auto). Both close with Qed; the glue's apply leaves exactly the I2F_build_main_args conclusion as the remaining premise, so it closes. The parent uses exactly these two lemmas. Shape numbers correct: glue_lines=9 (455-463), child_lines=[17,9] (437-453, 231-239), direct_lemmas=2, depth=3 (param->gen->denote_vellvm at 404-433 -> I2F_denote_mcfg applied at 428).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:29:59Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated beyond the example: applicability.goal_shape, use_when/avoid_when, and the 'When to use it, and when not' section generalise to 'any pure specialisation of a general refinement' rather than I2F alone; the saving criterion ('general statement no harder than special; instance helper easy') is concrete and matched by the code (arg_gen1/2 appear only as opaque values, the relation hypothesis being the sole premise). When-not-to-use is specific (three conditions: not a plain instantiation; premise as hard as target; hypothesis hard to discharge at the single use site) and honest; consequences name the single obligation, the fragility if the top-level did anything after interpreter_gen, and the strength limit (only as strong as I2F_interpreter_gen's dependencies). Good leaves are explained: each child closes from named siblings and never mentions the other child, so each is an independent bounded-prover hole (verified against sed of I2F_toplevel.v 231-239, 437-463 and TopLevel.v 313-332). Minor nit outside this lens: intent says 'one tactic line' while the glue is two (intros; apply).",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:31:00Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at e25dad9af33281b2edd3c16c027f3717546a09d7",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:31:26Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent and traceable. check_provenance passes: 2 files byte-identical at e25dad9af33281b2edd3c16c027f3717546a09d7. Commit hash is identical across entry.json, README, source.json and SOURCE.md; all four site permalinks and both file permalinks pin the same commit and the cited line ranges (I2F_toplevel.v 231-239, 437-453, 455-463; TopLevel.v 313-332) reproduce the copied excerpts verbatim. Licence recorded as MIT in entry.json/README/source.json, and sources/vellvm/upstream-LICENSE.md (copied from LICENSE.md at the pinned commit) is the MIT text. Source note names the same commit and MIT licence.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:31:52Z"
+    }
+  ]
+}

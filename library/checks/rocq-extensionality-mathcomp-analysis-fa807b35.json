@@ -1,0 +1,133 @@
+{
+  "entry": "rocq-extensionality-mathcomp-analysis-fa807b35",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:00:21Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:00:21Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:00:21Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: giry_int_map@theories/lebesgue_integral_theory/giry.v:380, giry_int_join@theories/lebesgue_integral_theory/giry.v:381, measurable_giry_ev@theories/lebesgue_integral_theory/giry.v:380; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:00:21Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(giry_joinA, giry_int_map) -> cites: giry_int_map occurs at theories/lebesgue_integral_theory/giry.v:380",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:00:21Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(giry_joinA, giry_int_join) -> cites: giry_int_join occurs at theories/lebesgue_integral_theory/giry.v:381",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:00:21Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(giry_joinA, measurable_giry_ev) -> cites: measurable_giry_ev occurs at theories/lebesgue_integral_theory/giry.v:380",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:00:21Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at eca10f89bd852201c8148ff2f597c7c7346d6df2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:00:28Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/nix-action-master.yml builds the mathcomp-analysis package with nix-build; _CoqProject lists theories/lebesgue_integral_theory/giry.v; commit eca10f89bd852201c8148ff2f597c7c7346d6df2 is on master (default branch)",
+      "by": "verifier",
+      "at": "2026-11-14T10:02:28Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read copied giry.v site spans: parent giry_joinA L375-382 (8 lines); children giry_int_map L201-204 (4), giry_int_join L312-339 (28), measurable_giry_ev L88-96 (9); 3 direct lemmas. Depth chain confirmed: giry_joinA L381 cites giry_int_join; giry_int_join L329 cites sintegral_giry_join; sintegral_giry_join L296-311 cites measurable_giry_ev (L301, L309).",
+      "by": "verifier",
+      "at": "2026-11-14T10:02:31Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read copied giry.v L384-400: giry_join_id1 (L384-392) = move=> A mA/=. then rewrite giry_int_map//; first exact: measurable_giry_ev (plus a giry_int_ret step); giry_join_id2 (L394-400) = by move=> X mS /=; rewrite giry_int_map//; exact: measurable_giry_ev. Both monad laws proved by the same extensionality step with giry_int_map + measurable_giry_ev.",
+      "by": "verifier",
+      "at": "2026-11-14T10:02:33Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at eca10f89bd852201c8148ff2f597c7c7346d6df2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:02:54Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Statements are verbatim copies of the code: parent giry_joinA (giry.v:375-382), children giry_int_map (201-204), giry_int_join (312-339), measurable_giry_ev (88-96) all match entry.json and README exactly. Parent proof (378-382) cites exactly these three children and closes (Qed at 382), with move=> A mA the extensionality step and both sides reduced to giry_int x (giry_ev ^~ A) by the two integral lemmas; side conditions closed by measurable_giry_ev and //. Closing methods match: giry_int_map = exact: ge0_integral_pushforward (204); giry_int_join = transitivity chain via monotone_convergence/eq_integral using sintegral_giry_join (329) and measurable_giry_int (332); measurable_giry_ev = measurability/sigma_algebra_measurable/sub_gen_smallest/bigcup_sup (92-95). Shape numbers correct: 3 direct lemmas, glue 8 lines (375-382), child_lines [4,28,9] = [201-204, 312-339, 88-96]; depth 3 confirmed by chain giry_joinA->giry_int_join->sintegral_giry_join->measurable_giry_ev (sintegral_giry_join cites measurable_giry_ev at 301,306). Children are exactly the lemmas the main proof uses; no extra or missing lemma. Provenance: byte-identical at commit eca10f89.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:03:42Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated beyond the example: applicability/use_when generalise to 'equality pointwise on measurable sets (measure_eq) + sides differ in monadic nesting, one generic A reduces each side to the same integral via a pre-proved pushforward/join lemma'. avoid_when and consequences are honest and specific (equality not pointwise-on-measurable-sets; different rewrites per A; integral lemmas not pre-proved -> pointwise goal must be split further; script breaks under a non-measure_eq relation). Leaf-goodness is explicit per child: giry_int_map self-contained 1-line proof closed by library lemma ge0_integral_pushforward; giry_int_join substantial but statement self-contained, closes on named siblings; measurable_giry_ev reusable side-condition leaf cited by both rewrites and the glue. Known-use (claim 5) is genuine: giry_join_id1/id2 at 384-400 reuse move=> A mA/=; rewrite giry_int_map//; exact: measurable_giry_ev.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:04:55Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at eca10f89bd852201c8148ff2f597c7c7346d6df2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:05:16Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance pass (1 file byte-identical at eca10f89bd852201c8148ff2f597c7c7346d6df2); commit, licence CECILL-C and file path consistent across entry.json, source.json, SOURCE.md and every permalink; upstream-LICENCE is CeCILL-C matching the recorded licence; copied-file sha256 ebf43e96... matches entry.json; all line-range permalinks resolve to the matching declarations in the copied giry.v",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:05:48Z"
+    }
+  ]
+}

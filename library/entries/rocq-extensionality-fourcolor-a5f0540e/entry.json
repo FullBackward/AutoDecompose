@@ -1,0 +1,203 @@
+{
+  "id": "rocq-extensionality-fourcolor-a5f0540e",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Pointwise equality of two Real.morphisms into a model (Rmorph_uniq)",
+  "intent": "Prove that there is at most one Real.morphism from a Real.structure S into a Real.model R, by showing any two such morphisms phi, psi agree pointwise in the setoid sense. The proof halves the work by symmetry (wlog), then rules out a strict separation psi x < phi x by interpolating a rational, which morphisms preserve and whose order they reflect.",
+  "move": "extensionality",
+  "also_known_as": [
+    "pointwise equality over a setoid",
+    "uniqueness of a monomorphism (categorical)"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "fourcolor",
+    "url": "https://github.com/math-comp/fourcolor",
+    "commit": "c1d6b1cd5288bea4b067aac13cdde3c18dffe018",
+    "licence": "CECILL-B"
+  },
+  "files": [
+    {
+      "path": "theories/reals/realcategorical.v",
+      "bytes": 15541,
+      "sha256": "f3b7292de07c2dd2dce0e93447f913aca842919564be3cac852a47f8a025e6c3",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/reals/realcategorical.v"
+    },
+    {
+      "path": "theories/reals/realprop.v",
+      "bytes": 32824,
+      "sha256": "41fc66b7a3efca5543fdd53c20f19e6fce90167bc394797e70df6edca0fb795d",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/reals/realprop.v"
+    },
+    {
+      "path": "theories/reals/real.v",
+      "bytes": 12846,
+      "sha256": "65bd08156c3d4612cb2e69b713612b69ef949b0cc77c1c5aeec6052788aa2b6c",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/reals/real.v"
+    },
+    {
+      "path": "theories/reals/realsyntax.v",
+      "bytes": 5427,
+      "sha256": "bf647a84a9c8af0b538a98c8e8907d83d3e39329053b3eba9539be40c8be913b",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/reals/realsyntax.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/reals/realcategorical.v",
+      "lines": [
+        203,
+        211
+      ],
+      "role": "parent",
+      "name": "Rmorph_uniq",
+      "excerpt_sha256": "6ac0e5cf77b6f30c57564a5c596a08259f4e85d840d9df75ffbfff9854fd2445",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/reals/realcategorical.v#L203-L211"
+    },
+    {
+      "path": "theories/reals/realprop.v",
+      "lines": [
+        338,
+        344
+      ],
+      "role": "child",
+      "name": "reals_classic",
+      "excerpt_sha256": "4ac97afe3f4f47711f60cfeea5b7bc9d4ce1a51cd26038f7e59ae6fb173021cb",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/reals/realprop.v#L338-L344"
+    },
+    {
+      "path": "theories/reals/realprop.v",
+      "lines": [
+        849,
+        863
+      ],
+      "role": "child",
+      "name": "ratR_dense",
+      "excerpt_sha256": "14afe3086f717e59dd4070d735524e626af957c38533b9afe9299916f4947dfe",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/reals/realprop.v#L849-L863"
+    },
+    {
+      "path": "theories/reals/realcategorical.v",
+      "lines": [
+        166,
+        167
+      ],
+      "role": "child",
+      "name": "Rmorph_rat",
+      "excerpt_sha256": "25a01d9eedc236849f2243f03066fec196c341a8832e9b275fa85e54b481b136",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/reals/realcategorical.v#L166-L167"
+    }
+  ],
+  "parent": {
+    "name": "Rmorph_uniq",
+    "statement": "Theorem Rmorph_uniq (S : Real.structure) (R : Real.model) (phi psi : S -> R) :\n    Real.morphism phi -> Real.morphism psi ->\n  pointwise_relation S Real.eq phi psi."
+  },
+  "children": [
+    {
+      "name": "reals_classic",
+      "statement": "Lemma reals_classic : excluded_middle.",
+      "closed_by": "real_sup_total and real_sup_ub / leR_lt_trans (realprop.v:99,96,125), applied to the two-point set {x | x = 0 \\/ P /\\ x = 2}"
+    },
+    {
+      "name": "ratR_dense",
+      "statement": "Lemma ratR_dense x y : x < y -> exists2 a : rat, x < a & a < y.",
+      "closed_by": "find_range1z (realprop.v:844) to locate z^-1 and d1*x in unit ranges, then ltRW / leR_lt_trans and the Archimedean step ltR0Sn"
+    },
+    {
+      "name": "Rmorph_rat",
+      "statement": "Lemma Rmorph_rat a : phi (ratR R a) == ratR S a.",
+      "closed_by": "by rewrite /ratR; case: ifP; rewrite ?phiM ?Rmorph_inv !Rmorph_int."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An equality of two functions phi, psi stated pointwise over a setoid equality that is order-antisymmetry: pointwise_relation S Real.eq phi psi, where phi and psi are both structure-preserving maps (Real.morphism) from a structure S into a model R.",
+    "use_when": "the two maps preserve a dense subset (here the rationals ratR) and reflect the order (Real.morph_le), so a strict inequality between phi x and psi x pulls back to a contradiction; excluded middle is available in the model; and the statement is symmetric in the two maps, so wlog halves the work.",
+    "avoid_when": "the codomain is only a Real.structure, not a Real.model (no excluded middle, no density); the maps do not reflect the order; the equality to prove is intensional (=) rather than the setoid Real.eq; or the two order directions need genuinely different arguments, so the wlog symmetry fails."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "Rmorph_uniq is declared at theories/reals/realcategorical.v, lines 203-205.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/reals/realcategorical.v#L203-L205",
+      "form": "declared(Rmorph_uniq, theories/reals/realcategorical.v, 203-205)"
+    },
+    {
+      "n": 2,
+      "claim": "Rmorph_rat occurs as a whole identifier in the Rmorph_uniq site (theories/reals/realcategorical.v, lines 203-211).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/reals/realcategorical.v#L210",
+      "form": "cites(Rmorph_uniq, Rmorph_rat)"
+    },
+    {
+      "n": 3,
+      "claim": "The Rmorph_uniq site is 9 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/reals/realcategorical.v#L203-L211",
+      "form": "lines(Rmorph_uniq, 9)"
+    },
+    {
+      "n": 4,
+      "claim": "Rmorph_uniq's proof calls three project lemmas directly (reals_classic, ratR_dense, Rmorph_rat), and the longest checked chain of project lemmas below it is Rmorph_rat -> Rmorph_inv -> Rmorph_neq0 -> Rmorph_eq, depth 4.",
+      "evidence_kind": "measurement",
+      "evidence": "realcategorical.v:203-211 (the three calls), realcategorical.v:166-167 (Rmorph_rat), 159-164 (Rmorph_inv), 77-78 (Rmorph_neq0), 50-51 (Rmorph_eq); counted by reading the copied files at commit c1d6b1cd5288bea4b067aac13cdde3c18dffe018"
+    },
+    {
+      "n": 5,
+      "claim": "Rmorph_uniq is reused at realcategorical.v:377 (in Rmorph_to_inv) and realcategorical.v:382 (in Rmorph_to_id).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/reals/realcategorical.v#L375-L382"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 4,
+    "glue_lines": 9,
+    "child_lines": [
+      7,
+      15,
+      2
+    ]
+  },
+  "metrics": {
+    "children": 3,
+    "children_closed_by_project_lemmas": 3,
+    "how_counted": "the three child sites (reals_classic, ratR_dense, Rmorph_rat); each child's proof closes by rewriting with or applying lemmas from the same project, none by an axiom"
+  },
+  "consequences": "The move splits the pointwise equality into the two order directions and discharges both from a single wlog proof of phi x <= psi x. Obligations it creates: excluded middle must be available (reals_classic, derivable from the Real.sup_total axiom, so the codomain must be a Real.model); the rationals must be dense in the model (ratR_dense); and the morphism must both preserve the dense subset (Rmorph_rat) and reflect the order (Real.morph_le) to pull the interpolated rational back to a contradiction. Failure modes: the argument depends on the order being total so that ~(phi x <= psi x) is a strict psi x < phi x, and on the equality being the setoid Real.eq (order antisymmetry) rather than intensional =.",
+  "known_uses": [
+    "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/reals/realcategorical.v#L375-L382"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "a5f0540e660fdd2ab48a5072c03a41037a221ec1b338fb84ea807faf5ddc971b",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:59:14Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:00:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:00:24Z",
+      "note": "parent Rmorph_uniq: statement re-copied from code; child 'reals_classic': statement re-copied from the declaration of reals_classic; child 'ratR_dense': statement re-copied from the declaration of ratR_dense; child 'Rmorph_rat': statement re-copied from the declaration of Rmorph_rat"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:10:32Z"
+}

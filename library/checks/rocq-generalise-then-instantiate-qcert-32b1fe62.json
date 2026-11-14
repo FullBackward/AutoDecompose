@@ -1,0 +1,125 @@
+{
+  "entry": "rocq-generalise-then-instantiate-qcert-32b1fe62",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:54:40Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:54:40Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:54:40Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: nnrc_to_dnnrc_base_correct_lift@compiler/core/Translation/Lang/NNRCtoDNNRC.v:549, rec_sort_unlocalize_constants_comm@compiler/core/Translation/Lang/NNRCtoDNNRC.v:547, wf_cdenv_rec_sort@compiler/core/Translation/Lang/NNRCtoDNNRC.v:548; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:54:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(nnrc_to_dnnrc_base_correct_lift, compiler/core/Translation/Lang/NNRCtoDNNRC.v, 473-485) -> declared: nnrc_to_dnnrc_base_correct_lift is declared at compiler/core/Translation/Lang/NNRCtoDNNRC.v:473",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:54:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, nnrc_to_dnnrc_base_correct_lift) -> cites: nnrc_to_dnnrc_base_correct_lift occurs at compiler/core/Translation/Lang/NNRCtoDNNRC.v:549",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:54:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(compiler/core/Translation/Lang/NNRCtoDNNRC.v, 473-557) -> no_sorry: none of admit, Admitted, Axiom, axiom in compiler/core/Translation/Lang/NNRCtoDNNRC.v:473-557",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:54:40Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at e112de6d7fda1b916244a1feb08bedd7f8a96bc1",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:54:47Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".circleci/config.yml runs 'make -j' which via build -> qcert-compiler -> qcert-coq -> 'make -f Makefile.coq' (coq_makefile over Makefile.coq_modules, which lists Translation/Lang/NNRCtoDNNRC at line 376) compiles the file; commit e112de6d is the head of default branch master",
+      "by": "verifier",
+      "at": "2026-11-14T12:56:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "copied NNRCtoDNNRC.v:549 'apply (nnrc_to_dnnrc_base_correct_lift tt).'; :481 'rewrite <- nnrc_to_dnnrc_base_correct; auto.' (inside nnrc_to_dnnrc_base_correct_lift, decl at 473); :367 'rewrite (nnrc_to_dnnrc_base_get_constant_correct h A plug_type plug annot v ctenv cdenv denv).' (inside nnrc_to_dnnrc_base_correct, decl at 357) — chain of 3 confirmed",
+      "by": "verifier",
+      "at": "2026-11-14T12:56:57Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "fetched NRAEnvtoNNRC.v: Theorem nraenv_to_nnrc_top_correct at 617-636 unfolds nnrc_eval_top/nraenv_eval_top/nraenv_to_nnrc_top and 'rewrite (nraenv_sem_correct ...)'; nraenv_sem_correct declared at line 281 (Theorem nraenv_sem_correct ...)",
+      "by": "verifier",
+      "at": "2026-11-14T12:56:58Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Read local copy code/compiler/core/Translation/Lang/NNRCtoDNNRC.v. Parent nnrc_to_dnnrc_top_correct is exactly lines 532-557 (Theorem at 532, Qed at 557); glue cites all three children and nothing else: apply (nnrc_to_dnnrc_base_correct_lift tt) at 549, rewrite rec_sort_unlocalize_constants_comm at 547, generalize (wf_cdenv_rec_sort ...) at 548, then assumption + wf_denv/trivial closes. Children sites match: base_correct_lift 473-485 (Lemma at 473, Qed 485), rec_sort_unlocalize_constants_comm 497-509, wf_cdenv_rec_sort 511-530; closed_by paraphrases match the code (rewrite <- nnrc_to_dnnrc_base_correct;auto + unfold/destruct; rewrite map_rec_sort; apply same_domain_rec_sort + rewrite assoc_lookupr_drec_sort). Statements in entry.json match declarations verbatim. Shape numbers correct: glue_lines 26 (=532-557), child_lines [13,13,20] (=473-485, 497-509, 511-530), direct_lemmas 3, depth 3 (top_correct -> base_correct_lift:549 -> base_correct:481 -> get_constant_correct:367). No admit/Admitted/Axiom in 473-557; all Qed-terminated, so it closes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:58:10Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generically: applicability.goal_shape gives a reusable template and use_when names annotation/plug types and section variables, not this file's constants; the opinion paragraph distils the transferable rule ('generalise, then pay one commutation lemma per wrapper'). avoid_when and consequences are honest and specific, tied to real facts I confirmed in code/ (rec_sort/unlocalize_constants wrappers at 547, wf_cdenv survives rec_sort at 548, the 115-line induction nnrc_to_dnnrc_base_correct at 357-471 that the top theorem does not cite), and they explicitly undercut the naive 'free' framing. Good-leaf rationale is explicit: each child is a self-contained statement closing by rewrite+auto (473-485), map_rec_sort+reflexivity (497-509), or two library lemmas (511-530), with no manual induction, and the lift lemma packages the big induction behind one identifier.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:59:07Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at e112de6d7fda1b916244a1feb08bedd7f8a96bc1",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:59:26Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit e112de6d7fda1b916244a1feb08bedd7f8a96bc1 is consistent across entry.json, source.json and SOURCE.md (README short form e112de6d7fda is a valid prefix). check_provenance passes: 3 files byte-identical at the pinned commit; local sha256 matches entry.json. All permalinks use the pinned commit with correct paths; line ranges 473-485, 497-509, 511-530, 532-557 verified against the copied file and match the cited declarations/excerpts. Licence Apache-2.0 recorded in entry.json/README/SOURCE.md/source.json and confirmed by upstream-LICENSE (Apache 2.0 text). Source note records repo, commit, licence and attribution. Everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T13:00:01Z"
+    }
+  ]
+}

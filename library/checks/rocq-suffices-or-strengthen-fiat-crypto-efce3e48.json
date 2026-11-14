@@ -1,0 +1,125 @@
+{
+  "entry": "rocq-suffices-or-strengthen-fiat-crypto-efce3e48",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:11:38Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:11:38Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:11:38Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: mulmod_correct0@src/Arithmetic/WordByWordMontgomery.v:1163, eval_from_montgomerymod@src/Arithmetic/WordByWordMontgomery.v:1162; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:11:38Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(mulmod_correct, src/Arithmetic/WordByWordMontgomery.v, 1156-1167) -> declared: mulmod_correct is declared at src/Arithmetic/WordByWordMontgomery.v:1156",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:11:38Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, mulmod_correct0) -> cites: mulmod_correct0 occurs at src/Arithmetic/WordByWordMontgomery.v:1163",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:11:38Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, eval_from_montgomerymod) -> cites: eval_from_montgomerymod occurs at src/Arithmetic/WordByWordMontgomery.v:1162",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:11:38Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "lines(parent, 12) -> lines: site parent has 12 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:11:38Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 3d2880ef2803faa9385589a81a835d5828eb3d38",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:11:45Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/coq-debian.yml (push branches: master, sp2019latest) runs 'etc/ci/github-actions-make.sh -j2 all-except-generated-and-js-of-ocaml'; Makefile target 'coq' (line 169) depends on REGULAR_VOFILES = src/**/*.v from coq_makefile over 'find src -type f -name *.v', which includes src/Arithmetic/WordByWordMontgomery.v (not in SPECIAL_VOFILES/EXCLUDE_PATTERN); pinned commit 3d2880ef is HEAD of default branch master (source.json ref=HEAD)",
+      "by": "verifier",
+      "at": "2026-11-14T10:13:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read byte-identical local copy code/src/Arithmetic/WordByWordMontgomery.v: mulmod_correct0 at 1095-1107 (13 lines, declaration through Qed), eval_from_montgomerymod at 1146-1149 (4 lines), glue mulmod_correct at 1156-1167 (12 lines). Depth-3 chain: eval_from_montgomerymod proof line 1148 'apply from_montgomerymod_correct', whose proof line 1143 'apply mulmod_correct0'. 2 direct lemmas confirmed (glue cites both). All numbers match.",
+      "by": "verifier",
+      "at": "2026-11-14T10:13:05Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Opened the local code copy at the cited ranges. Parent mulmod_correct (1156-1167, 12 lines, Qed at 1167) is exactly as quoted and cites both children: eval_from_montgomerymod at line 1162 (rewrite ?eval_from_montgomerymod) and mulmod_correct0 at 1163 (try apply) and 1166 (apply inside etransitivity). Child mulmod_correct0 (1095-1107, 13 lines) and eval_from_montgomerymod (1146-1149, 4 lines) match the quoted statements verbatim; their closed_by matches the code (small_redc/redc_bound_N/redc_mod_N+t_fin; apply from_montgomerymod_correct; assumption). All three close with Qed. The children are exactly the two project lemmas the glue uses. Shape is right: direct_lemmas 2, glue_lines 12, child_lines [13,4], depth 3 = chain eval_from_montgomerymod(1148)->from_montgomerymod_correct(1136-1144, applies mulmod_correct0 at 1143)->mulmod_correct0, verified in code. No correctness defect found.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:14:30Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated abstractly (operation/raw form/wrapper/rewrite lemma), not just about Montgomery: applicability.goal_shape/use_when/avoid_when generalise to any wrapped operation with a pre-proved raw congruence. When-not-to-use is specific and honest (raw lemma missing; wrapper rewrite not landing on the raw form; validity vs value side needing different arguments; residual f_equal2/lia reassociation), and Consequences admits the glue is not pure rewriting, naming the concrete fix (state raw lemma in the association the wrapper needs, or rewrite !Z.mul_assoc at line 1164). Leaves-good-for-a-bounded-prover is addressed: mulmod_correct0 is self-contained and closes by named prior lemmas + t_fin with no manual arithmetic; eval_from_montgomerymod is a one-line projection of from_montgomerymod_correct; metrics records children_closed_by_automation=2. Code at 1095-1107, 1136-1149, 1156-1167 confirms the cited structure.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:15:09Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 3d2880ef2803faa9385589a81a835d5828eb3d38",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:15:28Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "object",
+      "evidence": "Commit and permalinks are consistent and traceable: check_provenance.py passes (1 file byte-identical at 3d2880ef2803faa9385589a81a835d5828eb3d38), all permalinks/known_uses use that full commit, and the local copy is 66865 bytes. The licence string, however, is not consistent with the licence files it cites: the recorded expression 'Apache-2.0 AND BSD-2-Clause AND MIT AND MIT OR Apache-2.0 OR BSD-1-Clause' lists 'BSD-2-Clause', but no BSD-2-Clause text exists among the source's licence files (COPYRIGHT, LICENSE-APACHE, LICENSE-BSD-1, LICENSE-MIT). LICENSE-BSD-1 is titled 'The BSD 1-Clause License (BSD-1-Clause)', and COPYRIGHT's SPDX identifier is 'MIT OR Apache-2.0 OR BSD-1-Clause'; the 'BSD-2-Clause' is a misdetection of that BSD-1-Clause file. Fix: drop 'BSD-2-Clause' and record the licence as the COPYRIGHT tri-licence 'MIT OR Apache-2.0 OR BSD-1-Clause' (in source.json, SOURCE.md, entry.json and README).",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:17:48Z"
+    }
+  ]
+}

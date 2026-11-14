@@ -1,0 +1,117 @@
+{
+  "entry": "lean-induction-formal-proofs-ffaeb961",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:14:38Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:14:38Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:14:38Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: exec_path@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:466, exec_step_sound@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:481, UseAgree_of_RelLookupsAgree@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:452, VerifyInstrYieldAgrees_of_agree_and_satisfy@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:445, OpcodeStatesAgree_of_lookups_agree@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:454, memory_assign_MemYieldsAgreeAndRangeChecked_of_agrees@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:458, range_checked_yields_of_range_check_assign@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:460, partition_tuples_disjoint_of_rel_in_rel@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:461; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:14:38Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(exec_sound, Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean, 405-497) -> declared: exec_sound is declared at Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:405",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:14:38Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(exec_sound, exec_step_sound) -> cites: exec_step_sound occurs at Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:481",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:14:38Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean, 405-497) -> no_sorry: none of sorry, admit, axiom in Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:405-497",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:14:38Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at d0dd8279612a248cbc6bf6d286030bf0bb2a37ff",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:14:49Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI workflow in the repository at the pinned commit d0dd8279612a248cbc6bf6d286030bf0bb2a37ff (list_files.py shows no .github/workflows or any .yml/.yaml among 312 files); no Lean toolchain on the harvest machine",
+      "by": "verifier",
+      "at": "2026-11-14T12:15:45Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "read code/Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:405-497. Glue site is 93 lines (497-405+1). The 9 named lemmas in the proof body: VerifyInstrYieldAgrees_of_agree_and_satisfy (L445), UseAgree_of_RelLookupsAgree (L452), OpcodeStatesAgree_of_lookups_agree (L454), memory_assign_MemYieldsAgreeAndRangeChecked_of_agrees (L458), range_checked_yields_of_range_check_assign (L460), partition_tuples_disjoint_of_rel_in_rel (L461), mem_extends_pub_mem (L465), exec_path (L466), exec_step_sound (L481,486). Fin.induction at L478; exec_step_sound applied in zero case at L481 and succ case at L486.",
+      "by": "verifier",
+      "at": "2026-11-14T12:15:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read code/Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:499-573. theorem trace_sound starts at L499 and its proof ends at L573. It consumes exec_sound via 'rcases exec_sound' at L532 (args continue L533-534).",
+      "by": "verifier",
+      "at": "2026-11-14T12:15:50Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Verified against the local code copies. Parent exec_sound is declared at FinalSoundness.lean:405-497 and its proof closes via 'induction i using Fin.induction' (line 478), zero and succ cases each applying exec_step_sound at lines 481 and 486. All 8 children's declarations, statements and closed_by descriptions match their cited ranges verbatim (exec_path 272-315, exec_step_sound 317-403, UseAgree_of_RelLookupsAgree 317-349, VerifyInstrYieldAgrees_of_agree_and_satisfy 471-501, OpcodeStatesAgree_of_lookups_agree 726-738, memory_assign_... 1186-1208, range_checked_yields_... 1327-1350, partition_tuples_disjoint_... 1506-1541). No sorry/admit/axiom token in either copied file, so the proof closes. Glue cites 9 project lemmas (the 8 children plus mem_extends_pub_mem at line 465); the 9th is documented as a direct lemma not shown (children_shown=8), consistent with direct_lemmas=9. Shape numbers are exact: glue_lines=93 (497-405+1), child_lines=[44,87,33,31,13,23,24,36] match the 8 child-site line counts, depth=5 confirmed via exec_sound->exec_path->cycle_through_state_pairs(206, used 291)->equal_count_states_of_multiplicity_one(186, used 229)->equal_count_state_tuples_of_multiplicity_one(162, used 203)->equal_count_tuples_chain_rel_of_multiplicity_one(111, used 181), and trace_sound consumes exec_sound at line 532.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:18:20Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality: the move is stated beyond the Stwo example — 'When to use' and applicability.goal_shape/use_when abstract it to a path induction (trivial-terminal-case disjunction + uniform per-step relation), and name the three things that must line up (path-existence lemma, per-step lemma with matching input/output bounds, strong Fin.induction exposing the previous output as the IH). 'When not to use' gives four honest, mechanism-tied conditions (step obligation varies -> case split; no path lemma -> induction must construct the path; per-step lemma unproved -> unclosed leaf; non-Fin-indexed path). Consequences are specific and match the code: one obligation per position closed by exec_step_sound, IH shape strongly_bounded0 n -> strongly_bounded (n+1), zero case needs h_state_bound via h_path_start, succ needs h_path_succ + strongly_bounded0_of_strongly_bounded + ih.1. The 'good leaf' section answers the bounded-prover question: each leaf is self-contained and closes on its own hypotheses or named siblings, with per-leaf closing tactics named. Verified cited anchors read true: induction at 478, exec_step_sound at 481/486, six h_* at 445-461, mem_extends_pub_mem 465, cases exec_path 466, trace_sound rcases exec_sound 532, depth chain declarations 111/162/186/206. Minor non-blocking nits: prose lists h_lookup_terms_agree at 452 (binder is 449) and h_opcode_agree at 454 (binder 453); 'bounded prover' is never literally named but the self-contained/short-proof criterion is the bounded-prover criterion in substance.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:19:38Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are mutually consistent and traceable. All 3 copied files' sha256 and byte counts match entry.json's files[] exactly (FinalSoundness.lean 26fde019.../30017, ComponentLookupCall.lean 1dc28e79.../71576, OpcodeLookupCall.lean 12cc2fd8.../18824). Every permalink (3 file + 9 site + known_uses trace_sound) pins commit d0dd8279612a248cbc6bf6d286030bf0bb2a37ff, identical to source.commit, sources/formal-proofs/source.json.commit and SOURCE.md's pinned commit. Licence is recorded as LicenseRef-unknown consistently in entry.json.source.licence, README, source.json and SOURCE.md; SOURCE.md states 'no licence file found at the root' matching licence_files:[], and the unknown-licence tag is allowed by protocol §2 decision 1. check_provenance.py already recorded '3 file(s) byte-identical at d0dd827...' (pass). No inconsistency found.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:20:30Z"
+    }
+  ]
+}

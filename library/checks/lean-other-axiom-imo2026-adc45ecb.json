@@ -1,0 +1,141 @@
+{
+  "entry": "lean-other-axiom-imo2026-adc45ecb",
+  "records": [
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(parent, 6) -> lines: site parent has 6 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:35:47Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(IMO2026/Q6/solution.lean, 752-757) -> no_sorry: none of sorry, admit, axiom in IMO2026/Q6/solution.lean:752-757",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:35:47Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, good_stabilizes_core) -> cites: good_stabilizes_core occurs at IMO2026/Q6/solution.lean:754",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:35:47Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: good_stabilizes_core@IMO2026/Q6/solution.lean:754, eventual_periodicity_from_stable@IMO2026/Q6/solution.lean:756, prefixMod_pos@IMO2026/Q6/solution.lean:756, prefixMod_absorbs@IMO2026/Q6/solution.lean:756; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:36:01Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:36:25Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:36:25Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:36:25Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: good_stabilizes_core@IMO2026/Q6/solution.lean:754, eventual_periodicity_from_stable@IMO2026/Q6/solution.lean:756, prefixMod_pos@IMO2026/Q6/solution.lean:756, prefixMod_absorbs@IMO2026/Q6/solution.lean:756; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:36:25Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:36:32Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "No CI workflow in the source repository at the pinned commit c5a6a089: the repo root has no .github directory (top-level contents are IMO2026/, LICENSE, README.md, lakefile.lean, lake-manifest.json, lean-toolchain, verify.py, formalization.yaml), so no GitHub Actions workflow builds IMO2026/Q6/solution.lean on the default branch main.",
+      "by": "verifier",
+      "at": "2026-11-14T09:37:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read code/IMO2026/Q6/solution.lean L752-756: the body is obtain <N,hstab> := good_stabilizes_core a ha; obtain <N',T,L,hT,hL,_hML,hper> := eventual_periodicity_from_stable a ha (prefixMod_pos ha N) hstab (prefixMod_absorbs N); exact <N',T,L,hT,hL,hper>. Two obtain lines and one exact, citing all four named lemmas, no arithmetic between them.",
+      "by": "verifier",
+      "at": "2026-11-14T09:37:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read code/IMO2026/Q6/solution.lean: doc comment (L748-750) immediately above the theorem (L751) is '/-- **Eventual periodicity (number-theoretic core).** There exist a threshold N and positive integers T, L such that the difference sequence is periodic beyond N: a (n + T) = a n + L for all n >= N. -/'. Note the label is on line 748, one line above the cited L749-L751 range.",
+      "by": "verifier",
+      "at": "2026-11-14T09:37:31Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:37:53Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent eventual_periodicity (752-757) is exactly the 3-line glue shown: obtain good_stabilizes_core, obtain eventual_periodicity_from_stable applied to (prefixMod_pos, hstab, prefixMod_absorbs), then exact; it cites exactly the 4 declared children and no others, and the final exact matches the parent statement, so it closes. Statements in entry.json match the code verbatim at 752-757, 527-550, 552-670, 115-119, 122-125. Closing methods match: good_stabilizes_core closes by constructor then one_lt_gcd_iff_exists_prime_dvd (550); eventual_periodicity_from_stable by Finset.exists_ne_map_eq_of_card_lt_of_maps_to pigeonhole then induction d closing by le_antisymm hle1 hle2; prefixMod_pos by unfold/apply Finset.prod_pos/omega; prefixMod_absorbs by exact prime_dvd_prefixMod. Shape numbers verified: direct_lemmas=4, glue_lines=6 (752-757), child_lines=[24,119,5,4] (527-550, 552-670, 115-119, 122-125), depth=4 via chain eventual_periodicity->eventual_periodicity_from_stable->Good_periodic_of_modulus(604)->gcd_constraint_periodic(135/137)->one_lt_gcd_iff_exists_prime_dvd(62), a Mathlib-only leaf; README honestly flags the un-chased second branch. No sorry/admit/axiom in any site.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:38:49Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalises beyond the example: use_when/avoid_when abstract to a three-piece assembly (stabilising invariant + finite modulus absorbing the finitely many relevant objects + transformer parameterised by the invariant), with goal shape generalised to 'from some point on the behaviour is rigid'; reuse is shown by main_theorem (lines 762-771) re-citing the same four lemmas. When-not-to-use is honest and specific (invariant fails to stabilise -> hard content stays inside it; transformer not parameterisable -> re-proved per instance; no finite modulus -> prefixMod pair unavailable). Consequences name real obligations and failure modes (threshold/modulus entanglement, invariant/transformer wiring mismatch). Leaf quality for a bounded prover is stated: self-contained statements closing on their own or from named siblings, glue cites statement only never proof, transformer parameterised by invariant.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:39:47Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:40:04Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes (1 file byte-identical at c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2). Commit is consistent across source.json, SOURCE.md, entry.json and every permalink (all c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2, pinned 2026-11-12T10:23:51Z). Licence MIT is recorded identically in entry.json, README.md, SOURCE.md, source.json and the copied upstream-LICENSE (MIT text, copyright Axiom Math). Copied code/ contains only IMO2026/Q6/solution.lean, matching entry.json files; sed confirms cited lines 749-757 (doc comment + eventual_periodicity) match the README excerpt.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:40:25Z"
+    }
+  ]
+}

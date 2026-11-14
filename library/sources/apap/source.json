@@ -1,0 +1,17 @@
+{
+  "source_id": "apap",
+  "url": "https://github.com/YaelDillies/apap",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "YaelDillies/apap",
+  "commit": "fb5cb9c4f594cbeeb160c715618d13640984c521",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T11:39:07Z",
+  "how_found": "discovery-1: A-lean, B-lean",
+  "note": "Kelley-Meka Roth-number bound following Bloom-Sisask, with leanblueprint node graph and GitHub Actions CI",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "entry": "isabelle-key-invariant-autocorrode-d7f695a1",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:47:56Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:47:56Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:47:56Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: sstriple_frame_rule@Shallow_Separation_Logic/Triple.thy:615, sstriple_raw_for_loop'@Shallow_Separation_Logic/Triple.thy:631, sstriple_consequence@Shallow_Separation_Logic/Triple.thy:627; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:47:56Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, sstriple_frame_rule) -> cites: sstriple_frame_rule occurs at Shallow_Separation_Logic/Triple.thy:615",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:47:57Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, sstriple_raw_for_loop') -> cites: sstriple_raw_for_loop' occurs at Shallow_Separation_Logic/Triple.thy:631",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:47:57Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "lines(parent, 38) -> lines: site parent has 38 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:47:57Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 200f1acf2d264f2dedee33792b986ebe73c224a3",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:48:04Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/ci.yml build job runs 'isabelle build -v -b -d . -o browser_info -d $AFP_COMPONENT_BASE/Word_Lib AutoCorrode' on push to main (default branch); root ROOT defines 'session AutoCorrode' including Shallow_Separation_Logic, whose ROOT lists 'Triple' as a theory; commit 200f1acf2d264f2dedee33792b986ebe73c224a3",
+      "by": "verifier",
+      "at": "2026-11-14T10:50:29Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read copied Triple.thy at pinned commit: parent site 601-638 uses sstriple_frame_rule at 615, sstriple_raw_for_loop' at 631, sstriple_consequence at 627/635/637. Chain links hold: sstriple_raw_for_loop' (578) base case uses sstriple_skipI; sstriple_skipI (242-244) 'auto intro!: sstriple_from_stripleI'; sstriple_from_stripleI (112-118) 'using assms sstriple_striple'; sstriple_striple (55-94) 'intro sstripleI'. Declarations at 578/242/112/55/48 match the claim.",
+      "by": "verifier",
+      "at": "2026-11-14T10:50:31Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read copied Triple.thy: sstriple_raw_for_loop_framed declared at 539 (qed 576), sstriple_bounded_while_framed at 693 (qed 749), sstriple_gather_framed at 814 (qed 859); each carries 'let ?pc = ...' magic-wand frame and frames steps via sstriple_frame_rule then transports via sstriple_consequence (bounded_while_framed lines 726-745 confirmed).",
+      "by": "verifier",
+      "at": "2026-11-14T10:50:32Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 200f1acf2d264f2dedee33792b986ebe73c224a3",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:51:45Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Decomposition matches the code: parent sstriple_raw_for_loop_framed' (601-638) is assembled from exactly the three recorded children sstriple_frame_rule (186-190), sstriple_raw_for_loop' (578-599), sstriple_consequence (164-172), all statements verbatim. Each child's closed_by matches its code (frame_rule: intro sstriple_from_stripleI+clarsimp; raw_for_loop': induction xs arbitrary: I with simp add: raw_for_loop_nil sstriple_skipI / auto intro: sstriple_bindI; consequence: is_local_weaken+intro sstriple_from_stripleI). Proof closes (qed at 638, no sorry). The three children are exactly the named project lemmas the parent cites (615, 631, 627/635/637); aentails/awand lemmas are from imported Assertion_Language, not project lemmas. Shape numbers verified: direct_lemmas=3, depth=5 (raw_for_loop' 578 -> skipI 242 -> from_stripleI 112 -> striple 55 -> sstripleI 48, all confirmed by grep), glue_lines=38 (601-638), child_lines=[5,22,9] matching frame_rule/raw_for_loop'/consequence in order. Provenance passes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:52:29Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated to generalise: applicability.goal_shape/use_when/avoid_when abstract to 'a loop with a clean per-iteration invariant INV but different target postconditions linked by magic wands held in a separating-conjunct frame', not to this one lemma. Generality beyond the example is demonstrated by known-use claim 5, which I confirmed in code: sstriple_raw_for_loop_framed (539-576), sstriple_bounded_while_framed (693-749) and sstriple_gather_framed (814-859) all re-run the same 'let ?pc = wand-frame; frame each step; transport via sstriple_consequence' pattern, and the author comment 'Framed version: carries a frame through all iterations.' is at line 692 as cited. When-not-to-use is specific and honest: strengthen INV first; the target postcondition must be a wand sound under separating conjunction; use sstriple_bounded_while_framed for a bounded while with a separate condition step (consistent with the known-use, which reuses the pattern but not this lemma). Consequences name the three concrete side conditions (tau r * ?pc --> rho r, theta a * ?pc --> chi a, INV xs (length xs) * ?pc --> psi ()) and a real failure mode (frame not separable => final consequence transports fail). It says explicitly what makes the children good leaves for a bounded prover: each is self-contained, closes by a single intro + simplification (frame/consequence) or by induction over xs with base sstriple_skipI and step sstriple_bindI, and none depends on the parent or on an unproved hypothesis beyond its own assumes.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:53:18Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 200f1acf2d264f2dedee33792b986ebe73c224a3",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:53:34Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes (1 file byte-identical at 200f1acf2d264f2dedee33792b986ebe73c224a3); local code sha256 94e6b0d1..9ff8 and 65211 bytes match entry.json; commit 200f1acf..c224a3 is consistent across entry.json, source.json, SOURCE.md and every permalink; licence MIT is consistent across all three and backed by upstream-LICENSE (Amazon MIT); all cited line ranges (164-172, 186-190, 578-599, 601-638) resolve to the named declarations. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:53:57Z"
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "id": "rocq-other-math-comp-2c832601",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Transport non-solvability from the normal subgroup 'Alt_T to 'Sym_T via series_sol",
+  "intent": "To prove 'Sym_T is not solvable for 4 < #|T|, reduce solvability of the whole symmetric group to solvability of its normal subgroup 'Alt_T through the normal-series equivalence series_sol, then supply the already-proved non-solvability of 'Alt_T; the one-line glue never analyses the quotient 'Sym_T / 'Alt_T, which is dropped by false && _.",
+  "move": "other",
+  "also_known_as": [
+    "series_sol transport",
+    "normal subgroup transfer of solvability",
+    "reduce solvability across a normal series"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "math-comp",
+    "url": "https://github.com/math-comp/math-comp",
+    "commit": "3a90d8b65f77f24e4fd770453c0697233b1c791d",
+    "licence": "CECILL-B"
+  },
+  "files": [
+    {
+      "path": "solvable/alt.v",
+      "bytes": 27050,
+      "sha256": "0b847f9f7c0309ee441c6353ccce36ddb863b5a5f14fe252ca117ea48601d197",
+      "permalink": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/alt.v"
+    },
+    {
+      "path": "solvable/nilpotent.v",
+      "bytes": 31336,
+      "sha256": "5cf7ce90d4d07a034695ff7e41cbfe2c4ce72dd47eef01daef0de8d00642b79f",
+      "permalink": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/nilpotent.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "solvable/alt.v",
+      "lines": [
+        592,
+        593
+      ],
+      "role": "parent",
+      "name": "solvable_SymF",
+      "excerpt_sha256": "a024283dccf78907bf93b38df4c7d13a139724408e64475ab702e53a7bce79f2",
+      "permalink": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/alt.v#L592-L593"
+    },
+    {
+      "path": "solvable/alt.v",
+      "lines": [
+        54,
+        55
+      ],
+      "role": "child",
+      "name": "Alt_normal",
+      "excerpt_sha256": "e3799f66679c777f24b40550a5d6a0832c7d1ab7a7e380a77763186c5d6c0e83",
+      "permalink": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/alt.v#L54-L55"
+    },
+    {
+      "path": "solvable/alt.v",
+      "lines": [
+        579,
+        590
+      ],
+      "role": "child",
+      "name": "solvable_AltF",
+      "excerpt_sha256": "a045c5e59a54ef4434f8c069166e5ec25d86eef99b25654a9cbf4ba9f011bbcd",
+      "permalink": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/alt.v#L579-L590"
+    }
+  ],
+  "parent": {
+    "name": "solvable_SymF",
+    "statement": "Lemma solvable_SymF : 4 < #|T| -> solvable 'Sym_T = false."
+  },
+  "children": [
+    {
+      "name": "Alt_normal",
+      "statement": "Lemma Alt_normal : 'Alt_T <| 'Sym_T.",
+      "closed_by": "exact: ker_normal",
+      "note": "The alternating group 'Alt_T is normal in 'Sym_T because it is the kernel of the sign morphism odd_perm; this supplies the H <| G premise that series_sol needs."
+    },
+    {
+      "name": "solvable_AltF",
+      "statement": "Lemma solvable_AltF : 4 < #|T| -> solvable 'Alt_T = false.",
+      "closed_by": "apply/negP => Alt_solvable; simple_Alt5, simple_sol_prime, card_Alt, even_prime",
+      "note": "The non-solvability of 'Alt_T for |T| > 4, the headline lemma of the section. It assumes 'Alt_T simple (simple_Alt5), derives from simple_sol_prime that a solvable simple group has prime order, then contradicts that with #|'Alt_T| = #|T|! %/ 2 via even_prime."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal solvable G = false (or ~ solvable G) for a group G that has a normal subgroup H <| G whose non-solvability is already proved as solvable H = false.",
+    "use_when": "You can exhibit a normal subgroup H of G known to be non-solvable; series_sol rewrites solvable G to solvable H && solvable (G / H), and solvable H = false collapses the conjunction, so the quotient G / H never has to be analysed.",
+    "avoid_when": "The quotient G / H matters (e.g. the downward direction solvable G -> solvable H forces proving solvability of G / H too); H is not normal, so series_sol does not apply; or the subgroup's non-solvability is not yet a rewrite lemma of the shape solvable H = false that a view like /solvable_AltF-> can fire on."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent lemma solvable_SymF is declared at solvable/alt.v:592-593.",
+      "evidence_kind": "check",
+      "form": "declared(solvable_SymF, solvable/alt.v, 592-593)",
+      "evidence": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/alt.v#L592-L593"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites the child Alt_normal.",
+      "evidence_kind": "check",
+      "form": "cites(solvable_SymF, Alt_normal)",
+      "evidence": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/alt.v#L592-L593"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site cites the child solvable_AltF.",
+      "evidence_kind": "check",
+      "form": "cites(solvable_SymF, solvable_AltF)",
+      "evidence": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/alt.v#L592-L593"
+    },
+    {
+      "n": 4,
+      "claim": "The library lemma series_sol that the glue applies is declared at solvable/nilpotent.v:735.",
+      "evidence_kind": "check",
+      "form": "declared(series_sol, solvable/nilpotent.v, 735-735)",
+      "evidence": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/nilpotent.v#L735"
+    },
+    {
+      "n": 5,
+      "claim": "No admit, Admitted or Axiom closes any goal in the section holding the parent and its children (solvable/alt.v:54-593).",
+      "evidence_kind": "check",
+      "form": "no_sorry(solvable/alt.v, 54-593)",
+      "evidence": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/alt.v#L54-L593"
+    },
+    {
+      "n": 6,
+      "claim": "The parent site is 2 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(solvable_SymF, 2)",
+      "evidence": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/alt.v#L592-L593"
+    },
+    {
+      "n": 7,
+      "claim": "The theorem is assembled from two direct project lemmas, and the work sits in the children, not the glue: the glue is one proof line (593) while the children take 2 and 12 lines (54-55, 579-590).",
+      "evidence_kind": "measurement",
+      "evidence": "line spans at https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/alt.v#L592-L593 , #L54-L55 and #L579-L590"
+    },
+    {
+      "n": 8,
+      "claim": "The same series_sol transport of solvability across a normal subgroup is reused elsewhere in the library: metacyclic_sol (nilpotent.v line 749) and setXn_sol (nilpotent.v line 768) both rewrite with series_sol to build solvability from a normal subgroup and its quotient.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/nilpotent.v#L749 and https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/nilpotent.v#L768"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 5,
+    "glue_lines": 2,
+    "child_lines": [
+      2,
+      12
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 1,
+    "children": 2,
+    "auxiliary_library_lemma": "series_sol",
+    "how_counted": "the parent's whole proof is the single line 593; children = the two project lemmas named in the glue; series_sol is the one non-project lemma the glue also applies"
+  },
+  "consequences": "The move creates no exhaustiveness or side-condition obligation beyond the normality H <| G (Alt_normal) and the non-solvability of the subgroup (solvable_AltF). It relies on series_sol being an equivalence so the quotient factor can be dropped by false && _. Failure modes: (i) without an equation solvable H = false, the view => /solvable_AltF-> does not fire; (ii) for the upward direction (solvable H && solvable (G / H) -> solvable G) you must also prove the quotient solvable, so the one-line glue no longer suffices.",
+  "known_uses": [
+    "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/nilpotent.v#L749",
+    "https://github.com/math-comp/math-comp/blob/3a90d8b65f77f24e4fd770453c0697233b1c791d/solvable/nilpotent.v#L768"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "2c832601ba0a5c334c7c7558c583d3f428fcf837ec401c17cf695efe42ba02b0",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:57:55Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule,also_known_as",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:59:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:08:06Z"
+}

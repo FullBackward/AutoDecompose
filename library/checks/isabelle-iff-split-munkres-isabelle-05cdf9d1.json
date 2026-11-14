@@ -1,0 +1,125 @@
+{
+  "entry": "isabelle-iff-split-munkres-isabelle-05cdf9d1",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:50:38Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:50:38Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:50:39Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: Theorem_21_3_forward@tst/i/Top1_Ch2.thy:17178, Theorem_21_3_converse_metric@tst/i/Top1_Ch2.thy:17205; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:50:39Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, Theorem_21_3_forward) -> cites: Theorem_21_3_forward occurs at tst/i/Top1_Ch2.thy:17178",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:50:39Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, Theorem_21_3_converse_metric) -> cites: Theorem_21_3_converse_metric occurs at tst/i/Top1_Ch2.thy:17205",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:50:39Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(tst/i/Top1_Ch2.thy, 17055-17209) -> no_sorry: none of sorry in tst/i/Top1_Ch2.thy:17055-17209",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:50:39Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 90d108779e83453e9cae2f55b513246e1cc044e0",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:50:46Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI: the repository has no .github/workflows (404), no workflow/build files at the pinned commit 90d1087; root has only etc/, tst/, CLAUDE.md",
+      "by": "verifier",
+      "at": "2026-11-14T10:52:19Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "read copied code: parent 17155-17209=55 lines (theorem Theorem_21_3: at 17155, qed at 17209); forward 17055-17096=42 (theorem at 17055, qed at 17096); converse 17098-17152=55 (theorem at 17098, qed at 17152). Citations: 17205 by (rule Theorem_21_3_converse_metric[OF hd hTY hmap hseq']); 17120 using Lemma_21_2_sequence_converse[OF hd hxcl hAX] by blast; 16906 by (rule iffD1[OF Theorem_17_5a[OF hTop hxX hAX], OF hxcl]). Theorem_17_5a declared at 5439; Lemma_21_2_sequence_converse declared at 16892 and cites Theorem_17_5a at 16906. Chain Theorem_21_3 -> converse_metric -> Lemma_21_2_sequence_converse -> Theorem_17_5a = depth 3.",
+      "by": "verifier",
+      "at": "2026-11-14T10:52:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read lines 17012-17052: Lemma_21_2 (declared 17012) has two shows; first direction closed by (rule Lemma_21_2_sequence[OF hTX hsconv hsA hAX]), second by using Lemma_21_2_sequence_converse[OF hd hxcl' hAX] by blast. Both are named lemmas (declared 16867, 16892). This is the same bidirectional split, immediately above Theorem_21_3_forward.",
+      "by": "verifier",
+      "at": "2026-11-14T10:52:24Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "object",
+      "evidence": "Decomposition, children, closing methods, citations and glue all match the code: parent Theorem_21_3 (17155-17209) is an iff-split whose two shows are closed by rule Theorem_21_3_forward (17178) and rule Theorem_21_3_converse_metric (17205); the two children are exactly those lemmas; statements are verbatim; no sorry. Line counts are right (55/42/55) and direct_lemmas=2. BUT the depth shape number is wrong: entry claims depth 3, yet following rule-citations transitively (the entry's own method) the Theorem_18_1 branch goes Theorem_21_3 -> Theorem_21_3_converse_metric (17149 cites Theorem_18_1(1)) -> Theorem_18_1 (7047 cites closure_on_subset_carrier) -> closure_on_subset_carrier (5302 cites closure_on_closed) -> closure_on_closed (5263/5265 cites Theorem_17_1), i.e. >=5 lemmas below the parent, so depth>=5, not 3. Fix: recompute depth over the full dependency cone (all branches, including Theorem_18_1 -> closure_on_subset_carrier -> closure_on_closed -> Theorem_17_1) and correct claim 4, shape.depth, metrics.depth and how_counted.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:55:30Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally (goal_shape: characterization P iff Q, or two implications P->Q and side-condition->Q->P; use_when/avoid_when generic, not example-bound). Known-use claim 5 (Lemma_21_2, lines 17012-17052, verified: same two-implication split with Lemma_21_2_sequence / Lemma_21_2_sequence_converse) grounds beyond-example applicability. 'when not to use' is specific and honest (single shared argument; too much shared machinery for plain iffI/intro; side condition threaded through whole theorem). Consequences are specific (shows clauses must line up with lemma conclusions and feed the listed hypotheses; metrizability must be unfolded to a metric and re-wrapped as hseq') with a concrete failure mode (un-isolated side condition weakens the unconditional forward direction). README 'Why each lemma is a good leaf' plus child notes answer the bounded-prover question: forward is self-contained (definition-unfolding + blast/simp, no project lemma, verified in code), converse_metric closes from named siblings only, wiring rather than re-proving. No over-claim found.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:56:27Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 90d108779e83453e9cae2f55b513246e1cc044e0",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:56:48Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes (1 file byte-identical at 90d108779e83453e9cae2f55b513246e1cc044e0); permalinks all use that commit and path tst/i/Top1_Ch2.thy with line ranges matching the actual declarations (Theorem_21_3 at 17155, forward at 17055, converse_metric at 17098, rule-citations at 17178 and 17205 verified by sed); licence LicenseRef-unknown is consistent across entry.json, README and sources/munkres-isabelle/SOURCE.md; repo root has no licence file (only etc/, tst/, CLAUDE.md), matching the source note.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:57:25Z"
+    }
+  ]
+}

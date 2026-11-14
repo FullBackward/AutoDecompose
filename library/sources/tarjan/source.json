@@ -1,0 +1,17 @@
+{
+  "source_id": "tarjan",
+  "url": "https://github.com/rocq-community/tarjan",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "rocq-community/tarjan",
+  "commit": "34fe042cc482e65d27bc68b455d922d47da81c9d",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-14T11:40:23Z",
+  "how_found": "discovery-1: A-rocq",
+  "note": "correctness of Tarjan and Kosaraju SCC algorithms, split into rank/num/nocolor lemma files plus verified topological sort",
+  "licence": "CECILL-B",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

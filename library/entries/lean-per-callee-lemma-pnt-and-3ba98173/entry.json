@@ -1,0 +1,342 @@
+{
+  "id": "lean-per-callee-lemma-pnt-and-3ba98173",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Per-row lemma dispatch for FKS2 Corollary 24's eleven Table-7 rows",
+  "intent": "Assemble FKS2's Corollary 24 — the pointwise bound Eπ x ≤ B x for every row (B, I) of the eleven-row Table 7 — from one named lemma per row: the glue proves (B, I) ∈ table7 by an eleven-way case split and hands each row to its own corollary_24_row1 … row11, each declared and proved in its own file, leaving the glue at 18 lines.",
+  "move": "per-callee-lemma",
+  "also_known_as": [
+    "one lemma per component",
+    "per-row lemma family",
+    "table dispatch"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "pnt-and",
+    "url": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd",
+    "commit": "2c476fa6441c607096d93c8fc7ac0a227a655dae",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean",
+      "bytes": 2120,
+      "sha256": "ee4d66536c8c6ea65bdda12f7c86f20265f03bf4cda2c26fc4e5b782f83eb9c1",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row1.lean",
+      "bytes": 6146,
+      "sha256": "88168bb514c0ca3a116aece0ee703c2433f2debbd3d2efc7cc7324c028c48e6a",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row1.lean"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row2.lean",
+      "bytes": 6498,
+      "sha256": "6f2542111b91e5811ec68c4b7cda68ed9e92e8aeb2d36f127b4e4cf5625d4ea3",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row2.lean"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row3.lean",
+      "bytes": 7651,
+      "sha256": "2f3cda9bc0b0e84d7b7fa6bd3fbc1ac91f82d90be192857ba4a1a392d93b35f4",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row3.lean"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row4.lean",
+      "bytes": 14411,
+      "sha256": "d4fd2d65876b65ea2482332848e4fa525e98968d210d8d76debbc8b30fb3db12",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row4.lean"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row5.lean",
+      "bytes": 6248,
+      "sha256": "ddcd4d49738c6bf045e15f3ea40c774cf4e686ca82cc5b9429cb5affab860809",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row5.lean"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row6.lean",
+      "bytes": 7439,
+      "sha256": "393358f0714ce937bd0656421215ae91cdd0d1dfd7b61d7ae9c3b8483fd8d09e",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row6.lean"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row10.lean",
+      "bytes": 7597,
+      "sha256": "8160d3c44200ff501b88c7a66a1ba682024100ccd0c89af3476a73e09a930298",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row10.lean"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row11.lean",
+      "bytes": 23543,
+      "sha256": "39245f632ba2ca48490253efb44bce320d7e252033e4cd053148328fce147a50",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row11.lean"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row7.lean",
+      "bytes": 7465,
+      "sha256": "509fd7e5368fbb57eb795f96025f483b8a3143b5614c7445b0bbe0ba2f16872f",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row7.lean"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row8.lean",
+      "bytes": 7475,
+      "sha256": "aba5f393491f0a1e67d094e8eee7f3a117d175578dfdb9ff635a1c95326bd4f8",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row8.lean"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row9.lean",
+      "bytes": 7471,
+      "sha256": "8817e85cc784fe45c7cf3805bde567a4fd95eb959c81a7d985c2516e8a03631e",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row9.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean",
+      "lines": [
+        31,
+        48
+      ],
+      "role": "parent",
+      "name": "corollary_24_all",
+      "excerpt_sha256": "7a6c0ba8b2cfd34eb85be51c4ca9023ac10cac029dda9e108f55e12092f4c306",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean#L31-L48"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row1.lean",
+      "lines": [
+        91,
+        119
+      ],
+      "role": "child",
+      "name": "corollary_24_row1",
+      "excerpt_sha256": "64269edde8aa78ba86db789e9dd1a8f7a66e0c4d34811d5bde69d1fa72c782cb",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row1.lean#L91-L119"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row2.lean",
+      "lines": [
+        97,
+        126
+      ],
+      "role": "child",
+      "name": "corollary_24_row2",
+      "excerpt_sha256": "850755c5d6abf783e46696fa9c89dd0556e1e0a86a291ec9ff2026ca57541071",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row2.lean#L97-L126"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row3.lean",
+      "lines": [
+        112,
+        141
+      ],
+      "role": "child",
+      "name": "corollary_24_row3",
+      "excerpt_sha256": "c8eef10d728c9025472c0a234612c52e25289b622cf29fda9939f66b552aea1d",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row3.lean#L112-L141"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row4.lean",
+      "lines": [
+        239,
+        267
+      ],
+      "role": "child",
+      "name": "corollary_24_row4",
+      "excerpt_sha256": "8bd1c3e237f9ea26a3d622adc4b7e7a86de4b21cf44b5345403136cea91eaaf7",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row4.lean#L239-L267"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row5.lean",
+      "lines": [
+        91,
+        119
+      ],
+      "role": "child",
+      "name": "corollary_24_row5",
+      "excerpt_sha256": "54e5e3bc037f69870e67a9e4c0df45c8229c960b95b4ed52e7695fa74257ae76",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row5.lean#L91-L119"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row6.lean",
+      "lines": [
+        121,
+        152
+      ],
+      "role": "child",
+      "name": "corollary_24_row6",
+      "excerpt_sha256": "af1aeb87db15a29829afabfd8b404279320791d5a3f5f3042f65b639ff5a3637",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row6.lean#L121-L152"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row10.lean",
+      "lines": [
+        122,
+        153
+      ],
+      "role": "child",
+      "name": "corollary_24_row10",
+      "excerpt_sha256": "fd828237b29b7d255f11e53b0e853c4b1c86f737593946f9221a85323df8cad2",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row10.lean#L122-L153"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row11.lean",
+      "lines": [
+        441,
+        472
+      ],
+      "role": "child",
+      "name": "corollary_24_row11",
+      "excerpt_sha256": "3f81d3f735deebba35dc5270f7c83093348a076cd75cab93efe10bc9dfe61836",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24Row11.lean#L441-L472"
+    }
+  ],
+  "parent": {
+    "name": "corollary_24_all",
+    "statement": "theorem corollary_24_all (B : ℝ → ℝ) (I : Set ℝ) (h : (B, I) ∈ table7) :\n    ∀ x, Real.log x ∈ I → Eπ x ≤ B x"
+  },
+  "children": [
+    {
+      "name": "corollary_24_row1",
+      "statement": "theorem corollary_24_row1 :\n    ∀ x, Real.log x ∈ Set.Icc (1:ℝ) 57 → Eπ x ≤ 2 * Real.log x * x ^ (-(1:ℝ) / 2)",
+      "closed_by": "rcases lt_trichotomy x 0; the x>0 branch dispatches to `floor_checked_row1`, `floor_row1`, `band_row1`",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the row-1 bound Eπ x ≤ 2·log x·x^{-1/2} on log x ∈ [1, 57]"
+    },
+    {
+      "name": "corollary_24_row2",
+      "statement": "theorem corollary_24_row2 :\n    ∀ x, Real.log x ∈ Set.Icc (1:ℝ) 65.65 →\n      Eπ x ≤ (Real.log x) ^ (3/2 : ℝ) * x ^ (-(1:ℝ) / 2)",
+      "closed_by": "rcases lt_trichotomy x 0; the x>0 branch dispatches to `floor_trusted_row2`, `floor_row2`, `band_row2`",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the row-2 bound Eπ x ≤ (log x)^{3/2}·x^{-1/2} on log x ∈ [1, 65.65]"
+    },
+    {
+      "name": "corollary_24_row3",
+      "statement": "theorem corollary_24_row3 :\n    ∀ x, Real.log x ∈ Set.Icc (8:ℝ) 60.8 →\n      Eπ x ≤ (1 / (8 * π)) * (Real.log x) ^ 2 * x ^ (-(1:ℝ) / 2)",
+      "closed_by": "rcases lt_trichotomy x 0; the x>0 branch dispatches to `floor_trusted_row3`, `floor_row3`, `band_row3`",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the row-3 bound Eπ x ≤ (1/(8π))·(log x)²·x^{-1/2} on log x ∈ [8, 60.8]"
+    },
+    {
+      "name": "corollary_24_row4",
+      "statement": "theorem corollary_24_row4 :\n    ∀ x, Real.log x ∈ Set.Icc (1:ℝ) 70.6 → Eπ x ≤ (Real.log x) ^ 2 * x ^ (-(1:ℝ) / 2)",
+      "closed_by": "rcases lt_trichotomy x 0; the x>0 branch dispatches to `floor_trusted_row4`, `floor_row4`, `band_row4`",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the row-4 bound Eπ x ≤ (log x)²·x^{-1/2} on log x ∈ [1, 70.6]"
+    },
+    {
+      "name": "corollary_24_row5",
+      "statement": "theorem corollary_24_row5 :\n    ∀ x, Real.log x ∈ Set.Icc (1:ℝ) 80 → Eπ x ≤ (Real.log x) ^ 3 * x ^ (-(1:ℝ) / 2)",
+      "closed_by": "rcases lt_trichotomy x 0; the x>0 branch dispatches to `floor_trusted_row5`, `floor_xhalf_row5`, `band_row5`",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the row-5 bound Eπ x ≤ (log x)³·x^{-1/2} on log x ∈ [1, 80]"
+    },
+    {
+      "name": "corollary_24_row6",
+      "statement": "theorem corollary_24_row6 :\n    ∀ x, Real.log x ∈ Set.Icc (1:ℝ) 80.55 → Eπ x ≤ x ^ (-(1:ℝ)/3)",
+      "closed_by": "rcases lt_trichotomy x 0; the x>0 branch dispatches to `floor_trusted_row6`, `floor_row6`, `mid_row6`, `sliver_row6`",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the row-6 bound Eπ x ≤ x^{-1/3} on log x ∈ [1, 80.55]"
+    },
+    {
+      "name": "corollary_24_row10",
+      "statement": "theorem corollary_24_row10 :\n    ∀ x, Real.log x ∈ Set.Icc (1:ℝ) 1358.6 → Eπ x ≤ x ^ (-(1:ℝ)/50)",
+      "closed_by": "rcases lt_trichotomy x 0; the x>0 branch dispatches to `floor_checked_row10`, `floor_row10`, `mid_row10`, `sliver_row10`",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the row-10 bound Eπ x ≤ x^{-1/50} on log x ∈ [1, 1358.6]"
+    },
+    {
+      "name": "corollary_24_row11",
+      "statement": "theorem corollary_24_row11 :\n    ∀ x, Real.log x ∈ Set.Icc (1:ℝ) 3757.6 → Eπ x ≤ x ^ (-(1:ℝ)/100)",
+      "closed_by": "rcases lt_trichotomy x 0; the x>0 branch dispatches to `floor_checked_row11`, `floor_row11`, `mid_row11`, `sliver_row11`",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the row-11 bound Eπ x ≤ x^{-1/100} on log x ∈ [1, 3757.6]"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A target theorem `corollary_24_all (B : ℝ → ℝ) (I : Set ℝ) (h : (B, I) ∈ table7) : ∀ x, Real.log x ∈ I → Eπ x ≤ B x` whose only substantive hypothesis is a finite list-membership `(B, I) ∈ table7` — a disjunction over eleven explicit pairs — so the proof is a case split, one case per row.",
+    "use_when": "The cases are a finite, explicit table and each case is substantial enough to deserve its own declaration and file; the shared machinery is factored into one template file that the other cases instantiate (here FKS2Cor24Row11 carries the generic x^{-1/n} helpers that rows 6–11 clone at n = 3, 4, 5, 10, 50, 100).",
+    "avoid_when": "The cases differ only in a scalar or a numeric bound, in which case one parameterised lemma beats a family of clones; or the case set is open-ended rather than a finite list membership, so there is no exhaustive case split to dispatch."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "`corollary_24_all` is declared in `PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean` at lines 31–48.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean#L31-L48",
+      "form": "declared(corollary_24_all, PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean, 31-48)"
+    },
+    {
+      "n": 2,
+      "claim": "`PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean` contains no `sorry`, `admit`, or `axiom` token in lines 1–50.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean#L1-L50",
+      "form": "no_sorry(PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean, 1-50)"
+    },
+    {
+      "n": 3,
+      "claim": "The glue `corollary_24_all` is 18 lines and dispatches 11 direct per-row lemmas; the longest chain of project-lemma citations below the parent is depth 5 (corollary_24_all → corollary_24_row4 → floor_row4 → floor_xhalf_of_check → Epi_le_evalLhsE_wide → Buthe.theorem_2e); the eight shown children have 29, 30, 30, 29, 29, 32, 32 and 32 lines.",
+      "evidence_kind": "measurement",
+      "evidence": "line counts of the sites: parent FKS2Cor24All.lean#L31-L48; children row1 #L91-L119, row2 #L97-L126, row3 #L112-L141, row4 #L239-L267, row5 #L91-L119, row6 #L121-L152, row10 #L122-L153, row11 #L441-L472; the chain is read from FKS2Cor24All.lean#L40, FKS2Cor24Row4.lean#L266, #L202, #L154-L155, #L53"
+    },
+    {
+      "n": 4,
+      "claim": "The authors describe the dispatch in the file's doc comment: 'It dispatches the 11 rows to `corollary_24_row1 … row11` (each proved in its own file `FKS2Cor24Row{1..11}.lean`)', and add that it 'Mirrors `FKS2Cor23All.lean`'s Table-6 dispatch for Corollary 23.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean#L13-L24"
+    },
+    {
+      "n": 5,
+      "claim": "The same per-row dispatch is used for Corollary 23 in `PrimeNumberTheoremAnd/IEANTN/FKS2Cor23All.lean`, where `corollary_23_all` dispatches Table 6's nine rows to `corollary_23_row1 … row9`.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor23All.lean#L27-L50"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 11,
+    "depth": 5,
+    "glue_lines": 18,
+    "child_lines": [
+      29,
+      30,
+      30,
+      29,
+      29,
+      32,
+      32,
+      32
+    ]
+  },
+  "metrics": {
+    "children_shown": 8,
+    "children_listed_in_readme": 3,
+    "how_counted": "8 of the 11 direct row lemmas are child sites; rows 7, 8, 9 are listed in README.md with permalinks because they are clones of row 6 (n = 4, 5, 10 respectively)"
+  },
+  "consequences": "Creates one named child lemma per table row (here eleven), so the glue is a mechanical case split over `table7` whose exhaustiveness and injectivity (`Prod.mk.injEq`) are discharged by `simp` and the eleven-way `rcases`; the final `| h` branch closes by `absurd h (by simp)` because a list-membership disjunction of eleven explicit pairs is exhaustive. Each row lemma then carries its own per-segment decomposition (a trichotomy on x plus a two- or three-segment dispatch), so the row lemmas are the real content and the glue stays 18 lines. Failure modes: a row whose proof does not factor into the shared template is still forced into its own file, so each per-row file must be genuinely self-contained; if two rows shared one argument they would duplicate it unless the shared machinery is lifted (as rows 1–5 lift the x^{-1/2} floor machinery and rows 6–11 the x^{-1/n} machinery into Table4Ext). Trust boundary: the row lemmas close without `sorry`, and their Buthe-floor and mid-envelope segments are proved by the dyadic interval kernel (`native_decide`); their floor-trusted, band and sliver segments delegate to `FKS2.Cor24Trusted.*` (and rows 1/10/11's floor-checked to `FKS2.Cor24Checked.*`), which are the project's authorised trusted (`sorry`-closed) Theorem-6 interpolation results.",
+  "known_uses": [
+    "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/IEANTN/FKS2Cor23All.lean#L27-L50"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "3ba98173df2893851200e6f6c8049d21025236597d6c6f59885a2698582b1123",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T11:04:35Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T11:10:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T11:14:25Z",
+      "note": "parent corollary_24_all: statement re-copied from code; child 'corollary_24_row1': statement re-copied from the declaration of corollary_24_row1; child 'corollary_24_row2': statement re-copied from the declaration of corollary_24_row2; child 'corollary_24_row3': statement re-copied from the declaration of corollary_24_row3; child 'corollary_24_row4': statement re-copied from the declaration of corollary_24_row4; child 'corollary_24_row5': statement re-copied from the declaration of corollary_24_row5; child 'corollary_24_row6': statement re-copied from the declaration of corollary_24_row6; child 'corollary_24_row10': statement re-copied from the declaration of corollary_24_row10; child 'corollary_24_row11': statement re-copied from the declaration of corollary_24_row11"
+    }
+  ]
+}

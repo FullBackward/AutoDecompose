@@ -1,0 +1,300 @@
+{
+  "id": "lean-key-invariant-lean-liquid-01d1344d",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Key invariant: dual normed snake lemma for column exactness (Theorem 9.5)",
+  "intent": "Prove that the column complex of the double complex is weakly bounded-exact by reducing to the single key auxiliary statement weak_normed_snake_dual (the dual normed snake lemma): the glue assembles that lemma's seven hypotheses from the scaled column complex, the isometry and surjectivity bounds of T_inv_sub_Tinv, and the connecting morphism col_ι, then weakens the resulting constants to the target ones.",
+  "move": "key-invariant",
+  "also_known_as": [
+    "key lemma",
+    "crux lemma",
+    "the one auxiliary statement that carries the argument"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "lean-liquid",
+    "url": "https://github.com/leanprover-community/lean-liquid",
+    "commit": "ee4795874a99ea5f9d85bd0b364425f07b932377",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "src/thm95/col_exact.lean",
+      "bytes": 57806,
+      "sha256": "00517c0a0b2c9fb82c6c03803e9217cec7e5d26dbb5c55aae81c7c3c98f6f7f1",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/thm95/col_exact.lean"
+    },
+    {
+      "path": "src/normed_snake_dual.lean",
+      "bytes": 19757,
+      "sha256": "b83e49b3f6af958daf31f7ae581a83996da82e992c863d1d6c097ef2dd662a06",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/normed_snake_dual.lean"
+    },
+    {
+      "path": "src/system_of_complexes/basic.lean",
+      "bytes": 17753,
+      "sha256": "10276035f2d51d388e5b26e18a33ea91a5ca97d41045f7f64e8dd3976300f15b",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/system_of_complexes/basic.lean"
+    },
+    {
+      "path": "src/system_of_complexes/rescale.lean",
+      "bytes": 8414,
+      "sha256": "41706b3d5d0c224b0d9c9146a5314ec707b0f5f7c5b896084a0c398885d7e063",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/system_of_complexes/rescale.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "src/thm95/col_exact.lean",
+      "lines": [
+        1257,
+        1302
+      ],
+      "role": "parent",
+      "name": "col_exact'",
+      "excerpt_sha256": "ff3a6ca45f337e8f5ef3b16fc6f09acb673d99f51019fa4dfc486e5fc28a99c0",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/thm95/col_exact.lean#L1257-L1302"
+    },
+    {
+      "path": "src/normed_snake_dual.lean",
+      "lines": [
+        300,
+        331
+      ],
+      "role": "child",
+      "name": "weak_normed_snake_dual",
+      "excerpt_sha256": "104042da81b07d5c01cce2423c658cbdf5a060a6f3117e730966cdf272da4494",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/normed_snake_dual.lean#L300-L331"
+    },
+    {
+      "path": "src/thm95/col_exact.lean",
+      "lines": [
+        710,
+        718
+      ],
+      "role": "child",
+      "name": "col_complex_rescaled.is_weak_bounded_exact",
+      "excerpt_sha256": "fc71052925190ed45fb066fe16f31decc2b3685320817e3f982a2f3f66179860",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/thm95/col_exact.lean#L710-L718"
+    },
+    {
+      "path": "src/thm95/col_exact.lean",
+      "lines": [
+        1229,
+        1238
+      ],
+      "role": "child",
+      "name": "col_exact'_aux1",
+      "excerpt_sha256": "4278dae72a557b8e5fd2b82fab99974c45d37454612ff6dc41ecabd35501bb66",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/thm95/col_exact.lean#L1229-L1238"
+    },
+    {
+      "path": "src/thm95/col_exact.lean",
+      "lines": [
+        1242,
+        1255
+      ],
+      "role": "child",
+      "name": "col_exact'_aux2",
+      "excerpt_sha256": "1b7cf82e1cd0f98b0a76170e9627b0ceb97afb63920b2613065a8762ea67656e",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/thm95/col_exact.lean#L1242-L1255"
+    },
+    {
+      "path": "src/thm95/col_exact.lean",
+      "lines": [
+        1136,
+        1145
+      ],
+      "role": "child",
+      "name": "col_ι_range",
+      "excerpt_sha256": "fab94ef601bff48820538e4b6358119c305583866ea6dda4a9bd97ef28e7b0fb",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/thm95/col_exact.lean#L1136-L1145"
+    },
+    {
+      "path": "src/thm95/col_exact.lean",
+      "lines": [
+        1147,
+        1154
+      ],
+      "role": "child",
+      "name": "col_ι_isometry",
+      "excerpt_sha256": "51b7d15f698a6252657c05ec0c84c7bcf11479da9419cd7598aba2e3c4d5471c",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/thm95/col_exact.lean#L1147-L1154"
+    },
+    {
+      "path": "src/system_of_complexes/basic.lean",
+      "lines": [
+        199,
+        212
+      ],
+      "role": "child",
+      "name": "admissible_of_isometry",
+      "excerpt_sha256": "cd67b257621279ce996a95209155f92a35ea0a993c6077e1fb8deb85bf1b11a2",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/system_of_complexes/basic.lean#L199-L212"
+    },
+    {
+      "path": "src/system_of_complexes/basic.lean",
+      "lines": [
+        253,
+        267
+      ],
+      "role": "child",
+      "name": "of_le",
+      "excerpt_sha256": "f4216d74ed7957566cd65f36ee1408570b58d35e62bd49e1d13406eaed30b105",
+      "permalink": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/system_of_complexes/basic.lean#L253-L267"
+    }
+  ],
+  "parent": {
+    "name": "col_exact'",
+    "statement": "lemma col_exact' [normed_with_aut r V] [fact (r < 1)]\n  (d : ℝ≥0) [pseudo_normed_group.splittable (Λ →+ M) N d]\n  (k : ℝ≥0) [fact (1 ≤ k)] (m : ℕ) (c₀ : ℝ≥0) (hdkc₀N : d ≤ (k - 1) * c₀ / N)\n  (k' K' : ℝ≥0) [fact (1 ≤ k')] (hk' : k * k ≤ k')\n  (hK' : (m + 2 + (r + 1) / (r * (1 - r)) * (m + 2)^2 : ℝ≥0) ≤ K')\n  (c₁ c₂ : ℝ≥0) [fact (c₀ ≤ r' * c₁)] [fact (c₀ ≤ κ n * c₂)] [fact (c₁ ≤ κ n * c₂)] :\n  (double_complex.col'.{u} BD κ r r' V Λ M N n).is_weak_bounded_exact k' K' m c₂"
+  },
+  "children": [
+    {
+      "name": "weak_normed_snake_dual",
+      "statement": "lemma weak_normed_snake_dual (k k' K K' r₁ r₂ : ℝ≥0)\n  [hk : fact (1 ≤ k)] [hk' : fact (1 ≤ k')]\n  {a : ℕ} {c₀ : ℝ≥0}\n  (hN : N.is_weak_bounded_exact k K (a + 1) c₀)\n  (hP : P.is_weak_bounded_exact k' K' (a + 1) c₀)\n  (hN_adm : N.admissible)\n  (hgnrm : ∀ c i (x : N c i), ∥g x∥ ≤ r₁ * ∥x∥)\n  (Hg : ∀ (c : ℝ≥0) [fact (c₀ ≤ c)] (i : ℕ) (hi : i ≤ a + 1 + 1) (y : P c i),\n    ∃ (x : N c i), g x = y ∧ ∥x∥ ≤ r₂ * ∥y∥)\n  (hg : ∀ c i, (f.apply : M c i ⟶ N c i).range = g.apply.ker)\n  (hf : ∀ c i, @isometry (M c i) (N c i) _ _ f.apply) :\n  M.is_weak_bounded_exact (k * k') (K + r₁ * r₂ * K * K') a c₀",
+      "closed_by": "apply exists_norm_sub_le_mul_add (admissible_of_isometry hN_adm hf); then apply exist_norm_sub_le_mul_norm_add",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: a short exact sequence of systems of complexes whose middle and right terms are weakly bounded-exact propagates weak bounded exactness to the left term with combined constants"
+    },
+    {
+      "name": "col_complex_rescaled.is_weak_bounded_exact",
+      "statement": "lemma col_complex_rescaled.is_weak_bounded_exact\n  (d : ℝ≥0) [pseudo_normed_group.splittable ((Λ →+ M)^n) N d]\n  (k : ℝ≥0) [fact (1 ≤ k)] (m : ℕ) (c₀ : ℝ≥0) (hdkc₀N : d ≤ (k - 1) * c₀ / N) :\n  (col_complex_rescaled r' V Λ M N n).is_weak_bounded_exact k (m+1) m c₀",
+      "closed_by": "have := scale_factorial.is_weak_bounded_exact (col_complex.is_weak_bounded_exact …); rwa [one_mul] at this",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the rescaled column complex is weakly bounded-exact"
+    },
+    {
+      "name": "col_exact'_aux1",
+      "statement": "lemma col_exact'_aux1 [normed_with_aut r V] (c : ℝ≥0ᵒᵖ) (i : ℕ) :\n  ∀ x, ∥(((col_complex_rescaled.T_inv_sub_Tinv' r r' V Λ M N (BD.X n) (κ n)).app c).f i) x∥ ≤\n    (1 + r⁻¹) * ∥x∥",
+      "closed_by": "cases i; apply normed_add_group_hom.le_of_op_norm_le; exact CLCFP.norm_T_inv_sub_Tinv_le",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the T_inv_sub_Tinv map is norm-bounded by 1 + r⁻¹"
+    },
+    {
+      "name": "col_exact'_aux2",
+      "statement": "lemma col_exact'_aux2 [normed_with_aut r V] (c : ℝ≥0ᵒᵖ) (i : ℕ) :\n  ∀ y, ∃ x,\n    (((col_complex_rescaled.T_inv_sub_Tinv' r r' V Λ M N (BD.X n) (κ n)).app c).f i) x = y ∧\n    ∥x∥ ≤ ↑(r / (1 - r) + 1) * ∥y∥",
+      "closed_by": "cases i; refine SemiNormedGroup.rescale_exists_norm_le …; obtain ⟨x, h1, h2⟩ := CLCFP.T_inv_sub_Tinv_exists_preimage",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the T_inv_sub_Tinv map is surjective with a preimage norm bound r / (1 - r) + 1"
+    },
+    {
+      "name": "col_ι_range",
+      "statement": "lemma col_ι_range :\n  (((double_complex.col_ι BD κ r r' V Λ M N n).app c).f i).range =\n  (((col_complex_rescaled.T_inv_sub_Tinv' r r' V Λ M N (BD.X n) (κ n)).app c).f i).ker",
+      "closed_by": "cases i; refine SemiNormedGroup.rescale_exact …; rw CLCTinv.ι_range'",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the range of col_ι equals the kernel of T_inv_sub_Tinv'"
+    },
+    {
+      "name": "col_ι_isometry",
+      "statement": "lemma col_ι_isometry :\n  isometry (((double_complex.col_ι BD κ r r' V Λ M N n).app c).f i)",
+      "closed_by": "cases i; refine SemiNormedGroup.rescale_map_isometry …; apply add_monoid_hom_class.isometry_of_norm",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: col_ι is an isometry"
+    },
+    {
+      "name": "admissible_of_isometry",
+      "statement": "lemma admissible_of_isometry {f : M ⟶ M'} (hadm : M'.admissible)\n  (hiso : ∀ c i, @isometry (M c i) (M' c i) _ _ f.apply) :\n  M.admissible",
+      "closed_by": "refine ⟨…⟩; rw [← (add_monoid_hom_class.isometry_iff_norm _).1 (hiso …) …]; exact hadm.d_norm_noninc / hadm.res_norm_noninc",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: admissibility transfers along an isometry"
+    },
+    {
+      "name": "of_le",
+      "statement": "lemma of_le (hC : C.is_weak_bounded_exact k K m c₀) (hC_adm : C.admissible)\n  (hk : fact (k ≤ k')) (hK : fact (K ≤ K')) (hm : m' ≤ m) (hc₀ : fact (c₀ ≤ c₀')) :\n  C.is_weak_bounded_exact k' K' m' c₀'",
+      "closed_by": "intros; obtain ⟨…⟩ := hC …; refine le_trans hy _; apply add_le_add_right; exact mul_le_mul hK.out (hC_adm.res_norm_noninc …)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: weak bounded exactness is monotone in the constants"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal `C.is_weak_bounded_exact k' K' m c₂` for a complex `C` that sits in a short exact sequence `M --f--> N --g--> P`, where the whole point is one general exactness principle (here the dual normed snake lemma) that turns exactness of `N` and `P`, admissibility of `N`, a norm bound on `g`, a surjectivity-with-bound on `g`, `range f = ker g`, and `f` an isometry into a proof of `M`'s exactness.",
+    "use_when": "the goal is an instance of a reusable exactness/extension theorem (snake lemma, five lemma, etc.) whose hypotheses can each be discharged by a named lemma; the constants of that theorem are then weakened to the target constants with a monotonicity lemma.",
+    "avoid_when": "the key auxiliary statement is not already proved and itself needs a long argument (the glue would hide a whole proof behind one `have`); or the hypotheses of the key lemma do not decompose cleanly into independent named lemmas (each isometry/surjectivity/range-ker equality has to be stated separately)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "`col_exact'` is declared at lines 1257-1302 of `src/thm95/col_exact.lean`.",
+      "evidence_kind": "check",
+      "form": "declared(col_exact', src/thm95/col_exact.lean, 1257-1302)",
+      "evidence": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/thm95/col_exact.lean#L1257-L1302"
+    },
+    {
+      "n": 2,
+      "claim": "The parent `col_exact'` cites `weak_normed_snake_dual`, the key invariant.",
+      "evidence_kind": "check",
+      "form": "cites(parent, weak_normed_snake_dual)",
+      "evidence": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/thm95/col_exact.lean#L1272"
+    },
+    {
+      "n": 3,
+      "claim": "`src/thm95/col_exact.lean` contains no `sorry`/`admit`/`axiom` outside comments.",
+      "evidence_kind": "check",
+      "form": "no_sorry(src/thm95/col_exact.lean, 1-1318)",
+      "evidence": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/thm95/col_exact.lean"
+    },
+    {
+      "n": 4,
+      "claim": "The decomposition has 8 direct project lemmas (child sites of 32, 9, 10, 14, 10, 8, 14 and 15 lines), a 46-line glue, and depth 4: col_exact' cites weak_normed_snake_dual, which cites exist_norm_sub_le_mul_norm_add, which cites norm_sub_le_mul_norm_add, which cites norm_sub_le_split.",
+      "evidence_kind": "measurement",
+      "evidence": "counted from the entry's sites (parent lines 1257-1302; child sites 300-331, 710-718, 1229-1238, 1242-1255, 1136-1145, 1147-1154, 199-212, 253-267) and the chain: col_exact' cites weak_normed_snake_dual at col_exact.lean:1272, weak_normed_snake_dual cites exist_norm_sub_le_mul_norm_add at normed_snake_dual.lean:325, exist_norm_sub_le_mul_norm_add cites norm_sub_le_mul_norm_add at normed_snake_dual.lean:259, norm_sub_le_mul_norm_add cites norm_sub_le_split at normed_snake_dual.lean:160"
+    },
+    {
+      "n": 5,
+      "claim": "The authors state why they broke the snake-lemma proof into partial inequalities: \"we broke these proofs into smaller partial inequalities, for three reasons. First, it streamlines the formalization. Second, it helps Lean processing the statements, reducing processing times. Third, it allows us to us a large part of the argument for both weak_normed_snake_dual and normed_snake_dual.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover-community/lean-liquid/blob/ee4795874a99ea5f9d85bd0b364425f07b932377/src/normed_snake_dual.lean#L33-L36"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 8,
+    "depth": 4,
+    "glue_lines": 46,
+    "child_lines": [
+      32,
+      9,
+      10,
+      14,
+      10,
+      8,
+      14,
+      15
+    ]
+  },
+  "metrics": {
+    "parent_lines": 46,
+    "children": 8,
+    "depth": 4,
+    "how_counted": "parent_lines = lines 1257-1302 of src/thm95/col_exact.lean; children = the eight named project lemmas the glue cites directly; depth = the chain col_exact' -> weak_normed_snake_dual -> exist_norm_sub_le_mul_norm_add -> norm_sub_le_mul_norm_add -> norm_sub_le_split, four project lemmas below the theorem"
+  },
+  "consequences": "The move obliges the writer to discharge every hypothesis of the key invariant as a named lemma: (i) the isometry bound (col_exact'_aux1, r₁ = 1 + r⁻¹) and (ii) the surjectivity-with-bound (col_exact'_aux2, r₂ = r/(1-r)+1) of T_inv_sub_Tinv; (iii) the range-equals-kernel exactness at the middle (col_ι_range) and (iv) the isometry (col_ι_isometry) of the connecting morphism; (v) the exactness of the two other complexes (col_complex_rescaled.is_weak_bounded_exact, rescaled by scale_index_left/right); and (vi) admissibility (admissible_of_isometry, col_complex_rescaled.admissible). It also obliges a final constant weakening (is_weak_bounded_exact.of_le), which requires an arithmetic identity ((1 + r⁻¹)·(r/(1-r)+1) = (r+1)/(r·(1-r))) and the bound hK'. Failure mode: the key lemma's constants (k·k', K + r₁·r₂·K·K') are not the target constants, so forgetting the of_le weakening, or mis-matching the hypotheses (e.g. supplying hN where hP is needed) leaves a goal that does not close.",
+  "known_uses": [],
+  "related": [
+    "lean-key-invariant-compfiles-f9a0ece2",
+    "lean-key-invariant-mathlib4-3f171129",
+    "lean-key-invariant-seed-prover-ccd41e1d"
+  ],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "01d1344dbbcb0129e76dc0e9722aff37db0a75bfa14610e10b410643738de5cf",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:32:32Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,also_known_as,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:40:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:34:17Z",
+      "note": "parent col_exact': statement re-copied from code; child 'weak_normed_snake_dual': statement re-copied from the declaration of weak_normed_snake_dual; child 'col_complex_rescaled.is_weak_bounded_exact': statement re-copied from the declaration of col_complex_rescaled.is_weak_bounded_exact; child \"col_exact'_aux1\": statement re-copied from the declaration of col_exact'_aux1; child \"col_exact'_aux2\": statement re-copied from the declaration of col_exact'_aux2; child 'col_ι_range': statement re-copied from the declaration of col_ι_range; child 'col_ι_isometry': statement re-copied from the declaration of col_ι_isometry; child 'admissible_of_isometry': statement re-copied from the declaration of admissible_of_isometry; child 'of_le': statement re-copied from the declaration of of_le"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T09:43:15Z"
+}

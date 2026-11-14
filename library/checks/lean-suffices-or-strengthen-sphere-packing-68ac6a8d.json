@@ -1,0 +1,125 @@
+{
+  "entry": "lean-suffices-or-strengthen-sphere-packing-68ac6a8d",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:11:25Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:11:26Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:11:26Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: FmodG_numerator_tendsto@SpherePacking/ModularForms/FG.lean:523, FmodG_denominator_tendsto@SpherePacking/ModularForms/FG.lean:523, F_functional_eq_real@SpherePacking/ModularForms/FG.lean:525, G_functional_eq_real@SpherePacking/ModularForms/FG.lean:525; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:11:26Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(FmodG_rightLimitAt_zero, SpherePacking/ModularForms/FG.lean, 519-527) -> declared: FmodG_rightLimitAt_zero is declared at SpherePacking/ModularForms/FG.lean:519",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:11:26Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(SpherePacking/ModularForms/FG.lean, 519-527) -> no_sorry: none of sorry, admit, axiom in SpherePacking/ModularForms/FG.lean:519-527",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:11:26Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, FmodG_numerator_tendsto) -> cites: FmodG_numerator_tendsto occurs at SpherePacking/ModularForms/FG.lean:523",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:11:26Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at efe3bbbc1ece548f4672a772b94d8f621c10fdda",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:11:34Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml; commit efe3bbbc1ece548f4672a772b94d8f621c10fdda is HEAD of main (default branch, compare main...efe3bbbc = identical); the workflow triggers on push to main and builds the whole Lean project via leanprover/lean-action (lake build), which includes SpherePacking/ModularForms/FG.lean",
+      "by": "verifier",
+      "at": "2026-11-14T09:13:09Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read code/FG.lean: parent spans L519-527 (9 lines); 4 children sites FmodG_numerator_tendsto L483-488 (6), FmodG_denominator_tendsto L491-496 (6), F_functional_eq_real L500-506 (7), G_functional_eq_real L510-516 (7); chain links all confirmed: FmodG_numerator_tendsto cites sq_mul_FReal_tendsto_zero (L487), which cites F_isBigO_exp_atImInfty (L474), which cites F₁_isBigO_exp_atImInfty (L465), which cites E₂E₄_sub_E₆_div_q_tendsto (L460), which cites qexp_tendsto_of_poly_bound (L313)",
+      "by": "verifier",
+      "at": "2026-11-14T09:13:11Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read code/FG.lean L518: doc comment is '/-- lim_{t → 0⁺} F(it) / G(it) = 18 π⁻² (blueprint Lemma 8.8). -/' directly above the theorem, recording exactly the stated limit and blueprint Lemma 8.8",
+      "by": "verifier",
+      "at": "2026-11-14T09:13:12Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent FmodG_rightLimitAt_zero (L519-527) and all four children (L483-488, L491-496, L500-506, L510-516) match the code verbatim; closed_by tactics match exactly (tendsto_cont/linear_combination). The proof closes with no sorry: hlim is assembled from FmodG_numerator_tendsto.div FmodG_denominator_tendsto then rewritten with F_functional_eq_real and G_functional_eq_real and pulled back via tendsto_inv_nhdsGT_zero. The four children are exactly the project lemmas the glue cites (L523, L525); two_ne_zero, tendsto_inv_nhdsGT_zero, pow_ne_zero are Mathlib facts, correctly excluded. Shape numbers correct: direct_lemmas=4, glue_lines=9, child_lines=[6,6,7,7] (verified line-by-line), depth=6 (chain parent -> numerator -> sq_mul_FReal_tendsto_zero -> F_isBigO_exp_atImInfty -> F1_isBigO_exp_atImInfty -> E2E4_sub_E6_div_q_tendsto -> qexp_tendsto_of_poly_bound, 6 project lemmas below the theorem).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:14:31Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalises beyond the example: applicability/goal_shape is 'Tendsto f (nhdsWithin a (Set.Ioi a)) L' with a functional equation clean under t -> a+1/s (1/s for a=0), not just F/G at 0. use_when/avoid_when name the two real preconditions honestly: a matching pull-back/inversion filter (tendsto_inv_nhdsGT_zero) and a functional equation that leaves decaying numerator/denominator terms; the failure mode is specific (need an extra decay lemma) and is exactly what the example itself requires via sq_mul_FReal_tendsto_zero. Consequences enumerate the intermediate atTop obligation, the four halves and the s^10 cancellation. Good leaves for a bounded prover are stated: self-contained statements, each closing with a single automated tactic (tendsto_cont / linear_combination) over named siblings - confirmed at FG.lean 483-516 (children) and 519-527 (parent, doc comment at 518).",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:15:30Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at efe3bbbc1ece548f4672a772b94d8f621c10fdda",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:15:47Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are all consistent and traceable: commit efe3bbbc1ece548f4672a772b94d8f621c10fdda matches across entry.json source.commit, files/site permalinks, README, SOURCE.md and source.json; check_provenance reports the file byte-identical at that commit; local code sha256 c99685... equals files[0].sha256; licence Apache-2.0 is recorded identically in entry.json/README/SOURCE.md/source.json and the upstream-LICENSE file is genuine Apache 2.0; every cited line range (parent 519-527, children 483-488/491-496/500-506/510-516, claim-5 doc comment at 518) matches the copied file verbatim.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:16:15Z"
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "entry": "rocq-induction-ssprove-47a61d8e",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:24:51Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:24:51Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:24:51Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: GEN_GEN_HYB_equiv@theories/Crypt/examples/PRFPRG.v:335, GEN_GEN_HYB_EVAL_equiv@theories/Crypt/examples/PRFPRG.v:336; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:24:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(hyb_security_based_on_prf, theories/Crypt/examples/PRFPRG.v, 314-339) -> declared: hyb_security_based_on_prf is declared at theories/Crypt/examples/PRFPRG.v:314",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:24:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, GEN_GEN_HYB_equiv) -> cites: GEN_GEN_HYB_equiv occurs at theories/Crypt/examples/PRFPRG.v:335",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:24:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, GEN_GEN_HYB_EVAL_equiv) -> cites: GEN_GEN_HYB_EVAL_equiv occurs at theories/Crypt/examples/PRFPRG.v:336",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:24:51Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 9a37fe0ab79d041f8d835e6cf18e37614b16a791",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:24:58Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/opam-build.yml runs 'opam exec -- make' on push/PR to main; _RocqProject lists theories/Crypt/examples/PRFPRG.v; commit 9a37fe0ab79d041f8d835e6cf18e37614b16a791 on default branch main",
+      "by": "verifier",
+      "at": "2026-11-14T12:26:28Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "glue lines 314-339 = 26 lines (Theorem 314, Qed 339); child GEN_GEN_HYB_equiv 218-253 = 36 lines; child GEN_GEN_HYB_EVAL_equiv 259-299 = 41 lines; proof cites only GEN_GEN_HYB_equiv (line 335) and GEN_GEN_HYB_EVAL_equiv (line 336), both Qed-closed on library tactics, depth 1",
+      "by": "verifier",
+      "at": "2026-11-14T12:26:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "comment at lines 310-313: 'First we prove a bound on the hybrid packages. Since [q] can be any number the bound is a sum of [prf_epsilon], and the proof is by induction.'",
+      "by": "verifier",
+      "at": "2026-11-14T12:26:30Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 9a37fe0ab79d041f8d835e6cf18e37614b16a791",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:26:49Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent statement verbatim matches code lines 314-322; both child statements verbatim (GEN_GEN_HYB_equiv 218, GEN_GEN_HYB_EVAL_equiv 259); glue cites each child exactly once (rewrite at 335 and 336); children are exactly the two project lemmas the parent uses (remaining citations are library tactics/lemmas); children close on library tactics so depth=1; shape numbers correct (glue 339-314+1=26, child_lines 253-218+1=36 and 299-259+1=41, direct_lemmas=2, depth=1); proof ends Qed (no sorry/admit); base case at 326, ssprove triangle 327-332, telescoping 337-338 all as described.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:27:30Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality lens: the move is stated beyond the example — applicability.goal_shape and use_when describe induction on a count parameter q under a sum unfolded by big_ord_recr, with per-step equivalence lemmas as leaves and a triangle inequality as glue, and also_known_as names the general pattern (hybrid argument / game hopping). avoid_when is honest and specific (non-uniform per-step advantage, per-step couplings, non-empty base case, q not a nat induction variable). Consequences are honest: it names the base and step obligations, the ssprove triangle/rewrite+ssprove_valid failure mode, and that the bound transfers to the full PRG only through security_based_on_prf with the AdvantageE(...)=0 hypothesis left unproved (comment 341-346 confirmed). Good-leaf rationale is present and concrete: both children are self-contained ≈₀ statements closing on their own couplings plus a case split, independent of each other, closing on library tactics alone, depth 1, 36/41 lines — verified against the copied code ranges.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:28:18Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 9a37fe0ab79d041f8d835e6cf18e37614b16a791",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:28:36Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes: 1 file byte-identical at commit 9a37fe0ab79d041f8d835e6cf18e37614b16a791; commit and licence MIT are recorded consistently across entry.json source, sources/ssprove/source.json, and sources/ssprove/SOURCE.md; upstream-LICENSE is 'MIT License, Copyright (c) 2021 SSProve'; every permalink uses the pinned commit and its cited line ranges match the copied PRFPRG.v (parent 314-339, children 218-253 and 259-299, author comment 310-313).",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:29:06Z"
+    }
+  ]
+}

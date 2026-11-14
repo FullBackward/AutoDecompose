@@ -1,0 +1,149 @@
+{
+  "entry": "lean-per-callee-lemma-formal-proofs-4f0e8f5a",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T13:00:57Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T13:00:57Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T13:00:57Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: sound_generic@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:349, sound_call_rel@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:352, sound_ret@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:361, sound_assert_eq@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:364, sound_jump_imm@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:373, sound_jnz_not_taken@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:385, sound_add_ap@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:391, sound_add_252@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:397; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T13:00:57Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(exec_step_sound, Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean, 317-403) -> declared: exec_step_sound is declared at Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:317",
+      "by": "check_claims.py",
+      "at": "2026-11-14T13:00:57Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, sound_generic) -> cites: sound_generic occurs at Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:349",
+      "by": "check_claims.py",
+      "at": "2026-11-14T13:00:57Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean, 317-403) -> no_sorry: none of sorry, admit, axiom in Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:317-403",
+      "by": "check_claims.py",
+      "at": "2026-11-14T13:00:57Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T13:28:35Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: sound_generic@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:349, sound_call_rel@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:352, sound_ret@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:361, sound_assert_eq@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:364, sound_jump_imm@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:373, sound_jnz_not_taken@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:385, sound_add_ap@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:391, sound_add_252@Stwo/Verification/AirInfra/Soundness/FinalSoundness.lean:397; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T13:28:36Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "11 file(s) byte-identical at d0dd8279612a248cbc6bf6d286030bf0bb2a37ff",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T13:28:57Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI workflow in the source: no .github/workflows directory at the pinned commit d0dd8279612a248cbc6bf6d286030bf0bb2a37ff nor on default branch master (GitHub API returns 404 for .github/workflows); file listing shows no yml/yaml/Makefile/CI config",
+      "by": "verifier",
+      "at": "2026-11-14T13:30:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "read FinalSoundness.lean:317-403 (19 case blocks, one apply each, lines 347-403); Components.lean:9-29 (19 Opcode constructors: Generic..Mul252); depth chain: sound_generic applied FinalSoundness.lean:349, sound_auto (GenericOpcode.sound_auto) applied via rcases at GenericOpcode.lean:759 inside sound_generic, DecodeGenericInstruction.sound_auto applied at GenericOpcode.lean:722 inside sound_auto (declared 689)",
+      "by": "verifier",
+      "at": "2026-11-14T13:30:59Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "grep confirmed all 11 wrappers declared at the cited lines: sound_call_abs_base_fp CallOpcode.lean:433, sound_call_abs_base_ap:468, sound_assert_eq_imm AssertEqOpcode.lean:507, sound_assert_eq_double_deref:543, sound_jump_double_deref JumpOpcode.lean:633, sound_jump_rel:669, sound_jump_abs:705, sound_jnz_taken JnzOpcode.lean:972, sound_add_small AddOpcode.lean:893, sound_mul_small MulOpcode.lean:970, sound_mul_252:1899; module-level sound_auto present in all 9 opcode modules; glue cites 19 sound_X wrappers across 9 modules",
+      "by": "verifier",
+      "at": "2026-11-14T13:31:04Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "11 file(s) byte-identical at d0dd8279612a248cbc6bf6d286030bf0bb2a37ff",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T13:31:40Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Decomposition matches the code: parent exec_step_sound (FinalSoundness.lean:317-403) is a bare cases o (line 346) with 19 case blocks, each one apply of a per-constructor sound_X lemma; Opcode has exactly 19 constructors (Components.lean:9-29). All 8 child sites' closing methods match the code (apply module sound_auto with the opcode's flags, then use h_bound / use <instr>.toInstruction / use h_instr), and every child closes with no sorry (sorry-scan pass). Children are exactly the lemmas the glue uses: 19 apply targets = 8 site children + 11 pointer wrappers, glue-cites-children pass. Shape numbers right: direct_lemmas=19, depth=3 (sound_generic@349 -> GenericOpcode.sound_auto@759 -> DecodeGenericInstruction.sound_auto@722), glue_lines=87 (317-403), child_lines=[31,34,31,35,35,31,31,31] all recompute from the site spans.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T13:32:52Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalises: use_when names the abstract preconditions (finite inductive type; one pre-written lemma per constructor of exactly the goal's shape; glue = cases + one apply; exhaustiveness from type totality) and the domain (machine-code/bytecode interpreter), with also_known_as tying to seL4 crunch and CompCert per-pass. When-not-to-use is specific and honest: no shared statement template (each case needs a different argument, not bare apply), lemmas not yet existing (N near-identical proofs whose cost is better spent on the shared sound_auto/spec layer), or glue that must do real work beyond dispatch. Consequences are specific and honest: one obligation per constructor; exhaustiveness auto (cases o, 19/19); each lemma must match the goal shape or the bare apply fails; adding a constructor couples the proof to the opcode set; monolith-break failure mode (change to shared sound_auto/spec layer breaks the 19 near-identical wrappers). Good-leaf criterion for a bounded prover is stated: self-contained statement (every hypothesis explicit, none free) and a proof that closes on two named siblings, one shared library lemma and the instruction builder, with a depth-3 trace. Verified the prose against the cited ranges (Components.lean 9-29 = 19 constructors; FinalSoundness.lean 317-403 = 19 identical cases).",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T13:34:03Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "11 file(s) byte-identical at d0dd8279612a248cbc6bf6d286030bf0bb2a37ff",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T13:34:33Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance pass (11 files byte-identical at d0dd8279612a248cbc6bf6d286030bf0bb2a37ff); commit consistent everywhere (README 12-char prefix d0dd8279612a, entry.json and SOURCE.md full hash, every permalink full hash); licence LicenseRef-unknown consistent in README/entry.json/SOURCE.md, SOURCE.md honestly records no licence file at root; all cited line ranges verified in the copied files — parent FinalSoundness.lean 317-403 (lemma exec_step_sound at 317, 19 applies at 347-403), context Components.lean 9-29 (inductive Opcode, 19 constructors), 8 child sites and all 11 pointer-table declarations at the cited lines, and claim-4 depth anchors GenericOpcode.lean 722 (DecodeGenericInstruction.sound_auto) and 759 (sound_auto). Everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T13:35:18Z"
+    }
+  ]
+}

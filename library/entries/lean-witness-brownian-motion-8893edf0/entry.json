@@ -1,0 +1,300 @@
+{
+  "id": "lean-witness-brownian-motion-8893edf0",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Witness pair (S - A, A) for the Doob-Meyer decomposition of a cadlag class D submartingale",
+  "intent": "Prove the Doob-Meyer decomposition -- every cadlag submartingale of class D is the sum of a cadlag martingale and a predictable, cadlag, monotone increasing process vanishing at bottom -- by constructing the two witnesses M := S - A and A := G.indicator L (the limsup of convex step extensions, restricted to a good set of full measure) and discharging each conjunct of the resulting existence statement from the martingale-part and predictable-part lemmas.",
+  "move": "witness",
+  "also_known_as": [
+    "exists introduction",
+    "constructive witness (refine ⟨w, ·⟩)",
+    "use",
+    "obtain ⟨x, hx⟩"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "brownian-motion",
+    "url": "https://github.com/RemyDegenne/brownian-motion",
+    "commit": "8fd8dc52830cdd07cf9cc8eadd533e284425fa6f",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "BrownianMotion/StochasticIntegral/DoobMeyer.lean",
+      "bytes": 189003,
+      "sha256": "fa02a1c49433ed6610279567659192888bee0e76f7cad392052221934f405a2d",
+      "permalink": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/BrownianMotion/StochasticIntegral/DoobMeyer.lean"
+    },
+    {
+      "path": "BrownianMotion/StochasticIntegral/Predictable.lean",
+      "bytes": 21590,
+      "sha256": "3ef35f9ac197e9584703f08d9edf9118cdb3031370d71df5a5c8c8ffe48cb6cf",
+      "permalink": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/BrownianMotion/StochasticIntegral/Predictable.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "BrownianMotion/StochasticIntegral/DoobMeyer.lean",
+      "lines": [
+        2901,
+        2954
+      ],
+      "role": "parent",
+      "name": "ProbabilityTheory.ClassD.doob_meyer",
+      "excerpt_sha256": "9bf0725ab0bd2c566fdf110de3dbfb7ed6c35c7bb7a1fa4294d5636d2e8317a2",
+      "permalink": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/BrownianMotion/StochasticIntegral/DoobMeyer.lean#L2901-L2954"
+    },
+    {
+      "path": "BrownianMotion/StochasticIntegral/DoobMeyer.lean",
+      "lines": [
+        1524,
+        1526
+      ],
+      "role": "child",
+      "name": "isCadlag_martingalePartLim",
+      "excerpt_sha256": "7254967d1f3dc6035588b4be6c861b441c6b04efcf6de43d43f421938d922ec3",
+      "permalink": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/BrownianMotion/StochasticIntegral/DoobMeyer.lean#L1524-L1526"
+    },
+    {
+      "path": "BrownianMotion/StochasticIntegral/DoobMeyer.lean",
+      "lines": [
+        1542,
+        1551
+      ],
+      "role": "child",
+      "name": "martingale_martingalePartLim",
+      "excerpt_sha256": "951ec5e78016d8cd4d4be80776e7b2d411fb55ebcf4e8b31a3c7835748676ced",
+      "permalink": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/BrownianMotion/StochasticIntegral/DoobMeyer.lean#L1542-L1551"
+    },
+    {
+      "path": "BrownianMotion/StochasticIntegral/DoobMeyer.lean",
+      "lines": [
+        1635,
+        1642
+      ],
+      "role": "child",
+      "name": "isCadlag_predictablePartLim_ae",
+      "excerpt_sha256": "3ef44fcbc9f69ab1712558e49849984af11c3c87ea1cdd75a8419080d7159e32",
+      "permalink": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/BrownianMotion/StochasticIntegral/DoobMeyer.lean#L1635-L1642"
+    },
+    {
+      "path": "BrownianMotion/StochasticIntegral/DoobMeyer.lean",
+      "lines": [
+        2275,
+        2284
+      ],
+      "role": "child",
+      "name": "predictablePartLim_monotone_ae",
+      "excerpt_sha256": "57488a2ee66e20c9349577085510c43c08e014f53fe874546862eb042dabedc0",
+      "permalink": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/BrownianMotion/StochasticIntegral/DoobMeyer.lean#L2275-L2284"
+    },
+    {
+      "path": "BrownianMotion/StochasticIntegral/DoobMeyer.lean",
+      "lines": [
+        2352,
+        2358
+      ],
+      "role": "child",
+      "name": "isStronglyPredictable_limsup_predictableConvexStep",
+      "excerpt_sha256": "e65dcec51d0f9527296adbcdf15ff7c4529117847109368b5965d92051e38ffd",
+      "permalink": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/BrownianMotion/StochasticIntegral/DoobMeyer.lean#L2352-L2358"
+    },
+    {
+      "path": "BrownianMotion/StochasticIntegral/DoobMeyer.lean",
+      "lines": [
+        2656,
+        2659
+      ],
+      "role": "child",
+      "name": "predictableConvexStep_bot",
+      "excerpt_sha256": "2992edbe2fe6db57deb56278dd0efed9405a280177a53f6f6deae3b3f1b59107",
+      "permalink": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/BrownianMotion/StochasticIntegral/DoobMeyer.lean#L2656-L2659"
+    },
+    {
+      "path": "BrownianMotion/StochasticIntegral/DoobMeyer.lean",
+      "lines": [
+        2854,
+        2894
+      ],
+      "role": "child",
+      "name": "limsup_predictableConvexStep_eq_predictablePartLim",
+      "excerpt_sha256": "10aae88ef147ba72c0efb4b32b126fe67f802867ba1537c11ad377e3890ef770",
+      "permalink": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/BrownianMotion/StochasticIntegral/DoobMeyer.lean#L2854-L2894"
+    },
+    {
+      "path": "BrownianMotion/StochasticIntegral/Predictable.lean",
+      "lines": [
+        129,
+        134
+      ],
+      "role": "child",
+      "name": "measurableSet_predictable_univ_prod",
+      "excerpt_sha256": "43bd6e40c018d800c16fba7f4f273274c494ecffed7901847c7341c6dabaf991",
+      "permalink": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/BrownianMotion/StochasticIntegral/Predictable.lean#L129-L134"
+    }
+  ],
+  "parent": {
+    "name": "ProbabilityTheory.ClassD.doob_meyer",
+    "statement": "theorem ProbabilityTheory.ClassD.doob_meyer {ι Ω : Type*} [CompleteLinearOrder ι]\n    [TopologicalSpace ι] [OrderTopology ι] [SecondCountableTopology ι] [MeasurableSpace ι]\n    [BorelSpace ι] {mΩ : MeasurableSpace Ω} {P : Measure Ω} [IsFiniteMeasure P] {S : ι → Ω → ℝ}\n    {𝓕 : Filtration ι mΩ} [𝓕.IsRightContinuous] [𝓕.IsComplete P]\n    (hd : ClassD S 𝓕 P) (hs : Submartingale S 𝓕 P) (hc : ∀ ω, IsCadlag (S · ω)) :\n    ∃ (M A : ι → Ω → ℝ), S = M + A ∧ Martingale M 𝓕 P ∧ (∀ ω, IsCadlag (M · ω)) ∧\n      IsStronglyPredictable 𝓕 A ∧ (∀ ω, IsCadlag (A · ω)) ∧ (∀ ω, Monotone (A · ω)) ∧\n      A ⊥ = 0"
+  },
+  "children": [
+    {
+      "name": "isCadlag_martingalePartLim",
+      "statement": "lemma isCadlag_martingalePartLim (hd : ClassD S 𝓕 P) (hs : Submartingale S 𝓕 P) (ω : Ω) :\n    IsCadlag (martingalePartLim hd hs · ω)",
+      "closed_by": "isCadlag_cadlagModifReal ω",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The paths of the martingale part `martingalePartLim hd hs` are cadlag."
+    },
+    {
+      "name": "martingale_martingalePartLim",
+      "statement": "lemma martingale_martingalePartLim [𝓕.IsRightContinuous] [𝓕.IsComplete P]\n    (hd : ClassD S 𝓕 P) (hs : Submartingale S 𝓕 P) :\n    Martingale (martingalePartLim hd hs) 𝓕 P",
+      "closed_by": "refine ⟨stronglyAdapted_martingalePartLim hd hs, fun i j hij ↦ ?_⟩; a calc of conditional expectations via condExp_congr_ae, condExp_ae_eq and martingalePartLim_ae_eq",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The martingale part `martingalePartLim hd hs` is a martingale under the usual conditions."
+    },
+    {
+      "name": "isCadlag_predictablePartLim_ae",
+      "statement": "lemma isCadlag_predictablePartLim_ae {ι Ω : Type*} [TopologicalSpace ι]\n    [SecondCountableTopology ι] [MeasurableSpace ι] [LinearOrder ι] [OrderBot ι] [OrderTop ι]\n    [OrderTopology ι] {mΩ : MeasurableSpace Ω} {P : Measure Ω}\n    [IsFiniteMeasure P] {S : ι → Ω → ℝ} {𝓕 : Filtration ι mΩ} (hd : ClassD S 𝓕 P)\n    (hs : Submartingale S 𝓕 P) (hc : ∀ᵐ ω ∂P, IsCadlag (S · ω)) :\n    ∀ᵐ ω ∂P, IsCadlag (predictablePartLim hd hs · ω)",
+      "closed_by": "filter_upwards [hc] with ω hω; exact hω.sub (isCadlag_martingalePartLim hd hs ω)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: If S is almost surely cadlag, so is the predictable part `predictablePartLim hd hs`."
+    },
+    {
+      "name": "predictablePartLim_monotone_ae",
+      "statement": "lemma predictablePartLim_monotone_ae {ι Ω : Type*} [TopologicalSpace ι]\n    [SecondCountableTopology ι] [MeasurableSpace ι] [LinearOrder ι] [OrderBot ι] [OrderTop ι]\n    [OrderTopology ι] {mΩ : MeasurableSpace Ω} {P : Measure Ω}\n    [IsFiniteMeasure P] {S : ι → Ω → ℝ} {𝓕 : Filtration ι mΩ} [𝓕.IsRightContinuous]\n    (hd : ClassD S 𝓕 P) (hs : Submartingale S 𝓕 P) (hc : ∀ᵐ ω ∂P, IsCadlag (S · ω)) :\n    ∀ᵐ ω ∂P, Monotone fun t ↦ predictablePartLim hd hs t ω",
+      "closed_by": "(denseSet_dense ι).monotone_of_isRightContinuous ... from predictablePartLim_monotoneOn_denseSet_ae and isRightContinuous_predictablePartLim_ae",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: If S is almost surely cadlag, the predictable part is almost surely monotone."
+    },
+    {
+      "name": "isStronglyPredictable_limsup_predictableConvexStep",
+      "statement": "lemma isStronglyPredictable_limsup_predictableConvexStep {ι Ω : Type*} [TopologicalSpace ι]\n    [SecondCountableTopology ι] [MeasurableSpace ι] [LinearOrder ι] [OrderBot ι]\n    [OrderTop ι] [OrderTopology ι] {mΩ : MeasurableSpace Ω} {P : Measure Ω}\n    [IsFiniteMeasure P] {S : ι → Ω → ℝ} {𝓕 : Filtration ι mΩ} (hd : ClassD S 𝓕 P)\n    (hs : Submartingale S 𝓕 P) :\n    IsStronglyPredictable 𝓕 (fun t ω => limsup (predictableConvexStep hd hs · t ω) atTop)",
+      "closed_by": "IsStronglyPredictable.limsup fun n => isStronglyPredictable_predictableConvexStep hd hs n",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The limsup of the convex step extensions of the predictable parts is strongly predictable."
+    },
+    {
+      "name": "predictableConvexStep_bot",
+      "statement": "lemma predictableConvexStep_bot (hd : ClassD S 𝓕 P) (hs : Submartingale S 𝓕 P) (n : ℕ) :\n    predictableConvexStep hd hs n ⊥ = 0",
+      "closed_by": "funext ω; simp [predictableConvexStep, Finsupp.sum, Finset.sum_apply, predictableSeqStep_bot]",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The convex step extension of the predictable parts vanishes at ⊥."
+    },
+    {
+      "name": "limsup_predictableConvexStep_eq_predictablePartLim",
+      "statement": "lemma limsup_predictableConvexStep_eq_predictablePartLim {ι : Type*} [CompleteLinearOrder ι]\n    [TopologicalSpace ι] [OrderTopology ι] [SecondCountableTopology ι] [MeasurableSpace ι]\n    [BorelSpace ι] {S : ι → Ω → ℝ} {𝓕 : Filtration ι mΩ} [𝓕.IsRightContinuous] [𝓕.IsComplete P]\n    (hd : ClassD S 𝓕 P) (hs : Submartingale S 𝓕 P) (hc : ∀ᵐ ω ∂P, IsCadlag (S · ω)) :\n    ∀ᵐ ω ∂P, ∀ t, limsup (predictableConvexStep hd hs · t ω) atTop =\n      predictablePartLim hd hs t ω",
+      "closed_by": "le_antisymm; a début-time contradiction: debut_mem_set_of_finite puts the début in B k while L and A coincide there",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The limsup process and `predictablePartLim hd hs` are indistinguishable."
+    },
+    {
+      "name": "measurableSet_predictable_univ_prod",
+      "statement": "lemma measurableSet_predictable_univ_prod {s : Set Ω} (hs : MeasurableSet[𝓕 ⊥] s) :\n    MeasurableSet[𝓕.predictable] (univ ×ˢ s)",
+      "closed_by": "rw [univ = {⊥} ∪ Ioi ⊥, union_prod]; MeasurableSet.union with measurableSet_predictable_singleton_bot_prod and measurableSet_predictable_Ioi_prod",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The set `univ ×ˢ s` is predictable for an 𝓕⊥-measurable set s."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An existence goal `∃ (M A : ι → Ω → ℝ), S = M + A ∧ …` whose witnesses are processes assembled from earlier definitions (the martingale part `martingalePartLim`, the predictable part `predictablePartLim`, the limsup of convex step extensions); the body is a conjunction of measurability, pointwise and path-regularity properties of the witnesses.",
+    "use_when": "the witnesses factor through objects whose properties are already proved in separate lemmas (here the martingale-part and predictable-part lemmas), so each conjunct of the existence statement is discharged by one lemma and the glue only splices them onto the chosen witnesses.",
+    "avoid_when": "the witnesses are not canonical or their properties are not already lemmatised (each conjunct would then need a fresh argument in the glue, and the witnesses chosen for one conjunct may not satisfy the next); or the existence statement is too weak to pin down a witness."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "`ProbabilityTheory.ClassD.doob_meyer` is declared in `BrownianMotion/StochasticIntegral/DoobMeyer.lean` at lines 2901-2954.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/BrownianMotion/StochasticIntegral/DoobMeyer.lean#L2901-L2954",
+      "form": "declared(ProbabilityTheory.ClassD.doob_meyer, BrownianMotion/StochasticIntegral/DoobMeyer.lean, 2901-2954)"
+    },
+    {
+      "n": 2,
+      "claim": "`martingale_martingalePartLim` occurs in the parent site.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/BrownianMotion/StochasticIntegral/DoobMeyer.lean#L2942",
+      "form": "cites(parent, martingale_martingalePartLim)"
+    },
+    {
+      "n": 3,
+      "claim": "`limsup_predictableConvexStep_eq_predictablePartLim` occurs in the parent site.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/BrownianMotion/StochasticIntegral/DoobMeyer.lean#L2916",
+      "form": "cites(parent, limsup_predictableConvexStep_eq_predictablePartLim)"
+    },
+    {
+      "n": 4,
+      "claim": "No sorry/admit/Admitted/axiom token occurs in `BrownianMotion/StochasticIntegral/DoobMeyer.lean` lines 2901-2954.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/BrownianMotion/StochasticIntegral/DoobMeyer.lean#L2901-L2954",
+      "form": "no_sorry(BrownianMotion/StochasticIntegral/DoobMeyer.lean, 2901-2954)"
+    },
+    {
+      "n": 5,
+      "claim": "The parent site is 54 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/BrownianMotion/StochasticIntegral/DoobMeyer.lean#L2901-L2954",
+      "form": "lines(parent, 54)"
+    },
+    {
+      "n": 6,
+      "claim": "The authors name the theorem the 'Doob–Meyer decomposition of a càdlàg submartingale of class D' in its docstring.",
+      "evidence_kind": "author-statement",
+      "evidence": "docstring on DoobMeyer.lean line 2900, '/-- **Doob–Meyer decomposition** of a càdlàg submartingale of class D. -/', at https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/BrownianMotion/StochasticIntegral/DoobMeyer.lean#L2900"
+    },
+    {
+      "n": 7,
+      "claim": "The longest chain of project lemmas below `ProbabilityTheory.ClassD.doob_meyer` that was checked has length 4: `martingale_martingalePartLim` → `stronglyAdapted_martingalePartLim` → `stronglyAdapted_cadlagModifReal` → `stronglyAdapted_cadlagModifOf`.",
+      "evidence_kind": "measurement",
+      "evidence": "each link read at the pinned commit: doob_meyer cites martingale_martingalePartLim at DoobMeyer.lean#L2942; martingale_martingalePartLim cites stronglyAdapted_martingalePartLim at DoobMeyer.lean#L1545; stronglyAdapted_martingalePartLim cites stronglyAdapted_cadlagModifReal at DoobMeyer.lean#L1538; stronglyAdapted_cadlagModifReal cites stronglyAdapted_cadlagModifOf at Quasimartingale/CadlagModification.lean#L1410"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 8,
+    "depth": 4,
+    "glue_lines": 54,
+    "child_lines": [
+      3,
+      10,
+      8,
+      10,
+      7,
+      4,
+      41,
+      6
+    ]
+  },
+  "metrics": {
+    "parent_lines": 54,
+    "children": 8,
+    "children_in_DoobMeyer": 7,
+    "children_in_Predictable": 1,
+    "how_counted": "parent = lines 2901-2954 of DoobMeyer.lean; children = the eight child sites listed above, seven in DoobMeyer.lean and one in Predictable.lean"
+  },
+  "consequences": "The move turns one existence goal into one obligation per conjunct of the body, each discharged against a witness. The witnesses M := S - A and A := G.indicator L must be chosen so that every conjunct is a lemma already proved about that object: the martingale property comes from `martingale_martingalePartLim`, path regularity of A from the definition of the good set G (whose complement is null via `limsup_predictableConvexStep_eq_predictablePartLim`, `predictablePartLim_monotone_ae`, `isCadlag_predictablePartLim_ae`), and A ⊥ = 0 from `predictableConvexStep_bot`. Failure modes: picking a witness that satisfies some conjuncts but not others (e.g. a predictable part that is not monotone off the good set), or a good set that is not full measure, which forces the off-set branches (the `by_cases hω : ω ∈ G` cases) to prove the properties from scratch for the constant 0 process.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "8893edf061f643c9c3b4776b169570843e7e9111d5294479025481027955851d",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:12:06Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:12:58Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:14:34Z",
+      "note": "parent ProbabilityTheory.ClassD.doob_meyer: statement re-copied from code; child 'isCadlag_martingalePartLim': statement re-copied from the declaration of isCadlag_martingalePartLim; child 'martingale_martingalePartLim': statement re-copied from the declaration of martingale_martingalePartLim; child 'isCadlag_predictablePartLim_ae': statement re-copied from the declaration of isCadlag_predictablePartLim_ae; child 'predictablePartLim_monotone_ae': statement re-copied from the declaration of predictablePartLim_monotone_ae; child 'isStronglyPredictable_limsup_predictableConvexStep': statement re-copied from the declaration of isStronglyPredictable_limsup_predictableConvexStep; child 'predictableConvexStep_bot': statement re-copied from the declaration of predictableConvexStep_bot; child 'limsup_predictableConvexStep_eq_predictablePartLim': statement re-copied from the declaration of limsup_predictableConvexStep_eq_predictablePartLim; child 'measurableSet_predictable_univ_prod': statement re-copied from the declaration of measurableSet_predictable_univ_prod"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T12:19:39Z"
+}

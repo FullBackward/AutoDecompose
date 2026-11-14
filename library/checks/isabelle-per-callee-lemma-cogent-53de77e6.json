@@ -1,0 +1,133 @@
+{
+  "entry": "isabelle-per-callee-lemma-cogent-53de77e6",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:29:49Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:29:49Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none; oops (listed, not failed): impl/fs/bilby/proof/refine/OstoreR.thy:2510 (oops)",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:29:49Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: prepare_wbuf_ret@impl/fs/bilby/proof/refine/OstoreR.thy:2409, ostore_sync_summary_if_eb_new_ret@impl/fs/bilby/proof/refine/OstoreR.thy:2417, ostore_write_buf_ret@impl/fs/bilby/proof/refine/OstoreR.thy:2421, extra_padding_is_aligned@impl/fs/bilby/proof/refine/OstoreR.thy:2431, ostore_sync_\\<alpha>_ostore_uptodate@impl/fs/bilby/proof/refine/OstoreR.thy:2462, \\<alpha>_updates_buf_prepare_eq@impl/fs/bilby/proof/refine/OstoreR.thy:2445, used_neq_sync_offs_means_updates_not_Nil@impl/fs/bilby/proof/refine/OstoreR.thy:2415, used_eq_sync_offs_means_no_update@impl/fs/bilby/proof/refine/OstoreR.thy:2406; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:29:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(ostore_sync_ret, impl/fs/bilby/proof/refine/OstoreR.thy, 2379-2487) -> declared: ostore_sync_ret is declared at impl/fs/bilby/proof/refine/OstoreR.thy:2379",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:29:50Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, prepare_wbuf_ret) -> cites: prepare_wbuf_ret occurs at impl/fs/bilby/proof/refine/OstoreR.thy:2409",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:29:50Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(impl/fs/bilby/proof/refine/OstoreR.thy, 2379-2487) -> no_sorry: none of sorry in impl/fs/bilby/proof/refine/OstoreR.thy:2379-2487",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:29:50Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "lines(parent, 109) -> lines: site parent has 109 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:29:50Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:30:00Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no Isabelle toolchain on the harvest machine and the source's only CI workflow (.github/workflows/ci.yml) builds the Cogent compiler, runs its Haskell test suites, and generates C code (.c-gen) for ext2/bilby, but does not build the Isabelle/HOL refinement theories under impl/fs/bilby/proof/ (where OstoreR.thy lives)",
+      "by": "verifier",
+      "at": "2026-11-14T12:30:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "grep -c '^lemma .*_ret:' on the copied OstoreR.thy returns 8 (padding_to_ret, fsm_mark_dirty_ret, update_obj_pad_ret, prepare_wbuf_ret, ostore_sync_summary_if_eb_new_ret, ostore_write_buf_ret, ostore_sync_ret, ostore_write_ret)",
+      "by": "verifier",
+      "at": "2026-11-14T12:30:56Z"
+    },
+    {
+      "type": "claim",
+      "key": "6",
+      "value": "verified",
+      "evidence": "fetched OstoreReadR.thy at 49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a; lines 1356-1395 declare ostore_read_ret whose proof applies 'rule index_get_addr_ret' (L1378) then 'rule deserialise_Obj_ret' (L1393)",
+      "by": "verifier",
+      "at": "2026-11-14T12:30:57Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent ostore_sync_ret is declared at OstoreR.thy:2379 and closes with 'done' at 2487 (109 lines, no sorry). All 8 children are declared at their cited lines with matching closings: prepare_wbuf_ret 1480-1661 (proof cases..qed), ostore_sync_summary_if_eb_new_ret 1674-1680 (by simp), ostore_write_buf_ret 2314-2354 (apply safe..done), extra_padding_is_aligned 2356-2374 (qed), ostore_sync_alpha_ostore_uptodate 1998-2083 (qed), alpha_updates_buf_prepare_eq 2246-2312 (qed), used_neq_sync_offs_means_updates_not_Nil 846-853 (by fastforce), used_eq_sync_offs_means_no_update 776-779 (by simp). Every child is cited in the glue at the exact lines the README states (2406/2409/2415/2417/2421/2431/2445-2446/2450-2451/2462/2478). Shape numbers recompute exactly: glue_lines 109, child_lines [182,7,41,19,86,67,8,4] match the site spans; direct_lemmas 8 = children; depth 3 verified via ostore_sync_ret->prepare_wbuf_ret(1480)->inv_ostore_preserved_padding_obj(1240, cited 1619)->valid_commit_pad_obj(876, cited 1271). oops at 2510 (ostore_write_ret) confirmed outside the parent site.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:32:39Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example: also_known_as ties it to seL4 crunch and CompCert per-pass simulation, and applicability.goal_shape/use_when abstract away Cogent into 'generated function f, callee g, suc/err post-state pair'. 'When not to use' is honest and specific (callee interaction not expressible in post-state; no clean characterisation -> oops, concretely ostore_write_ret; body not a fixed call sequence). Consequences are honest: the suc/err post-states are large existentially-packed record updates so a state-layout change breaks the family, and the sibling ostore_write_ret is left as oops (verified: lemma starts line 2489, oops at 2510). Good-leaves-for-a-bounded-prover is stated: each child is a self-contained statement closing on its own or from named siblings, never re-entering the parent, with per-leaf sizes (7/41/19/86/67/8/4) and depth-3 chain; the suc/err pair is the interface that lets the parent combine callees by rule without reasoning about bodies.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:33:40Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:34:02Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes (3 files byte-identical at commit 49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a). Commit, url and licence (BSD-2-Clause AND GPL-2.0) agree across entry.json source block, sources/cogent/source.json and SOURCE.md; both licence texts (upstream-LICENSE_BSD2.txt, upstream-LICENSE_GPLv2.txt) are present in sources/cogent/. All permalinks use the pinned commit; each site's cited start line sed-checked matches its lemma name (ostore_sync_ret@2379, prepare_wbuf_ret@1480, ostore_sync_summary_if_eb_new_ret@1674, ostore_write_buf_ret@2314, extra_padding_is_aligned@2356, ostore_sync_alpha_ostore_uptodate@1998, alpha_updates_buf_prepare_eq@2246 in OstoreR.thy; used_neq_sync_offs_means_updates_not_Nil@846 and used_eq_sync_offs_means_no_update@776 in OstoreInvS.thy). Three copied files match entry.json bytes (134397, 43364, 7469).",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:34:36Z"
+    }
+  ]
+}

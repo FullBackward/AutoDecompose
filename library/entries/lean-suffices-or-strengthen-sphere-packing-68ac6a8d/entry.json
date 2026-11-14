@@ -1,0 +1,202 @@
+{
+  "id": "lean-suffices-or-strengthen-sphere-packing-68ac6a8d",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Prove the right limit of F/G at 0 through the atTop limit along 1/s",
+  "intent": "Prove the right limit lim_{t→0⁺} F(it)/G(it) = 18 π⁻² by first proving the more convenient atTop limit of FmodGReal ∘ (1/·), where the real functional equations of F and G give an explicit rational ratio, then pulling that limit back to 0 along tendsto_inv_nhdsGT_zero.",
+  "move": "suffices-or-strengthen",
+  "also_known_as": [
+    "change of variable",
+    "prove in a convenient coordinate",
+    "strengthen-then-pull-back"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "sphere-packing",
+    "url": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean",
+    "commit": "efe3bbbc1ece548f4672a772b94d8f621c10fdda",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "SpherePacking/ModularForms/FG.lean",
+      "bytes": 28568,
+      "sha256": "c996853739052a9ecd147c165c58bc39178e0540dcd4180427fa316ea56c9bc5",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ModularForms/FG.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "SpherePacking/ModularForms/FG.lean",
+      "lines": [
+        519,
+        527
+      ],
+      "role": "parent",
+      "name": "FmodG_rightLimitAt_zero",
+      "excerpt_sha256": "1f67393748e043746832a341aa585a231e331f47fa4aaeea805dc29ea8bd322f",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ModularForms/FG.lean#L519-L527"
+    },
+    {
+      "path": "SpherePacking/ModularForms/FG.lean",
+      "lines": [
+        483,
+        488
+      ],
+      "role": "child",
+      "name": "FmodG_numerator_tendsto",
+      "excerpt_sha256": "a770e380a848315a0396e8b228afce8a6c165beece7e1625de66682be1da672e",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ModularForms/FG.lean#L483-L488"
+    },
+    {
+      "path": "SpherePacking/ModularForms/FG.lean",
+      "lines": [
+        491,
+        496
+      ],
+      "role": "child",
+      "name": "FmodG_denominator_tendsto",
+      "excerpt_sha256": "85bc0f35c093e4448b252cd41f4f640ad55a6c59b013e0c5a4e5da406a4bc5e5",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ModularForms/FG.lean#L491-L496"
+    },
+    {
+      "path": "SpherePacking/ModularForms/FG.lean",
+      "lines": [
+        500,
+        506
+      ],
+      "role": "child",
+      "name": "F_functional_eq_real",
+      "excerpt_sha256": "ece7e6c5633bdafa9cea4c71d395594a507d5949701adba363267a8db68f9297",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ModularForms/FG.lean#L500-L506"
+    },
+    {
+      "path": "SpherePacking/ModularForms/FG.lean",
+      "lines": [
+        510,
+        516
+      ],
+      "role": "child",
+      "name": "G_functional_eq_real",
+      "excerpt_sha256": "591559ec3ead221fe8d600adc358e9c993557903fb0dd4137fb59b5defdd6b3e",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ModularForms/FG.lean#L510-L516"
+    }
+  ],
+  "parent": {
+    "name": "FmodG_rightLimitAt_zero",
+    "statement": "theorem FmodG_rightLimitAt_zero :\n    Tendsto FmodGReal (nhdsWithin 0 (Set.Ioi 0)) (nhds (18 * (π ^ (-2 : ℤ))))"
+  },
+  "children": [
+    {
+      "name": "FmodG_numerator_tendsto",
+      "statement": "lemma FmodG_numerator_tendsto :\n  Tendsto (fun s ↦ s ^ 2 * FReal s\n    - 12 * π ^ (-1 : ℤ) * (s * ((F₁ * E₄.toFun).resToImagAxis s).re)\n    + 36 * π ^ (-2 : ℤ) * (E₄.toFun.resToImagAxis s).re ^ 2) atTop (nhds (36 * π ^ (-2 : ℤ)))",
+      "closed_by": "tendsto_cont [sq_mul_FReal_tendsto_zero, mul_F₁E₄_re_tendsto_zero, tendsto_resToImagAxis_of_tendsto_atImInfty E₄_tendsto_one_atImInfty]"
+    },
+    {
+      "name": "FmodG_denominator_tendsto",
+      "statement": "lemma FmodG_denominator_tendsto :\n  Tendsto (fun s ↦ (H₄.resToImagAxis s).re ^ 3\n    * (2 * (H₄.resToImagAxis s).re ^ 2 + 5 * (H₂.resToImagAxis s).re * (H₄.resToImagAxis s).re\n    + 5 * (H₂.resToImagAxis s).re ^ 2)) atTop (nhds 2)",
+      "closed_by": "tendsto_cont [tendsto_resToImagAxis_of_tendsto_atImInfty H₂_tendsto_atImInfty, tendsto_resToImagAxis_of_tendsto_atImInfty H₄_tendsto_atImInfty]"
+    },
+    {
+      "name": "F_functional_eq_real",
+      "statement": "lemma F_functional_eq_real {s : ℝ} (hs : 0 < s) :\n    FReal (1 / s) = s ^ 10 * (s ^ 2 * FReal s\n      - 12 * π ^ (-1 : ℤ) * (s * ((F₁ * E₄.toFun).resToImagAxis s).re)\n      + 36 * π ^ (-2 : ℤ) * (E₄.toFun.resToImagAxis s).re ^ 2)",
+      "closed_by": "linear_combination F_functional_equation' hs"
+    },
+    {
+      "name": "G_functional_eq_real",
+      "statement": "lemma G_functional_eq_real {s : ℝ} (hs : 0 < s) :\n    GReal (1 / s) = s ^ 10 * (H₄.resToImagAxis s).re ^ 3 *\n      (2 * (H₄.resToImagAxis s).re ^ 2 + 5 * (H₂.resToImagAxis s).re * (H₄.resToImagAxis s).re\n        + 5 * (H₂.resToImagAxis s).re ^ 2)",
+      "closed_by": "linear_combination G_functional_equation' hs"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "Tendsto f (nhdsWithin a (Set.Ioi a)) L, i.e. a one-sided limit at a point, where f has a known transformation law (functional equation) that is clean under the change of variable t ↦ a + 1/s (or t ↦ 1/s for a = 0).",
+    "use_when": "the target limit is inconvenient in its own neighbourhood but the function has an explicit functional equation in another coordinate, so a composed limit Tendsto (f ∘ g) atTop (nhds L) can be proved by combining named tendsto lemmas and then pulled back by a standard inversion lemma (tendsto_inv_nhdsGT_zero).",
+    "avoid_when": "the pull-back lemma does not apply (the change of variable is not a homeomorphism onto the punctured neighbourhood, or the filter is not one of the standard inversion filters), or the functional equation does not simplify the ratio enough to leave a closed numerator/denominator pair."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The main theorem FmodG_rightLimitAt_zero is declared at SpherePacking/ModularForms/FG.lean lines 519-527.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ModularForms/FG.lean#L519-L527",
+      "form": "declared(FmodG_rightLimitAt_zero, SpherePacking/ModularForms/FG.lean, 519-527)"
+    },
+    {
+      "n": 2,
+      "claim": "The proof of FmodG_rightLimitAt_zero has no sorry/admit/axiom token in lines 519-527.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ModularForms/FG.lean#L519-L527",
+      "form": "no_sorry(SpherePacking/ModularForms/FG.lean, 519-527)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent's proof cites the child FmodG_numerator_tendsto.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ModularForms/FG.lean#L519-L527",
+      "form": "cites(parent, FmodG_numerator_tendsto)"
+    },
+    {
+      "n": 4,
+      "claim": "The glue closes the theorem in 9 lines (519-527) from 4 direct lemmas with proofs of 6, 6, 7 and 7 lines; the longest chain of project lemmas below the theorem that I checked is 6 (FmodG_rightLimitAt_zero → FmodG_numerator_tendsto → sq_mul_FReal_tendsto_zero → F_isBigO_exp_atImInfty → F₁_isBigO_exp_atImInfty → E₂E₄_sub_E₆_div_q_tendsto → qexp_tendsto_of_poly_bound).",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ModularForms/FG.lean#L519-L527 (parent), L483-L488, L491-L496, L500-L506, L510-L516 (children); the chain links are at L483, L473-L474, L464-L465, L457-L461, L299-L313, L286-L291"
+    },
+    {
+      "n": 5,
+      "claim": "The theorem's doc comment records its blueprint origin: 'lim_{t → 0⁺} F(it) / G(it) = 18 π⁻² (blueprint Lemma 8.8)'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ModularForms/FG.lean#L518"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 6,
+    "glue_lines": 9,
+    "child_lines": [
+      6,
+      6,
+      7,
+      7
+    ]
+  },
+  "metrics": {
+    "parent_lines": 9,
+    "children": 4,
+    "children_closed_by_automation": 4,
+    "how_counted": "parent_lines = lines 519-527 of the parent site; children = 4 child sites; children_closed_by_automation = all four children close with a single automated tactic (tendsto_cont for the two tendsto children, linear_combination for the two functional equations)"
+  },
+  "consequences": "Creates one intermediate obligation, the atTop limit along 1/s, whose proof must produce the two halves (numerator/denominator limits and the two real functional equations) and a cancellation of the common factor s^10; the pull-back step needs tendsto_inv_nhdsGT_zero to match the filter nhdsWithin 0 (Set.Ioi 0), so the change of variable must be the reciprocal. Failure mode: if the functional equation leaves a term that does not vanish at atTop, the numerator/denominator children no longer close on their own and the argument needs an extra decay lemma.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "68ac6a8dadd6ff887cc346f58760e8bb9876d2e7d38e185fd859ec22ba6c85b8",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:08:56Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "claude-sonnet-5-5",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:12:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:09:45Z",
+      "note": "parent FmodG_rightLimitAt_zero: statement re-copied from code; child 'FmodG_numerator_tendsto': statement re-copied from the declaration of FmodG_numerator_tendsto; child 'FmodG_denominator_tendsto': statement re-copied from the declaration of FmodG_denominator_tendsto; child 'F_functional_eq_real': statement re-copied from the declaration of F_functional_eq_real; child 'G_functional_eq_real': statement re-copied from the declaration of G_functional_eq_real"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T09:16:20Z"
+}

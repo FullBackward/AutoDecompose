@@ -1,0 +1,201 @@
+{
+  "id": "rocq-generalise-then-instantiate-qcert-32b1fe62",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "General annotated NNRC to DNNRC correctness specialised to the top translation",
+  "intent": "Prove the NNRC-to-DNNRC translation correct once, over the general base translation parameterised by the annotation, the plug type and both environments; the top-level compiler theorem nnrc_to_dnnrc_top_correct then falls out as a trivial specialisation of that general lemma.",
+  "move": "generalise-then-instantiate",
+  "also_known_as": [
+    "prove general then specialise",
+    "abstract then instantiate"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "qcert",
+    "url": "https://github.com/querycert/qcert",
+    "commit": "e112de6d7fda1b916244a1feb08bedd7f8a96bc1",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "compiler/core/Translation/Lang/NNRCtoDNNRC.v",
+      "bytes": 23204,
+      "sha256": "5cc967d459dc6d28df6b7ce938050a0069427990cad45f04e71f40535a474218",
+      "permalink": "https://github.com/querycert/qcert/blob/e112de6d7fda1b916244a1feb08bedd7f8a96bc1/compiler/core/Translation/Lang/NNRCtoDNNRC.v"
+    },
+    {
+      "path": "compiler/core/NNRC/Lang/NNRC.v",
+      "bytes": 24334,
+      "sha256": "b94340c661562331e4107844796360c390431b9a751cba9afcafc6f069ed0635",
+      "permalink": "https://github.com/querycert/qcert/blob/e112de6d7fda1b916244a1feb08bedd7f8a96bc1/compiler/core/NNRC/Lang/NNRC.v"
+    },
+    {
+      "path": "compiler/core/DNNRC/Lang/DNNRC.v",
+      "bytes": 1161,
+      "sha256": "4a5828e7de09d7b28d3faacde0afae2379ebf6184d7fa57dc8a7d0742130faf2",
+      "permalink": "https://github.com/querycert/qcert/blob/e112de6d7fda1b916244a1feb08bedd7f8a96bc1/compiler/core/DNNRC/Lang/DNNRC.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "compiler/core/Translation/Lang/NNRCtoDNNRC.v",
+      "lines": [
+        532,
+        557
+      ],
+      "role": "parent",
+      "name": "nnrc_to_dnnrc_top_correct",
+      "excerpt_sha256": "0ed18c3e8ffce80b23fb14ebc959fbf8e9f75054617bbfe5364796eaad30bf50",
+      "permalink": "https://github.com/querycert/qcert/blob/e112de6d7fda1b916244a1feb08bedd7f8a96bc1/compiler/core/Translation/Lang/NNRCtoDNNRC.v#L532-L557"
+    },
+    {
+      "path": "compiler/core/Translation/Lang/NNRCtoDNNRC.v",
+      "lines": [
+        473,
+        485
+      ],
+      "role": "child",
+      "name": "nnrc_to_dnnrc_base_correct_lift",
+      "excerpt_sha256": "cfc4143769573db2636105fe2d85a59a809258508580407f7bc958a4a5131da3",
+      "permalink": "https://github.com/querycert/qcert/blob/e112de6d7fda1b916244a1feb08bedd7f8a96bc1/compiler/core/Translation/Lang/NNRCtoDNNRC.v#L473-L485"
+    },
+    {
+      "path": "compiler/core/Translation/Lang/NNRCtoDNNRC.v",
+      "lines": [
+        497,
+        509
+      ],
+      "role": "child",
+      "name": "rec_sort_unlocalize_constants_comm",
+      "excerpt_sha256": "ddf18f49d1fc25b030e5e58fabff2462aeb4d76a7a71e9829516011ca65fb734",
+      "permalink": "https://github.com/querycert/qcert/blob/e112de6d7fda1b916244a1feb08bedd7f8a96bc1/compiler/core/Translation/Lang/NNRCtoDNNRC.v#L497-L509"
+    },
+    {
+      "path": "compiler/core/Translation/Lang/NNRCtoDNNRC.v",
+      "lines": [
+        511,
+        530
+      ],
+      "role": "child",
+      "name": "wf_cdenv_rec_sort",
+      "excerpt_sha256": "567cf09f0b5d7b251727320c2c5719812b3a5369ec46fa41c251583f27f420b1",
+      "permalink": "https://github.com/querycert/qcert/blob/e112de6d7fda1b916244a1feb08bedd7f8a96bc1/compiler/core/Translation/Lang/NNRCtoDNNRC.v#L511-L530"
+    }
+  ],
+  "parent": {
+    "name": "nnrc_to_dnnrc_top_correct",
+    "statement": "Theorem nnrc_to_dnnrc_top_correct h (tenv:vdbindings) (q:nnrc) :\n      forall cdenv:dbindings,\n        wf_cdenv tenv cdenv ->\n        nnrc_eval_top h q (unlocalize_constants cdenv) =\n        dnnrc_eval_top h (nnrc_to_dnnrc_top tenv q) cdenv."
+  },
+  "children": [
+    {
+      "name": "nnrc_to_dnnrc_base_correct_lift",
+      "statement": "Lemma nnrc_to_dnnrc_base_correct_lift {A plug_type:Set} (annot:A) {plug:AlgPlug plug_type} h (ctenv tenv:list (var*dlocalization)) (n:nnrc) :\n    forall cdenv denv:list (var*ddata),\n      wf_cdenv ctenv cdenv ->\n      wf_denv tenv denv ->\n      nnrc_core_eval h (unlocalize_constants cdenv) (unlocalize_constants denv) n\n      = lift unlocalize_data (dnnrc_base_eval h cdenv denv (nnrc_to_dnnrc_base annot ctenv tenv n)).",
+      "closed_by": "rewrite <- nnrc_to_dnnrc_base_correct; auto (then unfold unlocalize_data/lift and destruct the evaluation)",
+      "note": "The general lemma the top theorem instantiates: correctness over arbitrary annot, plug_type, ctenv, tenv, cdenv, denv. Analyst's paraphrase, replaced by the declaration's text: The general base-translation correctness lemma (arbitrary annotation, plug type and environments), lifted past unlocalize_data."
+    },
+    {
+      "name": "rec_sort_unlocalize_constants_comm",
+      "statement": "Lemma rec_sort_unlocalize_constants_comm l :\n      (rec_sort (unlocalize_constants l) = (unlocalize_constants (rec_sort l))).",
+      "closed_by": "unfold unlocalize_constants; rewrite map_rec_sort; reflexivity",
+      "note": "Reconciles the top evaluator's rec_sort of the unlocalised constants with the general lemma's unlocalize_constants applied to the sorted environment. Analyst's paraphrase, replaced by the declaration's text: rec_sort commutes with unlocalize_constants."
+    },
+    {
+      "name": "wf_cdenv_rec_sort",
+      "statement": "Lemma wf_cdenv_rec_sort tenv cdenv :\n      wf_cdenv tenv cdenv -> wf_cdenv (rec_sort tenv) (rec_sort cdenv).",
+      "closed_by": "apply same_domain_rec_sort; rewrite assoc_lookupr_drec_sort (in both lookups); assumption",
+      "note": "Discharges the general lemma's wf_cdenv side condition for the rec-sorted environments. Analyst's paraphrase, replaced by the declaration's text: wf_cdenv is preserved by applying rec_sort to both environments."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A top-level theorem 'forall args, wf ... -> eval_top (translate_top args) = eval_top' args' whose proof, by unfolding the top-level evaluators and the top translation, reduces to a general lemma 'forall {A plug_type} annot ctenv tenv, wf ... -> core_eval(...) = core_eval'(...)' proved over the base translation.",
+    "use_when": "the base translation is parameterised by an annotation type and a plug type (or by section variables) and the top-level entry point only fixes those parameters and the environments; the top statement is exactly the general lemma with those parameters filled in.",
+    "avoid_when": "the top translation does more than fill parameters (extra top-level wrapping, e.g. normalisation), in which case each wrapper needs its own commutation lemma before instantiation applies; the general lemma is not yet proved (then its proof is the real cost, not the specialisation); or the parameter substitution is not definitional and needs a non-trivial rewrite between two representations."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "nnrc_to_dnnrc_base_correct_lift is declared in compiler/core/Translation/Lang/NNRCtoDNNRC.v at lines 473-485.",
+      "evidence_kind": "check",
+      "evidence": "compiler/core/Translation/Lang/NNRCtoDNNRC.v#L473-L485",
+      "form": "declared(nnrc_to_dnnrc_base_correct_lift, compiler/core/Translation/Lang/NNRCtoDNNRC.v, 473-485)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site nnrc_to_dnnrc_top_correct cites nnrc_to_dnnrc_base_correct_lift.",
+      "evidence_kind": "check",
+      "evidence": "compiler/core/Translation/Lang/NNRCtoDNNRC.v#L549",
+      "form": "cites(parent, nnrc_to_dnnrc_base_correct_lift)"
+    },
+    {
+      "n": 3,
+      "claim": "No admit, Admitted, Axiom or axiom occurs in compiler/core/Translation/Lang/NNRCtoDNNRC.v at lines 473-557.",
+      "evidence_kind": "check",
+      "evidence": "compiler/core/Translation/Lang/NNRCtoDNNRC.v#L473-L557",
+      "form": "no_sorry(compiler/core/Translation/Lang/NNRCtoDNNRC.v, 473-557)"
+    },
+    {
+      "n": 4,
+      "claim": "The checked chain of project lemmas below the main theorem is 3 deep: nnrc_to_dnnrc_top_correct applies nnrc_to_dnnrc_base_correct_lift (line 549), which rewrites by nnrc_to_dnnrc_base_correct (line 481), which rewrites by nnrc_to_dnnrc_base_get_constant_correct (line 367).",
+      "evidence_kind": "measurement",
+      "evidence": "chain read from the copied file: 'apply (nnrc_to_dnnrc_base_correct_lift tt).' (NNRCtoDNNRC.v:549), 'rewrite <- nnrc_to_dnnrc_base_correct; auto.' (NNRCtoDNNRC.v:481), 'rewrite (nnrc_to_dnnrc_base_get_constant_correct h A plug_type plug annot v ctenv cdenv denv).' (NNRCtoDNNRC.v:367)"
+    },
+    {
+      "n": 5,
+      "claim": "The same generalise-then-instantiate pattern closes the NRAEnv-to-NNRC pass: nraenv_to_nnrc_top_correct unfolds the top evaluators and applies the general nraenv_sem_correct, declared at NRAEnvtoNNRC.v:281.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/querycert/qcert/blob/e112de6d7fda1b916244a1feb08bedd7f8a96bc1/compiler/core/Translation/Lang/NRAEnvtoNNRC.v#L617-L636"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 3,
+    "glue_lines": 26,
+    "child_lines": [
+      13,
+      13,
+      20
+    ]
+  },
+  "metrics": {
+    "parent_lines": 26,
+    "children": 3,
+    "children_closed_by_automation": 3,
+    "how_counted": "parent_lines = site lines 532-557 of NNRCtoDNNRC.v; children = the three child sites; children_closed_by_automation = all three children close by rewriting with a library lemma (map_rec_sort; same_domain_rec_sort/assoc_lookupr_drec_sort) or by rewrite <- nnrc_to_dnnrc_base_correct; auto, with no manual induction."
+  },
+  "consequences": "The cost of the move is concentrated in the general lemma (here nnrc_to_dnnrc_base_correct, a 115-line induction over the expression, not shown as a child because the glue does not cite it directly). The top theorem then needs only the general lemma plus small bridge lemmas that reconcile the top-level environment forms with the general lemma's (rec_sort commutes with unlocalize_constants; wf_cdenv survives rec_sort; the empty environment is trivially well-formed). Failure mode: if the top-level evaluator wraps the core evaluator with extra normalisation the general lemma does not share, each wrapper needs its own commutation lemma before the instantiation applies, and those wrappers become the real content of the proof.",
+  "known_uses": [
+    "https://github.com/querycert/qcert/blob/e112de6d7fda1b916244a1feb08bedd7f8a96bc1/compiler/core/Translation/Lang/NRAEnvtoNNRC.v#L617-L636"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "32b1fe62e77a8ad97fc05217868f7359f3b9e50eb00abd4470763d719ac01c06",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:50:00Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T13:05:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:53:28Z",
+      "note": "parent nnrc_to_dnnrc_top_correct: statement re-copied from code; child 'nnrc_to_dnnrc_base_correct_lift': statement re-copied from the declaration of nnrc_to_dnnrc_base_correct_lift; child 'rec_sort_unlocalize_constants_comm': statement re-copied from the declaration of rec_sort_unlocalize_constants_comm; child 'wf_cdenv_rec_sort': statement re-copied from the declaration of wf_cdenv_rec_sort"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T13:00:08Z"
+}

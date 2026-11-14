@@ -1,0 +1,135 @@
+{
+  "id": "markdown-interface-lemma-isabelle-pide-ai-c76a2eee",
+  "kind": "skill",
+  "status": "draft",
+  "title": "Definition-first interface: prove and tag a definition's intro/elim/dest/simp rules, then apply them instead of unfolding",
+  "intent": "Prescribe a definition-first interface discipline for writing Isabelle theories: prove each new definition's basic properties as intro, elim, dest and simp rules (its interface) and then close later goals by applying those lemmas instead of unfolding the definition, so proofs stay at the level of named rules rather than expanded terms. The paired honesty rule bounds this: do not weaken statements without a clear reason, and generalise only when the generalisation instantiates back to the wanted result.",
+  "move": "interface-lemma",
+  "also_known_as": [
+    "API lemma at a definition boundary",
+    "definition interface rules",
+    "intro/elim/dest/simp interface"
+  ],
+  "language": "markdown",
+  "source": {
+    "source_id": "isabelle-pide-ai",
+    "url": "https://github.com/kappelmann/isabelle-pide-ai",
+    "commit": "80ec85239c8a76d992a6f06d586cdc370934d751",
+    "licence": "LGPL-3.0"
+  },
+  "files": [
+    {
+      "path": ".agents/skills/isabelle/SKILL.md",
+      "bytes": 4678,
+      "sha256": "18a0735233a255879dde1c72d448a05c08ebf966f8a41aa34e55c36869d1c354",
+      "permalink": "https://github.com/kappelmann/isabelle-pide-ai/blob/80ec85239c8a76d992a6f06d586cdc370934d751/.agents/skills/isabelle/SKILL.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": ".agents/skills/isabelle/SKILL.md",
+      "lines": [
+        23,
+        25
+      ],
+      "role": "skill-text",
+      "name": "interface-lemma",
+      "excerpt_sha256": "0898ba6d6262ff8c458bfe2344fb59dbc86b5f6cc5e923927cfe0390f668a086",
+      "permalink": "https://github.com/kappelmann/isabelle-pide-ai/blob/80ec85239c8a76d992a6f06d586cdc370934d751/.agents/skills/isabelle/SKILL.md#L23-L25"
+    }
+  ],
+  "parent": null,
+  "children": [
+    {
+      "name": "prove-interface-rules",
+      "statement": "Prove basic properties of definitions first (e.g. intro, elim, dest, simp rules)",
+      "closed_by": "proving the intro, elim, dest and simp rules of each new definition, which together form its interface"
+    },
+    {
+      "name": "use-interface-not-unfold",
+      "statement": "use them instead of unfolding definitions",
+      "closed_by": "later proofs applying those interface rules (via simp/intro/elim/dest) instead of unfolding the definition"
+    },
+    {
+      "name": "no-weakening",
+      "statement": "Don't weaken statements unless clearly justified.",
+      "closed_by": "the justification requirement: a weakened statement is admitted only with a clear reason"
+    },
+    {
+      "name": "generalise-to-instantiate",
+      "statement": "Generalisations are fine if they instantiate to the desired result.",
+      "closed_by": "the instantiation check: the generalised lemma must specialise back to the wanted result"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A definition whose clients would otherwise unfold it repeatedly: any new constant (predicate, function, relation, datatype selector) whose basic closure, introduction, elimination, destruction and simplification facts are needed across a theory. The move produces the interface (one named intro/elim/dest/simp rule per basic property) and the consumption rule (apply those lemmas, never unfold the definition).",
+    "use_when": "You have just defined a constant and several later lemmas will reason about it; you want the basic facts proved once and tagged so that simp/intro/elim/dest and the hammers (try0, sledgehammer) can find and apply them, rather than each proof unfolding the definition by hand. Especially at an abstraction boundary (a locale, a type class, a datatype, an API constant) whose clients should not see the definition's expansion.",
+    "avoid_when": "The definition is used once or twice and a one-off unfold is clearer than a named interface; the basic fact is already in the library (the skill itself says to search the libraries before defining, line 20); or the 'basic' fact does not actually fit the intro/elim/dest/simp families — forcing it in can produce a looping simp rule (the skill warns of this at line 43)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The skill-text site 'interface-lemma' is 3 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(interface-lemma, 3)",
+      "evidence": "https://github.com/kappelmann/isabelle-pide-ai/blob/80ec85239c8a76d992a6f06d586cdc370934d751/.agents/skills/isabelle/SKILL.md#L23-L25"
+    },
+    {
+      "n": 2,
+      "claim": "The word 'simp' occurs 6 times in .agents/skills/isabelle/SKILL.md.",
+      "evidence_kind": "check",
+      "form": "count(simp, 6, .agents/skills/isabelle/SKILL.md)",
+      "evidence": "whole-word count of 'simp' in the copied file code/.agents/skills/isabelle/SKILL.md"
+    },
+    {
+      "n": 3,
+      "claim": "The skill's 'Theorem tagging' section restates the discipline as an instruction: 'Tag fundamental theorems of new definitions, unless they are rarely used; then pass the rules explicitly' (line 44), and line 43 names the same families 'simp, intro, elim, dest' to be tagged.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/kappelmann/isabelle-pide-ai/blob/80ec85239c8a76d992a6f06d586cdc370934d751/.agents/skills/isabelle/SKILL.md#L42-L44"
+    },
+    {
+      "n": 4,
+      "claim": "Counting whole-word occurrences in the copied file, 'intro' appears 4 times, 'elim' 3 times, 'dest' 3 times and 'simp' 6 times, and the three families 'intro', 'elim', 'dest' co-occur at exactly lines 24, 38 and 43 — the definition-interface rule, the find_theorems guide and the tagging rule — so the skill reuses one rule-family vocabulary for stating, finding and tagging interface rules.",
+      "evidence_kind": "measurement",
+      "evidence": "grep -o -w for intro, elim, dest, simp in code/.agents/skills/isabelle/SKILL.md; line numbers read from the same file"
+    }
+  ],
+  "metrics": {
+    "rule_bullets": 2,
+    "steps": 4,
+    "family_occurrences": {
+      "intro": 4,
+      "elim": 3,
+      "dest": 3,
+      "simp": 6
+    },
+    "how_counted": "rule_bullets = the two bullet rules in lines 24-25; steps = the four children derived from those two bullets; family_occurrences = whole-word occurrences of each family name in the copied file, counted by grep -o -w"
+  },
+  "consequences": "The discipline creates two obligations. Interface completeness: every basic property a client needs must be captured as an intro/elim/dest/simp rule, and a missing rule forces the next proof to unfold by hand or fail. Honesty of the interface: because later proofs trust the rules, a weakened or over-generalised rule propagates silently, which is why line 25 pairs the guard with the move. Failure modes: an over-aggressive simp rule loops (warned separately at line 43); tagging a rule simp that is not a good normal form makes later simp calls non-terminating or non-confluent; and proving the interface first is wasted work if the definition later changes, since the whole interface must be re-proved.",
+  "known_uses": [],
+  "related": [
+    "markdown-workflow-isabelle-pide-ai-cb5b2bef",
+    "rocq-interface-lemma-certicoq-43993c65",
+    "lean-interface-lemma-carleson-50fa619f"
+  ],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "c76a2eee1fd6c45da917b383f226ac850ec3b4dcd2f39bbd3601afd564c62638",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:50:17Z"
+    },
+    {
+      "field": "intent,also_known_as,children,applicability,claims,metrics,consequences,related,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "entry": "lean-key-invariant-numina-putnam2025-7117dd00",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:45:31Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:45:31Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:45:31Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: integral_f_pos@NuminaPutnam2025/putnam_2025_b2.lean:1056, integral_f_sq_pos@NuminaPutnam2025/putnam_2025_b2.lean:1057, weighted_average_lt_of_strictMono@NuminaPutnam2025/putnam_2025_b2.lean:1059, centroid_2d_formula@NuminaPutnam2025/putnam_2025_b2.lean:1065, centroid_3d_formula@NuminaPutnam2025/putnam_2025_b2.lean:1071; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:45:31Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(putnam_2025_b2, 35) -> lines: site putnam_2025_b2 has 35 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:45:31Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(putnam_2025_b2, weighted_average_lt_of_strictMono) -> cites: weighted_average_lt_of_strictMono occurs at NuminaPutnam2025/putnam_2025_b2.lean:1059",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:45:31Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(NuminaPutnam2025/putnam_2025_b2.lean, 1-1080) -> no_sorry: none of sorry, admit, axiom in NuminaPutnam2025/putnam_2025_b2.lean:1-1080",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:45:31Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 60d33c8ba19af905bd731e938ebde1c5b8c76519",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:45:42Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/lean_action_ci.yml runs leanprover/lean-action@v1 (lake build) on push/PR; default branch main; pinned commit 60d33c8ba19af905bd731e938ebde1c5b8c76519 is HEAD of main; NuminaPutnam2025.lean line 8 imports NuminaPutnam2025.putnam_2025_b2 so lake build compiles the entry's file",
+      "by": "verifier",
+      "at": "2026-11-14T09:46:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Counted in the copied code: 5 direct lemmas exist (integral_f_pos L24, integral_f_sq_pos L41, weighted_average_lt_of_strictMono L431, centroid_2d_formula L549, centroid_3d_formula L702); parent site 1044-1078 is 35 lines; depth chain confirmed: putnam_2025_b2 cites weighted_average_lt_of_strictMono at L1062 (have hkey := ...), which cites key_product_ineq at L439, which cites integral_f_pos at L165 (have hI1_pos := integral_f_pos ...).",
+      "by": "verifier",
+      "at": "2026-11-14T09:46:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Author comment at L1059 reads '-- The key mathematical insight (proved in weighted_average_lt_of_strictMono):' (L1059-L1061), matching the quoted text verbatim.",
+      "by": "verifier",
+      "at": "2026-11-14T09:46:56Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Decomposition faithful: parent putnam_2025_b2 (L1044-1078, 35 lines) cites exactly the 5 named children integral_f_pos (L1056), integral_f_sq_pos (L1057), weighted_average_lt_of_strictMono (L1062), centroid_2d_formula (L1068), centroid_3d_formula (L1074) and closes via rw [hx1_eq,hx2_eq]; exact hkey. Each child's statement and closed_by match the copied code (verified at L24-39, 41-56, 431-441, 549-691, 702-1042). Shape numbers correct: direct_lemmas=5, glue_lines=35, child_lines=[16,16,11,143,341] (24-39,41-56,431-441,549-691,702-1042), depth=3 (b2->weighted_average_lt_of_strictMono L439 -> key_product_ineq L165 cites integral_f_pos).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:48:15Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "object",
+      "evidence": "Move is well-generalised ('use_when' and the 'In my opinion' paragraph reduce it to a reusable shape, one key statement proved once and cited in a short glue), and consequences honestly name the strictMono crux. But the generality section overstates leaf quality. 'Each of the five direct children is a good leaf' is false for a bounded prover: centroid_2d_formula (143 lines, 549-691) and centroid_3d_formula (341 lines, 702-1042) are the bulk of the file, which the 'avoid_when' clause itself concedes ('those two proofs are most of the file'). The entry never states the criterion that makes a leaf good for a bounded prover (bounded size), and its first avoid-condition ('identification of the two sides is not routine - here each centroid formula needs its own Fubini proof') describes the exemplar itself, so the entry both praises and disqualifies the same shape. Fix: restrict 'good leaf' to the three short children (integral_f_pos, integral_f_sq_pos, weighted_average_lt_of_strictMono) and state that the two centroid formulas are large identification lemmas, not bounded leaves; rephrase the avoid-condition so the exemplar's cost is acknowledged as the price of the reusable shape rather than a disqualifier.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:50:02Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit 60d33c8ba19af905bd731e938ebde1c5b8c76519 is consistent across entry.json source.commit, sources/numina-putnam2025/source.json, and SOURCE.md. Licence recorded as MIT in entry.json, README, source.json (licence_files=[LICENSE]) and SOURCE.md; upstream-LICENSE is a genuine MIT text (Copyright (c) 2025 Numina). Every permalink (file + 6 sites) uses the pinned commit hash with matching line ranges. Copied file code/NuminaPutnam2025/putnam_2025_b2.lean is 53575 bytes matching entry.json bytes, and check_provenance.py already passed (1 file byte-identical at the pinned commit). Source note SOURCE.md records repo URL, pinned commit, browse-at-commit link, licence, and attribution; README Source and licence section points to it. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:50:45Z"
+    }
+  ]
+}

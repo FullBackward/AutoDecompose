@@ -1,0 +1,180 @@
+{
+  "id": "lean-other-mechmath-imo2026-be8176d1",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Reduce-then-evaluate: dist O M = dist O N for MechMath IMO 2026 Q2",
+  "intent": "Prove the competition goal `dist O M = dist O N` by reducing it, through a normalisation lemma, to an equivalent statement in normalised complex coordinates, then closing that statement with two algebra lemmas chained through a real-part identity, and pulling the result back through the iff.",
+  "move": "other",
+  "also_known_as": [
+    "reduce-then-evaluate",
+    "normalise-and-evaluate",
+    "coordinate reduction",
+    "reduce to a normal form and close"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "mechmath-imo2026",
+    "url": "https://github.com/MechMath/IMO2026",
+    "commit": "47ff510110dd400c98aee2ead3be0f53f7b8ba04",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "IMO2026/Q2/solution.lean",
+      "bytes": 84355,
+      "sha256": "64d618b92e38cded413969679d68f5c67ec19987f0fed2eda419005d9afb1ed6",
+      "permalink": "https://github.com/MechMath/IMO2026/blob/47ff510110dd400c98aee2ead3be0f53f7b8ba04/IMO2026/Q2/solution.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "IMO2026/Q2/solution.lean",
+      "lines": [
+        1167,
+        1191
+      ],
+      "role": "parent",
+      "name": "main_theorem",
+      "excerpt_sha256": "5b127a07eecdc9e48cb6a1d6fab24bd5a6d5ed943cf201ca934049d8420d66f6",
+      "permalink": "https://github.com/MechMath/IMO2026/blob/47ff510110dd400c98aee2ead3be0f53f7b8ba04/IMO2026/Q2/solution.lean#L1167-L1191"
+    },
+    {
+      "path": "IMO2026/Q2/solution.lean",
+      "lines": [
+        957,
+        1160
+      ],
+      "role": "child",
+      "name": "normalized_reduction",
+      "excerpt_sha256": "63acd18e3aa3f0e9601de4e85642c29c1a184448766be2f41c2c83ffa5635271",
+      "permalink": "https://github.com/MechMath/IMO2026/blob/47ff510110dd400c98aee2ead3be0f53f7b8ba04/IMO2026/Q2/solution.lean#L957-L1160"
+    },
+    {
+      "path": "IMO2026/Q2/solution.lean",
+      "lines": [
+        92,
+        114
+      ],
+      "role": "child",
+      "name": "circumcenter_determinant",
+      "excerpt_sha256": "849c58a14820267f85d7c0422a4c00a2aba503ff761fab3ec5852c799f658c90",
+      "permalink": "https://github.com/MechMath/IMO2026/blob/47ff510110dd400c98aee2ead3be0f53f7b8ba04/IMO2026/Q2/solution.lean#L92-L114"
+    },
+    {
+      "path": "IMO2026/Q2/solution.lean",
+      "lines": [
+        61,
+        70
+      ],
+      "role": "child",
+      "name": "distance_bridge",
+      "excerpt_sha256": "a925c68ed42f2264e34031cc83731cad3c360c215af4de06fcd55785db7c4e11",
+      "permalink": "https://github.com/MechMath/IMO2026/blob/47ff510110dd400c98aee2ead3be0f53f7b8ba04/IMO2026/Q2/solution.lean#L61-L70"
+    }
+  ],
+  "parent": {
+    "name": "main_theorem",
+    "statement": "theorem main_theorem\n    (A B C K L O : Plane)\n    -- `ABC` is a nondegenerate triangle.\n    (hABC : ¬ Collinear ℝ ({A, B, C} : Set Plane))\n    -- `M`, `N` are the midpoints of `AB`, `AC`.\n    (M N : Plane) (hM : M = midpoint ℝ A B) (hN : N = midpoint ℝ A C)\n    -- `K` is inside triangle `BMC`; `L` is inside triangle `BNC`.\n    (hK : InsideTriangle B M C K)\n    (hL : InsideTriangle B N C L)\n    -- `K` inside angle `∠ L B A`; `L` inside angle `∠ A C K`.\n    (hKangle : InsideAngle L B A K)\n    (hLangle : InsideAngle A C K L)\n    -- The three angle equalities.\n    (h1 : ∠ K B A = ∠ A C L)\n    (h2 : ∠ L B K = ∠ L N C)\n    (h3 : ∠ L C K = ∠ B M K)\n    -- `O` is the circumcentre of triangle `AKL`.\n    (hO : IsCircumcentre A K L O) :\n    dist O M = dist O N"
+  },
+  "children": [
+    {
+      "name": "normalized_reduction",
+      "statement": "theorem normalized_reduction\n    (A B C K L O : Plane)\n    (hABC : ¬ Collinear ℝ ({A, B, C} : Set Plane))\n    (M N : Plane) (hM : M = midpoint ℝ A B) (hN : N = midpoint ℝ A C)\n    (hK : InsideTriangle B M C K)\n    (hL : InsideTriangle B N C L)\n    (hKangle : InsideAngle L B A K)\n    (hLangle : InsideAngle A C K L)\n    (h1 : ∠ K B A = ∠ A C L)\n    (h2 : ∠ L B K = ∠ L N C)\n    (h3 : ∠ L C K = ∠ B M K)\n    (hO : IsCircumcentre A K L O) :\n    ∃ c k l o : ℂ,\n      (2 * (starRingEnd ℂ o * k).re = Complex.normSq k)\n    ∧ (2 * (starRingEnd ℂ o * l).re = Complex.normSq l)\n    ∧ (starRingEnd ℂ k * l).im ≠ 0\n    ∧ (2 * ((starRingEnd ℂ (c - 1) * l).im) * Complex.normSq k\n        + 2 * ((starRingEnd ℂ k * (c - 1)).im) * Complex.normSq l\n        - (Complex.normSq c - 1) * (starRingEnd ℂ k * l).im = 0)\n    ∧ (dist O M = dist O N ↔ dist o (1/2 : ℂ) = dist o (c/2))",
+      "closed_by": "exact ⟨c, k, l, o, hOk, hOl, hΔ, hC, hiff⟩",
+      "note": "Reduces the configuration to normalised complex coordinates (A ↦ 0, B ↦ 1, M ↦ 1/2, N ↦ c/2) and returns four facts plus the iff `dist O M = dist O N ↔ dist o (1/2) = dist o (c/2)`. It closes on its own by chaining named siblings: re_of_norm_eq (hOk, hOl), coeff_match + akl_noncollinear (hΔ), and certificate_from_angles (hC)."
+    },
+    {
+      "name": "circumcenter_determinant",
+      "statement": "theorem circumcenter_determinant\n    (c k l o : ℂ)\n    (hΔ : (starRingEnd ℂ k * l).im ≠ 0)\n    (hC : 2 * ((starRingEnd ℂ (c-1) * l).im) * Complex.normSq k\n        + 2 * ((starRingEnd ℂ k * (c-1)).im) * Complex.normSq l\n        - (Complex.normSq c - 1) * (starRingEnd ℂ k * l).im = 0)\n    (hOk : 2 * (starRingEnd ℂ o * k).re = Complex.normSq k)\n    (hOl : 2 * (starRingEnd ℂ o * l).re = Complex.normSq l) :\n    2 * (starRingEnd ℂ o * (c-1)).re = (Complex.normSq c - 1) / 2",
+      "closed_by": "have := mul_right_cancel₀ hΔ key; linarith [this]",
+      "note": "From the circumcentre equations (hOk, hOl), the certificate (hC) and the nonvanishing determinant Δ ≠ 0, derives the real-part identity hF1 by a linear_combination of hC, hOk, hOl and then cancels Δ."
+    },
+    {
+      "name": "distance_bridge",
+      "statement": "theorem distance_bridge (c o : ℂ)\n    (hF1 : 2 * (starRingEnd ℂ o * (c - 1)).re = (Complex.normSq c - 1) / 2) :\n    dist o (1/2 : ℂ) = dist o (c/2)",
+      "closed_by": "rw [Complex.dist_eq, Complex.dist_eq, Complex.norm_def, Complex.norm_def, hsq]",
+      "note": "Turns the real-part identity hF1 into the normalised distance equality `dist o (1/2) = dist o (c/2)` by expanding both sides to Complex.normSq and closing with nlinarith."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An equality between two distances (more generally, a geometric predicate) that becomes a simple algebraic identity after an explicit coordinate normalisation: here `dist O M = dist O N` normalises to `dist o (1/2) = dist o (c/2)` by mapping the plane to ℂ with B ↦ 1 and A ↦ 0.",
+    "use_when": "the geometry admits an isometry into coordinates (here `g : Plane ≃ₗᵢ[ℝ] ℂ`), the normalisation returns an iff so the reduced goal is equivalent, and each step of the evaluation (the certificate, the determinant identity, the distance bridge) can be stated as its own named lemma whose hypotheses the reduction supplies exactly.",
+    "avoid_when": "the reduction is only one direction (the pull-back needs an iff, or at least a suffices direction); the normalisation itself carries most of the difficulty, so the reduction lemma is really the theorem rather than a leaf; or the reduced algebra statement still needs a certificate too large to state and prove as its own lemma."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "`normalized_reduction` occurs in the parent site.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/MechMath/IMO2026/blob/47ff510110dd400c98aee2ead3be0f53f7b8ba04/IMO2026/Q2/solution.lean#L1167-L1191",
+      "form": "cites(parent, normalized_reduction)"
+    },
+    {
+      "n": 2,
+      "claim": "No sorry, admit, or axiom token occurs in IMO2026/Q2/solution.lean between lines 61 and 1191.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/MechMath/IMO2026/blob/47ff510110dd400c98aee2ead3be0f53f7b8ba04/IMO2026/Q2/solution.lean#L61-L1191",
+      "form": "no_sorry(IMO2026/Q2/solution.lean, 61-1191)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site is 25 lines (1167-1191), of which the proof body is 7 lines (1185-1191) applying three named lemmas; the three child sites are 204, 23 and 10 lines (957-1160, 92-114, 61-70), so the glue of 7 lines drives 237 lines of child proof.",
+      "evidence_kind": "measurement",
+      "evidence": "line counts of code/IMO2026/Q2/solution.lean at commit 47ff510110dd400c98aee2ead3be0f53f7b8ba04 (parent 1167-1191 = 25 lines, proof body 1185-1191 = 7 lines; children 957-1160 = 204, 92-114 = 23, 61-70 = 10 lines)"
+    },
+    {
+      "n": 4,
+      "claim": "Section headers in the file name the proof's stages — \"## The algebra certificate (proven)\" (line 116), \"## The crux lemma\" (line 255), \"## The reduction lemma\" (line 954), \"## Assembly of `main_theorem`\" (line 1162) — and two of the three children carry a docstring recording their scratch origin (\"Proof pasted from `scratch/distance_bridge.lean`\", line 60; \"Proof pasted from `scratch/circumcenter_determinant.lean`\", line 91).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/MechMath/IMO2026/blob/47ff510110dd400c98aee2ead3be0f53f7b8ba04/IMO2026/Q2/solution.lean#L116, #L255, #L954, #L1162, #L60, #L91"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 4,
+    "glue_lines": 25,
+    "child_lines": [
+      204,
+      23,
+      10
+    ]
+  },
+  "metrics": {
+    "proof_body_lines": 7,
+    "direct_lemmas": 3,
+    "deepest_chain": "main_theorem → normalized_reduction → certificate_from_angles → certificate_pos → algebra_certificate",
+    "how_counted": "proof_body_lines = lines 1185-1191 of code/IMO2026/Q2/solution.lean; direct_lemmas = the obtain/have applications in the proof body (1187, 1189, 1190); deepest_chain read from the lemma uses: normalized_reduction calls certificate_from_angles (1156), which calls certificate_pos (935, 952), which calls algebra_certificate (854)."
+  },
+  "consequences": "The move creates an obligation for the reduction lemma to return an iff (or at least the pull-back direction used at the end) and for the certificate to be discharged under exactly the hypotheses the reduction supplies (hOk, hOl, hΔ, hC). It pushes depth down rather than away: normalized_reduction is itself 204 lines and chains certificate_from_angles → certificate_pos → algebra_certificate. Failure modes: a reduction that drops a hypothesis the algebra step later needs; an iff that is only one-way so `hiff.mpr` fails; a certificate whose linear_combination (the KEY identity at line 201) is too unwieldy to reproduce.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "be8176d18cb6c180a04ff27d924e4630db2195f9a5cd89edadeb96f3d9123dd8",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:39:12Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:45:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:40:28Z",
+      "note": "parent main_theorem: statement re-copied from code; child 'normalized_reduction': statement re-copied from the declaration of normalized_reduction; child 'circumcenter_determinant': statement re-copied from the declaration of circumcenter_determinant; child 'distance_bridge': statement re-copied from the declaration of distance_bridge"
+    }
+  ]
+}

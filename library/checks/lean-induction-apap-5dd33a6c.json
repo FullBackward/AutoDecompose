@@ -1,0 +1,125 @@
+{
+  "entry": "lean-induction-apap-5dd33a6c",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:17:01Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:17:01Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:17:01Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: di_in_ff@APAP/FiniteField.lean:561, ThreeAPFree.wInner_one_mu_ddconv_mu_mu_two_smul_mu@APAP/FiniteField.lean:615; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:17:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(parent, 135) -> lines: site parent has 135 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:17:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, di_in_ff) -> cites: di_in_ff occurs at APAP/FiniteField.lean:561",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:17:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, ThreeAPFree.wInner_one_mu_ddconv_mu_mu_two_smul_mu) -> cites: ThreeAPFree.wInner_one_mu_ddconv_mu_mu_two_smul_mu occurs at APAP/FiniteField.lean:615",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:17:01Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at fb5cb9c4f594cbeeb160c715618d13640984c521",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:17:12Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push.yml build job (leanprover/lean-action, builds whole APAP project incl. APAP/FiniteField.lean) on default branch master; pinned commit fb5cb9c4f594cbeeb160c715618d13640984c521 is on master",
+      "by": "verifier",
+      "at": "2026-11-14T12:19:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "blueprint/src/chapter/ff.tex L201 = '\\uses{no3aps_inner_prod, di_in_ff}' (within L200-L202); L177 '\\label{no3aps_inner_prod}', L178 '\\lean{ThreeAPFree.wInner_one_mu_ddconv_mu_mu_two_smul_mu}' (within L176-L178)",
+      "by": "verifier",
+      "at": "2026-11-14T12:19:07Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read code/APAP/FiniteField.lean: ap_in_ff' at 322-327 cites ap_in_ff at 327; di_in_ff (332-509) applies ap_in_ff' at 424; ff (511-645) cites di_in_ff at 561 and wInner_one_mu_ddconv_mu_mu_two_smul_mu at 615",
+      "by": "verifier",
+      "at": "2026-11-14T12:19:10Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent ff is APAP/FiniteField.lean 511-645 (135 lines, last line of file, confirmed by sed/wc); child di_in_ff is 332-509 (178 lines); child ThreeAPFree.wInner_one_mu_ddconv_mu_mu_two_smul_mu is ThreeAP.lean 20-41 (22 lines), the set_option line being line 19 just outside. All three declarations and statements match entry.json verbatim modulo the 'public' visibility attribute. The glue cites exactly the two children: di_in_ff at line 561 (obtain ... := di_in_ff hq ...) and ThreeAPFree.wInner_one_mu_ddconv_mu_mu_two_smul_mu at line 615 (rw [hB.wInner_one_mu_ddconv_mu_mu_two_smul_mu] at hBV), matching the blueprint \\uses{no3aps_inner_prod, di_in_ff}. Depth chain verified: ff -> di_in_ff cites ap_in_ff' at 424, ap_in_ff' (322-327) cites ap_in_ff at 327, giving depth 3. No sorry/admit/axiom in any of the three site ranges, so it closes. Shape numbers all correct: parent_lines 135, direct_lemmas 2, depth 3, child_lines [178,22].",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:21:08Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is scoped beyond the example: 'When to use it' names the three structural preconditions (a density-increment lemma, a terminal identity rewriting the surviving inner product, loop termination from density <= 1) and situates the pattern as the standard Roth/density-increment argument, so it applies whenever that structure is present rather than only to this bound. 'When not to use' and consequences are honest and specific: they name concrete failure modes (increment gain/codimension cost not telescoping into the final bound, terminal identity needing hypotheses beyond the invariant, invariant too weak to survive a step) and the README/consequences tie each to actual code (the manufactured epsilon-hypothesis from not(2^-1 <= x) at lines 72-75, the non-inductive easy case at 525-538, the packaged four-fact invariant). The entry does say what makes the leaves good for a bounded prover: 'Why each child is a good leaf' states di_in_ff and the ThreeAPFree identity each close on their own from named siblings, so the induction needs only their conclusions, not how they work - exactly the one-hole-per-bounded-prover property.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:21:54Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at fb5cb9c4f594cbeeb160c715618d13640984c521",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:22:13Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent and traceable. Commit fb5cb9c4f594cbeeb160c715618d13640984c521 is used uniformly across entry.json, README.md, sources/apap/SOURCE.md and source.json; check_provenance.py passes (2 files byte-identical at the pinned commit). Licence Apache-2.0 is recorded consistently in all four, and sources/apap/upstream-LICENSE is the Apache-2.0 text. Site permalink line anchors match the local copies: parent ff at FiniteField.lean 511-645 (135 lines), child di_in_ff at 332-509, child ThreeAPFree.wInner_one_mu_ddconv_mu_mu_two_smul_mu at ThreeAP.lean 20-41; code/ holds exactly the two files listed in entry.json.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:22:44Z"
+    }
+  ]
+}

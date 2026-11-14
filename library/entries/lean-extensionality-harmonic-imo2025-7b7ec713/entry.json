@@ -1,0 +1,206 @@
+{
+  "id": "lean-extensionality-harmonic-imo2025-7b7ec713",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Set extensionality over the two answer sets for IMO 2025 P5 (Alice wins iff λ > 1/√2, Bazza wins iff 0 < λ < 1/√2)",
+  "intent": "The main theorem asserts two set equalities characterising the winning values of λ for IMO 2025 P5 (Alice's set equals {λ | λ > 1/√2}; Bazza's equals {λ | 0 < λ < 1/√2}). The proof splits each equality by Set.ext into two inclusions; in each equality one inclusion is proved inline (closing through lemSLowerBound), and the reverse inclusion is handed whole to a half-theorem — lemAliceWinsLargeLambda or lemBazzaWinsSmallLambda — so the answer is the pointwise join of three named lemmas.",
+  "move": "extensionality",
+  "also_known_as": [
+    "Set.ext",
+    "set equality by mutual inclusion",
+    "subset_antisym / set_eqI (Isabelle)",
+    "apply setP (Rocq)"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "harmonic-imo2025",
+    "url": "https://github.com/harmonic-ai/IMO2025",
+    "commit": "72b62405a176a7eaeadb335a7fa6ee80b6667161",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "HarmonicLean/IMO2025P5.lean",
+      "bytes": 47398,
+      "sha256": "583f24f0f9c8e30c97467f59ce6891fa949d5799786ac6bc2eddbc115486ffc3",
+      "permalink": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P5.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "HarmonicLean/IMO2025P5.lean",
+      "lines": [
+        615,
+        726
+      ],
+      "role": "parent",
+      "name": "main_theorem",
+      "excerpt_sha256": "7ef54903e69a810f3a47f0fd11c8fd89d86607f13fc6d791b7b7ec3efce3df52",
+      "permalink": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P5.lean#L615-L726"
+    },
+    {
+      "path": "HarmonicLean/IMO2025P5.lean",
+      "lines": [
+        181,
+        212
+      ],
+      "role": "child",
+      "name": "lemSLowerBound",
+      "excerpt_sha256": "cfad7f0bb6fe08c86639a5d1d952b893d7c41cfbc403f217dad751b9b9134c36",
+      "permalink": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P5.lean#L181-L212"
+    },
+    {
+      "path": "HarmonicLean/IMO2025P5.lean",
+      "lines": [
+        229,
+        303
+      ],
+      "role": "child",
+      "name": "lemBazzaWinsSmallLambda",
+      "excerpt_sha256": "1d35850d6d0f05b4b31648c53881672f2e4b6ce4f4e69ea4532733b7d97e29de",
+      "permalink": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P5.lean#L229-L303"
+    },
+    {
+      "path": "HarmonicLean/IMO2025P5.lean",
+      "lines": [
+        535,
+        610
+      ],
+      "role": "child",
+      "name": "lemAliceWinsLargeLambda",
+      "excerpt_sha256": "94eccc4ff68bf85ba788f4c60c4c93583519ab6ad4f1b0a9429b4fb59aff3dca",
+      "permalink": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P5.lean#L535-L610"
+    },
+    {
+      "path": "HarmonicLean/IMO2025P5.lean",
+      "lines": [
+        46,
+        114
+      ],
+      "role": "context",
+      "name": "definitions",
+      "excerpt_sha256": "b5be3777a701b8e50ace989d668f35e009f96a617f9396afabc04f7ab9d9bd44",
+      "permalink": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P5.lean#L46-L114"
+    }
+  ],
+  "parent": {
+    "name": "main_theorem",
+    "statement": "theorem main_theorem :\n  {lam : ℝ | 0 < lam ∧ ∃ alice : AliceStrategy, alice.Wins lam} = {lam : ℝ | 1 / Real.sqrt 2 < lam} ∧\n  {lam : ℝ | 0 < lam ∧ ∃ bazza : BazzaStrategy, bazza.Wins lam} = {lam : ℝ | 0 < lam ∧ lam < 1 / Real.sqrt 2}"
+  },
+  "children": [
+    {
+      "name": "lemSLowerBound",
+      "statement": "lemma lemSLowerBound (lam : ℝ) (alice : AliceStrategy) (k : ℕ) (hk : 1 ≤ k)\n  (h_not_won : ∀ m < 2 * k - 2, ValidMove lam (play alice bazzaReferenceStrategy) m) :\n  s (play alice bazzaReferenceStrategy) (2 * (k - 1)) ≥ ((k - 1) : ℝ) * Real.sqrt 2",
+      "closed_by": "have h_pair_sum_lower_bound via apply_rules [lemPairSumLowerBound] (each pair closed with lemQ_2k_minus_2_under_bazza_ref); summed with Finset.sum_le_sum; convert h_sum_pairs using 1; unfold s; exact Nat.recOn k ... (lines 185-212)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: S_{2(k-1)} ≥ (k-1)√2 for the reference play"
+    },
+    {
+      "name": "lemBazzaWinsSmallLambda",
+      "statement": "lemma lemBazzaWinsSmallLambda (lam : ℝ) (hlam : 0 < lam ∧ lam < 1 / Real.sqrt 2) :\n  ∃ bazza, BazzaStrategy.Wins lam bazza",
+      "closed_by": "have h_bazza_wins : ∀ alice, ∃ n, IsLeast {m | ¬ValidMove ... m} n ∧ Even n, by contradiction + strong induction using lemQ_2k_minus_2_under_bazza_ref and lemSLowerBound, then obtain k with (k-1)√2 > λ(2k-1); exact ⟨bazzaReferenceStrategy, h_bazza_wins⟩ (lines 232-303)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: for 0 < λ < 1/√2, Bazza has a winning strategy"
+    },
+    {
+      "name": "lemAliceWinsLargeLambda",
+      "statement": "lemma lemAliceWinsLargeLambda (lam : ℝ) (hlam : lam > 1 / Real.sqrt 2) :\n  ∃ alice, AliceStrategy.Wins lam alice",
+      "closed_by": "obtain ⟨K, hK⟩ : ∃ K, 1 ≤ K ∧ lam > f K by exact? (lemExistenceOfKForAlice); use aliceReferenceStrategy lam K; by_contra; strong induction builds h_bazza_wins; h_alice_wins from lemBazzaObjectiveUpperBound; refine' h_contra ⟨2*K-1, _, _⟩ with lemAliceMoveValid (lines 538-610)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: for λ > 1/√2, Alice has a winning strategy"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "a goal of the form A = B ∧ C = D where each conjunct is an equality of set comprehensions {x | P x} = {x | Q x} (or, in general, an equality of sets or functions); each equality is proved by Set.ext, which turns it into pointwise membership and then the two inclusions",
+    "use_when": "each inclusion already has a proof — either a named half-theorem whose conclusion is the inclusion's consequent, or a short inline argument closing through a shared estimate lemma; the two directions are genuinely different (here: a direct reference-strategy construction versus a no-win argument from a lower bound)",
+    "avoid_when": "the two inclusions need the same argument (then the reverse is just symmetry and one lemma suffices); the set comprehension must be unfolded non-definitionally to even state the inclusion; the equality is not of sets or functions, so extensionality does not apply"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent `main_theorem` is declared at `HarmonicLean/IMO2025P5.lean:615-726`.",
+      "evidence_kind": "check",
+      "form": "declared(main_theorem, HarmonicLean/IMO2025P5.lean, 615-726)",
+      "evidence": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P5.lean#L615-L726"
+    },
+    {
+      "n": 2,
+      "claim": "`Set.ext` occurs 2 times in `HarmonicLean/IMO2025P5.lean`.",
+      "evidence_kind": "check",
+      "form": "count(Set.ext, 2, HarmonicLean/IMO2025P5.lean)",
+      "evidence": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P5.lean#L619 and #L687"
+    },
+    {
+      "n": 3,
+      "claim": "No closing-by-sorry token (`sorry`, `admit`, `axiom`) appears in `HarmonicLean/IMO2025P5.lean:1-728`.",
+      "evidence_kind": "check",
+      "form": "no_sorry(HarmonicLean/IMO2025P5.lean, 1-728)",
+      "evidence": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P5.lean#L1-L728"
+    },
+    {
+      "n": 4,
+      "claim": "The decomposition is theorem scale with 3 direct lemmas, a 112-line glue (615-726), and child proofs of 32, 75 and 76 lines (lemSLowerBound 181-212, lemBazzaWinsSmallLambda 229-303, lemAliceWinsLargeLambda 535-610); the longest chain of project lemmas below `main_theorem` that I checked is 4 deep: `main_theorem` → `lemBazzaWinsSmallLambda` (call at 726) → `lemSLowerBound` (call at 262) → `lemQ_2k_minus_2_under_bazza_ref` (call at 191) → `lemBazzaStrategyQValue` (call at 150, leaf).",
+      "evidence_kind": "measurement",
+      "evidence": "call sites #L726, #L262, #L191, #L150 and the line counts, read from the copied file HarmonicLean/IMO2025P5.lean"
+    },
+    {
+      "n": 5,
+      "claim": "The authors record the answer and name the inclusion structure in comments: the file header ends 'Answer: Alice wins if $\\lambda > 1 / \\sqrt{2}$. Bazza wins if $0 < \\lambda < 1 / \\sqrt{2}$.' (line 13), and the glue labels the first inclusion 'By definition of Alice's winning strategy, if Alice has a winning strategy, then x must be greater than 1/sqrt(2).' (line 622) and the second 'To prove the equality, we show mutual inclusion.' (line 686).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/harmonic-ai/IMO2025/blob/72b62405a176a7eaeadb335a7fa6ee80b6667161/HarmonicLean/IMO2025P5.lean#L13, #L622, #L686"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 4,
+    "glue_lines": 112,
+    "child_lines": [
+      32,
+      75,
+      76
+    ]
+  },
+  "metrics": {
+    "parent_lines": 112,
+    "direct_children": 3,
+    "child_proof_lines": [
+      32,
+      75,
+      76
+    ],
+    "how_counted": "parent_lines = 726-615+1 over the copied file (declaration included); child proof lines = each child site 181-212, 229-303, 535-610 (declaration included)"
+  },
+  "consequences": "Each Set.ext leaves a pointwise membership goal that must then be split into the two inclusions; here the initial `constructor` first splits the conjunction into the two equalities, so the whole proof is two ext arguments. The inclusion that is not handed to a half-theorem is the real cost: the Alice-wins ⊆ direction is a 64-line inline argument (621-684) and is the only place the glue proves a nontrivial fact rather than invoking a lemma, closing through lemSLowerBound at 674. The 'hand the whole inclusion to a half-theorem' step (`exact ⟨..., lemma lam h⟩`) requires the half-theorem's conclusion to match the inclusion's consequent up to definitional equality; if a child's statement diverges from the parent's set comprehension, the step fails and the inclusion must be reopened.",
+  "known_uses": [],
+  "related": [
+    "lean-case-split-harmonic-imo2025-09c4818f"
+  ],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "7b7ec71335a723ace394533fc14fb25c0836ecc178449a96dc9f979c59b544ee",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:46:45Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:48:58Z",
+      "note": "parent main_theorem: statement re-copied from code; child 'lemSLowerBound': statement re-copied from the declaration of lemSLowerBound; child 'lemBazzaWinsSmallLambda': statement re-copied from the declaration of lemBazzaWinsSmallLambda; child 'lemAliceWinsLargeLambda': statement re-copied from the declaration of lemAliceWinsLargeLambda"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T09:55:43Z"
+}

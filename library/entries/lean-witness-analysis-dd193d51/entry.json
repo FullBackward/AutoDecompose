@@ -1,0 +1,264 @@
+{
+  "id": "lean-witness-analysis-dd193d51",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Witness LIM a for the least upper bound of a nonempty bounded set of reals (Theorem 5.5.9)",
+  "intent": "Prove Theorem 5.5.9, that every nonempty set of reals bounded above has a least upper bound, by building a rational approximation a from the rounding lemma LUB_claim1, turning the adjacent-term bound LUB_claim2 into Cauchyness via LIM_of_Cauchy, and exhibiting S := LIM a as the witness, with LIM_of_ge and LIM_of_le discharging the upper-bound and minimality halves of IsLUB.",
+  "move": "witness",
+  "also_known_as": [
+    "exists introduction",
+    "refine ⟨w, ?_, ?_⟩",
+    "use",
+    "exhibit a witness"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "analysis",
+    "url": "https://github.com/teorth/analysis",
+    "commit": "a19a5bfadc616467562995b75f46035232841943",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Analysis/Section_5_5.lean",
+      "bytes": 14617,
+      "sha256": "c7285fc594822d54d98d37a64dca74ea29173c51edf0be238ad392cf3c8b68cf",
+      "permalink": "https://github.com/teorth/analysis/blob/a19a5bfadc616467562995b75f46035232841943/Analysis/Section_5_5.lean"
+    },
+    {
+      "path": "Analysis/Section_5_3.lean",
+      "bytes": 18708,
+      "sha256": "14ee945e59dd826f8c8f00497ebc88c859434b0a73a9d0b58f23b8f717469f60",
+      "permalink": "https://github.com/teorth/analysis/blob/a19a5bfadc616467562995b75f46035232841943/Analysis/Section_5_3.lean"
+    },
+    {
+      "path": "Analysis/Section_5_4.lean",
+      "bytes": 16188,
+      "sha256": "8c91fb5c5a3ee0609a569b9f85ee41d7cc049c7e267aad9b65e26ea8e15ffc76",
+      "permalink": "https://github.com/teorth/analysis/blob/a19a5bfadc616467562995b75f46035232841943/Analysis/Section_5_4.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Analysis/Section_5_5.lean",
+      "lines": [
+        166,
+        189
+      ],
+      "role": "parent",
+      "name": "Real.LUB_exist",
+      "excerpt_sha256": "af270949cdaea7c799f80866e76839b6abcd913fc51bfaff1ee655147d9cfcb2",
+      "permalink": "https://github.com/teorth/analysis/blob/a19a5bfadc616467562995b75f46035232841943/Analysis/Section_5_5.lean#L166-L189"
+    },
+    {
+      "path": "Analysis/Section_5_5.lean",
+      "lines": [
+        117,
+        145
+      ],
+      "role": "child",
+      "name": "Real.LUB_claim1",
+      "excerpt_sha256": "30dad912326d24540bcf155c3e738ce4d458f47796b0dfcddd6e0a2da1d55116",
+      "permalink": "https://github.com/teorth/analysis/blob/a19a5bfadc616467562995b75f46035232841943/Analysis/Section_5_5.lean#L117-L145"
+    },
+    {
+      "path": "Analysis/Section_5_5.lean",
+      "lines": [
+        147,
+        163
+      ],
+      "role": "child",
+      "name": "Real.LUB_claim2",
+      "excerpt_sha256": "52d4f9b9d32ab8a7b9828639f91e2ddd3997465e13035a16b6f80519d2fc997f",
+      "permalink": "https://github.com/teorth/analysis/blob/a19a5bfadc616467562995b75f46035232841943/Analysis/Section_5_5.lean#L147-L163"
+    },
+    {
+      "path": "Analysis/Section_5_5.lean",
+      "lines": [
+        110,
+        111
+      ],
+      "role": "child",
+      "name": "Real.LIM_of_Cauchy",
+      "excerpt_sha256": "88722c7704097e052d2fb28f26cb9a0c6024d8f131f519743009bc8df233623d",
+      "permalink": "https://github.com/teorth/analysis/blob/a19a5bfadc616467562995b75f46035232841943/Analysis/Section_5_5.lean#L110-L111"
+    },
+    {
+      "path": "Analysis/Section_5_3.lean",
+      "lines": [
+        467,
+        467
+      ],
+      "role": "child",
+      "name": "Real.LIM.harmonic",
+      "excerpt_sha256": "ca09b88c27c91b69f07d851f38d18cf9276c20cfcaa2d7f6001d09038abc0d0c",
+      "permalink": "https://github.com/teorth/analysis/blob/a19a5bfadc616467562995b75f46035232841943/Analysis/Section_5_3.lean#L467-L467"
+    },
+    {
+      "path": "Analysis/Section_5_4.lean",
+      "lines": [
+        349,
+        350
+      ],
+      "role": "child",
+      "name": "Real.LIM_of_ge",
+      "excerpt_sha256": "1bd071c79b4376c59f041a3ff84f5a516ef8731555e9c724e934fcd06512218a",
+      "permalink": "https://github.com/teorth/analysis/blob/a19a5bfadc616467562995b75f46035232841943/Analysis/Section_5_4.lean#L349-L350"
+    },
+    {
+      "path": "Analysis/Section_5_4.lean",
+      "lines": [
+        345,
+        346
+      ],
+      "role": "child",
+      "name": "Real.LIM_of_le",
+      "excerpt_sha256": "a119c182277a4bb7c1c64d1dc87b4238bd78a1d117ea4ab3ee38f126d3099b9b",
+      "permalink": "https://github.com/teorth/analysis/blob/a19a5bfadc616467562995b75f46035232841943/Analysis/Section_5_4.lean#L345-L346"
+    }
+  ],
+  "parent": {
+    "name": "Real.LUB_exist",
+    "statement": "theorem Real.LUB_exist {E: Set Real} (hE: Set.Nonempty E) (hbound: BddAbove E): ∃ S, IsLUB E S"
+  },
+  "children": [
+    {
+      "name": "Real.LUB_claim1",
+      "statement": "lemma Real.LUB_claim1 (n : ℕ) {E: Set Real} (hE: Set.Nonempty E) (hbound: BddAbove E)\n:  ∃! m:ℤ,\n      (((m:ℚ) / (n+1):ℚ):Real) ∈ upperBounds E\n      ∧ ¬ (((m:ℚ) / (n+1) - 1 / (n+1):ℚ):Real) ∈ upperBounds E",
+      "closed_by": "its own proof (lines 121-145): `existsUnique_of_exists_of_unique`, existence by `upperBound_between`/`upperBound_upper`, uniqueness by `grind [upperBound_discrete_unique]`",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: For each n there is a unique integer m such that m/(n+1) is an upper bound of E but (m/(n+1) − 1/(n+1)) is not."
+    },
+    {
+      "name": "Real.LUB_claim2",
+      "statement": "lemma Real.LUB_claim2 {E : Set Real} (N:ℕ) {a b: ℕ → ℚ}\n  (hb : ∀ n, b n = 1 / (↑n + 1))\n  (hm1 : ∀ (n : ℕ), ↑(a n) ∈ upperBounds E)\n  (hm2 : ∀ (n : ℕ), ↑((a - b) n) ∉ upperBounds E)\n: ∀ n ≥ N, ∀ n' ≥ N, |a n - a n'| ≤ 1 / (N+1)",
+      "closed_by": "its own proof (lines 152-163): `abs_le`, each half by `upperBound_upper` then `gcongr`/`linarith`",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: If a n is always an upper bound of E and (a−b) n never is (b n = 1/(n+1)), then |a n − a n'| ≤ 1/(N+1) for all n, n' ≥ N."
+    },
+    {
+      "name": "Real.LIM_of_Cauchy",
+      "statement": "theorem Real.LIM_of_Cauchy {q:ℕ → ℚ} (hq: ∀ M, ∀ n ≥ M, ∀ n' ≥ M, |q n - q n'| ≤ 1 / (M+1)) :\n    (q:Sequence).IsCauchy ∧ ∀ M, |q M - LIM q| ≤ 1 / (M+1)",
+      "closed_by": "by sorry (left as Exercise 5.5.4)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: A sequence with the adjacent-term bound 1/(M+1) is Cauchy, and its limit is within 1/(M+1) of each term."
+    },
+    {
+      "name": "Real.LIM.harmonic",
+      "statement": "theorem Real.LIM.harmonic : LIM (fun n ↦ 1/((n:ℚ)+1)) = 0",
+      "closed_by": "by sorry (left as Exercise 5.3.5)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The limit of 1/(n+1) is 0."
+    },
+    {
+      "name": "Real.LIM_of_ge",
+      "statement": "theorem Real.LIM_of_ge {x:Real} {a:ℕ → ℚ} (hcauchy: (a:Sequence).IsCauchy) (h: ∀ n, a n ≥ x) :\n    LIM a ≥ x",
+      "closed_by": "by sorry (left as Exercise 5.4.8 (b))",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: If a Cauchy sequence of rationals is pointwise ≥ x, then its limit is ≥ x."
+    },
+    {
+      "name": "Real.LIM_of_le",
+      "statement": "theorem Real.LIM_of_le {x:Real} {a:ℕ → ℚ} (hcauchy: (a:Sequence).IsCauchy) (h: ∀ n, a n ≤ x) :\n    LIM a ≤ x",
+      "closed_by": "by sorry (left as Exercise 5.4.8 (a))",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: If a Cauchy sequence of rationals is pointwise ≤ x, then its limit is ≤ x."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "∃ S, IsLUB E S — an existence goal whose witness is a limit (or supremum) built from a sequence of rational approximations; here the head symbol is the existential over the least-upper-bound predicate.",
+    "use_when": "a concrete witness term is available (LIM a) and its two defining properties are already stated as named lemmas; the construction is a sequence whose Cauchyness and whose limiting upper-bound/minimality are separate, independently provable facts.",
+    "avoid_when": "the witness cannot be named without first proving Cauchyness (here claim3 must come before `set S := LIM a`); when the approximating sequence is not Cauchy; when the two halves of the property (upper bound, minimality) are not both expressible as a pointwise-inequality limit lemma."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "Real.LUB_exist is declared in Analysis/Section_5_5.lean, lines 166-189.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/teorth/analysis/blob/a19a5bfadc616467562995b75f46035232841943/Analysis/Section_5_5.lean#L166-L189",
+      "form": "declared(Real.LUB_exist, Analysis/Section_5_5.lean, 166-189)"
+    },
+    {
+      "n": 2,
+      "claim": "No sorry/admit/axiom closes the main theorem's proof in Analysis/Section_5_5.lean, lines 166-189.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/teorth/analysis/blob/a19a5bfadc616467562995b75f46035232841943/Analysis/Section_5_5.lean#L166-L189",
+      "form": "no_sorry(Analysis/Section_5_5.lean, 166-189)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site cites Real.LUB_claim1.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/teorth/analysis/blob/a19a5bfadc616467562995b75f46035232841943/Analysis/Section_5_5.lean#L166-L189",
+      "form": "cites(parent, Real.LUB_claim1)"
+    },
+    {
+      "n": 4,
+      "claim": "The witness move assembles the 24-line glue of Real.LUB_exist from six named lemmas whose declarations total 53 lines (29 + 17 + 2 + 1 + 2 + 2), and the longest chain of project lemmas below the main theorem is 2 deep (LUB_exist → LUB_claim1 → upperBound_between).",
+      "evidence_kind": "measurement",
+      "evidence": "line counts of the parent site (Section_5_5.lean 166-189) and the six child sites (117-145, 147-163, 110-111; Section_5_3.lean 467; Section_5_4.lean 349-350, 345-346), counted from the copied files; the chain is LUB_exist citing LUB_claim1 at 170/173, and LUB_claim1 citing upperBound_between at 139"
+    },
+    {
+      "n": 5,
+      "claim": "The authors reindex the harmonic-sequence lemma specifically to serve Theorem 5.5.9: 'Same as Sequence.IsCauchy.harmonic but reindexing the sequence as a₀ = 1, a₁ = 1/2, ... This form is more convenient for the upcoming proof of Theorem 5.5.9.'",
+      "evidence_kind": "author-statement",
+      "evidence": "doc comment of Sequence.IsCauchy.harmonic', https://github.com/teorth/analysis/blob/a19a5bfadc616467562995b75f46035232841943/Analysis/Section_5_3.lean#L457-L460"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 6,
+    "depth": 2,
+    "glue_lines": 24,
+    "child_lines": [
+      29,
+      17,
+      2,
+      1,
+      2,
+      2
+    ]
+  },
+  "metrics": {
+    "parent_lines": 24,
+    "children": 6,
+    "children_closed_by_their_own_proof": 2,
+    "children_left_as_sorry": 4,
+    "child_lines": [
+      29,
+      17,
+      2,
+      1,
+      2,
+      2
+    ],
+    "how_counted": "line counts of the parent site (Section_5_5.lean 166-189) and the six child sites, declaration included, counted from the copied files"
+  },
+  "consequences": "The witness move commits to one witness S := LIM a and then creates the two conjuncts of IsLUB as obligations: S an upper bound (discharged by LIM_of_ge) and S minimal (discharged by LIM_of_le). Before the witness can even be named, the approximating sequence a must be shown Cauchy (claim3 via LIM_of_Cauchy), and b must be Cauchy and tend to 0 (harmonic' and LIM.harmonic) so that S = LIM (a − b) holds. Four of the six leaves are stubbed with sorry in this source, so the glue compiles but the theorem is only as strong as those exercise holes. Failure modes: if a were not Cauchy the term LIM a would not be available to `use`; if the two halves needed a different limit lemma than LIM_of_ge/LIM_of_le, the pointwise-inequality transfer would not fit.",
+  "known_uses": [
+    "https://github.com/teorth/analysis/blob/a19a5bfadc616467562995b75f46035232841943/Analysis/Section_5_5.lean#L246-L299"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "dd193d5130046df6efb5c502c960eba2565fbd221d78e66143b273bce69d2726",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:39:16Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:45:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:40:40Z",
+      "note": "parent Real.LUB_exist: statement re-copied from code; child 'Real.LUB_claim1': statement re-copied from the declaration of Real.LUB_claim1; child 'Real.LUB_claim2': statement re-copied from the declaration of Real.LUB_claim2; child 'Real.LIM_of_Cauchy': statement re-copied from the declaration of Real.LIM_of_Cauchy; child 'Real.LIM.harmonic': statement re-copied from the declaration of Real.LIM.harmonic; child 'Real.LIM_of_ge': statement re-copied from the declaration of Real.LIM_of_ge; child 'Real.LIM_of_le': statement re-copied from the declaration of Real.LIM_of_le"
+    }
+  ]
+}

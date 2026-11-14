@@ -1,0 +1,133 @@
+{
+  "entry": "isabelle-key-invariant-afp-773f380f",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:35:10Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:35:10Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:35:10Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: mertens_remainder_aux_bound@thys/Prime_Number_Theorem/Mertens_Theorems.thy:309, primepows_le_subset@thys/Prime_Number_Theorem/Mertens_Theorems.thy:285, ln_fact_conv_sum_upto_mangoldt@thys/Prime_Number_Theorem/Mertens_Theorems.thy:348, \\<theta>_upper_bound@thys/Prime_Number_Theorem/Mertens_Theorems.thy:341, sum_upto_primepows@thys/Prime_Number_Theorem/Mertens_Theorems.thy:351; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:35:10Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(parent, 125) -> lines: site parent has 125 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:35:10Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, mertens_remainder_aux_bound) -> cites: mertens_remainder_aux_bound occurs at thys/Prime_Number_Theorem/Mertens_Theorems.thy:309",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:35:10Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "declared(mertens_bound_strong, thys/Prime_Number_Theorem/Mertens_Theorems.thy, 250-374) -> declared: mertens_bound_strong is declared at thys/Prime_Number_Theorem/Mertens_Theorems.thy:250",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:35:10Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:35:21Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no Isabelle toolchain on the harvest machine; mirror-afp-devel (source afp, pinned commit 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df) has no in-repo CI workflow (no .github/workflows or Jenkins/Travis/GitLab config), so there is no workflow file to cite for ci-record — the AFP's CI is an external Jenkins testboard",
+      "by": "verifier",
+      "at": "2026-11-14T10:36:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read code/thys/Prime_Number_Theorem/Mertens_Theorems.thy L238-249 (byte-identical per check_provenance): the text comment says 'estimate both sides in different ways', 'split the sum into those p^i with i = 1 and those with i >= 2', and 'Applying the bound we have just shown and some more routine estimates' — all three phrases the claim quotes are present",
+      "by": "verifier",
+      "at": "2026-11-14T10:36:47Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read the byte-identical copied code. Child sites (declaration..qed): mertens_remainder_aux_bound L118-236=119 (decl L118, qed L236), primepows_le_subset L1226-1245=20 (L1226, L1245), ln_fact_conv_sum_upto_mangoldt L45-55=11 (L45, L55), theta_upper_bound L923-943=21 (L923, L943), sum_upto_primepows L99-117=19 (L99, L117); parent L250-374=125. 5 direct lemmas = the 5 children (glue-cites-children passes on all five). Depth chain: mertens_remainder_aux_bound uses deriv_zeta_2_bound (L233); deriv_zeta_2_bound (L61-111) uses ln_powr_has_integral_at_top (L64), which is declared at Prime_Number_Theorem_Library.thy L1414. Depth 3 (3 edges below parent). All numbers match",
+      "by": "verifier",
+      "at": "2026-11-14T10:36:49Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:37:10Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent theorem mertens_bound_strong (lines 250-374) routes the target through one key identity MM n - ln n = ln(fact n)/n - ln n + r/n - R/n (line 368) and closes by 'with fact_bounds r_bounds R_bounds ... by simp' (line 372). The 5 children are exactly the lemmas the glue cites, each verified in the local code: mertens_remainder_aux_bound@309, primepows_le_subset@285, ln_fact_conv_sum_upto_mangoldt@348, theta_upper_bound@341, sum_upto_primepows@351; declarations and closing methods match entry.json (mra 'finally show ?thesis' uses deriv_zeta_2_bound; pps 'proof safe..qed'; lfc via sum_upto_ln_conv_sum_upto_mangoldt; theta via powr_less_cancel_iff; sup via sum.reindex_bij_witness). Shape numbers right: glue 250-374=125 lines, child_lines 118-236=119, 1226-1245=20, 45-55=11, 923-943=21, 99-117=19, direct_lemmas=5. Depth 3 chain parent->mra->deriv_zeta_2_bound(61-111)->ln_powr_has_integral_at_top(Library 1414) has all three links verified (309,233,64). ln_fact_bounds correctly noted external (Stirling_Formula), not a child. Provenance: 3 files byte-identical at 07cd9ca548d1.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:38:38Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality holds. (1) The move is stated beyond the example: applicability.goal_shape and README 'When to use it' generalise from the concrete M(n)-ln n remainder to 'a sum over primes' and to the abstract criterion 'target quantity rewritten through one key identity into a few terms each bounded by an independently-proved named lemma', which is a discriminative condition, not just a restatement. (2) avoid_when gives three concrete, honest cases (Big-O only => absolute estimates overkill; terms not independent => leaves cannot be proved before the parent; key identity proof dominates), and Consequences lists two real obligations (small cases by direct arithmetic; each term bounded into a non-negative interval of the right width) plus a specific failure mode (with fact_bounds r_bounds R_bounds ... by simp fails if any estimate is wrong-sign or not tight enough, forcing re-proof). All of this matches the copied code I checked (author comment 238-249, deriv_zeta_2_bound 61-111 as the closing sibling). (3) A dedicated section 'Why each child is a good leaf' states per child that it is self-contained and closes on its own or from named siblings, and shape/metrics give leaf sizes 11-119 lines at depth 3 -- exactly what makes them bounded-prover leaves. Minor nit, not an objection: 'more generally, a sum over primes' under-sells the true breadth (the move applies to any additive target), but the abstract use_when already covers it.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:39:33Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:39:59Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "provenance pass: 3 files byte-identical at 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df; entry.json file sha256s equal the local copies; commit 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df is identical in entry.json, README and sources/afp/SOURCE.md; licence LicenseRef-unknown recorded consistently in entry.json, README and SOURCE.md, and SOURCE.md's 'no licence file found at the root' is accurate (root has README.md and admin/doc/etc/metadata/thys/tools/web only); permalinks use the pinned commit and correct paths.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:41:03Z"
+    }
+  ]
+}

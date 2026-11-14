@@ -1,0 +1,199 @@
+{
+  "id": "rocq-suffices-or-strengthen-fiat-crypto-efce3e48",
+  "kind": "instance",
+  "status": "verified",
+  "title": "WordByWordMontgomery mulmod_correct from the stronger raw congruence mulmod_correct0",
+  "intent": "Prove the interface theorem mulmod_correct (value equality and validity, both about from_montgomerymod (mulmod a b)) by reducing it to the already-proved raw congruence mulmod_correct0 through the wrapper-rewrite eval_from_montgomerymod, instead of re-proving the Montgomery reduction.",
+  "move": "suffices-or-strengthen",
+  "also_known_as": [
+    "suffices",
+    "enough",
+    "strengthen the goal",
+    "wlog"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "fiat-crypto",
+    "url": "https://github.com/mit-plv/fiat-crypto",
+    "commit": "3d2880ef2803faa9385589a81a835d5828eb3d38",
+    "licence": "Apache-2.0 AND BSD-2-Clause AND MIT AND MIT OR Apache-2.0 OR BSD-1-Clause"
+  },
+  "files": [
+    {
+      "path": "src/Arithmetic/WordByWordMontgomery.v",
+      "bytes": 66865,
+      "sha256": "ea50cdb5a1f725a759b79cf7403b43123db4aa23f5ed28a640c9d9b1521ac572",
+      "permalink": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/WordByWordMontgomery.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "src/Arithmetic/WordByWordMontgomery.v",
+      "lines": [
+        1156,
+        1167
+      ],
+      "role": "parent",
+      "name": "mulmod_correct",
+      "excerpt_sha256": "1d94a339494784d5515b349cec774e5c4f815ee141c00322fd054391dfc5e073",
+      "permalink": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/WordByWordMontgomery.v#L1156-L1167"
+    },
+    {
+      "path": "src/Arithmetic/WordByWordMontgomery.v",
+      "lines": [
+        1095,
+        1107
+      ],
+      "role": "child",
+      "name": "mulmod_correct0",
+      "excerpt_sha256": "c34a803b00f8e4c6710bb15447a9e122edf80a72ef0248cac63f9b877f988ece",
+      "permalink": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/WordByWordMontgomery.v#L1095-L1107"
+    },
+    {
+      "path": "src/Arithmetic/WordByWordMontgomery.v",
+      "lines": [
+        1146,
+        1149
+      ],
+      "role": "child",
+      "name": "eval_from_montgomerymod",
+      "excerpt_sha256": "0a904943dac241d7838078695aaeb05b3e4600a40ba2ce0cbaefc415db9eea27",
+      "permalink": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/WordByWordMontgomery.v#L1146-L1149"
+    },
+    {
+      "path": "src/Arithmetic/WordByWordMontgomery.v",
+      "lines": [
+        1133,
+        1134
+      ],
+      "role": "context",
+      "name": "from_montgomerymod",
+      "excerpt_sha256": "d0284d5622a6ee674e901575eb6731d95a5da47f337f0cf9a896acbaae70cd94",
+      "permalink": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/WordByWordMontgomery.v#L1133-L1134"
+    },
+    {
+      "path": "src/Arithmetic/WordByWordMontgomery.v",
+      "lines": [
+        1084,
+        1093
+      ],
+      "role": "context",
+      "name": "mulmod-and-valid",
+      "excerpt_sha256": "06ac51e310ad2d2bc695ef9346a4434480b5b25cabfb623a9be98493b6be7fb1",
+      "permalink": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/WordByWordMontgomery.v#L1084-L1093"
+    }
+  ],
+  "parent": {
+    "name": "mulmod_correct",
+    "statement": "Lemma mulmod_correct\n      : (forall a (_ : valid a) b (_ : valid b), eval (from_montgomerymod (mulmod a b)) mod m\n                                            = (eval (from_montgomerymod a) * eval (from_montgomerymod b)) mod m)\n        /\\ (forall a (_ : valid a) b (_ : valid b), valid (mulmod a b))."
+  },
+  "children": [
+    {
+      "name": "mulmod_correct0",
+      "statement": "Lemma mulmod_correct0\n      : forall a b : list Z,\n        small a -> small b\n        -> small (mulmod a b)\n          /\\ (eval b < m -> 0 <= eval (mulmod a b) < m)\n          /\\ (eval (mulmod a b) mod m = (eval a * eval b * r'^n) mod m).",
+      "closed_by": "repeat rapply conj; cbv [small mulmod eval]; the three conjuncts close by rapply small_redc, rewrite m_enc_correct_montgomery then rapply redc_bound_N, and rewrite m_enc_correct_montgomery then rapply redc_mod_N; then t_fin",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: For small a and b, mulmod a b is small, bounded under eval b < m, and congruent to eval a * eval b * r'^n mod m."
+    },
+    {
+      "name": "eval_from_montgomerymod",
+      "statement": "Lemma eval_from_montgomerymod (v : list Z) : valid v -> eval (from_montgomerymod v) mod m = (eval v * r'^n) mod m.",
+      "closed_by": "apply from_montgomerymod_correct; assumption",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: For valid v, eval (from_montgomerymod v) mod m equals eval v * r'^n mod m."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A conjunction of (a) a value-equality statement about an operation wrapped in a canonical form (here eval (from_montgomerymod (mulmod a b)) mod m) and (b) a validity side condition (valid (mulmod a b)), both quantified over valid inputs.",
+    "use_when": "The operation has a raw form (mulmod) whose congruence is already proved as a standalone lemma (mulmod_correct0), and a wrapper (from_montgomerymod) with its own rewrite lemma (eval_from_montgomerymod) that unwraps it to the raw form; assemble the interface theorem by rewriting the wrapper away and applying the raw lemma.",
+    "avoid_when": "The raw lemma does not already exist, or the wrapper's rewrite does not reduce to the exact form the raw lemma expects; when the validity side needs a different argument than the value side; when the congruence is not the form the raw lemma states and needs extra reasoning (here the etransitivity + f_equal2 step carries that argument)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The lemma `mulmod_correct` is declared in `src/Arithmetic/WordByWordMontgomery.v` at lines 1156-1167.",
+      "evidence_kind": "check",
+      "form": "declared(mulmod_correct, src/Arithmetic/WordByWordMontgomery.v, 1156-1167)",
+      "evidence": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/WordByWordMontgomery.v#L1156-L1167"
+    },
+    {
+      "n": 2,
+      "claim": "The parent proof cites `mulmod_correct0`.",
+      "evidence_kind": "check",
+      "form": "cites(parent, mulmod_correct0)",
+      "evidence": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/WordByWordMontgomery.v#L1156-L1167"
+    },
+    {
+      "n": 3,
+      "claim": "The parent proof cites `eval_from_montgomerymod`.",
+      "evidence_kind": "check",
+      "form": "cites(parent, eval_from_montgomerymod)",
+      "evidence": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/WordByWordMontgomery.v#L1156-L1167"
+    },
+    {
+      "n": 4,
+      "claim": "The parent (glue) site is 12 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(parent, 12)",
+      "evidence": "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/WordByWordMontgomery.v#L1156-L1167"
+    },
+    {
+      "n": 5,
+      "claim": "The decomposition has 2 direct lemmas (mulmod_correct0 and eval_from_montgomerymod), a glue of 12 lines, children of 13 and 4 lines (each counted from its declaration through Qed), and a longest checked chain of project lemmas of depth 3 (eval_from_montgomerymod -> from_montgomerymod_correct -> mulmod_correct0).",
+      "evidence_kind": "measurement",
+      "evidence": "counted in the copied file src/Arithmetic/WordByWordMontgomery.v: mulmod_correct at 1156-1167 (12 lines), mulmod_correct0 at 1095-1107 (13 lines), eval_from_montgomerymod at 1146-1149 (4 lines); the depth chain is eval_from_montgomerymod's proof (line 1148) applying from_montgomerymod_correct (1136-1144), whose proof (line 1143) applies mulmod_correct0."
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 3,
+    "glue_lines": 12,
+    "child_lines": [
+      13,
+      4
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 12,
+    "children": 2,
+    "children_closed_by_automation": 2,
+    "how_counted": "lines 1156-1167 (parent), 1095-1107 and 1146-1149 (children) of the copied file; both children close by applying prior lemmas (mulmod_correct0 via small_redc/redc_bound_N/redc_mod_N then t_fin; eval_from_montgomerymod via from_montgomerymod_correct and assumption), with no manual arithmetic."
+  },
+  "consequences": "The move splits the interface theorem into (a) a raw congruence lemma that the proof applies twice (once via `try apply` for the validity side, once inside `etransitivity` for the value side) and (b) a wrapper-rewrite lemma. It creates the obligation that the wrapper rewrites exactly to the raw form; here the final step still needs `etransitivity` + `rapply @f_equal2; lia` to align `eval a * eval b * r'^n` with the product of the two raw congruences, so the glue is not pure rewriting. Failure mode: if the wrapper-rewrite does not land on the exact hypothesis the raw lemma wants, the residual `f_equal2`/`lia` step is where the proof can get stuck.",
+  "known_uses": [
+    "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/WordByWordMontgomery.v#L1136-L1144",
+    "https://github.com/mit-plv/fiat-crypto/blob/3d2880ef2803faa9385589a81a835d5828eb3d38/src/Arithmetic/WordByWordMontgomery.v#L1175-L1181"
+  ],
+  "related": [
+    "rocq-suffices-or-strengthen-fourcolor-2e61be44"
+  ],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "efce3e48c1f6479572c0c2589bc131c58ccc82fd934241f2240d732eac3307dc",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:08:36Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,known_uses,related,rule,shape,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:20:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:10:40Z",
+      "note": "parent mulmod_correct: statement re-copied from code; child 'mulmod_correct0': statement re-copied from the declaration of mulmod_correct0; child 'eval_from_montgomerymod': statement re-copied from the declaration of eval_from_montgomerymod"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:17:55Z"
+}

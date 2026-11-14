@@ -1,0 +1,217 @@
+{
+  "id": "isabelle-induction-munta-f75b04fe",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Induction on k, split on a negative diagonal, for Floyd-Warshall correctness",
+  "intent": "Prove the main correctness theorem of the Floyd-Warshall formalisation - that fw m n k preserves canonical form and cycle-freeness on the index set {0..k} when the input m is cycle-free there - by induction on k; the step splits on whether fw m n (Suc k) has a negative diagonal entry, which decides between a negative-cycle contradiction and extending cycle-freeness one index further.",
+  "move": "induction",
+  "also_known_as": [
+    "induction over the outer loop index",
+    "loop-counter induction"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "munta",
+    "url": "https://github.com/wimmers/munta",
+    "commit": "62cb1a4a4dbcfcf62c365e90faba15b0012d5a12",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "DBM/Floyd_Warshall.thy",
+      "bytes": 82210,
+      "sha256": "6fd4bf2d18d54cee4c942be09e165957cccdefb96f54a74a2bc80e8cc879b90e",
+      "permalink": "https://github.com/wimmers/munta/blob/62cb1a4a4dbcfcf62c365e90faba15b0012d5a12/DBM/Floyd_Warshall.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "DBM/Floyd_Warshall.thy",
+      "lines": [
+        1077,
+        1114
+      ],
+      "role": "parent",
+      "name": "fw_correct",
+      "excerpt_sha256": "8fcea2d54e00e4f7ee6debf52f979e5944031bffcffc409f782bf0b6292d782d",
+      "permalink": "https://github.com/wimmers/munta/blob/62cb1a4a4dbcfcf62c365e90faba15b0012d5a12/DBM/Floyd_Warshall.thy#L1077-L1114"
+    },
+    {
+      "path": "DBM/Floyd_Warshall.thy",
+      "lines": [
+        871,
+        927
+      ],
+      "role": "child",
+      "name": "fwi_canonical_extend",
+      "excerpt_sha256": "0fa12c83b18394dc486ef1325a0d4d2d6890c4c97f9add03e478f4daa7b951e8",
+      "permalink": "https://github.com/wimmers/munta/blob/62cb1a4a4dbcfcf62c365e90faba15b0012d5a12/DBM/Floyd_Warshall.thy#L871-L927"
+    },
+    {
+      "path": "DBM/Floyd_Warshall.thy",
+      "lines": [
+        951,
+        956
+      ],
+      "role": "child",
+      "name": "cyc_free_subs_diag",
+      "excerpt_sha256": "edb8be9fec5ea9bba5fcfb0ba6a398d5bc4d1ebd3587bc6fba654be132dca525",
+      "permalink": "https://github.com/wimmers/munta/blob/62cb1a4a4dbcfcf62c365e90faba15b0012d5a12/DBM/Floyd_Warshall.thy#L951-L956"
+    },
+    {
+      "path": "DBM/Floyd_Warshall.thy",
+      "lines": [
+        958,
+        971
+      ],
+      "role": "child",
+      "name": "fwi_cyc_free_subs'",
+      "excerpt_sha256": "5b6655f180bf1dba2baed8fb59774916bae5d1c6465a4954b2e3431de665d8b1",
+      "permalink": "https://github.com/wimmers/munta/blob/62cb1a4a4dbcfcf62c365e90faba15b0012d5a12/DBM/Floyd_Warshall.thy#L958-L971"
+    },
+    {
+      "path": "DBM/Floyd_Warshall.thy",
+      "lines": [
+        973,
+        985
+      ],
+      "role": "child",
+      "name": "fwi_cyc_free_subs",
+      "excerpt_sha256": "255377ff28dfa151de11e0f992f8a373be43e2dd438ad73d8cc289842736a574",
+      "permalink": "https://github.com/wimmers/munta/blob/62cb1a4a4dbcfcf62c365e90faba15b0012d5a12/DBM/Floyd_Warshall.thy#L973-L985"
+    },
+    {
+      "path": "DBM/Floyd_Warshall.thy",
+      "lines": [
+        1056,
+        1074
+      ],
+      "role": "child",
+      "name": "fw_neg_diag_neg_cycle",
+      "excerpt_sha256": "24202ee22ff2b043a9a29ee5e47606a1117419bb47204967ae9cacd72da9345c",
+      "permalink": "https://github.com/wimmers/munta/blob/62cb1a4a4dbcfcf62c365e90faba15b0012d5a12/DBM/Floyd_Warshall.thy#L1056-L1074"
+    }
+  ],
+  "parent": {
+    "name": "fw_correct",
+    "statement": "theorem fw_correct:\n  \"canonical_subs n {0..k} (fw m n k) \\<and> cyc_free_subs n {0..k} (fw m n k)\"\n  if \"cyc_free_subs n {0..k} m\" \"k \\<le> n\""
+  },
+  "children": [
+    {
+      "name": "fwi_canonical_extend",
+      "statement": "lemma fwi_canonical_extend:\n  \"canonical_subs n (I \\<union> {k}) (fwi m n k n n)\" if\n  \"canonical_subs n I m\" \"I \\<subseteq> {0..n}\" \"0 \\<le> m k k\" \"k \\<le> n\"",
+      "closed_by": "unfolding canonical_subs_def, apply safe; each subgoal is reduced by fwi_step' and closed by force/auto with add_mono, add_increasing and order.trans",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: one invocation of fwi extends canonicality from I to I union {k}"
+    },
+    {
+      "name": "cyc_free_subs_diag",
+      "statement": "lemma cyc_free_subs_diag:\n  \"m i i \\<ge> 0\" if \"cyc_free_subs n I m\" \"i \\<le> n\"",
+      "closed_by": "instantiating the cyc_free_subs abbreviation with the empty path [] and fastforce",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: cycle-freeness on I gives a non-negative diagonal entry"
+    },
+    {
+      "name": "fwi_cyc_free_subs'",
+      "statement": "lemma fwi_cyc_free_subs':\n  \"cyc_free_subs n (I \\<union> {k}) (fwi m n k n n)\" if\n  \"cyc_free_subs n I m\" \"canonical_subs n I m\" \"I \\<subseteq> {0..n}\" \"k \\<le> n\"\n  \"\\<forall> i \\<le> n. fwi m n k n n i i \\<ge> 0\"",
+      "closed_by": "cyc_free_subs_diag, fwi_canonical_extend and canonical_subs_len",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: fwi extends cycle-freeness to I union {k} given canonicality and a non-negative diagonal"
+    },
+    {
+      "name": "fwi_cyc_free_subs",
+      "statement": "lemma fwi_cyc_free_subs:\n  \"cyc_free_subs n (I \\<union> {k}) (fwi m n k n n)\" if\n  \"cyc_free_subs n (I \\<union> {k}) m\" \"canonical_subs n I m\" \"I \\<subseteq> {0..n}\" \"k \\<le> n\"",
+      "closed_by": "cyc_free_subs_diag, fwi_canonical_extend, fwi_cyc_free_diag and canonical_subs_len",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: fwi extends cycle-freeness to I union {k} when the input is cycle-free on I union {k}"
+    },
+    {
+      "name": "fw_neg_diag_neg_cycle",
+      "statement": "lemma fw_neg_diag_neg_cycle:\n  \"\\<exists> i \\<le> n. \\<exists> ys. set ys \\<subseteq> set xs \\<union> {0..k} \\<and> len m i i ys < 0\" if\n  \"len (fw m n k) i i xs < 0\" \"i \\<le> n\" \"k \\<le> n\" \"set xs \\<subseteq> {0..n}\"",
+      "closed_by": "induction on k arbitrary: i xs, using fwi_neg_cycle_neg_cycle for the base case and the step",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: a negative diagonal entry of fw implies a negative cycle"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A conjunction P (f n k) = (canonical_subs n {0..k} (fw m n k) and cyc_free_subs n {0..k} (fw m n k)) for a recursion fw m n (Suc k) = fwi (fw m n k) n (Suc k) n n that grows the index set {0..k} by one each step; both conjuncts are abbreviations quantified over that growing set.",
+    "use_when": "the recursion advances a single index k and each one-step extension is already factored into named lemmas (here fwi_canonical_extend and fwi_cyc_free_subs / fwi_cyc_free_subs'), so the base and step cases close by citing them.",
+    "avoid_when": "the step needs a test that is not part of the invariant (here a negative diagonal), and the negation of that test cannot be turned into the extra hypothesis of a strengthening lemma (fwi_cyc_free_subs' takes the hypothesis 'all i <= n. fwi m n k n n i i >= 0'); then the case split will not close."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site fw_correct is 38 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/wimmers/munta/blob/62cb1a4a4dbcfcf62c365e90faba15b0012d5a12/DBM/Floyd_Warshall.thy#L1077-L1114",
+      "form": "lines(parent, 38)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent proof cites fw_neg_diag_neg_cycle.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/wimmers/munta/blob/62cb1a4a4dbcfcf62c365e90faba15b0012d5a12/DBM/Floyd_Warshall.thy#L1077-L1114",
+      "form": "cites(parent, fw_neg_diag_neg_cycle)"
+    },
+    {
+      "n": 3,
+      "claim": "The authors state the plan the theorem follows: 'To prove the main result under the absence of negative cycles, we will proceed as follows: we show that an invocation of fwi m n k n n extends canonicality to index k, we show that an invocation of fw m n n computes a matrix in canonical form, and finally we show that canonical forms specify the lengths of shortest paths, provided that there are no negative cycles.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/wimmers/munta/blob/62cb1a4a4dbcfcf62c365e90faba15b0012d5a12/DBM/Floyd_Warshall.thy#L839-L845"
+    },
+    {
+      "n": 4,
+      "claim": "The main theorem fw_correct is reused in four places after its statement: lines 1116 and 1117 derive one-conjunct lemmas from it, and lines 1290 and 1628 invoke it in later proofs (counted by grepping fw_correct over DBM/Floyd_Warshall.thy at the pinned commit).",
+      "evidence_kind": "measurement",
+      "evidence": "grep -n fw_correct over the copied file DBM/Floyd_Warshall.thy returns lines 1077, 1116, 1117, 1290, 1628"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 5,
+    "depth": 5,
+    "glue_lines": 38,
+    "child_lines": [
+      57,
+      6,
+      14,
+      13,
+      19
+    ]
+  },
+  "metrics": {
+    "direct_children": 5,
+    "children_closed_by_automation": 5,
+    "how_counted": "all five child proofs terminate in force/auto/fastforce/blast after citing named lemmas; no child needs an interactive sub-proof"
+  },
+  "consequences": "The induction creates a base case and a step case; the step case is further split on whether there is an i <= n with fw m n (Suc k) i i < 0, whose exhaustiveness is by cases. The negative-diagonal branch needs fw_neg_diag_neg_cycle (itself proved by a second induction on k arbitrary: i xs) to contradict the input's cycle-freeness; the non-negative branch must supply the strengthened hypothesis 'all i <= n. fwi m n k n n i i >= 0' to fwi_cyc_free_subs'. The two conjuncts are proved separately (canonicality by fwi_canonical_extend, cycle-freeness by fwi_cyc_free_subs / fwi_cyc_free_subs') and only combined at the end, so each one-step invariant is stated and proved on its own.",
+  "known_uses": [
+    "https://github.com/wimmers/munta/blob/62cb1a4a4dbcfcf62c365e90faba15b0012d5a12/DBM/Floyd_Warshall.thy#L1327-L1360"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "f75b04fea3cf9d24d7e3ea229bf524fd66f59f500a170d8bd4b783d18d4c073a",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:35:38Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,rule,known_uses",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:40:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:36:53Z",
+      "note": "parent fw_correct: statement re-copied from code; child 'fwi_canonical_extend': statement re-copied from the declaration of fwi_canonical_extend; child 'cyc_free_subs_diag': statement re-copied from the declaration of cyc_free_subs_diag; child \"fwi_cyc_free_subs'\": statement re-copied from the declaration of fwi_cyc_free_subs'; child 'fwi_cyc_free_subs': statement re-copied from the declaration of fwi_cyc_free_subs; child 'fw_neg_diag_neg_cycle': statement re-copied from the declaration of fw_neg_diag_neg_cycle"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T12:45:02Z"
+}

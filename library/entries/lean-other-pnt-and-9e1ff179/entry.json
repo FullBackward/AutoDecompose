@@ -1,0 +1,244 @@
+{
+  "id": "lean-other-pnt-and-9e1ff179",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Residue theorem on a rectangle with a simple pole, by splitting into holomorphic + principal part",
+  "intent": "Reduce the integral of a function with a simple pole to two already-proved facts by rewriting the integrand on the border as a holomorphic part g plus the principal part A/(s-p), then integrating the sum term by term: the holomorphic part vanishes and the principal part is the residue theorem.",
+  "move": "other",
+  "also_known_as": [
+    "linearity decomposition",
+    "split integrand into holomorphic + principal part",
+    "termwise integration of a sum"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "pnt-and",
+    "url": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd",
+    "commit": "2c476fa6441c607096d93c8fc7ac0a227a655dae",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean",
+      "bytes": 65137,
+      "sha256": "31d2a5b29ed79f39b1a9a88eb3adc435a743ec162d3ad4894e35bb1bdb9914e4",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean",
+      "lines": [
+        634,
+        663
+      ],
+      "role": "parent",
+      "name": "ResidueTheoremOnRectangleWithSimplePole",
+      "excerpt_sha256": "6b793a8f3c3e15d8a858aa9e2fd217b0e6d346aa9b763e0872ec858649ebb534",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean#L634-L663"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean",
+      "lines": [
+        191,
+        193
+      ],
+      "role": "child",
+      "name": "RectangleIntegral'_congr",
+      "excerpt_sha256": "36b70f37226c0e78e446e17ec386243f78561f70f4d9c59cdf7f5c6466a5ee04",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean#L191-L193"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean",
+      "lines": [
+        250,
+        251
+      ],
+      "role": "child",
+      "name": "HolomorphicOn.rectangleBorderIntegrable",
+      "excerpt_sha256": "d18c529539018211a412bd0425489ef5004e35b552ad550859666a0f816fa97c",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean#L250-L251"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean",
+      "lines": [
+        245,
+        248
+      ],
+      "role": "child",
+      "name": "HolomorphicOn.rectangleBorderIntegrable'",
+      "excerpt_sha256": "8bd4f0f1011e90d8625b221b8b32814bdc1c5a7fd968684b5aba45dd38b8a094",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean#L245-L248"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean",
+      "lines": [
+        214,
+        223
+      ],
+      "role": "child",
+      "name": "RectangleBorderIntegrable.add",
+      "excerpt_sha256": "2bf449d27cb486756f02ac73b5c256405c5977384a21c138cb928477c08e2ab3",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean#L214-L223"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean",
+      "lines": [
+        174,
+        179
+      ],
+      "role": "child",
+      "name": "HolomorphicOn.vanishesOnRectangle",
+      "excerpt_sha256": "91d027c846e59a1b10050700b6d8281599a75ce8c18ba43152e8370a874b0a74",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean#L174-L179"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean",
+      "lines": [
+        587,
+        597
+      ],
+      "role": "child",
+      "name": "ResidueTheoremInRectangle",
+      "excerpt_sha256": "9e6163fad3d17cda94d0f6c53116566754b8f24e79db736542c57dbec413e56f",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean#L587-L597"
+    }
+  ],
+  "parent": {
+    "name": "ResidueTheoremOnRectangleWithSimplePole",
+    "statement": "lemma ResidueTheoremOnRectangleWithSimplePole {f g : ℂ → ℂ} {z w p A : ℂ}\n    (zRe_le_wRe : z.re ≤ w.re) (zIm_le_wIm : z.im ≤ w.im)\n    (pInRectInterior : Rectangle z w ∈ 𝓝 p) (gHolo : HolomorphicOn g (Rectangle z w))\n    (principalPart : Set.EqOn (f - fun s ↦ A / (s - p)) g (Rectangle z w \\ {p})) :\n    RectangleIntegral' f z w = A"
+  },
+  "children": [
+    {
+      "name": "RectangleIntegral'_congr",
+      "statement": "theorem RectangleIntegral'_congr (h : Set.EqOn f g (RectangleBorder z w)) :\n    RectangleIntegral' f z w = RectangleIntegral' g z w",
+      "closed_by": "rw [RectangleIntegral', RectangleIntegral_congr h]",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: RectangleIntegral' f z w = RectangleIntegral' g z w when f and g agree on the rectangle border."
+    },
+    {
+      "name": "HolomorphicOn.rectangleBorderIntegrable",
+      "statement": "theorem HolomorphicOn.rectangleBorderIntegrable (hf : HolomorphicOn f (Rectangle z w)) :\n    RectangleBorderIntegrable f z w",
+      "closed_by": "hf.continuousOn.rectangleBorderIntegrable",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: A function holomorphic on the rectangle is rectangle-border-integrable."
+    },
+    {
+      "name": "HolomorphicOn.rectangleBorderIntegrable'",
+      "statement": "theorem HolomorphicOn.rectangleBorderIntegrable'\n    (hf : HolomorphicOn f (Rectangle z w \\ {p})) (hp : Rectangle z w ∈ nhds p) :\n    RectangleBorderIntegrable f z w",
+      "closed_by": "hf.continuousOn.rectangleBorderNoPIntegrable (not_mem_rectangleBorder_of_rectangle_mem_nhds hp)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: A function holomorphic on the punctured rectangle, with p in the interior, is rectangle-border-integrable."
+    },
+    {
+      "name": "RectangleBorderIntegrable.add",
+      "statement": "theorem RectangleBorderIntegrable.add {f g : ℂ → E}\n    (hf : RectangleBorderIntegrable f z w) (hg : RectangleBorderIntegrable g z w) :\n    RectangleIntegral (f + g) z w = RectangleIntegral f z w + RectangleIntegral g z w",
+      "closed_by": "intervalIntegral.integral_add (four have's) then module",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The rectangle integral of f + g is the sum of the rectangle integrals, when both are border-integrable."
+    },
+    {
+      "name": "HolomorphicOn.vanishesOnRectangle",
+      "statement": "theorem HolomorphicOn.vanishesOnRectangle [CompleteSpace E]\n    {U : Set ℂ} (f_holo : HolomorphicOn f U)\n    (hU : Rectangle z w ⊆ U) :\n    RectangleIntegral f z w = 0",
+      "closed_by": "integral_boundary_rect_eq_zero_of_differentiableOn f z w (f_holo.mono hU)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: A function holomorphic on a set containing the rectangle has zero rectangle integral."
+    },
+    {
+      "name": "ResidueTheoremInRectangle",
+      "statement": "theorem ResidueTheoremInRectangle\n    (zRe_le_wRe : z.re ≤ w.re) (zIm_le_wIm : z.im ≤ w.im)\n    (pInRectInterior : Rectangle z w ∈ 𝓝 p) :\n    RectangleIntegral' (fun s => c / (s - p)) z w = c",
+      "closed_by": "ResidueTheoremAtOrigin'",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The primed rectangle integral of c / (s - p) over a rectangle with p in its interior is c."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "RectangleIntegral' f z w = A, where f is given (via a Set.EqOn hypothesis) as a holomorphic function g plus a principal part A/(s-p) on the rectangle minus the pole p, with p in the rectangle interior and g holomorphic on the whole rectangle.",
+    "use_when": "the integrand's behaviour is stated as a holomorphic part plus a simple-pole principal part, and each part already has its own integral lemma (a vanishing lemma for the holomorphic part, a residue lemma for the principal part) plus an integrability lemma for each summand.",
+    "avoid_when": "the pole has higher order (the principal part is not a single A/(s-p)); the pole lies on the border (the principal part is then not border-integrable); the holomorphic-part and principal-part lemmas are stated for a different rectangle or orientation than the one the congruence produces."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site is 30 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(parent, 30)",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean#L634-L663"
+    },
+    {
+      "n": 2,
+      "claim": "The glue cites ResidueTheoremInRectangle.",
+      "evidence_kind": "check",
+      "form": "cites(parent, ResidueTheoremInRectangle)",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean#L663"
+    },
+    {
+      "n": 3,
+      "claim": "The parent's proof (lines 634-663) contains no sorry.",
+      "evidence_kind": "check",
+      "form": "no_sorry(PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean, 634-663)",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean#L634-L663"
+    },
+    {
+      "n": 4,
+      "claim": "The authors state the proof plan in the blueprint attribute above the lemma: 'Replace f with g + A/(s-p) in the integral. The integral of g vanishes by Lemma HolomorphicOn.vanishesOnRectangle. To evaluate the integral of 1/(s-p), pull everything to a square about the origin using Lemma RectanglePullToNhdOfPole, and rescale by c; what remains is handled by Lemma ResidueTheoremAtOrigin.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean#L623-L632"
+    },
+    {
+      "n": 5,
+      "claim": "The main theorem's glue cites 6 project lemmas directly (RectangleIntegral'_congr, HolomorphicOn.rectangleBorderIntegrable, HolomorphicOn.rectangleBorderIntegrable', RectangleBorderIntegrable.add, HolomorphicOn.vanishesOnRectangle, ResidueTheoremInRectangle), and the longest chain of project lemmas below the main theorem is 7 long (ResidueTheoremInRectangle -> ResidueTheoremAtOrigin' -> integral_const_div_re_add_self -> integral_const_div_self_add_im -> integral_self_div_sq_add_sq -> continuous_self_div_sq_add_sq -> sq_add_sq_ne_zero).",
+      "evidence_kind": "measurement",
+      "evidence": "counted by reading the copied file: the glue (lines 634-663) cites the 6 lemmas at lines 646, 648, 660, 661, 662, 663; the chain follows ResidueTheoremInRectangle (663) -> ResidueTheoremAtOrigin' (596) -> integral_const_div_re_add_self (569) -> integral_const_div_self_add_im (563) -> integral_self_div_sq_add_sq (545) -> continuous_self_div_sq_add_sq (510) -> sq_add_sq_ne_zero (499)."
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 6,
+    "depth": 7,
+    "glue_lines": 30,
+    "child_lines": [
+      3,
+      2,
+      4,
+      10,
+      6,
+      11
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 30,
+    "direct_children": 6,
+    "how_counted": "parent = lines 634-663 of the copied file; direct_children = the 6 project lemmas the glue cites by name (RectangleIntegral'_congr, HolomorphicOn.rectangleBorderIntegrable, HolomorphicOn.rectangleBorderIntegrable', RectangleBorderIntegrable.add, HolomorphicOn.vanishesOnRectangle, ResidueTheoremInRectangle)."
+  },
+  "consequences": "The move creates a congruence obligation (that f equals g + A/(s-p) on the border, discharged by RectangleIntegral'_congr), an integrability obligation for each summand (g via HolomorphicOn.rectangleBorderIntegrable, the principal part via HolomorphicOn.rectangleBorderIntegrable'), and a linearity step (RectangleBorderIntegrable.add) before the two per-part lemmas can be applied. Each of the holomorphic-part and principal-part lemmas must be stated for exactly the rectangle and orientation the congruence produces; if the pole is not simple, or lies on the border, the principal part is not border-integrable and the split fails.",
+  "known_uses": [
+    "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean#L729",
+    "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean#L1113-L1140"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "9e1ff17909757400987c216d097f978e9e556216e313c410887d85ef986e691f",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:17:56Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:18:45Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:19:25Z",
+      "note": "parent ResidueTheoremOnRectangleWithSimplePole: statement re-copied from code; child \"RectangleIntegral'_congr\": statement re-copied from the declaration of RectangleIntegral'_congr; child 'HolomorphicOn.rectangleBorderIntegrable': statement re-copied from the declaration of HolomorphicOn.rectangleBorderIntegrable; child \"HolomorphicOn.rectangleBorderIntegrable'\": statement re-copied from the declaration of HolomorphicOn.rectangleBorderIntegrable'; child 'RectangleBorderIntegrable.add': statement re-copied from the declaration of RectangleBorderIntegrable.add; child 'HolomorphicOn.vanishesOnRectangle': statement re-copied from the declaration of HolomorphicOn.vanishesOnRectangle; child 'ResidueTheoremInRectangle': statement re-copied from the declaration of ResidueTheoremInRectangle"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T09:35:38Z"
+}

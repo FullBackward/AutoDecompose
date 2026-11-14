@@ -1,0 +1,125 @@
+{
+  "entry": "lean-suffices-or-strengthen-carleson-a02af82b",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T11:00:34Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T11:00:34Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T11:00:34Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: first_tree_pointwise@Carleson/ForestOperator/PointwiseEstimate.lean:1135, second_tree_pointwise@Carleson/ForestOperator/PointwiseEstimate.lean:1132, third_tree_pointwise@Carleson/ForestOperator/PointwiseEstimate.lean:1137, C7_1_4_le_C7_1_3@Carleson/ForestOperator/PointwiseEstimate.lean:1134, C7_1_6_le_C7_1_3@Carleson/ForestOperator/PointwiseEstimate.lean:1136; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T11:00:34Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "no_sorry(Carleson/ForestOperator/PointwiseEstimate.lean, 1092-1160) -> no_sorry: none of sorry, admit, axiom in Carleson/ForestOperator/PointwiseEstimate.lean:1092-1160",
+      "by": "check_claims.py",
+      "at": "2026-11-14T11:00:34Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "declared(pointwise_tree_estimate, Carleson/ForestOperator/PointwiseEstimate.lean, 1092-1160) -> declared: pointwise_tree_estimate is declared at Carleson/ForestOperator/PointwiseEstimate.lean:1092",
+      "by": "check_claims.py",
+      "at": "2026-11-14T11:00:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(pointwise_tree_estimate, first_tree_pointwise) -> cites: first_tree_pointwise occurs at Carleson/ForestOperator/PointwiseEstimate.lean:1135",
+      "by": "check_claims.py",
+      "at": "2026-11-14T11:00:35Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T11:00:43Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push.yml (build_project job, leanprover/lean-action build:true build-args 'Carleson Challenge Solution') runs on push to master; pinned commit d75f54374f7f930e70a86b443f20d0e0935c275e is an ancestor of master (api compare behind_by=0); PointwiseEstimate.lean is under Carleson/ForestOperator/, part of the Carleson build target",
+      "by": "verifier",
+      "at": "2026-11-14T11:02:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "counted from code/Carleson/ForestOperator/PointwiseEstimate.lean: 5 children; parent 1092-1160 (69 lines); children 602-668 (67), 671-752 (82), 974-1065 (92), 1077-1089 (13), 1071-1075 (5); depth chain: first_tree_pointwise at 1135, L7_1_4_laverage_le_MB at 665 (inside first_tree_pointwise), subset_of_mem_𝓛 at 593 (inside L7_1_4_laverage_le_MB, declared at 582)",
+      "by": "verifier",
+      "at": "2026-11-14T11:02:59Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read lines of PointwiseEstimate.lean: comment '-- It suffices to show that the integral splits into the three terms bounded by Lemmas 7.1.4-6' at 1118; docstrings '/-- Lemma 7.1.3. -/' at 1091, '/-- Lemma 7.1.4 -/' at 601, '/-- Lemma 7.1.5 -/' at 670, '/-- Lemma 7.1.6 -/' at 973",
+      "by": "verifier",
+      "at": "2026-11-14T11:03:00Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent pointwise_tree_estimate is declared at 1091/statement 1092-1160 and matches entry.json; all five children are at their stated ranges with matching statements (first 602-668, second 671-752, third 974-1065, C7_1_4_le_C7_1_3 1077-1089, C7_1_6_le_C7_1_3 1071-1075). Closing methods match the code: first_tree_pointwise closes via its own suffices+calc+gcongr using L7_1_4_*; second via le_iSup witnesses with dist_lt_5/le_cdist_iterate/cdist_le/convex_scales; third via calc with p_sum_eq_s_sum/L7_1_6_I_le/sum_p_eq_sum_I_sum_p/le_C7_1_6/lintegral_eq_lintegral_approxOnCube; the two constant lemmas by gcongr/norm_num/lia(+suffices). The parent closes with 'exact Finset.fold_congr' at line 1160 and no sorry/admit/axiom occurs anywhere in the file. The glue cites exactly these five lemmas (1132,1134,1135,1136,1137), matching glue-cites-children. Shape numbers are right: direct_lemmas=5, glue_lines=69 (1092-1160), child_lines=[67,82,92,13,5], depth=3 (pointwise_tree_estimate -> first_tree_pointwise:1135 -> L7_1_4_laverage_le_MB:665 -> subset_of_mem_𝓛:593).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T11:05:08Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalises beyond the Carleson example: use_when/avoid_when abstract to 'a bound on a sum of integrals whose integrand separates by plain algebra into a few terms, each bounded by its own named lemma, with per-term constants folded into the parent constant'. 'Avoid when' is honest and specific, tracing to real mechanisms: cross/dominating terms that resist triangle-inequality+linearity split, integrability side conditions (h1/h2/h3, lines 1139-1157) as the hard part, and absence of constant lemmas (C7_1_4_le_C7_1_3, C7_1_6_le_C7_1_3). Consequences name the true obligations and failure modes (non-integrable term breaks the Finset.fold_congr exchange; interacting terms break add_le_add_three). Good-leaves question answered explicitly: 'each child is a good leaf because its statement is self-contained and its proof closes on its own or from named same-file siblings, never from the parent', with child_lines [67,82,92,13,5] quantifying boundedness. Line numbers in the prose verified against the local copy.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T11:06:12Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T11:06:52Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance consistent and traceable. check_provenance.py: pass, 1 file byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e; copied-file sha256 (c28d96b7...) matches entry.json files[].sha256. Commit is identical across README, entry.json, source.json and sources/carleson/SOURCE.md (full hash d75f54374f7f930e70a86b443f20d0e0935c275e). Licence Apache-2.0 stated identically in entry.json, README, SOURCE.md, source.json and the copied upstream-LICENSE is the standard Apache-2.0 text. All permalinks use the same commit + file path; sed of the copied file confirms the cited line ranges match the declarations (parent 1092-1160, first 602-668, second 671-752, third 974-1065, C7_1_4 1077-1089, C7_1_6 1071-1075; docstrings at 1091/601/670/973, suffices comment at 1118), and line-count metrics match child_lines [67,82,92,13,5].",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T11:07:05Z"
+    }
+  ]
+}

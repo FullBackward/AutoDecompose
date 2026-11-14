@@ -1,0 +1,125 @@
+{
+  "entry": "rocq-suffices-or-strengthen-fourcolor-2e61be44",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:31:56Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:31:56Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:31:57Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: posz_dscore@theories/proof/unavoidability.v:22, dscore_cap1@theories/proof/unavoidability.v:26, dbound1_eq@theories/proof/unavoidability.v:29, source_drules_range@theories/proof/unavoidability.v:30, exact_fitp_pcons_@theories/proof/unavoidability.v:31, check_dbound1P@theories/proof/unavoidability.v:32, no_fit_the_redpart@theories/proof/unavoidability.v:32; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:31:57Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "lines(parent, 15) -> lines: site parent has 15 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:31:57Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, suffices) -> cites: suffices occurs at theories/proof/unavoidability.v:23",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:31:57Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "no_sorry(theories/proof/unavoidability.v, 20-34) -> no_sorry: none of admit, Admitted, Axiom, axiom in theories/proof/unavoidability.v:20-34",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:31:57Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "5 file(s) byte-identical at c1d6b1cd5288bea4b067aac13cdde3c18dffe018",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:32:07Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/docker-action.yml triggers on push to master (default branch) and runs 'opam install coq-fourcolor', building the whole library; _CoqProject line 126 lists theories/proof/unavoidability.v; pinned commit c1d6b1cd5288bea4b067aac13cdde3c18dffe018 is HEAD of default branch master",
+      "by": "verifier",
+      "at": "2026-11-14T10:33:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "parent unavoidability.v:20-34 = 15 lines (also claim 2); 7 direct children cited (glue-cites-children); child site line counts confirmed in copied code: discharge.v:212-217=6 (posz_dscore), 378-390=13 (dscore_cap1), 336-341=6 (dbound1_eq), 392-399=8 (source_drules_range), part.v:1253-1254=2 (exact_fitp_pcons_), hubcap.v:142-158=17 (check_dbound1P), present.v:168-184=17 (no_fit_the_redpart); chain check_dbound1P -> sort_drulesP -> sort_dbound1_eq confirmed: hubcap.v:153 'have [_ /sort_drulesP[dns rs1]] := andP Efit_p1', discharge.v:356-357 sort_drulesP whose proof rewrites sort_dbound1_eq, discharge.v:343 Lemma sort_dbound1_eq",
+      "by": "verifier",
+      "at": "2026-11-14T10:33:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "unavoidability.v:11-14 header comment reads '(* The main unavoidability theorem: reducibility implies no minimal counter *) (* example, collating the result of all the presentNN.v files. *)', matching the quoted author statement",
+      "by": "verifier",
+      "at": "2026-11-14T10:33:28Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent unavoidability (unavoidability.v 20-34, 15 lines) reduces via 'suffices: arity x \\in iota 5 7' at line 23; verified all 7 child statements verbatim against code (posz_dscore discharge.v 212-217, dscore_cap1 378-390, dbound1_eq 336-341, source_drules_range 392-399, exact_fitp_pcons_ part.v 1253-1254, check_dbound1P hubcap.v 142-158, no_fit_the_redpart present.v 168-184) and each closed_by matches its proof. Parent cites all 7 children directly at lines 22,26,29,30,31,32(2x) and closes with Qed; no sorry/admit/axiom. Shape numbers right: direct_lemmas=7, glue_lines=15, child_lines=[6,13,6,8,2,17,17], depth=3 via check_dbound1P->sort_drulesP(discharge.v 356)->sort_dbound1_eq(343). Minor prose nit only: README says case/or4P is 'at line 34' but it is line 33 (34 is Qed) - immaterial to correctness.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:36:39Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated abstractly (goal_shape: contradiction -> suffices to finite membership f x in iota a b on a witness, bounded below by structural hypothesis and above by a cap lemma; use_when/avoid_when give general conditions), so it applies beyond the four-colour example. When-not-to-use and consequences are honest and specific: they acknowledge the move only works because the range iota 5 7 lines up exactly with the excluded arities 5..11 and that the real content (dscore1 <= 5) is pushed into dscore_cap1 plus the fork machinery rather than removed; arithmetic checked (m=5, d=12 gives 59<60). Good-leaf question is answered: 'Why each child is a good leaf' states each child closes on its own or from named siblings (verified against code: posz_dscore cites dscore_roots/sumr_ge0; dscore_cap1 self-contained; dbound1_eq elim the_drules; source_drules_range eq_filter; exact_fitp_pcons_ uses fitp_pcons_ at part.v:1252; check_dbound1P uses sort_drulesP/sort_dbound1_eq at discharge.v:356/343), and honestly flags check_dbound1P and no_fit_the_redpart as deeper chains.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:38:03Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "5 file(s) byte-identical at c1d6b1cd5288bea4b067aac13cdde3c18dffe018",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:38:31Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "provenance pass: check_provenance.py reports 5 file(s) byte-identical at c1d6b1cd5288bea4b067aac13cdde3c18dffe018. Commit c1d6b1cd5288bea4b067aac13cdde3c18dffe018 is identical across entry.json, README, sources/fourcolor/SOURCE.md and source.json. Licence CECILL-B recorded identically in all four and upstream-LICENSE is the CeCILL-B text. Every site permalink uses the same pinned commit and its line range matches the local copy (parent 20-34, header 11-14, discharge 212-217/336-341/378-390/392-399, part 1253-1254, hubcap 142-158, present 168-184). Traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:38:54Z"
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "id": "lean-other-axiom-imo2026-adc45ecb",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Eventual periodicity assembled from a stabilisation invariant and a modulus (IMO 2026 Q6)",
+  "intent": "Prove the eventual periodicity of any valid sequence by lifting the number-theoretic heart (goodness stabilisation) into a threshold, then feeding that threshold and a prefix-product modulus to a 'from stable' transformer lemma that manufactures the period; the 6-line glue does no arithmetic of its own.",
+  "move": "other",
+  "also_known_as": [
+    "assemble from a key invariant",
+    "invariant + transformer lemma chaining",
+    "stabilisation invariant"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "axiom-imo2026",
+    "url": "https://github.com/AxiomMath/IMO2026",
+    "commit": "c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "IMO2026/Q6/solution.lean",
+      "bytes": 36880,
+      "sha256": "1088eb1428d77d1637f02b21301be6b080319f2c67d74260472be8f0b92c58ff",
+      "permalink": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q6/solution.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "IMO2026/Q6/solution.lean",
+      "lines": [
+        752,
+        757
+      ],
+      "role": "parent",
+      "name": "eventual_periodicity",
+      "excerpt_sha256": "92691ef9a8fd1e140991e3613775db94b358a31f5ff2a4c032cdfd89dde88c66",
+      "permalink": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q6/solution.lean#L752-L757"
+    },
+    {
+      "path": "IMO2026/Q6/solution.lean",
+      "lines": [
+        527,
+        550
+      ],
+      "role": "child",
+      "name": "good_stabilizes_core",
+      "excerpt_sha256": "2a3513d1c20ae0f204eacab2b49ef9a9e8cf9ee2a04657d1b88112f8c9c1b950",
+      "permalink": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q6/solution.lean#L527-L550"
+    },
+    {
+      "path": "IMO2026/Q6/solution.lean",
+      "lines": [
+        552,
+        670
+      ],
+      "role": "child",
+      "name": "eventual_periodicity_from_stable",
+      "excerpt_sha256": "e2e46e0a3efbefe7334ecb0c0c9df6c8d0da90889b46a074349c365b3b36c513",
+      "permalink": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q6/solution.lean#L552-L670"
+    },
+    {
+      "path": "IMO2026/Q6/solution.lean",
+      "lines": [
+        115,
+        119
+      ],
+      "role": "child",
+      "name": "prefixMod_pos",
+      "excerpt_sha256": "4e6df03423b42a34acf9b3518cc9c765ab714553f0e777d82e18d9a2f214d2e9",
+      "permalink": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q6/solution.lean#L115-L119"
+    },
+    {
+      "path": "IMO2026/Q6/solution.lean",
+      "lines": [
+        122,
+        125
+      ],
+      "role": "child",
+      "name": "prefixMod_absorbs",
+      "excerpt_sha256": "69d834161c0b13df74e7ce61ffc89af69840d8bbf19798a8cf37e2af24170d17",
+      "permalink": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q6/solution.lean#L122-L125"
+    }
+  ],
+  "parent": {
+    "name": "eventual_periodicity",
+    "statement": "theorem eventual_periodicity (a : ℕ → ℕ) (ha : IsValidSeq a) :\n    ∃ N T L : ℕ, 0 < T ∧ 0 < L ∧ ∀ n, N ≤ n → a (n + T) = a n + L"
+  },
+  "children": [
+    {
+      "name": "good_stabilizes_core",
+      "statement": "theorem good_stabilizes_core (a : ℕ → ℕ) (ha : IsValidSeq a) :\n    ∃ N, ∀ n, N ≤ n → ∀ b, Good a n b ↔ Good a N b",
+      "closed_by": "constructor; the (←) case closes with one_lt_gcd_iff_exists_prime_dvd after good_small_witness and mem_ssupp",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: goodness stabilisation (copied by statements.py)"
+    },
+    {
+      "name": "eventual_periodicity_from_stable",
+      "statement": "theorem eventual_periodicity_from_stable (a : ℕ → ℕ) (ha : IsValidSeq a)\n    {N M : ℕ} (hMpos : 0 < M)\n    (hstab : ∀ n, N ≤ n → ∀ b, Good a n b ↔ Good a N b)\n    (hM : ∀ i ≤ N, ∀ p, Nat.Prime p → p ∣ a i → p ∣ M) :\n    ∃ N' T L : ℕ, 0 < T ∧ 0 < L ∧ M ∣ L ∧\n      ∀ n, N' ≤ n → a (n + T) = a n + L",
+      "closed_by": "pigeonhole Finset.exists_ne_map_eq_of_card_lt_of_maps_to on residues mod M, then induction on d whose step closes by le_antisymm of two greedy-minimality bounds",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: from stabilisation to periodicity (copied by statements.py)"
+    },
+    {
+      "name": "prefixMod_pos",
+      "statement": "lemma prefixMod_pos {a : ℕ → ℕ} (ha : IsValidSeq a) (N : ℕ) : 0 < prefixMod a N",
+      "closed_by": "unfold prefixMod; apply Finset.prod_pos; omega",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: prefix modulus positivity (copied by statements.py)"
+    },
+    {
+      "name": "prefixMod_absorbs",
+      "statement": "lemma prefixMod_absorbs {a : ℕ → ℕ} (N : ℕ) :\n    ∀ i ≤ N, ∀ p, Nat.Prime p → p ∣ a i → p ∣ prefixMod a N",
+      "closed_by": "exact prime_dvd_prefixMod hi hp hpa",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: prefix modulus absorbs prefix primes (copied by statements.py)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "∃ N T L, 0 < T ∧ 0 < L ∧ ∀ n, N ≤ n → a (n + T) = a n + L for a sequence a : ℕ → ℕ defined by a recursion whose predicate Good a n b depends on n only through the prefix a 0, …, a n",
+    "use_when": "the argument factors into (i) a stabilising/limiting invariant (here goodness stabilising past a threshold), (ii) a modulus that absorbs the finitely many primes the prefix cares about, and (iii) a 'from stable' lemma parameterised by that invariant; each part is then a self-contained lemma and the glue is pure assembly",
+    "avoid_when": "the invariant does not actually stabilise (the hard content is inside the invariant); the transformer is not parameterised by the invariant and must be re-proved per instance; or there is no finite modulus that absorbs the prefix primes"
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 4,
+    "glue_lines": 6,
+    "child_lines": [
+      24,
+      119,
+      5,
+      4
+    ]
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site is 6 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(parent, 6)",
+      "evidence": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q6/solution.lean#L752-L757"
+    },
+    {
+      "n": 2,
+      "claim": "No closing-by-sorry token (sorry, admit, axiom) appears in the parent site.",
+      "evidence_kind": "check",
+      "form": "no_sorry(IMO2026/Q6/solution.lean, 752-757)",
+      "evidence": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q6/solution.lean#L752-L757"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site cites good_stabilizes_core.",
+      "evidence_kind": "check",
+      "form": "cites(parent, good_stabilizes_core)",
+      "evidence": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q6/solution.lean#L752-L757"
+    },
+    {
+      "n": 4,
+      "claim": "The proof of eventual_periodicity assembles its conclusion from 4 named lemmas — good_stabilizes_core, eventual_periodicity_from_stable, prefixMod_pos, prefixMod_absorbs — with no arithmetic between them (the body is two obtain lines and a final exact).",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q6/solution.lean#L752-L757; counted by reading the proof body lines 754-756"
+    },
+    {
+      "n": 5,
+      "claim": "The authors label the theorem 'Eventual periodicity (number-theoretic core)' and restate its goal in the doc comment immediately above it.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q6/solution.lean#L749-L751: '/-- **Eventual periodicity (number-theoretic core).** There exist a threshold `N` and positive integers `T, L` such that the difference sequence is periodic beyond `N`: `a (n + T) = a n + L` for all `n ≥ N`. -/'"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 6,
+    "children": 4,
+    "how_counted": "parent_lines = span of the parent site (752-757); children = the named lemmas the glue cites directly"
+  },
+  "consequences": "The move splits one theorem into a stabilisation invariant, two modulus facts, and a 'from stable' transformer, leaving the glue with no arithmetic. Obligations it creates: the invariant must genuinely stabilise (good_stabilizes_core is the hard part); the modulus must absorb every prime the prefix cares about (prefixMod_absorbs); and the transformer must be parameterised by the invariant, not by a concrete instance. Failure modes: if the stabilisation threshold and the modulus entangle, the transformer and the invariant leak into each other; if the transformer needs a different invariant than the one proved, the glue must redo the wiring instead of just instantiating.",
+  "known_uses": [
+    "https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q6/solution.lean#L762-L771",
+    "lean-other-dirac-imo2026-04ba762f"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 17,
+    "relation": "supports"
+  },
+  "content_key": "adc45ecbdceda9567778b050c520e516e0f0b221876cc0885d3fadf3b2216979",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:32:31Z"
+    },
+    {
+      "field": "intent,move,also_known_as,parent,children,applicability,shape,claims,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:40:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:34:43Z",
+      "note": "parent eventual_periodicity: statement re-copied from code; child 'good_stabilizes_core': statement re-copied from the declaration of good_stabilizes_core; child 'eventual_periodicity_from_stable': statement re-copied from the declaration of eventual_periodicity_from_stable; child 'prefixMod_pos': statement re-copied from the declaration of prefixMod_pos; child 'prefixMod_absorbs': statement re-copied from the declaration of prefixMod_absorbs"
+    },
+    {
+      "field": "known_uses",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "pilot-3",
+      "at": "2026-11-14T13:44:12Z",
+      "note": "added lean-other-dirac-imo2026-04ba762f: another team's decomposition of IMO 2026 Q6 (main_of_period from exists_stable and exists_period); not a duplicate"
+    }
+  ]
+}

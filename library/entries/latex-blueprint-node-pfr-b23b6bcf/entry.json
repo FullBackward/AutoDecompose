@@ -1,0 +1,187 @@
+{
+  "id": "latex-blueprint-node-pfr-b23b6bcf",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Blueprint node hom-pfr: homomorphism form of PFR glued from goursat and pfr-9-aux'",
+  "intent": "Freeze the statement and Lean name of the chapter headline node `hom-pfr` (`homomorphism_pfr`) before its proof, then prove it with a covering-and-counting argument over the graph of `f` that composes exactly two already-stated nodes — `goursat`, which factorises a subspace of `G × G'`, and `pfr-9-aux'`, which covers a set by a subgroup `H` — so the proof is a short glue between two named lemma holes.",
+  "move": "blueprint-node",
+  "also_known_as": [
+    "blueprint declaration",
+    "dependency-graph node",
+    "declaration-first node"
+  ],
+  "language": "latex",
+  "source": {
+    "source_id": "pfr",
+    "url": "https://github.com/teorth/pfr",
+    "commit": "1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "blueprint/src/chapter/hom_pfr.tex",
+      "bytes": 2638,
+      "sha256": "4791a2803f84e39320c1bf399303632e65a6d6b70e80a2250542faad7c329dd2",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/hom_pfr.tex"
+    },
+    {
+      "path": "blueprint/src/chapter/further_improvement.tex",
+      "bytes": 19937,
+      "sha256": "ffbf495a32f41b7f0b4dbdab4f2044eba7d1523a4aeddf884f3186a0956b4ac1",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/further_improvement.tex"
+    },
+    {
+      "path": "PFR/HomPFR.lean",
+      "bytes": 8012,
+      "sha256": "9de41d0f1c3eb4607053d8b717a08085ebea2adeace30e8660bde2283ffbcd7a",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/HomPFR.lean"
+    },
+    {
+      "path": "PFR/RhoFunctional.lean",
+      "bytes": 117365,
+      "sha256": "f38ac500a476c5a1840f86d03c97eda813961b06d05d61b6823bbe46988995a1",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/RhoFunctional.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "blueprint/src/chapter/hom_pfr.tex",
+      "lines": [
+        19,
+        47
+      ],
+      "role": "parent",
+      "name": "hom-pfr",
+      "excerpt_sha256": "642fe08d9f7ca6a3fc1a39d691bc9cc5882f0c4eaf762b7765468d7465434560",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/hom_pfr.tex#L19-L47"
+    },
+    {
+      "path": "blueprint/src/chapter/hom_pfr.tex",
+      "lines": [
+        11,
+        17
+      ],
+      "role": "child",
+      "name": "goursat",
+      "excerpt_sha256": "3fcaaaba597123d524f8b5d65198ca40c9eaa9ef1f2628e3ffe1195f5e6cbf02",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/hom_pfr.tex#L11-L17"
+    },
+    {
+      "path": "blueprint/src/chapter/further_improvement.tex",
+      "lines": [
+        363,
+        373
+      ],
+      "role": "child",
+      "name": "pfr-9-aux'",
+      "excerpt_sha256": "7eaf9e514b199391a01f67fb1d4c33cda8e4307c80d2d47e73502a0cff430740",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/further_improvement.tex#L363-L373"
+    }
+  ],
+  "parent": {
+    "name": "hom-pfr",
+    "statement": "Let f : G → G' be a function and S := { f(x+y)-f(x)-f(y) : x,y ∈ G }. Then there exists a homomorphism φ : G → G' such that |{ f(x)-φ(x) : x ∈ G }| ≤ |S|^{10} (Lean name homomorphism_pfr)."
+  },
+  "children": [
+    {
+      "name": "goursat",
+      "statement": "Let H be a subgroup of G × G'. Then there exist a subgroup H₀ of G, a subgroup H₁ of G', and a homomorphism φ : G → G' such that H = { (x, φ(x)+y) : x ∈ H₀, y ∈ H₁ }; in particular |H| = |H₀| |H₁| (Lean name goursat).",
+      "closed_by": "its own proof (hom_pfr.tex:16-17) cites \\Cref{hb-thm}, the Hahn-Banach extension lemma proved by induction in the same file, and closes the size bound by direct counting; in Lean, goursat (PFR/HomPFR.lean:46-65) closes by obtain/use/constructor"
+    },
+    {
+      "name": "pfr-9-aux'",
+      "statement": "If |A+A| ≤ K|A|, then there exist a subgroup H and a subset c of G with A ⊆ c+H, such that |c| ≤ K^5 |A|^{1/2}/|H|^{1/2} and |H|/|A| ∈ [K^{-8}, K^8] (Lean name better_PFR_conjecture_aux).",
+      "closed_by": "its own proof (further_improvement.tex:369-373) applies \\Cref{pfr-9-aux} and \\Cref{ruz-cov}; in Lean, better_PFR_conjecture_aux (PFR/RhoFunctional.lean:2003-2043) closes from better_PFR_conjecture_aux0 and Set.ruzsa_covering_add"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A theorem whose conclusion witnesses an object (a homomorphism φ close to an approximate homomorphism f), proved as a short calculation that combines two named lemmas: an algebraic structure/factorisation lemma (goursat) and a combinatorial covering lemma (pfr-9-aux'). The glue is a size bound obtained by composing the two lemmas' outputs — a subspace H covered by c, factorised as H₀ × H₁.",
+    "use_when": "the result is the combination of two independent, already-stated lemmas whose hypotheses line up into one chain (a covering lemma supplying H and c, a factorisation lemma supplying H₀, H₁, φ); the statement can be frozen with a Lean name and \\leanok before the proof is written; and the proof is a covering-and-counting calculation over the graph of a function rather than a new construction.",
+    "avoid_when": "the two lemmas' hypotheses do not line up into a single chain; a further lemma must be stated and proved (that belongs as its own node); the constants matter and any of them might change (the exponent 10 is exactly twice the covering lemma's exponent 5); or the statement may still change (then do not freeze the Lean name)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "`goursat` occurs in the parent site `hom-pfr`.",
+      "evidence_kind": "check",
+      "form": "cites(hom-pfr, goursat)",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/hom_pfr.tex#L19-L47"
+    },
+    {
+      "n": 2,
+      "claim": "`pfr-9-aux'` occurs in the parent site `hom-pfr`.",
+      "evidence_kind": "check",
+      "form": "cites(hom-pfr, pfr-9-aux')",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/hom_pfr.tex#L19-L47"
+    },
+    {
+      "n": 3,
+      "claim": "PFR/HomPFR.lean lines 46-176 contain no `sorry`, `admit`, or `axiom`.",
+      "evidence_kind": "check",
+      "form": "no_sorry(PFR/HomPFR.lean, 46-176)",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/HomPFR.lean#L46-L176"
+    },
+    {
+      "n": 4,
+      "claim": "The node `hom-pfr` is stated before proved and both are marked checked: `\\lean{homomorphism_pfr}\\leanok` on the theorem (line 19) and `\\uses{goursat, pfr-9-aux'}\\leanok` on the proof (line 25).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/hom_pfr.tex#L19-L25"
+    },
+    {
+      "n": 5,
+      "claim": "The theorem-scale shape of `hom-pfr`: 2 direct lemmas, a parent site of 29 lines, child sites of 7 and 11 lines, and a checked dependency chain of depth 4 below the theorem.",
+      "evidence_kind": "measurement",
+      "evidence": "direct lemmas = the two labels in \\uses{goursat, pfr-9-aux'} (hom_pfr.tex:25); parent site = hom_pfr.tex:19-47 (29 lines); child sites = goursat hom_pfr.tex:11-17 (7 lines) and pfr-9-aux' further_improvement.tex:363-373 (11 lines); chain pfr-9-aux' -> pfr-9-aux (further_improvement.tex:370) -> pfr-rho (further_improvement.tex:358) -> phi-minimizer-zero-distance (further_improvement.tex:346)"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 4,
+    "glue_lines": 29,
+    "child_lines": [
+      7,
+      11
+    ]
+  },
+  "metrics": {
+    "direct_lemmas": 2,
+    "parent_site_lines": 29,
+    "child_site_lines": [
+      7,
+      11
+    ],
+    "lean_parent_lines": 102,
+    "how_counted": "parent site = hom_pfr.tex:19-47; child sites = goursat hom_pfr.tex:11-17 (7 lines) and pfr-9-aux' further_improvement.tex:363-373 (11 lines); lean_parent_lines = homomorphism_pfr at PFR/HomPFR.lean:75-176 (102 lines)"
+  },
+  "consequences": "The glue's correctness rests on two hypotheses: that `pfr-9-aux'` supplies a subspace H and a covering set c with the stated bounds (A ⊆ c+H, |c| ≤ K^5 |A|^{1/2}/|H|^{1/2}, |H|/|A| ∈ [K^{-8}, K^8]), and that `goursat` factorises H as H₀, H₁ with |H| = |H₀| |H₁|. The final estimate |c||H₁| ≤ |S|^{10} is a chain that squares the covering bound |c| ≤ |S|^5 |A|^{1/2}/|H|^{1/2} and divides by |A|, so the exponent 10 is exactly twice the exponent 5; if that constant changes, the parent's conclusion changes with it. The step 'G is covered by at most |c| translates of H₀' uses that A ⊆ c+H projects onto G as c' + H₀; it fails if the projection is not surjective. In the blueprint, `\\leanok` is a claim the project's build verifies, not something the LaTeX text enforces, so a citation whose hypotheses do not line up leaves a silent gap.",
+  "known_uses": [
+    "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/approx_hom_pfr.tex#L62-L97",
+    "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/blueprint/src/chapter/further_improvement.tex#L376-L382"
+  ],
+  "related": [
+    "latex-blueprint-node-pfr-b4120b97"
+  ],
+  "rule": {
+    "f10_rule": 15,
+    "relation": "supports"
+  },
+  "content_key": "b23b6bcf38f525c8e9f03cf3b1f21e77687800ae4974d3ae27b4c95bf854a32e",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:12:30Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,known_uses,related,rule,shape",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T09:22:53Z"
+}

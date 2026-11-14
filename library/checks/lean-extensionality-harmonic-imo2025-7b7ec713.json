@@ -1,0 +1,133 @@
+{
+  "entry": "lean-extensionality-harmonic-imo2025-7b7ec713",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:50:08Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:50:08Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:50:09Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: lemSLowerBound@HarmonicLean/IMO2025P5.lean:674, lemBazzaWinsSmallLambda@HarmonicLean/IMO2025P5.lean:726, lemAliceWinsLargeLambda@HarmonicLean/IMO2025P5.lean:685; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:50:09Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(main_theorem, HarmonicLean/IMO2025P5.lean, 615-726) -> declared: main_theorem is declared at HarmonicLean/IMO2025P5.lean:615",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:50:09Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "count(Set.ext, 2, HarmonicLean/IMO2025P5.lean) -> count: Set.ext occurs 2 times in 1 file(s) matching HarmonicLean/IMO2025P5.lean",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:50:09Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(HarmonicLean/IMO2025P5.lean, 1-728) -> no_sorry: none of sorry, admit, axiom in HarmonicLean/IMO2025P5.lean:1-728",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:50:09Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 72b62405a176a7eaeadb335a7fa6ee80b6667161",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:50:17Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/lean_action_ci.yml runs leanprover/lean-action@v1 (lake build of default target HarmonicLean, which imports HarmonicLean.IMO2025P5); commit 72b62405a176a7eaeadb335a7fa6ee80b6667161 is HEAD of default branch main (compare main...72b62405 = identical)",
+      "by": "verifier",
+      "at": "2026-11-14T09:51:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "read copied file: line counts 615-726=112, 181-212=32, 229-303=75, 535-610=76; call sites grep-confirmed: 726 'lemBazzaWinsSmallLambda lam h', 262 'lemSLowerBound lam alice (k+1)', 191 'lemQ_2k_minus_2_under_bazza_ref', 150 'lemBazzaStrategyQValue k'; lemBazzaStrategyQValue body (118-123) is unfold+aesop, no project-lemma calls -> leaf, so chain depth 4",
+      "by": "verifier",
+      "at": "2026-11-14T09:52:00Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read copied file: line 13 ends 'Answer: Alice wins if lambda > 1 / sqrt 2. Bazza wins if 0 < lambda < 1 / sqrt 2.'; line 622 comment labels first inclusion (x must be greater than 1/sqrt(2)); line 686 comment 'To prove the equality, we show mutual inclusion.'",
+      "by": "verifier",
+      "at": "2026-11-14T09:52:05Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 72b62405a176a7eaeadb335a7fa6ee80b6667161",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:52:30Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Correctness lens verified against the copied file (byte-identical at 72b62405a176, provenance pass). Parent main_theorem declared at 615-726; statement matches entry.json. The three children (lemSLowerBound 181-212, lemBazzaWinsSmallLambda 229-303, lemAliceWinsLargeLambda 535-610) have statements matching entry.json, and are exactly the three named lemmas the parent cites (lemSLowerBound@674, lemAliceWinsLargeLambda@685, lemBazzaWinsSmallLambda@726; no other named lemma in the glue). Closing methods match: lemSLowerBound via lemPairSumLowerBound(187)+lemQ_2k_minus_2_under_bazza_ref(191); lemBazzaWinsSmallLambda via lemQ_2k_minus_2_under_bazza_ref(250)+lemSLowerBound(262,291); lemAliceWinsLargeLambda via lemExistenceOfKForAlice(539)+lemBazzaObjectiveUpperBound(584)+lemAliceMoveValid(600). It closes: no sorry/admit/axiom tokens (only '#print axioms main_theorem'@728). Shape numbers correct: glue_lines 112 (726-615+1), child_lines [32,75,76] (212-181+1, 303-229+1, 610-535+1), direct_lemmas 3, depth 4 (main_theorem -> lemBazzaWinsSmallLambda -> lemSLowerBound -> lemQ_2k_minus_2_under_bazza_ref(191) -> lemBazzaStrategyQValue(150); Alice side equally 4 via lemSBoundByQ(355) leaf).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:54:02Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally: use_when/When-to-use generalises from this IMO answer to any set-or-function equality whose two inclusions are genuinely different, with cross-language names (Set.ext/ext/funext, Isabelle subset_antisym/set_eqI, Rocq apply setP) — all accurate equivalents, no overreach. When-not-to-use is specific and honest: symmetry-when-mirror-image, non-definitional unfold, not-a-set/function equality, and (README) a half-theorem whose conclusion fails definitional matching so the exact <...> hand-off step will not close. Consequences are specific (64-line inline ⊆ at 621-684, only nontrivial glue fact, closes through lemSLowerBound at 674; definitional-matching requirement; failure mode of Set.ext on a non-extensional goal), verified against the copied file. It does say what makes the leaves good for a bounded prover: each child is a self-contained statement whose proof closes on its own or from named siblings, never re-entering the parent, with per-child descriptions. Cites I spot-checked (lines 13, 619, 622, 674, 685-687, 726) match the copied file.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:54:48Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 72b62405a176a7eaeadb335a7fa6ee80b6667161",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:55:07Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes (1 file byte-identical at 72b62405a176a7eaeadb335a7fa6ee80b6667161). Commit is consistent: README '72b62405a176' is a prefix of the full hash in entry.json and SOURCE.md. Licence 'LicenseRef-unknown' is recorded identically in README, entry.json, and SOURCE.md; SOURCE.md records no licence file at root plus attribution. Permalinks use the full pinned commit and resolve; cited line ranges verified against the local copy (parent 615-726, children 181-212/229-303/535-610, context 46-114; Set.ext at 619/687; header answer at 13; file is 728 lines).",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:55:38Z"
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "id": "lean-interface-lemma-equational-theories-048d3d79",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Interface lemma models_def' re-expresses entailment over all universes for Birkhoff completeness",
+  "intent": "`Completeness'` is Birkhoff's completeness theorem, and its proof is two lines of glue with no case analysis or induction: the hypothesis `h : Γ ⊧ E` is re-expressed through the interface lemma `models_def'` into a statement about the free magma with laws (quantified over every universe), instantiated at `FreeMagmaWithLaws β Γ` using `isModel` (that this magma satisfies `Γ`), and converted to a derivation with `isDerives`. The interface lemma `models_def'` is the abstraction boundary: it reformulates the bundled `models` relation, which quantifies only over `Type` (universe 0), as a universal statement over `Type*` (all universes), so the client stops unfolding `models` and stops reasoning about universes.",
+  "move": "interface-lemma",
+  "also_known_as": [
+    "API lemma",
+    "definitional reformulation lemma",
+    "universe-lifting lemma"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "equational-theories",
+    "url": "https://github.com/teorth/equational_theories",
+    "commit": "8b87204d5b201e1cf6c69b8dcabb0558109bee00",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "equational_theories/Completeness.lean",
+      "bytes": 9008,
+      "sha256": "2c7166401d4d8ade7809272e20923f2cbcc55c7b33085143c0a99411da793aa6",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/Completeness.lean"
+    },
+    {
+      "path": "equational_theories/MagmaLaw.lean",
+      "bytes": 14231,
+      "sha256": "40786a1934a5d268f04d96758f1cac06c4a9ecef2b8bcf36b97c422e65b513d7",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/MagmaLaw.lean"
+    },
+    {
+      "path": "equational_theories/Magma.lean",
+      "bytes": 1436,
+      "sha256": "d25a2e9b42b3164a9b8068582ba99e7ad63d68daf977eede6b3f853c5a49a2d4",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/Magma.lean"
+    },
+    {
+      "path": "equational_theories/Homomorphisms.lean",
+      "bytes": 11972,
+      "sha256": "07f690be397b08c054b9ed7ed0a39641791ab36985167029972304b3b8e07008",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/Homomorphisms.lean"
+    },
+    {
+      "path": "equational_theories/FreeMagma.lean",
+      "bytes": 10073,
+      "sha256": "216cb059fe3efe8088f72b8670ff5253d2b18ada5408d07d4991a02f1cfc11f9",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/FreeMagma.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "equational_theories/Completeness.lean",
+      "lines": [
+        156,
+        158
+      ],
+      "role": "parent",
+      "name": "Completeness'",
+      "excerpt_sha256": "0383248824cd0d1e8cee20a30efa6f548a2c89a48ac22ad65875dd35dfded6ad",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/Completeness.lean#L156-L158"
+    },
+    {
+      "path": "equational_theories/Completeness.lean",
+      "lines": [
+        147,
+        154
+      ],
+      "role": "child",
+      "name": "models_def'",
+      "excerpt_sha256": "c1477218e54707e08b84a3593150cad69e7a2cc46e581eae9b4ae52053e4716e",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/Completeness.lean#L147-L154"
+    },
+    {
+      "path": "equational_theories/Completeness.lean",
+      "lines": [
+        100,
+        109
+      ],
+      "role": "child",
+      "name": "FreeMagmaWithLaws.isDerives",
+      "excerpt_sha256": "25c5a7dd67ef04d3a1a906dbf5edcddea399b071b63d66b766cc06d8cefd5a38",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/Completeness.lean#L100-L109"
+    },
+    {
+      "path": "equational_theories/Completeness.lean",
+      "lines": [
+        123,
+        129
+      ],
+      "role": "child",
+      "name": "FreeMagmaWithLaws.isModel",
+      "excerpt_sha256": "30c022e8963e29e6384114a074680cd3b52acaa167de1e446ee88b52aa6483bb",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/Completeness.lean#L123-L129"
+    },
+    {
+      "path": "equational_theories/MagmaLaw.lean",
+      "lines": [
+        96,
+        98
+      ],
+      "role": "context",
+      "name": "models",
+      "excerpt_sha256": "647e956dd4671b6c6dcba396feff321c1d75e42e770a33b02eebec350fe93898",
+      "permalink": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/MagmaLaw.lean#L96-L98"
+    }
+  ],
+  "parent": {
+    "name": "Completeness'",
+    "statement": "theorem Completeness' {α β} {Γ : Ctx α} {E : MagmaLaw β} (h : Γ ⊧ E) : Nonempty (Γ ⊢' E)"
+  },
+  "children": [
+    {
+      "name": "models_def'",
+      "statement": "theorem models_def' {α β} {Γ : Ctx α} {E : MagmaLaw β} :\n    Γ ⊧ E ↔ ∀ (G : Type*) [Magma G], G ⊧ Γ → G ⊧ E",
+      "closed_by": "constructor <;> intro H G _ h (the iff split); the two exacts close each direction (forward via models_toNat, FreeMagmaWithLaws.isDerives, Soundness'_u, satisfies_toNat; backward via satisfies_equiv uliftMagmaEquiv and satisfiesSet_equiv uliftMagmaEquiv)",
+      "note": "The interface lemma itself. It reformulates `Γ ⊧ E` (the bundled `models`, quantified over `Type` at universe 0) as a universal statement over `Type*` (all universes), which is what lets `Completeness'` instantiate the model at `FreeMagmaWithLaws β Γ` (in `Type (max u v)`). Closes from the project siblings `FreeMagmaWithLaws.isDerives`, `FreeMagmaWithLaws.models_iff_u`, `Soundness'_u`, and the MagmaLaw lemmas `models_toNat`, `satisfies_toNat`, `satisfies_equiv`, `satisfiesSet_equiv`. Analyst's paraphrase, replaced by the declaration's text: The interface lemma: semantic entailment Γ ⊧ E is equivalent to the universal statement that every magma G in any universe satisfying Γ also satisfies E."
+    },
+    {
+      "name": "FreeMagmaWithLaws.isDerives",
+      "statement": "theorem FreeMagmaWithLaws.isDerives {α β} {Γ : Ctx α} {E : MagmaLaw β} :\n    FreeMagmaWithLaws β Γ ⊧ E → Nonempty (Γ ⊢' E)",
+      "closed_by": "simp [satisfies, satisfiesPhi]; Quotient.exact; SetoidOfLaws.iff; evalInMagma_leaf; final `exact h'`",
+      "note": "Converts a semantic fact about the free magma with laws into a syntactic derivation: `FreeMagmaWithLaws β Γ ⊧ E` implies `Nonempty (Γ ⊢' E)`. It instantiates the satisfaction at the embedding `LfEmbed Γ`, then unwinds the quotient with `Quotient.exact`, `SetoidOfLaws.iff` and `evalInMagma_leaf`. Closes on the project lemma `FreeMagmaWithLaws.evalInMagmaIsQuot` (84-94) and the `derive'`/quotient definitions. Analyst's paraphrase, replaced by the declaration's text: If the free magma with laws satisfies the law E, then E is derivable from the laws Γ in the restricted calculus."
+    },
+    {
+      "name": "FreeMagmaWithLaws.isModel",
+      "statement": "theorem FreeMagmaWithLaws.isModel {α} (β) (Γ : Ctx α) : FreeMagmaWithLaws β Γ ⊧ Γ",
+      "closed_by": "intro E mem φ; PhiAsSubst; FreeMagmaWithLaws.evalInMagmaIsQuot; final `exact Quotient.sound ⟨derive'.SubstAx mem _⟩`",
+      "note": "Shows the free magma with laws satisfies every law `E ∈ Γ`: under a valuation `φ` the term rewrites, via `PhiAsSubst` and `FreeMagmaWithLaws.evalInMagmaIsQuot`, to `Quotient.sound` of the axiom `derive'.SubstAx mem`. Closes on `PhiAsSubst` (118-121), which closes on `PhiAsSubst_aux` (112-116) via `Classical.axiomOfChoice` — the proof's one use of choice, flagged by the authors at line 111. Analyst's paraphrase, replaced by the declaration's text: The free magma with laws is itself a model of the laws Γ."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A semantic entailment `Γ ⊧ E` (an unbundled `def models` that quantifies over models in `Type` only) that must be discharged by constructing a specific model in a larger universe; the target is an existence of a syntactic derivation `Nonempty (Γ ⊢' E)`.",
+    "use_when": "the definition of the semantic relation is universe-restricted or otherwise not in a form the client can instantiate, and the client wants one canonical re-expression (an API lemma) so it stops unfolding the bundled definition; the target model is a construction (here the free magma with laws) proved separately to satisfy the context and to turn satisfaction into derivation.",
+    "avoid_when": "the entailment can be discharged directly at a model already in `Type` (then no universe lift is needed and unfolding locally suffices); the re-expression is not yet the stable form clients consume, so it would be rewritten again downstream; or the two directions of the equivalence need materially different arguments, in which case the iff hides real work rather than removing it."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "Lines 100-158 of equational_theories/Completeness.lean contain no closing-by-sorry token.",
+      "evidence_kind": "check",
+      "form": "no_sorry(equational_theories/Completeness.lean, 100-158)",
+      "evidence": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/Completeness.lean#L100-L158"
+    },
+    {
+      "n": 2,
+      "claim": "models_def' occurs in the parent site equational_theories/Completeness.lean:156-158.",
+      "evidence_kind": "check",
+      "form": "cites(equational_theories/Completeness.lean:156-158, models_def')",
+      "evidence": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/Completeness.lean#L158"
+    },
+    {
+      "n": 3,
+      "claim": "The parent Completeness' is 3 lines (156-158) and the three children are 8 (models_def', 147-154), 10 (FreeMagmaWithLaws.isDerives, 100-109) and 7 (FreeMagmaWithLaws.isModel, 123-129) lines; the glue uses these three lemmas directly, and the longest checked chain below the parent is Completeness' -> models_def' -> FreeMagmaWithLaws.isDerives -> FreeMagmaWithLaws.evalInMagmaIsQuot (84-94), depth 3.",
+      "evidence_kind": "measurement",
+      "evidence": "read of the copied file equational_theories/Completeness.lean lines 84-158"
+    },
+    {
+      "n": 4,
+      "claim": "The authors name the result in its docstring ('/-- Birkhoff's completeness theorem -/', line 156) and flag the proof's one use of choice with a comment ('Sadly, we falter here and use choice. Somewhat confident it's not needed.', line 111).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/Completeness.lean#L111 and #L156"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 3,
+    "glue_lines": 3,
+    "child_lines": [
+      8,
+      10,
+      7
+    ]
+  },
+  "metrics": {
+    "direct_lemmas": 3,
+    "depth": 3,
+    "glue_lines": 3,
+    "child_lines": [
+      8,
+      10,
+      7
+    ],
+    "how_counted": "glue = parent site 156-158 (3 lines); children = child sites models_def' 147-154 (8), FreeMagmaWithLaws.isDerives 100-109 (10), FreeMagmaWithLaws.isModel 123-129 (7). Longest checked chain below the parent: models_def' -> FreeMagmaWithLaws.isDerives -> FreeMagmaWithLaws.evalInMagmaIsQuot (84-94), depth 3."
+  },
+  "consequences": "Creates three obligations, one per direct child: (1) the interface equivalence `models_def'` — an iff, so two directions, the forward one still needing the completeness core and the backward one a soundness fact; (2) `isModel`, that the constructed magma satisfies the laws; (3) `isDerives`, that satisfaction in the constructed magma yields a derivation. The proof relies on the axiom of choice: `isModel` reaches `PhiAsSubst_aux`, whose proof uses `Classical.axiomOfChoice` (the authors flag it at line 111: 'Sadly, we falter here and use choice. Somewhat confident it's not needed.'). It pins the reformulation: after `models_def'`, a client that wants entailment over `Type` only must still go through the `Type*` form. The sibling theorem `Completeness` (160-162) is the immediate specialisation to `derive`, so any change to the `models` definition must keep `models_def'` in sync.",
+  "known_uses": [
+    "https://github.com/teorth/equational_theories/blob/8b87204d5b201e1cf6c69b8dcabb0558109bee00/equational_theories/Completeness.lean#L131-L135"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "048d3d79a243a5e9c26bdc5b31e348dd3a46ba4a92d6c6adba6c60aa4d5d915a",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T11:00:15Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T11:05:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T11:02:01Z",
+      "note": "parent Completeness': statement re-copied from code; child \"models_def'\": statement re-copied from the declaration of models_def'; child 'FreeMagmaWithLaws.isDerives': statement re-copied from the declaration of FreeMagmaWithLaws.isDerives; child 'FreeMagmaWithLaws.isModel': statement re-copied from the declaration of FreeMagmaWithLaws.isModel"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T11:07:53Z"
+}

@@ -1,0 +1,133 @@
+{
+  "entry": "lean-key-invariant-lean-liquid-01d1344d",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:35:52Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:35:52Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:35:52Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: weak_normed_snake_dual@src/thm95/col_exact.lean:1272, col_complex_rescaled.is_weak_bounded_exact@src/thm95/col_exact.lean:1263, col_exact'_aux1@src/thm95/col_exact.lean:1279, col_exact'_aux2@src/thm95/col_exact.lean:1280, col_ι_range@src/thm95/col_exact.lean:1281, col_ι_isometry@src/thm95/col_exact.lean:1301, admissible_of_isometry@src/thm95/col_exact.lean:1282, of_le@src/thm95/col_exact.lean:1277; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:35:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(col_exact', src/thm95/col_exact.lean, 1257-1302) -> declared: col_exact' is declared at src/thm95/col_exact.lean:1257",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:35:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, weak_normed_snake_dual) -> cites: weak_normed_snake_dual occurs at src/thm95/col_exact.lean:1272",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:35:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(src/thm95/col_exact.lean, 1-1318) -> no_sorry: none of sorry, admit, axiom in src/thm95/col_exact.lean:1-1318",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:35:52Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at ee4795874a99ea5f9d85bd0b364425f07b932377",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:35:58Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml runs 'lean --json --make src' (builds src/thm95/col_exact.lean and src/normed_snake_dual.lean); commit ee4795874a99ea5f9d85bd0b364425f07b932377 is on master, the default branch",
+      "by": "verifier",
+      "at": "2026-11-14T09:37:38Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "citation chain checked in code: col_exact.lean:1272 'have key := weak_normed_snake_dual'; normed_snake_dual.lean:325 'apply exist_norm_sub_le_mul_norm_add' (inside weak_normed_snake_dual 300-331); normed_snake_dual.lean:259 'refine norm_sub_le_mul_norm_add' (inside exist_norm_sub_le_mul_norm_add, declared 223); normed_snake_dual.lean:160 'norm_sub_le_split hfnorm hm₁' (inside norm_sub_le_mul_norm_add, declared 143). 8 child sites with line counts 32,9,10,14,10,8,14,15; parent 1257-1302 = 46 lines.",
+      "by": "verifier",
+      "at": "2026-11-14T09:37:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "quote at src/normed_snake_dual.lean:33-36 matches verbatim: 'we broke these proofs into smaller partial inequalities, for three reasons. First, it streamlines the formalization. Second, it helps Lean processing the statements, reducing processing times. Third, it allows us to us a large part of the argument for both weak_normed_snake_dual and normed_snake_dual.'",
+      "by": "verifier",
+      "at": "2026-11-14T09:37:41Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at ee4795874a99ea5f9d85bd0b364425f07b932377",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:38:05Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Decomposition matches code: parent col_exact' (1257-1302) reduces to weak_normed_snake_dual with its 7 hypotheses discharged by named lemmas plus of_le for constant weakening; the 6 post-apply goals (hgnrm/Hg/hg/admissibility/K-bound/h_isom) close via col_exact'_aux1(1279), col_exact'_aux2(1280), col_ι_range(1281), admissible_of_isometry(1282), the calc chain(1283-1300), col_ι_isometry(1301), no sorry in range. All 8 child statements match code verbatim and each closed_by matches its proof. Shape numbers correct: glue_lines 46 (1302-1257+1), child_lines [32,9,10,14,10,8,14,15] all match their sites, direct_lemmas 8, depth 4 chain verified (col_exact'->weak_normed_snake_dual@1272->exist_norm_sub_le_mul_norm_add@325->norm_sub_le_mul_norm_add@259->norm_sub_le_split@160). Minor: README glue-cites table records col_complex_rescaled.is_weak_bounded_exact@1263 but the citation is actually at 1268 (1263 is the conclusion); substance unaffected. col_complex_rescaled.admissible and scale_index_* are cited in the glue but excluded from children as documented plumbing.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:40:45Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality holds. The move is stated beyond the example: 'When to use it' names snake lemma, five lemma and long-exact-sequence steps as the general class (a reusable exactness/extension principle already proved as one statement, the work being to supply its hypotheses), and applicability.goal_shape/use_when restate that abstractly. 'When not to use' is honest and specific: two conditions (key statement not yet proved, so the glue hides a whole proof behind one have; and hypotheses not separating cleanly into named two-case lemmas). Consequences are specific and grounded in the code: discharge every hypothesis as a named lemma, the of_le constant-weakening (needs the arithmetic identity (1+r^-1)(r/(1-r)+1)=(r+1)/(r(1-r)) plus hK'), and failure modes (constants k*k' vs k', K+r1r2KK' vs K' unclosed without of_le; mis-ordering hN/hP breaks apply; missing admissibility input leaves h_isom as a unification hole). The bounded-prover leaf story is present: 'Why it is good' states each hypothesis is discharged by a named lemma with its own two-case proof, the glue is purely forward assembly reading as a table of which lemma closes which obligation, child sites are 8-32 lines, and claim 5's author-statement notes smaller statements reduce Lean processing time. No standing objection.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:41:48Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at ee4795874a99ea5f9d85bd0b364425f07b932377",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:42:09Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes: 4 files byte-identical at ee4795874a99ea5f9d85bd0b364425f07b932377. Commit consistent across entry.json, source note (pinned 2026-11-12) and README (short form ee4795874a99). All permalinks use the full commit hash and point to correct paths; cited line ranges verified against the local copies (parent col_exact' at col_exact.lean:1257, weak_normed_snake_dual at normed_snake_dual.lean:300, aux1/aux2/col_iota_range/col_iota_isometry/admissible_of_isometry/of_le all start at their cited lines). Licence recorded as LicenseRef-unknown everywhere (entry.json, README, source note) and is honest: list_files.py shows no LICENSE/COPYING at the repo root, so 'no licence file found at the root' is accurate. Author-statement quote at normed_snake_dual.lean:33-36 matches verbatim. Minor non-blocking note: source note boilerplate says 'the licence text below governs' though no licence text follows; substantive record is accurate and traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:43:07Z"
+    }
+  ]
+}

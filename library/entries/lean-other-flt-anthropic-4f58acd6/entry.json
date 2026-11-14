@@ -1,0 +1,218 @@
+{
+  "id": "lean-other-flt-anthropic-4f58acd6",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Fermat's last theorem for p ≥ 5 from a counterexample via the Frey package",
+  "intent": "Reduce Fermat's Last Theorem for primes p ≥ 5 to two project theorems: a counterexample a^p + b^p = c^p yields a Frey package (construction), and no Frey package can exist (refutation), so the counterexample is impossible.",
+  "move": "other",
+  "also_known_as": [
+    "construct-then-refute",
+    "proof by contradiction via an intermediate object",
+    "hub object"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "flt-anthropic",
+    "url": "https://github.com/anthropics/fermats-last-theorem",
+    "commit": "6e837e75355538c7f80bab5b956861e86c4eacc2",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "P2M/Sol/S_FreyPackage_fermatLastTheoremFor_of_five_le.lean",
+      "bytes": 217970,
+      "sha256": "fd307eb86cf3e9ef007c61cc52fcad5c7fbb7110f66cebf18f5f53dd977bf4a9",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_fermatLastTheoremFor_of_five_le.lean"
+    },
+    {
+      "path": "Theorems/Thm_FreyPackage_of_counterexample.lean",
+      "bytes": 393,
+      "sha256": "fa5fb468d8379a3c21ffc5f26a360855d039ecff28f7194f84c6da4b56bf969f",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_FreyPackage_of_counterexample.lean"
+    },
+    {
+      "path": "Theorems/Thm_FreyPackage_no_frey_package.lean",
+      "bytes": 218107,
+      "sha256": "9a08c324beccfe2235985249ad6d243fce1164b9251c1d01faa0835e39c72258",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_FreyPackage_no_frey_package.lean"
+    },
+    {
+      "path": "P2M/Sol/S_FreyPackage_of_counterexample.lean",
+      "bytes": 3315,
+      "sha256": "3666c9b4f5b6c4c41761f85db2398e91ea1954fc05e8c67e3d871576da9dbb75",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_of_counterexample.lean"
+    },
+    {
+      "path": "P2M/Sol/S_FreyPackage_no_frey_package.lean",
+      "bytes": 218355,
+      "sha256": "9c56cd147e9d68b409622e067ea4d6dcf30383e016f89fef4913f55a564e5c12",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_no_frey_package.lean"
+    },
+    {
+      "path": "Definitions/Def_FLTPrelim_FreyPackage.lean",
+      "bytes": 2886,
+      "sha256": "db451a2116b5dde045bc9ca63ca3106f1edbfe44c96929c8437436d139ce116f",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Definitions/Def_FLTPrelim_FreyPackage.lean"
+    },
+    {
+      "path": "P2M/Util.lean",
+      "bytes": 5737,
+      "sha256": "66f62069b83c0cf97531f88e5bd2c249e471df011ad873b0bd034eb959b1d8da",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Util.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "P2M/Sol/S_FreyPackage_fermatLastTheoremFor_of_five_le.lean",
+      "lines": [
+        131,
+        135
+      ],
+      "role": "parent",
+      "name": "solution",
+      "excerpt_sha256": "9044008fb20e844a4e2b4e82b0bf6b64855654cf96f72f6893de63ed4b4c22d7",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_fermatLastTheoremFor_of_five_le.lean#L131-L135"
+    },
+    {
+      "path": "Theorems/Thm_FreyPackage_of_counterexample.lean",
+      "lines": [
+        6,
+        6
+      ],
+      "role": "child",
+      "name": "FreyPackage.of_counterexample",
+      "excerpt_sha256": "ac1830a61ced748c70c93726e564db9ef8b1681bb94592ae391773d0564d9211",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_FreyPackage_of_counterexample.lean#L6-L6"
+    },
+    {
+      "path": "Theorems/Thm_FreyPackage_no_frey_package.lean",
+      "lines": [
+        129,
+        129
+      ],
+      "role": "child",
+      "name": "FreyPackage.no_frey_package",
+      "excerpt_sha256": "7814525c47fbebeaa0c31da226519ebc1e1df076edfc0713eada9391585da65b",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_FreyPackage_no_frey_package.lean#L129-L129"
+    },
+    {
+      "path": "P2M/Sol/S_FreyPackage_of_counterexample.lean",
+      "lines": [
+        70,
+        73
+      ],
+      "role": "context",
+      "name": "of_counterexample_solution",
+      "excerpt_sha256": "0aecb2992a890cedc7fffc0f625df68b29a7acbaec7dca91fe442ff8c9f370e0",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_of_counterexample.lean#L70-L73"
+    },
+    {
+      "path": "P2M/Sol/S_FreyPackage_no_frey_package.lean",
+      "lines": [
+        139,
+        147
+      ],
+      "role": "context",
+      "name": "Wiles_Frey_solution",
+      "excerpt_sha256": "3099665d313b1a2b872c36e28277feb5d34e54ac3349b8e64ba8c949f25249b2",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_no_frey_package.lean#L139-L147"
+    }
+  ],
+  "parent": {
+    "name": "solution",
+    "statement": "theorem solution (p : ℕ) (pp : p.Prime) (hp5 : 5 ≤ p) : FermatLastTheoremFor p",
+    "note": "This `solution` is the glue of the public statement object `FreyPackage.fermatLastTheoremFor_of_five_le` (Theorems/Thm_FreyPackage_fermatLastTheoremFor_of_five_le.lean), which delegates to it via `p2m_exact_reverting`."
+  },
+  "children": [
+    {
+      "name": "FreyPackage.of_counterexample",
+      "statement": "theorem FreyPackage.of_counterexample (a b c : ℤ) (ha : a ≠ 0) (hb : b ≠ 0) (hc : c ≠ 0) (p : ℕ) (pp : p.Prime) (hp5 : 5 ≤ p) (H : a ^ p + b ^ p = c ^ p) : Nonempty FreyPackage",
+      "closed_by": "p2m_exact_reverting @_root_.P2MW.S_FreyPackage_of_counterexample.solution",
+      "note": "The construction child. It is a one-line statement object: `p2m_exact_reverting` (P2M/Util.lean) reverts the hypotheses and elaborates the solution term `P2MW.S_FreyPackage_of_counterexample.solution`, which in turn is exactly `FreyPackage.of_counterexample a b c ha hb hc p pp hp5 H` — the 55-line construction in P2M/Sol/S_FreyPackage_of_counterexample.lean lines 12-66 (normalise the triple to coprime, make b even, force a ≡ 3 mod 4, then assemble the `FreyPackage` structure)."
+    },
+    {
+      "name": "FreyPackage.no_frey_package",
+      "statement": "theorem FreyPackage.no_frey_package (P : FreyPackage) : False",
+      "closed_by": "p2m_exact_reverting @_root_.P2MW.S_FreyPackage_no_frey_package.solution",
+      "note": "The refutation child. It is a one-line statement object delegating to `P2MW.S_FreyPackage_no_frey_package.solution`, which is `FreyPackage.Wiles_Frey P (FreyPackage.Mazur_Frey P)` (P2M/Sol/S_FreyPackage_no_frey_package.lean lines 146-147): combine the modularity of the Frey curve (`Wiles_Frey`, lines 139-142) with Mazur's theorem (`Mazur_Frey`) to reach `False`."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A universal theorem (here `FermatLastTheoremFor p`, a parameterised `∀` over the counterexample) proved by contradiction: assume a counterexample, build a named intermediate object from it, and apply a separate theorem that such an object cannot exist.",
+    "use_when": "the contradiction needs a substantial mediating object whose construction and whose refutation are each deep enough to deserve their own named theorem; the two halves meet only at the object's type, so each can be developed (and even proved by a different author or decade) independently.",
+    "avoid_when": "the intermediate object adds no information and the two lemmas could meet directly on the hypotheses; only one of the two halves is non-trivial (then it is a `suffices-or-strengthen`, not a two-lemma glue); or the object's fields cannot be stated as a self-contained structure that both sides agree on."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent glue `solution` is 5 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(solution, 5)",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_fermatLastTheoremFor_of_five_le.lean#L131-L135"
+    },
+    {
+      "n": 2,
+      "claim": "The parent glue cites `FreyPackage.of_counterexample`, the construction child.",
+      "evidence_kind": "check",
+      "form": "cites(solution, FreyPackage.of_counterexample)",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_fermatLastTheoremFor_of_five_le.lean#L134"
+    },
+    {
+      "n": 3,
+      "claim": "The parent glue cites `FreyPackage.no_frey_package`, the refutation child.",
+      "evidence_kind": "check",
+      "form": "cites(solution, FreyPackage.no_frey_package)",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_fermatLastTheoremFor_of_five_le.lean#L135"
+    },
+    {
+      "n": 4,
+      "claim": "`FreyPackage.no_frey_package` is a declared theorem at Theorems/Thm_FreyPackage_no_frey_package.lean:129, one theorem per file.",
+      "evidence_kind": "check",
+      "form": "declared(FreyPackage.no_frey_package, Theorems/Thm_FreyPackage_no_frey_package.lean, 129-129)",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_FreyPackage_no_frey_package.lean#L129"
+    },
+    {
+      "n": 5,
+      "claim": "The decomposition has shape {direct_lemmas: 2, depth: 3, glue_lines: 5, child_lines: [1, 1]}: the 5-line glue (lines 131-135) calls exactly two project lemmas, each a one-line statement object in its own file, and the longest chain of project lemmas below the main theorem is three deep (solution → no_frey_package → S_FreyPackage_no_frey_package.solution → FreyPackage.Wiles_Frey).",
+      "evidence_kind": "measurement",
+      "evidence": "glue = P2M/Sol/S_FreyPackage_fermatLastTheoremFor_of_five_le.lean#L131-L135 (5 lines); children = Theorems/Thm_FreyPackage_of_counterexample.lean#L6 and Theorems/Thm_FreyPackage_no_frey_package.lean#L129 (1 line each); the depth chain ends at P2M/Sol/S_FreyPackage_no_frey_package.lean#L139-L142 (Wiles_Frey). Counts read from the copied files under code/."
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 3,
+    "glue_lines": 5,
+    "child_lines": [1, 1]
+  },
+  "metrics": {
+    "glue_lines": 5,
+    "direct_lemmas": 2,
+    "construction_body_lines": 55,
+    "refutation_gate_lines": 4,
+    "how_counted": "glue = parent site lines 131-135; construction body = theorem FreyPackage.of_counterexample in P2M/Sol/S_FreyPackage_of_counterexample.lean lines 12-66; refutation gate = theorem FreyPackage.Wiles_Frey in P2M/Sol/S_FreyPackage_no_frey_package.lean lines 139-142; each child is a 1-line statement object"
+  },
+  "consequences": "Creates two obligations that meet only at the intermediate type: the constructor must produce the `FreyPackage` from the counterexample's hypotheses, and the refuter must consume the `FreyPackage` to reach `False`. The two lemmas are coupled through the object's fields (the curve, the prime, the modularity invariants); if the structure is extended or weakened, both sides must be revisited. Failure modes: the object is too weak to refute (needs more invariants added to the structure) or too strong to construct (needs hypotheses the counterexample cannot supply).",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "4f58acd64614b1689294f623362f37a41b39d12eaf7c03cdd229037f93e0817d",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:11:08Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:15:22Z"
+    }
+  ]
+}

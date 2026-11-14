@@ -1,0 +1,209 @@
+{
+  "id": "rocq-other-unimath-a6108b06",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Law-by-law assembly of disp_Monad_laws_from_hss, the monad laws of the monad induced by a heterogeneous substitution system",
+  "intent": "Reduces the monad laws of the monad induced by a heterogeneous substitution system (hss) to four same-file lemmas: the two unit laws are closed by named lemmas, and the associativity law is closed not by a single named lemma but by a transitivity bridge (intermediate_path) between two named equations for the bracket μ_3.",
+  "move": "other",
+  "also_known_as": [
+    "law-by-law assembly",
+    "record/class law assembly",
+    "backward split on a structure",
+    "transitivity bridge (intermediate_path)"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "unimath",
+    "url": "https://github.com/UniMath/UniMath",
+    "commit": "7a4b03cce49449f45ce0d4285615165172f50546",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v",
+      "bytes": 21145,
+      "sha256": "4b9391c50e6a624843dad9a2ae32485eef71744e07cbaacb962d727657b400b6",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v",
+      "lines": [
+        547,
+        562
+      ],
+      "role": "parent",
+      "name": "disp_Monad_laws_from_hss",
+      "excerpt_sha256": "7dfb0f4df54a392bcff77578e49fd0697fce083741aca1b7d7ef3c2cab03a54a",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v#L547-L562"
+    },
+    {
+      "path": "UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v",
+      "lines": [
+        163,
+        172
+      ],
+      "role": "child",
+      "name": "Monad_law_1_from_hss",
+      "excerpt_sha256": "7d514ae1d4ab56d874cce77152716478c05cee27a497b1d10df3d4a0e9603950",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v#L163-L172"
+    },
+    {
+      "path": "UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v",
+      "lines": [
+        177,
+        244
+      ],
+      "role": "child",
+      "name": "Monad_law_2_from_hss",
+      "excerpt_sha256": "549bf58d0568939c59e3376b306ab3f73f687926096d2308bf5bd2e0e8671b7c",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v#L177-L244"
+    },
+    {
+      "path": "UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v",
+      "lines": [
+        286,
+        336
+      ],
+      "role": "child",
+      "name": "μ_3_T_μ_2_μ_2",
+      "excerpt_sha256": "dbfe25e18b6de3849b877e564a88f568acceedf51c3eb3313134e4b5a52ba3b4",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v#L286-L336"
+    },
+    {
+      "path": "UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v",
+      "lines": [
+        347,
+        447
+      ],
+      "role": "child",
+      "name": "μ_3_μ_2_T_μ_2",
+      "excerpt_sha256": "0408233b86a2d97ae045537c730ae812f60a9b9739d956e38ebe95ac85d784e5",
+      "permalink": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v#L347-L447"
+    }
+  ],
+  "parent": {
+    "name": "disp_Monad_laws_from_hss",
+    "statement": "Lemma disp_Monad_laws_from_hss : disp_Monad_laws disp_Monad_data_from_hss."
+  },
+  "children": [
+    {
+      "name": "Monad_law_1_from_hss",
+      "statement": "Lemma Monad_law_1_from_hss :\n  ∏ c : C, μ_0 (pr1 (`T) c) · μ_2 c = identity ((pr1 (`T)) c).",
+      "closed_by": "apply pathsinv0. apply H2 (with H' := prejoin_from_hetsubst_η T)",
+      "note": "First unit law η · μ = id; the proof unfolds μ_0 and applies the η-law of the prejoin."
+    },
+    {
+      "name": "Monad_law_2_from_hss",
+      "statement": "Lemma Monad_law_2_from_hss:\n  ∏ c : C, # (pr1 (`T)) (μ_0 c)· μ_2 c = identity ((pr1 (`T)) c).",
+      "closed_by": "apply μ_1_identity' (right branch of intermediate_path (μ_1 c))",
+      "note": "Second unit law Tη · μ = id; the proof goes through μ_1 and the uniqueness of the bracket, closing the right side with the same-file sibling μ_1_identity'."
+    },
+    {
+      "name": "μ_3_T_μ_2_μ_2",
+      "statement": "Lemma μ_3_T_μ_2_μ_2 : μ_3 =\n                      (`T ∘ μ_2 : EndC ⟦ `T • _  , `T • `T ⟧ ) · μ_2.",
+      "closed_by": "apply (fbracket_unique T μ_2_ptd)",
+      "note": "Left associativity equation μ_3 = (T ∘ μ_2) · μ_2, by uniqueness of the bracket; reuses Monad_law_1_from_hss as a leaf (line 300)."
+    },
+    {
+      "name": "μ_3_μ_2_T_μ_2",
+      "statement": "Lemma μ_3_μ_2_T_μ_2 :  (\n    @compose (functor_category C C)\n                 (* TtimesTthenT *) T²∙T _ _\n                 (* (@functor_composite C C C ((functor_ptd_forget C hs) T)\n                    ((functor_ptd_forget C hs) T))\n                 ((functor_ptd_forget C hs) T) *)\n          ((μ_2 •• `T) (* :  TtimesTthenT' --> _ *)\n                  (*:@functor_compose C C C hs hs\n                    (@functor_composite C C C ((functor_ptd_forget C hs) T)\n                                              ((functor_ptd_forget C hs) T))\n                    ((functor_ptd_forget C hs) T) --> _*) ) μ_2 :\n            (*TtimesTthenT'*) T•T² --> `T) = μ_3.",
+      "closed_by": "apply (fbracket_unique T μ_2_ptd)",
+      "note": "Right associativity equation (μ_2 •• T) · μ_2 = μ_3, by uniqueness of the bracket; reuses Monad_law_1_from_hss as a leaf (line 368)."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal that is a structure/record of laws (here disp_Monad_laws over disp_Monad_data_from_hss) whose fields are equations; the glue split-s the record and closes each field with a named lemma, and one field is an equality proved by showing both sides equal to a common intermediate value via intermediate_path.",
+    "use_when": "Each field of the structure has a separately proved lemma in the same development, and an equality field can be closed by a transitivity (calc) chain whose links are named equations to a shared intermediate object (here the bracket μ_3).",
+    "avoid_when": "A single named lemma for the whole law would be shorter and clearer; the two sides of the equality are equal to different representatives, so the intermediate_path bridge does not typecheck; or the record's fields are trivial enough for one automation pass."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site disp_Monad_laws_from_hss is 16 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(disp_Monad_laws_from_hss, 16)",
+      "evidence": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v#L547-L562"
+    },
+    {
+      "n": 2,
+      "claim": "The tactic intermediate_path occurs in the parent site disp_Monad_laws_from_hss.",
+      "evidence_kind": "check",
+      "form": "cites(disp_Monad_laws_from_hss, intermediate_path)",
+      "evidence": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v#L547-L562"
+    },
+    {
+      "n": 3,
+      "claim": "No sorry/admit/Admitted/axiom token occurs in lines 163-562 of the copied file, the span covering all five sites.",
+      "evidence_kind": "check",
+      "form": "no_sorry(UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v, 163-562)",
+      "evidence": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v#L163-L562"
+    },
+    {
+      "n": 4,
+      "claim": "The theorem-scale shape: 4 direct lemmas are assembled by a 16-line glue, with child proof sites of 10, 68, 51 and 101 lines (230 in all).",
+      "evidence_kind": "measurement",
+      "evidence": "Line counts of the five sites: parent 547-562 (16); Monad_law_1_from_hss 163-172 (10); Monad_law_2_from_hss 177-244 (68); μ_3_T_μ_2_μ_2 286-336 (51); μ_3_μ_2_T_μ_2 347-447 (101)."
+    },
+    {
+      "n": 5,
+      "claim": "The authors frame the third law as transitivity and the parent as assembly: the comments at lines 282-283 say 'Proof of the third monad law via transitivity' and 'We show that both sides are equal to [μ_3 = fbracket μ_2]', and line 545 says 'Finally putting together all the preparatory results to obtain a monad'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v#L282-L283 and https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v#L545"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 3,
+    "glue_lines": 16,
+    "child_lines": [
+      10,
+      68,
+      51,
+      101
+    ]
+  },
+  "metrics": {
+    "parent_lines": 16,
+    "children": 4,
+    "children_closed_by_automation": 0,
+    "how_counted": "Lines of the five sites in the copied file (declaration plus proof); no child closes by a single automation tactic — each closes by applying a named project lemma (apply H2 / apply μ_1_identity' / apply (fbracket_unique T μ_2_ptd))."
+  },
+  "consequences": "The glue splits disp_Monad_laws into its two components, then the associativity component is closed by a transitivity bridge rather than one lemma: both μ_3 equations must land on the same intermediate value (μ_3) for intermediate_path to typecheck, and each is flipped by pathsinv0 because the named equations are oriented μ_3 = …, while the goal wants the reverse orientation. Failure mode: if the two sides of the associative law are equal to different representatives of μ_3, the bridge does not apply and the law needs a single named lemma, or an explicit associator as in the file's third_monad_law_from_hss (which inserts rassociator_CAT).",
+  "known_uses": [
+    "https://github.com/UniMath/UniMath/blob/7a4b03cce49449f45ce0d4285615165172f50546/UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v#L453-L458"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "a6108b06af796b0d9c7b7ad1584fd1d01477dfb9dab2be43b5f090ac7a7bb085",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:12:28Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:20:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:14:25Z",
+      "note": "parent disp_Monad_laws_from_hss: statement re-copied from code; child 'Monad_law_1_from_hss': statement re-copied from the declaration of Monad_law_1_from_hss; child 'Monad_law_2_from_hss': statement re-copied from the declaration of Monad_law_2_from_hss; child 'μ_3_T_μ_2_μ_2': statement re-copied from the declaration of μ_3_T_μ_2_μ_2; child 'μ_3_μ_2_T_μ_2': statement re-copied from the declaration of μ_3_μ_2_T_μ_2"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:19:59Z"
+}

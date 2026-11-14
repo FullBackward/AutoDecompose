@@ -1,0 +1,125 @@
+{
+  "entry": "lean-generalise-then-instantiate-arklib-c3287ad6",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:29:02Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:29:02Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:29:02Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: oracleVerifier_eq_liftContext@ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean:1184, extractorLens_rbr_knowledge_soundness@ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean:1190, oracleVerifier_rbrKnowledgeSoundness@ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean:1180; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:29:02Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(oracleVerifier_rbrKnowledgeSoundness, ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean, 1180-1191) -> declared: oracleVerifier_rbrKnowledgeSoundness is declared at ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean:1180",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:29:02Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, extractorLens_rbr_knowledge_soundness) -> cites: extractorLens_rbr_knowledge_soundness occurs at ArkLib/ProofSystem/Sumcheck/Spec/SingleRound.lean:1190",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:29:02Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:29:09Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/ci.yml build job runs 'lake build' on push to main (default branch); pinned commit 6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6 on main",
+      "by": "verifier",
+      "at": "2026-11-14T12:30:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "line ranges checked in copied code: parent 1180-1191 (12 lines), children 893-928 (36), 1115-1131 (17), 583-587 (5); 36+17+5=58 > 12",
+      "by": "verifier",
+      "at": "2026-11-14T12:30:09Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "lines 1146-1157 show verifier_rbrKnowledgeSoundness applying Verifier.liftContext_rbrKnowledgeSoundness with stmtLens, witLens, lensKS (citing extractorLens_rbr_knowledge_soundness) and Simple.verifier_rbrKnowledgeSoundness",
+      "by": "verifier",
+      "at": "2026-11-14T12:30:10Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "blueprint/src/proof_systems/sumcheck.tex#L184-L191: \\label{thm:sumcheck_single_round_soundness}, \\lean{...Sumcheck.Spec.SingleRound.oracleVerifier_rbrKnowledgeSoundness}, text 'The round is obtained by lifting the virtual round below along a context lens, which transfers both properties.'",
+      "by": "verifier",
+      "at": "2026-11-14T12:30:11Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent (1180-1191) and three children (oracleVerifier_eq_liftContext 893-928, extractorLens_rbr_knowledge_soundness 1115-1131, Simple.oracleVerifier_rbrKnowledgeSoundness 583-587) match entry.json verbatim; closing methods match (eq_liftContext: apply OracleVerifier.ext + induction citing Simple.oracleVerifier_only_message_queries 309-384; extractorLens: proj cites verifier_polynomial 1034/output_projection 1023, lift cites input_projection 1011; Simple child: rw oracleVerifier_eq_verifier + exact verifier_rbrKnowledgeSoundness 564-580). Parent closes via rw [oracleVerifier_eq_liftContext] then exact OracleVerifier.liftContext_rbrKnowledgeSoundness whose signature (OracleReduction.lean 388-408) matches the named args. Glue cites exactly the 3 children plus the general transport theorem (correctly classed as the reusable schema, not a child). Shape numbers correct: glue_lines 12 (1180-1191), child_lines [36,17,5] (893-928/1115-1131/583-587), depth 4 (extractorLens->output_projection->relationRound_output_iff 675->relationRound_projected_output 652, closing at library lemmas), direct_lemmas 3. No sorry/admit/axiom in copied files.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:32:30Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "object",
+      "evidence": "Generality is mostly strong: the move is stated over any lifted object (X.liftContext lens output / transport of a general construction), use_when names four concrete ingredients, consequences list three named obligations plus a specific lensKS-simpa failure mode, and the good-leaves paragraph (README 130-146) explicitly answers the bounded-prover question by saying each child is self-contained and closes from named siblings — I confirmed this against the cited code. Known-use is real and verified (SingleRound.lean 1146-1157 reuses the transport shape with Verifier.liftContext_rbrKnowledgeSoundness and the same lens certificate). BUT avoid_when #3 is contradicted by the entry's own example: it says avoid when 'the equivalence rewrite does not hold by rfl/simp and needs a real argument', yet the example's equivalence oracleVerifier_eq_liftContext (893-928) is a 36-line induction, plainly not rfl/simp, and the move is still presented as working because that equivalence is factored into a self-contained child leaf. FIX: reword avoid_when #3 (README and entry.json) to target non-separability — the equivalence cannot be extracted into its own self-contained lemma and would have to be proved inline in the glue — instead of rfl/simp-ness.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:35:03Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:35:29Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are all consistent and traceable. check_provenance.py passes: 2 files byte-identical at pinned commit 6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6. Copied code/ files have sha256 fb9b4d4e... for SingleRound.lean (60585 B) and 9147d076... for OracleReduction.lean (22155 B), matching entry.json files[].sha256/bytes. Commit hash is identical across SOURCE.md, source.json, entry.json and every permalink; permalink line anchors (1180-1191, 893-928, 1115-1131, 583-587, 1146-1157, and OracleReduction.lean 388-408) all resolve to the named declarations. Licence recorded as Apache-2.0 in SOURCE.md, source.json, entry.json and README, and library/sources/arklib/upstream-LICENSE is the standard Apache-2.0 text, with the upstream LICENSE file listed. Minor cosmetic note: the README source table abbreviates the commit to 6f9884a95ae7 while the full hash is given in the Source-and-licence section and everywhere else; not material to traceability.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:36:06Z"
+    }
+  ]
+}

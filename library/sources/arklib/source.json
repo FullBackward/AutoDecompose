@@ -1,0 +1,17 @@
+{
+  "source_id": "arklib",
+  "url": "https://github.com/Verified-zkEVM/ArkLib",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "Verified-zkEVM/ArkLib",
+  "commit": "6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T11:39:39Z",
+  "how_found": "discovery-1: A-agents, A-lean",
+  "note": "zkEVM/SNARK library with blueprint and ROADMAP listing headline theorems per protocol; completeness and security proofs from named lemmas, CI",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

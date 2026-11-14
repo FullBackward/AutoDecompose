@@ -1,0 +1,133 @@
+{
+  "entry": "rocq-key-invariant-verdi-09db5810",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:15:11Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:15:11Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:15:12Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: decomposition_invariant@theories/Systems/LiveLockServ.v:869, locks_correct_implies_mutex@theories/Systems/LiveLockServ.v:873; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:15:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(parent, 13) -> lines: site parent has 13 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:15:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "declared(decomposition_invariant, theories/Core/StatePacketPacketDecomposition.v, 172-207) -> declared: decomposition_invariant is declared at theories/Core/StatePacketPacketDecomposition.v:172",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:15:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "declared(locks_correct_implies_mutex, theories/Systems/LiveLockServ.v, 190-201) -> declared: locks_correct_implies_mutex is declared at theories/Systems/LiveLockServ.v:190",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:15:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "no_sorry(theories/Systems/LiveLockServ.v, 866-878) -> no_sorry: none of admit, Admitted, Axiom, axiom in theories/Systems/LiveLockServ.v:866-878",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:15:12Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 7e1641b758d8f0032aa7de63620bc115330e0a6b",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:15:19Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/docker-action.yml (Docker CI) triggers on push to master (default branch) and pull_request, and runs coq-community/docker-coq-action@v1 with opam_file 'coq-verdi.opam', which installs and builds the opam package (running make); the Makefile runs 'coq_makefile -f _CoqProject' and builds every file listed in _CoqProject, including theories/Systems/LiveLockServ.v (line 34) and theories/Core/StatePacketPacketDecomposition.v (line 17). Pinned commit 7e1641b758d8f0032aa7de63620bc115330e0a6b is the default-branch HEAD (source registered with ref HEAD, resolved via git ls-remote).",
+      "by": "verifier",
+      "at": "2026-11-14T10:16:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Counted from the copied code: parent site theories/Systems/LiveLockServ.v:866-878 is 13 lines (878-866+1); child decomposition_invariant theories/Core/StatePacketPacketDecomposition.v:172-207 is 36 lines; child locks_correct_implies_mutex theories/Systems/LiveLockServ.v:190-201 is 12 lines. Chain verified: StatePacketPacketDecomposition.v:176-177 (inside decomposition_invariant, line 172) discharges the init case with 'intuition auto using state_invariant_init'; LiveLockServ.v:844 is the state_invariant_init field of the LockServ_Decompositition instance (state_invariant := locks_correct at line 839), closed by 'auto using locks_correct_init'; locks_correct_init is declared at LiveLockServ.v:241-245. So the chain below the main theorem is decomposition_invariant -> state_invariant_init field -> locks_correct_init = two lemmas.",
+      "by": "verifier",
+      "at": "2026-11-14T10:16:52Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 7e1641b758d8f0032aa7de63620bc115330e0a6b",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:17:06Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "object",
+      "evidence": "Provenance pass (3 files byte-identical at 7e1641b7). Statements verbatim; closing methods match the code; parent (866-878) is 13 lines ending in Qed, no admit/Admitted/sorry/axiom; depth-2 chain decomposition_invariant->state_invariant_init->locks_correct_init (StatePacketPacketDecomposition.v:177, LiveLockServ.v:844, 241-245) checks out; glue_lines=13 and child_lines=[36,12] are right. Objection: shape.direct_lemmas=2 is wrong. The main proof directly uses THREE named Verdi lemmas: decomposition_invariant (LiveLockServ.v:869), inductive_invariant_true_in_reachable (Core/Net.v:174-183, applied at LiveLockServ.v:870), and locks_correct_implies_mutex (LiveLockServ.v:873). The entry lists only two children and counts direct_lemmas=2, so the children are not exactly the lemmas the main proof uses and the shape number undercounts by one. Fix: either add inductive_invariant_true_in_reachable as a third child (with its statement and closed_by) or otherwise account for it, and set direct_lemmas=3.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:19:23Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality lens: the move is stated beyond the example via applicability.goal_shape ('true_in_reachable step init P safety property') plus use_when/avoid_when, which abstract to 'any distributed system with a generic invariant framework to instantiate'. When-not-to-use is honest and specific: it flags the case where the invariant must mention in-flight packets / split into state/network/network-network parts, and where inductiveness is the hard theorem so thin glue hides the real work. Consequences are honest and code-verified: the Decomposition instance (LiveLockServ.v 838-864) still needs one field proof per handler, and a too-weak/too-strong invariant fails the conversion or a field proof. Leaf quality for a bounded prover is stated: decomposition_invariant closes by eauto over a finite named sibling set (typeclass fields + 4 helper lemmas) and never mentions locks_correct (reusable); locks_correct_implies_mutex closes on its own via unfold+auto with no named lemma and is the only conversion site. Verified cited ranges 190-201, 241-245, 838-864, 866-878, 964-976, 998-1008, 1010-1019, StatePacketPacketDecomposition.v 172-207, Net.v 174-183 all match the entry.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:20:43Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 7e1641b758d8f0032aa7de63620bc115330e0a6b",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:21:03Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance check passes (3 files byte-identical at 7e1641b758d8f0032aa7de63620bc115330e0a6b); commit pinned identically in source.json, SOURCE.md and entry.json; all permalinks use the full pinned commit; licence BSD-2-Clause consistent across entry.json, source.json, SOURCE.md, and upstream-LICENSE is genuine BSD-2-Clause text; code/ holds exactly the 3 files listed in entry.json.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:21:23Z"
+    }
+  ]
+}

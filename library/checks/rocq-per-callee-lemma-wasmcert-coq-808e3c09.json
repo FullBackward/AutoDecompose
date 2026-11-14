@@ -1,0 +1,133 @@
+{
+  "entry": "rocq-per-callee-lemma-wasmcert-coq-808e3c09",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:44:29Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:44:29Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:44:29Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: module_type_checker_sound@theories/interp_instantiate_sound.v:264, external_type_checker_sound@theories/interp_instantiate_sound.v:277, interp_alloc_sound@theories/interp_instantiate_sound.v:267, module_typecheck_glob_aux@theories/interp_instantiate_sound.v:325, module_typecheck_elem_aux@theories/interp_instantiate_sound.v:358, b_e_type_checker_reflects_typing@theories/interp_instantiate_sound.v:331, alloc_func_iota_N@theories/interp_instantiate_sound.v:306, alloc_global_iota_N@theories/interp_instantiate_sound.v:309; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:44:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(interp_instantiate_imp_instantiate, theories/interp_instantiate_sound.v, 246-402) -> declared: interp_instantiate_imp_instantiate is declared at theories/interp_instantiate_sound.v:246",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:44:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(theories/interp_instantiate_sound.v, 246-402) -> no_sorry: none of admit, Admitted, Axiom, axiom in theories/interp_instantiate_sound.v:246-402",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:44:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, module_type_checker_sound) -> cites: module_type_checker_sound occurs at theories/interp_instantiate_sound.v:264",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:44:30Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 58a3d3f8b7af4dc8aa9351f254a9e672643b21f8",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:44:37Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/main.yml 'Test compilation' build job runs coq-community/docker-coq-action with opam_file coq-wasm.opam, coq_version 9.0, which runs 'opam install .' -> dune build -p coq-wasm @install (coq-wasm.opam build stanza); theories/dune declares (coq.theory (name Wasm) (package coq-wasm)) so all theories/*.v incl. interp_instantiate_sound.v compile; workflow triggers on push and pull_request; commit 58a3d3f8b7af4dc8aa9351f254a9e672643b21f8 is pinned at ref HEAD (default branch)",
+      "by": "verifier",
+      "at": "2026-11-14T12:46:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "parent site interp_instantiate_sound.v 246-402 is 157 lines (246 'Lemma interp_instantiate_imp_instantiate', 402 'Qed.'); it names twelve lemmas directly: module_type_checker_sound (264), interp_alloc_sound (267), external_type_checker_sound (277), alloc_func_iota_N (306), alloc_table_iota_N (307), alloc_mem_iota_N (308), alloc_global_iota_N (309), alloc_elem_iota_N (310), alloc_data_iota_N (311), module_typecheck_glob_aux (325), module_typecheck_elem_aux (358), b_e_type_checker_reflects_typing (331,372). Child line counts: 16-174=159, 176-183=8, 185-216=32, 220-231=12, 233-244=12 (all Qed.-terminated, starts at 'Lemma' lines checked); type_checker_reflects_typing.v 1527-1610=84; instantiation_properties.v 211-236=26, 315-352=38",
+      "by": "verifier",
+      "at": "2026-11-14T12:46:17Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "comment at interp_instantiate_sound.v:263 reads exactly '(* Proving these first so they can be used in the reasoning for initialisers later *)', directly above the three asserts: module_typing (assert ... Hmodtype, line 264), alloc_module (assert ... Hallocmodule, 266), List.Forall2 (external_typing s) v_imps t_imps (assert ... Hexttype, 272)",
+      "by": "verifier",
+      "at": "2026-11-14T12:46:18Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 58a3d3f8b7af4dc8aa9351f254a9e672643b21f8",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:46:37Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent interp_instantiate_imp_instantiate is at interp_instantiate_sound.v 246-402 and ends Qed at 402 with no admit/Admitted/Axiom; it destructs the executable pipeline then exists+repeat split, discharging each conjunct with a per-component lemma exactly as the README describes. All 8 child sites' statements match their declarations verbatim (module_type_checker_sound 16-174, external_type_checker_sound 176-183, interp_alloc_sound 185-216, module_typecheck_glob_aux 220-231, module_typecheck_elem_aux 233-244, b_e_type_checker_reflects_typing 1527-1610, alloc_func_iota_N 211-236, alloc_global_iota_N 315-352) and each closes with Qed; closed_by descriptions match the code. The parent cites all 8 children plus 4 further per-component lemmas (alloc_table/mem/elem/data_iota_N at 307/308/310/311), so direct_lemmas=12 is correct and documented; glue_lines=157 (402-246+1) and child_lines=[159,8,32,12,12,84,26,38] equal the site line counts; depth=3 (parent->interp_alloc_sound line 267 -> alloc_global_iota_N line 206 -> combine_snoc line 338, which closes by induction) is verified.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:48:21Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generally: 'when to use' names the reusable shape (executable option-returning pipeline vs relational existential+fixed-conjunction spec, one soundness lemma per component, witnesses read off by destruct), and related links to CompCert. Avoid-when is specific and honest (component needs a sibling's intermediate state; exe/relational diverge so no destruct witnesses; open-ended obligation list). Consequences are honest (two large children carry content; alloc_*_iota_N near-duplicates buy width not depth). 'Why each child is a good leaf' answers the bounded-prover question: small (8-38 lines), self-contained, closed by one tactic/lemma. Verified cited ranges: instantiation_spec.v 629-643 is an existential+conjunction; interp_instantiate_sound.v header has 'breaking circularities' comment.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:49:03Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 58a3d3f8b7af4dc8aa9351f254a9e672643b21f8",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:49:26Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "object",
+      "evidence": "Permalinks, commit and source note are consistent and traceable (check_provenance: 4 files byte-identical at 58a3d3f8b7af4dc8aa9351f254a9e672643b21f8; the same commit appears in entry.json, source.json and SOURCE.md; parent lemma is at interp_instantiate_sound.v:246-402 and the cited comment at :263). Licence is wrong: entry.json, source.json and SOURCE.md record LGPL-2.1, but upstream-LICENSE.txt states the project is MIT except src/Parray/ which is LGPL-2.1+; all four copied files are under theories/ (interp_instantiate_sound.v, type_checker_reflects_typing.v, instantiation_properties.v, instantiation_spec.v), so they are MIT, not LGPL. Fix: change the licence to MIT (or 'MIT; LGPL-2.1+ only for src/Parray/') in entry.json and the source note.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:49:54Z"
+    }
+  ]
+}

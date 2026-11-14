@@ -1,0 +1,226 @@
+{
+  "id": "lean-key-invariant-numina-putnam2025-7117dd00",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Weighted-average key invariant closes Putnam 2025 B2 (centroid x₁ < x₂)",
+  "intent": "Prove Putnam 2025 B2 — that the centroid of the region under a strictly increasing, non-negative, continuous curve f on [0,1] lies to the left of the centroid of its solid of revolution (x₁ < x₂) — by carrying the whole proof on one auxiliary inequality, weighted_average_lt_of_strictMono: the f-weighted average of x is strictly less than the f²-weighted average. Two positivity lemmas discharge the centroid formulas' hypotheses, the two centroid lemmas identify x₁ and x₂ with the two sides of that inequality, and one rewrite followed by exact closes the goal.",
+  "move": "key-invariant",
+  "also_known_as": [
+    "key inequality",
+    "weighted-average inequality",
+    "the one auxiliary statement that carries the idea"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "numina-putnam2025",
+    "url": "https://github.com/project-numina/Numina-Putnam2025",
+    "commit": "60d33c8ba19af905bd731e938ebde1c5b8c76519",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "NuminaPutnam2025/putnam_2025_b2.lean",
+      "bytes": 53575,
+      "sha256": "c1d07de4ed042ff4ec67d2a5854bc8af66c5a1fff69253c1a164b9fa570c5f90",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_b2.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "NuminaPutnam2025/putnam_2025_b2.lean",
+      "lines": [
+        1044,
+        1078
+      ],
+      "role": "parent",
+      "name": "putnam_2025_b2",
+      "excerpt_sha256": "202f41fe2b315cc812d79cc5eefed35a305ced759b4b926719ae89501e68d34c",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_b2.lean#L1044-L1078"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_b2.lean",
+      "lines": [
+        24,
+        39
+      ],
+      "role": "child",
+      "name": "integral_f_pos",
+      "excerpt_sha256": "a313b39b0217c6095bc5f2045be1cb44fc835150b6e50895844582bcab41167f",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_b2.lean#L24-L39"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_b2.lean",
+      "lines": [
+        41,
+        56
+      ],
+      "role": "child",
+      "name": "integral_f_sq_pos",
+      "excerpt_sha256": "d21554233bc07e3dad249e3e632e90c89870efb87488529f55c32e68e07455c2",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_b2.lean#L41-L56"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_b2.lean",
+      "lines": [
+        431,
+        441
+      ],
+      "role": "child",
+      "name": "weighted_average_lt_of_strictMono",
+      "excerpt_sha256": "7a9f112c69c563b43a0a24112e43ff1a62b93612967d24b527e5b14898041d7f",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_b2.lean#L431-L441"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_b2.lean",
+      "lines": [
+        549,
+        691
+      ],
+      "role": "child",
+      "name": "centroid_2d_formula",
+      "excerpt_sha256": "75a97c7226b4314b4c1a7c4fde1772c57ac2a62a1a4745e23cbc417943083d7e",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_b2.lean#L549-L691"
+    },
+    {
+      "path": "NuminaPutnam2025/putnam_2025_b2.lean",
+      "lines": [
+        702,
+        1042
+      ],
+      "role": "child",
+      "name": "centroid_3d_formula",
+      "excerpt_sha256": "22b39ee29d038e863ed248704f097a8867156cd12582d604e733d6f25fc32bc5",
+      "permalink": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_b2.lean#L702-L1042"
+    }
+  ],
+  "parent": {
+    "name": "putnam_2025_b2",
+    "statement": "theorem putnam_2025_b2 (f : ℝ → ℝ)\n  (hf : ∀ x ∈ Icc 0 1, 0 ≤ f x)\n  (hfm : StrictMono f)\n  (hfc : Continuous f):\n  let R : Set (ℝ × ℝ) := { x | 0 ≤ x.1 ∧ x.1 ≤ 1 ∧ 0 ≤ x.2 ∧ x.2 ≤ f x.1 }\n  let x₁ : ℝ := ⨍ x in R, x.1\n  let R' : Set (ℝ × ℝ × ℝ) := { x' | ∃ x ∈ R, ∃ θ : ℝ, x'.1 = x.1 ∧ x'.2.1 = x.2 * cos θ ∧ x'.2.2 = x.2 * sin θ }\n  let x₂ : ℝ := ⨍ x' in R', x'.1\n  x₁ < x₂"
+  },
+  "children": [
+    {
+      "name": "integral_f_pos",
+      "statement": "lemma integral_f_pos (f : ℝ → ℝ)\n    (hf : ∀ x ∈ Icc (0:ℝ) 1, 0 ≤ f x)\n    (hfm : StrictMono f)\n    (hfc : Continuous f) :\n    0 < ∫ x in (0:ℝ)..1, f x",
+      "closed_by": "intervalIntegral.intervalIntegral_pos_of_pos_on: hfm and hf give f 1 > f 0 >= 0, hence f x > 0 on Ioo 0 1; integrability by hfc.intervalIntegrable 0 1, then norm_num",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: For a non-negative, strictly monotone, continuous f, the integral of f over [0,1] is strictly positive."
+    },
+    {
+      "name": "integral_f_sq_pos",
+      "statement": "lemma integral_f_sq_pos (f : ℝ → ℝ)\n    (hf : ∀ x ∈ Icc (0:ℝ) 1, 0 ≤ f x)\n    (hfm : StrictMono f)\n    (hfc : Continuous f) :\n    0 < ∫ x in (0:ℝ)..1, f x ^ 2",
+      "closed_by": "intervalIntegral.intervalIntegral_pos_of_pos_on, same as integral_f_pos but the integrand positivity closes with sq_pos_of_pos and integrability with (hfc.pow 2).intervalIntegrable",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: For a non-negative, strictly monotone, continuous f, the integral of f ^ 2 over [0,1] is strictly positive."
+    },
+    {
+      "name": "weighted_average_lt_of_strictMono",
+      "statement": "lemma weighted_average_lt_of_strictMono (f : ℝ → ℝ)\n    (hf : ∀ x ∈ Icc (0:ℝ) 1, 0 ≤ f x)\n    (hfm : StrictMono f)\n    (hfc : Continuous f) :\n    (∫ x in (0:ℝ)..1, x * f x) / (∫ x in (0:ℝ)..1, f x) <\n    (∫ x in (0:ℝ)..1, x * f x ^ 2) / (∫ x in (0:ℝ)..1, f x ^ 2)",
+      "closed_by": "div_lt_div_iff₀ with integral_f_pos and integral_f_sq_pos, then linarith on key_product_ineq f hf hfm hfc",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: For a strictly increasing, non-negative, continuous f, the f-weighted average of x is strictly less than the f^2-weighted average."
+    },
+    {
+      "name": "centroid_2d_formula",
+      "statement": "lemma centroid_2d_formula (f : ℝ → ℝ) (hf : ∀ x ∈ Icc (0:ℝ) 1, 0 ≤ f x) (hfc : Continuous f)\n    (hI_pos : 0 < ∫ x in (0:ℝ)..1, f x) :\n    let R : Set (ℝ × ℝ) := { p | 0 ≤ p.1 ∧ p.1 ≤ 1 ∧ 0 ≤ p.2 ∧ p.2 ≤ f p.1 }\n    ⨍ p in R, p.1 ∂(volume.prod volume) = (∫ x in (0:ℝ)..1, x * f x) / (∫ x in (0:ℝ)..1, f x)",
+      "closed_by": "MeasureTheory.setAverage_eq, then h_measure_R (R =ᵐ regionBetween, volume_regionBetween_eq_integral) and h_integral_R (setIntegral_congr_set then setIntegral_fst_regionBetween); ends with smul_eq_mul, inv_mul_eq_div",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The centroid x-coordinate of the region under f equals (∫ x·f) / (∫ f)."
+    },
+    {
+      "name": "centroid_3d_formula",
+      "statement": "lemma centroid_3d_formula (f : ℝ → ℝ) (hf : ∀ x ∈ Icc (0:ℝ) 1, 0 ≤ f x) (hfc : Continuous f)\n    (hI_pos : 0 < ∫ x in (0:ℝ)..1, f x ^ 2) :\n    let R : Set (ℝ × ℝ) := { p | 0 ≤ p.1 ∧ p.1 ≤ 1 ∧ 0 ≤ p.2 ∧ p.2 ≤ f p.1 }\n    let R' : Set (ℝ × ℝ × ℝ) := { p' | ∃ p ∈ R, ∃ θ : ℝ, p'.1 = p.1 ∧ p'.2.1 = p.2 * cos θ ∧ p'.2.2 = p.2 * sin θ }\n    ⨍ p' in R', p'.1 ∂volume = (∫ x in (0:ℝ)..1, x * f x ^ 2) / (∫ x in (0:ℝ)..1, f x ^ 2)",
+      "closed_by": "MeasureTheory.setAverage_eq, then h_vol (cylindrical slices via disk_volume, Complex.volume_closedBall, and Fubini) and h_int (first moment via integral_prod); field_simp with Real.pi_ne_zero and ne_of_gt hI_pos",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The centroid x-coordinate of the solid of revolution equals (∫ x·f^2) / (∫ f^2)."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A competition problem comparing two derived quantities (here the centroid x₁ of a planar region and the centroid x₂ of its solid of revolution) that both reduce to ratios of the same four single integrals; the comparison becomes a single strict inequality between two weighted averages that a strictly monotone non-negative weight separates.",
+    "use_when": "the goal's two sides can both be identified, by formula lemmas, with the two sides of one auxiliary inequality that carries the whole idea (here the f- vs f²-weighted average of x for strictly increasing f ≥ 0); the auxiliary statement is self-contained enough to prove once and cite, and the side conditions on the formulas are discharged by short positivity lemmas.",
+    "avoid_when": "the identification of the two sides is not routine (here each centroid formula needs its own Fubini / measure-theoretic proof, and those two proofs are most of the file); the auxiliary inequality does not isolate the monotonicity hypothesis that makes the strict comparison true; or the denominators' positivity cannot be separated into short lemmas."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site `putnam_2025_b2` is 35 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(putnam_2025_b2, 35)",
+      "evidence": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_b2.lean#L1044-L1078"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites `weighted_average_lt_of_strictMono`.",
+      "evidence_kind": "check",
+      "form": "cites(putnam_2025_b2, weighted_average_lt_of_strictMono)",
+      "evidence": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_b2.lean#L1044-L1078"
+    },
+    {
+      "n": 3,
+      "claim": "The copied file `NuminaPutnam2025/putnam_2025_b2.lean` contains no `sorry`, `admit`, or `axiom`.",
+      "evidence_kind": "check",
+      "form": "no_sorry(NuminaPutnam2025/putnam_2025_b2.lean, 1-1080)",
+      "evidence": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_b2.lean"
+    },
+    {
+      "n": 4,
+      "claim": "The decomposition has 5 direct lemmas (integral_f_pos, integral_f_sq_pos, weighted_average_lt_of_strictMono, centroid_2d_formula, centroid_3d_formula), a 35-line glue, and depth 3: putnam_2025_b2 cites weighted_average_lt_of_strictMono at line 1062, which cites key_product_ineq at line 439, which cites integral_f_pos at line 165.",
+      "evidence_kind": "measurement",
+      "evidence": "counted from the entry's sites: parent lines 1044-1078 (35 lines); child sites lines 24-39, 41-56, 431-441, 549-691, 702-1042; the depth chain is putnam_2025_b2 (line 1062) -> weighted_average_lt_of_strictMono (line 439) -> key_product_ineq (line 165) -> integral_f_pos"
+    },
+    {
+      "n": 5,
+      "claim": "The authors mark the key invariant in the glue: 'The key mathematical insight (proved in weighted_average_lt_of_strictMono)'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/project-numina/Numina-Putnam2025/blob/60d33c8ba19af905bd731e938ebde1c5b8c76519/NuminaPutnam2025/putnam_2025_b2.lean#L1059-L1061"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 5,
+    "depth": 3,
+    "glue_lines": 35,
+    "child_lines": [
+      16,
+      16,
+      11,
+      143,
+      341
+    ]
+  },
+  "metrics": {
+    "parent_lines": 35,
+    "children": 5,
+    "depth": 3,
+    "how_counted": "parent_lines = lines 1044-1078 of the copied file; children = the 5 named lemmas the glue cites directly (integral_f_pos, integral_f_sq_pos, weighted_average_lt_of_strictMono, centroid_2d_formula, centroid_3d_formula); depth = the chain putnam_2025_b2 -> weighted_average_lt_of_strictMono -> key_product_ineq -> integral_f_pos, three project lemmas below the theorem"
+  },
+  "consequences": "The move obliges the writer to (i) prove the key inequality once (weighted_average_lt_of_strictMono, which itself rests on the heavy key_product_ineq double-integral argument); (ii) prove the two centroid formulas that identify the goal's quantities with the two sides of the inequality (centroid_2d_formula, centroid_3d_formula); and (iii) discharge the positivity hypotheses those formulas need (integral_f_pos, integral_f_sq_pos). Failure mode: the strict inequality x₁ < x₂ holds only because the weight f is strictly increasing; a merely non-decreasing f would collapse the comparison, and a differently shaped region or solid would no longer reduce to the same four single integrals, so the two centroid formulas would not meet the key inequality.",
+  "known_uses": [],
+  "related": [
+    "lean-key-invariant-pramaana-imo2026-f2c90a7c"
+  ],
+  "rule": {
+    "f10_rule": 14,
+    "relation": "supports"
+  },
+  "content_key": "7117dd0026c2e3a3bdcc979833a7b22db968235ca6cc3d06d8c7cfbe233d6e06",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:42:16Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,also_known_as,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:50:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:44:18Z",
+      "note": "parent putnam_2025_b2: statement re-copied from code; child 'integral_f_pos': statement re-copied from the declaration of integral_f_pos; child 'integral_f_sq_pos': statement re-copied from the declaration of integral_f_sq_pos; child 'weighted_average_lt_of_strictMono': statement re-copied from the declaration of weighted_average_lt_of_strictMono; child 'centroid_2d_formula': statement re-copied from the declaration of centroid_2d_formula; child 'centroid_3d_formula': statement re-copied from the declaration of centroid_3d_formula"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T09:50:50Z"
+}

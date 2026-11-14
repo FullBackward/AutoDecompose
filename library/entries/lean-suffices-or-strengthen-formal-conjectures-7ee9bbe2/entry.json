@@ -1,0 +1,177 @@
+{
+  "id": "lean-suffices-or-strengthen-formal-conjectures-7ee9bbe2",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Strengthen dist_eq_computable to a BFS fuel invariant",
+  "intent": "Identify the abstract graph distance `G.dist u v` with the executable breadth-first-search distance `computable_dist G u v` by strengthening the goal to an invariant statement about the BFS accumulator `bfs_dist_aux` (arbitrary fuel, depth and reached set), instantiating it at `fuel = Fintype.card α`, `depth = 1`, `reached = bfsStep {u}`, and proving it by induction on fuel.",
+  "move": "suffices-or-strengthen",
+  "also_known_as": [
+    "strengthen the goal",
+    "generalise before induction",
+    "suffices to an invariant"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "formal-conjectures",
+    "url": "https://github.com/google-deepmind/formal-conjectures",
+    "commit": "a425ca3eb797fe927cb88c950565fdcbbbbada70",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean",
+      "bytes": 19283,
+      "sha256": "954e1faf71edf0f245afe6a98894f9f0f5a954ea33934aa4b3c82d3b72221300",
+      "permalink": "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean"
+    },
+    {
+      "path": "FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Connectivity.lean",
+      "bytes": 9033,
+      "sha256": "d8a809e4c507a7e120c92ea87603486b068e5140a293eed5cb5736d06f1c5b87",
+      "permalink": "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Connectivity.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean",
+      "lines": [
+        302,
+        358
+      ],
+      "role": "parent",
+      "name": "dist_eq_computable",
+      "excerpt_sha256": "79311915c9ad3822a180a9bc03b9db3af64e7e54e56887f62cf72b6d6f8d9440",
+      "permalink": "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean#L302-L358"
+    },
+    {
+      "path": "FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean",
+      "lines": [
+        250,
+        273
+      ],
+      "role": "child",
+      "name": "mem_iterate_bfsStep_dist_le",
+      "excerpt_sha256": "a39f1d1a26d90180bb51fc13e7cad913e0496e6d06d1f3c279e35dff469960ba",
+      "permalink": "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean#L250-L273"
+    },
+    {
+      "path": "FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean",
+      "lines": [
+        275,
+        300
+      ],
+      "role": "child",
+      "name": "dist_le_mem_iterate_bfsStep",
+      "excerpt_sha256": "048146b2e93844647a6c8fe2736cb4a778ddc3e26f6d547bb6604313617a0fb2",
+      "permalink": "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean#L275-L300"
+    }
+  ],
+  "parent": {
+    "name": "dist_eq_computable",
+    "statement": "theorem dist_eq_computable (G : SimpleGraph α) [DecidableRel G.Adj] (u v : α) :\n    G.dist u v = computable_dist G u v"
+  },
+  "children": [
+    {
+      "name": "mem_iterate_bfsStep_dist_le",
+      "statement": "lemma mem_iterate_bfsStep_dist_le (G : SimpleGraph α) [DecidableRel G.Adj]\n    (u w : α) (n : ℕ) (hw : w ∈ G.bfsStep^[n] {u}) : G.dist u w ≤ n",
+      "closed_by": "induction n generalizing w; zero case by simp; successor case by rcases on mem_bfsStep, then by_cases on a = u and on G.dist u a = 0, each branch closed with Nat.le_succ_of_le, le_trans (dist_le …) and omega",
+      "note": "Direction (⇐) of the BFS/distance correspondence: being reached within n BFS steps bounds the distance by n."
+    },
+    {
+      "name": "dist_le_mem_iterate_bfsStep",
+      "statement": "lemma dist_le_mem_iterate_bfsStep (G : SimpleGraph α) [DecidableRel G.Adj]\n    (u w : α) (n : ℕ) (hdist : G.dist u w ≤ n) (hreach : w = u ∨ G.Reachable u w) :\n    w ∈ G.bfsStep^[n] {u}",
+      "closed_by": "induction n generalizing w; zero case by rcases on hreach and Nat.le_zero; successor case by by_cases on G.dist u w ≤ n (left: ih), else right with witness p.getVert n and ih on the prefix walk p.take n",
+      "note": "Direction (⇒) of the BFS/distance correspondence: distance at most n puts w in the n-th BFS iterate (assuming w is u or reachable)."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An equality `G.dist u v = computable_dist G u v` between a non-computable shortest-walk distance and an executable recursive loop (`computable_dist` / `bfs_dist_aux` with a fuel counter, a depth counter and an accumulated `reached` finset), where the abstract side is defined by `SimpleGraph.dist` and the concrete side by structural recursion on fuel.",
+    "use_when": "the two sides have different presentations (abstract distance vs. recursive BFS) and a direct induction would need its hypothesis generalised over the accumulator (`reached`, `depth`, fuel); state the strengthened invariant first with `suffices`, instantiate it at the concrete starting values, and run the induction inside the suffices block.",
+    "avoid_when": "the strengthened invariant cannot be stated cleanly, the induction needs no generalisation so strengthening buys nothing, or the strengthened statement is not actually implied by (stronger than) the goal — a `suffices` that does not specialise back to the original goal is a false child."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "`dist_eq_computable` is declared in `FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean` at lines 302-358.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean#L302-L358",
+      "form": "declared(dist_eq_computable, FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean, 302-358)"
+    },
+    {
+      "n": 2,
+      "claim": "The proof of `dist_eq_computable` cites `mem_iterate_bfsStep_dist_le`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean#L302-L358",
+      "form": "cites(parent, mem_iterate_bfsStep_dist_le)"
+    },
+    {
+      "n": 3,
+      "claim": "The proof of `dist_eq_computable` cites `dist_le_mem_iterate_bfsStep`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean#L302-L358",
+      "form": "cites(parent, dist_le_mem_iterate_bfsStep)"
+    },
+    {
+      "n": 4,
+      "claim": "`FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean` contains no `sorry`, `admit`, `Admitted` or `axiom` in lines 1-429.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean",
+      "form": "no_sorry(FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean, 1-429)"
+    },
+    {
+      "n": 5,
+      "claim": "The `shape` is a measurement: `glue_lines` = 57 (the parent proof, lines 302-358) and `child_lines` = [24, 26] (lines 250-273 and 275-300), so the 57-line glue delegates both directions of the distance bound to 50 lines of child proof.",
+      "evidence_kind": "measurement",
+      "evidence": "line counts at the pinned commit in https://github.com/google-deepmind/formal-conjectures/blob/a425ca3eb797fe927cb88c950565fdcbbbbada70/FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean: 358-302+1 = 57; 273-250+1 = 24; 300-275+1 = 26; child total 50"
+    }
+  ],
+  "metrics": {
+    "parent_proof_lines": 57,
+    "children": 2,
+    "child_total_lines": 50,
+    "how_counted": "glue = VertexDistance.lean 302-358 (57); children = 250-273 (24) and 275-300 (26)"
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 1,
+    "glue_lines": 57,
+    "child_lines": [
+      24,
+      26
+    ]
+  },
+  "consequences": "Creates one obligation (the strengthened invariant `hsuff`) from the original equality, plus two side conditions when instantiating it at depth 1: that `bfsStep {u}` is the depth-1 iterate (closed by `simp`) and that `v` is not seen at depth 0 (closed because `v ≠ u`, from the `split_ifs` branch). The strengthened statement is quantified over arbitrary fuel/depth/reached, so its proof is an induction on fuel that must carry the invariant `h_inv` and the `h_not_found` side condition through each step. Failure mode: the invariant must be exactly right — if `h_inv` did not tie `reached` to `bfsStep^[depth] {u}`, the recurse branch could not rewrite `bfsStep reached` to `bfsStep^[depth + 1] {u}` to re-establish the induction hypothesis; and the two children must be stated as the exact two directions of `w ∈ bfsStep^[n] {u}` iff `dist u w ≤ n`, or the zero case and the `v ∈ reached` case cannot close.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "7ee9bbe2508b42363dc5c24341023dc31cc970ca9ea0afea9ba617e477e14242",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:21:40Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,metrics,shape,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:22:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:22:52Z",
+      "note": "parent dist_eq_computable: statement re-copied from code; child 'mem_iterate_bfsStep_dist_le': statement re-copied from the declaration of mem_iterate_bfsStep_dist_le; child 'dist_le_mem_iterate_bfsStep': statement re-copied from the declaration of dist_le_mem_iterate_bfsStep"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T09:29:40Z"
+}

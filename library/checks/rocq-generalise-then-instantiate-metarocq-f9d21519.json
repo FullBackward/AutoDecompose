@@ -1,0 +1,133 @@
+{
+  "entry": "rocq-generalise-then-instantiate-metarocq-f9d21519",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:15:47Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:15:47Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:15:47Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: red_ws_red_left@pcuic/theories/PCUICConfluence.v:3940, ws_red_confluence@pcuic/theories/PCUICConfluence.v:3942, ws_red_red@pcuic/theories/PCUICConfluence.v:3943; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:15:47Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(red_confluence, pcuic/theories/PCUICConfluence.v, 3936-3944) -> declared: red_confluence is declared at pcuic/theories/PCUICConfluence.v:3936",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:15:48Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(pcuic/theories/PCUICConfluence.v, 3404-3944) -> no_sorry: none of admit, Admitted, Axiom, axiom in pcuic/theories/PCUICConfluence.v:3404-3944",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:15:48Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(ws_red_confluence, red1_confluent) -> cites: red1_confluent occurs at pcuic/theories/PCUICConfluence.v:3921",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:15:48Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:15:59Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml (MetaRocq CI, triggers on push/PR) runs ./configure.sh --enable-local|opam then make ci-local|ci-opam, building pcuic/theories/PCUICConfluence.v (listed pcuic/_RocqProject.in:64). Pinned commit 51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56 is HEAD of default branch 9.1 (branches-where-head returns 9.1; compare 9.1...51b14e4 status identical)",
+      "by": "verifier",
+      "at": "2026-11-14T12:17:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "3 direct lemmas: red_ws_red_left (3927-3934), ws_red_confluence (3916-3923), ws_red_red (3404-3416). Site lengths: parent red_confluence 3936-3944 = 9 lines; children 3927-3934=8, 3916-3923=8, 3404-3416=13. Depth-6 chain verified link by link: red_confluence@3942 cites ws_red_confluence; ws_red_confluence@3921 cites red1_confluent; red1_confluent@3709 cites pred_rel_confluent; pred_rel_confluent@3269 cites pred1_rel_alpha_confluent; pred1_rel_alpha_confluent@3263 cites diamond_pred1_rel_alpha; diamond_pred1_rel_alpha@3246 cites ws_pred1_diamond (declared 2680, a leaf citing only imported pred1_diamond).",
+      "by": "verifier",
+      "at": "2026-11-14T12:18:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "File header lines 11-18: 'we use confluence of reduction on well-scoped terms [ws_red_confluence]... We can drop the invariants on free variables at each step as reduction preserves free-variables, so we also have [red_confluence]: as long as the starting contexts and terms are well-scoped confluence holds.'",
+      "by": "verifier",
+      "at": "2026-11-14T12:18:09Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:19:28Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Decomposition matches the code: parent red_confluence (3936-3944) is 4 tactic lines that only move/red_ws_red_left (twice), destruct ws_red_confluence, and eapply ws_red_red (twice) — the glue uses exactly the three named children, nothing else. The three children are verbatim (statements re-copied by statements.py) and their closed_by notes match the code: red_ws_red_left closes via have ony...eauto with fvs then now eapply red_ws_red; ws_red_confluence via destruct (red1_confluent...) then exists nf; intuition auto; ws_red_red via Proof using Type, intros H; depind H over the three clos_refl_trans constructors using IHclos_refl_trans1. All parent and child sites end in Qed and no_sorry 3404-3944 is verified, so it closes. Shape numbers are right: direct_lemmas=3 (red_ws_red_left, ws_red_confluence, ws_red_red), glue_lines=9 (3936-3944), child_lines=[8,8,13] (3927-3934, 3916-3923, 3404-3416). Depth=6 verified by following citations: red_confluence->ws_red_confluence(3942)->red1_confluent(3921/3706)->pred_rel_confluent(3709/3266)->pred1_rel_alpha_confluent(3269/3261)->diamond_pred1_rel_alpha(3263/3242)->ws_pred1_diamond(3246/2680), six project lemmas below the parent. Minor note (not an objection): claim 4's chain cites use-site lines (3921,3709,3269,3263,3246) while the README graph lists declaration lines (3706,3266,3261,3242,2680); both are internally consistent and depth 6 is correct.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:19:35Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality lens passes. The move is stated portably: applicability/use_when generalise confluence to 'any closure/diamond property' and well-scopedness to 'an invariant preserved by the relation', with two cheap transport lemmas doing the lifting; the also_known_as names give the general pattern. When-not-to-use is honest and specific: invariant absent from the raw relation's range or not preserved (then red_ws_red_left is unstatable), or transport as hard as the target (no round-trip saving). Consequences name exact loci (eauto with fvs; t : open_term Gamma restriction; dependency on pred1_diamond re-provable only upstream; depind surviving clos_refl_trans as failure mode). Good-leaves-for-a-bounded-prover is explicit: each child is self-contained and closes from earlier named lemmas, not sibling children, with a per-child closure mechanism and the Survey F rule-14 link.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:20:31Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:20:50Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit pinned consistently across entry.json, README (51b14e4bb5f4, an abbreviation of the same hash), sources/metarocq/SOURCE.md and source.json: 51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56. check_provenance.py passes: PCUICConfluence.v is byte-identical at that commit (153276 bytes matches entry.json files[0].bytes). Licence MIT recorded identically in entry.json, README, SOURCE.md, source.json and confirmed by sources/metarocq/upstream-LICENSE (MIT text, Gregory Malecha / Abhishek Anand / Matthieu Sozeau / Simon Boulier / Nicolas Tabareau / Cyril Cohen). All site and file permalinks use the same pinned commit, correct path pcuic/theories/PCUICConfluence.v and matching line ranges (parent 3936-3944; children 3927-3934, 3916-3923, 3404-3416). Source note present with attribution. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:21:09Z"
+    }
+  ]
+}

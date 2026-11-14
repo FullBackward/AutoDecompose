@@ -1,0 +1,390 @@
+module
+
+public import ClassFieldTheory.Cohomology.IndCoind.Finite
+public import ClassFieldTheory.Cohomology.IndCoind.TrivialCohomology
+public import ClassFieldTheory.Cohomology.TateCohomology
+public import ClassFieldTheory.Mathlib.RepresentationTheory.Rep
+
+/-!
+We define functors `up` and `down` from `Rep R G` to itself.
+`up.obj M` is defined to be the cokernel of the injection `coind₁'_ι : M ⟶ coind₁'.obj M` and
+`down.obj M` is defined to be the kernel of the surjection `ind₁'_π : ind₁'.obj M → M`.
+Hence for any `M : Rep R G` we construct two short exact sequences
+
+  `0 ⟶ M ⟶ coind₁'.obj M ⟶ up.obj M ⟶ 0` and
+  `0 ⟶ down.obj M ⟶ ind₁'.obj M ⟶ M ⟶ 0`.
+
+These can be used for dimension-shifting because `coind₁'.obj M` has trivial cohomology and
+`ind₁'.obj M` has trivial homology. I.e. for all `n > 0` we have (for every subgroup `S` of `G`):
+
+  `Hⁿ(S,up M) ≅ Hⁿ⁺¹(S,M)` and
+  `Hₙ(S,down M) ≅ Hₙ₊₁(S,M)`.
+
+If `G` is finite then both the induced and the
+coinduced representations have trivial Tate cohomology,
+so we have:
+
+  `Hⁿ_{Tate}(S, up M) ≅ Hⁿ⁺¹_{Tate}(S,M)`,
+  `Hⁿ_{Tate}(S, down M) ≅ Hⁿ⁻¹_{Tate}(S,M)`.
+
+-/
+
+@[expose] public noncomputable section
+
+open
+  Function
+  Rep
+  Representation
+  CategoryTheory
+  NatTrans
+  ConcreteCategory
+  Limits
+  groupCohomology
+  HomologicalComplex
+
+universe u
+
+variable {R G : Type u} [CommRing R] [Group G] (M : Rep.{u} R G)
+
+namespace Rep.dimensionShift
+
+/-! ### The up functor -/
+
+-- set_option backward.isDefEq.respectTransparency false in
+/--
+The functor taking `M : Rep R G` to `up.obj M`, defined by the short exact sequence
+
+  `0 ⟶ M ⟶ coind₁'.obj M ⟶ up.obj M ⟶ 0`.
+
+Since `coind₁'.obj M` is acyclic, the cohomology of `up.obj M` is a shift by one
+of the cohomology of `M`.
+-/
+@[simps, implicit_reducible]
+def up : Rep R G ⥤ Rep R G where
+  obj M := cokernel (coind₁'_ι.app M)
+  map f := by
+    apply cokernel.desc _ (coind₁'.map f ≫ cokernel.π _)
+    rw [←Category.assoc, ←coind₁'_ι.naturality, Category.assoc, cokernel.condition, comp_zero]
+  map_comp f g := by
+    simp only [Functor.id_obj, Functor.map_comp, Category.assoc]
+    apply coequalizer.hom_ext
+    simp
+
+/-- The projection from the coinduced module to the up module. -/
+abbrev up.π : coind₁'.obj M ⟶ up.obj M := cokernel.π (coind₁'_ι.app M)
+
+/-- The short exact sequence defining `up M`. -/
+@[simps, implicit_reducible]
+def upSES : ShortComplex (Rep R G) where
+  X₁ := M
+  X₂ := coind₁'.obj M
+  X₃ := up.obj M
+  f := coind₁'_ι.app M
+  g := up.π M
+  zero := cokernel.condition (coind₁'_ι.app M)
+
+lemma shortExact_upSES : (upSES M).ShortExact where
+  exact := ShortComplex.exact_cokernel (coind₁'_ι.app M)
+  mono_f := (inferInstance : Mono (coind₁'_ι.app M))
+  epi_g := by dsimp; infer_instance
+
+lemma shortExact_upSES_res {H : Type u} [Group H] (φ : H →* G) :
+    ((upSES M).map (resFunctor φ)).ShortExact :=
+  .map_of_exact (shortExact_upSES M) _
+
+/-- The functor taking `M : Rep R G` to the short complex: `M ⟶ coind₁'.obj M ⟶ up.obj M`. -/
+@[simps] def upShortComplex : Rep R G ⥤ ShortComplex (Rep R G) where
+  obj := upSES
+  map f := {
+    τ₁ := f
+    τ₂ := coind₁'.map f
+    τ₃ := up.map f
+  }
+  map_comp f g := by ext : 1 <;> simp [-up_map]
+
+/--
+The connecting homomorphism from `H⁰(G,up M)` to `H¹(G,M)` is
+an epimorphism (i.e. surjective).
+-/
+instance δ_up_zero_epi : Epi (δ (shortExact_upSES M) 0 1 rfl) := by
+  refine epi_δ_of_isZero (shortExact_upSES M) 0 ?_
+  simpa [-coind₁'_obj] using isZero_of_trivialCohomology
+
+/--
+The connecting homomorphism from `Hⁿ⁺¹(G,up M)` to `Hⁿ⁺²(G,M)` is an isomorphism.
+-/
+instance δ_up_isIso (n : ℕ) : IsIso (δ (shortExact_upSES M) (n + 1) (n + 2) rfl) := by
+  refine isIso_δ_of_isZero (shortExact_upSES M) (n + 1) ?_ ?_ <;>
+    simpa [-coind₁'_obj] using isZero_of_trivialCohomology
+
+@[simps! hom]
+def δUpIso (n : ℕ) : groupCohomology (G := G) (up.obj M) (n + 1) ≅ groupCohomology M (n + 2) :=
+  asIso (δ (shortExact_upSES M) (n + 1) (n + 2) rfl)
+
+def δUpNatIso (n : ℕ) : up ⋙ functor R G (n + 1) ≅ functor R G (n + 2) :=
+  NatIso.ofComponents (fun M ↦ δUpIso M n) fun {M N} f ↦ .symm <| HomologySequence.δ_naturality
+    ((upShortComplex ⋙ (cochainsFunctor R G).mapShortComplex).map f)
+    (map_cochainsFunctor_shortExact (shortExact_upSES M))
+    (map_cochainsFunctor_shortExact (shortExact_upSES N)) (n + 1) (n + 2) rfl
+
+/--
+If S ⊆ G then the connecting homomorphism from `H^{0}(S,(up_G M)↓S)` to `H^{1}(S,M↓S)` is
+an epimorphism (i.e. surjective).
+-/
+lemma epi_δ_up_zero_res {S : Type u} [Group S] {φ : S →* G} (inj : Injective φ) :
+    Epi (δ ((shortExact_res φ).2 <| shortExact_upSES M) 0 1 rfl) := by
+  refine epi_δ_of_isZero _ 0 ?_
+  simpa using isZero_of_injective _ φ _ (by omega) inj
+
+/--
+If `S ⊆ G` and `M` is a `G`-module then the connecting homomorphism
+from `H^{n+1}(S,(up_G M)↓S)` to `H^{n+2}(S,M↓S)` is an isomorphism.
+-/
+lemma isIso_δ_up_res {S : Type u} [Group S] {φ : S →* G} (inj : Injective φ) (n : ℕ) [NeZero n] :
+    IsIso (δ ((shortExact_res φ).2 <| shortExact_upSES M) n (n + 1) rfl) := by
+  refine isIso_δ_of_isZero _ n ?_ ?_ <;>
+    simpa using isZero_of_injective _ φ _ (NeZero.ne _) inj
+
+def δUpResIso {S : Type u} [Group S] {φ : S →* G} (inj : Function.Injective φ) (n : ℕ) [NeZero n] :
+    groupCohomology (up.obj M ↓ φ) n ≅ groupCohomology (M ↓ φ) (n + 1) := by
+  have := isIso_δ_up_res M inj n
+  apply asIso (δ ((shortExact_res φ).2 <| shortExact_upSES M) n (n + 1) rfl)
+
+/-- The connecting homomorphism `δ : H⁰(G, up M) ⟶ H¹(G, M)`, as a natural transformation. -/
+@[simps]
+def δUp : up ⋙ functor R G 0 ⟶ functor R G 1 where
+  app M := δ (shortExact_upSES M) 0 1 rfl
+  naturality M N f :=
+    (δ_naturality (shortExact_upSES M) (shortExact_upSES N) (upShortComplex.map f) 0 1 rfl).symm
+
+/-- The connecting homomorphism `δ : H⁰(H, (up M) ↓ φ) ⟶ H¹(H, M ↓ φ)`, as a natural
+transformation in `M`. -/
+@[simps]
+def δUpRes {H : Type u} [Group H] (φ : H →* G) :
+    up ⋙ resFunctor φ ⋙ functor R H 0 ⟶ resFunctor φ ⋙ functor R H 1 where
+  app M := δ (shortExact_upSES_res M φ) 0 1 rfl
+  naturality M N f :=
+    (δ_naturality (shortExact_upSES_res M φ) (shortExact_upSES_res N φ)
+      ((resFunctor φ).mapShortComplex.map (upShortComplex.map f)) 0 1 rfl).symm
+
+/-- If `S ⊆ G` then `δ : H⁰(S, (up M) ↓ S) ⟶ H¹(S, M ↓ S)` is an epimorphism. -/
+instance epi_δUpRes_app (S : Subgroup G) : Epi ((δUpRes S.subtype).app M) :=
+  epi_δ_up_zero_res (φ := S.subtype) M S.subtype_injective
+
+@[reassoc (attr := simp)]
+lemma map_up_π_comp_δUp : (functor R G 0).map (up.π M) ≫ δUp.app M = 0 := by
+  rw [δUp_app, functor_map, ← upSES_g, map_comp_δ]
+
+-- `δ` is built on `X.map (cochainsFunctor R H)`, so `homology_exact₃` needs it to unfold.
+attribute [local implicit_reducible] cochainsFunctor in
+/-- `H⁰(H, (coind₁' M) ↓ φ) ⟶ H⁰(H, (up M) ↓ φ) ⟶ H¹(H, M ↓ φ)` is exact. -/
+lemma exact_δUpRes {H : Type u} [Group H] (φ : H →* G) :
+    (ShortComplex.mk ((functor R H 0).map ((resFunctor φ).map (up.π M))) ((δUpRes φ).app M)
+      (map_comp_δ (shortExact_upSES_res M φ) 0 1 rfl)).Exact := by
+  simp only [δUpRes_app]
+  exact (map_cochainsFunctor_shortExact (shortExact_upSES_res M φ)).homology_exact₃ 0 1
+    (ComplexShape.up_mk 0 1 rfl)
+
+/-! ### The down functor -/
+
+/--
+The functor taking `M : Rep R G` to `down.obj M`, defined by the short exact sequence
+
+  `0 ⟶ down.obj M ⟶ ind₁'.obj M ⟶ M ⟶ 0`.
+
+Since `ind₁'.obj M` is acyclic, the homology of `down.obj M` is a shift by one
+of the homology of `M`.
+-/
+@[simps, implicit_reducible] def down : Rep R G ⥤ Rep R G where
+  obj M := kernel (ind₁'_π.app M)
+  map φ := kernel.lift _ (kernel.ι _ ≫ ind₁'.map φ) (by
+    rw [Category.assoc, ind₁'_π.naturality, ←Category.assoc, kernel.condition, zero_comp])
+  map_comp f g := by
+    simp only [Functor.id_obj, Functor.map_comp]
+    apply equalizer.hom_ext
+    simp
+
+/-- The injection from the down module to the induced module. -/
+abbrev down.ι : down.obj M ⟶ ind₁'.obj M := kernel.ι (ind₁'_π.app M)
+
+/-- The short exact sequence defining `down M`. -/
+@[simps, implicit_reducible] def downSES : ShortComplex (Rep R G) where
+  X₁ := down.obj M
+  X₂ := ind₁'.obj M
+  X₃ := M
+  f := down.ι M
+  g := ind₁'_π.app M
+  zero := kernel.condition (ind₁'_π.app M)
+
+lemma shortExact_downSES : (downSES M).ShortExact where
+  exact := ShortComplex.exact_kernel (ind₁'_π.app M)
+  mono_f := by dsimp; infer_instance
+  epi_g := (inferInstance : Epi (ind₁'_π.app M))
+
+lemma shortExact_downSES_res {H : Type*} [Group H] (φ : H →* G) :
+    ((downSES M).map (resFunctor φ)).ShortExact :=
+  (shortExact_res φ).2 (shortExact_downSES M)
+
+/-- `down` as a functor from representations to short complexes.
+
+  `M ⟶ coind₁'.obj M ⟶ up.obj M`. -/
+@[simps, implicit_reducible]
+def downShortComplex : Rep R G ⥤ ShortComplex (Rep R G) where
+  obj := downSES
+  map f :=
+  { τ₁ := down.map f
+    τ₂ := ind₁'.map f
+    τ₃ := f
+    comm₂₃ := by
+      ext : 2
+      simp only [downSES_X₂, ind₁', downSES_X₃, downSES_g, ind₁'_π, hom_comp, hom_ofHom,
+        IntertwiningMap.comp_toLinearMap]
+      ext; simp}
+  map_comp f g := by ext : 1 <;> simp [-down_map]
+
+variable [Finite G]
+
+/--
+The connecting homomorphism `H⁰(G,down.obj M) ⟶ H¹(G, M)` is an epimorphism if `G` is finite.
+-/
+instance epi_δ_down_zero : Epi (δ (shortExact_downSES M) 0 1 rfl) := by
+  refine epi_δ_of_isZero (shortExact_downSES M) 0 ?_
+  simpa [-ind₁'_obj] using isZero_of_trivialCohomology
+
+/--
+The connecting homomorphism `H⁰(H,down.obj M ↓ H) ⟶ H¹(H, M ↓ H)` is an epimorphism if
+`H` is a subgroup of a finite group `G`.
+-/
+lemma epi_δ_down_res_zero {S : Type u} [Group S] {φ : S →* G} (inj : Injective φ) :
+    Epi (δ (shortExact_downSES_res M φ) 0 1 rfl) := by
+  refine epi_δ_of_isZero (shortExact_downSES_res M φ) 0 ?_
+  simpa [-ind₁'_obj, -ind₁'_obj_ρ] using isZero_of_injective _ φ _ (by omega) inj
+
+/--
+The connecting homomorphism `Hⁿ⁺¹(G,down.obj M) ⟶ Hⁿ⁺²(G, M)` is an isomorphism
+if `G` is finite.
+-/
+instance isIso_δ_down (n : ℕ) [NeZero n] : IsIso (δ (shortExact_downSES M) n (n + 1) rfl) := by
+  apply isIso_δ_of_isZero <;> dsimp only [downSES_X₂] <;> exact isZero_of_trivialCohomology
+
+lemma isIso_δ_down_res (n : ℕ) [NeZero n] {H : Type u} [Group H] {φ : H →* G} (inj : Injective φ) :
+    IsIso (δ (shortExact_downSES_res M φ) n (n + 1) rfl) := by
+  have := NeZero.ne n
+  refine isIso_δ_of_isZero (shortExact_downSES_res M φ) n ?_ ?_ <;>
+    simpa [-ind₁'_obj, -ind₁'_obj_ρ] using isZero_of_injective _ φ _ (by omega) inj
+
+def δDownIso (n : ℕ) [NeZero n] : groupCohomology M n ≅ groupCohomology (down.obj M) (n + 1) :=
+  asIso (δ (shortExact_downSES M) n (n + 1) rfl)
+
+def δDownResIso {H : Type u} [Group H] {φ : H →* G} (inj : Injective φ) (n : ℕ) [NeZero n] :
+    groupCohomology (M ↓ φ) n ≅ groupCohomology (down.obj M ↓ φ) (n + 1) :=
+  @asIso _ _ _ _ (δ (shortExact_downSES_res M φ) n (n + 1) rfl) (isIso_δ_down_res M n inj)
+
+def δDownNatIso (n : ℕ) [NeZero n] : functor R G n ≅ down ⋙ functor R G (n + 1) :=
+  NatIso.ofComponents (fun M ↦ δDownIso M n) fun {M N} f ↦ .symm <| HomologySequence.δ_naturality
+    ((downShortComplex ⋙ (cochainsFunctor R G).mapShortComplex).map f)
+    (map_cochainsFunctor_shortExact (shortExact_downSES M))
+    (map_cochainsFunctor_shortExact (shortExact_downSES N)) n (n + 1) rfl
+
+end dimensionShift
+
+end Rep
+
+namespace groupCohomology
+
+variable [Fintype G]
+open Rep
+  dimensionShift
+
+/--
+An explicit version of `isZero_of_trivialTateCohomology`
+-/
+private lemma isZero_of_trivialTateCohomology' (M : Rep R G)
+    [M.TrivialTateCohomology] (n : ℤ) : IsZero (tateCohomology M n) :=
+  TrivialTateCohomology.of_injective (.id G) _ Function.injective_id
+
+instance instIsIso_shortExact_upSES (M : Rep R G) (n : ℤ) :
+    IsIso (TateCohomology.δ (shortExact_upSES M) n) := by
+  have _ : TrivialTateCohomology (coind₁'.obj M) := inferInstance
+  exact ShortComplex.ShortExact.isIso_δ
+    (TateCohomology.map_tateComplexFunctor_shortExact (shortExact_upSES M))
+    n (n + 1) rfl (by simpa using! isZero_of_trivialTateCohomology' (coind₁'.obj M) n)
+    (by simpa using! isZero_of_trivialTateCohomology' (coind₁'.obj M) (n + 1))
+
+instance instIsIso_shortExact_downSES (M : Rep R G) (n : ℤ) :
+    IsIso (TateCohomology.δ (shortExact_downSES M) n) := by
+  have _ : TrivialTateCohomology (ind₁'.obj M) := inferInstance
+  exact ShortComplex.ShortExact.isIso_δ
+    (TateCohomology.map_tateComplexFunctor_shortExact (shortExact_downSES M))
+    n (n + 1) rfl (by simpa using! isZero_of_trivialTateCohomology' (ind₁'.obj M) n)
+    (by simpa using! isZero_of_trivialTateCohomology' (ind₁'.obj M) (n + 1))
+
+@[simps! hom]
+def δUpIsoTate (M : Rep R G) (n : ℤ) :
+    tateCohomology (up.{u}.obj M) n ≅ tateCohomology M (n + 1) :=
+  have := instIsIso_shortExact_upSES M n
+  asIso (TateCohomology.δ (shortExact_upSES M) n)
+
+@[simps! hom]
+def δDownIsoTate (M : Rep R G) (n : ℤ) :
+    tateCohomology M n ≅ tateCohomology (down.obj M) (n + 1) :=
+  asIso (TateCohomology.δ (shortExact_downSES M) n)
+
+omit [Fintype G] in
+theorem instIsIso_shortExact_upSES_res {S : Type u} [Group S] [Fintype S]
+    {φ : S →* G} (inj : Injective φ) [Finite G] (M : Rep R G) (n : ℤ) :
+    IsIso (TateCohomology.δ (shortExact_upSES_res M φ) n) := by
+  have _ : TrivialTateCohomology (coind₁'.obj M ↓ φ) :=
+    ⟨fun H {n} =>
+      let := Fintype.ofFinite H
+      TrivialTateCohomology.of_injective
+        (φ.comp H.subtype) n (inj.comp H.subtype_injective)⟩
+  exact ShortComplex.ShortExact.isIso_δ
+    (TateCohomology.map_tateComplexFunctor_shortExact (shortExact_upSES_res M φ))
+    n (n + 1) rfl (by simpa using! isZero_of_trivialTateCohomology' (coind₁'.obj M ↓ φ) n)
+    (by simpa using! isZero_of_trivialTateCohomology' (coind₁'.obj M ↓ φ) (n + 1))
+
+omit [Fintype G] in
+theorem instIsIso_shortExact_downSES_res {S : Type u} [Group S] [Fintype S]
+    {φ : S →* G} (inj : Injective φ) [Finite G] (M : Rep R G) (n : ℤ) :
+    IsIso (TateCohomology.δ (shortExact_downSES_res M φ) n) := by
+  have _ : TrivialTateCohomology (ind₁'.obj M ↓ φ) :=
+    ⟨fun H {n} =>
+      let := Fintype.ofFinite H
+      TrivialTateCohomology.of_injective
+        (φ.comp H.subtype) n (inj.comp H.subtype_injective)⟩
+  exact ShortComplex.ShortExact.isIso_δ
+    (TateCohomology.map_tateComplexFunctor_shortExact (shortExact_downSES_res M φ))
+    n (n + 1) rfl (by simpa using! isZero_of_trivialTateCohomology' (ind₁'.obj M ↓ φ) n)
+    (by simpa using! isZero_of_trivialTateCohomology' (ind₁'.obj M ↓ φ) (n + 1))
+
+@[simps! hom]
+def δUpResIsoTate {S : Type u} [Group S] [Fintype S] {φ : S →* G} (inj : Injective φ) (n : ℤ) :
+    tateCohomology (up.obj M ↓ φ) n ≅ tateCohomology (M ↓ φ) (n + 1) :=
+  have := instIsIso_shortExact_upSES_res inj M n
+  asIso (TateCohomology.δ (shortExact_upSES_res M φ) n)
+
+@[simps! hom]
+def δDownResIsoTate {H : Type u} [Group H] [Fintype H] {φ : H →* G} (inj : Injective φ) (n : ℤ) :
+    tateCohomology (M ↓ φ) n ≅ tateCohomology (down.obj M ↓ φ) (n + 1) :=
+  have := instIsIso_shortExact_downSES_res inj M n
+  asIso (TateCohomology.δ (shortExact_downSES_res M φ) n)
+
+def δUpNatIsoTate (n : ℤ) : up ⋙ tateCohomologyFunctor (R := R) (G := G) n ≅
+    tateCohomologyFunctor (n + 1) :=
+  NatIso.ofComponents (fun M ↦ δUpIsoTate M n) fun {M N} f ↦ .symm <| HomologySequence.δ_naturality
+    ((upShortComplex ⋙ (tateComplexFunctor R G).mapShortComplex).map f)
+    (TateCohomology.map_tateComplexFunctor_shortExact (shortExact_upSES M))
+    (TateCohomology.map_tateComplexFunctor_shortExact (shortExact_upSES N)) n (n + 1) rfl
+
+def δDownNatIsoTate (n : ℤ) : tateCohomologyFunctor (R := R) (G := G) n ≅
+    down ⋙ tateCohomologyFunctor (n + 1) :=
+  NatIso.ofComponents (fun M ↦ δDownIsoTate M n) fun {M N} f ↦ .symm <|
+    HomologySequence.δ_naturality
+      ((downShortComplex ⋙ (tateComplexFunctor R G).mapShortComplex).map f)
+      (TateCohomology.map_tateComplexFunctor_shortExact (shortExact_downSES M))
+      (TateCohomology.map_tateComplexFunctor_shortExact (shortExact_downSES N)) n (n + 1) rfl
+
+end groupCohomology
+
+end

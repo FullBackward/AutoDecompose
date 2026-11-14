@@ -1,0 +1,133 @@
+{
+  "entry": "lean-extensionality-mathlib4-413a12a2",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:11:24Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:11:24Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:11:24Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: card_theFourteen@Archive/Examples/Kuratowski.lean:239, nodup_theFourteen_fourteenSet@Archive/Examples/Kuratowski.lean:240, mem_theFourteen_iff_isObtainable@Archive/Examples/Kuratowski.lean:241; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:11:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "declared(card_theFourteen, Archive/Kuratowski.lean, 81-81) -> declared: card_theFourteen is declared at Archive/Kuratowski.lean:81",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:11:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, mem_theFourteen_iff_isObtainable) -> cites: mem_theFourteen_iff_isObtainable occurs at Archive/Examples/Kuratowski.lean:241",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:11:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "no_sorry(Archive/Examples/Kuratowski.lean, 228-241) -> no_sorry: none of sorry, admit, axiom in Archive/Examples/Kuratowski.lean:228-241",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:11:24Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:11:30Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml (job 'ci') delegates to build_template.yml, whose 'build archive, counterexamples and wanted' step runs lake-build-with-retry.sh Archive Counterexamples Wanted on push to master; commit e1545ebed97594477bbd88b2fe948ffce56e5af2 is an ancestor of master (compare: behind_by 0), so Archive/Examples/Kuratowski.lean and Archive/Kuratowski.lean are built by CI on the default branch",
+      "by": "verifier",
+      "at": "2026-11-14T09:13:31Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "read code: parent ncard_isObtainable_fourteenSet at Archive/Examples/Kuratowski.lean L238-L241 is exactly 4 lines; children card_theFourteen (Archive/Kuratowski.lean L81, 1 line), nodup_theFourteen_fourteenSet (Examples L229-L235, 7 lines), mem_theFourteen_iff_isObtainable (Archive/Kuratowski.lean L91-L103, 13 lines); depth-4 chain confirmed: nodup_theFourteen_fourteenSet L230 calls nodup_theFourteen_of_nodup_theClosedSix_of_disjoint (def L114), whose body L117 rw's theFourteen_eq_pair_add_theClosedSix_add_theOpenSix (def L71), whose body L73 rw's sum_map_theClosedSix_add_compl (def L66)",
+      "by": "verifier",
+      "at": "2026-11-14T09:13:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read Archive/Kuratowski.lean L107-L109: theorem ncard_isObtainable_le_fourteen (s : Set X) : {t | IsObtainable s t}.ncard <= 14 := by / convert! Set.ncard_coe_finset _ (theFourteen s).toFinset_card_le / simp [Set.ext_iff, mem_theFourteen_iff_isObtainable]; the characterization closes the companion 'at most 14' theorem by that simp, as claimed",
+      "by": "verifier",
+      "at": "2026-11-14T09:13:36Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:13:58Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent ncard_isObtainable_fourteenSet (Examples/Kuratowski.lean 238-241) is a 4-line rw chain + congr; ext; simp that cites exactly card_theFourteen (239), nodup_theFourteen_fourteenSet (240) and mem_theFourteen_iff_isObtainable (241); the other two rw terms are Mathlib lemmas. The three children are exactly the project lemmas the parent uses. Each child's statement and closing method match the code: card_theFourteen := rfl (Kuratowski 81, 1 line); nodup_theFourteen_fourteenSet := nodup_theFourteen_of_nodup_theClosedSix_of_disjoint nodup_theClosedSix_fourteenSet <| Multiset.disjoint_iff_ne.mpr (Examples 229-235, 7 lines); mem_theFourteen_iff_isObtainable by mp/mpr (Kuratowski 91-103, 13 lines). Shape numbers verified: direct_lemmas=3, glue_lines=4 (parent 238-241), child_lines=[1,7,13], depth=4 via the chain parent->nodup_theFourteen_fourteenSet->nodup_theFourteen_of_nodup_theClosedSix_of_disjoint->theFourteen_eq_pair_add_theClosedSix_add_theOpenSix->sum_map_theClosedSix_add_compl (all cites read and confirmed). Provenance pass: 2 files byte-identical.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:14:41Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality lens: move is stated parametrically (goal shape {t | P s t}.ncard = N, multiset M s, characterization t ∈ M s ↔ P s t), so it applies beyond the Kuratowski example; 'when not to use' lists three concrete, honest conditions (iff not yet a lemma → ext leaves a real two-direction proof; cardinality not rfl; set equality feeds further structure); consequences are specific and honest including the failure mode where simp silently stops firing at the ext if the characterization drifts from the inductive definition. README's 'Why each child is a good leaf' says what makes the lemmas good bounded-prover leaves: each is self-contained and closes on its own (rfl / structural case analysis), with child spans 1, 7, 13 lines.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:15:29Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:15:50Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent with the copied files. check_provenance.py passes (2 files byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2); both sha256 hashes in entry.json match the copied files (b715076e… for Archive/Examples/Kuratowski.lean 11283B, 7cb15c93… for Archive/Kuratowski.lean 4617B) and file sizes match; every permalink uses the pinned commit e1545ebed97594477bbd88b2fe948ffce56e5af2, matching source.json, SOURCE.md and entry.json source.commit; licence Apache-2.0 is consistent across entry.json, source.json, SOURCE.md and the copied upstream-LICENSE (Apache License Version 2.0); all cited line ranges (Kuratowski.lean:81, 91-103; Examples/Kuratowski.lean:229-235, 238-241) open to exactly the quoted declarations. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:16:13Z"
+    }
+  ]
+}

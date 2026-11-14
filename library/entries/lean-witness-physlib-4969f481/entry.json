@@ -1,0 +1,197 @@
+{
+  "id": "lean-witness-physlib-4969f481",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Witness d = 𝑅ᵣ∞ ρ for the generalized quantum Stein's lemma (Theorem 4)",
+  "intent": "Close the file's headline theorem — Theorem 4, the generalized quantum Stein's lemma stated as the existence of one number to which both the hypothesis-testing rate and the regularized relative entropy of resource converge — by naming the witness d = 𝑅ᵣ∞ ρ and discharging the two convergences of the conjunction with the two project lemmas that already prove them.",
+  "move": "witness",
+  "also_known_as": [
+    "exists introduction",
+    "refine ⟨w, ?_, ?_⟩",
+    "use"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "physlib",
+    "url": "https://github.com/leanprover-community/physlib",
+    "commit": "ca577bfd34ef356be2595528da1ef13a4a405816",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "QuantumInfo/ResourceTheory/SteinsLemma.lean",
+      "bytes": 107715,
+      "sha256": "cb61f85e01bbd6276097106a80985070bb3e7308559a86e87846fdbc1750a7e5",
+      "permalink": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/ResourceTheory/SteinsLemma.lean"
+    },
+    {
+      "path": "QuantumInfo/ResourceTheory/FreeState.lean",
+      "bytes": 20886,
+      "sha256": "ef61ab6ec5d04f86ccaf17ed357dba0d4af6f8ce9c68edc35d3384e00a859d15",
+      "permalink": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/ResourceTheory/FreeState.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "QuantumInfo/ResourceTheory/SteinsLemma.lean",
+      "lines": [
+        2114,
+        2123
+      ],
+      "role": "parent",
+      "name": "limit_hypotesting_eq_limit_rel_entropy",
+      "excerpt_sha256": "03badde1a1147c5458b12264238aac15a4af1dde138da2d3f16550c48ce2a990",
+      "permalink": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/ResourceTheory/SteinsLemma.lean#L2114-L2123"
+    },
+    {
+      "path": "QuantumInfo/ResourceTheory/SteinsLemma.lean",
+      "lines": [
+        1980,
+        1981
+      ],
+      "role": "child",
+      "name": "GeneralizedQSteinsLemma",
+      "excerpt_sha256": "9cc8fb8fd40974ba328878fc7f8985dbd45b488757d1723916ebc3480a16964c",
+      "permalink": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/ResourceTheory/SteinsLemma.lean#L1980-L1981"
+    },
+    {
+      "path": "QuantumInfo/ResourceTheory/FreeState.lean",
+      "lines": [
+        481,
+        488
+      ],
+      "role": "child",
+      "name": "RelativeEntResource.tendsto_ennreal",
+      "excerpt_sha256": "bc746208638efffb5a3da7fe0cdd9d4828e85b25d9758d89cb49495c8b9a56de",
+      "permalink": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/ResourceTheory/FreeState.lean#L481-L488"
+    },
+    {
+      "path": "QuantumInfo/ResourceTheory/SteinsLemma.lean",
+      "lines": [
+        2110,
+        2113
+      ],
+      "role": "context",
+      "name": "theorem4-doc",
+      "excerpt_sha256": "1a5cccc3eef7bf40c54fed9195bb59bade4a1c0026c561f8d18426b9b314df06",
+      "permalink": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/ResourceTheory/SteinsLemma.lean#L2110-L2113"
+    }
+  ],
+  "parent": {
+    "name": "limit_hypotesting_eq_limit_rel_entropy",
+    "statement": "theorem limit_hypotesting_eq_limit_rel_entropy (ρ : MState (H i)) (ε : Prob) (hε : 0 < ε ∧ ε < 1) :\n    ∃ d : ℝ≥0,\n      Filter.atTop.Tendsto (fun n ↦ —log β_ ε(ρ ⊗ᵣ^[n]‖IsFree) / n) (𝓝 d)\n      ∧\n      Filter.atTop.Tendsto (fun n ↦ (⨅ σ ∈ IsFree, 𝐃(ρ ⊗ᵣ^[n]‖σ)) / n) (𝓝 d)"
+  },
+  "children": [
+    {
+      "name": "GeneralizedQSteinsLemma",
+      "statement": "theorem GeneralizedQSteinsLemma {i : ι} (ρ : MState (H i)) {ε : Prob} (hε : 0 < ε ∧ ε < 1) :\n    Filter.atTop.Tendsto (fun n ↦ —log β_ ε(ρ ⊗ᵣ^[n]‖IsFree) / n) (𝓝 (𝑅ᵣ∞ ρ))",
+      "closed_by": "its own proof (1983-2108): `tendsto_of_le_liminf_of_limsup_le`, the key part via `Lemma7_improver`/`Lemma7_gap`, the strong converse via `Lemma6`",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the hypothesis-testing rate −log β_ε(ρ ⊗ᵣ^[n] ‖ IsFree) / n tends to 𝑅ᵣ∞ ρ"
+    },
+    {
+      "name": "RelativeEntResource.tendsto_ennreal",
+      "statement": "theorem RelativeEntResource.tendsto_ennreal (ρ : MState (H i)) :\n    Filter.atTop.Tendsto (fun n ↦ (⨅ σ ∈ IsFree, 𝐃(ρ ⊗ᵣ^[n]‖σ)) / ↑n) (𝓝 (𝑅ᵣ∞ ρ))",
+      "closed_by": "`Filter.Tendsto.congr'` with `RelativeEntResource.tendsto ρ` (FreeState.lean 471-477)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the regularized relative entropy of resource (⨅ σ ∈ IsFree, 𝐃(ρ ⊗ᵣ^[n] ‖ σ)) / n tends to 𝑅ᵣ∞ ρ"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "∃ d : ℝ≥0, (seq₁ n ⟶ d) ∧ (seq₂ n ⟶ d): two sequences are each already known by a named project lemma to converge to the same concrete term (here the regularized relative entropy of resource 𝑅ᵣ∞ ρ).",
+    "use_when": "each conjunct is already proved as a named lemma with exactly the target's statement, so the only remaining work is to exhibit the common witness and conjoin the two facts.",
+    "avoid_when": "the two limits are not yet known to coincide, or a conjunct must be proved from scratch (then the work lives in the child lemma and the witness is not the point); when the common limit is not a concrete term but only obtained via completeness, so there is no term available to `use`."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site cites GeneralizedQSteinsLemma.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/ResourceTheory/SteinsLemma.lean#L2114-L2123",
+      "form": "cites(parent, GeneralizedQSteinsLemma)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites RelativeEntResource.tendsto_ennreal.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/ResourceTheory/SteinsLemma.lean#L2114-L2123",
+      "form": "cites(parent, RelativeEntResource.tendsto_ennreal)"
+    },
+    {
+      "n": 3,
+      "claim": "No sorry/admit/axiom in SteinsLemma.lean lines 1980-2123.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/ResourceTheory/SteinsLemma.lean#L1980-L2123",
+      "form": "no_sorry(QuantumInfo/ResourceTheory/SteinsLemma.lean, 1980-2123)"
+    },
+    {
+      "n": 4,
+      "claim": "The witness move closes the parent in 5 lines of proof (2119-2123: one `use` naming d, one `constructor` splitting the conjunction, one `exact` per conjunct) from two named project lemmas whose proofs are 129 lines (GeneralizedQSteinsLemma, 1980-2108) and 8 lines (RelativeEntResource.tendsto_ennreal, FreeState.lean 481-488); the checked lemma chain below the parent is 4 deep (limit_hypotesting_eq_limit_rel_entropy → GeneralizedQSteinsLemma → Lemma7_gap → Lemma7 → EquationS62).",
+      "evidence_kind": "measurement",
+      "evidence": "line counts of the parent by-block (2119-2123) and the two child sites (1980-2108 and FreeState.lean 481-488), counted from the copied files; the chain is cited at 2122, 2032, 1971, 1948 of SteinsLemma.lean"
+    },
+    {
+      "n": 5,
+      "claim": "The authors state that they prove the generalized quantum Stein's lemma as the existence of one number to which both sides converge, rather than as an equality of limits: \"What they state as an equality of limits, which don't exist per se in Mathlib, we state as the existence of a number (which happens to be `RegularizedRelativeEntResource`) to which both sides converge.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "doc comment at lines 2110-2113, https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/ResourceTheory/SteinsLemma.lean#L2110-L2113"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 4,
+    "glue_lines": 10,
+    "child_lines": [
+      2,
+      8
+    ]
+  },
+  "metrics": {
+    "parent_lines": 10,
+    "glue_body_lines": 5,
+    "children": 2,
+    "child_lines": [
+      2,
+      8
+    ],
+    "child_proof_lines": [
+      129,
+      8
+    ],
+    "how_counted": "child_lines = the two child site spans (1980-1981 for GeneralizedQSteinsLemma's statement, 481-488 for tendsto_ennreal's declaration+proof); child_proof_lines = the full declaration+proof spans (1980-2108 and 481-488), counted from the copied files"
+  },
+  "consequences": "The `use` commits to one witness and `constructor` creates the two conjuncts as obligations, each discharged by a lemma that must prove convergence to exactly that d; a lemma that converges to a different spelling of the same limit needs a `convert`/`congr`. There is no exhaustiveness obligation (that belongs to case-split) and no induction. The honesty of the move rests entirely on the two child lemmas being closed and about the same limit; if the second conjunct (the ⨅ σ ∈ IsFree, 𝐃(ρ ⊗ᵣ^[n] ‖ σ) / n side) were unproved, the witness move would reduce the theorem to a still-hard child rather than close it.",
+  "known_uses": [
+    "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/ResourceTheory/SteinsLemma.lean#L1946-L1948"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "4969f481675d434caf604876e2ecf3a0c3f9db22f75c6b0b188782ce72d3f572",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:33:08Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,rule,known_uses,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:40:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:34:30Z",
+      "note": "parent limit_hypotesting_eq_limit_rel_entropy: statement re-copied from code; child 'GeneralizedQSteinsLemma': statement re-copied from the declaration of GeneralizedQSteinsLemma; child 'RelativeEntResource.tendsto_ennreal': statement re-copied from the declaration of RelativeEntResource.tendsto_ennreal"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T12:50:36Z"
+}

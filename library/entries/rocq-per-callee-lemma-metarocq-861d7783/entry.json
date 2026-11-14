@@ -1,0 +1,323 @@
+{
+  "id": "rocq-per-callee-lemma-metarocq-861d7783",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Per-pass correctness lemmas for erasure, dearging and match-on-box removal, composed in extract_correct",
+  "intent": "Reduce the end-to-end correctness of the verified extraction pipeline — that a PCUIC constant evaluating to a constructor extracts to an erased, dearged, match-on-box-removed λ□ term evaluating to the same constructor — to one correctness lemma per pass (erases_correct, dearg_transform_correct, optimize_correct) plus the typing, well-formedness and dependency-closure lemmas their premises need, so extract_correct is a 51-line composition that never re-proves a pass.",
+  "move": "per-callee-lemma",
+  "also_known_as": [
+    "per-pass simulation lemma",
+    "per-component correctness lemma",
+    "one lemma per compiler pass"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "metarocq",
+    "url": "https://github.com/MetaRocq/metarocq",
+    "commit": "51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "erasure/theories/Typed/ExtractionCorrectness.v",
+      "bytes": 33044,
+      "sha256": "ca58520ebb15a7f1767da9a5125c8abf45ad069987bcfa43067b149fd11eaf9a",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Typed/ExtractionCorrectness.v"
+    },
+    {
+      "path": "erasure/theories/ErasureCorrectness.v",
+      "bytes": 64648,
+      "sha256": "99c5aedbfb2ad719a9f8add2759ac7d64bffe4d04e662dc922635c379c9ab4ec",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/ErasureCorrectness.v"
+    },
+    {
+      "path": "erasure/theories/Typed/OptimizeCorrectness.v",
+      "bytes": 181877,
+      "sha256": "82a08026cf2ad0bb9d4f48e2d236681dc328b503cca78b127588bc3d76772ce6",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Typed/OptimizeCorrectness.v"
+    },
+    {
+      "path": "erasure/theories/Typed/ErasureCorrectness.v",
+      "bytes": 13218,
+      "sha256": "bbd3bcb0005bfafb83ee81522b0ab58083c2e7b606ef2b1d1dfb0e774675c553",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Typed/ErasureCorrectness.v"
+    },
+    {
+      "path": "pcuic/theories/PCUICInversion.v",
+      "bytes": 13466,
+      "sha256": "4ca30d2ef45f43c845ad132c912e62508d8d29e0a8b0fdc7ab433eaa7e1aca86",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/PCUICInversion.v"
+    },
+    {
+      "path": "erasure/theories/Typed/Transform.v",
+      "bytes": 1541,
+      "sha256": "a7ccd1fb37fc46efaea7d7ec5795d196e714e21153fac97db6668b9f751c9be2",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Typed/Transform.v"
+    },
+    {
+      "path": "erasure/theories/Typed/Optimize.v",
+      "bytes": 29536,
+      "sha256": "08ee122e3d7fbf0c7b6562d94dd64a6ed109d7042803e86cc0097e40e7d3add7",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Typed/Optimize.v"
+    },
+    {
+      "path": "erasure/theories/Typed/Extraction.v",
+      "bytes": 9136,
+      "sha256": "1c4849f1f2604540f083b844491c9c508df2b1d7fb2f7fd7ac99ef6923397216",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Typed/Extraction.v"
+    },
+    {
+      "path": "erasure/theories/Extract.v",
+      "bytes": 17739,
+      "sha256": "420f546d8821172a3cebbdf419a794d90b4ebc84fcd49e3abb5f1e355e19c36d",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Extract.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "erasure/theories/Typed/ExtractionCorrectness.v",
+      "lines": [
+        530,
+        580
+      ],
+      "role": "parent",
+      "name": "extract_correct",
+      "excerpt_sha256": "c387ee5e2b6592c0ba359df01bfeff94d98e01392d210b3fc717e62081b0d1a7",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Typed/ExtractionCorrectness.v#L530-L580"
+    },
+    {
+      "path": "erasure/theories/ErasureCorrectness.v",
+      "lines": [
+        51,
+        1232
+      ],
+      "role": "child",
+      "name": "erases_correct",
+      "excerpt_sha256": "9c5922f115469f5b6dc8b74ac2a8ebcdbd8dccbf25849cdc800a04013160dc79",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/ErasureCorrectness.v#L51-L1232"
+    },
+    {
+      "path": "erasure/theories/Typed/OptimizeCorrectness.v",
+      "lines": [
+        5179,
+        5200
+      ],
+      "role": "child",
+      "name": "dearg_transform_correct",
+      "excerpt_sha256": "a8cfa5611c2e02410b33d19a82f8ab991469bde1de9a1f888638306f32efdaf4",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Typed/OptimizeCorrectness.v#L5179-L5200"
+    },
+    {
+      "path": "erasure/theories/Typed/ExtractionCorrectness.v",
+      "lines": [
+        506,
+        527
+      ],
+      "role": "child",
+      "name": "optimize_correct",
+      "excerpt_sha256": "eb3b6b7c60f255f936e65ca62818104abfb4238c7d620ad58525937d2495af71",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Typed/ExtractionCorrectness.v#L506-L527"
+    },
+    {
+      "path": "erasure/theories/Typed/ExtractionCorrectness.v",
+      "lines": [
+        440,
+        476
+      ],
+      "role": "child",
+      "name": "wf_erase_global_decls_recursive",
+      "excerpt_sha256": "4a73d6749e3eb2f308b2c2c5a656b790ead86d4023cff6d7014baa9ca0c6ff58",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Typed/ExtractionCorrectness.v#L440-L476"
+    },
+    {
+      "path": "erasure/theories/Typed/ExtractionCorrectness.v",
+      "lines": [
+        66,
+        77
+      ],
+      "role": "child",
+      "name": "global_erased_with_deps_erases_deps_tConst",
+      "excerpt_sha256": "b6a6d4437b25d5203dacf5e25b5aa9d7c015aca51499cfc9d05d63cbfe4b79da",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Typed/ExtractionCorrectness.v#L66-L77"
+    },
+    {
+      "path": "erasure/theories/Typed/ErasureCorrectness.v",
+      "lines": [
+        296,
+        303
+      ],
+      "role": "child",
+      "name": "erase_global_decls_deps_recursive_correct",
+      "excerpt_sha256": "f1e35287fb806f76b24d1151c29e67b1f3d9b704ea551e03e9f78c5aa49eaec8",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Typed/ErasureCorrectness.v#L296-L303"
+    },
+    {
+      "path": "pcuic/theories/PCUICInversion.v",
+      "lines": [
+        211,
+        221
+      ],
+      "role": "child",
+      "name": "inversion_Const",
+      "excerpt_sha256": "4e03e67f537360d18223e6798833d6b80742f626559a7768dbceef2730f45312",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/PCUICInversion.v#L211-L221"
+    },
+    {
+      "path": "erasure/theories/Typed/Transform.v",
+      "lines": [
+        15,
+        20
+      ],
+      "role": "context",
+      "name": "ExtractTransformCorrect",
+      "excerpt_sha256": "d0ecbd4392d0b8c6a3458676fcae4b8776cd7bda2ab24a84ea5a68545ca88447",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Typed/Transform.v#L15-L20"
+    }
+  ],
+  "parent": {
+    "name": "extract_correct",
+    "statement": "Theorem extract_correct\n        (H := EWellformed.all_env_flags)\n        (wfl := opt_wcbv_flags)\n        (Σ : P.global_env_ext) (wfΣ : ∥wf_ext Σ∥)\n        kn ui ind c ui' ignored exΣ :\n  axiom_free Σ ->\n  welltyped Σ [] (P.tConst kn ui) ->\n  Σ p⊢ P.tConst kn ui ⇓ P.tConstruct ind c ui' ->\n  (isErasable Σ [] (P.tConstruct ind c ui') -> False) ->\n  (forall k, ignored k = false) ->\n  extract_pcuic_env\n    (pcuic_args extract_within_coq)\n    Σ (wf_squash wfΣ) (KernameSet.singleton kn) ignored = Ok exΣ ->\n  ∥trans_env exΣ e⊢ E.tConst kn ⇓ E.tConstruct ind c []∥."
+  },
+  "children": [
+    {
+      "name": "erases_correct",
+      "statement": "Lemma erases_correct (wfl := default_wcbv_flags) Σ t t' v Σ' :\n  wf_ext Σ ->\n  welltyped Σ [] t ->\n  Σ;;; [] |- t ⇝ℇ t' ->\n  erases_deps Σ Σ' t' ->\n  Σ |-p t ⇓ v ->\n  exists v', Σ;;; [] |- v ⇝ℇ v' /\\ ∥ Σ' ⊢ t' ⇓ v' ∥.",
+      "closed_by": "induction on the eval derivation; each case closed by inversion_App / inversion_LetIn, erases_subst and the induction hypotheses (Qed.)",
+      "note": "The erasure pass: a well-typed term t erasing to t' and evaluating to v yields v' with v erasing to v' and t' evaluating to v'. The largest child; proved in erasure/theories/ErasureCorrectness.v, stated and proved before extract_correct."
+    },
+    {
+      "name": "dearg_transform_correct",
+      "statement": "Lemma dearg_transform_correct {wfl : WcbvFlags} overridden_masks do_trim_const_masks do_trim_ctor_masks :\n  ExtractTransformCorrect (dearg_transform overridden_masks do_trim_const_masks do_trim_ctor_masks true true true).",
+      "closed_by": "dearg_correct (after reducing to eval_debox_env_types, eval_const_construct_expanded, eval_is_expanded_aux)",
+      "note": "The dearging pass, stated as ExtractTransformCorrect (dearg_transform overridden_masks do_trim_const_masks do_trim_ctor_masks true true true). Closes by reducing to dearg_correct."
+    },
+    {
+      "name": "optimize_correct",
+      "statement": "Lemma optimize_correct `{EWellformed.EEnvFlags} Σ fgΣ t v :\n  ELiftSubst.closed t = true ->\n  EGlobalEnv.closed_env (trans_env Σ) = true ->\n  EWellformed.wf_glob (trans_env Σ) ->\n  @EWcbvEval.eval default_wcbv_flags (trans_env Σ) t v ->\n  @EWcbvEval.eval\n      (EWcbvEval.disable_prop_cases opt_wcbv_flags)\n      (trans_env (map (on_snd (remove_match_on_box_decl (EEnvMap.GlobalContextMap.make (trans_env Σ) (OptimizePropDiscr.trans_env_fresh_globals _ fgΣ)))) Σ))\n      (EOptimizePropDiscr.remove_match_on_box (EEnvMap.GlobalContextMap.make (trans_env Σ) (OptimizePropDiscr.trans_env_fresh_globals _ fgΣ)) t)\n      (EOptimizePropDiscr.remove_match_on_box (EEnvMap.GlobalContextMap.make (trans_env Σ) (OptimizePropDiscr.trans_env_fresh_globals _ fgΣ)) v).",
+      "closed_by": "EOptimizePropDiscr.remove_match_on_box_correct",
+      "note": "The match-on-box removal pass (OptimizePropDiscr), stated locally in ExtractionCorrectness.v. Closes by eapply of remove_match_on_box_correct."
+    },
+    {
+      "name": "wf_erase_global_decls_recursive",
+      "statement": "Lemma wf_erase_global_decls_recursive (H := EWellformed.all_env_flags) :\n  forall X_type X decls univs retros w seeds (ignored : kername -> bool),\n    (forall k, ignored k = false) ->\n    let Σex := @Erasure.erase_global_decls_deps_recursive X_type X decls univs retros w seeds ignored in\n    EWellformed.wf_glob (trans_env Σex).",
+      "closed_by": "induction decls; eapply wf_erase_global_decl; eauto (plus fresh_globals_erase_global_decl_rec)",
+      "note": "Well-formedness of the recursively erased global environment; discharges optimize_correct's wf_glob (trans_env eΣ) hypothesis."
+    },
+    {
+      "name": "global_erased_with_deps_erases_deps_tConst",
+      "statement": "Lemma global_erased_with_deps_erases_deps_tConst Σ Σer kn cst :\n  wf Σ ->\n  P.declared_constant Σ kn cst ->\n  global_erased_with_deps Σ Σer kn ->\n  erases_deps Σ Σer (E.tConst kn).",
+      "closed_by": "destruct glob; econstructor; eauto (the inductive case via lookup_env_In)",
+      "note": "Dependency closure: a declared, globally-erased-with-deps constant is erased-with-deps. A 12-line leaf closing by case analysis."
+    },
+    {
+      "name": "erase_global_decls_deps_recursive_correct",
+      "statement": "Lemma erase_global_decls_deps_recursive_correct decls univs retro wfΣ include ignore_deps :\n  let Σ := mk_global_env univs decls retro in\n  (forall k, ignore_deps k = false) ->\n  (forall k, KernameSet.In k include -> P.lookup_env Σ k <> None) ->\n  includes_deps Σ (trans_env (erase_global_decls_deps_recursive (X_type := X_type) (X := X) decls univs retro wfΣ include ignore_deps)) include.",
+      "closed_by": "erase_global_decls_deps_recursive_correct_gen",
+      "note": "The recursively erased environment includes its dependencies (includes_deps); an 8-line wrapper over the _gen variant."
+    },
+    {
+      "name": "inversion_Const",
+      "statement": "Lemma inversion_Const :\n    forall {Γ c u T},\n      Σ ;;; Γ |- tConst c u : T ->\n      ∑ decl,\n        wf_local Σ Γ ×\n        declared_constant Σ c decl ×\n        (consistent_instance_ext Σ decl.(cst_universes) u) ×\n        Σ ;;; Γ ⊢ subst_instance u (cst_type decl) ≤ T.",
+      "closed_by": "invtac h",
+      "note": "Typing inversion for tConst, from the PCUIC metatheory (PCUICInversion.v); gives the declared_constant that erases_correct's erases_deps hypothesis needs."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A theorem that a whole pipeline — a composition of passes — preserves evaluation. Each pass is a function on a global environment whose correctness is stated as ExtractTransformCorrect: if the source evaluates tConst kn to tConstruct ind c [], so does the transformed environment. The parent's conclusion has the shape trans_env exΣ e⊢ E.tConst kn ⇓ E.tConstruct ind c [].",
+    "use_when": "The pipeline is a fixed sequence of independently specifiable passes, each with a self-contained statement that closes from the definitions plus one per-pass lemma (dearg_correct, remove_match_on_box_correct); the parent can discharge each pass's side conditions (wf_glob, erases_deps) with named supporting lemmas.",
+    "avoid_when": "A pass's correctness depends on the output of the next pass (the passes are not independent, so no self-contained per-pass statement exists); or the side conditions cannot be stated as their own lemmas and would have to be re-proved inline at every call site."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "extract_correct is declared in erasure/theories/Typed/ExtractionCorrectness.v, lines 530-580.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Typed/ExtractionCorrectness.v#L530-L580",
+      "form": "declared(extract_correct, erasure/theories/Typed/ExtractionCorrectness.v, 530-580)"
+    },
+    {
+      "n": 2,
+      "claim": "No admit, Admitted or Axiom closes any goal in extract_correct's proof, erasure/theories/Typed/ExtractionCorrectness.v lines 530-580.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Typed/ExtractionCorrectness.v#L530-L580",
+      "form": "no_sorry(erasure/theories/Typed/ExtractionCorrectness.v, 530-580)"
+    },
+    {
+      "n": 3,
+      "claim": "erases_correct is cited by the parent site.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Typed/ExtractionCorrectness.v#L530-L580",
+      "form": "cites(parent, erases_correct)"
+    },
+    {
+      "n": 4,
+      "claim": "The main theorem extract_correct composes 7 direct project lemmas in a 51-line parent site; the seven children (declaration and proof) span 1182, 22, 22, 37, 12, 8 and 11 lines (1294 in total); the deepest chain below the theorem is extract_correct -> erases_correct -> inversion_App and extract_correct -> dearg_transform_correct -> dearg_correct, depth 2.",
+      "evidence_kind": "measurement",
+      "evidence": "site line ranges in the copied files at commit 51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56: parent ExtractionCorrectness.v 530-580 (51 lines); children ErasureCorrectness.v 51-1232 (1182), OptimizeCorrectness.v 5179-5200 (22), ExtractionCorrectness.v 506-527 (22), 440-476 (37), 66-77 (12), Typed/ErasureCorrectness.v 296-303 (8), PCUICInversion.v 211-221 (11). Depth chain: erases_correct applies inversion_App (ErasureCorrectness.v:64); dearg_transform_correct applies dearg_correct (OptimizeCorrectness.v:5199)."
+    },
+    {
+      "n": 5,
+      "claim": "The same per-pass composition is codified as a reusable combinator: compose_transforms_correct proves that a list of ExtractTransformCorrect transforms composes to an ExtractTransformCorrect transform, generalising the one-lemma-per-pass pattern extract_correct uses by hand.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Typed/Transform.v#L35-L44"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 7,
+    "depth": 2,
+    "glue_lines": 51,
+    "child_lines": [
+      1182,
+      22,
+      22,
+      37,
+      12,
+      8,
+      11
+    ]
+  },
+  "metrics": {
+    "glue_body_lines": 35,
+    "pass_lemmas": 3,
+    "child_lines_total": 1294,
+    "how_counted": "parent site 530-580 (51 lines: 14-line statement 530-543, 35-line proof body 545-579); child sites 51-1232, 5179-5200, 506-527, 440-476, 66-77, 296-303, 211-221 = 1182 + 22 + 22 + 37 + 12 + 8 + 11 = 1294. pass_lemmas = erases_correct, dearg_transform_correct, optimize_correct."
+  },
+  "consequences": "The move produces one obligation per pass plus its side conditions. The three pass lemmas differ hugely in size: erases_correct is 1182 lines (erasure correctness is the hard part), while dearg_transform_correct and optimize_correct are 22 lines each because they reduce to a single existing lemma (dearg_correct, remove_match_on_box_correct). The glue must discharge each pass's hypotheses in the exact shape the pass lemma expects (wf_glob via wf_erase_global_decls_recursive, erases_deps via inversion_Const + global_erased_with_deps_erases_deps_tConst + erase_global_decls_deps_recursive_correct); a wrong shape fails the eapply. A failure mode: if the passes share state, their lemmas are not self-contained and the composition needs an invariant threaded through all of them instead.",
+  "known_uses": [
+    "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/erasure/theories/Typed/Transform.v#L35-L44"
+  ],
+  "related": [
+    "rocq-per-callee-lemma-compcert-6decbbae"
+  ],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "861d7783d0b7a7be9141ca914fc6daa58cdc200ea90b0e0b3aea921300956490",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:52:56Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:55:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:55:10Z",
+      "note": "parent extract_correct: statement re-copied from code; child 'erases_correct': statement re-copied from the declaration of erases_correct; child 'dearg_transform_correct': statement re-copied from the declaration of dearg_transform_correct; child 'optimize_correct': statement re-copied from the declaration of optimize_correct; child 'wf_erase_global_decls_recursive': statement re-copied from the declaration of wf_erase_global_decls_recursive; child 'global_erased_with_deps_erases_deps_tConst': statement re-copied from the declaration of global_erased_with_deps_erases_deps_tConst; child 'erase_global_decls_deps_recursive_correct': statement re-copied from the declaration of erase_global_decls_deps_recursive_correct; child 'inversion_Const': statement re-copied from the declaration of inversion_Const"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T13:30:31Z"
+}

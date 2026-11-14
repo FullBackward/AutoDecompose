@@ -1,0 +1,190 @@
+{
+  "id": "rocq-key-invariant-vst-b22e13ea",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Hybrid argument for HMAC-DRBG non-adaptive PRG via the adjacent-hybrids invariant",
+  "intent": "Close the final theorem of the HMAC-DRBG non-adaptive PRG proof -- the game distance | Pr[G_real] - Pr[G_ideal] | is at most numCalls times a per-step bound -- by three game-equivalence rewrites that put the distance into hybrid form (G_real == Gi_prg 0 == ... == Gi_prg numCalls == G_ideal), then one instantiation of the generic hybrid argument distance_le_prod_f on the single invariant Gi_adjacent_hybrids_close.",
+  "move": "key-invariant",
+  "also_known_as": [
+    "hybrid argument",
+    "telescoping over intermediate games",
+    "adjacent-hybrids closeness",
+    "triangle inequality over hybrids"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "vst",
+    "url": "https://github.com/PrincetonUniversity/VST",
+    "commit": "c082fe210ec501219abe52b9d0f25541d7c97e59",
+    "licence": "BSD-2-Clause"
+  },
+  "files": [
+    {
+      "path": "hmacdrbg/HMAC_DRBG_nonadaptive.v",
+      "bytes": 174832,
+      "sha256": "131da2b42f95b94c5021990b33649a196d0ca887ae9c9601d79cd6dc9944e1ff",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/hmacdrbg/HMAC_DRBG_nonadaptive.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "hmacdrbg/HMAC_DRBG_nonadaptive.v",
+      "lines": [
+        4548,
+        4556
+      ],
+      "role": "parent",
+      "name": "G1_G2_close",
+      "excerpt_sha256": "9647b1dcb957432a9c04059b2f93263e18ec67bf3713617cab31bfd1ca6ed1d8",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/hmacdrbg/HMAC_DRBG_nonadaptive.v#L4548-L4556"
+    },
+    {
+      "path": "hmacdrbg/HMAC_DRBG_nonadaptive.v",
+      "lines": [
+        407,
+        433
+      ],
+      "role": "child",
+      "name": "Generate_move_v_update",
+      "excerpt_sha256": "2de51015f5c4f3d984814113b0bfe21417525310fecc969fe79d146e4e7eca89",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/hmacdrbg/HMAC_DRBG_nonadaptive.v#L407-L433"
+    },
+    {
+      "path": "hmacdrbg/HMAC_DRBG_nonadaptive.v",
+      "lines": [
+        578,
+        612
+      ],
+      "role": "child",
+      "name": "G_real_is_first_hybrid",
+      "excerpt_sha256": "e45a6627f2756c055c5161167d67a96e3e886eab0d554e7a9a5bd379ad2eb592",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/hmacdrbg/HMAC_DRBG_nonadaptive.v#L578-L612"
+    },
+    {
+      "path": "hmacdrbg/HMAC_DRBG_nonadaptive.v",
+      "lines": [
+        816,
+        840
+      ],
+      "role": "child",
+      "name": "G_ideal_is_last_hybrid",
+      "excerpt_sha256": "021f7760bd4dc09c8f42abbf21e483c357b1d82976f7c0c6b6e9beb7aa32ee7c",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/hmacdrbg/HMAC_DRBG_nonadaptive.v#L816-L840"
+    },
+    {
+      "path": "hmacdrbg/HMAC_DRBG_nonadaptive.v",
+      "lines": [
+        4519,
+        4541
+      ],
+      "role": "child",
+      "name": "Gi_adjacent_hybrids_close",
+      "excerpt_sha256": "229b4a6881a01d53697efdb0ac54186bf917910ad7d19558b4f28d1ef957e9ac",
+      "permalink": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/hmacdrbg/HMAC_DRBG_nonadaptive.v#L4519-L4541"
+    }
+  ],
+  "parent": {
+    "name": "G1_G2_close",
+    "statement": "Theorem G1_G2_close :\n  | Pr[G_real] - Pr[G_ideal] | <= (numCalls / 1) * Gi_Gi_plus_1_bound."
+  },
+  "children": [
+    {
+      "name": "Generate_move_v_update",
+      "statement": "Theorem Generate_move_v_update :\n  Pr[G_real] == Pr[G1_prg].",
+      "closed_by": "fcf_to_prhl_eq / fcf_skip to relate the two games, then comp_spec_acc_2 for the oracleMap equivalence and fcf_reflexivity for the final pointwise goal"
+    },
+    {
+      "name": "G_real_is_first_hybrid",
+      "statement": "Lemma G_real_is_first_hybrid :\n  Pr[G1_prg] == Pr[Gi_prg O].",
+      "closed_by": "rewrite G1_G1_acc_equal, then fcf_to_prhl_eq; the compFold step is compFold_Generate_v_choose_Generate, and the residue closes by inversion H3; simpl; fcf_reflexivity"
+    },
+    {
+      "name": "G_ideal_is_last_hybrid",
+      "statement": "Lemma G_ideal_is_last_hybrid :\n  Pr[G_ideal] == Pr[Gi_prg numCalls].",
+      "closed_by": "rewrite G2_oracle_eq, G2_oracle_eq_v_sampling; the oracleMap step is oracleMap_rb_eq with length_replicate, and the final goal closes by simpl in *; subst; simplify; fcf_reflexivity"
+    },
+    {
+      "name": "Gi_adjacent_hybrids_close",
+      "statement": "forall (n : nat),\n  | Pr[Gi_prg n] - Pr[Gi_prg (S n)] | <= Gi_Gi_plus_1_bound.",
+      "closed_by": "case split n <= numCalls \\/ n > numCalls by lia; the in-bounds branch applies ratDistance_le_trans with Gi_prog_equiv_prf_oracle, Gi_replace_prf_with_rf_oracle, Gi_replace_rf_with_rb_oracle; the out-of-bounds branch rewrites Gi_adjacent_hybrids_close_outofbounds and closes by rat0_le_all; auto",
+      "note": "The declaration header (`Theorem Gi_adjacent_hybrids_close :`, line 4519) carries an author comment on line 4520 between the `:` and the `forall`; the statement records the proposition alone, without that comment."
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 4,
+    "glue_lines": 9,
+    "child_lines": [
+      27,
+      35,
+      25,
+      23
+    ]
+  },
+  "applicability": {
+    "goal_shape": "An inequality | Pr[G_real] - Pr[G_ideal] | <= numCalls * B between two probabilistic games G_real and G_ideal that differ by a parameter (how many PRF calls are replaced by random bits), where the parameter can be stepped one unit at a time through a family of intermediate games Gi_prg i with the same bound B per step.",
+    "use_when": "the two games are linked by a family Gi_prg 0 ... Gi_prg numCalls with G_real == Gi_prg 0 and G_ideal == Gi_prg numCalls (so the endpoint rewrites are genuine ==, not just <=), a uniform per-step bound Gi_adjacent_hybrids_close holds for every adjacent pair, and a generic hybrid lemma (distance_le_prod_f here) is available to telescope the per-step bounds.",
+    "avoid_when": "the adjacent-hybrids bound is not uniform in the index (it is the whole difficulty and must be a single statement); the endpoints only give one-sided inequalities so the three rewrites cannot turn the distance into hybrid form; or a hybrid step needs an adversary that does not factor into one uniform invariant."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "Gi_adjacent_hybrids_close occurs in the parent site G1_G2_close.",
+      "evidence_kind": "check",
+      "form": "cites(G1_G2_close, Gi_adjacent_hybrids_close)",
+      "evidence": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/hmacdrbg/HMAC_DRBG_nonadaptive.v#L4548-L4556"
+    },
+    {
+      "n": 2,
+      "claim": "hmacdrbg/HMAC_DRBG_nonadaptive.v lines 407-4556 contain no admit, Admitted, Axiom or axiom.",
+      "evidence_kind": "check",
+      "form": "no_sorry(hmacdrbg/HMAC_DRBG_nonadaptive.v, 407-4556)",
+      "evidence": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/hmacdrbg/HMAC_DRBG_nonadaptive.v#L407-L4556"
+    },
+    {
+      "n": 3,
+      "claim": "The decomposition has 4 direct lemmas, a 9-line glue (the parent site 4548-4556), child proofs of 27, 35, 25 and 23 lines (declaration through Qed), and a longest checked chain of 4 project lemmas below the main theorem (G1_G2_close -> Gi_adjacent_hybrids_close -> Gi_replace_rf_with_rb_oracle -> Gi_Pr_bad_event_collisions -> Gi_rb_bad_eq_2').",
+      "evidence_kind": "measurement",
+      "evidence": "copied file library/entries/rocq-key-invariant-vst-b22e13ea/code/hmacdrbg/HMAC_DRBG_nonadaptive.v: glue = lines 4548-4556; child sites 407-433, 578-612, 816-840, 4519-4541; the chain 4548-4556 -> 4519-4541 -> 4404-4425 -> 4364-4393 -> 4263-4318"
+    },
+    {
+      "n": 4,
+      "claim": "The authors lay out the hybrid structure in a comment beside the game family: 'number of calls: first call is 0, last call is (numCalls - 1) ... G0: PRF PRF PRF, G1: RB PRF PRF, G2: RB RB PRF, G3: RB RB RB; there should be (S numCalls) games, so games are numbered from 0 through numCalls'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/PrincetonUniversity/VST/blob/c082fe210ec501219abe52b9d0f25541d7c97e59/hmacdrbg/HMAC_DRBG_nonadaptive.v#L457-L463"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 9,
+    "direct_lemmas": 4,
+    "child_lines": [27, 35, 25, 23],
+    "how_counted": "parent_lines = parent site lines 4548-4556 (declaration through Qed); direct_lemmas = the four named project lemmas the glue cites; child_lines = child site line counts in children order Generate_move_v_update, G_real_is_first_hybrid, G_ideal_is_last_hybrid, Gi_adjacent_hybrids_close"
+  },
+  "consequences": "The move concentrates all the difficulty into one invariant, Gi_adjacent_hybrids_close, which must bound every adjacent pair uniformly; the glue is then a wrapper (three rewrites plus one specialize of distance_le_prod_f). The three endpoint lemmas (Generate_move_v_update, G_real_is_first_hybrid, G_ideal_is_last_hybrid) must each be a genuine == so that rewrite applies; if an endpoint only gives a one-sided bound, the telescope does not go through. Failure modes: the per-step bound must be uniform in i (a fixed Gi_Gi_plus_1_bound independent of i); a non-uniform or endpoint-dependent bound forces the proof back into an explicit induction over i, and the single specialize step breaks.",
+  "known_uses": [],
+  "related": [
+    "rocq-key-invariant-rocq-stdlib-1a358d2f",
+    "rocq-key-invariant-compcert-4abf5603"
+  ],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "b22e13ea68fc919f0ba556b729012eaa2dce951ddddf4ec7d2c7eecc5e581ffa",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:12:33Z"
+    },
+    {
+      "field": "title,intent,also_known_as,parent,children,shape,applicability,claims,metrics,consequences,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:20:00Z"
+    }
+  ]
+}

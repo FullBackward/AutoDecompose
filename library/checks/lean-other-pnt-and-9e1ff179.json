@@ -1,0 +1,133 @@
+{
+  "entry": "lean-other-pnt-and-9e1ff179",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:26:35Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:26:35Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:26:35Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: RectangleIntegral'_congr@PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean:646, HolomorphicOn.rectangleBorderIntegrable@PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean:648, HolomorphicOn.rectangleBorderIntegrable'@PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean:660, RectangleBorderIntegrable.add@PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean:661, HolomorphicOn.vanishesOnRectangle@PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean:662, ResidueTheoremInRectangle@PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean:663; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:26:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(parent, 30) -> lines: site parent has 30 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:26:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, ResidueTheoremInRectangle) -> cites: ResidueTheoremInRectangle occurs at PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean:663",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:26:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean, 634-663) -> no_sorry: none of sorry, admit, axiom in PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean:634-663",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:26:35Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2c476fa6441c607096d93c8fc7ac0a227a655dae",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:26:40Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml runs leanprover/lean-action v1.6.0 with build-args ':blueprint' on push/PR to main; the ':blueprint' target compiles the PrimeNumberTheoremAnd library (the @[blueprint] annotations live in its .lean files, e.g. PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean), so the file is built; pinned commit 2c476fa6441c607096d93c8fc7ac0a227a655dae is on default branch main (compare API: 2c476fa...main behind_by=0)",
+      "by": "verifier",
+      "at": "2026-11-14T09:31:47Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read the copied file: glue (634-663) cites 6 lemmas at 646 (RectangleIntegral'_congr), 648 (HolomorphicOn.rectangleBorderIntegrable), 660 (HolomorphicOn.rectangleBorderIntegrable'), 661 (RectangleBorderIntegrable.add), 662 (HolomorphicOn.vanishesOnRectangle), 663 (ResidueTheoremInRectangle). Chain of 7 confirmed at the cited citation lines: ResidueTheoremInRectangle(663) -> ResidueTheoremAtOrigin'(596) -> integral_const_div_re_add_self(569) -> integral_const_div_self_add_im(563) -> integral_self_div_sq_add_sq(545) -> continuous_self_div_sq_add_sq(510) -> sq_add_sq_ne_zero(499); each edge is a real call (grep-verified).",
+      "by": "verifier",
+      "at": "2026-11-14T09:31:53Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read lines 623-632 of code/PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean: they contain (proof := /-- Replace f with g + A/(s-p) in the integral ... Lemma \\ref{HolomorphicOn.vanishesOnRectangle} ... Lemma \\ref{RectanglePullToNhdOfPole} ... Lemma \\ref{ResidueTheoremAtOrigin}. -/) inside the @[blueprint ...] attribute directly above lemma ResidueTheoremOnRectangleWithSimplePole (line 634). Text matches the quoted plan (with math delimiters and \\ref{} wrappers stripped).",
+      "by": "verifier",
+      "at": "2026-11-14T09:31:58Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2c476fa6441c607096d93c8fc7ac0a227a655dae",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:32:02Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Verified against the copied code. Parent site 634-663 is 30 lines and its glue cites exactly the 6 children at the lines the glue-cites-children check records (646 RectangleIntegral'_congr, 648 HolomorphicOn.rectangleBorderIntegrable, 660 HolomorphicOn.rectangleBorderIntegrable', 661 RectangleBorderIntegrable.add, 662 HolomorphicOn.vanishesOnRectangle, 663 ResidueTheoremInRectangle), and closes with 'exact ResidueTheoremInRectangle' (no sorry). Each child's statement and closed_by match its declared text: RectangleIntegral'_congr (191-193, rw [RectangleIntegral', RectangleIntegral_congr h]), HolomorphicOn.rectangleBorderIntegrable (250-251, hf.continuousOn.rectangleBorderIntegrable), HolomorphicOn.rectangleBorderIntegrable' (245-248, ...rectangleBorderNoPIntegrable...), RectangleBorderIntegrable.add (214-223, four intervalIntegral.integral_add then module), HolomorphicOn.vanishesOnRectangle (174-179, integral_boundary_rect_eq_zero_of_differentiableOn), ResidueTheoremInRectangle (587-597, ResidueTheoremAtOrigin' at 596). Shape numbers verified: direct_lemmas=6, glue_lines=30, child_lines=[3,2,4,10,6,11] match the site ranges; depth=7 matches the chain ResidueTheoremInRectangle -> ResidueTheoremAtOrigin' -> integral_const_div_re_add_self -> integral_const_div_self_add_im -> integral_self_div_sq_add_sq -> continuous_self_div_sq_add_sq -> sq_add_sq_ne_zero (citations at 596/569/563/545/510/499). Blueprint plan text (623-632) matches claim 4.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:33:59Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalises beyond the example: 'one lemma per summand' / 'termwise integration of a sum' is named in also_known_as and stated in use_when as a transferable condition (integrand = sum of parts, each with its own integral + integrability lemma), and known_uses (lines 729, 1113-1140, checked in code) show the same discipline at the finite-sum-of-poles generalisation via ResidueTheoremInRectangle + RectangleBorderIntegrable.add. When-not-to-use is honest and specific (higher-order pole, pole on border defeating HolomorphicOn.rectangleBorderIntegrable' which needs p in interior, mismatched rectangle/orientation), and consequences name the concrete obligations (congruence, per-summand integrability, linearity) plus the plan/proof divergence, which I confirmed: blueprint lines 623-632 name RectanglePullToNhdOfPole but the proof 634-663 cites ResidueTheoremInRectangle instead. Good-leaves-for-a-bounded-prover is answered: children are self-contained, close from a sibling or Mathlib lemma, so the glue never opens a definition.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:34:52Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2c476fa6441c607096d93c8fc7ac0a227a655dae",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:35:08Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit 2c476fa6441c607096d93c8fc7ac0a227a655dae is consistent across entry.json, sources/pnt-and/SOURCE.md and source.json. check_provenance.py passes (1 file byte-identical at the pinned commit, sha256 and 65137 bytes match the copied code/PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean). Licence Apache-2.0 is recorded in entry.json, SOURCE.md and source.json, and sources/pnt-and/upstream-LICENSE is the Apache 2.0 text. Every permalink uses the same pinned commit and path, and all cited line ranges (parent 634-663, children 191-193/250-251/245-248/214-223/174-179/587-597, author-statement 623-632, known-uses 729 and 1113-1140) were opened with sed and match the entry's quoted code verbatim. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:35:34Z"
+    }
+  ]
+}

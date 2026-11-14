@@ -1,0 +1,133 @@
+{
+  "entry": "lean-key-invariant-mathlib4-3f171129",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:13:17Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:13:17Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:13:17Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: maxIncSequencesTo_mem@Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean:151, maxDecSequencesTo_mem@Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean:153, paired_injective@Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean:166, one_le_maxIncSequencesTo@Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean:164, one_le_maxDecSequencesTo@Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean:164; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:13:17Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(erdos_szekeres, Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean, 142-166) -> declared: erdos_szekeres is declared at Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean:142",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:13:17Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, paired_injective) -> cites: paired_injective occurs at Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean:166",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:13:17Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean, 1-168) -> no_sorry: none of sorry, admit, axiom in Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean:1-168",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:13:17Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:13:28Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": "mathlib4 CI: .github/workflows/build.yml runs on push to master (the default branch) and delegates to .github/workflows/build_template.yml, whose 'build' job runs 'lake-build-with-retry.sh Archive Counterexamples Wanted' and then 'lake build --no-build --wfail Archive'; the entry's file Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean is part of the Archive library, so CI builds it at commit e1545ebed97594477bbd88b2fe948ffce56e5af2 (merged to master, default branch)",
+      "by": "verifier",
+      "at": "2026-11-14T09:15:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read the copied file Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean. 5 child lemmas at the stated line ranges: one_le_maxIncSequencesTo 66-67 (2), one_le_maxDecSequencesTo 68-69 (2), maxIncSequencesTo_mem 71-72 (2), maxDecSequencesTo_mem 73-74 (2), paired_injective 125-130 (6) = 2,2,6,2,2. Parent erdos_szekeres 142-166 = 25 lines. Depth chain: erdos_szekeres cites paired_injective at 166; paired_injective cites maxIncSequencesTo_lt (129) and maxDecSequencesTo_gt (130); maxDecSequencesTo_gt (110-112) cites maxIncSequencesTo_lt at 112 -> depth 3.",
+      "by": "verifier",
+      "at": "2026-11-14T09:15:33Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read the copied file's docstring above erdos_szekeres (lines 132-141). The quoted text matches verbatim (ignoring Lean backtick markup around r/s/r*s): 'We label each value in the sequence with two numbers specifying the longest increasing subsequence ending there, and the longest decreasing subsequence ending there. We then show the pair of labels must be unique. Now if there is no increasing sequence longer than r and no decreasing sequence longer than s, then there are at most r * s possible labels, which is a contradiction if there are more than r * s elements.' at lines 136-140; the locator L135-L140 opens one line early at 'Proof idea:'.",
+      "by": "verifier",
+      "at": "2026-11-14T09:15:35Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:15:55Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent erdos_szekeres (142-166, 25 lines) cites exactly the five children: maxIncSequencesTo_mem@151, maxDecSequencesTo_mem@153, one_le_maxIncSequencesTo@164, one_le_maxDecSequencesTo@164, paired_injective@166, and no other project lemma, so the children are exactly the lemmas the proof uses. Each child's statement and closed_by match the code (max'_mem/le_max' one-liners; paired_injective's case split on lt_or_gt_of_ne). Proof closes at 166 via card_le_card_of_injOn; no sorry/admit/axiom. Shape numbers right: glue_lines 25, child_lines [2,2,6,2,2] = 71-72,73-74,125-130,66-67,68-69, direct_lemmas 5, depth 3 = erdos_szekeres->paired_injective->maxDecSequencesTo_gt->maxIncSequencesTo_lt.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:17:00Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generally: applicability/use_when and 'When to use it' reframe it as pigeonhole over a finite type with an injective pair-of-labels, and the opinion para isolates the reusable shape (two extremal quantities, one per direction, injective because a coordinate must grow). 'When not to use'/'avoid_when' is honest and specific: injectivity needs a comparison lemma per coordinate (cheap here only via order duality beta^op), label set must be a clean finite product, and the extremal object must be attained (max'_mem/one_mem), each a real failure mode of this argument. Consequences names three concrete obligations + the duality failure mode. Good-leaves question answered: _mem and one_le_ leaves are one-liners closing on singleton facts; paired_injective closes on two named siblings through a case split, giving depth 3. Minor non-blocking note: known_uses is empty, so the generality is asserted not evidenced by an independent use.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:17:50Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:18:07Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance consistent and traceable: commit e1545ebed97594477bbd88b2fe948ffce56e5af2 matches across entry.json source, README, SOURCE.md and source.json; licence Apache-2.0 matches everywhere and upstream-LICENSE is Apache 2.0; copied file sha256 069584aa... and byte count 7464 match entry.json files[0]; check_provenance reports the file byte-identical at the pinned commit; permalinks use the pinned commit and correct Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean path.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:18:25Z"
+    }
+  ]
+}

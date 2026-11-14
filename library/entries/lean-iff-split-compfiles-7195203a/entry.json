@@ -1,0 +1,243 @@
+{
+  "id": "lean-iff-split-compfiles-7195203a",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Iff-split of IMO 1959 P2(a): IsGood x (sqrt 2) iff x in [1/2, 1]",
+  "intent": "Prove part (a) of IMO 1959 P2 — the real x with IsGood x (sqrt 2) are exactly the interval [1/2, 1] — by splitting the iff into its two directions with refine ⟨_, _⟩. Both directions were already packaged as named lemmas: the forward direction reuses IsGood.one_half_le for the lower bound and IsGood.sqrt_two_lt_of_one_lt for the upper bound, and the reverse direction reuses isGood_iff_eq_sqrt_two, so the 3-line glue is pure assembly.",
+  "move": "iff-split",
+  "also_known_as": [
+    "constructor on ↔",
+    "bidirectional split",
+    "iffI",
+    "refine ⟨_, _⟩ on an iff"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "compfiles",
+    "url": "https://github.com/dwrensha/compfiles",
+    "commit": "1745e6ced3e671bd74417548494b034eb2c87da8",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Compfiles/Imo1959P2.lean",
+      "bytes": 5064,
+      "sha256": "fecfa99d9a9467ff4a38983bb48876693606daed31310c8fcc5f562a74bf2e60",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1959P2.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Compfiles/Imo1959P2.lean",
+      "lines": [
+        123,
+        125
+      ],
+      "role": "parent",
+      "name": "imo1959_p2a",
+      "excerpt_sha256": "4f2f81a3ce01aeda419bd62a341cefcce847f5be3471e53b5d6aed49928232be",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1959P2.lean#L123-L125"
+    },
+    {
+      "path": "Compfiles/Imo1959P2.lean",
+      "lines": [
+        71,
+        71
+      ],
+      "role": "child",
+      "name": "IsGood.one_half_le",
+      "excerpt_sha256": "3546b2fc67506584bea6a72e272bd1bb37c061e245e49fa8d05933964645f7c1",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1959P2.lean#L71-L71"
+    },
+    {
+      "path": "Compfiles/Imo1959P2.lean",
+      "lines": [
+        76,
+        81
+      ],
+      "role": "child",
+      "name": "isGood_iff_eq_sqrt_two",
+      "excerpt_sha256": "82f4eb3dbc3e8059b077ad976fe7597a044240133fe60058cad1d3fd581b6a38",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1959P2.lean#L76-L81"
+    },
+    {
+      "path": "Compfiles/Imo1959P2.lean",
+      "lines": [
+        91,
+        94
+      ],
+      "role": "child",
+      "name": "IsGood.sqrt_two_lt_of_one_lt",
+      "excerpt_sha256": "1b2257eca6ab12f8208b37349034d3f13f81275feefb575c3bc37db72d29aba8",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1959P2.lean#L91-L94"
+    },
+    {
+      "path": "Compfiles/Imo1959P2.lean",
+      "lines": [
+        38,
+        40
+      ],
+      "role": "context",
+      "name": "IsGood",
+      "excerpt_sha256": "8940851dcd54bd616cd1a5cbea6829af13739b4cda6b442964153c8dc4773336",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1959P2.lean#L38-L40"
+    },
+    {
+      "path": "Compfiles/Imo1959P2.lean",
+      "lines": [
+        54,
+        69
+      ],
+      "role": "context",
+      "name": "isGood_iff",
+      "excerpt_sha256": "fdfbb24ace40e3130e89bd2146a36bc5f3703e8b4cd82e9878dc7eae5aec1b26",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1959P2.lean#L54-L69"
+    },
+    {
+      "path": "Compfiles/Imo1959P2.lean",
+      "lines": [
+        73,
+        74
+      ],
+      "role": "context",
+      "name": "sqrt_two_mul_sub_one_le_one",
+      "excerpt_sha256": "ef391faa1a099991ad16d10ed3d9c70a6e4ad0879cc7557055712fb826959ede",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1959P2.lean#L73-L74"
+    },
+    {
+      "path": "Compfiles/Imo1959P2.lean",
+      "lines": [
+        83,
+        89
+      ],
+      "role": "context",
+      "name": "isGood_iff_eq_sqrt",
+      "excerpt_sha256": "5dc4f49a3b2bd30f4098a1c9f7ad174e66403a5ad1e24c1406630b83ca7e67b7",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1959P2.lean#L83-L89"
+    },
+    {
+      "path": "Compfiles/Imo1959P2.lean",
+      "lines": [
+        121,
+        121
+      ],
+      "role": "context",
+      "name": "solution_set_sqrt2",
+      "excerpt_sha256": "055af68bd5df9c812155f233f61e38847cdf81689598352984972bc9ad5aaa38",
+      "permalink": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1959P2.lean#L121-L121"
+    }
+  ],
+  "parent": {
+    "name": "imo1959_p2a",
+    "statement": "problem imo1959_p2a : IsGood x (sqrt 2) ↔ x ∈ solution_set_sqrt2"
+  },
+  "children": [
+    {
+      "name": "IsGood.one_half_le",
+      "statement": "theorem IsGood.one_half_le (h : IsGood x A) : 1 / 2 ≤ x",
+      "closed_by": "(isGood_iff.1 h).2"
+    },
+    {
+      "name": "isGood_iff_eq_sqrt_two",
+      "statement": "theorem isGood_iff_eq_sqrt_two (hx : x ∈ Icc (1 / 2) 1) : IsGood x A ↔ A = sqrt 2",
+      "closed_by": "suffices 2 = A * sqrt 2 ↔ A = sqrt 2 by convert this using 2; ring, then rw [← div_eq_iff, div_sqrt, eq_comm]; positivity"
+    },
+    {
+      "name": "IsGood.sqrt_two_lt_of_one_lt",
+      "statement": "theorem IsGood.sqrt_two_lt_of_one_lt (h : IsGood x A) (hx : 1 < x) : sqrt 2 < A",
+      "closed_by": "rw [(isGood_iff_eq_sqrt hx).1 h]; refine sqrt_lt_sqrt zero_le_two ?_; linarith"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal of the form P ↔ Q where Q is a membership in a set (here x ∈ solution_set_sqrt2, which unfolds to the interval Icc (1 / 2) 1), and P is a predicate with several conjuncts of well-definedness plus an equation (here IsGood x (sqrt 2)). Both directions of the equivalence have already been stated as named lemmas in the same file.",
+    "use_when": "both directions of the equivalence are already packaged as named lemmas, so the iff-split reduces to citing them; the two directions want different lemmas (here a pair of consequences for the forward direction, a single characterisation for the reverse).",
+    "avoid_when": "the directions are not yet lemma-sized and need new arguments written inline (then the subgoals are the real content, as in the tactic-scale version); one direction is definitional or follows by symmetry; or the same hypothesis has to be reproved for each direction."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "No sorry, admit, or axiom token occurs in the parent proof (lines 123-125).",
+      "evidence_kind": "check",
+      "form": "no_sorry(Compfiles/Imo1959P2.lean, 123-125)",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1959P2.lean#L123-L125"
+    },
+    {
+      "n": 2,
+      "claim": "`isGood_iff_eq_sqrt_two` occurs in the parent site (lines 123-125).",
+      "evidence_kind": "check",
+      "form": "cites(parent, isGood_iff_eq_sqrt_two)",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1959P2.lean#L123-L125"
+    },
+    {
+      "n": 3,
+      "claim": "`one_half_le` occurs in the parent site (lines 123-125).",
+      "evidence_kind": "check",
+      "form": "cites(parent, one_half_le)",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1959P2.lean#L123-L125"
+    },
+    {
+      "n": 4,
+      "claim": "`sqrt_two_lt_of_one_lt` occurs in the parent site (lines 123-125).",
+      "evidence_kind": "check",
+      "form": "cites(parent, sqrt_two_lt_of_one_lt)",
+      "evidence": "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1959P2.lean#L123-L125"
+    },
+    {
+      "n": 5,
+      "claim": "The main theorem is assembled from 3 named lemmas (IsGood.one_half_le at line 71, isGood_iff_eq_sqrt_two at lines 76-81, IsGood.sqrt_two_lt_of_one_lt at lines 91-94) in a 3-line glue (lines 123-125), and the longest chain of project lemmas below it is 3 deep: imo1959_p2a → IsGood.sqrt_two_lt_of_one_lt → isGood_iff_eq_sqrt → sqrt_two_mul_sub_one_le_one.",
+      "evidence_kind": "measurement",
+      "evidence": "counted in the copied file Compfiles/Imo1959P2.lean: the three named lemmas at lines 71, 76-81, 91-94; the glue at lines 123-125; the dependency chain follows line 125 (h.sqrt_two_lt_of_one_lt), line 92 (isGood_iff_eq_sqrt), and line 84 (sqrt_two_mul_sub_one_le_one), which stops at a simp-only lemma (lines 73-74)."
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 3,
+    "glue_lines": 3,
+    "child_lines": [
+      1,
+      6,
+      4
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 3,
+    "direct_lemmas": 3,
+    "depth": 3,
+    "child_lines": [
+      1,
+      6,
+      4
+    ],
+    "how_counted": "parent_proof_lines = lines 123-125 of the copied file; direct_lemmas = the three named lemmas cited by the glue (lines 71, 76-81, 91-94); depth = the longest chain of project lemmas below imo1959_p2a, following sqrt_two_lt_of_one_lt → isGood_iff_eq_sqrt → sqrt_two_mul_sub_one_le_one."
+  },
+  "consequences": "The split creates exactly two obligations, one per implication; here each is closed by citing named lemmas, so the glue carries no new proof burden. The forward direction must discharge two membership conditions (the lower and upper bounds of the interval Icc (1 / 2) 1), which is why it cites two lemmas (IsGood.one_half_le, IsGood.sqrt_two_lt_of_one_lt) while the reverse cites one (isGood_iff_eq_sqrt_two). Failure mode: if those lemmas were not already available, the 3-line glue would have to grow their sub-proofs inline, defeating the theorem-scale assembly.",
+  "known_uses": [
+    "https://github.com/dwrensha/compfiles/blob/1745e6ced3e671bd74417548494b034eb2c87da8/Compfiles/Imo1959P2.lean#L107-L118"
+  ],
+  "related": [
+    "lean-iff-split-compfiles-9264faf4"
+  ],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "7195203abcde192447cc04aec8d8318cf78acd44772ebf646969e358d378c2db",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:32:27Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T09:40:08Z"
+}

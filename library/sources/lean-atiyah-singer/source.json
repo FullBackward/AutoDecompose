@@ -1,0 +1,17 @@
+{
+  "source_id": "lean-atiyah-singer",
+  "url": "https://github.com/alpha-squared-labs/Lean-Atiyah-Singer",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "alpha-squared-labs/Lean-Atiyah-Singer",
+  "commit": "09fc7bab3f9ff606901bde4b5a5580470da63a70",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T11:40:08Z",
+  "how_found": "discovery-1: A-lean",
+  "note": "Atiyah-Singer index theorem: named results T01-T04 plus analysis/topology/K-theory modules and a Comparator harness",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

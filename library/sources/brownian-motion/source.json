@@ -1,0 +1,17 @@
+{
+  "source_id": "brownian-motion",
+  "url": "https://github.com/RemyDegenne/brownian-motion",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "RemyDegenne/brownian-motion",
+  "commit": "8fd8dc52830cdd07cf9cc8eadd533e284425fa6f",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T11:39:13Z",
+  "how_found": "discovery-1: A-lean, B-lean",
+  "note": "Brownian motion via Gaussian distributions, Kolmogorov extension and Kolmogorov-Chentsov continuity, with blueprint",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

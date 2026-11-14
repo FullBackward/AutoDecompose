@@ -1,0 +1,125 @@
+{
+  "entry": "lean-key-invariant-sphere-packing-ad9db4d3",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T11:08:30Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T11:08:30Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T11:08:30Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: FmodG_strictAntiOn@SpherePacking/ModularForms/FG.lean:544, FmodG_rightLimitAt_zero@SpherePacking/ModularForms/FG.lean:545, G_imag_axis_pos@SpherePacking/ModularForms/FG.lean:548; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T11:08:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(FG_inequality_2, SpherePacking/ModularForms/FG.lean, 541-548) -> declared: FG_inequality_2 is declared at SpherePacking/ModularForms/FG.lean:541",
+      "by": "check_claims.py",
+      "at": "2026-11-14T11:08:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(SpherePacking/ModularForms/FG.lean, 1-548) -> no_sorry: none of sorry, admit, axiom in SpherePacking/ModularForms/FG.lean:1-548",
+      "by": "check_claims.py",
+      "at": "2026-11-14T11:08:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "lines(parent, 8) -> lines: site parent has 8 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T11:08:30Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at efe3bbbc1ece548f4672a772b94d8f621c10fdda",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T11:08:40Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml builds the project via leanprover/lean-action and lake exe mk_all --check --module on push to main; commit efe3bbbc1ece548f4672a772b94d8f621c10fdda is on main",
+      "by": "verifier",
+      "at": "2026-11-14T11:09:13Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Site spans checked directly in code: parent FG_inequality_2 L541-548 (8 lines), children FmodG_strictAntiOn L408-411 (4), FmodG_rightLimitAt_zero L518-527 (10), G_imag_axis_pos L205-207 (3) => 3 direct lemmas. Chain traced in code: FG_inequality_2 cites FmodG_strictAntiOn (L544) -> deriv_FmodGReal_neg (L411) -> L₁₀_pos -> L₁₀_eventually_pos_imag_axis -> L₁₀_div_FG_tendsto -> D_F_div_F_tendsto -> F_vanishing_order -> E₂E₄_sub_E₆_div_q_tendsto -> qexp_tendsto_of_poly_bound = 9 project lemmas below the main theorem",
+      "by": "verifier",
+      "at": "2026-11-14T11:09:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Opened blueprint/src/subsections/modform-ineq.tex L223-231: node cor:ineqBnew has \\uses{lemma:Qlim, prop:Qdec, lemma:F-G-pos} and proof reads F(it)/G(it) = Q(t) < lim_{u→0⁺} Q(u) = 18/π² and 'by Lemma F-G-pos ... ineqBnew follows'",
+      "by": "verifier",
+      "at": "2026-11-14T11:09:57Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent FG_inequality_2 (FG.lean L541-548) cites exactly the three child project lemmas: FmodG_strictAntiOn (L544,547), FmodG_rightLimitAt_zero (L545), G_imag_axis_pos (L548); no other FG.lean lemma is cited, so children == lemmas the glue uses. Child statements in entry.json match the code verbatim (L409, L519-520, L207). Closing methods match: strictAntiOn_of_deriv_neg via FmodGReal_differentiableOn.continuousOn + deriv_FmodGReal_neg; FmodG_numerator_tendsto.div FmodG_denominator_tendsto via F_functional_eq_real/G_functional_eq_real; unfold G; fun_prop (disch:=positivity). Glue closes (ratio bound -> sub_neg via div_lt_iff₀). Shape numbers verified: direct_lemmas=3, glue_lines=8 (L541-548), child_lines=[4,10,3] (L408-411, L518-527, L205-207). Depth=9 chain traced link-by-link and each link confirmed: FG_inequality_2->FmodG_strictAntiOn(L544)->deriv_FmodGReal_neg(L411)->L10_pos(L403)->L10_eventually_pos_imag_axis(L362)->L10_div_FG_tendsto(L354)->D_F_div_F_tendsto(L323)->F_vanishing_order(L318)->E2E4_sub_E6_div_q_tendsto(L313)->qexp_tendsto_of_poly_bound(L286, private, ends at imported QExp.tendsto_nat). Blueprint context cor:ineqBnew matches verbatim.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T11:11:48Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "The move is stated generally (inequality A(t) < c·B(t) between functions on a ray, rephrased as a monotone ratio with a computable endpoint limit), not just as the F/G example. 'When not to use' is honest and specific: it lists non-monotone ratio, no closed-form limit, sign-changing denominator, and gives a concrete counterexample from the same file (FG_inequality_1 at L535-537, verified: it is a sum F + 18π⁻² G > 0 closed by add_pos with no ratio, confirming the ratio invariant is forced by the − sign). Consequences are specific and honest: strictness is load-bearing (else degrades to ≤), and a sign-changing denominator forces a case split. It does say what makes the leaves good for a bounded prover: each child is self-contained and closes on its own or via named siblings, one per fact about the invariant, each a natural bounded task (derivative test / functional equation / positivity automation).",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T11:12:33Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at efe3bbbc1ece548f4672a772b94d8f621c10fdda",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T11:12:50Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance and licence consistent and traceable: check_provenance passes (2 files byte-identical at efe3bbbc1ece548f4672a772b94d8f621c10fdda). source.json and SOURCE.md both pin commit efe3bbbc1ece548f4672a772b94d8f621c10fdda and licence Apache-2.0; entry.json source block matches; every permalink uses the same commit. upstream-LICENSE is Apache License 2.0. Cited line ranges match the copied files exactly: parent FG_inequality_2 L541-548, children FmodG_strictAntiOn L408-411, FmodG_rightLimitAt_zero L518-527, G_imag_axis_pos L205-207, context cor:ineqBnew L223-231.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T11:13:07Z"
+    }
+  ]
+}

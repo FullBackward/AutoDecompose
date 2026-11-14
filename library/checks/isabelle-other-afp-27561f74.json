@@ -1,0 +1,133 @@
+{
+  "entry": "isabelle-other-afp-27561f74",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:34:51Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:34:51Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:34:51Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: True_in_funpow_harry_step@thys/IMO2019/IMO2019_Q5.thy:322, True_notin_funpow_harry_step@thys/IMO2019/IMO2019_Q5.thy:318; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:34:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, True_notin_funpow_harry_step) -> cites: True_notin_funpow_harry_step occurs at thys/IMO2019/IMO2019_Q5.thy:318",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:34:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, True_in_funpow_harry_step) -> cites: True_in_funpow_harry_step occurs at thys/IMO2019/IMO2019_Q5.thy:322",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:34:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "declared(True_in_funpow_harry_step, thys/IMO2019/IMO2019_Q5.thy, 277-292) -> declared: True_in_funpow_harry_step is declared at thys/IMO2019/IMO2019_Q5.thy:277",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:34:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "declared(True_notin_funpow_harry_step, thys/IMO2019/IMO2019_Q5.thy, 294-309) -> declared: True_notin_funpow_harry_step is declared at thys/IMO2019/IMO2019_Q5.thy:294",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:34:51Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:35:01Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI workflow file to cite: mirror-afp-devel at 07cd9ca5 carries no .github/workflows (AFP is Mercurial-based; CI runs on external Jenkins, not a repo-hosted workflow), so build is not-run",
+      "by": "verifier",
+      "at": "2026-11-14T10:36:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "checked copied code thys/IMO2019/IMO2019_Q5.thy: line 322 cites True_in_funpow_harry_step (parent glue); line 290 (in True_in_funpow_harry_step) cites harry_meas_step; line 260 (harry_meas_step) cites harry_meas_step_aux; line 255 (in harry_meas_step_aux) cites harry_step_False_True; line 195 (in harry_step_False_True) cites flip_append1. All five lemmas are declared in the file (flip_append1@37, harry_step_False_True@188, harry_meas_step_aux@226, harry_meas_step@259, True_in_funpow_harry_step@277), giving the 5-lemma chain as claimed",
+      "by": "verifier",
+      "at": "2026-11-14T10:36:06Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:36:21Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent site 315-323 cites exactly the two project lemmas it uses: True_notin_funpow_harry_step at 318 and True_in_funpow_harry_step at 322, closing the two Least_equality obligations after rule sym. Both children are declared at the cited ranges (277-292, 294-309) with statements matching entry.json verbatim; each closes via induction (base+step, qed auto) and their closed_by paraphrases match the code. Shape numbers are right: glue_lines=9 (315-323), child_lines=[16,16] (277-292, 294-309), direct_lemmas=2, depth=5 confirmed by the citation chain 322->290(harry_meas_step)->260(harry_meas_step_aux)->255(harry_step_False_True)->195(flip_append1).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:37:19Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "The move is stated beyond the example: any goal x = (LEAST n. P n) splits via rule Least_equality (rule sym first when reversed) into a satisfying-value lemma P x and a lower-bound lemma P y ==> x <= y, matching applicability.use_when and the README's When-to-use. Avoid-when is concrete (nontrivial witness construction; wanting an iff or order antisymmetry instead of a LEAST; no well-order) and the failure mode is specific (without the two directions as separate lemmas the characterisation collapses into one inline proof and offers no holes). The bounded-prover leaf question is answered explicitly: each child closes on its own from harry_meas_step plus automation, no sibling needed inside either child. Minor imprecision: 'discharged by contradiction against the satisfying-value direction of the sibling lemma' is garbled, but the following clause is correct and matches the code (case 2 y is closed by ccontr using True_in_funpow_harry_step[of y], whose statement is exactly the contrapositive of the minimality obligation), so honesty and specificity stand.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:38:57Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:39:14Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes: 1 file byte-identical at 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df, so permalinks are traceable to the pinned commit. Commit 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df and licence LicenseRef-unknown are recorded identically in README.md, entry.json (source.commit, source.licence) and sources/afp/SOURCE.md (pinned commit + detected licence, no root licence file). All cited line ranges (226-257, 259-260, 277-292, 294-309, 315-323) match the copied code and the excerpts. Minor wording only: README 'Source and licence' points to the source note for 'the licence text', which holds no text because the repo has none; the licence is honestly recorded as unknown, so this is not a substantive defect.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:39:47Z"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "entry": "lean-witness-analysis-dd193d51",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:41:44Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:41:44Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "fail",
+      "evidence": "inside parent/child/skeleton sites: Analysis/Section_5_5.lean:111 (sorry), Analysis/Section_5_3.lean:467 (sorry), Analysis/Section_5_4.lean:346 (sorry), Analysis/Section_5_4.lean:350 (sorry); elsewhere in the copied files (not failed): Analysis/Section_5_5.lean:42 (sorry), Analysis/Section_5_5.lean:48 (sorry), Analysis/Section_5_5.lean:51 (sorry), Analysis/Section_5_5.lean:54 (sorry), Analysis/Section_5_5.lean:64 (sorry), Analysis/Section_5_5.lean:67 (sorry), Analysis/Section_5_5.lean:84 (sorry), Analysis/Section_5_5.lean:92 (sorry), Analysis/Section_5_5.lean:96 (sorry), Analysis/Section_5_5.lean:99 (sorry), Analysis/Section_5_5.lean:102 (sorry), Analysis/Section_5_5.lean:104 (sorry), ... (125 in all)",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:41:44Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: Real.LUB_claim1@Analysis/Section_5_5.lean:170, Real.LUB_claim2@Analysis/Section_5_5.lean:177, Real.LIM_of_Cauchy@Analysis/Section_5_5.lean:178, Real.LIM.harmonic@Analysis/Section_5_5.lean:181, Real.LIM_of_ge@Analysis/Section_5_5.lean:185, Real.LIM_of_le@Analysis/Section_5_5.lean:189; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:41:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(Real.LUB_exist, Analysis/Section_5_5.lean, 166-189) -> declared: Real.LUB_exist is declared at Analysis/Section_5_5.lean:166",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:41:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(Analysis/Section_5_5.lean, 166-189) -> no_sorry: none of sorry, admit, axiom in Analysis/Section_5_5.lean:166-189",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:41:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, Real.LUB_claim1) -> cites: Real.LUB_claim1 occurs at Analysis/Section_5_5.lean:170",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:41:44Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at a19a5bfadc616467562995b75f46035232841943",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:41:52Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build_book.yml (fetched) runs 'lake build' on push to main and pull_request; lakefile.lean declares '@[default_target] lean_lib «Analysis»', so 'lake build' compiles Analysis/Section_5_5.lean; pinned commit a19a5bfadc616467562995b75f46035232841943 is the HEAD of the default branch main (source pinned with ref HEAD)",
+      "by": "verifier",
+      "at": "2026-11-14T12:43:31Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "read code/Analysis/Section_5_5.lean 166-189 (24 lines), 117-145 (29), 147-163 (17), 110-111 (2); Section_5_3.lean 467 (1); Section_5_4.lean 349-350 (2), 345-346 (2): sum 53; LUB_claim1 cited at Section_5_5.lean:170 and :173, and LUB_claim1 cites upperBound_between at :139 (chain depth 2)",
+      "by": "verifier",
+      "at": "2026-11-14T12:43:34Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read code/Analysis/Section_5_3.lean 457-460: doc comment of Sequence.IsCauchy.harmonic' reads 'Same as [name]Sequence.IsCauchy.harmonic but reindexing the sequence as a0 = 1, a1 = 1/2, ... This form is more convenient for the upcoming proof of Theorem 5.5.9.' where [name] is a Verso doc cross-reference rendering the lemma name",
+      "by": "verifier",
+      "at": "2026-11-14T12:43:39Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Opened all cited ranges in code/Analysis/Section_5_5.lean (166-189 parent; 117-145, 147-163, 110-111 children), Section_5_3.lean (467, 457-467, 265-270) and Section_5_4.lean (345-350). Parent and all six child statements match entry.json verbatim. Closing methods match the code: LUB_claim1 closes by its own proof via existsUnique_of_exists_of_unique/upperBound_between/upperBound_upper/upperBound_discrete_unique; LUB_claim2 by abs_le/upperBound_upper/gcongr/linarith; LIM_of_Cauchy, LIM.harmonic, LIM_of_ge, LIM_of_le are each 'by sorry' with the doc-comment exercises 5.5.4, 5.3.5, 5.4.8(b), 5.4.8(a) all confirmed. The glue (166-189) contains no sorry (claim 2 verified) and cites exactly the six children at lines 170/173 (claim1), 177 (claim2), 178 (LIM_of_Cauchy), 181 (LIM.harmonic), 185 (LIM_of_ge), 189 (LIM_of_le); the five extra named lemmas it also uses (harmonic' 174, LIM_sub 182, IsCauchy.sub 189, upperBound_def 186, upperBound_upper 188) are explicitly documented in README as supporting, not children, which is a fair boundary. Shape numbers are right: glue_lines 24 (166-189=24), child_lines [29,17,2,1,2,2] (117-145=29, 147-163=17, 110-111=2, 467=1, 349-350=2, 345-346=2) summing to 53, direct_lemmas 6 = the six children (all used directly, >=2), depth 2 = LUB_exist->LUB_claim1->upperBound_between. Decomposition closes in the documented sense: a complete glue routing each obligation to a named leaf, four of which are honestly flagged as stubbed. Move 'witness' is correct (set S := LIM a; use S).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:45:20Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generally: applicability gives goal_shape as an existence goal whose witness is a limit/supremum built from a sequence of approximations, plus three reusable ingredients (rounding/existence lemma, Cauchy criterion, pointwise-to-limit inequality lemmas), so it applies beyond LUB. 'When not to use' is honest and specific and grounded in the code: the witness cannot be named before Cauchyness (verified: claim3 at Section_5_5.lean:178 precedes 'set S := LIM a; use S' at :179), the LIM term is unavailable for a non-Cauchy sequence, and the two halves must fit pointwise-to-limit lemmas. Consequences are honest, explicitly flagging that 4 of 6 leaves are 'by sorry' so the theorem is only as strong as those holes. Leaves-for-bounded-prover: the four sorry leaves are described as one-statement, self-contained, each obligation routed to exactly one leaf, and the opinion ties the skeleton-with-holes to statements 'left for a bounded prover'.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:46:25Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at a19a5bfadc616467562995b75f46035232841943",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:46:43Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent and traceable. All permalinks use commit a19a5bfadc616467562995b75f46035232841943, matching entry.json, sources/analysis/SOURCE.md and sources/analysis/source.json. check_provenance.py passes: 3 files byte-identical at that commit. Licence Apache-2.0 recorded identically in entry.json, source note, source.json, and the copied upstream-LICENSE is Apache-2.0 text. Every cited line range was opened and matches the declared name: parent Real.LUB_exist 166-189, children LUB_claim1 117-145, LUB_claim2 147-163, LIM_of_Cauchy 110-111, LIM.harmonic (Section_5_3.lean 467), LIM_of_ge (Section_5_4.lean 349-350), LIM_of_le (345-346), and the supporting lemmas upperBound_def 29-30, upperBound_upper 53-54, LIM_sub 269-270, IsCauchy.sub 265-266, harmonic' 457-464.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:47:17Z"
+    }
+  ]
+}

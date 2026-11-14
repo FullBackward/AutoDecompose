@@ -1,0 +1,133 @@
+{
+  "entry": "lean-extensionality-strongpnt-8892e42d",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:22:11Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:22:11Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:22:11Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: zeta_ratios@StrongPNT/PNT3_RiemannZeta.lean:265, complex_cpow_neg_two_mul@StrongPNT/PNT3_RiemannZeta.lean:267, p_s_abs_1@StrongPNT/PNT3_RiemannZeta.lean:268, ratio_invs@StrongPNT/PNT3_RiemannZeta.lean:269; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:22:11Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(zeta_ratio_identity, StrongPNT/PNT3_RiemannZeta.lean, 264-269) -> declared: zeta_ratio_identity is declared at StrongPNT/PNT3_RiemannZeta.lean:264",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:22:11Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(StrongPNT/PNT3_RiemannZeta.lean, 264-269) -> no_sorry: none of sorry, admit, axiom in StrongPNT/PNT3_RiemannZeta.lean:264-269",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:22:11Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 2f5835c322314f55f1026ec2f139d704b7c45c69",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:22:19Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/blueprint.yml (leanprover/lean-action@v1.2.0 builds the project); pinned commit 2f5835c322314f55f1026ec2f139d704b7c45c69 is on default branch main",
+      "by": "verifier",
+      "at": "2026-11-14T09:23:37Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "read parent site 264-269 (6 lines, 4 children cited: zeta_ratios@265, complex_cpow_neg_two_mul@267, p_s_abs_1@268, ratio_invs@269); child sites 225-228 (4), 258-262 (5), 7-27 (21), 251-254 (4); depth chain declarations all at stated lines: zeta_ratios@225 uses simplify_prod_ratio@189 uses prod_of_ratios@164 uses prod_of_ratios_simplified@131 uses lift_multipliable_of_nonzero@98",
+      "by": "verifier",
+      "at": "2026-11-14T09:23:39Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "StrongPNT/PNT3_RiemannZeta.lean:62-67, abs_zeta_prod_prime: 'congr 1' at line 65 then 'ext p' at line 66, the same pointwise reduction over the prime index",
+      "by": "verifier",
+      "at": "2026-11-14T09:23:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "blueprint/src/PNT/PNT3_RiemannZeta.tex:234-235 contain exactly \"\\uses{lem:zeta_ratios, lem:ratio_invs, lem:p_s_abs_1}\" and \"Apply Lemma \\ref{lem:zeta_ratios} and Lemma \\ref{lem:ratio_invs} with z=p^{-s}. We verify condition using \\cref{lem:p_s_abs_1}.\"",
+      "by": "verifier",
+      "at": "2026-11-14T09:23:45Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 2f5835c322314f55f1026ec2f139d704b7c45c69",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:24:00Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Provenance pass (2 files byte-identical at 2f5835c). Parent zeta_ratio_identity is declared at 264-269 (6-line glue: rw [zeta_ratios]; congr 1; ext p; then close the pointwise goal) and closes with no sorry/admit/axiom. All four children are exactly the project lemmas the glue cites and their line ranges and statements match the code: zeta_ratios 225-228 (4 lines), complex_cpow_neg_two_mul 258-262 (5), p_s_abs_1 7-27 (21), ratio_invs 251-254 (4); closing methods match (h1.trans h2; ring/norm_cast/cpow_nat_mul; norm_cpow_eq_rpow_re_of_pos + rpow_lt_one_of_one_lt_of_neg; one_sub_ne_zero_of_abs_lt_one/diff_of_squares/inv_mul_div_cancel_right_of_ne_zero). Shape numbers correct: direct_lemmas 4, glue_lines 6, child_lines [4,5,21,4]; depth 5 confirmed by the real citation chain zeta_ratios(225)->simplify_prod_ratio(189)->prod_of_ratios(164)->prod_of_ratios_simplified(131)->lift_multipliable_of_nonzero(98). Blueprint (227-236) cites zeta_ratios/ratio_invs/p_s_abs_1 exactly as claimed; known-use abs_zeta_prod_prime uses congr 1/ext p at 65-66. Non-blocking note: claim 4 says the blueprint cites 'the same named lemmas the glue uses' but it omits complex_cpow_neg_two_mul (a Lean-only step); this is already disclosed in README Consequences and does not affect the decomposition or shape.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:24:53Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generally: applicability.goal_shape/use_when and README 'When to use' describe any equality reduced to pointwise (f p = g p) over a shared index, and also_known_as generalizes to funext/Set.ext/Finset.ext. 'When not to use' and consequences are honest and specific: different index types/weights, sides differing in the index set itself, and a pointwise factor that is not one named lemma are all real ext failure modes; consequences correctly note the dependency on the prior rewrite (zeta_ratios) and the same-index requirement, and that the blueprint has 3 leaves vs 4 in Lean (verified: blueprint \\uses cites zeta_ratios,ratio_invs,p_s_abs_1 only, omitting complex_cpow_neg_two_mul). Good leaves for a bounded prover are described: each child is self-contained and closes by rw/simp/ring/exact with no induction/case split (verified in lines 225-228, 258-262, 7-27, 251-254), matching metrics children_closed_by_automation=4. Known-use claim 5 verified: abs_zeta_prod_prime at lines 63-66 uses rw; congr 1; ext p (same-file second instance, honestly described as same file).",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:25:55Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 2f5835c322314f55f1026ec2f139d704b7c45c69",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:26:13Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance pass (2 files byte-identical at 2f5835c3); commit consistent across entry.json source.commit, all file/site permalinks, README and sources/strongpnt/SOURCE.md+source.json; licence LicenseRef-unknown consistent everywhere with source note 'no licence file found at the root' (confirmed: repo root listing has no LICENSE/COPYING); permalink line anchors verified against local code (parent 264-269, children 225-228/258-262/7-27/251-254, tex 227-236 all match); README source section points to ../../sources/strongpnt/SOURCE.md",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:26:52Z"
+    }
+  ]
+}

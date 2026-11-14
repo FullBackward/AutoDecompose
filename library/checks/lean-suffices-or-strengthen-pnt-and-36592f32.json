@@ -1,0 +1,133 @@
+{
+  "entry": "lean-suffices-or-strengthen-pnt-and-36592f32",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:23:17Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:23:17Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:23:17Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: sum_mobius_floor_tail_isLittleO@PrimeNumberTheoremAnd/Consequences.lean:2418, sum_mobius_div_approx@PrimeNumberTheoremAnd/Consequences.lean:2411; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:23:17Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "no_sorry(PrimeNumberTheoremAnd/Consequences.lean, 2270-2435) -> no_sorry: none of sorry, admit, axiom in PrimeNumberTheoremAnd/Consequences.lean:2270-2435",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:23:17Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, sum_mobius_div_approx) -> cites: sum_mobius_div_approx occurs at PrimeNumberTheoremAnd/Consequences.lean:2411",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:23:17Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, sum_mobius_floor_tail_isLittleO) -> cites: sum_mobius_floor_tail_isLittleO occurs at PrimeNumberTheoremAnd/Consequences.lean:2418",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:23:17Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2c476fa6441c607096d93c8fc7ac0a227a655dae",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:23:26Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml runs leanprover/lean-action (build-args :blueprint) on push/PR to main; lakefile.toml defaultTargets = [PrimeNumberTheoremAnd], so the library including PrimeNumberTheoremAnd/Consequences.lean is compiled; pinned commit 2c476fa6441c607096d93c8fc7ac0a227a655dae is on default branch main (compare main...2c476fa: ahead_by 0, behind_by 2)",
+      "by": "verifier",
+      "at": "2026-11-14T09:25:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "counted in copied code/PrimeNumberTheoremAnd/Consequences.lean: parent mu_pnt_alt spans 2404-2435 = 32 lines (theorem at 2404, closing simpa at 2435); child sum_mobius_floor_tail_isLittleO spans 2270-2355 = 86 lines (lemma at 2270, closing (by norm_num) at 2355); child sum_mobius_div_approx spans 2358-2373 = 16 lines (lemma at 2358, closing cases/linarith at 2373)",
+      "by": "verifier",
+      "at": "2026-11-14T09:25:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "opened copied code/PrimeNumberTheoremAnd/Consequences.lean L2387-2389 of the @[blueprint \"mu-pnt-alt\"] proof text: \"Let N be a natural number. It suffices to show that [sum_{d<=x} mu(d) {x/d} = O(x/N).] if x is large enough depending on N.\" — matches the claimed strategy statement verbatim",
+      "by": "verifier",
+      "at": "2026-11-14T09:25:58Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2c476fa6441c607096d93c8fc7ac0a227a655dae",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:26:23Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent mu_pnt_alt (2404-2435) strengthens the little-o target into h_bound, a bound uniform in K, then closes by epsilon-K; matches the suffices-or-strengthen move and intent. Both children match the copied code: sum_mobius_div_approx (2358-2373) closes by 'cases abs_cases <;> linarith' (matches closed_by), sum_mobius_floor_tail_isLittleO (2270-2355) closes by 'exact h_sum_o_x.congr'' (matches closed_by). The glue cites exactly these two project lemmas (sum_mobius_div_approx@2411, sum_mobius_floor_tail_isLittleO@2418) and no other project lemma, so the children are exactly the lemmas the main proof uses; no sorry/admit/axiom in 2270-2435, so it closes. Shape numbers verified: glue_lines 32 (2404-2435), child_lines [86,16] (2270-2355, 2358-2373), direct_lemmas 2, and depth 3 via chain sum_mobius_div_approx->sum_mobius_floor(2262 cites sum_mobius_mul_floor@1653) all confirmed in the copied file.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:27:14Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally (little-o of a partial sum with an exact identity + tail estimate, bounded by a(K)+b(x)+tail(x)/x, free parameter K separating two limits), not just for mu(n)/n; 'when not to use' and consequences are honest and specific (no split identity, circularity, overkill vs direct partial summation; K-before-x ordering, pointwise-in-K failure mode). README 228-231 'Why each child is a good leaf' explicitly says the leaves have self-contained statements and close on their own or from a named sibling, so glue needs only statements. Minor: 'tail does not shrink as K grows' conflates the head 1/K (shrinks in K) with the tail (o(x) in x), but surrounding a(K)/tail(x)=o(x) framing is correct.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:28:10Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2c476fa6441c607096d93c8fc7ac0a227a655dae",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:28:32Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "provenance check passes (Consequences.lean byte-identical at 2c476fa); commit 2c476fa6441c607096d93c8fc7ac0a227a655dae consistent across source.json, SOURCE.md, entry.json and every permalink; licence Apache-2.0 in source.json/entry.json matches upstream-LICENSE (Apache 2.0); copied file sha256 3e5f6ccd... and bytes 139214 match entry.json; cited line ranges verified in copied file (2270/2358 declarations, 2377 blueprint, 2404 parent, 2435 end). Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:28:54Z"
+    }
+  ]
+}

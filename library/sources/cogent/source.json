@@ -1,0 +1,18 @@
+{
+  "source_id": "cogent",
+  "url": "https://github.com/au-ts/cogent",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "au-ts/cogent",
+  "commit": "49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a",
+  "ref": "HEAD",
+  "language": "isabelle",
+  "pinned_at": "2026-11-14T11:39:25Z",
+  "how_found": "discovery-1: A-isabelle, B-isabelle",
+  "note": "Cogent verified compiler: compilation-correctness proofs for BilbyFs and ext2 plus c-refinement Isabelle/HOL theories; per-filesystem proof directories (impl/fs/bilby/proof) discharge headline theorems from named refinement lemmas",
+  "licence": "BSD-2-Clause AND GPL-2.0",
+  "licence_files": [
+    "LICENSE_BSD2.txt",
+    "LICENSE_GPLv2.txt"
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "entry": "lean-other-carleson-cfff7ffe",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:11:00Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:11:00Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:11:00Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: forest_operator_g@Carleson/ForestOperator/Forests.lean:1030, forest_operator_f@Carleson/ForestOperator/Forests.lean:1031; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:11:00Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(parent, 47) -> lines: site parent has 47 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:11:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, forest_operator_g) -> cites: forest_operator_g occurs at Carleson/ForestOperator/Forests.lean:1030",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:11:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, forest_operator_f) -> cites: forest_operator_f occurs at Carleson/ForestOperator/Forests.lean:1031",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:11:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "declared(forest_operator_f, Carleson/ForestOperator/Forests.lean, 997-1009) -> declared: forest_operator_f is declared at Carleson/ForestOperator/Forests.lean:997",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:11:01Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:11:07Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push.yml (build_project job, lean-action build:true); Carleson.lean has 'public import Carleson.ForestOperator.Forests'; commit d75f54374f7f930e70a86b443f20d0e0935c275e is on default branch master",
+      "by": "verifier",
+      "at": "2026-11-14T09:12:06Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "copied Forests.lean line 829 reads '/-- The g side of Proposition 2.0.4. -/' above forest_operator_g (830), line 996 reads '/-- The f side of Proposition 2.0.4. -/' above forest_operator_f (997)",
+      "by": "verifier",
+      "at": "2026-11-14T09:12:12Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Code at the cited ranges matches the entry. Parent forest_operator spans lines 1024-1070, 47 lines, matching glue_lines and claim 1 (lines parent 47). Children match their statements verbatim: forest_operator_g 830-841 (12 lines, matching child_lines[0]) closes via forest_operator_g_prelude then forest_operator_g_main (lines 836 and 841, matching closed_by); forest_operator_f 997-1009 (13 lines, matching child_lines[1]) closes via forest_operator_f_prelude then forest_operator_f_main (lines 1004 and 1009, matching closed_by). The parent cites exactly these two lemmas (line 1030 forest_operator_g, line 1031 forest_operator_f), so direct_lemmas is 2 and the children are exactly the lemmas the glue uses. No sorry in the site ranges. Depth 3 confirmed as the chain forest_operator -> forest_operator_f -> forest_operator_f_main (line 983 exact forest_operator_f_inner) -> forest_operator_f_inner (line 880). Doc comments The g side of Proposition 2.0.4 (line 829) and The f side of Proposition 2.0.4 (line 996) match claim 5.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:13:13Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally as exponent interpolation of two complementary estimates of the same bilinear quantity, abstracted beyond the example (use_when gives the geometric-mean condition with exponents summing to 1). When-not-to-use and consequences are honest and specific, and each matches the cited code: the parent's egpos/efpos/esum obligations, the rcases endpoint branch at q=2, and the shared eLpNorm tail all appear verbatim at lines 1024-1070. The children (830-841, 997-1009) contain no q, confirming the good-leaf claim: each is a self-contained one-constant bound closing on two named siblings, exactly the one-hole-per-bounded-prover shape, which the README states explicitly.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:13:53Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:14:09Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance pass (1 file byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e); commit d75f54374f7f930e70a86b443f20d0e0935c275e agrees across entry.json, README, source.json and SOURCE.md; licence Apache-2.0 in all four plus upstream-LICENSE is Apache-2.0 text; permalinks use the pinned commit and cite line ranges that match the copied file (parent forest_operator 1024-1070, forest_operator_g 830-841, forest_operator_f 997-1009, doc comments at 996 and 829); SOURCE.md carries the LICENSE link and attribution.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:14:38Z"
+    }
+  ]
+}

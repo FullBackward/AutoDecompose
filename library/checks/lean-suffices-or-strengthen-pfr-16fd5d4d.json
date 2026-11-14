@@ -1,0 +1,189 @@
+{
+  "entry": "lean-suffices-or-strengthen-pfr-16fd5d4d",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:58:34Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:58:34Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:58:34Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: wlog_notInCoset@PFR/WeakPFR.lean:874, weak_PFR_asymm_prelim@PFR/WeakPFR.lean:905, conclusion_transfers@PFR/WeakPFR.lean:902; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:58:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(weak_PFR_asymm, PFR/WeakPFR.lean, 859-971) -> declared: weak_PFR_asymm is declared at PFR/WeakPFR.lean:863",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:58:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, wlog_notInCoset) -> cites: wlog_notInCoset occurs at PFR/WeakPFR.lean:874",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:58:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, weak_PFR_asymm_prelim) -> cites: weak_PFR_asymm_prelim occurs at PFR/WeakPFR.lean:905",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:58:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "cites(parent, conclusion_transfers) -> cites: conclusion_transfers occurs at PFR/WeakPFR.lean:902",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:58:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "no_sorry(PFR/WeakPFR.lean, 1-1079) -> no_sorry: none of sorry, admit, axiom in PFR/WeakPFR.lean:1-1079",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:58:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "6",
+      "value": "verified",
+      "evidence": "lines(parent, 113) -> lines: site parent has 113 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:58:35Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:58:42Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push.yml build job runs leanprover/lean-action@v1.2.0 (whole-project lake build) on push to default branch master; pinned commit 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a is on master (branches-where-head); the build compiles PFR/WeakPFR.lean",
+      "by": "verifier",
+      "at": "2026-11-14T11:01:33Z"
+    },
+    {
+      "type": "claim",
+      "key": "7",
+      "value": "refuted",
+      "evidence": "The 5 stated links are each at the cited lines (weak_PFR_asymm calls weak_PFR_asymm_prelim at 905, weak_PFR_asymm_prelim calls PFR_projection at 651, PFR_projection calls PFR_projection' at 396, PFR_projection' calls app_ent_PFR at 321, app_ent_PFR calls app_ent_PFR' at 295). But the chain does not stop at app_ent_PFR': its body (lines 244-287) calls project lemmas entropic_PFR_conjecture_improv (line 257, imported via PFR.ImprovedPFR), ent_of_proj_le (lines 265-266) and diff_ent_le_rdist (lines 278-279), so a chain of 6 lemmas below weak_PFR_asymm exists, contradicting 'longest ... five lemmas (depth 5)'.",
+      "by": "verifier",
+      "at": "2026-11-14T11:01:36Z"
+    },
+    {
+      "type": "claim",
+      "key": "8",
+      "value": "verified",
+      "evidence": "Line 868 is exactly '-- wlog we can assume A, B are not in cosets of a smaller subgroup', immediately followed at line 869 by 'suffices H : forall (G : Type _) ...' whose binder list includes '(_hnot : NotInCoset A B)' (line 873), matching the claim.",
+      "by": "verifier",
+      "at": "2026-11-14T11:01:37Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T11:03:18Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: wlog_notInCoset@PFR/WeakPFR.lean:874, weak_PFR_asymm_prelim@PFR/WeakPFR.lean:905, conclusion_transfers@PFR/WeakPFR.lean:902; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T11:03:18Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T11:03:26Z"
+    },
+    {
+      "type": "claim",
+      "key": "9",
+      "value": "verified",
+      "evidence": "grep -n on code/PFR/WeakPFR.lean confirms every cited call site: weak_PFR_asymm_prelim at 905, PFR_projection at 651, PFR_projection' at 396, app_ent_PFR at 321, app_ent_PFR' at 295; app_ent_PFR' (lemma at 244) calls entropic_PFR_conjecture_improv at 257, ent_of_proj_le at 265-266 and diff_ent_le_rdist at 279-280. All six lemmas are declared in the same file (244, 291, 303, 392, 629, 863), so the chain is at least six project lemmas and does not end at app_ent_PFR'.",
+      "by": "verifier",
+      "at": "2026-11-14T11:04:44Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T11:05:25Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "object",
+      "evidence": "Decomposition, children, closing and shape all correct: parent weak_PFR_asymm (859-971 = 113 lines) cites wlog_notInCoset@874, conclusion_transfers@902, weak_PFR_asymm_prelim@905; child sites 50-81/625-782/813-857 = 32/158/45 lines; chain weak_PFR_asymm->weak_PFR_asymm_prelim(905)->PFR_projection(651)->PFR_projection'(396)->app_ent_PFR(321)->app_ent_PFR'(295)->ent_of_proj_le(265-266) gives depth 6; four_logs@408 is a shared utility, excluded with justification. One factual error: entry.json children[0].closed_by and README 'How the parts fit' cite the NotInCoset closure at 'line 161', but AddSubgroup.closure_preimage_eq_top is applied at line 72 (line 161 is inside an unrelated entropy proof). Fix: change 161 to 72 in both places.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T11:07:14Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality lens. (1) Move stated beyond the example: applicability.goal_shape/use_when/avoid_when and README 'When to use it, and when not' describe the move generally — an extra hypothesis added via suffices/wlog plus two cheap lemmas (reduce wlog_notInCoset, transfer conclusion_transfers); the suffices re-abstracts G and instance args (verified sed 859-873), so re-generalisation is real, not asserted. (2) when-not-to-use and consequences are honest and specific: avoid_when names two failure modes (hard reduce/transfer; recursion not decreasing) and README adds a third (transfer must be bijection-preserving / Ruzsa-invariant), which conclusion_transfers actually satisfies via Injective f/g + setRuzsaDist_of_inj/add_const; consequences names the three obligations and the failure mode (one-sided inequality silently weakening the bound). (3) 'Why each child is a good leaf' answers the bounded-prover question: wlog_notInCoset and conclusion_transfers are self-contained (close on their own), and the hard leaf weak_PFR_asymm_prelim is one named statement packaging subgroup+fibres+bounds behind one name, with thin 113-line glue over 235 lines of children (measurement claims 4/6, depth-6 chain). Minor non-blocking nit: the prose bullet cites AddSubgroup.closure_preimage_eq_top at 'line 161' but it sits at ~line 70 of the file — a locator typo, not a generality defect.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T11:08:33Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T11:08:52Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note all consistent and traceable. Commit 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a is identical in entry.json, source.json, SOURCE.md, and every permalink (README header's short 1ef23c3c5a83 is the same commit's prefix). Licence Apache-2.0 matches entry.json, README, source.json and SOURCE.md, and sources/pfr/upstream-LICENSE is genuinely Apache License 2.0. Copied code/PFR/WeakPFR.lean is 60974 bytes with sha256 f5bf403c...660, matching files[0] (bytes 60974, same sha256); check_provenance.py passes byte-identical at the pinned commit. Source note ../../sources/pfr/SOURCE.md exists and carries the licence text and attribution. All four site permalinks resolve to the cited line ranges of the same file at the same commit.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T11:09:12Z"
+    }
+  ]
+}

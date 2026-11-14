@@ -1,0 +1,17 @@
+{
+  "source_id": "utp-main",
+  "url": "https://github.com/isabelle-utp/utp-main",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "isabelle-utp/utp-main",
+  "commit": "ffd472022798e60f0385030682b7a07fbeb49e68",
+  "ref": "HEAD",
+  "language": "isabelle",
+  "pinned_at": "2026-11-14T11:39:28Z",
+  "how_found": "discovery-1: A-isabelle, B-isabelle",
+  "note": "Unifying Theories of Programming in Isabelle/HOL: utp/ core plus layered theories (relational, reactive, probabilistic) and case studies Tokeneer, RoboChart, FMI, Modelica built as theorem chains over core laws",
+  "licence": "BSD-3-Clause",
+  "licence_files": [
+    "COPYING"
+  ]
+}

@@ -1,0 +1,205 @@
+{
+  "id": "lean-key-invariant-sphere-packing-ad9db4d3",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "The ratio F/G as key invariant for the F-G inequality on the imaginary axis",
+  "intent": "Reduce the inequality F(it) − 18π⁻² G(it) < 0 to the behaviour of one quantity, the ratio Q(t) = F(it)/G(it): Q is strictly antitone on (0,∞) with right limit 18π⁻² at 0, so Q(t) < 18π⁻², and positivity of G turns this ratio bound into the additive inequality.",
+  "move": "key-invariant",
+  "also_known_as": [
+    "potential function",
+    "monotone ratio",
+    "the invariant that carries the idea"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "sphere-packing",
+    "url": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean",
+    "commit": "efe3bbbc1ece548f4672a772b94d8f621c10fdda",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "SpherePacking/ModularForms/FG.lean",
+      "bytes": 28568,
+      "sha256": "c996853739052a9ecd147c165c58bc39178e0540dcd4180427fa316ea56c9bc5",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ModularForms/FG.lean"
+    },
+    {
+      "path": "blueprint/src/subsections/modform-ineq.tex",
+      "bytes": 13378,
+      "sha256": "d1119652fd30e2203772d915147f459d442500897a3dec4711d28ed972732c0e",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/blueprint/src/subsections/modform-ineq.tex"
+    }
+  ],
+  "sites": [
+    {
+      "path": "SpherePacking/ModularForms/FG.lean",
+      "lines": [
+        541,
+        548
+      ],
+      "role": "parent",
+      "name": "FG_inequality_2",
+      "excerpt_sha256": "9a3f58319e54e3787ce4735739ccb1c3425e9fd2b91d5becb7202608ec3abf94",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ModularForms/FG.lean#L541-L548"
+    },
+    {
+      "path": "SpherePacking/ModularForms/FG.lean",
+      "lines": [
+        408,
+        411
+      ],
+      "role": "child",
+      "name": "FmodG_strictAntiOn",
+      "excerpt_sha256": "8ffe7b758d358d209fef3cd35eaec99c7fbe99ed0b29889628f18ce1ac370575",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ModularForms/FG.lean#L408-L411"
+    },
+    {
+      "path": "SpherePacking/ModularForms/FG.lean",
+      "lines": [
+        518,
+        527
+      ],
+      "role": "child",
+      "name": "FmodG_rightLimitAt_zero",
+      "excerpt_sha256": "01c9485fa8dc2b90d5c070cea46459645968507b41854483d47ccdc6dd54a5aa",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ModularForms/FG.lean#L518-L527"
+    },
+    {
+      "path": "SpherePacking/ModularForms/FG.lean",
+      "lines": [
+        205,
+        207
+      ],
+      "role": "child",
+      "name": "G_imag_axis_pos",
+      "excerpt_sha256": "c775dd7a6287fab511019422aade60398301d90b92280174a20b2d5628be2804",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ModularForms/FG.lean#L205-L207"
+    },
+    {
+      "path": "blueprint/src/subsections/modform-ineq.tex",
+      "lines": [
+        223,
+        231
+      ],
+      "role": "context",
+      "name": "cor:ineqBnew",
+      "excerpt_sha256": "9f642810b00eb9a94ced3281e8c3de9167a4d6be6a762421799b9512df7945ae",
+      "permalink": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/blueprint/src/subsections/modform-ineq.tex#L223-L231"
+    }
+  ],
+  "parent": {
+    "name": "FG_inequality_2",
+    "statement": "theorem FG_inequality_2 {t : ℝ} (ht : 0 < t) :\n    FReal t - 18 * (π ^ (-2 : ℤ)) * GReal t < 0"
+  },
+  "children": [
+    {
+      "name": "FmodG_strictAntiOn",
+      "statement": "theorem FmodG_strictAntiOn : StrictAntiOn FmodGReal (Set.Ioi 0)",
+      "closed_by": "strictAntiOn_of_deriv_neg (convex_Ioi 0), using FmodGReal_differentiableOn.continuousOn and deriv_FmodGReal_neg",
+      "note": "The key monotonicity fact about the ratio Q = F/G: Q is strictly antitone on (0,∞) (blueprint Proposition prop:Qdec). Analyst's paraphrase, replaced by the declaration's text: the ratio FmodGReal is strictly antitone on (0, ∞)"
+    },
+    {
+      "name": "FmodG_rightLimitAt_zero",
+      "statement": "theorem FmodG_rightLimitAt_zero :\n    Tendsto FmodGReal (nhdsWithin 0 (Set.Ioi 0)) (nhds (18 * (π ^ (-2 : ℤ))))",
+      "closed_by": "FmodG_numerator_tendsto.div FmodG_denominator_tendsto, via the functional equations F_functional_eq_real and G_functional_eq_real",
+      "note": "The other half of the invariant: the right limit of Q at 0 is 18π⁻² (blueprint Lemma lemma:Qlim). Analyst's paraphrase, replaced by the declaration's text: the right limit of FmodGReal at 0 is 18·π⁻²"
+    },
+    {
+      "name": "G_imag_axis_pos",
+      "statement": "theorem G_imag_axis_pos : ResToImagAxis.Pos G",
+      "closed_by": "unfold G; fun_prop (disch := positivity)",
+      "note": "Positivity of G (blueprint Lemma lemma:F-G-pos), which lets the glue turn the ratio bound Q(t) < 18π⁻² into the additive inequality without flipping a sign. Analyst's paraphrase, replaced by the declaration's text: G is positive on the imaginary axis"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An inequality A(t) < c·B(t) (equivalently A(t) − c·B(t) < 0) between two real functions on a ray (0,∞), reduced to three facts about the ratio A/B: it is strictly monotone, its one-sided limit at an endpoint is a computable constant, and the denominator is positive.",
+    "use_when": "the two sides share a sign so their ratio is meaningful; the ratio's monotonicity and its endpoint limit can each be proved as separate named lemmas; and the denominator's positivity lets you cross-multiply the ratio bound without flipping the inequality.",
+    "avoid_when": "the ratio is not monotone; the endpoint limit is not computable in closed form; or the denominator changes sign, so the cross-multiplication needs a case split instead."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "`FG_inequality_2` is declared in `SpherePacking/ModularForms/FG.lean` (lines 541-548).",
+      "evidence_kind": "check",
+      "form": "declared(FG_inequality_2, SpherePacking/ModularForms/FG.lean, 541-548)",
+      "evidence": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ModularForms/FG.lean#L541-L548"
+    },
+    {
+      "n": 2,
+      "claim": "`SpherePacking/ModularForms/FG.lean` (lines 1-548) contains no `sorry`, `admit` or `axiom`.",
+      "evidence_kind": "check",
+      "form": "no_sorry(SpherePacking/ModularForms/FG.lean, 1-548)",
+      "evidence": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ModularForms/FG.lean"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site of `FG_inequality_2` (the glue) is 8 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(parent, 8)",
+      "evidence": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/SpherePacking/ModularForms/FG.lean#L541-L548"
+    },
+    {
+      "n": 4,
+      "claim": "The theorem-scale shape of this entry is 3 direct lemmas, an 8-line glue, children of 4/10/3 lines, and a longest chain of 9 project lemmas below the main theorem.",
+      "evidence_kind": "measurement",
+      "evidence": "counted as site spans in SpherePacking/ModularForms/FG.lean (parent L541-L548, children L408-L411, L518-L527, L205-L207); the depth-9 chain is traced link by link in the README (FmodG_strictAntiOn → deriv_FmodGReal_neg → L₁₀_pos → L₁₀_eventually_pos_imag_axis → L₁₀_div_FG_tendsto → D_F_div_F_tendsto → F_vanishing_order → E₂E₄_sub_E₆_div_q_tendsto → qexp_tendsto_of_poly_bound)."
+    },
+    {
+      "n": 5,
+      "claim": "The authors state this exact decomposition in the blueprint: the node `cor:ineqBnew` `\\uses{lemma:Qlim, prop:Qdec, lemma:F-G-pos}` and its proof reads `Q(t) < lim_{u→0⁺} Q(u) = 18/π² … and by Lemma F-G-pos, ineqBnew follows`.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/thefundamentaltheor3m/Sphere-Packing-Lean/blob/efe3bbbc1ece548f4672a772b94d8f621c10fdda/blueprint/src/subsections/modform-ineq.tex#L223-L231"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 8,
+    "children": 3,
+    "children_closed_by_automation": 1,
+    "how_counted": "parent_lines = span of the parent site L541-L548; children = number of child sites; children_closed_by_automation = G_imag_axis_pos only, whose proof body is `unfold G; fun_prop (disch := positivity)` with no further project lemma."
+  },
+  "consequences": "The move creates one obligation per fact about the ratio Q: strict monotonicity on the ray, a computable one-sided limit at the endpoint, and positivity of the denominator. The monotonicity and the limit are the real work — here they sink dozens of lines each through the Wronskian L₁₀ (for the derivative sign) and the modular functional equations (for the limit) — while the glue that combines them is trivial. Strictness is load-bearing: both the strict bound Q(t) < 18π⁻² and the strict positivity G(it) > 0 are needed, or the conclusion degrades to a non-strict ≤. If the denominator changed sign, the cross-multiplication `div_lt_iff₀` would not apply and the single-ratio invariant would need a case split.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 14,
+    "relation": "supports"
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 9,
+    "glue_lines": 8,
+    "child_lines": [
+      4,
+      10,
+      3
+    ]
+  },
+  "content_key": "ad9db4d3e0b1c9f874a3fbe47d7d436882ca108bf2df45fd69498119cf379dca",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-3",
+      "at": "2026-11-14T11:05:48Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,metrics,consequences,known_uses,related,rule,shape",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T11:06:42Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T11:07:07Z",
+      "note": "parent FG_inequality_2: statement re-copied from code; child 'FmodG_strictAntiOn': statement re-copied from the declaration of FmodG_strictAntiOn; child 'FmodG_rightLimitAt_zero': statement re-copied from the declaration of FmodG_rightLimitAt_zero; child 'G_imag_axis_pos': statement re-copied from the declaration of G_imag_axis_pos"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T11:13:12Z"
+}

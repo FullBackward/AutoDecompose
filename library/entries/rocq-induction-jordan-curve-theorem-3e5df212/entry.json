@@ -1,0 +1,222 @@
+{
+  "id": "rocq-induction-jordan-curve-theorem-3e5df212",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Induction on the ring list for the discrete Jordan curve theorem",
+  "intent": "Prove the discrete Jordan curve theorem — breaking a planar hypermap along a face ring raises the number of connected components by exactly one — by induction on the ring list, each step of the induction discharged by six named lemmas about the one-link break Br1.",
+  "move": "induction",
+  "also_known_as": [],
+  "language": "rocq",
+  "source": {
+    "source_id": "jordan-curve-theorem",
+    "url": "https://github.com/coq-contribs/jordan-curve-theorem",
+    "commit": "906762607c3e05bedd3f9aab002172e34dd1b595",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "Jordan10.v",
+      "bytes": 182104,
+      "sha256": "8c5ddfa972cb483bdff27e59349815c573759aead7d7c0d5d83889cc483d05c2",
+      "permalink": "https://github.com/coq-contribs/jordan-curve-theorem/blob/906762607c3e05bedd3f9aab002172e34dd1b595/Jordan10.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Jordan10.v",
+      "lines": [
+        8763,
+        8819
+      ],
+      "role": "parent",
+      "name": "Jordan",
+      "excerpt_sha256": "d158adce296b716680c9adf2c8148fb5442eb520150794dccba315d5fe0e16c4",
+      "permalink": "https://github.com/coq-contribs/jordan-curve-theorem/blob/906762607c3e05bedd3f9aab002172e34dd1b595/Jordan10.v#L8763-L8819"
+    },
+    {
+      "path": "Jordan10.v",
+      "lines": [
+        5994,
+        6030
+      ],
+      "role": "child",
+      "name": "Jordan1",
+      "excerpt_sha256": "cf23ed0d81c1738de79a85ef4e1261dfa434caf3a4b83389b7f02d1a2da533e9",
+      "permalink": "https://github.com/coq-contribs/jordan-curve-theorem/blob/906762607c3e05bedd3f9aab002172e34dd1b595/Jordan10.v#L5994-L6030"
+    },
+    {
+      "path": "Jordan10.v",
+      "lines": [
+        5379,
+        5601
+      ],
+      "role": "child",
+      "name": "nc_Br1",
+      "excerpt_sha256": "92dfe911a61c20813dca5e1018b7cc59e07a5341365249eea1ab68a14ce52444",
+      "permalink": "https://github.com/coq-contribs/jordan-curve-theorem/blob/906762607c3e05bedd3f9aab002172e34dd1b595/Jordan10.v#L5379-L5601"
+    },
+    {
+      "path": "Jordan10.v",
+      "lines": [
+        6296,
+        6329
+      ],
+      "role": "child",
+      "name": "ring1_ring3_connect",
+      "excerpt_sha256": "37ea77a163bcc7c522243005b03dfd53882f90604db9ae865743336f21b96ea5",
+      "permalink": "https://github.com/coq-contribs/jordan-curve-theorem/blob/906762607c3e05bedd3f9aab002172e34dd1b595/Jordan10.v#L6296-L6329"
+    },
+    {
+      "path": "Jordan10.v",
+      "lines": [
+        4229,
+        4255
+      ],
+      "role": "child",
+      "name": "inv_hmap_Br1",
+      "excerpt_sha256": "579763a456171856238b638ab9b9666e6389421df23d61fcc920964fabb4ea30",
+      "permalink": "https://github.com/coq-contribs/jordan-curve-theorem/blob/906762607c3e05bedd3f9aab002172e34dd1b595/Jordan10.v#L4229-L4255"
+    },
+    {
+      "path": "Jordan10.v",
+      "lines": [
+        4257,
+        4307
+      ],
+      "role": "child",
+      "name": "planar_Br1",
+      "excerpt_sha256": "5385ea3e9983128b1d3079669523912d5f567d1b9d6c4b4f67246a4e50d0922a",
+      "permalink": "https://github.com/coq-contribs/jordan-curve-theorem/blob/906762607c3e05bedd3f9aab002172e34dd1b595/Jordan10.v#L4257-L4307"
+    },
+    {
+      "path": "Jordan10.v",
+      "lines": [
+        8714,
+        8759
+      ],
+      "role": "child",
+      "name": "ring_Br1",
+      "excerpt_sha256": "79554f6bfdbbc93999a629ec0ccb57dbc77f5ba09ed55d136a4b531cfda8de04",
+      "permalink": "https://github.com/coq-contribs/jordan-curve-theorem/blob/906762607c3e05bedd3f9aab002172e34dd1b595/Jordan10.v#L8714-L8759"
+    }
+  ],
+  "parent": {
+    "name": "Jordan",
+    "statement": "Theorem Jordan: forall(l:list)(m:fmap),\n inv_hmap m -> planar m -> ring m l ->\n   nc (Br m l) = nc m + 1."
+  },
+  "children": [
+    {
+      "name": "Jordan1",
+      "statement": "Lemma Jordan1:forall(m:fmap)(x x':dart),\n  inv_hmap m -> planar m -> \n   let l:= cons x x' lam in \n    ring m l -> nc (Br m l) = nc m + 1.",
+      "closed_by": "rewrite nc_Br1; elim (expf_dec m y y'); apply expf_symm; tauto"
+    },
+    {
+      "name": "nc_Br1",
+      "statement": "Theorem nc_Br1: forall (m:fmap)(x x':dart),\n  inv_hmap m -> planar m -> double_link m x x' ->\n    let y  := cA m zero x in\n    let y' := cA m zero x' in\n  nc (Br1 m x x') = nc m + \n     if expf_dec m y y' then 1 else 0.",
+      "closed_by": "elim (succ_dec m zero x); rewrite nc_B; tauto (through disconnect_planar_criterion_B0)"
+    },
+    {
+      "name": "ring1_ring3_connect",
+      "statement": "Lemma ring1_ring3_connect: \n  forall(m:fmap)(x x' xs xs':dart)(l:list),\n   let l1:= cons x x' (cons xs xs' l) in\n   let y  := cA m zero x in\n   let y' := cA m zero x' in \n   inv_hmap m -> planar m -> \n     double_link_list m l1 ->\n       pre_ring1 m l1 -> pre_ring3 m l1 ->\n         ~ expf m y y'.",
+      "closed_by": "apply expf_trans with y'; tauto"
+    },
+    {
+      "name": "inv_hmap_Br1",
+      "statement": "Lemma inv_hmap_Br1:forall(m:fmap)(x x':dart),\n   inv_hmap m -> inv_hmap (Br1 m x x').",
+      "closed_by": "elim (succ_dec m zero x); apply inv_hmap_B; tauto"
+    },
+    {
+      "name": "planar_Br1",
+      "statement": "Lemma planar_Br1:forall(m:fmap)(x x':dart),\n  inv_hmap m -> planar m -> x <> x' -> \n     planar (Br1 m x x').",
+      "closed_by": "elim (succ_dec m zero x); apply planar_B0; tauto"
+    },
+    {
+      "name": "ring_Br1",
+      "statement": "Lemma ring_Br1: forall(m:fmap)(l:list),\n inv_hmap m -> planar m -> \n   let x:= fst (first l) in let x' := snd (first l) in\n   let m1 := Br1 m x x' in\n ring m l -> (emptyl (tail l) \\/ ring m1 (tail l)).",
+      "closed_by": "induction l; apply (ring1_ring3_connect ...); generalize (ring_Br1_aux ...); tauto"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "forall (l : list) (m : fmap), inv_hmap m -> planar m -> ring m l -> nc (Br m l) = nc m + 1, where ring m l is a conjunction of non-emptiness and five adjacency predicates over a list of darts (Jordan10.v:5981) and nc (Br m l) is the number of connected components after breaking the hypermap along the ring.",
+    "use_when": "the target is a quantity (nc) that changes by a fixed increment per cons-step of a list, and the step's side conditions — the hypothesis is preserved and the increment is real — are already proved as named one-step lemmas about the single break operation Br1; the base case may not be a degenerate form of the step (here it needs its own lemma, Jordan1).",
+    "avoid_when": "the step does not preserve the hypothesis needed to reapply the induction hypothesis (here ring is re-established by ring_Br1); the increment depends on a case that the invariant does not exclude (here expf vs ~expf, excluded by ring1_ring3_connect); or the quantity is not additive across the step."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site is 57 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/coq-contribs/jordan-curve-theorem/blob/906762607c3e05bedd3f9aab002172e34dd1b595/Jordan10.v#L8763-L8819",
+      "form": "lines(parent, 57)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites nc_Br1.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/coq-contribs/jordan-curve-theorem/blob/906762607c3e05bedd3f9aab002172e34dd1b595/Jordan10.v#L8795",
+      "form": "cites(parent, nc_Br1)"
+    },
+    {
+      "n": 3,
+      "claim": "No admit, Admitted, Axiom or axiom token appears in Jordan10.v lines 4229-8819.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/coq-contribs/jordan-curve-theorem/blob/906762607c3e05bedd3f9aab002172e34dd1b595/Jordan10.v#L4229-L8819",
+      "form": "no_sorry(Jordan10.v, 4229-8819)"
+    },
+    {
+      "n": 4,
+      "claim": "The six direct child lemmas span 418 proof lines in total (37 + 223 + 34 + 27 + 51 + 46), against 57 glue lines.",
+      "evidence_kind": "measurement",
+      "evidence": "Jordan10.v at commit 906762607c3e05bedd3f9aab002172e34dd1b595: Jordan1 5994-6030 (37), nc_Br1 5379-5601 (223), ring1_ring3_connect 6296-6329 (34), inv_hmap_Br1 4229-4255 (27), planar_Br1 4257-4307 (51), ring_Br1 8714-8759 (46); glue 8763-8819 (57)"
+    },
+    {
+      "n": 5,
+      "claim": "The authors state the theorem as a discrete Jordan curve theorem: \"When the hypermap is planar and is broken at these edges, the number of its connected components increases by one, which is a discrete version of the famous Jordan curve theorem.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/coq-contribs/jordan-curve-theorem/blob/906762607c3e05bedd3f9aab002172e34dd1b595/README (line 7)"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 6,
+    "depth": 4,
+    "glue_lines": 57,
+    "child_lines": [
+      37,
+      223,
+      34,
+      27,
+      51,
+      46
+    ]
+  },
+  "metrics": {
+    "direct_lemmas": 6,
+    "glue_lines": 57,
+    "child_lines_total": 418,
+    "how_counted": "glue = Jordan10.v 8763-8819; child lines = the six child site ranges (sum 418), listed in shape.child_lines"
+  },
+  "consequences": "The induction creates three obligations that the six lemmas are arranged to meet: (i) the empty and length-one base cases, closed by tauto and then by Jordan1; (ii) a ~expf assertion that makes nc_Br1's `if expf_dec` branch land on 0 so `omega` closes `nc m + 0 = nc m + 1`, discharged by ring1_ring3_connect; (iii) the side conditions to reapply the induction hypothesis on the tail — inv_hmap_Br1 and planar_Br1 preserve the map's hypotheses, and ring_Br1 rebuilds the ring invariant for the tail. Failure mode: if the invariant does not compose under the break (the tail of a ring were not a ring), the induction hypothesis is unusable; and the whole +1 rests on `planar`, since without it the two faces at the broken link could be equal (expf) and nc would not increase.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "3e5df212d6f6d8b73eb2226a322041ac63b14b67b3c81ce3899ceda5c5935bb0",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:38:48Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:45:00Z"
+    }
+  ]
+}

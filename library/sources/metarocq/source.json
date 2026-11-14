@@ -1,0 +1,17 @@
+{
+  "source_id": "metarocq",
+  "url": "https://github.com/MetaRocq/metarocq",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "MetaRocq/metarocq",
+  "commit": "51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-14T11:38:54Z",
+  "how_found": "discovery-1: A-agents, A-rocq, B-rocq",
+  "note": "PCUIC metatheory (weakening, substitution, confluence, subject reduction, principality) and the verified safe checker and erasure, each main result stated above and proved from named lemmas of the same development",
+  "licence": "MIT",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

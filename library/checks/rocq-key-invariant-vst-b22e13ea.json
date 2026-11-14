@@ -1,0 +1,133 @@
+{
+  "entry": "rocq-key-invariant-vst-b22e13ea",
+  "records": [
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(G1_G2_close, Gi_adjacent_hybrids_close) -> cites: Gi_adjacent_hybrids_close occurs at hmacdrbg/HMAC_DRBG_nonadaptive.v:4554",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:18:29Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(hmacdrbg/HMAC_DRBG_nonadaptive.v, 407-4556) -> no_sorry: none of admit, Admitted, Axiom, axiom in hmacdrbg/HMAC_DRBG_nonadaptive.v:407-4556",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:18:29Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: Generate_move_v_update@hmacdrbg/HMAC_DRBG_nonadaptive.v:4551, G_real_is_first_hybrid@hmacdrbg/HMAC_DRBG_nonadaptive.v:4552, G_ideal_is_last_hybrid@hmacdrbg/HMAC_DRBG_nonadaptive.v:4553, Gi_adjacent_hybrids_close@hmacdrbg/HMAC_DRBG_nonadaptive.v:4554; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:18:30Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:19:41Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:19:41Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:19:41Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: Generate_move_v_update@hmacdrbg/HMAC_DRBG_nonadaptive.v:4551, G_real_is_first_hybrid@hmacdrbg/HMAC_DRBG_nonadaptive.v:4552, G_ideal_is_last_hybrid@hmacdrbg/HMAC_DRBG_nonadaptive.v:4553, Gi_adjacent_hybrids_close@hmacdrbg/HMAC_DRBG_nonadaptive.v:4554; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:19:42Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at c082fe210ec501219abe52b9d0f25541d7c97e59",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:19:54Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "source CI (.github/workflows/coq-action.yml on branch master) runs 'make vst' plus test targets assumptions.txt/test/test2/test3/test4/test5; none compile the hmacdrbg directory. hmacdrbg is only built by the 32-bit 'all' target (make vst files tests hmacdrbg tweetnacl aes), which the CI matrix does not run. So the CI does not build hmacdrbg/HMAC_DRBG_nonadaptive.v.",
+      "by": "verifier",
+      "at": "2026-11-14T10:20:48Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read copied file code/hmacdrbg/HMAC_DRBG_nonadaptive.v: glue site 4548-4556 is 9 lines and cites 4 lemmas (Generate_move_v_update@4551, G_real_is_first_hybrid@4552, G_ideal_is_last_hybrid@4553, Gi_adjacent_hybrids_close@4554). Child sites each declaration-through-Qed: 407-433 (27), 578-612 (35), 816-840 (25), 4519-4541 (23). Chain confirmed: G1_G2_close(4548-4556) cites Gi_adjacent_hybrids_close@4554; Gi_adjacent_hybrids_close(4519-4541) cites Gi_replace_rf_with_rb_oracle@4534; Gi_replace_rf_with_rb_oracle(4404-4425) cites Gi_Pr_bad_event_collisions@4421; Gi_Pr_bad_event_collisions(4364-4393) cites Gi_rb_bad_eq_2'@4368; Gi_rb_bad_eq_2' at 4263-4318.",
+      "by": "verifier",
+      "at": "2026-11-14T10:21:28Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read copied file code/hmacdrbg/HMAC_DRBG_nonadaptive.v lines 457-463: author comment reads '(* oracle i *) (* number of calls: first call is 0, last call is (numCalls - 1) for numCalls calls total / G0: PRF PRF PRF / G1: RB PRF PRF / G2: RB RB PRF / G3: RB RB RB / there should be (S numCalls) games, so games are numbered from 0 through numCalls *)', matching the quote (eliding 'for numCalls calls total'). The comment sits directly above Definition choose_Generate, the hybrid game family.",
+      "by": "verifier",
+      "at": "2026-11-14T10:21:29Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at c082fe210ec501219abe52b9d0f25541d7c97e59",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:21:47Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Provenance passes (1 file byte-identical at c082fe210ec5). Parent G1_G2_close (4548-4556) cites exactly the four children: Generate_move_v_update (4551), G_real_is_first_hybrid (4552), G_ideal_is_last_hybrid (4553), Gi_adjacent_hybrids_close (4554), plus hybrid_argument=Definition distance_le_prod_f (4545, a library lemma, correctly not a child). All four child statements are verbatim vs the copied file; each closed_by matches its proof (comp_spec_acc_2/fcf_reflexivity; G1_G1_acc_equal/compFold_Generate_v_choose_Generate; G2_oracle_eq/G2_oracle_eq_v_sampling/oracleMap_rb_eq/length_replicate; lia case split + ratDistance_le_trans with the three Gi_replace lemmas, out-of-bounds via Gi_adjacent_hybrids_close_outofbounds + rat0_le_all). Every site ends in Qed and claim 2's no_sorry(407-4556) passes, so it closes. Shape numbers recompute correctly: direct_lemmas=4, depth=4 (chain G1_G2_close -> Gi_adjacent_hybrids_close -> Gi_replace_rf_with_rb_oracle -> Gi_Pr_bad_event_collisions -> Gi_rb_bad_eq_2' verified at 4532->4404-4425->4364-4393->4263-4318), glue_lines=9 (4548-4556), child_lines=[27,35,25,23] (407-433, 578-612, 816-840, 4519-4541).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:22:42Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated beyond the example: applicability.use_when and README 'When to use it' name portable preconditions (two games differing by a parameter stepped through a family Gi 0..numCalls; endpoints genuine ==; uniform per-step bound; a generic telescope lemma distance_le_prod_f). avoid_when is specific and honest (non-uniform in-index bound, one-sided endpoints, adversary that does not factor into one invariant); consequences names the concrete failure mode (per-step bound must be independent of i or the single specialize breaks). Good-leaf rationale is explicit: endpoint children are pure rewrites with no cryptographic content and close on their own; all difficulty is the invariant, 'single hard hole left for one bounded prover' (README 207-214, 236-240). Checked against code: parent 4548-4556 and hybrid_argument:=distance_le_prod_f at 4545 match; invariant 4519-4541 with the line-4520 author comment matches the note.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:23:21Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at c082fe210ec501219abe52b9d0f25541d7c97e59",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:23:49Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes: code/hmacdrbg/HMAC_DRBG_nonadaptive.v (174832 bytes) is byte-identical at commit c082fe210ec501219abe52b9d0f25541d7c97e59 and its sha256 matches entry.json. Commit is the same hash in SOURCE.md, source.json, entry.json and every permalink (README's 'c082fe210ec5' is the same hash abbreviated). Licence 'BSD-2-Clause' is recorded identically in SOURCE.md, source.json, entry.json and README; upstream-LICENSE is the BSD 2-clause text and explicitly lists hmacdrbg among the BSD-licensed parts, so the copied file is genuinely covered. SOURCE.md records the licence text (upstream-LICENSE, upstream-LICENSE-OPAM both present) and the attribution line. All traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:24:04Z"
+    }
+  ]
+}

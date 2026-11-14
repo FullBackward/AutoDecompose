@@ -1,0 +1,250 @@
+{
+  "id": "lean-suffices-or-strengthen-mathlib4-b3035491",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Suffices to the generalized equation for Fermat's Last Theorem n = 3",
+  "intent": "Reduce Fermat's Last Theorem for exponent 3 to the generalized equation FermatLastTheoremForThreeGen over the cyclotomic integers (a stronger statement in which the unit u is free), then close that generalized statement by infinite descent on the multiplicity of λ = ζ₃ − 1 in c.",
+  "move": "suffices-or-strengthen",
+  "also_known_as": [
+    "suffices",
+    "enough",
+    "backward rule",
+    "reduce to a stronger statement"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "mathlib4",
+    "url": "https://github.com/leanprover-community/mathlib4",
+    "commit": "e1545ebed97594477bbd88b2fe948ffce56e5af2",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Mathlib/NumberTheory/FLT/Three.lean",
+      "bytes": 38263,
+      "sha256": "01db065ff995bfbb7c08d6184996d70f8afae744aab2338749762d06b6c774c7",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/NumberTheory/FLT/Three.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Mathlib/NumberTheory/FLT/Three.lean",
+      "lines": [
+        751,
+        771
+      ],
+      "role": "parent",
+      "name": "fermatLastTheoremThree",
+      "excerpt_sha256": "68908663581945f42ee69f97c811d0ce08defed88a3bd2bd2bd08444a51d22fa",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/NumberTheory/FLT/Three.lean#L751-L771"
+    },
+    {
+      "path": "Mathlib/NumberTheory/FLT/Three.lean",
+      "lines": [
+        166,
+        178
+      ],
+      "role": "child",
+      "name": "FermatLastTheoremForThree_of_FermatLastTheoremThreeGen",
+      "excerpt_sha256": "4b8c10b576ff00b758808f2d14fae1eace8e8cfc558942d2f8812e7b7d9964a5",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/NumberTheory/FLT/Three.lean#L166-L178"
+    },
+    {
+      "path": "Mathlib/NumberTheory/FLT/Three.lean",
+      "lines": [
+        360,
+        373
+      ],
+      "role": "child",
+      "name": "exists_Solution_of_Solution'",
+      "excerpt_sha256": "0fa61a64163b8aa5106f54fb2c3f6eabe6dca541e72e6aa323696eb3d78c8450",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/NumberTheory/FLT/Three.lean#L360-L373"
+    },
+    {
+      "path": "Mathlib/NumberTheory/FLT/Three.lean",
+      "lines": [
+        233,
+        237
+      ],
+      "role": "child",
+      "name": "Solution.exists_minimal",
+      "excerpt_sha256": "6c9ee3674db0c77bbe7f5b03a79a257e56dc5544f6a22f765413be87d9cdb017",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/NumberTheory/FLT/Three.lean#L233-L237"
+    },
+    {
+      "path": "Mathlib/NumberTheory/FLT/Three.lean",
+      "lines": [
+        735,
+        738
+      ],
+      "role": "child",
+      "name": "exists_Solution_multiplicity_lt",
+      "excerpt_sha256": "8c7032b28d0efe7064006e38b6873552a080651752c14542d1e505cca55900e6",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/NumberTheory/FLT/Three.lean#L735-L738"
+    },
+    {
+      "path": "Mathlib/NumberTheory/FLT/Three.lean",
+      "lines": [
+        158,
+        163
+      ],
+      "role": "context",
+      "name": "FermatLastTheoremForThreeGen",
+      "excerpt_sha256": "a0e4ecf0855937c0774a44920eab3c6ab33a1ab24ebf64f0a82449b75c128736",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/NumberTheory/FLT/Three.lean#L158-L163"
+    },
+    {
+      "path": "Mathlib/NumberTheory/FLT/Three.lean",
+      "lines": [
+        185,
+        195
+      ],
+      "role": "context",
+      "name": "Solution'",
+      "excerpt_sha256": "8315bbd54826cd18843ec6421b5e7bba1cc93a786c72ab91d0c6595eb7b57b93",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/NumberTheory/FLT/Three.lean#L185-L195"
+    },
+    {
+      "path": "Mathlib/NumberTheory/FLT/Three.lean",
+      "lines": [
+        201,
+        203
+      ],
+      "role": "context",
+      "name": "Solution",
+      "excerpt_sha256": "d0e39d88ecf811f126fc2e57a709b754a809c1ccb4f2fbcf70a0e7d314d4a50e",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/NumberTheory/FLT/Three.lean#L201-L203"
+    },
+    {
+      "path": "Mathlib/NumberTheory/FLT/Three.lean",
+      "lines": [
+        224,
+        228
+      ],
+      "role": "context",
+      "name": "Solution.multiplicity_isMinimal",
+      "excerpt_sha256": "4d23bb1ba3e774d2330cbec07f704ecb7e3be0bea98fd50c03cb07a35a49172a",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/NumberTheory/FLT/Three.lean#L224-L228"
+    }
+  ],
+  "parent": {
+    "name": "fermatLastTheoremThree",
+    "statement": "theorem fermatLastTheoremThree : FermatLastTheoremFor 3"
+  },
+  "children": [
+    {
+      "name": "FermatLastTheoremForThree_of_FermatLastTheoremThreeGen",
+      "statement": "lemma FermatLastTheoremForThree_of_FermatLastTheoremThreeGen\n    [NumberField K] [IsCyclotomicExtension {3} ℚ K] :\n    FermatLastTheoremForThreeGen hζ → FermatLastTheoremFor 3",
+      "closed_by": "own proof (166-178): intro H; refine fermatLastTheoremThree_of_three_dvd_only_c …, then refine H a b c 1 …; the six subgoals close by rwa / exact dvd_trans / exact IsCoprime.intCast / simpa using mod_cast",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: to prove FermatLastTheoremFor 3 it is enough to prove the generalized statement FermatLastTheoremForThreeGen hζ"
+    },
+    {
+      "name": "exists_Solution_of_Solution'",
+      "statement": "lemma exists_Solution_of_Solution' : ∃ (S₁ : Solution hζ), S₁.multiplicity = S'.multiplicity",
+      "closed_by": "own proof (360-373): obtain ⟨a, b, H, coprime, ha, hb, hab⟩ from ex_cube_add_cube_eq_and_isCoprime_and_not_dvd_and_dvd S', then exact ⟨{ … }, rfl⟩",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: from a Solution' one builds a Solution with the same multiplicity of λ in c"
+    },
+    {
+      "name": "Solution.exists_minimal",
+      "statement": "lemma Solution.exists_minimal : ∃ (S₁ : Solution hζ), S₁.isMinimal",
+      "closed_by": "own proof (233-237): classical; the multiplicities form a nonempty set of naturals, Nat.find_spec and Nat.find_min' give the least one",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: if a Solution exists then a minimal one exists (least multiplicity of λ in c)"
+    },
+    {
+      "name": "exists_Solution_multiplicity_lt",
+      "statement": "theorem exists_Solution_multiplicity_lt :\n    ∃ S₁ : Solution hζ, S₁.multiplicity < S.multiplicity",
+      "closed_by": "own proof (735-738): obtain ⟨S', hS'⟩ from exists_Solution_of_Solution' (Solution'_descent S), then exact ⟨S', hS' ▸ Solution'_descent_multiplicity_lt S⟩",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: from any Solution one builds another Solution with strictly smaller multiplicity"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A main theorem P (here FermatLastTheoremFor 3) is proved by first applying a backward rule P_from_Q : Q → P and then proving the stronger, more general Q (here FermatLastTheoremForThreeGen hζ, which quantifies over a free unit u and over the ring of integers 𝓞 K).",
+    "use_when": "the generalized statement is genuinely stronger — extra variables or a free parameter (here the unit u) — yet still provable, and the extra freedom is exactly what lets the real argument (here descent on the multiplicity of λ) close.",
+    "avoid_when": "the strengthened statement is not actually true, is no easier than the original, or the backward step Q → P needs a non-trivial transfer (here the ideal-norm argument Ideal.norm_dvd_iff in lines 172-178) that does not go through."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "A declaration named fermatLastTheoremThree starts in lines 748-772 of Mathlib/NumberTheory/FLT/Three.lean.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/NumberTheory/FLT/Three.lean#L751-L771",
+      "form": "declared(fermatLastTheoremThree, Mathlib/NumberTheory/FLT/Three.lean, 748-772)"
+    },
+    {
+      "n": 2,
+      "claim": "Lines 166-771 of Mathlib/NumberTheory/FLT/Three.lean contain no sorry, admit or axiom.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/NumberTheory/FLT/Three.lean#L166-L771",
+      "form": "no_sorry(Mathlib/NumberTheory/FLT/Three.lean, 166-771)"
+    },
+    {
+      "n": 3,
+      "claim": "The name exists_Solution_multiplicity_lt occurs in the parent site.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/NumberTheory/FLT/Three.lean#L770",
+      "form": "cites(parent, exists_Solution_multiplicity_lt)"
+    },
+    {
+      "n": 4,
+      "claim": "The longest chain of project lemmas below fermatLastTheoremThree that I traced has length 7: exists_Solution_multiplicity_lt → exists_Solution_of_Solution' → ex_cube_add_cube_eq_and_isCoprime_and_not_dvd_and_dvd → lambda_sq_dvd_or_dvd_or_dvd → lambda_sq_dvd_c → lambda_pow_four_dvd_c_cube → a_cube_b_cube_congr_one_or_neg_one, ending where a_cube_b_cube_congr_one_or_neg_one calls the imported lemma lambda_pow_four_dvd_cube_sub_one_or_add_one_of_lambda_not_dvd (from Mathlib.NumberTheory.NumberField.Cyclotomic.Three).",
+      "evidence_kind": "measurement",
+      "evidence": "each link verified in the copied file (https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/NumberTheory/FLT/Three.lean): L737, L361, L344, L331, L281, L269, L244"
+    },
+    {
+      "n": 5,
+      "claim": "The authors state the reduction as an 'it is enough' move: the doc comment of the reduction lemma reads 'To prove FermatLastTheoremFor 3, it is enough to prove FermatLastTheoremForThreeGen', and the module comment reads 'In particular it is enough to prove that no Solution exists'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/NumberTheory/FLT/Three.lean#L165 and https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Mathlib/NumberTheory/FLT/Three.lean#L39"
+    }
+  ],
+  "metrics": {
+    "glue_lines": 21,
+    "direct_lemmas": 4,
+    "how_counted": "glue_lines = the 21 lines of the parent site 751-771; direct_lemmas = the 4 named lemmas the glue cites (lines 755, 768, 769, 770)"
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 7,
+    "glue_lines": 21,
+    "child_lines": [
+      13,
+      14,
+      5,
+      4
+    ]
+  },
+  "consequences": "The move replaces the goal FermatLastTheoremFor 3 by the obligation FermatLastTheoremForThreeGen hζ (lines 755-771): the reduction lemma's premise is a stronger statement over all units u and all a, b, c in 𝓞 K. Two obligations are created: (1) the backward step Q → P must be faithful — here it needs the ideal-norm transfer Ideal.norm_dvd_iff to move a ℤ solution into 𝓞 K (lines 172-178); (2) Q must be strong enough to carry the descent, which is exactly why the unit u is left free (the descent cannot control u, module comment lines 42-46). Failure modes: strengthening too far makes Q false; strengthening too little leaves the descent without the free parameter it needs; the descent itself needs a well-founded measure (the multiplicity of λ in c) and a minimality lemma, and each step must produce a strictly smaller Solution.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "b3035491674d8bd9ae7290d08e4cdc3093b3d707f832d903b4f488439ca32532",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:54:07Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,shape,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:56:42Z",
+      "note": "parent fermatLastTheoremThree: statement re-copied from code; child 'FermatLastTheoremForThree_of_FermatLastTheoremThreeGen': statement re-copied from the declaration of FermatLastTheoremForThree_of_FermatLastTheoremThreeGen; child \"exists_Solution_of_Solution'\": statement re-copied from the declaration of exists_Solution_of_Solution'; child 'Solution.exists_minimal': statement re-copied from the declaration of Solution.exists_minimal; child 'exists_Solution_multiplicity_lt': statement re-copied from the declaration of exists_Solution_multiplicity_lt"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T11:04:21Z"
+}

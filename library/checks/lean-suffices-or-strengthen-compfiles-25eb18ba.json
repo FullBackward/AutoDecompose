@@ -1,0 +1,125 @@
+{
+  "entry": "lean-suffices-or-strengthen-compfiles-25eb18ba",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:32:01Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:32:01Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:32:01Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: all_on_of_last_only@Compfiles/Imo1993P6.lean:1240, last_lamp_only_of_two_pow@Compfiles/Imo1993P6.lean:1240; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:32:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, last_lamp_only_of_two_pow) -> cites: last_lamp_only_of_two_pow occurs at Compfiles/Imo1993P6.lean:1240",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:32:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, all_on_of_last_only) -> cites: all_on_of_last_only occurs at Compfiles/Imo1993P6.lean:1240",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:32:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(Compfiles/Imo1993P6.lean, 1233-1240) -> no_sorry: none of sorry, admit, axiom in Compfiles/Imo1993P6.lean:1233-1240",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:32:01Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:32:10Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push-main.yaml runs 'lake build' on pushes to default branch main; commit 1745e6ced3e671bd74417548494b034eb2c87da8 is HEAD of main (compare status identical)",
+      "by": "verifier",
+      "at": "2026-11-14T09:32:59Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read code/Compfiles/Imo1993P6.lean: parent site 1233-1240 = 8 lines (1240-1233+1); all_on_of_last_only 143-225 = 83 lines; last_lamp_only_of_two_pow 1002-1023 = 22 lines; matches shape direct_lemmas=2, glue_lines=8, child_lines=[83,22]",
+      "by": "verifier",
+      "at": "2026-11-14T09:33:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read lines 365-368 of code/Compfiles/Imo1993P6.lean: comment states 'The cores of parts (b) and (c) are proved at the end of this section (last_lamp_only_of_two_pow and lamp1_only_of_two_pow_add_one): induction on k via a ZMod 2 model of the process (toggling is adding the predecessor); see all_on_of_last_only and all_on_of_lamp1_only for the final phases.' The claim's quoted fragments match verbatim",
+      "by": "verifier",
+      "at": "2026-11-14T09:33:29Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent (1233-1240, 8 lines) closes by 'exact all_on_of_last_only hn2 (last_lamp_only_of_two_pow n k hk hn)'; both children cited and are exactly the two lemmas the parent uses. Child statements match code verbatim: all_on_of_last_only (143-145) closes via internal 'key (n-1) le_rfl i' then lia; last_lamp_only_of_two_pow (1002-1023) closes via core/glue/aux then simp on by_cases hi: i = lasti (2^k). Type unification closes: all_on_of_last_only's h equals last_lamp_only_of_two_pow's conclusion, hn2 discharges 1 < n. Shape numbers correct: glue_lines=8 (1240-1233+1), child_lines=[83,22] (225-143+1, 1023-1002+1), direct_lemmas=2. Depth-4 chain verified: core@983, stepLemma@791 (uses catL@658), core used by last_lamp_only_of_two_pow@1006. Author-statement comment at 365-368 matches claim 5.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:34:26Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example: applicability.goal_shape abstracts to 'P(i) after a fixed number of steps via a distinguished intermediate state then a deterministic sweep', and use_when/avoid_when name the mechanism (uniform sweep + intermediate state produced for free by a stronger induction). avoid_when is honest and specific, tied to the code: (1) intermediate state not actually stronger/more convenient, (2) conversion sweep not uniform in n — all_on_of_last_only's per-position induction only works because the sweep advances one lamp per step, (3) strengthened core would need the theorem being proved. consequences state concrete failure modes (mismatched intermediate state forces an extra rewrite in the glue; non-uniform conversion can't be a standalone lemma). Good leaves are described: 'a self-contained statement whose proof closes from named siblings of the same file', substantiated per child (last_lamp_only_of_two_pow closes from core/glue/aux; all_on_of_last_only from pos_after/step_lamps/bool_toggle). Minor gap: the phrase 'bounded prover' is not used — the leaf criterion (self-contained, closes from named siblings) is the bounded-prover-relevant property but the connection is left implicit, not blocking.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:35:40Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:36:04Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note all consistent and traceable. check_provenance.py reports pass (1 file byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8). Commit SHA matches across entry.json source.commit, README.md, sources/compfiles/SOURCE.md and source.json. Licence Apache-2.0 recorded in entry.json/README/SOURCE.md/source.json, and sources/compfiles/upstream-LICENSE is the Apache 2.0 text. All permalinks point at the pinned commit's Compfiles/Imo1993P6.lean, and the cited line ranges (1233-1240, 143-225, 1002-1023, 365-368) match the copied file verbatim.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:36:23Z"
+    }
+  ]
+}

@@ -1,0 +1,284 @@
+{
+  "id": "rocq-generalise-then-instantiate-apery-814e5d20",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "General order-1 recurrence uniqueness instantiated at the Apéry casoratian",
+  "intent": "Prove the casoratian identity ba_casoratian n = 6/(n+1)^3 by generalising it to a uniqueness statement for order-1 recurrences (same recurrence and same start value imply equality), then instantiating that statement at ba_casoratian and the closed form v n = 6/(n+1)^3.",
+  "move": "generalise-then-instantiate",
+  "also_known_as": [
+    "generalise then instantiate",
+    "uniqueness of a recurrence solution"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "apery",
+    "url": "https://github.com/rocq-community/apery",
+    "commit": "97f0c01bec4282c4504c0225a71ff0e75aeab115",
+    "licence": "CECILL-C"
+  },
+  "files": [
+    {
+      "path": "theories/b_over_a_props.v",
+      "bytes": 3584,
+      "sha256": "db77a540b559421603106b39adee68c1770b17428db80fb17a2981a11d4226ae",
+      "permalink": "https://github.com/rocq-community/apery/blob/97f0c01bec4282c4504c0225a71ff0e75aeab115/theories/b_over_a_props.v"
+    },
+    {
+      "path": "theories/reduce_order.v",
+      "bytes": 8886,
+      "sha256": "9504d90aca88962b0197fc501359ba8195b2265154ac7009462fc47418cf21cc",
+      "permalink": "https://github.com/rocq-community/apery/blob/97f0c01bec4282c4504c0225a71ff0e75aeab115/theories/reduce_order.v"
+    },
+    {
+      "path": "theories/algo_closures.v",
+      "bytes": 4168,
+      "sha256": "516c2dd5aea982cb8ded9f1285057e193c9db31f88338eef5614974ed4d19a7b",
+      "permalink": "https://github.com/rocq-community/apery/blob/97f0c01bec4282c4504c0225a71ff0e75aeab115/theories/algo_closures.v"
+    },
+    {
+      "path": "theories/initial_conds.v",
+      "bytes": 2619,
+      "sha256": "88c1d3e175b5f329a74af3dec6e61d1a7389a7e7b2367dfbb73237fa73c6c353",
+      "permalink": "https://github.com/rocq-community/apery/blob/97f0c01bec4282c4504c0225a71ff0e75aeab115/theories/initial_conds.v"
+    },
+    {
+      "path": "theories/seq_defs.v",
+      "bytes": 1178,
+      "sha256": "1ebd56fcf6ca80535626746d5ef7a9140fc3203e4fcb5c6fc4d3eace2f702679",
+      "permalink": "https://github.com/rocq-community/apery/blob/97f0c01bec4282c4504c0225a71ff0e75aeab115/theories/seq_defs.v"
+    },
+    {
+      "path": "theories/shift.v",
+      "bytes": 2421,
+      "sha256": "4c655be30a0742c34787409199a4e3de142f02f17dfbd8c8c7112f0a1e5ef1eb",
+      "permalink": "https://github.com/rocq-community/apery/blob/97f0c01bec4282c4504c0225a71ff0e75aeab115/theories/shift.v"
+    },
+    {
+      "path": "theories/annotated_recs_c.v",
+      "bytes": 475,
+      "sha256": "df91595695f0cd85b5111662fc08f3068672400a5a6cd1db9c6badab13f0af91",
+      "permalink": "https://github.com/rocq-community/apery/blob/97f0c01bec4282c4504c0225a71ff0e75aeab115/theories/annotated_recs_c.v"
+    },
+    {
+      "path": "include/ann_c.v",
+      "bytes": 1627,
+      "sha256": "343503d6e8e132cde328fb74fcb668c599c682e97e33c04b0680bd5f77f4c04e",
+      "permalink": "https://github.com/rocq-community/apery/blob/97f0c01bec4282c4504c0225a71ff0e75aeab115/include/ann_c.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/b_over_a_props.v",
+      "lines": [
+        24,
+        58
+      ],
+      "role": "parent",
+      "name": "ba_casoratianE",
+      "excerpt_sha256": "b88f385f88b2b1e462cb0647f73ed9e9ccfa7a06fbc26d344cf668bf6afe44a3",
+      "permalink": "https://github.com/rocq-community/apery/blob/97f0c01bec4282c4504c0225a71ff0e75aeab115/theories/b_over_a_props.v#L24-L58"
+    },
+    {
+      "path": "theories/reduce_order.v",
+      "lines": [
+        250,
+        260
+      ],
+      "role": "child",
+      "name": "b_Sn2",
+      "excerpt_sha256": "0a71aea8b3c8040ff633806b0afc61b34dae6370fe979c5610a02a2d48e546c2",
+      "permalink": "https://github.com/rocq-community/apery/blob/97f0c01bec4282c4504c0225a71ff0e75aeab115/theories/reduce_order.v#L250-L260"
+    },
+    {
+      "path": "theories/algo_closures.v",
+      "lines": [
+        43,
+        44
+      ],
+      "role": "child",
+      "name": "a_Sn2",
+      "excerpt_sha256": "d1b3900f68a9e1cca022bb3b257fec64f6bae122dec439cc158c0d95e75324e3",
+      "permalink": "https://github.com/rocq-community/apery/blob/97f0c01bec4282c4504c0225a71ff0e75aeab115/theories/algo_closures.v#L43-L44"
+    },
+    {
+      "path": "theories/initial_conds.v",
+      "lines": [
+        56,
+        57
+      ],
+      "role": "child",
+      "name": "b2_eq",
+      "excerpt_sha256": "f212c18f733225cecb0871d728ed51d0e0d91d75d83cee214a0d6ab777d955ca",
+      "permalink": "https://github.com/rocq-community/apery/blob/97f0c01bec4282c4504c0225a71ff0e75aeab115/theories/initial_conds.v#L56-L57"
+    },
+    {
+      "path": "theories/initial_conds.v",
+      "lines": [
+        59,
+        60
+      ],
+      "role": "child",
+      "name": "b3_eq",
+      "excerpt_sha256": "d963e11c75220a6a1f49ebcc4bc81b9046fb83151ddec73afd1db0d5477c52df",
+      "permalink": "https://github.com/rocq-community/apery/blob/97f0c01bec4282c4504c0225a71ff0e75aeab115/theories/initial_conds.v#L59-L60"
+    },
+    {
+      "path": "theories/initial_conds.v",
+      "lines": [
+        72,
+        73
+      ],
+      "role": "child",
+      "name": "a2_eq",
+      "excerpt_sha256": "3b55ac249b4576f2ab2dd68b526e2c8f639ecd9534de0e4dce6d756472eadc7e",
+      "permalink": "https://github.com/rocq-community/apery/blob/97f0c01bec4282c4504c0225a71ff0e75aeab115/theories/initial_conds.v#L72-L73"
+    },
+    {
+      "path": "theories/initial_conds.v",
+      "lines": [
+        75,
+        76
+      ],
+      "role": "child",
+      "name": "a3_eq",
+      "excerpt_sha256": "4737ed982a3222fde3753b51b4351b292913f8f589893a356b2e53ba3573f2a4",
+      "permalink": "https://github.com/rocq-community/apery/blob/97f0c01bec4282c4504c0225a71ff0e75aeab115/theories/initial_conds.v#L75-L76"
+    }
+  ],
+  "parent": {
+    "name": "ba_casoratianE",
+    "statement": "Lemma ba_casoratianE (n : int) :\n  2%:~R <= n -> ba_casoratian n = 6%:Q / (n%:Q + 1) ^ 3."
+  },
+  "children": [
+    {
+      "name": "b_Sn2",
+      "statement": "Lemma b_Sn2 (n : int) : n >= 0 -> annotated_recs_c.P_horner b n = 0.",
+      "closed_by": "case: (altP (n =P 0)) / (altP (n =P 1)); exact: b_Sn2_almost",
+      "note": "the order-2 recurrence of b"
+    },
+    {
+      "name": "a_Sn2",
+      "statement": "Lemma a_Sn2 (n : int) : 2 <= n :> int -> annotated_recs_c.P_horner a n = 0.",
+      "closed_by": "exact: (ops_for_a.recAperyA c_ann h)",
+      "note": "the order-2 recurrence of a"
+    },
+    {
+      "name": "b2_eq",
+      "statement": "Lemma b2_eq : b 2 = rat_of_Z 351 / rat_of_Z 4.",
+      "closed_by": "solve_b_evaluation",
+      "note": "evaluation of b 2"
+    },
+    {
+      "name": "b3_eq",
+      "statement": "Lemma b3_eq : b 3 = rat_of_Z 62531 / rat_of_Z 36.",
+      "closed_by": "solve_b_evaluation",
+      "note": "evaluation of b 3"
+    },
+    {
+      "name": "a2_eq",
+      "statement": "Lemma a2_eq : a 2 = rat_of_Z 73.",
+      "closed_by": "solve_a_evaluation",
+      "note": "evaluation of a 2"
+    },
+    {
+      "name": "a3_eq",
+      "statement": "Lemma a3_eq : a 3 = rat_of_Z 1445.",
+      "closed_by": "solve_a_evaluation",
+      "note": "evaluation of a 3"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "an identity f n = g n between two sequence-valued functions int -> rat that both satisfy the same first-order recurrence Urec and agree at one initial value (here n = 2)",
+    "use_when": "the two sides of the identity obey the same recurrence and share an initial value, so one general 'same recurrence and same start imply equal' lemma settles the identity and the per-side recurrences become separate leaves",
+    "avoid_when": "the two sides do not share a recurrence, or their initial values differ; the recurrence is of higher order, so the uniqueness induction and its coefficient-nonvanishing side conditions grow; one side's recurrence cannot be stated without the other's"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site `ba_casoratianE` (the glue) is 35 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-community/apery/blob/97f0c01bec4282c4504c0225a71ff0e75aeab115/theories/b_over_a_props.v#L24-L58",
+      "form": "lines(ba_casoratianE, 35)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites `b_Sn2`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-community/apery/blob/97f0c01bec4282c4504c0225a71ff0e75aeab115/theories/b_over_a_props.v#L35",
+      "form": "cites(parent, b_Sn2)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site cites `a_Sn2`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-community/apery/blob/97f0c01bec4282c4504c0225a71ff0e75aeab115/theories/b_over_a_props.v#L35",
+      "form": "cites(parent, a_Sn2)"
+    },
+    {
+      "n": 4,
+      "claim": "No `admit`/`Admitted`/`Axiom`/`axiom` token in `theories/b_over_a_props.v` lines 24-58.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-community/apery/blob/97f0c01bec4282c4504c0225a71ff0e75aeab115/theories/b_over_a_props.v#L24-L58",
+      "form": "no_sorry(theories/b_over_a_props.v, 24-58)"
+    },
+    {
+      "n": 5,
+      "claim": "The authors flag the uniqueness step as a general fact that belongs apart: \"this step below is only the fact that U is a rec of order 1 : should be obtained from something more general\".",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/rocq-community/apery/blob/97f0c01bec4282c4504c0225a71ff0e75aeab115/theories/b_over_a_props.v#L45-L46"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 6,
+    "depth": 7,
+    "glue_lines": 35,
+    "child_lines": [
+      11,
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 35,
+    "direct_children": 6,
+    "children_closed_by_field": 4,
+    "how_counted": "parent_proof_lines = lines 24-58 of theories/b_over_a_props.v (declaration through Qed); direct_children = the 6 named project lemmas the glue cites (b_Sn2, a_Sn2, b2_eq, b3_eq, a2_eq, a3_eq); children_closed_by_field = b2_eq, b3_eq, a2_eq, a3_eq, each closed by the field tactic via solve_a_evaluation / solve_b_evaluation"
+  },
+  "consequences": "The generalisation creates three obligations at the point of instantiation: Urec for each sequence (uUrec, vUrec) and the initial-value match w1 2 = w2 2. The uniqueness proof itself needs the recurrence to be genuinely order 1 and its leading coefficient non-zero (c1 k = (k+2)^3 != 0, discharged by expf_eq0), so that each term determines the next via w(k+1) = (c0 k / c1 k) w k. If the leading coefficient vanishes at some k the step fails and the lemma must be restricted to a range where it does not.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "814e5d202550f0792d7bc2728a8de2bacd8c99bf71f9df992d480efa9b385e2b",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:44:48Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:50:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:49:04Z",
+      "note": "parent ba_casoratianE: statement re-copied from code; child 'b_Sn2': statement re-copied from the declaration of b_Sn2; child 'a_Sn2': statement re-copied from the declaration of a_Sn2; child 'b2_eq': statement re-copied from the declaration of b2_eq; child 'b3_eq': statement re-copied from the declaration of b3_eq; child 'a2_eq': statement re-copied from the declaration of a2_eq; child 'a3_eq': statement re-copied from the declaration of a3_eq"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T12:55:29Z"
+}

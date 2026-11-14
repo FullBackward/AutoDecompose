@@ -1,0 +1,125 @@
+{
+  "entry": "lean-suffices-or-strengthen-mathlib4-b3035491",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:57:53Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:57:53Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:57:53Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: FermatLastTheoremForThree_of_FermatLastTheoremThreeGen@Mathlib/NumberTheory/FLT/Three.lean:755, exists_Solution_of_Solution'@Mathlib/NumberTheory/FLT/Three.lean:768, Solution.exists_minimal@Mathlib/NumberTheory/FLT/Three.lean:769, exists_Solution_multiplicity_lt@Mathlib/NumberTheory/FLT/Three.lean:770; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:57:53Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(fermatLastTheoremThree, Mathlib/NumberTheory/FLT/Three.lean, 748-772) -> declared: fermatLastTheoremThree is declared at Mathlib/NumberTheory/FLT/Three.lean:751",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:57:53Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(Mathlib/NumberTheory/FLT/Three.lean, 166-771) -> no_sorry: none of sorry, admit, axiom in Mathlib/NumberTheory/FLT/Three.lean:166-771",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:57:53Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, exists_Solution_multiplicity_lt) -> cites: exists_Solution_multiplicity_lt occurs at Mathlib/NumberTheory/FLT/Three.lean:770",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:57:53Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:58:02Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml (continuous integration; 'build mathlib' step runs lake-build-with-retry.sh Mathlib, building the whole Mathlib target which imports Mathlib/NumberTheory/FLT/Three.lean); commit e1545ebed97594477bbd88b2fe948ffce56e5af2 on default branch master",
+      "by": "verifier",
+      "at": "2026-11-14T11:00:14Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "chain of 7 calls confirmed in copied Three.lean: L737 exists_Solution_multiplicity_lt -> exists_Solution_of_Solution'; L361 -> ex_cube_add_cube_eq_and_isCoprime_and_not_dvd_and_dvd; L344 -> lambda_sq_dvd_or_dvd_or_dvd; L331 -> lambda_sq_dvd_c; L281 -> lambda_pow_four_dvd_c_cube; L269 -> a_cube_b_cube_congr_one_or_neg_one; L244 -> lambda_pow_four_dvd_cube_sub_one_or_add_one_of_lambda_not_dvd (imported, public-import Mathlib.NumberTheory.NumberField.Cyclotomic.Three at L9, not declared in file)",
+      "by": "verifier",
+      "at": "2026-11-14T11:00:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "L165 doc comment: \"To prove FermatLastTheoremFor 3, it is enough to prove FermatLastTheoremForThreeGen\"; L39 module comment: \"In particular it is enough to prove that no Solution exists\"",
+      "by": "verifier",
+      "at": "2026-11-14T11:00:25Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent fermatLastTheoremThree is at 751-771 (grep: 'public theorem' =751, linarith =771); glue cites exactly the 4 children at 755/768/769/770; each child's statement and closing method match code (166-178 reduce Q->P; 360-373 via ex_cube_add_cube_eq...; 233-237 via Nat.find; 735-738 via Solution'_descent); closes by linarith [hSmin Sfin], no sorry in 166-771. Shape numbers correct: glue_lines=21 (751-771), child_lines=[13,14,5,4] matching the four site ranges, direct_lemmas=4, depth=7 chain verified line-by-line (737->361->344->331->281->269->244).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T11:02:29Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalizes: applicability + When-to-use abstract FLT-n=3 to 'prove P by applying backward rule Q->P then proving stronger Q (free parameter u, wider domain)'. When-not-to-use and consequences are honest and specific, and I confirmed the cited code: module comment (42-46) says 'we cannot control the unit u... reason why we need the generalized equation'; doc comment (165) says 'it is enough to prove FermatLastTheoremForThreeGen'; the avoid_when caveat correctly points to the non-trivial ideal-norm transfer Ideal.norm_dvd_iff (172-178). Leaf quality is stated: children are 'self-contained named lemma[s] whose proof closes on its own or from named siblings', the reduction lemma is explicitly 'a good leaf' (statement is exactly the step; proof only names earlier lemmas), and the opinion paragraph notes strengthening/descent are kept apart so the 21-line glue is one apply + three obtains + linarith. This is the bounded-prover leaf property (small self-contained statement, short proof naming only siblings) though 'bounded prover' is not named verbatim.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T11:03:31Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T11:03:50Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance check passes: 1 file byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2. Commit, URL, licence (Apache-2.0) consistent across entry.json source/files/sites, README, sources/mathlib4/source.json and SOURCE.md; upstream-LICENSE is Apache 2.0. Copied Three.lean sha256 01db065f... matches files[0].sha256 and bytes 38263; permalinks well-formed (commit, path, line ranges match the sites; parent 751-771 excerpt matches copied file).",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T11:04:14Z"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "entry": "rocq-suffices-or-strengthen-hydra-battles-ffb3ec65",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:22:15Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:22:15Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:22:16Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: segment_unbounded@theories/ordinals/Schutte/Ordering_Functions.v:1164, SA1@theories/ordinals/Schutte/Ordering_Functions.v:1165, ordering_unbounded_unbounded@theories/ordinals/Schutte/Ordering_Functions.v:1166, Th_13_5_2@theories/ordinals/Schutte/Ordering_Functions.v:1168; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:22:16Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(TH_13_6R, theories/ordinals/Schutte/Ordering_Functions.v, 1159-1169) -> declared: TH_13_6R is declared at theories/ordinals/Schutte/Ordering_Functions.v:1159",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:22:16Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, Th_13_5_2) -> cites: Th_13_5_2 occurs at theories/ordinals/Schutte/Ordering_Functions.v:1168",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:22:16Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:22:25Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/nix-action-default.yml (jobs hydra-battles and build-doc build all theories/, including theories/ordinals/Schutte/Ordering_Functions.v, on push to default branch master); commit ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8",
+      "by": "verifier",
+      "at": "2026-11-14T10:23:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "read code/theories/ordinals/Schutte/Ordering_Functions.v lines 4-14: module comment reads 'Every subset [A] of [Ord] can be enumerated in an unique way by a segment of [Ord].' ... 'This module shows the construction of the _ordering function_ of [A], following Schutte's definitions.' — matches the quoted claim",
+      "by": "verifier",
+      "at": "2026-11-14T10:23:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "read parent site 1159-1169: 4 direct citations at 1164 (apply segment_unbounded), 1165 (eapply SA1), 1166 (ordering_unbounded_unbounded), 1168 (apply Th_13_5_2). Chain verified link by link: Th_13_5_2->f_sup_commutes (1114 apply f_sup_commutes), f_sup_commutes->R42 (1099 apply R42), R42->R7 (1086 case R7), R7->R6 (1040 apply R6), R6->R5 (1018 case (R5 H)), R5->alpha_sup (1010 rewrite alpha_sup), alpha_sup->R3 (1004 apply R3), R3->R2 (986 apply R2; evidence said 985, off by one), R2->R1_aux (979 apply R1_aux), R1_aux->Ordering_bijection (956 case (Ordering_bijection f_ord)). 11 links confirmed; 'longest' not independently re-derived",
+      "by": "verifier",
+      "at": "2026-11-14T10:23:52Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:24:18Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent TH_13_6R (1159-1169) matches the entry: it asserts (A=ordinal) via segment_unbounded (discharging segment A with SA1 and Unbounded A with ordering_unbounded_unbounded), then subst A; split; [trivial | now apply Th_13_5_2]. The four children are exactly the lemmas the glue cites (segment_unbounded@1164, SA1@1165, ordering_unbounded_unbounded@1166, Th_13_5_2@1168) and their copied statements and closed_by match the code (SA1 case O1;intuition; ordering_unbounded_unbounded split/not_countable_unbounded; Th_13_5_2 split/f_sup_commutes). It closes: normal is defined (line 65) as ordering_function f ordinal B AND continuous f ordinal B, so trivial closes the first conjunct from the substituted H0 and Th_13_5_2 (forall A B f, ordering_function f A B -> Closed B -> continuous f A B) closes the second from H0/H1; Qed at 1169, no sorry. Shape numbers are right: direct_lemmas=4, glue_lines=11 (1159-1169), child_lines=[9,2,18,9] for the four sites, and depth=11 matches the verified chain TH_13_6R->Th_13_5_2->f_sup_commutes->R42->R7->R6->R5->alpha_sup->R3->R2->R1_aux->Ordering_bijection (11 links). One trivial note for a later pass: claim 3 lists line 985 for the R3->R2 link but R2 is cited at line 986; the depth and count are unaffected.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:26:30Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality is well-served. The move is stated beyond the example: use_when/avoid_when and the README's 'When to use it, and when not' abstract the pattern to 'goal phrased over a fixed object while hypotheses/lemmas are phrased over a free variable; assert the pinning equality so the goal collapses to an already-proved lemma'. avoid_when is honest and specific ('pinning equality no easier than the goal' / 'goal does not collapse to a known lemma after substitution'). Consequences are honest and specific, naming the soundness condition (segment A + Unbounded A force A = ordinal; a mere subset would not let subst type-check) and correctly noting the assert+subst is a forward spelling of suffices, not the keyword. The 'Why each direct lemma is a good leaf' section answers the bounded-prover question: leaves are self-contained (cite no named sibling), small, section-generalised to the exact shape the glue consumes, and Th_13_5_2 hides an 11-link chain so a bounded prover reuses it wholesale as a black box.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:27:15Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:27:36Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance and licence consistent and traceable. check_provenance pass: the sole copied file code/theories/ordinals/Schutte/Ordering_Functions.v is byte-identical at pinned commit ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8. Commit, URL (github.com/coq-community/hydra-battles) and MIT licence agree across entry.json, README, sources/hydra-battles/SOURCE.md and source.json; upstream-LICENSE is a real MIT text. All five site permalinks and the files[] permalink use the same commit with correct line anchors (parent 1159-1169, children 216-224/261-262/1139-1156/1107-1115), and sed on the local copy confirms each cited range matches the README excerpt; claim 4's author-statement quote matches header lines 4-14.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:28:04Z"
+    }
+  ]
+}

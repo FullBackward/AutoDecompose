@@ -1,0 +1,190 @@
+{
+  "id": "rocq-generalise-then-instantiate-vellvm-6f3de6ee",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Soundness of the I2F interpreter, generalised over the argument generator",
+  "intent": "The headline I2F soundness theorem `I2F_interpreter_param` (the reference interpreter over infinite memory refines the interpreter over finite memory) is proved in one tactic line by generalising the interpreter over its argument generator: `I2F_interpreter_gen` proves the refinement for any pair of `I2F_refine_MCFG (Forall2 I2F_dvalue)`-related argument generators, and `I2F_build_main_args` discharges that one premise for the concrete generator `build_main_args`.",
+  "move": "generalise-then-instantiate",
+  "also_known_as": [
+    "prove a general lemma over a parameter, then specialise",
+    "parametrise over the argument generator and instantiate at build_main_args",
+    "section-generalisation"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "vellvm",
+    "url": "https://github.com/vellvm/vellvm",
+    "commit": "e25dad9af33281b2edd3c16c027f3717546a09d7",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "src/rocq/Theory/I2F/I2F_toplevel.v",
+      "bytes": 16639,
+      "sha256": "1a85f1afa946b68eb343862859fa6f3b558352d40350bac52e5cf235b84d4475",
+      "permalink": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/I2F_toplevel.v"
+    },
+    {
+      "path": "src/rocq/Semantics/TopLevel.v",
+      "bytes": 13448,
+      "sha256": "aabbdd93ffa89ddf1905176dd58d9af908ada5b4b797de78b222ceafb1e9a109",
+      "permalink": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Semantics/TopLevel.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "src/rocq/Theory/I2F/I2F_toplevel.v",
+      "lines": [
+        455,
+        463
+      ],
+      "role": "parent",
+      "name": "I2F_interpreter_param",
+      "excerpt_sha256": "01a7f4f8d6b20ce3b5a2903892dd319404831a3d5e2804838ebe3f07b6c486b3",
+      "permalink": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/I2F_toplevel.v#L455-L463"
+    },
+    {
+      "path": "src/rocq/Theory/I2F/I2F_toplevel.v",
+      "lines": [
+        437,
+        453
+      ],
+      "role": "child",
+      "name": "I2F_interpreter_gen",
+      "excerpt_sha256": "c1117ee98c432a937ef525fe424a5dc89f109ac4c07dc3b5f9eeee5b1cb4a160",
+      "permalink": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/I2F_toplevel.v#L437-L453"
+    },
+    {
+      "path": "src/rocq/Theory/I2F/I2F_toplevel.v",
+      "lines": [
+        231,
+        239
+      ],
+      "role": "child",
+      "name": "I2F_build_main_args",
+      "excerpt_sha256": "3fadb1eff3324003f942ea679a57379090d2a18e64c1be0b3e638f59b827d969",
+      "permalink": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/I2F_toplevel.v#L231-L239"
+    },
+    {
+      "path": "src/rocq/Semantics/TopLevel.v",
+      "lines": [
+        313,
+        332
+      ],
+      "role": "context",
+      "name": "interpreter_param_def",
+      "excerpt_sha256": "9a64eaeadac813c489b08cf2d71699641a21c683430de82db8e2042108b1ed7c",
+      "permalink": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Semantics/TopLevel.v#L313-L332"
+    }
+  ],
+  "parent": {
+    "name": "I2F_interpreter_param",
+    "statement": "Theorem I2F_interpreter_param :\n  forall (args : list string) (prog : ll_toplevel_entities),\n    I2F_refine_MCFGbot (prod_rel I2F_FusedS I2F_dvalue)\n      (@interpreter_param PInf args prog)\n      (@interpreter_param PFin args prog)."
+  },
+  "children": [
+    {
+      "name": "I2F_interpreter_gen",
+      "statement": "Lemma I2F_interpreter_gen :\n  forall (ret_typ : dtyp) (entry : function_id)\n    (arg_gen1 : @MCFGtop PInf (list (@dvalue PInf)))\n    (arg_gen2 : @MCFGtop PFin (list (@dvalue PFin)))\n    (prog : ll_toplevel_entities),\n    I2F_refine_MCFG (Forall2 I2F_dvalue) arg_gen1 arg_gen2 ->\n    I2F_refine_MCFGbot (prod_rel I2F_FusedS I2F_dvalue)\n      (@interpreter_gen PInf ret_typ entry arg_gen1 prog)\n      (@interpreter_gen PFin ret_typ entry arg_gen2 prog).",
+      "closed_by": "eapply I2F_interp_mcfg_bind (initial-state branch by `apply I2F_initial_FusedS`; continuation branch by `now apply I2F_denote_vellvm`)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: I2F_interpreter_gen: for any two argument generators related by I2F_refine_MCFG (Forall2 I2F_dvalue), interpreter_gen at PInf refines interpreter_gen at PFin"
+    },
+    {
+      "name": "I2F_build_main_args",
+      "statement": "Lemma I2F_build_main_args : forall (args : list string),\n    I2F_refine_MCFG (Forall2 I2F_dvalue)\n      (@build_main_args PInf args) (@build_main_args PFin args).",
+      "closed_by": "rbind I2F_dvalue; [apply I2F_allocate_args | ]; ... apply ruttc_ret; repeat constructor; auto",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: I2F_build_main_args: build_main_args at PInf refines build_main_args at PFin under Forall2 I2F_dvalue"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 3,
+    "glue_lines": 9,
+    "child_lines": [
+      17,
+      9
+    ]
+  },
+  "applicability": {
+    "goal_shape": "A refinement `I2F_refine_MCFGbot R (f PInf …) (f PFin …)` between two instantiations of a parameterised computation (here the memory-model parameter `PInf`/`PFin`), where the concrete top-level function is literally defined as a general function applied to a fixed sub-computation (here `interpreter_param := interpreter_gen … (build_main_args args) prog`).",
+    "use_when": "the concrete function is a direct specialisation of the general one, so the general refinement's premise is exactly the statement of a single helper (`I2F_build_main_args`) about the shared sub-computation; the instance then falls out by `apply` of the general lemma and the helper.",
+    "avoid_when": "the concrete function is not a plain instantiation of the general one (there are steps between), or the premise the instance needs is itself as hard as the target — then the generalisation buys nothing and the glue stops being one line."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "`I2F_interpreter_param` is declared in `src/rocq/Theory/I2F/I2F_toplevel.v` within lines 455-463.",
+      "evidence_kind": "check",
+      "form": "declared(I2F_interpreter_param, src/rocq/Theory/I2F/I2F_toplevel.v, 455-463)",
+      "evidence": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/I2F_toplevel.v#L455-L463"
+    },
+    {
+      "n": 2,
+      "claim": "`I2F_interpreter_gen` occurs in the parent site, so the general lemma is the one the glue applies.",
+      "evidence_kind": "check",
+      "form": "cites(parent, I2F_interpreter_gen)",
+      "evidence": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/I2F_toplevel.v#L455-L463"
+    },
+    {
+      "n": 3,
+      "claim": "`I2F_build_main_args` occurs in the parent site, so the concrete argument generator is the instantiation the glue supplies.",
+      "evidence_kind": "check",
+      "form": "cites(parent, I2F_build_main_args)",
+      "evidence": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/I2F_toplevel.v#L455-L463"
+    },
+    {
+      "n": 4,
+      "claim": "No `admit`, `Admitted`, `Axiom` or `axiom` token occurs in `src/rocq/Theory/I2F/I2F_toplevel.v` lines 231-463, the span that holds the parent and its two children.",
+      "evidence_kind": "check",
+      "form": "no_sorry(src/rocq/Theory/I2F/I2F_toplevel.v, 231-463)",
+      "evidence": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/I2F_toplevel.v#L231-L463"
+    },
+    {
+      "n": 5,
+      "claim": "The theorem-scale shape is: 2 direct lemmas (`I2F_interpreter_gen`, `I2F_build_main_args`), a longest project-lemma chain of depth 3 below `I2F_interpreter_param`, a 9-line parent site, and child sites of 17 and 9 lines.",
+      "evidence_kind": "measurement",
+      "evidence": "depth counted by following the citations: I2F_interpreter_param (L455) → I2F_interpreter_gen (L437, applied at L462) → I2F_denote_vellvm (L404, applied at L452) → I2F_denote_mcfg (applied at L428; declared at https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/I2F_denotation.v#L779); site lengths at https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/I2F_toplevel.v#L231-L463"
+    }
+  ],
+  "metrics": {
+    "glue_proof_lines": 2,
+    "direct_children": 2,
+    "children_closed_by_Qed": 2,
+    "how_counted": "glue proof = lines 461-462 of the parent site (the two tactic lines `intros.` and `apply I2F_interpreter_gen, I2F_build_main_args.`); children = the two child sites, each ending in `Qed`"
+  },
+  "consequences": "The move creates exactly one obligation, the premise of `I2F_interpreter_gen`: that the concrete argument generators are related, `I2F_refine_MCFG (Forall2 I2F_dvalue) (build_main_args PInf args) (build_main_args PFin args)`, which `I2F_build_main_args` discharges. The saving comes from `interpreter_param` being a *pure* instantiation of `interpreter_gen` (`TopLevel.v:332`); if the top-level function did anything after `interpreter_gen`, the glue's `apply … , I2F_build_main_args` would no longer match and the one-line assembly would break. The soundness theorem is only as strong as `I2F_interpreter_gen`, which rests on `I2F_interp_mcfg_bind` (bind congruence of `interp_mcfg`, `I2F_interp.v:756`), `I2F_initial_FusedS` (the initial fused states refine) and `I2F_denote_vellvm` (whole-program denotation refinement); a change to the denotation or the interpreter monad has to be re-proven there, not in this glue.",
+  "known_uses": [],
+  "related": [
+    "rocq-generalise-then-instantiate-metarocq-f9d21519"
+  ],
+  "rule": {
+    "f10_rule": 14,
+    "relation": "supports"
+  },
+  "content_key": "6f3de6ee9d75034933cac43b37233ae3943001ac446640dc50520eadd32f3f3f",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:20:31Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,shape,applicability,claims,metrics,consequences,known_uses,related,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:26:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:26:11Z",
+      "note": "parent I2F_interpreter_param: statement re-copied from code; child 'I2F_interpreter_gen': statement re-copied from the declaration of I2F_interpreter_gen; child 'I2F_build_main_args': statement re-copied from the declaration of I2F_build_main_args"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T12:31:55Z"
+}

@@ -1,0 +1,125 @@
+{
+  "entry": "isabelle-generalise-then-instantiate-voblint-verification-master-thesis-b47c5898",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:32:16Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:32:16Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:32:16Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: TD_side_rule_Interp.partial_post_solution@src/Abstract_Interpreter/Solver/Globals_Rule.thy:162, TD_side_rule_Interp.finite_stabl_solve@src/Abstract_Interpreter/Solver/Globals_Rule.thy:163, TD_side_rule_Interp.solve_dom_of_solve_c@src/Abstract_Interpreter/Solver/Globals_Rule.thy:164, TD_side_rule_Interp.solve_code_equation@src/Abstract_Interpreter/Solver/Globals_Rule.thy:165; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:32:16Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(td_certified_solver, src/Abstract_Interpreter/Solver/Globals_Rule.thy, 157-165) -> declared: td_certified_solver is declared at src/Abstract_Interpreter/Solver/Globals_Rule.thy:157",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:32:16Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "lines(parent, 9) -> lines: site parent has 9 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:32:16Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, TD_side_rule_Interp.partial_post_solution) -> cites: TD_side_rule_Interp.partial_post_solution occurs at src/Abstract_Interpreter/Solver/Globals_Rule.thy:162",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:32:16Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 07ecd3a886efa3a5744caabc19fbb301a40384a5",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:32:24Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/ci.yml builds every Isabelle session (isabelle-build job: pixi run isabelle-build; isabelle-html job: clean build of every session) on push to main; pinned commit 07ecd3a886efa3a5744caabc19fbb301a40384a5 is identical to main tip (GitHub compare main...07ecd3a: status identical)",
+      "by": "verifier",
+      "at": "2026-11-14T12:33:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "code/src/Abstract_Interpreter/Solver/Globals_Rule.thy lines 14-15 contain verbatim: 'a single interpretation takes the rule as a parameter, and every solver fact holds for all five at once.'",
+      "by": "verifier",
+      "at": "2026-11-14T12:33:54Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Fetched src/Abstract_Interpreter/Solver/README.md at pinned commit; lines 38-39 match the claim's quoted sentences verbatim.",
+      "by": "verifier",
+      "at": "2026-11-14T12:33:58Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Decomposition matches the copied code: parent td_certified_solver is at Globals_Rule.thy:157-165 and its statement is verbatim; its glue 'by unfold_locales' opens certified_solver and closes its four assumptions solve_pp/solve_fin/dom_of_solve_c/solve_of_solve_c via erule partial_post_solution[OF _ surjective_pairing] (162), erule finite_stabl_solve (163), erule solve_dom_of_solve_c (164), simp add: solve_code_equation (165). The four children named in entry.json are exactly the four facts the glue cites, and the TD_Solver_Bridge.thy text (lines 18-20) confirms those four are proved inside locale TD_side_upd_rule; they are instantiated by global_interpretation TD_side_rule_Interp (148-153). Shape numbers check out: direct_lemmas=4 (four cited facts), glue_lines=9 (parent 157-165), child_lines=[6,6,6,6] (interpretation block 148-153 is 6 lines), depth=3 (children <- update_rule_update_global_of:140-146 <- update_rule_lift_basic_rule:65-119). Five merge rules match the five constructors of globals_rule (18-23). Decomposition closes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:35:50Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated abstractly (state the selector as a datatype, prove the shared obligation once over its constructors, discharge the contract from one parameterised interpretation), and applicability fields give a general goal_shape plus use_when/avoid_when, so it applies beyond this example; known_uses honestly empty. When-not-to-use is specific and tied to the mechanics: avoid when an assumption needs a per-instance argument (a uniform interpretation cannot close it) or when the parameter is a first-class choice each proof must reason about, not a value. Consequences are honest: replaces five per-rule interpretations with one; names the exhaustiveness obligation (cases r over the five constructors, lines 142-146) and that adding a constructor forces extending update_global_of/update_rule_update_global_of but not td_certified_solver; states the non-uniform-instance failure mode. Good-leaf question answered specifically: each child is a self-contained single solver property whose proof closed inside the vendored locale, and the glue only eliminates it (erule/simp add) without unfolding internals, so the contract reads as four one-line obligations. Verified against the cited line ranges (Globals_Rule 14-23, 65-119, 140-165; TD_Solver_Bridge 26-38): parent, context, interpretation and author comment all match the README.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:37:04Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 07ecd3a886efa3a5744caabc19fbb301a40384a5",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:37:30Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit 07ecd3a886efa3a5744caabc19fbb301a40384a5 is consistent across entry.json files/sites permalinks, source.json and SOURCE.md; licence BSD-3-Clause matches upstream-LICENSE (BSD 3-Clause) and the source note; check_provenance passes (2 files byte-identical at the pinned commit); cited line ranges (Globals_Rule 14-16 comment, 18-23 datatype, 140-146 context, 148-153 interpretation, 157-165 parent; TD_Solver_Bridge 26-38) all match the local copies.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:38:01Z"
+    }
+  ]
+}

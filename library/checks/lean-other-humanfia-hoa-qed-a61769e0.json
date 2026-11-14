@@ -1,0 +1,133 @@
+{
+  "entry": "lean-other-humanfia-hoa-qed-a61769e0",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:46:07Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:46:07Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:46:07Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: fuchsVanDeGraaf_lower@lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean:796, fuchsVanDeGraaf_upper@lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean:796; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:46:07Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(fuchsVanDeGraafInequalities, lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean, 790-796) -> declared: fuchsVanDeGraafInequalities is declared at lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean:790",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:46:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean, 1-800) -> no_sorry: none of sorry, admit, axiom in lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean:1-800",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:46:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, fuchsVanDeGraaf_lower) -> cites: fuchsVanDeGraaf_lower occurs at lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean:796",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:46:08Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1c918ec9a96c7751ce9c283304e1aebd7ffb19a3",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:46:14Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/lean.yml (on push to main, pull_request, workflow_dispatch) builds the 'qit' project at lean-qit-qlg/QIT/lean-project with lean-action v1.6.1; QITFormalized.lean (a lakefile defaultTarget) imports QITFormalized.problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities, which is byte-identical (32276 bytes) to the entry file lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean; pinned commit 1c918ec9a96c7751ce9c283304e1aebd7ffb19a3 is head of default branch main",
+      "by": "verifier",
+      "at": "2026-11-14T09:48:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "line 796: exact ⟨fuchsVanDeGraaf_lower rho sigma, fuchsVanDeGraaf_upper rho sigma⟩ (2 direct lemmas, glue 790-796 = 7 lines); child sites 467-590 = 124 lines, 615-787 = 173 lines; chain edges all located: fuchsVanDeGraaf_upper (decl at 615, spans 615-787) cites traceNorm_conjTranspose_mul_le at 719; traceNorm_conjTranspose_mul_le (decl 417) cites traceNorm_eq_max_re_trace_unitary at 422; traceNorm_eq_max_re_trace_unitary (decl 275) cites exists_svd_sqrt_eigenvalues at 287; exists_svd_sqrt_eigenvalues (decl 41) cites inner_mulVec_eq at 64 (decl 32) -> depth 5",
+      "by": "verifier",
+      "at": "2026-11-14T09:48:33Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "module doc comment lines 7-8 read verbatim: 'This file states the two-sided comparison between trace distance and' / 'unsquared quantum fidelity for finite-dimensional density states.'",
+      "by": "verifier",
+      "at": "2026-11-14T09:48:34Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1c918ec9a96c7751ce9c283304e1aebd7ffb19a3",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:49:01Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent fuchsVanDeGraafInequalities (790-796) is a conjunction of 1-F<=D and D<=sqrt(1-F^2), closed by exact <fuchsVanDeGraaf_lower, fuchsVanDeGraaf_upper> (line 796), citing exactly those two children and nothing else; child statements and sites match (lower decl 467-469 closes at 590 with rw [<-hposPart_eq_distance]; linarith; upper decl 615-618 closes via calc 775-787 with linarith at 743 and rfl at 787); no sorry/admit/axiom (sorry-scan pass, file is 800 lines); shape numbers correct: glue 790-796=7 lines, child sites 467-590=124 and 615-787=173 lines, direct_lemmas=2, depth-5 chain fuchsVanDeGraaf_upper->traceNorm_conjTranspose_mul_le(719)->traceNorm_eq_max_re_trace_unitary(422)->exists_svd_sqrt_eigenvalues(287)->inner_mulVec_eq(64) all located. Decomposition closes as stated.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:49:47Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generically: applicability.goal_shape/use_when/avoid_when parameterise over P<=x<=Q with two different functions of a shared parameter, and the README explicitly distinguishes it from iff-split/antisymmetry. avoid_when is specific (shared argument not lifted, one side trivial, single inequality) and consequences are honest (exactly two obligations, cost of two large 124/173-line children, duplication failure mode). Good-leaf rationale is present: each child is a self-contained statement closing from factored private lemmas; depth-5 chain verified at cited lines 64/287/422/719.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:50:49Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1c918ec9a96c7751ce9c283304e1aebd7ffb19a3",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:51:07Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "provenance pass (file byte-identical at 1c918ec9a96c7751ce9c283304e1aebd7ffb19a3); commit identical across entry.json, source.json, SOURCE.md; permalinks cite that commit and the cited line ranges (7-8 doc comment, 23-25 traceDistance, 467-590 lower, 615-787 upper, 790-796 parent) all match the local copy; licence 'Apache-2.0 AND CC-BY-4.0' matches source.json/SOURCE.md and the copied upstream-LICENSE (Apache 2.0), upstream-LICENSE-CC-BY-4.0 (CC BY 4.0) and NOTICE (code Apache-2.0, prose CC-BY-4.0). All traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:51:31Z"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "source_id": "vellvm",
+  "url": "https://github.com/vellvm/vellvm",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "vellvm/vellvm",
+  "commit": "e25dad9af33281b2edd3c16c027f3717546a09d7",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-14T11:39:17Z",
+  "how_found": "discovery-1: A-rocq, B-rocq",
+  "note": "LLVM IR/VIR semantics with metatheory: refinement results relating semantic instantiations (src/rocq/Theory) and soundness of the infinite-to-finite memory lowering (Theory/I2F), from a shared theory library",
+  "licence": "MIT",
+  "licence_files": [
+    "LICENSE.md"
+  ]
+}

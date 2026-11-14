@@ -1,0 +1,195 @@
+{
+  "id": "lean-extensionality-mathlib4-413a12a2",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Extensionality of the obtainable-set count for the Kuratowski 14-set",
+  "intent": "Show that exactly 14 distinct sets are obtainable from `fourteenSet` by closure and complement. The proof rewrites the set-cardinality goal into a multiset-cardinality statement using `card_theFourteen` and `nodup_theFourteen_fourteenSet`, then closes the remaining set equality pointwise with `ext` from the characterization `mem_theFourteen_iff_isObtainable`.",
+  "move": "extensionality",
+  "also_known_as": [
+    "pointwise equality",
+    "Set.ext",
+    "ext"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "mathlib4",
+    "url": "https://github.com/leanprover-community/mathlib4",
+    "commit": "e1545ebed97594477bbd88b2fe948ffce56e5af2",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Archive/Examples/Kuratowski.lean",
+      "bytes": 11283,
+      "sha256": "b715076ec8998299c3185f249e0623b7c1ce79143ba1428a8646a785098e1bd0",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Examples/Kuratowski.lean"
+    },
+    {
+      "path": "Archive/Kuratowski.lean",
+      "bytes": 4617,
+      "sha256": "7cb15c93cf99cef6cf3a94539d08607b68b97ad9b35808101b46c9518db8dd4e",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Kuratowski.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Archive/Examples/Kuratowski.lean",
+      "lines": [
+        238,
+        241
+      ],
+      "role": "parent",
+      "name": "ncard_isObtainable_fourteenSet",
+      "excerpt_sha256": "cb1e0fd889ab2ae1cae3c8c9c53fbe5de3ed784d911136fd120d4bbb351e6da7",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Examples/Kuratowski.lean#L238-L241"
+    },
+    {
+      "path": "Archive/Kuratowski.lean",
+      "lines": [
+        81,
+        81
+      ],
+      "role": "child",
+      "name": "card_theFourteen",
+      "excerpt_sha256": "54a7fa5d8564d9625b3a1ba35e320ef6101060d67f5ecdb9d0630b05f92976be",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Kuratowski.lean#L81-L81"
+    },
+    {
+      "path": "Archive/Examples/Kuratowski.lean",
+      "lines": [
+        229,
+        235
+      ],
+      "role": "child",
+      "name": "nodup_theFourteen_fourteenSet",
+      "excerpt_sha256": "48dfbf67193e04341d320ca8ecba93dc5f35466da9c4b4792f3f09a2b42baf92",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Examples/Kuratowski.lean#L229-L235"
+    },
+    {
+      "path": "Archive/Kuratowski.lean",
+      "lines": [
+        91,
+        103
+      ],
+      "role": "child",
+      "name": "mem_theFourteen_iff_isObtainable",
+      "excerpt_sha256": "c0a8a49b144e225daa5c9c86cf9e4e7253e3e17008e986c9e74035118b51fe13",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Kuratowski.lean#L91-L103"
+    }
+  ],
+  "parent": {
+    "name": "ncard_isObtainable_fourteenSet",
+    "statement": "theorem ncard_isObtainable_fourteenSet : {t | IsObtainable fourteenSet t}.ncard = 14"
+  },
+  "children": [
+    {
+      "name": "card_theFourteen",
+      "statement": "theorem card_theFourteen (s : Set X) : (theFourteen s).card = 14",
+      "closed_by": "rfl",
+      "note": "The whole lemma is a computation: `theFourteen s` is a literal 14-element multiset, so its `.card` normalises to 14 by `rfl`. A leaf that closes with no argument. Analyst's paraphrase, replaced by the declaration's text: the multiset theFourteen s has cardinality 14"
+    },
+    {
+      "name": "nodup_theFourteen_fourteenSet",
+      "statement": "theorem nodup_theFourteen_fourteenSet : (theFourteen fourteenSet).Nodup",
+      "closed_by": "nodup_theFourteen_of_nodup_theClosedSix_of_disjoint nodup_theClosedSix_fourteenSet <| Multiset.disjoint_iff_ne.mpr",
+      "note": "Splits no-duplicates into (i) nodup of `theClosedSix` (given by `nodup_theClosedSix_fourteenSet`) and (ii) disjointness of `theClosedSix` from `theOpenSix`, discharged by the pointwise fact that no closed-six set is univ or empty. Analyst's paraphrase, replaced by the declaration's text: theFourteen fourteenSet has no duplicates"
+    },
+    {
+      "name": "mem_theFourteen_iff_isObtainable",
+      "statement": "theorem mem_theFourteen_iff_isObtainable {s t : Set X} :\n    t ∈ theFourteen s ↔ IsObtainable s t",
+      "closed_by": "mp h := by … ; mpr := (·.mem_theFourteen)",
+      "note": "Forward direction by repeated case analysis of multiset membership into the 14 literals, closing each by the `IsObtainable` constructors; reverse direction by `IsObtainable.mem_theFourteen`. Analyst's paraphrase, replaced by the declaration's text: t is in theFourteen s iff t is obtainable from s"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A cardinality equality `{t | P s t}.ncard = N` where `P s t` is an inductively defined reachability predicate and the counting multiset is already known; the proof rewrites `ncard` to a multiset/finset `card`, then needs a set equality `{t | P s t} = theFourteen s` closed pointwise.",
+    "use_when": "the set being counted has an explicit finite description (a multiset) and a characterization lemma `t ∈ theFourteen s ↔ P s t`; then `ext` plus one `simp` with that characterization closes the remaining equality.",
+    "avoid_when": "the pointwise membership equivalence is not yet a lemma (then `ext` leaves a genuine two-direction proof); the cardinality fact is not `rfl` and needs its own argument; the set equality is not the final step but feeds further structure."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The main proof is 4 lines of glue over 3 direct lemmas, whose child sites span 1, 7 and 13 lines; the no-duplicates child closes through a chain of 4 project lemmas down to `sum_map_theClosedSix_add_compl`.",
+      "evidence_kind": "measurement",
+      "evidence": "site spans in entry.json — parent Archive/Examples/Kuratowski.lean#L238-L241 (4 lines), children Archive/Kuratowski.lean#L81 (1), Archive/Examples/Kuratowski.lean#L229-L235 (7), Archive/Kuratowski.lean#L91-L103 (13); the depth-4 chain nodup_theFourteen_fourteenSet → nodup_theFourteen_of_nodup_theClosedSix_of_disjoint → theFourteen_eq_pair_add_theClosedSix_add_theOpenSix → sum_map_theClosedSix_add_compl is visible at Archive/Examples/Kuratowski.lean#L229-L235, L114-L128, L70-L73, L66-L68"
+    },
+    {
+      "n": 2,
+      "claim": "`card_theFourteen` is declared at Archive/Kuratowski.lean line 81.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Kuratowski.lean#L81",
+      "form": "declared(card_theFourteen, Archive/Kuratowski.lean, 81-81)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site cites `mem_theFourteen_iff_isObtainable`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Examples/Kuratowski.lean#L238-L241",
+      "form": "cites(parent, mem_theFourteen_iff_isObtainable)"
+    },
+    {
+      "n": 4,
+      "claim": "No `sorry`, `admit` or `axiom` closes the parent or its child `nodup_theFourteen_fourteenSet` in Archive/Examples/Kuratowski.lean lines 228-241.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Examples/Kuratowski.lean#L228-L241",
+      "form": "no_sorry(Archive/Examples/Kuratowski.lean, 228-241)"
+    },
+    {
+      "n": 5,
+      "claim": "The same characterization `mem_theFourteen_iff_isObtainable` closes the companion 'at most 14' theorem `ncard_isObtainable_le_fourteen` by `simp [Set.ext_iff, mem_theFourteen_iff_isObtainable]` (lines 107-109 of Archive/Kuratowski.lean).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Kuratowski.lean#L107-L109"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 4,
+    "glue_lines": 4,
+    "child_lines": [
+      1,
+      7,
+      13
+    ]
+  },
+  "metrics": {
+    "children": 3,
+    "children_closed_by_automation": 1,
+    "how_counted": "card_theFourteen closes by rfl alone; nodup_theFourteen_fourteenSet and mem_theFourteen_iff_isObtainable close by their own named sub-lemmas and case analysis"
+  },
+  "consequences": "The move leaves the value 14 and the no-duplicates obligation to two named lemmas (`card_theFourteen`, `nodup_theFourteen_fourteenSet`) that are reused from elsewhere in the file, and concentrates the whole 'obtainable = theFourteen' correspondence into one iff lemma. The `ext` step is cheap only because that iff exists: without `mem_theFourteen_iff_isObtainable` the pointwise goal would be a real two-direction induction on `IsObtainable`, not a `simp`.",
+  "known_uses": [
+    "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Kuratowski.lean#L107-L109"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "413a12a297d7c36229ee28b49add1468ee923e163bd2fc54550318cc791ae971",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:07:16Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:20:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:10:19Z",
+      "note": "parent ncard_isObtainable_fourteenSet: statement re-copied from code; child 'card_theFourteen': statement re-copied from the declaration of card_theFourteen; child 'nodup_theFourteen_fourteenSet': statement re-copied from the declaration of nodup_theFourteen_fourteenSet; child 'mem_theFourteen_iff_isObtainable': statement re-copied from the declaration of mem_theFourteen_iff_isObtainable"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T09:16:19Z"
+}

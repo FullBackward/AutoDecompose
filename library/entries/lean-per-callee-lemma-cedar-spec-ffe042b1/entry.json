@@ -1,0 +1,206 @@
+{
+  "id": "lean-per-callee-lemma-cedar-spec-ffe042b1",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Per-component order and duplicate independence for Cedar's isAuthorized",
+  "intent": "The head theorem `order_and_dup_independent` shows that Cedar's authorizer response does not depend on policy order or duplicates. It is proved component-wise: one lemma each for the forbid-satisfied, permit-satisfied and erroring components of `isAuthorized`, and the glue reassembles `isAuthorized` from the three equalities in a single `simp`.",
+  "move": "per-callee-lemma",
+  "also_known_as": [
+    "per-component lemma",
+    "component-wise congruence",
+    "crunch-style (seL4)",
+    "per-pass simulation lemma (CompCert)"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "cedar-spec",
+    "url": "https://github.com/cedar-policy/cedar-spec",
+    "commit": "e619491a5bfb04970ef994dbe286df0bb9d0b73f",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "cedar-lean/Cedar/Thm/Authorization.lean",
+      "bytes": 11948,
+      "sha256": "7e05711df6a1508c5186ffd7f5dbf25f8917ee70595a2fdaac00905b72352940",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/Authorization.lean"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/Authorization/Authorizer.lean",
+      "bytes": 23576,
+      "sha256": "a4039338cb491518514ac2c0255fbd59ee2574a4ebb7390e7843063bcdb432a8",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/Authorization/Authorizer.lean"
+    },
+    {
+      "path": "cedar-lean/Cedar/Spec/Authorizer.lean",
+      "bytes": 2519,
+      "sha256": "13bf2f37eb48d5b7d9b1dd1ef414eb2eaacf5088b04d364f5f9214c14aa0d8d3",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Spec/Authorizer.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "cedar-lean/Cedar/Thm/Authorization.lean",
+      "lines": [
+        158,
+        166
+      ],
+      "role": "parent",
+      "name": "order_and_dup_independent",
+      "excerpt_sha256": "53e0de9c8a980f90c476b2a5098bd563486108f372cc81e4d467d61ea1c934fe",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/Authorization.lean#L158-L166"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/Authorization/Authorizer.lean",
+      "lines": [
+        62,
+        69
+      ],
+      "role": "child",
+      "name": "satisfiedPolicies_order_and_dup_independent",
+      "excerpt_sha256": "ae66988cd4742f41eb3c4e78f577c72580aa3e4a29f6252118bcbc83728b9d7d",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/Authorization/Authorizer.lean#L62-L69"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/Authorization/Authorizer.lean",
+      "lines": [
+        71,
+        78
+      ],
+      "role": "child",
+      "name": "errorPolicies_order_and_dup_independent",
+      "excerpt_sha256": "2087227c647c7205bc1a650f8f70f531eb67a0fd15f6322ba88e8bd8453e021e",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/Authorization/Authorizer.lean#L71-L78"
+    },
+    {
+      "path": "cedar-lean/Cedar/Spec/Authorizer.lean",
+      "lines": [
+        56,
+        62
+      ],
+      "role": "context",
+      "name": "isAuthorized",
+      "excerpt_sha256": "f40180b2077e8a9ea90ff56b1e5651b4dad04e434eea8af217354933fa96c51d",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Spec/Authorizer.lean#L56-L62"
+    }
+  ],
+  "parent": {
+    "name": "order_and_dup_independent",
+    "statement": "theorem order_and_dup_independent (request : Request) (entities : Entities) (policies₁ policies₂ : Policies) :\n  policies₁ ≡ policies₂ →\n  isAuthorized request entities policies₁ = isAuthorized request entities policies₂"
+  },
+  "children": [
+    {
+      "name": "satisfiedPolicies_order_and_dup_independent",
+      "statement": "theorem satisfiedPolicies_order_and_dup_independent {policies₁ policies₂ : Policies} (effect : Effect) (request : Request) (entities : Entities) :\n  policies₁ ≡ policies₂ →\n  satisfiedPolicies effect policies₁ request entities = satisfiedPolicies effect policies₂ request entities",
+      "closed_by": "exact List.filterMap_equiv (satisfiedWithEffect effect · request entities) policies₁ policies₂ h₁",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: satisfiedPolicies effect is order/dup independent: an order/dup-equivalent policies list yields the same set of satisfied policy ids, for either effect"
+    },
+    {
+      "name": "errorPolicies_order_and_dup_independent",
+      "statement": "theorem errorPolicies_order_and_dup_independent {policies₁ policies₂ : Policies} (request : Request) (entities : Entities) :\n  policies₁ ≡ policies₂ →\n  errorPolicies policies₁ request entities = errorPolicies policies₂ request entities",
+      "closed_by": "exact List.filterMap_equiv (errored · request entities) policies₁ policies₂ h₁",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: errorPolicies is order/dup independent: an order/dup-equivalent policies list yields the same set of erroring policy ids"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An equality `f x = f y` (or a congruence) for a composite function `f` built as a `let`-bound/branching combination of a fixed set of named components; here `f = isAuthorized`, a combination of `satisfiedPolicies .forbid`, `satisfiedPolicies .permit` and `errorPolicies`.",
+    "use_when": "the composite is generated from a fixed structure, so per-component lemmas mirror it one-to-one; each component is itself `Set.make (policies.filterMap g)`, so its invariance reduces to a single `List.filterMap_equiv` rewrite; the glue then closes with one `simp [f, h₁ … hₙ]`.",
+    "avoid_when": "the composite's body branches on more than the equality of its components (e.g. on their contents or sizes), or the components do not share one lemma shape, so each needs a distinct argument rather than a template."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The theorem `order_and_dup_independent` is declared in `cedar-lean/Cedar/Thm/Authorization.lean` lines 158-166.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/Authorization.lean#L158-L166",
+      "form": "declared(order_and_dup_independent, cedar-lean/Cedar/Thm/Authorization.lean, 158-166)"
+    },
+    {
+      "n": 2,
+      "claim": "`satisfiedPolicies_order_and_dup_independent` occurs in the parent site.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/Authorization.lean#L158-L166",
+      "form": "cites(parent, satisfiedPolicies_order_and_dup_independent)"
+    },
+    {
+      "n": 3,
+      "claim": "`errorPolicies_order_and_dup_independent` occurs in the parent site.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/Authorization.lean#L158-L166",
+      "form": "cites(parent, errorPolicies_order_and_dup_independent)"
+    },
+    {
+      "n": 4,
+      "claim": "`cedar-lean/Cedar/Thm/Authorization/Authorizer.lean` lines 62-78 contain no `sorry`, `admit` or `axiom`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/Authorization/Authorizer.lean#L62-L78",
+      "form": "no_sorry(cedar-lean/Cedar/Thm/Authorization/Authorizer.lean, 62-78)"
+    },
+    {
+      "n": 5,
+      "claim": "The glue assembles 2 direct lemmas in a 9-line proof — `satisfiedPolicies_order_and_dup_independent` applied twice (for `.forbid` and `.permit`) and `errorPolicies_order_and_dup_independent` once — while each child proof is 8 lines and the project-lemma chain below the theorem runs 3 deep (child → `Set.make_make_eqv` → `List.canonicalize_equiv`), counted from the site line ranges and by reading the two child proofs.",
+      "evidence_kind": "measurement",
+      "evidence": "site ranges in the copied files: parent cedar-lean/Cedar/Thm/Authorization.lean lines 158-166 (9 lines), children cedar-lean/Cedar/Thm/Authorization/Authorizer.lean lines 62-69 and 71-78 (8 lines each); both child proofs rewrite by Set.make_make_eqv then exact List.filterMap_equiv, and Set.make_make_eqv's proof (https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/Data/Set.lean#L303-L318) calls List.canonicalize_equiv (https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/Data/List/Canonical.lean#L468-L480)."
+    },
+    {
+      "n": 6,
+      "claim": "The same component-wise move appears a second time in the same file: `satisfied_policies_congr_evaluate` (lines 80-89) and `error_policies_congr_evaluate` (lines 91-102) prove the same two components congr under evaluation, combined by `is_authorized_congr_evaluate` (lines 117-126) with the same `simp only [isAuthorized, …]` glue.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/Authorization/Authorizer.lean#L80-L126"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 3,
+    "glue_lines": 9,
+    "child_lines": [
+      8,
+      8
+    ]
+  },
+  "metrics": {
+    "parent_lines": 9,
+    "child_lines": [
+      8,
+      8
+    ],
+    "children": 2,
+    "how_counted": "line spans of the parent and child sites, declaration included"
+  },
+  "consequences": "One lemma per component of `isAuthorized`, so the obligations are: (1) every component must be covered — the glue applies `satisfiedPolicies_order_and_dup_independent` twice, once per effect, and `errorPolicies_order_and_dup_independent` once, and missing one component leaves the final `simp` unable to close; (2) each component's definition must be of the shape `Set.make (policies.filterMap g)`, or the `unfold`/`rw [Set.make_make_eqv]`/`exact List.filterMap_equiv` template does not apply; (3) the glue's `simp [isAuthorized, hf, hp, he]` only closes because `isAuthorized` is literally a combination of the three components, so a change to `isAuthorized`'s body that branches on more than set-equality breaks the glue. Failure mode: the two per-component lemmas are near-identical templates, so a change to the shared `Set.make`/`filterMap` infrastructure breaks the whole family at once.",
+  "known_uses": [
+    "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/Authorization/Authorizer.lean#L80-L126"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "ffe042b11ef4b5a75d4033f499440593be1470c452aaf16e409319d5196ad321",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:51:03Z"
+    },
+    {
+      "field": "intent,parent,children,also_known_as,applicability,claims,consequences,shape,metrics,rule,known_uses",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:56:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:53:06Z",
+      "note": "parent order_and_dup_independent: statement re-copied from code; child 'satisfiedPolicies_order_and_dup_independent': statement re-copied from the declaration of satisfiedPolicies_order_and_dup_independent; child 'errorPolicies_order_and_dup_independent': statement re-copied from the declaration of errorPolicies_order_and_dup_independent"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T12:59:44Z"
+}

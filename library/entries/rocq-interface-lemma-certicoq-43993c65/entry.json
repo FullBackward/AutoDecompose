@@ -1,0 +1,200 @@
+{
+  "id": "rocq-interface-lemma-certicoq-43993c65",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Instantiation interface bundling three stage theorems for the Wasm toplevel",
+  "intent": "Bundle the three instantiation stages of the LambdaANF-to-Wasm backend (module instantiation, the instantiation invariants, and the post-instantiation reduction) into one theorem, instantiation_combined_INV_and_more, so the Wasm top-level correctness proof applies a single lemma and destructures its conclusion instead of re-wiring the three stages.",
+  "move": "interface-lemma",
+  "also_known_as": [
+    "API theorem at an abstraction boundary",
+    "aggregated stage theorem",
+    "combined-invariants lemma"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "certicoq",
+    "url": "https://github.com/CertiCoq/certicoq",
+    "commit": "943b52ae654708130f241ccf8a50ecb95a7956e2",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v",
+      "bytes": 88880,
+      "sha256": "c03817ab4e2d75b097662e1f56a6ec6a5e2b48dce73c748f762cd7165ee614a5",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v"
+    },
+    {
+      "path": "theories/CodegenWasm/toplevel_theorem.v",
+      "bytes": 11307,
+      "sha256": "5aca498ae2945a94c4328760861b5282b59f76a7d80eb3b84c5205099bf7958e",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/toplevel_theorem.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v",
+      "lines": [
+        2026,
+        2116
+      ],
+      "role": "parent",
+      "name": "instantiation_combined_INV_and_more",
+      "excerpt_sha256": "5c7cacd9cde73acffeab56632272263d5dc1e4d47fe7a834de9ddd9ac04117e7",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v#L2026-L2116"
+    },
+    {
+      "path": "theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v",
+      "lines": [
+        792,
+        1081
+      ],
+      "role": "child",
+      "name": "module_instantiate",
+      "excerpt_sha256": "45a2efaeb43bb6ff9d5ecc914e182e34d7efd64141c606a6c67d70e2dd6fdd76",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v#L792-L1081"
+    },
+    {
+      "path": "theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v",
+      "lines": [
+        1183,
+        1458
+      ],
+      "role": "child",
+      "name": "module_instantiate_INV_and_more_hold",
+      "excerpt_sha256": "fb7312b822e4b9788d3781b15963952fec17833170076013d70ae3b27b82e08f",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v#L1183-L1458"
+    },
+    {
+      "path": "theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v",
+      "lines": [
+        1888,
+        2016
+      ],
+      "role": "child",
+      "name": "post_instantiation_reduce",
+      "excerpt_sha256": "87fc753e822002465462c4252c45f59dc8eca5950f50409693962dbe1be9ee49",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v#L1888-L2016"
+    }
+  ],
+  "parent": {
+    "name": "instantiation_combined_INV_and_more",
+    "statement": "Theorem instantiation_combined_INV_and_more : forall e fds num_funs module fenv main_lenv hs,\n  NoDup (collect_function_vars (Efun fds e)) ->\n  expression_restricted cenv (Efun fds e) ->\n  correct_cenv_of_exp cenv (Efun fds e) ->\n  num_funs = numOf_fundefs fds ->\n  (Z.of_nat num_funs <= max_num_functions)%Z ->\n  LambdaANF_to_Wasm nenv cenv penv (Efun fds e) = Ret (module, fenv, main_lenv) ->\n\nexists sr fr,\n  (* instantiate + post-instantiate *)\n  instantiate' module hs sr fr /\\\n  INV fenv sr fr /\\\n\n  (* conclusions of module_instantiate_INV_and_more_hold *)\n\n  inst_funcs (f_inst fr) = [:: 0%N & (funcidcs num_funs (N.of_nat num_custom_funs))] /\\\n  (* value relation holds for all funcs in fds *)\n  (forall a , find_def a fds <> None ->\n  \texists fidx : funcidx,\n\t    repr_funvar fenv a fidx /\\\n\t    repr_val_LambdaANF_Wasm cenv fenv penv (Vfun (M.empty _) fds a) sr (f_inst fr) (Val_funidx fidx)) /\\\n\n  exists main_fn e' fns,\n    main_fn = {| modfunc_type := 0%N (* [] -> [] *)\n               ; modfunc_locals := map (fun _ : var => T_num T_i32) (collect_local_variables e)\n               ; modfunc_body := e'\n               |} /\\\n    s_funcs sr =\n    [:: FC_func_native (Tf [::] [::]) (f_inst fr) main_fn\n    &   map (fun f0 : wasm_function =>\n             FC_func_native (Tf (repeat (T_num T_i32) (N.to_nat (type f0))) [::]) (f_inst fr)\n             {| modfunc_type := type f0; modfunc_locals := locals f0; modfunc_body := body f0 |})\n            fns\n     ] /\\\n  (* links e and e' in main_fn above *)\n  translate_body nenv cenv (create_local_variable_mapping (collect_local_variables e)) fenv penv e 0 = Ret e' /\\\n  (* translation of functions *)\n  translate_functions nenv cenv fenv penv fds = Ret fns."
+  },
+  "children": [
+    {
+      "name": "module_instantiate",
+      "statement": "Theorem module_instantiate : forall e module fenv venv (hs : host_state),\n  correct_cenv_of_exp cenv e ->\n  NoDup (collect_function_vars e) ->\n  LambdaANF_to_Wasm nenv cenv penv e = Ret (module, fenv, venv) ->\n  exists sr fr es_post,\n  instantiate initial_store module [] (sr, fr, es_post).",
+      "closed_by": "constructs sr, fr, es_post as witnesses and closes by `repeat split` over `instantiate`; `Unshelve. all: apply (Tf [] []).`",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The compiled module instantiates to some store, frame and post-instantiation instructions."
+    },
+    {
+      "name": "module_instantiate_INV_and_more_hold",
+      "statement": "Theorem module_instantiate_INV_and_more_hold : forall eAny e fds num_funs module fenv main_lenv sr f es_post,\n  NoDup (collect_function_vars (Efun fds eAny)) ->\n  expression_restricted cenv (Efun fds e) ->\n  (forall (f : var) (t : fun_tag) (ys : seq var) (e : exp),\n      find_def f fds = Some (t, ys, e) -> correct_cenv_of_exp cenv e) ->\n  num_funs = numOf_fundefs fds ->\n  (Z.of_nat num_funs <= max_num_functions)%Z ->\n  LambdaANF_to_Wasm nenv cenv penv (Efun fds e) = Ret (module, fenv, main_lenv) ->\n  (* instantiate with the two imported functions *)\n  instantiate initial_store module [] (sr, f, es_post) ->\n\n  (* invariants hold initially *)\n  INV_instantiation sr f (num_funs + num_custom_funs) /\\\n  inst_funcs (f_inst f) = [:: 0%N & (funcidcs num_funs (N.of_nat num_custom_funs))] /\\\n  (* value relation holds for all funcs in fds *)\n  (forall a, find_def a fds <> None ->\n\t   exists fidx : funcidx,\n\t     repr_funvar fenv a fidx /\\\n\t     repr_val_LambdaANF_Wasm cenv fenv penv (Vfun (M.empty _) fds a)\n                                            sr (f_inst f) (Val_funidx fidx)) /\\\n\n  exists main_fn e' fns,\n    main_fn = {| modfunc_type := 0%N (* [] -> [] *)\n               ; modfunc_locals := map (fun _ : var => T_num T_i32) (collect_local_variables e)\n               ; modfunc_body := e'\n               |} /\\\n    s_funcs sr =\n    [:: FC_func_native (Tf [::] [::]) (f_inst f) main_fn\n    &   map (fun f0 : wasm_function =>\n             FC_func_native (Tf (repeat (T_num T_i32) (N.to_nat (type f0))) [::]) (f_inst f)\n             {| modfunc_type := type f0; modfunc_locals := locals f0; modfunc_body := body f0 |})\n            fns\n     ] /\\\n  es_post = concat (mapi_aux (0, [::]) (fun n : nat => get_init_expr_elem n)\n                             (table_element_mapping (Datatypes.length fns + num_custom_funs) 0)) /\\\n  (* links e and e' in main_fn above *)\n  translate_body nenv cenv\n          (create_local_variable_mapping\n             (collect_local_variables e)) fenv penv e 0 = Ret e' /\\\n  (* translation of functions *)\n  translate_functions nenv cenv fenv penv fds = Ret fns.",
+      "closed_by": "unfolds `instantiate` and the compile result, then re-proves each conjunct; `Unshelve. all: by repeat constructor.`",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: After instantiation, the instantiation invariant, the function-index map and the value relation hold, and the main function is reconstructed."
+    },
+    {
+      "name": "post_instantiation_reduce",
+      "statement": "Theorem post_instantiation_reduce {fenv} : forall hs sr fr fr' num_funs,\n  (forall f f', M.get f fenv = Some f' -> N.to_nat f' < num_funs) ->\n  INV_instantiation sr fr num_funs ->\n  f_inst fr = f_inst fr' ->\n  exists sr',\n    reduce_trans (hs, sr, fr', [seq AI_basic i | i <- concat\n                                 (mapi\n                                   (fun n : nat => get_init_expr_elem n)\n                                   (table_element_mapping num_funs 0))])\n                 (hs, sr', fr', [::]) /\\\n  INV fenv sr' fr /\\\n  s_funcs sr = s_funcs sr'.",
+      "closed_by": "`have H' := post_instantiation_reduce_aux ...` for the reduction and preservation facts, then re-proves `INV` by `split` into its conjuncts.",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: Running the post-instantiation instructions reaches the post-instantiation state while the invariant and the store functions are preserved."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A client proof needs a bundle of facts that a pipeline produces in sequence (here: compiling a LambdaANF program to a Wasm module, then instantiating it, then running the post-instantiation instructions). The interface theorem states the conjunction the client destructures, so the client never re-runs the pipeline.",
+    "use_when": "several stage theorems are already proved separately and one or more clients would otherwise re-apply them in the same order; the stages have assumptions (correct_cenv_of_exp, NoDup, the bound) that the glue can discharge once for the client.",
+    "avoid_when": "the stages are not yet proved separately (the interface then carries the whole proof burden at once); or different clients need different subsets of the stages, in which case each stage should stay visible rather than be hidden behind one conjunction."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent's site (the proof of instantiation_combined_INV_and_more) cites `module_instantiate`.",
+      "evidence_kind": "check",
+      "form": "cites(parent, module_instantiate)",
+      "evidence": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v#L2067"
+    },
+    {
+      "n": 2,
+      "claim": "The parent's site (the proof of instantiation_combined_INV_and_more) cites `module_instantiate_INV_and_more_hold`.",
+      "evidence_kind": "check",
+      "form": "cites(parent, module_instantiate_INV_and_more_hold)",
+      "evidence": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v#L2079"
+    },
+    {
+      "n": 3,
+      "claim": "The parent's site (the proof of instantiation_combined_INV_and_more) cites `post_instantiation_reduce`.",
+      "evidence_kind": "check",
+      "form": "cites(parent, post_instantiation_reduce)",
+      "evidence": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v#L2098"
+    },
+    {
+      "n": 4,
+      "claim": "The interface's glue proof is 91 lines (2026-2116) assembled from three separately-proved stage theorems of 290, 276 and 129 lines (direct_lemmas 3, checked depth 2 via post_instantiation_reduce -> post_instantiation_reduce_aux).",
+      "evidence_kind": "measurement",
+      "evidence": "parent https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v#L2026-L2116 (91 lines); children #L792-L1081 (290), #L1183-L1458 (276), #L1888-L2016 (129)"
+    },
+    {
+      "n": 5,
+      "claim": "The Wasm top-level correctness theorem LambdaANF_Wasm_related obtains instantiate', INV, the function-index map and the value relation by one application of instantiation_combined_INV_and_more (toplevel_theorem.v:95-97), without re-applying the three stages.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/toplevel_theorem.v#L95-L97"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 2,
+    "glue_lines": 91,
+    "child_lines": [
+      290,
+      276,
+      129
+    ]
+  },
+  "metrics": {
+    "parent_lines": 91,
+    "child_lines": [
+      290,
+      276,
+      129
+    ],
+    "children": 3,
+    "how_counted": "parent site lines 2026-2116; child sites 792-1081, 1183-1458 and 1888-2016 of the copied file, declaration included in each"
+  },
+  "consequences": "The interface theorem is a conjunction, so each conjunct becomes an obligation the client discharges by destructuring rather than by proving; the client writes no new proof for the pipeline but must keep its destructuring in sync with the interface if a stage changes. The glue assumes the three stages are already proved; if a stage's assumptions change, the single application site in the glue is the one place to update. Because the interface hides the three stages, a client that needs only one stage must either unfold the interface or reach for the stage theorem directly.",
+  "known_uses": [
+    "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/CodegenWasm/toplevel_theorem.v#L95-L97"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "43993c658bf20a2968880a4c58b38240ca9d147359a73cc91a2c4b77d48da67c",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:25:36Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:26:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:27:13Z",
+      "note": "parent instantiation_combined_INV_and_more: statement re-copied from code; child 'module_instantiate': statement re-copied from the declaration of module_instantiate; child 'module_instantiate_INV_and_more_hold': statement re-copied from the declaration of module_instantiate_INV_and_more_hold; child 'post_instantiation_reduce': statement re-copied from the declaration of post_instantiation_reduce"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:36:40Z"
+}

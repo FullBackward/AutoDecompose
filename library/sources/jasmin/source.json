@@ -1,0 +1,17 @@
+{
+  "source_id": "jasmin",
+  "url": "https://github.com/jasmin-lang/jasmin",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "jasmin-lang/jasmin",
+  "commit": "211aa617685e0a0b074646fc27c85d017aced9cb",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-14T11:40:03Z",
+  "how_found": "discovery-1: A-agents, A-rocq",
+  "note": "compiler correctness for a high-assurance crypto language: per-pass simulation lemmas in proofs/compiler/*_proof.v, chained by jasmin_compiler.v and it_compiler_proof.v",
+  "licence": "MIT",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

@@ -1,0 +1,237 @@
+{
+  "id": "rocq-generalise-then-instantiate-tarjan-3d1027db",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Kosaraju SCC output decides acyclicity: a general SCC-sequence lemma specialised to Kosaraju",
+  "intent": "Establish that the Kosaraju SCC sequence characterises acyclicity (kosaraju_acyclic =1 @acyclic) by proving the equivalence once for an arbitrary SCC sequence satisfying three abstract hypotheses, then specialising to Kosaraju and discharging the hypotheses with kosaraju_correct.",
+  "move": "generalise-then-instantiate",
+  "also_known_as": [
+    "abstract-then-specialise",
+    "section generalisation (Rocq/Lean)",
+    "locale interpretation (Isabelle)"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "tarjan",
+    "url": "https://github.com/rocq-community/tarjan",
+    "commit": "34fe042cc482e65d27bc68b455d922d47da81c9d",
+    "licence": "CECILL-B"
+  },
+  "files": [
+    {
+      "path": "theories/acyclic_tsorted.v",
+      "bytes": 1866,
+      "sha256": "4526c93b73408aeb4b4e7597bc6886a1137c7ec28c2ceae2fa3ab5c9a608530d",
+      "permalink": "https://github.com/rocq-community/tarjan/blob/34fe042cc482e65d27bc68b455d922d47da81c9d/theories/acyclic_tsorted.v"
+    },
+    {
+      "path": "theories/acyclic.v",
+      "bytes": 13627,
+      "sha256": "b2e4b15f82a0d09e432240e6ea0fd60501bcfb4dbc95ebc2d8ef8e6953ab097f",
+      "permalink": "https://github.com/rocq-community/tarjan/blob/34fe042cc482e65d27bc68b455d922d47da81c9d/theories/acyclic.v"
+    },
+    {
+      "path": "theories/kosaraju.v",
+      "bytes": 27734,
+      "sha256": "c9dd0aa69a01d11ad126ad1a2049497a827b82701bc5be58c1dcf951f1831ebc",
+      "permalink": "https://github.com/rocq-community/tarjan/blob/34fe042cc482e65d27bc68b455d922d47da81c9d/theories/kosaraju.v"
+    },
+    {
+      "path": "theories/extra.v",
+      "bytes": 11595,
+      "sha256": "81366400e68e1c4074f97bbb25214a2c08a0a9942a675992cac47fb5cdd10636",
+      "permalink": "https://github.com/rocq-community/tarjan/blob/34fe042cc482e65d27bc68b455d922d47da81c9d/theories/extra.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/acyclic_tsorted.v",
+      "lines": [
+        61,
+        62
+      ],
+      "role": "parent",
+      "name": "kosaraju_acyclicE",
+      "excerpt_sha256": "7567fe3b50c6dd5cf052e73b85b2371325ef67c205eead8ce03f5812715985cc",
+      "permalink": "https://github.com/rocq-community/tarjan/blob/34fe042cc482e65d27bc68b455d922d47da81c9d/theories/acyclic_tsorted.v#L61-L62"
+    },
+    {
+      "path": "theories/acyclic_tsorted.v",
+      "lines": [
+        59,
+        59
+      ],
+      "role": "context",
+      "name": "kosaraju_acyclic",
+      "excerpt_sha256": "8154cf46282de93215b0b8ed77853f93a144f4de67a636d332cf503d26ac0a61",
+      "permalink": "https://github.com/rocq-community/tarjan/blob/34fe042cc482e65d27bc68b455d922d47da81c9d/theories/acyclic_tsorted.v#L59-L59"
+    },
+    {
+      "path": "theories/acyclic.v",
+      "lines": [
+        363,
+        371
+      ],
+      "role": "child",
+      "name": "sccs_acyclicE",
+      "excerpt_sha256": "0c94489d37ffeb1b8e2692b0182f7e1f970b0e4a74b8d454abfe060eb7f8c50f",
+      "permalink": "https://github.com/rocq-community/tarjan/blob/34fe042cc482e65d27bc68b455d922d47da81c9d/theories/acyclic.v#L363-L371"
+    },
+    {
+      "path": "theories/acyclic.v",
+      "lines": [
+        320,
+        326
+      ],
+      "role": "context",
+      "name": "AcyclicSCCS",
+      "excerpt_sha256": "4ef7e3de97df77121420ae9dfd1cb1a472b6156893ecc4c878a79a52a680ed57",
+      "permalink": "https://github.com/rocq-community/tarjan/blob/34fe042cc482e65d27bc68b455d922d47da81c9d/theories/acyclic.v#L320-L326"
+    },
+    {
+      "path": "theories/acyclic.v",
+      "lines": [
+        361,
+        361
+      ],
+      "role": "context",
+      "name": "sccs_acyclic",
+      "excerpt_sha256": "0ede42560819e60c9be6b836e0cc44a9cd8c972e88b96bea0b537826a92a42f5",
+      "permalink": "https://github.com/rocq-community/tarjan/blob/34fe042cc482e65d27bc68b455d922d47da81c9d/theories/acyclic.v#L361-L361"
+    },
+    {
+      "path": "theories/kosaraju.v",
+      "lines": [
+        716,
+        783
+      ],
+      "role": "child",
+      "name": "kosaraju_correct",
+      "excerpt_sha256": "badd664c4a32f9231499c71095a9d56984195bfb478d03397e7c46c918d23c63",
+      "permalink": "https://github.com/rocq-community/tarjan/blob/34fe042cc482e65d27bc68b455d922d47da81c9d/theories/kosaraju.v#L716-L783"
+    },
+    {
+      "path": "theories/kosaraju.v",
+      "lines": [
+        710,
+        714
+      ],
+      "role": "context",
+      "name": "kosaraju",
+      "excerpt_sha256": "2777661a3a670882d639ff5b66cf3bf310a6a9bc2b1a7c97cd7f55b01b5f6b13",
+      "permalink": "https://github.com/rocq-community/tarjan/blob/34fe042cc482e65d27bc68b455d922d47da81c9d/theories/kosaraju.v#L710-L714"
+    }
+  ],
+  "parent": {
+    "name": "kosaraju_acyclicE",
+    "statement": "Lemma kosaraju_acyclicE : kosaraju_acyclic =1 @acyclic V."
+  },
+  "children": [
+    {
+      "name": "sccs_acyclicE",
+      "statement": "Lemma sccs_acyclicE : sccs_acyclic = acyclic g.",
+      "closed_by": "apply: (sameP allP); apply: (equivP acyclicP); rewrite -(rwP preacyclic_sccsP)",
+      "note": "Proved in section AcyclicSCCS for an arbitrary scc_seq with hypotheses uniq_flatten, all_in_flatten and class_symconnect; sccs_acyclic and g are section-local. After the rewrite the proof splits into the two directions, closing the forward one with class_acyclicP and the backward one with acyclicP. Analyst's paraphrase, replaced by the declaration's text: For any SCC sequence, being acyclic on every component equals the graph being acyclic."
+    },
+    {
+      "name": "kosaraju_correct",
+      "statement": "Lemma kosaraju_correct :\n  let l := flatten kosaraju in\n  [/\\ uniq l, forall i, i \\in l &\n     forall c : seq T, c \\in kosaraju ->\n      exists x, forall y, (y \\in c) = symconnect r x y].",
+      "closed_by": "elim: tseq p",
+      "note": "Supplies exactly the three hypotheses of section AcyclicSCCS for scc_seq := @kosaraju V: uniq (flatten kosaraju), every vertex appears, and each component is a symconnect class. Proved by induction over tseq, closing the three goals with pdfs_connect, tseq_correct and the recursion hypotheses. Analyst's paraphrase, replaced by the declaration's text: The Kosaraju sequence is uniq, covers every vertex, and its components are symconnect classes."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A theorem about a concrete structure (kosaraju's SCC output) that is already true of an arbitrary structure of the same kind (any scc_seq satisfying three hypotheses); the concrete instance is obtained by instantiating a section variable.",
+    "use_when": "Several algorithms or instances share a proof that depends only on an abstract interface (here an SCC sequence with the three facts); the interface can be stated as section variables and hypotheses, the shared lemma proved once, and each concrete case closed by discharging the hypotheses.",
+    "avoid_when": "The concrete instances need different arguments, or each instance's correctness lemma does not already expose the interface facts in the exact shape the general lemma assumes; if the generalised statement has to be weakened to fit every instance, the instantiation no longer yields the original strength."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "sccs_acyclicE occurs in the parent site (the glue cites it).",
+      "evidence_kind": "check",
+      "form": "cites(parent, sccs_acyclicE)",
+      "evidence": "https://github.com/rocq-community/tarjan/blob/34fe042cc482e65d27bc68b455d922d47da81c9d/theories/acyclic_tsorted.v#L61-L62"
+    },
+    {
+      "n": 2,
+      "claim": "kosaraju_correct occurs in the parent site (the glue cites it).",
+      "evidence_kind": "check",
+      "form": "cites(parent, kosaraju_correct)",
+      "evidence": "https://github.com/rocq-community/tarjan/blob/34fe042cc482e65d27bc68b455d922d47da81c9d/theories/acyclic_tsorted.v#L61-L62"
+    },
+    {
+      "n": 3,
+      "claim": "kosaraju_correct's proof (kosaraju.v:716-783) contains no sorry/admit/Admitted.",
+      "evidence_kind": "check",
+      "form": "no_sorry(theories/kosaraju.v, 716-783)",
+      "evidence": "https://github.com/rocq-community/tarjan/blob/34fe042cc482e65d27bc68b455d922d47da81c9d/theories/kosaraju.v#L716-L783"
+    },
+    {
+      "n": 4,
+      "claim": "The decomposition is theorem scale: 2 direct lemmas, glue_lines 2 (parent site 61-62), child_lines [9, 68], depth 3.",
+      "evidence_kind": "measurement",
+      "evidence": "parent site https://github.com/rocq-community/tarjan/blob/34fe042cc482e65d27bc68b455d922d47da81c9d/theories/acyclic_tsorted.v#L61-L62; children https://github.com/rocq-community/tarjan/blob/34fe042cc482e65d27bc68b455d922d47da81c9d/theories/acyclic.v#L363-L371 and https://github.com/rocq-community/tarjan/blob/34fe042cc482e65d27bc68b455d922d47da81c9d/theories/kosaraju.v#L716-L783; depth chain sccs_acyclicE -> preacyclic_sccsP (acyclic.v:223-231) -> preacyclicP (acyclic.v:213-215)"
+    },
+    {
+      "n": 5,
+      "claim": "The same generalise-then-instantiate move appears earlier in the same file: acyclic_connect_before is proved for an abstract vs (hypotheses vs_all, vs_tsorted) and tseq_connect_before instantiates it at tseq g, supplying those hypotheses from tseq_correct.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/rocq-community/tarjan/blob/34fe042cc482e65d27bc68b455d922d47da81c9d/theories/acyclic_tsorted.v#L18-L51"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 3,
+    "glue_lines": 2,
+    "child_lines": [
+      9,
+      68
+    ]
+  },
+  "metrics": {
+    "direct_lemmas": 2,
+    "glue_lines": 2,
+    "child_lines": [
+      9,
+      68
+    ],
+    "how_counted": "glue_lines = parent site acyclic_tsorted.v:61-62 (statement plus the one-line proof); child_lines = the two child sites acyclic.v:363-371 and kosaraju.v:716-783, declaration and proof included"
+  },
+  "consequences": "The move splits the work into (a) proving the general lemma once over the abstract scc_seq and its three hypotheses, and (b) discharging the three hypotheses at each concrete algorithm (here Kosaraju). The obligation it creates is that every instantiation must re-supply uniq_flatten, all_in_flatten and class_symconnect; a new SCC algorithm whose correctness lemma does not expose exactly these three facts cannot use sccs_acyclicE without an adapter lemma. The Kosaraju instantiation is pure glue (rewrite + case), so any failure of acyclicity must lie in one of the two lemmas, not in the parent.",
+  "known_uses": [
+    "https://github.com/rocq-community/tarjan/blob/34fe042cc482e65d27bc68b455d922d47da81c9d/theories/acyclic_tsorted.v#L18-L51"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "3d1027db98ceec6c9b8e39899ea6d3ccd759c92e2537cf7ad5187baffd999f01",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:49:59Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:52:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:51:32Z",
+      "note": "parent kosaraju_acyclicE: statement re-copied from code; child 'sccs_acyclicE': statement re-copied from the declaration of sccs_acyclicE; child 'kosaraju_correct': statement re-copied from the declaration of kosaraju_correct"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T12:58:12Z"
+}

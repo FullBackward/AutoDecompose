@@ -1,0 +1,17 @@
+{
+  "source_id": "munta",
+  "url": "https://github.com/wimmers/munta",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "wimmers/munta",
+  "commit": "62cb1a4a4dbcfcf62c365e90faba15b0012d5a12",
+  "ref": "HEAD",
+  "language": "isabelle",
+  "pinned_at": "2026-11-14T11:40:06Z",
+  "how_found": "discovery-1: A-agents, A-isabelle",
+  "note": "MUNTA verified timed-automata model checker (MIT): abstract reachability formalisation carried through DBM, Worklist_Algorithms, Networks to the executable checker in TA_Impl and Certificate_Checking",
+  "licence": "MIT",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

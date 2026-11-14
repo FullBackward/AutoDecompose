@@ -1,0 +1,125 @@
+{
+  "entry": "lean-other-flt-anthropic-4f58acd6",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:17:11Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:17:11Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:17:11Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: FreyPackage.of_counterexample@P2M/Sol/S_FreyPackage_fermatLastTheoremFor_of_five_le.lean:134, FreyPackage.no_frey_package@P2M/Sol/S_FreyPackage_fermatLastTheoremFor_of_five_le.lean:135; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:17:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(solution, 5) -> lines: site solution has 5 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:17:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(solution, FreyPackage.of_counterexample) -> cites: FreyPackage.of_counterexample occurs at P2M/Sol/S_FreyPackage_fermatLastTheoremFor_of_five_le.lean:134",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:17:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(solution, FreyPackage.no_frey_package) -> cites: FreyPackage.no_frey_package occurs at P2M/Sol/S_FreyPackage_fermatLastTheoremFor_of_five_le.lean:135",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:17:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "declared(FreyPackage.no_frey_package, Theorems/Thm_FreyPackage_no_frey_package.lean, 129-129) -> declared: FreyPackage.no_frey_package is declared at Theorems/Thm_FreyPackage_no_frey_package.lean:129",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:17:12Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "7 file(s) byte-identical at 6e837e75355538c7f80bab5b956861e86c4eacc2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:17:19Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI workflow: the repository has no .github/workflows directory (api.github.com/repos/anthropics/fermats-last-theorem/contents/ shows no .github entry); README documents manual 'lake build' and verification/ scripts, not CI; pinned commit 6e837e75355538c7f80bab5b956861e86c4eacc2 on main",
+      "by": "verifier",
+      "at": "2026-11-14T09:18:56Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "shape {direct_lemmas:2, depth:3, glue_lines:5, child_lines:[1,1]}: glue = P2M/Sol/S_FreyPackage_fermatLastTheoremFor_of_five_le.lean:131-135 is 5 lines (theorem solution ... rw; intro; obtain <P> := FreyPackage.of_counterexample ...; exact P.no_frey_package); children are 1 line each (Thm_FreyPackage_of_counterexample.lean:6 and Thm_FreyPackage_no_frey_package.lean:129, both single 'theorem ... := by p2m_exact_reverting ...' lines); depth chain solution -> no_frey_package -> S_FreyPackage_no_frey_package.solution -> Wiles_Frey confirmed: no_frey_package:129 = p2m_exact_reverting @P2MW.S_FreyPackage_no_frey_package.solution, solution:146-147 = FreyPackage.Wiles_Frey P (FreyPackage.Mazur_Frey P), Wiles_Frey declared at 139-142; 3 project lemmas below the main theorem",
+      "by": "verifier",
+      "at": "2026-11-14T09:19:01Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent solution (P2M/Sol/S_FreyPackage_fermatLastTheoremFor_of_five_le.lean:131-135) matches entry.json parent.statement; its 5-line glue cites exactly the two children: FreyPackage.of_counterexample at :134 and FreyPackage.no_frey_package at :135 (as P.no_frey_package). Child statements and closed_by match their files verbatim (Thm_FreyPackage_of_counterexample.lean:6 and Thm_FreyPackage_no_frey_package.lean:129, each a one-line p2m_exact_reverting delegation). It closes: rw[fermatLastTheoremFor_iff_int]; intro a b c ha hb hc heq; obtain ⟨P⟩ := of_counterexample .. (Nonempty FreyPackage -> P); exact P.no_frey_package (False) closes the goal. Context sites check out: S_FreyPackage_of_counterexample.lean:70-73 solution delegates to the 55-line construction at lines 12-66; S_FreyPackage_no_frey_package.lean:146-147 solution = FreyPackage.Wiles_Frey P (FreyPackage.Mazur_Frey P), with Wiles_Frey at 139-142. Shape numbers right: glue_lines=5 (131-135), direct_lemmas=2, child_lines=[1,1], depth=3 (solution->no_frey_package->S_..._solution->Wiles_Frey; construction side also depth 3).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:20:48Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality is well stated. The move is abstracted beyond FLT via goal_shape/use_when/avoid_when (a universal theorem proved by contradiction: counterexample -> named mediating object -> separate refutation, halves meeting only at the object's type). When-not-to-use is honest and specific: object adds no info and lemmas could meet on the hypotheses; only one half non-trivial (then suffices-or-strengthen); or fields cannot form a stable self-contained structure both sides agree on. Consequences name two concrete, verifiable failure modes tied to the structure (too weak to refute -> add invariants; too strong to construct -> needs unsuppliable hypotheses) and correctly note both sides must be revisited when the structure changes — the FreyPackage struct (Def_FLTPrelim_FreyPackage.lean) shows the coupling is exactly its fields a,b,c,p and the congruence invariants ha4/hb2/hgcdab. Good-leaf rationale is explicit: the construction child (lines 12-66) is a 55-line self-contained normalization with no deep number theory, so a bounded prover can take it whole; the refutation child is a leaf only as a stable one-line interface FreyPackage -> False hiding the deep Wiles argument — the entry is honest that this leaf is not itself bounded, it is interface-isolated. Minor imprecision: consequences call the derived freyCurve a 'field', but this does not affect the generality argument.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:21:49Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "7 file(s) byte-identical at 6e837e75355538c7f80bab5b956861e86c4eacc2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:22:10Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance check passes (7 files byte-identical at 6e837e75355538c7f80bab5b956861e86c4eacc2). Commit is consistent across entry.json source.commit, source.json, SOURCE.md and every permalink. Licence Apache-2.0 is recorded in entry.json, source.json and SOURCE.md and matches upstream-LICENSE (Apache License 2.0 text); upstream-NOTICE also present. Cited line ranges (parent 131-135, children L6/L129, contexts 70-73/139-147, Util 4-16) resolve to the stated content in the local copies.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:22:41Z"
+    }
+  ]
+}

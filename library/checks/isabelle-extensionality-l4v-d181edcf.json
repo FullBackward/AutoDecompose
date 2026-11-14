@@ -1,0 +1,125 @@
+{
+  "entry": "isabelle-extensionality-l4v-d181edcf",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:44:28Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:44:28Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:44:28Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: absHeap_correct@proof/refine/Refine.thy:100, absCDT_correct@proof/refine/Refine.thy:101, absIsOriginalCap_correct@proof/refine/Refine.thy:102, absSchedulerAction_correct@proof/refine/Refine.thy:106, domSchedule_map_relation@proof/refine/Refine.thy:107, absInterruptIRQNode_correct@proof/refine/Refine.thy:117, absInterruptStates_correct@proof/refine/Refine.thy:118, absExst_correct@proof/refine/Refine.thy:120; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:44:28Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(absKState_correct, proof/refine/Refine.thy, 94-121) -> declared: absKState_correct is declared at proof/refine/Refine.thy:94",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:44:28Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, absHeap_correct) -> cites: absHeap_correct occurs at proof/refine/Refine.thy:100",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:44:28Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(proof/refine/ADT_H.thy, 1-1177) -> no_sorry: none of sorry in proof/refine/ADT_H.thy:1-1177",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:44:28Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 1abfe5bce98632a94ba52adf183045620c509340",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:44:35Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/proof-deploy.yml: the 'Proof' job (seL4/ci-actions/aws-proofs) runs on push to master (default branch), building the full proof session set including session Refine (proof/ROOT 'session Refine in refine'), which compiles proof/refine/Refine.thy. Pinned commit 1abfe5bce98632a94ba52adf183045620c509340 is on the default branch.",
+      "by": "verifier",
+      "at": "2026-11-14T10:45:56Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Line counts checked at the pinned commit in code/: glue Refine.thy 94-121 = 28 lines; 8 shown children ADT_H.thy 1080-1085 (6), 726 (1), 456-515 (60), 1041-1043 (3), 1072-1074 (3), 1020-1023 (4), 1025-1033 (9), 1050-1060 (11) = 97; 9 direct lemmas cited in the glue (absHeap_correct:100, absCDT_correct:101, absIsOriginalCap_correct:102, absSchedulerAction_correct:106, domSchedule_map_relation:107, absInterruptIRQNode_correct:117, absInterruptStates_correct:118, absArchState_correct:119, absExst_correct:120). Depth chain confirmed: absKState_correct cites absCDT_correct (Refine.thy:101); absCDT_correct = absCDT_correct'(1) (ADT_H.thy:726); absCDT_correct' uses cteMap_correct (ADT_H.thy:569, inside absCDT_correct' starting 549); cteMap_correct uses cte_at_CNodeI (ADT_H.thy:345).",
+      "by": "verifier",
+      "at": "2026-11-14T10:46:00Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "ADT_H.thy 1050-1060: lemma absExst_correct proves 'absExst s' = exst s' by 'apply (rule det_ext.equality)' (line 1055), splitting the exst sub-record field-wise, then simp_all with absExst_def/absSchedulerAction_correct/absCDTList_correct[THEN fun_cong]/state_relation_def — the same record-extensionality move as the parent's state.equality.",
+      "by": "verifier",
+      "at": "2026-11-14T10:46:03Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 1abfe5bce98632a94ba52adf183045620c509340",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:46:29Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent Refine.thy:94-121 is a single record equality opened by 'intro state.equality, simp_all add: absKState_def abs_state_def' then one apply per field, matching the stated decomposition; all 9 named lemmas cited in the glue (absHeap, absCDT, absIsOriginalCap, absSchedulerAction, domSchedule_map, absInterruptIRQNode, absInterruptStates, absArchState, absExst) are exactly the lemmas the proof uses, with 8 shown as child sites and absArchState_correct (ADT_H.thy:81-82, locale ADT_H) listed in the README. Each child's closing method matches the code: absHeap_correct is an 'assumes' of locale ADT_H_2 (1076+, 1080-1085), absCDT_correct = 'lemmas absCDT_correct = absCDT_correct'(1)' (726) with absCDT_correct' (549-723) closing by 'apply (rule ext)' (643) using cteMap_correct (569); absIsOriginalCap_correct (456-515) by 'apply (rule ext)' + case on caps_of_state; absSchedulerAction/domSchedule_map/absInterruptIRQNode close by their recorded by/apply; absExst_correct (1050-1060) by 'rule det_ext.equality'. Proof closes ('done'/'qed', no sorry). Shape numbers verified: glue_lines 28 (94-121), child_lines [6,1,60,3,3,4,9,11] sum 97 = shown_child_total_lines, direct_lemmas 9, depth 4 chain absKState_correct->absCDT_correct(Refine:101)->absCDT_correct'(ADT:726)->cteMap_correct(ADT:569)->cte_at_CNodeI(ADT:345) all confirmed.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:47:31Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalises cleanly beyond seL4: 'When to use it' abstracts to any equality of large record-typed states whose fields are fixed by an existing relation, and applicability.goal_shape/use_when/avoid_when repeat it independently of the example. 'When not to use' is specific and honest (interacting fields, no fieldwise relation, too-small record, architecture-specific field without a locale parameter), and consequences name concrete failure modes (field missing from state_relation, child slightly weaker than the field equality, record extension silently adding a subgoal). Good-leaf question answered explicitly: each leaf is self-contained, stated in its own field's relation, closes on its own without referring to other fields, and the two heavy fields are deferred as locale parameters discharged per architecture - exactly the bounded-context property a bounded prover needs. Verified parent glue (Refine.thy 94-121) and exemplar children (absHeap, absSchedulerAction, absExst) in the local code match the description.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:48:12Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "object",
+      "evidence": "Licence is recorded inconsistently with the copied files. Both copied files carry 'SPDX-License-Identifier: GPL-2.0-only' in their headers (code/proof/refine/Refine.thy line 6; code/proof/refine/ADT_H.thy line 6), yet entry.json source.licence, README's Licence row, SOURCE.md 'Licence (detected)' and source.json all record 'CC-BY-SA-4.0'. That tag is only the SPDX header of LICENSE.md itself; the upstream LICENSE.md (copied as upstream-LICENSE.md) states proofs about the seL4 kernel are GPL v2, libraries BSD-2-Clause. Permalinks and commit are otherwise consistent and traceable (check_provenance.py: 2 files byte-identical at 1abfe5bce98632a94ba52adf183045620c509340). Fix: set the licence to GPL-2.0-only in source.json, SOURCE.md, entry.json and README (or record per-file licences), and correct the source note's licence description.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:49:05Z"
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "entry": "rocq-suffices-or-strengthen-certicoq-933592e6",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:30:54Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:30:54Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:30:55Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: convert_top_anf_correct@theories/Compiler/correctness.v:160, convert_env_inj@theories/Compiler/correctness.v:163, convert_env_reg@theories/Compiler/correctness.v:165, cenv_tgm_coh@theories/Compiler/correctness.v:185, wf_env_inductive@theories/Compiler/correctness.v:159, lambda_glob_eval_env_fuel@theories/Compiler/correctness.v:168, eval_val_exact_det@theories/Compiler/correctness.v:174, lookup_env_wellformed@theories/Compiler/correctness.v:179; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:30:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(metarocq_to_anf_correct, 49) -> lines: site metarocq_to_anf_correct has 49 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:30:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "declared(convert_top_anf_correct, theories/LambdaBox_to_LambdaANF/anf_toplevel.v, 581-609) -> declared: convert_top_anf_correct is declared at theories/LambdaBox_to_LambdaANF/anf_toplevel.v:581",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:30:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(theories/Compiler/correctness.v, 140-188) -> no_sorry: none of admit, Admitted, Axiom, axiom in theories/Compiler/correctness.v:140-188",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:30:55Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "7 file(s) byte-identical at 943b52ae654708130f241ccf8a50ecb95a7956e2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:31:07Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/nix-action-default.yml runs on push to main (default branch); its CertiRocq job runs 'nix-build --argstr bundle default --argstr job CertiRocq', which compiles the whole CertiRocq project including theories/Compiler/correctness.v (mapped to CertiRocq.Compiler by _CoqProject line 3). Pinned commit 943b52ae654708130f241ccf8a50ecb95a7956e2 is HEAD of main (GitHub compare main...943b52a: status identical, ahead_by 0, behind_by 0).",
+      "by": "verifier",
+      "at": "2026-11-14T10:32:38Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read code/theories/Compiler/correctness.v: the comment at lines 122-127 reads 'To prove the correctness of connecting the MetaRocq pipeline and CertiRocq's ANF, we need a stronger well-formedness property. This formalizes the remaining mismatch between metarocq's pipeline and certirocq's LambdaANF: - primitives are not supported in fuel_sem ... - the environment must be axiom free, as usual'. The quoted sentence appears verbatim. Note: the comment actually spans 122-127 (claim says 123-128, off by one) but the quote is exact.",
+      "by": "verifier",
+      "at": "2026-11-14T10:32:42Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read code/theories/Compiler/correctness.v lines 150-188 (parent body). All 8 named lemmas are cited directly: wf_env_inductive (159), convert_top_anf_correct (160), convert_env_inj (163), convert_env_reg (165), lambda_glob_eval_env_fuel (168 and 172), eval_val_exact_det (174), lookup_env_wellformed (179), cenv_tgm_coh (185). No other named lemma is applied in the body, so the count of 8 is exact.",
+      "by": "verifier",
+      "at": "2026-11-14T10:32:45Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "7 file(s) byte-identical at 943b52ae654708130f241ccf8a50ecb95a7956e2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:33:09Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent site correctness.v 140-188 is 49 lines and matches parent.statement verbatim; all 8 children (convert_top_anf_correct, convert_env_inj, convert_env_reg, cenv_tgm_coh, wf_env_inductive, lambda_glob_eval_env_fuel, eval_val_exact_det, lookup_env_wellformed) are exactly the named lemmas the proof body cites (lines 159,160,163,165,168/172,174,179,185), each statement verbatim and each closed_by matching the copied code; glue is one eapply of convert_top_anf_correct plus 9 bullets, one per hypothesis, matching the README table. Shape numbers correct: direct_lemmas=8, glue_lines=49 (188-140+1), child_lines=[29,12,22,22,17,15,198] matching the 7 child sites, depth=3 via lambda_glob_eval_env_fuel->lambda_glob_declared(86)->lambda_glob_lookup(72). Provenance pass (7 files byte-identical).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:34:35Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is abstracted beyond the example: applicability.goal_shape/use_when/avoid_when restate it as a general schema (general pass theorem needs stronger hypotheses than the pipeline postcondition; strengthen the parent with exactly the invariant that makes them dischargeable). The strengthening is the authors' own framing, confirmed at correctness.v 123-128. 'When not to use' is specific and honest: the three avoid_when conditions (invariant fails to decompose into the pass theorem's hypotheses; hypotheses need genuinely new proofs; strengthening not reused) each name the actual breakage point. Consequences are honest and code-confirmed: 9 bullets = one obligation per Section context of convert_top_anf_correct (Hwf_glob/HnoVar/HnoEvar/HnoCoFix/HnoLazy/Hblocks/HnoArray/no_prims/cenv_tgm_coh, anf_toplevel.v 560-580), the strengthened hypothesis is a caller precondition, and the sibling metarocq_to_anf_total (correctness.v 190-215) really reuses it via convert_top_anf_total then metarocq_to_anf_correct. Good leaves for a bounded prover are stated: self-contained statement closing on its own or via a named sibling, enumerated per leaf with its closure path and depth. Minor caveat, not material: the leaf criterion says 'self-contained/closes independently' rather than size, and eval_val_exact_det is a 198-line mutual induction; but the entry is transparent (shape.child_lines=198) and describes it as mechanical (one reflexivity case per term constructor).",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:36:10Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "7 file(s) byte-identical at 943b52ae654708130f241ccf8a50ecb95a7956e2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:36:37Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent and traceable. check_provenance.py reports 7 files byte-identical at commit 943b52ae654708130f241ccf8a50ecb95a7956e2, so every file permalink, sha256 and byte count in entry.json matches the copied code. entry.json source.commit and source.licence (MIT) match sources/certicoq/source.json (commit 943b52..., licence MIT, licence_files [LICENSE.md]) and SOURCE.md. The copied upstream-LICENSE.md is the standard MIT text, and the README 'Source and licence' section names the same commit, MIT licence and source note.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:36:53Z"
+    }
+  ]
+}

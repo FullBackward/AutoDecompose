@@ -1,0 +1,302 @@
+{
+  "id": "rocq-suffices-or-strengthen-certicoq-933592e6",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Strengthened well-formedness invariant glues the MetaRocq pipeline to LambdaANF",
+  "intent": "Connect the MetaRocq erasure pipeline to the LambdaANF backend by stating the compiler theorem with a strengthened well-formedness invariant (certirocq_flags: no axioms, no primitive arrays), then discharging every hypothesis of the general pass theorem convert_top_anf_correct from that invariant, one bullet per hypothesis.",
+  "move": "suffices-or-strengthen",
+  "also_known_as": [
+    "strengthen the hypothesis",
+    "backward rule application",
+    "suffices"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "certicoq",
+    "url": "https://github.com/CertiCoq/certicoq",
+    "commit": "943b52ae654708130f241ccf8a50ecb95a7956e2",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "theories/Compiler/correctness.v",
+      "bytes": 11760,
+      "sha256": "f83eb4a994c6677bf85eeb6af1e1261d1c224961e2f8e520bf3dba4489ed8cb8",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/Compiler/correctness.v"
+    },
+    {
+      "path": "theories/LambdaBox_to_LambdaANF/anf_toplevel.v",
+      "bytes": 24820,
+      "sha256": "d7807b8b43b06c96e99a47b3da7962c8d2c6c169e72bbae58ea78607faf1d7e2",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/LambdaBox_to_LambdaANF/anf_toplevel.v"
+    },
+    {
+      "path": "theories/LambdaBox_to_LambdaANF/anf_convert_env.v",
+      "bytes": 21182,
+      "sha256": "14df5d1ef378db7196325444160da021db97af2fc8c8d44f2dd741edeac5832c",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/LambdaBox_to_LambdaANF/anf_convert_env.v"
+    },
+    {
+      "path": "theories/LambdaBox_to_LambdaANF/fuel_sem.v",
+      "bytes": 38468,
+      "sha256": "b58cb4b9c5677cd6012a9de14d616a3382bb1fd474e93aad60cc769322accee2",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/LambdaBox_to_LambdaANF/fuel_sem.v"
+    },
+    {
+      "path": "theories/LambdaBox_to_LambdaANF/common.v",
+      "bytes": 13248,
+      "sha256": "6781ef15d0b1328a9921dc822ec61074ba40dd3c8260726e42c00bec52080447",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/LambdaBox_to_LambdaANF/common.v"
+    },
+    {
+      "path": "theories/LambdaBox_to_LambdaANF/anf.v",
+      "bytes": 21169,
+      "sha256": "b5bb8cf08358ad23308e5f0b9a8c0f3fd44986b8194acf5e00a92de3e891eaf4",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/LambdaBox_to_LambdaANF/anf.v"
+    },
+    {
+      "path": "theories/Compiler/metarocq_pipeline.v",
+      "bytes": 7269,
+      "sha256": "1a55d4c96831d915cd12f576976c0dfa0b8dd9980d681282a8c9759b2d6dd679",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/Compiler/metarocq_pipeline.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/Compiler/correctness.v",
+      "lines": [
+        140,
+        188
+      ],
+      "role": "parent",
+      "name": "metarocq_to_anf_correct",
+      "excerpt_sha256": "44aff10fac2c6a3551fa9a578c89d59d353f17a0fee6ccd11d8607045108d3e7",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/Compiler/correctness.v#L140-L188"
+    },
+    {
+      "path": "theories/LambdaBox_to_LambdaANF/anf_toplevel.v",
+      "lines": [
+        581,
+        609
+      ],
+      "role": "child",
+      "name": "convert_top_anf_correct",
+      "excerpt_sha256": "22a9a003f52b388415d935362377bd83a46eab7617e1307b18e69919f6cb529c",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/LambdaBox_to_LambdaANF/anf_toplevel.v#L581-L609"
+    },
+    {
+      "path": "theories/LambdaBox_to_LambdaANF/anf_convert_env.v",
+      "lines": [
+        352,
+        363
+      ],
+      "role": "child",
+      "name": "convert_env_inj",
+      "excerpt_sha256": "70f0b268e3a3d3ce4e03429cbad040942cf46786cf34425bd4a8da0f81a11d47",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/LambdaBox_to_LambdaANF/anf_convert_env.v#L352-L363"
+    },
+    {
+      "path": "theories/LambdaBox_to_LambdaANF/anf_convert_env.v",
+      "lines": [
+        515,
+        536
+      ],
+      "role": "child",
+      "name": "convert_env_reg",
+      "excerpt_sha256": "e9772e9ce4b6cb3222bc25d71ef6c4da6dae2b7b6583387e21526abc77e23b24",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/LambdaBox_to_LambdaANF/anf_convert_env.v#L515-L536"
+    },
+    {
+      "path": "theories/LambdaBox_to_LambdaANF/anf_convert_env.v",
+      "lines": [
+        552,
+        573
+      ],
+      "role": "child",
+      "name": "cenv_tgm_coh",
+      "excerpt_sha256": "ad54917054534a8e19b0f4cb50b85d4a6448735afa6949ce00505023f7a57035",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/LambdaBox_to_LambdaANF/anf_convert_env.v#L552-L573"
+    },
+    {
+      "path": "theories/LambdaBox_to_LambdaANF/anf_convert_env.v",
+      "lines": [
+        304,
+        320
+      ],
+      "role": "child",
+      "name": "wf_env_inductive",
+      "excerpt_sha256": "adc866356d7d62091782e4b3fe5248683983f55616226e18e0b1fd28b41d2e41",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/LambdaBox_to_LambdaANF/anf_convert_env.v#L304-L320"
+    },
+    {
+      "path": "theories/Compiler/correctness.v",
+      "lines": [
+        100,
+        114
+      ],
+      "role": "child",
+      "name": "lambda_glob_eval_env_fuel",
+      "excerpt_sha256": "ce97ea8b647f0f74afb53d7e15b3e3c65d861978fb8b64c41427c0c84cf6c20d",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/Compiler/correctness.v#L100-L114"
+    },
+    {
+      "path": "theories/LambdaBox_to_LambdaANF/fuel_sem.v",
+      "lines": [
+        448,
+        645
+      ],
+      "role": "child",
+      "name": "eval_val_exact_det",
+      "excerpt_sha256": "1621cd0fb32b1133da9ffa1eb609e0cf5cec7ce55fa44a80e616d9ac254a2c9b",
+      "permalink": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/LambdaBox_to_LambdaANF/fuel_sem.v#L448-L645"
+    }
+  ],
+  "parent": {
+    "name": "metarocq_to_anf_correct",
+    "statement": "Theorem metarocq_to_anf_correct (econf : erasure_configuration) (p : EProgram.eprogram) : \n    (* The postcondition on MetaRocq's pipeline *)\n    Transform.Transform.post (certirocq_post_metarocq_pipeline [] econf) p ->\n    (* Stronger invariant: no axioms, no primitives *)\n    EProgram.wf_eprogram (certirocq_flags env_flags) p ->\n    let ie := inductive_env_east (fst p) in\n    let tgm := (convert_env default_tag default_itag ie).2 in\n    forall e_tgt comp_d', \n      anf_convert ie tgm (List.rev (fst p)) (snd p) = (compM.Ret e_tgt, comp_d') ->\n      exists M, refines_toplevel (fst p) ie tgm M (snd p) e_tgt."
+  },
+  "children": [
+    {
+      "name": "convert_top_anf_correct",
+      "statement": "Theorem convert_top_anf_correct next_id e e_tgt comp_d' :\n    wellformed Σ 0 e = true ->\n    convert_top_anf func_tag default_tag prim_map default_itag next_id tgm prims\n      (fun _ => None)\n      ie (List.rev Σ) e = (compM.Ret e_tgt, comp_d') ->\n    exists M, refines_top ie M e e_tgt.",
+      "closed_by": "edestruct convert_top_anf_corresp; eapply anf_correct_top_explicit; eauto",
+      "note": "The one general pass theorem the parent instantiates; its statement sits inside Section Correctness and names the context hypotheses the parent must supply (HnoAxioms, HnoVar, HnoEvar, HnoCoFix, HnoLazy, Hblocks, HnoArray, no_prims, cenv_tgm_coh, Hglob_term, Hglob_fuel_zero, Hglob_wf). Good leaf: its proof is two eapply steps, to the correspondence lemma convert_top_anf_corresp and the explicit ANF-correctness lemma anf_correct_top_explicit. Analyst's paraphrase, replaced by the declaration's text: wellformed e -> convert_top_anf succeeds -> exists M, refines_top ie M e e_tgt"
+    },
+    {
+      "name": "convert_env_inj",
+      "statement": "Lemma convert_env_inj default_tag default_itag ie : \n  wf_env_east ie ->\n  let tgm := (convert_env default_tag default_itag ie).2 in\n  inj_conIdMap tgm.",
+      "closed_by": "have he := convert_env'_tgm ie _ _ eq_refl; apply he; cbn; auto",
+      "note": "The tag map produced by convert_env is injective; the parent uses it (line 163) to discharge convert_top_anf_correct's dcon_to_tag_inj context. Good leaf: it closes by delegating to convert_env'_tgm, the same helper that also closes convert_env_coh. Analyst's paraphrase, replaced by the declaration's text: wf_env_east ie -> inj_conIdMap (convert_env default_tag default_itag ie).2"
+    },
+    {
+      "name": "convert_env_reg",
+      "statement": "Lemma convert_env_reg default_tag default_itag Σ : \n  let ie := inductive_env_east Σ in\n  let tgm := (convert_env default_tag default_itag ie).2 in\n  registered_constructors tgm Σ.",
+      "closed_by": "eapply registered_constructors_inductive_env; apply dcon_to_tag_ok; eapply (in_convert_env _ _ _ mind i0)",
+      "note": "Every original constructor is registered in the tag map; the parent uses it (line 165) for convert_top_anf_correct's registered-constructors context. Good leaf: it closes through registered_constructors_inductive_env and in_convert_env, both named siblings in anf_convert_env.v. Analyst's paraphrase, replaced by the declaration's text: registered_constructors (convert_env default_tag default_itag (inductive_env_east Σ)).2 Σ"
+    },
+    {
+      "name": "cenv_tgm_coh",
+      "statement": "Lemma cenv_tgm_coh default_tag default_itag ie : \n  wf_env_east ie ->\n  let tgm := convert_env default_tag default_itag ie in\n  cenv_tgm_coherence tgm.1.1.1.2 tgm.2.",
+      "closed_by": "have h := convert_env_coh default_tag default_itag ie wf; apply dcon_to_info_spec; congruence",
+      "note": "The constructor environment and the tag map cohere; the parent uses it (line 185) for convert_top_anf_correct's cenv_tgm_coh context. Good leaf: it closes by reusing the sibling convert_env_coh and dcon_to_info_spec. Analyst's paraphrase, replaced by the declaration's text: wf_env_east ie -> cenv_tgm_coherence (convert_env default_tag default_itag ie).1.1.1.2 (convert_env default_tag default_itag ie).2"
+    },
+    {
+      "name": "wf_env_inductive",
+      "statement": "Lemma wf_env_inductive {efl : EEnvFlags} Σ :\n  wf_glob Σ ->\n  wf_env_east (inductive_env_east Σ).",
+      "closed_by": "induction 1; econstructor; tea",
+      "note": "Lifts MetaRocq's wf_glob to the ANF-side wf_env_east; the parent uses it (line 159) to obtain wf : wf_env_east ie, the hypothesis the convert_env_* lemmas take. Good leaf: closes by induction on wf_glob alone."
+    },
+    {
+      "name": "lambda_glob_eval_env_fuel",
+      "statement": "Lemma lambda_glob_eval_env_fuel (p : EProgram.eprogram) (efl := env_flags) :\n  wf_glob p.1 ->\n  EWcbvEval.lambda_glob p.1 ->\n  forall (k : kername) (decl : constant_body) (body : term),\n  EGlobalEnv.declared_constant p.1 k decl ->\n  cst_body decl = Some body -> exists (src_v : fuel_sem.value) (f t : nat), \n  eval_env_fuel (Hf:=LambdaBox_resource_fuel) p.1 [] body (Val src_v) f t /\\ f = <0>.",
+      "closed_by": "eapply (lambda_glob_declared _ hwf hv) in hd; noconf hb; do 3 eexists; split; constructor",
+      "note": "In a lambda-only global environment every declared constant evaluates to a value in 0 steps; the parent uses it twice (lines 168 and 172) for convert_top_anf_correct's Hglob_term and Hglob_fuel_zero contexts. Good leaf: closes through lambda_glob_declared (correctness.v 86), which itself closes through lambda_glob_lookup (correctness.v 72). Analyst's paraphrase, replaced by the declaration's text: lambda-only global environments evaluate to values in 0 fuel"
+    },
+    {
+      "name": "eval_val_exact_det",
+      "statement": "Lemma eval_val_exact_det rho e v1 v2 f1 t1 f2 t2 :\n    eval_env_fuel rho e (Val v1) f1 t1 ->\n    eval_env_fuel rho e (Val v2) f2 t2 ->\n    v1 = v2 /\\ f1 = f2 /\\ t1 = t2.",
+      "closed_by": "apply (eval_env_fuel_ind' Pstep Pmany Pfuel); try exact Heval1",
+      "note": "Determinism of the fuel semantics; the parent uses it (line 174) to collapse the fuel-0 evaluation to the same value, fuel and trace. Good leaf: closes by a mutual-style induction over eval_env_fuel via eval_env_fuel_ind', one case per term constructor, each ending in reflexivity."
+    },
+    {
+      "name": "lookup_env_wellformed",
+      "statement": null,
+      "closed_by": "MetaRocq.Erasure.EWellformed (imported at correctness.v line 20)",
+      "note": "Declared in the MetaRocq dependency, not in the copied files; the parent uses it (line 179) for convert_top_anf_correct's Hglob_wf context. Statement null because its declaration is outside the copied files."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A compiler-correctness theorem of the shape 'postcondition p -> wf p -> convert p succeeds -> exists M, refines p M target', where convert is defined by a general pass theorem whose statement carries a strengthened well-formedness invariant (no axioms, no primitives, blocked constructors).",
+    "use_when": "A general pass theorem already exists (convert_top_anf_correct) but needs stronger hypotheses than the pipeline's own postcondition provides; strengthen the parent's statement with exactly the invariant that makes those hypotheses dischargeable, then discharge each with a named lemma.",
+    "avoid_when": "The strengthened invariant does not decompose into the pass theorem's individual hypotheses (then the one-lemma-per-bullet structure breaks); the pass theorem's hypotheses need genuinely new proofs rather than existing convert_env_* / determinism lemmas; the strengthening is not reused elsewhere, so a dedicated flags record is not worth it."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site metarocq_to_anf_correct is 49 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/Compiler/correctness.v#L140-L188",
+      "form": "lines(metarocq_to_anf_correct, 49)"
+    },
+    {
+      "n": 2,
+      "claim": "convert_top_anf_correct is declared at theories/LambdaBox_to_LambdaANF/anf_toplevel.v 581-609.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/LambdaBox_to_LambdaANF/anf_toplevel.v#L581-L609",
+      "form": "declared(convert_top_anf_correct, theories/LambdaBox_to_LambdaANF/anf_toplevel.v, 581-609)"
+    },
+    {
+      "n": 3,
+      "claim": "None of admit, Admitted, Axiom or axiom occurs in the parent site theories/Compiler/correctness.v 140-188.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/Compiler/correctness.v#L140-L188",
+      "form": "no_sorry(theories/Compiler/correctness.v, 140-188)"
+    },
+    {
+      "n": 4,
+      "claim": "The authors state the strengthening in a comment: \"To prove the correctness of connecting the MetaRocq pipeline and CertiRocq's ANF, we need a stronger well-formedness property\" (correctness.v 123-128).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/Compiler/correctness.v#L123-L128"
+    },
+    {
+      "n": 5,
+      "claim": "The parent's body cites 8 named lemmas directly (wf_env_inductive, convert_top_anf_correct, convert_env_inj, convert_env_reg, lambda_glob_eval_env_fuel, eval_val_exact_det, lookup_env_wellformed, cenv_tgm_coh), counted by reading correctness.v 150-188.",
+      "evidence_kind": "measurement",
+      "evidence": "read of correctness.v lines 150-188 at https://github.com/CertiCoq/certicoq/blob/943b52ae654708130f241ccf8a50ecb95a7956e2/theories/Compiler/correctness.v#L150-L188"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 8,
+    "depth": 3,
+    "glue_lines": 49,
+    "child_lines": [
+      29,
+      12,
+      22,
+      22,
+      17,
+      15,
+      198
+    ]
+  },
+  "metrics": {
+    "parent_site_lines": 49,
+    "direct_lemmas": 8,
+    "bullets_discharged": 9,
+    "how_counted": "parent_site_lines = 188-140+1; direct_lemmas = named lemmas cited in correctness.v 150-188; bullets_discharged = '- ' bullets at correctness.v 162-187, one per goal of convert_top_anf_correct; all counted by reading the copied correctness.v"
+  },
+  "consequences": "The move creates one obligation per hypothesis of the general pass theorem: here 9 goals, one per bullet, each closed by a named lemma or a trivial step (apply wf', reflexivity). The strengthened statement (EProgram.wf_eprogram (certirocq_flags env_flags) p) is itself a precondition the caller must establish; the sibling metarocq_to_anf_total (correctness.v 190-215) keeps the same strengthened hypothesis and shows the total/existential form by first applying convert_top_anf_total and then metarocq_to_anf_correct. Failure mode: if the strengthened invariant does not decompose into the pass theorem's individual hypotheses, the bullets stop being one-lemma-each and the glue grows.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "933592e6ee7a850a6bce7b9acb70c723b72247aafed77e3feac51d423275a1ad",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:24:47Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:32:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:27:53Z",
+      "note": "child 'convert_top_anf_correct': statement re-copied from the declaration of convert_top_anf_correct; child 'convert_env_inj': statement re-copied from the declaration of convert_env_inj; child 'convert_env_reg': statement re-copied from the declaration of convert_env_reg; child 'cenv_tgm_coh': statement re-copied from the declaration of cenv_tgm_coh; child 'lambda_glob_eval_env_fuel': statement re-copied from the declaration of lambda_glob_eval_env_fuel"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:37:00Z"
+}

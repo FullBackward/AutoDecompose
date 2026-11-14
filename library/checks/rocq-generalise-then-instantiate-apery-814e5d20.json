@@ -1,0 +1,125 @@
+{
+  "entry": "rocq-generalise-then-instantiate-apery-814e5d20",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:50:29Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:50:29Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:50:29Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: b_Sn2@theories/b_over_a_props.v:35, a_Sn2@theories/b_over_a_props.v:35, b2_eq@theories/b_over_a_props.v:49, b3_eq@theories/b_over_a_props.v:49, a2_eq@theories/b_over_a_props.v:50, a3_eq@theories/b_over_a_props.v:50; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:50:29Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(ba_casoratianE, 35) -> lines: site ba_casoratianE has 35 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:50:29Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, b_Sn2) -> cites: b_Sn2 occurs at theories/b_over_a_props.v:35",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:50:29Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, a_Sn2) -> cites: a_Sn2 occurs at theories/b_over_a_props.v:35",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:50:29Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "no_sorry(theories/b_over_a_props.v, 24-58) -> no_sorry: none of admit, Admitted, Axiom, axiom in theories/b_over_a_props.v:24-58",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:50:29Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "8 file(s) byte-identical at 97f0c01bec4282c4504c0225a71ff0e75aeab115",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:50:38Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/docker-action.yml (Docker CI) triggers on push to master (default branch) and builds the opam package coq-mathcomp-apery.opam via coq-community/docker-coq-action; the opam build is 'make', which compiles every file in _CoqProject, including theories/b_over_a_props.v (listed at line 19). Pinned commit 97f0c01 is HEAD (default branch) of rocq-community/apery.",
+      "by": "verifier",
+      "at": "2026-11-14T12:51:47Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read code/theories/b_over_a_props.v lines 45-46 (provenance byte-identical): line 45 '(* this step below is only the fact that U is a rec of order 1 : should be *)', line 46 '(* obtained from something more general... *)'. The quoted author comment matches, and it sits immediately before the 'suff {uUrec vUrec v} Urec1P ...' that states the general order-1 uniqueness lemma, so the authors do flag the uniqueness step as a general fact that belongs apart.",
+      "by": "verifier",
+      "at": "2026-11-14T12:51:48Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent ba_casoratianE (b_over_a_props.v:24-58) is exactly a generalise-then-instantiate: it poses v/c1/c0/Urec, proves uUrec and vUrec, suffices the general uniqueness Urec1P over arbitrary w1 w2, instantiates via apply:(Urec1P _ v), and closes by field/ring_lia; ends Qed with no admit/Admitted. The 6 children (b_Sn2, a_Sn2, b2_eq, b3_eq, a2_eq, a3_eq) are exactly the 6 project lemmas the glue cites (lines 35, 49, 50), their statements are verbatim, and closing methods match (a_Sn2 exact recAperyA; the four *_eq by solve_a/b_evaluation; b_Sn2 by case altP n=0/n=1 then exact b_Sn2_almost). Shape numbers are right: glue_lines 35 (24-58), child_lines [11,2,2,2,2,2] (250-260, 43-44, 56-57, 59-60, 72-73, 75-76), direct_lemmas 6, and depth 7 verified as the chain ba_casoratianE -> b_Sn2 -> b_Sn2_almost -> b'_eq_b -> b'_eq_b_reduction -> b'_Sn4 -> b'_Sn2_rew -> b'_rec_eq (reduce_order.v:259,227,207,195-198,93,57).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:53:38Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated transferably: applicability.goal_shape and the README's use/avoid text generalize from the casoratian to 'same order-1 recurrence + same initial value => equal', which is reusable for any such pair. Avoid-when is honest and specific: no shared recurrence, higher order (uniqueness induction and coefficient-nonvanishing side conditions grow), differing initial values. Consequences are specific and match the code: three instantiation obligations (uUrec, vUrec, w1 2 = w2 2) and the order-1 / non-zero leading coefficient condition c1 k = (k+2)^3 != 0 discharged by expf_eq0 at line 55. Leaf goodness is stated: b_Sn2/a_Sn2 are self-contained recurrence statements closing in one line (a_Sn2 via recAperyA, b_Sn2 by a 0/1 case split then b_Sn2_almost), and b2_eq/b3_eq/a2_eq/a3_eq are one-line field computations via solve_a/b_evaluation. Minor, non-blocking: README omits the third avoid_when condition present in entry.json ('one side's recurrence cannot be stated without the other's').",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:54:32Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "8 file(s) byte-identical at 97f0c01bec4282c4504c0225a71ff0e75aeab115",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:54:52Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance passes: check_provenance.py reports 8 files byte-identical at 97f0c01bec4282c4504c0225a71ff0e75aeab115. Commit, repo path and licence (CECILL-C) are consistent across entry.json, README.md, sources/apery/SOURCE.md and source.json; upstream-LICENSE is CeCILL-C text, matching the recorded licence. All 8 file permalinks and 7 site permalinks point at the pinned commit with paths matching the copied code/ files (8 files, include/ann_c.v + 7 theories). Cited line ranges (parent 24-58; children reduce_order.v 250-260, algo_closures.v 43-44, initial_conds.v 56-57/59-60/72-73/75-76) reproduce exactly in the copied files. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:55:22Z"
+    }
+  ]
+}

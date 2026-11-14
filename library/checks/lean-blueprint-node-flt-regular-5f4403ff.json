@@ -1,0 +1,125 @@
+{
+  "entry": "lean-blueprint-node-flt-regular-5f4403ff",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:30:30Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:30:30Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:30:30Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: Hilbert92@FltRegular/NumberTheory/Hilbert94.lean:104, exists_not_isPrincipal_and_isPrincipal_map_aux@FltRegular/NumberTheory/Hilbert94.lean:105; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:30:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(exists_not_isPrincipal_and_isPrincipal_map, FltRegular/NumberTheory/Hilbert94.lean, 94-105) -> declared: exists_not_isPrincipal_and_isPrincipal_map is declared at FltRegular/NumberTheory/Hilbert94.lean:97",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:30:31Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, Hilbert92) -> cites: Hilbert92 occurs at FltRegular/NumberTheory/Hilbert94.lean:104",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:30:31Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, exists_not_isPrincipal_and_isPrincipal_map_aux) -> cites: exists_not_isPrincipal_and_isPrincipal_map_aux occurs at FltRegular/NumberTheory/Hilbert94.lean:105",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:30:31Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 83f477ccc8cef9fd9a022b90d87aed49368e7bbd",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:30:37Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push.yml runs on push to master (the default branch) and builds the whole FltRegular package (lake -R -Kenv=dev build FltRegular), which includes FltRegular/NumberTheory/Hilbert94.lean; commit 83f477ccc8cef9fd9a022b90d87aed49368e7bbd is pinned at ref HEAD (the default branch)",
+      "by": "verifier",
+      "at": "2026-11-14T09:31:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "doc comment at Hilbert94.lean:94-96 reads: /-- This is the first part of **Hilbert Theorem 94**, which states that if L/K is an unramified cyclic finite extension of number fields of odd prime degree, then there is an ideal that capitulates in K. -/ — matches the quoted claim (markdown markup stripped)",
+      "by": "verifier",
+      "at": "2026-11-14T09:31:56Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "parent proof lines 103-105 names exactly Hilbert92 (line 104) and exists_not_isPrincipal_and_isPrincipal_map_aux (line 105); aux proof line 61 cites comap_span_galRestrict_eq_of_cyclic; that lemma is declared at Hilbert94.lean:25. Chain parent->aux->comap_span_galRestrict_eq_of_cyclic is 2 project lemmas deep",
+      "by": "verifier",
+      "at": "2026-11-14T09:31:57Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Correctness verified against the copied code. Parent exists_not_isPrincipal_and_isPrincipal_map is declared at Hilbert94.lean:97 (site 94-105, doc comment 94-96, proof 103-105) and its statement matches entry.json verbatim. Glue lines 103-105 cite exactly Hilbert92 (line 104) and exists_not_isPrincipal_and_isPrincipal_map_aux (line 105): obtain ⟨⟨σ,hσ⟩⟩:=h; obtain ⟨η,hη,hη'⟩:=Hilbert92 hKL hKL' σ hσ; exact exists_not_isPrincipal_and_isPrincipal_map_aux σ hσ η hη (not_exists.mpr hη'). Both children are the only project lemmas the proof uses. Hilbert92 (Hilbert92.lean:726-733) statement matches verbatim and closes by almostHilbert92 (finrank k K) hKL rfl σ hσ hpodd (line 733); almostHilbert92 is declared at 619. The aux child (Hilbert94.lean:51-80) statement matches verbatim, builds (Ideal.span {β}).comap (algebraMap A B), and closes its two goals from comap_map_eq_of_unramified (line 61) and comap_span_galRestrict_eq_of_cyclic (line 62, declared at line 25) plus hη'. Shape numbers are right: glue_lines 12 = parent site 94-105; child_lines [30,8] = aux site 51-80 (30) and Hilbert92 site 726-733 (8); direct_lemmas 2; depth 2 (parent→aux→comap_span_galRestrict_eq_of_cyclic and parent→Hilbert92→almostHilbert92). Decomposition matches the entry, children and closing methods match the code, and it closes.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:32:53Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality is handled honestly. use_when abstracts the example into a reusable pattern: a theorem that is one node of a published dependency graph whose proof splits into named, self-contained lemmas (a producer-of-an-object-with-a-property plus a consumer), so the main proof is a short forward of hypotheses. avoid_when gives concrete, honest conditions (obligations not independently statable, children not reused elsewhere, no documented graph -> plain suffices, and it admits the 'node' label would then overstate). consequences name a specific coupling point: the glue's not_exists.mpr flip of Hilbert92's forall conclusion into the aux lemma's neg-exists hypothesis, and the failure mode if that quotient condition changes (verified against Hilbert94.lean:105 and Hilbert92.lean:726-733). The 'bounded prover' question is answered in substance though not in that exact wording: the README's 'Each child is a good leaf because its statement is self-contained and its proof closes on its own or from named siblings' plus the note that Hilbert92's hypotheses are exactly what the parent forwards, and that the aux closes its two goals from named siblings, is precisely what makes each leaf dispatchable in isolation.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:34:04Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 83f477ccc8cef9fd9a022b90d87aed49368e7bbd",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:34:20Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "provenance pass (2 files byte-identical at 83f477ccc8cef9fd9a022b90d87aed49368e7bbd); entry.json files match copied code (Hilbert94.lean 5887B, Hilbert92.lean 34828B); permalink site anchors verified against local copies (parent 94-105, aux 51-80, Hilbert92 726-733); commit 83f477... consistent across entry.json, source.json, SOURCE.md; licence Apache-2.0 consistent across entry.json, README, source.json, SOURCE.md, and upstream-LICENSE is the Apache-2.0 text; source note records repo, commit, licence and attribution.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:34:50Z"
+    }
+  ]
+}

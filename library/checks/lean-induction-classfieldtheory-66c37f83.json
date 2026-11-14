@@ -1,0 +1,133 @@
+{
+  "entry": "lean-induction-classfieldtheory-66c37f83",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:13:44Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:13:44Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:13:44Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: IsoNext@ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean:163, isoHInfRes@ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean:158, δUpResIso@ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean:161; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:13:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, IsoNext) -> cites: IsoNext occurs at ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean:163",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:13:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean, 89-163) -> no_sorry: none of sorry, admit, axiom in ClassFieldTheory/Cohomology/Functors/InflationRestriction.lean:89-163",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:13:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "lines(parent, 21) -> lines: site parent has 21 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:13:44Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:13:51Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push.yml (Build Lean project) triggers on push to main and builds via lean-action; pinned commit 1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7 is a merge PR (#204) on the default branch main",
+      "by": "verifier",
+      "at": "2026-11-14T12:14:43Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "doc comment lines 146-156 of InflationRestriction.lean reads 'The proof is by induction on n. The H1 case (i.e. n = 0) is in Mathlib. For the inductive step, use the fact that the following diagram commutes by infl_δ_naturality and rest_δ_naturality. ... The vertical maps are the dimension-shifting isomorphisms.'",
+      "by": "verifier",
+      "at": "2026-11-14T12:14:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "inflation_restriction_mono (lines 121-141): zero case 'exact ShortComplex.mono_f_of_iso (isoHInfRes surj 0 M).symm' (line 135), succ case uses Rep.dimensionShift.δUpResIso (line 140) and 'exact ShortComplex.mono_f_of_iso (IsoNext surj n M ...) ih' (line 141)",
+      "by": "verifier",
+      "at": "2026-11-14T12:14:45Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:15:03Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "object",
+      "evidence": "Decomposition, children, closing methods, closing, and direct_lemmas/glue_lines/child_lines all check out: parent inflation_restriction_exact is at InflationRestriction.lean 143-163 (21 lines), induction n generalizing M; zero branch uses isoHInfRes (105-119, 15 lines), succ branch uses IsoNext (89-101, 13 lines) and deltaUpResIso (UpDown.lean 148-151, 4 lines); all three children are exactly the project lemmas the parent cites, statements and closed_by match the code verbatim, both branches close with exact and there is no sorry. One shape number is wrong: shape.depth=3 understates the longest chain of project lemmas below the theorem. isIso_delta_up_res (UpDown.lean 143-146), which ends the entry's claimed longest chain, itself delegates to project lemmas isIso_delta_of_isZero and isZero_of_injective (lines 145-146), and the child IsoNext also uses isIso_delta_ofhM (InflationRestriction.lean 81-87) which uses coind1'_quotientToInvariants_trivialCohomology and isZero_of_trivialCohomology (lines 84,87); these are project lemmas (not Mathlib), so the true longest chain is at least inflation_restriction_exact -> IsoNext -> deltaUpResIso -> isIso_delta_up_res -> isZero_of_injective, depth >= 4. Fix: trace the chains to their project-lemma leaves and set shape.depth (and README's 'depth 3' text) to the true value (>= 4).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:18:25Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated beyond the example: goal_shape abstracts to 'P n on a complex indexed by degree n with a named base case and a step expressible as transport along an isomorphism', with also_known_as linking to Lean generalizing / Isabelle arbitrary, and a verified known-use (sibling inflation_restriction_mono, lines 121-141, confirmed in code to reuse the identical skeleton). When-not-to-use and consequences are honest and specific: avoid_when flags the three real failure modes (base case not already a named lemma, step needing a new argument rather than iso transport, generalised hypothesis at up.obj M not dischargeable by one dimension shift), and consequences states the obligations (proving hM at up.obj M via IsZero.of_iso + δUpResIso; generalizing M forces a strong enough IH). It does say what makes these good bounded-prover leaves: each child is a self-contained statement with a term-level (not tactic) proof delegating to already-proved lemmas (isoHInfRes packages the base case as a reduction to Mathlib's H1InfRes_exact; IsoNext is pure ShortComplex.isoMk assembly of asIso terms + naturality lemmas; δUpResIso closes in two lines via isIso_δ_up_res).",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:19:14Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:19:31Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent and traceable. All four site permalinks point at pinned commit 1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7 with line ranges that match the copied files verbatim (parent 143-163, IsoNext 89-101, isoHInfRes 105-119 in InflationRestriction.lean; dUpResIso 148-151 in UpDown.lean). check_provenance.py reports both files byte-identical at that commit. Licence recorded as Apache-2.0 in entry.json, README and source.json/SOURCE.md; sources/classfieldtheory/upstream-LICENSE is the Apache-2.0 text. Byte counts in entry.json (7589, 16556) match the copied files.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:19:48Z"
+    }
+  ]
+}

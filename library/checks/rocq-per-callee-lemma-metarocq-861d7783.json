@@ -1,0 +1,141 @@
+{
+  "entry": "rocq-per-callee-lemma-metarocq-861d7783",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:56:39Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:56:39Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): erasure/theories/Typed/Extraction.v:170 (Axiom)",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:56:39Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: erases_correct@erasure/theories/Typed/ExtractionCorrectness.v:550, dearg_transform_correct@erasure/theories/Typed/ExtractionCorrectness.v:556, optimize_correct@erasure/theories/Typed/ExtractionCorrectness.v:558, wf_erase_global_decls_recursive@erasure/theories/Typed/ExtractionCorrectness.v:561, global_erased_with_deps_erases_deps_tConst@erasure/theories/Typed/ExtractionCorrectness.v:567, erase_global_decls_deps_recursive_correct@erasure/theories/Typed/ExtractionCorrectness.v:571, inversion_Const@erasure/theories/Typed/ExtractionCorrectness.v:565; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:56:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(extract_correct, erasure/theories/Typed/ExtractionCorrectness.v, 530-580) -> declared: extract_correct is declared at erasure/theories/Typed/ExtractionCorrectness.v:530",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:56:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(erasure/theories/Typed/ExtractionCorrectness.v, 530-580) -> no_sorry: none of admit, Admitted, Axiom, axiom in erasure/theories/Typed/ExtractionCorrectness.v:530-580",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:56:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, erases_correct) -> cites: erases_correct occurs at erasure/theories/Typed/ExtractionCorrectness.v:550",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:56:40Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "9 file(s) byte-identical at 51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:56:51Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml (MetaRocq CI) runs on push to the default branch 9.1; 'make ci-local'/'ci-opam' builds 'make all' which includes the 'erasure' target (erasure/theories/Typed/ExtractionCorrectness.v); pinned commit 51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56 is the head of default branch 9.1",
+      "by": "verifier",
+      "at": "2026-11-14T12:58:34Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "parent site ExtractionCorrectness.v 530-580 (51 lines) composes 7 lemmas in the glue (erases_correct@549, dearg_transform_correct@559, optimize_correct@561, wf_erase_global_decls_recursive@567/570, inversion_Const@573, global_erased_with_deps_erases_deps_tConst@575, erase_global_decls_deps_recursive_correct@578); child spans 1182/22/22/37/12/8/11 = 1294 (51-1232, 5179-5200, 506-527, 440-476, 66-77, 296-303, 211-221); depth chain: erases_correct applies inversion_App at ErasureCorrectness.v:64 and dearg_transform_correct applies dearg_correct at OptimizeCorrectness.v:5199",
+      "by": "verifier",
+      "at": "2026-11-14T12:58:37Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Transform.v:35-44 declares compose_transforms_correct: 'All ExtractTransformCorrect transforms -> ExtractTransformCorrect (compose_transforms transforms)', the reusable list-composition combinator generalising extract_correct's per-pass pattern",
+      "by": "verifier",
+      "at": "2026-11-14T12:58:38Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "object",
+      "evidence": "Decomposition is faithful and closes: parent extract_correct (ExtractionCorrectness.v 530-580, Qed.) eapplies erases_correct(550), dearg_transform_correct(556), optimize_correct(558), wf_erase_global_decls_recursive(561,563), inversion_Const(565), global_erased_with_deps_erases_deps_tConst(567), erase_global_decls_deps_recursive_correct(571); all 7 child statements and closed_by match their local code and end in Qed; glue_lines=51, child_lines=[1182,22,22,37,12,8,11] and depth=2 all check out. However the shape/measurement undercounts by one: the glue also directly applies the project lemma fresh_globals_erase_global_decl_rec (declared erasure/theories/Typed/Extraction.v:66, eapplied at ExtractionCorrectness.v:578 in the Unshelve), which is not among the children, so shape.direct_lemmas=7 and claim 4's '7 direct project lemmas' should be 8. Fix: either add fresh_globals_erase_global_decl_rec as an 8th child (statement+closed_by, its line count in child_lines) and set direct_lemmas=8 (and fix claim 4's count), or amend claim 4 and shape to state the 7 children exclude this freshness side-discharge.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T13:01:51Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): erasure/theories/Typed/Extraction.v:170 (Axiom)",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T13:28:35Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: erases_correct@erasure/theories/Typed/ExtractionCorrectness.v:550, dearg_transform_correct@erasure/theories/Typed/ExtractionCorrectness.v:556, optimize_correct@erasure/theories/Typed/ExtractionCorrectness.v:558, wf_erase_global_decls_recursive@erasure/theories/Typed/ExtractionCorrectness.v:561, global_erased_with_deps_erases_deps_tConst@erasure/theories/Typed/ExtractionCorrectness.v:567, erase_global_decls_deps_recursive_correct@erasure/theories/Typed/ExtractionCorrectness.v:571, inversion_Const@erasure/theories/Typed/ExtractionCorrectness.v:565; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T13:28:36Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example: applicability.goal_shape/use_when abstract to 'a pipeline = fixed sequence of independently specifiable passes, each a function on a global environment with one shared correctness predicate (ExtractTransformCorrect)'; the known-use compose_transforms_correct (Transform.v:35-44, verified) codifies the pattern as a reusable combinator. avoid_when is specific (pass depends on next pass's output -> no self-contained per-pass statement; side conditions not statable as own lemmas) and consequences are honest (erases_correct 1182 lines vs 22-line dearg/optimize; exact-shape eapply; shared-state failure mode needing a threaded invariant). Good-leaf properties are stated: children are self-contained and each Qed.-closed so the glue never opens a pass's internals; dearg is a good leaf because proven against its own analysis not the erased term's shape; optimize because it needs only closedness/well-formedness; the shared ExtractTransformCorrect signature lets the glue compose them blindly.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T13:29:35Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "9 file(s) byte-identical at 51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T13:30:02Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit, licence and links are consistent and traceable. Pinned commit 51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56 is identical across source.json, SOURCE.md, entry.json and every permalink in README/entry.json (the README source row uses the unambiguous 12-char prefix 51b14e4bb5f4). Licence is MIT everywhere (entry.json source.licence, README licence row, source.json, SOURCE.md) and matches sources/metarocq/upstream-LICENSE, which is the MIT text copied from the pinned LICENSE per SOURCE.md. check_provenance.py returns pass: 9 files byte-identical at the pinned commit, matching the 9 files/sites listed and the code/ tree. Source note records repository, pinned commit, browse URL, detected licence, licence file, and attribution.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T13:30:27Z"
+    }
+  ]
+}

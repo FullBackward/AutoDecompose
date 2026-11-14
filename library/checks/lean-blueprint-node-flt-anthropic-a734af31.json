@@ -1,0 +1,125 @@
+{
+  "entry": "lean-blueprint-node-flt-anthropic-a734af31",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T11:04:02Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T11:04:02Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T11:04:02Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: FreyPackage.Mazur_Frey@P2M/Sol/S_FreyPackage_no_frey_package.lean:147, FreyPackage.frey_isModular@P2M/Sol/S_FreyPackage_no_frey_package.lean:141, FreyPackage.level_lowering_to_two@P2M/Sol/S_FreyPackage_no_frey_package.lean:141, ModularForm.S2_Gamma0_2_eq_zero@P2M/Sol/S_FreyPackage_no_frey_package.lean:142; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T11:04:03Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(parent, 9) -> lines: site parent has 9 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T11:04:03Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, level_lowering_to_two) -> cites: level_lowering_to_two occurs at P2M/Sol/S_FreyPackage_no_frey_package.lean:141",
+      "by": "check_claims.py",
+      "at": "2026-11-14T11:04:03Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(P2M/Sol/S_FreyPackage_no_frey_package.lean, 139-147) -> no_sorry: none of sorry, admit, axiom in P2M/Sol/S_FreyPackage_no_frey_package.lean:139-147",
+      "by": "check_claims.py",
+      "at": "2026-11-14T11:04:03Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "5 file(s) byte-identical at 6e837e75355538c7f80bab5b956861e86c4eacc2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T11:04:12Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI workflow: repository anthropics/fermats-last-theorem has no .github directory or workflow file (3 commits on default branch main); no Lean toolchain on harvest machine",
+      "by": "verifier",
+      "at": "2026-11-14T11:05:18Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "parent site 139-147 = 9 lines (Wiles_Frey + solution); four child sites each one line: Mazur_Frey at Thm_FreyPackage_Mazur_Frey.lean:70, frey_isModular at Thm_FreyPackage_frey_isModular.lean:131, level_lowering_to_two at Thm_FreyPackage_level_lowering_to_two.lean:131, S2_Gamma0_2_eq_zero at Thm_ModularForm_S2_Gamma0_2_eq_zero.lean:13; parent composes those 4 lemmas (level_lowering_to_two, frey_isModular, S2_Gamma0_2_eq_zero, Mazur_Frey)",
+      "by": "verifier",
+      "at": "2026-11-14T11:05:21Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Thm_fermatLastTheoremFive.lean:5 reads 'theorem fermatLastTheoremFive : FermatLastTheoremFor 5 := by p2m_exact_reverting @_root_.P2MW.S_fermatLastTheoremFive.solution' (raw view at pinned commit)",
+      "by": "verifier",
+      "at": "2026-11-14T11:05:22Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent site (S_FreyPackage_no_frey_package.lean:139-147) holds Wiles_Frey and solution exactly as README states; it is the end of the 147-line file. Each of the four child sites (Mazur_Frey:70, frey_isModular:131, level_lowering_to_two:131, S2_Gamma0_2_eq_zero:13) matches entry.json's statement verbatim and its closed_by p2m_exact_reverting target. The glue closes: solution = Wiles_Frey P (Mazur_Frey P); Wiles_Frey's body destructures level_lowering_to_two P (frey_isModular P) hirr to f,hf and applies hf (f<>0) to S2_Gamma0_2_eq_zero f (f=0) yielding False. The four children are exactly the lemmas the glue cites (Mazur_Frey:147, frey_isModular and level_lowering_to_two:141, S2_Gamma0_2_eq_zero:142), no extra or missing lemmas. Shape numbers correct: direct_lemmas=4, depth=1 (children flat, none depends on another), glue_lines=9 (lines 139-147), child_lines=[1,1,1,1] (each child is one line).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T11:06:27Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally (applicability.goal_shape/use_when/avoid_when and README 'When to use it, and when not'): it abstracts to any closing node of a published dependency graph (blueprint \\uses{} or p2m_export), not FLT specifics. 'When not to use' is specific and honest: glue does real work (deduction/choice/case analysis), lemmas not yet named declarations, or combination discovered rather than read off a published graph. Consequences are honest and specific: correctness lives entirely in the exact types of the four chapter theorems, a changed child conclusion breaks the node at typecheck, and a prover re-running the glue without re-deriving the chapter theorems has not done the mathematics. It says what makes the lemmas good leaves: each child is a self-contained one-line declaration closing on its own by delegation (p2m_exact_reverting @_root_.P2MW.S_*.solution), none needs another child to typecheck, and they meet only in the glue where their types line up. Verified the cited line ranges (parent 139-147; children :70, :131, :131, :13) match this description.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T11:07:28Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "5 file(s) byte-identical at 6e837e75355538c7f80bab5b956861e86c4eacc2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T11:07:51Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance check passes: 5 files byte-identical at commit 6e837e75355538c7f80bab5b956861e86c4eacc2. Commit consistent across entry.json, README (abbreviated 6e837e753555), source.json and SOURCE.md. Licence Apache-2.0 recorded consistently in entry.json, README and SOURCE.md; source note carries upstream-LICENSE (verified Apache-2.0 text) and upstream-NOTICE with attribution. Permalinks use the pinned commit and correct paths; each cited line range (parent 139-147; children Mazur_Frey:70, frey_isModular:131, level_lowering_to_two:131, S2_Gamma0_2_eq_zero:13) was opened and matches the statements verbatim. All traceable; no objection.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T11:08:12Z"
+    }
+  ]
+}

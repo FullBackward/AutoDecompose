@@ -1,0 +1,204 @@
+{
+  "id": "isabelle-extensionality-isabelle-dist-3225c876",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Extensionality via gauss_eq_iff closes the three idom_modulo axioms for the Gaussian integers",
+  "intent": "Prove the Gaussian integers form an idom_modulo by discharging its three axioms, each an equality of gauss values. The glue reduces every such equality to integer arithmetic on the Re and Im components through the extensionality lemma gauss_eq_iff, and turns the non-zero divisor into a positive norm through gauss_eq_0.",
+  "move": "extensionality",
+  "also_known_as": [
+    "pointwise equality",
+    "ext / ext tactic (Isabelle)",
+    "componentwise equality on Re/Im",
+    "codatatype expand / gauss.expand"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "isabelle-dist",
+    "url": "https://github.com/isabelle-prover/mirror-isabelle",
+    "commit": "34ca456d44ca14641450b5d52f51b38688d4d1b5",
+    "licence": "BSD-3-Clause"
+  },
+  "files": [
+    {
+      "path": "src/HOL/Examples/Gauss_Numbers.thy",
+      "bytes": 14008,
+      "sha256": "c5b5e734f80ffd6829d1f3f45ce36b7993e2b301a4aa3ed361235b9929b1b397",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Gauss_Numbers.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "src/HOL/Examples/Gauss_Numbers.thy",
+      "lines": [
+        323,
+        341
+      ],
+      "role": "parent",
+      "name": "instance gauss :: idom_modulo",
+      "excerpt_sha256": "9b0100288999c0dc987cd55505e87892cab9db41894f496bd9a1251aba57b5d2",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Gauss_Numbers.thy#L323-L341"
+    },
+    {
+      "path": "src/HOL/Examples/Gauss_Numbers.thy",
+      "lines": [
+        16,
+        18
+      ],
+      "role": "child",
+      "name": "gauss_eq_iff",
+      "excerpt_sha256": "a46112282becda1cdc40e7e230ab207af4c6674ffd796e05c13ab66403eb7ee6",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Gauss_Numbers.thy#L16-L18"
+    },
+    {
+      "path": "src/HOL/Examples/Gauss_Numbers.thy",
+      "lines": [
+        89,
+        91
+      ],
+      "role": "child",
+      "name": "gauss_eq_0",
+      "excerpt_sha256": "8e7915494abc7929b36a1217d258708e4754ff229c649e59dd4a1c9743479feb",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Gauss_Numbers.thy#L89-L91"
+    },
+    {
+      "path": "src/HOL/Examples/Gauss_Numbers.thy",
+      "lines": [
+        10,
+        10
+      ],
+      "role": "context",
+      "name": "gauss-codatatype",
+      "excerpt_sha256": "87bb49939da81c7f1b2d49fa258a1f8f177aecf07be1a36d0d0bb58e61d6d4ad",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Gauss_Numbers.thy#L10-L10"
+    },
+    {
+      "path": "src/HOL/Examples/Gauss_Numbers.thy",
+      "lines": [
+        12,
+        14
+      ],
+      "role": "context",
+      "name": "gauss_eqI",
+      "excerpt_sha256": "a5c62cf6c53838059ed151f425745f04be858a29e72a36569e4ca20209a765fe",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Gauss_Numbers.thy#L12-L14"
+    },
+    {
+      "path": "src/HOL/Examples/Gauss_Numbers.thy",
+      "lines": [
+        309,
+        321
+      ],
+      "role": "context",
+      "name": "divide-modulo-defs",
+      "excerpt_sha256": "d726dbadef8dc25278870624dcad5dcec5b58f1f2b306df80d5eacb07403b3d6",
+      "permalink": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Gauss_Numbers.thy#L309-L321"
+    }
+  ],
+  "parent": {
+    "name": "instance gauss :: idom_modulo",
+    "statement": null,
+    "note": "The parent is the class-instantiation command `instance gauss :: idom_modulo` (the surrounding `instantiation gauss :: idom_modulo` block starts at line 306, proved by the `instance proof` at lines 323-341). It has no single lemma statement: its goal is the three idom_modulo axioms, shown verbatim as `show` statements in the parent site — `x div 0 = 0` (line 325), `x * y div y = x` if `y ≠ 0` (line 327), and `x div y * y + x mod y = x` (line 339)."
+  },
+  "children": [
+    {
+      "name": "gauss_eq_iff",
+      "statement": "lemma gauss_eq_iff:\n  \\<open>x = y \\<longleftrightarrow> Re x = Re y \\<and> Im x = Im y\\<close>",
+      "closed_by": "by (auto intro: gauss_eqI)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: two gauss values are equal iff their Re and Im components are both equal"
+    },
+    {
+      "name": "gauss_eq_0",
+      "statement": "lemma gauss_eq_0:\n  \\<open>z = 0 \\<longleftrightarrow> (Re z)\\<^sup>2 + (Im z)\\<^sup>2 = 0\\<close>",
+      "closed_by": "by (simp add: gauss_eq_iff sum_power2_eq_zero_iff)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: a gauss value is zero iff the sum of squares of its Re and Im components is zero"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A class-instantiation goal whose axioms are equalities of carrier values (idom_modulo's `x div 0 = 0`, `x * y div y = x` under `y ≠ 0`, `x div y * y + x mod y = x`), where the carrier is a codatatype/product (gauss with int components Re, Im) whose operations are defined componentwise, so each equality reduces to integer equations on the components.",
+    "use_when": "the carrier's operations (div, mod) are defined componentwise by primcorec, and there is a reusable extensionality lemma (gauss_eq_iff) stating that equality of the whole value is equality of its finitely many selectors; each axiom then closes by rewriting to component equations and solving them in the component type (int) with algebra_simps.",
+    "avoid_when": "the value is not freely generated by its selectors (a quotient, or a type with an invariant not captured by the components), so component equality does not imply value equality; or the defining equations of an operation do not reduce to a common form on each component, leaving a residual goal that rewriting alone cannot close."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site (the `instance proof`, lines 323-341) cites the child `gauss_eq_iff`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Gauss_Numbers.thy#L323-L341",
+      "form": "cites(parent, gauss_eq_iff)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites the child `gauss_eq_0`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Gauss_Numbers.thy#L323-L341",
+      "form": "cites(parent, gauss_eq_0)"
+    },
+    {
+      "n": 3,
+      "claim": "`gauss_eq_iff` occurs 35 times in the copied file.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Gauss_Numbers.thy",
+      "form": "count(gauss_eq_iff, 35, src/HOL/Examples/Gauss_Numbers.thy)"
+    },
+    {
+      "n": 4,
+      "claim": "The theorem-scale shape is direct_lemmas = 2, depth = 3, glue_lines = 19, child_lines = [3, 3].",
+      "evidence_kind": "measurement",
+      "evidence": "parent site 323-341 (19 lines); child sites 16-18 and 89-91 (3 lines each); depth along the chain instance -> gauss_eq_0 -> gauss_eq_iff -> gauss_eqI: gauss_eq_0 cites gauss_eq_iff at line 91, gauss_eq_iff cites gauss_eqI at line 18, gauss_eqI bottoms out in gauss.expand at line 14 (a codatatype rule, not a project lemma)."
+    },
+    {
+      "n": 5,
+      "claim": "No `sorry` occurs anywhere in the copied file.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-prover/mirror-isabelle/blob/34ca456d44ca14641450b5d52f51b38688d4d1b5/src/HOL/Examples/Gauss_Numbers.thy",
+      "form": "no_sorry(src/HOL/Examples/Gauss_Numbers.thy, 1-405)"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 3,
+    "glue_lines": 19,
+    "child_lines": [
+      3,
+      3
+    ]
+  },
+  "metrics": {
+    "direct_lemmas": 2,
+    "depth": 3,
+    "glue_lines": 19,
+    "child_lines": [
+      3,
+      3
+    ],
+    "gauss_eq_iff_reuse": 35,
+    "how_counted": "glue_lines and child_lines are the site line counts, declaration included (parent 323-341, children 16-18 and 89-91). depth counts the longest chain of project lemmas below the main theorem: instance -> gauss_eq_0 -> gauss_eq_iff -> gauss_eqI (gauss_eq_0 cites gauss_eq_iff at line 91; gauss_eq_iff cites gauss_eqI at line 18; gauss_eqI closes by gauss.expand, a codatatype rule, not a project lemma). gauss_eq_iff_reuse is the whole-identifier count of gauss_eq_iff in the copied file."
+  },
+  "consequences": "The move creates one obligation per component of the carrier for each equality goal: gauss_eq_iff rewrites `a = b` to `Re a = Re b ∧ Im a = Im b`, so each idom_modulo axiom splits into two integer equations that simp must close; the whole reduction rests on gauss.expand making Re/Im jointly determine the value. The `x * y div y = x` axiom is the only non-trivial one: it additionally needs the positive norm `Y = (Re y)^2 + (Im y)^2` derived from `y ≠ 0` via gauss_eq_0 (so that `Y > 0`), the three algebra identities collected as `*` (line 332-335), and the library fact nonzero_mult_cdiv_cancel_right for centered integer division. Failure modes: an equality whose components do not reduce to a common form (e.g. a mismatch between the two Re expressions) stalls the simp call; and the div/mod definitions must route the component division through cdiv, or the cancellation lemma no longer applies.",
+  "known_uses": [],
+  "related": [
+    "isabelle-extensionality-afp-38fc5bd6"
+  ],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "3225c8766578476b6784e72610314a9a680c29a8e89d7d5eca2d17369c48be97",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:53:07Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:54:14Z",
+      "note": "child 'gauss_eq_iff': statement re-copied from the declaration of gauss_eq_iff; child 'gauss_eq_0': statement re-copied from the declaration of gauss_eq_0"
+    }
+  ]
+}

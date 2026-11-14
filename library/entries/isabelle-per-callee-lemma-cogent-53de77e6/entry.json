@@ -1,0 +1,308 @@
+{
+  "id": "isabelle-per-callee-lemma-cogent-53de77e6",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Per-callee refinement lemmas for the ostore sync function",
+  "intent": "Prove the refinement of the generated `ostore_sync` operation by one `_ret` lemma per function its body calls — `prepare_wbuf`, `ostore_sync_summary_if_eb_new`, `ostore_write_buf` — so the sync glue only threads their post-states. The glue's own case split (`sync_offs = used`) and the padding alignment are discharged by five small side lemmas.",
+  "move": "per-callee-lemma",
+  "also_known_as": [
+    "per-function refinement lemma",
+    "callee-by-callee refinement",
+    "crunch-style (seL4)",
+    "per-pass simulation lemma (CompCert)"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "cogent",
+    "url": "https://github.com/au-ts/cogent",
+    "commit": "49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a",
+    "licence": "BSD-2-Clause AND GPL-2.0"
+  },
+  "files": [
+    {
+      "path": "impl/fs/bilby/proof/refine/OstoreR.thy",
+      "bytes": 134397,
+      "sha256": "968a469fff3691fb2c20cab6ced0cbd7b94762bb424ef30d005a3c90fab7c217",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/OstoreR.thy"
+    },
+    {
+      "path": "impl/fs/bilby/proof/spec/OstoreInvS.thy",
+      "bytes": 43364,
+      "sha256": "8fd742251621612c004e713dc0ae4cc97338b8f47a66dd330784ff44a9cac256",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/spec/OstoreInvS.thy"
+    },
+    {
+      "path": "impl/fs/bilby/proof/spec/OstoreS.thy",
+      "bytes": 7469,
+      "sha256": "be938a189c821ce904cef079266df1d1bde27fa1d1df9b318e67422c1ad14980",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/spec/OstoreS.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "impl/fs/bilby/proof/refine/OstoreR.thy",
+      "lines": [
+        2379,
+        2487
+      ],
+      "role": "parent",
+      "name": "ostore_sync_ret",
+      "excerpt_sha256": "503bbde4a09c2b1297472816b5214ade39e9576087cbc0f3f9181bac1d6ac1e1",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/OstoreR.thy#L2379-L2487"
+    },
+    {
+      "path": "impl/fs/bilby/proof/refine/OstoreR.thy",
+      "lines": [
+        1480,
+        1661
+      ],
+      "role": "child",
+      "name": "prepare_wbuf_ret",
+      "excerpt_sha256": "dbd2fabcda94092a8010d7cc3d0a54bd212b3eaf26d30746a3d3e28238dbe3b3",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/OstoreR.thy#L1480-L1661"
+    },
+    {
+      "path": "impl/fs/bilby/proof/refine/OstoreR.thy",
+      "lines": [
+        1674,
+        1680
+      ],
+      "role": "child",
+      "name": "ostore_sync_summary_if_eb_new_ret",
+      "excerpt_sha256": "97607a1566eef0013f41957377bbf5691ff1503d8a76ae7cfd5880d5cb8262d4",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/OstoreR.thy#L1674-L1680"
+    },
+    {
+      "path": "impl/fs/bilby/proof/refine/OstoreR.thy",
+      "lines": [
+        2314,
+        2354
+      ],
+      "role": "child",
+      "name": "ostore_write_buf_ret",
+      "excerpt_sha256": "2eee5a96f652b4c6bf42c3453599cdbadd0a55312bc27eec1effb958b9622775",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/OstoreR.thy#L2314-L2354"
+    },
+    {
+      "path": "impl/fs/bilby/proof/refine/OstoreR.thy",
+      "lines": [
+        2356,
+        2374
+      ],
+      "role": "child",
+      "name": "extra_padding_is_aligned",
+      "excerpt_sha256": "a3bc47b67f4ad596d9f3f7e550e71ce9e0fdec8236fd13c5fb03cfac04133604",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/OstoreR.thy#L2356-L2374"
+    },
+    {
+      "path": "impl/fs/bilby/proof/refine/OstoreR.thy",
+      "lines": [
+        1998,
+        2083
+      ],
+      "role": "child",
+      "name": "ostore_sync_\\<alpha>_ostore_uptodate",
+      "excerpt_sha256": "b9b42ba1a4f1e2f854e21b345df364608971dce5b44523063558f0e8ae7c7310",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/OstoreR.thy#L1998-L2083"
+    },
+    {
+      "path": "impl/fs/bilby/proof/refine/OstoreR.thy",
+      "lines": [
+        2246,
+        2312
+      ],
+      "role": "child",
+      "name": "\\<alpha>_updates_buf_prepare_eq",
+      "excerpt_sha256": "f9f0164e8fda00264c3ae9ed28247707ff14e4211969a7226a90f86f080caf5e",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/OstoreR.thy#L2246-L2312"
+    },
+    {
+      "path": "impl/fs/bilby/proof/spec/OstoreInvS.thy",
+      "lines": [
+        846,
+        853
+      ],
+      "role": "child",
+      "name": "used_neq_sync_offs_means_updates_not_Nil",
+      "excerpt_sha256": "2d92c275f93b558bea1715774f1511054bd17d79df8674487bb4fa59bcae0d7d",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/spec/OstoreInvS.thy#L846-L853"
+    },
+    {
+      "path": "impl/fs/bilby/proof/spec/OstoreInvS.thy",
+      "lines": [
+        776,
+        779
+      ],
+      "role": "child",
+      "name": "used_eq_sync_offs_means_no_update",
+      "excerpt_sha256": "a52198cfc1045cd0fb680f1c22ac121a7d731ebcef6eefc3288948edf65e568e",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/spec/OstoreInvS.thy#L776-L779"
+    }
+  ],
+  "parent": {
+    "name": "ostore_sync_ret",
+    "statement": "lemma ostore_sync_ret:\n assumes inv_ostore: \"inv_ostore mount_st ostore_st\"\n and inv_mount_st: \"inv_mount_st mount_st\"\n and inv_step: \"inv_\\<alpha>_ostore (\\<alpha>_ostore_uptodate ostore_st)\"\n and suc: \"\\<And>ostore_st' ex'. \\<lbrakk> inv_ostore mount_st ostore_st';\n        inv_\\<alpha>_ostore (\\<alpha>_ostore_uptodate ostore_st');\n        \\<alpha>_ostore_medium ostore_st' = \\<alpha>_ostore_uptodate ostore_st;\n        \\<alpha>_updates ostore_st' = []\n        \\<rbrakk> \\<Longrightarrow>\n      P ((ex', ostore_st'), Success ())\"\n and err: \"\\<And>e ostore_st' ex' n. \\<lbrakk> inv_ostore mount_st ostore_st';\n       inv_\\<alpha>_ostore (\\<alpha>_ostore_uptodate ostore_st');\n       e \\<in> {eIO, eNoMem, eNoSpc,eOverflow};\n       n < length (\\<alpha>_updates ostore_st); \n       \\<alpha>_ostore_medium ostore_st' = apply_n_updates n (\\<alpha>_ostore_medium ostore_st) (\\<alpha>_updates ostore_st);\n       \\<alpha>_updates ostore_st' = (drop n $ \\<alpha>_updates ostore_st)\n       \\<rbrakk> \\<Longrightarrow>\n      P ((ex', ostore_st'), Error e)\"\n\n notes pad_simps = padding_to_def[unfolded tuple_simps sanitizers] ostoreWriteNone_def\n\n shows \"P (ostore_sync (ex, mount_st, ostore_st, ostoreWriteNone))\""
+  },
+  "children": [
+    {
+      "name": "prepare_wbuf_ret",
+      "statement": "lemma prepare_wbuf_ret:\n  assumes inv_ostore: \"inv_ostore mount_st ostore_st\"\n  and inv_mount_st: \"inv_mount_st mount_st\"\n  and inv_step: \"inv_\\<alpha>_ostore (\\<alpha>_ostore_uptodate ostore_st)\"\n  and pad_to: \"pad_to = padding_to (mount_st, ostore_st, ostoreWriteNone)\"\n  and used_gt_zero: \"0 < used\\<^sub>f ostore_st\"\n  and sync_lt_used: \"sync_offs\\<^sub>f ostore_st < used\\<^sub>f ostore_st\"\n  and err:                    \n   \"\\<And>ex'.  P ((ex',ostore_st), Error eOverflow)\"\n  and suc:\n  \"\\<And>ex' ostore_st'. \\<lbrakk>\n     inv_ostore mount_st ostore_st';\n     inv_\\<alpha>_ostore (\\<alpha>_ostore_uptodate ostore_st');\n     \\<exists>len sqnum crc oaddr nxtsqnum. ostore_st' =\n       ostore_st\\<lparr>wbuf\\<^sub>f := wbuf\\<^sub>f ostore_st\\<lparr>data\\<^sub>f:=WordArrayT.make $\n         buf_prepared ostore_st (used\\<^sub>f ostore_st) pad_to (prepared_pad_obj ostore_st pad_to crc)\\<rparr>,\n         used\\<^sub>f := pad_to,\n         fsm_st\\<^sub>f := prepared_fsm_padding_obj ostore_st pad_to,\n         OstoreState.oaddr\\<^sub>f:= oaddr, \n         OstoreState.next_sqnum\\<^sub>f:= nxtsqnum,\n         opad\\<^sub>f:=opad\\<^sub>f ostore_st \\<lparr>Obj.len\\<^sub>f:=len, Obj.sqnum\\<^sub>f := sqnum, Obj.crc\\<^sub>f := crc\\<rparr>\\<rparr>;\n     OstoreState.next_sqnum\\<^sub>f ostore_st \\<le> OstoreState.next_sqnum\\<^sub>f ostore_st'\n     \\<rbrakk>\n     \\<Longrightarrow>  P ((ex',ostore_st'), Success ())\"\n  notes pad_simps = padding_to_eq_align32_simp[OF inv_mount_st_no_summaryD[OF inv_mount_st]]\n  notes pad_to' = pad_to[simplified pad_simps]\n  and   ostore_update_padding_obj' = ostore_update_padding_obj_def[unfolded tuple_simps sanitizers]\n  shows \"P (prepare_wbuf (ex, mount_st, ostore_st, pad_to))\"",
+      "closed_by": "proof cases … qed",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the per-callee refinement lemma for prepare_wbuf, the first callee of ostore_sync"
+    },
+    {
+      "name": "ostore_sync_summary_if_eb_new_ret",
+      "statement": "lemma ostore_sync_summary_if_eb_new_ret:\n  \"inv_ostore mount_st ostore_st \\<Longrightarrow>\n   inv_mount_st mount_st \\<Longrightarrow>\n   inv_\\<alpha>_ostore (\\<alpha>_ostore_uptodate ostore_st) \\<Longrightarrow>\n   (\\<And>ex'. P ((ex', ostore_st), R.Success ())) \\<Longrightarrow>\n  P (ostore_sync_summary_if_eb_new (ex, mount_st, ostore_st, ostoreWriteNone))\"",
+      "closed_by": "by (simp add: ostore_sync_summary_if_eb_new_def[unfolded tuple_simps sanitizers])",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the per-callee refinement lemma for ostore_sync_summary_if_eb_new, the summary callee"
+    },
+    {
+      "name": "ostore_write_buf_ret",
+      "statement": "lemma ostore_write_buf_ret:\n  assumes inv_ostore: \"inv_ostore mount_st ostore_st\"\n  and inv_mount_st: \"inv_mount_st mount_st\"\n  and inv_step: \"inv_\\<alpha>_ostore (\\<alpha>_ostore_uptodate ostore_st)\"\n  and used_gt_zero: \"0 < used\\<^sub>f ostore_st\"\n  and sync_lt_used: \"sync_offs\\<^sub>f ostore_st < used\\<^sub>f ostore_st\"\n  and offs_ok: \"unat (sync_offs\\<^sub>f ostore_st) + unat nb_bytes \\<le> unat (eb_size\\<^sub>f (super\\<^sub>f mount_st))\"\n  and nb_bytes_ok: \"io_size\\<^sub>f (super\\<^sub>f mount_st) udvd nb_bytes\"\n  and sync_offs: \"sync_offs = sync_offs\\<^sub>f ostore_st\"\n  and nb_bytes_eq: \"sync_offs\\<^sub>f ostore_st + nb_bytes = used\\<^sub>f ostore_st\"\n  and nb_bytes_eq_pad_to_minus_sync: \"nb_bytes = padding_to (mount_st, ostore_st, ostoreWriteNone) - sync_offs\\<^sub>f ostore_st\"\n  and err:\n   \"\\<And>ex'. P ((ex',ostore_st), Error eIO)\"\n  and suc:\n  \"\\<And>ex' ostore_st'. \\<lbrakk>\n     inv_ostore mount_st (ostore_st' \\<lparr> sync_offs\\<^sub>f := used\\<^sub>f ostore_st\\<rparr>);\n     \\<exists>v. ostore_st'\\<lparr>OstoreState.ubi_vol\\<^sub>f := v\\<rparr> = ostore_st;\n     \\<alpha>wubi (OstoreState.ubi_vol\\<^sub>f ostore_st') = (\\<alpha>wubi (OstoreState.ubi_vol\\<^sub>f ostore_st))[(unat (wbuf_eb\\<^sub>f ostore_st)):=((\\<alpha>wubi (OstoreState.ubi_vol\\<^sub>f ostore_st)!(unat (wbuf_eb\\<^sub>f ostore_st)))@buf_slice (wbuf\\<^sub>f ostore_st) (sync_offs\\<^sub>f ostore_st) (sync_offs\\<^sub>f ostore_st + nb_bytes))] \\<rbrakk> \\<Longrightarrow>\n      P ((ex', ostore_st'), Success ())\n \"\nshows\n\"P (ostore_write_buf(ex, mount_st, ostore_st, sync_offs, nb_bytes, ostoreWriteNone))\"",
+      "closed_by": "apply safe … done",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the per-callee refinement lemma for ostore_write_buf, the write-buffer callee"
+    },
+    {
+      "name": "extra_padding_is_aligned",
+      "statement": "lemma extra_padding_is_aligned:\n assumes inv_ostore: \"inv_ostore mount_st ostore_st\"\n and     inv_mount_st: \"inv_mount_st mount_st\"\n and     sync_neq_used: \"sync_offs\\<^sub>f ostore_st \\<noteq> used\\<^sub>f ostore_st\"\n shows\n \"io_size\\<^sub>f (super\\<^sub>f mount_st) udvd  padding_to (mount_st, ostore_st, ostoreWriteNone) - sync_offs\\<^sub>f ostore_st\"",
+      "closed_by": "qed",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the padding written beyond sync_offs is a multiple of the io size"
+    },
+    {
+      "name": "ostore_sync_\\<alpha>_ostore_uptodate",
+      "statement": "lemma ostore_sync_\\<alpha>_ostore_uptodate:\n  assumes inv_ostore: \"inv_ostore mount_st ostore_st\"\n  and     inv_mount_st: \"inv_mount_st mount_st\"\n  and     pad_to: \"pad_to = padding_to (mount_st, ostore_st, ostoreWriteNone)\"\n  and     used_gt_zero: \"0 < used\\<^sub>f ostore_st\"\n  and     sync_lt_used: \"sync_offs\\<^sub>f ostore_st < used\\<^sub>f ostore_st\"\n  and     wubi: \"list_eb_log (\\<alpha>wubi (OstoreState.ubi_vol\\<^sub>f ostore_st')) = \nlist_eb_log ((\\<alpha>wubi (OstoreState.ubi_vol\\<^sub>f ostore_st))\n [unat (wbuf_eb\\<^sub>f ostore_st) :=\n    \\<alpha>wubi (OstoreState.ubi_vol\\<^sub>f ostore_st) ! unat (wbuf_eb\\<^sub>f ostore_st) @\n    buf_slice\n     (wbuf\\<^sub>f ostore_st\n      \\<lparr>data\\<^sub>f :=\n         WordArrayT.make\n          (buf_prepared ostore_st (used\\<^sub>f ostore_st)\n            (padding_to (mount_st, ostore_st, ostoreWriteNone))\n            (prepared_pad_obj ostore_st (padding_to (mount_st, ostore_st, ostoreWriteNone)) crc))\\<rparr>)\n     (sync_offs\\<^sub>f ostore_st) (padding_to (mount_st, ostore_st, ostoreWriteNone))])\"\n     (is \"... = list_eb_log (?ubi[?wbuf_eb:=?old_ubi@?buf_prepared])\")\n and ostore_m: \"ostore_st'\\<lparr>OstoreState.ubi_vol\\<^sub>f := v\\<rparr> = ostore_st\n       \\<lparr>wbuf\\<^sub>f := wbuf\\<^sub>f ostore_st\n          \\<lparr>data\\<^sub>f :=\n             WordArrayT.make\n              (buf_prepared ostore_st (used\\<^sub>f ostore_st)\n                (padding_to (mount_st, ostore_st, ostoreWriteNone))\n                (prepared_pad_obj ostore_st (padding_to (mount_st, ostore_st, ostoreWriteNone)) crc))\\<rparr>,\n          used\\<^sub>f := padding_to (mount_st, ostore_st, ostoreWriteNone),\n          fsm_st\\<^sub>f := prepared_fsm_padding_obj ostore_st (used\\<^sub>f ostore_st'), OstoreState.oaddr\\<^sub>f := oaddr,\n          OstoreState.next_sqnum\\<^sub>f := nxtsqnum, opad\\<^sub>f := opad\\<^sub>f ostore_st\\<lparr>Obj.len\\<^sub>f := len, Obj.sqnum\\<^sub>f := sqnum, crc\\<^sub>f := crc\\<rparr>\\<rparr>\" \n          (is \"... = ?ostore_st\")\n\n  notes invs_pad_offs = inv_ostore inv_mount_st pad_to used_gt_zero sync_lt_used\n\nshows\n \"\\<alpha>_ostore_medium (ostore_st'\\<lparr>sync_offs\\<^sub>f := used\\<^sub>f ostore_st'\\<rparr>) = \\<alpha>_ostore_uptodate ostore_st\"",
+      "closed_by": "qed",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: after sync the abstract store equals the up-to-date view"
+    },
+    {
+      "name": "\\<alpha>_updates_buf_prepare_eq",
+      "statement": "lemma \\<alpha>_updates_buf_prepare_eq:\nassumes inv_ostore: \"inv_ostore mount_st ostore_st\"\nand     inv_mount_st: \"inv_mount_st mount_st\"\nand     sync_lt_used: \"sync_offs\\<^sub>f ostore_st < used\\<^sub>f ostore_st\"\nshows\n \"\n  OstoreState.next_sqnum\\<^sub>f ostore_st \\<le> next_sqnum \\<Longrightarrow>\n  inv_ostore mount_st\n   (ostore_st\n    \\<lparr>wbuf\\<^sub>f := wbuf\\<^sub>f ostore_st\n       \\<lparr>data\\<^sub>f :=\n          WordArrayT.make\n           (buf_prepared ostore_st (used\\<^sub>f ostore_st)\n             (padding_to (mount_st, ostore_st, ostoreWriteNone))\n             (prepared_pad_obj ostore_st (padding_to (mount_st, ostore_st, ostoreWriteNone)) crc))\\<rparr>,\n       used\\<^sub>f := padding_to (mount_st, ostore_st, ostoreWriteNone),\n      fsm_st\\<^sub>f := prepared_fsm_padding_obj ostore_st (padding_to (mount_st, ostore_st, ostoreWriteNone)), OstoreState.oaddr\\<^sub>f := oaddr,\n      OstoreState.next_sqnum\\<^sub>f := nxtsqnum, opad\\<^sub>f := opad\\<^sub>f ostore_st\\<lparr>Obj.len\\<^sub>f := len, Obj.sqnum\\<^sub>f := sqnum, crc\\<^sub>f := crc\\<rparr>\\<rparr>) \\<Longrightarrow>\n  \\<alpha>_updates\n       (ostore_st\n        \\<lparr>wbuf\\<^sub>f := wbuf\\<^sub>f ostore_st\n           \\<lparr>data\\<^sub>f :=\n              WordArrayT.make\n               (buf_prepared ostore_st (used\\<^sub>f ostore_st)\n                 (padding_to (mount_st, ostore_st, ostoreWriteNone))\n                 (prepared_pad_obj ostore_st (padding_to (mount_st, ostore_st, ostoreWriteNone)) crc))\\<rparr>,\n           used\\<^sub>f := padding_to (mount_st, ostore_st, ostoreWriteNone),\n          fsm_st\\<^sub>f := prepared_fsm_padding_obj ostore_st (padding_to (mount_st, ostore_st, ostoreWriteNone)), OstoreState.oaddr\\<^sub>f := oaddr,\n          OstoreState.next_sqnum\\<^sub>f := nxtsqnum, opad\\<^sub>f := opad\\<^sub>f ostore_st\\<lparr>Obj.len\\<^sub>f := len, Obj.sqnum\\<^sub>f := sqnum, crc\\<^sub>f := crc\\<rparr>\n        \\<rparr>) =  \\<alpha>_updates ostore_st\"",
+      "closed_by": "qed",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: preparing the write buffer leaves the abstract updates unchanged"
+    },
+    {
+      "name": "used_neq_sync_offs_means_updates_not_Nil",
+      "statement": "lemma used_neq_sync_offs_means_updates_not_Nil:\nassumes inv_ostore: \"inv_ostore mount_st ostore_st\"\nshows\n \"sync_offs\\<^sub>f ostore_st \\<noteq> used\\<^sub>f ostore_st \\<Longrightarrow>\n  \\<alpha>_updates ostore_st \\<noteq> []\"",
+      "closed_by": "by (fastforce simp add: valid_list_trans_no_pad_def)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: when sync_offs differs from used there are pending updates"
+    },
+    {
+      "name": "used_eq_sync_offs_means_no_update",
+      "statement": "lemma used_eq_sync_offs_means_no_update:\n \"sync_offs\\<^sub>f ostore_st = used\\<^sub>f ostore_st \\<Longrightarrow>\n  \\<alpha>_updates ostore_st = []\"",
+      "closed_by": "unfolding \\<alpha>_updates_def by (simp add: buf_simps)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: when sync_offs equals used there are no pending updates"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A refinement lemma `P (f (ex, st, args))` for a generated function `f` whose body is a fixed sequence of callee calls with a leading case split; each callee `g` has a companion `g_ret` lemma proving `P (g …)` from the same invariant assumptions (`inv_ostore`, `inv_mount_st`, `inv_\\<alpha>_ostore`) and a `suc`/`err` pair of assumptions characterising its possible post-states.",
+    "use_when": "the function is generated from a fixed structure (Cogent's shallow-embedded code, seL4's `crunch`, a compiler pass), so per-callee lemmas mirror the code one-to-one; the invariant is shared across callees; each callee's effect is captured by a small `suc`/`err` pair rather than by its full implementation.",
+    "avoid_when": "callees interact through state not expressible in their post-state assumptions (the parent would have to re-prove instead of thread results); a callee has no clean characterisation (its `_ret` lemma is left as `oops`, as with `ostore_write_ret` at line 2510); the body is not a fixed call sequence, so there is no structure to generate the lemmas against."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "`ostore_sync_ret` is declared in `impl/fs/bilby/proof/refine/OstoreR.thy` lines 2379-2487.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/OstoreR.thy#L2379-L2487",
+      "form": "declared(ostore_sync_ret, impl/fs/bilby/proof/refine/OstoreR.thy, 2379-2487)"
+    },
+    {
+      "n": 2,
+      "claim": "`prepare_wbuf_ret` occurs in the parent site.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/OstoreR.thy#L2379-L2487",
+      "form": "cites(parent, prepare_wbuf_ret)"
+    },
+    {
+      "n": 3,
+      "claim": "`impl/fs/bilby/proof/refine/OstoreR.thy` lines 2379-2487 contain no `sorry`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/OstoreR.thy#L2379-L2487",
+      "form": "no_sorry(impl/fs/bilby/proof/refine/OstoreR.thy, 2379-2487)"
+    },
+    {
+      "n": 4,
+      "claim": "The parent site is 109 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/OstoreR.thy#L2379-L2487",
+      "form": "lines(parent, 109)"
+    },
+    {
+      "n": 5,
+      "claim": "The ostore refinement file declares 8 `_ret` lemmas — one per generated function of the layer — so the per-callee shape recurses across the file rather than appearing once, counted by `grep -c '^lemma .*_ret:'` at the pinned commit.",
+      "evidence_kind": "measurement",
+      "evidence": "grep -c '^lemma .*_ret:' impl/fs/bilby/proof/refine/OstoreR.thy at commit 49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a returns 8"
+    },
+    {
+      "n": 6,
+      "claim": "The sibling refinement lemma `ostore_read_ret` in `OstoreReadR.thy` uses the same per-callee move, its proof calling `index_get_addr_ret` then `deserialise_Obj_ret`.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/OstoreReadR.thy#L1356-L1395"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 109,
+    "child_lines": [
+      182,
+      7,
+      41,
+      19,
+      86,
+      67,
+      8,
+      4
+    ],
+    "per_callee_children": 3,
+    "supporting_children": 5,
+    "how_counted": "line spans of the parent and child sites, declaration included; per_callee_children = prepare_wbuf_ret, ostore_sync_summary_if_eb_new_ret, ostore_write_buf_ret; supporting_children = extra_padding_is_aligned, ostore_sync_\\<alpha>_ostore_uptodate, \\<alpha>_updates_buf_prepare_eq, used_neq_sync_offs_means_updates_not_Nil, used_eq_sync_offs_means_no_update"
+  },
+  "consequences": "One `_ret` lemma per callee plus side lemmas, so the obligations are: (1) each callee's post-state must be characterised by a `suc`/`err` assumption pair in its `_ret` lemma, and the parent must re-establish that pair before every `rule <callee>_ret`; (2) the case split `sync_offs = used` must be exhaustive — the two branches are `used_eq_sync_offs_means_no_update` and `used_neq_sync_offs_means_updates_not_Nil`, complementary by construction, but the parent still has to apply the right one in each branch; (3) a callee whose refinement lemma is left as `oops` (like `ostore_write_ret` at line 2510) cannot be used by the glue. Failure mode: the per-callee post-states are highly specific (`\\<exists>`-packed `ostore_st'` updates), so a change to the generated code's state layout breaks the whole family at once.",
+  "known_uses": [
+    "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/OstoreReadR.thy#L1356-L1395"
+  ],
+  "related": [],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 8,
+    "depth": 3,
+    "glue_lines": 109,
+    "child_lines": [
+      182,
+      7,
+      41,
+      19,
+      86,
+      67,
+      8,
+      4
+    ]
+  },
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "53de77e6d202c8a9e797a0b89873669df54eb4e0af4d32ab61e2f7a966f9183c",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:25:44Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,known_uses,shape",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:31:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:28:17Z",
+      "note": "parent ostore_sync_ret: statement re-copied from code; child 'prepare_wbuf_ret': statement re-copied from the declaration of prepare_wbuf_ret; child 'ostore_sync_summary_if_eb_new_ret': statement re-copied from the declaration of ostore_sync_summary_if_eb_new_ret; child 'ostore_write_buf_ret': statement re-copied from the declaration of ostore_write_buf_ret; child 'extra_padding_is_aligned': statement re-copied from the declaration of extra_padding_is_aligned; child 'ostore_sync_\\\\<alpha>_ostore_uptodate': statement re-copied from the declaration of ostore_sync_\\<alpha>_ostore_uptodate; child '\\\\<alpha>_updates_buf_prepare_eq': statement re-copied from the declaration of \\<alpha>_updates_buf_prepare_eq; child 'used_neq_sync_offs_means_updates_not_Nil': statement re-copied from the declaration of used_neq_sync_offs_means_updates_not_Nil; child 'used_eq_sync_offs_means_no_update': statement re-copied from the declaration of used_eq_sync_offs_means_no_update"
+    }
+  ]
+}

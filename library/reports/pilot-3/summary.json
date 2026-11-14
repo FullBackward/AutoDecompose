@@ -1,0 +1,979 @@
+{
+  "run": "pilot-3",
+  "date": "2026-11-14",
+  "started": "2026-11-14T08:24:25Z",
+  "screening": {
+    "mathlib4": "include",
+    "pfr": "include",
+    "carleson": "include",
+    "equational-theories": "include",
+    "flt-imperial": "include",
+    "flt-anthropic": "include",
+    "sphere-packing": "include",
+    "pnt-and": "include",
+    "strongpnt": "include",
+    "formal-conjectures": "include",
+    "sphere-eversion": "include",
+    "flt-regular": "include",
+    "lean-liquid": "include",
+    "compfiles": "include",
+    "axiom-imo2026": "include",
+    "dirac-imo2026": "include",
+    "pramaana-imo2026": "include",
+    "mechmath-imo2026": "include",
+    "humanfia-hoa-qed": "include",
+    "numina-putnam2025": "include",
+    "seed-prover": "include",
+    "harmonic-imo2025": "include",
+    "lean4-skills": "include",
+    "leanprover-skills": "include",
+    "trailofbits-skills": "include",
+    "lean-autoformalization-skills": "include",
+    "numina-lean-agent": "include",
+    "ml-hilbert": "include",
+    "goedel-prover-v2": "include",
+    "deepseek-prover-v2": "include",
+    "math-comp": "include",
+    "odd-order": "include",
+    "fourcolor": "include",
+    "mathcomp-analysis": "include",
+    "compcert": "include",
+    "fiat-crypto": "include",
+    "vst": "include",
+    "verdi": "include",
+    "unimath": "include",
+    "hydra-battles": "include",
+    "rocq-stdlib": "include",
+    "certicoq": "include",
+    "interaction-trees": "include",
+    "bedrock2": "include",
+    "afp": "include",
+    "l4v": "include",
+    "autocorrode": "include",
+    "munkres-isabelle": "include",
+    "isabelle-pide-ai": "include",
+    "isabelle-dist": "include"
+  },
+  "sites_found": 429,
+  "sites_reused": 661,
+  "sites_chosen": 140,
+  "entries": [
+    {
+      "site": "mathlib4:Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean:142",
+      "id": "lean-key-invariant-mathlib4-3f171129",
+      "status": "accepted"
+    },
+    {
+      "site": "mathlib4:Archive/Examples/Kuratowski.lean:238",
+      "id": "lean-extensionality-mathlib4-413a12a2",
+      "status": "accepted"
+    },
+    {
+      "site": "pfr:blueprint/src/chapter/hom_pfr.tex:19",
+      "id": "latex-blueprint-node-pfr-b23b6bcf",
+      "status": "accepted"
+    },
+    {
+      "site": "carleson:Carleson/ForestOperator/Forests.lean:1023",
+      "id": "lean-other-carleson-cfff7ffe",
+      "status": "accepted"
+    },
+    {
+      "site": "equational-theories:blueprint/src/chapter/1323.tex:111",
+      "id": "latex-blueprint-node-equational-theories-0fe29dc5",
+      "status": "accepted"
+    },
+    {
+      "site": "flt-imperial:FLT/Patching/System.lean:422",
+      "id": null,
+      "status": null
+    },
+    {
+      "site": "flt-anthropic:P2M/Sol/S_FreyPackage_fermatLastTheoremFor_of_five_le.lean:131",
+      "id": "lean-other-flt-anthropic-4f58acd6",
+      "status": "draft"
+    },
+    {
+      "site": "sphere-packing:SpherePacking/ModularForms/FG.lean:519",
+      "id": "lean-suffices-or-strengthen-sphere-packing-68ac6a8d",
+      "status": "accepted"
+    },
+    {
+      "site": "pnt-and:PrimeNumberTheoremAnd/ResidueCalcOnRectangles.lean:634",
+      "id": "lean-other-pnt-and-9e1ff179",
+      "status": "accepted"
+    },
+    {
+      "site": "pnt-and:PrimeNumberTheoremAnd/Consequences.lean:2404",
+      "id": "lean-suffices-or-strengthen-pnt-and-36592f32",
+      "status": "accepted"
+    },
+    {
+      "site": "strongpnt:StrongPNT/PNT3_RiemannZeta.lean:264",
+      "id": "lean-extensionality-strongpnt-8892e42d",
+      "status": "accepted"
+    },
+    {
+      "site": "strongpnt:StrongPNT/PNT2_LogDerivative.lean:967",
+      "id": "lean-interface-lemma-strongpnt-f735021c",
+      "status": "accepted"
+    },
+    {
+      "site": "formal-conjectures:FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean:302",
+      "id": "lean-suffices-or-strengthen-formal-conjectures-7ee9bbe2",
+      "status": "accepted"
+    },
+    {
+      "site": "sphere-eversion:SphereEversion/Global/Gromov.lean:37",
+      "id": "lean-key-invariant-sphere-eversion-6e399f2e",
+      "status": "accepted"
+    },
+    {
+      "site": "flt-regular:FltRegular/NumberTheory/Hilbert94.lean:94",
+      "id": "lean-blueprint-node-flt-regular-5f4403ff",
+      "status": "accepted"
+    },
+    {
+      "site": "lean-liquid:src/thm95/col_exact.lean:1257",
+      "id": "lean-key-invariant-lean-liquid-01d1344d",
+      "status": "accepted"
+    },
+    {
+      "site": "compfiles:Compfiles/Imo1993P6.lean:1233",
+      "id": "lean-suffices-or-strengthen-compfiles-25eb18ba",
+      "status": "accepted"
+    },
+    {
+      "site": "compfiles:Compfiles/Imo1959P2.lean:123",
+      "id": "lean-iff-split-compfiles-7195203a",
+      "status": "accepted"
+    },
+    {
+      "site": "axiom-imo2026:IMO2026/Q6/solution.lean:752",
+      "id": "lean-other-axiom-imo2026-adc45ecb",
+      "status": "draft"
+    },
+    {
+      "site": "dirac-imo2026:IMO2026/Q6/solution.lean:700",
+      "id": "lean-other-dirac-imo2026-04ba762f",
+      "status": "draft"
+    },
+    {
+      "site": "pramaana-imo2026:IMO2026/Q1/solution.lean:248",
+      "id": "lean-key-invariant-pramaana-imo2026-f2c90a7c",
+      "status": "draft"
+    },
+    {
+      "site": "mechmath-imo2026:IMO2026/Q2/solution.lean:1167",
+      "id": "lean-other-mechmath-imo2026-be8176d1",
+      "status": "draft"
+    },
+    {
+      "site": "humanfia-hoa-qed:lean-qit-qlg/QIT/lean/problem_qit_NormFidelityAndContinuityTools_FuchsVanDeGraafInequalities.lean:790",
+      "id": "lean-other-humanfia-hoa-qed-a61769e0",
+      "status": "accepted"
+    },
+    {
+      "site": "numina-putnam2025:NuminaPutnam2025/putnam_2025_b2.lean:1044",
+      "id": "lean-key-invariant-numina-putnam2025-7117dd00",
+      "status": "verified"
+    },
+    {
+      "site": "seed-prover:SeedProver/imo2025/IMO2025/P1.lean:3432",
+      "id": "lean-suffices-or-strengthen-seed-prover-c33ea164",
+      "status": "draft"
+    },
+    {
+      "site": "harmonic-imo2025:HarmonicLean/IMO2025P5.lean:615",
+      "id": "lean-extensionality-harmonic-imo2025-7b7ec713",
+      "status": "accepted"
+    },
+    {
+      "site": "lean4-skills:plugins/lean4/skills/lean4/references/proof-golfing.md:242",
+      "id": "markdown-other-lean4-skills-72054580",
+      "status": "draft"
+    },
+    {
+      "site": "trailofbits-skills:plugins/writing-lean-proofs/skills/writing-lean-proofs/references/llm-techniques.md:57",
+      "id": "markdown-workflow-trailofbits-skills-40a08498",
+      "status": "draft"
+    },
+    {
+      "site": "lean-autoformalization-skills:skills/build-proof-dependency-graph/SKILL.md:184",
+      "id": "markdown-blueprint-node-lean-autoformalization-skills-46b535bc",
+      "status": "draft"
+    },
+    {
+      "site": "numina-lean-agent:prompts/docs/prompts/coordinator.md:330",
+      "id": "markdown-blueprint-node-numina-lean-agent-91c2a449",
+      "status": "draft"
+    },
+    {
+      "site": "ml-hilbert:src/tools/lean_utils.py:156",
+      "id": "python-sorrify-at-failure-ml-hilbert-123da6f9",
+      "status": "draft"
+    },
+    {
+      "site": "math-comp:solvable/alt.v:592",
+      "id": "rocq-other-math-comp-2c832601",
+      "status": "verified"
+    },
+    {
+      "site": "odd-order:theories/BGappendixAB.v:483",
+      "id": "rocq-other-odd-order-295f8af4",
+      "status": "accepted"
+    },
+    {
+      "site": "fourcolor:theories/proof/unavoidability.v:20",
+      "id": "rocq-suffices-or-strengthen-fourcolor-2e61be44",
+      "status": "accepted"
+    },
+    {
+      "site": "fourcolor:theories/reals/realcategorical.v:203",
+      "id": "rocq-extensionality-fourcolor-a5f0540e",
+      "status": "verified"
+    },
+    {
+      "site": "mathcomp-analysis:theories/lebesgue_integral_theory/giry.v:375",
+      "id": "rocq-extensionality-mathcomp-analysis-fa807b35",
+      "status": "accepted"
+    },
+    {
+      "site": "compcert:backend/Constpropproof.v:607",
+      "id": "rocq-key-invariant-compcert-4abf5603",
+      "status": "accepted"
+    },
+    {
+      "site": "compcert:backend/Inliningproof.v:1253",
+      "id": "rocq-per-callee-lemma-compcert-6decbbae",
+      "status": "accepted"
+    },
+    {
+      "site": "fiat-crypto:src/Arithmetic/WordByWordMontgomery.v:1156",
+      "id": "rocq-suffices-or-strengthen-fiat-crypto-efce3e48",
+      "status": "verified"
+    },
+    {
+      "site": "vst:hmacdrbg/HMAC_DRBG_nonadaptive.v:4548",
+      "id": "rocq-key-invariant-vst-b22e13ea",
+      "status": "draft"
+    },
+    {
+      "site": "verdi:theories/Systems/LiveLockServ.v:866",
+      "id": "rocq-key-invariant-verdi-09db5810",
+      "status": "verified"
+    },
+    {
+      "site": "unimath:UniMath/SubstitutionSystems/MonadsFromSubstitutionSystems.v:547",
+      "id": "rocq-other-unimath-a6108b06",
+      "status": "accepted"
+    },
+    {
+      "site": "unimath:UniMath/OrderTheory/OrderedSets/WellOrderedSets.v:1169",
+      "id": "rocq-key-invariant-unimath-70bbfe4a",
+      "status": "accepted"
+    },
+    {
+      "site": "hydra-battles:theories/ordinals/Schutte/Ordering_Functions.v:1159",
+      "id": "rocq-suffices-or-strengthen-hydra-battles-ffb3ec65",
+      "status": "accepted"
+    },
+    {
+      "site": "rocq-stdlib:theories/Logic/ConstructiveEpsilon.v:362",
+      "id": "rocq-key-invariant-rocq-stdlib-9cc84753",
+      "status": "verified"
+    },
+    {
+      "site": "rocq-stdlib:theories/micromega/Tauto.v:2060",
+      "id": "rocq-per-callee-lemma-rocq-stdlib-096380b6",
+      "status": "accepted"
+    },
+    {
+      "site": "certicoq:theories/Compiler/correctness.v:140",
+      "id": "rocq-suffices-or-strengthen-certicoq-933592e6",
+      "status": "accepted"
+    },
+    {
+      "site": "certicoq:theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v:2026",
+      "id": "rocq-interface-lemma-certicoq-43993c65",
+      "status": "accepted"
+    },
+    {
+      "site": "interaction-trees:secure_example/LabelledImpTypes.v:1089",
+      "id": "rocq-suffices-or-strengthen-interaction-trees-afae2097",
+      "status": "accepted"
+    },
+    {
+      "site": "bedrock2:compiler/src/compiler/RiscvEventLoop.v:104",
+      "id": "rocq-key-invariant-bedrock2-c3d50249",
+      "status": "accepted"
+    },
+    {
+      "site": "afp:thys/IMO2019/IMO2019_Q5.thy:315",
+      "id": "isabelle-other-afp-27561f74",
+      "status": "draft"
+    },
+    {
+      "site": "afp:thys/Prime_Number_Theorem/Mertens_Theorems.thy:250",
+      "id": "isabelle-key-invariant-afp-773f380f",
+      "status": "draft"
+    },
+    {
+      "site": "afp:thys/Fishers_Inequality/Incidence_Matrices.thy:1997",
+      "id": "isabelle-extensionality-afp-38fc5bd6",
+      "status": "draft"
+    },
+    {
+      "site": "afp:thys/Catalan_Numbers/Catalan_Numbers.thy:345",
+      "id": "isabelle-suffices-or-strengthen-afp-eb3f1a40",
+      "status": "draft"
+    },
+    {
+      "site": "l4v:proof/refine/Refine.thy:94",
+      "id": "isabelle-extensionality-l4v-d181edcf",
+      "status": "verified"
+    },
+    {
+      "site": "l4v:proof/invariant-abstract/Deterministic_AI.thy:4322",
+      "id": "isabelle-suffices-or-strengthen-l4v-d7945679",
+      "status": "verified"
+    },
+    {
+      "site": "autocorrode:Shallow_Separation_Logic/Share_Map.thy:117",
+      "id": "isabelle-extensionality-autocorrode-f2cdee86",
+      "status": "accepted"
+    },
+    {
+      "site": "autocorrode:Shallow_Separation_Logic/Triple.thy:601",
+      "id": "isabelle-key-invariant-autocorrode-d7f695a1",
+      "status": "accepted"
+    },
+    {
+      "site": "munkres-isabelle:tst/i/Top1_Ch2.thy:11382",
+      "id": "isabelle-per-callee-lemma-munkres-isabelle-97b8b78b",
+      "status": "draft"
+    },
+    {
+      "site": "munkres-isabelle:tst/i/Top1_Ch2.thy:17155",
+      "id": "isabelle-iff-split-munkres-isabelle-05cdf9d1",
+      "status": "draft"
+    },
+    {
+      "site": "isabelle-pide-ai:.agents/skills/isabelle/SKILL.md:23",
+      "id": "markdown-interface-lemma-isabelle-pide-ai-c76a2eee",
+      "status": "draft"
+    },
+    {
+      "site": "isabelle-dist:src/HOL/ex/Cubic_Quartic.thy:88",
+      "id": "isabelle-other-isabelle-dist-cb5b330e",
+      "status": "draft"
+    },
+    {
+      "site": "isabelle-dist:src/HOL/Examples/Gauss_Numbers.thy:323",
+      "id": "isabelle-extensionality-isabelle-dist-3225c876",
+      "status": "draft"
+    },
+    {
+      "site": "goedel-prover-v2:src/utils.py:339",
+      "id": "python-workflow-goedel-prover-v2-aff4c769",
+      "status": null
+    },
+    {
+      "site": "deepseek-prover-v2:README.md:127",
+      "id": "markdown-workflow-deepseek-prover-v2-79ab0b86",
+      "status": null
+    },
+    {
+      "site": "mathlib4:Mathlib/NumberTheory/FLT/Three.lean:751",
+      "id": "lean-suffices-or-strengthen-mathlib4-b3035491",
+      "status": "accepted"
+    },
+    {
+      "site": "mathlib4:Archive/Wiedijk100Theorems/AbelRuffini.lean:169",
+      "id": "lean-generalise-then-instantiate-mathlib4-0ccee655",
+      "status": "accepted"
+    },
+    {
+      "site": "pfr:PFR/WeakPFR.lean:859",
+      "id": "lean-suffices-or-strengthen-pfr-16fd5d4d",
+      "status": "verified"
+    },
+    {
+      "site": "carleson:Carleson/ForestOperator/PointwiseEstimate.lean:1091",
+      "id": "lean-suffices-or-strengthen-carleson-a02af82b",
+      "status": "accepted"
+    },
+    {
+      "site": "equational-theories:equational_theories/Completeness.lean:156",
+      "id": "lean-interface-lemma-equational-theories-048d3d79",
+      "status": "verified"
+    },
+    {
+      "site": "flt-imperial:blueprint/src/chapter/ch03freyold.tex:290",
+      "id": "latex-blueprint-node-flt-imperial-d51b46e8",
+      "status": "accepted"
+    },
+    {
+      "site": "flt-anthropic:P2M/Sol/S_FreyPackage_no_frey_package.lean:139",
+      "id": "lean-blueprint-node-flt-anthropic-a734af31",
+      "status": "draft"
+    },
+    {
+      "site": "sphere-packing:SpherePacking/ModularForms/FG.lean:541",
+      "id": "lean-key-invariant-sphere-packing-ad9db4d3",
+      "status": "accepted"
+    },
+    {
+      "site": "pnt-and:PrimeNumberTheoremAnd/IEANTN/FKS2Cor24All.lean:31",
+      "id": "lean-per-callee-lemma-pnt-and-3ba98173",
+      "status": "draft"
+    },
+    {
+      "site": "pnt-and:PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean:278",
+      "id": "lean-interface-lemma-pnt-and-a92f866a",
+      "status": "accepted"
+    },
+    {
+      "site": "strongpnt:StrongPNT/PNT4_ZeroFreeRegion.lean:3807",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "strongpnt:StrongPNT/PNT1_ComplexAnalysis.lean:1066",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "formal-conjectures:FormalConjecturesForMathlib/Combinatorics/SimpleGraph/Mycielski.lean:175",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "sphere-eversion:SphereEversion/InductiveConstructions.lean:198",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "flt-regular:FltRegular/CaseII/InductionStep.lean:549",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "lean-liquid:src/thm95/default.lean:136",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "compfiles:Compfiles/Imo1988P4.lean:574",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "compfiles:Compfiles/Hungary1998P6.lean:49",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "axiom-imo2026:IMO2026/Q1/solution.lean:415",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "dirac-imo2026:IMO2026/Q1/solution.lean:460",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "pramaana-imo2026:IMO2026/Q2/solution.lean:739",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "mechmath-imo2026:IMO2026/Q1/solution.lean:281",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "humanfia-hoa-qed:lean-qit-qlg/QAlg/lean/problem_qalg_QSPParameterTrace_PostselectedSpectralTransformationTrigonometricQSP.lean:464",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "numina-putnam2025:NuminaPutnam2025/putnam_2025_b3.lean:101",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "seed-prover:SeedProver/imo2025/IMO2025/P1.lean:3949",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "harmonic-imo2025:HarmonicLean/IMO2025P4_solve2.lean:934",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "lean4-skills:plugins/lean4/skills/lean4/references/domain-patterns.md:496",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "trailofbits-skills:plugins/writing-lean-proofs/evals/cases/05-clean-restraint/input/Carry.lean:38",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "lean-autoformalization-skills:skills/lean-project-architecture/SKILL.md:13",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "numina-lean-agent:prompts/docs/prompts/proof_agent.md:733",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "ml-hilbert:src/prompts/hilbert.py:374",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "math-comp:solvable/sylow.v:88",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "odd-order:theories/PFsection10.v:1158",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "fourcolor:theories/proof/combinatorial4ct.v:18",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "fourcolor:theories/proof/fourcolor.v:27",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "mathcomp-analysis:theories/real_measure/lebesgue_measure.v:1017",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "compcert:backend/Unusedglobproof.v:1221",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "compcert:backend/RTLgenproof.v:875",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "fiat-crypto:src/Arithmetic/BinaryExtendedGCD.v:782",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "vst:veristar/superpose_sound.v:203",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "verdi:theories/Systems/SeqNumCorrect.v:533",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "unimath:UniMath/Foundations/HLevels.v:163",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "unimath:UniMath/AlgebraicTheories/OriginalRepresentationTheorem.v:348",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "hydra-battles:theories/ordinals/Hydra/Hydra_Termination.v:213",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "rocq-stdlib:theories/Sorting/Heap.v:311",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "rocq-stdlib:theories/Sorting/Mergesort.v:210",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "certicoq:theories/LambdaANF/dead_param_elim_correct.v:1337",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "certicoq:theories/LambdaANF/toplevel_theorems.v:274",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "interaction-trees:theories/Interp/RecursionFacts.v:211",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "bedrock2:end2end/src/end2end/End2EndLightbulb.v:170",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "afp:thys/Kneser_Cauchy_Davenport/Kneser_Cauchy_Davenport_preliminaries.thy:1207",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "afp:thys/Fishers_Inequality/Dual_Systems.thy:504",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "afp:thys/Bertrands_Postulate/Bertrand.thy:1019",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "afp:thys/IMO2019/IMO2019_Q5.thy:400",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "l4v:proof/crefine/AARCH64/Refine_C.thy:1072",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "l4v:proof/refine/Refine.thy:382",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "autocorrode:Lenses_And_Other_Optics/Lens.thy:270",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "autocorrode:Byte_Level_Encoding/Byte_Encoding_Word_Nat.thy:420",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "munkres-isabelle:tst/Top1_Ch5_8.thy:8125",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "munkres-isabelle:tst/Top1_Ch5_8.thy:17130",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "isabelle-pide-ai:.agents/skills/isabelle/SKILL.md:32",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "isabelle-dist:src/HOL/Isar_Examples/Group.thy:215",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "isabelle-dist:src/HOL/ex/Unification.thy:519",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "goedel-prover-v2:README.md:184",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "deepseek-prover-v2:README.md:54",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "mathlib4:Archive/Arithcc.lean:270",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "mathlib4:Archive/Imo/Imo2006Q3.lean:119",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "pfr:blueprint/src/chapter/torsion.tex:874",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "carleson:Carleson/TwoSidedCarleson/MainTheorem.lean:30",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "equational-theories:equational_theories/ManuallyProved/Equation1323.lean:672",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "flt-imperial:FLT/Slop/PGL2/FiniteSubgroups/PSLRecognition.lean:507",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "flt-anthropic:P2M/Sol/S_fermatLastTheoremFive.lean:1961",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "sphere-packing:SpherePacking/MagicFunction/b/Psi.lean:88",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "pnt-and:PrimeNumberTheoremAnd/Wiener.lean:3897",
+      "id": null,
+      "status": "skipped"
+    },
+    {
+      "site": "pnt-and:PrimeNumberTheoremAnd/ZetaBounds.lean:2741",
+      "id": null,
+      "status": "skipped"
+    }
+  ],
+  "skipped_at_soft_stop": 65,
+  "gold": [
+    {
+      "source_id": "mathlib4",
+      "path": "Archive/Wiedijk100Theorems/PerfectNumbers.lean",
+      "start": 114,
+      "end": 122,
+      "move": "iff-split",
+      "why": "constructor on Even n ∧ Perfect n ↔ ∃ k; directions closed by Nat.eq_two_pow_mul_prime_mersenne_of_even_perfect and even_/perfect_two_pow_mul_mersenne_of_prime."
+    },
+    {
+      "source_id": "pfr",
+      "path": "PFR/Main.lean",
+      "start": 261,
+      "end": 338,
+      "move": "suffices-or-strengthen",
+      "why": "wlog hG : Finite G generalizing G reduces to the finite case, then PFR_conjecture_pos_aux', PFR_conjecture_aux, ruzsa_covering_add, two calc chains."
+    },
+    {
+      "source_id": "pfr",
+      "path": "PFR/Endgame.lean",
+      "start": 414,
+      "end": 424,
+      "move": "key-invariant",
+      "why": "construct_good instantiates construct_good_prelim three times under permutations of T₁ T₂ T₃, then linarith."
+    },
+    {
+      "source_id": "carleson",
+      "path": "Carleson/MetricCarleson/Main.lean",
+      "start": 205,
+      "end": 242,
+      "move": "calc-chain",
+      "why": "metric_carleson calc through biSup_Θ'_eq_biSup_enumΘ', biSup_enumΘ'_le_QΘ', closed by linearized_metric_carleson and BST_LNT_of_BST_NT."
+    },
+    {
+      "source_id": "carleson",
+      "path": "Carleson/Discrete/MainTheorem.lean",
+      "start": 44,
+      "end": 68,
+      "move": "calc-chain",
+      "why": "discrete_carleson calc over exceptional_set, closed by forest_union hf measf and forest_complement hf measf with le_C2_0_2."
+    },
+    {
+      "source_id": "flt-imperial",
+      "path": "FLT/Slop/DimensionTheorem/Main.lean",
+      "start": 62,
+      "end": 77,
+      "move": "calc-chain",
+      "why": "ringKrullDim_eq_growthDeg calc via growthDeg_le_minGenPrimary, minGenPrimary_le_ringKrullDim, ringKrullDim_le_growthDeg; dimension_theorem conjoins it with eq_minGenPrimary."
+    },
+    {
+      "source_id": "flt-regular",
+      "path": "FltRegular/FltRegular.lean",
+      "start": 21,
+      "end": 29,
+      "move": "case-split",
+      "why": "by_cases hcase : p ∣ a * b * c; branches closed by caseII and caseI after fermatLastTheoremWith_of_fermatLastTheoremWith_coprime."
+    },
+    {
+      "source_id": "flt-anthropic",
+      "path": "P2M/Sol/S_FLT_fermatLastTheorem.lean",
+      "start": 130,
+      "end": 139,
+      "move": "statement-object",
+      "why": "solution for the one-theorem card: FermatLastTheorem.of_odd_primes, then FreyPackage.fermatLastTheoremFor_of_five_le or fermatLastTheoremThree."
+    },
+    {
+      "source_id": "flt-anthropic",
+      "path": "P2M/Sol/S_FreyPackage_no_frey_package.lean",
+      "start": 139,
+      "end": 147,
+      "move": "statement-object",
+      "why": "Wiles_Frey combines level_lowering_to_two P (frey_isModular P) hirr with ModularForm.S2_Gamma0_2_eq_zero; solution applies it to Mazur_Frey."
+    },
+    {
+      "source_id": "pnt-and",
+      "path": "PrimeNumberTheoremAnd/StrongPNT.lean",
+      "start": 2891,
+      "end": 2905,
+      "move": "blueprint-node",
+      "why": "@[blueprint \"StrongPNT\"] node whose doc proof cites GenStrengthPNT and LogDerivZetaUniformLogSquaredBound; #print axioms follows."
+    },
+    {
+      "source_id": "strongpnt",
+      "path": "StrongPNT/PNT5_Strong.lean",
+      "start": 5911,
+      "end": 6591,
+      "move": "per-callee-lemma",
+      "why": "Strong_PNT pulls SmoothedChebyshevClose, MellinOfSmooth1cExplicit, LogDerivZetaBoundedAndHolo and the family I1Bound…I9Bound; the blueprint uses block at 6594 lists them."
+    },
+    {
+      "source_id": "lean-liquid",
+      "path": "src/challenge.lean",
+      "start": 28,
+      "end": 43,
+      "move": "key-invariant",
+      "why": "liquid_tensor_experiment built from laurent_measures.short_exact and epi_and_is_iso plus pBanach.choose_normed_with_aut_T_inv and is_zero.iso_zero."
+    },
+    {
+      "source_id": "compcert",
+      "path": "driver/Compiler.v",
+      "start": 353,
+      "end": 417,
+      "move": "per-callee-lemma",
+      "why": "cstrategy_semantic_preservation chains compose_forward_simulations over every pass (SimplExpr, Cshmgen, RTLgen, Inlining, CSE, Alloc, Stacking, Asmgen …)."
+    },
+    {
+      "source_id": "odd-order",
+      "path": "theories/PFsection14.v",
+      "start": 1255,
+      "end": 1261,
+      "move": "key-invariant",
+      "why": "Feit_Thompson and simple_odd_group_prime are both minSimpleOdd_ind/minSimpleOdd_prime applied to no_minSimple_odd_group (1216-1253)."
+    },
+    {
+      "source_id": "fourcolor",
+      "path": "theories/proof/combinatorial4ct.v",
+      "start": 18,
+      "end": 30,
+      "move": "induction",
+      "why": "four_color_hypermap: cube_colorable, then elim on #|cube G| with cubic_precubic/cubic_cube/plain_cube/decide_colorable, closed by unavoidability the_reducibility."
+    },
+    {
+      "source_id": "compfiles",
+      "path": "Compfiles/Imo1985P6.lean",
+      "start": 1014,
+      "end": 1206,
+      "move": "witness",
+      "why": "imo_1985_p6_nnreal proves ∃! a by existsUnique_of_exists_of_unique with aux_exists and aux_unique, over aux_1…aux_11."
+    },
+    {
+      "source_id": "mathcomp-analysis",
+      "path": "theories/functional_analysis/hahn_banach_theorem.v",
+      "start": 306,
+      "end": 323,
+      "move": "witness",
+      "why": "hahn_banach_extension builds exists2 g from hahn_banach_witness and zornS_ex; linearity from lingraphD and lingraphZ."
+    },
+    {
+      "source_id": "sphere-packing",
+      "path": "SpherePacking/Basic/PeriodicPacking.lean",
+      "start": 662,
+      "end": 703,
+      "move": "calc-chain",
+      "why": "aux2_le (Theorem 2.2 auxiliary) calc of volume bounds via aux8 and hD_isAddFundamentalDomain, then measure_ne_zero."
+    },
+    {
+      "source_id": "sphere-eversion",
+      "path": "SphereEversion/InductiveConstructions.lean",
+      "start": 66,
+      "end": 96,
+      "move": "induction",
+      "why": "inductive_construction recurses with IndexType.exists_by_induction and reconciles with LocallyFinite.exists_forall_eventually_of_indexType."
+    },
+    {
+      "source_id": "afp",
+      "path": "thys/Prime_Number_Theorem/Prime_Number_Theorem.thy",
+      "start": 782,
+      "end": 786,
+      "move": "suffices-or-strengthen",
+      "why": "ψ and π asymptotics derived from θ_asymptotics with PNT4_imp_PNT5 and PNT4_imp_PNT1."
+    },
+    {
+      "source_id": "l4v",
+      "path": "proof/access-control/DomainSepInv.thy",
+      "start": 1108,
+      "end": 1139,
+      "move": "case-split",
+      "why": "handle_event_domain_sep_inv by case_tac ev with handle_send/call/recv/reply lemmas; call_kernel_domain_sep_inv from it and schedule_domain_sep_inv."
+    },
+    {
+      "source_id": "harmonic-imo2025",
+      "path": "HarmonicLean/IMO2025P5.lean",
+      "start": 615,
+      "end": 727,
+      "move": "extensionality",
+      "why": "main_theorem proves two set equalities by Set.ext and constructor, closed by lemBazzaWinsSmallLambda and lemAliceWinsLargeLambda with lemSLowerBound."
+    }
+  ],
+  "gold_recall": "11/22",
+  "gold_missed": [
+    "mathlib4:Archive/Wiedijk100Theorems/PerfectNumbers.lean:114-122 (iff-split)",
+    "pfr:PFR/Endgame.lean:414-424 (key-invariant)",
+    "flt-anthropic:P2M/Sol/S_FLT_fermatLastTheorem.lean:130-139 (statement-object)",
+    "pnt-and:PrimeNumberTheoremAnd/StrongPNT.lean:2891-2905 (blueprint-node)",
+    "strongpnt:StrongPNT/PNT5_Strong.lean:5911-6591 (per-callee-lemma)",
+    "compcert:driver/Compiler.v:353-417 (per-callee-lemma)",
+    "compfiles:Compfiles/Imo1985P6.lean:1014-1206 (witness)",
+    "sphere-packing:SpherePacking/Basic/PeriodicPacking.lean:662-703 (calc-chain)",
+    "sphere-eversion:SphereEversion/InductiveConstructions.lean:66-96 (induction)",
+    "afp:thys/Prime_Number_Theorem/Prime_Number_Theorem.thy:782-786 (suffices-or-strengthen)",
+    "l4v:proof/access-control/DomainSepInv.thy:1108-1139 (case-split)"
+  ],
+  "critic": {
+    "gaps": [
+      "Discovery never ran: queries=0, candidates=0, discovery=null; all 51 registered sources are how_found=start-set, so the source population is unestimated (no Lincoln-Petersen overlap) and nothing beyond the hand-picked start set was ever searched (protocol §5).",
+      "Gold recall 11/22 — 11 gold sites missed: mathlib4 PerfectNumbers.lean:114-122 (iff-split), pfr Endgame.lean:414-424 (key-invariant), flt-anthropic S_FLT_fermatLastTheorem.lean:130-139 (statement-object), pnt-and StrongPNT.lean:2891-2905 (blueprint-node), strongpnt PNT5_Strong.lean:5911-6591 (per-callee-lemma), compcert driver/Compiler.v:353-417 (per-callee-lemma), compfiles Imo1985P6.lean:1014-1206 (witness), sphere-packing PeriodicPacking.lean:662-703 (calc-chain), sphere-eversion InductiveConstructions.lean:66-96 (induction), afp Prime_Number_Theorem.thy:782-786 (suffices-or-strengthen), l4v DomainSepInv.thy:1108-1139 (case-split).",
+      "Moves with no entry in a prover language (empty cells in flow.md): iff-split·rocq; witness·isabelle; generalise-then-instantiate·rocq+isabelle; interface-lemma·isabelle; statement-object·rocq+isabelle; blueprint-node·rocq+isabelle; extract-have·lean+rocq; sorrify-at-failure·lean+rocq+isabelle.",
+      "Isabelle (batch 3) is shallow: most of its move rows are 0 accepted / 0 verified with a single draft; afp, isabelle-dist, munkres-isabelle and isabelle-pide-ai have zero accepted/verified entries.",
+      "statement-object move: only 2 entries, both draft, both from flt-anthropic; no rocq or isabelle instance despite the CompCert/one-theorem-per-file patterns.",
+      "65 sites skipped at the soft stop (85% cap) and 661 unextracted theorem-scale sites reused from earlier runs remain as a backlog.",
+      "Checks that could not run: fidelity and sufficiency are not-run on all 163 entries (no Lean/Rocq toolchain on the machine); build is never a real build (107 ci-record, 53 not-run); sorry-scan is not-run on 22 non-code entries; 8 entries carry a refuted claim and 37 entries have a latest review verdict of 'object' blocking promotion.",
+      "Sources that yielded nothing: none — all 50 include-screened sources have >=1 entry; the single excluded source (opengauss) was correctly excluded on I2 (Python launcher, no Lean files)."
+    ],
+    "next_batch": [
+      "Run discovery for real (protocol §5): Strategy A search strings and Strategy B snowballing, logged via ledger.py queries/candidates, then use the A∩B overlap for a Lincoln-Petersen population estimate; register new sources found by the most strategies.",
+      "Extract the 11 gold-missed sites verbatim (exact source:path:lines and move listed in gaps) — the work order the amendment names the critic's next_batch.",
+      "Fill empty prover-language cells first before adding to saturated cells: rocq iff-split (split/apply:idP), rocq+isabelle generalise-then-instantiate (Section..End/Canonical), isabelle witness and interface-lemma (locales/Record), rocq+isabelle statement-object and blueprint-node.",
+      "Drain the existing backlog (65 soft-stop-skipped + 661 reused sites) instead of finding new sites in already-covered cells.",
+      "Promote the draft pile: verify and review the all-draft Isabelle and agent-made IMO2026 harness entries, and clear the 37 open review objections so verified entries reach accepted.",
+      "Obtain a Lean/Rocq/Isabelle toolchain (or decide ci-record is final) so fidelity and sufficiency stop being not-run — the largest evidence gap, since no entry has machine evidence its children close its parent."
+    ]
+  },
+  "calls": 447,
+  "tokens": 646730688,
+  "cost_cny": 230.31,
+  "finished": "2026-11-14T11:29:48Z"
+}

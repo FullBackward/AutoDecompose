@@ -1,0 +1,254 @@
+{
+  "id": "isabelle-per-callee-lemma-utp-main-4a87d5d0",
+  "kind": "instance",
+  "status": "draft",
+  "title": "One operation lemma per component: ilock_cycle preserves ilock_type_inv",
+  "intent": "The cyclic interlocking controller ilock_cycle is a sequential composition of four operations (set_relays ;; clear_relays ;; set_switches ;; set_signals). The type-invariant theorem gives each operation its own Hoare-triple preservation lemma {ilock_type_inv} op {ilock_type_inv}, proved by one shared method, so the main theorem is just unfold ilock_cycle_def, hoare_split, and one rule application per component.",
+  "move": "per-callee-lemma",
+  "also_known_as": [
+    "one lemma per component",
+    "per-component lemma",
+    "per-operation Hoare-triple lemma",
+    "per-callee invariant lemma"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "utp-main",
+    "url": "https://github.com/isabelle-utp/utp-main",
+    "commit": "ffd472022798e60f0385030682b7a07fbeb49e68",
+    "licence": "BSD-3-Clause"
+  },
+  "files": [
+    {
+      "path": "fmi/Interlocking.thy",
+      "bytes": 19879,
+      "sha256": "4482974a902b45bae5b06287d868615e18041476a5fdd33121af879451f5eff4",
+      "permalink": "https://github.com/isabelle-utp/utp-main/blob/ffd472022798e60f0385030682b7a07fbeb49e68/fmi/Interlocking.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "fmi/Interlocking.thy",
+      "lines": [
+        193,
+        200
+      ],
+      "role": "parent",
+      "name": "ilock_cycle",
+      "excerpt_sha256": "480de4c1cc3864154eeb007f42ea2e5677c3d9ed909fc44dbdeec6fe2174dfc2",
+      "permalink": "https://github.com/isabelle-utp/utp-main/blob/ffd472022798e60f0385030682b7a07fbeb49e68/fmi/Interlocking.thy#L193-L200"
+    },
+    {
+      "path": "fmi/Interlocking.thy",
+      "lines": [
+        173,
+        176
+      ],
+      "role": "child",
+      "name": "set_relays_type_inv",
+      "excerpt_sha256": "7d70cb090bc469fd7eeed54bda603a55c73a55c405d5af65ccbd95424ab473b3",
+      "permalink": "https://github.com/isabelle-utp/utp-main/blob/ffd472022798e60f0385030682b7a07fbeb49e68/fmi/Interlocking.thy#L173-L176"
+    },
+    {
+      "path": "fmi/Interlocking.thy",
+      "lines": [
+        178,
+        181
+      ],
+      "role": "child",
+      "name": "clear_relays_type_inv",
+      "excerpt_sha256": "2fb6fd7d8157837f844edba4455087a8ab90ed7f5aea411c5de74ae77bb2232a",
+      "permalink": "https://github.com/isabelle-utp/utp-main/blob/ffd472022798e60f0385030682b7a07fbeb49e68/fmi/Interlocking.thy#L178-L181"
+    },
+    {
+      "path": "fmi/Interlocking.thy",
+      "lines": [
+        183,
+        186
+      ],
+      "role": "child",
+      "name": "set_switches_type_inv",
+      "excerpt_sha256": "10d338e9f9ddac03b3db86e90ea7a257d56ae1a4d27c9e8699f3c990d2656999",
+      "permalink": "https://github.com/isabelle-utp/utp-main/blob/ffd472022798e60f0385030682b7a07fbeb49e68/fmi/Interlocking.thy#L183-L186"
+    },
+    {
+      "path": "fmi/Interlocking.thy",
+      "lines": [
+        188,
+        191
+      ],
+      "role": "child",
+      "name": "set_signals_type_inv",
+      "excerpt_sha256": "1e7667609555bc6e0ed65e04465d39db3e0899101e78bc5fa1b2639d77a6fb23",
+      "permalink": "https://github.com/isabelle-utp/utp-main/blob/ffd472022798e60f0385030682b7a07fbeb49e68/fmi/Interlocking.thy#L188-L191"
+    },
+    {
+      "path": "fmi/Interlocking.thy",
+      "lines": [
+        133,
+        134
+      ],
+      "role": "context",
+      "name": "ilock_cycle_def",
+      "excerpt_sha256": "caab2da078c1e4406d04e245e3085fd2decdfd7f7fdb55c8975ac90d875dfd66",
+      "permalink": "https://github.com/isabelle-utp/utp-main/blob/ffd472022798e60f0385030682b7a07fbeb49e68/fmi/Interlocking.thy#L133-L134"
+    },
+    {
+      "path": "fmi/Interlocking.thy",
+      "lines": [
+        144,
+        150
+      ],
+      "role": "context",
+      "name": "ilock_type_inv",
+      "excerpt_sha256": "70fbb178486e073243ec6f5829a41572250bf06eef651541f90ca86eca85b176",
+      "permalink": "https://github.com/isabelle-utp/utp-main/blob/ffd472022798e60f0385030682b7a07fbeb49e68/fmi/Interlocking.thy#L144-L150"
+    },
+    {
+      "path": "fmi/Interlocking.thy",
+      "lines": [
+        154,
+        161
+      ],
+      "role": "context",
+      "name": "ilock_type_inv_rules",
+      "excerpt_sha256": "b435b097cd842807ec1f4be1edde53e50b45fedaa20bf47da4fef02f7b1ff88e",
+      "permalink": "https://github.com/isabelle-utp/utp-main/blob/ffd472022798e60f0385030682b7a07fbeb49e68/fmi/Interlocking.thy#L154-L161"
+    },
+    {
+      "path": "fmi/Interlocking.thy",
+      "lines": [
+        163,
+        166
+      ],
+      "role": "context",
+      "name": "ilock_type_inv_tac",
+      "excerpt_sha256": "ec17cdfadbf90c6dbac827752e1fed0224772d7e7cca6a35bc64366a754b39fd",
+      "permalink": "https://github.com/isabelle-utp/utp-main/blob/ffd472022798e60f0385030682b7a07fbeb49e68/fmi/Interlocking.thy#L163-L166"
+    },
+    {
+      "path": "fmi/Interlocking.thy",
+      "lines": [
+        17,
+        20
+      ],
+      "role": "context",
+      "name": "inv_subst_weakening_lemma",
+      "excerpt_sha256": "7b084e3628cc587782926586c4c0ab09ab4f305f3c90d2ecf19df3af58c43156",
+      "permalink": "https://github.com/isabelle-utp/utp-main/blob/ffd472022798e60f0385030682b7a07fbeb49e68/fmi/Interlocking.thy#L17-L20"
+    }
+  ],
+  "parent": {
+    "name": "ilock_cycle",
+    "statement": "\"\\<lbrace>ilock_type_inv\\<rbrace>ilock_cycle\\<lbrace>ilock_type_inv\\<rbrace>\\<^sub>u\"",
+    "note": "The parent is an anonymous lemma: the source writes `lemma \"…\"` with no identifier, so `ilock_cycle` here names the program whose invariant is proved, not a lemma name."
+  },
+  "children": [
+    {
+      "name": "set_relays_type_inv",
+      "statement": "\"\\<lbrace>ilock_type_inv\\<rbrace>set_relays\\<lbrace>ilock_type_inv\\<rbrace>\\<^sub>u\"",
+      "closed_by": "unfolding set_relays_def by (ilock_type_inv_tac)"
+    },
+    {
+      "name": "clear_relays_type_inv",
+      "statement": "\"\\<lbrace>ilock_type_inv\\<rbrace>clear_relays\\<lbrace>ilock_type_inv\\<rbrace>\\<^sub>u\"",
+      "closed_by": "unfolding clear_relays_def by (ilock_type_inv_tac)"
+    },
+    {
+      "name": "set_switches_type_inv",
+      "statement": "\"\\<lbrace>ilock_type_inv\\<rbrace>set_switches\\<lbrace>ilock_type_inv\\<rbrace>\\<^sub>u\"",
+      "closed_by": "unfolding set_switches_def by (ilock_type_inv_tac)"
+    },
+    {
+      "name": "set_signals_type_inv",
+      "statement": "\"\\<lbrace>ilock_type_inv\\<rbrace>set_signals\\<lbrace>ilock_type_inv\\<rbrace>\\<^sub>u\"",
+      "closed_by": "unfolding set_signals_def by (ilock_type_inv_tac)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A Hoare triple {ilock_type_inv} P {ilock_type_inv} whose program P is a fixed sequential composition of operations (set_relays ;; clear_relays ;; set_switches ;; set_signals) and whose invariant is a conjunction of vector-size equalities (#(cdv)=11, #(tc)=4, #(relays)=5, #(signals)=3, #(switches)=5).",
+    "use_when": "the program is a named sequential composition of operations and the same invariant must hold across each of them; give each operation a preservation lemma and let the main theorem be `unfold <def>`, `hoare_split`, then one `rule` per component, so each operation's lemma is a bounded, independently checkable unit.",
+    "avoid_when": "an operation's preservation genuinely needs a stronger precondition than the shared invariant alone (the file's switches/signals sections fall back to a different tactic for exactly that reason); or the operations share a substantial common sub-proof that should be one shared lemma rather than repeated per component."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "set_relays_type_inv occurs in the parent site (lines 193-200).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-utp/utp-main/blob/ffd472022798e60f0385030682b7a07fbeb49e68/fmi/Interlocking.thy#L193-L200",
+      "form": "cites(parent, set_relays_type_inv)"
+    },
+    {
+      "n": 2,
+      "claim": "Lines 173-200 of fmi/Interlocking.thy contain no sorry.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-utp/utp-main/blob/ffd472022798e60f0385030682b7a07fbeb49e68/fmi/Interlocking.thy#L173-L200",
+      "form": "no_sorry(fmi/Interlocking.thy, 173-200)"
+    },
+    {
+      "n": 3,
+      "claim": "The shape is a measurement: an 8-line parent (193-200) whose proof body is four `rule` applications plus `done` delegates the invariant proof to four children of 4 lines each — set_relays_type_inv 173-176, clear_relays_type_inv 178-181, set_switches_type_inv 183-186, set_signals_type_inv 188-191 — for direct_lemmas 4, glue_lines 8, child_lines [4,4,4,4].",
+      "evidence_kind": "measurement",
+      "evidence": "line counts at the pinned commit: 200-193+1 = 8; each child 176-173+1 = 4, in https://github.com/isabelle-utp/utp-main/blob/ffd472022798e60f0385030682b7a07fbeb49e68/fmi/Interlocking.thy"
+    },
+    {
+      "n": 4,
+      "claim": "The authors state the decomposition in a comment at line 89: \"We break down the cyclic behaviour into four separate operations.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/isabelle-utp/utp-main/blob/ffd472022798e60f0385030682b7a07fbeb49e68/fmi/Interlocking.thy#L89"
+    },
+    {
+      "n": 5,
+      "claim": "The same per-component decomposition is reused verbatim for the relays invariant: the anonymous lemma at 308-315 unfolds ilock_cycle_def, hoare_splits, and applies set_relays_relays_inv, clear_relays_relays_inv, set_switches_relays_inv, set_signals_relays_inv (292-306), each closed by ilock_relays_inv_tac.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/isabelle-utp/utp-main/blob/ffd472022798e60f0385030682b7a07fbeb49e68/fmi/Interlocking.thy#L292-L315"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 3,
+    "glue_lines": 8,
+    "child_lines": [
+      4,
+      4,
+      4,
+      4
+    ]
+  },
+  "metrics": {
+    "parent_lines": 8,
+    "glue_lines": 8,
+    "children": 4,
+    "child_total_lines": 16,
+    "depth": 3,
+    "how_counted": "parent = 193-200 (8 lines); children = 173-176, 178-181, 183-186, 188-191 (4 lines each); depth chain: children -> ilock_type_inv_rules (154-161) -> inv_subst_weakening_lemma (17-20)"
+  },
+  "consequences": "The move creates one named obligation per operation, all with the same precondition/invariant {ilock_type_inv} op {ilock_type_inv}, so each closes by the same method ilock_type_inv_tac after unfolding its operation's definition. The parent's hoare_split turns the sequential composition into one goal per component, and the proof closes only if every component has a lemma; a missing component leaves an unproved goal, not a silent gap. The four children are independent (none cites a sibling) but all depend on the shared lemma ilock_type_inv_rules (depth 2) and its own dependency inv_subst_weakening_lemma (depth 3), so a defect there breaks all four at once. Adding a fifth operation to the composition requires one more child lemma and one more `rule` line. The uniform method only works because each operation preserves the type invariant outright; the file's later switches/signals sections need a stronger precondition, so their preservation lemmas fall back to a heavier tactic.",
+  "known_uses": [
+    "https://github.com/isabelle-utp/utp-main/blob/ffd472022798e60f0385030682b7a07fbeb49e68/fmi/Interlocking.thy#L292-L315"
+  ],
+  "related": [
+    "isabelle-per-callee-lemma-munkres-isabelle-97b8b78b"
+  ],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "4a87d5d03baa8b1f046c7c49041c8e6b35938cdb88151c8be167d335e75ec6e4",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:24:00Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:24:34Z"
+    }
+  ]
+}

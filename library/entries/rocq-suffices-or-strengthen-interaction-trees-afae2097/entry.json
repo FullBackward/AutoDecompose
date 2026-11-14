@@ -1,0 +1,288 @@
+{
+  "id": "rocq-suffices-or-strengthen-interaction-trees-afae2097",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Type soundness for labelled Imp by strengthening to statement-and-throw security",
+  "intent": "Prove type soundness of the labelled Imp system (`well_typed_stmt s pc -> secure_stmt s pc`) by first strengthening the goal with `enough` to the conjunction `secure_stmt s pc /\\ secure_throw_stmt s pc`, then inducting on the typing derivation so each of the eight statement constructors is closed by the per-constructor lemma (and its throw twin) proved earlier in the file.",
+  "move": "suffices-or-strengthen",
+  "also_known_as": [
+    "enough",
+    "suffices",
+    "strengthen the goal"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "interaction-trees",
+    "url": "https://github.com/DeepSpec/InteractionTrees",
+    "commit": "284d42248a3c5517cff9f582e335fcee2f6bdc1f",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "secure_example/LabelledImpTypes.v",
+      "bytes": 66485,
+      "sha256": "e362bf9c6d6e62bfbe2fe12a9020999d07e47f7319708f7511620c216ea65361",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/secure_example/LabelledImpTypes.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "secure_example/LabelledImpTypes.v",
+      "lines": [
+        1089,
+        1113
+      ],
+      "role": "parent",
+      "name": "well_typed_stmt_sound",
+      "excerpt_sha256": "d2201eceaf2c71d0c79a8a3e5f85fedd927573b4887b905b9ed12203185716ba",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/secure_example/LabelledImpTypes.v#L1089-L1113"
+    },
+    {
+      "path": "secure_example/LabelledImpTypes.v",
+      "lines": [
+        901,
+        910
+      ],
+      "role": "child",
+      "name": "well_typed_skip",
+      "excerpt_sha256": "890fc4610f8dad3e321b6daef3ef89f67228ab67d267d64780561cba04f28077",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/secure_example/LabelledImpTypes.v#L901-L910"
+    },
+    {
+      "path": "secure_example/LabelledImpTypes.v",
+      "lines": [
+        569,
+        596
+      ],
+      "role": "child",
+      "name": "seq_well_typed_correct",
+      "excerpt_sha256": "7165e0ccf801063cd5f7eb8bb9e9157ee791d47f2eede9a51aa15764ce6e0df5",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/secure_example/LabelledImpTypes.v#L569-L596"
+    },
+    {
+      "path": "secure_example/LabelledImpTypes.v",
+      "lines": [
+        297,
+        341
+      ],
+      "role": "child",
+      "name": "assign_well_typed_correct",
+      "excerpt_sha256": "1e846792b2b39bdca45a394dc1238e2194ea2a467d580ef26f1cd71ad7560a3b",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/secure_example/LabelledImpTypes.v#L297-L341"
+    },
+    {
+      "path": "secure_example/LabelledImpTypes.v",
+      "lines": [
+        457,
+        503
+      ],
+      "role": "child",
+      "name": "output_well_typed_correct",
+      "excerpt_sha256": "9b0bf5410c83594a3fa3347ad5bfa215c0367814d5a217708f8a9a34f751bdf0",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/secure_example/LabelledImpTypes.v#L457-L503"
+    },
+    {
+      "path": "secure_example/LabelledImpTypes.v",
+      "lines": [
+        623,
+        665
+      ],
+      "role": "child",
+      "name": "if_well_typed_correct",
+      "excerpt_sha256": "3cba5d2a411b4a4a9b8b3336e7ebfc691b1329f57e8892c68f1be4a0fb61a525",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/secure_example/LabelledImpTypes.v#L623-L665"
+    },
+    {
+      "path": "secure_example/LabelledImpTypes.v",
+      "lines": [
+        724,
+        750
+      ],
+      "role": "child",
+      "name": "while_well_typed_correct",
+      "excerpt_sha256": "35cf380aba1361bfc71c7be19dd7212b5065e599162c67fd970d615eb3764620",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/secure_example/LabelledImpTypes.v#L724-L750"
+    },
+    {
+      "path": "secure_example/LabelledImpTypes.v",
+      "lines": [
+        796,
+        808
+      ],
+      "role": "child",
+      "name": "well_typed_raise",
+      "excerpt_sha256": "1f46c4efaa268deff28bb7fcf9ea5827a2e43f4684e121d518dead2e79a8be83",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/secure_example/LabelledImpTypes.v#L796-L808"
+    },
+    {
+      "path": "secure_example/LabelledImpTypes.v",
+      "lines": [
+        845,
+        861
+      ],
+      "role": "child",
+      "name": "try_catch_throw_secure_stmt",
+      "excerpt_sha256": "9df9167c12314a502e2c4d9a4b62c49e227ca58e22fc0ef2d49d4ebb4d3b9225",
+      "permalink": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/secure_example/LabelledImpTypes.v#L845-L861"
+    }
+  ],
+  "parent": {
+    "name": "well_typed_stmt_sound",
+    "statement": "Lemma well_typed_stmt_sound s pc : well_typed_stmt s pc -> secure_stmt s pc."
+  },
+  "children": [
+    {
+      "name": "well_typed_skip",
+      "statement": "Lemma well_typed_skip pc : secure_stmt pc Skip.",
+      "closed_by": "case_leq pc observer; both branches close by apply secure_eqit_ret",
+      "note": "Closes the secure_stmt conjunct of the Skip constructor; its primed twin well_typed_skip' (line 912) closes the secure_throw_stmt conjunct. Good leaf: a two-way case on pc ≤ observer, each side a single secure_eqit_ret. Analyst's paraphrase, replaced by the declaration's text: Skip is secure at any pc"
+    },
+    {
+      "name": "seq_well_typed_correct",
+      "statement": "Lemma seq_well_typed_correct pc s1 s2 :\n  secure_stmt pc s1 -> secure_stmt pc s2 ->\n  secure_stmt pc (Seq s1 s2).",
+      "closed_by": "inv Hc1obs / Hc2obs; left branch by eapply secure_eqit_bind, right branch by eapply proper_eutt_secure_eutt",
+      "note": "Closes the secure_stmt conjunct of Seq; twin seq_well_typed_correct' (line 598) closes the secure_throw_stmt conjunct. Good leaf: composed from the two hypotheses alone; the right branch reuses state_secure_eutt_ret_aux. Analyst's paraphrase, replaced by the declaration's text: sequencing two secure statements is secure"
+    },
+    {
+      "name": "assign_well_typed_correct",
+      "statement": "Lemma assign_well_typed_correct x e pc l : secure_expr l e -> leq (join l pc) (Γ x) -> secure_stmt pc (Assign x e).",
+      "closed_by": "case_leq pc observer; eapply secure_eqit_bind then apply secure_eqit_ret",
+      "note": "Closes the secure_stmt conjunct of Assign; twin assign_well_typed_correct' (line 388). Good leaf: turns the two hypotheses into three internal facts (Hpc, Hl, He) then a case split, each branch a secure_eqit_bind / secure_eqit_ret pair. Analyst's paraphrase, replaced by the declaration's text: a well-typed assignment is secure"
+    },
+    {
+      "name": "output_well_typed_correct",
+      "statement": "Lemma output_well_typed_correct l1 le pc e :\n  secure_expr le e -> leq (join le pc) l1 ->\n  secure_stmt pc (Output l1 e).",
+      "closed_by": "case_leq pc observer; eapply secure_eqit_bind then eqit_secure_public_Vis / eqit_secure_private_VisLR / eqit_secure_private_VisL",
+      "note": "Closes the secure_stmt conjunct of Output; twin output_well_typed_correct' (line 513). Good leaf: mirrors assign_well_typed_correct with a print event instead of a store update. Analyst's paraphrase, replaced by the declaration's text: a well-typed output is secure"
+    },
+    {
+      "name": "if_well_typed_correct",
+      "statement": "Lemma if_well_typed_correct pc le e s1 s2 :\n  secure_expr le e -> secure_stmt (join pc le) s1 -> secure_stmt (join pc le) s2 ->\n  secure_stmt pc (If e s1 s2).",
+      "closed_by": "inv Hc1obs, Hc2obs, He; eapply secure_eqit_bind",
+      "note": "Closes the secure_stmt conjunct of If; twin if_well_typed_correct' (line 667). Good leaf: a case split over the two branch hypotheses and the expression, each branch a secure_eqit_bind over the boolean. Analyst's paraphrase, replaced by the declaration's text: a well-typed conditional is secure"
+    },
+    {
+      "name": "while_well_typed_correct",
+      "statement": "Lemma while_well_typed_correct e s :\n  secure_expr bot e -> secure_stmt bot s ->\n  secure_stmt bot (While e s).",
+      "closed_by": "eapply secure_eqit_iter over the loop (via interp_state_iter')",
+      "note": "Closes the secure_stmt conjunct of While; twin while_well_typed_correct' (line 752). Good leaf: the coinductive step of the file — reduces the while to secure_eqit_iter over the body's own security. Analyst's paraphrase, replaced by the declaration's text: a well-typed while loop is secure"
+    },
+    {
+      "name": "well_typed_raise",
+      "statement": "Lemma well_typed_raise : secure_stmt bot (Raise bot).",
+      "closed_by": "left; eapply secure_eqit_bind with (RR := eq), then apply eqit_secure_public_Vis",
+      "note": "Closes the secure_stmt conjunct of Raise; twin well_typed_raise' (line 810). Good leaf: no hypotheses; the raise is public at bot and closes by the public-Vis rule. Analyst's paraphrase, replaced by the declaration's text: raising the bottom label is secure"
+    },
+    {
+      "name": "try_catch_throw_secure_stmt",
+      "statement": "Lemma try_catch_throw_secure_stmt pc s catch :\n  secure_stmt pc s -> secure_throw_stmt pc s -> secure_stmt pc catch ->\n  secure_stmt pc (TryCatch s catch).",
+      "closed_by": "left branch by eapply try_catch_public_exc; right branch by eapply proper_eutt_secure_eutt",
+      "note": "Closes the secure_stmt conjunct of TryCatch; twin try_catch_throw_secure_stmt' (line 863). Good leaf: the left branch is a single eapply of the helper lemma try_catch_public_exc (line 825), which itself closes on its own. Analyst's paraphrase, replaced by the declaration's text: try/catch preserves statement security"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A soundness statement `well_typed P -> secure P` over an inductively defined typing relation, where the target property has two paired forms — normal termination (`secure_stmt`) and exceptional termination (`secure_throw_stmt`) — that must be proved in lockstep.",
+    "use_when": "Each constructor of the typing relation already has a matching per-constructor lemma for each of the two forms; strengthening the goal to their conjunction lets a single induction on the typing derivation cover both forms at once, so the extra conjunct costs nothing per case. The strengthened goal must be dischargeable back to the original (here `try tauto`).",
+    "avoid_when": "The two forms cannot be discharged by paired per-constructor lemmas (or one form is not actually needed — then the strengthening over-proves); the induction is not on the typing derivation itself; or the strengthened conjunct is not recoverable from the original goal, so `enough` leaves a residual obligation."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site well_typed_stmt_sound is 25 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/secure_example/LabelledImpTypes.v#L1089-L1113",
+      "form": "lines(well_typed_stmt_sound, 25)"
+    },
+    {
+      "n": 2,
+      "claim": "well_typed_stmt_sound is declared at secure_example/LabelledImpTypes.v 1089-1113.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/secure_example/LabelledImpTypes.v#L1089-L1113",
+      "form": "declared(well_typed_stmt_sound, secure_example/LabelledImpTypes.v, 1089-1113)"
+    },
+    {
+      "n": 3,
+      "claim": "None of admit, Admitted, Axiom or axiom occurs in the parent site secure_example/LabelledImpTypes.v 1089-1113.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/secure_example/LabelledImpTypes.v#L1089-L1113",
+      "form": "no_sorry(secure_example/LabelledImpTypes.v, 1089-1113)"
+    },
+    {
+      "n": 4,
+      "claim": "try_catch_throw_secure_stmt occurs in the parent site (lines 1089-1113).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/secure_example/LabelledImpTypes.v#L1089-L1113",
+      "form": "cites(parent, try_catch_throw_secure_stmt)"
+    },
+    {
+      "n": 5,
+      "claim": "The parent proof (lines 1091-1112) cites 9 named lemmas directly — well_typed_skip, seq_well_typed_correct, assign_well_typed_correct, output_well_typed_correct, if_well_typed_correct, while_well_typed_correct, well_typed_raise, try_catch_throw_secure_stmt, well_typed_expr_correct — counted by reading each name's occurrence in those lines (each also has a primed throw twin cited in the same lines).",
+      "evidence_kind": "measurement",
+      "evidence": "read of secure_example/LabelledImpTypes.v lines 1091-1112 at https://github.com/DeepSpec/InteractionTrees/blob/284d42248a3c5517cff9f582e335fcee2f6bdc1f/secure_example/LabelledImpTypes.v#L1089-L1113"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 9,
+    "depth": 4,
+    "glue_lines": 25,
+    "child_lines": [
+      10,
+      28,
+      45,
+      47,
+      43,
+      27,
+      13,
+      17
+    ]
+  },
+  "metrics": {
+    "parent_site_lines": 25,
+    "direct_lemmas": 9,
+    "child_proof_lines": [
+      10,
+      28,
+      45,
+      47,
+      43,
+      27,
+      13,
+      17
+    ],
+    "how_counted": "parent_site_lines = 1113-1089+1; direct_lemmas = the 9 lemma names cited in lines 1091-1112 (8 per-constructor lemmas plus well_typed_expr_correct); child_proof_lines = the line spans of the 8 shown child sites, in constructor order. All counted by reading the copied secure_example/LabelledImpTypes.v."
+  },
+  "consequences": "The move turns one soundness goal into eight constructor goals, each a pair (normal and throw). Obligations: every constructor needs both a secure_stmt and a secure_throw_stmt lemma — the two never collapse — and the strengthened conjunct must be recoverable from the original goal (`try tauto`). The While and TryCatch cases destruct their induction hypotheses to reach the throw form, which is exactly why the strengthening is needed: induction on the typing derivation alone would not produce it. Failure mode: strengthening to a conjunction that is not strong enough for the recursive constructors leaves the induction stuck; strengthening too much (a form no constructor needs) over-proves.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "afae2097fcde0e867eb27476866a2c1c971a38af443b5fc7d701bffe08bd1d99",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:26:58Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:31:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:29:42Z",
+      "note": "parent well_typed_stmt_sound: statement re-copied from code; child 'well_typed_skip': statement re-copied from the declaration of well_typed_skip; child 'seq_well_typed_correct': statement re-copied from the declaration of seq_well_typed_correct; child 'assign_well_typed_correct': statement re-copied from the declaration of assign_well_typed_correct; child 'output_well_typed_correct': statement re-copied from the declaration of output_well_typed_correct; child 'if_well_typed_correct': statement re-copied from the declaration of if_well_typed_correct; child 'while_well_typed_correct': statement re-copied from the declaration of while_well_typed_correct; child 'well_typed_raise': statement re-copied from the declaration of well_typed_raise; child 'try_catch_throw_secure_stmt': statement re-copied from the declaration of try_catch_throw_secure_stmt"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:36:32Z"
+}

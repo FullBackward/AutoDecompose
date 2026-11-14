@@ -1,0 +1,168 @@
+{
+  "id": "lean-suffices-or-strengthen-seed-prover-c33ea164",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Strengthen to pairwise non-distinctness, then convert to the card bound (IMO 2025 P1)",
+  "intent": "Prove that a non-sunny line (slope l.1 ≠ 0 and ≠ −1) meets the boundary of the triangular lattice-point set in at most two points, by first strengthening the goal to the pairwise statement 'any three points of the filtered set have two equal' (non_sunny_lines_cover_at_most_2_points_on_boundary_h_main), then converting that to the cardinality bound ≤ 2 (non_sunny_lines_cover_at_most_2_points_on_boundary_h_final).",
+  "move": "suffices-or-strengthen",
+  "also_known_as": [
+    "strengthen the goal",
+    "prove a stronger intermediate statement",
+    "reformulate a cardinality bound as pairwise non-distinctness"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "seed-prover",
+    "url": "https://github.com/ByteDance-Seed/Seed-Prover",
+    "commit": "38c59cebaf969ac259196eb091757518d5b54c67",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "SeedProver/imo2025/IMO2025/P1.lean",
+      "bytes": 211021,
+      "sha256": "41e8474f40e13c762df111ec245420b68db29bee119fa24e1bc8c39ab7c419b8",
+      "permalink": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P1.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "SeedProver/imo2025/IMO2025/P1.lean",
+      "lines": [
+        3432,
+        3439
+      ],
+      "role": "parent",
+      "name": "non_sunny_lines_cover_at_most_2_points_on_boundary",
+      "excerpt_sha256": "c2bb954dde423fb5b4264e35f99b3b303aaa0a3dc184196c1cfa3d1874b62ada",
+      "permalink": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P1.lean#L3432-L3439"
+    },
+    {
+      "path": "SeedProver/imo2025/IMO2025/P1.lean",
+      "lines": [
+        3285,
+        3430
+      ],
+      "role": "child",
+      "name": "non_sunny_lines_cover_at_most_2_points_on_boundary_h_main",
+      "excerpt_sha256": "38cd03a7f8c21b49cb7a9b154827dd551922ea0c936515cff0d41e5e3535c678",
+      "permalink": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P1.lean#L3285-L3430"
+    },
+    {
+      "path": "SeedProver/imo2025/IMO2025/P1.lean",
+      "lines": [
+        3261,
+        3283
+      ],
+      "role": "child",
+      "name": "non_sunny_lines_cover_at_most_2_points_on_boundary_h_final",
+      "excerpt_sha256": "478d2614058b8d3b5cf4a24719d73f82322b809491639dfdce005d59b054d4c0",
+      "permalink": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P1.lean#L3261-L3283"
+    }
+  ],
+  "parent": {
+    "name": "non_sunny_lines_cover_at_most_2_points_on_boundary",
+    "statement": "theorem non_sunny_lines_cover_at_most_2_points_on_boundary (n k : ℕ) (verts : Finset ℝ) (lines : Finset (ℝ × ℝ)) (points : Finset (ℕ × ℕ)) (hn : 3 ≤ n) (hcard : lines.card + verts.card = n) (hallpoints : ∀ p, p ∈ points ↔ p.1 ≥ 1 ∧ p.2 ≥ 1 ∧ p.1 + p.2 ≤ n + 1) (hmain : ∀ p ∈ points, (∃ l ∈ lines, l.1 * p.1 + l.2 = p.2) ∨ (∃ x ∈ verts, p.1 = x)) (hk : (lines.filter (fun l ↦ l.1 ≠ 0 ∧ l.1 ≠ -1)).card = k) (l : ℝ × ℝ) (h_non_sunny : l.1 ≠ 0 ∧ l.1 ≠ -1) :\n  (Finset.filter (fun p ↦ (p.1 = 1 ∨ p.2 = 1 ∨ p.1 + p.2 = n + 1) ∧\n    (l.1 * p.1 + l.2 = p.2)) points).card ≤ 2"
+  },
+  "children": [
+    {
+      "name": "non_sunny_lines_cover_at_most_2_points_on_boundary_h_main",
+      "statement": "lemma non_sunny_lines_cover_at_most_2_points_on_boundary_h_main (n k : ℕ)\n  (verts : Finset ℝ)\n  (lines : Finset (ℝ × ℝ))\n  (points : Finset (ℕ × ℕ))\n  (hn : 3 ≤ n)\n  (hcard : lines.card + verts.card = n)\n  (hallpoints : ∀ p, p ∈ points ↔ p.1 ≥ 1 ∧ p.2 ≥ 1 ∧ p.1 + p.2 ≤ n + 1)\n  (hmain : ∀ p ∈ points, (∃ l ∈ lines, l.1 * p.1 + l.2 = p.2) ∨ (∃ x ∈ verts, p.1 = x))\n  (hk : (lines.filter (fun l ↦ l.1 ≠ 0 ∧ l.1 ≠ -1)).card = k)\n  (l : ℝ × ℝ)\n  (h_non_sunny : l.1 ≠ 0 ∧ l.1 ≠ -1):\n  ∀ (x y z : ℕ × ℕ), x ∈ (Finset.filter (fun p ↦ (p.1 = 1 ∨ p.2 = 1 ∨ p.1 + p.2 = n + 1) ∧ (l.1 * p.1 + l.2 = p.2)) points) → y ∈ (Finset.filter (fun p ↦ (p.1 = 1 ∨ p.2 = 1 ∨ p.1 + p.2 = n + 1) ∧ (l.1 * p.1 + l.2 = p.2)) points) → z ∈ (Finset.filter (fun p ↦ (p.1 = 1 ∨ p.2 = 1 ∨ p.1 + p.2 = n + 1) ∧ (l.1 * p.1 + l.2 = p.2)) points) → x = y ∨ x = z ∨ y = z",
+      "closed_by": "the 3×3×3 rcases on x.1 = 1 ∨ x.2 = 1 ∨ x.1 + x.2 = n + 1 (and the same for y and z); each leaf closes with same_boundary_condition_implies_eq (two points on one boundary are equal, then tauto) or contradiction_from_conditions (exfalso, when the three points sit on the three distinct boundaries)",
+      "note": "The strengthened statement: any three points of the filtered set have two equal (no three distinct points). The hard half of the proof, a case analysis on which boundary condition each of x, y, z satisfies."
+    },
+    {
+      "name": "non_sunny_lines_cover_at_most_2_points_on_boundary_h_final",
+      "statement": "lemma non_sunny_lines_cover_at_most_2_points_on_boundary_h_final (n k : ℕ)\n  (verts : Finset ℝ)\n  (lines : Finset (ℝ × ℝ))\n  (points : Finset (ℕ × ℕ))\n  (hn : 3 ≤ n)\n  (hcard : lines.card + verts.card = n)\n  (hallpoints : ∀ p, p ∈ points ↔ p.1 ≥ 1 ∧ p.2 ≥ 1 ∧ p.1 + p.2 ≤ n + 1)\n  (hmain : ∀ p ∈ points, (∃ l ∈ lines, l.1 * p.1 + l.2 = p.2) ∨ (∃ x ∈ verts, p.1 = x))\n  (hk : (lines.filter (fun l ↦ l.1 ≠ 0 ∧ l.1 ≠ -1)).card = k)\n  (l : ℝ × ℝ)\n  (h_non_sunny : l.1 ≠ 0 ∧ l.1 ≠ -1)\n  (h_main : ∀ (x y z : ℕ × ℕ), x ∈ (Finset.filter (fun p ↦ (p.1 = 1 ∨ p.2 = 1 ∨ p.1 + p.2 = n + 1) ∧ (l.1 * p.1 + l.2 = p.2)) points) → y ∈ (Finset.filter (fun p ↦ (p.1 = 1 ∨ p.2 = 1 ∨ p.1 + p.2 = n + 1) ∧ (l.1 * p.1 + l.2 = p.2)) points) → z ∈ (Finset.filter (fun p ↦ (p.1 = 1 ∨ p.2 = 1 ∨ p.1 + p.2 = n + 1) ∧ (l.1 * p.1 + l.2 = p.2)) points) → x = y ∨ x = z ∨ y = z):\n  (Finset.filter (fun p ↦ (p.1 = 1 ∨ p.2 = 1 ∨ p.1 + p.2 = n + 1) ∧ (l.1 * p.1 + l.2 = p.2)) points).card ≤ 2",
+      "closed_by": "by_contra h, then the finite-set fact that card > 2 gives three distinct elements (the have h₄ … exact? step), rcases to x, y, z, then have h₃ := h_main x y z hx hy hz; tauto",
+      "note": "The conversion: a finite set with more than two elements contains three pairwise distinct elements, which contradicts h_main, so the cardinality is at most 2. The generic half, independent of the geometry."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A finite-set cardinality bound (Finset.filter P s).card ≤ 2, where P is a conjunction of a disjunctive boundary condition (p.1 = 1 ∨ p.2 = 1 ∨ p.1 + p.2 = n + 1) and a line-membership equation (l.1 * p.1 + l.2 = p.2).",
+    "use_when": "The bound is hard to reach by counting the filter directly, but the equivalent 'no three distinct elements' statement is exactly what a case analysis on the boundary condition can show, and the conversion from 'no three distinct' to 'card ≤ 2' is a generic finite-set fact (here filled by exact?).",
+    "avoid_when": "The target cardinality is not equivalent to pairwise non-distinctness (a bound of 1, or a bound over an infinite set or a multiset); or the pairwise statement does not split more cleanly than the original — here it does because the boundary disjunction gives finitely many cases, each a linear equation in the slope l.1."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site is 8 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P1.lean#L3432-L3439",
+      "form": "lines(parent, 8)"
+    },
+    {
+      "n": 2,
+      "claim": "non_sunny_lines_cover_at_most_2_points_on_boundary_h_main occurs in the parent site.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P1.lean#L3432-L3439",
+      "form": "cites(parent, non_sunny_lines_cover_at_most_2_points_on_boundary_h_main)"
+    },
+    {
+      "n": 3,
+      "claim": "non_sunny_lines_cover_at_most_2_points_on_boundary_h_final occurs in the parent site.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P1.lean#L3432-L3439",
+      "form": "cites(parent, non_sunny_lines_cover_at_most_2_points_on_boundary_h_final)"
+    },
+    {
+      "n": 4,
+      "claim": "No sorry/admit/Admitted/axiom occurs in SeedProver/imo2025/IMO2025/P1.lean lines 3261-3439.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/ByteDance-Seed/Seed-Prover/blob/38c59cebaf969ac259196eb091757518d5b54c67/SeedProver/imo2025/IMO2025/P1.lean#L3261-L3439",
+      "form": "no_sorry(SeedProver/imo2025/IMO2025/P1.lean, 3261-3439)"
+    },
+    {
+      "n": 5,
+      "claim": "The theorem-scale shape is direct_lemmas=2, glue_lines=8, child_lines=[146, 23], and the longest checked chain of project lemmas below the parent has depth 4 (non_sunny_lines_cover_at_most_2_points_on_boundary → h_main → contradiction_from_conditions → final → main).",
+      "evidence_kind": "measurement",
+      "evidence": "counted from the copied file code/SeedProver/imo2025/IMO2025/P1.lean at commit 38c59cebaf969ac259196eb091757518d5b54c67"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 4,
+    "glue_lines": 8,
+    "child_lines": [
+      146,
+      23
+    ]
+  },
+  "metrics": {
+    "glue_lines": 8,
+    "child_lines": [
+      146,
+      23
+    ],
+    "direct_lemmas": 2,
+    "depth_checked": 4,
+    "how_counted": "Line spans of the parent site (3432-3439) and the two child sites (3285-3430, 3261-3283) of the copied file; depth via the chain non_sunny_lines_cover_at_most_2_points_on_boundary → h_main → contradiction_from_conditions → final → main, each citation found by reading the file."
+  },
+  "consequences": "Splits the goal into a strengthened statement (h_main, the hard case analysis) and a generic conversion (h_final, from pairwise non-distinctness to card ≤ 2). The two halves must meet exactly: h_final's hypothesis h_main is verbatim h_main's conclusion, and the glue passes it unchanged. The equivalence relies on the set being finite (a Finset) so that 'no three distinct elements' is exactly 'card ≤ 2'. Failure modes: if the strengthened statement is not actually equivalent to the target, or if the case analysis in h_main branches on conditions that do not cover the strengthened statement (here the 3×3×3 cases come from p.1 = 1 ∨ p.2 = 1 ∨ p.1 + p.2 = n + 1 for each of x, y, z).",
+  "known_uses": [],
+  "related": [
+    "lean-suffices-or-strengthen-compfiles-25eb18ba"
+  ],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "c33ea164839b6ba20e8a638e6f5c5d2f05db5d025246008a535a810367ed1b6d",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:46:53Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:48:14Z",
+      "note": "parent non_sunny_lines_cover_at_most_2_points_on_boundary: statement re-copied from code; child 'non_sunny_lines_cover_at_most_2_points_on_boundary_h_main': statement re-copied from the declaration of non_sunny_lines_cover_at_most_2_points_on_boundary_h_main; child 'non_sunny_lines_cover_at_most_2_points_on_boundary_h_final': statement re-copied from the declaration of non_sunny_lines_cover_at_most_2_points_on_boundary_h_final"
+    }
+  ]
+}

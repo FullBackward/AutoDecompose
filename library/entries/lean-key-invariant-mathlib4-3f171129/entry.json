@@ -1,0 +1,260 @@
+{
+  "id": "lean-key-invariant-mathlib4-3f171129",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Key invariant: the pair of longest increasing/decreasing sequence lengths for Erdős–Szekeres",
+  "intent": "Prove the Erdős–Szekeres theorem — more than r*s distinct values force an increasing sequence longer than r or a decreasing sequence longer than s — by labelling each index i with the pair of longest increasing and decreasing sequence lengths ending at i, proving that labelling injective, and pigeonholing more than r*s elements into the r×s box of possible labels.",
+  "move": "key-invariant",
+  "also_known_as": [
+    "potential function",
+    "invariant labelling",
+    "pair-of-labels argument"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "mathlib4",
+    "url": "https://github.com/leanprover-community/mathlib4",
+    "commit": "e1545ebed97594477bbd88b2fe948ffce56e5af2",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean",
+      "bytes": 7464,
+      "sha256": "069584aacbe30f113c07318590acd54ce2bf9ed5edf2b5921761cccd32bf0fe5",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean",
+      "lines": [
+        142,
+        166
+      ],
+      "role": "parent",
+      "name": "erdos_szekeres",
+      "excerpt_sha256": "4d954c04f752799d7447797e1715ba51fb477e4ea519c6d217b1f9672cb68b03",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean#L142-L166"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean",
+      "lines": [
+        71,
+        72
+      ],
+      "role": "child",
+      "name": "maxIncSequencesTo_mem",
+      "excerpt_sha256": "75289e505ff0ff1da4919cac029ec4b0e8c1215d5c2c723783e84d302b45f357",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean#L71-L72"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean",
+      "lines": [
+        73,
+        74
+      ],
+      "role": "child",
+      "name": "maxDecSequencesTo_mem",
+      "excerpt_sha256": "fd75880d169fddc4155641c015821cb90407bd7fada5ce0d883b32f57f92f747",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean#L73-L74"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean",
+      "lines": [
+        125,
+        130
+      ],
+      "role": "child",
+      "name": "paired_injective",
+      "excerpt_sha256": "f22b5ee12db1ff615a7a2b6473a79488b47cd5fa7c4460339f82f8852889e681",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean#L125-L130"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean",
+      "lines": [
+        66,
+        67
+      ],
+      "role": "child",
+      "name": "one_le_maxIncSequencesTo",
+      "excerpt_sha256": "33aab20346bae1086d7ff633e217aa168e84419ae296d397c4d40dd2adb9c673",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean#L66-L67"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean",
+      "lines": [
+        68,
+        69
+      ],
+      "role": "child",
+      "name": "one_le_maxDecSequencesTo",
+      "excerpt_sha256": "e0b3857b821c1d85a1672c7632f35bd1b4b1a10d85b0b2e5283f2621e231f529",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean#L68-L69"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean",
+      "lines": [
+        84,
+        108
+      ],
+      "role": "context",
+      "name": "maxIncSequencesTo_lt",
+      "excerpt_sha256": "b5de7db5224202864a927166dad2a2e2612b6ef0cdd535485a81de8f1a8b27b2",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean#L84-L108"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean",
+      "lines": [
+        110,
+        112
+      ],
+      "role": "context",
+      "name": "maxDecSequencesTo_gt",
+      "excerpt_sha256": "71a9fb54b7f787159c07c8af307ec095913c27d031ba1e0b072b93be36e0ed42",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean#L110-L112"
+    },
+    {
+      "path": "Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean",
+      "lines": [
+        118,
+        119
+      ],
+      "role": "context",
+      "name": "paired",
+      "excerpt_sha256": "628efe45472158846dd0ebdd1707a2eff18a8115210a90f8857ac65b90c787ed",
+      "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean#L118-L119"
+    }
+  ],
+  "parent": {
+    "name": "erdos_szekeres",
+    "statement": "theorem erdos_szekeres {r s : ℕ} {f : α → β} (hn : r * s < Fintype.card α) (hf : Injective f) :\n    (∃ t : Finset α, r < #t ∧ StrictMonoOn f t) ∨\n      ∃ t : Finset α, s < #t ∧ StrictAntiOn f t"
+  },
+  "children": [
+    {
+      "name": "maxIncSequencesTo_mem",
+      "statement": "lemma maxIncSequencesTo_mem : maxIncSequencesTo f i ∈ incSequencesTo f i",
+      "closed_by": "max'_mem _ incSequencesTo_nonempty",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the maximum increasing length is attained (statement copied by statements.py)"
+    },
+    {
+      "name": "maxDecSequencesTo_mem",
+      "statement": "lemma maxDecSequencesTo_mem : maxDecSequencesTo f i ∈ decSequencesTo f i",
+      "closed_by": "max'_mem _ decSequencesTo_nonempty",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the maximum decreasing length is attained (statement copied by statements.py)"
+    },
+    {
+      "name": "paired_injective",
+      "statement": "lemma paired_injective (hf : Injective f) : Injective (paired f)",
+      "closed_by": "apply Injective.of_lt_imp_ne; cases lt_or_gt_of_ne; exact (maxIncSequencesTo_lt hij h).ne congr($q.1) | (maxDecSequencesTo_gt hij h).ne congr($q.2)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the pair of lengths is injective when f is injective (statement copied by statements.py)"
+    },
+    {
+      "name": "one_le_maxIncSequencesTo",
+      "statement": "lemma one_le_maxIncSequencesTo : 1 ≤ maxIncSequencesTo f i",
+      "closed_by": "le_max' _ _ one_mem_incSequencesTo",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the maximum increasing length is at least 1 (statement copied by statements.py)"
+    },
+    {
+      "name": "one_le_maxDecSequencesTo",
+      "statement": "lemma one_le_maxDecSequencesTo : 1 ≤ maxDecSequencesTo f i",
+      "closed_by": "le_max' _ _ one_mem_decSequencesTo",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the maximum decreasing length is at least 1 (statement copied by statements.py)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A pigeonhole argument over a finite type: prove that if a structure is large enough, some object of a given kind must exist. The move attaches to each element a canonical pair (here the maximum length of an increasing and of a decreasing sequence ending there), shows the labelling is injective, and bounds the set of possible labels by the size of the counter-assumption.",
+    "use_when": "the existence of a long monotone (or otherwise extremal) subsequence can be re-phrased as 'some element has a large label'; the invariant's injectivity is a short case split (here on i < j vs j < i); and the label set is a product of two finite intervals so its size is a product.",
+    "avoid_when": "the invariant cannot be made injective (the two label components need separate comparison lemmas); the label set is not a clean finite product (so the cardinality bound is not r*s); or the extremal object is not 'attained' by a maximum over a nonempty finite set (here supplied by max'_mem and the singleton one_mem lemmas)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "`erdos_szekeres` is declared at lines 142-166 of `Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean`.",
+      "evidence_kind": "check",
+      "form": "declared(erdos_szekeres, Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean, 142-166)",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean#L142-L166"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites `paired_injective`.",
+      "evidence_kind": "check",
+      "form": "cites(parent, paired_injective)",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean#L142-L166"
+    },
+    {
+      "n": 3,
+      "claim": "Lines 1-168 of `Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean` contain no `sorry`, `admit`, or `axiom`.",
+      "evidence_kind": "check",
+      "form": "no_sorry(Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean, 1-168)",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean"
+    },
+    {
+      "n": 4,
+      "claim": "The decomposition has 5 direct lemmas (child sites of 2, 2, 6, 2 and 2 lines), a 25-line glue, and depth 3: the main theorem cites paired_injective, which cites maxDecSequencesTo_gt, which cites maxIncSequencesTo_lt.",
+      "evidence_kind": "measurement",
+      "evidence": "counted from the entry's sites: parent lines 142-166 (25 lines); child sites lines 71-72, 73-74, 125-130, 66-67, 68-69; paired_injective (lines 125-130) cites maxIncSequencesTo_lt and maxDecSequencesTo_gt at lines 129-130, and maxDecSequencesTo_gt (lines 110-112) cites maxIncSequencesTo_lt at line 112"
+    },
+    {
+      "n": 5,
+      "claim": "The authors state the invariant and the pigeonhole plan in the theorem's docstring: \"We label each value in the sequence with two numbers specifying the longest increasing subsequence ending there, and the longest decreasing subsequence ending there. We then show the pair of labels must be unique. Now if there is no increasing sequence longer than r and no decreasing sequence longer than s, then there are at most r * s possible labels, which is a contradiction if there are more than r * s elements.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Wiedijk100Theorems/AscendingDescendingSequences.lean#L135-L140"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 5,
+    "depth": 3,
+    "glue_lines": 25,
+    "child_lines": [
+      2,
+      2,
+      6,
+      2,
+      2
+    ]
+  },
+  "metrics": {
+    "parent_lines": 25,
+    "children": 5,
+    "depth": 3,
+    "how_counted": "parent_lines = lines 142-166 of the copied file; children = the five named lemmas the glue cites directly; depth = the chain erdos_szekeres -> paired_injective (cites maxIncSequencesTo_lt, maxDecSequencesTo_gt at lines 129-130) -> maxDecSequencesTo_gt (cites maxIncSequencesTo_lt at line 112) -> maxIncSequencesTo_lt, three project lemmas below the theorem"
+  },
+  "consequences": "The move obliges the writer to (i) prove the invariant is attained at every index (maxIncSequencesTo_mem / maxDecSequencesTo_mem, from the nonemptiness of the singleton sequence), (ii) prove the invariant is injective, which is a two-way case split on i < j vs j < i backed by the two comparison lemmas maxIncSequencesTo_lt and maxDecSequencesTo_gt, and (iii) bound the label set below by 1 (one_le_maxIncSequencesTo / one_le_maxDecSequencesTo) so it is exactly the product box Icc 1 r ×ˢ Icc 1 s. Failure mode: the injectivity rests on order duality — maxDecSequencesTo_gt is maxIncSequencesTo_lt on βᵒᵈ — so the invariant only works when both the increasing and decreasing halves are stated with the same 'ends at i' notion; if the extremal object were a supremum that need not be attained, the one_mem / max'_mem lemmas would not exist and the argument would need a different completion.",
+  "known_uses": [],
+  "related": [
+    "lean-key-invariant-compfiles-f9a0ece2",
+    "lean-key-invariant-seed-prover-ccd41e1d"
+  ],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "3f17112972f1952c6f1339e08a1b400e2dcc2deeaef2e4634bc56a88bab18ce4",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:09:07Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,also_known_as,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:15:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:10:51Z",
+      "note": "parent erdos_szekeres: statement re-copied from code; child 'maxIncSequencesTo_mem': statement re-copied from the declaration of maxIncSequencesTo_mem; child 'maxDecSequencesTo_mem': statement re-copied from the declaration of maxDecSequencesTo_mem; child 'paired_injective': statement re-copied from the declaration of paired_injective; child 'one_le_maxIncSequencesTo': statement re-copied from the declaration of one_le_maxIncSequencesTo; child 'one_le_maxDecSequencesTo': statement re-copied from the declaration of one_le_maxDecSequencesTo"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T09:18:29Z"
+}

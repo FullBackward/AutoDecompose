@@ -1,0 +1,125 @@
+{
+  "entry": "lean-interface-lemma-strongpnt-f735021c",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:22:55Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:22:55Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:22:55Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: lem_BfCf@StrongPNT/PNT2_LogDerivative.lean:978, lem_Bf_div@StrongPNT/PNT2_LogDerivative.lean:984, lem_Bf_prodpow@StrongPNT/PNT2_LogDerivative.lean:986; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:22:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "no_sorry(StrongPNT/PNT2_LogDerivative.lean, 912-987) -> no_sorry: none of sorry, admit, axiom in StrongPNT/PNT2_LogDerivative.lean:912-987",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:22:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(StrongPNT/PNT2_LogDerivative.lean:967-987, lem_BfCf) -> cites: lem_BfCf occurs at StrongPNT/PNT2_LogDerivative.lean:978",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:22:55Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2f5835c322314f55f1026ec2f139d704b7c45c69",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:23:03Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/blueprint.yml runs leanprover/lean-action@v1.2.0 (lake build of default target StrongPNT, which imports StrongPNT.PNT2_LogDerivative) on push to main; source pinned at ref HEAD (2f5835c) on default branch",
+      "by": "verifier",
+      "at": "2026-11-14T09:24:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "read copied code StrongPNT/PNT2_LogDerivative.lean lines 897-987: glue lem_Bf_off_K = 21 lines (967-987), lem_BfCf = 25 (912-936), lem_Bf_div = 14 (938-951), lem_Bf_prodpow = 13 (953-965); parent proof cites the three children directly (rw [lem_BfCf], rw [@lem_Bf_div], rw [@lem_Bf_prodpow]) so depth 1",
+      "by": "verifier",
+      "at": "2026-11-14T09:24:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "read blueprint/src/PNT/PNT2_LogDerivative.tex lines 569-579: \\begin{lemma}[B off K]\\label{lem:Bf_off_K}, proof contains \\uses{lem:BfCf, lem:Bf_div, lem:Bf_prodpow} and 'By \\cref{lem:BfCf} and \\cref{lem:Bf_div,lem:Bf_prodpow}'",
+      "by": "verifier",
+      "at": "2026-11-14T09:24:24Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2f5835c322314f55f1026ec2f139d704b7c45c69",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:24:44Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent lem_Bf_off_K (967-987, 21 lines) is proved by rw[lem_BfCf]@979, rw[mul_div_assoc]@981, congr 1@983, rw[@lem_Bf_div]@985, rw[@lem_Bf_prodpow]@987; exactly the 3 project children, each closing by a single Mathlib rewrite (exact div_mul_eq_mul_div@936, rw[Finset.prod_div_distrib]@951, simp only [div_pow]@965), no sorry/admit/axiom in 912-987. Shape numbers match: glue_lines 21, child_lines [25,14,13], direct_lemmas 3, depth 1.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:25:37Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generically beyond Blaschke/Bf/Cf: applicability gives a generic goal_shape (F z = G z, F a noncomputable def composite, closed form off a distinguished subset as hypothesis) and use_when cites 'one canonical expansion instead of unfolding each time, factoring into a short chain of single-Mathlib-lemma rewrites'. avoid_when is specific and honest (case analysis/non-algebraic hides real work; single-use -> unfold locally; unstable boundary -> rewritten downstream). Consequences honest: pins the closed form, z-not-in-zero-set side condition, unfolding deferred not removed (lem_BfCf still unfolds), and congr-1 fragility. Good-leaf criterion for a bounded prover is explicit: each child closes by one Mathlib rewrite/exact (div_mul_eq_mul_div, Finset.prod_div_distrib, div_pow), self-contained, depth 1, only lem_BfCf touches definitions. Verified the cited code (lines 897-987) matches these characterisations.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:26:17Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2f5835c322314f55f1026ec2f139d704b7c45c69",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:26:33Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes (1 file byte-identical at 2f5835c322314f55f1026ec2f139d704b7c45c69). Commit is consistent everywhere: entry.json and SOURCE.md use the full 2f5835c322314f55f1026ec2f139d704b7c45c69, README uses the 12-char prefix 2f5835c32231. Licence is LicenseRef-unknown in entry.json source.licence, README and SOURCE.md; SOURCE.md records 'no licence file found at the root', matching the unknown licence. All file/site permalinks use the pinned commit and path StrongPNT/PNT2_LogDerivative.lean, which is the copied file. Sed-verified the cited ranges match the copied file: parent 967-987, children lem_BfCf 912-936, lem_Bf_div 938-951, lem_Bf_prodpow 953-965, context Bf 897-910. Everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:27:02Z"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "source_id": "seymour",
+  "url": "https://github.com/Ivan-Sergeyev/seymour",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "Ivan-Sergeyev/seymour",
+  "commit": "2769b10cb73fda17bafc0f13890dc057a2f4ff2a",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T11:39:05Z",
+  "how_found": "discovery-1: A-lean, B-lean",
+  "note": "Seymour decomposition theorem for regular matroids with blueprint dependency graph, paper directory and Seymour.lean summary",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

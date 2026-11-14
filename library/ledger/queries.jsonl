@@ -1,0 +1,68 @@
+{"query": "https://github.com/topics/theorem-proving", "engine": "github-topic", "hits": 19, "by": "harvest-locator", "at": "2026-11-14T11:30:30Z"}
+{"query": "https://github.com/topics/autoformalization", "engine": "github-topic", "hits": 20, "by": "harvest-locator", "at": "2026-11-14T11:30:30Z"}
+{"query": "github topics/isabelle", "engine": "github.com/topics/isabelle", "hits": 20, "by": "discoverer-a", "at": "2026-11-14T11:30:30Z"}
+{"query": "github topics/isabelle-hol", "engine": "github.com/topics/isabelle-hol", "hits": 20, "by": "discoverer-a", "at": "2026-11-14T11:30:30Z"}
+{"query": "github org isabelle-prover repositories", "engine": "github.com/isabelle-prover", "hits": 12, "by": "discoverer-a", "at": "2026-11-14T11:30:30Z"}
+{"query": "Rocq package index listing (all packages)", "engine": "rocq-prover.org/packages", "hits": 605, "by": "A-rocq", "at": "2026-11-14T11:30:36Z"}
+{"query": "reservoir homepage package lists (most popular / newly created / recently updated)", "engine": "reservoir.lean-lang.org", "hits": 28, "by": "harvest-locator", "at": "2026-11-14T11:30:46Z"}
+{"query": "leanprover-community homepage: named formalisations and project links", "engine": "leanprover-community.github.io", "hits": 13, "by": "harvest-locator", "at": "2026-11-14T11:30:46Z"}
+{"query": "isabelle.in.tum.de front page links (artefacts, projects)", "engine": "isabelle.in.tum.de", "hits": 0, "by": "discoverer-a", "note": "no repository or artefact links beyond AFP and the Isabelle repo mirrors", "at": "2026-11-14T11:30:55Z"}
+{"query": "https://github.com/topics/lean4", "engine": "github-topic", "hits": 20, "by": "harvest-locator", "at": "2026-11-14T11:31:09Z"}
+{"query": "https://github.com/topics/theorem-proving?page=2", "engine": "github-topic", "hits": 20, "by": "harvest-locator", "at": "2026-11-14T11:31:09Z"}
+{"query": "github topics/isabelle page 2", "engine": "github.com/topics/isabelle", "hits": 20, "by": "discoverer-a", "at": "2026-11-14T11:31:10Z"}
+{"query": "github topics/isabelle-hol page 2", "engine": "github.com/topics/isabelle-hol", "hits": 20, "by": "discoverer-a", "at": "2026-11-14T11:31:10Z"}
+{"query": "github topics/isabelle page 3", "engine": "github.com/topics/isabelle", "hits": 20, "by": "discoverer-a", "at": "2026-11-14T11:31:24Z"}
+{"query": "github topics/isabelle-hol page 3", "engine": "github.com/topics/isabelle-hol", "hits": 20, "by": "discoverer-a", "at": "2026-11-14T11:31:24Z"}
+{"query": "lean_projects.html - community list of Lean projects", "engine": "leanprover-community.github.io", "hits": 26, "by": "harvest-locator", "at": "2026-11-14T11:31:28Z"}
+{"query": "mathlib4 scripts/downstream_repos.yml forward snowball from mathlib4", "engine": "github.com", "hits": 36, "by": "harvest-locator", "at": "2026-11-14T11:31:28Z"}
+{"query": "lake-manifest.json dependency graph of pfr, carleson, equational-theories, sphere-packing, flt-imperial, pnt-and, strongpnt, sphere-eversion, compfiles, flt-anthropic, flt-regular, formal-conjectures", "engine": "github.com", "hits": 18, "by": "harvest-locator", "at": "2026-11-14T11:31:29Z"}
+{"query": "compfiles README related formalisations list", "engine": "github.com", "hits": 4, "by": "harvest-locator", "at": "2026-11-14T11:31:29Z"}
+{"query": "coq-community organisation repositories", "engine": "github.com/orgs/coq-community/repositories", "hits": 0, "by": "A-rocq", "at": "2026-11-14T11:31:34Z"}
+{"query": "https://github.com/topics/formal-verification", "engine": "github-topic", "hits": 20, "by": "harvest-locator", "at": "2026-11-14T11:31:41Z"}
+{"query": "https://github.com/topics/autoformalization?page=2", "engine": "github-topic", "hits": 20, "by": "harvest-locator", "at": "2026-11-14T11:31:41Z"}
+{"query": "github topics/isabelle page 4", "engine": "github.com/topics/isabelle", "hits": 20, "by": "discoverer-a", "at": "2026-11-14T11:31:46Z"}
+{"query": "github topics/isabelle-hol page 4", "engine": "github.com/topics/isabelle-hol", "hits": 13, "by": "discoverer-a", "at": "2026-11-14T11:31:46Z"}
+{"query": "Rocq-community organisation repositories (coq-community renamed)", "engine": "github.com/orgs/Rocq-community/repositories", "hits": 77, "by": "A-rocq", "at": "2026-11-14T11:31:55Z"}
+{"query": "math-comp organisation repositories", "engine": "github.com/orgs/math-comp/repositories", "hits": 20, "by": "A-rocq", "at": "2026-11-14T11:32:01Z"}
+{"query": "GitHub topic coq repositories", "engine": "github.com/topics/coq", "hits": 18, "by": "A-rocq", "at": "2026-11-14T11:32:05Z"}
+{"query": "READ of 14 registered Rocq sources: README, _CoqProject, *.opam, .gitmodules (compcert, math-comp, odd-order, fourcolor, mathcomp-analysis, unimath, fiat-crypto, hydra-battles, interaction-trees, certicoq, bedrock2, verdi, vst, rocq-stdlib)", "engine": "raw.githubusercontent.com at pinned commits", "hits": 14, "by": "B-rocq", "at": "2026-11-14T11:32:14Z"}
+{"query": "papers and formalisation projects using Mathematical Components", "engine": "math-comp.github.io/papers.html", "hits": 160, "by": "B-rocq", "at": "2026-11-14T11:32:14Z"}
+{"query": "ITP conference series index (year pages, proceedings)", "engine": "itp-conference.github.io", "hits": 3, "by": "discoverer-a", "note": "links to ITP 2026 and 2025 sites; dblp blocked (Anubis)", "at": "2026-11-14T11:32:15Z"}
+{"query": "https://github.com/topics/isabelle", "engine": "github-topic", "hits": 20, "by": "harvest-locator", "at": "2026-11-14T11:32:19Z"}
+{"query": "https://github.com/topics/coq", "engine": "github-topic", "hits": 20, "by": "harvest-locator", "at": "2026-11-14T11:32:20Z"}
+{"query": "isabelle hol github formalization github.com", "engine": "duckduckgo html", "hits": 10, "by": "discoverer-a", "note": "top hits: amaletzk/Isabelle-Groebner, topics/isabelle-hol, isabelle.in.tum.de", "at": "2026-11-14T11:32:35Z"}
+{"query": "grep.app: break the theorem into lemmas", "engine": "grep.app", "hits": 0, "by": "harvest-locator", "at": "2026-11-14T11:33:10Z"}
+{"query": "Isabelle_LLVM Lammich github separation logic", "engine": "duckduckgo html", "hits": 10, "by": "discoverer-a", "note": "found lammich/isabelle_llvm, lammich/IsaFracSep, ITP 2019 and ITP 2026 papers", "at": "2026-11-14T11:33:16Z"}
+{"query": "jsDelivr flat listings and READMEs of 20 Lean community projects (IMO-Steps, IEANTN, con-nf, infinity-cosmos, seymour, Brouwer, brownian-motion, formal-proofs, PersistentDecomp, IMOSLLean4, ClassFieldTheory, HarderNarasimhan, LeanAPAP, cedar-spec, ChandraFurstLipton, topos, qpf, unit-fractions, series, PutnamBench)", "engine": "data.jsdelivr.com", "hits": 20, "by": "harvest-locator", "at": "2026-11-14T11:33:20Z"}
+{"query": "compfiles README related formalisations and pnt-and README IEANTN porting notice", "engine": "github.com", "hits": 6, "by": "harvest-locator", "at": "2026-11-14T11:33:21Z"}
+{"query": "isabelle hol verified compiler github", "engine": "duckduckgo html", "hits": 20, "by": "discoverer-a", "note": "mdesharnais/framework-VeriComp; matryoshka-project; trust2proj", "at": "2026-11-14T11:33:37Z"}
+{"query": "repository pages and raw build files of suspected forward/backward neighbours of registered Rocq sources", "engine": "github.com repository pages and raw.githubusercontent.com", "hits": 20, "by": "B-rocq", "at": "2026-11-14T11:34:20Z"}
+{"query": "lean_projects.html: open-source projects using Mathlib and Lean 3 projects", "engine": "leanprover-community.github.io", "hits": 58, "by": "harvest-locator", "at": "2026-11-14T11:34:25Z"}
+{"query": "github topic lean4 repository list", "engine": "github.com/topics/lean4", "hits": 20, "by": "harvest-locator", "at": "2026-11-14T11:34:25Z"}
+{"query": "github topic mathlib repository list", "engine": "github.com/topics/mathlib", "hits": 20, "by": "harvest-locator", "at": "2026-11-14T11:34:25Z"}
+{"query": "github topic blueprint (Lean blueprint repos expected)", "engine": "github.com/topics/blueprint", "hits": 20, "by": "harvest-locator", "at": "2026-11-14T11:34:25Z"}
+{"query": "grep.app search for blueprint uses-graph in TeX files", "engine": "grep.app", "hits": 0, "by": "harvest-locator", "at": "2026-11-14T11:34:27Z"}
+{"query": "site:gitlab.com isabelle hol formalization proof", "engine": "duckduckgo html", "hits": 1, "by": "discoverer-a", "note": "only inpefess/isabelle-client (a client, not proofs)", "at": "2026-11-14T11:34:59Z"}
+{"query": "gitlab.com explore projects topics/isabelle (page renders no list via curl)", "engine": "gitlab.com/explore", "hits": 0, "by": "discoverer-a", "at": "2026-11-14T11:35:20Z"}
+{"query": "gitlab.com API projects search=isabelle order_by=last_activity_at", "engine": "gitlab.com/api/v4", "hits": 31, "by": "discoverer-a", "note": "hilbert-10/dprm, wirelover/tiny-lustre-compiler-isabelle, imz/hol-csp2.0, formalcow/combinatorics-on-words-formalized, nicobrien/boruvka-mst-theory, StreitDa/provabilitylogic-cicm, stourret/ijcar26-submission-isabelle-companion", "at": "2026-11-14T11:35:20Z"}
+{"query": "github.com/topics/isabelle", "engine": "github-topics", "hits": 20, "by": "discoverer-b-isabelle", "at": "2026-11-14T11:35:48Z"}
+{"query": "github.com/topics/isabelle?page=2", "engine": "github-topics", "hits": 20, "by": "discoverer-b-isabelle", "at": "2026-11-14T11:35:48Z"}
+{"query": "github.com/topics/isabelle?page=3", "engine": "github-topics", "hits": 20, "by": "discoverer-b-isabelle", "at": "2026-11-14T11:35:48Z"}
+{"query": "github.com/topics/isabelle-hol", "engine": "github-topics", "hits": 20, "by": "discoverer-b-isabelle", "at": "2026-11-14T11:35:48Z"}
+{"query": "github.com/JUrban?tab=repositories", "engine": "github", "hits": 30, "by": "discoverer-b-isabelle", "at": "2026-11-14T11:35:51Z"}
+{"query": "github.com/kappelmann?tab=repositories", "engine": "github", "hits": 18, "by": "discoverer-b-isabelle", "at": "2026-11-14T11:35:51Z"}
+{"query": "github.com/dominique-unruh?tab=repositories", "engine": "github", "hits": 31, "by": "discoverer-b-isabelle", "at": "2026-11-14T11:35:51Z"}
+{"query": "github.com/dmarmsoler?tab=repositories", "engine": "github", "hits": 6, "by": "discoverer-b-isabelle", "at": "2026-11-14T11:35:51Z"}
+{"query": "github.com/lammich?tab=repositories", "engine": "github", "hits": 8, "by": "discoverer-b-isabelle", "at": "2026-11-14T11:35:52Z"}
+{"query": "github.com/SEL4PROJ", "engine": "github", "hits": 10, "by": "discoverer-b-isabelle", "at": "2026-11-14T11:35:52Z"}
+{"query": "github.com/search?q=isabelle+hol+verification&type=repositories", "engine": "github-search", "hits": 9, "by": "discoverer-b-isabelle", "at": "2026-11-14T11:35:54Z"}
+{"query": "github.com/search?q=isabelle+verified+algorithm&type=repositories", "engine": "github-search", "hits": 9, "by": "discoverer-b-isabelle", "at": "2026-11-14T11:35:54Z"}
+{"query": "raw README/ROOT/CLAUDE.md of the six registered Isabelle sources (l4v, AutoCorrode, munkres-isabelle, isabelle-pide-ai, isabelle-dist, afp)", "engine": "raw.githubusercontent.com", "hits": 4, "by": "discoverer-b-isabelle", "at": "2026-11-14T11:35:54Z"}
+{"query": "GitHub topic rocq repositories", "engine": "github.com/topics/rocq", "hits": 18, "by": "A-rocq", "at": "2026-11-14T11:36:06Z"}
+{"query": "Rocq opam repository flat file listing (package names)", "engine": "data.jsdelivr.com gh/rocq-prover/opam", "hits": 605, "by": "A-rocq", "at": "2026-11-14T11:36:06Z"}
+{"query": "Solidity Isabelle HOL formal verification github", "engine": "duckduckgo html", "hits": 0, "by": "discoverer-a", "note": "empty response; engine started rate-limiting", "at": "2026-11-14T11:37:18Z"}
+{"query": "WebAssembly Isabelle HOL semantics github", "engine": "duckduckgo html", "hits": 0, "by": "discoverer-a", "note": "bot-protection page; stopped using this engine", "at": "2026-11-14T11:37:18Z"}
+{"query": "ITP 2026 accepted papers programme", "engine": "itp-conference.github.io/ITP2026/program.html", "hits": 33, "by": "discoverer-a", "note": "Isabelle papers: Complex Bounded Operators (unruh), Fractional Separation Logic in Isabelle/LLVM (Lammich), Certified Infinite Descent Criteria, Automated Verification of Robot Software Models", "at": "2026-11-14T11:38:25Z"}
+{"query": "CPP 2026 accepted research papers", "engine": "popl26.sigplan.org/home/CPP-2026", "hits": 33, "by": "discoverer-a", "note": "four Isabelle papers: Adding Sorts to an Isabelle Formalization of Superposition; A Lambda-Superposition Tactic for Isabelle/HOL; Modular Specifications of Random Samplers in Higher-Order Separation Logic; Precise Reasoning about Container-Internal Pointers (last two may be Rocq)", "at": "2026-11-14T11:38:25Z"}
+{"query": "github org SEL4PROJ repositories", "engine": "github.com/SEL4PROJ", "hits": 10, "by": "discoverer-a", "note": "10 of 62 shown; SEL4PROJ/tlb is an Isabelle/HOL ARMv7 TLB model", "at": "2026-11-14T11:38:26Z"}
+{"query": "github org OpenSourceVerif repositories (from trust2proj.github.io)", "engine": "github.com/OpenSourceVerif", "hits": 10, "by": "discoverer-a", "note": "10 of 18 shown; Solana-x64-Semantics and CertSBF are Isabelle/HOL", "at": "2026-11-14T11:38:26Z"}

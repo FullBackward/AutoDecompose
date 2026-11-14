@@ -1,0 +1,117 @@
+{
+  "entry": "latex-blueprint-node-pfr-b23b6bcf",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:15:34Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:15:34Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:15:34Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(hom-pfr, goursat) -> cites: goursat occurs at blueprint/src/chapter/hom_pfr.tex:25",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:15:34Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(hom-pfr, pfr-9-aux') -> cites: pfr-9-aux' occurs at blueprint/src/chapter/hom_pfr.tex:25",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:15:34Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(PFR/HomPFR.lean, 46-176) -> no_sorry: none of sorry, admit, axiom in PFR/HomPFR.lean:46-176",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:15:34Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:15:46Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push.yml: job 'build' runs leanprover/lean-action (v1.2.0) which builds and lints the whole project on push to master (default branch), covering PFR/**/*.lean incl. PFR/HomPFR.lean; pinned commit 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+      "by": "verifier",
+      "at": "2026-11-14T09:16:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "hom_pfr.tex:19 = '\\begin{theorem}...\\label{hom-pfr}\\lean{homomorphism_pfr}\\leanok'; hom_pfr.tex:25 = '\\begin{proof}\\uses{goursat, pfr-9-aux'}\\leanok'. Stated (thm L19) before proved (proof L25), both marked \\leanok.",
+      "by": "verifier",
+      "at": "2026-11-14T09:17:31Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "hom_pfr.tex:25 uses{goursat, pfr-9-aux'} = 2 labels; parent site hom_pfr.tex:19-47 = 29 lines (file is 47 lines, L47=end proof); goursat hom_pfr.tex:11-17 = 7 lines; pfr-9-aux' further_improvement.tex:363-373 = 11 lines (L363 label, L373 end proof); chain: L370 uses{pfr-9-aux,ruz-cov}, L358 uses{pfr-rho,...}, L346 uses{phi-min-exist,phi-minimizer-zero-distance,...}; all four nodes marked leanok (L363,352,341,320).",
+      "by": "verifier",
+      "at": "2026-11-14T09:17:33Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent hom-pfr (hom_pfr.tex:19-47, 29 lines) is theorem homomorphism_pfr: \\lean{homomorphism_pfr}\\leanok at line 19, proof \\uses{goursat, pfr-9-aux'} \\leanok at line 25; its two direct children are exactly these two. Child goursat (hom_pfr.tex:11-17, 7 lines) closes via \\uses{hb-thm} (line 16) and in Lean by obtain/use/constructor (HomPFR.lean:46-65). Child pfr-9-aux' (further_improvement.tex:363-373, 11 lines) closes via \\uses{pfr-9-aux, ruz-cov} (line 370) and in Lean better_PFR_conjecture_aux (RhoFunctional.lean:2003-2043) via better_PFR_conjecture_aux0 + Set.ruzsa_covering_add. Shape numbers right: direct_lemmas=2, glue_lines=29, child_lines=[7,11], depth=4 chain pfr-9-aux'->pfr-9-aux(370)->pfr-rho(358)->phi-minimizer-zero-distance(346). No sorry/admit/axiom; all proofs close. Minor non-blocking: metrics.lean_parent_lines=102 cites 75-176 but HomPFR.lean has 175 lines (theorem is 75-175 = 101 lines).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:20:17Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality is well-covered. (1) Applies beyond the example: use_when/avoid_when give general conditions (two independent already-stated lemmas whose hypotheses line up into one chain; statement freezable with a Lean name + \\leanok; covering-and-counting calc over a function graph), and the sibling approx-hom-pfr reuses the identical glue (fetched raw: \\uses{goursat, cs-bound, bsg, pfr-9-aux'}), so goursat/pfr-9-aux' are reusable, not one-offs. (2) 'When not to use' and consequences are honest and specific: exponent 10 = 2x the covering lemma's 5 is verifiable in the calc ((|S|^5 ...)^2 = |S|^10, hom_pfr.tex:50); the 'don't freeze the Lean name if the statement may change' caveat is apt; consequences name both hypotheses and honestly flag the projection-surjectivity step ('on taking projections G is covered by at most |c| translates of H0', and in Lean hG_cover/h_fstH) and the silent-gap risk of \\leanok being build-checked, not LaTeX-enforced. (3) Good-leaves-for-a-bounded-prover is stated explicitly: each child is a self-contained statement closing from named siblings with none of the parent's hypotheses, and the parent never constructs H/H0/H1/phi/c but only combines the leaves' outputs, 'the skeleton with lemma holes that a bounded prover fills'.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:21:52Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:22:08Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes: 4 files byte-identical at commit 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a. Commit is consistent across entry.json source.commit, all file/site/claim/known_uses permalinks, sources/pfr/SOURCE.md and source.json. Licence Apache-2.0 is consistent across entry.json, README header and Source-and-licence section, source.json, SOURCE.md, and the copied upstream-LICENSE (Apache License 2.0). Cited line ranges verified in local copies: hom_pfr.tex:19-47 (theorem homomorphism_pfr at 19, \\uses{goursat,pfr-9-aux'}\\leanok at 25), goursat hom_pfr.tex:11-17, pfr-9-aux' further_improvement.tex:363-373 (\\uses{pfr-9-aux,ruz-cov} at 370). code/ contains exactly the 4 listed files. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:22:47Z"
+    }
+  ]
+}

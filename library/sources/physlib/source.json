@@ -1,0 +1,17 @@
+{
+  "source_id": "physlib",
+  "url": "https://github.com/leanprover-community/physlib",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "leanprover-community/physlib",
+  "commit": "ca577bfd34ef356be2595528da1ef13a4a405816",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T11:40:01Z",
+  "how_found": "discovery-1: A-agents, A-lean",
+  "note": "Physics formalization including the Generalized Quantum Stein Lemma paper, theorem and lemma organized library",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

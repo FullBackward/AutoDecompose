@@ -1,0 +1,133 @@
+{
+  "entry": "isabelle-extensionality-isabelle-dist-3225c876",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:55:41Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:55:41Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:55:41Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: gauss_eq_iff@src/HOL/Examples/Gauss_Numbers.thy:326, gauss_eq_0@src/HOL/Examples/Gauss_Numbers.thy:331; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:55:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, gauss_eq_iff) -> cites: gauss_eq_iff occurs at src/HOL/Examples/Gauss_Numbers.thy:326",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:55:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, gauss_eq_0) -> cites: gauss_eq_0 occurs at src/HOL/Examples/Gauss_Numbers.thy:331",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:55:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "count(gauss_eq_iff, 35, src/HOL/Examples/Gauss_Numbers.thy) -> count: gauss_eq_iff occurs 35 times in 1 file(s) matching src/HOL/Examples/Gauss_Numbers.thy",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:55:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "no_sorry(src/HOL/Examples/Gauss_Numbers.thy, 1-405) -> no_sorry: none of sorry in src/HOL/Examples/Gauss_Numbers.thy:1-405",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:55:41Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 34ca456d44ca14641450b5d52f51b38688d4d1b5",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:55:49Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "mirror-isabelle is a git mirror of the Isabelle repository and has no GitHub Actions CI (no .github/workflows directory; api.github.com returned 404). Isabelle's own CI runs on external testboard infrastructure (ci.isabelle.systems), not in the mirror, so no CI workflow builds src/HOL/Examples/Gauss_Numbers.thy on the default branch.",
+      "by": "verifier",
+      "at": "2026-11-14T10:56:36Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "parent site 323-341 is 19 lines (341-323+1); child gauss_eq_iff at 16-18 and gauss_eq_0 at 89-91 are each 3 lines; direct_lemmas=2 (two children). depth chain confirmed in code: gauss_eq_0 (line 91) cites gauss_eq_iff; gauss_eq_iff (line 18) cites gauss_eqI; gauss_eqI (line 14) closes by gauss.expand.",
+      "by": "verifier",
+      "at": "2026-11-14T10:56:37Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 34ca456d44ca14641450b5d52f51b38688d4d1b5",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:57:01Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Provenance passes (1 file byte-identical at 34ca456d). Read the cited ranges in code/: parent 323-341 is 'instance proof' closing three show axioms by gauss_eq_iff (326,337,340) and gauss_eq_0 (331); child gauss_eq_iff 16-18 and gauss_eq_0 89-91 match entry statements and closed_by verbatim; contexts 10,12-14,309-321 match. No sorry/oops (405 lines). grep count of gauss_eq_iff = 35, matching claim 3. Children are exactly the project lemmas the parent cites (gauss_eq_iff, gauss_eq_0); nonzero_mult_cdiv_cancel_right/cdiv_0_eq/sum_power2_eq_zero_iff are library facts, correctly not children. Shape numbers verified: direct_lemmas=2, glue_lines=19 (341-323+1), child_lines=[3,3] (16-18, 89-91), depth=3 via chain instance->gauss_eq_0->gauss_eq_iff->gauss_eqI (gauss_eq_0 cites gauss_eq_iff@91; gauss_eq_iff cites gauss_eqI@18; gauss_eqI closes by codatatype rule gauss.expand).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:57:42Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generally (instance/subclass goal over a carrier freely generated by finitely many selectors, componentwise ops, reusable extensionality lemma; 35x reuse as signal); when-not-to-use is honest (quotient/invariant breaks backward direction, non-reducing ops, unrecoverable side condition Y>0) and consequences specific (per-component obligations, gauss.expand premise, cdiv routing, two named failure modes); README 'Each child is a good leaf' states self-contained one-step proofs with no further project lemma, depth 3.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:58:22Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 34ca456d44ca14641450b5d52f51b38688d4d1b5",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:58:41Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes: code/src/HOL/Examples/Gauss_Numbers.thy byte-identical at 34ca456d44ca14641450b5d52f51b38688d4d1b5 (files[0].sha256 c5b5e734... matches the local copy, bytes=14008). Commit 34ca456d44ca is consistent across entry.json source.commit, source.json, SOURCE.md, README, and every permalink. Licence BSD-3-Clause recorded identically in entry.json, source.json, SOURCE.md and README; upstream-COPYRIGHT holds the actual Isabelle BSD-3-Clause text (Cambridge/TUM/contributors). SOURCE.md links the COPYRIGHT file and carries attribution. All cited line ranges (10,12-14,16-18,89-91,309-321,323-341) match the copied file exactly as read via sed.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T11:00:26Z"
+    }
+  ]
+}

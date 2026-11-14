@@ -1,0 +1,194 @@
+{
+  "id": "rocq-induction-jasmin-dc9a0691",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "cmd_rect induction over commands proves the array-init pass preserves function equivalence",
+  "intent": "Prove that the array-init pass (add_init_prog), which inserts array initialisation before first use, preserves whole-function equivalence wiequiv_f, by structural induction over the command language with cmd_rect; each command form is closed by one of three auxiliary lemmas, and the result plugs into the compiler's per-pass simulation chain.",
+  "move": "induction",
+  "also_known_as": [
+    "structural induction over the command language",
+    "per-pass compiler correctness lemma",
+    "syntax-directed induction"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "jasmin",
+    "url": "https://github.com/jasmin-lang/jasmin",
+    "commit": "211aa617685e0a0b074646fc27c85d017aced9cb",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "proofs/compiler/array_init_proof.v",
+      "bytes": 9571,
+      "sha256": "28b8925b7277562393f6305d2aa1ba99e27733e652976853f9fa033ac94257df",
+      "permalink": "https://github.com/jasmin-lang/jasmin/blob/211aa617685e0a0b074646fc27c85d017aced9cb/proofs/compiler/array_init_proof.v"
+    },
+    {
+      "path": "proofs/compiler/array_init.v",
+      "bytes": 3253,
+      "sha256": "8f767cd761265f3bb98444d1bdcae6c8337d26d54a0eaa9ecfb03bbc9aa1c8e7",
+      "permalink": "https://github.com/jasmin-lang/jasmin/blob/211aa617685e0a0b074646fc27c85d017aced9cb/proofs/compiler/array_init.v"
+    },
+    {
+      "path": "proofs/compiler/it_compiler_proof.v",
+      "bytes": 71653,
+      "sha256": "daf2a0e021f4939d57548e47fb651c2c303bc59f4034abab60c438d01dd568a7",
+      "permalink": "https://github.com/jasmin-lang/jasmin/blob/211aa617685e0a0b074646fc27c85d017aced9cb/proofs/compiler/it_compiler_proof.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "proofs/compiler/array_init_proof.v",
+      "lines": [
+        200,
+        254
+      ],
+      "role": "parent",
+      "name": "it_add_init_callP",
+      "excerpt_sha256": "b19aa483256734c29047d0b573f92b937e580b27fb2357334cfb6522bac9f0d5",
+      "permalink": "https://github.com/jasmin-lang/jasmin/blob/211aa617685e0a0b074646fc27c85d017aced9cb/proofs/compiler/array_init_proof.v#L200-L254"
+    },
+    {
+      "path": "proofs/compiler/array_init_proof.v",
+      "lines": [
+        183,
+        198
+      ],
+      "role": "child",
+      "name": "it_aux",
+      "excerpt_sha256": "1f44659b1ffe6a2a042136a70bd58efdde0a6ee469cb66b9b885b6cfe453b005",
+      "permalink": "https://github.com/jasmin-lang/jasmin/blob/211aa617685e0a0b074646fc27c85d017aced9cb/proofs/compiler/array_init_proof.v#L183-L198"
+    },
+    {
+      "path": "proofs/compiler/array_init_proof.v",
+      "lines": [
+        156,
+        181
+      ],
+      "role": "child",
+      "name": "add_init_auxP",
+      "excerpt_sha256": "45a5be59f9119c9a130dc809d95a2c6912c7d0baa72f46d811ca4890fcae6ccc",
+      "permalink": "https://github.com/jasmin-lang/jasmin/blob/211aa617685e0a0b074646fc27c85d017aced9cb/proofs/compiler/array_init_proof.v#L156-L181"
+    },
+    {
+      "path": "proofs/compiler/array_init_proof.v",
+      "lines": [
+        138,
+        142
+      ],
+      "role": "child",
+      "name": "cmpl_inv_incl",
+      "excerpt_sha256": "426378bbf9c0e77eade9a1ee7ec26d1d437873dd74f4cc8b698b80f79dbc27dd",
+      "permalink": "https://github.com/jasmin-lang/jasmin/blob/211aa617685e0a0b074646fc27c85d017aced9cb/proofs/compiler/array_init_proof.v#L138-L142"
+    }
+  ],
+  "parent": {
+    "name": "it_add_init_callP",
+    "statement": "Lemma it_add_init_callP fn : wiequiv_f p p' ev ev (rpreF (eS:= eq_spec)) fn fn (rpostF (eS:=eq_spec))."
+  },
+  "children": [
+    {
+      "name": "it_aux",
+      "statement": "Lemma it_aux I ii1 ii i :\n  wequiv_rec p p' ev ev eq_spec (cmpl_inv I)\n     [:: MkI ii i]\n     (add_init ii1 I (Sv.union (write_i i) (read_i i)) (MkI ii i)) (cmpl_inv (Sv.union I (write_i i))).",
+      "closed_by": "apply add_init_auxP (line 188); apply wkequivP' (line 189)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: adding the initialisation of a single instruction is equivalent"
+    },
+    {
+      "name": "add_init_auxP",
+      "statement": "Lemma add_init_auxP ii c c' I I' X :\n disjoint I X ->\n wequiv_rec p p' ev ev eq_spec (cmpl_inv I) c c' (cmpl_inv I') ->\n wequiv_rec p p' ev ev eq_spec (cmpl_inv I) c (Sv.fold (add_init_aux ii) X c') (cmpl_inv I').",
+      "closed_by": "elim over Sv.elements (line 164); apply wequiv_cat / wequiv_assign_right (lines 170-171)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: folding add_init_aux over a disjoint variable set preserves equivalence"
+    },
+    {
+      "name": "cmpl_inv_incl",
+      "statement": "Lemma cmpl_inv_incl I1 I2 s1 s2 : Sv.Subset I1 I2 -> cmpl_inv I1 s1 s2 → cmpl_inv I2 s1 s2.",
+      "closed_by": "SvD.fsetdec (line 141)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the invariant cmpl_inv is monotone in the variable set"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A compiler pass defined by recursion over a command/instruction syntax (add_init_i / add_init_c), proved equivalent by structural induction over that syntax via cmd_rect, with the invariant a state relation parameterised by a set of live variables (cmpl_inv I).",
+    "use_when": "the pass is syntax-directed (its effect on each constructor is local), so the induction follows the definition; the invariant can be expressed as a relation indexed by a variable set; each constructor needs only a short lemma about its own effect.",
+    "avoid_when": "the pass's effect is non-local (whole-program or global analysis) or the invariant is not indexable by syntax; the constructors need substantially different reasoning, so a shared dispatch like '1-4, 6-8: apply/it_aux' does not fit."
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 2,
+    "glue_lines": 55,
+    "child_lines": [
+      16,
+      26,
+      5
+    ]
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "No admit, Admitted or Axiom token closes the three child lemmas or the parent in proofs/compiler/array_init_proof.v lines 138-254.",
+      "evidence_kind": "check",
+      "form": "no_sorry(proofs/compiler/array_init_proof.v, 138-254)",
+      "evidence": "https://github.com/jasmin-lang/jasmin/blob/211aa617685e0a0b074646fc27c85d017aced9cb/proofs/compiler/array_init_proof.v#L138-L254"
+    },
+    {
+      "n": 2,
+      "claim": "add_init_auxP occurs in the it_aux site.",
+      "evidence_kind": "check",
+      "form": "cites(it_aux, add_init_auxP)",
+      "evidence": "https://github.com/jasmin-lang/jasmin/blob/211aa617685e0a0b074646fc27c85d017aced9cb/proofs/compiler/array_init_proof.v#L183-L198"
+    },
+    {
+      "n": 3,
+      "claim": "add_init_auxP is used twice below the parent — once by it_aux (line 188) and once directly by the parent (line 243) — so the lemma graph has depth 2 with add_init_auxP as a shared leaf.",
+      "evidence_kind": "measurement",
+      "evidence": "grep for add_init_auxP in proofs/compiler/array_init_proof.v at commit 211aa617685e0a0b074646fc27c85d017aced9cb: 3 matches — declaration line 156, it_aux line 188, parent line 243 (https://github.com/jasmin-lang/jasmin/blob/211aa617685e0a0b074646fc27c85d017aced9cb/proofs/compiler/array_init_proof.v#L156, #L188, #L243)"
+    },
+    {
+      "n": 4,
+      "claim": "it_add_init_callP is the add-init step of the whole-compiler simulation chain in proofs/compiler/it_compiler_proof.v (line 615: `apply: wiequiv_f_trans_EE_EU; first exact: it_add_init_callP.`).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/jasmin-lang/jasmin/blob/211aa617685e0a0b074646fc27c85d017aced9cb/proofs/compiler/it_compiler_proof.v#L615"
+    }
+  ],
+  "metrics": {
+    "cmd_rect_goals": 10,
+    "goals_closed_by_it_aux": 7,
+    "how_counted": "the cmd_rect application in the parent yields 10 goals (nil, cons, and the 8 instruction constructors); the dispatch '1-4, 6-8' closes 7 of them via apply/it_aux (line 239), and the if-case (lines 240-253) uses add_init_auxP and cmpl_inv_incl"
+  },
+  "consequences": "The induction creates one goal per command constructor (here 10: nil, cons, and the 8 instruction forms); the if-case additionally splits into two branch subgoals, each of which must weaken the invariant from the branch's variable set to the whole set — that is exactly what cmpl_inv_incl does. The '1-4, 6-8' dispatch assumes the seven non-branching constructors share one shape; a constructor whose init effect differs (for example one that reads and writes overlapping variables) would need its own lemma and would break the shared step.",
+  "known_uses": [
+    "https://github.com/jasmin-lang/jasmin/blob/211aa617685e0a0b074646fc27c85d017aced9cb/proofs/compiler/it_compiler_proof.v#L615"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "dc9a0691f66430d0ae9c36f4038427aabf984f105b53e031cf7a8f6ec1dcf3c9",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:33:53Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,shape,claims,metrics,consequences,known_uses,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:35:31Z",
+      "note": "parent it_add_init_callP: statement re-copied from code; child 'it_aux': statement re-copied from the declaration of it_aux; child 'add_init_auxP': statement re-copied from the declaration of add_init_auxP; child 'cmpl_inv_incl': statement re-copied from the declaration of cmpl_inv_incl"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T12:42:56Z"
+}

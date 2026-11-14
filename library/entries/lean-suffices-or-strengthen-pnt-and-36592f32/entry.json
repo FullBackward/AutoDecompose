@@ -1,0 +1,184 @@
+{
+  "id": "lean-suffices-or-strengthen-pnt-and-36592f32",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Strengthen sum mu(n)/n = o(1) to a K-parameterised O(x/K) bound (mu_pnt_alt)",
+  "intent": "Reduce the alternate Mobius form of the prime number theorem (the partial sum of mu(n)/n is o(1)) to a bound that is uniform in a free parameter K: the glue proves h_bound, a bound of |S(x/K)| by 1/K + 1/x + (tail)/x for every K > 0 and x >= 1, then chooses K with 1/K < eps/3 and lets x tend to infinity to close the little-o.",
+  "move": "suffices-or-strengthen",
+  "also_known_as": [
+    "strengthen to a free parameter",
+    "epsilon-K reduction",
+    "uniform-in-K bound"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "pnt-and",
+    "url": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd",
+    "commit": "2c476fa6441c607096d93c8fc7ac0a227a655dae",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "PrimeNumberTheoremAnd/Consequences.lean",
+      "bytes": 139214,
+      "sha256": "3e5f6ccd0f17cf677b6c9c81efba1268bc280b6fa8fca36f25c6efd9895f8fe8",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/Consequences.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "PrimeNumberTheoremAnd/Consequences.lean",
+      "lines": [
+        2377,
+        2403
+      ],
+      "role": "context",
+      "name": "mu_pnt_alt_blueprint",
+      "excerpt_sha256": "cb7df61b9950e51e01ad13eebf006bdf4ec8b178b9f97c392a9ba0da15f46335",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/Consequences.lean#L2377-L2403"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/Consequences.lean",
+      "lines": [
+        2404,
+        2435
+      ],
+      "role": "parent",
+      "name": "mu_pnt_alt",
+      "excerpt_sha256": "fe02daf97b208270163a1414a69146bf4810f2e5f85509a05f1d5f34fbf4ae73",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/Consequences.lean#L2404-L2435"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/Consequences.lean",
+      "lines": [
+        2270,
+        2355
+      ],
+      "role": "child",
+      "name": "sum_mobius_floor_tail_isLittleO",
+      "excerpt_sha256": "293d3e241120d435146928f0b165ba8dd020958e5c9a4e7bc2863c9b09d7691b",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/Consequences.lean#L2270-L2355"
+    },
+    {
+      "path": "PrimeNumberTheoremAnd/Consequences.lean",
+      "lines": [
+        2358,
+        2373
+      ],
+      "role": "child",
+      "name": "sum_mobius_div_approx",
+      "excerpt_sha256": "e4e992ab99a1382dde59c447235897e6eeea602ee2d31424417ebbba20270bad",
+      "permalink": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/Consequences.lean#L2358-L2373"
+    }
+  ],
+  "parent": {
+    "name": "mu_pnt_alt",
+    "statement": "theorem mu_pnt_alt : (fun x : ℝ ↦ ∑ n ∈ range ⌊x⌋₊, (μ n : ℝ) / n) =o[atTop] fun _ ↦ (1 : ℝ)"
+  },
+  "children": [
+    {
+      "name": "sum_mobius_floor_tail_isLittleO",
+      "statement": "lemma sum_mobius_floor_tail_isLittleO (K : ℕ) (hK : 0 < K) :\n    (fun x : ℝ => ∑ n ∈ Finset.Ioc ⌊x/K⌋₊ ⌊x⌋₊, (μ n : ℝ) * (⌊x / (n : ℝ)⌋ : ℝ)) =o[atTop] fun x => x",
+      "closed_by": "h_sum_o_x.congr'",
+      "note": "The tail over floor(x/K) < n <= floor(x) of mu(n) * floor(x/n) is o(x): the interval is partitioned into K-1 slabs [floor(x/(k+1)), floor(x/k)], each slab's Mobius sum is o(x) by mu_pnt, and the finite sum over k is o(x)."
+    },
+    {
+      "name": "sum_mobius_div_approx",
+      "statement": "lemma sum_mobius_div_approx (x : ℝ) (K : ℕ) (hK : 0 < K) (hx : 1 ≤ x) :\n  |x * (∑ n ∈ Icc 1 ⌊x/K⌋₊, (μ n : ℝ) / n) - 1| ≤ x/K + |∑ n ∈ Ioc ⌊x/K⌋₊ ⌊x⌋₊, (μ n : ℝ) * (⌊x / (n : ℝ)⌋ : ℝ)|",
+      "closed_by": "linarith (after cases abs_cases on the two absolute values)",
+      "note": "Splits the identity sum_{n<=x} mu(n) floor(x/n) = 1 at n = floor(x/K) and rewrites the head term as x * S(x/K) minus a fractional-part error bounded by floor(x/K), giving |x * S(x/K) - 1| <= x/K + (tail)."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A little-o / limit target F(x) =o[atTop] g(x) (here sum_{n<=x} mu(n)/n = o(1)) whose partial sum S admits an exact identity on the full sum and a tail estimate, and which can be turned into a bound uniform in a new free parameter K.",
+    "use_when": "The target can be written as 'for every eps, eventually |S(y)| < eps', and S(x/K) can be bounded by an expression a(K) + b(x) + tail(x)/x with a(K) -> 0 as K -> inf, b(x) -> 0 as x -> inf, and tail(x) = o(x); i.e. when a free parameter K separates the two limits so each can be taken in turn.",
+    "avoid_when": "No clean split identity separates the head from the tail, the tail does not shrink as K grows, or the strengthened uniform bound needs the very theorem being proved (circularity). When a direct partial-summation argument is shorter, the parameterised form is overkill."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "No sorry/admit/axiom closes the glue or either child in lines 2270-2435 of PrimeNumberTheoremAnd/Consequences.lean.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/Consequences.lean#L2270-L2435",
+      "form": "no_sorry(PrimeNumberTheoremAnd/Consequences.lean, 2270-2435)"
+    },
+    {
+      "n": 2,
+      "claim": "sum_mobius_div_approx occurs in the parent site.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/Consequences.lean#L2404-L2435",
+      "form": "cites(parent, sum_mobius_div_approx)"
+    },
+    {
+      "n": 3,
+      "claim": "sum_mobius_floor_tail_isLittleO occurs in the parent site.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/Consequences.lean#L2404-L2435",
+      "form": "cites(parent, sum_mobius_floor_tail_isLittleO)"
+    },
+    {
+      "n": 4,
+      "claim": "The glue is 32 lines (2404-2435) and the two children it joins are 86 lines (sum_mobius_floor_tail_isLittleO, 2270-2355) and 16 lines (sum_mobius_div_approx, 2358-2373).",
+      "evidence_kind": "measurement",
+      "evidence": "counted from the copied file code/PrimeNumberTheoremAnd/Consequences.lean at commit 2c476fa6441c607096d93c8fc7ac0a227a655dae"
+    },
+    {
+      "n": 5,
+      "claim": "The blueprint node attached to mu_pnt_alt states the strategy: 'It suffices to show that sum_{d <= x} mu(d) {x/d} = O(x/N) if x is large enough depending on N.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd/blob/2c476fa6441c607096d93c8fc7ac0a227a655dae/PrimeNumberTheoremAnd/Consequences.lean#L2387-L2389"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 3,
+    "glue_lines": 32,
+    "child_lines": [
+      86,
+      16
+    ]
+  },
+  "metrics": {
+    "glue_lines": 32,
+    "child_lines": [
+      86,
+      16
+    ],
+    "depth_checked": 3,
+    "how_counted": "Line spans of the parent site (2404-2435) and the two child sites (2270-2355, 2358-2373) of the copied file; depth via the chain mu_pnt_alt -> sum_mobius_div_approx -> sum_mobius_floor -> sum_mobius_mul_floor, each citation found by hand."
+  },
+  "consequences": "Introduces a free parameter K and splits the goal into a uniform bound (for all K > 0 and all x >= 1) plus a tail limit. K must be fixed before the limit in x is taken, so the bound must hold uniformly in x for each fixed K; the eps/3 choice of K drives the head below eps while the tail and 1/x vanish. Failure mode: a bound that is only pointwise in K (K fixed first) cannot be re-specialised after choosing K from eps.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "36592f327b7f6f369f441c144e4eae2450700a9b60869937d07b59db9db97899",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:18:58Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:22:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T09:21:38Z",
+      "note": "parent mu_pnt_alt: statement re-copied from code; child 'sum_mobius_floor_tail_isLittleO': statement re-copied from the declaration of sum_mobius_floor_tail_isLittleO; child 'sum_mobius_div_approx': statement re-copied from the declaration of sum_mobius_div_approx"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T09:28:59Z"
+}

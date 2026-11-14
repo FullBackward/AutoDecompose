@@ -1,0 +1,18 @@
+{
+  "source_id": "cedar-spec",
+  "url": "https://github.com/cedar-policy/cedar-spec",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "cedar-policy/cedar-spec",
+  "commit": "e619491a5bfb04970ef994dbe286df0bb9d0b73f",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T11:39:00Z",
+  "how_found": "discovery-1: A-lean, B-lean",
+  "note": "Cedar authorization engine: Lean 4 formalization and soundness/completeness proofs over a definitional implementation, AWS-maintained, CI",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE",
+    "NOTICE"
+  ]
+}

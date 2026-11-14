@@ -1,0 +1,125 @@
+{
+  "entry": "lean-iff-split-compfiles-7195203a",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:34:40Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:34:40Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:34:40Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: IsGood.one_half_le@Compfiles/Imo1959P2.lean:125, isGood_iff_eq_sqrt_two@Compfiles/Imo1959P2.lean:124, IsGood.sqrt_two_lt_of_one_lt@Compfiles/Imo1959P2.lean:125; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:34:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "no_sorry(Compfiles/Imo1959P2.lean, 123-125) -> no_sorry: none of sorry, admit, axiom in Compfiles/Imo1959P2.lean:123-125",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:34:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, isGood_iff_eq_sqrt_two) -> cites: isGood_iff_eq_sqrt_two occurs at Compfiles/Imo1959P2.lean:124",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:34:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, one_half_le) -> cites: one_half_le occurs at Compfiles/Imo1959P2.lean:125",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:34:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "cites(parent, sqrt_two_lt_of_one_lt) -> cites: sqrt_two_lt_of_one_lt occurs at Compfiles/Imo1959P2.lean:125",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:34:40Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:34:48Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push-main.yaml runs 'lake build' (steps 'lake build' L49-56) on push to default branch main; pinned commit 1745e6ced3e671bd74417548494b034eb2c87da8 is HEAD of main (commits/main shows latest = 1745e6c). lake build compiles all Compfiles modules including Compfiles/Imo1959P2.lean.",
+      "by": "verifier",
+      "at": "2026-11-14T09:36:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read code/Compfiles/Imo1959P2.lean: IsGood.one_half_le at L71, isGood_iff_eq_sqrt_two at L76-81, IsGood.sqrt_two_lt_of_one_lt at L91-94; glue is L123-125 (3 lines). Chain imo1959_p2a -> sqrt_two_lt_of_one_lt (L125 cites h.sqrt_two_lt_of_one_lt) -> isGood_iff_eq_sqrt (L92 cites isGood_iff_eq_sqrt) -> sqrt_two_mul_sub_one_le_one (L84 cites it), which stops at the simp-only lemma L73-74. No longer chain: isGood_iff (L54-69) and sqrt_two_mul_sub_one_le_one cite no project lemma; the L96-118 lemmas are not cited by imo1959_p2a. Depth 3 confirmed.",
+      "by": "verifier",
+      "at": "2026-11-14T09:36:28Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent imo1959_p2a (lines 123-125) refines the iff into two directions; forward cites IsGood.one_half_le (lower bound) and IsGood.sqrt_two_lt_of_one_lt (upper bound via not_lt.1), reverse cites isGood_iff_eq_sqrt_two with rfl. All three children are exactly the lemmas the glue cites, their statements and closed_by strings match the copied code verbatim (lines 71, 76-81, 91-94). Shape numbers check out: direct_lemmas=3, glue_lines=3 (123-125), child_lines=[1,6,4] matching the three child site ranges, depth=3 via imo1959_p2a -> sqrt_two_lt_of_one_lt -> isGood_iff_eq_sqrt -> sqrt_two_mul_sub_one_le_one (lines 125, 92, 84; leaf at 73-74). Decomposition closes without sorry.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:37:14Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated beyond the example: entry.json applicability/use_when/avoid_when give a general goal_shape (P iff Q with Q a set membership and both directions already named lemmas), and README 'When to use it' states general conditions (both directions already lemma-sized; the two directions want different lemmas). When-not-to-use is honest and specific: three concrete avoid conditions (directions not lemma-sized so tactic-scale; one direction definitional or symmetric; same hypothesis reproved per direction). Consequences name the concrete failure mode: if the lemmas were absent the 3-line glue would inline their sub-proofs, defeating the theorem-scale assembly. Leaves: README 'Why each child is a good leaf' answers it -- each leaf is a self-contained statement whose proof closes on its own or from named siblings, with per-leaf closure (single term isGood_iff.1 h .2; rewrite plus sibling plus sqrt_lt_sqrt plus linarith; suffices convert ring plus positivity) and all close without sorry ending in simp/ring/linarith/positivity. Minor nit, not blocking: 'bounded prover' is not named literally, but the substance (self-contained leaf closing via a named sibling or small automation) is stated. Code at the cited line ranges matches the description.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:39:21Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:39:41Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes (1 file byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8). Commit, URL and licence (Apache-2.0) in entry.json match source.json and sources/compfiles/SOURCE.md; upstream-LICENSE is Apache-2.0 text. All 9 permalinks use the pinned commit and path Compfiles/Imo1959P2.lean; sed of the copied file confirms each cited line range (38-40, 54-69, 71, 73-74, 76-81, 83-89, 91-94, 121, 123-125) contains exactly the excerpt/statement claimed. Fully traceable and consistent.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:40:01Z"
+    }
+  ]
+}

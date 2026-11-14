@@ -1,0 +1,133 @@
+{
+  "entry": "lean-interface-lemma-pnt-and-a92f866a",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T11:10:32Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T11:10:32Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T11:10:32Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: logDeriv_residue_eq_meromorphicOrderAt@PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean:337, logDeriv_hasSimplePolesOn_of_meromorphicOrderAt_ne_top@PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean:295, logDeriv_poles_eq_divisor_support@PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean:299, divisor_support_rectangle_finite@PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean:288; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T11:10:32Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "no_sorry(PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean, 278-341) -> no_sorry: none of sorry, admit, axiom in PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean:278-341",
+      "by": "check_claims.py",
+      "at": "2026-11-14T11:10:32Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "lines(parent, 64) -> lines: site parent has 64 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T11:10:32Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 2c476fa6441c607096d93c8fc7ac0a227a655dae",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T11:10:39Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml; on push/PR to main (default branch), leanprover/lean-action runs 'lake build :blueprint', which builds PrimeNumberTheoremAnd/RectangleArgumentPrinciple.lean",
+      "by": "verifier",
+      "at": "2026-11-14T11:11:26Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Measured line ranges in the copied file: child1 119-126=8, child2 196-212=17, child3 214-254=41, child4 266-276=11; glue 278-341=64. direct_lemmas=4 (four children). Depth chain verified in code: parent(278-341) cites logDeriv_hasSimplePolesOn_of_meromorphicOrderAt_ne_top; that (196-212) cites logDeriv_meromorphicOrderAt_eq_neg_one_of_order_ne_zero; that (186-194) at line 193 cites meromorphicOrderAt_eq_neg_one_of_sub_principal_isBigO_one; that (140-154) at line 152 cites meromorphicOrderAt_nonneg_of_isBigO_one (128-138): 5 lemmas, 4 edges.",
+      "by": "verifier",
+      "at": "2026-11-14T11:12:21Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read lines 343-368: theorem rectangle_argumentChange_eq_two_pi_sum_meromorphicOrderAt starts at 343 and cites rectangleIntegral_logDeriv_eq_sum_meromorphicOrderAt at line 365 (rw [rectangleIntegral_logDeriv_eq_sum_meromorphicOrderAt zRe_le_wRe zIm_le_wIm hf hlog hfinite_order hno_boundary]).",
+      "by": "verifier",
+      "at": "2026-11-14T11:12:22Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read lines 8-13: module docstring (/-! ... -/) at lines 8-13 contains the quoted sentence across lines 11-12: 'This file isolates the local logarithmic-derivative residue calculation and the rectangle-facing finite divisor sum used by the Kadiri contour lanes.'",
+      "by": "verifier",
+      "at": "2026-11-14T11:12:23Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 2c476fa6441c607096d93c8fc7ac0a227a655dae",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T11:12:42Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Provenance passes (4 files byte-identical). Parent rectangleIntegral_logDeriv_eq_sum_meromorphicOrderAt is exactly lines 278-341; its four children and their cited ranges match the code verbatim: logDeriv_residue_eq_meromorphicOrderAt (119-126, closes by residue_eq_of_tendsto ...), logDeriv_hasSimplePolesOn_of_meromorphicOrderAt_ne_top (196-212, by_cases n=0 on the two private siblings), logDeriv_poles_eq_divisor_support (214-254, ext p; constructor with the same case split), divisor_support_rectangle_finite (266-276, closes by MeromorphicOn.divisor_support_inter_compact_finite). Closing methods in entry.json match the code exactly. The parent cites all four children at lines 288/293, 295, 299, 337 (glue-cites-children pass) and closes with simp at 341, no sorry/admit/axiom anywhere in the file. The other lemmas the parent uses (RectangleIntegral'_eq_sumResiduesIn, rectangleBorder_subset_rectangle, sumResiduesIn_eq_finset_of_finite, divisor_apply) are pre-existing/helper facts, honestly listed as non-children. Shape numbers are exact: direct_lemmas=4, glue_lines=64 (278-341), child_lines=[8,17,41,11] (=119-126,196-212,214-254,266-276), and depth=4 matches the verified chain parent->logDeriv_hasSimplePolesOn->logDeriv_meromorphicOrderAt_eq_neg_one_of_order_ne_zero->meromorphicOrderAt_eq_neg_one_of_sub_principal_isBigO_one->meromorphicOrderAt_nonneg_of_isBigO_one (cites at 295,210,193,152).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T11:13:31Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally (interface-lemma = bridge between two abstraction layers; one bridge lemma per crossing direction), not tied to the example. 'When not to use' gives three specific conditions (boundary crossed once; bridge lemmas not self-contained; finiteness argument dominates), and consequences are honest (work is relocated not removed: the client still spends 64 lines assembling hypotheses; failure modes 'bridge too strong' and 'hno_boundary re-derivation' are grounded in the copied glue). Good-leaf paragraph explicitly says what makes leaves suit a bounded prover: self-contained statements that close on their own or from named siblings, with per-child sizes, and it honestly discloses the private-helper depth-4 chain rather than pretending the leaves are trivial.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T11:14:33Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 2c476fa6441c607096d93c8fc7ac0a227a655dae",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T11:14:53Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes: 4 copied files byte-identical at 2c476fa6441c607096d93c8fc7ac0a227a655dae. Commit, licence and permalinks are consistent across entry.json, sources/pnt-and/SOURCE.md and source.json (all pin 2c476fa..., all record Apache-2.0). Fetched upstream LICENSE at the pinned commit: Apache License 2.0, matching the recorded licence and the copied upstream-LICENSE. Line-range permalink anchors verified against the local copy: docstring at 8-13, parent theorem at 278, child at 119, next theorem at 343. Everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T11:15:29Z"
+    }
+  ]
+}

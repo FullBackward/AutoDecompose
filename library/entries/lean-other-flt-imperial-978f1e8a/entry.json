@@ -1,0 +1,67 @@
+{
+  "id": "lean-other-flt-imperial-978f1e8a",
+  "kind": "instance",
+  "status": "deprecated",
+  "title": "throwaway smul_lemma excerpt probe",
+  "intent": "TODO",
+  "move": "other",
+  "also_known_as": [],
+  "language": "lean",
+  "source": {
+    "source_id": "flt-imperial",
+    "url": "https://github.com/ImperialCollegeLondon/FLT",
+    "commit": "a3210204ad8876e851e32f73dd97d882bf1ccd0a",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "FLT/Patching/System.lean",
+      "bytes": 22293,
+      "sha256": "bce45a4397075670eb01cc091acc6d9edff70389fb4301965b1b1a1f933510bb",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Patching/System.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "FLT/Patching/System.lean",
+      "lines": [
+        387,
+        418
+      ],
+      "role": "child",
+      "name": "smul_lemma",
+      "excerpt_sha256": "3bc1f28072ddbf9399fe1d4202f6013907bc6586be6f1f66dbdd2c286eb501f0",
+      "permalink": "https://github.com/ImperialCollegeLondon/FLT/blob/a3210204ad8876e851e32f73dd97d882bf1ccd0a/FLT/Patching/System.lean#L387-L418"
+    }
+  ],
+  "parent": {
+    "name": "TODO",
+    "statement": "TODO"
+  },
+  "children": [],
+  "applicability": {
+    "goal_shape": "TODO",
+    "use_when": "TODO",
+    "avoid_when": "TODO"
+  },
+  "claims": [],
+  "metrics": {},
+  "consequences": "TODO",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "978f1e8ab083073ccf5ed6d958d082f9f3bd1258e3d1794a6d4a8bc303794b3a",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-3-probe",
+      "at": "2026-11-14T09:31:11Z"
+    }
+  ],
+  "status_reason": "empty shell left by the timed-out pilot-3 extraction of FLT/Patching/System.lean:422; duplicate of lean-other-flt-imperial-ac21422b",
+  "status_at": "2026-11-14T13:42:33Z"
+}

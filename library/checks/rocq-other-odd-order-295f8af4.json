@@ -1,0 +1,133 @@
+{
+  "entry": "rocq-other-odd-order-295f8af4",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:59:56Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:59:56Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:59:56Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: Puig_sub@theories/BGappendixAB.v:492, Puig_center_normal@theories/BGappendixAB.v:496; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:59:56Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(Puig_factorization, theories/BGappendixAB.v, 483-506) -> declared: Puig_factorization is declared at theories/BGappendixAB.v:483",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:59:56Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, Puig_center_normal) -> cites: Puig_center_normal occurs at theories/BGappendixAB.v:496",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:59:56Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, Puig_sub) -> cites: Puig_sub occurs at theories/BGappendixAB.v:492",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:59:56Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at ba734c020d9f7dce5758fa822904dea29e2624ba",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:00:03Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/coq-action.yml (workflow 'CI'); commit ba734c020d9f7dce5758fa822904dea29e2624ba is the head of default branch master; the opam build runs 'make', which invokes 'rocq makefile -f _CoqProject' and compiles every file in _CoqProject, whose first entry is theories/BGappendixAB.v",
+      "by": "verifier",
+      "at": "2026-11-14T10:01:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "checked copied code: child Puig_sub at theories/BGsection1.v:1296-1297 is 2 lines (Lemma + Proof/Qed); child Puig_center_normal at theories/BGappendixAB.v:428-473 is 46 lines; parent 483-506 is 24 lines; depth 2 chain holds: Puig_center_normal cites pcore_Sylow_Puig_sub at BGappendixAB.v:430 ('have [sLiST sLTS] := pcore_Sylow_Puig_sub.')",
+      "by": "verifier",
+      "at": "2026-11-14T10:02:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "grep -n in copied code confirms theories/BGappendixAB.v:427 = '(* This is B & G, Theorem B.4(b). *)' and :482 = '(* This is B & G, Theorem B.4(a). *)', exactly as the claim quotes",
+      "by": "verifier",
+      "at": "2026-11-14T10:02:25Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at ba734c020d9f7dce5758fa822904dea29e2624ba",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:02:45Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Provenance pass (2 files byte-identical at ba734c020d9f). Read the cited line ranges: parent Puig_factorization at BGappendixAB.v:483-506 matches entry statement and cites Puig_sub (492,493,498) and Puig_center_normal (496); child Puig_sub at BGsection1.v:1296-1297 = 'Lemma Puig_sub G : 'L(G) \\subset G. Proof. exact: Puig_at_sub. Qed.' matches statement+closed_by; child Puig_center_normal at BGappendixAB.v:428-473 matches statement and its 45-line proof ends 'by rewrite (subset_trans sZY) // centsC subsetIr.'; all three sites end Qed, no sorry/admit. Shape numbers correct: glue_lines=24 (483-506), child_lines=[2,46] (1296-1297, 428-473), direct_lemmas=2 (the only project lemmas cited directly; quotient_odd/quotient_sol/trivg_pcore_quotient/morphim_pHall/Frattini_arg are mathcomp library lemmas), depth=2 (Puig_factorization -> Puig_center_normal -> pcore_Sylow_Puig_sub, the latter declared at 403 and cited at 430; also Puig_sub -> Puig_at_sub). Author-statement comments confirmed at lines 482 and 427. All 5 claims consistent with the code.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:06:00Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generally: abstracted over a normal subgroup D (quotient out the obstruction, prove the needed normality H/D <| G/D in the quotient, lift back via Frattini argument + coset-preimage), not just the specific 'O_p^'(G); goal_shape/use_when name the real precondition (a theorem about G already proved under the trivial-D hypothesis). When-not-to-use is honest and specific, tied to named facts (trivg_pcore_quotient must give the trivial core; quotientK/quotientGK must determine the lifted subgroup; normality-to-lift must come from a quotient normality + Frattini). Consequences list three code-accurate obligations (def_Zq via Puig_sub/injmF/morphim_restrm; nZq via Puig_center_normal; lift via Frattini_arg p/cosetpre_normal/quotientK/quotientGK) plus an explicit failure mode. README 'Why each child is a good leaf' answers the bounded-prover question: Puig_sub is a one-line reusable functoriality fact, Puig_center_normal is a self-contained statement instantiable independently at the quotient.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:07:06Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at ba734c020d9f7dce5758fa822904dea29e2624ba",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:07:24Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are all consistent and traceable. check_provenance.py passes: 2 files (BGappendixAB.v, BGsection1.v) byte-identical at ba734c020d9f7dce5758fa822904dea29e2624ba. The commit is used consistently in entry.json source.commit, files[].permalink and sites[].permalink, in README.md, and in sources/odd-order/SOURCE.md. Licence is CECILL-B throughout (entry.json, README, SOURCE.md, source.json) and matches the copied files' headers 'Distributed under the terms of CeCILL-B' and the repo licence file CeCILL-B (copied as upstream-CeCILL-B). Line ranges cited in sites and claims resolve correctly in the local copies: parent Puig_factorization 483-506, child Puig_sub BGsection1.v 1296-1297, child Puig_center_normal 428-473, author-statement comments at lines 482 ('This is B & G, Theorem B.4(a)') and 427 ('B.4(b)').",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:07:59Z"
+    }
+  ]
+}

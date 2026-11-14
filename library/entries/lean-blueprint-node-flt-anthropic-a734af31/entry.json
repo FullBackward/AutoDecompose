@@ -1,0 +1,230 @@
+{
+  "id": "lean-blueprint-node-flt-anthropic-a734af31",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Blueprint node closing the Frey package: Wiles_Frey and solution",
+  "intent": "Close the Frey package: from a Frey package P derive False by composing four chapter theorems — Mazur_Frey (irreducibility), frey_isModular (modularity), level_lowering_to_two (a nonzero weight-2 cusp form on Gamma0 2) and S2_Gamma0_2_eq_zero (no such form exists) — with no proof of its own beyond the applications.",
+  "move": "blueprint-node",
+  "also_known_as": [
+    "statement-object (Prove2Me convention)",
+    "proof-path closing node",
+    "p2m_export node"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "flt-anthropic",
+    "url": "https://github.com/anthropics/fermats-last-theorem",
+    "commit": "6e837e75355538c7f80bab5b956861e86c4eacc2",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "P2M/Sol/S_FreyPackage_no_frey_package.lean",
+      "bytes": 218355,
+      "sha256": "9c56cd147e9d68b409622e067ea4d6dcf30383e016f89fef4913f55a564e5c12",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_no_frey_package.lean"
+    },
+    {
+      "path": "Theorems/Thm_FreyPackage_Mazur_Frey.lean",
+      "bytes": 101676,
+      "sha256": "54692884a875c61b5a9a9bad236d754eed051919f5475375dac6bba029170112",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_FreyPackage_Mazur_Frey.lean"
+    },
+    {
+      "path": "Theorems/Thm_FreyPackage_frey_isModular.lean",
+      "bytes": 209635,
+      "sha256": "f6dbf9782ffad402a591325168a57518cd99357cc8298ec0608e320621e4cc5a",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_FreyPackage_frey_isModular.lean"
+    },
+    {
+      "path": "Theorems/Thm_FreyPackage_level_lowering_to_two.lean",
+      "bytes": 210098,
+      "sha256": "3b8bffd855434842a6df5e62806bcd92523db52a573cb4a21df9bcefcf47f389",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_FreyPackage_level_lowering_to_two.lean"
+    },
+    {
+      "path": "Theorems/Thm_ModularForm_S2_Gamma0_2_eq_zero.lean",
+      "bytes": 647,
+      "sha256": "c8e833e2e20554fa5a52b11353ef308aa73a223de4ef60afb64ca06313beddc1",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_ModularForm_S2_Gamma0_2_eq_zero.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "P2M/Sol/S_FreyPackage_no_frey_package.lean",
+      "lines": [
+        139,
+        147
+      ],
+      "role": "parent",
+      "name": "solution",
+      "excerpt_sha256": "3099665d313b1a2b872c36e28277feb5d34e54ac3349b8e64ba8c949f25249b2",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_no_frey_package.lean#L139-L147"
+    },
+    {
+      "path": "Theorems/Thm_FreyPackage_Mazur_Frey.lean",
+      "lines": [
+        70,
+        70
+      ],
+      "role": "child",
+      "name": "FreyPackage.Mazur_Frey",
+      "excerpt_sha256": "52410682fc8b1afae9ee5c59a8ad3875cc72c6aaa63739aad82d0258e283e7da",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_FreyPackage_Mazur_Frey.lean#L70-L70"
+    },
+    {
+      "path": "Theorems/Thm_FreyPackage_frey_isModular.lean",
+      "lines": [
+        131,
+        131
+      ],
+      "role": "child",
+      "name": "FreyPackage.frey_isModular",
+      "excerpt_sha256": "3098388fda82e885816df57bc25e3d8b4e86daf9f025e38c9225723ee1d36d57",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_FreyPackage_frey_isModular.lean#L131-L131"
+    },
+    {
+      "path": "Theorems/Thm_FreyPackage_level_lowering_to_two.lean",
+      "lines": [
+        131,
+        131
+      ],
+      "role": "child",
+      "name": "FreyPackage.level_lowering_to_two",
+      "excerpt_sha256": "e7f6d3a4ee4b3290b9396fc64c6d3ec0a4e71af976b234b1e37a81cf3d979fb3",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_FreyPackage_level_lowering_to_two.lean#L131-L131"
+    },
+    {
+      "path": "Theorems/Thm_ModularForm_S2_Gamma0_2_eq_zero.lean",
+      "lines": [
+        13,
+        13
+      ],
+      "role": "child",
+      "name": "ModularForm.S2_Gamma0_2_eq_zero",
+      "excerpt_sha256": "e98b0ff9278e7e168dda88330ce0fc9ae02cb2ddca05bd132fc6cb5c82dbca84",
+      "permalink": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_ModularForm_S2_Gamma0_2_eq_zero.lean#L13-L13"
+    }
+  ],
+  "parent": {
+    "name": "solution",
+    "statement": "theorem solution (P : FreyPackage) : False",
+    "note": "The headline theorem of the file: a Frey package is impossible. The parent site also holds the auxiliary `Wiles_Frey` (lines 139-142), the in-file lemma that performs the contradiction, so the glue is the 9 lines of the two declarations together."
+  },
+  "children": [
+    {
+      "name": "FreyPackage.Mazur_Frey",
+      "statement": "theorem FreyPackage.Mazur_Frey (P : FreyPackage) : GaloisRepIsIrreducible (K := AlgebraicClosure ℚ) ℚ P.freyCurve P.p",
+      "closed_by": "p2m_exact_reverting @_root_.P2MW.S_FreyPackage_Mazur_Frey.solution",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The Frey curve's Galois representation is irreducible."
+    },
+    {
+      "name": "FreyPackage.frey_isModular",
+      "statement": "theorem FreyPackage.frey_isModular (P : FreyPackage) : P.freyCurve.IsModular",
+      "closed_by": "p2m_exact_reverting @_root_.P2MW.S_FreyPackage_frey_isModular.solution",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The Frey curve is modular."
+    },
+    {
+      "name": "FreyPackage.level_lowering_to_two",
+      "statement": "theorem FreyPackage.level_lowering_to_two (P : FreyPackage) (hmod : P.freyCurve.IsModular) (hirr : GaloisRepIsIrreducible (K := AlgebraicClosure ℚ) ℚ P.freyCurve P.p) : ∃ f : CuspForm (CongruenceSubgroup.Gamma0 2) 2, f ≠ 0",
+      "closed_by": "p2m_exact_reverting @_root_.P2MW.S_FreyPackage_level_lowering_to_two.solution",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: Modularity plus irreducibility gives a nonzero weight-2 cusp form on Gamma0 2."
+    },
+    {
+      "name": "ModularForm.S2_Gamma0_2_eq_zero",
+      "statement": "theorem ModularForm.S2_Gamma0_2_eq_zero (f : CuspForm (CongruenceSubgroup.Gamma0 2) 2) : f = 0",
+      "closed_by": "p2m_exact_reverting @_root_.P2MW.S_ModularForm_S2_Gamma0_2_eq_zero.solution",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: Every weight-2 cusp form on Gamma0 2 is zero."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A target theorem `solution : False` (a contradiction) whose proof is nothing but applications of a few named chapter theorems imported from sibling files: a `let ⟨f, hf⟩ := level_lowering_to_two P (frey_isModular P) hirr` destructuring, then applying another lemma to the witness `f`, then applying a final lemma to close.",
+    "use_when": "the project publishes a dependency graph (a blueprint or Prove2Me path) where each chapter result is a named theorem in its own file, and the closing node is a short composition of those names with no argument of its own in between.",
+    "avoid_when": "the glue needs its own nontrivial proof — a real argument between the lemmas rather than a chain of applications; the lemmas are not already stated as named declarations; or the combination has to be discovered rather than read off the published graph."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site is 9 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_no_frey_package.lean#L139-L147",
+      "form": "lines(parent, 9)"
+    },
+    {
+      "n": 2,
+      "claim": "The name `level_lowering_to_two` occurs in the parent site.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_no_frey_package.lean#L139-L147",
+      "form": "cites(parent, level_lowering_to_two)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site contains none of the Lean closing tokens sorry, admit or axiom.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_FreyPackage_no_frey_package.lean#L139-L147",
+      "form": "no_sorry(P2M/Sol/S_FreyPackage_no_frey_package.lean, 139-147)"
+    },
+    {
+      "n": 4,
+      "claim": "The closing node composes 4 direct chapter lemmas; the glue is 9 lines and each of the four child sites is a single line (declaration with its proof on the same line).",
+      "evidence_kind": "measurement",
+      "evidence": "direct_lemmas=4 (the four children listed below); glue_lines=9 (parent site lines 139-147); child_lines=[1,1,1,1] for the four single-line child sites: Mazur_Frey at Theorems/Thm_FreyPackage_Mazur_Frey.lean:70, frey_isModular and level_lowering_to_two at :131 of their files, S2_Gamma0_2_eq_zero at Theorems/Thm_ModularForm_S2_Gamma0_2_eq_zero.lean:13"
+    },
+    {
+      "n": 5,
+      "claim": "The same node shape — a `Theorems/Thm_*.lean` declaration whose proof is `by p2m_exact_reverting @_root_.P2MW.S_*.solution` — is reused across the project, for example `Thm_fermatLastTheoremFive.lean` line 5.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_fermatLastTheoremFive.lean#L5"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 1,
+    "glue_lines": 9,
+    "child_lines": [
+      1,
+      1,
+      1,
+      1
+    ]
+  },
+  "metrics": {
+    "parent_lines": 9,
+    "children": 4,
+    "how_counted": "parent_lines = parent site lines 139-147; children = number of child sites; each child's proof in the copied file is a single p2m_exact_reverting delegation to a Prove2Me solution, with no interactive proof in the copied files."
+  },
+  "consequences": "The node creates four obligations, each discharged by a separate chapter theorem in its own file, and none by the glue itself; if any of the four were missing or mis-stated the closing node would fail to typecheck, so the correctness of the decomposition lives entirely in the exact types of the four chapter theorems. The glue relies on the last component of each name resolving to the imported theorem (via `p2m_open`), and on `let ⟨f, hf⟩ := ...` matching the existential that `level_lowering_to_two` produces; a change to that child's conclusion (e.g. a different congruence subgroup or weight) silently breaks the closing node.",
+  "known_uses": [
+    "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/Theorems/Thm_fermatLastTheoremFive.lean#L5"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 15,
+    "relation": "supports"
+  },
+  "content_key": "a734af31ecfc2629a6244ef511582b6e9dca97e76beea64db2d3ec12e63dbc09",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T11:00:49Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T11:05:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T11:02:54Z",
+      "note": "parent solution: statement re-copied from code; child 'FreyPackage.Mazur_Frey': statement re-copied from the declaration of FreyPackage.Mazur_Frey; child 'FreyPackage.frey_isModular': statement re-copied from the declaration of FreyPackage.frey_isModular; child 'FreyPackage.level_lowering_to_two': statement re-copied from the declaration of FreyPackage.level_lowering_to_two; child 'ModularForm.S2_Gamma0_2_eq_zero': statement re-copied from the declaration of ModularForm.S2_Gamma0_2_eq_zero"
+    }
+  ]
+}

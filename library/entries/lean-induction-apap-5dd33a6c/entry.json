@@ -1,0 +1,187 @@
+{
+  "id": "lean-induction-apap-5dd33a6c",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Induction on the codimension-increase step for the finite-field 3AP bound (ff)",
+  "intent": "Reduce the finite-field 3AP bound finrank (ZMod q) G ≤ 2^148 * 𝓛 A.dens^9 to an induction on the number of density-increment steps: a successor step applies di_in_ff to descend to a subspace of bounded codimension where the density rises by the fixed factor (1 + 64⁻¹), and the loop terminates because density is at most 1, leaving an inner product that the 3AP-free identity rewrites to a bound on the original density.",
+  "move": "induction",
+  "also_known_as": [
+    "density increment argument",
+    "energy increment method"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "apap",
+    "url": "https://github.com/YaelDillies/apap",
+    "commit": "fb5cb9c4f594cbeeb160c715618d13640984c521",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "APAP/FiniteField.lean",
+      "bytes": 35598,
+      "sha256": "3e783e02cc78b8e46fc9a24ac51d15258fc8c8f112b704a36523e2913d7f8397",
+      "permalink": "https://github.com/YaelDillies/apap/blob/fb5cb9c4f594cbeeb160c715618d13640984c521/APAP/FiniteField.lean"
+    },
+    {
+      "path": "APAP/Prereqs/Convolution/ThreeAP.lean",
+      "bytes": 1784,
+      "sha256": "12d142aabdc60bb003b576212aceec2c2572ad5a670bb1b20a13a7d3517fbc67",
+      "permalink": "https://github.com/YaelDillies/apap/blob/fb5cb9c4f594cbeeb160c715618d13640984c521/APAP/Prereqs/Convolution/ThreeAP.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "APAP/FiniteField.lean",
+      "lines": [
+        511,
+        645
+      ],
+      "role": "parent",
+      "name": "ff",
+      "excerpt_sha256": "6d76c1770465ef3e1c99103ce3acb222e95f4740b12c7bdfd4cc098260293ec0",
+      "permalink": "https://github.com/YaelDillies/apap/blob/fb5cb9c4f594cbeeb160c715618d13640984c521/APAP/FiniteField.lean#L511-L645"
+    },
+    {
+      "path": "APAP/FiniteField.lean",
+      "lines": [
+        332,
+        509
+      ],
+      "role": "child",
+      "name": "di_in_ff",
+      "excerpt_sha256": "c28258a92e98b19e9c03e29cdde0cc7bd94d909449c3af7587588b0f1c291b5f",
+      "permalink": "https://github.com/YaelDillies/apap/blob/fb5cb9c4f594cbeeb160c715618d13640984c521/APAP/FiniteField.lean#L332-L509"
+    },
+    {
+      "path": "APAP/Prereqs/Convolution/ThreeAP.lean",
+      "lines": [
+        20,
+        41
+      ],
+      "role": "child",
+      "name": "ThreeAPFree.wInner_one_mu_ddconv_mu_mu_two_smul_mu",
+      "excerpt_sha256": "18ad2bd4842458a4149275d6e3ac538340f3598914b3ebd67fbdb3c6445efeba",
+      "permalink": "https://github.com/YaelDillies/apap/blob/fb5cb9c4f594cbeeb160c715618d13640984c521/APAP/Prereqs/Convolution/ThreeAP.lean#L20-L41"
+    }
+  ],
+  "parent": {
+    "name": "ff",
+    "statement": "theorem ff (hq₃ : 3 ≤ q) (hq : q.Prime) (hA₀ : A.Nonempty) (hA : ThreeAPFree (α := G) A) :\n    finrank (ZMod q) G ≤ 2 ^ 148 * 𝓛 A.dens ^ 9"
+  },
+  "children": [
+    {
+      "name": "di_in_ff",
+      "statement": "lemma di_in_ff [DecidableEq G] [MeasurableSpace G] [DiscreteMeasurableSpace G] (hq : q.Prime)\n    (hε₀ : 0 < ε) (hε₁ : ε < 1) (hγC : γ ≤ C.dens) (hγ : 0 < γ)\n    (hAC : ε ≤ |card G * ⟪μ_[ℝ] A ∗ᵈ μ A, μ C⟫_[ℝ] - 1|) :\n    ∃ (V : Submodule (ZMod q) G) (_ : DecidablePred (· ∈ V)),\n        ↑(finrank (ZMod q) G - finrank (ZMod q) V) ≤\n            2 ^ 128 * 𝓛 A.dens ^ 4 * 𝓛 γ ^ 4 / ε ^ 12 ∧\n          (1 + ε / 32) * A.dens ≤ ‖𝟭_[(A : Set G), ℝ] ∗ᵈ μ (Set.toFinset V)‖_[∞]",
+      "closed_by": "its own 178-line proof: unbalancing (line 360), sifting_cor (line 390), ap_in_ff' (line 424), then two closing calc chains (lines 441-509)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: from a set A with a large inner product, a subspace V of bounded codimension where the density of A rises by (1 + ε/32)"
+    },
+    {
+      "name": "ThreeAPFree.wInner_one_mu_ddconv_mu_mu_two_smul_mu",
+      "statement": "lemma ThreeAPFree.wInner_one_mu_ddconv_mu_mu_two_smul_mu (hG : Odd (card G))\n    (hs : ThreeAPFree (s : Set G)) :\n    ⟪μ_[ℝ] s ∗ᵈ μ s, μ (s.image (2 • ·))⟫_[ℝ] = (#s ^ 2 : ℝ)⁻¹",
+      "closed_by": "its own 22-line proof: the inner product is split into a diagonal and an off-diagonal sum; the off-diagonal is forced to 0 by the ThreeAPFree hypothesis (obtain rfl := hs h.1.1 hb h.1.2 hab.symm) and the diagonal evaluates to (#s ^ 2 : ℝ)⁻¹",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the 3AP-free inner-product identity ⟪μ s ∗ᵈ μ s, μ (s.image (2 • ·))⟫ = (#s ^ 2 : ℝ)⁻¹"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "a density bound finrank ≤ C * 𝓛(dens)^k for a set A with no non-trivial 3-term arithmetic progression, proved by a density-increment loop over a descending chain of subspaces V = G ≥ V₁ ≥ … ≥ Vₜ",
+    "use_when": "there is a density-increment lemma (from a set with a large inner product, a subspace where the density rises by a fixed factor at bounded codimension cost) and a terminal identity that rewrites the surviving inner product in terms of the original density; the loop stops because density is bounded above by 1",
+    "avoid_when": "the increment's density gain or codimension cost does not telescope into the final bound, the terminal identity needs hypotheses beyond the invariant, or the invariant is too weak to survive the step (package both codimension and density, as the have ind does here)"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site `ff` is 135 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(parent, 135)",
+      "evidence": "https://github.com/YaelDillies/apap/blob/fb5cb9c4f594cbeeb160c715618d13640984c521/APAP/FiniteField.lean#L511-L645"
+    },
+    {
+      "n": 2,
+      "claim": "`di_in_ff` occurs in the parent site.",
+      "evidence_kind": "check",
+      "form": "cites(parent, di_in_ff)",
+      "evidence": "https://github.com/YaelDillies/apap/blob/fb5cb9c4f594cbeeb160c715618d13640984c521/APAP/FiniteField.lean#L561"
+    },
+    {
+      "n": 3,
+      "claim": "`wInner_one_mu_ddconv_mu_mu_two_smul_mu` occurs in the parent site.",
+      "evidence_kind": "check",
+      "form": "cites(parent, ThreeAPFree.wInner_one_mu_ddconv_mu_mu_two_smul_mu)",
+      "evidence": "https://github.com/YaelDillies/apap/blob/fb5cb9c4f594cbeeb160c715618d13640984c521/APAP/FiniteField.lean#L615"
+    },
+    {
+      "n": 4,
+      "claim": "The blueprint proof of the node `ff` names its two ingredients as `\\uses{no3aps_inner_prod, di_in_ff}`, where `no3aps_inner_prod` is the blueprint label of `ThreeAPFree.wInner_one_mu_ddconv_mu_mu_two_smul_mu`.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/YaelDillies/apap/blob/fb5cb9c4f594cbeeb160c715618d13640984c521/blueprint/src/chapter/ff.tex#L200-L202 (\"\\uses{no3aps_inner_prod, di_in_ff}\"); the label no3aps_inner_prod is declared at #L176-L178 as \\lean{ThreeAPFree.wInner_one_mu_ddconv_mu_mu_two_smul_mu}"
+    },
+    {
+      "n": 5,
+      "claim": "The decomposition reaches depth 3 below `ff`: di_in_ff (APAP/FiniteField.lean 332-509) applies ap_in_ff' at line 424, which applies ap_in_ff at line 327, both in the copied file; ff itself uses exactly the two direct lemmas di_in_ff (line 561) and ThreeAPFree.wInner_one_mu_ddconv_mu_mu_two_smul_mu (line 615).",
+      "evidence_kind": "measurement",
+      "evidence": "read of code/APAP/FiniteField.lean: di_in_ff at 332-509 cites ap_in_ff' at 424; ap_in_ff' at 322-327 cites ap_in_ff at 327; ff at 511-645 cites di_in_ff at 561 and wInner_one_mu_ddconv_mu_mu_two_smul_mu at 615"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 3,
+    "glue_lines": 135,
+    "child_lines": [
+      178,
+      22
+    ]
+  },
+  "metrics": {
+    "parent_lines": 135,
+    "direct_lemmas": 2,
+    "depth": 3,
+    "child_lines": [
+      178,
+      22
+    ],
+    "how_counted": "parent site APAP/FiniteField.lean 511-645; child sites APAP/FiniteField.lean 332-509 and APAP/Prereqs/Convolution/ThreeAP.lean 20-41; depth = the chain ff -> di_in_ff -> ap_in_ff' -> ap_in_ff read in APAP/FiniteField.lean"
+  },
+  "consequences": "Creates a natural-number induction with an explicit invariant (the have ind block): the obligation is that the invariant survives the density-increment step and converts into the final bound at the terminal index. The increment step relies on di_in_ff's hypothesis ε ≤ |card G * ⟪μ A ∗ᵈ μ A, μ C⟫ - 1|; the proof manufactures it in the non-terminal branch by rewriting ¬(2⁻¹ ≤ x) into 2⁻¹ ≤ |x - 1|. A weaker invariant (one omitting the density-growth clause) would let the induction close without yielding the codimension bound, so the invariant must package both codimension and density.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "5dd33a6cbef4729813a7b4d22b3ee1ab2c31be9d0cca337bf8ef86cdcacabe4",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:12:15Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:15:05Z",
+      "note": "child 'di_in_ff': statement re-copied from the declaration of di_in_ff; child 'ThreeAPFree.wInner_one_mu_ddconv_mu_mu_two_smul_mu': statement re-copied from the declaration of ThreeAPFree.wInner_one_mu_ddconv_mu_mu_two_smul_mu"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:15:28Z",
+      "note": "parent ff: statement re-copied from code"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:16:23Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T12:22:50Z"
+}

@@ -1,0 +1,125 @@
+{
+  "entry": "lean-generalise-then-instantiate-lean-atiyah-singer-83424c2a",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:41:46Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:41:46Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:41:46Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: principalSymbol_eq_regularizedSymbol@AtiyahSinger/Analysis/DifferentialIndexTheorem.lean:132, isElliptic_iff_isEllipticGlobalSymbol@AtiyahSinger/Analysis/DifferentialIndexTheorem.lean:135, isElliptic_iff_homogeneous@AtiyahSinger/Analysis/DifferentialIndexTheorem.lean:134, PseudodifferentialOperator.index_eq_cotangentTopologicalIndex@AtiyahSinger/Analysis/DifferentialIndexTheorem.lean:107; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:41:46Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(parent, 32) -> lines: site parent has 32 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:41:46Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, principalSymbol_eq_regularizedSymbol) -> cites: principalSymbol_eq_regularizedSymbol occurs at AtiyahSinger/Analysis/DifferentialIndexTheorem.lean:132",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:41:46Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 09fc7bab3f9ff606901bde4b5a5580470da63a70",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:41:55Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI workflow in the repository (repo root has no .github/workflows or other CI config) and no local Lean toolchain on the harvest machine",
+      "by": "verifier",
+      "at": "2026-11-14T12:43:17Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "docstring lines 16-22 of code/AtiyahSinger/Analysis/DifferentialIndexTheorem.lean contain verbatim 'an elliptic differential operator needs no extra classical-symbol assumption when applying the existing K-theoretic index theorem'",
+      "by": "verifier",
+      "at": "2026-11-14T12:43:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "symbolKClass (DifferentialIndexTheorem.lean:71-85) assembles a (74-76), derives hp via principalSymbol_eq_regularizedSymbol (77-80), derives hi via isElliptic_iff_homogeneous .mpr (isElliptic_iff_isEllipticGlobalSymbol.mp hP) (82-84), then applies symbolKClassOfHomogeneous R a hp hi (85)",
+      "by": "verifier",
+      "at": "2026-11-14T12:43:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "counted from copied files: parent site 107-138 = 32 lines; child sites 318-325=8, 333-347=15, 138-150=13, 220-242=23; 4 children; depth-2 chain confirmed: parent cites child at DifferentialIndexTheorem.lean:137 and child cites grandchild analyticIndexOfComponents_symbolKClassOfHomogeneous at IndexTheorem.lean:239",
+      "by": "verifier",
+      "at": "2026-11-14T12:43:26Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Decomposition matches code: parent index_eq_cotangentTopologicalIndex (DifferentialIndexTheorem.lean 107-138, 32 lines) is a thin glue assembling 4 children. Glue cites all 4: P.principalSymbol_eq_regularizedSymbol μ R (line 132), isElliptic_iff_homogeneous (line 134), isElliptic_iff_isEllipticGlobalSymbol (line 135), and exact PseudodifferentialOperator.index_eq_cotangentTopologicalIndex (lines 137-138); the homogeneous representative 'a' is built inline (not a lemma), as stated. All four children's closing methods match the copied code verbatim (rw principalSymbol_toPseudodifferentialOperator then regularizedSymbol_class_eq.symm; exact Iff.rfl; isElliptic_iff_of_principalSymbol_eq .trans isEllipticFullGlobalSymbol_regularizedSymbol_iff; have heval := analyticIndexOfComponents_symbolKClassOfHomogeneous then rw then heval.symm). It closes: the PDO child concludes P.toLinearMap.index = cotangentTopologicalIndex n M (P.symbolKClassOfHomogeneous R a hp hi), which reduces definitionally to the goal P.analyticIndex hP = ... (P.symbolKClass μ R hP) via toLinearMap/symbolKClass; no sorry/axiom in any site. Children are exactly the 4 lemmas the proof uses. Shape numbers correct: direct_lemmas=4, glue_lines=32 (107-138), child_lines 8 (318-325), 15 (333-347), 13 (138-150), 23 (220-242), depth=2 via grandchild analyticIndexOfComponents_symbolKClassOfHomogeneous cited at IndexTheorem.lean:239. Minor non-blocking note: shape.child_lines [8,15,13,23] follows the metrics name order rather than the children array order, but each count is correct and the metrics map is unambiguous.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:45:36Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated abstractly via applicability.goal_shape/use_when/avoid_when and the README 'When to use it, and when not' (general theorem already exists; specific object embeds by a definitional map; instantiation data derived by named boundary lemmas, not assumed). avoid_when is honest and specific (embedding not definitional -> deep proofs; hypotheses not discharged -> data must be assumed; general theorem absent -> re-proving not reuse). consequences names each obligation (PDO definitional, inline representative a, hp, hi) and the failure mode, and its exclusions are verifiable: the module docstring at DifferentialIndexTheorem.lean:28-29 states 'No Hermitian metric, spin structure, orientation, positive differential order, connectedness, or equality of bundle ranks is imposed'. Good-leaf question is answered: README section 'why each is a good leaf' says each is self-contained and closes in one or two steps from named siblings (Iff.rfl; .trans of two named lemmas; rw + regularizedSymbol_class_eq), and it is honest that child 4 (the general theorem) is the depth-2 exception relying on a grandchild. Move's generality is further evidenced by the sibling symbolKClass (lines 71-85) repeating the same three steps.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:46:59Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 09fc7bab3f9ff606901bde4b5a5580470da63a70",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:47:18Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes: 4 files byte-identical at pinned commit 09fc7bab3f9ff606901bde4b5a5580470da63a70. Commit is consistent across entry.json (source.commit and every files[].permalink/sites[].permalink), README.md, and sources/lean-atiyah-singer/SOURCE.md + source.json. Licence Apache-2.0 recorded consistently in entry.json, README.md, source.json and SOURCE.md; upstream-LICENSE is the Apache License 2.0, matching SOURCE.md's claim that the licence text is copied there. All permalink paths match the copied code/ files and their line anchors. Traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:47:36Z"
+    }
+  ]
+}

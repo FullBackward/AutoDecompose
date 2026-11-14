@@ -1,0 +1,213 @@
+{
+  "id": "lean-suffices-or-strengthen-pfr-16fd5d4d",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Strengthen to the not-in-coset case, then strong-induct, for asymmetric weak PFR over Z^d",
+  "intent": "Prove the asymmetric weak PFR theorem over a free ℤ-module by first strengthening the goal to the case where A, B are not in a coset of a proper subgroup (an extra `NotInCoset A B` hypothesis), strong-inducting on `Nat.card A + Nat.card B` over that strengthened statement, and then transferring the conclusion back to the original A, B.",
+  "move": "suffices-or-strengthen",
+  "also_known_as": [
+    "suffices",
+    "wlog (without loss of generality)",
+    "strengthen the induction hypothesis"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "pfr",
+    "url": "https://github.com/teorth/pfr",
+    "commit": "1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "PFR/WeakPFR.lean",
+      "bytes": 60974,
+      "sha256": "f5bf403cabf35ed830007d1ff505509f73d36e09055810910bc9b7a517db0c66",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/WeakPFR.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "PFR/WeakPFR.lean",
+      "lines": [
+        859,
+        971
+      ],
+      "role": "parent",
+      "name": "weak_PFR_asymm",
+      "excerpt_sha256": "58a043b5cfa6673ebfa225801645a200475d010bc3cbd9bc07ec5469a820f60a",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/WeakPFR.lean#L859-L971"
+    },
+    {
+      "path": "PFR/WeakPFR.lean",
+      "lines": [
+        50,
+        81
+      ],
+      "role": "child",
+      "name": "wlog_notInCoset",
+      "excerpt_sha256": "da42624ca9ad06657264d8d8a1b77d684dabb2136dd1156222790c8a28e1ec0e",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/WeakPFR.lean#L50-L81"
+    },
+    {
+      "path": "PFR/WeakPFR.lean",
+      "lines": [
+        625,
+        782
+      ],
+      "role": "child",
+      "name": "weak_PFR_asymm_prelim",
+      "excerpt_sha256": "3138582f1f15c959c346066bd587e85b73750447cd2517111ce61857148a0630",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/WeakPFR.lean#L625-L782"
+    },
+    {
+      "path": "PFR/WeakPFR.lean",
+      "lines": [
+        813,
+        857
+      ],
+      "role": "child",
+      "name": "conclusion_transfers",
+      "excerpt_sha256": "e343115af3c635efe3eb01370eb99582f5e3ee8fc563d3c7712834a534596e4c",
+      "permalink": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/WeakPFR.lean#L813-L857"
+    }
+  ],
+  "parent": {
+    "name": "weak_PFR_asymm",
+    "statement": "lemma weak_PFR_asymm (A B : Set G) (hA : A.Finite) (hB : B.Finite) (hA₀ : A.Nonempty)\n    (hB₀ : B.Nonempty) : WeakPFRAsymmConclusion A B"
+  },
+  "children": [
+    {
+      "name": "wlog_notInCoset",
+      "statement": "lemma wlog_notInCoset (hA : A.Nonempty) (hB : B.Nonempty) :\n    ∃ (G' : AddSubgroup G) (A' B' : Set (G' : Set G)),\n    IsShift A A' ∧ IsShift B B' ∧ NotInCoset A' B'",
+      "closed_by": "its own proof (lines 52-81): sets `G' := AddSubgroup.closure ((A - A) ∪ (B - B))`, shows the shifts `-x +ᵥ A`, `-y +ᵥ B` lie in `range G'.subtype`, and closes `NotInCoset A' B'` with `convert! AddSubgroup.closure_preimage_eq_top ((A - A) ∪ (B - B))` (line 161)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: moves A, B (up to translation and embedding) into a subgroup G' where they are not in a coset of a proper subgroup"
+    },
+    {
+      "name": "weak_PFR_asymm_prelim",
+      "statement": "lemma weak_PFR_asymm_prelim (A B : Set G) [A_fin : Finite A] [B_fin : Finite B]\n    (hnA : A.Nonempty) (hnB : B.Nonempty) :\n    ∃ (N : AddSubgroup G) (x y : G ⧸ N) (Ax By : Set G), Ax.Nonempty ∧ By.Nonempty ∧\n    Set.Finite Ax ∧ Set.Finite By ∧ Ax = {z : G | z ∈ A ∧ QuotientAddGroup.mk' N z = x } ∧\n    By = {z : G | z ∈ B ∧ QuotientAddGroup.mk' N z = y } ∧\n    (log 2) * Module.finrank ℤ G ≤ log (Nat.card (G ⧸ N)) +\n      40 * dᵤ[A # B ] ∧ log (Nat.card A) + log (Nat.card B) - log (Nat.card Ax) - log (Nat.card By)\n      ≤ 34 * (dᵤ[A # B ] - dᵤ[Ax # By ])",
+      "closed_by": "its own proof (lines 636-782), via `PFR_projection`, `third_iso`, `single_fibres`, `torsion_dist_shrinking`, `single` and `four_logs`; the card/log inequality closes with a `calc` ending `exact (mul_le_mul_iff_right₀ h).mp this` (line 782)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: from finite non-empty A, B it produces a subgroup N, points x, y in G/N, and non-empty fibres Ax, By with the card/log bound and the dimension bound used by the induction"
+    },
+    {
+      "name": "conclusion_transfers",
+      "statement": "lemma conclusion_transfers {A B : Set G} (G' : AddSubgroup G) (A' B' : Set (G' : Set G))\n    (hA : IsShift A A') (hB : IsShift B B') [Finite A'] [Finite B']\n    (hA' : A'.Nonempty) (hB' : B'.Nonempty)\n    (h : WeakPFRAsymmConclusion A' B') : WeakPFRAsymmConclusion A B",
+      "closed_by": "its own proof (lines 817-857): pulls the witnesses A'', B'' back through the shift embeddings `f`, `g`, proves `dᵤ[A # B] = dᵤ[A' # B']`, and closes the dimension bound with `dimension_of_shift` (line 856)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: maps a WeakPFRAsymmConclusion for the shifted sets A', B' back to a WeakPFRAsymmConclusion for the original A, B"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A theorem of the form `∀ (A B : Set G), <finiteness/nonemptiness> → P A B` where the proof needs an invariant that only holds once a bad configuration (here: being contained in a coset of a proper subgroup) is excluded; `P` is a conjunction of a size bound and a dimension/rank bound on witnesses A', B'.",
+    "use_when": "the naive induction hypothesis is too weak, and the missing strength can be stated as an extra hypothesis (a `wlog`/`suffices`) plus two cheap lemmas: one that reduces the general case to the strengthened case, and one that transfers the strengthened conclusion back.",
+    "avoid_when": "the reduction or the transfer is hard enough to be the real content rather than a preamble (then they are the theorem, not a wrapper); the strengthened statement is not actually stronger over the induction variable, so the recursion does not decrease."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "A declaration named `weak_PFR_asymm` starts in lines 859-971 of `PFR/WeakPFR.lean`.",
+      "evidence_kind": "check",
+      "form": "declared(weak_PFR_asymm, PFR/WeakPFR.lean, 859-971)",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/WeakPFR.lean#L859-L971"
+    },
+    {
+      "n": 2,
+      "claim": "The identifier `wlog_notInCoset` occurs in the parent site's lines.",
+      "evidence_kind": "check",
+      "form": "cites(parent, wlog_notInCoset)",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/WeakPFR.lean#L859-L971"
+    },
+    {
+      "n": 3,
+      "claim": "The identifier `weak_PFR_asymm_prelim` occurs in the parent site's lines.",
+      "evidence_kind": "check",
+      "form": "cites(parent, weak_PFR_asymm_prelim)",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/WeakPFR.lean#L859-L971"
+    },
+    {
+      "n": 4,
+      "claim": "The identifier `conclusion_transfers` occurs in the parent site's lines.",
+      "evidence_kind": "check",
+      "form": "cites(parent, conclusion_transfers)",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/WeakPFR.lean#L859-L971"
+    },
+    {
+      "n": 5,
+      "claim": "None of `sorry`, `admit` or `axiom` occurs in lines 1-1079 of `PFR/WeakPFR.lean`.",
+      "evidence_kind": "check",
+      "form": "no_sorry(PFR/WeakPFR.lean, 1-1079)",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/WeakPFR.lean"
+    },
+    {
+      "n": 6,
+      "claim": "The parent site is 113 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(parent, 113)",
+      "evidence": "https://github.com/teorth/pfr/blob/1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a/PFR/WeakPFR.lean#L859-L971"
+    },
+    {
+      "n": 9,
+      "claim": "A chain of at least six project lemmas runs below `weak_PFR_asymm`: weak_PFR_asymm → weak_PFR_asymm_prelim → PFR_projection → PFR_projection' → app_ent_PFR → app_ent_PFR' → ent_of_proj_le, and app_ent_PFR' also calls diff_ent_le_rdist and entropic_PFR_conjecture_improv, so the chain does not end at app_ent_PFR'.",
+      "evidence_kind": "measurement",
+      "evidence": "code/PFR/WeakPFR.lean: weak_PFR_asymm calls weak_PFR_asymm_prelim at line 905; weak_PFR_asymm_prelim calls PFR_projection at line 651; PFR_projection calls PFR_projection' at line 396; PFR_projection' calls app_ent_PFR at line 321; app_ent_PFR calls app_ent_PFR' at line 295; app_ent_PFR' calls entropic_PFR_conjecture_improv at line 257, ent_of_proj_le at lines 265-266 and diff_ent_le_rdist at lines 279-280."
+    },
+    {
+      "n": 8,
+      "claim": "The author states the strengthening as an in-proof comment, \"wlog we can assume A, B are not in cosets of a smaller subgroup\" (code/PFR/WeakPFR.lean line 868), immediately before the `suffices` that adds the `NotInCoset A B` hypothesis.",
+      "evidence_kind": "author-statement",
+      "evidence": "code/PFR/WeakPFR.lean line 868: `-- wlog we can assume A, B are not in cosets of a smaller subgroup`"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 6,
+    "glue_lines": 113,
+    "child_lines": [
+      32,
+      158,
+      45
+    ]
+  },
+  "metrics": {
+    "parent_lines": 113,
+    "child_lines_total": 235,
+    "children": 3,
+    "how_counted": "site line spans of the copied file PFR/WeakPFR.lean (declaration and proof, doc comment included): parent 859-971 = 113; children 50-81 = 32, 625-782 = 158, 813-857 = 45; 32 + 158 + 45 = 235."
+  },
+  "consequences": "The move creates three obligations: the reduction to the strengthened case (`wlog_notInCoset`), the strengthened proof itself (the strong induction on `Nat.card A + Nat.card B` with `NotInCoset` assumed), and the transfer back (`conclusion_transfers`). The strengthened statement must generalise over the group `G` (the `suffices` re-abstracts `G` and its instance arguments), and the induction must actually decrease on the strengthened side: the proof branches on `lt_or_ge (Nat.card Ax + Nat.card By) (Nat.card A + Nat.card B)`, recursing when it decreases and closing an equality case (`N = ⊤`, `Nat.card (G ⧸ N) = 1`) otherwise. Failure mode: if the transfer or the reduction carries a real bound, the `suffices` hides it and the wrong bound can be discharged with a one-sided inequality; here `conclusion_transfers` must preserve both the size and the dimension bounds, so it cannot be a mere projection.",
+  "known_uses": [],
+  "related": [
+    "lean-suffices-or-strengthen-mathlib4-b3035491",
+    "isabelle-suffices-or-strengthen-afp-eb3f1a40",
+    "rocq-suffices-or-strengthen-fourcolor-2e61be44"
+  ],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "16fd5d4da3f07102b4c323f1e424be192a4623f0a97c173ffd0d9a5d877ae5ac",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:55:02Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,shape,also_known_as,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:56:58Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:57:26Z",
+      "note": "parent weak_PFR_asymm: statement re-copied from code; child 'wlog_notInCoset': statement re-copied from the declaration of wlog_notInCoset; child 'weak_PFR_asymm_prelim': statement re-copied from the declaration of weak_PFR_asymm_prelim; child 'conclusion_transfers': statement re-copied from the declaration of conclusion_transfers"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T11:09:19Z"
+}

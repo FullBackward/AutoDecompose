@@ -1,0 +1,149 @@
+{
+  "entry": "rocq-other-math-comp-2c832601",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:00:14Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:00:14Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:00:14Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: Alt_normal@solvable/alt.v:593, solvable_AltF@solvable/alt.v:593; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:00:14Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(solvable_SymF, solvable/alt.v, 592-593) -> declared: solvable_SymF is declared at solvable/alt.v:592",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:00:14Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(solvable_SymF, Alt_normal) -> cites: Alt_normal occurs at solvable/alt.v:593",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:00:14Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(solvable_SymF, solvable_AltF) -> cites: solvable_AltF occurs at solvable/alt.v:593",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:00:14Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "declared(series_sol, solvable/nilpotent.v, 735-735) -> declared: series_sol is declared at solvable/nilpotent.v:735",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:00:14Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "no_sorry(solvable/alt.v, 54-593) -> no_sorry: none of admit, Admitted, Axiom, axiom in solvable/alt.v:54-593",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:00:14Z"
+    },
+    {
+      "type": "claim",
+      "key": "6",
+      "value": "verified",
+      "evidence": "lines(solvable_SymF, 2) -> lines: site solvable_SymF has 2 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:00:14Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 3a90d8b65f77f24e4fd770453c0697233b1c791d",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:00:28Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/nix-action-rocq-9.3.yml builds job mathcomp-solvable (which compiles solvable/alt.v) on default branch master; pinned commit 3a90d8b65f77f24e4fd770453c0697233b1c791d reachable from master (0 behind)",
+      "by": "verifier",
+      "at": "2026-11-14T10:02:21Z"
+    },
+    {
+      "type": "claim",
+      "key": "7",
+      "value": "verified",
+      "evidence": "checked code/solvable/alt.v: parent site 592-593 (Lemma solvable_SymF at 592, one-line proof at 593); Alt_normal 54-55 (2 lines); solvable_AltF 579-590 (12 lines). Glue is one proof line citing the two children, work sits in children.",
+      "by": "verifier",
+      "at": "2026-11-14T10:02:56Z"
+    },
+    {
+      "type": "claim",
+      "key": "8",
+      "value": "verified",
+      "evidence": "checked code/solvable/nilpotent.v: metacyclic_sol at 746, its series_sol rewrite at 749 (rewrite (series_sol nsKG) !abelian_sol); setXn_sol at 757, its series_sol rewrite at 768 (rewrite (@series_sol ... ker ...) ?ker_normal). Both build solvability from normal subgroup + quotient.",
+      "by": "verifier",
+      "at": "2026-11-14T10:02:57Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "object",
+      "evidence": "Decomposition matches the code and closes: glue 'rewrite (series_sol (Alt_normal T)) => /solvable_AltF->' with series_sol G H : H <| G -> solvable G = solvable H && solvable (G / H) (nilpotent.v:735) rewrites solvable 'Sym_T to solvable 'Alt_T && solvable ('Sym_T/'Alt_T); solvable_AltF view turns solvable 'Alt_T into false, so 'false && _ = false' closes. Children are exactly the two lemmas the glue cites (Alt_normal, solvable_AltF); their statements and closed_by are verbatim-correct. However shape.depth=5 is wrong: the longest chain of project lemmas below solvable_SymF is 7, not 5, via solvable_AltF(579)->simple_Alt5(582 'have/simple_Alt5')->simple_Alt5_base(397 'exact: simple_Alt5_base')->card_Alt(189 'rewrite -mul2n card_Alt')->Alt_index(82 'move/Alt_index')->Alt_norm(62 '?Alt_norm')->Alt_normal(57 'case/andP: Alt_normal'). The README lemma graph also mislabels card_Alt(81) as a leaf and omits the simple_Alt5_base->card_Alt and card_Alt->Alt_index->Alt_norm->Alt_normal edges. Fix: recompute depth=7 and correct the graph.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:05:47Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "object",
+      "evidence": "Move is stated generally (goal_shape and use_when in terms of arbitrary G, H) and the good-leaves question is answered (children close from siblings/library, not the parent). But 'when not to use' misstates the costly direction: it says 'downward direction solvable G -> solvable H forces proving solvable (G / H)', yet series_sol G H : H <| G -> solvable G = solvable H && solvable (G / H) gives solvable (G/H) as a free conjunct of the rewritten hypothesis, so that direction needs no quotient proof. The costly direction is the upward one (solvable H && solvable (G/H) -> solvable G), which the Consequences section already states correctly — so avoid_when contradicts Consequences. Fix: in README 'When to use' and entry.json applicability.avoid_when, replace the downward-direction claim with the upward/positive direction (proving solvable G) as the case where the quotient must be proved.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:07:08Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 3a90d8b65f77f24e4fd770453c0697233b1c791d",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:07:22Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent and traceable: check_provenance passed (2 files byte-identical at 3a90d8b65f77f24e4fd770453c0697233b1c791d); that commit matches SOURCE.md and source.json; licence CECILL-B matches the source note and the copied upstream-LICENCE (CeCILL-B text); every cited line range verified in the local copies (alt.v:592-593, 54-55, 579-590; nilpotent.v:735, 749, 768) shows exactly the quoted code.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:08:03Z"
+    }
+  ]
+}

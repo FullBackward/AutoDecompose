@@ -1,0 +1,117 @@
+{
+  "entry": "markdown-blueprint-node-lean-autoformalization-skills-46b535bc",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:57:42Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:57:42Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "not-run",
+      "evidence": "no Lean, Rocq or Isabelle file among the copied files",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:57:42Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(model-the-proof-faithfully, DEPS) -> cites: DEPS occurs at skills/build-proof-dependency-graph/SKILL.md:208",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:57:43Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "count(DEPS, 4, skills/build-proof-dependency-graph/SKILL.md) -> count: DEPS occurs 4 times in 1 file(s) matching skills/build-proof-dependency-graph/SKILL.md",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:57:43Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 1837b95b3d5a9fd8d311367603902ad7fe261adf",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:57:55Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "copied files are Markdown (SKILL.md, DEPGRAPH.template.md), not Lean/Rocq/Isabelle source, so there is no prover build target; the source is a skills repository of Markdown files",
+      "by": "verifier",
+      "at": "2026-11-14T09:58:39Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "shape numbers checked on copied file: parent site SKILL.md 184-234 spans 51 lines (234-184+1=51); each of the five child sites spans SKILL.md 191-196 (6 lines); the five step nodes are sibling leaves with no step-node-to-step-node edge in the site (depth 1); direct_lemmas=5 matches the five child nodes",
+      "by": "verifier",
+      "at": "2026-11-14T09:58:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "SKILL.md 191-192 reads 'Create a step node when omitting the step would hide a plausible Lean lemma or an independently failing obligation' and 195-196 reads 'Do not create nodes for routine algebra or purely syntactic rewrites unless they change hypotheses, constants, carriers, or quantifier strength' — both quoted verbatim",
+      "by": "verifier",
+      "at": "2026-11-14T09:58:47Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "SKILL.md 229-230 reads 'Keep source-statement fields and proof topology separate. DEPS names results the source proof consumes; it never enlarges SOURCE_HYPOTHESES' and 234 reads 'Never use an edge to launder proof content into a statement' — both quoted verbatim",
+      "by": "verifier",
+      "at": "2026-11-14T09:58:52Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "object",
+      "evidence": "The children are not lemmas and there is no main proof: SKILL.md is a workflow/procedure skill, and the five 'children' are five step-node KINDS (nontrivial estimate/construction, case split/witness, theorem application, quantifier closure/carrier change, reused claim) that the analyst grouped from the single sentence at lines 192-194 (which actually lists 8 examples). All five child sites are the identical 6-line excerpt (191-196, same excerpt_sha256), so the 'decomposition' is one paragraph counted five ways, not a proof split into lemmas. It does not close: every child's closed_by defers to a 'later Lean orchestrator' absent from the code (the entry itself says 'no child is closed here'), so there is no glue code combining lemmas and no closing. Consequently shape.direct_lemmas=5 is wrong (zero lemmas in the source; 5 is a count of arbitrary example categories), and the theorem-scale shape (glue_lines=51, child_lines=[6,6,6,6,6]) misdescribes prose as a closed skeleton. Narrow claims are fine (DEPS count=4 and quotes are verbatim; 51 and 6 are arithmetically right), but 'children exactly lemmas the main proof uses' and 'shape numbers right' both fail. Fix: reclassify as move=workflow (a process skill) and drop the theorem-scale shape/direct_lemmas/child_lines, or if kept as blueprint-node, stop presenting the five categories as closing lemma-children and set direct_lemmas to 0 / remove the shape.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:00:36Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality passes: the move is framed as a procedure ('prescribes how every proof in the corpus is split, not how one particular proof was'), with goal_shape/use_when/avoid_when that generalise beyond the source example; the step-node threshold is a general rule, not tied to a theorem. avoid_when is honest and specific, each condition line-cited and matching the source (SKILL.md line 5 forbids inspecting implementation Lean or judging proof status; lines 195-196 forbid routine algebra; Phase 0 lines 63-107 require an author-frozen anchor). Consequences name real obligations (stable ID, one EDGE record per DEPS/ROUTES entry, explicit assumption/external leaves) and four line-cited failure modes, all present in the copied file. It says what makes leaves good for a bounded prover: a self-contained obligation that closes on its own or from a named external result, no trivial leaf (the 'plausible Lean lemma / independently failing obligation' threshold), giving one bounded independently failing obligation per step. Verified by reading the cited ranges 1-25, 63-107, 184-240 and DEPGRAPH.template.md lines 15, 56, 66-67.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:01:29Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 1837b95b3d5a9fd8d311367603902ad7fe261adf",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:01:47Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance pass (2 files byte-identical at 1837b95b3d5a9fd8d311367603902ad7fe261adf). Commit is consistent across SOURCE.md, source.json, entry.json source.commit and every permalink. Licence CC-BY-4.0 recorded identically in README, entry.json, source.json, SOURCE.md; upstream-LICENSE is the Creative Commons Attribution 4.0 International text. Permalink paths and line anchors (L184-L234, L191-L196, L229-L234, lines 10-11, 16-21, 63, 107) resolve to the cited content in the copied SKILL.md. Source note records repo, pinned commit, licence file and attribution.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:02:19Z"
+    }
+  ]
+}

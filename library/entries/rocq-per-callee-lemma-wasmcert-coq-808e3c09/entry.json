@@ -1,0 +1,305 @@
+{
+  "id": "rocq-per-callee-lemma-wasmcert-coq-808e3c09",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Executable instantiation soundness assembled from per-component lemmas",
+  "intent": "Prove that the executable instantiation interp_instantiate implies the relational instantiate by unfolding the relation into its conjuncts and discharging each with one soundness lemma per component (module type checker, external type checker, allocator, global and element initialisers, plus the bit-level type-checker reflection), so the headline theorem is a 157-line glue of asserts and specializes.",
+  "move": "per-callee-lemma",
+  "also_known_as": [
+    "per-component soundness lemma",
+    "one lemma per pipeline stage"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "wasmcert-coq",
+    "url": "https://github.com/WasmCert/WasmCert-Coq",
+    "commit": "58a3d3f8b7af4dc8aa9351f254a9e672643b21f8",
+    "licence": "LGPL-2.1"
+  },
+  "files": [
+    {
+      "path": "theories/interp_instantiate_sound.v",
+      "bytes": 16239,
+      "sha256": "11e42c3cac7811293b11555644b3b2f20b3263101ff8e295d3088160f626f242",
+      "permalink": "https://github.com/WasmCert/WasmCert-Coq/blob/58a3d3f8b7af4dc8aa9351f254a9e672643b21f8/theories/interp_instantiate_sound.v"
+    },
+    {
+      "path": "theories/type_checker_reflects_typing.v",
+      "bytes": 64122,
+      "sha256": "27a724dfdebd25766bc56684c281df521949ce3b7296c7dc903c4de3dfa53d33",
+      "permalink": "https://github.com/WasmCert/WasmCert-Coq/blob/58a3d3f8b7af4dc8aa9351f254a9e672643b21f8/theories/type_checker_reflects_typing.v"
+    },
+    {
+      "path": "theories/instantiation_properties.v",
+      "bytes": 31349,
+      "sha256": "4b6ecf2e00b64b460aa8ad774bf741fe44dcac15f3e11902174acf37ffea1dc4",
+      "permalink": "https://github.com/WasmCert/WasmCert-Coq/blob/58a3d3f8b7af4dc8aa9351f254a9e672643b21f8/theories/instantiation_properties.v"
+    },
+    {
+      "path": "theories/instantiation_spec.v",
+      "bytes": 23416,
+      "sha256": "6595079181ae58d947c44cda8313ca0e984b140c62fbfd01c7553c94d5b03706",
+      "permalink": "https://github.com/WasmCert/WasmCert-Coq/blob/58a3d3f8b7af4dc8aa9351f254a9e672643b21f8/theories/instantiation_spec.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/interp_instantiate_sound.v",
+      "lines": [
+        246,
+        402
+      ],
+      "role": "parent",
+      "name": "interp_instantiate_imp_instantiate",
+      "excerpt_sha256": "1a5782f14e171358e574afc5fb5df3ca1ec0fb5d00fcb2b45b5ec29469e7f70a",
+      "permalink": "https://github.com/WasmCert/WasmCert-Coq/blob/58a3d3f8b7af4dc8aa9351f254a9e672643b21f8/theories/interp_instantiate_sound.v#L246-L402"
+    },
+    {
+      "path": "theories/interp_instantiate_sound.v",
+      "lines": [
+        16,
+        174
+      ],
+      "role": "child",
+      "name": "module_type_checker_sound",
+      "excerpt_sha256": "411da40d29725391fe152b444ccd370d953caebc0aac5e93ec59062b5afc6099",
+      "permalink": "https://github.com/WasmCert/WasmCert-Coq/blob/58a3d3f8b7af4dc8aa9351f254a9e672643b21f8/theories/interp_instantiate_sound.v#L16-L174"
+    },
+    {
+      "path": "theories/interp_instantiate_sound.v",
+      "lines": [
+        176,
+        183
+      ],
+      "role": "child",
+      "name": "external_type_checker_sound",
+      "excerpt_sha256": "95988765200efa958ac2fbf520790a8d433d688c2aa97bcb1c3132364a0b5790",
+      "permalink": "https://github.com/WasmCert/WasmCert-Coq/blob/58a3d3f8b7af4dc8aa9351f254a9e672643b21f8/theories/interp_instantiate_sound.v#L176-L183"
+    },
+    {
+      "path": "theories/interp_instantiate_sound.v",
+      "lines": [
+        185,
+        216
+      ],
+      "role": "child",
+      "name": "interp_alloc_sound",
+      "excerpt_sha256": "495212c73a074cf36f4c7ef5fe11e1b1c5934026b433396af48c85ffd6e91042",
+      "permalink": "https://github.com/WasmCert/WasmCert-Coq/blob/58a3d3f8b7af4dc8aa9351f254a9e672643b21f8/theories/interp_instantiate_sound.v#L185-L216"
+    },
+    {
+      "path": "theories/interp_instantiate_sound.v",
+      "lines": [
+        220,
+        231
+      ],
+      "role": "child",
+      "name": "module_typecheck_glob_aux",
+      "excerpt_sha256": "31df90b9ae3c52055e74230576064b47aba021f2653004817c7b6151c0706d5f",
+      "permalink": "https://github.com/WasmCert/WasmCert-Coq/blob/58a3d3f8b7af4dc8aa9351f254a9e672643b21f8/theories/interp_instantiate_sound.v#L220-L231"
+    },
+    {
+      "path": "theories/interp_instantiate_sound.v",
+      "lines": [
+        233,
+        244
+      ],
+      "role": "child",
+      "name": "module_typecheck_elem_aux",
+      "excerpt_sha256": "5eb0ef1936ee525578fff47b76e258d3ea7183280649b5a19b3cbdda29742d9a",
+      "permalink": "https://github.com/WasmCert/WasmCert-Coq/blob/58a3d3f8b7af4dc8aa9351f254a9e672643b21f8/theories/interp_instantiate_sound.v#L233-L244"
+    },
+    {
+      "path": "theories/type_checker_reflects_typing.v",
+      "lines": [
+        1527,
+        1610
+      ],
+      "role": "child",
+      "name": "b_e_type_checker_reflects_typing",
+      "excerpt_sha256": "072f866debfb028d841221d091631af57cbfab28542d1f4bd103d24ea0973f33",
+      "permalink": "https://github.com/WasmCert/WasmCert-Coq/blob/58a3d3f8b7af4dc8aa9351f254a9e672643b21f8/theories/type_checker_reflects_typing.v#L1527-L1610"
+    },
+    {
+      "path": "theories/instantiation_properties.v",
+      "lines": [
+        211,
+        236
+      ],
+      "role": "child",
+      "name": "alloc_func_iota_N",
+      "excerpt_sha256": "7b1d395224f534378177ad3b06bbc3bc200c6d7691850f922cc6c7f42ddebbf7",
+      "permalink": "https://github.com/WasmCert/WasmCert-Coq/blob/58a3d3f8b7af4dc8aa9351f254a9e672643b21f8/theories/instantiation_properties.v#L211-L236"
+    },
+    {
+      "path": "theories/instantiation_properties.v",
+      "lines": [
+        315,
+        352
+      ],
+      "role": "child",
+      "name": "alloc_global_iota_N",
+      "excerpt_sha256": "cd8caf52b55e987223251ca14bd2bca64bef7801f398540933b17a5cb8301fdc",
+      "permalink": "https://github.com/WasmCert/WasmCert-Coq/blob/58a3d3f8b7af4dc8aa9351f254a9e672643b21f8/theories/instantiation_properties.v#L315-L352"
+    }
+  ],
+  "parent": {
+    "name": "interp_instantiate_imp_instantiate",
+    "statement": "Lemma interp_instantiate_imp_instantiate : forall hs hs' s m v_imps s_end f bes str,\n  interp_instantiate hs s m v_imps = (Some (hs', s_end, f, bes), str) ->\n  instantiate s m v_imps (s_end, f, bes)."
+  },
+  "children": [
+    {
+      "name": "module_type_checker_sound",
+      "statement": "Lemma module_type_checker_sound: forall m t_imps t_exps str,\n  module_type_checker m = (Some (t_imps, t_exps), str) ->\n  module_typing m t_imps t_exps.",
+      "closed_by": "its own proof: destruct m and each sub-checker with eqn:, unfold module_typing, then repeat split with one { ... } block per component; the func/global/elem/data blocks close via b_e_type_checker_reflects_typing",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: if the executable module type checker accepts m then m is well-typed (module_typing m t_imps t_exps)"
+    },
+    {
+      "name": "external_type_checker_sound",
+      "statement": "Lemma external_type_checker_sound: forall s ext t,\n  external_type_checker s ext = Some t ->\n  external_typing s ext t.",
+      "closed_by": "destruct ext; destruct t => //; remove_bools_options; subst",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: if the executable external type checker returns t then external_typing s ext t"
+    },
+    {
+      "name": "interp_alloc_sound",
+      "statement": "Lemma interp_alloc_sound: forall s m v_imps g_inits r_inits s' inst,\n  length g_inits = length m.(mod_globals) ->\n  length r_inits = length m.(mod_elems) ->\n  interp_alloc_module s m v_imps g_inits r_inits = (s', inst) ->\n  alloc_module s m v_imps g_inits r_inits (s', inst).",
+      "closed_by": "its own proof: unfold interp_alloc_module/alloc_module, destruct each alloc_*, then apply alloc_func_iota_N, alloc_table_iota_N, alloc_mem_iota_N, alloc_global_iota_N, alloc_elem_iota_N, alloc_data_iota_N",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: if interp_alloc_module returns (s', inst) then alloc_module s m v_imps g_inits r_inits (s', inst), given the two length preconditions"
+    },
+    {
+      "name": "module_typecheck_glob_aux",
+      "statement": "Lemma module_typecheck_glob_aux: forall m t_imps t_exps str,\n    module_type_checker m = (Some (t_imps, t_exps), str) ->\n    exists c, all (module_global_type_checker c) m.(mod_globals).",
+      "closed_by": "unfold module_type_checker; destruct m; remove_bools_options; by eexists; eauto",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: a successful module type check yields a context c under which every global's init expression type-checks"
+    },
+    {
+      "name": "module_typecheck_elem_aux",
+      "statement": "Lemma module_typecheck_elem_aux: forall m t_imps t_exps str,\n    module_type_checker m = (Some (t_imps, t_exps), str) ->\n    exists c, all (module_elem_type_checker c) m.(mod_elems).",
+      "closed_by": "unfold module_type_checker; destruct m; remove_bools_options; by eexists; eauto",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: a successful module type check yields a context c under which every element's init expression type-checks"
+    },
+    {
+      "name": "b_e_type_checker_reflects_typing",
+      "statement": "Lemma b_e_type_checker_reflects_typing:\n  forall C bes tf,\n    reflect (be_typing C bes tf) (b_e_type_checker C bes tf).",
+      "closed_by": "its own proof: destruct (b_e_type_checker C bes (Tf tn tm)), then the ReflectT and ReflectF directions",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the executable b_e_type_checker reflects be_typing"
+    },
+    {
+      "name": "alloc_func_iota_N",
+      "statement": "Lemma alloc_func_iota_N modfuncs ws inst ws' l:\n  alloc_funcs ws modfuncs inst = (ws', l) ->\n  l = iota_N (length (s_funcs ws)) (length modfuncs) /\\\n  ws'.(s_funcs) = ws.(s_funcs) ++ map (fun mf => gen_func_instance mf inst) modfuncs /\\\n  ws.(s_tables) = ws'.(s_tables) /\\\n  ws.(s_mems) = ws'.(s_mems) /\\\n  ws.(s_globals) = ws'.(s_globals) /\\\n  ws.(s_elems) = ws'.(s_elems) /\\\n  ws.(s_datas) = ws'.(s_datas).",
+      "closed_by": "eapply alloc_Xs_IP",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: alloc_funcs returns the address list iota_N (length (s_funcs ws)) (length modfuncs) and appends the generated function instances to the store"
+    },
+    {
+      "name": "alloc_global_iota_N",
+      "statement": "Lemma alloc_global_iota_N modglobals g_inits ws ws' l:\n  alloc_globs ws modglobals g_inits = (ws', l) ->\n  length g_inits = length modglobals ->\n  l = iota_N (length (s_globals ws)) (length modglobals) /\\\n  ws.(s_funcs) = ws'.(s_funcs) /\\\n  ws.(s_tables) = ws'.(s_tables) /\\\n  ws.(s_mems) = ws'.(s_mems) /\\\n  ws'.(s_globals) = ws.(s_globals) ++ map (fun '({| modglob_type := gt; modglob_init := ge |}, v) => {| g_type := gt; g_val := v |} ) (List.combine modglobals g_inits) /\\\n  ws.(s_elems) = ws'.(s_elems) /\\\n  ws.(s_datas) = ws'.(s_datas).",
+      "closed_by": "eapply alloc_Xs_IP (line 330) plus combine_snoc (line 338)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: alloc_globs returns the address list iota_N (length (s_globals ws)) (length modglobals) and appends the generated global instances, given length g_inits = length modglobals"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A soundness theorem relating an executable, option-returning pipeline (interp_instantiate hs s m v_imps = Some (hs', s_end, f, bes)) to a relational specification (instantiate s m v_imps (s_end, f, bes)) whose definition is an existential over witnesses plus a conjunction of component obligations.",
+    "use_when": "The relational specification is a fixed set of conjuncts (module_typing, external_typing, import_subtyping, alloc_module, instantiate_globals, instantiate_elems, ...) that can each be stated and proved as its own soundness lemma; each executable step already has a corresponding relational component, and the witnesses can be read off the executable run.",
+    "avoid_when": "A single component's soundness needs the intermediate state of another component (then the lemmas are not self-contained); the executable and relational versions diverge in structure so the witnesses cannot be extracted by destruct; the obligations are not a fixed finite list."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "interp_instantiate_imp_instantiate is declared at theories/interp_instantiate_sound.v lines 246-402.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/WasmCert/WasmCert-Coq/blob/58a3d3f8b7af4dc8aa9351f254a9e672643b21f8/theories/interp_instantiate_sound.v#L246-L402",
+      "form": "declared(interp_instantiate_imp_instantiate, theories/interp_instantiate_sound.v, 246-402)"
+    },
+    {
+      "n": 2,
+      "claim": "No admit, Admitted or Axiom occurs in theories/interp_instantiate_sound.v lines 246-402.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/WasmCert/WasmCert-Coq/blob/58a3d3f8b7af4dc8aa9351f254a9e672643b21f8/theories/interp_instantiate_sound.v#L246-L402",
+      "form": "no_sorry(theories/interp_instantiate_sound.v, 246-402)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site cites module_type_checker_sound.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/WasmCert/WasmCert-Coq/blob/58a3d3f8b7af4dc8aa9351f254a9e672643b21f8/theories/interp_instantiate_sound.v#L246-L402",
+      "form": "cites(parent, module_type_checker_sound)"
+    },
+    {
+      "n": 4,
+      "claim": "direct_lemmas = 12 and glue_lines = 157: the parent site is 157 lines and names twelve lemmas directly (module_type_checker_sound, external_type_checker_sound, interp_alloc_sound, module_typecheck_glob_aux, module_typecheck_elem_aux, b_e_type_checker_reflects_typing, alloc_func_iota_N, alloc_table_iota_N, alloc_mem_iota_N, alloc_global_iota_N, alloc_elem_iota_N, alloc_data_iota_N), while the eight shown children span 159, 8, 32, 12, 12, 84, 26 and 38 lines.",
+      "evidence_kind": "measurement",
+      "evidence": "line counts in the copied files at commit 58a3d3f8b7af4dc8aa9351f254a9e672643b21f8: parent site interp_instantiate_sound.v 246-402 (157 lines); child sites 16-174 (159), 176-183 (8), 185-216 (32), 220-231 (12), 233-244 (12), type_checker_reflects_typing.v 1527-1610 (84), instantiation_properties.v 211-236 (26) and 315-352 (38)."
+    },
+    {
+      "n": 5,
+      "claim": "The authors document the assembly order in a comment inside the glue: 'Proving these first so they can be used in the reasoning for initialisers later', above the three asserts that discharge module_typing, alloc_module and external_typing.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/WasmCert/WasmCert-Coq/blob/58a3d3f8b7af4dc8aa9351f254a9e672643b21f8/theories/interp_instantiate_sound.v#L263"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 12,
+    "depth": 3,
+    "glue_lines": 157,
+    "child_lines": [
+      159,
+      8,
+      32,
+      12,
+      12,
+      84,
+      26,
+      38
+    ]
+  },
+  "metrics": {
+    "parent_lines": 157,
+    "children_shown": 8,
+    "direct_lemmas": 12,
+    "how_counted": "parent site interp_instantiate_sound.v 246-402 (157 lines); child sites 16-174 (159), 176-183 (8), 185-216 (32), 220-231 (12), 233-244 (12), type_checker_reflects_typing.v 1527-1610 (84), instantiation_properties.v 211-236 (26) and 315-352 (38); direct_lemmas counts the twelve per-component lemmas the parent proof names directly (the eight child sites plus alloc_table_iota_N, alloc_mem_iota_N, alloc_elem_iota_N, alloc_data_iota_N, listed only in the README)."
+  },
+  "consequences": "The move creates one obligation per conjunct of the instantiate relation, each closed by a named lemma. Five of the eight shown children are small or moderate (8, 12, 12, 26, 38 lines); module_type_checker_sound (159 lines) and b_e_type_checker_reflects_typing (84 lines) are the real content, and the initialiser conjuncts are the hard part because the executable version computes initialiser values under a smaller context than the relational one (the file header calls it 'breaking circularities in the evaluation of various initialisers'). The glue's exists ... ; repeat split fixes the witness order to match the instantiate definition, so a child must discharge exactly its conjunct; if a conjunct needs state from a sibling, the split fails. Failure mode: the six alloc_*_iota_N lemmas are near-duplicates generated per store component, so the decomposition buys width, not depth, and a new store component requires a new near-identical lemma.",
+  "known_uses": [],
+  "related": [
+    "rocq-per-callee-lemma-compcert-6decbbae"
+  ],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "808e3c0977ac383e19d903e79423fe507835cdce68af1a18aa29db3088b208c9",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:41:23Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,rule,also_known_as,related",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:45:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:42:52Z",
+      "note": "child 'module_type_checker_sound': statement re-copied from the declaration of module_type_checker_sound; child 'external_type_checker_sound': statement re-copied from the declaration of external_type_checker_sound; child 'interp_alloc_sound': statement re-copied from the declaration of interp_alloc_sound; child 'module_typecheck_glob_aux': statement re-copied from the declaration of module_typecheck_glob_aux; child 'module_typecheck_elem_aux': statement re-copied from the declaration of module_typecheck_elem_aux; child 'b_e_type_checker_reflects_typing': statement re-copied from the declaration of b_e_type_checker_reflects_typing; child 'alloc_func_iota_N': statement re-copied from the declaration of alloc_func_iota_N; child 'alloc_global_iota_N': statement re-copied from the declaration of alloc_global_iota_N"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:43:22Z",
+      "note": "parent interp_instantiate_imp_instantiate: statement re-copied from code"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T12:50:01Z"
+}

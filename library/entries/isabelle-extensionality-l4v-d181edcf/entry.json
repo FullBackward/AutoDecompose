@@ -1,0 +1,287 @@
+{
+  "id": "isabelle-extensionality-l4v-d181edcf",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Fieldwise record equality between the abstract and executable seL4 states (absKState_correct)",
+  "intent": "Prove that the executable specification's observable state `absKState s'` equals the abstract state `abs_state s` by `state.equality`, which splits the equality of the two state records into one subgoal per field; each non-trivial field is closed by a named, independently proved lemma, so the headline correspondence becomes nine field lemmas joined by a 28-line glue.",
+  "move": "extensionality",
+  "also_known_as": [
+    "fieldwise record equality",
+    "pointwise state correspondence",
+    "record extensionality"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "l4v",
+    "url": "https://github.com/seL4/l4v",
+    "commit": "1abfe5bce98632a94ba52adf183045620c509340",
+    "licence": "CC-BY-SA-4.0"
+  },
+  "files": [
+    {
+      "path": "proof/refine/Refine.thy",
+      "bytes": 40323,
+      "sha256": "615078e897c6e25be0a06076e7d139fd1862b7d32c1af7b5ac66e89c7c851539",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/Refine.thy"
+    },
+    {
+      "path": "proof/refine/ADT_H.thy",
+      "bytes": 50484,
+      "sha256": "dc46449f024c62784850c2a438e0f40bfcc11ae46bbf221daa8d40fc1dcc6e98",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/ADT_H.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "proof/refine/Refine.thy",
+      "lines": [
+        94,
+        121
+      ],
+      "role": "parent",
+      "name": "absKState_correct",
+      "excerpt_sha256": "3ff2ed7c31d4de5f40e9a9a9621c4fc67052c60338e3ca510632e09f3515f1ad",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/Refine.thy#L94-L121"
+    },
+    {
+      "path": "proof/refine/ADT_H.thy",
+      "lines": [
+        1080,
+        1085
+      ],
+      "role": "child",
+      "name": "absHeap_correct",
+      "excerpt_sha256": "04e33be09066ee3b0f54fab026d31265b7302418bf8cf52b09ac6e8fa61cc198",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/ADT_H.thy#L1080-L1085"
+    },
+    {
+      "path": "proof/refine/ADT_H.thy",
+      "lines": [
+        726,
+        726
+      ],
+      "role": "child",
+      "name": "absCDT_correct",
+      "excerpt_sha256": "526528f0394c6e0cc225d767fa2dabe96a15d21ce38fa6f4103d6cc0c54af4fa",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/ADT_H.thy#L726-L726"
+    },
+    {
+      "path": "proof/refine/ADT_H.thy",
+      "lines": [
+        456,
+        515
+      ],
+      "role": "child",
+      "name": "absIsOriginalCap_correct",
+      "excerpt_sha256": "3603615fb94deb94b22fe3038ac5c2cfda180a2aa7c9116835c214398c39097d",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/ADT_H.thy#L456-L515"
+    },
+    {
+      "path": "proof/refine/ADT_H.thy",
+      "lines": [
+        1041,
+        1043
+      ],
+      "role": "child",
+      "name": "absSchedulerAction_correct",
+      "excerpt_sha256": "3fcc25ee98da2f48b2a2c4c10f76e784907180e58ac35052fa8fbff77c2046a5",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/ADT_H.thy#L1041-L1043"
+    },
+    {
+      "path": "proof/refine/ADT_H.thy",
+      "lines": [
+        1072,
+        1074
+      ],
+      "role": "child",
+      "name": "domSchedule_map_relation",
+      "excerpt_sha256": "ef4dddc5712d9057a4b300d7dca7f55f74e389c2aace7c45b700b62027ba6252",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/ADT_H.thy#L1072-L1074"
+    },
+    {
+      "path": "proof/refine/ADT_H.thy",
+      "lines": [
+        1020,
+        1023
+      ],
+      "role": "child",
+      "name": "absInterruptIRQNode_correct",
+      "excerpt_sha256": "a08a42233a35d88db9f55922134d2ecf33b71382859ec5a404215ed45e868b6c",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/ADT_H.thy#L1020-L1023"
+    },
+    {
+      "path": "proof/refine/ADT_H.thy",
+      "lines": [
+        1025,
+        1033
+      ],
+      "role": "child",
+      "name": "absInterruptStates_correct",
+      "excerpt_sha256": "1df3f4fc6340004968ac241f1c516d26cc3497130ec5d786119c1626100acbd8",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/ADT_H.thy#L1025-L1033"
+    },
+    {
+      "path": "proof/refine/ADT_H.thy",
+      "lines": [
+        1050,
+        1060
+      ],
+      "role": "child",
+      "name": "absExst_correct",
+      "excerpt_sha256": "da7cb5aeb34493638c3a48a1998286e007f6aab17aea83dd49481dee496459c0",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/ADT_H.thy#L1050-L1060"
+    }
+  ],
+  "parent": {
+    "name": "absKState_correct",
+    "statement": "lemma absKState_correct:\n  assumes invs: \"einvs (s :: det_ext state)\" and invs': \"invs' s'\"\n  assumes rel: \"(s,s') \\<in> state_relation\"\n  shows \"absKState s' = abs_state s\""
+  },
+  "children": [
+    {
+      "name": "absHeap_correct",
+      "statement": null,
+      "closed_by": "assumption (a parameter of locale ADT_H_2); discharged by the per-architecture interpretation, e.g. ARM/ArchADT_H.thy:186 (`absHeap_correct[Arch_assms]`)",
+      "note": "Locale assumption of ADT_H_2 (ADT_H.thy:1080-1085), a parameter of the locale, not a `lemma`; statements.py has no declaration syntax for an `assumes` clause, so the statement is not copied. Discharged by the per-architecture `interpretation ADT_H_2` (e.g. ARM/ArchADT_H.thy:529-530)."
+    },
+    {
+      "name": "absCDT_correct",
+      "statement": null,
+      "closed_by": "derived: `lemmas absCDT_correct = absCDT_correct'(1)` (726); the proof is `absCDT_correct'` (549-724), closed by ext over cte_map using cteMap_correct",
+      "note": "A `lemmas` abbreviation of the first conjunct of `absCDT_correct'` (ADT_H.thy:549-724); statements.py recognises no `lemmas` declaration, so the statement is not copied. The proof is inherited from `absCDT_correct'`."
+    },
+    {
+      "name": "absIsOriginalCap_correct",
+      "statement": "lemma absIsOriginalCap_correct:\n  assumes valid_ioc: \"valid_ioc s\"\n  assumes valid_objs: \"valid_objs s\"\n  assumes rel: \"(s,s') \\<in> state_relation\"\n  assumes pspace_aligned: \"pspace_aligned s\"\n  assumes pspace_distinct: \"pspace_distinct s\"\n  assumes pspace_aligned': \"pspace_aligned' s'\"\n  assumes pspace_distinct': \"pspace_distinct' s'\"\n  shows \"absIsOriginalCap (cteMap (gsCNodes s')) (ksPSpace s') = is_original_cap s\"",
+      "closed_by": "apply (rule ext) over the cap pair, case on caps_of_state, using cnp (from cteMap_correct) and revokable_relation",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the absIsOriginalCap projection onto the cte map equals is_original_cap, under valid_ioc / valid_objs / state_relation / pspace_aligned and pspace_distinct on both sides (paraphrase)"
+    },
+    {
+      "name": "absSchedulerAction_correct",
+      "statement": "lemma absSchedulerAction_correct:\n  \"sched_act_relation action action' \\<Longrightarrow> absSchedulerAction action' = action\"",
+      "closed_by": "by (cases action; simp add: absSchedulerAction_def)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: absSchedulerAction applied to a sched_act_relation-related action gives the abstract action back (paraphrase)"
+    },
+    {
+      "name": "domSchedule_map_relation",
+      "statement": "lemma domSchedule_map_relation:\n  \"(s, s') \\<in> state_relation \\<Longrightarrow> domSchedule_map (ksDomSchedule s') = domain_list s\"",
+      "closed_by": "by (fastforce elim: domSchedule_map_domain_list_map state_relationE)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: domSchedule_map of the executable domain schedule equals the abstract domain_list, under state_relation (paraphrase)"
+    },
+    {
+      "name": "absInterruptIRQNode_correct",
+      "statement": "lemma absInterruptIRQNode_correct:\n  \"interrupt_state_relation (interrupt_irq_node s) (interrupt_states s) (ksInterruptState s') \\<Longrightarrow>\n   absInterruptIRQNode (ksInterruptState s') = interrupt_irq_node s\"",
+      "closed_by": "by (rule ext) (clarsimp simp add: absInterruptIRQNode_def interrupt_state_relation_def)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: absInterruptIRQNode of the executable interrupt state equals the abstract interrupt_irq_node, under interrupt_state_relation (paraphrase)"
+    },
+    {
+      "name": "absInterruptStates_correct",
+      "statement": "lemma absInterruptStates_correct:\n  \"interrupt_state_relation (interrupt_irq_node s) (interrupt_states s) (ksInterruptState s') \\<Longrightarrow>\n   absInterruptStates (ksInterruptState s') = interrupt_states s\"",
+      "closed_by": "apply (rule ext); clarsimp with absInterruptStates_def IRQStateMap_def; split irq_state.splits irqstate.splits",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: absInterruptStates of the executable interrupt state equals the abstract interrupt_states, under interrupt_state_relation (paraphrase)"
+    },
+    {
+      "name": "absExst_correct",
+      "statement": "lemma absExst_correct:\n  assumes invs: \"einvs s\" and invs': \"invs' s'\"\n  assumes rel: \"(s, s') \\<in> state_relation\"\n  shows \"absExst s' = exst s\"",
+      "closed_by": "apply (rule det_ext.equality); simp_all with absExst_def, absSchedulerAction_correct, absCDTList_correct[THEN fun_cong]",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: absExst s' equals exst s, under einvs / invs' / state_relation (paraphrase)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An equality `absKState s' = abs_state s` between two large record-typed states (a `det_ext state` and the projection `absKState s'` of a `kernel_state`), where record equality is definitionally a conjunction of per-field equalities and a `state_relation` between the two sides already fixes most fields directly.",
+    "use_when": "the two records have matching fields and a relation that already states most field equalities as direct components (so `simp add: state_relation_def` closes them); each genuinely hard field can be stated as its own named lemma or locale parameter; the fields are independent enough to prove separately.",
+    "avoid_when": "fields interact (proving one field needs another's proof) so the per-field split does not separate concerns; there is no fieldwise relation to exploit, so each field needs a genuinely new argument rather than a one-line `rule`; or the record is small enough that the `state.equality` split is ceremony with no gain."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent `absKState_correct` is declared at `proof/refine/Refine.thy` lines 94-121.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/Refine.thy#L94-L121",
+      "form": "declared(absKState_correct, proof/refine/Refine.thy, 94-121)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites `absHeap_correct`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/Refine.thy#L94-L121",
+      "form": "cites(parent, absHeap_correct)"
+    },
+    {
+      "n": 3,
+      "claim": "No `sorry` closes any goal in `proof/refine/ADT_H.thy` lines 1-1177.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/ADT_H.thy",
+      "form": "no_sorry(proof/refine/ADT_H.thy, 1-1177)"
+    },
+    {
+      "n": 4,
+      "claim": "The `shape` is a measurement: 9 direct lemmas, a checked longest chain of 4 project lemmas below the theorem, a 28-line glue, and the 8 shown children totalling 97 lines.",
+      "evidence_kind": "measurement",
+      "evidence": "Line counts at the pinned commit: glue Refine.thy 94-121 = 28; children ADT_H.thy 1080-1085 (6), 726 (1), 456-515 (60), 1041-1043 (3), 1072-1074 (3), 1020-1023 (4), 1025-1033 (9), 1050-1060 (11), sum 97. Depth chain absKState_correct -> absCDT_correct (Refine.thy:101) -> absCDT_correct' (ADT_H.thy:726 = absCDT_correct'(1)) -> cteMap_correct (ADT_H.thy:569) -> cte_at_CNodeI (ADT_H.thy:345)."
+    },
+    {
+      "n": 5,
+      "claim": "The same record-extensionality move recurs inside a child: `absExst_correct` proves equality of the `exst` sub-record with `det_ext.equality`, splitting it field-wise.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/refine/ADT_H.thy#L1050-L1060"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 9,
+    "depth": 4,
+    "glue_lines": 28,
+    "child_lines": [
+      6,
+      1,
+      60,
+      3,
+      3,
+      4,
+      9,
+      11
+    ]
+  },
+  "metrics": {
+    "parent_lines": 28,
+    "direct_children": 9,
+    "shown_child_total_lines": 97,
+    "depth": 4,
+    "how_counted": "glue = Refine.thy 94-121; the 8 shown children = ADT_H.thy 1080-1085, 726, 456-515, 1041-1043, 1072-1074, 1020-1023, 1025-1033, 1050-1060; the 9th direct lemma (absArchState_correct) is listed in README. depth chain = absKState_correct -> absCDT_correct -> absCDT_correct' -> cteMap_correct -> cte_at_CNodeI"
+  },
+  "consequences": "The move creates one obligation per field of the state record. Each is discharged either by `simp add: state_relation_def` (a field whose equality is a direct component of the relation) or by a named lemma/parameter. The two heaviest fields (kheap and arch_state) are left as locale parameters, so the generic refine layer does not prove them: the obligation moves to the per-architecture interpretation (e.g. ARM/ArchADT_H.thy). Failure modes: a field missing from `state_relation`, or a child stated slightly weaker than the field equality, breaks the corresponding `apply (rule ...)` step in the glue; a record that is later extended by a field silently adds a subgoal that `simp_all` must then handle.",
+  "known_uses": [],
+  "related": [
+    "isabelle-suffices-or-strengthen-l4v-0a36f701"
+  ],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "d181edcf78fe437e3579fa250531d3e76032f4b6344a6a0569a2da86bafbaeae",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:42:02Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:52:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:43:04Z",
+      "note": "parent absKState_correct: statement re-copied from code; child 'absIsOriginalCap_correct': statement re-copied from the declaration of absIsOriginalCap_correct; child 'absSchedulerAction_correct': statement re-copied from the declaration of absSchedulerAction_correct; child 'domSchedule_map_relation': statement re-copied from the declaration of domSchedule_map_relation; child 'absInterruptIRQNode_correct': statement re-copied from the declaration of absInterruptIRQNode_correct; child 'absInterruptStates_correct': statement re-copied from the declaration of absInterruptStates_correct; child 'absExst_correct': statement re-copied from the declaration of absExst_correct"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:49:12Z"
+}

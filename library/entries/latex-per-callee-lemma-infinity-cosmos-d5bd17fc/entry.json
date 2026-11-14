@@ -1,0 +1,194 @@
+{
+  "id": "latex-per-callee-lemma-infinity-cosmos-d5bd17fc",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Sliced infinity-cosmoi: one named lemma per nontrivial component of the cosmos structure",
+  "intent": "State that the isofibrations over a fixed base B form an infinity-cosmos K_{/B} by listing its seven defining items, then prove it by a survey that verifies each item in turn and hands the three nontrivial verifications (pullback stability of equivalences, and its converse) to three named lemmas stated earlier in the same blueprint.",
+  "move": "per-callee-lemma",
+  "also_known_as": [
+    "one lemma per component",
+    "per-component lemma",
+    "per-axiom lemma",
+    "structure-driven lemma split"
+  ],
+  "language": "latex",
+  "source": {
+    "source_id": "infinity-cosmos",
+    "url": "https://github.com/emilyriehl/infinity-cosmos",
+    "commit": "89d7dc3ed861824535e540da489a46469dcc8e56",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "blueprint/src/content.tex",
+      "bytes": 105926,
+      "sha256": "205fea8224f5b2bd3d90c35eec304798a3a99a66f6d69492c776e1636c8de6a9",
+      "permalink": "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/blueprint/src/content.tex"
+    }
+  ],
+  "sites": [
+    {
+      "path": "blueprint/src/content.tex",
+      "lines": [
+        845,
+        901
+      ],
+      "role": "parent",
+      "name": "prop:sliced-cosmoi",
+      "excerpt_sha256": "1544612159e6b72d85233d87eb0624165c1cc588dc7448325b0dbd44ca6df92e",
+      "permalink": "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/blueprint/src/content.tex#L845-L901"
+    },
+    {
+      "path": "blueprint/src/content.tex",
+      "lines": [
+        421,
+        427
+      ],
+      "role": "child",
+      "name": "lem:trivial-fib-conical",
+      "excerpt_sha256": "9c52600c69b3d3a98af42dc5ab42126d7a8e17abb962516d92251efecb5edac7",
+      "permalink": "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/blueprint/src/content.tex#L421-L427"
+    },
+    {
+      "path": "blueprint/src/content.tex",
+      "lines": [
+        546,
+        567
+      ],
+      "role": "child",
+      "name": "lem:brown-fact",
+      "excerpt_sha256": "5da3bfa133661b45972e78262250d4558b9c5d32e305fdd1cce476208c5e6c5f",
+      "permalink": "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/blueprint/src/content.tex#L546-L567"
+    },
+    {
+      "path": "blueprint/src/content.tex",
+      "lines": [
+        451,
+        466
+      ],
+      "role": "child",
+      "name": "lem:equiv-htpy-equiv",
+      "excerpt_sha256": "db0ba3e8d308a76a80c3a318593546e4d34a4a1b3c2cccc4a479f658fdd31cd6",
+      "permalink": "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/blueprint/src/content.tex#L451-L466"
+    }
+  ],
+  "parent": {
+    "name": "prop:sliced-cosmoi",
+    "statement": "For any infinity-cosmos K and any infinity-category B in K there is an infinity-cosmos K_{/B} of isofibrations over B, whose objects are isofibrations p : E -> B with codomain B; whose functor spaces, isofibrations, terminal object and products, pullbacks and towers, and cotensors are each constructed by pullback in K (or created by the forgetful functor K_{/B} -> K); and in which a map over B is an equivalence in K_{/B} if and only if it is an equivalence in K.",
+    "note": "Blueprint proposition node (label prop:sliced-cosmoi). The proposition states the seven items of the structure; its proof (lines 881-901) is the glue that verifies each item in turn."
+  },
+  "children": [
+    {
+      "name": "lem:trivial-fib-conical",
+      "statement": "The trivial fibrations in an infinity-cosmos define a subcategory containing the isomorphisms and are stable under product, pullback, and forming inverse limits of towers.",
+      "closed_by": "its own proof (content.tex:425-427), which reduces the stability to the corresponding stability of trivial fibrations of quasi-categories, a class defined by a right lifting property",
+      "note": "Blueprint lemma node; \\uses{defn:cosmos, defn:trivial-fibration}. Paired with lem:brown-fact by the glue's footnote (line 891) for the pullback-stability of equivalences."
+    },
+    {
+      "name": "lem:brown-fact",
+      "statement": "Any functor f : A -> B in an infinity-cosmos may be factored as an equivalence followed by an isofibration, where this equivalence is constructed as a section of a trivial fibration. Moreover, f is an equivalence if and only if the isofibration p is a trivial fibration.",
+      "closed_by": "its own proof (content.tex:558-567), which constructs Pf by a pullback of an isofibration and uses the 2-of-3 property (lem:equivalence-2-of-3) for the iff",
+      "note": "Blueprint lemma node; \\uses{defn:cosmos, defn:equivalence, defn:trivial-fibration}. The second lemma in the pullback-stability footnote (line 891)."
+    },
+    {
+      "name": "lem:equiv-htpy-equiv",
+      "statement": "A map f : A -> B between infinity-categories in an infinity-cosmos K is an equivalence if and only if it extends to the data of a homotopy equivalence with the free-living isomorphism I serving as the interval: that is, if there exist maps g : B -> A and homotopies witnessing that gf and fg are homotopic to the identities.",
+      "closed_by": "its own proof (content.tex:460-466), which constructs the inverse g and the homotopies by evaluating the induced equivalence on functor spaces and internalising via the cotensor universal property; the converse is immediate",
+      "note": "Blueprint lemma node; \\uses{defn:cosmos, defn:coherent-isomorphism, defn:equivalence}. Carries the converse direction of the glue (line 894); its proof cites lem:qcat-htpy-cat-equiv and prop:coherent-iso, giving depth 2."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A theorem whose goal is to exhibit a structure with several named components (here the seven items of an infinity-cosmos: objects, functor spaces, isofibrations, terminal object + products, pullbacks/towers, cotensors, equivalences), where each nontrivial component is verified by its own named lemma, and the parent's proof is a survey that cites those lemmas for the hard steps.",
+    "use_when": "the structure has a finite, known list of components and the hard verification of each is a self-contained statement that can be stated and proved independently of the others; the parent proof is then a thin glue that walks the components and cites one lemma per nontrivial component.",
+    "avoid_when": "the components share a genuinely common sub-argument (factor it into a third shared lemma first, as the proof's footnote pairs trivial-fib-conical with brown-fact); the components are so trivial that inline verification is clearer than a named lemma; or the component lemmas are not reusable elsewhere and only re-state the parent's burden."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site `prop:sliced-cosmoi` cites `lem:trivial-fib-conical`.",
+      "evidence_kind": "check",
+      "form": "cites(prop:sliced-cosmoi, lem:trivial-fib-conical)",
+      "evidence": "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/blueprint/src/content.tex#L845-L901"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site `prop:sliced-cosmoi` cites `lem:brown-fact`.",
+      "evidence_kind": "check",
+      "form": "cites(prop:sliced-cosmoi, lem:brown-fact)",
+      "evidence": "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/blueprint/src/content.tex#L845-L901"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site `prop:sliced-cosmoi` cites `lem:equiv-htpy-equiv`.",
+      "evidence_kind": "check",
+      "form": "cites(prop:sliced-cosmoi, lem:equiv-htpy-equiv)",
+      "evidence": "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/blueprint/src/content.tex#L845-L901"
+    },
+    {
+      "n": 4,
+      "claim": "The shape is a measurement: a 57-line parent site (845-901) whose proof cites 3 direct lemmas delegates the three nontrivial components to child proofs of 7 (421-427), 22 (546-567) and 16 (451-466) lines, and the longest chain of project lemmas below the proposition has depth 2 (lem:equiv-htpy-equiv cites lem:qcat-htpy-cat-equiv at line 463, a lemma stated without a blueprint proof at 307-312).",
+      "evidence_kind": "measurement",
+      "evidence": "line counts at the pinned commit: parent 901-845+1 = 57; children 427-421+1 = 7, 567-546+1 = 22, 466-451+1 = 16; the citation at https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/blueprint/src/content.tex#L463 and the leaf lemma at #L307-L312"
+    },
+    {
+      "n": 5,
+      "claim": "lem:equiv-htpy-equiv, the converse-direction child, is reused as the equivalence/homotopy-equivalence bridge at seven other places in the same blueprint (lines 480, 486, 496, 541, 1048, 1063, 1067), so it is a reusable component rather than a one-off for the slice construction.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/blueprint/src/content.tex#L480, #L486, #L496, #L541, #L1048, #L1063, #L1067"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 2,
+    "glue_lines": 57,
+    "child_lines": [
+      7,
+      22,
+      16
+    ]
+  },
+  "metrics": {
+    "parent_site_lines": 57,
+    "proof_lines": 21,
+    "direct_lemmas": 3,
+    "children": 3,
+    "child_total_lines": 45,
+    "how_counted": "parent site = 845-901 (57 lines); the proof body = 881-901 (21 lines); children = 421-427 (7), 546-567 (22), 451-466 (16) = 45 lines, at the pinned commit"
+  },
+  "consequences": "The parent proof walks the seven items of the cosmos structure and delegates the hard verifications to named lemmas, so the parent is a survey; a missing lemma, or a lemma whose statement does not cover the exact construction used in the slice, leaves a silent gap in the parent. The blueprint's \\uses{} clause (line 882) names only two of the three lemmas (trivial-fib-conical and brown-fact); equiv-htpy-equiv is cited inline at line 894 but absent from the \\uses{} list, so a reader following the \\uses{} dependency graph alone misses the converse direction. Two of the three children (trivial-fib-conical and brown-fact) are paired for the pullback-stability footnote, so neither alone suffices for that step. The children are independent (none cites a sibling) but equiv-htpy-equiv is the single shared bridge reused throughout the chapter, so a defect in it breaks every later argument that routes through it.",
+  "known_uses": [
+    "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/blueprint/src/content.tex#L480",
+    "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/blueprint/src/content.tex#L486",
+    "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/blueprint/src/content.tex#L496",
+    "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/blueprint/src/content.tex#L541",
+    "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/blueprint/src/content.tex#L1048",
+    "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/blueprint/src/content.tex#L1063",
+    "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/blueprint/src/content.tex#L1067"
+  ],
+  "related": [
+    "isabelle-per-callee-lemma-munkres-isabelle-97b8b78b"
+  ],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "d5bd17fc200cdb5b052809529df0626913e15eff38d39757e16a4a6e56ab9a20",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:11:57Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:12:52Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T12:20:26Z"
+}

@@ -1,0 +1,125 @@
+{
+  "entry": "lean-suffices-or-strengthen-formal-conjectures-7ee9bbe2",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:24:52Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:24:52Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:24:52Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: mem_iterate_bfsStep_dist_le@FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean:339, dist_le_mem_iterate_bfsStep@FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean:333; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:24:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(dist_eq_computable, FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean, 302-358) -> declared: dist_eq_computable is declared at FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean:302",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:24:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, mem_iterate_bfsStep_dist_le) -> cites: mem_iterate_bfsStep_dist_le occurs at FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean:339",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:24:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, dist_le_mem_iterate_bfsStep) -> cites: dist_le_mem_iterate_bfsStep occurs at FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean:333",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:24:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "no_sorry(FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean, 1-429) -> no_sorry: none of sorry, admit, axiom in FormalConjecturesForMathlib/Combinatorics/SimpleGraph/VertexDistance.lean:1-429",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:24:52Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at a425ca3eb797fe927cb88c950565fdcbbbbada70",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:25:02Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build-and-docs.yml (build job, 'lake --wfail build FormalConjecturesForMathlib FormalConjecturesUtil'); VertexDistance.lean is under FormalConjecturesForMathlib; pinned commit a425ca3eb797fe927cb88c950565fdcbbbbada70 is on default branch main (compare main...a425ca3 = behind 4, ahead 0)",
+      "by": "verifier",
+      "at": "2026-11-14T09:26:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read code/.../VertexDistance.lean: mem_iterate_bfsStep_dist_le spans 250-273 (24), dist_le_mem_iterate_bfsStep spans 275-300 (26), dist_eq_computable spans 302-358 (57); 24+26=50; glue cites both children at lines 339 and 333/345",
+      "by": "verifier",
+      "at": "2026-11-14T09:26:23Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent dist_eq_computable (VertexDistance.lean 302-358) strengthens the goal via suffices hsuff (line 308) and instantiates it at (Fintype.card a, 1, bfsStep {u}); matches the suffices-or-strengthen move. The two children are exactly the local lemmas the proof uses: mem_iterate_bfsStep_dist_le (250-273) cited at line 339, dist_le_mem_iterate_bfsStep (275-300) cited at lines 333 and 345; no other local lemma is cited (reachable_of_mem_iterate_bfsStep is a sibling-file API lemma at Connectivity.lean:138, acknowledged in the README). closed_by matches the code branch for branch. The proof closes: induction on fuel closes zero and succ; the succ reached branch derives depth = dist via both children; the recurse branch re-establishes the invariant via h_inv and calls ih. Shape numbers correct: glue 302-358 = 57, child_lines [24,26] = 250-273 and 275-300, sum 50, direct_lemmas 2, depth 1.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:27:40Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalised beyond the example ('two presentations of the same quantity' + induction hypothesis generalised over the accumulator; also_known_as: strengthen-the-goal/generalise-before-induction). When-not-to-use has three concrete conditions and consequences name a real failure mode (h_inv must tie reached to bfsStep^[depth]{u} or the recurse rewrite fails; children must be the exact two directions), all matching the copied code. 'Each child is a good leaf' states what makes the leaves bounded: self-contained statement, closed by a single induction, no use of the other child (confirmed in code), exactly the two directions the glue needs. Minor nit, non-blocking: entry.json avoid_when 'not actually implied by (stronger than) the goal' reverses the implication direction, but README states it correctly.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:28:59Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at a425ca3eb797fe927cb88c950565fdcbbbbada70",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:29:14Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are all consistent and traceable. check_provenance passes: 2 files byte-identical at pinned commit a425ca3eb797fe927cb88c950565fdcbbbbada70. Commit hash matches across source.json, SOURCE.md, entry.json source.commit and README (a425ca3eb797). Licence Apache-2.0 recorded identically in source.json, SOURCE.md, entry.json source.licence, README table and Source-and-licence section, and upstream-LICENSE is the Apache License 2.0. All permalinks pin the same commit with line ranges matching the entry's sites (302-358, 250-273, 275-300); VertexDistance.lean is 429 lines matching claim 4's 1-429, Connectivity.lean 208 lines covering cited lines 106-109 and 138. SOURCE.md carries correct repo, commit, licence and attribution.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:29:33Z"
+    }
+  ]
+}

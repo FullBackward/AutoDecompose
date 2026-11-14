@@ -1,0 +1,223 @@
+{
+  "id": "lean-generalise-then-instantiate-lean-atiyah-singer-83424c2a",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Specialise the PDO Atiyah-Singer theorem to the elliptic differential operator",
+  "intent": "Prove the Atiyah-Singer index equality for an elliptic differential operator by specialising the general PDO index theorem (PseudodifferentialOperator.index_eq_cotangentTopologicalIndex) to the operator's own toPseudodifferentialOperator, deriving the homogeneous representative and its ellipticity from the principal polynomial rather than assuming them.",
+  "move": "generalise-then-instantiate",
+  "also_known_as": [
+    "prove-general-then-specialise",
+    "specialisation of an abstract theorem",
+    "instantiate a general theorem at a concrete instance"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "lean-atiyah-singer",
+    "url": "https://github.com/alpha-squared-labs/Lean-Atiyah-Singer",
+    "commit": "09fc7bab3f9ff606901bde4b5a5580470da63a70",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "AtiyahSinger/Analysis/DifferentialIndexTheorem.lean",
+      "bytes": 7561,
+      "sha256": "e099fd13b125ec7c2994c2e7b0e83f037e37bb6844a25acbf7ee781f2e6d95e1",
+      "permalink": "https://github.com/alpha-squared-labs/Lean-Atiyah-Singer/blob/09fc7bab3f9ff606901bde4b5a5580470da63a70/AtiyahSinger/Analysis/DifferentialIndexTheorem.lean"
+    },
+    {
+      "path": "AtiyahSinger/Analysis/DifferentialParametrix.lean",
+      "bytes": 20552,
+      "sha256": "d30f673f9ea300f1c041447e07ba15bb6136a631d586b89fbe7626c88df0d732",
+      "permalink": "https://github.com/alpha-squared-labs/Lean-Atiyah-Singer/blob/09fc7bab3f9ff606901bde4b5a5580470da63a70/AtiyahSinger/Analysis/DifferentialParametrix.lean"
+    },
+    {
+      "path": "AtiyahSinger/Analysis/OperatorSymbolKClass.lean",
+      "bytes": 12823,
+      "sha256": "a0ce61598d6180f3faadb5e9b824f16541af5fe996652c7507ef9e01728c7521",
+      "permalink": "https://github.com/alpha-squared-labs/Lean-Atiyah-Singer/blob/09fc7bab3f9ff606901bde4b5a5580470da63a70/AtiyahSinger/Analysis/OperatorSymbolKClass.lean"
+    },
+    {
+      "path": "AtiyahSinger/Analysis/IndexTheorem.lean",
+      "bytes": 13258,
+      "sha256": "a60005d567379976ff2a9db7ca5b4b66439643b90c65427abc789b2a45ca5b4f",
+      "permalink": "https://github.com/alpha-squared-labs/Lean-Atiyah-Singer/blob/09fc7bab3f9ff606901bde4b5a5580470da63a70/AtiyahSinger/Analysis/IndexTheorem.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "AtiyahSinger/Analysis/DifferentialIndexTheorem.lean",
+      "lines": [
+        107,
+        138
+      ],
+      "role": "parent",
+      "name": "index_eq_cotangentTopologicalIndex",
+      "excerpt_sha256": "7c4b90b18663cae83da16e397d5039cdab9db8bc0117fe74d6f102227c3042ad",
+      "permalink": "https://github.com/alpha-squared-labs/Lean-Atiyah-Singer/blob/09fc7bab3f9ff606901bde4b5a5580470da63a70/AtiyahSinger/Analysis/DifferentialIndexTheorem.lean#L107-L138"
+    },
+    {
+      "path": "AtiyahSinger/Analysis/DifferentialParametrix.lean",
+      "lines": [
+        318,
+        325
+      ],
+      "role": "child",
+      "name": "isElliptic_iff_isEllipticGlobalSymbol",
+      "excerpt_sha256": "d939b136c53b3079b25aa6fe1ee640df8c587afecd47da73229f72bdc2a6be04",
+      "permalink": "https://github.com/alpha-squared-labs/Lean-Atiyah-Singer/blob/09fc7bab3f9ff606901bde4b5a5580470da63a70/AtiyahSinger/Analysis/DifferentialParametrix.lean#L318-L325"
+    },
+    {
+      "path": "AtiyahSinger/Analysis/DifferentialParametrix.lean",
+      "lines": [
+        333,
+        347
+      ],
+      "role": "child",
+      "name": "principalSymbol_eq_regularizedSymbol",
+      "excerpt_sha256": "0432a77204125a943ad2cffdf91bf4cc8efa7d2548182e649dab1d5870e1a812",
+      "permalink": "https://github.com/alpha-squared-labs/Lean-Atiyah-Singer/blob/09fc7bab3f9ff606901bde4b5a5580470da63a70/AtiyahSinger/Analysis/DifferentialParametrix.lean#L333-L347"
+    },
+    {
+      "path": "AtiyahSinger/Analysis/OperatorSymbolKClass.lean",
+      "lines": [
+        138,
+        150
+      ],
+      "role": "child",
+      "name": "isElliptic_iff_homogeneous",
+      "excerpt_sha256": "ba827d8a3179a435ebb07b71c378d2f5cb17006b833e3a4849d113b8bd83d89f",
+      "permalink": "https://github.com/alpha-squared-labs/Lean-Atiyah-Singer/blob/09fc7bab3f9ff606901bde4b5a5580470da63a70/AtiyahSinger/Analysis/OperatorSymbolKClass.lean#L138-L150"
+    },
+    {
+      "path": "AtiyahSinger/Analysis/IndexTheorem.lean",
+      "lines": [
+        220,
+        242
+      ],
+      "role": "child",
+      "name": "PseudodifferentialOperator.index_eq_cotangentTopologicalIndex",
+      "excerpt_sha256": "e74d260ccda052a140ec04b1017cf73b565587fd696476f3b8abff8e530d6c81",
+      "permalink": "https://github.com/alpha-squared-labs/Lean-Atiyah-Singer/blob/09fc7bab3f9ff606901bde4b5a5580470da63a70/AtiyahSinger/Analysis/IndexTheorem.lean#L220-L242"
+    }
+  ],
+  "parent": {
+    "name": "index_eq_cotangentTopologicalIndex",
+    "statement": "theorem index_eq_cotangentTopologicalIndex (hP : P.IsElliptic) :\n    P.analyticIndex hP = cotangentTopologicalIndex n M (P.symbolKClass μ R hP)"
+  },
+  "children": [
+    {
+      "name": "principalSymbol_eq_regularizedSymbol",
+      "statement": "theorem principalSymbol_eq_regularizedSymbol\n    (A : QuantizationPresentation (n := n) (r := r) (q := q) E F) :\n    (P.toPseudodifferentialOperator μ).principalSymbol =\n      globalPrincipalSymbolClass E F (m : ℝ)\n        (A.regularizedSymbol (m : ℝ) P.principalSymbolFunction\n          P.isSmoothOffZeroGlobalSymbol_principalSymbolFunction\n          P.isHomogeneousGlobalSymbol_principalSymbolFunction)",
+      "closed_by": "rw [P.principalSymbol_toPseudodifferentialOperator μ]; exact (A.regularizedSymbol_class_eq P.principalGlobalSymbol P.isHomogeneousGlobalSymbol_principalSymbolFunction).symm"    },
+    {
+      "name": "isElliptic_iff_isEllipticGlobalSymbol",
+      "statement": "theorem isElliptic_iff_isEllipticGlobalSymbol :\n    P.IsElliptic ↔ IsEllipticGlobalSymbol E F P.principalSymbolFunction",
+      "closed_by": "exact Iff.rfl"    },
+    {
+      "name": "isElliptic_iff_homogeneous",
+      "statement": "theorem isElliptic_iff_homogeneous (R : QuantizationPresentation (n := n) (r := r) (q := q) E F)\n    (a : homogeneousGlobalSymbolSpace (n := n) (r := r) (q := q) E F m)\n    (hP : P.principalSymbol = globalPrincipalSymbolClass E F m\n      (R.regularizedSymbol m a.val a.property.1 a.property.2)) :\n    P.IsElliptic ↔ IsEllipticGlobalSymbol E F a.val",
+      "closed_by": "exact (P.isElliptic_iff_of_principalSymbol_eq (R.regularizedSymbol m a.val a.property.1 a.property.2) hP).trans (isEllipticFullGlobalSymbol_regularizedSymbol_iff R m a.val a.property.1 a.property.2)"    },
+    {
+      "name": "PseudodifferentialOperator.index_eq_cotangentTopologicalIndex",
+      "statement": "theorem PseudodifferentialOperator.index_eq_cotangentTopologicalIndex {m : ℝ}\n    (P : PseudodifferentialOperator (n := n) (r := r) (q := q) E F μ m)\n    (R : QuantizationPresentation (n := n) (r := r) (q := q) E F)\n    (a : homogeneousGlobalSymbolSpace (n := n) (r := r) (q := q) E F m)\n    (hp : P.principalSymbol = globalPrincipalSymbolClass E F m\n      (R.regularizedSymbol m a.val a.property.1 a.property.2)) (hi : P.IsElliptic) :\n    P.toLinearMap.index =\n      cotangentTopologicalIndex n M (P.symbolKClassOfHomogeneous R a hp hi)",
+      "closed_by": "have heval := PseudodifferentialOperator.analyticIndexOfComponents_symbolKClassOfHomogeneous μ P R a hp hi; rw [analyticIndexOfComponents_eq_cotangentTopologicalIndex μ] at heval; exact heval.symm"    }
+  ],
+  "applicability": {
+    "goal_shape": "A theorem about a specific object (an elliptic differential operator P) whose conclusion, P.analyticIndex hP = cotangentTopologicalIndex n M (P.symbolKClass μ R hP), is exactly the instance of a general theorem P.toLinearMap.index = cotangentTopologicalIndex n M (P.symbolKClassOfHomogeneous R a hp hi) already proved for a more general class (PDOs carrying a supplied homogeneous representative a, principal-symbol equality hp and ellipticity hi).",
+    "use_when": "a general theorem over the weaker/more general structure already exists; the specific object embeds into it by a definitional map (P.toPseudodifferentialOperator μ); and the instantiation data — the homogeneous representative and the two ellipticity certificates — can be derived from the specific object's own principal data by named boundary lemmas rather than assumed.",
+    "avoid_when": "the specific-to-general embedding is not definitional, so the boundary facts need deep proofs of their own; the general theorem's hypotheses are not discharged by the specific structure (here the homogeneous representative and its ellipticity would then have to be added as assumptions); or the general theorem does not exist yet, in which case instantiation is re-proving rather than reuse."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site is 32 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/alpha-squared-labs/Lean-Atiyah-Singer/blob/09fc7bab3f9ff606901bde4b5a5580470da63a70/AtiyahSinger/Analysis/DifferentialIndexTheorem.lean#L107-L138",
+      "form": "lines(parent, 32)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites principalSymbol_eq_regularizedSymbol.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/alpha-squared-labs/Lean-Atiyah-Singer/blob/09fc7bab3f9ff606901bde4b5a5580470da63a70/AtiyahSinger/Analysis/DifferentialIndexTheorem.lean#L132",
+      "form": "cites(parent, principalSymbol_eq_regularizedSymbol)"
+    },
+    {
+      "n": 3,
+      "claim": "The authors state the intent in the module docstring: 'an elliptic differential operator needs no extra classical-symbol assumption when applying the existing K-theoretic index theorem'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/alpha-squared-labs/Lean-Atiyah-Singer/blob/09fc7bab3f9ff606901bde4b5a5580470da63a70/AtiyahSinger/Analysis/DifferentialIndexTheorem.lean#L16-L22"
+    },
+    {
+      "n": 4,
+      "claim": "The same three-step specialisation is performed again in the same file by the sibling definition symbolKClass: it assembles the homogeneous representative a, derives hp via principalSymbol_eq_regularizedSymbol and hi via the two ellipticity equivalences, then applies the PDO construction.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/alpha-squared-labs/Lean-Atiyah-Singer/blob/09fc7bab3f9ff606901bde4b5a5580470da63a70/AtiyahSinger/Analysis/DifferentialIndexTheorem.lean#L71-L85"
+    },
+    {
+      "n": 5,
+      "claim": "The theorem-scale shape is direct_lemmas = 4, glue_lines = 32, child_lines = [8, 15, 13, 23], and depth = 2 along the chain index_eq_cotangentTopologicalIndex -> PseudodifferentialOperator.index_eq_cotangentTopologicalIndex -> PseudodifferentialOperator.analyticIndexOfComponents_symbolKClassOfHomogeneous.",
+      "evidence_kind": "measurement",
+      "evidence": "counted from the copied files: DifferentialIndexTheorem.lean 107-138; DifferentialParametrix.lean 318-325 and 333-347; OperatorSymbolKClass.lean 138-150; IndexTheorem.lean 220-242; the depth chain cites the grandchild at IndexTheorem.lean:239, declared at ComponentAnalyticIndex.lean:175"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 2,
+    "glue_lines": 32,
+    "child_lines": [
+      8,
+      15,
+      13,
+      23
+    ]
+  },
+  "metrics": {
+    "parent_lines": 32,
+    "children": 4,
+    "child_lines": {
+      "isElliptic_iff_isEllipticGlobalSymbol": 8,
+      "principalSymbol_eq_regularizedSymbol": 15,
+      "isElliptic_iff_homogeneous": 13,
+      "PseudodifferentialOperator.index_eq_cotangentTopologicalIndex": 23
+    },
+    "how_counted": "line spans of the sites, declaration included: DifferentialIndexTheorem.lean 107-138; DifferentialParametrix.lean 318-325 and 333-347; OperatorSymbolKClass.lean 138-150; IndexTheorem.lean 220-242"
+  },
+  "consequences": "The move concentrates the proof burden in four boundary lemmas and leaves the main theorem a thin glue: the parent's proof body (lines 126-138) only assembles the homogeneous representative and passes it to the general PDO theorem. Obligations created: every hypothesis of the general theorem must be discharged for the specific operator — the PDO (P.toPseudodifferentialOperator μ, definitional), the homogeneous representative a (assembled inline from P.principalSymbolFunction and its certificates), the principal-symbol equality hp (principalSymbol_eq_regularizedSymbol) and PDO ellipticity hi (isElliptic_iff_homogeneous composed with isElliptic_iff_isEllipticGlobalSymbol). Failure mode: if the specific-to-general embedding were not definitional, or if the general theorem demanded data the specific object cannot supply (a Hermitian metric, positive order, or equal bundle ranks — all explicitly excluded in the docstring), the instantiation would fail and the boundary lemmas would need real proofs of their own.",
+  "known_uses": [
+    "https://github.com/alpha-squared-labs/Lean-Atiyah-Singer/blob/09fc7bab3f9ff606901bde4b5a5580470da63a70/AtiyahSinger/Analysis/DifferentialIndexTheorem.lean#L71-L85",
+    "https://github.com/alpha-squared-labs/Lean-Atiyah-Singer/blob/09fc7bab3f9ff606901bde4b5a5580470da63a70/AtiyahSinger/Analysis/CohomologicalIndexTheorem.lean#L380"
+  ],
+  "related": [
+    "lean-generalise-then-instantiate-carleson-63234e9a"
+  ],
+  "rule": {
+    "f10_rule": 14,
+    "relation": "supports"
+  },
+  "content_key": "83424c2a984067e80715fdee7f6ae0925aa3c0cdcdb8a0ed27c73d6728fa050d",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:38:04Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:45:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:40:24Z",
+      "note": "parent index_eq_cotangentTopologicalIndex: statement re-copied from code; child 'principalSymbol_eq_regularizedSymbol': statement re-copied from the declaration of principalSymbol_eq_regularizedSymbol; child 'isElliptic_iff_isEllipticGlobalSymbol': statement re-copied from the declaration of isElliptic_iff_isEllipticGlobalSymbol; child 'isElliptic_iff_homogeneous': statement re-copied from the declaration of isElliptic_iff_homogeneous; child 'PseudodifferentialOperator.index_eq_cotangentTopologicalIndex': statement re-copied from the declaration of PseudodifferentialOperator.index_eq_cotangentTopologicalIndex"
+    }
+  ]
+}

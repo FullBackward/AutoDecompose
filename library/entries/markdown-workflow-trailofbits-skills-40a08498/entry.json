@@ -1,0 +1,130 @@
+{
+  "id": "markdown-workflow-trailofbits-skills-40a08498",
+  "kind": "skill",
+  "status": "draft",
+  "title": "Sorry skeletons are the multi-agent protocol",
+  "intent": "State the theorem-scale decomposition as an explicit multi-agent workflow: one pass states the target and the lemmas written for it, together with their API, as compiling `sorry` stubs; the statements are then frozen as interface, and independent agents each discharge one stub with no shared context beyond the file.",
+  "move": "workflow",
+  "also_known_as": [
+    "sorry-skeleton decomposition",
+    "spec-driven decomposition",
+    "compile-then-fan-out",
+    "one-stub-per-agent"
+  ],
+  "language": "markdown",
+  "source": {
+    "source_id": "trailofbits-skills",
+    "url": "https://github.com/trailofbits/skills",
+    "commit": "e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff",
+    "licence": "CC-BY-SA-4.0"
+  },
+  "files": [
+    {
+      "path": "plugins/writing-lean-proofs/skills/writing-lean-proofs/references/llm-techniques.md",
+      "bytes": 5522,
+      "sha256": "65e4b40ebb78075cc7d383716687983fbb99f2d44933af6f70797e3d3935e112",
+      "permalink": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/skills/writing-lean-proofs/references/llm-techniques.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": "plugins/writing-lean-proofs/skills/writing-lean-proofs/references/llm-techniques.md",
+      "lines": [
+        57,
+        73
+      ],
+      "role": "skill-text",
+      "name": "sorry-skeletons",
+      "excerpt_sha256": "109346cedd267eccd4d84aa9b93a8d143ad846922afa8d119d26d44c356ae991",
+      "permalink": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/skills/writing-lean-proofs/references/llm-techniques.md#L57-L73"
+    }
+  ],
+  "parent": null,
+  "children": [
+    {
+      "name": "compile-before-fan-out",
+      "statement": "Every stub must compile before fan-out (`lake build` on the skeleton).",
+      "closed_by": "`lake build` on the skeleton — the whole sorry-skeleton must compile before any agent is dispatched"
+    },
+    {
+      "name": "frozen-statements",
+      "statement": "A filled sorry must not change any statement — statements are frozen interface; if a statement is wrong, that is a design change, surfaced rather than silently patched.",
+      "closed_by": "the frozen-interface contract: a wrong statement is surfaced as a design change, not silently patched inside the sorry"
+    },
+    {
+      "name": "many-small-stubs",
+      "statement": "Prefer many small stubs over few large ones: the granularity criterion is 'one agent can discharge one stub without global context'.",
+      "closed_by": "the granularity criterion — each stub is sized so one agent discharges it with no context beyond the file"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A theorem-scale proof whose target and its supporting lemmas are not yet proved; the decomposition is the joint statement of the target and its lemmas as compiling `sorry` stubs with frozen statements, before any proof body exists.",
+    "use_when": "you are about to prove a main theorem from lemmas written for it and want to parallelise the proofs across agents or contributors; the statements (the interface) can be settled before the proofs; and the team can compile the skeleton first.",
+    "avoid_when": "the statements are still in flux (a change would be a design change to a frozen interface, surfaced not patched); the goal is a single small proof one agent closes directly without decomposition; or the skeleton cannot be made to compile first."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The skill-text site `sorry-skeletons` (llm-techniques.md lines 57-73) is 17 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(plugins/writing-lean-proofs/skills/writing-lean-proofs/references/llm-techniques.md:57-73, 17)",
+      "evidence": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/skills/writing-lean-proofs/references/llm-techniques.md#L57-L73"
+    },
+    {
+      "n": 2,
+      "claim": "The token `sorry` occurs 2 times in the copied file `plugins/writing-lean-proofs/skills/writing-lean-proofs/references/llm-techniques.md`.",
+      "evidence_kind": "check",
+      "form": "count(sorry, 2, plugins/writing-lean-proofs/skills/writing-lean-proofs/references/llm-techniques.md)",
+      "evidence": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/skills/writing-lean-proofs/references/llm-techniques.md"
+    },
+    {
+      "n": 3,
+      "claim": "The granularity criterion is stated in the authors' words as 'one agent can discharge one stub without global context' (lines 72-73).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/skills/writing-lean-proofs/references/llm-techniques.md#L72-L73"
+    },
+    {
+      "n": 4,
+      "claim": "The frozen-interface rule is stated as 'statements are frozen interface; if a statement is wrong, that is a design change, surfaced rather than silently patched' (lines 69-71).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/skills/writing-lean-proofs/references/llm-techniques.md#L69-L71"
+    },
+    {
+      "n": 5,
+      "claim": "The authors name PFR as the precedent that ran the workflow in practice: 'This is exactly how PFR ran ~20 human contributors in parallel — the proof assistant verifies each contribution independently, so contributors need not understand the whole' (lines 63-66).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/trailofbits/skills/blob/e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff/plugins/writing-lean-proofs/skills/writing-lean-proofs/references/llm-techniques.md#L63-L66"
+    }
+  ],
+  "metrics": {
+    "rules": 3,
+    "precedent_named": 1,
+    "how_counted": "the three rules are the three bullets at lines 68, 69-71 and 72-73 of the copied file; the single named precedent is PFR (line 64)"
+  },
+  "consequences": "Freezing statements as interface makes any statement change an explicit design change that must be surfaced rather than silently patched — the price of the independence the workflow buys. The compile-before-fan-out gate means the skeleton must build before any agent is dispatched, so a skeleton that does not compile blocks the whole fan-out. The granularity criterion ('one agent can discharge one stub without global context') sizes every stub: a stub that is too large reintroduces the shared-context problem the workflow is meant to remove, while many trivial stubs add fan-out overhead. The independence of each contribution rests on the frozen statements being correct — the proof assistant verifies each stub against its own statement, but a wrong frozen statement propagates to the assembled theorem undetected.",
+  "known_uses": [],
+  "related": [
+    "markdown-sorrify-at-failure-lean4-skills-430f389e",
+    "markdown-extract-have-trailofbits-skills-9a206aa0"
+  ],
+  "rule": {
+    "f10_rule": 1,
+    "relation": "supports"
+  },
+  "content_key": "40a08498dcba8b60105a77beb408bc9621797eb5b610de23f43014398f4d522b",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:51:11Z"
+    },
+    {
+      "field": "intent,also_known_as,children,applicability,claims,metrics,consequences,related,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:58:00Z"
+    }
+  ]
+}

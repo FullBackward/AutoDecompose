@@ -1,0 +1,186 @@
+{
+  "id": "rocq-extensionality-mathcomp-analysis-fa807b35",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Extensionality on measurable sets proves associativity of the Giry monad (giry_joinA)",
+  "intent": "Reduce the associativity law of the Giry monad, an equality of two subprobability measures, to a pointwise equality on each measurable set A, then discharge each side with the two integral lemmas giry_int_map and giry_int_join, closing the side conditions with measurable_giry_ev.",
+  "move": "extensionality",
+  "also_known_as": [
+    "pointwise equality of measures",
+    "measure extensionality",
+    "≡μ (measure_eq)",
+    "apply: functional_extensionality / setP / ffunP (Lean spelling)"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "mathcomp-analysis",
+    "url": "https://github.com/math-comp/analysis",
+    "commit": "eca10f89bd852201c8148ff2f597c7c7346d6df2",
+    "licence": "CECILL-C"
+  },
+  "files": [
+    {
+      "path": "theories/lebesgue_integral_theory/giry.v",
+      "bytes": 17406,
+      "sha256": "ebf43e9662de1c056d47defcf148149682420a0d2f196013932721a8c02b1865",
+      "permalink": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/lebesgue_integral_theory/giry.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/lebesgue_integral_theory/giry.v",
+      "lines": [
+        375,
+        382
+      ],
+      "role": "parent",
+      "name": "giry_joinA",
+      "excerpt_sha256": "34c9e758cfa5e8393fd4c182533f024927dc3f3de31d39845f4c989ad8457e64",
+      "permalink": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/lebesgue_integral_theory/giry.v#L375-L382"
+    },
+    {
+      "path": "theories/lebesgue_integral_theory/giry.v",
+      "lines": [
+        201,
+        204
+      ],
+      "role": "child",
+      "name": "giry_int_map",
+      "excerpt_sha256": "634b15aee9935c5747f83666a352be3a852991efdd7791c4a0256752ef1e93e8",
+      "permalink": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/lebesgue_integral_theory/giry.v#L201-L204"
+    },
+    {
+      "path": "theories/lebesgue_integral_theory/giry.v",
+      "lines": [
+        312,
+        339
+      ],
+      "role": "child",
+      "name": "giry_int_join",
+      "excerpt_sha256": "f0828efb1c9ae1b49a5c6f8c20593f70df83f6f96d603d38705828b6bfb491b5",
+      "permalink": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/lebesgue_integral_theory/giry.v#L312-L339"
+    },
+    {
+      "path": "theories/lebesgue_integral_theory/giry.v",
+      "lines": [
+        88,
+        96
+      ],
+      "role": "child",
+      "name": "measurable_giry_ev",
+      "excerpt_sha256": "1ab6d0b927640484f1f860b1360ee70601d7d869a220cac1ddf67ee038d1b844",
+      "permalink": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/lebesgue_integral_theory/giry.v#L88-L96"
+    }
+  ],
+  "parent": {
+    "name": "giry_joinA",
+    "statement": "Lemma giry_joinA (x : giry (giry (giry T1 R) R) R) :\n  (giry_join \\o giry_map measurable_giry_join) x ≡μ\n  (giry_join \\o giry_join) x."
+  },
+  "children": [
+    {
+      "name": "giry_int_map",
+      "statement": "Lemma giry_int_map (mu : giry T1 R) (h : T2 -> \\bar R) :\n  measurable_fun [set: T2] h -> (forall x, 0 <= h x) ->\n  giry_int (giry_map mf mu) h = giry_int mu (h \\o f).",
+      "closed_by": "by move=> mh h0; exact: ge0_integral_pushforward."
+    },
+    {
+      "name": "giry_int_join",
+      "statement": "Lemma giry_int_join (M : giry (giry T R) R) (h : T -> \\bar R) :\n    measurable_fun [set: T] h -> (forall x, 0 <= h x) ->\n  giry_int (giry_join M) h = giry_int M (giry_int ^~ h).",
+      "closed_by": "a transitivity chain through monotone_convergence and eq_integral, using sintegral_giry_join and measurable_giry_int; Qed"
+    },
+    {
+      "name": "measurable_giry_ev",
+      "statement": "Lemma measurable_giry_ev (A : set T) : measurable A ->\n  measurable_fun [set: giry] (giry_ev ^~ A).",
+      "closed_by": "measurability; sigma_algebra_measurable; sub_gen_smallest; bigcup_sup"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An equality of two measures m1 = m2 where equality is pointwise on measurable sets (here the notation ≡μ, the definition measure_eq: forall S, measurable S -> m1 S = m2 S); the two sides are built from the same combinator (a Giry-monad operation) applied to different nesting.",
+    "use_when": "the measures' equality is defined extensionally (measure_eq) and the two sides differ only in how a monadic operation is nested, so that one generic measurable set A reduces each side to the same integral, provable by an already-established integral-pushforward or integral-join lemma.",
+    "avoid_when": "the equality is not pointwise-on-measurable-sets, the two sides need different rewrites per A, or the integral lemmas (giry_int_map, giry_int_join) are not already proved; then the extensionality step leaves a hard goal that must be split further."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent giry_joinA's proof cites the child lemma giry_int_map.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/lebesgue_integral_theory/giry.v#L375-L382",
+      "form": "cites(giry_joinA, giry_int_map)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent giry_joinA's proof cites the child lemma giry_int_join.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/lebesgue_integral_theory/giry.v#L375-L382",
+      "form": "cites(giry_joinA, giry_int_join)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent giry_joinA's proof cites the child lemma measurable_giry_ev.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/lebesgue_integral_theory/giry.v#L375-L382",
+      "form": "cites(giry_joinA, measurable_giry_ev)"
+    },
+    {
+      "n": 4,
+      "claim": "The decomposition has 3 direct lemmas and a lemma graph 3 deep; the glue (giry_joinA, declaration and proof) is 8 lines and the three children are 4, 28 and 9 lines respectively.",
+      "evidence_kind": "measurement",
+      "evidence": "site spans in entry.json: parent theories/lebesgue_integral_theory/giry.v#L375-L382 (8 lines); children #L201-L204 (4), #L312-L339 (28), #L88-L96 (9); depth is the chain giry_joinA -> giry_int_join -> sintegral_giry_join -> measurable_giry_ev, all in the copied file"
+    },
+    {
+      "n": 5,
+      "claim": "The same extensionality move proves the two other monad laws in the same file, giry_join_id1 and giry_join_id2, each `move=> ... /=; rewrite giry_int_map//; exact: measurable_giry_ev`.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/lebesgue_integral_theory/giry.v#L384-L400"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 3,
+    "glue_lines": 8,
+    "child_lines": [
+      4,
+      28,
+      9
+    ]
+  },
+  "metrics": {
+    "direct_lemmas": 3,
+    "glue_lines": 8,
+    "child_lines": [
+      4,
+      28,
+      9
+    ],
+    "depth": 3,
+    "how_counted": "line counts are the site spans in entry.json (declaration and proof included); depth is the longest chain of project lemmas below giry_joinA checked by reading the copied file: giry_joinA -> giry_int_join -> sintegral_giry_join -> measurable_giry_ev"
+  },
+  "consequences": "The extensionality step introduces one generic measurable set A with the obligation mA : measurable A, discharged by the side-condition lemmas measurable_giry_ev and by the hypotheses (forall x, 0 <= h x) of giry_int_map and giry_int_join. It relies on the equality being measure_eq (pointwise on measurable sets); if the equality were a different relation, move=> A mA would not reduce it. The whole proof rests on the two integral lemmas already being proved: without them the pointwise goal is not a leaf.",
+  "known_uses": [
+    "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/lebesgue_integral_theory/giry.v#L384-L392",
+    "https://github.com/math-comp/analysis/blob/eca10f89bd852201c8148ff2f597c7c7346d6df2/theories/lebesgue_integral_theory/giry.v#L394-L400"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "fa807b353d59fc8889d1dca027bfc8d3d0489a9f8dc423c51ac84eb1aa19ea39",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:57:52Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:58:46Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:05:53Z"
+}

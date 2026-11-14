@@ -1,0 +1,125 @@
+{
+  "entry": "isabelle-extensionality-autocorrode-f2cdee86",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:43:41Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:43:41Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:43:41Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: rbt_ext_eqI@Shallow_Separation_Logic/Share_Map.thy:121, shareable_value_option_inj@Shallow_Separation_Logic/Share_Map.thy:121; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:43:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(rbt_share_map_eqI, Shallow_Separation_Logic/Share_Map.thy, 117-121) -> declared: rbt_share_map_eqI is declared at Shallow_Separation_Logic/Share_Map.thy:117",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:43:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, rbt_ext_eqI) -> cites: rbt_ext_eqI occurs at Shallow_Separation_Logic/Share_Map.thy:121",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:43:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, shareable_value_option_inj) -> cites: shareable_value_option_inj occurs at Shallow_Separation_Logic/Share_Map.thy:121",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:43:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "count(rbt_share_map_eqI, 13, Shallow_Separation_Logic/Share_Map.thy) -> count: rbt_share_map_eqI occurs 13 times in 1 file(s) matching Shallow_Separation_Logic/Share_Map.thy",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:43:41Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 200f1acf2d264f2dedee33792b986ebe73c224a3",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:43:52Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/ci.yml (build job runs 'isabelle build -v -b -d . AutoCorrode', which builds the AutoCorrode session; ROOT lists Data_Structures and Shallow_Separation_Logic sessions, so RedBlackTree_Extensional.thy and Share_Map.thy are built); commit 200f1acf2d264f2dedee33792b986ebe73c224a3 is the tip of default branch main",
+      "by": "verifier",
+      "at": "2026-11-14T10:44:45Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read the three site line ranges in code/: parent rbt_share_map_eqI spans 117-121 (5 lines, 'lemma rbt_share_map_eqI:' through 'by (metis (lifting) ext rbt_ext_eqI rbt_share_map.expand shareable_value_option_inj)'); child rbt_ext_eqI spans 157-160 (4 lines); child shareable_value_option_inj spans 77-80 (4 lines). Both children are the only two direct lemmas and are cited in the parent's proof line; neither child depends on a further project lemma (rbt_ext_eqI closes by transfer/simp with rbt_ext_eq_def, shareable_value_option_inj by auto), so longest chain below the parent is 1",
+      "by": "verifier",
+      "at": "2026-11-14T10:45:00Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent rbt_share_map_eqI (Share_Map.thy 117-121) and children rbt_ext_eqI (RedBlackTree_Extensional.thy 157-160) and shareable_value_option_inj (Share_Map.thy 77-80) match the code verbatim; closing methods match (transfer (simp add: rbt_ext_eq_def) / auto simp add: shareable_value_option_def split!: option.splits); all three close with by-proofs and no sorry; the glue (metis (lifting) ext rbt_ext_eqI rbt_share_map.expand shareable_value_option_inj) cites exactly the two project-lemma children, with ext and rbt_share_map.expand correctly treated as library/datatype theorems, not children; shape numbers right per fields.md convention (glue_lines=parent site span 5, child_lines=4/4, direct_lemmas=2, depth=1); count rbt_share_map_eqI=13 confirmed (1 declaration + 12 uses).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:46:14Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality holds. The move is generalized beyond the example: 'When to use it' states it for any equality on a record-/quotient-wrapped map-like type decided by pointwise equality of an injective abstraction alpha::T=>'k=>'v, and names the analogue (ext/set_eqI). 'When not to use' is honest and specific: non-injective abstraction makes the principle false; no underlying quotient/extensionality lemma; single-use where the named lemma is overhead vs inline ext. Consequences are concrete: two soundness obligations (injectivity shareable_value_option_inj, quotient extensionality rbt_ext_eqI), forward direction only (rbt_share_map_eqE is separate, confirmed at lines 123-127), and applies only to alpha-shaped goals. It says explicitly what makes the leaves good for a bounded prover: each child is self-contained, closes on its own (auto+option.splits; transfer to rbt_ext_eq_def), cites no other lemma, so the theorem is two independent leaves joined by one metis call - one hole per leaf.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:46:52Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 200f1acf2d264f2dedee33792b986ebe73c224a3",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:47:07Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks (files and sites) all pin commit 200f1acf2d264f2dedee33792b986ebe73c224a3 and paths Shallow_Separation_Logic/Share_Map.thy and Data_Structures/RedBlackTree_Extensional.thy; the cited line ranges 117-121, 77-80, 157-160 match the statements in the copied code. Commit agrees across entry.json source.commit, sources/autocorrode/SOURCE.md and source.json. Licence MIT is recorded in entry.json and SOURCE.md, and sources/autocorrode/upstream-LICENSE is the MIT text. check_provenance passes: 2 files byte-identical at the pinned commit. Everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:47:25Z"
+    }
+  ]
+}

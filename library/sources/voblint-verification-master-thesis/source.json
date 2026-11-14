@@ -1,0 +1,17 @@
+{
+  "source_id": "voblint-verification-master-thesis",
+  "url": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "ManuelLerchner/Voblint-Verification-Master-Thesis",
+  "commit": "07ecd3a886efa3a5744caabc19fbb301a40384a5",
+  "ref": "HEAD",
+  "language": "isabelle",
+  "pinned_at": "2026-11-14T11:39:30Z",
+  "how_found": "discovery-1: A-isabelle, B-isabelle",
+  "note": "Verified Goblint-style static analysis (BSD-3): modular soundness obligations per abstract domain, analysis and calling-context policy, combined into the headline theorem run_voblint_source_sound",
+  "licence": "BSD-3-Clause",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

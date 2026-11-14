@@ -1,0 +1,224 @@
+{
+  "id": "isabelle-generalise-then-instantiate-voblint-verification-master-thesis-b47c5898",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "One certified solver for all five merge rules via a rule-parameterised interpretation",
+  "intent": "Certify the pipeline's solver contract `certified_solver` once, for the single interpretation `TD_side_rule_Interp` parameterised by the `globals_rule` value `r`, so that all five merge rules (join, per-origin, warrow, warrow-per-origin and bounded narrowing) inherit the contract from one proof instead of each discharging it separately.",
+  "move": "generalise-then-instantiate",
+  "also_known_as": [
+    "locale interpretation",
+    "parameterised interpretation",
+    "prove once, instantiate",
+    "interpretation parameterised by a value"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "voblint-verification-master-thesis",
+    "url": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis",
+    "commit": "07ecd3a886efa3a5744caabc19fbb301a40384a5",
+    "licence": "BSD-3-Clause"
+  },
+  "files": [
+    {
+      "path": "src/Abstract_Interpreter/Solver/Globals_Rule.thy",
+      "bytes": 8751,
+      "sha256": "933d78c3af2d18a145690ef69c88d5db5176e4412a8465f884aeeac53b0a7926",
+      "permalink": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Abstract_Interpreter/Solver/Globals_Rule.thy"
+    },
+    {
+      "path": "src/Abstract_Interpreter/Solver/TD_Solver_Bridge.thy",
+      "bytes": 1943,
+      "sha256": "e39db2dafe1f1230369d81ecd6b98a4f8671bd9ece1abacfbdb2d28c44fac335",
+      "permalink": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Abstract_Interpreter/Solver/TD_Solver_Bridge.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "src/Abstract_Interpreter/Solver/Globals_Rule.thy",
+      "lines": [
+        157,
+        165
+      ],
+      "role": "parent",
+      "name": "td_certified_solver",
+      "excerpt_sha256": "a3b1567301ba9f4ba58d1f2fea50cc64e03f4de7cfc10a1d8a121b641c6d349f",
+      "permalink": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Abstract_Interpreter/Solver/Globals_Rule.thy#L157-L165"
+    },
+    {
+      "path": "src/Abstract_Interpreter/Solver/Globals_Rule.thy",
+      "lines": [
+        140,
+        146
+      ],
+      "role": "context",
+      "name": "update_rule_update_global_of",
+      "excerpt_sha256": "3672fae69b47389af25b0e2eda5a8458c852de42811be8d16df22ce0dc7aa47a",
+      "permalink": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Abstract_Interpreter/Solver/Globals_Rule.thy#L140-L146"
+    },
+    {
+      "path": "src/Abstract_Interpreter/Solver/Globals_Rule.thy",
+      "lines": [
+        148,
+        153
+      ],
+      "role": "child",
+      "name": "TD_side_rule_Interp.partial_post_solution",
+      "excerpt_sha256": "dfab27c0c3cac178b77580159387249404ed7da30c1bc1b7c52c8dd1e312506f",
+      "permalink": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Abstract_Interpreter/Solver/Globals_Rule.thy#L148-L153"
+    },
+    {
+      "path": "src/Abstract_Interpreter/Solver/Globals_Rule.thy",
+      "lines": [
+        148,
+        153
+      ],
+      "role": "child",
+      "name": "TD_side_rule_Interp.finite_stabl_solve",
+      "excerpt_sha256": "dfab27c0c3cac178b77580159387249404ed7da30c1bc1b7c52c8dd1e312506f",
+      "permalink": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Abstract_Interpreter/Solver/Globals_Rule.thy#L148-L153"
+    },
+    {
+      "path": "src/Abstract_Interpreter/Solver/Globals_Rule.thy",
+      "lines": [
+        148,
+        153
+      ],
+      "role": "child",
+      "name": "TD_side_rule_Interp.solve_dom_of_solve_c",
+      "excerpt_sha256": "dfab27c0c3cac178b77580159387249404ed7da30c1bc1b7c52c8dd1e312506f",
+      "permalink": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Abstract_Interpreter/Solver/Globals_Rule.thy#L148-L153"
+    },
+    {
+      "path": "src/Abstract_Interpreter/Solver/Globals_Rule.thy",
+      "lines": [
+        148,
+        153
+      ],
+      "role": "child",
+      "name": "TD_side_rule_Interp.solve_code_equation",
+      "excerpt_sha256": "dfab27c0c3cac178b77580159387249404ed7da30c1bc1b7c52c8dd1e312506f",
+      "permalink": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Abstract_Interpreter/Solver/Globals_Rule.thy#L148-L153"
+    }
+  ],
+  "parent": {
+    "name": "td_certified_solver",
+    "statement": "lemma td_certified_solver:\n  \"certified_solver (TD_side_rule_Interp_solve r)\n     (TD_side_rule_Interp.solve_dom TYPE('g) TYPE('d::{bounded_semilattice_sup_bot,warrowing}) r)\n     (TD_side_rule_Interp_solve_c r)\""
+  },
+  "children": [
+    {
+      "name": "TD_side_rule_Interp.partial_post_solution",
+      "statement": null,
+      "closed_by": "instantiated by global_interpretation TD_side_rule_Interp (lines 148-153), whose proof is `by (simp add: TD_side_upd_rule.intro update_rule_update_global_of)`; the fact itself is proved inside locale TD_side_upd_rule",
+      "note": "Locale fact of TD_side_upd_rule, declared and proved in the vendored TD solver (git submodule vendor/td-verification, session TD), so its statement is outside the copied files. States that a solve in the solver's domain answers a partial post-solution. In the glue it discharges the certified_solver assumption solve_pp via `erule TD_side_rule_Interp.partial_post_solution[OF _ surjective_pairing]` (line 162)."
+    },
+    {
+      "name": "TD_side_rule_Interp.finite_stabl_solve",
+      "statement": null,
+      "closed_by": "instantiated by global_interpretation TD_side_rule_Interp (lines 148-153), whose proof is `by (simp add: TD_side_upd_rule.intro update_rule_update_global_of)`; the fact itself is proved inside locale TD_side_upd_rule",
+      "note": "Locale fact of TD_side_upd_rule, declared and proved in the vendored TD solver (git submodule vendor/td-verification, session TD), so its statement is outside the copied files. States that the solved key set is finite. In the glue it discharges the certified_solver assumption solve_fin via `erule TD_side_rule_Interp.finite_stabl_solve` (line 163)."
+    },
+    {
+      "name": "TD_side_rule_Interp.solve_dom_of_solve_c",
+      "statement": null,
+      "closed_by": "instantiated by global_interpretation TD_side_rule_Interp (lines 148-153), whose proof is `by (simp add: TD_side_upd_rule.intro update_rule_update_global_of)`; the fact itself is proved inside locale TD_side_upd_rule",
+      "note": "Locale fact of TD_side_upd_rule, declared and proved in the vendored TD solver (git submodule vendor/td-verification, session TD), so its statement is outside the copied files. States that a successful answer of the executable solver solve_c places the query in the solver's domain. In the glue it discharges the certified_solver assumption dom_of_solve_c via `erule TD_side_rule_Interp.solve_dom_of_solve_c` (line 164)."
+    },
+    {
+      "name": "TD_side_rule_Interp.solve_code_equation",
+      "statement": null,
+      "closed_by": "instantiated by global_interpretation TD_side_rule_Interp (lines 148-153), whose proof is `by (simp add: TD_side_upd_rule.intro update_rule_update_global_of)`; the fact itself is proved inside locale TD_side_upd_rule",
+      "note": "Locale fact of TD_side_upd_rule, declared and proved in the vendored TD solver (git submodule vendor/td-verification, session TD), so its statement is outside the copied files. States that the executable solver solve_c is the solve itself (its code equation). In the glue it discharges the certified_solver assumption solve_of_solve_c via `simp add: TD_side_rule_Interp.solve_code_equation` (line 165)."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A locale or contract with several assumptions (here certified_solver, four assumptions), parameterised by a value that selects among finitely many concrete instances (globals_rule r, five constructors).",
+    "use_when": "a family of instances shares one contract and differs only by a value; the contract's assumptions hold uniformly of the parameterised object, so one interpretation discharges them for every value at once.",
+    "avoid_when": "the instances need different arguments for some assumption (the uniform interpretation does not close a case), or the parameter is a first-class choice that each proof must reason about separately rather than a value passed to one interpretation."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The main theorem td_certified_solver is declared in src/Abstract_Interpreter/Solver/Globals_Rule.thy at lines 157-165.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Abstract_Interpreter/Solver/Globals_Rule.thy#L157-L165",
+      "form": "declared(td_certified_solver, src/Abstract_Interpreter/Solver/Globals_Rule.thy, 157-165)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site td_certified_solver is 9 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Abstract_Interpreter/Solver/Globals_Rule.thy#L157-L165",
+      "form": "lines(parent, 9)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site cites TD_side_rule_Interp.partial_post_solution.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Abstract_Interpreter/Solver/Globals_Rule.thy#L157-L165",
+      "form": "cites(parent, TD_side_rule_Interp.partial_post_solution)"
+    },
+    {
+      "n": 4,
+      "claim": "The authors state the move in the file's own comment: \"a single interpretation takes the rule as a parameter, and every solver fact holds for all five at once.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Abstract_Interpreter/Solver/Globals_Rule.thy#L14-L16"
+    },
+    {
+      "n": 5,
+      "claim": "The authors record that this one fact is reused: \"`td_certified_solver` (`Globals_Rule`) discharges it for every `globals_rule`; the generated `<Domain>_Analyses.thy` registrations cite that one fact.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Abstract_Interpreter/Solver/README.md#L38-L39"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 3,
+    "glue_lines": 9,
+    "child_lines": [
+      6,
+      6,
+      6,
+      6
+    ]
+  },
+  "metrics": {
+    "parent_lines": 9,
+    "children": 4,
+    "rule_constructors": 5,
+    "how_counted": "parent_lines = lines 157-165 of the parent site; children = the four TD_side_rule_Interp facts cited in the glue; rule_constructors = constructors of globals_rule (lines 18-23 of Globals_Rule.thy)"
+  },
+  "consequences": "The move replaces five per-rule interpretations with one: update_rule_update_global_of proves the update-rule obligations once for update_global_of r (by `cases r`, an exhaustiveness obligation over the five constructors, lines 142-146), the interpretation lifts that into the TD_side_upd_rule facts for every r, and td_certified_solver discharges certified_solver from them. The obligation it creates is exhaustiveness over the rule value: if a new globals_rule constructor is added, update_global_of and update_rule_update_global_of must be extended, but the solver-contract proof does not change. The failure mode is a non-uniform instance: if some rule needed a different argument for an assumption, the single interpretation would not close that case and per-rule proofs would be needed.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "b47c5898c4ef8fba5d51f52e1cb0e14463dea4b4fa53c4bf60af15e6ba4b5962",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:27:59Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:32:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:30:14Z",
+      "note": "parent td_certified_solver: statement re-copied from code"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T12:38:07Z"
+}

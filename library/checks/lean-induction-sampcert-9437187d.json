@@ -1,0 +1,125 @@
+{
+  "entry": "lean-induction-sampcert-9437187d",
+  "records": [
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(geometric_characterization, SampCert/Samplers/Geometric/Properties.lean, 272-290) -> declared: geometric_characterization is declared at SampCert/Samplers/Geometric/Properties.lean:272",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:27:46Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(geometric_characterization, geometric_progress') -> cites: geometric_progress' occurs at SampCert/Samplers/Geometric/Properties.lean:278",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:27:46Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(geometric_characterization, geometric_preservation') -> cites: geometric_preservation' occurs at SampCert/Samplers/Geometric/Properties.lean:285",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:27:46Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:28:20Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:28:20Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:28:20Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: geometric_progress'@SampCert/Samplers/Geometric/Properties.lean:278, geometric_preservation'@SampCert/Samplers/Geometric/Properties.lean:285; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:28:20Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at a2c53bb5ff790e729e252958060699b7eff898b9",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:28:27Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/lean_build.yml (Verify): leanprover/lean-action@v1 with -R -Kwerror builds the whole Lean project on pushes to main; pinned commit a2c53bb5ff790e729e252958060699b7eff898b9 is on main",
+      "by": "verifier",
+      "at": "2026-11-14T12:29:32Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Checked copied code: parent site Properties.lean 272-290 is 19 lines (290-272+1); child sites 186-194 is 9 lines and 235-267 is 33 lines; geometric_progress' (188) cites geometric_progress (declared 162-181), geometric_preservation' (240) cites geometric_preservation (199-230), so depth 2; entry lists exactly 2 children (geometric_progress', geometric_preservation')",
+      "by": "verifier",
+      "at": "2026-11-14T12:29:33Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Checked copied code: line 312 is the rewrite 'rw [geometric_characterization trial _ _ h]', inside the proof of theorem geometric_pwc_sup (starts line 295), reusing geometric_characterization",
+      "by": "verifier",
+      "at": "2026-11-14T12:29:37Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "object",
+      "evidence": "Correctness review. The decomposition is as described and closes: parent geometric_characterization (272-290) is an induction on extra after 'revert n'; the glue cites exactly the two children, geometric_progress' (base, line 278) and geometric_preservation' (step, line 285), and the step closes with trivial / trivial / exact Nat.le_add_left n extra (no sorry). Child statements match code verbatim; shape numbers are right (direct_lemmas=2, glue_lines 272-290 = 19, child_lines 186-194 = 9 and 235-267 = 33). Objection: the README step-case bullet says the parent discharges the side condition 'extra >= n', but the code discharges 'n >= m' instantiated with n := extra + n, m := n (the fuel (extra + n) + 1 matches the lemma's n' + 1), i.e. 'extra + n >= n', closed by Nat.le_add_left n extra. Fix: change 'extra >= n' to 'extra + n >= n' (lemma n := extra + n, m := n), and describe the three goals as one fuel identity (succ extra + (n+1) = extra + n + 2 via succ_add_eq_add_succ), one not-n=0 via trivial, and one extra + n >= n via Nat.le_add_left n extra.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:33:45Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generically, not just as this probGeometric case: applicability gives a goal_shape/use_when in terms of 'a value computed by unrolling a loop fuel times' plus a base lemma and a preservation lemma, and also_known_as names fuel induction / induction on a surplus counter / generalising the loop counter before induction (revert n; induction extra). 'When not to use' is honest and specific: it admits the real work is one level down in the unprimed siblings, and that the induction cannot close when the value depends on the surplus fuel. Consequences are honest and specific, including the concrete failure mode that rw [<- geometric_preservation'] needs the parent's fuel term to match the lemma's n+2 shape exactly. README explicitly states what makes the children good leaves for a bounded prover: self-contained statements (a closed form at one fuel bound; a one-more-fuel-step-does-nothing equation), each closing on its own from a single sibling without exposing the induction to the parent. Code excerpts at the cited ranges (272-290, 186-194, 235-267) match the descriptions.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:34:44Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at a2c53bb5ff790e729e252958060699b7eff898b9",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:35:08Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "commit a2c53bb5ff790e729e252958060699b7eff898b9 is identical across entry.json, source.json and SOURCE.md; all permalinks use that commit; licence Apache-2.0 recorded in entry.json, source.json and SOURCE.md and matches upstream-LICENSE (Apache-2.0 text); check_provenance passes (Code.lean 920B and Properties.lean 13085B byte-identical at the commit); cited line ranges 272-290, 186-194, 235-267 and 312 verified against the local copy and match the README excerpts and entry statements.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:35:28Z"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "entry": "lean-witness-physlib-4969f481",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:43:30Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:43:30Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:43:30Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: GeneralizedQSteinsLemma@QuantumInfo/ResourceTheory/SteinsLemma.lean:2122, RelativeEntResource.tendsto_ennreal@QuantumInfo/ResourceTheory/SteinsLemma.lean:2123; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:43:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, GeneralizedQSteinsLemma) -> cites: GeneralizedQSteinsLemma occurs at QuantumInfo/ResourceTheory/SteinsLemma.lean:2122",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:43:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, RelativeEntResource.tendsto_ennreal) -> cites: RelativeEntResource.tendsto_ennreal occurs at QuantumInfo/ResourceTheory/SteinsLemma.lean:2123",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:43:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(QuantumInfo/ResourceTheory/SteinsLemma.lean, 1980-2123) -> no_sorry: none of sorry, admit, axiom in QuantumInfo/ResourceTheory/SteinsLemma.lean:1980-2123",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:43:30Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at ca577bfd34ef356be2595528da1ef13a4a405816",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:43:37Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml (triggered on push to master) runs 'lake build -KCI --iofail', which builds the default targets Physlib and QuantumInfo (lakefile.toml defaultTargets = [Physlib, QuantumInfo]); QuantumInfo/ResourceTheory/SteinsLemma.lean lives in the QuantumInfo package. Pinned commit ca577bfd34ef356be2595528da1ef13a4a405816 is on the default branch master (compare ca577bfd...master: ahead 1, behind 0, so it is an ancestor of the master tip a11dadd3).",
+      "by": "verifier",
+      "at": "2026-11-14T12:45:06Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read copied SteinsLemma.lean and FreeState.lean. Parent by-block is 5 lines (2119 ':= by', 2120 'use 𝑅ᵣ∞ ρ', 2121 'constructor', 2122 'exact GeneralizedQSteinsLemma ρ hε', 2123 'exact RelativeEntResource.tendsto_ennreal ρ') = one use, one constructor, one exact per conjunct. GeneralizedQSteinsLemma declaration at 1980, proof ends 2108 ('apply iInf_subtype'''), span 1980-2108 = 129 lines. RelativeEntResource.tendsto_ennreal declaration at 480, site 481-488 = 8 lines. Chain citations: 2122 parent->GeneralizedQSteinsLemma, 2032 'grw [Lemma7_gap ...]' inside GeneralizedQSteinsLemma, 1971 'exact (SteinsLemma.Lemma7 ...).choose_spec' inside Lemma7_gap (declared 1964), 1948 'exact EquationS62 ...' inside Lemma7 (declared 1752) = 4 edges deep.",
+      "by": "verifier",
+      "at": "2026-11-14T12:46:09Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read doc comment at SteinsLemma.lean 2110-2113. Lines 2111-2112 read verbatim: \"What they state as an equality of limits, which don't exist per se in Mathlib, we state as the existence of a number (which happens to be RegularizedRelativeEntResource) to which both sides converge.\" — matches the claim quote exactly; the paraphrase (existence of one number rather than equality of limits) is faithful.",
+      "by": "verifier",
+      "at": "2026-11-14T12:46:14Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent is '∃ d : ℝ≥0, P d ∧ Q d' (SteinsLemma.lean 2114-2123); glue is exactly 'use 𝑅ᵣ∞ ρ; constructor; · exact GeneralizedQSteinsLemma ρ hε; · exact RelativeEntResource.tendsto_ennreal ρ'. Children are exactly the two lemmas cited: GeneralizedQSteinsLemma (1980-1981) = first conjunct with d:=𝑅ᵣ∞ ρ, closing via tendsto_of_le_liminf_of_limsup_le with Lemma7_improver/Lemma7_gap (key part, lines 2029-2032) and Lemma6 (strong converse, line 2083); RelativeEntResource.tendsto_ennreal (FreeState.lean 481-488) = second conjunct with d:=𝑅ᵣ∞ ρ, closing via Filter.Tendsto.congr' with RelativeEntResource.tendsto (471-477, which rests on Subadditive 441-459). No sorry/admit/axiom in 1980-2123. Shape numbers correct: direct_lemmas=2, glue_lines=10 (site 2114-2123), child_lines=[2,8] (1980-1981, 481-488); depth=4 chain limit_hypotesting_eq_limit_rel_entropy→GeneralizedQSteinsLemma→Lemma7_gap→Lemma7→EquationS62 confirmed at citations 2122, 2032, 1971, 1948. Minor nit only: metrics.glue_body_lines=5 counts the ':= by' line (2119) among proof lines; actual commands are 4 (2120-2123), but the range is explicit and does not affect the shape numbers.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:48:33Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally (∃ x, P₁ x ∧ … ∧ Pₙ x with each conjunct already a named lemma about the same concrete candidate; the 'two sides converge to one number' pattern). 'When not to use' gives three specific honest cases (no concrete term -> completeness, limits not yet coincident -> equality is the work, conjunct from scratch -> burden relocated not closed). Consequences are specific and borne out by the example (convert/congr for a different spelling; the second child literally bridges /n vs /↑n via Tendsto.congr' and congr). Leaves are described as self-contained statements exactly matching a conjunct that close from named siblings (tendsto_of_le_liminf_of_limsup_le, Lemma7_improver/Lemma7_gap/Lemma6, RelativeEntResource.tendsto), which I confirmed in the copied code.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:49:43Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at ca577bfd34ef356be2595528da1ef13a4a405816",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:50:01Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit (ca577bfd34ef356be2595528da1ef13a4a405816), licence (Apache-2.0) and source note are mutually consistent and traceable: check_provenance passes (2 files byte-identical at the pinned commit); sha256 in entry.json matches the copied SteinsLemma.lean and FreeState.lean exactly; the upstream-LICENSE is the Apache 2.0 text; source.json and SOURCE.md pin the same commit and licence; and each cited line range (SteinsLemma.lean 2110-2123, 1980-1981; FreeState.lean 481-488) matches the copied file content and the README excerpts.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:50:31Z"
+    }
+  ]
+}

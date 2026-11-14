@@ -1,0 +1,125 @@
+{
+  "entry": "lean-generalise-then-instantiate-cedar-spec-d40f4190",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:14:08Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:14:08Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:14:08Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: isAuthorized_eq_for_sound_policy_slice@cedar-lean/Cedar/Thm/PolicySlice.lean:135, sound_bound_analysis_produces_sound_slices@cedar-lean/Cedar/Thm/PolicySlice.lean:136, scope_analysis_is_sound@cedar-lean/Cedar/Thm/PolicySlice.lean:137; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T12:14:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, isAuthorized_eq_for_sound_policy_slice) -> cites: isAuthorized_eq_for_sound_policy_slice occurs at cedar-lean/Cedar/Thm/PolicySlice.lean:135",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:14:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(cedar-lean/Cedar/Thm/PolicySlice.lean, 1-139) -> no_sorry: none of sorry, admit, axiom in cedar-lean/Cedar/Thm/PolicySlice.lean:1-139",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:14:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "declared(scope_analysis_is_sound, cedar-lean/Cedar/Thm/PolicySlice.lean, 121-124) -> declared: scope_analysis_is_sound is declared at cedar-lean/Cedar/Thm/PolicySlice.lean:121",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:14:08Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e619491a5bfb04970ef994dbe286df0bb9d0b73f",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:14:18Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/ci.yml job build_and_test_lean runs 'lake build Cedar SymCC' in ./cedar-lean; Cedar.lean imports Cedar.Thm which imports Cedar.Thm.PolicySlice; commit e619491a5bfb04970ef994dbe286df0bb9d0b73f is HEAD of default branch main",
+      "by": "verifier",
+      "at": "2026-11-14T12:15:16Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "read code/cedar-lean/Cedar/Thm/PolicySlice.lean lines 91-137: parent proof at 131-137 has a 4-line glue ('by' at 134, 'apply isAuthorized_eq_for_sound_policy_slice' 135, 'apply sound_bound_analysis_produces_sound_slices' 136, 'exact scope_analysis_is_sound' 137); scope_analysis_is_sound at 121-124 uses scope_bound_is_sound at line 124; scope_bound_is_sound declared at lines 91-116",
+      "by": "verifier",
+      "at": "2026-11-14T12:15:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read code/cedar-lean/Cedar/Thm/PolicySlice.lean lines 29-37: module comment says proof 'is based on a more general lemma (sound_bound_analysis_produces_sound_slices) that covers all forms of slicing that are based on identifying \"bound\" principal and resource entities' and 'the general lemma also covers more sophisticated analyses that can extract bounds from policy conditions as well'",
+      "by": "verifier",
+      "at": "2026-11-14T12:15:45Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent site (131-137) proof is exactly three backward steps citing the three children in order: apply isAuthorized_eq_for_sound_policy_slice (135), apply sound_bound_analysis_produces_sound_slices (136), exact scope_analysis_is_sound (137); this closes (apply the general sound-slice theorem leaves IsSoundPolicySlice for BoundAnalysis.slice scopeAnalysis, apply the bridge leaves IsSoundBoundAnalysis scopeAnalysis, exact the leaf closes it). Children and closing methods match the copied code verbatim: isAuthorized_eq_for_sound_policy_slice (48-56) closes via satisfiedPolicies_eq_for_sound_policy_slice .forbid/.permit, errorPolicies_eq_for_sound_policy_slice, isAuthorized_eq_of_satisfied_and_error_policies_eq; sound_bound_analysis_produces_sound_slices (61-86) closes by unfolding IsSoundBoundAnalysis/IsSoundPolicySlice/BoundAnalysis.slice/IsSoundPolicyBound then simp_all + by_contra/simp; scope_analysis_is_sound (121-124) closes by simp [IsSoundBoundAnalysis, scope_bound_is_sound], and scope_bound_is_sound (91-116) closes on the four named scope lemmas. Shape numbers are right: direct_lemmas=3 (the three cited children), child_lines=[9,26,4] matching sites 48-56/61-86/121-124, glue_lines=7 matching the 131-137 parent site, depth=2 (scope_analysis_is_sound -> scope_bound_is_sound, deeper chain acknowledged). No sorry/admit/axiom in the file.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:16:32Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example: 'when to use'/'goal_shape' are phrased over abstract predicates (IsSoundPolicySlice, IsSoundBoundAnalysis) with the concrete names only as illustration, matching the author's module comment (verified at lines 29-37: the general lemma 'covers all forms of slicing...' and 'also covers more sophisticated analyses...'). avoid_when gives three specific, honest failure conditions (bridge does real work rather than unfold; leaf soundness is substantial not one-line simp; general statement unproved). Consequences are honest and specific, including the failure mode that the leaf's simp-triviality hides the real content in scope_bound_is_sound and its imported scope lemmas. It does say what makes leaves good for a bounded prover: each child is self-contained, never mentions the concrete analysis (reusable), and closes by unfold/simp with no named lemma.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:17:25Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e619491a5bfb04970ef994dbe286df0bb9d0b73f",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:17:50Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes: 1 file byte-identical at e619491a5bfb04970ef994dbe286df0bb9d0b73f. Commit hash is identical across source.json, SOURCE.md, entry.json (source.commit, files[].permalink, sites[].permalink) and the README permalinks (full hash; the table's 12-char abbreviation is display-only). Licence Apache-2.0 is consistent: file header, upstream-LICENSE (Apache License 2.0), upstream-NOTICE (Copyright Cedar Contributors), source.json.licence, SOURCE.md and README all agree. Copied file matches entry.json exactly: 5179 bytes, sha256 9f0cf12d...; single code/ file matches the files[] list. All cited line ranges (131-137, 48-56, 61-86, 121-124, 91-116, and claim 5's 29-37) match the local copy and the quoted excerpts verbatim. SOURCE.md records the pinned commit, licence, attribution and licence files. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:18:13Z"
+    }
+  ]
+}

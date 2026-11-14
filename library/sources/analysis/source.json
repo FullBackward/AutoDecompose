@@ -1,0 +1,17 @@
+{
+  "source_id": "analysis",
+  "url": "https://github.com/teorth/analysis",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "teorth/analysis",
+  "commit": "a19a5bfadc616467562995b75f46035232841943",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T11:40:13Z",
+  "how_found": "discovery-1: A-lean",
+  "note": "Chapter-by-chapter Lean companion to Tao Analysis I: textbook theorems from named lemmas, exercises left as sorry",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

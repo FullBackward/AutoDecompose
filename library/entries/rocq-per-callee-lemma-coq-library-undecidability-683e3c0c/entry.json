@@ -1,0 +1,218 @@
+{
+  "id": "rocq-per-callee-lemma-coq-library-undecidability-683e3c0c",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Per-field lemmas assemble the compiler_t record in generic_compiler",
+  "intent": "Build a value of the `compiler_t` record — whose four propositional fields are the start-address, end-address, soundness and completeness obligations — by proving each field as its own `Local Fact` and then closing all four at once with a single `exists link code; auto.` whose `auto` resolves each field through a `Hint Resolve`.",
+  "move": "per-callee-lemma",
+  "also_known_as": [
+    "per-field lemma",
+    "record-obligation lemma",
+    "per-pass simulation lemma (CompCert)"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "coq-library-undecidability",
+    "url": "https://github.com/uds-psl/coq-library-undecidability",
+    "commit": "c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c",
+    "licence": "MPL-2.0"
+  },
+  "files": [
+    {
+      "path": "theories/Shared/Libs/DLW/Code/compiler_correction.v",
+      "bytes": 17450,
+      "sha256": "4e3719b017d1ad76c295f5ed9d8a4a158b256e5bf7b6c824121f4177b7c3baa9",
+      "permalink": "https://github.com/uds-psl/coq-library-undecidability/blob/c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c/theories/Shared/Libs/DLW/Code/compiler_correction.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/Shared/Libs/DLW/Code/compiler_correction.v",
+      "lines": [
+        309,
+        312
+      ],
+      "role": "parent",
+      "name": "generic_compiler",
+      "excerpt_sha256": "eeda7da99060abc61f585c096130d7a2a11ccdc18c3b691c0ecf089954bef935",
+      "permalink": "https://github.com/uds-psl/coq-library-undecidability/blob/c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c/theories/Shared/Libs/DLW/Code/compiler_correction.v#L309-L312"
+    },
+    {
+      "path": "theories/Shared/Libs/DLW/Code/compiler_correction.v",
+      "lines": [
+        307,
+        307
+      ],
+      "role": "skeleton",
+      "name": "hint-resolve",
+      "excerpt_sha256": "830f199c1ae8d0bfec530c5a2fb198755680d19bbe08cab232b20d4a8bb39960",
+      "permalink": "https://github.com/uds-psl/coq-library-undecidability/blob/c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c/theories/Shared/Libs/DLW/Code/compiler_correction.v#L307-L307"
+    },
+    {
+      "path": "theories/Shared/Libs/DLW/Code/compiler_correction.v",
+      "lines": [
+        271,
+        272
+      ],
+      "role": "child",
+      "name": "fst_ok",
+      "excerpt_sha256": "9fd0b0fc5edc773a08eb0049d492ac7c416aaf7d65fbcf677f60280cba680010",
+      "permalink": "https://github.com/uds-psl/coq-library-undecidability/blob/c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c/theories/Shared/Libs/DLW/Code/compiler_correction.v#L271-L272"
+    },
+    {
+      "path": "theories/Shared/Libs/DLW/Code/compiler_correction.v",
+      "lines": [
+        274,
+        281
+      ],
+      "role": "child",
+      "name": "out_ok",
+      "excerpt_sha256": "1400d162f6a008168e230c2881732d99372b2d6600d2a99e7e15ece7f93585ff",
+      "permalink": "https://github.com/uds-psl/coq-library-undecidability/blob/c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c/theories/Shared/Libs/DLW/Code/compiler_correction.v#L274-L281"
+    },
+    {
+      "path": "theories/Shared/Libs/DLW/Code/compiler_correction.v",
+      "lines": [
+        283,
+        287
+      ],
+      "role": "child",
+      "name": "sound",
+      "excerpt_sha256": "7b0d9f1660bf86cadcac6665f19cf803e7d058851edcf4907b2c8584eb677e9c",
+      "permalink": "https://github.com/uds-psl/coq-library-undecidability/blob/c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c/theories/Shared/Libs/DLW/Code/compiler_correction.v#L283-L287"
+    },
+    {
+      "path": "theories/Shared/Libs/DLW/Code/compiler_correction.v",
+      "lines": [
+        289,
+        305
+      ],
+      "role": "child",
+      "name": "complete",
+      "excerpt_sha256": "0343d6d2f538dd89f8d7162676a898e18a487742bac1434ea287ac0cac81def0",
+      "permalink": "https://github.com/uds-psl/coq-library-undecidability/blob/c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c/theories/Shared/Libs/DLW/Code/compiler_correction.v#L289-L305"
+    }
+  ],
+  "parent": {
+    "name": "generic_compiler",
+    "statement": "Theorem generic_compiler : compiler_t."
+  },
+  "children": [
+    {
+      "name": "fst_ok",
+      "statement": "Fact fst_ok : forall P i, link P i (fst P) = i.",
+      "closed_by": "intros [] ?; apply linker_code_start",
+      "note": "Closes the gc_fst field of compiler_t (lines 252-259): link P i (fst P) = i. Analyst's paraphrase, replaced by the declaration's text: The linker maps the source program's start address to the compiled program's entry address."
+    },
+    {
+      "name": "out_ok",
+      "statement": "Fact out_ok : forall P i j, out_code j P -> link P i j = code_end(i,code P i).",
+      "closed_by": "unfold link, code_end; rewrite linker_out_err; then `unfold code; rewrite compiler_length; auto` and `lia`",
+      "note": "Closes the gc_out field: out_code j P -> link P i j = code_end (i, code P i). Analyst's paraphrase, replaced by the declaration's text: At an exit position of P the linker points to the end of the compiled code."
+    },
+    {
+      "name": "sound",
+      "statement": "Fact sound : forall P i, compiled_sound (link P i) P (i,code P i).",
+      "closed_by": "apply compiler_sound; then `intros; apply compiler_subcode; auto`",
+      "note": "Closes the gc_sound field: compiled_sound (link P i) P (i, code P i). Analyst's paraphrase, replaced by the declaration's text: The compiled program forward-simulates the source program (compiled_sound for the concrete linker and code)."
+    },
+    {
+      "name": "complete",
+      "statement": "Fact complete : forall P i, compiled_complete (link P i) P (i,code P i).",
+      "closed_by": "destruct compiler_complete' (then compiler_subcode, sss_compute_stop, linker_out_code, lia)",
+      "note": "Closes the gc_complete field: compiled_complete (link P i) P (i, code P i). Analyst's paraphrase, replaced by the declaration's text: The compiled program backward-simulates the source program (compiled_complete for the concrete linker and code)."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal whose target is a record or structure type with a small fixed set of propositional fields, each an obligation to prove; here `compiler_t` (lines 252-259) with fields gc_fst, gc_out, gc_sound, gc_complete, the data fields gc_link/gc_code being filled by the explicit witnesses `link` and `code`.",
+    "use_when": "the record's fields are independent enough to prove one lemma each; the assembly is uniform (`exists <ctor args>; auto` with the per-field lemmas registered in a Hint Resolve database); the record is built more than once so the per-field lemmas are reusable.",
+    "avoid_when": "the fields share a non-trivial invariant that must be threaded between them (then one key-invariant lemma beats four leaves); a field's proof depends on another field's statement; the hint database is too broad for `auto` to resolve the fields reliably."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site (`generic_compiler`) is 4 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/uds-psl/coq-library-undecidability/blob/c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c/theories/Shared/Libs/DLW/Code/compiler_correction.v#L309-L312",
+      "form": "lines(parent, 4)"
+    },
+    {
+      "n": 2,
+      "claim": "No admit/Admitted/Axiom/axiom token occurs in theories/Shared/Libs/DLW/Code/compiler_correction.v lines 168-312.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/uds-psl/coq-library-undecidability/blob/c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c/theories/Shared/Libs/DLW/Code/compiler_correction.v#L168-L312",
+      "form": "no_sorry(theories/Shared/Libs/DLW/Code/compiler_correction.v, 168-312)"
+    },
+    {
+      "n": 3,
+      "claim": "direct_lemmas = 4 and glue_lines = 4: the parent site is a 4-line theorem closing four record fields in a single `exists link code; auto.` line (311), while the four children span 2, 8, 5 and 17 lines (fst_ok 271-272, out_ok 274-281, sound 283-287, complete 289-305), and the longest chain of project lemmas below the theorem is 4 (complete -> compiler_complete' -> compiler_complete -> compiler_complete_step).",
+      "evidence_kind": "measurement",
+      "evidence": "line counts in the copied file theories/Shared/Libs/DLW/Code/compiler_correction.v at commit c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c: parent site 309-312 (4 lines); child sites 271-272, 274-281, 283-287, 289-305 (2+8+5+17); the chain is visible at #L293 (complete uses compiler_complete'), #L236 (compiler_complete' uses compiler_complete), #L220 (compiler_complete uses compiler_complete_step)."
+    },
+    {
+      "n": 4,
+      "claim": "The authors describe the two halves of the argument as deriving 'soundness and completeness of the compiled program Q wrt the source program P' from per-instruction semantic correctness and whole-program syntactic correctness.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/uds-psl/coq-library-undecidability/blob/c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c/theories/Shared/Libs/DLW/Code/compiler_correction.v#L134-L137"
+    },
+    {
+      "n": 5,
+      "claim": "The same record assembly — destruct the record, then `exists gc_link gc_code; auto.` with the two non-auto fields proved explicitly — is reused in `compiler_t_simul_equiv` (lines 375-390) of the same file.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/uds-psl/coq-library-undecidability/blob/c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c/theories/Shared/Libs/DLW/Code/compiler_correction.v#L375-L390"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 4,
+    "glue_lines": 4,
+    "child_lines": [
+      2,
+      8,
+      5,
+      17
+    ]
+  },
+  "metrics": {
+    "glue_body_lines": 1,
+    "children": 4,
+    "children_closed_by_automation": 4,
+    "how_counted": "the parent's proof body is the single line `exists link code; auto.` (line 311); all four record fields are discharged by that `auto` through `Hint Resolve ... : core` (line 307), so each of the 4 children is closed by automation in the glue; the children's own proofs are 1, 8, 5 and 17 lines respectively"
+  },
+  "consequences": "The move turns the record into one obligation per propositional field, each closed by a named `Local Fact`, so the parent is a bare `exists link code; auto.`. It creates a hidden dependency: `auto` discharges the fields only because `Hint Resolve fst_ok out_ok sound complete : core.` (line 307) registered them, so removing the hint silently breaks the glue. It also obscures which lemma closes which field — the reader must consult the record's field order (lines 252-259) to map fst_ok→gc_fst, out_ok→gc_out, sound→gc_sound, complete→gc_complete. Failure modes: a field whose statement is not exactly the record field's type will not resolve under `auto`; interdependent fields cannot be split into independent leaves.",
+  "known_uses": [
+    "https://github.com/uds-psl/coq-library-undecidability/blob/c7257b736763d7b2bc3bd25ac47d5fb7ce749c9c/theories/Shared/Libs/DLW/Code/compiler_correction.v#L375-L390"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "683e3c0c1d981e97974ecb18c03c4633018fe972bc56757744da3ca903910612",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:41:37Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:46:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:42:48Z",
+      "note": "parent generic_compiler: statement re-copied from code; child 'fst_ok': statement re-copied from the declaration of fst_ok; child 'out_ok': statement re-copied from the declaration of out_ok; child 'sound': statement re-copied from the declaration of sound; child 'complete': statement re-copied from the declaration of complete"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T12:53:34Z"
+}

@@ -1,0 +1,125 @@
+{
+  "entry": "rocq-interface-lemma-certicoq-43993c65",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:30:08Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:30:08Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:30:08Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: module_instantiate@theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v:2067, module_instantiate_INV_and_more_hold@theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v:2039, post_instantiation_reduce@theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v:2098; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:30:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, module_instantiate) -> cites: module_instantiate occurs at theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v:2067",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:30:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, module_instantiate_INV_and_more_hold) -> cites: module_instantiate_INV_and_more_hold occurs at theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v:2039",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:30:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, post_instantiation_reduce) -> cites: post_instantiation_reduce occurs at theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v:2098",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:30:08Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 943b52ae654708130f241ccf8a50ecb95a7956e2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:30:25Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/nix-action-default.yml (push to main builds CertiRocq job via coq-nix-toolbox; theories/_CoqProject lists CodegenWasm/LambdaANF_to_Wasm_instantiation.v, built by 'make all'); commit 943b52ae654708130f241ccf8a50ecb95a7956e2 on default branch main",
+      "by": "verifier",
+      "at": "2026-11-14T10:32:58Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "checked copied LambdaANF_to_Wasm_instantiation.v: parent Theorem at 2026, Qed at 2116 (91 lines); module_instantiate 792-1081 (290); module_instantiate_INV_and_more_hold 1183-1458 (276); post_instantiation_reduce 1888-2016 (129); 3 children; post_instantiation_reduce_aux declared at 1679 and called at 1945 inside post_instantiation_reduce (depth 2)",
+      "by": "verifier",
+      "at": "2026-11-14T10:33:30Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "toplevel_theorem.v:95-97 has LambdaANF_Wasm_related applying @instantiation_combined_INV_and_more once and destructuring [sr [fr [Hinst [Hinv [HinstFuncs [HfVal ...]]]]]]; grep shows no application of module_instantiate / module_instantiate_INV_and_more_hold / post_instantiation_reduce (only a comment at 111)",
+      "by": "verifier",
+      "at": "2026-11-14T10:33:31Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent instantiation_combined_INV_and_more (lines 2026-2116, 91 lines) closes with Qed and applies the three children exactly as claimed: @module_instantiate at 2067, module_instantiate_INV_and_more_hold at 2079, post_instantiation_reduce at 2098. Each child statement matches entry.json verbatim and each closing method matches the code (module_instantiate: 'Unshelve. all: apply (Tf [] []).'; module_instantiate_INV_and_more_hold: 'Unshelve. all: by repeat constructor.' then Qed at 1458; post_instantiation_reduce: Qed, and it calls post_instantiation_reduce_aux (declared 1679) at 1945). Shape numbers are right: direct_lemmas=3, depth=2 (reduce -> reduce_aux), glue_lines=91 (2116-2026+1), child_lines 290/276/129 all correct. Known-use claim 5 confirmed at toplevel_theorem.v:95-97 (single application + destructuring yielding Hinst/Hinv/HinstFuncs/HfVal).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:34:54Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality: the move is stated beyond the example — 'when to use' and applicability give general conditions (stages proved separately; clients that would re-apply them in fixed order with shared assumptions like correct_cenv_of_exp/NoDup/the bound, so the client names one fact instead of unfolding the pipeline). 'When not to use' is honest and specific (stages not yet proved -> interface carries the whole burden; different clients need different subsets -> conjunction hides the parts). Consequences are honest and specific (destructuring must stay in sync; glue is the single update point; single-stage clients couple to internals). The entry says what makes the lemmas good bounded-prover leaves: 'Why each child is a good leaf' states each stage theorem is self-contained and closes on its own, and I confirmed Qed termination at 1081, 1458, 2016; the known-use client applies the interface once and destructures (toplevel_theorem.v:95-96).",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:35:41Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 943b52ae654708130f241ccf8a50ecb95a7956e2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:36:09Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit 943b52ae654708130f241ccf8a50ecb95a7956e2 is recorded consistently in entry.json, source.json and SOURCE.md. check_provenance.py passes: both copied files (theories/CodegenWasm/LambdaANF_to_Wasm_instantiation.v, toplevel_theorem.v) are byte-identical at that commit, so every file/site permalink resolves to the recorded commit. Licence MIT is recorded in entry.json, source.json and SOURCE.md, and the copied upstream-LICENSE.md is the genuine MIT text matching the label. SOURCE.md carries attribution and a link to LICENSE.md at the pinned commit. Everything is traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:36:31Z"
+    }
+  ]
+}

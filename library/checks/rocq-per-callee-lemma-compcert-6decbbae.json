@@ -1,0 +1,125 @@
+{
+  "entry": "rocq-per-callee-lemma-compcert-6decbbae",
+  "records": [
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(transf_program_correct, backend/Inliningproof.v, 1253-1261) -> declared: transf_program_correct is declared at backend/Inliningproof.v:1253",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:10:42Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(backend/Inliningproof.v, 874-1224) -> no_sorry: none of admit, Admitted, Axiom, axiom in backend/Inliningproof.v:874-1224",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:10:42Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: senv_preserved@backend/Inliningproof.v:1257, transf_initial_states@backend/Inliningproof.v:1258, transf_final_states@backend/Inliningproof.v:1259, step_simulation@backend/Inliningproof.v:1260; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:10:56Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:11:24Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:11:24Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:11:24Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: senv_preserved@backend/Inliningproof.v:1257, transf_initial_states@backend/Inliningproof.v:1258, transf_final_states@backend/Inliningproof.v:1259, step_simulation@backend/Inliningproof.v:1260; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:11:24Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 2685140bf72c959446981fb99b5e44a8975021bc",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:11:32Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml at pinned commit 2685140bf72c959446981fb99b5e44a8975021bc runs tools/runner.sh build (whole project, incl. backend/Inliningproof.v) on push to master (default branch)",
+      "by": "verifier",
+      "at": "2026-11-14T10:12:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Read backend/Inliningproof.v: parent site 1253-1261 is 9 lines (Theorem..Qed) with proof body 1256-1260 = 5 tactic lines naming senv_preserved, transf_initial_states, transf_final_states, step_simulation (plus eapply forward_simulation_star); child sites 41-43 (3 lines), 1226-1242 (17), 1244-1251 (8), 874-1224 (351)",
+      "by": "verifier",
+      "at": "2026-11-14T10:12:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read common/Smallstep.v lines 637-641: comment reads 'Simulation when one transition in the first program corresponds to zero, one or several transitions in the second program.' verbatim",
+      "by": "verifier",
+      "at": "2026-11-14T10:12:25Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Verified against the local copy at the pinned commit. Parent transf_program_correct is exactly lines 1253-1261 (Theorem + forward_simulation statement + 5-line glue eapply forward_simulation_star / apply senv_preserved / eexact transf_initial_states / eexact transf_final_states / eexact step_simulation / Qed). The four children are the exact four lemmas the glue cites: senv_preserved (41-43, closed by exact (Genv.senv_match TRANSF)), transf_initial_states (1226-1242, uses function_ptr_translated, Genv.init_mem_match TRANSF, symbols_preserved, sig_function_translated, match_stacks_nil, Genv.initmem_inject), transf_final_states (1244-1251, uses match_stacks_empty + match_stacks_inside_empty), step_simulation (874-1224, induction 1 then per-instruction cases via tr_funbody_inv and the match_stacks_*/agree_*/Mem.* lemmas). Every child and the parent end in Qed; no sorry/admit/Admitted/Axiom in the ranges. Shape numbers check out: direct_lemmas=4, glue_lines=9 (1253-1261), child_lines=[3,17,8,351] (41-43, 1226-1242, 1244-1251, 874-1224), and depth=3 via the chain step_simulation (cites match_stacks_invariant at line 982; declared line 539) -> range_private_invariant (cited at 608, declared 263, closes 274-276).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:13:54Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is generalised beyond the example: goal_shape names 'a record/inductive with a small fixed set of fields', and the README notes Smallstep.v packages the four-obligation skeleton as a reusable family (forward_simulation_star/plus/step/opt) reused by every CompCert pass. When-not-to-use is concrete (shared auxiliary state that must be re-derived per lemma, relation still unstable, many/open-ended fields) and consequences name a specific failure mode (giant step-simulation vs four lemmas) plus the shape lock imposed by eapply forward_simulation_star. 'Why each child is a good leaf' states per-child closure (one-liner exact, or from named top-of-file lemmas, 17/8-line bodies) and is honest that step_simulation is 351 lines, closing by induction+case analysis over the match_stacks_*/agree_* families. I confirmed in the local copy: measure@860-865, and the depth-3 chain cites step_simulation->match_stacks_invariant (982) and match_stacks_invariant->range_private_invariant (608).",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:14:44Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 2685140bf72c959446981fb99b5e44a8975021bc",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:15:01Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit 2685140bf72c959446981fb99b5e44a8975021bc is consistent across entry.json (source.commit + all six site/file permalinks), source.json, SOURCE.md and README (12-char prefix). check_provenance passes: 2 files byte-identical at that commit, so repo+commit+paths are correct. All cited line ranges match the local copies verbatim (parent 1253-1261, senv_preserved 41-43, transf_initial_states 1226-1242, transf_final_states 1244-1251, step_simulation 874-1224, context 617-695, author-statement quote 637-641). Licence LicenseRef-INRIA-Non-Commercial is recorded identically in entry.json, SOURCE.md and source.json, and matches upstream-LICENSE (INRIA Non-Commercial; common/ files also dual-licensed LGPL 2.1+, so the NC tag is the conservative correct choice, and the full dual-licence detail is preserved in the copied LICENSE). SOURCE.md lists repo, pinned commit, licence file and attribution. sha256 per file and excerpt_sha256 per site recorded. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:15:31Z"
+    }
+  ]
+}

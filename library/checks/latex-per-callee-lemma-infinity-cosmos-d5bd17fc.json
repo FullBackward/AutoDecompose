@@ -1,0 +1,117 @@
+{
+  "entry": "latex-per-callee-lemma-infinity-cosmos-d5bd17fc",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:13:58Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T12:13:58Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "not-run",
+      "evidence": "no Lean, Rocq or Isabelle file among the copied files",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T12:13:58Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(prop:sliced-cosmoi, lem:trivial-fib-conical) -> cites: lem:trivial-fib-conical occurs at blueprint/src/content.tex:882",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:13:59Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(prop:sliced-cosmoi, lem:brown-fact) -> cites: lem:brown-fact occurs at blueprint/src/content.tex:882",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:13:59Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(prop:sliced-cosmoi, lem:equiv-htpy-equiv) -> cites: lem:equiv-htpy-equiv occurs at blueprint/src/content.tex:894",
+      "by": "check_claims.py",
+      "at": "2026-11-14T12:13:59Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 89d7dc3ed861824535e540da489a46469dcc8e56",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:14:07Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/blueprint.yml 'Compile blueprint' runs on push/PR to main with paths 'blueprint/**' (covers blueprint/src/content.tex) and builds the blueprint via lean-action build-args ':blueprint --wfail' + docgen-action blueprint:true; pinned commit 89d7dc3 is HEAD of the default branch (register_source.py git ls-remote HEAD)",
+      "by": "verifier",
+      "at": "2026-11-14T12:16:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "line counts confirmed in code/blueprint/src/content.tex: parent 845-901 = 57 lines; children 421-427 = 7, 546-567 = 22, 451-466 = 16; lem:equiv-htpy-equiv cites lem:qcat-htpy-cat-equiv at line 463 (grep); lem:qcat-htpy-cat-equiv stated at 307-312 ending \\end{lemma} with no proof; prop:coherent-iso (line 277, also cited by lem:equiv-htpy-equiv) is itself proofless (proof commented out), so longest chain below prop has depth 2",
+      "by": "verifier",
+      "at": "2026-11-14T12:16:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "grep lem:equiv-htpy-equiv in code/blueprint/src/content.tex: all seven listed lines cite it (480 \\uses, 486/496/541/1048/1063/1067 \\ref) outside the parent proof at 894; note 481 and 502 also cite it, so 'seven' is a slight undercount, but every listed line is a genuine reuse",
+      "by": "verifier",
+      "at": "2026-11-14T12:16:30Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent prop:sliced-cosmoi (845-901, 57 lines) states the seven-item cosmo K_{/B}; its proof (881-901) cites exactly the three children: lem:trivial-fib-conical and lem:brown-fact (line 882 uses + line 891 footnote, paired for pullback stability) and lem:equiv-htpy-equiv (line 894, converse). Each child is a lemma node closed by its own proof (425-427, 558-567, 460-466). Shape numbers match the copied code: direct_lemmas=3, depth=2 (lem:equiv-htpy-equiv -> lem:qcat-htpy-cat-equiv at 463, a proofless leaf at 307-312), glue_lines=57 (parent site 845-901), child_lines=[7,22,16] = 421-427, 546-567, 451-466. No sibling cross-citations; children are exactly the lemmas the glue uses.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T12:17:52Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally: 'exhibit a structure with a finite, known list of components' -> 'one named lemma per nontrivial component' -> thin survey glue, not the specific slice. avoid_when is concrete and grounded (shared sub-argument, too-trivial components, non-reusable lemmas). Consequences are honest and specific, verified in source: line 882 \\uses names only two lemmas while lem:equiv-htpy-equiv is cited inline at 894 (a real caveat for \\uses-graph-guided tools); the two pullback-stability children are paired in the line-891 footnote so neither alone suffices; children are sibling-independent. 'Why each is a good leaf' states the leaf properties a bounded prover needs: self-contained statements (hypotheses are defn:cosmos + the class under study) whose proofs close without depending on the slice construction, plus small sizes (7/22/16 lines, depth 2) and the reuse of lem:equiv-htpy-equiv. Minor: avoid_when's 'factor into a third shared lemma' parenthetical cites the footnote, which actually shows two lemmas paired for one step, not a factored-out sub-argument; and 'one lemma per component' is looser than reality (all three children serve one item's two directions), but the README self-corrects in intent/how-the-parts-fit. Neither undermines the stated generality.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T12:19:29Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 89d7dc3ed861824535e540da489a46469dcc8e56",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T12:19:53Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit and licence are consistent and traceable: check_provenance.py reports the single copied file blueprint/src/content.tex is byte-identical at commit 89d7dc3ed861824535e540da489a46469dcc8e56; local sha256 (205fea82...) matches entry.json's files[].sha256; the four site line ranges (845-901, 421-427, 546-567, 451-466) each begin with the cited \\label; upstream LICENSE is Apache-2.0, matching source.json and entry.json licence. All cited refs (lem:trivial-fib-conical, lem:brown-fact at 882/891; lem:equiv-htpy-equiv at 894) appear in the cited range.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T12:20:19Z"
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "id": "isabelle-extensionality-afp-38fc5bd6",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Extensionality over block indices for the equal-incidence-matrix isomorphism",
+  "intent": "Reduce the claim that two ordered incidence systems with the same incidence matrix are isomorphic to the two obligations of the incidence_system_isomorphism locale, and discharge the block-multiset equality pointwise, one block index j at a time, rewriting each side through the block-representation lemmas.",
+  "move": "extensionality",
+  "also_known_as": [
+    "pointwise equality",
+    "ext (Lean/Isabelle)",
+    "functional extensionality (Lean/Rocq)",
+    "set_eqI / iffI (Isabelle)"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "afp",
+    "url": "https://github.com/isabelle-prover/mirror-afp-devel",
+    "commit": "07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "thys/Fishers_Inequality/Incidence_Matrices.thy",
+      "bytes": 105978,
+      "sha256": "9f269679e8e5bcb6f0f33388e0d7bec7712d0d1ef9f96596e32fcb811d13af5c",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Fishers_Inequality/Incidence_Matrices.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "thys/Fishers_Inequality/Incidence_Matrices.thy",
+      "lines": [
+        1997,
+        2040
+      ],
+      "role": "parent",
+      "name": "equal_inc_mat_isomorphism",
+      "excerpt_sha256": "523a7b487967630969e8d192d34e7dc6f727277d48fcf775ee1ba473a7f618e0",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Fishers_Inequality/Incidence_Matrices.thy#L1997-L2040"
+    },
+    {
+      "path": "thys/Fishers_Inequality/Incidence_Matrices.thy",
+      "lines": [
+        1105,
+        1125
+      ],
+      "role": "child",
+      "name": "block_mat_cond_rev",
+      "excerpt_sha256": "4362d6bd5266200db3e8856e083ccb920df441fcb188ed55c24eff0d953f65ee",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Fishers_Inequality/Incidence_Matrices.thy#L1105-L1125"
+    },
+    {
+      "path": "thys/Fishers_Inequality/Incidence_Matrices.thy",
+      "lines": [
+        1102,
+        1103
+      ],
+      "role": "child",
+      "name": "block_mat_cond_rep'",
+      "excerpt_sha256": "5f6707d38fa0684c8b642a7ff8b6c72d2b6c2bc39e5e9f609de8247018870fc3",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Fishers_Inequality/Incidence_Matrices.thy#L1102-L1103"
+    },
+    {
+      "path": "thys/Fishers_Inequality/Incidence_Matrices.thy",
+      "lines": [
+        1089,
+        1100
+      ],
+      "role": "context",
+      "name": "block_mat_cond_rep",
+      "excerpt_sha256": "b1eb00d66521ec1f384c781268454855a353994aa5ed408b5b9a1e78cb7fad2b",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Fishers_Inequality/Incidence_Matrices.thy#L1089-L1100"
+    }
+  ],
+  "parent": {
+    "name": "equal_inc_mat_isomorphism",
+    "statement": "lemma equal_inc_mat_isomorphism: \n  assumes \"D1.N = D2.N\"\n  shows \"incidence_system_isomorphism D1.\\<V> D1.\\<B> D2.\\<V> D2.\\<B> (\\<lambda> x . \\<V>s' ! (List_Index.index \\<V>s x))\""
+  },
+  "children": [
+    {
+      "name": "block_mat_cond_rev",
+      "statement": "lemma block_mat_cond_rev: \n  assumes \"j < length \\<B>s\"\n  shows \"{i . i < length \\<V>s \\<and> N $$ (i, j) = 1} = ((List_Index.index) \\<V>s) ` (\\<B>s ! j)\"",
+      "closed_by": "intro Set.set_eqI iffI, then the two directions close by the project lemmas inc_matrix_point_in_block (line 1112) and inc_matrix_point_in_block_one (line 1122) of the same file",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the reverse block-matrix condition: the set of point indices where column j of the incidence matrix is 1 equals the image of block j under the point-index function"
+    },
+    {
+      "name": "block_mat_cond_rep'",
+      "statement": "lemma block_mat_cond_rep': \"j < length \\<B>s \\<Longrightarrow> (\\<B>s ! j) = ((!) \\<V>s) ` {i . i < length \\<V>s \\<and> N $$ (i, j) = 1}\"",
+      "closed_by": "by (simp add: block_mat_cond_rep setcompr_eq_image)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: block j is the image, under point lookup (!) Vs, of the set of point indices where column j of the incidence matrix is 1"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An equality of sets, lists or multisets of the form (image_mset f Bs = Bs') or (map f Bs = Bs'), proved by showing the two sides agree pointwise on each index j and lifting the pointwise equality to the whole object with nth_equalityI / mset_map.",
+    "use_when": "Each side of the equality can be rewritten to the same common form by one named lemma (here both sides become the image of the index set {i. i < length Vs ∧ N $$ (i, j) = 1}), so the pointwise step closes by rewriting alone.",
+    "avoid_when": "The two sides have different representations (a set comprehension on one side and an image on the other) with no single lemma bridging them; or the equality is not an image-of-common-index equality, so a case analysis or a different witness is needed."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent lemma `equal_inc_mat_isomorphism` is declared in `thys/Fishers_Inequality/Incidence_Matrices.thy`, in lines 1997-2040.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Fishers_Inequality/Incidence_Matrices.thy#L1997-L2040",
+      "form": "declared(equal_inc_mat_isomorphism, thys/Fishers_Inequality/Incidence_Matrices.thy, 1997-2040)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent's proof (the glue) cites the child `block_mat_cond_rev`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Fishers_Inequality/Incidence_Matrices.thy#L1997-L2040",
+      "form": "cites(parent, block_mat_cond_rev)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent's proof (the glue) cites the child `block_mat_cond_rep'`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Fishers_Inequality/Incidence_Matrices.thy#L1997-L2040",
+      "form": "cites(parent, block_mat_cond_rep')"
+    },
+    {
+      "n": 4,
+      "claim": "The parent site `equal_inc_mat_isomorphism` (declaration plus proof) is 44 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Fishers_Inequality/Incidence_Matrices.thy#L1997-L2040",
+      "form": "lines(parent, 44)"
+    },
+    {
+      "n": 5,
+      "claim": "The decomposition has depth 3 below the main theorem: `equal_inc_mat_isomorphism` → `block_mat_cond_rev` → `inc_matrix_point_in_block` → `inc_matrix_point_not_in_block_zero`, all in the one file.",
+      "evidence_kind": "measurement",
+      "evidence": "block_mat_cond_rev cites inc_matrix_point_in_block at https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Fishers_Inequality/Incidence_Matrices.thy#L1112 and inc_matrix_point_in_block cites inc_matrix_point_not_in_block_zero at https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/Fishers_Inequality/Incidence_Matrices.thy#L103"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 3,
+    "glue_lines": 44,
+    "child_lines": [
+      21,
+      2
+    ]
+  },
+  "metrics": {
+    "glue_lines": 44,
+    "child_lines": [
+      21,
+      2
+    ],
+    "direct_lemmas": 2,
+    "depth": 3,
+    "how_counted": "line counts from the sites (parent 1997-2040, children 1105-1125 and 1102-1103); depth counted along the chain equal_inc_mat_isomorphism -> block_mat_cond_rev -> inc_matrix_point_in_block -> inc_matrix_point_not_in_block_zero"
+  },
+  "consequences": "The pointwise proof creates one obligation per block index j (the fix j subgoal inside the have \"∧ j. ...\"), plus the length-match obligation (len) that nth_equalityI needs, and finally the lift from list equality to multiset equality via mset_map. It relies on the index function List_Index.index being a bijection between the point set and {..<length Vs}, which needs the point list to be distinct (D1.distinct); with duplicate points the index step no longer inverts the block lookup.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "38fc5bd6f2608a2991fd9b2e28b829a0e1c8d823be39de7b8afeab278a92f825",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:38:12Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:45:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:40:22Z",
+      "note": "parent equal_inc_mat_isomorphism: statement re-copied from code; child 'block_mat_cond_rev': statement re-copied from the declaration of block_mat_cond_rev; child \"block_mat_cond_rep'\": statement re-copied from the declaration of block_mat_cond_rep'"
+    }
+  ]
+}

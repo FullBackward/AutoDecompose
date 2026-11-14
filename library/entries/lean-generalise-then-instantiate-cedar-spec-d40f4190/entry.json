@@ -1,0 +1,200 @@
+{
+  "id": "lean-generalise-then-instantiate-cedar-spec-d40f4190",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Cedar policy slicing: instantiate the general sound-slice theorem at the scope-based bound analysis",
+  "intent": "Reduce the theorem that scope-based slicing preserves `isAuthorized` to three chained instantiations of a general sound-slice framework. The glue `apply`s the general sound-slice theorem `isAuthorized_eq_for_sound_policy_slice`, then the bridge `sound_bound_analysis_produces_sound_slices` that turns a sound bound analysis into a sound slice, and closes with the leaf `scope_analysis_is_sound`.",
+  "move": "generalise-then-instantiate",
+  "also_known_as": [
+    "generalize then specialize",
+    "prove the general soundness theorem once, instantiate at the concrete analysis",
+    "schema instantiation"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "cedar-spec",
+    "url": "https://github.com/cedar-policy/cedar-spec",
+    "commit": "e619491a5bfb04970ef994dbe286df0bb9d0b73f",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "cedar-lean/Cedar/Thm/PolicySlice.lean",
+      "bytes": 5179,
+      "sha256": "9f0cf12de484c7e7ca07e85e2f6f2a0bad60ee8cc925128881d0eed9463bb6f9",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/PolicySlice.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "cedar-lean/Cedar/Thm/PolicySlice.lean",
+      "lines": [
+        131,
+        137
+      ],
+      "role": "parent",
+      "name": "isAuthorized_eq_for_scope_based_policy_slice",
+      "excerpt_sha256": "d43502af4326db448346d0fcf905deda84b82fbd2b5e50bcf51c751ff2f56aba",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/PolicySlice.lean#L131-L137"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/PolicySlice.lean",
+      "lines": [
+        48,
+        56
+      ],
+      "role": "child",
+      "name": "isAuthorized_eq_for_sound_policy_slice",
+      "excerpt_sha256": "f9fe1e412dd54b5942e35e8d103c25f5ba2dedcddf350dd3f7e17ed63f5d050d",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/PolicySlice.lean#L48-L56"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/PolicySlice.lean",
+      "lines": [
+        61,
+        86
+      ],
+      "role": "child",
+      "name": "sound_bound_analysis_produces_sound_slices",
+      "excerpt_sha256": "e0365469046faacd3ffb43ec9cd897f6f8bbb25e0a05500baa61fe19f7fb35dc",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/PolicySlice.lean#L61-L86"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/PolicySlice.lean",
+      "lines": [
+        121,
+        124
+      ],
+      "role": "child",
+      "name": "scope_analysis_is_sound",
+      "excerpt_sha256": "d82627a9a3a23eeac2d6a07c3af394417a5903875f8555004cc8cb024ee54f76",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/PolicySlice.lean#L121-L124"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/PolicySlice.lean",
+      "lines": [
+        91,
+        116
+      ],
+      "role": "context",
+      "name": "scope_bound_is_sound",
+      "excerpt_sha256": "31a1968cc80904763362203d675420426439f58903f03f81c816ada26aadd2e2",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/PolicySlice.lean#L91-L116"
+    }
+  ],
+  "parent": {
+    "name": "isAuthorized_eq_for_scope_based_policy_slice",
+    "statement": "theorem isAuthorized_eq_for_scope_based_policy_slice (request : Request) (entities : Entities) (policies : Policies) :\n  isAuthorized request entities (BoundAnalysis.slice scopeAnalysis request entities policies) =\n  isAuthorized request entities policies"
+  },
+  "children": [
+    {
+      "name": "isAuthorized_eq_for_sound_policy_slice",
+      "statement": "theorem isAuthorized_eq_for_sound_policy_slice (req : Request) (entities : Entities) (slice policies : Policies) :\n  IsSoundPolicySlice req entities slice policies →\n  isAuthorized req entities slice = isAuthorized req entities policies",
+      "closed_by": "satisfiedPolicies_eq_for_sound_policy_slice, errorPolicies_eq_for_sound_policy_slice and isAuthorized_eq_of_satisfied_and_error_policies_eq (imported, Cedar.Thm.Authorization.*)",
+      "note": "The general statement, proved once for every sound slice: when `slice` is a sound slice of `policies` for `req`/`entities`, `isAuthorized` agrees on the two. Its proof splits the two outcomes — `satisfiedPolicies_eq_for_sound_policy_slice .forbid` / `.permit` give the satisfied-policy sets, `errorPolicies_eq_for_sound_policy_slice` the error sets — and recombines with `isAuthorized_eq_of_satisfied_and_error_policies_eq`; all three are imported from the authorization theory, not proved here."
+    },
+    {
+      "name": "sound_bound_analysis_produces_sound_slices",
+      "statement": "theorem sound_bound_analysis_produces_sound_slices (ba : BoundAnalysis) (request : Request) (entities : Entities) (policies : Policies) :\n  IsSoundBoundAnalysis ba →\n  IsSoundPolicySlice request entities (ba.slice request entities policies) policies",
+      "closed_by": "unfold of IsSoundBoundAnalysis, IsSoundPolicySlice, BoundAnalysis.slice, IsSoundPolicyBound, then simp_all (left) and by_contra + simp (right)",
+      "note": "The bridge: a sound bound analysis `ba` yields a sound slice. Its proof is pure unfolding — `IsSoundBoundAnalysis`, `IsSoundPolicySlice`, `BoundAnalysis.slice`, then `IsSoundPolicyBound` — and the two conjuncts close by `simp_all` (subset direction) and by contradiction (`by_contra` + `simp`). It cites no named lemma, so it is a leaf of the lemma graph but not a one-liner."
+    },
+    {
+      "name": "scope_analysis_is_sound",
+      "statement": "theorem scope_analysis_is_sound :\n  IsSoundBoundAnalysis scopeAnalysis",
+      "closed_by": "scope_bound_is_sound (via `simp [IsSoundBoundAnalysis, scope_bound_is_sound]`)",
+      "note": "The leaf: `scopeAnalysis` is a sound bound analysis, closed in one line by `simp [IsSoundBoundAnalysis, scope_bound_is_sound]`, delegating the per-policy work to `scope_bound_is_sound` (in this file), which itself closes on the four scope lemmas imported from the authorization theory."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A theorem about a concrete analysis or slicing (`BoundAnalysis.slice scopeAnalysis`) that is a special case of a general soundness statement (`isAuthorized_eq_for_sound_policy_slice`) over an abstract predicate (`IsSoundPolicySlice`), reached through a bridge (`sound_bound_analysis_produces_sound_slices`) that reduces the concrete soundness obligation to one abstract predicate (`IsSoundBoundAnalysis`) and a leaf proving that predicate for the concrete analysis.",
+    "use_when": "the general statement is already proved over an abstract soundness/slicing predicate, and the concrete case needs only (a) a bridge lemma mapping the concrete construction onto that predicate and (b) a leaf proving the concrete analysis meets the predicate's own hypotheses, so the parent proof is pure `apply`/`exact` with no new mathematics.",
+    "avoid_when": "the concrete construction does not literally satisfy the abstract predicate's shape (then the bridge must do real work rather than unfold); the leaf that the concrete analysis is sound is itself a substantial theorem rather than a one-line `simp`; or the general statement is not already proved, in which case proving it is the real content and the instantiation is trivial by comparison."
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 2,
+    "glue_lines": 7,
+    "child_lines": [
+      9,
+      26,
+      4
+    ]
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "`isAuthorized_eq_for_sound_policy_slice` occurs in the parent site.",
+      "evidence_kind": "check",
+      "form": "cites(parent, isAuthorized_eq_for_sound_policy_slice)",
+      "evidence": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/PolicySlice.lean#L131-L137"
+    },
+    {
+      "n": 2,
+      "claim": "No `sorry`, `admit` or `axiom` token occurs in `cedar-lean/Cedar/Thm/PolicySlice.lean` lines 1-139.",
+      "evidence_kind": "check",
+      "form": "no_sorry(cedar-lean/Cedar/Thm/PolicySlice.lean, 1-139)",
+      "evidence": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/PolicySlice.lean"
+    },
+    {
+      "n": 3,
+      "claim": "`scope_analysis_is_sound` is declared in `cedar-lean/Cedar/Thm/PolicySlice.lean` lines 121-124.",
+      "evidence_kind": "check",
+      "form": "declared(scope_analysis_is_sound, cedar-lean/Cedar/Thm/PolicySlice.lean, 121-124)",
+      "evidence": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/PolicySlice.lean#L121-L124"
+    },
+    {
+      "n": 4,
+      "claim": "The decomposition is three direct lemmas chained in a four-line glue: the parent proof cites `isAuthorized_eq_for_sound_policy_slice`, `sound_bound_analysis_produces_sound_slices` and `scope_analysis_is_sound`, and the longest chain of project lemmas below the main theorem that I traced is `scope_analysis_is_sound` → `scope_bound_is_sound` (depth 2).",
+      "evidence_kind": "measurement",
+      "evidence": "glue at lines 134-137; use of scope_bound_is_sound at line 124; scope_bound_is_sound declared at lines 91-116 of cedar-lean/Cedar/Thm/PolicySlice.lean; counted by reading the copied file"
+    },
+    {
+      "n": 5,
+      "claim": "The module comment states the design: the scope-based theorem is 'based on a more general lemma (`sound_bound_analysis_produces_sound_slices`) that covers all forms of slicing that are based on identifying \"bound\" principal and resource entities', and that 'the general lemma also covers more sophisticated analyses that can extract bounds from policy conditions as well'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/PolicySlice.lean#L29-L37"
+    }
+  ],
+  "metrics": {
+    "glue_body_lines": 4,
+    "direct_lemmas": 3,
+    "how_counted": "glue body = lines 134-137 of the parent site (the three tactic lines after the declaration); direct lemmas = the three project lemmas the parent proof cites (isAuthorized_eq_for_sound_policy_slice, sound_bound_analysis_produces_sound_slices, scope_analysis_is_sound), counted by reading the parent site"
+  },
+  "consequences": "Creates three obligations, one per child, and the glue is a pure chain of `apply`/`exact` with no new goal manipulation. (1) The general sound-slice theorem `isAuthorized_eq_for_sound_policy_slice`, the expensive part, which itself imports three per-outcome lemmas. (2) The bridge `sound_bound_analysis_produces_sound_slices`, which reduces `IsSoundPolicySlice` for `ba.slice ...` to `IsSoundBoundAnalysis ba` and is discharged entirely by unfolding definitions. (3) The leaf `scope_analysis_is_sound`, a one-line `simp` over `scope_bound_is_sound`. Failure modes: if the concrete slice is not literally `BoundAnalysis.slice analysis ...` for some `analysis` satisfying `IsSoundBoundAnalysis`, the bridge does not apply and the general sound-slice argument must be redone; if the leaf's soundness is not `simp`-trivial (its per-policy soundness rests on the scope lemmas elsewhere, which are the real content), the instantiation is not free.",
+  "known_uses": [],
+  "related": [
+    "lean-generalise-then-instantiate-mathlib4-0ccee655"
+  ],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "d40f4190865b09c8927947cc17c9c3383631ebb9ebba6452d6e8c55acd66fbb5",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:10:15Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,shape,claims,metrics,consequences,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-1",
+      "at": "2026-11-14T12:20:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T12:12:35Z",
+      "note": "parent isAuthorized_eq_for_scope_based_policy_slice: statement re-copied from code; child 'isAuthorized_eq_for_sound_policy_slice': statement re-copied from the declaration of isAuthorized_eq_for_sound_policy_slice; child 'sound_bound_analysis_produces_sound_slices': statement re-copied from the declaration of sound_bound_analysis_produces_sound_slices; child 'scope_analysis_is_sound': statement re-copied from the declaration of scope_analysis_is_sound"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T12:18:19Z"
+}

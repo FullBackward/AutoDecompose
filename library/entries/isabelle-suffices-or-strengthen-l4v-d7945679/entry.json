@@ -1,0 +1,203 @@
+{
+  "id": "isabelle-suffices-or-strengthen-l4v-d7945679",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Well-foundedness of the next_slot order by strengthening to finite-and-acyclic",
+  "intent": "Replace the goal `wf {(next, p). next_slot p (cdt_list s) (cdt s) = Some next}` in one step by the stronger conjunction `finite ... ∧ acyclic ...` through the library rule `finite_acyclic_wf`, so well-foundedness of the next-slot traversal is assembled from two independent halves: a finiteness bound (via `cte_at_next_slot`, `cte_at_next_slot'` and `finite_depth`) and a no-loop fact (`next_slot_no_loop`).",
+  "move": "suffices-or-strengthen",
+  "also_known_as": [
+    "wf from finite and acyclic",
+    "finite_acyclic_wf strengthening",
+    "strengthen to finite and acyclic"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "l4v",
+    "url": "https://github.com/seL4/l4v",
+    "commit": "1abfe5bce98632a94ba52adf183045620c509340",
+    "licence": "CC-BY-SA-4.0"
+  },
+  "files": [
+    {
+      "path": "proof/invariant-abstract/Deterministic_AI.thy",
+      "bytes": 192336,
+      "sha256": "3f769588394d4a076ccb7b56296277189f165eb4bdaf5ecb755de28da62c90d8",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/invariant-abstract/Deterministic_AI.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "proof/invariant-abstract/Deterministic_AI.thy",
+      "lines": [
+        4322,
+        4337
+      ],
+      "role": "parent",
+      "name": "wf_next_slot",
+      "excerpt_sha256": "db9f7e153b68c27b444ab8be510151d9250a7d7c2813c5920935d6ed8beaec96",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/invariant-abstract/Deterministic_AI.thy#L4322-L4337"
+    },
+    {
+      "path": "proof/invariant-abstract/Deterministic_AI.thy",
+      "lines": [
+        4303,
+        4320
+      ],
+      "role": "child",
+      "name": "next_slot_no_loop",
+      "excerpt_sha256": "fa7db07f610625a2c42111a6ee9a81b9d0a192d14f6fee1e3ae8d14708119add",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/invariant-abstract/Deterministic_AI.thy#L4303-L4320"
+    },
+    {
+      "path": "proof/invariant-abstract/Deterministic_AI.thy",
+      "lines": [
+        1602,
+        1629
+      ],
+      "role": "child",
+      "name": "cte_at_next_slot",
+      "excerpt_sha256": "2b2ec7979aaf2aabe50a0f59f1ea2fb181f91241561e3df1732d7e4ae0755d5c",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/invariant-abstract/Deterministic_AI.thy#L1602-L1629"
+    },
+    {
+      "path": "proof/invariant-abstract/Deterministic_AI.thy",
+      "lines": [
+        1631,
+        1665
+      ],
+      "role": "child",
+      "name": "cte_at_next_slot'",
+      "excerpt_sha256": "ecc65cc4e53a6b6791a41a55ef46eba9272cad057a0e63a8ae25e8f3ed6c829c",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/invariant-abstract/Deterministic_AI.thy#L1631-L1665"
+    },
+    {
+      "path": "proof/invariant-abstract/Deterministic_AI.thy",
+      "lines": [
+        206,
+        257
+      ],
+      "role": "child",
+      "name": "finite_depth",
+      "excerpt_sha256": "44e4ab153ff27689b08ab12b6d707d514b6599de5dc7e7f4d31a57b09d1ff470",
+      "permalink": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/invariant-abstract/Deterministic_AI.thy#L206-L257"
+    }
+  ],
+  "parent": {
+    "name": "wf_next_slot",
+    "statement": "lemma wf_next_slot:\n  notes split_paired_All[simp del] split_paired_Ex[simp del]\n  shows\n  \"\\<lbrakk>valid_mdb s; valid_list s\\<rbrakk>\n    \\<Longrightarrow> wf {(next, p). next_slot p (cdt_list s) (cdt s) = Some next}\""
+  },
+  "children": [
+    {
+      "name": "next_slot_no_loop",
+      "statement": "lemma next_slot_no_loop:\n  notes split_paired_All[simp del] split_paired_Ex[simp del]\n  shows \"\\<lbrakk>valid_list_2 t m; no_mloop m; finite_depth m\\<rbrakk>\n    \\<Longrightarrow> x \\<notin> next_slot_set x t m\"",
+      "closed_by": "apply(rule notI) then case_tac \"m x\"; the None branch closes via next_slot_setD + next_sib_set_not_self, the Some branch via next_slot_set_after_in_list + next_sib_set_not_self; done"
+    },
+    {
+      "name": "cte_at_next_slot",
+      "statement": "lemma cte_at_next_slot:\n  notes split_paired_All[simp del] split_paired_Ex[simp del]\n  shows \"\\<lbrakk>valid_list s; valid_mdb s; finite_depth (cdt s)\\<rbrakk>\n    \\<Longrightarrow> next_slot p (cdt_list s) (cdt s) = Some n \\<Longrightarrow> cte_at p s\"",
+      "closed_by": "split next_slot_def on if_split_asm; the child/next branches close via next_childD / next_sibD plus descendants_of_cte_at2 / descendants_of_cte_at and next_not_child_termination; done"
+    },
+    {
+      "name": "cte_at_next_slot'",
+      "statement": "lemma cte_at_next_slot':\n  \"\\<lbrakk>valid_list s; valid_mdb s; finite_depth (cdt s)\\<rbrakk>\n    \\<Longrightarrow> next_slot p (cdt_list s) (cdt s) = Some n \\<Longrightarrow> cte_at n s\"",
+      "closed_by": "split next_slot_def, then an induction with next_not_child_pinduct2; each case closes via descendants_of_cte_at2 / descendants_of_cte_at and next_sibD; done"
+    },
+    {
+      "name": "finite_depth",
+      "statement": "lemma finite_depth:\n  notes split_paired_All[simp del] split_paired_Ex[simp del]\n  shows \"valid_mdb s \\<Longrightarrow> finite_depth (cdt s)\"",
+      "closed_by": "finite_subset + cte_wp_at_set_finite for finiteness, then a strict-subset cardinality argument closed by psubset_card_mono; done"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A `wf R` goal where `R` is a binary relation over a finite state graph — here the next_slot traversal `{(next, p). next_slot p (cdt_list s) (cdt s) = Some next}` of the capability-derivation tree — and where finiteness and acyclicity of `R` are each easier to prove than a direct well-foundedness argument.",
+    "use_when": "the relation's pairs can be bounded by a known finite carrier (`cte_wp_at_set_finite`), acyclicity reduces to a no-loop lemma `x ∉ R⁺ x`, and the two halves of `finite_acyclic_wf` each have their own named lemma.",
+    "avoid_when": "`R` is infinite or well-founded only via a measure/witness rather than by finiteness (e.g. the natural-number `<` order); acyclicity needs more than a plain no-loop lemma; or the two halves share so much work that a single direct proof is shorter."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The lemma `wf_next_slot` is declared in `Deterministic_AI.thy` at lines 4322-4337.",
+      "evidence_kind": "check",
+      "form": "declared(wf_next_slot, proof/invariant-abstract/Deterministic_AI.thy, 4322-4337)",
+      "evidence": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/invariant-abstract/Deterministic_AI.thy#L4322-L4337"
+    },
+    {
+      "n": 2,
+      "claim": "No `sorry` occurs anywhere in `Deterministic_AI.thy`.",
+      "evidence_kind": "check",
+      "form": "no_sorry(proof/invariant-abstract/Deterministic_AI.thy, 1-5224)",
+      "evidence": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/invariant-abstract/Deterministic_AI.thy"
+    },
+    {
+      "n": 3,
+      "claim": "The shape of the decomposition: the glue is 16 lines and cites 4 direct lemmas whose proofs are 18, 28, 35 and 52 lines, and the longest chain of project lemmas below `wf_next_slot` is 5 deep.",
+      "evidence_kind": "measurement",
+      "evidence": "site line spans at the pinned commit: parent 4322-4337 (16 lines); children next_slot_no_loop 4303-4320 (18), cte_at_next_slot 1602-1629 (28), cte_at_next_slot' 1631-1665 (35), finite_depth 206-257 (52); depth chain wf_next_slot -> next_slot_no_loop -> next_slot_set_after_in_list (4263) -> next_slot_setD (4123) -> next_not_childD (617) -> next_not_childD' (551), all in Deterministic_AI.thy"
+    },
+    {
+      "n": 4,
+      "claim": "The same finite-and-acyclic strengthening via `finite_acyclic_wf` is used again at `wf_last_child` (lines 4575-4587), paired with `last_child_no_loop` and consumed by `last_child_induct`.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/invariant-abstract/Deterministic_AI.thy#L4575-L4587"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 5,
+    "glue_lines": 16,
+    "child_lines": [
+      18,
+      28,
+      35,
+      52
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 16,
+    "child_lines": [
+      18,
+      28,
+      35,
+      52
+    ],
+    "how_counted": "line spans of the parent and child sites in the copied file, declaration included: parent 4322-4337; children next_slot_no_loop 4303-4320, cte_at_next_slot 1602-1629, cte_at_next_slot' 1631-1665, finite_depth 206-257"
+  },
+  "consequences": "Replaces one `wf R` obligation with two: `finite R` and `acyclic R`. The finiteness half must bound every pair `(next, p)` of the relation in a finite carrier — `cte_at_next_slot` / `cte_at_next_slot'` show each endpoint is a `cte_at`, so `R` is a subset of `{p. cte_wp_at ⊤ p s} × {p. cte_wp_at ⊤ p s}`, finite by `cte_wp_at_set_finite`. The acyclicity half needs a no-loop lemma whose `finite_depth (cdt s)` precondition is discharged by `finite_depth` itself. Failure modes: `finite_depth` is the real content (a 52-line cardinality argument) and its cost is inherited by both halves; `finite_acyclic_wf` yields `wf` only for literally finite relations, so the move does not reach infinite well-founded orders.",
+  "known_uses": [
+    "https://github.com/seL4/l4v/blob/1abfe5bce98632a94ba52adf183045620c509340/proof/invariant-abstract/Deterministic_AI.thy#L4575-L4587"
+  ],
+  "related": [
+    "isabelle-suffices-or-strengthen-l4v-0a36f701"
+  ],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "d794567908df7d3faedaafcdd433b59a715b79cc55882f1bf402603029b22072",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:40:57Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:45:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:42:53Z",
+      "note": "parent wf_next_slot: statement re-copied from code; child 'next_slot_no_loop': statement re-copied from the declaration of next_slot_no_loop; child 'cte_at_next_slot': statement re-copied from the declaration of cte_at_next_slot; child \"cte_at_next_slot'\": statement re-copied from the declaration of cte_at_next_slot'; child 'finite_depth': statement re-copied from the declaration of finite_depth"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:49:09Z"
+}

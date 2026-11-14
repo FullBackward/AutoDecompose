@@ -1,0 +1,198 @@
+{
+  "id": "isabelle-other-afp-27561f74",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Equality with LEAST by minimum characterisation for Harry's measure (IMO 2019 Q5)",
+  "intent": "Prove that harry_meas xs is the least number of steps after which Harry's coin process leaves no heads, by the two-part minimum characterisation Least_equality: show the value satisfies the predicate, and show every other satisfying value is at least it. The two halves are already separate lemmas, so the glue is one line per obligation.",
+  "move": "other",
+  "also_known_as": [
+    "Least_equality",
+    "minimum characterisation",
+    "least-element characterisation",
+    "IsLeast",
+    "Nat.find_min"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "afp",
+    "url": "https://github.com/isabelle-prover/mirror-afp-devel",
+    "commit": "07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "thys/IMO2019/IMO2019_Q5.thy",
+      "bytes": 18153,
+      "sha256": "e3ed670fdd8ba67bc1690a448e7c64ba8820a3920472b728860e29f6d6d9c004",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/IMO2019/IMO2019_Q5.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "thys/IMO2019/IMO2019_Q5.thy",
+      "lines": [
+        315,
+        323
+      ],
+      "role": "parent",
+      "name": "harry_meas_eq_LEAST",
+      "excerpt_sha256": "40349d3076474c05712c5ce51b18163f5fd542a5fd90e75c4e31e5f273ea1c6b",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/IMO2019/IMO2019_Q5.thy#L315-L323"
+    },
+    {
+      "path": "thys/IMO2019/IMO2019_Q5.thy",
+      "lines": [
+        277,
+        292
+      ],
+      "role": "child",
+      "name": "True_in_funpow_harry_step",
+      "excerpt_sha256": "13acf1060d9c514dfa91f9c40095746141f6146391d28658152160097cb5b435",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/IMO2019/IMO2019_Q5.thy#L277-L292"
+    },
+    {
+      "path": "thys/IMO2019/IMO2019_Q5.thy",
+      "lines": [
+        294,
+        309
+      ],
+      "role": "child",
+      "name": "True_notin_funpow_harry_step",
+      "excerpt_sha256": "d115fa9e2d4f975f0cbfa93fd6b17c6f32ba61c72b295778b74fa6cc9bc05495",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/IMO2019/IMO2019_Q5.thy#L294-L309"
+    },
+    {
+      "path": "thys/IMO2019/IMO2019_Q5.thy",
+      "lines": [
+        259,
+        260
+      ],
+      "role": "context",
+      "name": "harry_meas_step",
+      "excerpt_sha256": "d583e389a4335595fea482d92d730402778acb8d3b9ce77d3c7e9e1f55d4f6f7",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/IMO2019/IMO2019_Q5.thy#L259-L260"
+    },
+    {
+      "path": "thys/IMO2019/IMO2019_Q5.thy",
+      "lines": [
+        226,
+        257
+      ],
+      "role": "context",
+      "name": "harry_meas_step_aux",
+      "excerpt_sha256": "e3b57d76bbdd38e33dfd7b6d8c51db31121554aa0f928af2ea36d4af5db06818",
+      "permalink": "https://github.com/isabelle-prover/mirror-afp-devel/blob/07cd9ca548d180f234c63f06bf5d1cb85c7fc5df/thys/IMO2019/IMO2019_Q5.thy#L226-L257"
+    }
+  ],
+  "parent": {
+    "name": "harry_meas_eq_LEAST",
+    "statement": "harry_meas xs = (LEAST n. True \\<notin> set ((harry_step ^^ n) xs))",
+    "note": "The theorem is anonymous in the source (theorem \"...\" with no name); harry_meas_eq_LEAST is the analyst's name for it."
+  },
+  "children": [
+    {
+      "name": "True_in_funpow_harry_step",
+      "statement": "lemma True_in_funpow_harry_step:\n  assumes \"n < harry_meas xs\"\n  shows   \"True \\<in> set ((harry_step ^^ n) xs)\"",
+      "closed_by": "induction n arbitrary: xs; 0 case by (rule ccontr) (use 0 in auto); Suc case by (intro Suc) (auto simp: harry_meas_step)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: if n < harry_meas xs then the n-th iterate of harry_step still contains a head"
+    },
+    {
+      "name": "True_notin_funpow_harry_step",
+      "statement": "lemma True_notin_funpow_harry_step: \"True \\<notin> set ((harry_step ^^ harry_meas xs) xs)\"",
+      "closed_by": "induction harry_meas xs arbitrary: xs; base by auto; Suc case by (intro Suc) (auto simp: harry_meas_step)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the harry_meas xs-th iterate of harry_step contains no head"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An equality x = (LEAST n. P n) over a nat-valued measure, where P n says the n-th iterate of a step function reaches a terminal state (here, no heads left in the coin sequence).",
+    "use_when": "You already have the two halves as named lemmas — a satisfying-value lemma (P x) and a lower-bound lemma (every y satisfying P is at least x) — so the proof is one line per Least_equality obligation.",
+    "avoid_when": "The least-element argument needs a nontrivial witness construction (then the witness lemma is the content, not the characterisation); you want an iff or an order antisymmetry between two terms rather than a LEAST; or the predicate is over a type without a well-order, where LEAST and the two-part rule are unavailable."
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 5,
+    "glue_lines": 9,
+    "child_lines": [
+      16,
+      16
+    ]
+  },
+  "metrics": {
+    "glue_lines": 9,
+    "child_lines": [
+      16,
+      16
+    ],
+    "direct_lemmas": 2,
+    "depth": 5,
+    "how_counted": "glue_lines = parent site 315-323; child_lines = child sites 277-292 and 294-309; depth = project-lemma chain from the parent through harry_meas_step, harry_meas_step_aux, harry_step_False_True to flip_append1 (citations at lines 322, 290, 260, 255, 195)"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site cites True_notin_funpow_harry_step.",
+      "evidence_kind": "check",
+      "evidence": "thys/IMO2019/IMO2019_Q5.thy#L315-L323",
+      "form": "cites(parent, True_notin_funpow_harry_step)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites True_in_funpow_harry_step.",
+      "evidence_kind": "check",
+      "evidence": "thys/IMO2019/IMO2019_Q5.thy#L315-L323",
+      "form": "cites(parent, True_in_funpow_harry_step)"
+    },
+    {
+      "n": 3,
+      "claim": "True_in_funpow_harry_step is declared at thys/IMO2019/IMO2019_Q5.thy lines 277-292.",
+      "evidence_kind": "check",
+      "evidence": "thys/IMO2019/IMO2019_Q5.thy#L277-L292",
+      "form": "declared(True_in_funpow_harry_step, thys/IMO2019/IMO2019_Q5.thy, 277-292)"
+    },
+    {
+      "n": 4,
+      "claim": "True_notin_funpow_harry_step is declared at thys/IMO2019/IMO2019_Q5.thy lines 294-309.",
+      "evidence_kind": "check",
+      "evidence": "thys/IMO2019/IMO2019_Q5.thy#L294-L309",
+      "form": "declared(True_notin_funpow_harry_step, thys/IMO2019/IMO2019_Q5.thy, 294-309)"
+    },
+    {
+      "n": 5,
+      "claim": "The longest chain of project lemmas below the main theorem has 5 lemmas: True_in_funpow_harry_step -> harry_meas_step -> harry_meas_step_aux -> harry_step_False_True -> flip_append1, counted by following the citations at lines 322, 290, 260, 255 and 195.",
+      "evidence_kind": "measurement",
+      "evidence": "thys/IMO2019/IMO2019_Q5.thy lines 322, 290, 260, 255, 195 at commit 07cd9ca548d1"
+    }
+  ],
+  "consequences": "The move turns one goal into the two obligations of Least_equality: (1) the candidate value satisfies the predicate, (2) every satisfying value is a lower bound. Each obligation becomes one child, discharged by one project lemma each. The minimality direction (2) is proved by contradiction using the satisfying-value direction of the sibling lemma (True_in_funpow_harry_step), so the two children are not independent: minimality rides on the lower-bound direction's contrapositive. Failure mode: if the two directions were not already stated as separate lemmas, the glue would carry inline proofs and the characterisation would collapse into a single proof.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "27561f748f1a1f14d11e2cf289140af3f041279a3d44c9a5a3a4bfc2770146de",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:31:28Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,shape,metrics,consequences,claims,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:45:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:33:56Z",
+      "note": "child 'True_in_funpow_harry_step': statement re-copied from the declaration of True_in_funpow_harry_step; child 'True_notin_funpow_harry_step': statement re-copied from the declaration of True_notin_funpow_harry_step"
+    }
+  ]
+}

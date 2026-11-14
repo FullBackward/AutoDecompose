@@ -1,0 +1,203 @@
+{
+  "id": "markdown-blueprint-node-numina-lean-agent-91c2a449",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Blueprint-node split of a stalled lemma into three dependency-chained sub-lemmas",
+  "intent": "Replace one stalled lemma (`lem:complex`, partial 45/50) by three named blueprint nodes written for it, chained step1 → step2 → step3 → lem:complex by their `uses` fields, each with a reset attempt budget, so work is scheduled from the leaf and the parent's glue is the single `uses` edge to the last child.",
+  "move": "blueprint-node",
+  "also_known_as": [
+    "blueprint \\uses{} node",
+    "dependency-graph node",
+    "stated before proved"
+  ],
+  "language": "markdown",
+  "source": {
+    "source_id": "numina-lean-agent",
+    "url": "https://github.com/project-numina/numina-lean-agent",
+    "commit": "1c9af8a52e715f22fede766425ba3d3b95526132",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "prompts/docs/prompts/coordinator.md",
+      "bytes": 15131,
+      "sha256": "4da0d3f46f2c09e5b0dcb0f8531816307c672ff9daecfce8d524474e4d22252f",
+      "permalink": "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/coordinator.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": "prompts/docs/prompts/coordinator.md",
+      "lines": [
+        355,
+        357
+      ],
+      "role": "parent",
+      "name": "lem:complex",
+      "excerpt_sha256": "724d5b4f86f9cff20d0f53cfeade5cab8a6083336c4e2b28af84265578dc5802",
+      "permalink": "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/coordinator.md#L355-L357"
+    },
+    {
+      "path": "prompts/docs/prompts/coordinator.md",
+      "lines": [
+        344,
+        345
+      ],
+      "role": "child",
+      "name": "lem:complex_step1",
+      "excerpt_sha256": "54ed2432e9e820063af2855f8cdc83cd2d8dfa423f4dce6a29aee6312a27d67d",
+      "permalink": "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/coordinator.md#L344-L345"
+    },
+    {
+      "path": "prompts/docs/prompts/coordinator.md",
+      "lines": [
+        347,
+        349
+      ],
+      "role": "child",
+      "name": "lem:complex_step2",
+      "excerpt_sha256": "a3f76cf16cbca123195e8ef34afa8fdcb72ff34d742ea0e5a1eaccbb0e8167e6",
+      "permalink": "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/coordinator.md#L347-L349"
+    },
+    {
+      "path": "prompts/docs/prompts/coordinator.md",
+      "lines": [
+        351,
+        353
+      ],
+      "role": "child",
+      "name": "lem:complex_step3",
+      "excerpt_sha256": "c1dbf711c73e16d19254703f07c1357d3090040c7cae0cbd7823594df8bdd6b7",
+      "permalink": "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/coordinator.md#L351-L353"
+    },
+    {
+      "path": "prompts/docs/prompts/coordinator.md",
+      "lines": [
+        338,
+        339
+      ],
+      "role": "context",
+      "name": "lem:complex-before",
+      "excerpt_sha256": "d05a392a094daa83ed1e4710934c95558d20b7a1d51de1f8ead5a17cfcaead61",
+      "permalink": "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/coordinator.md#L338-L339"
+    },
+    {
+      "path": "prompts/docs/prompts/coordinator.md",
+      "lines": [
+        360,
+        365
+      ],
+      "role": "context",
+      "name": "your-action",
+      "excerpt_sha256": "c3d805f8a876043c18694b245ea4aac371bb3fd714794e8a45ec37c32c5e2f9d",
+      "permalink": "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/coordinator.md#L360-L365"
+    }
+  ],
+  "parent": {
+    "name": "lem:complex",
+    "statement": "a complex lemma (schematic; the protocol does not spell out its statement), split into three steps; after the split its `uses` field names `lem:complex_step3` and its attempt budget is reset to 0/50"
+  },
+  "children": [
+    {
+      "name": "lem:complex_step1",
+      "statement": "the first step of the split (schematic; its statement is not spelled out), a leaf node with no `uses` field and a fresh 0/20 budget",
+      "closed_by": "a leaf: its node carries no `uses` field (lines 344-345), so nothing needs to be proved first; its proof closes from its own statement alone"
+    },
+    {
+      "name": "lem:complex_step2",
+      "statement": "the second step (schematic), whose `uses` field names `lem:complex_step1` and a fresh 0/20 budget",
+      "closed_by": "its `uses` field names `lem:complex_step1` (line 348), the sibling it rests on; it is scheduled only after step1 is done"
+    },
+    {
+      "name": "lem:complex_step3",
+      "statement": "the third step (schematic), whose `uses` field names `lem:complex_step2` and a fresh 0/20 budget",
+      "closed_by": "its `uses` field names `lem:complex_step2` (line 352); it is the only node the parent cites (line 356), so the parent re-proves from it"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A blueprint node (lemma) whose proof is partial or exhausted and too large or unclear to prove directly; it is replaced by a linear chain of named sub-nodes, each with its own `uses` field and attempt budget, stated before proved.",
+    "use_when": "the lemma's attempts are exhausted or its informal proof is unclear — the coordinator's 'Complex' path (lines 134-138) sends it to the Blueprint Agent, which splits it when the proof has 3+ distinct steps; the steps form an ordered dependency chain.",
+    "avoid_when": "the lemma is small enough for a single Proof Agent (the 'Simple' path, lines 124-127); the steps are independent rather than chained (then they should be siblings under the parent, not a chain); or the split deepens the dependency graph past the project's depth cap."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent node `lem:complex` cites `lem:complex_step3` in its `uses` field — the whole parent glue is that one citation.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/coordinator.md#L355-L357",
+      "form": "cites(parent, lem:complex_step3)"
+    },
+    {
+      "n": 2,
+      "claim": "The child `lem:complex_step2` cites `lem:complex_step1` in its `uses` field.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/coordinator.md#L347-L349",
+      "form": "cites(lem:complex_step2, lem:complex_step1)"
+    },
+    {
+      "n": 3,
+      "claim": "The child `lem:complex_step3` cites `lem:complex_step2` in its `uses` field.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/coordinator.md#L351-L353",
+      "form": "cites(lem:complex_step3, lem:complex_step2)"
+    },
+    {
+      "n": 4,
+      "claim": "The split is a depth-3 chain of three named nodes below the parent: `lem:complex_step1` has no `uses` field (a leaf), `lem:complex_step2` uses `lem:complex_step1` (line 348), `lem:complex_step3` uses `lem:complex_step2` (line 352), and the parent uses `lem:complex_step3` (line 356).",
+      "evidence_kind": "measurement",
+      "evidence": "read of the four `uses` fields in the copied file `prompts/docs/prompts/coordinator.md` lines 344-357: step1 has none, step2 names step1 (348), step3 names step2 (352), parent names step3 (356)"
+    },
+    {
+      "n": 5,
+      "claim": "The coordinator's own action list schedules work leaves-first and re-derives the parent from the last child: '2. Select [lem:complex_step1] (no dependencies)' (line 362) and '5. Finally prove original [lem:complex] using step3' (line 365).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/coordinator.md#L360-L365"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 3,
+    "glue_lines": 3,
+    "child_lines": [
+      2,
+      3,
+      3
+    ]
+  },
+  "metrics": {
+    "children": 3,
+    "depth": 3,
+    "parent_glue_lines": 3,
+    "leaf_nodes": 1,
+    "how_counted": "glue = the parent node block at lines 355-357 (header, `uses`, status); children = the three node blocks at 344-345, 347-349, 351-353 (a `uses` line adds one line, so the leaf is 2 lines and the chained nodes 3); depth = the `uses` chain parent → step3 → step2 → step1"
+  },
+  "consequences": "The split creates three new nodes, each still `todo` with a fresh attempt budget (0/20), so every child's proof remains to be done; the parent's correctness now rests entirely on the chain holding, and the parent cites only the last child. Obligations: every `uses` edge must stay consistent — a node is eligible only when all its dependencies are done (the selection rule at line 106) — and the parent's `uses` field must name exactly the last child. Failure modes: a child that is not self-contained cannot later close from its own statement; a broken `uses` edge schedules a node before its dependency is proved; and because the parent is re-proved only from step3, a wrong step propagates to the theorem undetected.",
+  "known_uses": [
+    "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/subagent_mode_doc.md#L370-L388",
+    "https://github.com/project-numina/numina-lean-agent/blob/1c9af8a52e715f22fede766425ba3d3b95526132/prompts/docs/prompts/sketch_agent.md#L514-L550"
+  ],
+  "related": [
+    "markdown-workflow-numina-lean-agent-b4e8ebdf"
+  ],
+  "rule": {
+    "f10_rule": 15,
+    "relation": "supports"
+  },
+  "content_key": "91c2a4495f61492a1c9f0318ae675e54a869fc69d0ee6293684db082144543a0",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:54:06Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:05:00Z"
+    }
+  ]
+}

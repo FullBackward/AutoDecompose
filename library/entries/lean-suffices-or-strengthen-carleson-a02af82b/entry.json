@@ -1,0 +1,237 @@
+{
+  "id": "lean-suffices-or-strengthen-carleson-a02af82b",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Suffices to split the pointwise tree estimate into three terms, each bounded by a named lemma (Carleson Lemma 7.1.3)",
+  "intent": "Bound the pointwise tree estimate ‖carlesonSum (t u) (exp(I·-𝒬u)·f) x‖ₑ by C7_1_3 · (maximalFunction + boundaryOperator) + nontangentialMaximalFunction by a single `suffices` that rewrites the summed kernel into three terms, then closes each term with one named same-file lemma (Lemmas 7.1.4, 7.1.5, 7.1.6), absorbing their constants into C7_1_3 via two further lemmas.",
+  "move": "suffices-or-strengthen",
+  "also_known_as": [
+    "backward rule via suffices",
+    "prove a more convenient statement first"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "carleson",
+    "url": "https://github.com/fpvandoorn/carleson",
+    "commit": "d75f54374f7f930e70a86b443f20d0e0935c275e",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "Carleson/ForestOperator/PointwiseEstimate.lean",
+      "bytes": 65398,
+      "sha256": "c28d96b7aa66c67567605784a9c9d63a0489e7e26a31b279b4488aa8be152691",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/ForestOperator/PointwiseEstimate.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Carleson/ForestOperator/PointwiseEstimate.lean",
+      "lines": [
+        1092,
+        1160
+      ],
+      "role": "parent",
+      "name": "pointwise_tree_estimate",
+      "excerpt_sha256": "85edcd690622ff0bb4318fd85328878c0a803676960d02cd3096fd80b03a4fc5",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/ForestOperator/PointwiseEstimate.lean#L1092-L1160"
+    },
+    {
+      "path": "Carleson/ForestOperator/PointwiseEstimate.lean",
+      "lines": [
+        602,
+        668
+      ],
+      "role": "child",
+      "name": "first_tree_pointwise",
+      "excerpt_sha256": "a2ade10124dfa4b4b655df539ff2b1a905388d1afca819847add8df6f665f10b",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/ForestOperator/PointwiseEstimate.lean#L602-L668"
+    },
+    {
+      "path": "Carleson/ForestOperator/PointwiseEstimate.lean",
+      "lines": [
+        671,
+        752
+      ],
+      "role": "child",
+      "name": "second_tree_pointwise",
+      "excerpt_sha256": "f7b56946e0b56d44dfb9f01899f966c65c9de56e336be48899b8fef35fbc3ea2",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/ForestOperator/PointwiseEstimate.lean#L671-L752"
+    },
+    {
+      "path": "Carleson/ForestOperator/PointwiseEstimate.lean",
+      "lines": [
+        974,
+        1065
+      ],
+      "role": "child",
+      "name": "third_tree_pointwise",
+      "excerpt_sha256": "7428c57b20a6fbf882db15b2b6c65624b2a35eaacc148e8f193f7f31fa0efb74",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/ForestOperator/PointwiseEstimate.lean#L974-L1065"
+    },
+    {
+      "path": "Carleson/ForestOperator/PointwiseEstimate.lean",
+      "lines": [
+        1077,
+        1089
+      ],
+      "role": "child",
+      "name": "C7_1_4_le_C7_1_3",
+      "excerpt_sha256": "3e8be5a38b7c0cf3160c193d5bd28820de288f54e8c6bdc20579aad98c5c2c80",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/ForestOperator/PointwiseEstimate.lean#L1077-L1089"
+    },
+    {
+      "path": "Carleson/ForestOperator/PointwiseEstimate.lean",
+      "lines": [
+        1071,
+        1075
+      ],
+      "role": "child",
+      "name": "C7_1_6_le_C7_1_3",
+      "excerpt_sha256": "e4aa4927d39892dbdbf0ee7a91bc57852716543ab706a5527f124a898b7cc24c",
+      "permalink": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/ForestOperator/PointwiseEstimate.lean#L1071-L1075"
+    }
+  ],
+  "parent": {
+    "name": "pointwise_tree_estimate",
+    "statement": "lemma pointwise_tree_estimate (hu : u ∈ t) (hL : L ∈ 𝓛 (t u)) (hx : x ∈ L) (hx' : x' ∈ L)\n    (hf : BoundedCompactSupport f) :\n    ‖carlesonSum (t u) (fun y ↦ exp (.I * - 𝒬 u y) * f y) x‖ₑ ≤\n    C7_1_3 a * (maximalFunction volume 𝓑 c𝓑 r𝓑 1 (approxOnCube (𝓙 (t u)) (‖f ·‖)) x' +\n    t.boundaryOperator u (approxOnCube (𝓙 (t u)) (‖f ·‖)) x') +\n    nontangentialMaximalFunction (𝒬 u) (approxOnCube (𝓙 (t u)) f) x'"
+  },
+  "children": [
+    {
+      "name": "first_tree_pointwise",
+      "statement": "lemma first_tree_pointwise (hu : u ∈ t) (hL : L ∈ 𝓛 (t u)) (hx : x ∈ L) (hx' : x' ∈ L)\n    (hf : BoundedCompactSupport f) :\n    ‖∑ i ∈ t.σ u x, ∫ y, (exp (.I * (-𝒬 u y + Q x y + 𝒬 u x - Q x x)) - 1) * Ks i x y * f y‖ₑ ≤\n    C7_1_4 a * maximalFunction volume 𝓑 c𝓑 r𝓑 1 (approxOnCube (𝓙 (t u)) (‖f ·‖)) x'",
+      "closed_by": "a suffices ∀ s ∈ t.σ u x, … closed by a calc chain ending in `gcongr`, using the private same-file siblings L7_1_4_sum, L7_1_4_integrand_bound, L7_1_4_laverage_le_MB and L7_1_4_integral_le_integral",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: bounds the oscillation term ‖∑ ∫ (exp(·) - 1) · Ks · f‖ₑ by C7_1_4 a times the maximal function of the approxOnCube of ‖f‖"
+    },
+    {
+      "name": "second_tree_pointwise",
+      "statement": "lemma second_tree_pointwise (hu : u ∈ t) (hL : L ∈ 𝓛 (t u)) (hx : x ∈ L) (hx' : x' ∈ L) :\n    ‖∑ i ∈ t.σ u x, ∫ y, Ks i x y * approxOnCube (𝓙 (t u)) f y‖ₑ ≤\n    nontangentialMaximalFunction (𝒬 u) (approxOnCube (𝓙 (t u)) f) x'",
+      "closed_by": "le_iSup₂_of_le / le_iSup_of_le witnesses (𝓘 p), x and (𝔰 p') closed by dist_lt_5, le_cdist_iterate, cdist_le and convex_scales",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: bounds the main term ‖∑ ∫ Ks · approxOnCube f‖ₑ by the nontangential maximal function of approxOnCube f"
+    },
+    {
+      "name": "third_tree_pointwise",
+      "statement": "lemma third_tree_pointwise (hu : u ∈ t) (hL : L ∈ 𝓛 (t u)) (hx : x ∈ L) (hx' : x' ∈ L)\n    (hf : BoundedCompactSupport f) :\n    ‖∑ i ∈ t.σ u x, ∫ y, Ks i x y * (f y - approxOnCube (𝓙 (t u)) f y)‖ₑ ≤\n    C7_1_6 a * t.boundaryOperator u (approxOnCube (𝓙 (t u)) (‖f ·‖)) x'",
+      "closed_by": "a calc chain from the σ-sum to the boundaryOperator sum, closed by p_sum_eq_s_sum, L7_1_6_I_le, sum_p_eq_sum_I_sum_p, le_C7_1_6 and lintegral_eq_lintegral_approxOnCube",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: bounds the error term ‖∑ ∫ Ks · (f - approxOnCube f)‖ₑ by C7_1_6 a times the boundary operator of the approxOnCube of ‖f‖"
+    },
+    {
+      "name": "C7_1_4_le_C7_1_3",
+      "statement": "lemma C7_1_4_le_C7_1_3 {a : ℕ} (ha : 4 ≤ a) : C7_1_4 a ≤ C7_1_3 a",
+      "closed_by": "gcongr; norm_num, then a suffices 4 ≤ (𝕔 / 4) * a ^ 3 closed by a calc and linarith [seven_le_c]",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the constant bound C7_1_4 a ≤ C7_1_3 a for 4 ≤ a"
+    },
+    {
+      "name": "C7_1_6_le_C7_1_3",
+      "statement": "lemma C7_1_6_le_C7_1_3 {a : ℕ} : C7_1_6 a ≤ C7_1_3 a",
+      "closed_by": "gcongr; norm_num; lia",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the constant bound C7_1_6 a ≤ C7_1_3 a"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A bound on a summed integral ‖∑ i ∈ σ, ∫ y, Ks i x y · (phase · f) y‖ₑ ≤ C · (maximalFunction … + boundaryOperator …) + nontangentialMaximalFunction …, where the integrand splits by algebra into a small number of terms (multiply out (exp − 1), split f = (f − g) + g) and each term is bounded by its own named lemma.",
+    "use_when": "the integrand separates into terms by plain algebra, each term has an existing or separately-proved bound lemma, and the glue is only linearity of sum/integral, the triangle inequality and a few routine integrability side conditions; the per-term constants can be absorbed into the parent's constant by named constant lemmas.",
+    "avoid_when": "the terms interact so they cannot be separated by norm-add and linearity (cross terms or a single dominating term needing joint control); the integrability side conditions are themselves the hard part; or there is no constant lemma to fold the per-term constants into the parent's constant, leaving the parent's bound with a sum of distinct constants."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The proof of pointwise_tree_estimate (lines 1092-1160) contains no sorry, admit or axiom token.",
+      "evidence_kind": "check",
+      "evidence": "form no_sorry(Carleson/ForestOperator/PointwiseEstimate.lean, 1092-1160)",
+      "form": "no_sorry(Carleson/ForestOperator/PointwiseEstimate.lean, 1092-1160)"
+    },
+    {
+      "n": 2,
+      "claim": "The lemma pointwise_tree_estimate is declared in Carleson/ForestOperator/PointwiseEstimate.lean, within lines 1092-1160.",
+      "evidence_kind": "check",
+      "evidence": "form declared(pointwise_tree_estimate, Carleson/ForestOperator/PointwiseEstimate.lean, 1092-1160)",
+      "form": "declared(pointwise_tree_estimate, Carleson/ForestOperator/PointwiseEstimate.lean, 1092-1160)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site pointwise_tree_estimate cites the child lemma first_tree_pointwise.",
+      "evidence_kind": "check",
+      "evidence": "form cites(pointwise_tree_estimate, first_tree_pointwise)",
+      "form": "cites(pointwise_tree_estimate, first_tree_pointwise)"
+    },
+    {
+      "n": 4,
+      "claim": "The theorem-scale shape is direct_lemmas = 5, glue_lines = 69 (parent site lines 1092-1160), child_lines = [67, 82, 92, 13, 5] (first_tree_pointwise 602-668, second_tree_pointwise 671-752, third_tree_pointwise 974-1065, C7_1_4_le_C7_1_3 1077-1089, C7_1_6_le_C7_1_3 1071-1075, declaration included), and depth = 3 along the chain pointwise_tree_estimate → first_tree_pointwise → L7_1_4_laverage_le_MB → subset_of_mem_𝓛.",
+      "evidence_kind": "measurement",
+      "evidence": "counted from the copied file Carleson/ForestOperator/PointwiseEstimate.lean: parent lines 1092-1160; children lines 602-668, 671-752, 974-1065, 1077-1089, 1071-1075; the depth chain uses first_tree_pointwise (line 1135), L7_1_4_laverage_le_MB (line 665 of first_tree_pointwise), and subset_of_mem_𝓛 (line 593 of L7_1_4_laverage_le_MB)"
+    },
+    {
+      "n": 5,
+      "claim": "The authors state the plan in a comment inside the proof: 'It suffices to show that the integral splits into the three terms bounded by Lemmas 7.1.4-6' (line 1118), and tag the lemmas with their blueprint numbers in docstrings — '/-- Lemma 7.1.3. -/' (line 1091), '/-- Lemma 7.1.4 -/' (line 601), '/-- Lemma 7.1.5 -/' (line 670), '/-- Lemma 7.1.6 -/' (line 973).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/fpvandoorn/carleson/blob/d75f54374f7f930e70a86b443f20d0e0935c275e/Carleson/ForestOperator/PointwiseEstimate.lean#L1118 and #L1091, #L601, #L670, #L973"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 5,
+    "depth": 3,
+    "glue_lines": 69,
+    "child_lines": [
+      67,
+      82,
+      92,
+      13,
+      5
+    ]
+  },
+  "metrics": {
+    "glue_lines": 69,
+    "direct_lemmas": 5,
+    "child_lines": {
+      "first_tree_pointwise": 67,
+      "second_tree_pointwise": 82,
+      "third_tree_pointwise": 92,
+      "C7_1_4_le_C7_1_3": 13,
+      "C7_1_6_le_C7_1_3": 5
+    },
+    "how_counted": "line counts of the sites (declaration included) in Carleson/ForestOperator/PointwiseEstimate.lean"
+  },
+  "consequences": "The move turns one hard bound into three leaf lemmas plus two constant lemmas; the glue itself carries only algebra (unfold carlesonSum, factor out a unit phase, multiply out the kernel), the triangle inequality, and the integrability side conditions h1, h2, h3 that license Finset.fold_congr. Failure modes: the suffices at line 1119 asserts the sum of integrals equals the integral of the sum, which needs all three integrability facts — if any term is not integrable the exchange fails; the three terms are combined by add_le_add_three under the assumption they are independent, so a cross-term or a shared control between terms would break the combination and force the suffices to be re-posed with a different split.",
+  "known_uses": [
+    "lean-suffices-or-strengthen-compfiles-25eb18ba",
+    "lean-suffices-or-strengthen-pnt-and-36592f32",
+    "lean-suffices-or-strengthen-sphere-packing-68ac6a8d"
+  ],
+  "related": [
+    "lean-calc-chain-carleson-eeedf502",
+    "lean-generalise-then-instantiate-carleson-63234e9a",
+    "lean-other-carleson-cfff7ffe"
+  ],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "a02af82bc02720684db213f50363dce5cc475c33698a388655640eefe3698241",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:57:34Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:59:10Z",
+      "note": "parent pointwise_tree_estimate: statement re-copied from code; child 'first_tree_pointwise': statement re-copied from the declaration of first_tree_pointwise; child 'second_tree_pointwise': statement re-copied from the declaration of second_tree_pointwise; child 'third_tree_pointwise': statement re-copied from the declaration of third_tree_pointwise; child 'C7_1_4_le_C7_1_3': statement re-copied from the declaration of C7_1_4_le_C7_1_3; child 'C7_1_6_le_C7_1_3': statement re-copied from the declaration of C7_1_6_le_C7_1_3"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T11:07:10Z"
+}

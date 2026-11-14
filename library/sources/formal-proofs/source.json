@@ -1,0 +1,15 @@
+{
+  "source_id": "formal-proofs",
+  "url": "https://github.com/starkware-libs/formal-proofs",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "starkware-libs/formal-proofs",
+  "commit": "d0dd8279612a248cbc6bf6d286030bf0bb2a37ff",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T11:39:02Z",
+  "how_found": "discovery-1: A-lean, B-lean",
+  "note": "Cairo VM/CPU and AIR encoding: soundness and completeness theorems split across Cpu/Vm/AirEncoding/Soundness/Completeness/Libfuncs modules",
+  "licence": "LicenseRef-unknown",
+  "licence_files": []
+}

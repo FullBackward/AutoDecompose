@@ -1,0 +1,125 @@
+{
+  "entry": "lean-other-dirac-imo2026-04ba762f",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:40:17Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:40:17Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:40:17Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: exists_stable@IMO2026/Q6/solution.lean:705, exists_period@IMO2026/Q6/solution.lean:705, main_of_period@IMO2026/Q6/solution.lean:705; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T09:40:17Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, main_of_period) -> cites: main_of_period occurs at IMO2026/Q6/solution.lean:705",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:40:17Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(IMO2026/Q6/solution.lean, 599-705) -> no_sorry: none of sorry, admit, axiom in IMO2026/Q6/solution.lean:599-705",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:40:17Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 37259237016275044e3905e8d537efd0eead74d2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:40:25Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI workflow in the source repo (no .github/workflows directory; list_files dirac-imo2026 shows none); README documents only a manual 'lake build', so no CI builds IMO2026/Q6/solution.lean on the default branch",
+      "by": "verifier",
+      "at": "2026-11-14T09:41:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "line 598 'THE CRUX: the family of prime supports has finitely many minimal elements' above exists_stable; lines 612-613 'If the family of prime-supports stabilises after index N, the admissible set is invariant under translation' above exists_period; line 657 'Pure-periodicity lemma P: shift invariance ... upgrades to pure periodicity' above main_of_period",
+      "by": "verifier",
+      "at": "2026-11-14T09:41:07Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "glue line 705 'exact main_of_period a ha (exists_period a ha (exists_stable a ha))' composes all three; hper hypothesis at line 661 matches exists_period's conclusion (exists L, 0<L and Adm a b iff Adm a (b+L)); hstab hypothesis at line 615 matches exists_stable's conclusion (exists N, ...); exists_stable (lines 599-600) has only (a) and (ha), no stage hypothesis",
+      "by": "verifier",
+      "at": "2026-11-14T09:41:14Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 37259237016275044e3905e8d537efd0eead74d2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:41:31Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Verified all cited line ranges in code/IMO2026/Q6/solution.lean: main_theorem 700-705, exists_stable 599-610, exists_period 614-655, main_of_period 660-698; comments THE CRUX@598, remark@612-613, Pure-periodicity lemma P@657; exists_stable_of 572-596. Glue line 705 is 'exact main_of_period a ha (exists_period a ha (exists_stable a ha))' citing exactly the three children. Closing methods match: exists_stable closes via 'exact exists_stable_of a ha hbound hreal hminsub' after discharging hkill/hminsub/hreal/hbound from killed_early/exists_minMem_subset/trans_realized/prime_bound; exists_period and main_of_period are self-contained as stated. No sorry/admit/axiom in 599-705; glue-cites-children passes. Shape numbers correct: glue_lines 6 (700-705), child_lines [12,42,39] = 599-610/614-655/660-698, direct_lemmas 3, depth 3 (main_of_period->exists_period->exists_stable, hper@661, hstab@615). Children are exactly the lemmas the main proof uses.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:42:36Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated transferably: use_when/avoid_when generalise to 'target property is a short composition of intermediate properties, each a self-contained named theorem whose hypothesis is exactly the previous theorem's conclusion', and the entry explicitly distinguishes itself from suffices-or-strengthen (independent theorem declarations, glue is function application). 'When not to use' is specific and honest (not natural standalone statements; stage needs shared notation/context; chain too long to read). Consequences include a real failure mode (a too-strong/too-weak stage surfaces only as a type error at the glue, traced across three signatures), not just benefits. 'Why each is a good leaf' explains what makes them bounded-prover holes: self-contained statements, an explicit hypothesis contract, closing on own or from named siblings, and bottom stage needs no knowledge of Adm/L/periodicity. Author comments (THE CRUX at 598, Pure-periodicity lemma P at 657) confirm the deliberate pipeline, so the generality is grounded rather than invented.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:43:26Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 37259237016275044e3905e8d537efd0eead74d2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:43:42Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit 37259237016275044e3905e8d537efd0eead74d2 is identical across entry.json, source.json and SOURCE.md, and every permalink uses it; check_provenance.py reports the copied solution.lean (32068 bytes) byte-identical at that commit. Licence MIT is recorded in entry.json/source.json/SOURCE.md and matches the copied upstream-LICENSE (MIT, Copyright Boundless Intuition). Copied file sha256 5111f905... matches entry.json files[].sha256 and bytes 32068 matches. Cited line ranges verified in the local copy: L598 THE CRUX, L599 exists_stable, L612-613 stabilise-then-period remark, L615 hstab, L657 Pure-periodicity lemma P, L661 hper, L700-705 main_theorem with glue 'exact main_of_period a ha (exists_period a ha (exists_stable a ha))' at L705. Permalinks, commit, licence and source note are consistent with the copied files; fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:44:09Z"
+    }
+  ]
+}

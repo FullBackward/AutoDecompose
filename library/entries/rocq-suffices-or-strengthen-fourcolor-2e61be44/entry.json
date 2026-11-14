@@ -1,0 +1,282 @@
+{
+  "id": "rocq-suffices-or-strengthen-fourcolor-2e61be44",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Strengthen the goal to arity x in iota 5 7 in the four-colour unavoidability theorem",
+  "intent": "The main unavoidability theorem — reducibility implies no minimal counterexample — is reduced by `suffices` to showing that the high-score vertex given by `posz_dscore` has arity in `iota 5 7` (the seven arities 5..11). The per-arity exclusion lemmas then close the original goal from that range, while seven score/fit lemmas close the range itself.",
+  "move": "suffices-or-strengthen",
+  "also_known_as": [
+    "suffices",
+    "suff",
+    "enough",
+    "backward rule"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "fourcolor",
+    "url": "https://github.com/math-comp/fourcolor",
+    "commit": "c1d6b1cd5288bea4b067aac13cdde3c18dffe018",
+    "licence": "CECILL-B"
+  },
+  "files": [
+    {
+      "path": "theories/proof/unavoidability.v",
+      "bytes": 1939,
+      "sha256": "be6bb97f8b0eddc9d39385bbf0b8ecd0a82eef3beb57704dcce86d16a63833f0",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/unavoidability.v"
+    },
+    {
+      "path": "theories/proof/discharge.v",
+      "bytes": 17639,
+      "sha256": "d590127393ebd5dffddf5b44851c4422f9d0af5e8fd8f8d16d9de5bdc450eca9",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/discharge.v"
+    },
+    {
+      "path": "theories/proof/part.v",
+      "bytes": 55560,
+      "sha256": "596ffc75a54460abd2c0a07807b862b1fadd46fc75ea74920b44cf6c2a6908bc",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/part.v"
+    },
+    {
+      "path": "theories/proof/hubcap.v",
+      "bytes": 22849,
+      "sha256": "c42bcf7dc718277427d2a82c46abac1c0f850aca446bc4e44f9f8c0a0d9ff781",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/hubcap.v"
+    },
+    {
+      "path": "theories/proof/present.v",
+      "bytes": 12459,
+      "sha256": "8b4ee7d73a31eb5b218524e4b3f2ca6501bbc540ef25102ab96a09d6d9e829e5",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/present.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/proof/unavoidability.v",
+      "lines": [
+        20,
+        34
+      ],
+      "role": "parent",
+      "name": "unavoidability",
+      "excerpt_sha256": "3af9a1d3430917dd915cf392984492b75a9748991053aad7162c7e45118826d6",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/unavoidability.v#L20-L34"
+    },
+    {
+      "path": "theories/proof/discharge.v",
+      "lines": [
+        212,
+        217
+      ],
+      "role": "child",
+      "name": "posz_dscore",
+      "excerpt_sha256": "3e161b89570be164d893b8aa4b091af1c597e70d954e30fb1281104331e4b033",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/discharge.v#L212-L217"
+    },
+    {
+      "path": "theories/proof/discharge.v",
+      "lines": [
+        378,
+        390
+      ],
+      "role": "child",
+      "name": "dscore_cap1",
+      "excerpt_sha256": "539709b0d4238687a60d29af935a7b5c9964d32ba69bb9c7bdabebaf1cb8b733",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/discharge.v#L378-L390"
+    },
+    {
+      "path": "theories/proof/discharge.v",
+      "lines": [
+        336,
+        341
+      ],
+      "role": "child",
+      "name": "dbound1_eq",
+      "excerpt_sha256": "25e1500a3edc45abaf20961a0def8c087aa155a2a2a972158b542226e17c544a",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/discharge.v#L336-L341"
+    },
+    {
+      "path": "theories/proof/discharge.v",
+      "lines": [
+        392,
+        399
+      ],
+      "role": "child",
+      "name": "source_drules_range",
+      "excerpt_sha256": "681350363984ba962e14caf66d58a3667af0ce989818cc608d2142f7fb107611",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/discharge.v#L392-L399"
+    },
+    {
+      "path": "theories/proof/part.v",
+      "lines": [
+        1253,
+        1254
+      ],
+      "role": "child",
+      "name": "exact_fitp_pcons_",
+      "excerpt_sha256": "932268e7306d2552bff491b76f4812e7b3465cda72655a4fb022efd359e26f14",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/part.v#L1253-L1254"
+    },
+    {
+      "path": "theories/proof/hubcap.v",
+      "lines": [
+        142,
+        158
+      ],
+      "role": "child",
+      "name": "check_dbound1P",
+      "excerpt_sha256": "9ed6c32ba4f5ca53305581f686dae6295a494937f0137efed1472da5c9083200",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/hubcap.v#L142-L158"
+    },
+    {
+      "path": "theories/proof/present.v",
+      "lines": [
+        168,
+        184
+      ],
+      "role": "child",
+      "name": "no_fit_the_redpart",
+      "excerpt_sha256": "29dbf0b0a8e3bbabbe85513b17e637072614ec04d294dd13c9460a451813eec0",
+      "permalink": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/present.v#L168-L184"
+    }
+  ],
+  "parent": {
+    "name": "unavoidability",
+    "statement": "Lemma unavoidability : reducibility -> forall G, ~ minimal_counter_example G."
+  },
+  "children": [
+    {
+      "name": "posz_dscore",
+      "statement": "Lemma posz_dscore : exists x : G, dscore x > 0.",
+      "closed_by": "contraposition from `dscore_roots` (the score sum is 120); closes with `apply: sumr_ge0`",
+      "note": "supplies the witness x with 0 < dscore x, so (cexG, pos_x) is a valid_hub for the exclusion lemmas"
+    },
+    {
+      "name": "dscore_cap1",
+      "statement": "Lemma dscore_cap1 (m : nat) :\n   (forall y : G, dscore1 y <= m) ->\n  forall x : G, 0 < dscore x -> forall d, (59 < (10 - m) * d -> arity x < d)%N.",
+      "closed_by": "`apply: contraLR pos_x` plus ring/order rewriting; no project lemma",
+      "note": "the score cap: with m = 5 it turns 0 < dscore x and dscore1 <= 5 into the upper bound arity x < 12"
+    },
+    {
+      "name": "dbound1_eq",
+      "statement": "Lemma dbound1_eq : dscore1 (face (face x)) = dbound1 rs x.",
+      "closed_by": "`elim: the_drules` (induction over the discharge rules)",
+      "note": "relates the per-vertex score dscore1 to the count of source discharge rules fitting x, so the cap can be checked against the rule fork"
+    },
+    {
+      "name": "source_drules_range",
+      "statement": "Lemma source_drules_range : ~~ Pr58 nhub -> rs = [::].",
+      "closed_by": "`rewrite /pick_source_drules (eq_filter Eu)`",
+      "note": "when the arity is not in Pr58 (the set {5,6,7,8}) no source rule applies, so the count dbound1 is trivially 0"
+    },
+    {
+      "name": "exact_fitp_pcons_",
+      "statement": "Lemma exact_fitp_pcons_ (x : G) : exact_fitp x (pcons_ (arity x)).",
+      "closed_by": "`rewrite /exact_fitp fitp_pcons_; elim (arity x)`",
+      "note": "the pcons_ part of size (arity x) exactly fits x; this is the fitting hypothesis check_dbound1P needs"
+    },
+    {
+      "name": "check_dbound1P",
+      "statement": "Lemma check_dbound1P (x : G) p ns :\n  arity x = nhub -> exact_fitp x p -> check_dbound1 p ns -> dbound1 rs0 x <= ns.",
+      "closed_by": "`elim: m ns rs p` (induction on the bound counter), using `sort_drulesP` and `exact_fitp_meet`",
+      "note": "the core bound check: if p fits x and check_dbound1 p ns holds, then dbound1 rs0 x <= ns"
+    },
+    {
+      "name": "no_fit_the_redpart",
+      "statement": "Lemma no_fit_the_redpart G :\n    minimal_counter_example G ->\n  forall (x : G) p', the_redpart p' -> ~~ exact_fitp x p'.",
+      "closed_by": "`apply: (no_fit_redpart cexG)` then the reducibility/quiz-tree machinery, ending in `exact: not_embed_reducible`",
+      "note": "no reducible part fits a minimal counterexample; instantiated in the glue to feed check_dbound1P its redpart hypothesis"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A theorem of the form `H -> forall G, ~ P G` (the assumption `minimal_counter_example` is contradictory), reduced by `suffices` to a finite membership `f x \\in iota a b` on a witness `x` extracted from the assumption; the membership is bounded below by a structural hypothesis (`pentagonal`, arity >= 5) and above by a cap lemma (`dscore_cap1`, arity < 12).",
+    "use_when": "the goal is a contradiction and there is a finite range for an invariant of the witness that is (a) provable from a cap/bound argument and (b) excluded value-by-value by lemmas already collated from elsewhere (`exclude5..exclude11`), so the strengthened statement is smaller and more mechanical than the original.",
+    "avoid_when": "the strengthened statement does not actually imply the original (the exclusions do not cover the whole range), or the cap argument is itself the hard part — here the real content `forall y, dscore1 y <= 5` is pushed into `dscore_cap1` plus the fork machinery, and the discharge only works because `iota 5 7` lines up exactly with the excluded arities 5..11."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The glue `unavoidability` is 15 lines over 7 direct lemmas whose child sites span 6, 13, 6, 8, 2, 17 and 17 lines; the bound-check child `check_dbound1P` closes through a chain of 3 project lemmas down to `sort_dbound1_eq`.",
+      "evidence_kind": "measurement",
+      "evidence": "site spans in entry.json — parent theories/proof/unavoidability.v#L20-L34 (15 lines), children discharge.v#L212-L217 (6), discharge.v#L378-L390 (13), discharge.v#L336-L341 (6), discharge.v#L392-L399 (8), part.v#L1253-L1254 (2), hubcap.v#L142-L158 (17), present.v#L168-L184 (17); the depth-3 chain unavoidability -> check_dbound1P -> sort_drulesP -> sort_dbound1_eq is visible at hubcap.v#L153, discharge.v#L356-L357 and discharge.v#L343"
+    },
+    {
+      "n": 2,
+      "claim": "The parent `unavoidability` site is 15 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/unavoidability.v#L20-L34",
+      "form": "lines(parent, 15)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site cites `suffices`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/unavoidability.v#L20-L34",
+      "form": "cites(parent, suffices)"
+    },
+    {
+      "n": 4,
+      "claim": "No `admit`, `Admitted` or `Axiom` occurs in theories/proof/unavoidability.v lines 20-34.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/unavoidability.v#L20-L34",
+      "form": "no_sorry(theories/proof/unavoidability.v, 20-34)"
+    },
+    {
+      "n": 5,
+      "claim": "The authors describe the theorem as 'The main unavoidability theorem: reducibility implies no minimal counter example, collating the result of all the presentNN.v files' (the file header comment).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/unavoidability.v#L11-L14"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 7,
+    "depth": 3,
+    "glue_lines": 15,
+    "child_lines": [
+      6,
+      13,
+      6,
+      8,
+      2,
+      17,
+      17
+    ]
+  },
+  "metrics": {
+    "children": 7,
+    "children_closed_by_automation": 0,
+    "how_counted": "the 7 children are the lemmas the glue cites directly (unavoidability.v lines 22-33); each closes by its own proof — posz_dscore by contraposition, dscore_cap1 by arithmetic, dbound1_eq by induction over the_drules, source_drules_range by a filter rewrite, exact_fitp_pcons_ by fitp_pcons_, check_dbound1P by induction, no_fit_the_redpart by the reducibility machinery — none by a single automation tactic alone"
+  },
+  "consequences": "The `suffices` creates two goals: the original under the suffices hypothesis (closed by the exclusion lemmas `exclude5..exclude11`), and the strengthened statement itself. The strengthened range must line up exactly with what the exclusions rule out — a gap (an arity >= 12) would leave the discharge open, and a different cap `m` in `dscore_cap1` changes the window. The move also fixes the instantiation m = 5, which only closes because 59 < 5 * 12; the real content (that dscore1 <= 5 holds for every vertex) is pushed into the fork machinery rather than removed.",
+  "known_uses": [
+    "https://github.com/math-comp/fourcolor/blob/c1d6b1cd5288bea4b067aac13cdde3c18dffe018/theories/proof/discharge.v#L222"
+  ],
+  "related": [
+    "lean-suffices-or-strengthen-compfiles-25eb18ba",
+    "isabelle-suffices-or-strengthen-l4v-0a36f701",
+    "lean-suffices-or-strengthen-pfr-744a22ce"
+  ],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "2e61be44e43dbd7bf804664f48407a091081fa700b5ba485fcdc1eebb7b951fb",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "pilot-3",
+      "at": "2026-11-14T09:57:23Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule,also_known_as,title",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:05:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:39:01Z"
+}

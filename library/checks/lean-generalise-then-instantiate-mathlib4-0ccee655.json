@@ -1,0 +1,125 @@
+{
+  "entry": "lean-generalise-then-instantiate-mathlib4-0ccee655",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:57:11Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T10:57:11Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T10:57:11Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: not_solvable_by_rad'@Archive/Wiedijk100Theorems/AbelRuffini.lean:173, map_Phi@Archive/Wiedijk100Theorems/AbelRuffini.lean:172, monic_Phi@Archive/Wiedijk100Theorems/AbelRuffini.lean:173, degree_Phi@Archive/Wiedijk100Theorems/AbelRuffini.lean:171; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T10:57:11Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, not_solvable_by_rad') -> cites: not_solvable_by_rad' occurs at Archive/Wiedijk100Theorems/AbelRuffini.lean:173",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:57:11Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "lines(parent, 5) -> lines: site parent has 5 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:57:11Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "lines(degree_Phi, 6) -> lines: site degree_Phi has 6 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T10:57:11Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:57:20Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml (delegates to build_template.yml) builds the Archive target via 'lake-build-with-retry.sh Archive Counterexamples Wanted'; commit e1545ebed97594477bbd88b2fe948ffce56e5af2 is on default branch master (compare master...e1545ebed: behind_by 34, ahead_by 0)",
+      "by": "verifier",
+      "at": "2026-11-14T10:58:57Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Read copied Archive/Wiedijk100Theorems/AbelRuffini.lean: chain of 7 links confirmed at cited lines: 173 'not_solvable_by_rad' x hx' in exists_not_solvable_by_rad; 167 'apply not_solvable_by_rad 4 2 2 x hx'; 159 'have h_irred := irreducible_Phi ...'; 94 'all_goals exact Monic.isPrimitive (monic_Phi a b)'; 73 'leadingCoeff_Phi a b' (body of monic_Phi); 70 'rw [Polynomial.leadingCoeff, natDegree_Phi, coeff_five_Phi]' (body of leadingCoeff_Phi); 67 'natDegree_eq_of_degree_eq_some (degree_Phi a b)' (body of natDegree_Phi)",
+      "by": "verifier",
+      "at": "2026-11-14T10:59:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read module comment lines 15-28 of copied Archive/Wiedijk100Theorems/AbelRuffini.lean: it lists the three ingredients isSolvable_gal_of_irreducible, galActionHom_bijective_of_prime_degree', Equiv.Perm.not_solvable and states 'Then all that remains is the construction of a specific polynomial satisfying the conditions of galActionHom_bijective_of_prime_degree', which is done in this file'",
+      "by": "verifier",
+      "at": "2026-11-14T10:59:02Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent exists_not_solvable_by_rad (lines 169-173) cites exactly the four children: degree_Phi (L171), map_Phi (L172), monic_Phi (L173), not_solvable_by_rad' (L173); no other project lemma is used directly. Each child's statement and closed_by match the copied file verbatim (not_solvable_by_rad'=apply not_solvable_by_rad 4 2 2 x hx <;> decide; map_Phi=by simp [Φ]; monic_Phi=leadingCoeff_Phi a b; degree_Phi=suffices+rwa/rw, paraphrase of a 6-line proof). The parent's exact term closes ∃x: witness x with ⟨Φ ℚ 4 2, (monic_Phi 4 2).ne_zero, hx⟩ for IsAlgebraic and not_solvable_by_rad' x hx for non-solvability. Shape numbers correct: direct_lemmas=4, glue_lines=5 (site 169-173), child_lines=[2,2,2,6] (not_solvable_by_rad' 166-167, map_Phi 47-48, monic_Phi 72-73, degree_Phi 59-64), depth=7 (chain exists_not_solvable_by_rad→not_solvable_by_rad'→not_solvable_by_rad→irreducible_Phi→monic_Phi→leadingCoeff_Phi→natDegree_Phi→degree_Phi, uses at L173/167/159/94/73/70/67 all present).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T11:00:18Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example: applicability/goal_shape abstracts to 'general statement already proved over a parameterised family + instantiation lemma closing side conditions by computation + connecting (degree/monicity/base-change) facts', and use_when restates it role-neutrally. 'When not to use' is honest and specific (side conditions not decidable -> instantiation becomes substantial; concrete object not literally an instance -> connecting lemmas stop being simp/rw; general statement unproved -> real content is the proof). Consequences list 4 obligations, each verified against parent lines 171-173, plus concrete failure modes (decide fails, .ne_zero lost if non-monic, map_Phi wrong direction). 'Why each child is a good leaf' says what makes them good bounded-prover leaves: one-line closable by simp/leadingCoeff_Phi, degree_Phi self-contained, not_solvable_by_rad' closes via existing general statement + decide.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T11:01:38Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T11:01:59Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent and traceable: every permalink in entry.json uses commit e1545ebed97594477bbd88b2fe948ffce56e5af2, which matches entry.json source.commit, sources/mathlib4/source.json commit, and SOURCE.md pinned commit; licence Apache-2.0 is recorded identically in entry.json source.licence, SOURCE.md, and the upstream-LICENSE file (Apache 2.0 text). check_provenance.py reports 1 file byte-identical at the commit; the copied AbelRuffini.lean is 8284 bytes and sha256 89347cbe..., both matching entry.json. README 'Source and licence' points to SOURCE.md which carries the licence text and attribution.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T11:02:19Z"
+    }
+  ]
+}

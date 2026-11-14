@@ -1,0 +1,190 @@
+{
+  "id": "isabelle-key-invariant-autocorrode-d7f695a1",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Threading a frame as the key invariant through a raw for-loop",
+  "intent": "Turn a raw for-loop whose per-iteration triple carries an invariant INV xs i into a whole-loop triple with arbitrary postconditions psi, rho, chi, by strengthening the loop invariant to INV xs i star ?pc, where ?pc is a frame of magic wands that converts the terminal invariant and the per-iteration tau/theta into the target postconditions.",
+  "move": "key-invariant",
+  "also_known_as": [
+    "frame threading",
+    "strengthened loop invariant",
+    "magic-wand frame"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "autocorrode",
+    "url": "https://github.com/awslabs/AutoCorrode",
+    "commit": "200f1acf2d264f2dedee33792b986ebe73c224a3",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "Shallow_Separation_Logic/Triple.thy",
+      "bytes": 65211,
+      "sha256": "94e6b0d10a466b4079249f9621019b42c9803df6c71d12791d31d421b40a9ff8",
+      "permalink": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Triple.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Shallow_Separation_Logic/Triple.thy",
+      "lines": [
+        601,
+        638
+      ],
+      "role": "parent",
+      "name": "sstriple_raw_for_loop_framed'",
+      "excerpt_sha256": "c04829b5ecd2abc933bc7e3ce40cd92dd1f49ab8eb60c040bd547b7fa450de19",
+      "permalink": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Triple.thy#L601-L638"
+    },
+    {
+      "path": "Shallow_Separation_Logic/Triple.thy",
+      "lines": [
+        186,
+        190
+      ],
+      "role": "child",
+      "name": "sstriple_frame_rule",
+      "excerpt_sha256": "103d31d0b84e7ea3ab24835905e70055a13f69f24b037f74ee7b5f8f57073364",
+      "permalink": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Triple.thy#L186-L190"
+    },
+    {
+      "path": "Shallow_Separation_Logic/Triple.thy",
+      "lines": [
+        578,
+        599
+      ],
+      "role": "child",
+      "name": "sstriple_raw_for_loop'",
+      "excerpt_sha256": "91cddcdf5ae91e28d1e4f9d5037b9526f051c46efb7b47d1de5a75f0ac879059",
+      "permalink": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Triple.thy#L578-L599"
+    },
+    {
+      "path": "Shallow_Separation_Logic/Triple.thy",
+      "lines": [
+        164,
+        172
+      ],
+      "role": "child",
+      "name": "sstriple_consequence",
+      "excerpt_sha256": "b6165ea2ee6c8020dd6aefaf84ab04be57d61c51ff2a97a99f2c2438e6d5c977",
+      "permalink": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Triple.thy#L164-L172"
+    }
+  ],
+  "parent": {
+    "name": "sstriple_raw_for_loop_framed'",
+    "statement": "lemma sstriple_raw_for_loop_framed':\n    notes aentails_intro [intro]\n    fixes INV :: \\<open>'t list \\<Rightarrow> nat \\<Rightarrow> 'a assert\\<close>\n  assumes \\<open>\\<And>i. (i < length xs) \\<Longrightarrow> (\\<Gamma> ; INV xs i \\<turnstile> f (xs ! i) \\<stileturn> (\\<lambda>_. INV xs (i+1)) \\<bowtie> \\<tau> \\<bowtie> \\<theta>)\\<close>\n    shows \\<open>\\<Gamma> ; INV xs 0 \\<star> (INV xs (length xs) \\<Zsurj> \\<psi> ()) \\<sqinter> (\\<Sqinter>r. \\<tau> r \\<Zsurj> \\<rho> r) \\<sqinter> (\\<Sqinter>r. \\<theta> r \\<Zsurj> \\<chi> r) \\<turnstile> raw_for_loop xs f \\<stileturn> \\<psi> \\<bowtie> \\<rho> \\<bowtie> \\<chi>\\<close>"
+  },
+  "children": [
+    {
+      "name": "sstriple_frame_rule",
+      "statement": "theorem sstriple_frame_rule:\n  assumes \\<open>\\<Gamma> ; \\<phi> \\<turnstile> e \\<stileturn> \\<psi> \\<bowtie> \\<rho> \\<bowtie> \\<theta>\\<close>\n    shows \\<open>\\<Gamma> ; \\<phi> \\<star> \\<xi> \\<turnstile> e \\<stileturn> (\\<lambda>r. \\<psi> r \\<star> \\<xi>) \\<bowtie> (\\<lambda>r. \\<rho> r \\<star> \\<xi>)\\<bowtie> (\\<lambda>a. \\<theta> a \\<star> \\<xi>)\\<close>",
+      "closed_by": "intro sstriple_from_stripleI; clarsimp simp add: sstriple_striple striple_frame_rule is_local_frame",
+      "note": "Adds a separating-conjunct frame xi to every component of a triple (precondition and all three postconditions); closes by one intro of sstriple_from_stripleI."
+    },
+    {
+      "name": "sstriple_raw_for_loop'",
+      "statement": "lemma sstriple_raw_for_loop':\n    fixes I :: \\<open>'t list \\<Rightarrow> nat \\<Rightarrow> 'a assert\\<close>\n  assumes \\<open>\\<And>i. i < length xs \\<Longrightarrow> (\\<Gamma> ; I xs i \\<turnstile> f (xs ! i) \\<stileturn> (\\<lambda>_. I xs (i+1)) \\<bowtie> \\<rho> \\<bowtie> \\<theta>)\\<close>\n    shows \\<open>\\<Gamma> ; I xs 0 \\<turnstile> raw_for_loop xs f \\<stileturn> (\\<lambda>_. I xs (length xs)) \\<bowtie> \\<rho> \\<bowtie> \\<theta>\\<close>",
+      "closed_by": "induction xs arbitrary: I (base: simp add: raw_for_loop_nil sstriple_skipI; step: auto intro: sstriple_bindI)",
+      "note": "The unframed for-loop rule, over the list-indexed invariant I xs i; proved by induction on xs, with the base closed by sstriple_skipI and the step by sstriple_bindI."
+    },
+    {
+      "name": "sstriple_consequence",
+      "statement": "lemma sstriple_consequence:\n  assumes \\<open>\\<Gamma> ; \\<phi>' \\<turnstile> e \\<stileturn> \\<psi>' \\<bowtie> \\<rho>' \\<bowtie> \\<theta>'\\<close>\n      and \\<open>\\<phi> \\<longlongrightarrow> \\<phi>'\\<close>\n      and \\<open>\\<And>r. \\<psi>' r \\<longlongrightarrow> \\<psi> r\\<close>\n      and \\<open>\\<And>r. \\<rho>' r \\<longlongrightarrow> \\<rho> r\\<close>\n      and \\<open>\\<And>a. \\<theta>' a \\<longlongrightarrow> \\<theta> a\\<close>\n    shows \\<open>\\<Gamma> ; \\<phi> \\<turnstile> e \\<stileturn> \\<psi> \\<bowtie> \\<rho> \\<bowtie> \\<theta>\\<close>",
+      "closed_by": "is_local_weaken; intro sstriple_from_stripleI; clarsimp simp add: sstriple_striple striple_consequence",
+      "note": "Rule of consequence: strengthens the precondition and each postcondition of a triple."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A loop triple Gamma ; INV xs 0 star F |- raw_for_loop xs f {psi} {rho} {chi} where the per-iteration step establishes Gamma ; INV xs i |- f (xs ! i) {_. INV xs (i+1)} {tau} {theta}, and the target postconditions psi/rho/chi differ from the iteration's tau/theta; the frame F is a separating-conjunct carrier of magic wands that link them.",
+    "use_when": "the loop has a clean per-iteration invariant INV but the client wants different postconditions; the link between iteration postconditions and final postconditions is expressible as magic wands (Zsurj) held in a separating-conjunct frame.",
+    "avoid_when": "the per-iteration invariant itself needs strengthening (then strengthen INV first); the target postcondition cannot be phrased as a wand that is sound under the separating conjunction; the loop is a bounded while with a separate condition step (use sstriple_bounded_while_framed instead)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "`sstriple_frame_rule` occurs in the parent's site.",
+      "evidence_kind": "check",
+      "form": "cites(parent, sstriple_frame_rule)",
+      "evidence": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Triple.thy#L601-L638"
+    },
+    {
+      "n": 2,
+      "claim": "`sstriple_raw_for_loop'` occurs in the parent's site.",
+      "evidence_kind": "check",
+      "form": "cites(parent, sstriple_raw_for_loop')",
+      "evidence": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Triple.thy#L601-L638"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site is 38 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(parent, 38)",
+      "evidence": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Triple.thy#L601-L638"
+    },
+    {
+      "n": 4,
+      "claim": "The main proof uses three named lemmas directly — sstriple_frame_rule (line 615), sstriple_raw_for_loop' (line 631), sstriple_consequence (lines 627, 635, 637) — and the longest chain of project lemmas below it is five: sstriple_raw_for_loop' -> sstriple_skipI -> sstriple_from_stripleI -> sstriple_striple -> sstripleI.",
+      "evidence_kind": "measurement",
+      "evidence": "counted by reading Shallow_Separation_Logic/Triple.thy at commit 200f1acf2d264f2dedee33792b986ebe73c224a3: the three direct citations sit at lines 615, 631 and 627/635/637 of the parent site; the depth chain is the declarations at lines 578, 242, 112, 55, 48."
+    },
+    {
+      "n": 5,
+      "claim": "The same framing pattern — strengthen the loop invariant to INV star ?pc, frame each step, transport with sstriple_consequence — is reused in the same file by sstriple_raw_for_loop_framed (lines 539-576), sstriple_bounded_while_framed (lines 693-749) and sstriple_gather_framed (lines 814-859).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Triple.thy#L539-L576 ; https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Triple.thy#L693-L749 ; https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Triple.thy#L814-L859"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 5,
+    "glue_lines": 38,
+    "child_lines": [
+      5,
+      22,
+      9
+    ]
+  },
+  "metrics": {
+    "direct_lemmas": 3,
+    "depth": 5,
+    "glue_lines": 38,
+    "child_lines": [
+      5,
+      22,
+      9
+    ],
+    "how_counted": "direct_lemmas = named project lemmas cited inside the parent site (lines 601-638): sstriple_frame_rule (615), sstriple_raw_for_loop' (631), sstriple_consequence (627, 635, 637). depth = longest chain of project lemmas below the parent: sstriple_raw_for_loop' (578) -> sstriple_skipI (242) -> sstriple_from_stripleI (112) -> sstriple_striple (55) -> sstripleI (48), all in Shallow_Separation_Logic/Triple.thy. glue_lines/child_lines = the line counts of the parent and child sites, declaration included."
+  },
+  "consequences": "The move creates one side condition per component: tau r star ?pc --> rho r and theta a star ?pc --> chi a for the return/abort frames, plus INV xs (length xs) star ?pc --> psi () for the terminal invariant, each discharged by aentails reasoning (meson/metis) over the wand structure. Failure mode: if the frame ?pc cannot be separated cleanly from the invariant, the final sstriple_consequence transports fail. The whole proof depends on sstriple_frame_rule distributing ?pc through every component of the per-iteration triple.",
+  "known_uses": [
+    "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Triple.thy#L539-L576",
+    "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Triple.thy#L693-L749",
+    "https://github.com/awslabs/AutoCorrode/blob/200f1acf2d264f2dedee33792b986ebe73c224a3/Shallow_Separation_Logic/Triple.thy#L814-L859"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 6,
+    "relation": "supports"
+  },
+  "content_key": "d7f695a1f3a652dc16c38ea198774379144a204877c0fcd0a835036837f6c359",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "pilot-3",
+      "at": "2026-11-14T10:43:33Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T10:45:41Z",
+      "note": "parent sstriple_raw_for_loop_framed': statement re-copied from code; child 'sstriple_frame_rule': statement re-copied from the declaration of sstriple_frame_rule; child \"sstriple_raw_for_loop'\": statement re-copied from the declaration of sstriple_raw_for_loop'; child 'sstriple_consequence': statement re-copied from the declaration of sstriple_consequence"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T10:54:03Z"
+}

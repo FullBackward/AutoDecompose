@@ -1,8 +1,8 @@
 {
   "location": [
     [
-      "lean-case-split-flt-anthropic-22d1c0d8",
-      "lean-case-split-flt-anthropic-f782b482"
+      "lean-blueprint-node-flt-anthropic-a734af31",
+      "lean-other-flt-anthropic-4f58acd6"
     ],
     [
       "lean-case-split-flt-anthropic-22d1c0d8",
@@ -35,6 +35,27 @@
     [
       "lean-case-split-flt-anthropic-22d1c0d8",
       "lean-case-split-flt-anthropic-f782b482"
+    ],
+    [
+      "lean-case-split-flt-anthropic-22d1c0d8",
+      "lean-case-split-flt-anthropic-f782b482"
+    ],
+    [
+      "lean-induction-formal-proofs-ffaeb961",
+      "lean-per-callee-lemma-formal-proofs-4f0e8f5a"
+    ],
+    [
+      "lean-other-flt-imperial-4b2bc017",
+      "lean-other-flt-imperial-978f1e8a",
+      "lean-other-flt-imperial-ac21422b"
+    ],
+    [
+      "lean-other-flt-imperial-4b2bc017",
+      "lean-other-flt-imperial-ac21422b"
+    ],
+    [
+      "lean-other-flt-imperial-4b2bc017",
+      "lean-other-flt-imperial-ac21422b"
     ],
     [
       "lean-statement-object-flt-anthropic-afa74779",
@@ -43,6 +64,10 @@
     [
       "lean-suffices-or-strengthen-numina-putnam2025-3fe390a3",
       "lean-suffices-or-strengthen-numina-putnam2025-687e778f"
+    ],
+    [
+      "rocq-case-split-verdi-7798ab0c",
+      "rocq-key-invariant-verdi-09db5810"
     ]
   ],
   "content": [],
@@ -57,6 +82,10 @@
       "lean-iff-split-axiom-imo2026-5ffbca5d",
       "lean-iff-split-dirac-imo2026-ff8df4eb",
       "lean-iff-split-mechmath-imo2026-75bedf39"
+    ],
+    [
+      "lean-other-axiom-imo2026-adc45ecb",
+      "lean-other-dirac-imo2026-04ba762f"
     ],
     [
       "lean-suffices-or-strengthen-numina-putnam2025-3fe390a3",

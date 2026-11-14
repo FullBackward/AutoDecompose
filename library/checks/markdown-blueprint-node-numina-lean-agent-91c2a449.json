@@ -1,0 +1,125 @@
+{
+  "entry": "markdown-blueprint-node-numina-lean-agent-91c2a449",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:56:44Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:56:44Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "not-run",
+      "evidence": "no Lean, Rocq or Isabelle file among the copied files",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:56:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, lem:complex_step3) -> cites: lem:complex_step3 occurs at prompts/docs/prompts/coordinator.md:356",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:56:45Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(lem:complex_step2, lem:complex_step1) -> cites: lem:complex_step1 occurs at prompts/docs/prompts/coordinator.md:348",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:56:45Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(lem:complex_step3, lem:complex_step2) -> cites: lem:complex_step2 occurs at prompts/docs/prompts/coordinator.md:352",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:56:45Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1c9af8a52e715f22fede766425ba3d3b95526132",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:56:52Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "the copied file prompts/docs/prompts/coordinator.md is a Markdown prompt, not Lean/Rocq/Isabelle code; no compiler build applies and no CI workflow builds a prompt document",
+      "by": "verifier",
+      "at": "2026-11-14T09:57:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "read code/prompts/docs/prompts/coordinator.md lines 344-357: step1 block (344-345) has header+status, no uses field; step2 (347-349) names step1 at 348; step3 (351-353) names step2 at 352; parent (355-357) names step3 at 356",
+      "by": "verifier",
+      "at": "2026-11-14T09:57:15Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read code/prompts/docs/prompts/coordinator.md lines 360-365: line 362 reads '2. Select [lem:complex_step1] (no dependencies)' and line 365 reads '5. Finally prove original [lem:complex] using step3', both verbatim as claimed",
+      "by": "verifier",
+      "at": "2026-11-14T09:57:18Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1c9af8a52e715f22fede766425ba3d3b95526132",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:59:02Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Read code/prompts/docs/prompts/coordinator.md lines 338-365: parent (355-357) cites lem:complex_step3 at 356; step1 (344-345) is a leaf with no uses; step2 (347-349) cites step1 at 348; step3 (351-353) cites step2 at 352; before-context (338-339) shows partial 45/50; your-action (360-365) schedules leaves-first (line 362 'no dependencies', 365 'using step3'). Closing methods in entry.json match these uses fields. Shape: glue_lines=3 (=355-357), child_lines=[2,3,3] (=344-345, 347-349, 351-353) both confirmed by validate_entry --strict and by direct read; depth=3 = the 3-node chain below the parent; direct_lemmas=3 = the 3 children, consistent with sibling markdown-workflow-numina-lean-agent-b4e8ebdf (also direct_lemmas=3, depth=3 for its 3-node chain). Claims 1-3 machine-verified by check_claims.py; claims 4-5 verified with correct line citations. Decomposition is exactly what the entry says and closes structurally.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T10:00:49Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "object",
+      "evidence": "Move is generalized reasonably (goal_shape/use_when state the 'stalled node -> linear chain of named sub-nodes with uses fields + reset budget, scheduled leaves-first' pattern, not just lem:complex), and leaf quality is stated (leaf has no uses field so it closes from its own statement; non-leaves close from a named sibling; the 0/20 reset bounds each attempt). But one 'when not to use' item is not honest/specific: 'deepen the dependency graph past the project's depth cap' invents a constraint absent from the copied source -- grep of the only copied file (coordinator.md) finds no depth/cap mention, and unlike the Simple/Complex triggers this item carries no locator. Fix: drop 'past the project's depth cap' and keep the honest reason ('a long chain serialises work that could be parallel'), or cite where the cap is defined. Minor: 'three or more distinct steps' is the writer's threshold, not in the source's Complex trigger (lines 134-138: >20 lines / needs splitting); label it as the writer's rule or tie it to those bullets.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T10:02:22Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1c9af8a52e715f22fede766425ba3d3b95526132",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T10:02:42Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes (1 file byte-identical at 1c9af8a52e715f22fede766425ba3d3b95526132). Commit is consistent everywhere: entry.json source.commit, files/sites permalinks, README and SOURCE.md all pin 1c9af8a52e715f22fede766425ba3d3b95526132. Permalink line ranges match the copied coordinator.md (checked 338-339, 344-345, 347-349, 351-353, 355-357, 360-365: step1 leaf, step2 uses step1@348, step3 uses step2@352, parent uses step3@356, action list). Licence LicenseRef-unknown is consistent between entry.json and sources/numina-lean-agent/SOURCE.md, and GitHub API reports license:null (no LICENSE at root), matching the source note's 'no licence file found at the root'; unknown licence is tagged per protocol section 2 decision 1. Source note present and matches source_id/url/commit/licence.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T10:04:42Z"
+    }
+  ]
+}

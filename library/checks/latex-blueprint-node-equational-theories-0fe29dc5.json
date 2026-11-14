@@ -1,0 +1,125 @@
+{
+  "entry": "latex-blueprint-node-equational-theories-0fe29dc5",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:12:08Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T09:12:08Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T09:12:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(greedy-iterate, 5) -> lines: site greedy-iterate has 5 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:12:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(greedy-iterate, greedy-1323) -> cites: greedy-1323 occurs at blueprint/src/chapter/1323.tex:114",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:12:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(greedy-iterate, build-magma) -> cites: build-magma occurs at blueprint/src/chapter/1323.tex:114",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:12:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "cites(greedy-iterate, partial-1323-sound) -> cites: partial-1323-sound occurs at blueprint/src/chapter/1323.tex:114",
+      "by": "check_claims.py",
+      "at": "2026-11-14T09:12:08Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 8b87204d5b201e1cf6c69b8dcabb0558109bee00",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:12:19Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/blueprint-paper.yml (Compile blueprint and paper); triggers on push/PR to default branch main with path filter 'blueprint/**', and its 'Build project documentation' step runs docgen-action with blueprint:true; 'Build project' step runs lake build equational_theories (compiles Equation1323.lean). Covers blueprint/src/chapter/1323.tex.",
+      "by": "verifier",
+      "at": "2026-11-14T09:13:27Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Read copied code/blueprint/src/chapter/1323.tex: line 114 = \\begin{proof}\\uses{greedy-1323, build-magma, partial-1323-sound} (3 direct lemmas); line 101 = greedy-1323 lemma with \\uses{partial-1323-sound}; line 62 = build-magma proof opening \\begin{proof}\\uses{bij}. Depth 2 (corollary -> greedy-1323/build-magma -> partial-1323-sound/bij) confirmed.",
+      "by": "verifier",
+      "at": "2026-11-14T09:13:29Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 8b87204d5b201e1cf6c69b8dcabb0558109bee00",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:13:57Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent site greedy-iterate is 1323.tex:111-115 (5 lines), its proof at :114 cites exactly \\uses{greedy-1323, build-magma, partial-1323-sound} = the entry's three children, nothing else. Children match the code: greedy-1323 101-109 (9 lines), build-magma 37-85 (49 lines, \\uses{bij} at :62), partial-1323-sound 91-99 (9 lines). Closing methods match: greedy-1323 proof 104-108, build-magma proof 62-85, partial-1323-sound 'Routine.' at :98. Shape numbers right: direct_lemmas=3, depth=2 (greedy-iterate->greedy-1323->partial-1323-sound, and ->build-magma->bij), glue_lines=5, child_lines=[9,49,9]. Lean \\lean{} mappings verified at cited ranges (extend 523-530, Axiom3 533-534, exists_complete_function 536-560, op 570-577, op_RSy_LSy_eq_Id 579-580, op_Ly_Ry_eq_LSy 595-610). Provenance: 2 files byte-identical.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T09:14:59Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated beyond the example via goal_shape/use_when/avoid_when plus three named analogues in also_known_as; when-not-to-use and consequences are specific and honest, flagging the missing lean-annotation child (partial-1323-sound) that the entry itself contains and locating its folded-in Lean counterpart; the good-leaf section names the bounded-prover-relevant property (self-contained statement, closes on its own or from a named sibling), confirmed in the cited tex ranges.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T09:16:09Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 8b87204d5b201e1cf6c69b8dcabb0558109bee00",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T09:16:28Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks use full pinned commit 8b87204d5b201e1cf6c69b8dcabb0558109bee00 matching source.json/SOURCE.md; check_provenance passes (2 files byte-identical at that commit); licence Apache-2.0 consistent across entry.json, README, SOURCE.md, source.json and upstream-LICENSE (Apache-2.0 text present); SOURCE.md records licence files and attribution; all cited line ranges in 1323.tex (111-115,101-109,37-85,91-99,87-89,27-34) and Equation1323.lean (536-560,523-530,533-534,570-577,579-580,595-610) match the copied files.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T09:16:58Z"
+    }
+  ]
+}
