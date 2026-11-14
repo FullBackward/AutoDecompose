@@ -722,12 +722,18 @@ def ledger_sites(sources: list[str]) -> list[dict]:
     return out
 
 
+#: GitHub organisations that were renamed; the old name redirects to the new one.
+ORG_RENAMES = {"coq-community": "rocq-community"}
+
+
 def norm_url(u: str) -> str | None:
+    """One spelling per repository: owner and name lower-cased (GitHub and GitLab ignore case) and
+    renamed organisations mapped to their current name, so one repository is one candidate."""
     m = re.match(r"\s*https?://(?:www\.)?(github\.com|gitlab\.[\w.]+)/([\w.\-]+)/([\w.\-]+)", u or "")
     if not m:
         return None
-    repo = re.sub(r"\.git$", "", m[3])
-    return f"https://{m[1].lower()}/{m[2]}/{repo}"
+    owner, repo = m[2].lower(), re.sub(r"\.git$", "", m[3]).lower()
+    return f"https://{m[1].lower()}/{ORG_RENAMES.get(owner, owner)}/{repo}"
 
 
 def registered_urls() -> set[str]:
@@ -785,10 +791,18 @@ def refuted_claims(eid: str) -> list[int]:
     return sorted(int(k) for k, v in last.items() if v == "refuted" and k in ns)
 
 
+_PROMOTE = threading.Lock()
+
+
 def promote(eid: str) -> str:
-    st = lambda s: subprocess.run([sys.executable, str(LIB / "tools" / "set_status.py"), eid, s],
-                                  cwd=REPO, capture_output=True, text=True).returncode == 0
-    return "accepted" if st("accepted") else "verified" if st("verified") else "draft"
+    """Promote as far as the gates allow. The duplicate report is rewritten first, so the duplicate
+    gate sees the entries made earlier in this run (it was written only at assembly before)."""
+    run = lambda *a: subprocess.run([sys.executable, str(LIB / "tools" / a[0]), *a[1:]],
+                                    cwd=REPO, capture_output=True, text=True)
+    with _PROMOTE:
+        run("dedupe.py", "--write")
+        st = lambda s: run("set_status.py", eid, s).returncode == 0
+        return "accepted" if st("accepted") else "verified" if st("verified") else "draft"
 
 
 def smoke():
