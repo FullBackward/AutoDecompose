@@ -1,0 +1,133 @@
+{
+  "entry": "lean-calc-chain-physlib-cf369839",
+  "records": [
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(sandwichedRenyiEntropy_DPI_gt_one, QuantumInfo/Entropy/DPI.lean, 1349-1378) -> declared: sandwichedRenyiEntropy_DPI_gt_one is declared at QuantumInfo/Entropy/DPI.lean:1349",
+      "by": "check_claims.py",
+      "at": "2026-11-14T16:03:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(QuantumInfo/Entropy/DPI.lean, 1349-1378) -> no_sorry: none of sorry, admit, axiom in QuantumInfo/Entropy/DPI.lean:1349-1378",
+      "by": "check_claims.py",
+      "at": "2026-11-14T16:03:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(sandwichedRenyiEntropy_DPI_gt_one, purify_trace) -> cites: purify_trace occurs at QuantumInfo/Entropy/DPI.lean:1357",
+      "by": "check_claims.py",
+      "at": "2026-11-14T16:03:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "6",
+      "value": "verified",
+      "evidence": "lines(sandwichedRenyiEntropy_DPI_gt_one, 30) -> lines: site sandwichedRenyiEntropy_DPI_gt_one has 30 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T16:03:20Z"
+    },
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T16:03:33Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T16:03:33Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T16:03:34Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: purify_IsUnitary@QuantumInfo/Entropy/DPI.lean:1356, purify_trace@QuantumInfo/Entropy/DPI.lean:1357, prep_append_eq_tensor_pure@QuantumInfo/Entropy/DPI.lean:1370, sandwichedRenyiEntropy_mono_traceLeft@QuantumInfo/Entropy/DPI.lean:1372, sandwichedRenyiEntropy_conj_unitary@QuantumInfo/Entropy/DPI.lean:1376, sandwichedRenyiEntropy_tensor_pure@QuantumInfo/Entropy/DPI.lean:1378; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T16:03:34Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at ca577bfd34ef356be2595528da1ef13a4a405816",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T16:03:47Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml runs 'lake build -KCI --iofail' which builds Physlib (incl. QuantumInfo/Entropy/DPI.lean); pinned commit ca577bfd is on default branch master (compare master...ca577bfd = behind by 1, ahead 0)",
+      "by": "verifier",
+      "at": "2026-11-14T16:05:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Doc comment above the theorem (DPI.lean 1341-1348) reads verbatim as quoted: 'The proof uses the Stinespring representation (see CPTPMap.exists_purify): every CPTP map can be written as ancilla preparation + unitary conjugation + partial trace. Since the sandwiched Rényi divergence is invariant under the first two operations (by additivity and relabel invariance) and monotone under partial trace (by sandwichedRenyiEntropy_mono_traceRight), the DPI follows.'",
+      "by": "verifier",
+      "at": "2026-11-14T16:05:42Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Chain verified in QuantumInfo/Entropy/DPI.lean: mono_traceLeft declared 1314, cites mono_traceRight' at 1321; mono_traceRight' (1302) cites mono_traceRight at 1306; mono_traceRight (1209) cites sandwichedTraceFunctional_mono_traceRight at 1222; sandwichedTraceFunctional_mono_traceRight (1083) cites sandwichedTraceFunctional_jointly_convex at 1110; jointly_convex declared 568. All in the same file.",
+      "by": "verifier",
+      "at": "2026-11-14T16:05:44Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Verified against local copies. Parent sandwichedRenyiEntropy_DPI_gt_one (DPI.lean:1349-1378) is a six-link calc chain walking D̃_α(Φρ‖Φσ) to D̃_α(ρ‖σ) via = and ≤ only (no ≥), so it closes. The six children are exactly the six named lemmas the glue cites: purify_IsUnitary (obtain at 1356), purify_trace (1365), prep_append_eq_tensor_pure (1370), sandwichedRenyiEntropy_mono_traceLeft (1372 & 1374), sandwichedRenyiEntropy_conj_unitary (1376), sandwichedRenyiEntropy_tensor_pure (1378); no extra named lemma is cited. Each child statement and closed_by matches the code verbatim (purify_IsUnitary=choose_spec.1; purify_trace=choose_spec.2; prep_append_eq_tensor_pure via CPTPMap.prep_append_map_entry; mono_traceLeft via mono_traceRight'+SWAP; conj_unitary via sandwichedTraceFunctional_conj_unitary_MState+by_cases; tensor_pure=simp[hα]). Shape numbers correct: direct_lemmas=6, glue_lines=30 (1349-1378), child_lines=[2,7,13,9,51,3] matching each child site span, and depth=5 confirmed by the real chain mono_traceLeft(1314)->mono_traceRight'(1321)->mono_traceRight(1306/1209)->sandwichedTraceFunctional_mono_traceRight(1222/1083)->sandwichedTraceFunctional_jointly_convex(1110/568).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T16:07:34Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generically: applicability.goal_shape/use_when and README 'When to use it' describe an order-respecting quantity plus a representation-theorem walk (ancilla+unitary+trace), not this DPI alone; the author doc comment (DPI.lean 1341-1348, claim 4) gives the same generic reduction. 'When not to use' and consequences are honest and specific, and I confirmed each in code: the >= direction caveat is a real calc-chain limitation; steps 3/4 both use sandwichedRenyiEntropy_mono_traceLeft hα .. (parent lines 1372/1374); the kernel condition is dispatched by by_cases hker in mono_traceRight' (line 1305); the leaves are one-line projections purify_IsUnitary/purify_trace = exists_purify .. |>.choose_spec.i (CPTP.lean 753/763) or simp [hα] (tensor_pure, DPI.lean 1287-1289). 'Why each child is a good leaf' answers the bounded-prover question: each leaf is a self-contained statement closing on its own or on named siblings, one per link, so a bounded prover gets one lemma-sized hole.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T16:09:11Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at ca577bfd34ef356be2595528da1ef13a4a405816",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T16:09:31Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit and licence are consistent and traceable. check_provenance.py passes: both copied files (DPI.lean, CPTP.lean) byte-identical at ca577bfd34ef356be2595528da1ef13a4a405816. All entry permalinks use that same commit. entry.json source.commit, source.json commit, and SOURCE.md commit agree. Licence recorded as Apache-2.0 in entry, source.json, and SOURCE.md; the LICENSE at the pinned commit fetched via fetch_file.py is Apache 2.0 and sha256-matches sources/physlib/upstream-LICENSE.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T16:10:03Z"
+    }
+  ]
+}

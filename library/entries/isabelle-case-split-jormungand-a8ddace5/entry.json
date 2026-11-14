@@ -1,0 +1,198 @@
+{
+  "id": "isabelle-case-split-jormungand-a8ddace5",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Per-slot CNode initialisation split on original_cap_at",
+  "intent": "Reduce the per-slot CNode-initialisation theorem -- a Hoare triple that init_cnode_slot ... Move turns a half-initialised slot into an initialised slot -- to a case split on whether the slot holds an original capability, dispatching each branch to one of two framed separation-logic lemmas already proved for exactly that case.",
+  "move": "case-split",
+  "also_known_as": [
+    "boolean case split",
+    "if-split on a spec predicate",
+    "case_tac on a precondition"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "jormungand",
+    "url": "https://github.com/sel4proj/jormungand",
+    "commit": "bad97f9817b4034cd705cd295a1f86af880a7631",
+    "licence": "GPL-2.0-only"
+  },
+  "files": [
+    {
+      "path": "case_study/l4v/sys-init/InitCSpace_SI.thy",
+      "bytes": 92118,
+      "sha256": "c2675d85a5b86b68591ee42c518d8b70a73b08a136d3b03e50da8c5123897324",
+      "permalink": "https://github.com/sel4proj/jormungand/blob/bad97f9817b4034cd705cd295a1f86af880a7631/case_study/l4v/sys-init/InitCSpace_SI.thy"
+    },
+    {
+      "path": "case_study/l4v/sys-init/ObjectInitialised_SI.thy",
+      "bytes": 67149,
+      "sha256": "24dc2e2bf60bfb29d2fb5fb5c5d330b3ba0c963064790ebc6a38acbc4a893fa8",
+      "permalink": "https://github.com/sel4proj/jormungand/blob/bad97f9817b4034cd705cd295a1f86af880a7631/case_study/l4v/sys-init/ObjectInitialised_SI.thy"
+    },
+    {
+      "path": "case_study/l4v/sys-init/RootTask_SI.thy",
+      "bytes": 41323,
+      "sha256": "824ec5dbf8c220a842ab3a4ee7194f3f418b82ac4ec652a8557bdb04835d2d38",
+      "permalink": "https://github.com/sel4proj/jormungand/blob/bad97f9817b4034cd705cd295a1f86af880a7631/case_study/l4v/sys-init/RootTask_SI.thy"
+    },
+    {
+      "path": "case_study/l4v/sys-init/SysInit_SI.thy",
+      "bytes": 23932,
+      "sha256": "1acb743f71767f4da513883d5183c6ae36e99b9bd99fc62e1c5e4e09c276ffd2",
+      "permalink": "https://github.com/sel4proj/jormungand/blob/bad97f9817b4034cd705cd295a1f86af880a7631/case_study/l4v/sys-init/SysInit_SI.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "case_study/l4v/sys-init/InitCSpace_SI.thy",
+      "lines": [
+        1215,
+        1231
+      ],
+      "role": "parent",
+      "name": "init_cnode_slot_move_sep",
+      "excerpt_sha256": "3060b6d7e2a2731db13d4ebb2c80189b1cb240990b36f4b61ae7fceee90165a6",
+      "permalink": "https://github.com/sel4proj/jormungand/blob/bad97f9817b4034cd705cd295a1f86af880a7631/case_study/l4v/sys-init/InitCSpace_SI.thy#L1215-L1231"
+    },
+    {
+      "path": "case_study/l4v/sys-init/InitCSpace_SI.thy",
+      "lines": [
+        1106,
+        1175
+      ],
+      "role": "child",
+      "name": "init_cnode_slot_move_original_sep",
+      "excerpt_sha256": "7842c2b0f29966cd10c6a6202456b09816fb131f8ab67ec0fb067dc42a22820b",
+      "permalink": "https://github.com/sel4proj/jormungand/blob/bad97f9817b4034cd705cd295a1f86af880a7631/case_study/l4v/sys-init/InitCSpace_SI.thy#L1106-L1175"
+    },
+    {
+      "path": "case_study/l4v/sys-init/InitCSpace_SI.thy",
+      "lines": [
+        1195,
+        1213
+      ],
+      "role": "child",
+      "name": "init_cnode_slot_move_not_original_sep",
+      "excerpt_sha256": "e2f16edf0ac9269df429182ce423b733045c5d52236235ba77888ebfa0bab4a9",
+      "permalink": "https://github.com/sel4proj/jormungand/blob/bad97f9817b4034cd705cd295a1f86af880a7631/case_study/l4v/sys-init/InitCSpace_SI.thy#L1195-L1213"
+    }
+  ],
+  "parent": {
+    "name": "init_cnode_slot_move_sep",
+    "statement": "lemma init_cnode_slot_move_sep:\n  \"\\<lbrakk>well_formed spec; cnode_at obj_id spec;cap_at (\\<lambda>c. is_device_cap c = dev) (obj_id, slot) spec\\<rbrakk> \\<Longrightarrow>\n   \\<lbrace>\\<guillemotleft>cnode_slot_half_initialised spec t obj_id slot \\<and>*\n     si_obj_cap_at t orig_caps spec dev obj_id slot \\<and>*\n     si_spec_irq_cap_at irq_caps spec obj_id slot \\<and>*\n     si_cap_at t dup_caps spec dev obj_id \\<and>*\n     object_fields_empty spec t obj_id \\<and>* si_objects \\<and>* R\\<guillemotright> \\<rbrace>\n   init_cnode_slot spec orig_caps dup_caps irq_caps Move obj_id slot\n   \\<lbrace>\\<lambda>_.\\<guillemotleft>object_slot_initialised spec t obj_id slot \\<and>*\n        si_spec_obj_null_cap_at t orig_caps spec obj_id slot \\<and>*\n        si_spec_irq_null_cap_at irq_caps spec obj_id slot \\<and>*\n        si_cap_at t dup_caps spec dev obj_id \\<and>*\n        object_fields_empty spec t obj_id \\<and>* si_objects \\<and>* R\\<guillemotright>\\<rbrace>\""
+  },
+  "children": [
+    {
+      "name": "init_cnode_slot_move_original_sep",
+      "statement": "lemma init_cnode_slot_move_original_sep:\n  \"\\<lbrakk>well_formed spec; cnode_at obj_id spec;\n    original_cap_at (obj_id, slot) spec;\n    cap_at (\\<lambda>c. is_device_cap c = dev) (obj_id, slot)  spec\\<rbrakk> \\<Longrightarrow>\n   \\<lbrace>\\<guillemotleft>cnode_slot_half_initialised spec t obj_id slot \\<and>*\n     si_obj_cap_at t orig_caps spec dev obj_id slot \\<and>*\n     si_spec_irq_cap_at irq_caps spec obj_id slot \\<and>*\n     si_cap_at t dup_caps spec dev obj_id \\<and>*\n     object_fields_empty spec t obj_id \\<and>* si_objects \\<and>* R\\<guillemotright> \\<rbrace>\n   init_cnode_slot spec orig_caps dup_caps irq_caps Move obj_id slot\n   \\<lbrace>\\<lambda>_.\\<guillemotleft>object_slot_initialised spec t obj_id slot \\<and>*\n        si_spec_obj_null_cap_at t orig_caps spec obj_id slot \\<and>*\n        si_spec_irq_null_cap_at irq_caps spec obj_id slot \\<and>*\n        si_cap_at t dup_caps spec dev obj_id \\<and>*\n        object_fields_empty spec t obj_id \\<and>* si_objects \\<and>* R\\<guillemotright>\\<rbrace>\"",
+      "closed_by": "case_tac on the shape of opt_cap, then wp seL4_CNode_Mutate_object_slot_initialised_sep / seL4_CNode_Move_object_slot_initialised_cap_has_object_sep / seL4_CNode_Move_object_slot_initialised_irqhandler_cap_sep",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The original-capability branch: the slot's spec cap is one of NullCap, None, a cap with an object, or an IRQ-handler cap, and each shape is moved or mutated into the duplicate cspace by a seL4_CNode_Move/Mutate object-slot lemma."
+    },
+    {
+      "name": "init_cnode_slot_move_not_original_sep",
+      "statement": "lemma init_cnode_slot_move_not_original_sep:\n  \"\\<lbrakk>well_formed spec; cnode_at obj_id spec;\n    \\<not> original_cap_at (obj_id, slot) spec\\<rbrakk> \\<Longrightarrow>\n   \\<lbrace>\\<guillemotleft>cnode_slot_half_initialised spec t obj_id slot \\<and>*\n     si_obj_cap_at t orig_caps spec dev obj_id slot \\<and>*\n     si_spec_irq_cap_at irq_caps spec obj_id slot \\<and>*\n     si_cap_at t dup_caps spec dev obj_id \\<and>*\n     object_fields_empty spec t obj_id \\<and>* si_objects \\<and>* R\\<guillemotright> \\<rbrace>\n   init_cnode_slot spec orig_caps dup_caps irq_caps Move obj_id slot\n   \\<lbrace>\\<lambda>_.\\<guillemotleft>object_slot_initialised spec t obj_id slot \\<and>*\n        si_spec_obj_null_cap_at t orig_caps spec obj_id slot \\<and>*\n        si_spec_irq_null_cap_at irq_caps spec obj_id slot \\<and>*\n        si_cap_at t dup_caps spec dev obj_id \\<and>*\n        object_fields_empty spec t obj_id \\<and>* si_objects \\<and>* R\\<guillemotright>\\<rbrace>\"",
+      "closed_by": "wp init_cnode_slot_move_not_original_inv, then clarsimp",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The no-original-capability branch: the slot is left untouched, so the half-initialised and null-cap/initialised predicates coincide and the frame is preserved."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "a Hoare triple over init_cnode_slot spec orig_caps dup_caps irq_caps Move obj_id slot whose precondition is the separating conjunction cnode_slot_half_initialised ... ∧* si_obj_cap_at ... ∧* si_spec_irq_cap_at ... ∧* si_cap_at ... ∧* object_fields_empty ... ∧* si_objects ∧* R and whose postcondition is the same frame with object_slot_initialised and the null-cap predicates substituted, under the premises well_formed spec, cnode_at obj_id spec and cap_at (λc. is_device_cap c = dev) (obj_id, slot) spec.",
+    "use_when": "the program's behaviour branches on a single boolean predicate of the spec (here original_cap_at (obj_id, slot) spec); one framed lemma already exists for each branch, stated with that predicate (or its negation) as an extra premise and with the same pre/post frame; and the two branch lemmas together cover the predicate, so wp can select them and discharge the split with no other work.",
+    "avoid_when": "the two branches need different frames or different generalisations (then wp against the branch lemmas will not close the split goal); the predicate is not exhaustive over the domain (then case_tac leaves a third case); or the branch lemmas have not been proved yet."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent init_cnode_slot_move_sep cites init_cnode_slot_move_original_sep.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/sel4proj/jormungand/blob/bad97f9817b4034cd705cd295a1f86af880a7631/case_study/l4v/sys-init/InitCSpace_SI.thy#L1215-L1231",
+      "form": "cites(init_cnode_slot_move_sep, init_cnode_slot_move_original_sep)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent init_cnode_slot_move_sep cites init_cnode_slot_move_not_original_sep.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/sel4proj/jormungand/blob/bad97f9817b4034cd705cd295a1f86af880a7631/case_study/l4v/sys-init/InitCSpace_SI.thy#L1215-L1231",
+      "form": "cites(init_cnode_slot_move_sep, init_cnode_slot_move_not_original_sep)"
+    },
+    {
+      "n": 3,
+      "claim": "No sorry occurs in case_study/l4v/sys-init/InitCSpace_SI.thy lines 1106-1231.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/sel4proj/jormungand/blob/bad97f9817b4034cd705cd295a1f86af880a7631/case_study/l4v/sys-init/InitCSpace_SI.thy#L1106-L1231",
+      "form": "no_sorry(case_study/l4v/sys-init/InitCSpace_SI.thy, 1106-1231)"
+    },
+    {
+      "n": 4,
+      "claim": "direct_lemmas = 2; glue_lines = 17 (InitCSpace_SI.thy lines 1215-1231, the full parent lemma); child proof lines = 70 (original, 1106-1175) and 19 (not_original, 1195-1213); depth = 3, the longest project-lemma chain init_cnode_slot_move_sep -> init_cnode_slot_move_original_sep -> seL4_CNode_Mutate_object_slot_initialised_sep -> seL4_CNode_Mutate_object_slot_initialised_sep_helper.",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/sel4proj/jormungand/blob/bad97f9817b4034cd705cd295a1f86af880a7631/case_study/l4v/sys-init/InitCSpace_SI.thy#L1215-L1231, #L1106-L1175, #L1195-L1213, #L1062-L1100, #L781"
+    },
+    {
+      "n": 5,
+      "claim": "The same case_tac on original_cap_at recurs in the Copy mode of the same file: init_cnode_slot_copy_sep (lines 1545-1562) splits on original_cap_at and dispatches to init_cnode_slot_copy_original_sep and init_cnode_slot_copy_not_original_sep.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/sel4proj/jormungand/blob/bad97f9817b4034cd705cd295a1f86af880a7631/case_study/l4v/sys-init/InitCSpace_SI.thy#L1545-L1562"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 3,
+    "glue_lines": 17,
+    "child_lines": [
+      70,
+      19
+    ]
+  },
+  "metrics": {
+    "glue_lines": 17,
+    "direct_lemmas": 2,
+    "depth": 3,
+    "children_closed_by_automation": 2,
+    "how_counted": "glue_lines = lines 1215-1231 of InitCSpace_SI.thy (the full parent lemma; the glue itself is the three lines 1228-1230, case_tac plus two wp applications); direct_lemmas = the two named lemmas the glue applies; depth = the longest project-lemma chain init_cnode_slot_move_sep -> init_cnode_slot_move_original_sep -> seL4_CNode_Mutate_object_slot_initialised_sep -> seL4_CNode_Mutate_object_slot_initialised_sep_helper; children_closed_by_automation = both children close by wp/clarsimp (the original child after its own inner case split)"
+  },
+  "consequences": "The case split on a boolean predicate creates exactly two goals (predicate holds / does not hold) plus an exhaustiveness obligation, which case_tac on a boolean discharges itself because the predicate is either true or false; no separate original_cap_at ... ∨ ¬ original_cap_at ... lemma is stated. The two branch lemmas must each carry the discriminating predicate as a premise so that wp can select them; if a branch needed the predicate to be derived rather than assumed, the wp dispatch would not close. The original branch is itself a second-level split on the shape of the spec cap (NullCap / None / cap_has_object / is_irqhandler_cap), so that side of the decomposition is two layers deep and its leaves are the seL4 object-slot lemmas.",
+  "known_uses": [
+    "https://github.com/sel4proj/jormungand/blob/bad97f9817b4034cd705cd295a1f86af880a7631/case_study/l4v/sys-init/InitCSpace_SI.thy#L1545-L1562"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 5,
+    "relation": "supports"
+  },
+  "content_key": "a8ddace53283cf755a45ea2af731f5c850638a4ec340d06df3deee3a0ebd6627",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:51:36Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T16:05:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:54:00Z",
+      "note": "parent init_cnode_slot_move_sep: statement re-copied from code; child 'init_cnode_slot_move_original_sep': statement re-copied from the declaration of init_cnode_slot_move_original_sep; child 'init_cnode_slot_move_not_original_sep': statement re-copied from the declaration of init_cnode_slot_move_not_original_sep"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "fixer",
+      "run": "after discovery-2",
+      "at": "2026-11-14T16:19:19Z",
+      "note": "Changed from BSD-2-Clause to GPL-2.0-only to meet the provenance-licence objection: all four copied files (code/case_study/l4v/sys-init/InitCSpace_SI.thy, ObjectInitialised_SI.thy, RootTask_SI.thy, SysInit_SI.thy) carry the header 'This software may be distributed and modified according to the terms of the GNU General Public License version 2 ... @TAG(NICTA_GPL)' (lines 1-8). The source note now records BSD-2-Clause AND GPL-2.0-only and copies case_study/l4v/LICENSE_GPLv2.txt. README's Licence row and Source-and-licence section updated to match."
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T16:00:47Z"
+}

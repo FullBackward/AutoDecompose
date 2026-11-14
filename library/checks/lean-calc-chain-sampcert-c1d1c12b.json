@@ -1,0 +1,133 @@
+{
+  "entry": "lean-calc-chain-sampcert-c1d1c12b",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:51:19Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:51:19Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:51:19Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: DiscreteLaplaceSampleMixed_equiv@SampCert/Samplers/Gaussian/Properties.lean:66, ite_simpl_gaussian_1@SampCert/Samplers/Gaussian/Properties.lean:76, ite_simpl_gaussian_2@SampCert/Samplers/Gaussian/Properties.lean:81, BernoulliExpNegSample_normalizes@SampCert/Samplers/Gaussian/Properties.lean:89, DiscreteLaplaceSample_normalizes@SampCert/Samplers/Gaussian/Properties.lean:91; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:51:19Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(DiscreteGaussianSampleLoop_normalizes, SampCert/Samplers/Gaussian/Properties.lean, 60-91) -> declared: DiscreteGaussianSampleLoop_normalizes is declared at SampCert/Samplers/Gaussian/Properties.lean:60",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:51:19Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, DiscreteLaplaceSample_normalizes) -> cites: DiscreteLaplaceSample_normalizes occurs at SampCert/Samplers/Gaussian/Properties.lean:91",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:51:19Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at a2c53bb5ff790e729e252958060699b7eff898b9",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:51:30Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/lean_build.yml (leanprover/lean-action@v1 runs lake build on the whole project incl. SampCert/Samplers/Gaussian/Properties.lean; triggers on push to main); pinned commit a2c53bb5ff790e729e252958060699b7eff898b9 is the head of default branch main",
+      "by": "verifier",
+      "at": "2026-11-14T15:53:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "parent 60-91 = 32 lines (sed 60-91); 5 children with spans 1103-1109=7, 28-40=13, 42-54=13, 1148-1169=22, 420-454=35 (sed confirms declarations/last proof lines); depth chain 5 edges: parent:91 -> DiscreteLaplaceSample_normalizes (claim2), Laplace:422 -> DiscreteLaplaceSampleLoop_normalizes, Laplace:278 (inside DiscreteLaplaceSampleLoop_normalizes decl at :250) -> BernoulliExpNegSample_normalizes, Bernoulli:1153 -> BernoulliExpNegSampleUnit_normalizes, Bernoulli:1095 -> BernoulliExpNegSampleUnitAux_normalizes (grep -n)",
+      "by": "verifier",
+      "at": "2026-11-14T15:53:58Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Gaussian/Properties.lean:245 have A := DiscreteGaussianSampleLoop_normalizes (num ^ 2) (den ^ 2) (↑num / ↑den : ℕ).succPNat mix; :252 rw [probUntil_apply_norm _ _ _ A]",
+      "by": "verifier",
+      "at": "2026-11-14T15:53:59Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Gaussian/Properties.lean:57 doc comment 'Gaussian sampling attempt is a proper distribution.' (lines 56-58 /-- ... -/)",
+      "by": "verifier",
+      "at": "2026-11-14T15:54:00Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at a2c53bb5ff790e729e252958060699b7eff898b9",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:54:28Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent DiscreteGaussianSampleLoop_normalizes is at Gaussian/Properties.lean 60-91 (glue 32 lines); the glue cites exactly the five named children (DiscreteLaplaceSampleMixed_equiv L66, ite_simpl_gaussian_1 L76, ite_simpl_gaussian_2 L81, BernoulliExpNegSample_normalizes L89, DiscreteLaplaceSample_normalizes L91) and closes with rw [DiscreteLaplaceSample_normalizes] after simp [mul_one] (no sorry). Each child statement and closed_by reproduce the copied code verbatim. Shape numbers correct: direct_lemmas=5, child_lines=[7,13,13,22,35] match spans 1103-1109/28-40/42-54/1148-1169/420-454, depth=5 confirmed by the cited chain L91->L422->L278->L1153->L1095.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:55:23Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally via applicability.goal_shape (sum over a bind of two primitive samplers; chain of rewrites i-iv) and README 'When to use it, and when not' (product space whose component normalization lemmas exist; each step one rw to a named lemma). 'Avoid when' and consequences are honest and specific: mismatched hypotheses, a step needing several lemmas/have sub-proof, a factor needing a non-trivial bound; failure modes match the copied code (ite_simpl lemmas match exact @ite shape; conv blocks fix arg 1; ext a). Good-leaf section explicitly says what makes lemmas bounded-prover-friendly (self-contained, no sibling in statement, close on split/simp/subst/contradiction; Bernoulli/Laplace normalization stated independently and reused). Verified reuse at Laplace/Properties.lean:278 and known-use at Gaussian/Properties.lean:245,252.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:56:06Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at a2c53bb5ff790e729e252958060699b7eff898b9",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:56:25Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance check passes: all 3 copied files byte-identical at pinned commit a2c53bb5ff790e729e252958060699b7eff898b9; file bytes (12473/39431/40190) match entry.json. Commit, licence (Apache-2.0) and every permalink in entry.json and README.md use the same pinned commit and match sources/sampcert/source.json and SOURCE.md; upstream-LICENSE is the Apache-2.0 text. Source note present with licence text and attribution; everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:56:37Z"
+    }
+  ]
+}

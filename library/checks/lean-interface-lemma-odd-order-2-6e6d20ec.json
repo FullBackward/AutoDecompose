@@ -1,0 +1,133 @@
+{
+  "entry": "lean-interface-lemma-odd-order-2-6e6d20ec",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:58:43Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:58:43Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:58:43Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: lemmaC1@OddOrder/BG/AppC_FinalContradiction.lean:128, normSetE_eq_inv_of_forall_normN_two_mul_sub_one@OddOrder/BG/AppC_FinalContradiction.lean:129, lemmaC2@OddOrder/BG/AppC_FinalContradiction.lean:130; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:58:43Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, lemmaC1) -> cites: lemmaC1 occurs at OddOrder/BG/AppC_FinalContradiction.lean:128",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:58:43Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(OddOrder/BG/AppC_FinalContradiction.lean, 124-130) -> no_sorry: none of sorry, admit, axiom in OddOrder/BG/AppC_FinalContradiction.lean:124-130",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:58:43Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "declared(lemmaC2, OddOrder/BG/AppC_LemmaC2.lean, 41-49) -> declared: lemmaC2 is declared at OddOrder/BG/AppC_LemmaC2.lean:41",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:58:43Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at ba8ec35982ceecbd31ca987cbe0cee30477f4883",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:58:54Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/lean_action_ci.yml; commit ba8ec35982ceecbd31ca987cbe0cee30477f4883 on default branch main (branches-where-head=main); lean-action runs lake build over OddOrder/** which includes OddOrder/BG/AppC_FinalContradiction.lean",
+      "by": "verifier",
+      "at": "2026-11-14T15:59:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Measured against code/: parent glue AppC_FinalContradiction.lean:124-130 is 7 lines citing lemmaC1(L128), normSetE_eq_inv_of_forall_normN_two_mul_sub_one(L129), lemmaC2(L130)=3 direct lemmas; child sites lemmaC1 AppC_NormSet.lean:535-604 (70 lines), normSetE_eq_inv 289-300 (12 lines), lemmaC2 AppC_LemmaC2.lean:41-49 (9 lines); depth chain verified: normSetE_eq_inv calls inv_mem_normSetE_of_normN_two_mul_sub_one (297,300), which calls ne_zero_of_mem_normSetE (279), which calls normN_zero (96) = 4 deep",
+      "by": "verifier",
+      "at": "2026-11-14T16:00:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Doc comment /-- **BG Theorem C, p/q-abstract form.** in AppC_FinalContradiction.lean:113-114 reads verbatim 'This is the book's Theorem C with the Peterfalvi Section 16 configuration removed from the *statement*: no S16.Hypothesis, no FieldNormalizerData, no ambient q < p.'",
+      "by": "verifier",
+      "at": "2026-11-14T16:00:24Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at ba8ec35982ceecbd31ca987cbe0cee30477f4883",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T16:00:59Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Decomposition matches: the parent theoremC_abstract (AppC_FinalContradiction.lean:124-130) proof body (128-130) calls exactly three named lemmas — NormSet.lemmaC1 (128), NormSet.normSetE_eq_inv_of_forall_normN_two_mul_sub_one (129), NormSet.lemmaC2 (130) — which are precisely the three children. Statements are verbatim from code. Closing methods match: lemmaC1 ends in the calc chain p = |image| ≤ |roots| ≤ P.natDegree = q (600-604); normSetE_eq_inv closes by ext a; constructor via inv_mem_normSetE_of_normN_two_mul_sub_one both directions (293-300); lemmaC2 by rcases eq_or_ne q 3 with the eq_three / five_le branches (43-49). Closes: no sorry/admit/axiom in parent or child sites (glue-cites-children and sorry-scan already pass; claims 1-3 verified by check_claims.py). Shape numbers correct: direct_lemmas 3, glue_lines 7 (site 124-130), child_lines [70,12,9] = 535-604, 289-300, 41-49, depth 4 = inverse-closure chain normSetE_eq_inv -> inv_mem_normSetE_of_normN_two_mul_sub_one (279) -> ne_zero_of_mem_normSetE (96) -> normN_zero, each edge verified in AppC_NormSet.lean.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T16:02:08Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality holds. (1) The move is stated beyond the example: 'When to use' and applicability give general conditions (step lemmas over p,q alone; client supplies boundary hypothesis hrel without unfolding the configuration), and the reusable insight is named as the choice of interface, with the author's own doc comment (AppC_FinalContradiction.lean 118-122) confirming any configuration supplying hrel (e.g. SL(2,2^q)) feeds it directly. (2) 'When not to use' and consequences are honest and specific: condition (A) is dropped only because none of the three steps used it (comment 107-111); the interface is only as thin as the step lemmas allow (both inverse-closure and size bound must be supplied); work is deferred to the client that produces hrel (line 143); and a concrete failure mode (a future client assuming condition A is in scope) is named. (3) 'Why each child is a good leaf' states the leaf properties a bounded prover needs: self-contained statement over E/|E|/p<=q that closes on its own with a single calc chain and one project dependency (dSeq); a bidirectional closure reducing to one named sibling without unfolding normSetE; a two-way case split into named siblings. Minor non-blocking note: the 'When to use' sentence 'several clients hold the boundary hypothesis but not the configuration' slightly overstates — both cited clients hold the configuration, and theoremC_of_hypothesisBAbstract reaches theoremC_abstract only indirectly via theoremC_of_hypothesisB (metrics.reused_by=1 is the accurate count); this is a wording imprecision, not a dishonesty, and the surrounding text states the real generality correctly.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T16:04:01Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at ba8ec35982ceecbd31ca987cbe0cee30477f4883",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T16:04:32Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes (3 files byte-identical at ba8ec35982ceecbd31ca987cbe0cee30477f4883); commit hash identical across entry.json, README, source.json and SOURCE.md; licence Apache-2.0 matches upstream LICENSE (Apache-2.0) and is recorded consistently in entry.json/source.json/SOURCE.md; all permalinks use github.com/yawara/odd-order at the pinned commit with correct file paths and line ranges, and each cited range (parent 124-130, author comment 113-116, known_uses 139-145/158-162, lemmaC1 535-604, normSetE_eq_inv 289-300, lemmaC2 41-49, depth chain 275-285/92-97/86-89) was opened and matches the copied content; source note link resolves to library/sources/odd-order-2/SOURCE.md",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T16:05:11Z"
+    }
+  ]
+}

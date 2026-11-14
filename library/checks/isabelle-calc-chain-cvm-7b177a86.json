@@ -1,0 +1,125 @@
+{
+  "entry": "isabelle-calc-chain-cvm-7b177a86",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:20:27Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:20:27Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:20:27Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: cvm_correct_of_empty_or_threshold@isabelle/CVM_Transforms/CVM_Correctness.thy:113, prob_run_steps_is_None_or_pred_le@isabelle/CVM_Transforms/CVM_Correctness.thy:127, run_steps_no_fail_eq_run_steps_eager_bernoulli_matrix@isabelle/CVM_Transforms/CVM_Correctness.thy:135, prob_eager_algo_k_gt_l_le@isabelle/CVM_Transforms/CVM_Correctness.thy:145, prob_eager_algo_k_le_l_and_est_out_of_range_le@isabelle/CVM_Transforms/CVM_Correctness.thy:145; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:20:28Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(prob_cvm_incorrect_le, isabelle/CVM_Transforms/CVM_Correctness.thy, 94-149) -> declared: prob_cvm_incorrect_le is declared at isabelle/CVM_Transforms/CVM_Correctness.thy:94",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:20:28Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, prob_eager_algo_k_le_l_and_est_out_of_range_le) -> cites: prob_eager_algo_k_le_l_and_est_out_of_range_le occurs at isabelle/CVM_Transforms/CVM_Correctness.thy:145",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:20:28Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(isabelle/CVM_Transforms/CVM_Correctness.thy, 94-149) -> no_sorry: none of sorry in isabelle/CVM_Transforms/CVM_Correctness.thy:94-149",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:20:28Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:20:39Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI workflow: repository has no .github directory (github.com/joewatt95/cvm/tree/main/.github/workflows returns 404), and no local Isabelle toolchain on the harvest machine",
+      "by": "verifier",
+      "at": "2026-11-14T15:21:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "depth chain confirmed in copied files: prob_cvm_incorrect_le cites prob_run_steps_is_None_or_pred_le at CVM_Correctness.thy:127; prob_run_steps_is_None_or_pred_le cites run_steps_le_run_steps_no_fail at CVM_Algo_No_Fail.thy:210; run_steps_le_run_steps_no_fail cites step_le_step_no_fail at CVM_Algo_No_Fail.thy:189 (grep -n of all three names)",
+      "by": "verifier",
+      "at": "2026-11-14T15:21:54Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "CVM_Correctness.thy:17-18 reads '\\item \\texttt{prob\\_cvm\\_incorrect\\_le} / is the main correctness theorem as in Theorem 2 of \\cite{cvm_2023}.'",
+      "by": "verifier",
+      "at": "2026-11-14T15:21:55Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent prob_cvm_incorrect_le (CVM_Correctness.thy:94-149) is a theorem-scale calc-chain: a case split (True -> cvm_correct_of_empty_or_threshold at line 113; False -> one also/finally chain of 3 links) closing with finally show ?thesis (line 148). All five children are exactly the lemmas the glue cites (lines 113, 127, 135, 145); no extra or missing child. Each child's closed_by matches its code: cvm_correct_of_empty_or_threshold -> intro pmf_hoare_foldM_indexed + auto (70-75); prob_run_steps_is_None_or_pred_le -> smt(verit,del_insts) over prob_fail_run_steps_le and prob_measure_spmf_le_of_ord_spmf[OF run_steps_le_run_steps_no_fail] (209-212); run_steps_no_fail_eq_run_steps_eager_bernoulli_matrix -> metis bernoulli_matrix_def local.space_def sample_def (518-519); the two error-bound leaves are themselves also/finally chains over union/Chernoff/geometric bounds as stated. Shape numbers verified by line count: glue_lines 56 (149-94+1), child_lines [24,16,8,102,152] = [53-76,198-213,512-519,354-455,97-248], direct_lemmas 5, depth 3 (prob_cvm_incorrect_le->prob_run_steps_is_None_or_pred_le->run_steps_le_run_steps_no_fail->step_le_step_no_fail, cited at 127/210/189).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:23:16Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generically (applicability.goal_shape/use_when: upper bound Pr[event]<=delta over a disjunctive event, links non-trivial, ordered in one direction <=/= so Isar 'also' composes), not CVM-specific. 'When not to use' is honest and specific (inline one-off rewrites; >= chains not composed by default; single library theorem closing the whole bound; trivial branch needing the same machinery). Consequences are honest and specific (one obligation per link, transitivity automatic, a too-weak link breaks the sum-to-delta step, weight in leaves). 'Why each lemma is a good leaf' names what makes each leaf self-contained for a bounded prover: pmf_hoare_foldM_indexed + auto with no error-bound dependence; generic in P; metis corollary; each error-bound leaf carries its own sub-chain so glue stays short.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:24:28Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:24:47Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passes: 4 files byte-identical at aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb; sha256 in entry.json match local copies (f7e98050..., e8bbe1a3..., f631da0a..., cb88c8d2...); commit aee8c4ba... is consistent across entry.json, sources/cvm/source.json, sources/cvm/SOURCE.md and every permalink; licence BSD-2-Clause is consistent across entry.json, source.json, SOURCE.md, and the copied upstream-LICENSE text is the BSD 2-Clause licence; SOURCE.md records repository, commit, licence, LICENSE file and attribution. All traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:25:07Z"
+    }
+  ]
+}

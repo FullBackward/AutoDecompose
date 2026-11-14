@@ -1,0 +1,117 @@
+{
+  "entry": "lean-workflow-lean-stat-learning-theory-683bae5a",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T16:04:00Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T16:04:00Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T16:04:01Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: exists_smooth_compactSupport_seq_tendsto_real@SLT/GaussianLSI/OneDimGLSI.lean:424, tendsto_eLpNorm_sub_of_sobolev@SLT/GaussianLSI/OneDimGLSI.lean:428, tendsto_eLpNorm_sq_sub_of_tendsto_L2@SLT/GaussianLSI/OneDimGLSI.lean:435, phi_continuous@SLT/GaussianLSI/OneDimGLSI.lean:701, mul_log_ge_neg_inv_exp@SLT/GaussianLSI/OneDimGLSI.lean:468, gaussian_logSobolev_CompSmo_fderiv@SLT/GaussianLSI/OneDimGLSI.lean:486, tendsto_eLpNorm_fderiv_sub_of_sobolev@SLT/GaussianLSI/OneDimGLSI.lean:531, exists_seq_tendsto_ae_of_tendsto_eLpNorm_one@SLT/GaussianLSI/OneDimGLSI.lean:670; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T16:04:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(gaussian_logSobolev_W12_real, SLT/GaussianLSI/OneDimGLSI.lean, 415-939) -> declared: gaussian_logSobolev_W12_real is declared at SLT/GaussianLSI/OneDimGLSI.lean:415",
+      "by": "check_claims.py",
+      "at": "2026-11-14T16:04:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, gaussian_logSobolev_CompSmo_fderiv) -> cites: gaussian_logSobolev_CompSmo_fderiv occurs at SLT/GaussianLSI/OneDimGLSI.lean:486",
+      "by": "check_claims.py",
+      "at": "2026-11-14T16:04:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(SLT/GaussianLSI/OneDimGLSI.lean, 415-939) -> no_sorry: none of sorry, admit, axiom in SLT/GaussianLSI/OneDimGLSI.lean:415-939",
+      "by": "check_claims.py",
+      "at": "2026-11-14T16:04:01Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "8 file(s) byte-identical at d0f506f0a695018265dccb33bcb05e2f5ca1c876",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T16:04:14Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "No CI workflow exists at pinned commit d0f506f0a695018265dccb33bcb05e2f5ca1c876 on default branch main: top-level tree has no .github directory and no .gitlab-ci.yml/.travis.yml/.circleci/azure-pipelines.yml (confirmed via GitHub trees API), so no workflow builds SLT/GaussianLSI/OneDimGLSI.lean",
+      "by": "verifier",
+      "at": "2026-11-14T16:06:43Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Opened code/SLT/GaussianLSI/OneDimGLSI.lean and OneDimGLSICompSmo.lean. Parent glue 415-939 = 525 lines. 13 named-lemma citations at the cited lines: 424 exists_smooth_compactSupport_seq_tendsto_real, 428 tendsto_eLpNorm_sub_of_sobolev, 435 tendsto_eLpNorm_sq_sub_of_tendsto_L2, 443 hasCompactSupport_sq, 461 integrable_phi_sq_of_compactSupport, 468 mul_log_ge_neg_inv_exp, 486 gaussian_logSobolev_CompSmo_fderiv, 498 TaylorBound.deriv_bounded_of_compactlySupported, 531 tendsto_eLpNorm_fderiv_sub_of_sobolev, 670 exists_seq_tendsto_ae_of_tendsto_eLpNorm_one, 687 phi_add_inv_exp_nonneg, 701 phi_continuous, 761 integrable_phi_sq_add_const. Child line counts 37/25/116/3/37/4/40/10 match the sites. Depth-2 chain confirmed: gaussian_logSobolev_CompSmo_fderiv (OneDimGLSICompSmo.lean 94-97) cites gaussian_logSobolev_CompSmo (declared line 50) at line 97",
+      "by": "verifier",
+      "at": "2026-11-14T16:06:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Opened code/vibe-recipe/README.md line 18: '### Step 1: Decompose Proofs into Small Lemmas' matches the claim. Opened code/vibe-recipe/EXAMPLE_INSTRUCTIONS.md line 323: '2. **Success = lake build passes + zero sorries + zero custom axioms.**' matches the quoted Rule 2",
+      "by": "verifier",
+      "at": "2026-11-14T16:06:57Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent gaussian_logSobolev_W12_real declared at OneDimGLSI.lean 415-939, statement matches entry.json. All 8 children declared at exactly the cited ranges with matching statements (Density.lean 823-859, OneDimGLSI.lean 105-129/132-247/58-60/64-100/250-289, OneDimGLSICompSmo.lean 94-97, ConvergenceL1Subseq.lean 15-24) and closed_by matches each proof. Glue cites all 8 children at lines 424,428,435,468,486,531,670,701 (verified), plus the 5 acknowledged non-shown direct lemmas at 443,461,498,687,761 = 13 direct_lemmas. Proof closes at line 939 (simpa ... using h_final), no sorry. Shape numbers correct: glue 525 (939-415+1), child_lines [37,25,116,3,37,4,40,10], depth 2 chain gaussian_logSobolev_CompSmo_fderiv -> gaussian_logSobolev_CompSmo (OneDimGLSICompSmo.lean 97 -> 50).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T16:09:06Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generally: use_when/avoid_when give preconditions (target pre-plannable as named steps; each step small enough for one agent context window ~300 lines) rather than LSI-specific conditions. '~300 lines' is grounded in the source (vibe-recipe/README.md 'Empirical guideline: Agents can typically handle up to ~300 lines of code per turn'). 'When not to use' is honest and specific, including a real divergence the entry documents (Step 6 names tendsto_integral_norm_fderiv_sq_of_sobolev but the glue inlines its conclusion at OneDimGLSI.lean 492-562; verified EXAMPLE_INSTRUCTIONS.md L293 names it). Consequences list concrete per-child hypothesis obligations and two failure modes (uncited planned lemma; a side condition delivered only by a later step). Good leaves for a bounded prover: it states each lemma is a small (3-116 line) routine analysis fact that closes within one context window, mapped to survey-F rule 14 'target nearly trivial given parents'.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T16:09:53Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit d0f506f0a695018265dccb33bcb05e2f5ca1c876 is consistent across entry.json source.commit, README.md, SOURCE.md and source.json, and every permalink in files/sites/README uses that same pinned commit. Licence Apache-2.0 is recorded identically in entry.json, README.md, SOURCE.md and source.json; upstream-LICENSE is the full Apache License 2.0 text with the project's copyright notice. SOURCE.md records repo URL, pinned commit, licence link to LICENSE, and attribution. Provenance check already passes (8 files byte-identical at the pinned commit, recorded sha256 match). Spot-checked parent declaration at code/.../OneDimGLSI.lean:415 and author-statement quotes at EXAMPLE_INSTRUCTIONS.md:323 / README.md:18, all matching their permalink anchors.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T16:11:02Z"
+    }
+  ]
+}

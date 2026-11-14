@@ -1,0 +1,133 @@
+{
+  "entry": "rocq-calc-chain-corn-a6c2c42b",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:33:52Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:33:52Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:33:52Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: ref_calc1@ftc/RefLemma.v:576, ref_calc2@ftc/RefLemma.v:556, ref_calc3@ftc/RefLemma.v:558, ref_calc4@ftc/RefLemma.v:560, ref_calc5@ftc/RefLemma.v:562, ref_calc6@ftc/RefLemma.v:564, ref_calc7@ftc/RefLemma.v:566, ref_calc8@ftc/RefLemma.v:568; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:33:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, ref_calc1) -> cites: ref_calc1 occurs at ftc/RefLemma.v:576",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:33:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(ftc/RefLemma.v:289-350, ref_calc1) -> cites: ref_calc1 occurs at ftc/RefLemma.v:309",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:33:52Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(ftc/RefLemma.v, 238-594) -> no_sorry: none of admit, Admitted, Axiom, axiom in ftc/RefLemma.v:238-594",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:33:52Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at f678996112929e1674e20b75fb9bd728ded35e55",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:33:58Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/docker-action.yml (default branch master, commit f6789961 on HEAD): docker-coq-action builds coq-corn.opam -> ./configure.sh && make, compiling all -R . CoRN files including ftc/RefLemma.v",
+      "by": "verifier",
+      "at": "2026-11-14T15:35:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "counted code/ftc/RefLemma.v site ranges: parent 553-594 = 42 lines; children 238-284=47, 289-350=62, 352-387=36, 389-421=33, 423-445=23, 447-472=26, 474-495=22, 497-550=54 (total 303)",
+      "by": "verifier",
+      "at": "2026-11-14T15:35:13Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "code/ftc/RefLemma.v lines 85-86 read 'Using the results from these files, we prove our main lemma in several steps (and versions).'",
+      "by": "verifier",
+      "at": "2026-11-14T15:35:14Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at f678996112929e1674e20b75fb9bd728ded35e55",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:35:32Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Children and statements match the code verbatim (declarations at 238,289,352,389,423,447,474,497); the parent proof cites exactly ref_calc2..8 at 556,558,560,562,564,566,568 and ref_calc1 at 576, so the 8 children are exactly the lemmas the glue uses; ref_calc2 cites ref_calc1 at 309 (only child-to-child dependency, depth 2 correct); every site ends in Qed (no sorry/admit in 238-594); shape numbers check out: parent 594-553+1=42, children 47+62+36+33+23+26+22+54=303, direct_lemmas=8, depth=2; closing methods match (str_Mengolli_Sum_gen/str_Sumx_Sum_Sum/Sum2_comm_scal'/Sumx_minus_Sumx/Sum2_wd/triangle_SumxIR/triangle_Sum2IR/mult_resp_leEq_both with contF' e He). Minor non-blocking note: intent/consequences prose says ref_calc1 telescopes to 'P_i - P_{i-1}' while the code is P (S i) - P i; the diagram and child note already state 'P (S i) - P i', and the 1-based reading describes the same differences, so I do not object.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:37:28Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example (a bound whose two sides differ by algebraic normalisations, then triangle inequalities, then one analytic bound); 'when not to use' is specific and honest (inline when steps aren't worth naming; non-monotone hypotheses break a single leEq_transitive chain; one long rewrite is fragile to term-index mismatches); consequences name real failure modes (weakest-link; head must match the tail). Good-leaf characterisation present: flat 8 direct lemmas, depth 2, 22-62 lines each, self-contained (six close from library/triangle lemmas, only ref_calc2 uses ref_calc1), with the modulus-of-continuity isolated to ref_calc8 so the first seven links are pure algebra and checkable in isolation. Verified header comment 'several steps' (lines 85-86) and second_refinement_lemma reuse (lines 656,659) in local copy.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:38:29Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at f678996112929e1674e20b75fb9bd728ded35e55",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:39:25Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit f678996112929e1674e20b75fb9bd728ded35e55 is consistent across source.json, sources/corn/SOURCE.md, entry.json source.commit and every permalink; all permalinks use the same full commit hash and the correct repo/path (rocq-community/corn, ftc/RefLemma.v). Licence GPL-2.0 is recorded identically in entry.json, README and SOURCE.md, and the upstream LICENSE at the pinned commit is GNU GPL v2 (verified: fetched LICENSE is byte-identical sha256 ab15fd52... to sources/corn/upstream-LICENSE, whose header is 'GNU GENERAL PUBLIC LICENSE, Version 2, June 1991'). Copied code file is byte-identical at the commit (check_provenance pass; local sha256 293b56ac... matches entry.json files[0].sha256 and 37384 bytes). Everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:39:40Z"
+    }
+  ]
+}

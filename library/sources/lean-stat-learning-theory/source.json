@@ -1,0 +1,17 @@
+{
+  "source_id": "lean-stat-learning-theory",
+  "url": "https://github.com/yuanhez/lean-stat-learning-theory",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "yuanhez/lean-stat-learning-theory",
+  "commit": "d0f506f0a695018265dccb33bcb05e2f5ca1c876",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T14:53:34Z",
+  "how_found": "discovery-2: A-lean, discovery-1:A-agents",
+  "note": "First comprehensive Lean 4 statistical learning theory formalization (ICML 2026 paper): theorem library with named lemmas and CI",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

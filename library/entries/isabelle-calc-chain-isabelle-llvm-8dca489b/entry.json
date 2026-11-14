@@ -1,0 +1,178 @@
+{
+  "id": "isabelle-calc-chain-isabelle-llvm-8dca489b",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Transitivity chain conflates the KMP refinement ladder into kmp2_correct",
+  "intent": "Collapse the three-step refinement chain kmp2 ≤ kmp1 ≤ kmp ≤ kmp_SPEC into one headline correctness theorem `kmp2_correct` by transitivity, so the final KMP implementation is shown correct without restating the intermediate refinement proofs.",
+  "move": "calc-chain",
+  "also_known_as": [
+    "also/finally chain",
+    "transitivity chain",
+    "refinement ladder (nres ≤ chain)"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "isabelle-llvm",
+    "url": "https://github.com/lammich/isabelle_llvm",
+    "commit": "6be37a9c3cae74a1134dbef2979e312abb5f7f42",
+    "licence": "BSD-3-Clause"
+  },
+  "files": [
+    {
+      "path": "thys/examples/KMP.thy",
+      "bytes": 46889,
+      "sha256": "5d5ebc4fbf2d076908f51ed37e9b9e382d7c7237358d19a68fbb80a0769fde1f",
+      "permalink": "https://github.com/lammich/isabelle_llvm/blob/6be37a9c3cae74a1134dbef2979e312abb5f7f42/thys/examples/KMP.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "thys/examples/KMP.thy",
+      "lines": [
+        873,
+        881
+      ],
+      "role": "parent",
+      "name": "kmp2_correct",
+      "excerpt_sha256": "5f9d68f188f12bf0980f9a7702f0dbd711eadaa1e0585f27013622cd0c8dac43",
+      "permalink": "https://github.com/lammich/isabelle_llvm/blob/6be37a9c3cae74a1134dbef2979e312abb5f7f42/thys/examples/KMP.thy#L873-L881"
+    },
+    {
+      "path": "thys/examples/KMP.thy",
+      "lines": [
+        865,
+        871
+      ],
+      "role": "child",
+      "name": "kmp2_refine",
+      "excerpt_sha256": "0e983894b8b8ce96433e2b995c794c97169647f5531b328397f71afbe585c630",
+      "permalink": "https://github.com/lammich/isabelle_llvm/blob/6be37a9c3cae74a1134dbef2979e312abb5f7f42/thys/examples/KMP.thy#L865-L871"
+    },
+    {
+      "path": "thys/examples/KMP.thy",
+      "lines": [
+        524,
+        533
+      ],
+      "role": "child",
+      "name": "kmp1_refine",
+      "excerpt_sha256": "8ffd035d3e2e21dfbe4fa3290a2cec4e17ff114a9bda4329e03dd1e81abb51a6",
+      "permalink": "https://github.com/lammich/isabelle_llvm/blob/6be37a9c3cae74a1134dbef2979e312abb5f7f42/thys/examples/KMP.thy#L524-L533"
+    },
+    {
+      "path": "thys/examples/KMP.thy",
+      "lines": [
+        476,
+        490
+      ],
+      "role": "child",
+      "name": "kmp_correct",
+      "excerpt_sha256": "30b42aa825f376600e58c274312fbde50d77bd253309d2971a4829a2ae00a7b8",
+      "permalink": "https://github.com/lammich/isabelle_llvm/blob/6be37a9c3cae74a1134dbef2979e312abb5f7f42/thys/examples/KMP.thy#L476-L490"
+    }
+  ],
+  "parent": {
+    "name": "kmp2_correct",
+    "statement": "lemma kmp2_correct: \"s \\<noteq> []\n  \\<Longrightarrow> kmp2 s t \\<le> kmp_SPEC s t\""
+  },
+  "children": [
+    {
+      "name": "kmp2_refine",
+      "statement": "lemma kmp2_refine: \"kmp2 s t \\<le> kmp1 s t\"",
+      "closed_by": "apply (rule refine_IdD), then refine_rcg/refine_dref_type then auto",
+      "note": "Replaces the abstract compute_\\<ff>s_SPEC with the executable compute_butlast_\\<ff>s in kmp2."
+    },
+    {
+      "name": "kmp1_refine",
+      "statement": "lemma kmp1_refine: \"kmp1 s t \\<le> kmp s t\"",
+      "closed_by": "apply (rule refine_IdD), intro ASSERT_refine_right/left, intro_spec_refine, refine_rcg/refine_dref_type then auto",
+      "note": "Introduces the stored-\\<ff> optimisation: kmp1 computes the \\<ff>-values once up front instead of on the fly."
+    },
+    {
+      "name": "kmp_correct",
+      "statement": "lemma kmp_correct: \"s \\<noteq> []\n  \\<Longrightarrow> kmp s t \\<le> kmp_SPEC s t\"",
+      "closed_by": "refine_vcg with two WHILEIT termination measures, then six subgoals closed by metis/blast/simp/fastforce/auto",
+      "note": "The naive, non-evaluable kmp algorithm refines the specification kmp_SPEC under the precondition s ≠ []."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A refinement goal `A s t ≤ B s t` (an ≤ inequality of `nres` nondeterminism monads) that decomposes into a transitive chain `A ≤ C ≤ … ≤ B`, where each single step is already proved as its own named refinement lemma.",
+    "use_when": "You already hold each single-step refinement as its own lemma (`kmp2_refine`, `kmp1_refine`, `kmp_correct` here) and want one headline correctness theorem without restating the intermediate proofs; the steps are all `≤` inequalities so Isar's `also`/`finally` (transitivity) chains them with no extra work.",
+    "avoid_when": "Any step is not yet proved as a named lemma (the chain cannot close by `(fact …)` and you must inline or prove the gap); the steps are not all the same relation (Isar's `also` does not compose `≥` by default); or a step's hypothesis needs discharging at the use site (here `kmp_correct` needs `s ≠ []`, supplied as `kmp_correct[OF ‹s ≠ []›]`)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site `kmp2_correct` is 9 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/lammich/isabelle_llvm/blob/6be37a9c3cae74a1134dbef2979e312abb5f7f42/thys/examples/KMP.thy#L873-L881",
+      "form": "lines(kmp2_correct, 9)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site `kmp2_correct` cites the lemma `kmp1_refine`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/lammich/isabelle_llvm/blob/6be37a9c3cae74a1134dbef2979e312abb5f7f42/thys/examples/KMP.thy#L873-L881",
+      "form": "cites(kmp2_correct, kmp1_refine)"
+    },
+    {
+      "n": 3,
+      "claim": "The lemma `kmp_correct` is declared at lines 476-490 of thys/examples/KMP.thy.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/lammich/isabelle_llvm/blob/6be37a9c3cae74a1134dbef2979e312abb5f7f42/thys/examples/KMP.thy#L476-L490",
+      "form": "declared(kmp_correct, thys/examples/KMP.thy, 476-490)"
+    },
+    {
+      "n": 4,
+      "claim": "No `sorry` occurs anywhere in thys/examples/KMP.thy.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/lammich/isabelle_llvm/blob/6be37a9c3cae74a1134dbef2979e312abb5f7f42/thys/examples/KMP.thy",
+      "form": "no_sorry(thys/examples/KMP.thy, 1-1046)"
+    },
+    {
+      "n": 5,
+      "claim": "The authors note that `kmp2_refine`'s proof is trivial because `compute_butlast_\\<ff>s_refine` carries the `[refine]` attribute: \"Using compute_butlast_\\<ff>s_refine (it has attribute refine), the proof is trivial\".",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/lammich/isabelle_llvm/blob/6be37a9c3cae74a1134dbef2979e312abb5f7f42/thys/examples/KMP.thy#L864"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 3,
+    "glue_lines": 9,
+    "child_lines": [
+      7,
+      10,
+      15
+    ]
+  },
+  "metrics": {
+    "links_in_chain": 3,
+    "how_counted": "three inequalities kmp2 ≤ kmp1, kmp1 ≤ kmp, kmp ≤ kmp_SPEC, each closed by `(fact …)` in lines 877-879 of the copied file"
+  },
+  "consequences": "The move transfers the head step's precondition (`s ≠ []`) into the final theorem, and each `also` link must be a named lemma or fact, applied as `by (fact …)`. The chain is only as strong as its weakest link: if any intermediate refinement lemma is later weakened, the conflation breaks and must be re-checked. Obligations: every link must be an inequality in the same relation so `also`/`finally` (transitivity) applies, and the first step's assumptions must be supplied at the use site (`kmp_correct[OF ‹s ≠ []›]`).",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "8dca489b233b5a4184e45eae80902536d4e8018d9fe4299dab6dad5618fcb0a7",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:15:47Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:18:02Z",
+      "note": "parent kmp2_correct: statement re-copied from code; child 'kmp2_refine': statement re-copied from the declaration of kmp2_refine; child 'kmp1_refine': statement re-copied from the declaration of kmp1_refine; child 'kmp_correct': statement re-copied from the declaration of kmp_correct"
+    }
+  ]
+}

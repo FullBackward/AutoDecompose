@@ -1,0 +1,133 @@
+{
+  "entry": "lean-interface-lemma-formal-proofs-fecde902",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:34:22Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:34:22Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:34:22Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: mem_extends@Verification/Semantics/AirEncoding/Correctness.lean:55, mem_pc@Verification/Semantics/AirEncoding/Correctness.lean:60, mem_dst_addr@Verification/Semantics/AirEncoding/Correctness.lean:64, off_op0_in_range@Verification/Semantics/AirEncoding/Correctness.lean:84, rc16_vals_in_range@Verification/Semantics/AirEncoding/Correctness.lean:94, rc_val_checked@Verification/Semantics/AirEncoding/Correctness.lean:98, inst_eq@Verification/Semantics/AirEncoding/Correctness.lean:109, nextState_eq@Verification/Semantics/AirEncoding/Correctness.lean:121; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:34:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(nextState_eq, Verification/Semantics/AirEncoding/Step.lean, 295-305) -> declared: nextState_eq is declared at Verification/Semantics/AirEncoding/Step.lean:295",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:34:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, mem_extends) -> cites: mem_extends occurs at Verification/Semantics/AirEncoding/Correctness.lean:55",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:34:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(Verification/Semantics/AirEncoding/Correctness.lean, 39-126) -> no_sorry: none of sorry, admit, axiom in Verification/Semantics/AirEncoding/Correctness.lean:39-126",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:34:23Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "6 file(s) byte-identical at d0dd8279612a248cbc6bf6d286030bf0bb2a37ff",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:34:31Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI workflow in the repository: list_files.py at pinned commit d0dd8279612a248cbc6bf6d286030bf0bb2a37ff lists 312 files with no .github/ directory, no .github/workflows, no .yml/.yaml and no Makefile (only lean3/leanpkg.toml among configs); the project builds via lakefile.lean, but no CI exists to record, and no Lean toolchain is on the harvest machine",
+      "by": "verifier",
+      "at": "2026-11-14T15:36:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "read code/Verification/Semantics/AirEncoding/Correctness.lean:1-7. The file header comment reads verbatim: 'A proof of the main theorem of the whitepaper:' followed by 'Given a collection of data meeting all the constraints in `constraints`, assuming the extra probabilistic assumptions hold, there is an execution trace according to the semantics given in `cpu`...'. Matches the claim.",
+      "by": "verifier",
+      "at": "2026-11-14T15:36:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read code/Verification/Semantics/AirEncoding/Correctness.lean:51-126 (glue body). All 18 named project lemmas are applied directly, one each at: mem_extends L56, mem_pc L60, mem_dst_addr L65, mem_op0_addr L70, mem_op1_addr L75, mem_rc_addr L80, off_op0_in_range L85, off_op1_in_range L88, off_dst_in_range L91, rc16_vals_in_range L94, rc_val_checked L98 (rcases), rc_addr_eq L101 (rw), inst_eq L110, offDst_tilde_eq L113, offOp0_tilde_eq L115, offOp1_tilde_eq L117, f_tilde_toF_eq L119, nextState_eq L121. Count is exactly 18, matching shape.direct_lemmas=18.",
+      "by": "verifier",
+      "at": "2026-11-14T15:36:06Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "6 file(s) byte-identical at d0dd8279612a248cbc6bf6d286030bf0bb2a37ff",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:36:16Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent statement and all 8 child statements match the copied code verbatim (Correctness.lean 39-126; Memory.lean 244-290; RangeCheck.lean 108-131; RangeCheckBuiltin.lean 54-92; Instruction.lean 272-282; Step.lean 295-305); each child's closed_by matches its proof; the glue closes (ends in exact nextState_eq..., no sorry; file is exactly 126 lines so 39-126 is the whole theorem). All 8 children are lemmas the glue applies directly, and the 18 direct-lemma count in claim 5 matches grep (mem_extends, mem_pc, mem_dst_addr, mem_op0_addr, mem_op1_addr, mem_rc_addr, off_op0/1/dst_in_range, rc16_vals_in_range, rc_val_checked, rc_addr_eq, inst_eq, offDst/offOp0/offOp1_tilde_eq, f_tilde_toF_eq, nextState_eq). Shape numbers verified: glue_lines=88 (126-39+1), child_lines=[18,5,3,9,3,39,11,11] equal each child site span, direct_lemmas=18, depth=4 via execution_exists->mem_extends->mem_unique->real_perm->real_permutation_prod_eq (Memory.lean 231,189,170).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:38:20Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example: use_when/avoid_when generalise from the AIR record to any structure/locale/section-variable bundle whose fields are one bridge lemma per family, with goal shape 'Constraints c -> exists witness, P0 .. Pk'; avoid_when gives three concrete failure modes (partial unfolding, client needs internals, no shared boundary). Consequences are honest and specific: long 10-16 premise argument lists, elaboration vs proof error on missing fields, and the instruction-family re-assembly (inst_eq + four tilde_eq before nextState_eq). Leaf section states what makes each a bounded-prover leaf: self-contained statement, short (3-39 lines), closes from one existing lemma (mem_unique/rc_permutation) or a sibling, single implementation reused by the other address/offset families, no sibling naming. Line counts checked against cited ranges and all match.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:39:09Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "6 file(s) byte-identical at d0dd8279612a248cbc6bf6d286030bf0bb2a37ff",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:39:27Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks all pin commit d0dd8279612a248cbc6bf6d286030bf0bb2a37ff, matching source.json/SOURCE.md; check_provenance passes (6 files byte-identical at that commit); licence LicenseRef-unknown is consistent across entry.json, source.json and SOURCE.md (no root licence file found, honestly noted); cited line ranges verified against local copies (parent Correctness.lean:39-126 = execution_exists, mem_pc Memory.lean:244-248, mem_extends Memory.lean:273).",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:39:53Z"
+    }
+  ]
+}

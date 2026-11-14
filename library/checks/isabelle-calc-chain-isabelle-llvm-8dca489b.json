@@ -1,0 +1,133 @@
+{
+  "entry": "isabelle-calc-chain-isabelle-llvm-8dca489b",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:19:23Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:19:23Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:19:23Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: kmp2_refine@thys/examples/KMP.thy:877, kmp1_refine@thys/examples/KMP.thy:878, kmp_correct@thys/examples/KMP.thy:879; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:19:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(kmp2_correct, 9) -> lines: site kmp2_correct has 9 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:19:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(kmp2_correct, kmp1_refine) -> cites: kmp1_refine occurs at thys/examples/KMP.thy:878",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:19:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "declared(kmp_correct, thys/examples/KMP.thy, 476-490) -> declared: kmp_correct is declared at thys/examples/KMP.thy:476",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:19:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "no_sorry(thys/examples/KMP.thy, 1-1046) -> no_sorry: none of sorry in thys/examples/KMP.thy:1-1046",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:19:23Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 6be37a9c3cae74a1134dbef2979e312abb5f7f42",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:19:30Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI workflow in the repository at pinned commit 6be37a9c3cae74a1134dbef2979e312abb5f7f42: list_files.py shows no .github/workflows, no .yml/.yaml, no travis/azure/circleci config, so no CI builds thys/examples/KMP.thy on the default branch",
+      "by": "verifier",
+      "at": "2026-11-14T15:20:26Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "copied code thys/examples/KMP.thy line 864 reads: 'text\\<open>Using @{thm [source] compute_butlast_\\<ff>s_refine} (it has attribute @{attribute refine}), the proof is trivial:\\<close>'; line 811 declares 'lemma compute_butlast_\\<ff>s_refine[refine]:' confirming the [refine] attribute. Quote matches the claim verbatim.",
+      "by": "verifier",
+      "at": "2026-11-14T15:20:28Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 6be37a9c3cae74a1134dbef2979e312abb5f7f42",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:20:52Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Opened code/thys/examples/KMP.thy at the cited ranges. Parent kmp2_correct (873-881, 9 lines) is exactly the 3-link also/finally chain: kmp2≤kmp1 by (fact kmp2_refine), ≤kmp by (fact kmp1_refine), ≤kmp_SPEC by (fact kmp_correct[OF s≠[]]); finally show closes, so it closes. The three children are exactly and only the lemmas the glue cites (877, 878, 879), no extras/missing. Statements verbatim: kmp2_refine 'kmp2 s t ≤ kmp1 s t' (865-871, 7 lines), kmp1_refine 'kmp1 s t ≤ kmp s t' (524-533, 10 lines), kmp_correct 's≠[] ⟹ kmp s t ≤ kmp_SPEC s t' (476-490, 15 lines). closed_by fields match the tactic scripts (refine_IdD/refine_rcg/refine_dref_type/auto; intro ASSERT_refine_right/left + intro_spec_refine; refine_vcg with two WHILEIT measures and exactly six subgoals). Shape numbers all correct: direct_lemmas=3, glue_lines=9, child_lines=[7,10,15]; depth=3 matches the checked chain kmp_correct(486)→j_le_ff_le(363)→intrinsic_border_less(265/266). Provenance pass. Accept.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:21:49Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalises beyond the KMP example: applicability.goal_shape states 'A refinement goal A s t <= B s t (an <= inequality of nres monads) that decomposes into a transitive chain A <= C <= ... <= B, each step already proved as its own named lemma', and use_when/avoid_when restate it relation-agnostically (equality or refinement). 'When not to use' is honest and specific: unnamed step (by (fact ...) cannot close), mixed relations (Isar's also does not compose >= by default, survey F rule 9), hypothesis needing discharge at use site (kmp_correct[OF s != []]), and single-step goals. Consequences are specific: precondition transfers to the final assumption, weakest-link fragility, obligations that every link is the same relation and the head assumptions supplied at use site, and that the glue adds no content so review reduces to checking cited names. It states what makes leaves good: each child is a self-contained statement whose proof closes on its own (refine_rcg/auto; refine_vcg + six subgoals), and the opinion section names the copyable shape — glue that is nothing but by (fact ...) links, a skeleton whose only obligations are the named lemmas it cites. Line 864 author-statement and the chain kmp2_correct -> kmp_correct -> j_le_ff_le -> intrinsic_border_less verified against the copied file.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:22:34Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 6be37a9c3cae74a1134dbef2979e312abb5f7f42",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:22:51Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance.py passed (1 file byte-identical at 6be37a9c3cae74a1134dbef2979e312abb5f7f42); commit hash 6be37a9c3cae74a1134dbef2979e312abb5f7f42 is consistent across README.md, entry.json, source.json and SOURCE.md; all permalinks use this commit and line ranges that match the local copy (kmp_correct 476-490, kmp1_refine 524-533, kmp2_refine 865-871, kmp2_correct 873-881, author-statement at 864); licence BSD-3-Clause is consistent across entry/source and the upstream LICENSE (copied as upstream-LICENSE) is the BSD-3-Clause text; source note records repo, pinned commit, licence and attribution.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:23:19Z"
+    }
+  ]
+}

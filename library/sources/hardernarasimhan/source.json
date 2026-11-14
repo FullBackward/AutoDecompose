@@ -1,0 +1,17 @@
+{
+  "source_id": "hardernarasimhan",
+  "url": "https://github.com/yijunyuan/hardernarasimhan",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "yijunyuan/hardernarasimhan",
+  "commit": "14b3090e1e169b77fe381102a1289f24c2b08a11",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T14:53:09Z",
+  "how_found": "discovery-2: A-lean, discovery-1:B-lean",
+  "note": "Lean 4 formalization of the Harder-Narasimhan theorem with a published Lean dependency graph and CI; headline results assembled from named project lemmas",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

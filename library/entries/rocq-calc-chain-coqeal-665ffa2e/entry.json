@@ -1,0 +1,209 @@
+{
+  "id": "rocq-calc-chain-coqeal-665ffa2e",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Jordan decomposition as a chain of similarity transitivity steps",
+  "intent": "Prove the main theorem of the file — that a square matrix A over a closed field is similar to its Jordan form — by chaining four similarity lemmas through `similar_trans`: A to its Frobenius form (`Frobenius`), that to its closed-field block form (`similar_Frobenius`), then blockwise to `Jordan_form A` (`similar_diag_block`), each companion block becoming a Jordan block per root (`similar_cj`).",
+  "move": "calc-chain",
+  "also_known_as": [
+    "similarity transitivity chain",
+    "similar_trans composition",
+    "canonical-form chain"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "coqeal",
+    "url": "https://github.com/rocq-community/coqeal",
+    "commit": "8fd26cf416ce0dfb5e9a9745293bdedf63b56d39",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "theory/jordan.v",
+      "bytes": 11814,
+      "sha256": "c6e31d66a084a130b7dd28ed8b8460ee5962eaeaaa174063f2a02d1c8e5cd751",
+      "permalink": "https://github.com/rocq-community/coqeal/blob/8fd26cf416ce0dfb5e9a9745293bdedf63b56d39/theory/jordan.v"
+    },
+    {
+      "path": "theory/frobenius_form.v",
+      "bytes": 29480,
+      "sha256": "32cc2f619cf4704093257b8566b932a21a2a3b0719d539899db0f7fcaa422295",
+      "permalink": "https://github.com/rocq-community/coqeal/blob/8fd26cf416ce0dfb5e9a9745293bdedf63b56d39/theory/frobenius_form.v"
+    },
+    {
+      "path": "theory/similar.v",
+      "bytes": 21855,
+      "sha256": "0b3f49ea15aea26fb7b94f7638b7164a1ac611bab698a916645f4d98f5b41ce8",
+      "permalink": "https://github.com/rocq-community/coqeal/blob/8fd26cf416ce0dfb5e9a9745293bdedf63b56d39/theory/similar.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theory/jordan.v",
+      "lines": [
+        205,
+        227
+      ],
+      "role": "parent",
+      "name": "Jordan",
+      "excerpt_sha256": "6708114e4d4944858ecf93921551c9829c407e99f227fc165bf49bf302746941",
+      "permalink": "https://github.com/rocq-community/coqeal/blob/8fd26cf416ce0dfb5e9a9745293bdedf63b56d39/theory/jordan.v#L205-L227"
+    },
+    {
+      "path": "theory/jordan.v",
+      "lines": [
+        128,
+        179
+      ],
+      "role": "child",
+      "name": "similar_cj",
+      "excerpt_sha256": "050b09b01736db65b06986e0f3f3d29451756059ca54e6cee6a794e586422ae4",
+      "permalink": "https://github.com/rocq-community/coqeal/blob/8fd26cf416ce0dfb5e9a9745293bdedf63b56d39/theory/jordan.v#L128-L179"
+    },
+    {
+      "path": "theory/frobenius_form.v",
+      "lines": [
+        381,
+        400
+      ],
+      "role": "child",
+      "name": "Frobenius",
+      "excerpt_sha256": "479c7a51c73b699cd899a522a7cffb0310aac384b858dbc02a890e62a99d6738",
+      "permalink": "https://github.com/rocq-community/coqeal/blob/8fd26cf416ce0dfb5e9a9745293bdedf63b56d39/theory/frobenius_form.v#L381-L400"
+    },
+    {
+      "path": "theory/frobenius_form.v",
+      "lines": [
+        677,
+        722
+      ],
+      "role": "child",
+      "name": "similar_Frobenius",
+      "excerpt_sha256": "b9cd594ffe882b9398180d70b07aff7cfabacfc0d4a60f6bae7458cf0bbf316e",
+      "permalink": "https://github.com/rocq-community/coqeal/blob/8fd26cf416ce0dfb5e9a9745293bdedf63b56d39/theory/frobenius_form.v#L677-L722"
+    },
+    {
+      "path": "theory/similar.v",
+      "lines": [
+        296,
+        311
+      ],
+      "role": "child",
+      "name": "similar_diag_block",
+      "excerpt_sha256": "a9e01f343333921c4eee1458569a4440dd6b133c000239031088f17e8a13ad17",
+      "permalink": "https://github.com/rocq-community/coqeal/blob/8fd26cf416ce0dfb5e9a9745293bdedf63b56d39/theory/similar.v#L296-L311"
+    }
+  ],
+  "parent": {
+    "name": "Jordan",
+    "statement": "Lemma Jordan n (A : 'M[R]_n.+1) : similar A (Jordan_form A)."
+  },
+  "children": [
+    {
+      "name": "Frobenius",
+      "statement": "Lemma Frobenius n (A : 'M[F]_n.+1) :\n  similar A (Frobenius_form A).",
+      "closed_by": "applies `similar_fundamental`, then chains char-poly equivalences with `equiv_trans` (`equiv_Smith`, `equiv_Frobenius_seq`, `equiv_sbc_ssc`, `equiv_diag_block`, `Smith_companion`), closing with `exact: monic_invariant_factors` (line 399)"
+    },
+    {
+      "name": "similar_Frobenius",
+      "statement": "Lemma similar_Frobenius n (A : 'M[R]_n.+1) :\n similar (Frobenius_form A) (Frobenius_form_CF A).",
+      "closed_by": "unfolds both form definitions, then induction over `invariant_factors A` re-factors each block using `similar_poly_inv`, `similar_drblockmx`, `similar_ulblockmx`, `similar_cast`; the empty and singleton base cases close with `exact: similar_refl` (lines 684, 714, 721)"
+    },
+    {
+      "name": "similar_diag_block",
+      "statement": "Lemma similar_diag_block : forall l1 l2, size l1 = size l2 ->\n   forall (F1 F2 : forall n : nat, nat -> 'M[R]_n.+1),\n   (forall i, i < size l1 ->\n    similar (F1 (nth 0%N l1 i) i) (F2 (nth 0%N l2 i) i)) ->\n   similar (diag_block_mx l1 F1) (diag_block_mx l2 F2).",
+      "closed_by": "double induction over the two block-size lists with `seq2_ind`, joining the head blocks by `similar_dgblockmx` and the tails by the induction hypothesis; the empty case closes with `similar_refl` (line 303)"
+    },
+    {
+      "name": "similar_cj",
+      "statement": "Lemma similar_cj n (lam : R) :\n  similar (companion_mx (('X - lam%:P)^+ n.+1)) (Jordan_block lam n.+1).",
+      "closed_by": "proves the companion matrix of ('X - lam%:P)^+ n.+1 is similar to Jordan_block lam n.+1 by `similar_fundamental` then a chain of Smith-normal-form equivalences (`equiv_Smith`, `Smith_companion`, `Smith_gcdr_spec`), identifying the char poly with `char_poly_Jordan_block` (line 142); the gcd computation closes with `apply/dvdrP; exists ((-1)^+ n); rewrite -expr2 sqrr_sign` (line 167)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A similarity goal `similar A B` where `similar` is the mathcomp-compatible similarity relation, `A` is an `'M[R]_n.+1` matrix over a `closedFieldType`, and `B` is a canonical block form (`Jordan_form A`); the proof is a right-nested chain of `similar_trans` steps through intermediate canonical forms.",
+    "use_when": "an end-to-end normalisation splits into stages that each already have a named similarity lemma (over the base field, then over the algebraic closure, then blockwise); the stages compose with `similar_trans`, and a generic blockwise lemma (`similar_diag_block`) plus one per-block lemma (`similar_cj`) exist.",
+    "avoid_when": "a stage has no standalone lemma yet (the chain forces one lemma per stage before the glue can be written); the intermediate forms differ in dimension or base field so `similar_trans` cannot bridge them; the per-block step needs a different argument per block rather than one uniform lemma."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "No closing-by-sorry token (`admit`, `Admitted`, `Axiom`, `axiom`) occurs in the parent site `theory/jordan.v:205-227`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-community/coqeal/blob/8fd26cf416ce0dfb5e9a9745293bdedf63b56d39/theory/jordan.v#L205-L227",
+      "form": "no_sorry(theory/jordan.v, 205-227)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites `similar_cj`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-community/coqeal/blob/8fd26cf416ce0dfb5e9a9745293bdedf63b56d39/theory/jordan.v#L220",
+      "form": "cites(parent, similar_cj)"
+    },
+    {
+      "n": 3,
+      "claim": "The glue `Jordan` is 23 lines (205-227) and applies 4 direct lemmas; the four child sites span 52, 20, 46 and 16 lines (similar_cj 128-179, Frobenius 381-400, similar_Frobenius 677-722, similar_diag_block 296-311); the longest chain of project lemmas below the parent is 3: Jordan (205) -> similar_cj (128) -> char_poly_Jordan_block (110) -> upt_Jordan_block (42).",
+      "evidence_kind": "measurement",
+      "evidence": "theory/jordan.v lines 205-227, 128-179, 110-116, 42-46; theory/frobenius_form.v lines 381-400 and 677-722; theory/similar.v lines 296-311, at commit 8fd26cf416ce0dfb5e9a9745293bdedf63b56d39"
+    },
+    {
+      "n": 4,
+      "claim": "The file header states this theorem is its main result: 'The main result of this file is the theorem of Jordan decomposition.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/rocq-community/coqeal/blob/8fd26cf416ce0dfb5e9a9745293bdedf63b56d39/theory/jordan.v#L10-L11"
+    },
+    {
+      "n": 5,
+      "claim": "`Jordan` is reused by later lemmas in the same file rather than re-proved: `Jordan_char_poly` applies it at line 232, and `diagonalization` applies it at lines 267 and 290.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/rocq-community/coqeal/blob/8fd26cf416ce0dfb5e9a9745293bdedf63b56d39/theory/jordan.v#L232 and #L267 and #L290"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 3,
+    "glue_lines": 23,
+    "child_lines": [
+      52,
+      20,
+      46,
+      16
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 23,
+    "direct_lemmas": 4,
+    "child_proof_lines_total": 134,
+    "how_counted": "parent site = jordan.v 205-227 (23 lines); children = similar_cj 128-179 (52), Frobenius 381-400 (20), similar_Frobenius 677-722 (46), similar_diag_block 296-311 (16); summed = 134"
+  },
+  "consequences": "Turns one large similarity-to-canonical-form goal into one transitivity chain of four named lemmas, so each hole is one stage of the normalisation — the natural unit for a bounded prover. Obligations: each child must be a full `similar` statement with matching dimensions; the glue's application order must match the chain of intermediate forms; the intermediate forms (`Frobenius_form A`, `Frobenius_form_CF A`) must be spelled out so consecutive `similar_trans` instances typecheck; the blockwise step needs the block-size lists to have equal size (proved in the glue at lines 212-214). Failure mode: the glue does no real work itself, so a missing or misshaped stage lemma surfaces as a type error at the `similar_trans` application rather than as a subgoal to prove.",
+  "known_uses": [
+    "https://github.com/rocq-community/coqeal/blob/8fd26cf416ce0dfb5e9a9745293bdedf63b56d39/theory/jordan.v#L232",
+    "https://github.com/rocq-community/coqeal/blob/8fd26cf416ce0dfb5e9a9745293bdedf63b56d39/theory/jordan.v#L267",
+    "https://github.com/rocq-community/coqeal/blob/8fd26cf416ce0dfb5e9a9745293bdedf63b56d39/theory/jordan.v#L290"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "665ffa2eeb25544b9636d5058d6fe6dcb1847ca726abbd9d9b65945542613c5f",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:37:33Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:39:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T15:45:39Z"
+}

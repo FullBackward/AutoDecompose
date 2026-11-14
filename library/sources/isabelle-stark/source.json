@@ -1,0 +1,17 @@
+{
+  "source_id": "isabelle-stark",
+  "url": "https://github.com/dmarmsoler/isabelle-stark",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "dmarmsoler/isabelle-stark",
+  "commit": "181902b60a933def653274ed0a87a1a0be3b73b1",
+  "ref": "HEAD",
+  "language": "isabelle",
+  "pinned_at": "2026-11-14T14:53:54Z",
+  "how_found": "discovery-2: B-isabelle, discovery-1:B-isabelle",
+  "note": "STARK formalisation with four ROOT sessions (Stark_Core, Stark_Completeness, Stark_Soundness, Stark_Examples): ten selected publication results exported by Publication_Manifest from named completeness and soundness theories.",
+  "licence": "BSD-3-Clause",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

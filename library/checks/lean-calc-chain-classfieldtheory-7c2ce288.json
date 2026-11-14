@@ -1,0 +1,125 @@
+{
+  "entry": "lean-calc-chain-classfieldtheory-7c2ce288",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:20:50Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:20:50Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:20:50Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: exact_periodSeq₁@ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean:387, exact_periodSeq₂@ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean:392, periodSeq₁Functor@ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean:386, periodSeq₂Functor@ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean:390; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:20:50Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "lines(parent, 9) -> lines: site parent has 9 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:20:50Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean, 1-534) -> no_sorry: none of sorry, admit, axiom in ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean:1-534",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:20:50Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "count(upIsoDown, 3, ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean) -> count: upIsoDown occurs 3 times in 1 file(s) matching ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:20:50Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:20:58Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push.yml; job 'build' runs leanprover/lean-action 'Build and lint the project' on push to main; commit 1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7 is on main (default branch)",
+      "by": "verifier",
+      "at": "2026-11-14T15:22:13Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "module docstring lines 10-31 of code/ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean: 'Using this sequence, we construct an isomorphism' + 'dimensionShift.up.obj M ≅ dimensionShift.down.obj M' (lines 24-26) and 'Using this, construct isomorphisms' + 'Hⁿ⁺¹(G,M) ≅ Hⁿ⁺³(G,M)' (lines 28-30), both quoted verbatim",
+      "by": "verifier",
+      "at": "2026-11-14T15:22:14Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:22:29Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent upIsoDown (lines 384-392, 9 lines) is a 5-link calc chain as described; it cites exactly the four children (periodSeq1Functor L386/388, exact_periodSeq1 L387, periodSeq2Functor L390/391, exact_periodSeq2 L392) plus library lemmas (cokerIsoCoim/kerIsoIm/associator/isoWhiskerLeft/coimIsoIm) only, so children are exactly the project lemmas the glue uses. Closing methods match code verbatim: exact_periodSeq1 ends in Representation.map1_ker.le (L368), exact_periodSeq2 in Representation.map2_range.ge (L380), both functor defs close their two naturality goals with cat_disch. No sorry/admit/axiom tokens anywhere in the 533-line file (grep empty), so it closes. Shape numbers correct: direct_lemmas=4 (the 4 children), depth=4 (upIsoDown -> exact_periodSeq2 -> map2_range L145 -> ind1'_pi_comp_map2 L139 -> map2_comp_lsingle L127, verified in code), glue_lines=9 (site 384-392), child_lines=[13,11,3,3] matching sites 356-368, 371-381, 345-347, 351-353. Provenance: file byte-identical at 1e7f5dbe3835.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:23:41Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalised correctly: applicability.use_when states the shape ('target isomorphism factors through a short exact sequence/short complex the file has built; coker/ker isos plus one exactness lemma per link supply content; remaining links are structural associators/whiskering'), not the finite-cyclic-group specifics. avoid_when gives three concrete failure modes (plain equality rewrite with no content lemma; exactness lemmas unproved — 'they are the real work'; steps needing genuinely different arguments not through one short complex) — honest and specific. Consequences are specific and non-overclaiming: one obligation per substantive link, three structural links via library, exactness reducing to kernel-range equality (map1_ker line 82 / map2_range line 145) carrying the finiteness/cyclicity; says a false one would not close. 'Each child is a good leaf' paragraph answers the bounded-prover question: self-contained statements unwrapping to ModuleCat and closing by citing one named kernel-range equality, functor defs whose only obligations are naturality squares closed by cat_disch, deeper math hidden below the glue (depth-4 graph shown). I read the cited ranges (82, 145, 395-402, 439-449) and the line numbers/reuse (upIsoDown.symm at 401/447) match the entry.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:24:49Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:25:06Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance check passes: 1 file byte-identical at pinned commit 1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7. source.json/SOURCE.md/entry.json all agree on url https://github.com/kbuzzard/ClassFieldTheory, commit, and licence Apache-2.0; upstream-LICENSE is the Apache 2.0 text. Permalinks use the pinned commit, correct path ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean, and correct line ranges (parent 384-392 = 9 lines; children 356-368, 371-381, 345-347, 351-353; context 10-31 all match the copied file verbatim; known_uses 395-402 and 439-449 both show upIsoDown.symm reuse).",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:25:32Z"
+    }
+  ]
+}

@@ -1,0 +1,192 @@
+{
+  "id": "latex-blueprint-node-brownian-motion-9cd4212c",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Blueprint node: paths of Brownian motion are locally Holder of all orders below 1/2",
+  "intent": "Record the blueprint node that turns three generic ingredients of the Kolmogorov-Chentsov argument — a cover of R+ with bounded covering numbers, the Kolmogorov condition for the pre-Brownian process, and the localized Hölder-modification theorem — into the headline fact that the paths of Brownian motion are locally Hölder continuous of every order below 1/2; the proof is the glue that instantiates those three nodes and computes sup_n (n+1)/(2n+4) = 1/2.",
+  "move": "blueprint-node",
+  "also_known_as": [
+    "dependency-graph node",
+    "theorem stated before proved",
+    "blueprint \\uses{} node"
+  ],
+  "language": "latex",
+  "source": {
+    "source_id": "brownian-motion",
+    "url": "https://github.com/RemyDegenne/brownian-motion",
+    "commit": "8fd8dc52830cdd07cf9cc8eadd533e284425fa6f",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "blueprint/src/chapters/brownian.tex",
+      "bytes": 14748,
+      "sha256": "3c6775cb9e16de5e12de3a77bf2c21243f7b6409620ea441238ef1d5380733ed",
+      "permalink": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/blueprint/src/chapters/brownian.tex"
+    },
+    {
+      "path": "blueprint/src/chapters/kolmogorov_chentsov.tex",
+      "bytes": 76967,
+      "sha256": "70fe2388db0d673eb25eb043e2cade58cb4880783e6bc75fdc679cb07ab76b42",
+      "permalink": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/blueprint/src/chapters/kolmogorov_chentsov.tex"
+    }
+  ],
+  "sites": [
+    {
+      "path": "blueprint/src/chapters/brownian.tex",
+      "lines": [
+        101,
+        113
+      ],
+      "role": "parent",
+      "name": "lem:isHolderWith_brownian",
+      "excerpt_sha256": "30e0da348a04a0381e460d665cefb8816de8063e6e5e0198909eaee8aaad179b",
+      "permalink": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/blueprint/src/chapters/brownian.tex#L101-L113"
+    },
+    {
+      "path": "blueprint/src/chapters/kolmogorov_chentsov.tex",
+      "lines": [
+        1786,
+        1798
+      ],
+      "role": "child",
+      "name": "lem:hasBoundedCoveringNumberCover_nnreal",
+      "excerpt_sha256": "dbebe02865c4f20210259ebd1a1d39596e13fd4a1c6dbbf01d0923cb1406b557",
+      "permalink": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/blueprint/src/chapters/kolmogorov_chentsov.tex#L1786-L1798"
+    },
+    {
+      "path": "blueprint/src/chapters/brownian.tex",
+      "lines": [
+        53,
+        74
+      ],
+      "role": "child",
+      "name": "lem:isKolmogorovProcess_preBrownian",
+      "excerpt_sha256": "6ec0a736b0bf881b75dc6f99e0dfd9f892fbf4180f71bad0caaea056131b437c",
+      "permalink": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/blueprint/src/chapters/brownian.tex#L53-L74"
+    },
+    {
+      "path": "blueprint/src/chapters/kolmogorov_chentsov.tex",
+      "lines": [
+        1830,
+        1849
+      ],
+      "role": "child",
+      "name": "thm:localized_holder_modification_sup",
+      "excerpt_sha256": "1bf6b49a6e3b543eb79f0516912aa1f4deaf91326a1c6f362bb3fd0e8a547fad",
+      "permalink": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/blueprint/src/chapters/kolmogorov_chentsov.tex#L1830-L1849"
+    }
+  ],
+  "parent": {
+    "name": "lem:isHolderWith_brownian",
+    "statement": "The paths of the Brownian motion are locally Hölder continuous of all orders $\\gamma \\in (0, 1/2)$."
+  },
+  "children": [
+    {
+      "name": "lem:hasBoundedCoveringNumberCover_nnreal",
+      "statement": "$\\mathbb{R}_+$ has a cover with bounded covering numbers for the sets $T_n = [0,n)$, constants $c_n = n$ and exponents $d_n = 1$.",
+      "closed_by": "its own proof (blueprint/src/chapters/kolmogorov_chentsov.tex 1795-1798), an empty body whose \\uses{} cites lem:hasBoundedInternalCoveringNumber_unitInterval (the unit interval's covering number); formalised as isCoverWithBoundedCoveringNumber_Ico_nnreal"
+    },
+    {
+      "name": "lem:isKolmogorovProcess_preBrownian",
+      "statement": "The pre-Brownian process $X$ satisfies the Kolmogorov condition for exponents $(2n,n)$ with constant $(2n - 1)!!$ for all $n$: for all $s, t$, $\\mathbb{E}[|X_t - X_s|^{2n}] \\le (2n - 1)!! |t - s|^n$.",
+      "closed_by": "its own proof (blueprint/src/chapters/brownian.tex 65-74), which cites lem:centralMoment_two_mul_gaussianReal (Gaussian central moments) and lem:hasLaw_preBrownian_sub (the increment law $X_t - X_s \\sim N(0, |t-s|)$); formalised as ProbabilityTheory.isKolmogorovProcess_preBrownian"
+    },
+    {
+      "name": "thm:localized_holder_modification_sup",
+      "statement": "Let $T$ have a cover $(T_n)$ with bounded covering numbers (constants $c_n$, same exponent $d$); let $(p_n, q_n)$ be positive with $q_n > d$ and $X$ satisfy the Kolmogorov condition for $(p_n, q_n)$ for all $n$. Then $X$ has a modification $Y$ whose paths are almost surely locally Hölder continuous of all orders $\\gamma \\in (0, \\sup_n (q_n - d)/p_n)$.",
+      "closed_by": "its own proof (blueprint/src/chapters/kolmogorov_chentsov.tex 1840-1849), which cites thm:localized_holder_modification (the single-exponent version) and lem:indistinguishable_of_modification_of_continuous, then takes the sup over n; formalised as ProbabilityTheory.exists_modification_holder_iSup"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A blueprint node stating a property of a canonically constructed object (here the Brownian motion $B$) that follows from a known universal theorem (the localized Kolmogorov-Chentsov modification) by choosing parameters; the proof is the instantiation glue plus a one-line computation of a sup.",
+    "use_when": "the dependency graph already contains (a) a concrete cover of the index space with bounded covering numbers, (b) the process's Kolmogorov condition, and (c) a generic modification theorem parameterised by exponents; the node then exists only to record the instantiation (which $p_n, q_n, d$) and the arithmetic that yields the final order.",
+    "avoid_when": "any of the three ingredients is not yet a named node; the sup computation is not elementary; or the process's Kolmogorov exponents cannot be pushed up by a uniform reindexing (here $n \\mapsto n+2$ turns $(2n,n)$ into $(2n+4,n+2)$)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site (blueprint/src/chapters/brownian.tex:101-113) cites lem:hasBoundedCoveringNumberCover_nnreal.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/blueprint/src/chapters/brownian.tex#L101-L113",
+      "form": "cites(parent, lem:hasBoundedCoveringNumberCover_nnreal)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site (blueprint/src/chapters/brownian.tex:101-113) cites lem:isKolmogorovProcess_preBrownian.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/blueprint/src/chapters/brownian.tex#L101-L113",
+      "form": "cites(parent, lem:isKolmogorovProcess_preBrownian)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site (blueprint/src/chapters/brownian.tex:101-113) cites thm:localized_holder_modification_sup.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/blueprint/src/chapters/brownian.tex#L101-L113",
+      "form": "cites(parent, thm:localized_holder_modification_sup)"
+    },
+    {
+      "n": 4,
+      "claim": "The parent site is 13 lines long (declaration and proof together), matching shape.glue_lines = 13.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/blueprint/src/chapters/brownian.tex#L101-L113",
+      "form": "lines(parent, 13)"
+    },
+    {
+      "n": 5,
+      "claim": "The glue combines 3 direct lemmas (shape.direct_lemmas = 3); the longest checked chain of project lemmas below the node has depth 7; the three child sites span 13, 22 and 20 lines (shape.child_lines = [13, 22, 20]).",
+      "evidence_kind": "measurement",
+      "evidence": "direct_lemmas = 3, the three entries of the proof's \\uses{} at brownian.tex:109; depth 7 counted along the \\uses{} chain thm:localized_holder_modification_sup (kolmogorov_chentsov.tex:1841) -> thm:localized_holder_modification (:1812) -> thm:holder_modification (:1764) -> lem:holder_modification_single (:1716) -> thm:countable_set_bound (:1688) -> lem:finite_set_bound (:1639) -> cor:finite_set_bound_of_dist_le; child sites kolmogorov_chentsov.tex:1786-1798 (13), brownian.tex:53-74 (22), kolmogorov_chentsov.tex:1830-1849 (20)"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 7,
+    "glue_lines": 13,
+    "child_lines": [
+      13,
+      22,
+      20
+    ]
+  },
+  "metrics": {
+    "parent_site_lines": 13,
+    "child_site_lines": [
+      13,
+      22,
+      20
+    ],
+    "direct_lemmas": 3,
+    "depth": 7,
+    "how_counted": "parent site brownian.tex 101-113; child sites kolmogorov_chentsov.tex 1786-1798 and 1830-1849, brownian.tex 53-74; direct_lemmas from the proof's \\uses{} at brownian.tex:109; depth along the \\uses{} chain :1841 -> :1812 -> :1764 -> :1716 -> :1688 -> :1639"
+  },
+  "consequences": "The node creates no new mathematical obligation: it is a pure instantiation of three already-proved nodes plus a sup computation, so its only consequence is a named fact (lem:isHolderWith_brownian) that lem:continuous_brownian cites (brownian.tex:124) and that definition def:brownian already foreshadowed (brownian.tex:78). Failure modes: the arithmetic step is mis-stated in the blueprint — line 112 writes '\\leqslant 2' and 'tends to 2' where the correct bound is 1/2 (sup_n (n+1)/(2n+4) = 1/2) — so a reader copying the node verbatim must recompute the sup rather than trust that sentence. The instantiation also silently reindexes both ingredients: the cover T_n = [0, n+1) against the lemma's T_n = [0, n), and the Kolmogorov exponents (2n+4, n+2) against the lemma's (2n, n).",
+  "known_uses": [
+    "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/blueprint/src/chapters/brownian.tex#L77-L83",
+    "https://github.com/RemyDegenne/brownian-motion/blob/8fd8dc52830cdd07cf9cc8eadd533e284425fa6f/blueprint/src/chapters/brownian.tex#L116-L126"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 14,
+    "relation": "supports"
+  },
+  "content_key": "9cd4212c77e75b1b28187686e88397870b5de6000eba177b93225507de60514d",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:32:04Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:40:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T15:38:44Z"
+}

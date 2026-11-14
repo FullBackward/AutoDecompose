@@ -1,0 +1,125 @@
+{
+  "entry": "isabelle-interface-lemma-cogent-da73726a",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:47:19Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:47:19Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none; oops (listed, not failed): impl/fs/bilby/proof/refine/OstoreR.thy:2510 (oops)",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:47:19Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: fold_comp@impl/fs/bilby/proof/refine/FsopSyncR.thy:99, corres_sync_err@impl/fs/bilby/proof/refine/FsopSyncR.thy:66, length_updates_eqD@impl/fs/bilby/proof/refine/FsopSyncR.thy:88, afs_fsop_match_updates@impl/fs/bilby/proof/refine/FsopSyncR.thy:112, afs_inv_steps_updated_afsD@impl/fs/bilby/proof/refine/FsopSyncR.thy:83, ostore_sync_ret@impl/fs/bilby/proof/refine/FsopSyncR.thy:72; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:47:19Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(refine_sync, impl/fs/bilby/proof/refine/FsopSyncR.thy, 53-53) -> declared: refine_sync is declared at impl/fs/bilby/proof/refine/FsopSyncR.thy:53",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:47:19Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(impl/fs/bilby/proof/refine/FsopSyncR.thy, 53-116) -> no_sorry: none of sorry in impl/fs/bilby/proof/refine/FsopSyncR.thy:53-116",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:47:19Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "count(fold_comp, 3, impl/fs/bilby/proof/refine/FsopSyncR.thy) -> count: fold_comp occurs 3 times in 1 file(s) matching impl/fs/bilby/proof/refine/FsopSyncR.thy",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:47:19Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:47:29Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "cogent's CI (.github/workflows/ci.yml) builds the Cogent compiler (cabal new-install), runs tests, and generates C code via 'make .c-gen' under impl/fs/bilby/cogent and impl/fs/ext2/cogent, but has no 'isabelle build' step and does not build the Isabelle/HOL proof theories under impl/fs/bilby/proof/refine/ (FsopSyncR.thy)",
+      "by": "verifier",
+      "at": "2026-11-14T15:52:11Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Counted from copied code: glue FsopSyncR.thy 53-116 = 64 lines; child proof lengths fold_comp 26-28=3, corres_sync_err 30-33=4, length_updates_eqD 35-38=4, afs_fsop_match_updates 40-43=4, afs_inv_steps_updated_afsD 235-241=7, ostore_sync_ret 2379-2487=109 -> [3,4,4,4,7,109]; 6 direct lemmas (4 local in FsopSyncR.thy, 2 imported: afs_inv_steps_updated_afsD in AfsFsopR.thy, ostore_sync_ret in OstoreR.thy); depth 2: ostore_sync_ret's site cites ostore_sync_summary_if_eb_new_ret (apply (rule ostore_sync_summary_if_eb_new_ret ...))",
+      "by": "verifier",
+      "at": "2026-11-14T15:52:15Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Fetched FsopIgetR.thy raw at 49b6ceb (https://raw.githubusercontent.com/au-ts/cogent/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/FsopIgetR.thy): lemma refine_iget at line 90; proof peels with cogent_corres_conc_let_exec and cogent_corres_R; ostore_read_ret at line 99; apply (erule afs_inv_steps_updated_afsD) at line 123",
+      "by": "verifier",
+      "at": "2026-11-14T15:52:18Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent refine_sync (FsopSyncR.thy 53-116) statement matches entry.json and closes with done, no sorry. All 6 children statements and closed_by match the copied code verbatim and each closes (by/done): fold_comp 26-28, corres_sync_err 30-33, length_updates_eqD 35-38, afs_fsop_match_updates 40-43, afs_inv_steps_updated_afsD AfsFsopR.thy 235-241, ostore_sync_ret OstoreR.thy 2379-2487. The glue cites exactly these 6 (lines 66,72,83,88/90/103,99/111,112) and updates_take_eq is unused as stated. Shape numbers correct: direct_lemmas=6, glue_lines=64, child_lines=[3,4,4,4,7,109], depth=2 via refine_sync->ostore_sync_ret->ostore_sync_summary_if_eb_new_ret (line 2417). Minor non-blocking: README prose How-the-parts-fit line numbers are 32 lower than the file.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:54:49Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally ('When to use it' names the reusable shape: prove one boundary lemma for an opaque/generated function by structure-directed peeling with generic correspondence rules, each leaf a self-contained named lemma, statement generic over the exception/P-continuation). 'When not to use' and consequences are honest and specific: stall on a combinator with no cogent_corres_* rule, non-independent leaf obligations, per-let peeling breaks when the generator's output shape changes, and updates_take_eq (FsopSyncR.thy:45) is admitted unused (verified: only occurrence is its declaration). 'Each is a good leaf' explains why the lemmas suit a bounded prover (self-contained statements, proofs close alone or from named siblings, each local helper closed by one automated tactic). Known-use refine_iget (FsopIgetR.thy:90, cogent_corres_conc_let_exec/cogent_corres_R, reuses afs_inv_steps_updated_afsD at :123) verified as a second instance.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:56:16Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:56:33Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes (4 files byte-identical at 49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a); commit hash identical across entry.json, README, source.json and SOURCE.md; every permalink in files/sites/known_uses uses that commit and its cited line ranges match the local copies (verified via sed: refine_sync@53-116, fold_comp@26-28, corres_sync_err@30-33, length_updates_eqD@35-38, afs_fsop_match_updates@40-43, updates_take_eq@45-51, afs_inv_steps_updated_afsD@AfsFsopR 235-241, ostore_sync_ret@OstoreR 2379-2487, oops@OstoreR 2510); licence BSD-2-Clause AND GPL-2.0 recorded consistently in entry.json/README/source.json and both upstream licence files are present in sources/cogent with matching headers; SOURCE.md gives attribution and per-file licence text. Everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:57:14Z"
+    }
+  ]
+}

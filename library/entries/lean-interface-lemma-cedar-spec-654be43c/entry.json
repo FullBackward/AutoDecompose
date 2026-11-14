@@ -1,0 +1,320 @@
+{
+  "id": "lean-interface-lemma-cedar-spec-654be43c",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "WellBehavedIsAuthorizedQuery bundles query well-behavedness for generic verifyIsAuthorized soundness",
+  "intent": "State soundness of the symbolic `verifyIsAuthorized` once, generically over the query term φ and the response comparison f, by packaging the three properties a query must satisfy — WellFormedOutput, Interpretable and Same — into the single predicate `WellBehavedIsAuthorizedQuery`; a client then proves its own analysis sound by proving its query well-behaved, without unfolding the analysis internals.",
+  "move": "interface-lemma",
+  "also_known_as": [
+    "abstraction-boundary lemma",
+    "bundled-predicate interface",
+    "generic-over-the-client lemma"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "cedar-spec",
+    "url": "https://github.com/cedar-policy/cedar-spec",
+    "commit": "e619491a5bfb04970ef994dbe286df0bb9d0b73f",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean",
+      "bytes": 8989,
+      "sha256": "f0148760f7ded770757dd0976c75a98f8a8ac05bd3dc76e22efcab4136f8d317",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/SymCC/Enforcer.lean",
+      "bytes": 3040,
+      "sha256": "682e8337307fc1f313ff9c516a8b9c681f54b44b284c29fa9009ab1a40a42af1",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Enforcer.lean"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/SymCC/Enforcer/Asserts.lean",
+      "bytes": 2360,
+      "sha256": "16d101df094ddf84e67d768e260ce17f89bee3d9c76634c51122277286962e18",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Enforcer/Asserts.lean"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/SymCC/Authorizer.lean",
+      "bytes": 21223,
+      "sha256": "5a6522e3fa7f8e631c2bb7f722bf616c7d6cdced8e971e35ccdf924732b1cfe7",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Authorizer.lean"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/SymCC/Verifier/Same.lean",
+      "bytes": 1577,
+      "sha256": "1467a1dc7dd260283a62106907b3c5cc517f4840760fe20fb300ecfa30af85ed",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Verifier/Same.lean"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/SymCC/Env/SWF.lean",
+      "bytes": 6247,
+      "sha256": "12806bea34382fe73bb474a10393da5589cadc423155be98aae85c1787b96d84",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Env/SWF.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean",
+      "lines": [
+        99,
+        132
+      ],
+      "role": "parent",
+      "name": "verifyIsAuthorized_is_sound",
+      "excerpt_sha256": "974944abf09137afbbc957420921e28bf45cbfaed085dc29ce6692320dcb79ca",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean#L99-L132"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean",
+      "lines": [
+        81,
+        97
+      ],
+      "role": "child",
+      "name": "verifyIsAuthorized_ok_implies",
+      "excerpt_sha256": "2ce9b483f4f440389570d568cc85d8ecd26bd47e5116eeff0988dbbc6025c27d",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean#L81-L97"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/SymCC/Enforcer.lean",
+      "lines": [
+        30,
+        37
+      ],
+      "role": "child",
+      "name": "swf_implies_enforce_satisfiedBy",
+      "excerpt_sha256": "a31f8a40bd69cf68cd77feb75ae3146c06397ed31550e59ef8fbb5c8f4e597f1",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Enforcer.lean#L30-L37"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/SymCC/Enforcer/Asserts.lean",
+      "lines": [
+        47,
+        58
+      ],
+      "role": "child",
+      "name": "asserts_last_not_true",
+      "excerpt_sha256": "8b78f21d2360c3d6c5599eb1877acda10cb7759a53928a3d826a2294714958f5",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Enforcer/Asserts.lean#L47-L58"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/SymCC/Authorizer.lean",
+      "lines": [
+        450,
+        461
+      ],
+      "role": "child",
+      "name": "isAuthorized_bisimulation",
+      "excerpt_sha256": "3ec591ed6e8aa4192efdf8ad7a477507a75a16841f86beb175efeb5be7aba878",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Authorizer.lean#L450-L461"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/SymCC/Authorizer.lean",
+      "lines": [
+        375,
+        386
+      ],
+      "role": "child",
+      "name": "isAuthorized_wf",
+      "excerpt_sha256": "05ea45e90d80ae531cdb7a60546ba0029bf46eb796522097eb7836f2b6b7e423",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Authorizer.lean#L375-L386"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean",
+      "lines": [
+        55,
+        67
+      ],
+      "role": "child",
+      "name": "wbaq_bisimulation",
+      "excerpt_sha256": "15271ed96faa725adf9bf64a90b8a64cae196951e0a4a98c480ef8cb384c026c",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean#L55-L67"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean",
+      "lines": [
+        69,
+        79
+      ],
+      "role": "child",
+      "name": "interpret_not_wbaq",
+      "excerpt_sha256": "801458850d1b5ee09a7d3f5ddfba6eecfce0438a7349443361e6e63be7ee5914",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean#L69-L79"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/SymCC/Verifier/Same.lean",
+      "lines": [
+        48,
+        58
+      ],
+      "role": "child",
+      "name": "same_bool_not_not_true_implies_true",
+      "excerpt_sha256": "25dc13e7c441f2dd67126688fb36cc51a70e29824cc286531b2071a244fc1699",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Verifier/Same.lean#L48-L58"
+    },
+    {
+      "path": "cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean",
+      "lines": [
+        33,
+        53
+      ],
+      "role": "context",
+      "name": "WellBehavedIsAuthorizedQuery",
+      "excerpt_sha256": "c04433f303e6660cb257f1f5076e210a8b3d4d10adf3462503332f8b42677fb0",
+      "permalink": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean#L33-L53"
+    }
+  ],
+  "parent": {
+    "name": "verifyIsAuthorized_is_sound",
+    "statement": "theorem verifyIsAuthorized_is_sound {φ : Term → Term → Term} {f : Response → Response → Bool} {ps₁ ps₂ : Policies} {εnv : SymEnv} {asserts : Asserts} :\n  WellBehavedIsAuthorizedQuery φ f →\n  εnv.StronglyWellFormedForPolicies ps₁ →\n  εnv.StronglyWellFormedForPolicies ps₂ →\n  verifyIsAuthorized φ ps₁ ps₂ εnv = .ok asserts →\n  εnv ⊭ asserts →\n  ∀ env,\n    env ∈ᵢ εnv →\n    env.StronglyWellFormedForPolicies ps₁ →\n    env.StronglyWellFormedForPolicies ps₂ →\n    f (Spec.isAuthorized env.request env.entities ps₁) (Spec.isAuthorized env.request env.entities ps₂) = true"
+  },
+  "children": [
+    {
+      "name": "verifyIsAuthorized_ok_implies",
+      "statement": "theorem verifyIsAuthorized_ok_implies {φ : Term → Term → Term} {ps₁ ps₂ : Policies} {εnv : SymEnv} {asserts : Asserts} :\n  verifyIsAuthorized φ ps₁ ps₂ εnv = .ok asserts →\n  ∃ t₁ t₂ ts,\n    isAuthorized ps₁ εnv = .ok t₁ ∧\n    isAuthorized ps₂ εnv = .ok t₂ ∧\n    enforce ((ps₁ ++ ps₂).map Policy.toExpr) εnv = Set.mk ts ∧\n    asserts = ts ++ [not (φ t₁ t₂)]",
+      "closed_by": "simp only [verifyIsAuthorized, List.map_append], then simp_do_let on the two isAuthorized results, then exists with the extracted enforce terms",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: An .ok result of verifyIsAuthorized φ ps₁ ps₂ εnv decomposes into the two isAuthorized results t₁ and t₂ and the enforce result ts, with asserts = ts ++ [not (φ t₁ t₂)]."
+    },
+    {
+      "name": "swf_implies_enforce_satisfiedBy",
+      "statement": "theorem swf_implies_enforce_satisfiedBy {ps : Policies} {env : Env} {εnv : SymEnv} {I : Interpretation} {assumes : Asserts} :\n  env ∼ εnv.interpret I →\n  I.WellFormed εnv.entities →\n  εnv.StronglyWellFormedForPolicies ps →\n  env.StronglyWellFormedForPolicies ps →\n  enforce (ps.map Policy.toExpr) εnv = Set.mk assumes →\n  assumes.satisfiedBy I",
+      "closed_by": "enforce_satisfiedBy_swf",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: If env bisimulates εnv's interpretation under a well-formed I and both are strongly well-formed for ps, then the asserts produced by enforce (ps.map Policy.toExpr) are satisfied by I."
+    },
+    {
+      "name": "asserts_last_not_true",
+      "statement": "theorem asserts_last_not_true {I : Interpretation} {ts : Asserts} {t t' : Term} :\n  ts.satisfiedBy I →\n  t ∈ ts ++ [t'] →\n  t.interpret I ≠ Term.prim (TermPrim.bool true) →\n  t = t'",
+      "closed_by": "rcases on List.mem_append, then asserts_satisfiedBy_true and contradiction",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: If ts is satisfied by I and a term t in ts ++ [t'] is not true under I, then t is the last element t'."
+    },
+    {
+      "name": "isAuthorized_bisimulation",
+      "statement": "theorem isAuthorized_bisimulation {ps : Policies} {env : Env} {εnv : SymEnv} {t : Term} {I : Interpretation} :\n  εnv.WellFormedForPolicies ps →\n  env.WellFormedForPolicies ps →\n  I.WellFormed εnv.entities →\n  env ∼ εnv.interpret I →\n  Cedar.SymCC.isAuthorized ps εnv = .ok t →\n  Cedar.Spec.isAuthorized env.request env.entities ps ∼ t.interpret I",
+      "closed_by": "isAuthorized_interpret, interpret_εnv_wf_for_policies, then isAuthorized_same",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The symbolic isAuthorized result bisimulates the concrete Spec.isAuthorized decision: under the well-formedness and bisimulation hypotheses, Cedar.Spec.isAuthorized env.request env.entities ps ∼ t.interpret I."
+    },
+    {
+      "name": "isAuthorized_wf",
+      "statement": "theorem isAuthorized_wf {ps : Policies} {εnv : SymEnv} {t : Term} :\n  εnv.WellFormedForPolicies ps →\n  Cedar.SymCC.isAuthorized ps εnv = .ok t →\n  t.WellFormed εnv.entities ∧ t.typeOf = .bool",
+      "closed_by": "isAuthorized_ok_implies, satisfiedPolicies_wf, wf_not, then wf_and",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: If εnv is well-formed for ps and isAuthorized ps εnv returns .ok t, then t is a well-formed boolean term."
+    },
+    {
+      "name": "wbaq_bisimulation",
+      "statement": "theorem wbaq_bisimulation {φ : Term → Term → Term} {f : Response → Response → Bool} {εs : SymEntities} {t₁ t₂ : Term} {r₁ r₂ : Response} {I : Interpretation} :\n  WellBehavedIsAuthorizedQuery.WellFormedInputs t₁ t₂ εs →\n  WellBehavedIsAuthorizedQuery.Same φ f →\n  I.WellFormed εs →\n  r₁ ∼ (t₁.interpret I) → r₂ ∼ (t₂.interpret I) →\n  (f r₁ r₂) ∼ (φ (t₁.interpret I) (t₂.interpret I))",
+      "closed_by": "interpret_term_wf on the two inputs, then the Same hypothesis hφf",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: For a well-behaved query, if r₁ ∼ t₁.interpret I and r₂ ∼ t₂.interpret I then f r₁ r₂ ∼ φ (t₁.interpret I) (t₂.interpret I)."
+    },
+    {
+      "name": "interpret_not_wbaq",
+      "statement": "theorem interpret_not_wbaq {φ : Term → Term → Term} {t₁ t₂ : Term} {I : Interpretation} {εs : SymEntities} :\n  I.WellFormed εs →\n  WellBehavedIsAuthorizedQuery.WellFormedInputs t₁ t₂ εs →\n  WellBehavedIsAuthorizedQuery.WellFormedOutput φ →\n  WellBehavedIsAuthorizedQuery.Interpretable φ →\n  Term.interpret I (not (φ t₁ t₂)) = not (φ (t₁.interpret I) (t₂.interpret I))",
+      "closed_by": "interpret_not, then the Interpretable hypothesis hiφ",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: Under a well-formed I and a well-behaved query, the interpretation of not (φ t₁ t₂) equals not (φ (t₁.interpret I) (t₂.interpret I))."
+    },
+    {
+      "name": "same_bool_not_not_true_implies_true",
+      "statement": "theorem same_bool_not_not_true_implies_true {b : Bool} {t : Term} :\n  b ∼ t →\n  ¬ not t = .bool true →\n  b = true",
+      "closed_by": "same_bool_def, then cases b",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: If b ∼ t and not t is not true, then b is true."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A correctness theorem about a generic procedure `verifyIsAuthorized φ ps₁ ps₂ εnv` whose truth depends on φ and f only through a finite bundle of properties (well-formedness of output, interpretability, bisimulation); the theorem is quantified over φ : Term → Term → Term and f : Response → Response → Bool.",
+    "use_when": "The same correctness theorem holds for many concrete queries/analyses that differ only in φ and f, so it should be proved once; the bundle predicate is what each concrete client proves (by unfolding only its own query); the glue consumes the bundle by pattern-matching it into its components, here ⟨hwφ, hiφ, hφf⟩ for WellFormedOutput, Interpretable, Same.",
+    "avoid_when": "The required properties do not compose into one reusable predicate, or each client needs a different subset; one component cannot be stated uniformly (here Same needs f to be a boolean-term comparison); or the glue must inspect the bundle's internals in a way the single predicate hides."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "`wbaq_bisimulation` occurs in the parent site (the glue).",
+      "evidence_kind": "check",
+      "form": "cites(parent, wbaq_bisimulation)",
+      "evidence": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean#L99-L132"
+    },
+    {
+      "n": 2,
+      "claim": "No sorry, admit or axiom occurs in lines 1-181 of the copied file VerifyIsAuthorized.lean.",
+      "evidence_kind": "check",
+      "form": "no_sorry(cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean, 1-181)",
+      "evidence": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean"
+    },
+    {
+      "n": 3,
+      "claim": "The theorem-scale shape is direct_lemmas=13, depth=3, glue_lines=34, child_lines=[17, 8, 12, 12, 12, 13, 11, 11].",
+      "evidence_kind": "measurement",
+      "evidence": "counted from the copied files: 13 named lemmas cited by the glue (VerifyIsAuthorized.lean lines 99-132); depth = verifyIsAuthorized_is_sound → isAuthorized_bisimulation (Authorizer.lean 450-461) → isAuthorized_interpret (Authorizer.lean 406-421) → isAuthorized_ok_implies (Authorizer.lean 361-373); glue_lines = 34 (parent site 99-132); child_lines = the 8 child site spans"
+    },
+    {
+      "n": 4,
+      "claim": "The authors state the purpose in the file docstring: 'This file proves the soundness and completeness of Cedar.SymCC.verifyIsAuthorized for well-behaved verification queries. This enables proving soundness and completenss of analyses built on verifyIsAuthorized by proving that their queries are well-behaved.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean#L22-L27"
+    },
+    {
+      "n": 5,
+      "claim": "The sibling theorem verifyIsAuthorized_is_complete in the same file (lines 134-179) reuses the same WellBehavedIsAuthorizedQuery bundle and the same children (verifyIsAuthorized_ok_implies at line 150, interpret_not_wbaq at line 176, wbaq_bisimulation at line 177).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean#L134-L179"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 13,
+    "depth": 3,
+    "glue_lines": 34,
+    "child_lines": [
+      17,
+      8,
+      12,
+      12,
+      12,
+      13,
+      11,
+      11
+    ]
+  },
+  "metrics": {
+    "parent_lines": 34,
+    "children": 8,
+    "children_closed_by_automation": 1,
+    "how_counted": "parent_lines = parent site lines 99-132 of VerifyIsAuthorized.lean; children = 8 child sites; children_closed_by_automation = children whose proof cites no named lemma (verifyIsAuthorized_ok_implies, closed by simp/simp_do_let/exists; the other 7 close by a named lemma or a short tactic script citing one)"
+  },
+  "consequences": "The move replaces three separate well-behavedness obligations (WellFormedOutput, Interpretable, Same) with one `WellBehavedIsAuthorizedQuery φ f` obligation per concrete analysis. It couples the three properties: a client that needs `Same` under hypotheses the other components do not have still pays for the strongest requirement, and the bundle must be stable under the analysis's own composition (Interpretable and Same are stated against the query applied to interpreted inputs). Failure mode: the predicate is too strong for some client, or too weak for another, and every client is forced to use the same bundle.",
+  "known_uses": [
+    "https://github.com/cedar-policy/cedar-spec/blob/e619491a5bfb04970ef994dbe286df0bb9d0b73f/cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean#L134-L179"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "654be43c5c5aa301ce954f95f0527f10345654c893a09e63be427c393e884256",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:18:36Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:30:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:20:45Z",
+      "note": "parent verifyIsAuthorized_is_sound: statement re-copied from code; child 'verifyIsAuthorized_ok_implies': statement re-copied from the declaration of verifyIsAuthorized_ok_implies; child 'swf_implies_enforce_satisfiedBy': statement re-copied from the declaration of swf_implies_enforce_satisfiedBy; child 'asserts_last_not_true': statement re-copied from the declaration of asserts_last_not_true; child 'isAuthorized_bisimulation': statement re-copied from the declaration of isAuthorized_bisimulation; child 'isAuthorized_wf': statement re-copied from the declaration of isAuthorized_wf; child 'wbaq_bisimulation': statement re-copied from the declaration of wbaq_bisimulation; child 'interpret_not_wbaq': statement re-copied from the declaration of interpret_not_wbaq; child 'same_bool_not_not_true_implies_true': statement re-copied from the declaration of same_bool_not_not_true_implies_true"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T15:28:14Z"
+}

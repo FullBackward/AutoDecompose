@@ -1,0 +1,18 @@
+{
+  "source_id": "poincare-conjecture",
+  "url": "https://github.com/frenzymath/poincare-conjecture",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "frenzymath/poincare-conjecture",
+  "commit": "08f06794dd88b786ae560b5db1116f50322c4629",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T14:53:59Z",
+  "how_found": "discovery-2: B-lean",
+  "note": "Lean 4 formalisation of the Poincare conjecture with an 18-chapter blueprint; headline theorems assembled from named chapter lemmas",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE",
+    "NOTICE"
+  ]
+}

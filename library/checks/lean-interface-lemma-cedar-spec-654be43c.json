@@ -1,0 +1,125 @@
+{
+  "entry": "lean-interface-lemma-cedar-spec-654be43c",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:22:03Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:22:03Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:22:04Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: verifyIsAuthorized_ok_implies@cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean:114, swf_implies_enforce_satisfiedBy@cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean:116, asserts_last_not_true@cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean:119, isAuthorized_bisimulation@cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean:124, isAuthorized_wf@cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean:128, wbaq_bisimulation@cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean:131, interpret_not_wbaq@cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean:130, same_bool_not_not_true_implies_true@cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean:132; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:22:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, wbaq_bisimulation) -> cites: wbaq_bisimulation occurs at cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean:131",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:22:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean, 1-181) -> no_sorry: none of sorry, admit, axiom in cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean:1-181",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:22:04Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "6 file(s) byte-identical at e619491a5bfb04970ef994dbe286df0bb9d0b73f",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:22:12Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/ci.yml job build_and_test_lean runs 'lake build Cedar SymCC' in ./cedar-lean; Cedar is a default-target lean_lib covering Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean; pinned commit e619491a5bfb04970ef994dbe286df0bb9d0b73f on default branch (registered ref HEAD)",
+      "by": "verifier",
+      "at": "2026-11-14T15:24:05Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "counted from copied files: glue cites 13 distinct named lemmas (asserts_unsatisfiable_def, verifyIsAuthorized_ok_implies, swf_implies_enforce_satisfiedBy, swf_εnv_for_policies_iff_swf_for_append, swf_env_for_policies_iff_swf_for_append, asserts_last_not_true, swf_εnv_for_policies_implies_wf_for_policies, swf_env_for_policies_implies_wf_for_policies, isAuthorized_bisimulation, isAuthorized_wf, interpret_not_wbaq, wbaq_bisimulation, same_bool_not_not_true_implies_true) at lines 112-132; depth chain verifyIsAuthorized_is_sound -> isAuthorized_bisimulation (Authorizer.lean 459 cites isAuthorized_interpret) -> isAuthorized_interpret (Authorizer.lean 413 cites isAuthorized_ok_implies) -> isAuthorized_ok_implies; glue_lines=34 (99-132); child_lines match the 8 site spans [17,8,12,12,12,13,11,11]",
+      "by": "verifier",
+      "at": "2026-11-14T15:24:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "copied VerifyIsAuthorized.lean lines 22-27 docstring matches the quoted text verbatim, incl. the 'completenss' typo",
+      "by": "verifier",
+      "at": "2026-11-14T15:24:09Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "verifyIsAuthorized_is_complete at lines 134-179 pattern-matches WellBehavedIsAuthorizedQuery (line 147 intro <hwφ, hiφ, hφf>) and cites verifyIsAuthorized_ok_implies at line 150, interpret_not_wbaq at line 176, wbaq_bisimulation at line 177",
+      "by": "verifier",
+      "at": "2026-11-14T15:24:10Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent site VerifyIsAuthorized.lean 99-132 is a linear glue that cites exactly 13 distinct named lemmas: the 8 children (verifyIsAuthorized_ok_implies L114, swf_implies_enforce_satisfiedBy L116, asserts_last_not_true L119, isAuthorized_bisimulation L124/129, isAuthorized_wf L128/130, interpret_not_wbaq L130, wbaq_bisimulation L131, same_bool_not_not_true_implies_true L132) plus the 5 disclosed list-shuffling lemmas (asserts_unsatisfiable_def L40-45, swf_*_for_policies_* SWF.lean 110-172), so direct_lemmas=13 is right and no child is spurious. Each child's statement and closed_by match the copied code verbatim (e.g. swf_implies_enforce_satisfiedBy := enforce_satisfiedBy_swf; isAuthorized_bisimulation closes via isAuthorized_interpret, interpret_εnv_wf_for_policies, isAuthorized_same). The proof closes: final exact same_bool_not_not_true_implies_true hrb hsat where hrb:(f r1 r2)~(phi (t1.interpret I)(t2.interpret I)) and hsat:not(not(...))=true. Shape numbers all correct: glue_lines=34 = parent site 99-132; child_lines=[17,8,12,12,12,13,11,11] match site spans 81-97,30-37,47-58,450-461,375-386,55-67,69-79,48-58; depth=3 via parent -> isAuthorized_bisimulation(Authorizer 450-461) -> isAuthorized_interpret(406-421) -> isAuthorized_ok_implies(361-373).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:26:12Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated beyond the example: intent and applicability.use_when/avoid_when are generic (bundle the finitely-many properties a correctness theorem depends on into one predicate; client proves only the bundle), and there is a concrete known-use — the sibling verifyIsAuthorized_is_complete (L135, 150, 176, 177) reuses the same WellBehavedIsAuthorizedQuery bundle and children, verified in the copied file. When-not-to-use is honest and specific: non-composable properties, clients needing different subsets, a non-uniform component (Same needs f bisimulating a term), and glue needing hidden internals — all trace to the three actual components. Consequences are honest: replaces three obligations with one, couples them (a client pays the strongest requirement), and states the too-strong/too-weak single-bundle failure mode. Good-leaves question is answered at README L245: each child is self-contained, closes on its own or from one-step-down siblings, needs no parent-local context, backed by shape (child_lines 8-17, depth 3). Minor imprecision only: 'Same requires f to be a boolean-term comparison' is loose (f returns Bool, related to the term via ~), and the known-use is a sibling in the same file, not independent — neither rises to an objection.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:27:27Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "6 file(s) byte-identical at e619491a5bfb04970ef994dbe286df0bb9d0b73f",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:27:46Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent and traceable. check_provenance passes (6 files byte-identical at e619491a5bfb04970ef994dbe286df0bb9d0b73f). All permalinks in entry.json and README use the single pinned commit e619491a5bfb04970ef994dbe286df0bb9d0b73f, matching sources/cedar-spec/SOURCE.md (pinned 2026-11-14). entry.json licence Apache-2.0 matches SOURCE.md detected licence Apache-2.0, and the copied upstream-LICENSE is Apache License 2.0 (NOTICE: Copyright Cedar Contributors). README Source and licence section points to the source note and states Apache-2.0. Everything is traceable to the pinned commit.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:28:08Z"
+    }
+  ]
+}

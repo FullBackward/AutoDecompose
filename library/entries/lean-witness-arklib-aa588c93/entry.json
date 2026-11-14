@@ -1,0 +1,233 @@
+{
+  "id": "lean-witness-arklib-aa588c93",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Witness pair (E, Q) closes linsolve_always_some_berlekamp_welch",
+  "intent": "Prove that the Berlekamp-Welch linear-system solver cannot return none when the received word is within e errors, by exhibiting the polynomial pair (E, Q) as an explicit witness solution and discharging each property of the witness with a named lemma.",
+  "move": "witness",
+  "also_known_as": [
+    "explicit witness",
+    "constructive existence proof",
+    "∃-witness template"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "arklib",
+    "url": "https://github.com/Verified-zkEVM/ArkLib",
+    "commit": "6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "ArkLib/Data/CodingTheory/BerlekampWelch/Existence.lean",
+      "bytes": 5584,
+      "sha256": "b55ce04064c4d1871a476a1c957eebd5885fbe0c5d85bc97fd5b9b1397749b30",
+      "permalink": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/Data/CodingTheory/BerlekampWelch/Existence.lean"
+    },
+    {
+      "path": "ArkLib/Data/CodingTheory/BerlekampWelch/Condition.lean",
+      "bytes": 19090,
+      "sha256": "408d2c561683e8a76087178d72b54b80a0b379b6fb7d75349274c401dbaf614d",
+      "permalink": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/Data/CodingTheory/BerlekampWelch/Condition.lean"
+    },
+    {
+      "path": "ArkLib/Data/CodingTheory/BerlekampWelch/Sorries.lean",
+      "bytes": 2967,
+      "sha256": "75cae272a7383c44114d00b43847803f43536cea7a91edeec5501615666f8644",
+      "permalink": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/Data/CodingTheory/BerlekampWelch/Sorries.lean"
+    },
+    {
+      "path": "ArkLib/Data/CodingTheory/BerlekampWelch/ElocPoly.lean",
+      "bytes": 5981,
+      "sha256": "9df5e956e272298881ed49fd059f78847d1891ea27d407e38f35f6f559ba8f41",
+      "permalink": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/Data/CodingTheory/BerlekampWelch/ElocPoly.lean"
+    },
+    {
+      "path": "ArkLib/Data/CodingTheory/BerlekampWelch/BerlekampWelch.lean",
+      "bytes": 5739,
+      "sha256": "e60e958dd2ed9451bebbb7928817a79e7beadd5ebac878921b119e582e29884a",
+      "permalink": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/Data/CodingTheory/BerlekampWelch/BerlekampWelch.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "ArkLib/Data/CodingTheory/BerlekampWelch/Existence.lean",
+      "lines": [
+        151,
+        165
+      ],
+      "role": "parent",
+      "name": "linsolve_always_some_berlekamp_welch",
+      "excerpt_sha256": "0235bd7b2047daab2316941d4e2084014550a6fca9f974469b857f42152e76d5",
+      "permalink": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/Data/CodingTheory/BerlekampWelch/Existence.lean#L151-L165"
+    },
+    {
+      "path": "ArkLib/Data/CodingTheory/BerlekampWelch/Existence.lean",
+      "lines": [
+        72,
+        87
+      ],
+      "role": "child",
+      "name": "solutionToQ_from_Q",
+      "excerpt_sha256": "067aafd8452b9305b0d3fc31916ef53c5c720f158a50502825c6e122a3bc7455",
+      "permalink": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/Data/CodingTheory/BerlekampWelch/Existence.lean#L72-L87"
+    },
+    {
+      "path": "ArkLib/Data/CodingTheory/BerlekampWelch/Existence.lean",
+      "lines": [
+        89,
+        105
+      ],
+      "role": "child",
+      "name": "solutionToE_from_E",
+      "excerpt_sha256": "888ad48e759d4d13c55a1e24aac2e67a9b71994aa19a491e7aeda8d856b90441",
+      "permalink": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/Data/CodingTheory/BerlekampWelch/Existence.lean#L89-L105"
+    },
+    {
+      "path": "ArkLib/Data/CodingTheory/BerlekampWelch/Existence.lean",
+      "lines": [
+        107,
+        123
+      ],
+      "role": "child",
+      "name": "E_and_Q_BerlekampWelch_condition",
+      "excerpt_sha256": "281afea4aa14425cfbfb976bb8497be6cd0be07fb3f3cc422d36b744c92017d1",
+      "permalink": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/Data/CodingTheory/BerlekampWelch/Existence.lean#L107-L123"
+    },
+    {
+      "path": "ArkLib/Data/CodingTheory/BerlekampWelch/Condition.lean",
+      "lines": [
+        101,
+        102
+      ],
+      "role": "child",
+      "name": "E_and_Q_to_a_solution",
+      "excerpt_sha256": "d6d2dd637497b2cf689111a6182233bd89b8301fb970f6a65f974f46d1529702",
+      "permalink": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/Data/CodingTheory/BerlekampWelch/Condition.lean#L101-L102"
+    }
+  ],
+  "parent": {
+    "name": "linsolve_always_some_berlekamp_welch",
+    "statement": "lemma linsolve_always_some_berlekamp_welch\n    (hp_deg : p.natDegree < k)\n  (h_ham : (Δ₀(f, p.eval ∘ ωs) : ℕ) ≤ e) :\n  linsolve (BerlekampWelchMatrix e k ωs f) (Rhs e ωs f) ≠ none"
+  },
+  "children": [
+    {
+      "name": "solutionToQ_from_Q",
+      "statement": "lemma solutionToQ_from_Q\n  (h_p_deg : p.natDegree < k)\n  (h_dist : (Δ₀(f, p.eval ∘ ωs) : ℕ) ≤ e) :\n  solutionToQ e k (E_and_Q_to_a_solution e (E ωs f p e) (Q ωs f p e)) = Q ωs f p e",
+      "closed_by": "Polynomial.ext; simp only [solutionToQ_coeff, Fin.liftF, E_and_Q_to_a_solution_coeff, ...]; split_ifs; the p = 0 branch by simp [Q, hne], the p ≠ 0 branch by by_contra + natDegree_Q h_dist + omega",
+      "note": "Second projection: the solution vector reconstructed from (E, Q) projects back to Q. A leaf: closes by unfolding the two coefficient definitions and, in the non-zero case, contradicting the degree bound natDegree_Q h_dist. Analyst's paraphrase, replaced by the declaration's text: solutionToQ recovers Q from the witness vector built out of E and Q"
+    },
+    {
+      "name": "solutionToE_from_E",
+      "statement": "lemma solutionToE_from_E\n  (h_p_deg : p.natDegree < k)\n  (h_dist : (Δ₀(f, p.eval ∘ ωs) : ℕ) ≤ e) :\n  solutionToE e k (E_and_Q_to_a_solution e (E ωs f p e) (Q ωs f p e)) = E ωs f p e",
+      "closed_by": "Polynomial.ext; simp only [coeff_solutionToE]; split_ifs; aesop with leadingCoeff_E'; by_contra + natDegree_E + omega",
+      "note": "First projection: the witness projects back to E. A leaf: closes by unfolding coeff_solutionToE and, in the remaining case, contradicting natDegree_E. Analyst's paraphrase, replaced by the declaration's text: solutionToE recovers E from the witness vector built out of E and Q"
+    },
+    {
+      "name": "E_and_Q_BerlekampWelch_condition",
+      "statement": "lemma E_and_Q_BerlekampWelch_condition\n  (h_p_deg : p.natDegree < k)\n  (h_dist : (Δ₀(f, p.eval ∘ ωs) : ℕ) ≤ e) :\n  BerlekampWelchCondition e k ωs f (E ωs f p e) (Q ωs f p e)",
+      "closed_by": "constructor with natDegree_E h_dist, leadingCoeff_E' h_dist, le_trans (natDegree_Q h_dist) (by omega); the cond field by errors_are_roots_of_elocPolyF",
+      "note": "The witness satisfies the structure BerlekampWelchCondition field by field: the pointwise equation via errors_are_roots_of_elocPolyF, and the three degree/coefficient bounds via the in-file lemmas natDegree_E, leadingCoeff_E', natDegree_Q. Analyst's paraphrase, replaced by the declaration's text: the pair (E, Q) satisfies the Berlekamp-Welch condition"
+    },
+    {
+      "name": "E_and_Q_to_a_solution",
+      "statement": "def E_and_Q_to_a_solution (e : ℕ) (E Q : Polynomial F) (i : Fin n) : F",
+      "closed_by": "definitional: if i < e then E.coeff i else Q.coeff (i - e)",
+      "note": "The witness constructor: packages the polynomials E and Q into the vector Fin (2 * e + k) → F that linsolve solves for. A definition (def), not a lemma; no proof obligation of its own. Analyst's paraphrase, replaced by the declaration's text: the witness vector is E's coefficients below e and Q's coefficients shifted above e"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal linsolve A b ≠ none (an Option-valued solver's success), proved by contradiction: assume contr : linsolve A b = none, turn it into ¬ ∃ x, A.mulVec x = b with linsolve_none, then exhibit a concrete witness x and prove the solution property.",
+    "use_when": "the witness is a concrete computable object — here the polynomial pair (E, Q) packed into a vector by E_and_Q_to_a_solution — whose defining property decomposes into a small number of named lemmas, one per field of a structure (BerlekampWelchCondition) or per projection (solutionToE / solutionToQ).",
+    "avoid_when": "the witness is only available non-constructively and no candidate is in hand; or the success goal can be discharged by simp alone; or the witness's properties do not separate into independent lemmas."
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 3,
+    "glue_lines": 15,
+    "child_lines": [
+      16,
+      17,
+      17,
+      2
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 15,
+    "children": 4,
+    "children_closed_by_automation": 3,
+    "how_counted": "parent_proof_lines = lines 151-165 of Existence.lean; children = the four child sites; children_closed_by_automation counts the three property lemmas that close by aesop/simp/omega (E_and_Q_to_a_solution is a definition, not a proof)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent proof names the witness constructor E_and_Q_to_a_solution.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/Data/CodingTheory/BerlekampWelch/Existence.lean#L159",
+      "form": "cites(parent, E_and_Q_to_a_solution)"
+    },
+    {
+      "n": 2,
+      "claim": "Lines 72-165 of ArkLib/Data/CodingTheory/BerlekampWelch/Existence.lean contain no sorry, admit or axiom.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/Data/CodingTheory/BerlekampWelch/Existence.lean#L72-L165",
+      "form": "no_sorry(ArkLib/Data/CodingTheory/BerlekampWelch/Existence.lean, 72-165)"
+    },
+    {
+      "n": 3,
+      "claim": "E_and_Q_BerlekampWelch_condition is declared at line 107 of ArkLib/Data/CodingTheory/BerlekampWelch/Existence.lean.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/Data/CodingTheory/BerlekampWelch/Existence.lean#L107",
+      "form": "declared(E_and_Q_BerlekampWelch_condition, ArkLib/Data/CodingTheory/BerlekampWelch/Existence.lean, 107-107)"
+    },
+    {
+      "n": 4,
+      "claim": "The theorem's shape: the glue is 15 lines (151-165) against four direct lemmas of 2, 16, 17 and 17 lines, and the longest checked chain of project lemmas below the theorem is 3 deep (solutionToE_from_E → natDegree_E → elocPolyF_eq_elocPoly').",
+      "evidence_kind": "measurement",
+      "evidence": "line counts: Existence.lean 151-165 (glue), Condition.lean 101-102 (2), Existence.lean 72-87 (16), 89-105 (17), 107-123 (17); depth chain: Existence.lean 89-105 → 27-35 → ElocPoly.lean 140-141"
+    },
+    {
+      "n": 5,
+      "claim": "The decoder correctness theorem decoder_eq_some closes its none-case by exact linsolve_always_some_berlekamp_welch h_deg h_dist hlinsolve.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/Data/CodingTheory/BerlekampWelch/BerlekampWelch.lean#L113"
+    }
+  ],
+  "consequences": "The move's obligations are the fields of the witness's property: here the four fields of BerlekampWelchCondition (the pointwise equation, E.natDegree = e, E.coeff e = 1, Q.natDegree ≤ e + k - 1) plus the two projection identities solutionToE = E and solutionToQ = Q. The glue also depends on two library facts outside the witness lemmas — linsolve_none (the contrapositive turning linsolve = none into ¬ ∃ solution) and BerlekampWelchCondition_iff_Solution — so the witness is usable only once the solver API and the condition⇔solution bridge exist. Failure mode: introducing the witness as a bare def without the per-field lemmas leaves the final simp unable to unfold the four properties, and the goal does not close.",
+  "known_uses": [
+    "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/Data/CodingTheory/BerlekampWelch/BerlekampWelch.lean#L113",
+    "https://github.com/Verified-zkEVM/ArkLib/blob/6f9884a95ae7ee5109a06af95fd95fbf4f8b3bc6/ArkLib/Data/CodingTheory/BerlekampWelch/BerlekampWelch.lean#L147"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "aa588c9338864066a985dc9b78fc15ffa57d70f723552cefb9a137c5e9e15939",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:52:46Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,shape,metrics,claims,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:55:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:55:09Z",
+      "note": "parent linsolve_always_some_berlekamp_welch: statement re-copied from code; child 'solutionToQ_from_Q': statement re-copied from the declaration of solutionToQ_from_Q; child 'solutionToE_from_E': statement re-copied from the declaration of solutionToE_from_E; child 'E_and_Q_BerlekampWelch_condition': statement re-copied from the declaration of E_and_Q_BerlekampWelch_condition; child 'E_and_Q_to_a_solution': statement re-copied from the declaration of E_and_Q_to_a_solution"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T16:00:57Z"
+}

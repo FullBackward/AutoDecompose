@@ -1,0 +1,207 @@
+{
+  "id": "rocq-calc-chain-bertrand-62edaca1",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "No-prime spec inequality as a calc-chain through the central binomial (2n n)",
+  "intent": "Reduce the goal \"if no prime lies between n and 2n then power 4 n < power (2*n) (div (sqr (2*n)) 2) * power 4 (div (2*n) 3)\" to two bound lemmas on the central binomial `binomial (2*n) n` — the lower bound `binomial_even` and the upper bound `upper_bound` — and chain them through `2 * n * binomial (2*n) n` with `Nat.le_lt_trans` and `Nat.lt_le_trans`.",
+  "move": "calc-chain",
+  "also_known_as": [
+    "inequality sandwich",
+    "lower/upper bound squeeze",
+    "chained transitivity",
+    "transitivity chain"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "bertrand",
+    "url": "https://github.com/rocq-community/bertrand",
+    "commit": "033b1a8f1a9c121855b6b78cd55154d3c09e1c23",
+    "licence": "LGPL-2.1"
+  },
+  "files": [
+    {
+      "path": "theories/Bertrand.v",
+      "bytes": 18083,
+      "sha256": "315263bf543a2ce2b1ae75630a5568cd00b657013b33a16bb12a51c42841d201",
+      "permalink": "https://github.com/rocq-community/bertrand/blob/033b1a8f1a9c121855b6b78cd55154d3c09e1c23/theories/Bertrand.v"
+    },
+    {
+      "path": "theories/Binomial.v",
+      "bytes": 12358,
+      "sha256": "95ccebe645123f28cc4fd2f0f375ac5511d50ca22d3789f1a7241e27bba9538c",
+      "permalink": "https://github.com/rocq-community/bertrand/blob/033b1a8f1a9c121855b6b78cd55154d3c09e1c23/theories/Binomial.v"
+    },
+    {
+      "path": "theories/Power.v",
+      "bytes": 4966,
+      "sha256": "2dc9d631e1eca4b58a2f389d11eb2cfc7e25a29ef788ccf644e6b5ebdf7774dc",
+      "permalink": "https://github.com/rocq-community/bertrand/blob/033b1a8f1a9c121855b6b78cd55154d3c09e1c23/theories/Power.v"
+    },
+    {
+      "path": "theories/Div.v",
+      "bytes": 9075,
+      "sha256": "bd75a4b6900c12fc9c60748d6c4789607a6f84dba89eb64d167b96031faa2860",
+      "permalink": "https://github.com/rocq-community/bertrand/blob/033b1a8f1a9c121855b6b78cd55154d3c09e1c23/theories/Div.v"
+    },
+    {
+      "path": "theories/Misc.v",
+      "bytes": 14087,
+      "sha256": "1ec2f3b5d1397a744dff179fd3fc0ff67280875865095a6ca79cea95a140d88c",
+      "permalink": "https://github.com/rocq-community/bertrand/blob/033b1a8f1a9c121855b6b78cd55154d3c09e1c23/theories/Misc.v"
+    },
+    {
+      "path": "theories/Prime.v",
+      "bytes": 8081,
+      "sha256": "711aee25cb7ebeab5f904fa9db112ae29d02ad9bdb2a3f5de4c45c1b99a5daa7",
+      "permalink": "https://github.com/rocq-community/bertrand/blob/033b1a8f1a9c121855b6b78cd55154d3c09e1c23/theories/Prime.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/Bertrand.v",
+      "lines": [
+        187,
+        220
+      ],
+      "role": "parent",
+      "name": "no_prime_imp_spec_inegality",
+      "excerpt_sha256": "92c82990288a6a542fcda8b8c114672a808ac6da112cb174eda1877e605f16d9",
+      "permalink": "https://github.com/rocq-community/bertrand/blob/033b1a8f1a9c121855b6b78cd55154d3c09e1c23/theories/Bertrand.v#L187-L220"
+    },
+    {
+      "path": "theories/Bertrand.v",
+      "lines": [
+        27,
+        184
+      ],
+      "role": "child",
+      "name": "upper_bound",
+      "excerpt_sha256": "b1e0f8f0312286f766d9314c60966465ef2a7d63bbca8f55d2d5155b9ef5afc5",
+      "permalink": "https://github.com/rocq-community/bertrand/blob/033b1a8f1a9c121855b6b78cd55154d3c09e1c23/theories/Bertrand.v#L27-L184"
+    },
+    {
+      "path": "theories/Binomial.v",
+      "lines": [
+        255,
+        324
+      ],
+      "role": "child",
+      "name": "binomial_even",
+      "excerpt_sha256": "b2eafbf402f3d67fd79906e9e2f602b3345c18d1988054951db5c234eabf6d48",
+      "permalink": "https://github.com/rocq-community/bertrand/blob/033b1a8f1a9c121855b6b78cd55154d3c09e1c23/theories/Binomial.v#L255-L324"
+    }
+  ],
+  "parent": {
+    "name": "no_prime_imp_spec_inegality",
+    "statement": "Theorem no_prime_imp_spec_inegality :\n forall n : nat,\n power 2 7 <= n ->\n (forall p : nat, n < p -> p < 2 * n -> ~ prime p) ->\n power 4 n < power (2 * n) (div (sqr (2 * n)) 2) * power 4 (div (2 * n) 3)."
+  },
+  "children": [
+    {
+      "name": "upper_bound",
+      "statement": "Theorem upper_bound :\n forall n : nat,\n power 2 7 <= n ->\n (forall p : nat, n < p -> p < 2 * n -> ~ prime p) ->\n binomial (2 * n) n <\n power (2 * n) (div (sqr (2 * n)) 2 - 1) * power 4 (div (2 * n) 3).",
+      "closed_by": "its own 158-line calc-chain: factorize binomial (2*n) n with `factorization` (Bertrand.v line 41), split the product with `prod_nm_split`, then chain `Nat.lt_le_trans`/`Nat.le_lt_trans` through `prod_nm 0 (div (2*n) 3) ...` and close each prime-power bound with `power_div_binomial1/2/3`, `prod_prime_lt`, `prod_prime_le`",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: binomial (2*n) n is bounded above by power (2*n) (div (sqr (2*n)) 2 - 1) * power 4 (div (2*n) 3), under the same no-prime and n-large hypotheses"
+    },
+    {
+      "name": "binomial_even",
+      "statement": "Theorem binomial_even :\n forall n : nat, 0 < n -> power 2 (2 * n) <= 2 * n * binomial (2 * n) n.",
+      "closed_by": "rewrites `binomial2` (Binomial.v line 271), splits the sum with `sum_nm_split`, reduces the bound to `binomial_mono`/`binomial_comp`/`binomial_def3`/`binomial_def4`, closing with `Nat.le_trans`, `Nat.add_le_mono` and `auto with arith`",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: power 2 (2*n) <= 2*n * binomial (2*n) n for n > 0"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal `A < C` (or `A <= C`) where the desired bound C factors as an upper bound on an intermediate expression M and a lower bound `A <= M`, so the proof is `Nat.le_lt_trans` (or `Nat.lt_le_trans`/`Nat.le_trans`) with the intermediate `M` and two named lemmas, one per link.",
+    "use_when": "the target inequality factors through a natural intermediate (here the central binomial `binomial (2*n) n`) whose lower and upper bounds are each already proved as their own lemma; the two links are non-trivial enough to deserve separate lemmas; the intermediate is something the reader can name.",
+    "avoid_when": "one side of the inequality is a one-off rewrite that can be folded inline (e.g. `power 4 n <= 2*n*binomial ...` is not the point — the point is the two named bound lemmas); the intermediate does not split the goal into two reusable lemmas; the links are standard-library arithmetic that a single `auto with arith`/`lia` closes."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent `no_prime_imp_spec_inegality` is declared in `theories/Bertrand.v`, in lines 187-220.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-community/bertrand/blob/033b1a8f1a9c121855b6b78cd55154d3c09e1c23/theories/Bertrand.v#L187-L220",
+      "form": "declared(no_prime_imp_spec_inegality, theories/Bertrand.v, 187-220)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent's proof cites the child `upper_bound`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-community/bertrand/blob/033b1a8f1a9c121855b6b78cd55154d3c09e1c23/theories/Bertrand.v#L187-L220",
+      "form": "cites(parent, upper_bound)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent's proof cites the child `binomial_even`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-community/bertrand/blob/033b1a8f1a9c121855b6b78cd55154d3c09e1c23/theories/Bertrand.v#L187-L220",
+      "form": "cites(parent, binomial_even)"
+    },
+    {
+      "n": 4,
+      "claim": "The decomposition has 2 direct lemmas (upper_bound, binomial_even), depth 2 below the main theorem, 34 glue lines and child proof lines [158, 70].",
+      "evidence_kind": "measurement",
+      "evidence": "direct lemmas = the two children cited at Bertrand.v#L196 and #L206; depth 2 = no_prime_imp_spec_inegality -> upper_bound -> factorization (Bertrand.v#L41 -> PrimeDirac.v#L449) and -> binomial_even -> binomial2 (Binomial.v#L271 -> Binomial.v#L205); glue = parent site 187-220; child lines = sites 27-184 and 255-324"
+    },
+    {
+      "n": 5,
+      "claim": "The authors label the two children as the lower and upper bound of the central binomial, in the comments '(** Lower bound for (binomial 2n n) *)' (Binomial.v line 253) and '(** Upper Bound for (binonial 2n n) *)' (Bertrand.v line 25), so the parent's chain through binomial (2*n) n is the split they had in mind.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/rocq-community/bertrand/blob/033b1a8f1a9c121855b6b78cd55154d3c09e1c23/theories/Binomial.v#L253 and https://github.com/rocq-community/bertrand/blob/033b1a8f1a9c121855b6b78cd55154d3c09e1c23/theories/Bertrand.v#L25"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 2,
+    "glue_lines": 34,
+    "child_lines": [
+      158,
+      70
+    ]
+  },
+  "metrics": {
+    "glue_lines": 34,
+    "direct_lemmas": 2,
+    "depth": 2,
+    "child_lines": [
+      158,
+      70
+    ],
+    "how_counted": "line counts from the sites (parent 187-220, children 27-184, 255-324); depth counted along the chains no_prime_imp_spec_inegality -> upper_bound -> factorization (Bertrand.v:41 -> PrimeDirac.v:449) and no_prime_imp_spec_inegality -> binomial_even -> binomial2 (Binomial.v:271 -> Binomial.v:205)"
+  },
+  "consequences": "The move creates one obligation per link: each of the two bound lemmas must be proved before `Nat.le_lt_trans`/`Nat.lt_le_trans` compose them. Transitivity of the chain is automatic (the stdlib lemmas), but the two links must line up on the same intermediate `2 * n * binomial (2*n) n`; if the lower-bound lemma and upper-bound lemma are stated over different intermediates, the chain will not typecheck. Failure modes: a child stated too weak (e.g. the wrong exponent on `power 2` in `binomial_even`) breaks the final result, and the glue's arithmetic rewriting (`replace 4 with (power 2 2)`, the `Nat.sub_add`/`power_mult` massaging of the right-hand side) is easy to get wrong; here most of the glue is that bookkeeping, not the two applications.",
+  "known_uses": [
+    "https://github.com/rocq-community/bertrand/blob/033b1a8f1a9c121855b6b78cd55154d3c09e1c23/theories/Bertrand.v#L416"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "62edaca1fcb94f78f8d7b5c9044356bb9361c84c4daed7ef2a2a503bbdc9f338",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:27:29Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:40:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:29:41Z",
+      "note": "parent no_prime_imp_spec_inegality: statement re-copied from code; child 'upper_bound': statement re-copied from the declaration of upper_bound; child 'binomial_even': statement re-copied from the declaration of binomial_even"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T15:36:45Z"
+}

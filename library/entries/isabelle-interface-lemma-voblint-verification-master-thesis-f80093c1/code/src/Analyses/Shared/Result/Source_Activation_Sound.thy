@@ -1,0 +1,262 @@
+theory Source_Activation_Sound
+  imports "Voblint_Framework.Activation_Backbone" "Voblint_Compile.Source_To_Trace"
+begin
+
+section \<open>End-to-end source-level activation soundness\<close>
+
+text \<open>
+  A reachable store of a compiled source program is bounded by the abstract analysis at the stable
+  activation context of the trace that produced it.  The composition joins the stack-faithful source
+  bridge \<open>source_store_in_activation_collect\<close> with \<open>activation_collect_sound\<close>.
+
+  The cap-consuming theorems read the abstract map through a supplied concretization \<open>\<gamma>\<^sub>M\<close>
+  instead of fixing it to \<open>'a::numeric_domain abs_state\<close>/\<open>\<gamma> _\<close>:
+  the cap is the only thing they touch, so a reachability-lifted map fits as readily as a raw one.
+  The backbone corollaries below read it at \<^const>\<open>gamma_state\<close>, which is what
+  \<open>activation_collect_sound\<close> produces.
+\<close>
+
+theorem source_sound_from_collecting_cap:
+  fixes sg :: "pp \<times> 'c + 'g \<Rightarrow> 'M"
+    and \<gamma>\<^sub>M :: "'M \<Rightarrow> store set"
+    and adm :: "'c context_policy" and c\<^sub>0 :: 'c
+  assumes wf: "wf_compile_input \<G> Pi ps"
+    and s0: "s0 \<in> S"
+    and run: "\<G>, Pi \<turnstile> (main_body Pi, s0, []) \<rightarrow>\<^sub>p\<^sup>* (residual, s, frs)"
+    and has_ctx: "\<And>t. t \<in> \<T>\<^bsub>\<G>,compile_prog Pi ps,S\<^esub>
+                   \<Longrightarrow> \<exists>c. activation_context_rel \<G> adm c\<^sub>0 (compile_prog Pi ps) t c"
+    and cap: "\<And>v ctx. \<A>\<^bsub>\<G>,adm,c\<^sub>0,compile_prog Pi ps,S\<^esub> v ctx
+                       \<subseteq> \<gamma>\<^sub>M (sg (Inl (v, ctx)))"
+  shows "\<exists>v stk t c. Pi, compile_prog Pi ps, prog_main_name \<turnstile> (residual, s, frs) \<approx> (v, s, stk)
+                   \<and> activation_context_rel \<G> adm c\<^sub>0 (compile_prog Pi ps) t c
+                   \<and> s \<in> \<gamma>\<^sub>M (sg (Inl (v, c)))"
+proof -
+  let ?g = "compile_prog Pi ps"
+  from source_store_in_activation_collect
+         [where adm=adm and c\<^sub>0=c\<^sub>0,
+          OF wf s0 run has_ctx]
+  obtain v stk t c where m:
+    "Pi, compile_prog Pi ps, prog_main_name \<turnstile> (residual, s, frs) \<approx> (v, s, stk)"
+    and ck: "activation_context_rel \<G> adm c\<^sub>0 ?g t c"
+    and mem: "s \<in> \<A>\<^bsub>\<G>,adm,c\<^sub>0,?g,S\<^esub> v c"
+    by blast
+  have "s \<in> \<gamma>\<^sub>M (sg (Inl (v, c)))"
+    using cap[of v c] mem by blast
+  then show ?thesis using m ck by blast
+qed
+
+text \<open>The witness-free specialisation of the composition at top-level program points: an empty
+  source frame stack lands at the fixed seed context, no \<^typ>\<open>activation_trace\<close> witness exposed.\<close>
+theorem source_sound_toplevel_from_collecting_cap:
+  fixes sg :: "pp \<times> 'c + 'g \<Rightarrow> 'M"
+    and \<gamma>\<^sub>M :: "'M \<Rightarrow> store set"
+    and adm :: "'c context_policy" and c\<^sub>0 :: 'c
+  assumes wf: "wf_compile_input \<G> Pi ps"
+    and s0: "s0 \<in> S"
+    and run: "\<G>, Pi \<turnstile> (main_body Pi, s0, []) \<rightarrow>\<^sub>p\<^sup>* (residual, s, [])"
+    and cap: "\<And>v ctx. \<A>\<^bsub>\<G>,adm,c\<^sub>0,compile_prog Pi ps,S\<^esub> v ctx
+                       \<subseteq> \<gamma>\<^sub>M (sg (Inl (v, ctx)))"
+  shows "\<exists>v. Pi, compile_prog Pi ps, prog_main_name \<turnstile> (residual, s, []) \<approx> (v, s, [])
+             \<and> s \<in> \<gamma>\<^sub>M (sg (Inl (v, c\<^sub>0)))"
+proof -
+  let ?g = "compile_prog Pi ps"
+  from source_toplevel_in_activation_collect
+         [where adm=adm and c\<^sub>0=c\<^sub>0, OF wf s0 run]
+  obtain v where m: "Pi, compile_prog Pi ps, prog_main_name \<turnstile> (residual, s, []) \<approx> (v, s, [])"
+    and mem: "s \<in> \<A>\<^bsub>\<G>,adm,c\<^sub>0,?g,S\<^esub> v c\<^sub>0" by blast
+  have "s \<in> \<gamma>\<^sub>M (sg (Inl (v, c\<^sub>0)))" using cap[of v c\<^sub>0] mem by blast
+  then show ?thesis using m by blast
+qed
+
+subsection \<open>Backbone corollaries: discharge the five coverage obligations to build the cap\<close>
+
+text \<open>
+  Given entry, edge, call, combine and totality obligations on the abstract map,
+  \<open>activation_coverage\<close> builds the cap and the composition above yields
+  source-level soundness. The node-collect variants restate it per CFG node.
+\<close>
+
+theorem source_activation_sound:
+  fixes sg :: "pp \<times> 'c + 'g \<Rightarrow> 'a::numeric_domain abs_state"
+    and adm :: "'c context_policy" and c\<^sub>0 :: 'c
+  assumes wf: "wf_compile_input \<G> Pi ps"
+    and s0: "s0 \<in> S"
+    and run: "\<G>, Pi \<turnstile> (main_body Pi, s0, []) \<rightarrow>\<^sub>p\<^sup>* (residual, s, frs)"
+    and ENTRY_G: "\<And>x. x \<in> S \<Longrightarrow> x \<in> \<gamma> (sg (Inl (cfg_entry (compile_prog Pi ps), c\<^sub>0)))"
+    and EDGE: "\<And>u a v c x x'. (u, a, v) \<in> intra (compile_prog Pi ps)
+        \<Longrightarrow> x \<in> \<gamma> (sg (Inl (u, c))) \<Longrightarrow> x' \<in> edge_step a x
+        \<Longrightarrow> x' \<in> \<gamma> (sg (Inl (v, c)))"
+    and CALL: "\<And>u dst pars args p cont c c' x.
+        (u, CallEdge dst pars args, FunctionEntry p, cont) \<in> calls (compile_prog Pi ps)
+        \<Longrightarrow> x \<in> \<gamma> (sg (Inl (u, c)))
+        \<Longrightarrow> c' \<in> adm u c (call_info_of (CallEdge dst pars args) p) x
+              (call_enter \<G> (CallEdge dst pars args) x)
+        \<Longrightarrow> call_enter \<G> (CallEdge dst pars args) x \<in> \<gamma> (sg (Inl (FunctionEntry p, c')))"
+    and COMB: "\<And>cl dst pars args p cont c1 c' p' x t es.
+        (cl, CallEdge dst pars args, FunctionEntry p, cont) \<in> calls (compile_prog Pi ps)
+        \<Longrightarrow> x \<in> \<gamma> (sg (Inl (cl, c1)))
+        \<Longrightarrow> admits_call_context \<G> (compile_prog Pi ps) adm cl c1 p' x es c'
+        \<Longrightarrow> t \<in> \<gamma> (sg (Inl (FunctionResult p, c')))
+        \<Longrightarrow> combine_collect \<G> dst x t \<in> \<gamma> (sg (Inl (cont, c1)))"
+    and TOTAL: "call_context_total_on (\<lambda>v c. \<gamma> (sg (Inl (v, c)))) adm \<G> (compile_prog Pi ps)"
+  shows "\<exists>v stk t c. Pi, compile_prog Pi ps, prog_main_name \<turnstile> (residual, s, frs) \<approx> (v, s, stk)
+                   \<and> activation_context_rel \<G> adm c\<^sub>0 (compile_prog Pi ps) t c
+                   \<and> s \<in> \<gamma> (sg (Inl (v, c)))"
+proof -
+  interpret G: activation_coverage "compile_prog Pi ps" S "\<lambda>v c. \<gamma> (sg (Inl (v, c)))" adm c\<^sub>0 \<G>
+    by (standard; blast intro: ENTRY_G EDGE CALL COMB TOTAL)
+  have cap: "\<And>v ctx. \<A>\<^bsub>\<G>,adm,c\<^sub>0,compile_prog Pi ps,S\<^esub> v ctx
+                     \<subseteq> \<gamma> (sg (Inl (v, ctx)))"
+    by (rule activation_collect_sound[OF G.activation_coverage_axioms])
+  have has_ctx: "\<And>t. t \<in> \<T>\<^bsub>\<G>,compile_prog Pi ps,S\<^esub>
+                   \<Longrightarrow> \<exists>c. activation_context_rel \<G> adm c\<^sub>0 (compile_prog Pi ps) t c"
+    using G.valid_activation_trace_has_context by blast
+  show ?thesis
+    by (rule source_sound_from_collecting_cap[where \<gamma>\<^sub>M=gamma_state,
+          OF wf s0 run has_ctx cap])
+qed
+
+subsection \<open>Monovariant source bridge into the trace collecting\<close>
+
+text \<open>
+  The context-forgetting specialisation projects the activation collector at trivial routing
+  directly to \<^const>\<open>node_collect\<close> via \<open>activation_collect_le_node_collect\<close>.
+\<close>
+
+theorem source_reaches_node_collect:
+  assumes wf: "wf_compile_input \<G> Pi ps"
+    and s0: "s0 \<in> S"
+    and run: "\<G>, Pi \<turnstile> (main_body Pi, s0, []) \<rightarrow>\<^sub>p\<^sup>* (residual, s, frs)"
+  shows "\<exists>v stk. Pi, compile_prog Pi ps, prog_main_name \<turnstile> (residual, s, frs) \<approx> (v, s, stk)
+                 \<and> s \<in> \<C>\<^bsub>\<G>,compile_prog Pi ps,S\<^esub> v"
+proof -
+  let ?g = "compile_prog Pi ps"
+  from source_store_in_activation_collect_of_fun
+         [where f = "\<lambda>_ _ _. ()" and c\<^sub>0 = "()",
+          OF wf s0 run]
+  obtain v stk t c where m:
+    "Pi, compile_prog Pi ps, prog_main_name \<turnstile> (residual, s, frs) \<approx> (v, s, stk)"
+    and "activation_context_of (\<lambda>_ _ _. ()) () t = c"
+    and mem: "s \<in> \<A>\<^bsub>\<G>,context_policy_of_fun (\<lambda>_ _ _. ()),(),?g,S\<^esub> v c"
+    by blast
+  have "s \<in> \<C>\<^bsub>\<G>,?g,S\<^esub> v"
+    using mem by (rule subsetD[OF activation_collect_le_node_collect])
+  then show ?thesis using m by blast
+qed
+
+text \<open>The monovariant counterpart of \<open>source_sound_from_collecting_cap\<close>: the cap is stated on
+  \<^const>\<open>node_collect\<close> alone, so there is no context index for a caller to instantiate.  This is
+  the shape a whole-program analysis result supplies, whose per-node bound has already forgotten
+  the context.\<close>
+
+theorem source_sound_from_node_collect_cap:
+  fixes G :: "pp \<Rightarrow> store set"
+  assumes wf: "wf_compile_input \<G> Pi ps"
+    and s0: "s0 \<in> S"
+    and run: "\<G>, Pi \<turnstile> (main_body Pi, s0, []) \<rightarrow>\<^sub>p\<^sup>* (residual, s, frs)"
+    and cap: "\<And>v. \<C>\<^bsub>\<G>,compile_prog Pi ps,S\<^esub> v \<subseteq> G v"
+  shows "\<exists>v stk. Pi, compile_prog Pi ps, prog_main_name \<turnstile> (residual, s, frs) \<approx> (v, s, stk)
+                 \<and> s \<in> G v"
+proof -
+  from source_reaches_node_collect[OF wf s0 run]
+  obtain v stk where m: "Pi, compile_prog Pi ps, prog_main_name \<turnstile> (residual, s, frs) \<approx> (v, s, stk)"
+    and mem: "s \<in> \<C>\<^bsub>\<G>,compile_prog Pi ps,S\<^esub> v" by blast
+  have "s \<in> G v" using cap[of v] mem by blast
+  then show ?thesis using m by blast
+qed
+
+subsection \<open>Completed runs reach a procedure result\<close>
+
+text \<open>
+  A source run that has completed at the top level (residual \<^const>\<open>SKIP\<close>, empty frame stack)
+  is collected at the \<^const>\<open>FunctionResult\<close> of the activation it completed.  Two structural
+  facts do the work, both from the CFG layer: the located node reaches its fragment exit along
+  store-preserving intra flow (\<open>compile_control_at_SKIP_exit_path\<close>), and \<^const>\<open>compiled_at\<close>
+  supplies the fall-through \<^term>\<open>EA_Ret None p\<close> edge from that exit into
+  \<^term>\<open>FunctionResult p\<close>.
+
+  The witness is kept: the completing activation is the \<^emph>\<open>root\<close> one (empty frame stack, so
+  \<^const>\<open>caller_of\<close> is \<^const>\<open>None\<close>), which is what pins its procedure --- see
+  \<open>source_completes_node_collect_exit\<close>.  Projecting into \<^const>\<open>node_collect\<close> first would lose
+  that: the collection at a \<^const>\<open>FunctionResult\<close> deliberately merges every activation of
+  that procedure.
+\<close>
+
+theorem source_completes_valid_activation_trace_result:
+  assumes wf: "wf_compile_input \<G> Pi ps"
+    and s0: "s0 \<in> S"
+    and run: "\<G>, Pi \<turnstile> (main_body Pi, s0, []) \<rightarrow>\<^sub>p\<^sup>* (SKIP (), s, [])"
+  shows "\<exists>t p. t \<in> \<T>\<^bsub>\<G>,compile_prog Pi ps,S\<^esub>
+               \<and> caller_of t = None
+               \<and> fst (hd (path_of t)) = cfg_entry (compile_prog Pi ps)
+               \<and> sink_node t = FunctionResult p
+               \<and> sink_store t = s"
+proof -
+  let ?g = "compile_prog Pi ps"
+  from source_run_has_activation_trace[OF wf s0 run]
+  obtain v stk t where sim: "Pi, ?g, prog_main_name \<turnstile> (SKIP (), s, []) \<approx> (v, s, stk)"
+    and rep: "activation_trace_repr \<G> ?g S (v, s, stk) t" by blast
+  have stk0: "stk = []" using sim by blast
+  from rep stk0 have tv: "t \<in> \<T>\<^bsub>\<G>,?g,S\<^esub>" and sn: "sink_node t = v"
+    and ss: "sink_store t = s" and sr: "stack_repr ?g [] t"
+    by (auto simp: activation_trace_repr_def)
+  have cof: "caller_of t = None" using stack_repr_Nil_iff[OF sr] by simp
+  have hd_t: "fst (hd (path_of t)) = cfg_entry ?g"
+    by (rule valid_activation_trace_caller_None_entry[OF tv cof])
+  \<comment> \<open>the located node of a completed activation is its procedure's result\<close>
+  from sim obtain p body_p k n where
+    ca: "control_at Pi p body_p k n (SKIP ()) v" and cat: "compiled_at Pi ?g p body_p k n"
+    by blast
+  from cat obtain n' en E K where
+    cc: "compile Pi p body_p k n = (n', en, E, K)" and Esub: "E \<subseteq> intra ?g"
+    and ret: "(k, EA_Ret None p, FunctionResult p) \<in> intra ?g"
+    by blast
+  \<comment> \<open>the whole extension is intra flow, so it stays inside this same (root) activation\<close>
+  have path_to_ret: "intra_path ?g (sink_node t, sink_store t) (FunctionResult p, s)"
+  proof -
+    have a: "intra_path ?g (sink_node t, sink_store t) (k, s)"
+      using compile_control_at_SKIP_exit_path[OF ca cc Esub] sn ss by simp
+    have b: "intra_path ?g (k, s) (FunctionResult p, s)"
+      by (rule intra_path_single[OF ret]) simp
+    from a b show ?thesis by (rule star_trans)
+
+  qed
+  from valid_activation_trace_intra_path_extend[OF path_to_ret tv]
+  obtain t' where t'v: "t' \<in> \<T>\<^bsub>\<G>,?g,S\<^esub>" and t'n: "sink_node t' = FunctionResult p"
+    and t's: "sink_store t' = s" and t'c: "caller_of t' = caller_of t"
+    and t'h: "fst (hd (path_of t')) = fst (hd (path_of t))" by blast
+  show ?thesis
+  proof (intro exI conjI)
+    show "t' \<in> \<T>\<^bsub>\<G>,?g,S\<^esub>" by (rule t'v)
+    show "caller_of t' = None" using t'c cof by simp
+    show "fst (hd (path_of t')) = cfg_entry ?g" using t'h hd_t by simp
+    show "sink_node t' = FunctionResult p" by (rule t'n)
+    show "sink_store t' = s" by (rule t's)
+  qed
+qed
+
+text \<open>Whole-program completion.  The completing activation is the root one, so it entered at
+  \<^term>\<open>FunctionEntry prog_main_name\<close>; activation procedure locality
+  (\<open>valid_activation_trace_entry_result_eq\<close>) then forces its result node to be
+  \<^term>\<open>FunctionResult prog_main_name\<close> \<open>= cfg_exit\<close>.  No assumption about the
+  \<^emph>\<open>number\<close> of declared procedures is needed: a program may call as many as it likes.\<close>
+
+corollary source_completes_node_collect_exit:
+  assumes wf: "wf_compile_input \<G> Pi ps"
+    and s0: "s0 \<in> S"
+    and run: "\<G>, Pi \<turnstile> (main_body Pi, s0, []) \<rightarrow>\<^sub>p\<^sup>* (SKIP (), s, [])"
+  shows "s \<in> \<C>\<^bsub>\<G>,compile_prog Pi ps,S\<^esub>
+              (cfg_exit (compile_prog Pi ps))"
+proof -
+  let ?g = "compile_prog Pi ps"
+  from source_completes_valid_activation_trace_result[OF wf s0 run]
+  obtain t p where tv: "t \<in> \<T>\<^bsub>\<G>,?g,S\<^esub>" and hd_t: "fst (hd (path_of t)) = cfg_entry ?g"
+    and sn: "sink_node t = FunctionResult p" and ss: "sink_store t = s" by blast
+  have "fst (hd (path_of t)) = FunctionEntry prog_main_name"
+    using hd_t by (simp add: compile_prog_def Let_def split: prod.splits)
+  from valid_activation_trace_entry_result_eq[OF wf tv this sn] have "prog_main_name = p" .
+  with sn ss tv show ?thesis
+    using node_collect_I by fastforce
+qed
+
+end

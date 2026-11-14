@@ -1,0 +1,15 @@
+{
+  "source_id": "timsort",
+  "url": "https://github.com/lvpgroup/timsort",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "lvpgroup/timsort",
+  "commit": "16437b6b6e2df9f6d32b2a32be7d0d650d83f980",
+  "ref": "HEAD",
+  "language": "isabelle",
+  "pinned_at": "2026-11-14T14:53:49Z",
+  "how_found": "discovery-2: B-isabelle, discovery-1:B-isabelle",
+  "note": "Verified C TimSort in Isabelle/HOL Simpl: the correctness proof is split into TimSortLemma, per-procedure gallop lemmas in GallopA and the TimSort/TimSortProc specifications, with generated C and random tests.",
+  "licence": "LicenseRef-unknown",
+  "licence_files": []
+}

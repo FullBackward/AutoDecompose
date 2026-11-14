@@ -1,0 +1,181 @@
+{
+  "id": "latex-blueprint-node-chandra-furst-lipton-601452e5",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Blueprint node: lower bound for D(eval) via the corner-colouring number",
+  "intent": "Record the paper's lower bound D(eval) ≥ ⌈log₂ χ_d(G)⌉ as a blueprint node stated before it is formalised: the theorem's own \\lean{} is still commented out, and its proof is a two-sentence glue that cites exactly two named lemmas — one turning a valid protocol broadcast into a colouring with trivial monochromatic forbidden patterns, the other projecting that colouring to a corner-free colouring of G^(d−1) — so that minimality of χ_d(G) closes the bound.",
+  "move": "blueprint-node",
+  "also_known_as": [
+    "dependency-graph node",
+    "theorem stated before proved",
+    "Numina-style \\uses{} DAG node"
+  ],
+  "language": "latex",
+  "source": {
+    "source_id": "chandra-furst-lipton",
+    "url": "https://github.com/yaeldillies/chandra-furst-lipton",
+    "commit": "95c7ea0802c195bef2238ad962873c0907f1f8a9",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "blueprint/src/chapter/2-lower-bound-eval.tex",
+      "bytes": 3507,
+      "sha256": "60454fd8d3ba5b4f27bfb8855450355b58908667d964ec7900cb43e5c4f35514",
+      "permalink": "https://github.com/yaeldillies/chandra-furst-lipton/blob/95c7ea0802c195bef2238ad962873c0907f1f8a9/blueprint/src/chapter/2-lower-bound-eval.tex"
+    },
+    {
+      "path": "ChandraFurstLipton/LowerBoundEval.lean",
+      "bytes": 2518,
+      "sha256": "b5c65531616cd2552d23e71b740d3b9ab51e475408e0a7eef92c317f81d9332f",
+      "permalink": "https://github.com/yaeldillies/chandra-furst-lipton/blob/95c7ea0802c195bef2238ad962873c0907f1f8a9/ChandraFurstLipton/LowerBoundEval.lean"
+    },
+    {
+      "path": "ChandraFurstLipton/MultidimCorners.lean",
+      "bytes": 2204,
+      "sha256": "fac5ec94bac96b11eb0c20fbd19ba829b903107dd95b32a1a4634d55d8e37d5f",
+      "permalink": "https://github.com/yaeldillies/chandra-furst-lipton/blob/95c7ea0802c195bef2238ad962873c0907f1f8a9/ChandraFurstLipton/MultidimCorners.lean"
+    },
+    {
+      "path": "ChandraFurstLipton/NOFModel.lean",
+      "bytes": 2706,
+      "sha256": "1aef6ad2360d8179b38d3950ef670877f05420d34b09a036ac69124e26877a1b",
+      "permalink": "https://github.com/yaeldillies/chandra-furst-lipton/blob/95c7ea0802c195bef2238ad962873c0907f1f8a9/ChandraFurstLipton/NOFModel.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "blueprint/src/chapter/2-lower-bound-eval.tex",
+      "lines": [
+        49,
+        62
+      ],
+      "role": "parent",
+      "name": "thm:det-fun-complex-eval-ge-corner-color-num",
+      "excerpt_sha256": "c29039b76019a9ed8fd7d18ec415699086c79eeae1dcc0e8ad60547e5120b655",
+      "permalink": "https://github.com/yaeldillies/chandra-furst-lipton/blob/95c7ea0802c195bef2238ad962873c0907f1f8a9/blueprint/src/chapter/2-lower-bound-eval.tex#L49-L62"
+    },
+    {
+      "path": "blueprint/src/chapter/2-lower-bound-eval.tex",
+      "lines": [
+        18,
+        32
+      ],
+      "role": "child",
+      "name": "lem:forbidden-pattern-project-multicorner",
+      "excerpt_sha256": "82a70150688fcdf3178a34694dea66a5cad35b81f303d0117c9c29fadd101445",
+      "permalink": "https://github.com/yaeldillies/chandra-furst-lipton/blob/95c7ea0802c195bef2238ad962873c0907f1f8a9/blueprint/src/chapter/2-lower-bound-eval.tex#L18-L32"
+    },
+    {
+      "path": "blueprint/src/chapter/2-lower-bound-eval.tex",
+      "lines": [
+        34,
+        47
+      ],
+      "role": "child",
+      "name": "lem:mono-forbidden-pattern-trivial",
+      "excerpt_sha256": "2d116e9e939b68f9769b7b7d49c3efa84f34c6cd576c8ec3a286691bb49f764e",
+      "permalink": "https://github.com/yaeldillies/chandra-furst-lipton/blob/95c7ea0802c195bef2238ad962873c0907f1f8a9/blueprint/src/chapter/2-lower-bound-eval.tex#L34-L47"
+    }
+  ],
+  "parent": {
+    "name": "thm:det-fun-complex-eval-ge-corner-color-num",
+    "statement": "Lower bound for $D(\\eval)$ in terms of $\\chi_d(G)$: $D(\\eval) \\ge \\lceil\\log_2\\chi_d(G)\\rceil$."
+  },
+  "children": [
+    {
+      "name": "lem:forbidden-pattern-project-multicorner",
+      "statement": "If $(a_1, \\dots, a_d)$ is a forbidden pattern such that $\\eval(a_i) = 1$ for all $i$, then $(\\forget_i(a_1), \\dots, \\forget_i(a_d))$ is a multidimensional corner for all index $i$.",
+      "closed_by": "its own proof (blueprint/src/chapter/2-lower-bound-eval.tex lines 28-32), directly from the definitions (\\uses{} is empty); formalised as NOF.isMultidimCorner_forget_of_isForbiddenPattern (ChandraFurstLipton/MultidimCorners.lean:40-55)"
+    },
+    {
+      "name": "lem:mono-forbidden-pattern-trivial",
+      "statement": "Given $P$ a NOF protocol valid in time $t$ for $\\eval$, all monochromatic forbidden patterns are trivial.",
+      "closed_by": "its own proof (blueprint/src/chapter/2-lower-bound-eval.tex lines 42-47), which cites lem:length-broadcast and lem:mono-forbidden-pattern-tip (both in blueprint/src/chapter/1-nof-model.tex); formalised as NOF.trivial_of_isForbiddenPattern_of_isValid_eval (ChandraFurstLipton/LowerBoundEval.lean:31-52)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A headline theorem of a formalisation project stated as a node of a published blueprint dependency graph (\\label plus \\uses edges), whose proof is a short glue assembled from a small number of named lemmas; here the theorem's \\lean{} is still commented out while its lemmas carry \\lean{}/\\leanok.",
+    "use_when": "the project keeps a blueprint where the main theorem is stated before it is proved and the proof names its lemmas (\\uses{...} or \\ref{...}); each lemma is a self-contained statement with its own proof and a \\lean{} marker.",
+    "avoid_when": "the proof is one long inline argument with no named intermediate lemmas, or the 'children' are not separate labelled nodes, or the main theorem is already fully formalised so there is no 'stated before proved' gap to record."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site cites `lem:mono-forbidden-pattern-trivial`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/yaeldillies/chandra-furst-lipton/blob/95c7ea0802c195bef2238ad962873c0907f1f8a9/blueprint/src/chapter/2-lower-bound-eval.tex#L49-L62",
+      "form": "cites(parent, lem:mono-forbidden-pattern-trivial)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites `lem:forbidden-pattern-project-multicorner`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/yaeldillies/chandra-furst-lipton/blob/95c7ea0802c195bef2238ad962873c0907f1f8a9/blueprint/src/chapter/2-lower-bound-eval.tex#L49-L62",
+      "form": "cites(parent, lem:forbidden-pattern-project-multicorner)"
+    },
+    {
+      "n": 3,
+      "claim": "`ChandraFurstLipton/LowerBoundEval.lean` lines 31-52 contain no `sorry`, `admit` or `axiom`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/yaeldillies/chandra-furst-lipton/blob/95c7ea0802c195bef2238ad962873c0907f1f8a9/ChandraFurstLipton/LowerBoundEval.lean#L31-L52",
+      "form": "no_sorry(ChandraFurstLipton/LowerBoundEval.lean, 31-52)"
+    },
+    {
+      "n": 4,
+      "claim": "`ChandraFurstLipton/MultidimCorners.lean` lines 40-55 contain no `sorry`, `admit` or `axiom`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/yaeldillies/chandra-furst-lipton/blob/95c7ea0802c195bef2238ad962873c0907f1f8a9/ChandraFurstLipton/MultidimCorners.lean#L40-L55",
+      "form": "no_sorry(ChandraFurstLipton/MultidimCorners.lean, 40-55)"
+    },
+    {
+      "n": 5,
+      "claim": "The main proof's \\uses{} names exactly 2 lemmas (shape.direct_lemmas = 2), counted as the two entries in `\\uses{lem:mono-forbidden-pattern-trivial, lem:forbidden-pattern-project-multicorner}` at line 58 of the copied file.",
+      "evidence_kind": "measurement",
+      "evidence": "blueprint/src/chapter/2-lower-bound-eval.tex line 58 (https://github.com/yaeldillies/chandra-furst-lipton/blob/95c7ea0802c195bef2238ad962873c0907f1f8a9/blueprint/src/chapter/2-lower-bound-eval.tex#L58)"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 3,
+    "glue_lines": 14,
+    "child_lines": [
+      15,
+      14
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 6,
+    "direct_lemmas": 2,
+    "children_closed_by_their_own_proof": 2,
+    "how_counted": "parent proof = lines 57-62 of the copied blueprint/src/chapter/2-lower-bound-eval.tex (6 lines); direct_lemmas = the two entries in the proof's \\uses{} at line 58; each shown child carries its own \\begin{proof}...\\end{proof} in the same copied file"
+  },
+  "consequences": "The theorem node's \\lean{} and \\leanok are commented out (lines 52-53), so the top of the graph is 'stated before proved': the decomposition closes only after the theorem is formalised from its two lemmas. The glue needs the two children to be exactly sufficient: mono-forbidden-pattern-trivial supplies the broadcast colouring with trivial monochromatic forbidden patterns, and forbidden-pattern-project-multicorner must project that to a corner-free colouring of G^(d-1); weakening either breaks the minimality step 2^t ≥ χ_d(G). The second child is not a leaf in the strict sense — its proof cites two further project lemmas (lem:length-broadcast, lem:mono-forbidden-pattern-tip in 1-nof-model.tex), so its closure is deferred to named siblings rather than self-contained.",
+  "known_uses": [
+    "https://github.com/yaeldillies/chandra-furst-lipton/blob/95c7ea0802c195bef2238ad962873c0907f1f8a9/blueprint/src/chapter/3-upper-bound-eval.tex#L37-L42"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 14,
+    "relation": "supports"
+  },
+  "content_key": "601452e5c777508f854ed5837b4bd8f441d204bc562cced7cfceb4189af7fa59",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:17:29Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:18:23Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T15:26:51Z"
+}

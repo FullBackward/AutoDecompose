@@ -1,0 +1,229 @@
+\section{The main theorem}
+\label{ch:main-theorem}
+
+The statement below is the formalization target of the whole project. It matches,
+definition for definition, the Lean file
+\texttt{MIPRE/HaltingGameValue.lean}, which states it on top of Mathlib alone (theorem
+\texttt{halting\_reduces\_to\_gameValue}): Turing machines are Mathlib's
+\texttt{Nat.Partrec.Code}, games are game descriptions
+(Definition~\ref{def:game-description}), and the value is the synchronous value
+(Definition~\ref{def:sync-value}).
+
+\begin{theorem}[Halting reduces to the game value; Theorem 12.2 of~\cite{JNVWY20},
+synchronous form]
+\label{thm:main}
+\uses{thm:halting,def:game-description,def:sync-value,def:re}
+\lean{HaltingGameValue.halting_reduces_to_gameValue, HaltingGameValue.HaltingReducesToGameValue}
+\leanok
+There is a computable map $g$ from Turing machines to game descriptions such that for
+every Turing machine $\machine$:
+\begin{enumerate}
+\item (\textbf{Completeness}) if $\machine$ halts on the empty input, then
+  $\synval(\game_{g(\machine)}) = 1$;
+\item (\textbf{Soundness}) if $\machine$ does not halt on the empty input, then
+  $\synval(\game_{g(\machine)}) \leq \tfrac12$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\uses{thm:halting,cor:compression-from-answer-reduction,thm:answer-reduction}
+\leanok
+\texttt{MIPRE.Halting.halting\_reduces\_to\_gameValue\_of} takes a
+\texttt{MIPRE.GapCompression} and a universal machine and concludes exactly this statement;
+Theorem~\ref{thm:compression-target} supplies the compression.
+\end{proof}
+
+\emph{Status.} The theorem is proved in Lean, with no hypothesis:
+\texttt{HaltingGameValue.halting\_reduces\_to\_gameValue} (\texttt{MIPRE/MainTheorem.lean}) proves
+the proposition \texttt{HaltingGameValue.HaltingReducesToGameValue}, which
+\texttt{MIPRE/HaltingGameValue.lean} states on top of Mathlib alone. The proof cannot live in
+that file, which imports nothing else; it is the conditional
+\texttt{MIPRE.Halting.halting\_reduces\_to\_gameValue\_of} at the compression of
+Theorem~\ref{thm:compression-target}, built from the supplied introspection, answer-reduction and
+repetition stages (Corollary~\ref{cor:compression-from-answer-reduction}), and it depends on
+the axioms \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound} only.
+
+Theorem~\ref{thm:main} reads the computable explicit-game conclusion of
+Theorem~\ref{thm:halting} in the synchronous value. Its construction tabulates a
+normal form verifier at a fixed index. The source's polynomial-time reduction
+constructs sampler and decider programs; passing to the explicit finite table
+establishes computability, with no polynomial bound on enumeration asserted
+(Section~\ref{sec:departures}). A game
+description rejects unequal answers to equal questions by fiat
+(Definition~\ref{def:game-description}), which costs nothing here: against a tracial state
+a projective family is perfectly consistent, so the terms the fiat deletes carry no weight
+in $\synval$, which is unchanged, and it can only lower $\valstar$ --- the safe direction
+for the soundness clause, while the completeness witness is synchronous and survives.
+The two passages this needs from Theorem~\ref{thm:halting}, whose Lean assembly concludes in
+$\valstar$, are formalized: the transport of a value-$1$ PCC strategy along the relabelings of
+the tabulation (\texttt{MIPRE.Verifier.gameValue\_toGame\_eq\_one\_doubled}, through
+\texttt{MIPRE.syncValue\_eq\_of\_equiv}) for completeness, and
+\texttt{MIPRE.Verifier.gameValue\_toGame\_le\_of\_valStar\_le\_doubled} for soundness; both are
+stated directly in \texttt{HaltingGameValue.gameValue}, by
+Remark~\ref{rem:standalone-restatement}'s identification of the two vocabularies, and both are
+read against the \emph{doubled} game of $\verifier_n$, which is how the tabulation matches it
+without asking the verifier to be synchronous (Remark~\ref{rem:compression-abstract}, item 3).
+On the tabulation the completeness bridge is \texttt{MIPRE.Halting.gameValue\_tab\_eq\_one}.
+The four obligations of Theorem~\ref{thm:halting} are all discharged
+(\texttt{MIPRE.Halting.exists\_obligations}), so nothing but Theorem~\ref{thm:compression-target}
+stands between the conditional and the unconditional statement. The record of the
+tabulation's agreement with $\verifier_n$ in the form the completeness bridge consumes is
+\texttt{MIPRE.Halting.tab\_match} (Remark~\ref{rem:compression-abstract}), and
+\texttt{MIPRE.Halting.halting\_reduction\_both\_of} is the one map carrying both readings
+of the value at once, which is what Corollary~\ref{cor:main-quantum} asks.
+
+\begin{remark}[The standalone restatement]
+\label{rem:standalone-restatement}
+\uses{def:game-description,def:sync-value}
+\lean{HaltingGameValue.gameValue, HaltingGameValue.GameData.equivTuple,
+  HaltingGameValue.GameData.syncGame, HaltingGameValue.GameData.game,
+  HaltingGameValue.GameData.gameValue_eq_syncValue,
+  HaltingGameValue.GameData.gameValue_le_quantumValue}
+\leanok
+The Lean main statement is deliberately self-contained: the file
+\texttt{MIPRE/HaltingGameValue.lean} imports nothing from the rest of this development,
+re-declaring the synchronous game, the synchronous strategy and the value on top of
+Mathlib alone, so that Theorem~\ref{thm:main} can be read without any of the vocabulary
+built in Section~\ref{ch:foundations}. In that reduced vocabulary \texttt{gameValue} is
+the synchronous value of Definition~\ref{def:sync-value} and \texttt{equivTuple}
+exhibits the canonical G\"odel numbering asserted in
+Definition~\ref{def:game-description} as an explicit equivalence between game
+descriptions and a tuple of integers and lists, which is what supplies the
+\texttt{Encodable} instance the computability clause quantifies over. The duplication is
+the price of a statement that stands alone, and keeping the two vocabularies in step is a
+maintenance obligation rather than a mathematical one: the definitions match one for one,
+and this is the list of the ones that do. The correspondence is not left to inspection where
+it is used: \texttt{GameData.syncGame} and \texttt{GameData.game} read a description in the
+vocabulary of Section~\ref{ch:foundations} with the same distribution and predicate, and
+\texttt{GameData.gameValue\_eq\_syncValue} proves the two synchronous values equal --- the
+two structures of synchronous strategy, one carrying \texttt{POVM}s with a projectivity
+certificate and the other a \texttt{ProjectiveMeasurement}, repackage into each other with
+the same dimension and the same operators, so the two suprema are over the same set of
+numbers. \texttt{GameData.gameValue\_le\_quantumValue} is the comparison
+$\synval \leq \valstar$ (Lemma~\ref{lem:sync-le-valstar}) in that vocabulary.
+\end{remark}
+
+\begin{corollary}[Halting reduces to the quantum value]
+\label{cor:main-quantum}
+\uses{thm:halting,lem:sync-le-valstar,def:q-value,def:game-description}
+\lean{MIPRE.Halting.halting_reduction_quantum}
+\leanok
+With $g$ as in Theorem~\ref{thm:main}: if $\machine$ halts on the empty input then
+$\valstar(\game_{g(\machine)}) = 1$, and if $\machine$ does not halt on the empty input
+then $\valstar(\game_{g(\machine)}) \leq \tfrac12$.
+\end{corollary}
+
+\begin{proof}
+\uses{cor:compression-from-answer-reduction,thm:answer-reduction}
+\leanok
+At the compression of Theorem~\ref{thm:compression-target}, as Theorem~\ref{thm:main} is:
+\texttt{MIPRE.Halting.halting\_reduction\_both\_of} produces one computable map with both
+values, the quantum one from \texttt{tab\_value} and
+\texttt{Verifier.valStar\_eq\_one\_of\_hasPerfectPCC} in the halting branch and from
+\texttt{tab\_value} alone in the other; the corollary is its quantum half.
+\end{proof}
+
+Both forms come from the two items of Theorem~\ref{thm:halting} directly: the value-$1$
+witness is an ambient synchronous PCC strategy, so it gives value $1$ in both senses; and
+the soundness conclusion is $\valstar(\game_\machine) \leq \frac12$, which gives
+$\synval(\game_\machine) \leq \frac12$ by Lemma~\ref{lem:sync-le-valstar}. The quantum
+form is the one Definition~\ref{def:mipstar-computable} asks for, and it is the primary one: no
+transport from $\synval$ to $\valstar$ is involved anywhere, the pipeline's soundness being
+carried in $\valstar$ at every step (Remark~\ref{rem:bipartite-route}). The synchronous
+reading of Theorem~\ref{thm:main} is the derived one, obtained from this corollary by the
+free comparison $\synval \leq \valstar$.
+
+\begin{corollary}[Uncomputability of the game value]
+\label{cor:value-uncomputable}
+\ledgernode{1.7}
+\uses{thm:halting-undecidable}
+\lean{MIPRE.Halting.gameValue_uncomputable, MIPRE.Halting.quantumValue_uncomputable}
+\leanok
+There is no algorithm that, given a game description $g$ with the promise that
+$\synval(\game_g) = 1$ or $\synval(\game_g) \leq \frac12$, decides which is the
+case; the same holds with $\valstar$ in place of $\synval$
+(Corollary~\ref{cor:main-quantum}).
+\end{corollary}
+
+\begin{proof}
+\uses{cor:compression-from-answer-reduction,thm:answer-reduction}
+\leanok
+A computable $f$ answering \emph{true} on every description of value $1$ and \emph{false} on
+every description of value at most $\frac12$, composed with the map of
+Theorem~\ref{thm:main} (respectively Corollary~\ref{cor:main-quantum}), would decide
+whether a machine halts on the empty input, against Theorem~\ref{thm:halting-undecidable}.
+In Lean the algorithm is a Mathlib-computable Boolean function
+(\texttt{Halting/Corollaries.lean}), at the compression of
+Theorem~\ref{thm:compression-target}.
+\end{proof}
+
+\begin{lemma}[$\MIPstar \subseteq \RE$]
+\label{lem:mipstar-sub-re}
+\uses{def:mipstar-computable,def:re,lem:value-lower-approx,def:value-model}
+\lean{MIPRE.MIPStarComputable.isRE, MIPRE.MIPStarComputable.exists_semidecider,
+  MIPRE.MIPClass.isRE, MIPRE.MIPClass.exists_semidecider, MIPRE.ValueModel.tensor_lowerRE}
+\leanok
+Every language in $\MIPstar$ is recursively enumerable.
+\end{lemma}
+
+\begin{proof}
+\leanok
+Let $z \mapsto \game_z$ witness $L \in \MIPstar$. Under the promise, $z \in L$ if and only
+if $\valstar(\game_z) > \frac12$: the value is $1$ on $L$ and at most $\frac12$ off it. By
+Lemma~\ref{lem:value-lower-approx} the set of game descriptions $g$ with
+$\valstar(\game_g) > \frac12$ is recursively enumerable, and $L$ is its preimage under the
+computable map $z \mapsto \game_z$; the preimage of an r.e.\ set under a computable map is
+r.e. Concretely: given $z$, compute $\game_z$, enumerate tensor-product strategies and accept
+upon finding one of value greater than $\frac12$; this semi-decides $L$. In Lean the class
+is the computable one (Definition~\ref{def:mipstar-computable}), and
+\texttt{MIPStarComputable.exists\_semidecider} gives the semidecider as a program of the ambient
+model.
+\end{proof}
+
+\begin{theorem}[$\MIPstar = \RE$]
+\label{thm:mipstar-eq-re}
+\ledgernode{1}
+\uses{def:mipstar-computable,def:re,thm:halting,thm:halting-undecidable,lem:value-lower-approx,
+  lem:mipstar-sub-re,def:mipstar,lem:mipstar-poly-sub}
+\lean{MIPRE.Halting.mipstarComputable_eq_re, MIPRE.Halting.re_subset_mipstarComputable,
+  MIPRE.Halting.mipstar_eq_re, MIPRE.Halting.re_subset_mipstar,
+  MIPRE.Halting.re_subset_mipclass_of_reduction, MIPRE.Halting.mipclass_eq_re_of_reduction}
+\leanok
+$\MIPstar = \RE$, for the class $\MIPstar_{1,1/2}(2,1)$ of Definition~\ref{def:mipstar} and
+for the computable class of Definition~\ref{def:mipstar-computable}.
+\end{theorem}
+
+\begin{proof}
+\uses{cor:compression-from-answer-reduction,thm:answer-reduction}
+\leanok
+For $\RE \subseteq \MIPstar$: the halting problem is $\RE$-complete
+(Theorem~\ref{thm:halting-undecidable}) and Theorem~\ref{thm:halting} provides a
+computable map to explicit games, whose completeness--soundness gap is already in the
+form the computable class of Definition~\ref{def:mipstar-computable} requires
+(Corollary~\ref{cor:main-quantum}); no transport between the two values is needed.
+$\MIPstar \subseteq \RE$ is
+Lemma~\ref{lem:mipstar-sub-re}. In Lean the many-one reduction of an r.e.\ language to
+halting on the empty input is \texttt{MIPRE.IsRE.exists\_code\_halts}, from Mathlib's
+\texttt{Nat.Partrec.Code.curry}, for the computable class of
+Definition~\ref{def:mipstar-computable} (\texttt{MIPRE.Halting.mipstarComputable\_eq\_re});
+the equality holds at the compression of Theorem~\ref{thm:compression-target}, as
+Theorem~\ref{thm:main} does.
+
+For the class of Definition~\ref{def:mipstar}, \texttt{MIPRE.Halting.mipstar\_eq\_re}:
+$\MIPstar \subseteq \RE$ is Lemma~\ref{lem:mipstar-poly-sub}, and $\RE \subseteq \MIPstar$
+(\texttt{re\_subset\_mipstar}) is the polynomial-time form of Theorem~\ref{thm:halting}.
+An r.e.\ language many-one reduces to halting on the empty input by a polynomial-time map
+$z \mapsto \machine_z$ (\texttt{Cost.exists\_polyTime\_reduction}: the semidecider with
+$z$ hardcoded), and the class verifier of Theorem~\ref{thm:halting} on input $z$ plays the
+game of $\vhalt_{\machine_z, \lambda(\machine_z)}$ at the fixed level $C$, whose value is
+$1$ if $\machine_z$ halts and at most $\frac12$ if not.
+\end{proof}
+
+\begin{remark}
+The source polynomial-time reduction constructs efficient sampler and decider
+descriptions (Theorem 12.2 of~\cite{JNVWY20}), as distinguished after
+Theorem~\ref{thm:halting}; it is what the class of Definition~\ref{def:mipstar} asks for,
+and the case of the theorem proved through \texttt{re\_subset\_mipstar}. The computable
+explicit-table version is the case for the class of Definition~\ref{def:mipstar-computable},
+and is sufficient for every consequence in Section~\ref{ch:downstream}.
+\end{remark}

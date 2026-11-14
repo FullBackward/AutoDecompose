@@ -1,0 +1,214 @@
+{
+  "id": "rocq-interface-lemma-vellvm-c6bfef84",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Interface lemma lifts per-expression refinement to the CFG level (I2F_denote_exp')",
+  "intent": "Lift the per-expression refinement `I2F_denote_exp` (an `I2F_refine` statement over the MCFG-level `denote_exp`) to the CFG-level interface `I2F_refine_CFG` over `denote_exp'`, so that later obligation files apply `I2F_denote_exp'` instead of unfolding `denote_exp`/`withCall` and re-assembling the UB/OOM cut lemmas by hand.",
+  "move": "interface-lemma",
+  "also_known_as": [
+    "API lemma",
+    "abstraction-boundary lemma"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "vellvm",
+    "url": "https://github.com/vellvm/vellvm",
+    "commit": "e25dad9af33281b2edd3c16c027f3717546a09d7",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "src/rocq/Theory/I2F/I2F_exp.v",
+      "bytes": 132273,
+      "sha256": "6c88168e61ad28357262d93b82ad14714a3aa2f2eb6d5722eeaab0b120003434",
+      "permalink": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/I2F_exp.v"
+    },
+    {
+      "path": "src/rocq/Theory/I2F/Refinement.v",
+      "bytes": 31726,
+      "sha256": "47c939407ded8ce6f3c470475c0466c3002d79a3b5b92599784ab529dcd51169",
+      "permalink": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/Refinement.v"
+    },
+    {
+      "path": "src/rocq/Semantics/Denotation.v",
+      "bytes": 42774,
+      "sha256": "b1b0442df3ba12ac7e64e9b0c187d87a97a534ed549d4df30d8d94bd14a69930",
+      "permalink": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Semantics/Denotation.v"
+    },
+    {
+      "path": "src/rocq/Theory/I2F/I2F_denotation.v",
+      "bytes": 31465,
+      "sha256": "2c36538c04ce26e9b6cab099e1f9b69aab3bf7cc53387f74307fd56a456c1a00",
+      "permalink": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/I2F_denotation.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "src/rocq/Theory/I2F/I2F_exp.v",
+      "lines": [
+        3292,
+        3312
+      ],
+      "role": "parent",
+      "name": "I2F_denote_exp'",
+      "excerpt_sha256": "f2eb100a702c23d4d851f8937b623680e88786d0d713c5021517ca4d2e16f3a9",
+      "permalink": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/I2F_exp.v#L3292-L3312"
+    },
+    {
+      "path": "src/rocq/Theory/I2F/I2F_exp.v",
+      "lines": [
+        3167,
+        3290
+      ],
+      "role": "child",
+      "name": "I2F_denote_exp",
+      "excerpt_sha256": "e4defaf42dbd568a9687d26b570e55a878ce22b8fd262a5aa4d361e02697b8b8",
+      "permalink": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/I2F_exp.v#L3167-L3290"
+    },
+    {
+      "path": "src/rocq/Theory/I2F/Refinement.v",
+      "lines": [
+        472,
+        480
+      ],
+      "role": "child",
+      "name": "I2F_cutUB_CFG",
+      "excerpt_sha256": "01bdff0e160d9f0606234dae6634a8136c1ad6edf7fbe3231301e5c6d9931aa7",
+      "permalink": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/Refinement.v#L472-L480"
+    },
+    {
+      "path": "src/rocq/Theory/I2F/Refinement.v",
+      "lines": [
+        482,
+        488
+      ],
+      "role": "child",
+      "name": "I2F_cutOOM_CFG",
+      "excerpt_sha256": "646c7623d5a39a62f1ee1951a1219478974e3b96384b21a9787592b204727a1d",
+      "permalink": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/Refinement.v#L482-L488"
+    }
+  ],
+  "parent": {
+    "name": "I2F_denote_exp'",
+    "statement": "Lemma I2F_denote_exp' :\n  forall e τ,\n    I2F_refine_CFG I2F_dvalue (@denote_exp' PInf τ e) (@denote_exp' PFin τ e)."
+  },
+  "children": [
+    {
+      "name": "I2F_denote_exp",
+      "statement": "Lemma I2F_denote_exp :\n  forall (e : exp dtyp) τ, I2F_refine (@denote_exp PInf τ e) (@denote_exp PFin τ e).",
+      "closed_by": "induction e; each constructor case closed by erbind plus I2F_refine_lift and the per-constructor I2F_eval_* / I2F_denote_* / I2F_canonicalize_agg lemmas",
+      "note": "Per-expression refinement at the MCFG level (I2F_refine over denote_exp)."
+    },
+    {
+      "name": "I2F_cutUB_CFG",
+      "statement": "Lemma I2F_cutUB_CFG :\n  eqp1 (@cutUB (@CFGEtop PInf) _) (sum_pred1 FF1 (@cutUB (@MCFGEtop PInf) _)).",
+      "closed_by": "intros A e; split; intros CUT; depelim CUT / destruct CUT; depelim HC; exact (CutUB v)",
+      "note": "The CFG-level UB cut predicate equals its structural decomposition."
+    },
+    {
+      "name": "I2F_cutOOM_CFG",
+      "statement": "Lemma I2F_cutOOM_CFG :\n  eqp1 (@cutOOM (@CFGEtop PFin) _) (sum_pred1 FF1 (@cutOOM (@MCFGEtop PFin) _)).",
+      "closed_by": "intros A e; split; intros CUT; depelim CUT / destruct CUT; depelim HC; exact (CutOOM v)",
+      "note": "The CFG-level OOM cut predicate equals its structural decomposition."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A refinement statement `I2F_refine_CFG RR (@denote_exp' P τ e) (@denote_exp' P' τ e)` whose head symbol `I2F_refine_CFG` is `ruttc cutUB cutOOM I2FE_CFG I2FA_CFG`, and whose operand `denote_exp' := withCall (denote_exp ...)` injects a lower-signature (MCFG) tree into a higher-signature (CFG) tree that adds the Call event and the UB/OOM cuts.",
+    "use_when": "a per-component refinement is already proved at one signature level (here MCFG) and the client-facing statements live at another (CFG); state the boundary lemma once so downstream files apply it instead of unfolding the definition and re-attaching the cut predicates.",
+    "avoid_when": "the two signature levels are not definitionally related (the lower tree is not injected into the higher one by a `withCall`-style constructor), or the cut predicates at the higher level are not the structural decomposition of the lower ones (then the boundary lemma would need a substantive proof rather than `exact`); also avoid when no downstream client reuses the lemma."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site (the glue) is 21 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(parent, 21)",
+      "evidence": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/I2F_exp.v#L3292-L3312"
+    },
+    {
+      "n": 2,
+      "claim": "I2F_denote_exp' occurs 3 times in src/rocq/Theory/I2F/I2F_denotation.v.",
+      "evidence_kind": "check",
+      "form": "count(I2F_denote_exp', 3, src/rocq/Theory/I2F/I2F_denotation.v)",
+      "evidence": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/I2F_denotation.v"
+    },
+    {
+      "n": 3,
+      "claim": "No closing-without-proof token (admit/Admitted/Axiom/axiom) occurs in src/rocq/Theory/I2F/I2F_exp.v lines 3167-3312.",
+      "evidence_kind": "check",
+      "form": "no_sorry(src/rocq/Theory/I2F/I2F_exp.v, 3167-3312)",
+      "evidence": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/I2F_exp.v#L3167-L3312"
+    },
+    {
+      "n": 4,
+      "claim": "The longest chain of project lemmas below I2F_denote_exp' has depth 3: I2F_denote_exp' uses I2F_denote_exp, whose proof uses I2F_refine_lift, whose proof uses I2F_refine_lift_gen; the chain bottoms out in rutt_cutoff constructors, not project lemmas.",
+      "evidence_kind": "measurement",
+      "evidence": "I2F_denote_exp' applies I2F_denote_exp at I2F_exp.v#L3300; I2F_denote_exp applies I2F_refine_lift at I2F_exp.v#L3173; I2F_refine_lift applies I2F_refine_lift_gen at Refinement.v#L578, whose proof (Refinement.v#L550-L558) uses pfold/constructor/EqCutL/EqCutR/ruttc_trigger_cast."
+    },
+    {
+      "n": 5,
+      "claim": "The authors document the two-signature boundary that I2F_denote_exp' crosses: expressions \"are also denoted at the [mcfg] level\", and \"[withCall] injects an expression's [MCFGtop] tree into it (see [denote_exp'])\".",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Semantics/Denotation.v#L75-L83"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 3,
+    "glue_lines": 21,
+    "child_lines": [
+      124,
+      9,
+      7
+    ]
+  },
+  "metrics": {
+    "glue_lines": 21,
+    "direct_lemmas": 3,
+    "depth": 3,
+    "child_proof_lines": [
+      124,
+      9,
+      7
+    ],
+    "how_counted": "glue_lines = parent site I2F_exp.v 3292-3312; child_proof_lines = child sites I2F_exp.v 3167-3290, Refinement.v 472-480, Refinement.v 482-488; depth = the chain I2F_denote_exp' -> I2F_denote_exp -> I2F_refine_lift -> I2F_refine_lift_gen"
+  },
+  "consequences": "Creates the obligation that the higher-signature refinement is exactly the lower refinement composed with the cut predicates; here it is discharged by `ruttc_translate_inr'` plus the two `I2F_cut*_CFG` structural lemmas and two inline sum-rel side conditions. The boundary lemma becomes the single point clients cite, so a change to the higher signature (a new event) breaks only this lemma and its cut side conditions, not the client files that cite it.",
+  "known_uses": [
+    "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/I2F_denotation.v#L34",
+    "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/I2F_denotation.v#L266",
+    "https://github.com/vellvm/vellvm/blob/e25dad9af33281b2edd3c16c027f3717546a09d7/src/rocq/Theory/I2F/I2F_denotation.v#L284"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "c6bfef847c0bc06eed636f9baf55106eb3a9a058cca72ca15b7ebc3e2e1b9292",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:29:55Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:30:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:32:22Z",
+      "note": "parent I2F_denote_exp': statement re-copied from code; child 'I2F_denote_exp': statement re-copied from the declaration of I2F_denote_exp; child 'I2F_cutUB_CFG': statement re-copied from the declaration of I2F_cutUB_CFG; child 'I2F_cutOOM_CFG': statement re-copied from the declaration of I2F_cutOOM_CFG"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T15:38:16Z"
+}

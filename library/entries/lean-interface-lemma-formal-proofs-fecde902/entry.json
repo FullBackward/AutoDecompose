@@ -1,0 +1,302 @@
+{
+  "id": "lean-interface-lemma-formal-proofs-fecde902",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Interface lemmas at the AIR-constraint boundary close the whitepaper's main theorem",
+  "intent": "Prove the whitepaper's main theorem — that trace data satisfying the AIR `Constraints` yields an agreeing execution — by composing one named interface lemma per constraint family (memory, range check, range-check builtin, instruction, step), each crossing the boundary from the `Constraints` record to the execution semantics (`Option.FnExtends`, `NextState`), so the glue never unfolds a constraint definition.",
+  "move": "interface-lemma",
+  "also_known_as": [
+    "abstraction-boundary lemma",
+    "bridge lemma",
+    "API lemma"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "formal-proofs",
+    "url": "https://github.com/starkware-libs/formal-proofs",
+    "commit": "d0dd8279612a248cbc6bf6d286030bf0bb2a37ff",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "Verification/Semantics/AirEncoding/Correctness.lean",
+      "bytes": 7722,
+      "sha256": "00b41a953835bda1ef2359f2dc8f2d5a5640063d62ef0e6a306325201aae0eea",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/Correctness.lean"
+    },
+    {
+      "path": "Verification/Semantics/AirEncoding/Memory.lean",
+      "bytes": 13344,
+      "sha256": "304624b15faf43c13c4990e0971687a7cf59c3853f846602868500179d528e68",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/Memory.lean"
+    },
+    {
+      "path": "Verification/Semantics/AirEncoding/RangeCheck.lean",
+      "bytes": 5308,
+      "sha256": "5bec47b3c1ebb6ac7d71b2618bbc9faa38bb2adac3d2b14cd06dde59bbec1b09",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/RangeCheck.lean"
+    },
+    {
+      "path": "Verification/Semantics/AirEncoding/RangeCheckBuiltin.lean",
+      "bytes": 3573,
+      "sha256": "82e084f1e068a614399aa609bd9ea4f500196e34cda93e40daef44cab71ec227",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/RangeCheckBuiltin.lean"
+    },
+    {
+      "path": "Verification/Semantics/AirEncoding/Instruction.lean",
+      "bytes": 12791,
+      "sha256": "bc39abff259fbff2617829e439f28936faa335fbaad066018fcc845ea9e6862b",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/Instruction.lean"
+    },
+    {
+      "path": "Verification/Semantics/AirEncoding/Step.lean",
+      "bytes": 14324,
+      "sha256": "77a9dba1a622766c9d76e884eccf4788df69e2ecc72cfcb9eceac7ecc2318e47",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/Step.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Verification/Semantics/AirEncoding/Correctness.lean",
+      "lines": [
+        39,
+        126
+      ],
+      "role": "parent",
+      "name": "execution_exists",
+      "excerpt_sha256": "9d2408d302bd2b756fbf40d418f92337c4a8091e4e14540be85d47f6c97f80b5",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/Correctness.lean#L39-L126"
+    },
+    {
+      "path": "Verification/Semantics/AirEncoding/Memory.lean",
+      "lines": [
+        273,
+        290
+      ],
+      "role": "child",
+      "name": "mem_extends",
+      "excerpt_sha256": "2347d61546c005fe8668d3c62a4c92fa17a5c5f01b0d82432010f61763c6e1b2",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/Memory.lean#L273-L290"
+    },
+    {
+      "path": "Verification/Semantics/AirEncoding/Memory.lean",
+      "lines": [
+        244,
+        248
+      ],
+      "role": "child",
+      "name": "mem_pc",
+      "excerpt_sha256": "a262c9d0174c25df6f3a7358ad5b8b066748ceb4f3729c398175018572b20b92",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/Memory.lean#L244-L248"
+    },
+    {
+      "path": "Verification/Semantics/AirEncoding/Memory.lean",
+      "lines": [
+        251,
+        253
+      ],
+      "role": "child",
+      "name": "mem_dst_addr",
+      "excerpt_sha256": "bde74def71c516242045a54ec64ec41db4e9dc35fcfbcfa5109fb740f56d099c",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/Memory.lean#L251-L253"
+    },
+    {
+      "path": "Verification/Semantics/AirEncoding/RangeCheck.lean",
+      "lines": [
+        108,
+        116
+      ],
+      "role": "child",
+      "name": "off_op0_in_range",
+      "excerpt_sha256": "3238b8d92b16235712907cd7927d8e95ec6d3b12bc0205138e92c10576eb055f",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/RangeCheck.lean#L108-L116"
+    },
+    {
+      "path": "Verification/Semantics/AirEncoding/RangeCheck.lean",
+      "lines": [
+        129,
+        131
+      ],
+      "role": "child",
+      "name": "rc16_vals_in_range",
+      "excerpt_sha256": "3a53e0bf1827a9f2a8b32c63e5303a69421597e17ae261c7901d3921c281f52c",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/RangeCheck.lean#L129-L131"
+    },
+    {
+      "path": "Verification/Semantics/AirEncoding/RangeCheckBuiltin.lean",
+      "lines": [
+        54,
+        92
+      ],
+      "role": "child",
+      "name": "rc_val_checked",
+      "excerpt_sha256": "1cd1786b1da3d05ff1f029ba0b97de84918119071c7c2f1657b563beed36bc78",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/RangeCheckBuiltin.lean#L54-L92"
+    },
+    {
+      "path": "Verification/Semantics/AirEncoding/Instruction.lean",
+      "lines": [
+        272,
+        282
+      ],
+      "role": "child",
+      "name": "inst_eq",
+      "excerpt_sha256": "4a4107ff95d7ccd40d1a836fb2bd3b7c60212118d18f29d0d49296ac8e624839",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/Instruction.lean#L272-L282"
+    },
+    {
+      "path": "Verification/Semantics/AirEncoding/Step.lean",
+      "lines": [
+        295,
+        305
+      ],
+      "role": "child",
+      "name": "nextState_eq",
+      "excerpt_sha256": "9380b3b0b9a27c3780a889f011fe901cb32c3800be62551f2a041a7328b243e9",
+      "permalink": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/Step.lean#L295-L305"
+    }
+  ],
+  "parent": {
+    "name": "execution_exists",
+    "statement": "theorem execution_exists (char_ge : ringChar F ≥ 2 ^ 63) (inp : InputDataAux F)\n    (c : Constraints inp) (hp : Hprob c) :\n    ∃ mem : F → F,\n      Option.FnExtends mem inp.memStar ∧\n        (∀ i < inp.rcLen, ∃ (n : ℕ), n < 2 ^ 128 ∧ mem (inp.initialRcAddr + i) = (↑n : F)) ∧\n          ∃ exec : Fin (inp.t + 1) → RegisterState F,\n            (exec 0).pc = inp.pcI ∧\n              (exec 0).ap = inp.apI ∧\n                (exec 0).fp = inp.apI ∧\n                  (exec (Fin.last inp.t)).pc = inp.pcF ∧\n                    (exec (Fin.last inp.t)).ap = inp.apF ∧\n                      ∀ i : Fin inp.t, NextState mem (exec i.castSucc) (exec i.succ)"
+  },
+  "children": [
+    {
+      "name": "mem_extends",
+      "statement": "theorem mem_extends : Option.FnExtends (mem a' v') mem_star",
+      "closed_by": "intro addr; cases' h : mem_star addr with val; exact mem_unique … (embed_mem ⟨addr, h'⟩)",
+      "note": "Crosses the memory boundary: the constructed memory extends the input memory, closing the Option.FnExtends conjunct."
+    },
+    {
+      "name": "mem_pc",
+      "statement": "theorem mem_pc (i : Fin T) : mem a' v' (pc i) = inst i",
+      "closed_by": "rw [← realA_embed_inst, ← realV_embed_inst]; apply mem_unique …",
+      "note": "Address-family bridge: the reconstructed memory agrees with the pc address; the same lemma discharges the dst/op0/op1/rc address families."
+    },
+    {
+      "name": "mem_dst_addr",
+      "statement": "theorem mem_dst_addr (i : Fin T) : mem a' v' (dst_addr i) = dst i",
+      "closed_by": "mem_pc … i",
+      "note": "Term-mode wrapper: dst-address agreement reduces to mem_pc."
+    },
+    {
+      "name": "off_op0_in_range",
+      "statement": "theorem off_op0_in_range (i : Fin T) : ∃ k : ℕ, k < 2 ^ 16 ∧ off_op0_tilde i = ↑k",
+      "closed_by": "rcases rc_permutation …; use rc_min + a'NatOffset a' j; constructor",
+      "note": "Offset range-check bridge: each offset is a field element below 2^16; the same lemma discharges op1/dst/rc16."
+    },
+    {
+      "name": "rc16_vals_in_range",
+      "statement": "theorem rc16_vals_in_range (i : Fin T) : ∃ k : ℕ, k < 2 ^ 16 ∧ rc16_vals i = ↑k",
+      "closed_by": "off_op0_in_range …",
+      "note": "Term-mode wrapper: rc16 range reduces to off_op0_in_range."
+    },
+    {
+      "name": "rc_val_checked",
+      "statement": "theorem rc_val_checked (i : Fin rc_len) : ∃ k : ℕ, k < 2 ^ 128 ∧ rc_val i = ↑k",
+      "closed_by": "rw [h_rc_value]; eight rcases of h_rc16_val; use …; norm_num and an arithmetic bound",
+      "note": "Range-check-builtin bridge: eight 16-bit values pack into one 128-bit value, closing the range_checked conjunct."
+    },
+    {
+      "name": "inst_eq",
+      "statement": "theorem inst_eq :\n  inst = (theInstruction h_bit offOp0_in_range offOp1_in_range offDst_in_range).toNat",
+      "closed_by": "rw [h_instruction, Instruction.toNat, theInstruction_flags_eq, theInstruction]; norm_num",
+      "note": "Instruction bridge: the constraint instruction equals the reconstructed Instruction's toNat."
+    },
+    {
+      "name": "nextState_eq",
+      "statement": "theorem nextState_eq : NextState mem ⟨pc, ap, fp⟩ ⟨next_pc, next_ap, next_fp⟩",
+      "closed_by": "⟨inst, h_mem_pc, nextPc_agrees …, nextAp_agrees …, nextFp_agrees …, asserts_hold …⟩",
+      "note": "Step bridge: closes the NextState conjunct from the pc/dst/op0/op1 agreements."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A theorem `Constraints c → ∃ witness, P₀ witness ∧ P₁ witness ∧ … ∧ Pₖ witness` whose conjuncts are separate obligations (here: memory extension, range-check coverage, and the per-step `NextState` relation) and whose hypotheses are packaged in a record or section-variable block so that each conjunct is already a named lemma `family-hypotheses → conjunct` in the same project.",
+    "use_when": "each constraint family's hypotheses are bundled in one structure (or locale/section variables) whose fields are exactly the premises of one bridge lemma per family; the proof is then a straight-line assembly of `have := bridge_lemma …` calls, supplying the structure fields as arguments, and a final `use`/`exact` of the assembled facts.",
+    "avoid_when": "a family must be partially unfolded to state the fact (the bridge lemma is not a clean consequence of one structure); the client needs the constraint internals rather than the abstract fact; or there is no shared boundary the children can cross independently, so the glue still has to reason inside the definitions."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The child `nextState_eq` is declared in `Verification/Semantics/AirEncoding/Step.lean` at lines 295-305.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/Step.lean#L295-L305",
+      "form": "declared(nextState_eq, Verification/Semantics/AirEncoding/Step.lean, 295-305)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites the child `mem_extends`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/Correctness.lean#L39-L126",
+      "form": "cites(parent, mem_extends)"
+    },
+    {
+      "n": 3,
+      "claim": "No closing-by-`sorry` token occurs in `Verification/Semantics/AirEncoding/Correctness.lean` lines 39-126.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/Correctness.lean#L39-L126",
+      "form": "no_sorry(Verification/Semantics/AirEncoding/Correctness.lean, 39-126)"
+    },
+    {
+      "n": 4,
+      "claim": "The file header states the goal is the whitepaper's main theorem: \"A proof of the main theorem of the whitepaper\" (Correctness.lean lines 1-7).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/Correctness.lean#L1-L7"
+    },
+    {
+      "n": 5,
+      "claim": "The glue applies 18 named project lemmas directly (shape.direct_lemmas = 18), counted by reading Correctness.lean lines 51-126: mem_extends, mem_pc, mem_dst_addr, mem_op0_addr, mem_op1_addr, mem_rc_addr, off_op0_in_range, off_op1_in_range, off_dst_in_range, rc16_vals_in_range, rc_val_checked, rc_addr_eq, inst_eq, offDst_tilde_eq, offOp0_tilde_eq, offOp1_tilde_eq, f_tilde_toF_eq, nextState_eq.",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/Correctness.lean#L51-L126"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 18,
+    "depth": 4,
+    "glue_lines": 88,
+    "child_lines": [
+      18,
+      5,
+      3,
+      9,
+      3,
+      39,
+      11,
+      11
+    ]
+  },
+  "metrics": {
+    "parent_lines": 88,
+    "children_shown": 8,
+    "direct_lemmas": 18,
+    "how_counted": "parent_lines = Correctness.lean lines 39-126; direct_lemmas counted by reading lines 51-126 of the glue and listing the 18 named project-lemma applications"
+  },
+  "consequences": "The glue becomes a straight-line list of `have`s, but each bridge lemma takes a long argument list of the family's constraint fields (10-16 premises here), so a missing field surfaces as an elaboration error at the call site. The boundary lemmas must be stated at the right level: too coarse and a conjunct cannot be discharged, too fine and the glue still unfolds. Correctness now rests on each bridge lemma being true of its whole family, so a family split across several lemmas — the instruction family here needs `inst_eq` plus the four `tilde_eq` lemmas before `nextState_eq` — still has to be re-assembled in the glue.",
+  "known_uses": [
+    "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/Memory.lean#L251-L263",
+    "https://github.com/starkware-libs/formal-proofs/blob/d0dd8279612a248cbc6bf6d286030bf0bb2a37ff/Verification/Semantics/AirEncoding/RangeCheck.lean#L119-L131"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "fecde90283b1b2747a301e44a20d08ff614a93e339753b2e145134ee07649baf",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:30:20Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:31:57Z",
+      "note": "parent execution_exists: statement re-copied from code; child 'mem_extends': statement re-copied from the declaration of mem_extends; child 'mem_pc': statement re-copied from the declaration of mem_pc; child 'mem_dst_addr': statement re-copied from the declaration of mem_dst_addr; child 'off_op0_in_range': statement re-copied from the declaration of off_op0_in_range; child 'rc16_vals_in_range': statement re-copied from the declaration of rc16_vals_in_range; child 'rc_val_checked': statement re-copied from the declaration of rc_val_checked; child 'inst_eq': statement re-copied from the declaration of inst_eq; child 'nextState_eq': statement re-copied from the declaration of nextState_eq"
+    }
+  ]
+}

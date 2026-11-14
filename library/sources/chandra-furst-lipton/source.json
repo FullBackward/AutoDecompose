@@ -1,0 +1,17 @@
+{
+  "source_id": "chandra-furst-lipton",
+  "url": "https://github.com/yaeldillies/chandra-furst-lipton",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "yaeldillies/chandra-furst-lipton",
+  "commit": "95c7ea0802c195bef2238ad962873c0907f1f8a9",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T14:53:13Z",
+  "how_found": "discovery-2: A-lean, discovery-1:B-lean",
+  "note": "Digitisation of the Chandra-Furst-Lipton paper: the main theorem and its lemmas stated and proved in project files with a push CI workflow",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

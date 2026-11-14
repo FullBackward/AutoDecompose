@@ -1,0 +1,229 @@
+{
+  "id": "latex-blueprint-node-mipre-formalization-6ee64f83",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Halting reduces to the game value: the MIP* = RE target assembled from four blueprint lemmas",
+  "intent": "Prove the project's headline node thm:main (halting reduces to the synchronous game value, the formalization target of MIP* = RE) whose proof is pure glue: apply the conditional lemma halting_reduces_to_gameValue_of and discharge its two inputs -- a GapCompression and a universal machine -- from four named blueprint lemmas, so the theorem is one hole per stage.",
+  "move": "blueprint-node",
+  "also_known_as": [
+    "dependency-graph node",
+    "blueprint theorem node",
+    "assembly from named lemmas"
+  ],
+  "language": "latex",
+  "source": {
+    "source_id": "mipre-formalization",
+    "url": "https://github.com/vidick/mipre-formalization",
+    "commit": "5926bdff5db621f44682a101007ef2fe3ae8d970",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "blueprint/src/content/07_main_theorem.tex",
+      "bytes": 13560,
+      "sha256": "3f5c05631d3e9b458e7c740ad24f53eb72bd3b386ca17ae5b1588188484d8f0d",
+      "permalink": "https://github.com/vidick/mipre-formalization/blob/5926bdff5db621f44682a101007ef2fe3ae8d970/blueprint/src/content/07_main_theorem.tex"
+    },
+    {
+      "path": "blueprint/src/content/06_proof_structure.tex",
+      "bytes": 445887,
+      "sha256": "e391ef745953a3752ad83191cde65a1c27db8847aa74b86dc213540865e008e6",
+      "permalink": "https://github.com/vidick/mipre-formalization/blob/5926bdff5db621f44682a101007ef2fe3ae8d970/blueprint/src/content/06_proof_structure.tex"
+    },
+    {
+      "path": "MIPRE/MainTheorem.lean",
+      "bytes": 3829,
+      "sha256": "c088ed7dac9c7fc528730e672663d1d6162401513344730964cfda6593d95371",
+      "permalink": "https://github.com/vidick/mipre-formalization/blob/5926bdff5db621f44682a101007ef2fe3ae8d970/MIPRE/MainTheorem.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "blueprint/src/content/07_main_theorem.tex",
+      "lines": [
+        12,
+        34
+      ],
+      "role": "parent",
+      "name": "thm:main",
+      "excerpt_sha256": "55eef43338054ad54a38e491e63dec691be41eb4f8d1d3fed60b6bc7e8c51dc1",
+      "permalink": "https://github.com/vidick/mipre-formalization/blob/5926bdff5db621f44682a101007ef2fe3ae8d970/blueprint/src/content/07_main_theorem.tex#L12-L34"
+    },
+    {
+      "path": "blueprint/src/content/06_proof_structure.tex",
+      "lines": [
+        7378,
+        7425
+      ],
+      "role": "child",
+      "name": "thm:halting",
+      "excerpt_sha256": "4cf70f5e4dfc8fd48df6ebe6430a7d8fcc5928da4e9c56aea0c571753090e56e",
+      "permalink": "https://github.com/vidick/mipre-formalization/blob/5926bdff5db621f44682a101007ef2fe3ae8d970/blueprint/src/content/06_proof_structure.tex#L7378-L7425"
+    },
+    {
+      "path": "blueprint/src/content/06_proof_structure.tex",
+      "lines": [
+        6404,
+        6429
+      ],
+      "role": "child",
+      "name": "cor:compression-from-answer-reduction",
+      "excerpt_sha256": "939299ffa182868b23b365084b52adb5bdad439bc71eec267eaee8c62fbb0af5",
+      "permalink": "https://github.com/vidick/mipre-formalization/blob/5926bdff5db621f44682a101007ef2fe3ae8d970/blueprint/src/content/06_proof_structure.tex#L6404-L6429"
+    },
+    {
+      "path": "blueprint/src/content/06_proof_structure.tex",
+      "lines": [
+        6032,
+        6063
+      ],
+      "role": "child",
+      "name": "thm:answer-reduction",
+      "excerpt_sha256": "03adb5620125d4a29aba2ced4f51e42c228d55a64c0b5cb7b00de996e100fdaf",
+      "permalink": "https://github.com/vidick/mipre-formalization/blob/5926bdff5db621f44682a101007ef2fe3ae8d970/blueprint/src/content/06_proof_structure.tex#L6032-L6063"
+    },
+    {
+      "path": "blueprint/src/content/06_proof_structure.tex",
+      "lines": [
+        6388,
+        6402
+      ],
+      "role": "child",
+      "name": "thm:compression-target",
+      "excerpt_sha256": "84dfccb810df8ec096ae160b35c2d08d683b83da99c375ad4045f94df0240a0d",
+      "permalink": "https://github.com/vidick/mipre-formalization/blob/5926bdff5db621f44682a101007ef2fe3ae8d970/blueprint/src/content/06_proof_structure.tex#L6388-L6402"
+    },
+    {
+      "path": "MIPRE/MainTheorem.lean",
+      "lines": [
+        28,
+        38
+      ],
+      "role": "context",
+      "name": "MainTheorem-lean",
+      "excerpt_sha256": "54d6a64a6b4fe89728db51669f83509a3d7407668bd22c180865596530a3bf98",
+      "permalink": "https://github.com/vidick/mipre-formalization/blob/5926bdff5db621f44682a101007ef2fe3ae8d970/MIPRE/MainTheorem.lean#L28-L38"
+    }
+  ],
+  "parent": {
+    "name": "thm:main",
+    "statement": "Halting reduces to the game value (Theorem 12.2 of JNVWY20, synchronous form): there is a computable map g from Turing machines to game descriptions such that, for every Turing machine M, (Completeness) if M halts on the empty input then the synchronous value of the game g(M) is 1, and (Soundness) if M does not halt on the empty input then the synchronous value of g(M) is at most 1/2.",
+    "note": "A blueprint node marked \\leanok and proved in Lean. Its proof (the glue) is a list of citations: it applies the conditional halting_reduces_to_gameValue_of, supplying a GapCompression (Theorem thm:compression-target) and a universal machine."
+  },
+  "children": [
+    {
+      "name": "thm:halting",
+      "statement": "Assume an ambient MIPRE.GapCompression. There is a computable map from Turing machines to explicit synchronous game descriptions such that: if M halts on the empty input then the game of M has a value-1 PCC strategy (so its synchronous and quantum values are both 1), and if M does not halt then its quantum value is at most 1/2 (hence its synchronous value too, by Lemma lem:sync-le-valstar). Moreover the reduction is polynomial-time.",
+      "closed_by": "thm:compression (as a GapCompression), lem:compressible-criterion, exists_obligations",
+      "note": "Supplies the reduction the main theorem instantiates. Its proof (L7415-L7425) derives halting_reduction_of and halting_reduces_to_gameValue_of from Theorem thm:compression, through Lemma lem:compressible-criterion at the classes of Remark rem:compression-abstract, discharging the four obligations via exists_obligations."
+    },
+    {
+      "name": "cor:compression-from-answer-reduction",
+      "statement": "From an inhabitant of MIPRE.AnswerReduction 5 alone there is a MIPRE.GapCompression, and consequently thm:main, cor:main-quantum, cor:value-uncomputable and thm:mipstar-eq-re hold with no other hypothesis.",
+      "closed_by": "thm:compression, lem:introspection-supply, thm:parallel-repetition, lem:universal-tm, cor:halting-consequences",
+      "note": "Assembles the three stages (introspection, answer reduction, parallel repetition) plus a universal machine into a GapCompression. Its \\uses{} is thm:compression,lem:introspection-supply,thm:parallel-repetition,lem:universal-tm; its proof applies thm:compression to those three supplied stages and reads off the chapter-7 consequences via cor:halting-consequences."
+    },
+    {
+      "name": "thm:answer-reduction",
+      "statement": "In the source model there is a polynomial-time Turing machine that, on input a level-ell normal form verifier with a standard timeout-counter decider, outputs a higher-level normal form verifier satisfying completeness (a value-1 PCC strategy on the input transfers to the output) and soundness (if the output value exceeds 1-eps then the input value is at least 1-delta(eps,n)).",
+      "closed_by": "lem:answer-reduction-supply (via def:answer-reduction-contract)",
+      "note": "One of the three compression stages. Its proof (L6058-L6063) reads: 'In the ambient form of Definition def:answer-reduction-contract, at ell=5, this is Lemma lem:answer-reduction-supply.'"
+    },
+    {
+      "name": "thm:compression-target",
+      "statement": "The type MIPRE.GapCompression is inhabited.",
+      "closed_by": "cor:compression-from-answer-reduction, lem:answer-reduction-supply, thm:compression",
+      "note": "Removes the remaining hypothesis: its proof supplies the compression the main theorem's glue asks for, applying cor:compression-from-answer-reduction at the answer reduction of lem:answer-reduction-supply."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A headline theorem of the form 'there is a computable map with a completeness clause and a soundness clause', whose proof is the instantiation of a conditional lemma (one taking a hypothesis or contract such as GapCompression) at a named supply of that hypothesis.",
+    "use_when": "The theorem is a node of a published dependency graph (a blueprint \\uses{} node) and each named dependency is itself a node with its own proof, so the glue is a list of citations and every bit of difficulty lives in the children, one hole per bounded prover.",
+    "avoid_when": "The glue itself carries mathematical content that must be proved rather than cited; or the dependencies are not named statements, so the one-hole-per-lemma shape does not arise."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The proof of thm:main names thm:compression-target.",
+      "evidence_kind": "check",
+      "form": "cites(thm:main, thm:compression-target)",
+      "evidence": "https://github.com/vidick/mipre-formalization/blob/5926bdff5db621f44682a101007ef2fe3ae8d970/blueprint/src/content/07_main_theorem.tex#L12-L34"
+    },
+    {
+      "n": 2,
+      "claim": "The proof of thm:main cites thm:answer-reduction.",
+      "evidence_kind": "check",
+      "form": "cites(thm:main, thm:answer-reduction)",
+      "evidence": "https://github.com/vidick/mipre-formalization/blob/5926bdff5db621f44682a101007ef2fe3ae8d970/blueprint/src/content/07_main_theorem.tex#L12-L34"
+    },
+    {
+      "n": 3,
+      "claim": "The glue (thm:main, statement and proof) is 23 lines and the four children are 48, 26, 32 and 15 lines, so 121 lines of lemma sit under a 23-line glue; the longest chain below thm:main I checked is 4 project lemmas.",
+      "evidence_kind": "measurement",
+      "evidence": "Site line counts: parent L12-L34 (23); children thm:halting L7378-L7425 (48), cor:compression-from-answer-reduction L6404-L6429 (26), thm:answer-reduction L6032-L6063 (32), thm:compression-target L6388-L6402 (15), in blueprint/src/content/06_proof_structure.tex. Depth chain: thm:compression-target (L6388) -> cor:compression-from-answer-reduction (cited in its proof L6397) -> thm:compression (L6282, cited L6424) -> thm:parallel-repetition (L6184, in thm:compression's \\uses{} L6284)."
+    },
+    {
+      "n": 4,
+      "claim": "The authors describe thm:main as 'the formalization target of the whole project' and record that its proof is the conditional halting_reduces_to_gameValue_of at the compression of thm:compression-target.",
+      "evidence_kind": "author-statement",
+      "evidence": "blueprint/src/content/07_main_theorem.tex L4 ('The statement below is the formalization target of the whole project.') and L36-L44 (Status remark: 'the proof ... is the conditional MIPRE.Halting.halting_reduces_to_gameValue_of at the compression of Theorem thm:compression-target')."
+    },
+    {
+      "n": 5,
+      "claim": "The same assemble-from-named-lemmas move proves the chapter's other headline node thm:mipstar-eq-re, whose proof is also a list of citations to cor:compression-from-answer-reduction and thm:answer-reduction.",
+      "evidence_kind": "known-use",
+      "evidence": "blueprint/src/content/07_main_theorem.tex L183-L220; the proof's \\uses{} at L197 is {cor:compression-from-answer-reduction,thm:answer-reduction}, and the body also cites lem:mipstar-sub-re and thm:halting-undecidable."
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 4,
+    "glue_lines": 23,
+    "child_lines": [
+      48,
+      26,
+      32,
+      15
+    ]
+  },
+  "metrics": {
+    "parent_site_lines": 23,
+    "children": 4,
+    "child_site_lines": [
+      48,
+      26,
+      32,
+      15
+    ],
+    "depth_below_main": 4,
+    "how_counted": "site line counts (declarations included) from entry.json sites; depth_below_main is the chain thm:compression-target -> cor:compression-from-answer-reduction -> thm:compression -> thm:parallel-repetition read off the \\uses{} lines of blueprint/src/content/06_proof_structure.tex."
+  },
+  "consequences": "The glue creates no proof obligation of its own beyond the citations: it inherits whatever inputs the cited conditional lemma asks for (here a GapCompression, discharged by thm:compression-target, and a universal machine, discharged inside the compression assembly). Because every node is \\leanok and the Lean proof is a one-line application, a wrong or too-weak child would surface as a type error rather than a silent gap; but the node's own proof defers all difficulty to the children, each of which is itself a large node with its own \\uses{} cone. The assembly is brittle in the sense that it records a fixed choice of stages (introspection, the classical-PCP answer reduction, repetition, the self-universal machine); changing any stage means changing the cited supply, not the glue.",
+  "known_uses": [
+    "https://github.com/vidick/mipre-formalization/blob/5926bdff5db621f44682a101007ef2fe3ae8d970/blueprint/src/content/07_main_theorem.tex#L183-L220"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "6ee64f83bb08f6b793c6e1c0b668342a84fb66af4cc225588f11a1ea24cf7429",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T16:02:57Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,also_known_as,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T16:15:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T16:12:08Z"
+}

@@ -1,0 +1,125 @@
+{
+  "entry": "rocq-calc-chain-bertrand-62edaca1",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:30:53Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:30:53Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:30:53Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: upper_bound@theories/Bertrand.v:206, binomial_even@theories/Bertrand.v:196; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:30:54Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(no_prime_imp_spec_inegality, theories/Bertrand.v, 187-220) -> declared: no_prime_imp_spec_inegality is declared at theories/Bertrand.v:187",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:30:54Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, upper_bound) -> cites: upper_bound occurs at theories/Bertrand.v:206",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:30:54Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, binomial_even) -> cites: binomial_even occurs at theories/Bertrand.v:196",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:30:54Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "6 file(s) byte-identical at 033b1a8f1a9c121855b6b78cd55154d3c09e1c23",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:31:03Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/docker-action.yml runs docker-coq-action with opam_file coq-bertrand.opam on push to master (default branch); opam build runs make over _CoqProject, whose first line is theories/Bertrand.v, so CI builds theories/Bertrand.v",
+      "by": "verifier",
+      "at": "2026-11-14T15:33:07Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "2 direct lemmas: upper_bound cited at Bertrand.v:206, binomial_even at :196 (check_claims); glue 187-220 = 34 lines; child lines 27-184 = 158, 255-324 = 70; depth 2: upper_bound uses factorization at Bertrand.v:41 and factorization is declared at PrimeDirac.v:449; binomial_even uses binomial2 at Binomial.v:271 and binomial2 is declared at Binomial.v:205",
+      "by": "verifier",
+      "at": "2026-11-14T15:33:10Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Bertrand.v:25 reads '(** Upper Bound for (binonial 2n n) *)' (verbatim, incl. the 'binonial' typo); Binomial.v:253 reads '(** Lower bound for (binomial 2n n) *)'",
+      "by": "verifier",
+      "at": "2026-11-14T15:33:11Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Opened local copies. Parent no_prime_imp_spec_inegality is declared at Bertrand.v:187-220 and its statement matches entry.json verbatim; it cites binomial_even at :196 and upper_bound at :206, exactly the two children. Child upper_bound declared Bertrand.v:27-184 (statement matches), closes with Qed at :184 (no admit/sorry); child binomial_even declared Binomial.v:255-324 (statement matches), closes Qed at :324. Shape numbers are right: glue_lines 34 = 187-220; child_lines [158,70] = 27-184 and 255-324; direct_lemmas 2; depth 2 matches the two chains parent->upper_bound->factorization (factorization cited Bertrand.v:41) and parent->binomial_even->binomial2 (binomial2 cited Binomial.v:271, declared Binomial.v:205). The parent also uses generic helper lemmas (power_power/power_mult/mult_lt_bis/etc.) which the README honestly flags as non-children; the two bound lemmas are the lemmas written for this argument, so the decomposition is what the entry says.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:34:29Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generically (sandwich/squeeze: A<=M and M<C conclude A<C via Nat.le_lt_trans/Nat.lt_le_trans) in goal_shape/use_when/also_known_as, so it applies beyond Bertrand. 'When not to use' is specific and honest (one-off rewrite with no reuse; single library lemma closes it; links over different intermediates won't line up). Consequences are specific (one obligation per link, transitivity automatic but intermediates must match, child-too-weak failure mode, most of the 34 glue lines are arithmetic bookkeeping). Good-leaf criterion is answered: self-contained statement + proof closes from named sibling lemmas, not the parent context (verified the child comments at Bertrand.v:25 and Binomial.v:253 and parent site 187-220). Minor imprecisions, not material: binomial_even is stated under the weaker hypothesis 0<n (not 'the same hypotheses'), and both children are cited exactly once so 'reusable bound lemmas' is a slight overstatement of actual reuse; the entry's own 'replace either bound without touching the other' is the more accurate reason.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:35:44Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "6 file(s) byte-identical at 033b1a8f1a9c121855b6b78cd55154d3c09e1c23",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:36:05Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent and traceable. check_provenance passes: 6 copied files (Bertrand.v, Binomial.v, Power.v, Div.v, Misc.v, Prime.v) byte-identical at commit 033b1a8f1a9c121855b6b78cd55154d3c09e1c23. Commit is identical across README (abbreviated 033b1a8f1a9c), entry.json source.commit, sources/bertrand/source.json and SOURCE.md. Licence LGPL-2.1 is recorded identically in entry.json, README, source.json, SOURCE.md, and the copied upstream-LICENSE file is LGPL-2.1. All permalinks use the pinned commit and the cited line ranges match the copied files (Bertrand.v:187 'Theorem no_prime_imp_spec_inegality', :196 cites binomial_even, :206 cites upper_bound, :220 Qed, :25 'Upper Bound for (binonial 2n n)'; Binomial.v:253 'Lower bound for (binomial 2n n)', :255 'Theorem binomial_even', :324 Qed). File byte sizes in entry.json match the local copies.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:36:39Z"
+    }
+  ]
+}

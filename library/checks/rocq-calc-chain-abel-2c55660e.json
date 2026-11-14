@@ -1,0 +1,125 @@
+{
+  "entry": "rocq-calc-chain-abel-2c55660e",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:29:38Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:29:38Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:29:39Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: AbelGaloisPolyRat@theories/abel.v:1340, isog_gal@theories/abel.v:1340, size_poly_example@theories/abel.v:1341, solvable_SymF@theories/abel.v:1341, count_roots_ex@theories/abel.v:1342; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:29:39Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(example_not_solvable_by_radicals, theories/abel.v, 1337-1343) -> declared: example_not_solvable_by_radicals is declared at theories/abel.v:1337",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:29:39Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(theories/abel.v, 1337-1343) -> no_sorry: none of admit, Admitted, Axiom, axiom in theories/abel.v:1337-1343",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:29:39Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, count_roots_ex) -> cites: count_roots_ex occurs at theories/abel.v:1342",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:29:39Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 8c6194115397371df63cd6fae7e39009872858fd",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:29:46Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/docker-action.yml builds coq-mathcomp-abel.opam (whole project via _CoqProject, whose first file is theories/abel.v); .github/workflows/nix-action-rocq-9.1.yml job mathcomp-abel also builds it; commit 8c6194115397371df63cd6fae7e39009872858fd is the tip of the default branch master",
+      "by": "verifier",
+      "at": "2026-11-14T15:31:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "parent lines 1337-1343 are 7 lines; proof body 1340-1342 is 3 lines citing the 5 child lemmas (AbelGaloisPolyRat, isog_gal, size_poly_example, solvable_SymF, count_roots_ex); chain confirmed: isog_gal@1168-1169 -> isog_gal_perm@1162-1166 -> surj_gal_perm@1153-1160 -> galJ_tperm@1145-1151 -> gal_permP@1020, each link cited in the preceding lemma's proof",
+      "by": "verifier",
+      "at": "2026-11-14T15:31:13Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "abel.v lines 1238-1239 are the comment 'Using the package real_closed, we should be able to monitor the sign of the derivative, and find that the polynomial has exactly three real roots.'",
+      "by": "verifier",
+      "at": "2026-11-14T15:31:14Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent example_not_solvable_by_radicals (abel.v:1337-1343) proof body cites exactly the 5 children: /AbelGaloisPolyRat and PDTNRR.isog_gal (1340), size_poly_example and solvable_SymF (1341), count_roots_ex (1342); PDTNRR := PrimeDegreeTwoNonRealRoots (line 1173) so PDTNRR.isog_gal is the child isog_gal at 1168-1169. All 5 child statements and closed_by are verbatim in code (AbelGaloisPolyRat 854-868 uses -AbelGaloisPoly/solvable_ext_polyP/witness numfield p; isog_gal = rewrite -adjoin_numfield_roots isog_gal_perm; size_poly_example 1198-1202; solvable_SymF 730-731 = series_sol Alt_normal + solvable_AltF; count_roots_ex 1297-1335 = suff cR + ivt_sign + size_root_leSderiv/rootsR_deriv_poly_example). Sites all end Qed with no sorry token; module has exactly 3 hypotheses (p_irr, d_prime, count_rp') matching the three _ in PDTNRR.isog_gal _ _ _, discharged by // (irreducible_example/prime_example) and count_roots_ex via count_map. Shape numbers right: direct_lemmas=5, depth=5 (example->isog_gal->isog_gal_perm->surj_gal_perm->galJ_tperm->gal_permP, each link cited verbatim), glue_lines=7 (1337-1343), child_lines=[15,2,5,2,39] matching 854-868/1168-1169/1198-1202/730-731/1297-1335.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:33:05Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalizes beyond the example: use_when is abstracted to ~P where a reflect/iff lemma converts P into a decidable group predicate refuted by an isomorphism to a known non-solvable group, with degree/cardinality and root-count facts as small lemmas; avoid_when is specific and honest (unpackaged isomorphism, unproved real analysis, uncited non-solvability lemma), and the example itself uses ivt_sign/size_root_leSderiv so the 'already proved' caveat is truthful. Consequences name the three isog_gal side obligations and two real failure modes (silent ?-rewrite via '?size_poly_example ?solvable_SymF ?card_ord//', degree/cardinality mismatch), both visible in the copied parent. 'Why each child is a good leaf' explicitly answers what makes each lemma a self-contained leaf closing on its own or from named siblings, matching the skeleton/one-hole-per-bounded-prover shape.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:34:07Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 8c6194115397371df63cd6fae7e39009872858fd",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:34:29Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent and traceable. Commit 8c6194115397371df63cd6fae7e39009872858fd is identical across entry.json source.commit, sources/abel/source.json, sources/abel/SOURCE.md, and every permalink (README's '8c6194115397' is just its 12-char prefix); check_provenance reports the 2 copied files (theories/abel.v, theories/xmathcomp/various.v) byte-identical at that commit. Licence CECILL-B is recorded consistently (entry.json, source.json, SOURCE.md, README) and the copied licence file upstream-CeCILL-B is the genuine CeCILL-B text. All six cited line ranges (parent 1337-1343; children 854-868, 1168-1169, 1198-1202, 730-731, 1297-1335) reproduce the code quoted in README/entry.json, so every permalink resolves to what it claims. Source note (SOURCE.md) matches the copied files and cites the upstream licence file. Everything traceable; no objection.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:35:03Z"
+    }
+  ]
+}

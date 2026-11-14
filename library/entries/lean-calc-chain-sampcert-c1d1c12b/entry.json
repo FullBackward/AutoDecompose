@@ -1,0 +1,240 @@
+{
+  "id": "lean-calc-chain-sampcert-c1d1c12b",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Normalizing the discrete Gaussian sampler loop by a chain of rewrites",
+  "intent": "Prove that the discrete Gaussian sampler loop is a proper distribution (its mass sums to 1) by a chain of rewrites: replace the mixed Laplace sampler by its equivalence, drop the two off-diagonal if-guarded masses with the same-file ite_simpl lemmas, fold the Boolean sum with the Bernoulli normalization lemma, and close the remaining factor with the Laplace normalization lemma.",
+  "move": "calc-chain",
+  "also_known_as": [
+    "calculational proof",
+    "equality chain",
+    "chain of rewrites",
+    "normalization chain"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "sampcert",
+    "url": "https://github.com/leanprover/sampcert",
+    "commit": "a2c53bb5ff790e729e252958060699b7eff898b9",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "SampCert/Samplers/Gaussian/Properties.lean",
+      "bytes": 12473,
+      "sha256": "dda8eb642fa2f02b85632048de66867f1f5c2801756afdd0414f49377a76441c",
+      "permalink": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Gaussian/Properties.lean"
+    },
+    {
+      "path": "SampCert/Samplers/Laplace/Properties.lean",
+      "bytes": 39431,
+      "sha256": "21c4832003a1c3aa52c0dc89492e8e2f4cdaeaec3c5e0dc3107c83e63f68ef22",
+      "permalink": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Laplace/Properties.lean"
+    },
+    {
+      "path": "SampCert/Samplers/BernoulliNegativeExponential/Properties.lean",
+      "bytes": 40190,
+      "sha256": "50f3acca3efc671bcc11fcb857e59dabd3ca241ad2c0ae9120f00db85d7b98d1",
+      "permalink": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/BernoulliNegativeExponential/Properties.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "SampCert/Samplers/Gaussian/Properties.lean",
+      "lines": [
+        60,
+        91
+      ],
+      "role": "parent",
+      "name": "DiscreteGaussianSampleLoop_normalizes",
+      "excerpt_sha256": "f2054ca779ccbd2df305e3b4b5a5786136f449bb24c5bd623a538ca280afdb8f",
+      "permalink": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Gaussian/Properties.lean#L60-L91"
+    },
+    {
+      "path": "SampCert/Samplers/Laplace/Properties.lean",
+      "lines": [
+        1103,
+        1109
+      ],
+      "role": "child",
+      "name": "DiscreteLaplaceSampleMixed_equiv",
+      "excerpt_sha256": "69a55960ab3dc911291f078dd0cdcb3cd162d26209cb31f7a97ec006abec533a",
+      "permalink": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Laplace/Properties.lean#L1103-L1109"
+    },
+    {
+      "path": "SampCert/Samplers/Gaussian/Properties.lean",
+      "lines": [
+        28,
+        40
+      ],
+      "role": "child",
+      "name": "ite_simpl_gaussian_1",
+      "excerpt_sha256": "4b1a42d6a89eae5e3b07a73b0a041cdc693f498ae81927766874ae7d24c4c686",
+      "permalink": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Gaussian/Properties.lean#L28-L40"
+    },
+    {
+      "path": "SampCert/Samplers/Gaussian/Properties.lean",
+      "lines": [
+        42,
+        54
+      ],
+      "role": "child",
+      "name": "ite_simpl_gaussian_2",
+      "excerpt_sha256": "b1dd3b9ae11f3b27133205e4d4fde007976b7496b9d6d296bf5e2534403e6951",
+      "permalink": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Gaussian/Properties.lean#L42-L54"
+    },
+    {
+      "path": "SampCert/Samplers/BernoulliNegativeExponential/Properties.lean",
+      "lines": [
+        1148,
+        1169
+      ],
+      "role": "child",
+      "name": "BernoulliExpNegSample_normalizes",
+      "excerpt_sha256": "602db7a900e4f57326c295bb07d8e48d54ed85148aa15cad4faf47105b7fc026",
+      "permalink": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/BernoulliNegativeExponential/Properties.lean#L1148-L1169"
+    },
+    {
+      "path": "SampCert/Samplers/Laplace/Properties.lean",
+      "lines": [
+        420,
+        454
+      ],
+      "role": "child",
+      "name": "DiscreteLaplaceSample_normalizes",
+      "excerpt_sha256": "dcfdea18e581c6a0b6dd698aeeeb3a772ccc45ce647bd3a4270fb3cecd753f0e",
+      "permalink": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Laplace/Properties.lean#L420-L454"
+    }
+  ],
+  "parent": {
+    "name": "DiscreteGaussianSampleLoop_normalizes",
+    "statement": "theorem DiscreteGaussianSampleLoop_normalizes (num den t : ℕ+) (mix : ℕ) :\n  ∑' x, (DiscreteGaussianSampleLoop num den t mix) x = 1"
+  },
+  "children": [
+    {
+      "name": "DiscreteLaplaceSampleMixed_equiv",
+      "statement": "lemma DiscreteLaplaceSampleMixed_equiv (num den : PNat) (mix : ℕ) :\n    DiscreteLaplaceSampleMixed num den mix = DiscreteLaplaceSample num den",
+      "closed_by": "rw [DiscreteLaplaceSampleMixed]; split; the mix=true goal is rfl, the mix=false goal is symm; apply DiscreteLaplaceSample_equiv"
+    },
+    {
+      "name": "ite_simpl_gaussian_1",
+      "statement": "lemma ite_simpl_gaussian_1 (num den t: ℕ+) (x a : ℤ) :\n  @ite ENNReal (x = a) (propDecidable (x = a)) 0\n  (if a = x then\n    DiscreteLaplaceSample t 1 x *\n      BernoulliExpNegSample (Int.natAbs (Int.sub (|x| * ↑↑t * ↑↑den) ↑↑num) ^ 2) (2 * num * t ^ 2 * den) false\n  else 0) = 0",
+      "closed_by": "split; simp; then split on the inner if: the a = x branch is rename_i h1 h2; subst h2; contradiction, the other branch is simp"
+    },
+    {
+      "name": "ite_simpl_gaussian_2",
+      "statement": "lemma ite_simpl_gaussian_2 (num den t: ℕ+) (x a : ℤ) :\n  @ite ENNReal (x = a) (propDecidable (x = a)) 0\n  (if a = x then\n    DiscreteLaplaceSample t 1 x *\n      BernoulliExpNegSample (Int.natAbs (Int.sub (|x| * ↑↑t * ↑↑den) ↑↑num) ^ 2) (2 * num * t ^ 2 * den) true\n  else 0) = 0",
+      "closed_by": "split; simp; then split on the inner if: the a = x branch is rename_i h1 h2; subst h2; contradiction, the other branch is simp"
+    },
+    {
+      "name": "BernoulliExpNegSample_normalizes",
+      "statement": "theorem BernoulliExpNegSample_normalizes (num : Nat) (den : PNat) :\n  (∑' b : Bool, (BernoulliExpNegSample num den) b) = 1",
+      "closed_by": "unfold BernoulliExpNegSample; split on num ≤ den; the first branch is have A := BernoulliExpNegSampleUnit_normalizes, the second branch proves a local e1 then have B := BernoulliExpNegSampleGenLoop_normalizes"
+    },
+    {
+      "name": "DiscreteLaplaceSample_normalizes",
+      "statement": "theorem DiscreteLaplaceSample_normalizes (num den : PNat) :\n    ∑' x : ℤ, (DiscreteLaplaceSample num den) x = 1",
+      "closed_by": "have hloop_norm := DiscreteLaplaceSampleLoop_normalizes; simp and probUntil_apply_norm reduce the product; a local hfactor rewrites the ite; ENNReal.tsum_mul_right and ENNReal.mul_inv_cancel close the sum"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "∑' x, (loop sampler) x = 1 where the sampler is a bind of two primitive samplers; the proof is a chain of rewrites that (i) replaces a mixed definition by an equivalent simpler one, (ii) eliminates if-guarded off-diagonal masses, (iii) folds a two-point Boolean sum into a normalization lemma, and (iv) closes the remaining factor with another normalization lemma.",
+    "use_when": "each simplification step is exactly one rewrite whose lemma is already proved and named; the sampler is built from components whose normalization lemmas already exist (Bernoulli, Laplace); the off-diagonal terms are if-expressions that a small ite_simpl lemma can kill.",
+    "avoid_when": "a step needs several lemmas at once or a have sub-proof (then the child is not a one-line rewrite); the normalizer lemmas have mismatched hypotheses; a factor needs its own non-trivial bound rather than an already-proved = 1."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent `DiscreteGaussianSampleLoop_normalizes` is declared at `SampCert/Samplers/Gaussian/Properties.lean`, lines 60-91.",
+      "evidence_kind": "check",
+      "form": "declared(DiscreteGaussianSampleLoop_normalizes, SampCert/Samplers/Gaussian/Properties.lean, 60-91)",
+      "evidence": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Gaussian/Properties.lean#L60-L91"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites `DiscreteLaplaceSample_normalizes`.",
+      "evidence_kind": "check",
+      "form": "cites(parent, DiscreteLaplaceSample_normalizes)",
+      "evidence": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Gaussian/Properties.lean#L91"
+    },
+    {
+      "n": 3,
+      "claim": "The decomposition has 5 direct lemmas; the glue is 32 lines (Gaussian/Properties.lean 60-91); the five children are 7, 13, 13, 22 and 35 lines (declaration to last proof line, inclusive); the longest checked chain of project lemmas below the parent is 5 deep (DiscreteGaussianSampleLoop_normalizes → DiscreteLaplaceSample_normalizes → DiscreteLaplaceSampleLoop_normalizes → BernoulliExpNegSample_normalizes → BernoulliExpNegSampleUnit_normalizes → BernoulliExpNegSampleUnitAux_normalizes).",
+      "evidence_kind": "measurement",
+      "evidence": "counted by reading the copied files at commit a2c53bb5ff790e729e252958060699b7eff898b9: Gaussian/Properties.lean#L60-L91, Laplace/Properties.lean#L420-L454 and #L1103-L1109, BernoulliNegativeExponential/Properties.lean#L1148-L1169; the depth chain follows the cited lemmas at Laplace/Properties.lean#L422, #L278 and BernoulliNegativeExponential/Properties.lean#L1153, #L1095"
+    },
+    {
+      "n": 4,
+      "claim": "The same-file closed-form theorem `DiscreteGaussianSample_apply` consumes this normalization lemma: at line 245 it takes `have A := DiscreteGaussianSampleLoop_normalizes (num ^ 2) (den ^ 2) …` and later feeds `A` to `probUntil_apply_norm` (line 252).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Gaussian/Properties.lean#L245 and #L252"
+    },
+    {
+      "n": 5,
+      "claim": "The file states the theorem's purpose in a doc comment: 'Gaussian sampling attempt is a proper distribution.' (line 57).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Gaussian/Properties.lean#L56-L58"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 32,
+    "children": 5,
+    "child_lines": [
+      7,
+      13,
+      13,
+      22,
+      35
+    ],
+    "children_closed_by_automation": 2,
+    "how_counted": "parent = Gaussian/Properties.lean 60-91; child_lines = the five child sites' line spans, declaration to last proof line inclusive; children_closed_by_automation = ite_simpl_gaussian_1 and ite_simpl_gaussian_2, whose proofs use only split/simp/subst/contradiction"
+  },
+  "consequences": "The chain creates four obligations, each discharged by one named lemma: bridge the two definitions of the Laplace sampler (DiscreteLaplaceSampleMixed_equiv); show two off-diagonal if-guarded masses are zero (ite_simpl_gaussian_1, ite_simpl_gaussian_2); fold a two-point Boolean sum to 1 (BernoulliExpNegSample_normalizes); close the remaining ℤ sum (DiscreteLaplaceSample_normalizes). Failure modes: the ite_simpl lemmas match the exact @ite shape of the unfolded sampler, so a change to the sampler definition or to the simp normal form breaks the rw; the conv blocks target a fixed position (arg 1; ext a), so reordering the sum or the product factors moves the target and each rw lands on the wrong subterm.",
+  "known_uses": [
+    "https://github.com/leanprover/sampcert/blob/a2c53bb5ff790e729e252958060699b7eff898b9/SampCert/Samplers/Gaussian/Properties.lean#L245"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 5,
+    "depth": 5,
+    "glue_lines": 32,
+    "child_lines": [
+      7,
+      13,
+      13,
+      22,
+      35
+    ]
+  },
+  "content_key": "c1d1c12bdfecbfc6e4ef2ec5f970021c49bacee4ec685148877cc595ce36610b",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:48:35Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:49:55Z",
+      "note": "parent DiscreteGaussianSampleLoop_normalizes: statement re-copied from code; child 'DiscreteLaplaceSampleMixed_equiv': statement re-copied from the declaration of DiscreteLaplaceSampleMixed_equiv; child 'ite_simpl_gaussian_1': statement re-copied from the declaration of ite_simpl_gaussian_1; child 'ite_simpl_gaussian_2': statement re-copied from the declaration of ite_simpl_gaussian_2; child 'BernoulliExpNegSample_normalizes': statement re-copied from the declaration of BernoulliExpNegSample_normalizes; child 'DiscreteLaplaceSample_normalizes': statement re-copied from the declaration of DiscreteLaplaceSample_normalizes"
+    },
+    {
+      "field": "intent,parent.name,children.closed_by,applicability,claims,shape,metrics,consequences,known_uses,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T15:56:43Z"
+}

@@ -1,0 +1,156 @@
+{
+  "id": "latex-blueprint-node-seymour-754f6988",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Blueprint node: the canonical signing of a 3-sum of matrices is TU",
+  "intent": "Record one node of the Seymour blueprint's published dependency graph — the lemma that the canonical signing B'' of a 3-sum of matrices is totally unimodular — whose one-sentence proof is exactly the combination of two earlier nodes: the membership lemma (B'' lies in the 3-sum-like matrix family) and the family lemma (every member of that family is TU).",
+  "move": "blueprint-node",
+  "also_known_as": [
+    "dependency-graph node",
+    "blueprint \\uses{} node"
+  ],
+  "language": "latex",
+  "source": {
+    "source_id": "seymour",
+    "url": "https://github.com/Ivan-Sergeyev/seymour",
+    "commit": "2769b10cb73fda17bafc0f13890dc057a2f4ff2a",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "blueprint/src/sum_3.tex",
+      "bytes": 42934,
+      "sha256": "888676ae429e3e85ae7e2d34530ca99162cc12ff437cec293c1347c62da8eec3",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/blueprint/src/sum_3.tex"
+    }
+  ],
+  "sites": [
+    {
+      "path": "blueprint/src/sum_3.tex",
+      "lines": [
+        591,
+        604
+      ],
+      "role": "parent",
+      "name": "MatrixSum3.IsCanonicalSigning.isTotallyUnimodular",
+      "excerpt_sha256": "f4a2ee2ba1430aa101f23b3d4af81da23b556562c9af416306a033471fda2106",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/blueprint/src/sum_3.tex#L591-L604"
+    },
+    {
+      "path": "blueprint/src/sum_3.tex",
+      "lines": [
+        528,
+        540
+      ],
+      "role": "child",
+      "name": "MatrixSum3.IsCanonicalSigning.toMatrixLikeSum3",
+      "excerpt_sha256": "7dc7f8456a8267f7c8dc6d3ded868c38e46f9ab33d7a07b177e088f243cac73c",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/blueprint/src/sum_3.tex#L528-L540"
+    },
+    {
+      "path": "blueprint/src/sum_3.tex",
+      "lines": [
+        569,
+        589
+      ],
+      "role": "child",
+      "name": "MatrixLikeSum3.isTotallyUnimodular",
+      "excerpt_sha256": "d756e67bfeaca41b5638b39bdbfb9857d12e5dd4ea08c00887cc4198342534a0",
+      "permalink": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/blueprint/src/sum_3.tex#L569-L589"
+    }
+  ],
+  "parent": {
+    "name": "MatrixSum3.IsCanonicalSigning.isTotallyUnimodular",
+    "statement": "$B''$ from Definition~\\ref{MatrixSum3.toCanonicalSigning} is TU."
+  },
+  "children": [
+    {
+      "name": "MatrixSum3.IsCanonicalSigning.toMatrixLikeSum3",
+      "statement": "Let $B''$ be from Definition~\\ref{MatrixSum3.toCanonicalSigning}. Then $B'' \\in \\mathcal{C} (X_{\\ell}', Y_{\\ell}', X_{r}', Y_{r}'; c_{0}'', c_{1}'')$ with $X_{\\ell}' = X_{\\ell} \\setminus \\{x_{1}, x_{0}\\}$, $X_{r}' = X_{r} \\setminus \\{x_{2}, x_{1}, x_{0}\\}$, $Y_{\\ell}' = Y_{\\ell} \\setminus \\{y_{2}\\}$, $Y_{r}' = Y_{r} \\setminus \\{y_{0}, y_{1}\\}$, $x_{0}$ and $x_{1}$ are the same, $c_{0}'' = B'' (X_{r}', y_{0})$, and $c_{1}'' = B'' (X_{r}', y_{1})$.",
+      "closed_by": "its own proof (sum_3.tex 536-540), which verifies the seven properties of Definition MatrixLikeSum3 by citing MatrixSum3.IsCanonicalSigning.Al_D_isTotallyUnimodular"
+    },
+    {
+      "name": "MatrixLikeSum3.isTotallyUnimodular",
+      "statement": "Let $C \\in \\mathcal{C} (X_{\\ell}', Y_{\\ell}', X_{r}', Y_{r}'; c_{0}, c_{1})$ from Definition~\\ref{MatrixLikeSum3}. Then $C$ is TU.",
+      "closed_by": "its own proof (sum_3.tex 577-589), induction on k via MatrixLikeSum3.shortTableauPivot and Matrix.isTotallyUnimodular_iff_forall_isPartiallyUnimodular"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A blueprint node whose statement is a property P(x) of a canonically constructed object x (here '$B''$ is TU'), proved by exactly two parents: x belongs to a defined family F, and every member of F has property P.",
+    "use_when": "the dependency graph already factors the target into (a) a membership fact x \\in F and (b) a universal fact \\forall y \\in F, P(y), and the node exists only to state P(x) as a named fact other nodes can cite; the object's membership is a structural condition (here the seven-property family C(X,Y;c0,c1)).",
+    "avoid_when": "either parent is still open (then the node does not close); membership genuinely fails; or the property is not closed under the family (then the family lemma is false and the combination is unsound)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site (blueprint/src/sum_3.tex:591-604) cites MatrixSum3.IsCanonicalSigning.toMatrixLikeSum3.",
+      "evidence_kind": "check",
+      "form": "cites(parent, MatrixSum3.IsCanonicalSigning.toMatrixLikeSum3)",
+      "evidence": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/blueprint/src/sum_3.tex#L591-L604"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site (blueprint/src/sum_3.tex:591-604) cites MatrixLikeSum3.isTotallyUnimodular.",
+      "evidence_kind": "check",
+      "form": "cites(parent, MatrixLikeSum3.isTotallyUnimodular)",
+      "evidence": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/blueprint/src/sum_3.tex#L591-L604"
+    },
+    {
+      "n": 3,
+      "claim": "The node combines exactly 2 direct lemmas (shape.direct_lemmas = 2) in a 14-line parent site (shape.glue_lines = 14), and the longest chain of project lemmas below the node has depth 5: MatrixSum3.IsCanonicalSigning.toMatrixLikeSum3 -> MatrixSum3.IsCanonicalSigning.Al_D_isTotallyUnimodular -> MatrixSum3.HasTuBr.cccAr_isTotallyUnimodular -> Matrix.HasTuCanonicalSigning.toCanonicalSigning -> Matrix.HasTuCanonicalSigning.toCanonicalSigning_submatrix3x3.",
+      "evidence_kind": "measurement",
+      "evidence": "counted along the \\uses{} lines of the copied file: the node's proof cites its two children at sum_3.tex:600; the chain follows sum_3.tex:537, 468, 374, 300, 223, the last of which uses only Matrix-namespace facts. Site spans 591-604 (14), 528-540 (13), 569-589 (21)."
+    },
+    {
+      "n": 4,
+      "claim": "The authors state the node's whole proof as a one-sentence combination of the two parents: 'Combine the results of Lemmas~\\ref{MatrixSum3.IsCanonicalSigning.toMatrixLikeSum3} and~\\ref{MatrixLikeSum3.isTotallyUnimodular}.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/Ivan-Sergeyev/seymour/blob/2769b10cb73fda17bafc0f13890dc057a2f4ff2a/blueprint/src/sum_3.tex#L599-L604 (the sentence is line 602)"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 5,
+    "glue_lines": 14,
+    "child_lines": [
+      13,
+      21
+    ]
+  },
+  "metrics": {
+    "parent_site_lines": 14,
+    "child_site_lines": [
+      13,
+      21
+    ],
+    "direct_lemmas": 2,
+    "depth": 5,
+    "how_counted": "parent site 591-604 and child sites 528-540 and 569-589 of blueprint/src/sum_3.tex; depth counted along the \\uses{} chain from the node's proof (sum_3.tex:600) through :537, :468, :374, :300, :223"
+  },
+  "consequences": "The node creates no new obligation: it is a pure composition of two already-proved parents, so its only consequence is a named TU fact that the final theorem (Matroid.IsSum3of.isRegular, sum_3.tex:606-618) cites. Failure modes: if either parent is weakened or its statement changes, the one-sentence proof breaks; the node inherits its parents' hypotheses, so it only holds for the canonical signing B'' from Definition MatrixSum3.toCanonicalSigning (which assumes the D0 block is one of the two canonical 2x2 forms).",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 14,
+    "relation": "supports"
+  },
+  "content_key": "754f6988361ede3acf525e699ab4900ddaeb2083cd8d08cbb9632faf53266f02",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:16:42Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:21:00Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T15:24:51Z"
+}

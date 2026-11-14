@@ -1,0 +1,181 @@
+{
+  "id": "rocq-witness-topology-4e6a65e7",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Banach fixed point from a Cauchy sequence's complete limit",
+  "intent": "Prove the Banach fixed-point theorem — a contraction T on a complete metric space has a unique fixed point — by naming the limit x of the iterated sequence as the witness and discharging the two obligations of `exists!` (x is fixed, and any two fixed points agree) with two named lemmas, after the sequence's Cauchy property supplies completeness with its certificate.",
+  "move": "witness",
+  "also_known_as": [
+    "existential witness",
+    "exists-introduction",
+    "constructive witness from completeness"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "topology",
+    "url": "https://github.com/rocq-community/topology",
+    "commit": "1e898b95f68f9ce75bf44faa8446992b03c84052",
+    "licence": "LGPL-2.1"
+  },
+  "files": [
+    {
+      "path": "theories/Topology/BanachFixedPoint.v",
+      "bytes": 13659,
+      "sha256": "c21c19fd7c258ed311edd108b6858bf18712c84bdf08683ff1c09bcadf71818e",
+      "permalink": "https://github.com/rocq-community/topology/blob/1e898b95f68f9ce75bf44faa8446992b03c84052/theories/Topology/BanachFixedPoint.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/Topology/BanachFixedPoint.v",
+      "lines": [
+        473,
+        488
+      ],
+      "role": "parent",
+      "name": "BanachFixedPoint",
+      "excerpt_sha256": "8cf2b9474baf2f2ad966d7983806de94e8aff65ab8ca7fbba0e8668bc271ef47",
+      "permalink": "https://github.com/rocq-community/topology/blob/1e898b95f68f9ce75bf44faa8446992b03c84052/theories/Topology/BanachFixedPoint.v#L473-L488"
+    },
+    {
+      "path": "theories/Topology/BanachFixedPoint.v",
+      "lines": [
+        277,
+        289
+      ],
+      "role": "child",
+      "name": "BanachFixedPoint_unique",
+      "excerpt_sha256": "d3c7fc3f3abe6c9e486364ed7e9224a8cdf859a0bf8a6092d4f779e7829ad672",
+      "permalink": "https://github.com/rocq-community/topology/blob/1e898b95f68f9ce75bf44faa8446992b03c84052/theories/Topology/BanachFixedPoint.v#L277-L289"
+    },
+    {
+      "path": "theories/Topology/BanachFixedPoint.v",
+      "lines": [
+        349,
+        427
+      ],
+      "role": "child",
+      "name": "BanachFixedPoint_seq_cauchy",
+      "excerpt_sha256": "b480e5374e0cb3649b25d1c1a62aa0d4ece3a57c90dcc9aa9f0bdd5489d841db",
+      "permalink": "https://github.com/rocq-community/topology/blob/1e898b95f68f9ce75bf44faa8446992b03c84052/theories/Topology/BanachFixedPoint.v#L349-L427"
+    },
+    {
+      "path": "theories/Topology/BanachFixedPoint.v",
+      "lines": [
+        456,
+        471
+      ],
+      "role": "child",
+      "name": "BanachFixedPoint_seq_limit_fixed",
+      "excerpt_sha256": "b34a0f286fee3fd9d8e2eb3ad37ea9b622024719179b463c5ac0c151094fc67d",
+      "permalink": "https://github.com/rocq-community/topology/blob/1e898b95f68f9ce75bf44faa8446992b03c84052/theories/Topology/BanachFixedPoint.v#L456-L471"
+    },
+    {
+      "path": "theories/Topology/BanachFixedPoint.v",
+      "lines": [
+        262,
+        275
+      ],
+      "role": "context",
+      "name": "BanachFixedPoint_section",
+      "excerpt_sha256": "421bde72f61f315f82f36fbc3845b19c1b9be8ddd171c33193a40ec402a7d0fd",
+      "permalink": "https://github.com/rocq-community/topology/blob/1e898b95f68f9ce75bf44faa8446992b03c84052/theories/Topology/BanachFixedPoint.v#L262-L275"
+    }
+  ],
+  "parent": {
+    "name": "BanachFixedPoint",
+    "statement": "Theorem BanachFixedPoint :\n    inhabited X ->\n    exists! x : X, T x = x."
+  },
+  "children": [
+    {
+      "name": "BanachFixedPoint_unique",
+      "statement": "Lemma BanachFixedPoint_unique (x1 x2 : X) :\n    T x1 = x1 -> T x2 = x2 -> x1 = x2.",
+      "closed_by": "apply Rle0_char' in HT; auto."
+    },
+    {
+      "name": "BanachFixedPoint_seq_cauchy",
+      "statement": "Local Lemma BanachFixedPoint_seq_cauchy (x : X) :\n    cauchy d (BanachFixedPoint_seq x).",
+      "closed_by": "apply BanachFixedPoint_seq_dist_add; ... apply Rle_pow_pos_lt_1; auto (the T x = x case by Nat_iter_fix and metric_zero)"
+    },
+    {
+      "name": "BanachFixedPoint_seq_limit_fixed",
+      "statement": "Local Lemma BanachFixedPoint_seq_limit_fixed (x0 x : X) :\n    @net_limit nat_DS X (BanachFixedPoint_seq x0) x ->\n    T x = x.",
+      "closed_by": "apply BanachFixedPoint_seq_net_limit_shift with (x0 := x0); assumption."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A unique-existence goal `exists! x : X, T x = x` over a contraction `T : X -> X` on a metric space, where the witness is obtained by a named construction — here the limit of the iterated sequence `BanachFixedPoint_seq x0`, produced by completeness `Hd_comp` from the sequence's Cauchy certificate.",
+    "use_when": "The witness comes from a construction that itself needs a certificate (here the Cauchy property), and the two obligations of `exists!` — the candidate satisfies the predicate, and any two satisfying points are equal — are already proved as named lemmas, so the glue only names the witness and splits existence from uniqueness.",
+    "avoid_when": "The candidate's required properties are not already factored into separate lemmas (then the glue carries real proof); the uniqueness argument needs a hypothesis the existence argument does not share; or the construction's certificate cannot be stated independently of the witness (here the Cauchy property is stated for the whole sequence before any limit is named)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "`BanachFixedPoint_seq_cauchy` occurs in the parent site (the glue).",
+      "evidence_kind": "check",
+      "form": "cites(parent, BanachFixedPoint_seq_cauchy)",
+      "evidence": "https://github.com/rocq-community/topology/blob/1e898b95f68f9ce75bf44faa8446992b03c84052/theories/Topology/BanachFixedPoint.v#L473-L488"
+    },
+    {
+      "n": 2,
+      "claim": "No `admit`, `Admitted`, `Axiom` or `axiom` token occurs in lines 1-489 of theories/Topology/BanachFixedPoint.v.",
+      "evidence_kind": "check",
+      "form": "no_sorry(theories/Topology/BanachFixedPoint.v, 1-489)",
+      "evidence": "https://github.com/rocq-community/topology/blob/1e898b95f68f9ce75bf44faa8446992b03c84052/theories/Topology/BanachFixedPoint.v"
+    },
+    {
+      "n": 3,
+      "claim": "The theorem-scale shape is direct_lemmas=3, depth=3, glue_lines=16, child_lines=[13, 79, 16].",
+      "evidence_kind": "measurement",
+      "evidence": "counted from the copied file theories/Topology/BanachFixedPoint.v: direct_lemmas = the 3 lemmas the glue cites (BanachFixedPoint_seq_cauchy, BanachFixedPoint_seq_limit_fixed, BanachFixedPoint_unique); depth = BanachFixedPoint -> BanachFixedPoint_seq_cauchy (349-427) -> BanachFixedPoint_seq_dist_add (312-347) -> BanachFixedPoint_seq_dist_succ (295-309); glue_lines = parent site 473-488 = 16; child_lines = child site spans 277-289 (13), 349-427 (79), 456-471 (16)"
+    },
+    {
+      "n": 4,
+      "claim": "The authors state the construction in a comment above the glue: 'consider [BanachFixedPoint_seq_cauchy] and obtain its limit-point using completeness of [X]. The fancy invocation is needed, to immediately obtain a [net_limit].'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/rocq-community/topology/blob/1e898b95f68f9ce75bf44faa8446992b03c84052/theories/Topology/BanachFixedPoint.v#L478-L481"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 16,
+    "children": 3,
+    "children_closed_by_automation": 0,
+    "how_counted": "parent_lines = parent site 473-488 of theories/Topology/BanachFixedPoint.v; children = the 3 child sites; children_closed_by_automation = children whose proof cites no named lemma (none: each child's proof closes through named lemmas Rle0_char', BanachFixedPoint_seq_dist_add, BanachFixedPoint_seq_net_limit_shift)"
+  },
+  "consequences": "The move splits `exists! x : X, T x = x` into two obligations — existence (the witness x is a fixed point) and uniqueness — plus a side certificate: the sequence `BanachFixedPoint_seq x0` must be shown Cauchy before completeness `Hd_comp` yields the witness, and the completeness limit must be converted into a `net_limit` (here by the imported `metric_space_net_limit`) so that `BanachFixedPoint_seq_limit_fixed` applies. Failure modes: if the fixed-point lemma is stated for a `net_limit` while `complete` yields a metric-space limit, the glue must bridge them; if the Cauchy lemma needs a case split (T x = x or not), that split stays inside the child and must not leak into the glue.",
+  "known_uses": [],
+  "related": [],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 3,
+    "glue_lines": 16,
+    "child_lines": [
+      13,
+      79,
+      16
+    ]
+  },
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "4e6a65e70f49b09b8de6aefb4bd0d703f33beef87b308f35c80bbb257f484095",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:27:45Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:28:54Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T15:35:28Z"
+}

@@ -1,0 +1,332 @@
+{
+  "id": "lean-workflow-lean-stat-learning-theory-683bae5a",
+  "kind": "instance",
+  "status": "draft",
+  "title": "workflow: the vibe-recipe — name one project lemma per proof step, then solve one-by-one",
+  "intent": "Record the vibe-recipe decomposition workflow as realized for the Gaussian log-Sobolev inequality: the prompt (the skill-text site) states the target theorem once and lays the proof out as seven named steps, one project lemma per step, and the glue assembles gaussian_logSobolev_W12_real from those lemmas — a smooth compact-support approximation, L^2 and L^1 convergence transfer, the compact-support LSI, gradient convergence and an a.e.-subsequence extraction — each proved separately and solved one-by-one.",
+  "move": "workflow",
+  "also_known_as": [
+    "decompose into small lemmas",
+    "one named lemma per proof step",
+    "NL proof to lemma list",
+    "vibe-formalization recipe"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "lean-stat-learning-theory",
+    "url": "https://github.com/yuanhez/lean-stat-learning-theory",
+    "commit": "d0f506f0a695018265dccb33bcb05e2f5ca1c876",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "SLT/GaussianLSI/OneDimGLSI.lean",
+      "bytes": 45883,
+      "sha256": "811abf3ffbd836acc6f99ec94660d286c71d59f318fceef142678d0ec3d7e6db",
+      "permalink": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/SLT/GaussianLSI/OneDimGLSI.lean"
+    },
+    {
+      "path": "SLT/GaussianSobolevDense/Density.lean",
+      "bytes": 42970,
+      "sha256": "7840d96028a572dc50cba287312ae6bda77e06e0321e5f14f9f0fb0948be4b69",
+      "permalink": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/SLT/GaussianSobolevDense/Density.lean"
+    },
+    {
+      "path": "SLT/GaussianLSI/OneDimGLSICompSmo.lean",
+      "bytes": 4586,
+      "sha256": "ebe756ab83c2439881aa3805fd1de5073c5166f94fa7fbb6e641506502cc13c1",
+      "permalink": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/SLT/GaussianLSI/OneDimGLSICompSmo.lean"
+    },
+    {
+      "path": "SLT/ConvergenceL1Subseq.lean",
+      "bytes": 1013,
+      "sha256": "9c68b82984246989606811af9dc629925b7b4cf33bb93b9639038be1ab2e4236",
+      "permalink": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/SLT/ConvergenceL1Subseq.lean"
+    },
+    {
+      "path": "vibe-recipe/EXAMPLE_INSTRUCTIONS.md",
+      "bytes": 11782,
+      "sha256": "89deb98ae4b7fdd5188a94cf66c3bbbc5e2775eae0900e6e48bb14e42fce6e0e",
+      "permalink": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/vibe-recipe/EXAMPLE_INSTRUCTIONS.md"
+    },
+    {
+      "path": "SLT/GaussianLSI/Entropy.lean",
+      "bytes": 6378,
+      "sha256": "00530d1b319448a5a668439018da08b7bd9b40be518262e108fe4ac9ffcdc6b7",
+      "permalink": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/SLT/GaussianLSI/Entropy.lean"
+    },
+    {
+      "path": "SLT/GaussianPoincare/TaylorBound.lean",
+      "bytes": 37397,
+      "sha256": "940ae14e5f4499764893a839dcf9020ec11d02e0ad1b16b7d14c9cc29707844a",
+      "permalink": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/SLT/GaussianPoincare/TaylorBound.lean"
+    },
+    {
+      "path": "vibe-recipe/README.md",
+      "bytes": 7114,
+      "sha256": "a62d67aecbc559d3b85110a3f8addaaa32d7228b907c943d339ee6c0998ee33a",
+      "permalink": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/vibe-recipe/README.md"
+    }
+  ],
+  "sites": [
+    {
+      "path": "SLT/GaussianLSI/OneDimGLSI.lean",
+      "lines": [
+        415,
+        939
+      ],
+      "role": "parent",
+      "name": "gaussian_logSobolev_W12_real",
+      "excerpt_sha256": "97a650a65cbe6dda22c14c9f6853bba6f189c53ffa3606ec1931582679ff02dc",
+      "permalink": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/SLT/GaussianLSI/OneDimGLSI.lean#L415-L939"
+    },
+    {
+      "path": "SLT/GaussianSobolevDense/Density.lean",
+      "lines": [
+        823,
+        859
+      ],
+      "role": "child",
+      "name": "exists_smooth_compactSupport_seq_tendsto_real",
+      "excerpt_sha256": "eb73c14cd2b37ce45dd704061a1fd2f2e6e8ec49bc7ae51427bc145d6c3ebdfb",
+      "permalink": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/SLT/GaussianSobolevDense/Density.lean#L823-L859"
+    },
+    {
+      "path": "SLT/GaussianLSI/OneDimGLSI.lean",
+      "lines": [
+        105,
+        129
+      ],
+      "role": "child",
+      "name": "tendsto_eLpNorm_sub_of_sobolev",
+      "excerpt_sha256": "f5363b312d61750eb89fdef7c34ec67e4c6cef568140c8c6687a0f088d1f45fe",
+      "permalink": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/SLT/GaussianLSI/OneDimGLSI.lean#L105-L129"
+    },
+    {
+      "path": "SLT/GaussianLSI/OneDimGLSI.lean",
+      "lines": [
+        132,
+        247
+      ],
+      "role": "child",
+      "name": "tendsto_eLpNorm_sq_sub_of_tendsto_L2",
+      "excerpt_sha256": "0f183dfbc072eaadd70da393fee382312d87dc6860753d3882dae3e9228bac56",
+      "permalink": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/SLT/GaussianLSI/OneDimGLSI.lean#L132-L247"
+    },
+    {
+      "path": "SLT/GaussianLSI/OneDimGLSI.lean",
+      "lines": [
+        58,
+        60
+      ],
+      "role": "child",
+      "name": "phi_continuous",
+      "excerpt_sha256": "d8800cd5a7abac157255918e610a4bbdcfe1ad1e888f1041fd081c9f2335623e",
+      "permalink": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/SLT/GaussianLSI/OneDimGLSI.lean#L58-L60"
+    },
+    {
+      "path": "SLT/GaussianLSI/OneDimGLSI.lean",
+      "lines": [
+        64,
+        100
+      ],
+      "role": "child",
+      "name": "mul_log_ge_neg_inv_exp",
+      "excerpt_sha256": "b417c6fb7649791edd1ab74427a2ded2be813c51457e07ce4519f01f3e40e116",
+      "permalink": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/SLT/GaussianLSI/OneDimGLSI.lean#L64-L100"
+    },
+    {
+      "path": "SLT/GaussianLSI/OneDimGLSICompSmo.lean",
+      "lines": [
+        94,
+        97
+      ],
+      "role": "child",
+      "name": "gaussian_logSobolev_CompSmo_fderiv",
+      "excerpt_sha256": "c5d24a55350442d6b64375f2cc1069559bc4e30c488357931c82561e834f0bd5",
+      "permalink": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/SLT/GaussianLSI/OneDimGLSICompSmo.lean#L94-L97"
+    },
+    {
+      "path": "SLT/GaussianLSI/OneDimGLSI.lean",
+      "lines": [
+        250,
+        289
+      ],
+      "role": "child",
+      "name": "tendsto_eLpNorm_fderiv_sub_of_sobolev",
+      "excerpt_sha256": "0136b6c0c55bfe8119111a158dce47ef0b63bb3ca3895fbe54aa618d7d05cf97",
+      "permalink": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/SLT/GaussianLSI/OneDimGLSI.lean#L250-L289"
+    },
+    {
+      "path": "SLT/ConvergenceL1Subseq.lean",
+      "lines": [
+        15,
+        24
+      ],
+      "role": "child",
+      "name": "exists_seq_tendsto_ae_of_tendsto_eLpNorm_one",
+      "excerpt_sha256": "558c27ec3c06d063d431633fbdf39516a0d692698dd320ec8af21e6586426dae",
+      "permalink": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/SLT/ConvergenceL1Subseq.lean#L15-L24"
+    },
+    {
+      "path": "vibe-recipe/EXAMPLE_INSTRUCTIONS.md",
+      "lines": [
+        108,
+        316
+      ],
+      "role": "skill-text",
+      "name": "vibe-recipe decomposition prompt",
+      "excerpt_sha256": "0bb0495983b70c700dffab0d613b26699fb8b70a8439ffcb98d729f227dfa974",
+      "permalink": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/vibe-recipe/EXAMPLE_INSTRUCTIONS.md#L108-L316"
+    }
+  ],
+  "parent": {
+    "name": "gaussian_logSobolev_W12_real",
+    "statement": "theorem gaussian_logSobolev_W12_real {f : ℝ → ℝ}\n    (hf : MemW12GaussianReal f (gaussianReal 0 1))\n    (hf_diff : Differentiable ℝ f) (hf_grad_cont : Continuous (fun x => fderiv ℝ f x)) :\n    LogSobolev.entropy GaussianPoincare.stdGaussianMeasure (fun x => (f x)^2) ≤\n      2 * ∫ x, ‖fderiv ℝ f x‖^2 ∂GaussianPoincare.stdGaussianMeasure"
+  },
+  "children": [
+    {
+      "name": "exists_smooth_compactSupport_seq_tendsto_real",
+      "statement": "theorem exists_smooth_compactSupport_seq_tendsto_real (f : ℝ → ℝ)\n    (hf : MemW12GaussianReal f (gaussianReal 0 1))\n    (hf_diff : Differentiable ℝ f) (hf_grad_cont : Continuous (fun x => fderiv ℝ f x)) :\n    ∃ g : ℕ → (ℝ → ℝ),\n      (∀ k, ContDiff ℝ (⊤ : ℕ∞) (g k)) ∧\n      (∀ k, HasCompactSupport (g k)) ∧\n      Tendsto (fun k => GaussianSobolevNormSqReal (f - g k) (gaussianReal 0 1)) atTop (nhds 0)",
+      "closed_by": "obtain a sequence g' from GaussianSobolev.exists_smooth_compactSupport_seq_tendsto on the E 1 push-forward f' (toE1Fun f), then use fun k => fromE1Fun (g' k) (lines 839-842)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: For f : R -> R in the 1D Gaussian Sobolev class (MemW12GaussianReal f (gaussianReal 0 1), Differentiable f, Continuous (fderiv f)), there is a sequence g of smooth compactly-supported functions with GaussianSobolevNormSqReal (f - g k) (gaussianReal 0 1) -> 0."
+    },
+    {
+      "name": "tendsto_eLpNorm_sub_of_sobolev",
+      "statement": "lemma tendsto_eLpNorm_sub_of_sobolev (f : ℝ → ℝ) (g : ℕ → ℝ → ℝ) (μ : Measure ℝ)\n    (h_tend : Tendsto (fun k => GaussianSobolevNormSqReal (f - g k) μ) atTop (nhds 0)) :\n    Tendsto (fun k => eLpNorm (f - g k) 2 μ) atTop (nhds 0)",
+      "closed_by": "tendsto_of_tendsto_of_tendsto_of_le_of_le bounding eLpNorm (f - g k) 2 mu ^ 2 by GaussianSobolevNormSqReal, then ENNReal.tendsto_nhds_zero (lines 108-129)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: If GaussianSobolevNormSqReal (f - g k) mu -> 0 then eLpNorm (f - g k) 2 mu -> 0: Sobolev-norm convergence implies L^2 convergence."
+    },
+    {
+      "name": "tendsto_eLpNorm_sq_sub_of_tendsto_L2",
+      "statement": "lemma tendsto_eLpNorm_sq_sub_of_tendsto_L2\n    (f : ℝ → ℝ) (g : ℕ → ℝ → ℝ) (μ : Measure ℝ)\n    (hf_cont : Continuous f) (hg_cont : ∀ k, Continuous (g k))\n    (hf_mem : MemLp f 2 μ)\n    (h_tend : Tendsto (fun k => eLpNorm (f - g k) 2 μ) atTop (nhds 0)) :\n    Tendsto (fun k => eLpNorm (fun x => (g k x)^2 - (f x)^2) (1 : ENNReal) μ) atTop (nhds 0)",
+      "closed_by": "Holder via eLpNorm_le_eLpNorm_mul_eLpNorm_of_nnnorm, then eLpNorm_add_le and tendsto_of_tendsto_of_tendsto_of_le_of_le' (lines 138-247)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: If f and each g k are continuous, f is in L^2, and eLpNorm (f - g k) 2 mu -> 0, then eLpNorm ((g k)^2 - f^2) 1 mu -> 0: L^2 convergence implies L^1 convergence of the pointwise squares, via Holder."
+    },
+    {
+      "name": "phi_continuous",
+      "statement": "lemma phi_continuous : Continuous phi",
+      "closed_by": "change to the definition, then exact Real.continuous_mul_log (lines 59-60)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: phi (t |-> t * Real.log t) is continuous."
+    },
+    {
+      "name": "mul_log_ge_neg_inv_exp",
+      "statement": "lemma mul_log_ge_neg_inv_exp (t : ℝ) (ht : 0 ≤ t) : -(1 / Real.exp 1) ≤ t * Real.log t",
+      "closed_by": "by_cases on t = 0 and on t > 1, then the substitution t = Real.exp u and Real.add_one_le_exp on the remaining interval (lines 65-100)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: For t >= 0, -(1 / Real.exp 1) <= t * Real.log t: phi is bounded below by -1/e."
+    },
+    {
+      "name": "gaussian_logSobolev_CompSmo_fderiv",
+      "statement": "theorem gaussian_logSobolev_CompSmo_fderiv {f : ℝ → ℝ} (hf : CompactlySupportedSmooth f) :\n    LogSobolev.entropy stdGaussianMeasure (fun x => (f x)^2) ≤\n    2 * ∫ x, ‖fderiv ℝ f x‖^2 ∂stdGaussianMeasure",
+      "closed_by": "simpa [deriv_sq_eq_norm_fderiv_sq] using gaussian_logSobolev_CompSmo (line 97)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: For compactly-supported smooth f, LogSobolev.entropy stdGaussianMeasure (x |-> (f x)^2) <= 2 * integral of |fderiv f x|^2 over stdGaussianMeasure: the compact-support Gaussian LSI in fderiv form."
+    },
+    {
+      "name": "tendsto_eLpNorm_fderiv_sub_of_sobolev",
+      "statement": "lemma tendsto_eLpNorm_fderiv_sub_of_sobolev (f : ℝ → ℝ) (g : ℕ → ℝ → ℝ) (μ : Measure ℝ)\n    (hf_diff : Differentiable ℝ f) (hg_diff : ∀ k, Differentiable ℝ (g k))\n    (h_tend : Tendsto (fun k => GaussianSobolevNormSqReal (f - g k) μ) atTop (nhds 0)) :\n    Tendsto (fun k => eLpNorm (fun x => ‖fderiv ℝ f x - fderiv ℝ (g k) x‖) 2 μ)\n      atTop (nhds 0)",
+      "closed_by": "tendsto_of_tendsto_of_tendsto_of_le_of_le for the gradient L^2 norm, then fderiv_sub to rewrite fderiv (f - g k) (lines 255-289)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: If f and each g k are differentiable and GaussianSobolevNormSqReal (f - g k) mu -> 0, then eLpNorm (|fderiv f x - fderiv (g k) x|) 2 mu -> 0: Sobolev convergence implies L^2 convergence of gradients."
+    },
+    {
+      "name": "exists_seq_tendsto_ae_of_tendsto_eLpNorm_one",
+      "statement": "theorem exists_seq_tendsto_ae_of_tendsto_eLpNorm_one\n    [NormedAddCommGroup E] {f : ℕ → α → E} {g : α → E}\n    (hf : ∀ n, AEStronglyMeasurable (f n) mu)\n    (hg : AEStronglyMeasurable g mu)\n    (hfg : Tendsto (fun n => eLpNorm (f n - g) (1 : ENNReal) mu) atTop (nhds 0)) :\n    ∃ ns : ℕ → ℕ, StrictMono ns ∧\n      ∀ᵐ x ∂mu, Tendsto (fun i => f (ns i) x) atTop (nhds (g x))",
+      "closed_by": "tendstoInMeasure_of_tendsto_eLpNorm gives convergence in measure, then exists_seq_tendsto_ae (lines 22-24)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: For AEStronglyMeasurable f n and g, if eLpNorm (f n - g) 1 mu -> 0 then some strictly monotone ns has f (ns i) -> g a.e.: L^1 convergence yields an a.e.-convergent subsequence."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A theorem proved by a scripted passage to the limit: Ent_γ(f^2) ≤ 2 * ∫ ‖fderiv f‖^2 dγ for f ∈ W^{1,2}(γ) (OneDimGLSI.lean lines 410-419), obtained by approximating f by smooth compactly-supported g_k, applying the known compact-support LSI to each g_k, and taking liminf via Fatou's lemma and lower semicontinuity of entropy (lines 420-939).",
+    "use_when": "The target theorem can be pre-planned as a handful of named proof steps (approximation, convergence transfer, a known special case, a subsequence/liminf argument), and each step is small enough to state and prove as its own named project lemma within one agent context window (~300 lines). The move is an agent prompt: state the target once, attach each step to a named lemma before any tactic is written, then prove them one-by-one (EXAMPLE_INSTRUCTIONS.md lines 108-326).",
+    "avoid_when": "The steps do not separate into named lemmas (the glue is one monolithic tactic block), a step is too large for one context window and cannot be split further, or the glue needs a lemma the prompt names but never actually proves. Here tendsto_integral_norm_fderiv_sq_of_sobolev is named in Step 6 (EXAMPLE_INSTRUCTIONS.md line 295) but the glue never cites it — it inlines the same conclusion in place (OneDimGLSI.lean lines 492-562)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent theorem gaussian_logSobolev_W12_real is declared in SLT/GaussianLSI/OneDimGLSI.lean within lines 415-939.",
+      "evidence_kind": "check",
+      "form": "declared(gaussian_logSobolev_W12_real, SLT/GaussianLSI/OneDimGLSI.lean, 415-939)",
+      "evidence": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/SLT/GaussianLSI/OneDimGLSI.lean#L415-L419"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites the child gaussian_logSobolev_CompSmo_fderiv.",
+      "evidence_kind": "check",
+      "form": "cites(parent, gaussian_logSobolev_CompSmo_fderiv)",
+      "evidence": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/SLT/GaussianLSI/OneDimGLSI.lean#L486"
+    },
+    {
+      "n": 3,
+      "claim": "There is no sorry, admit or axiom in the parent site SLT/GaussianLSI/OneDimGLSI.lean lines 415-939.",
+      "evidence_kind": "check",
+      "form": "no_sorry(SLT/GaussianLSI/OneDimGLSI.lean, 415-939)",
+      "evidence": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/SLT/GaussianLSI/OneDimGLSI.lean#L415-L939"
+    },
+    {
+      "n": 4,
+      "claim": "The theorem-scale shape has 13 direct lemmas (8 shown as child sites of 37, 25, 116, 3, 37, 4, 40 and 10 lines), a parent glue of 525 lines, and a longest checked project-lemma chain of depth 2 (gaussian_logSobolev_W12_real -> gaussian_logSobolev_CompSmo_fderiv -> gaussian_logSobolev_CompSmo).",
+      "evidence_kind": "measurement",
+      "evidence": "Counted from the copied files: parent OneDimGLSI.lean 415-939 (525 lines); children Density.lean 823-859 (37), OneDimGLSI.lean 105-129 (25), 132-247 (116), 58-60 (3), 64-100 (37), OneDimGLSICompSmo.lean 94-97 (4), OneDimGLSI.lean 250-289 (40), ConvergenceL1Subseq.lean 15-24 (10); direct citations in the glue at OneDimGLSI.lean lines 424, 428, 435, 443, 461, 468, 486, 498, 531, 670, 687, 701, 761; depth chain OneDimGLSI.lean 486 -> OneDimGLSICompSmo.lean 94-97 -> 50."
+    },
+    {
+      "n": 5,
+      "claim": "The recipe's Step 1 instructs to 'Decompose Proofs into Small Lemmas', and the prompt's Rule 2 defines success as 'lake build passes + zero sorries + zero custom axioms'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/vibe-recipe/README.md#L18 (Step 1 heading 'Decompose Proofs into Small Lemmas') and https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/vibe-recipe/EXAMPLE_INSTRUCTIONS.md#L323 (Rule 2, quote: 'Success = lake build passes + zero sorries + zero custom axioms')"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 525,
+    "children": 8,
+    "children_closed_by_automation": 0,
+    "how_counted": "parent site OneDimGLSI.lean 415-939 (525 lines); 8 child sites shown (their line counts are shape.child_lines). children_closed_by_automation = 0 because every shown child's proof invokes at least one named lemma (even the one-liners: phi_continuous applies Real.continuous_mul_log, gaussian_logSobolev_CompSmo_fderiv applies gaussian_logSobolev_CompSmo) rather than a bare automation tactic."
+  },
+  "consequences": "The glue must discharge each child's hypotheses in order: exists_smooth_compactSupport_seq_tendsto_real delivers hg_smooth/hg_supp/h_sob_tend (line 424); tendsto_eLpNorm_sub_of_sobolev consumes h_sob_tend (line 428); tendsto_eLpNorm_sq_sub_of_tendsto_L2 needs continuity and MemLp of f plus the L^2 convergence (line 435); gaussian_logSobolev_CompSmo_fderiv needs CompactlySupportedSmooth (g k), which the glue rebuilds from hg_smooth/hg_supp (lines 476-481); tendsto_eLpNorm_fderiv_sub_of_sobolev needs differentiability of f and each g k plus h_sob_tend (line 531); exists_seq_tendsto_ae_of_tendsto_eLpNorm_one needs the L^1 convergence of qk - q (line 670). The lemmas therefore close only bottom-up. A failure mode is a planned lemma the realization does not cite: the prompt names tendsto_integral_norm_fderiv_sq_of_sobolev (Step 6) but the glue re-derives its conclusion in place via TaylorBound.deriv_bounded_of_compactlySupported and tendsto_eLpNorm_fderiv_sub_of_sobolev (lines 492-562), so the plan and the glue diverge. Another is a side condition delivered only by a later step (the L^1 convergence of squares needs the L^2 convergence first), which breaks the one-by-one order if the steps are attempted top-down.",
+  "known_uses": [
+    "https://github.com/yuanhez/lean-stat-learning-theory/blob/d0f506f0a695018265dccb33bcb05e2f5ca1c876/SLT/GaussianLSI/OneDimGLSICompSmo.lean#L50-L82"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 14,
+    "relation": "supports"
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 13,
+    "depth": 2,
+    "glue_lines": 525,
+    "child_lines": [
+      37,
+      25,
+      116,
+      3,
+      37,
+      4,
+      40,
+      10
+    ]
+  },
+  "content_key": "683bae5a0732635e12d15cc0f0688461060a1833af1aa5318683d7b4befc53dd",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:59:19Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,metrics,consequences,known_uses,rule,shape",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T16:01:40Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T16:02:42Z",
+      "note": "parent gaussian_logSobolev_W12_real: statement re-copied from code; child 'exists_smooth_compactSupport_seq_tendsto_real': statement re-copied from the declaration of exists_smooth_compactSupport_seq_tendsto_real; child 'tendsto_eLpNorm_sub_of_sobolev': statement re-copied from the declaration of tendsto_eLpNorm_sub_of_sobolev; child 'tendsto_eLpNorm_sq_sub_of_tendsto_L2': statement re-copied from the declaration of tendsto_eLpNorm_sq_sub_of_tendsto_L2; child 'phi_continuous': statement re-copied from the declaration of phi_continuous; child 'mul_log_ge_neg_inv_exp': statement re-copied from the declaration of mul_log_ge_neg_inv_exp; child 'gaussian_logSobolev_CompSmo_fderiv': statement re-copied from the declaration of gaussian_logSobolev_CompSmo_fderiv; child 'tendsto_eLpNorm_fderiv_sub_of_sobolev': statement re-copied from the declaration of tendsto_eLpNorm_fderiv_sub_of_sobolev; child 'exists_seq_tendsto_ae_of_tendsto_eLpNorm_one': statement re-copied from the declaration of exists_seq_tendsto_ae_of_tendsto_eLpNorm_one"
+    }
+  ]
+}

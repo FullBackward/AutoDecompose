@@ -1,0 +1,17 @@
+{
+  "source_id": "abel",
+  "url": "https://github.com/math-comp/abel",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "math-comp/abel",
+  "commit": "8c6194115397371df63cd6fae7e39009872858fd",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-14T14:53:15Z",
+  "how_found": "discovery-2: A-rocq, B-rocq",
+  "note": "Abel-Ruffini and Abel-Galois theorems: example_not_solvable_by_radicals and AbelGalois in theories/abel.v built from named lemmas galois_solvable_by_radical, ext_solvable_by_radical and radical_solvable_ext plus xmathcomp support files",
+  "licence": "CECILL-B",
+  "licence_files": [
+    "CeCILL-B"
+  ]
+}

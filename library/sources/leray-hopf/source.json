@@ -1,0 +1,17 @@
+{
+  "source_id": "leray-hopf",
+  "url": "https://github.com/uda-lab/leray-hopf",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "uda-lab/leray-hopf",
+  "commit": "e704400f2fb2f26b2ee7f4372c3e1ecbbc82f3dc",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T14:53:57Z",
+  "how_found": "discovery-2: A-lean",
+  "note": "Leray-Hopf weak existence for Navier-Stokes on the 3-torus and R3: four kernel-only capstone existence theorems assembled over a published per-declaration dependency graph",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

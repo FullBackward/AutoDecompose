@@ -1,0 +1,207 @@
+{
+  "id": "lean-calc-chain-apap-17556d40",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "calc-chain: lemma28 counting bound from a Markov bound and three norm lemmas",
+  "intent": "Reduce the counting bound (#A ^ k) / 2 ≤ #(l k m ε f A) first to the Markov bound lemma28_markov, then close the norm estimate it leaves open by a chain of three inequalities, one named lemma per link: lemma28_part_one (per-x Marcinkiewicz-Zygmund), lemma28_part_two (translate-norm bound) and lemma28_end (final arithmetic).",
+  "move": "calc-chain",
+  "also_known_as": [
+    "chain of inequalities",
+    "one lemma per inequality step",
+    "transitive assembly (le_trans / trans chains)"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "apap",
+    "url": "https://github.com/YaelDillies/apap",
+    "commit": "fb5cb9c4f594cbeeb160c715618d13640984c521",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "APAP/Physics/AlmostPeriodicity.lean",
+      "bytes": 25380,
+      "sha256": "8454cf5de4b9528520172b885e08e4681eb2efe01c3542e9b7e6297eb64595a3",
+      "permalink": "https://github.com/YaelDillies/apap/blob/fb5cb9c4f594cbeeb160c715618d13640984c521/APAP/Physics/AlmostPeriodicity.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "APAP/Physics/AlmostPeriodicity.lean",
+      "lines": [
+        284,
+        318
+      ],
+      "role": "parent",
+      "name": "lemma28",
+      "excerpt_sha256": "ecfac66b5921bbb42f539a63c7962e8e8e5551c65d7ba8c87bcb38312d67b55c",
+      "permalink": "https://github.com/YaelDillies/apap/blob/fb5cb9c4f594cbeeb160c715618d13640984c521/APAP/Physics/AlmostPeriodicity.lean#L284-L318"
+    },
+    {
+      "path": "APAP/Physics/AlmostPeriodicity.lean",
+      "lines": [
+        246,
+        258
+      ],
+      "role": "child",
+      "name": "lemma28_markov",
+      "excerpt_sha256": "ee86bffe9b77a1cb42b6566dbf2d5ff266009bf40f68b70b50abc0b4418f6dfc",
+      "permalink": "https://github.com/YaelDillies/apap/blob/fb5cb9c4f594cbeeb160c715618d13640984c521/APAP/Physics/AlmostPeriodicity.lean#L246-L258"
+    },
+    {
+      "path": "APAP/Physics/AlmostPeriodicity.lean",
+      "lines": [
+        139,
+        155
+      ],
+      "role": "child",
+      "name": "lemma28_part_one",
+      "excerpt_sha256": "1f33e979aa3f0ce09b2c84f56e19ed1b36f129827c71e197d3e703905872b424",
+      "permalink": "https://github.com/YaelDillies/apap/blob/fb5cb9c4f594cbeeb160c715618d13640984c521/APAP/Physics/AlmostPeriodicity.lean#L139-L155"
+    },
+    {
+      "path": "APAP/Physics/AlmostPeriodicity.lean",
+      "lines": [
+        263,
+        280
+      ],
+      "role": "child",
+      "name": "lemma28_part_two",
+      "excerpt_sha256": "c01e95bc41bedb2877052d39c96592fd642bb7d2fe0e34d3654fe9c836aba46f",
+      "permalink": "https://github.com/YaelDillies/apap/blob/fb5cb9c4f594cbeeb160c715618d13640984c521/APAP/Physics/AlmostPeriodicity.lean#L263-L280"
+    },
+    {
+      "path": "APAP/Physics/AlmostPeriodicity.lean",
+      "lines": [
+        110,
+        131
+      ],
+      "role": "child",
+      "name": "lemma28_end",
+      "excerpt_sha256": "4bf06c0faecb76390af39147c8ec524054537148a8e29c35a432876a88d660bf",
+      "permalink": "https://github.com/YaelDillies/apap/blob/fb5cb9c4f594cbeeb160c715618d13640984c521/APAP/Physics/AlmostPeriodicity.lean#L110-L131"
+    }
+  ],
+  "parent": {
+    "name": "lemma28",
+    "statement": "lemma lemma28 (hε : 0 < ε) (hm : 1 ≤ m) (hk : (64 : ℝ) * m / ε ^ 2 ≤ k) :\n    (#A ^ k : ℝ) / 2 ≤ #(l k m ε f A)"
+  },
+  "children": [
+    {
+      "name": "lemma28_markov",
+      "statement": "lemma lemma28_markov (hε : 0 < ε) (hm : 1 ≤ m)\n    (h : ∑ a ∈ A ^^ k,\n        (‖fun x : G ↦ ∑ i : Fin k, f (x - a i) - (k • (mu A ∗ᵈ f)) x‖_[2 * m] ^ (2 * m) : ℝ) ≤\n      1 / 2 * (k * ε * ‖f‖_[2 * m]) ^ (2 * m) * #A ^ k) :\n    (#A ^ k : ℝ) / 2 ≤ #(l k m ε f A)",
+      "closed_by": "my_other_markov applied to the hypothesis, then rewriting and pow_le_pow_iff_left₀",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: A Markov-type bound: (1 / 2) · #A ^ k ≤ #(l k m ε f A) from a half-norm hypothesis."
+    },
+    {
+      "name": "lemma28_part_one",
+      "statement": "lemma lemma28_part_one (hm : 1 ≤ m) (x : G) :\n    ∑ a ∈ A ^^ k, ‖∑ i, f (x - a i) - (k • (mu A ∗ᵈ f)) x‖ ^ (2 * m) ≤\n      (8 * m) ^ m * k ^ (m - 1) *\n        ∑ a ∈ A ^^ k, ∑ i, ‖f (x - a i) - (mu A ∗ᵈ f) x‖ ^ (2 * m)",
+      "closed_by": "marcinkiewicz_zygmund_piFinset inside a calc, then gcongr/norm_num and rewriting",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: Per-x Marcinkiewicz-Zygmund: the 2m-norm of a k-fold sum is bounded by the sum of the per-coordinate norms."
+    },
+    {
+      "name": "lemma28_part_two",
+      "statement": "lemma lemma28_part_two (hm : 1 ≤ m) (hA : A.Nonempty) :\n    (8 * m) ^ m * k ^ (m - 1) * ∑ a ∈ A ^^ k, ∑ i, ‖τ (a i) f - mu A ∗ᵈ f‖_[2 * m] ^ (2 * m) ≤\n      (8 * m) ^ m * k ^ (m - 1) * ∑ _a ∈ A ^^ k, ∑ _i : Fin k, (2 * ‖f‖_[2 * m]) ^ (2 * m)",
+      "closed_by": "dLpNorm_sub_le, dLpNorm_translate and dLpNorm_ddconv_le chained with trans, then dL1Norm_mu",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: Translate-norm bound: each translated-coordinate 2m-norm is at most (2 · ‖f‖_[2 * m]) ^ (2 * m)."
+    },
+    {
+      "name": "lemma28_end",
+      "statement": "lemma lemma28_end (hε : 0 < ε) (hm : 1 ≤ m) (hk : 64 * m / ε ^ 2 ≤ k) :\n    (8 * m) ^ m * k ^ (m - 1) * #A ^ k * k * (2 * ‖f‖_[2 * m] : ℝ) ^ (2 * m) ≤\n      1 / 2 * ((k * ε) ^ (2 * m) * ∑ i : G, ‖f i‖ ^ (2 * m)) * #A ^ k",
+      "closed_by": "a calc of arithmetic closed by ring/ring_nf/gcongr/norm_num/omega",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: Final arithmetic: the accumulated bound is at most 1 / 2 · (k * ε) ^ (2 * m) · ∑ ‖f‖ ^ (2 * m) · #A ^ k."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A lower bound on the size of a Finset selected by a norm condition, #(l k m ε f A) ≥ (1 / 2) · #A ^ k, where l k m ε f A is the set of k-tuples a ∈ A ^^ k whose Lp-norm ‖∑ f(x - a i) - (k • (mu A ∗ᵈ f)) x‖_[2 * m] is small (LProp, lines 237-238).",
+    "use_when": "The theorem is a counting / large-deviation bound reducible to (i) a Markov-type bound turning the counting claim into a norm bound, then (ii) a chain of inequalities each expressible as its own self-contained named lemma (a pointwise concentration bound, a translate-norm bound, an arithmetic end).",
+    "avoid_when": "The steps do not compose into one chain (different measure spaces, mismatched norms), or a side condition one lemma needs (A nonempty, ε > 0, k large) is not delivered by the preceding step; or the arithmetic end is entangled with the analytic steps."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent lemma28 cites the child lemma28_markov.",
+      "evidence_kind": "check",
+      "form": "cites(parent, lemma28_markov)",
+      "evidence": "https://github.com/YaelDillies/apap/blob/fb5cb9c4f594cbeeb160c715618d13640984c521/APAP/Physics/AlmostPeriodicity.lean#L294"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site (the glue) is 35 lines long.",
+      "evidence_kind": "check",
+      "form": "lines(parent, 35)",
+      "evidence": "https://github.com/YaelDillies/apap/blob/fb5cb9c4f594cbeeb160c715618d13640984c521/APAP/Physics/AlmostPeriodicity.lean#L284-L318"
+    },
+    {
+      "n": 3,
+      "claim": "The theorem-scale shape is 4 direct lemmas, glue 35 lines, child sites of 13, 17, 18 and 22 lines (70 total), and a longest project-lemma chain below lemma28 of depth 3.",
+      "evidence_kind": "measurement",
+      "evidence": "Counted from the copied file APAP/Physics/AlmostPeriodicity.lean: parent lines 284-318 (35); children 246-258 (13), 139-155 (17), 263-280 (18), 110-131 (22); depth chain lemma28 -> lemma28_markov (line 294) -> my_other_markov (line 252) -> my_markov (line 83)."
+    },
+    {
+      "n": 4,
+      "claim": "The authors mark lemma28 as a blueprint node with the comment '-- Public because it is in the blueprint'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/YaelDillies/apap/blob/fb5cb9c4f594cbeeb160c715618d13640984c521/APAP/Physics/AlmostPeriodicity.lean#L283, quote: '-- Public because it is in the blueprint'"
+    },
+    {
+      "n": 5,
+      "claim": "The same assembly (a headline bound built from named lemmas) is used again by almost_periodicity, which combines lemma28 (line 412), big_shifts (line 416), T_bound (line 419) and just_the_triangle_inequality (line 423).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/YaelDillies/apap/blob/fb5cb9c4f594cbeeb160c715618d13640984c521/APAP/Physics/AlmostPeriodicity.lean#L412-L423"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 35,
+    "children": 4,
+    "children_closed_by_automation": 0,
+    "how_counted": "parent site is lines 284-318; the four child sites are 246-258, 139-155, 263-280, 110-131; each child proof invokes a named lemma rather than a single automation tactic, so children_closed_by_automation = 0"
+  },
+  "consequences": "The glue must discharge each child's side conditions in order: lemma28 derives 0 < k from hk (lines 286-291) before the split, closes the A empty case directly (line 293), passes hA : A.Nonempty to lemma28_part_two (line 316) and hε/hm/hk to lemma28_end (line 318). lemma28_markov needs its half-bound hypothesis, which the glue proves as the norm chain. A failure mode is a child whose hypothesis is only delivered by a later step, which breaks the linear chain; the empty case must be handled before the nonempty-only lemmas apply.",
+  "known_uses": [
+    "https://github.com/YaelDillies/apap/blob/fb5cb9c4f594cbeeb160c715618d13640984c521/APAP/Physics/AlmostPeriodicity.lean#L412-L423"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 3,
+    "glue_lines": 35,
+    "child_lines": [
+      13,
+      17,
+      18,
+      22
+    ]
+  },
+  "content_key": "17556d401f8105b7990316ccc935571f902d6f8050d4d3dba087d8d99458fa1d",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:16:14Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,known_uses,rule,shape",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:16:14Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:17:35Z",
+      "note": "parent lemma28: statement re-copied from code; child 'lemma28_markov': statement re-copied from the declaration of lemma28_markov; child 'lemma28_part_one': statement re-copied from the declaration of lemma28_part_one; child 'lemma28_part_two': statement re-copied from the declaration of lemma28_part_two; child 'lemma28_end': statement re-copied from the declaration of lemma28_end"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T15:23:38Z"
+}

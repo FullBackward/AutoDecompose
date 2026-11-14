@@ -1,0 +1,1034 @@
+[
+  {
+    "path": "isabelle/CVM_Transforms/CVM_Correctness.thy",
+    "start": 94,
+    "end": 149,
+    "move": "calc-chain",
+    "name": "prob_cvm_incorrect_le",
+    "lemmas": [
+      "cvm_correct_of_empty_or_threshold",
+      "prob_run_steps_is_None_or_pred_le",
+      "run_steps_no_fail_eq_run_steps_eager_bernoulli_matrix",
+      "prob_eager_algo_k_gt_l_le",
+      "prob_eager_algo_k_le_l_and_est_out_of_range_le"
+    ],
+    "signal": "theorem prob_cvm_incorrect_le at 94-109 bounds P(estimate in cvm xs ...) by delta under the threshold constraints; proof at 110-149 is proof (cases xs = [] or threshold > card (set xs)): True by cvm_correct_of_empty_or_threshold, False a three-step also-have-finally chain citing prob_run_steps_is_None_or_pred_le (128), run_steps_no_fail_eq_run_steps_eager_bernoulli_matrix (135-141), then prob_eager_algo_k_gt_l_le and prob_eager_algo_k_le_l_and_est_out_of_range_le (143-148).",
+    "why": "Theorem scale: the main correctness theorem, called Theorem 2 of the CVM paper in the file text (17-18). Five direct children: cvm_correct_of_empty_or_threshold (CVM_Correctness.thy:53-76), prob_run_steps_is_None_or_pred_le (CVM_Algo_No_Fail.thy:198-213), run_steps_no_fail_eq_run_steps_eager_bernoulli_matrix (CVM_Algo_Lazy_Eager.thy:512-519), prob_eager_algo_k_gt_l_le (CVM_Error_Bounds.thy:354-455), prob_eager_algo_k_le_l_and_est_out_of_range_le (CVM_Error_Bounds.thy:97-247). Glue is 40 lines: one-line case split for the trivial case plus a three-step inequality chain for the general case, one child per step. All children close; no sorry, admit, Admitted or oops in the site or the files fetched.",
+    "source": "cvm",
+    "scale": "theorem"
+  },
+  {
+    "source": "cedar-spec",
+    "path": "cedar-lean/Cedar/Thm/SymCC/Verifier/VerifyIsAuthorized.lean",
+    "start": 99,
+    "end": 132,
+    "move": "interface-lemma",
+    "name": "",
+    "why": "Theorem scale: the theorem is generic over the query phi and the response comparison f through the bundle predicate WellBehavedIsAuthorizedQuery (33-53), and the file docstring (22-27) says this enables proving soundness and completeness of analyses built on verifyIsAuthorized by proving their queries well-behaved - an interface lemma at the analysis API boundary. The glue applies verifyIsAuthorized_ok_implies (81-97), swf_implies_enforce_satisfiedBy, asserts_last_not_true, isAuthorized_bisimulation, isAuthorized_wf, wbaq_bisimulation (55-67), interpret_not_wbaq (69-79) and same_bool_not_not_true_implies_true. Glue about 22 lines; cached file has no sorry/admit/axiom.",
+    "lemmas": [
+      "verifyIsAuthorized_ok_implies",
+      "swf_implies_enforce_satisfiedBy",
+      "asserts_last_not_true",
+      "isAuthorized_bisimulation",
+      "isAuthorized_wf",
+      "wbaq_bisimulation",
+      "interpret_not_wbaq",
+      "same_bool_not_not_true_implies_true"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "thys/examples/KMP.thy",
+    "start": 873,
+    "end": 881,
+    "move": "calc-chain",
+    "name": "kmp2_correct",
+    "signal": "lemma kmp2_correct at 873-874; proof 875-881: assume s~=[]; have \"kmp2 s t <= kmp1 s t\" by (fact kmp2_refine); also have \"... <= kmp s t\" by (fact kmp1_refine); also have \"... <= kmp_SPEC s t\" by (fact kmp_correct[OF ...]); finally show ?thesis.",
+    "why": "Theorem scale: the conflation lemma closing the whole abstract KMP refinement chain (kmp2 -> kmp1 -> kmp -> spec) in one three-step also/finally chain. Children all written in this file: kmp2_refine (865), kmp1_refine (524), kmp_correct (476-490); each closes and the file has no sorry/admit/oops. Glue is 4 lines chaining the three lemmas.",
+    "lemmas": [
+      "kmp2_refine",
+      "kmp1_refine",
+      "kmp_correct"
+    ],
+    "source": "isabelle-llvm",
+    "scale": "theorem"
+  },
+  {
+    "source": "seymour",
+    "path": "blueprint/src/sum_3.tex",
+    "start": 591,
+    "end": 604,
+    "move": "blueprint-node",
+    "name": "",
+    "why": "A small node of the published 3-sum dependency graph: the canonical signing B of a 3-sum of matrices is TU. The proof is a single sentence combining two earlier nodes: toMatrixLikeSum3 puts B into the 3-sum-like matrix family and MatrixLikeSum3.isTotallyUnimodular says every member of that family is TU, so the node is exactly the step that turns a structure-membership lemma into a TU fact. Two direct lemmas, both stated earlier in the same blueprint file, and the node is marked leanok.",
+    "lemmas": [
+      "MatrixSum3.IsCanonicalSigning.toMatrixLikeSum3",
+      "MatrixLikeSum3.isTotallyUnimodular"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "ConNF/Counting/CountSupportOrbit.lean",
+    "start": 197,
+    "end": 199,
+    "name": "ConNF.card_supportOrbit_lt",
+    "move": "calc-chain",
+    "lemmas": [
+      "card_supportOrbit_lt'",
+      "card_weakSpec_of_card_spec",
+      "card_spec_of_card_codingFunction"
+    ],
+    "signal": "theorem card_supportOrbit_lt at 197-199 is the single chain card_supportOrbit_lt.trans_lt (card_weakSpec_of_card_spec (card_spec_of_card_codingFunction h)): supportOrbit ≤ weakSpec < μ.",
+    "why": "Theorem scale: blueprint node prop:card_supportOrbit (counting.tex:605-616), the cardinality bound on support orbits that feeds both coding-function bounds in the counting argument. Glue is 2 lines and does nothing but chain three lemmas written in this file: card_supportOrbit_lt' (184-195), card_weakSpec_of_card_spec (105-118) and card_spec_of_card_codingFunction (155-182). Each closes and the file has no sorry, admit, Admitted or oops.",
+    "source": "con-nf",
+    "scale": "theorem"
+  },
+  {
+    "source": "apap",
+    "path": "APAP/Physics/AlmostPeriodicity.lean",
+    "start": 284,
+    "end": 318,
+    "move": "calc-chain",
+    "name": "",
+    "why": "Blueprint node random_approx_expect: the glue splits on A empty, reduces to the Markov bound lemma28_markov, then chains lemma28_part_one (per-x Marcinkiewicz-Zygmund bound), lemma28_part_two (translate norm bound) and lemma28_end (final arithmetic) into the counting conclusion; four named lemmas written in this file, glue 35 lines.",
+    "lemmas": [
+      "lemma28_markov",
+      "lemma28_part_one",
+      "lemma28_part_two",
+      "lemma28_end"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "blueprint/src/chapter/2-lower-bound-eval.tex",
+    "start": 49,
+    "end": 62,
+    "move": "blueprint-node",
+    "name": "thm:det-fun-complex-eval-ge-corner-color-num",
+    "signal": "theorem thm:det-fun-complex-eval-ge-corner-color-num at 49-56: D(eval) >= ceil(log2 chi_d(G)); its proof at 57-62 has uses{lem:mono-forbidden-pattern-trivial, lem:forbidden-pattern-project-multicorner} (line 58) and reads: By Lemma mono-forbidden-pattern-trivial, broad(.,t) is a coloring of {x | sum_i x_i = 0} in at most 2^t colors ... such that all monochromatic forbidden patterns are trivial. By Lemma forbidden-pattern-project-multicorner, this yields a coloring of G^(d-1) ... such that all monochromatic corners are trivial. Hence 2^t >= chi_d(G) (line 61)",
+    "lemmas": [
+      "lem:mono-forbidden-pattern-trivial",
+      "lem:forbidden-pattern-project-multicorner"
+    ],
+    "why": "Theorem scale: a blueprint node of the published dependency graph, the paper lower bound for D(eval) in terms of the corner-colouring number, stated before it is proved. The glue is two sentences over exactly two lemmas written in the same project: mono-forbidden-pattern-trivial (1-nof-model.tex:66-78) turns a valid protocol broadcast into a colouring whose monochromatic forbidden patterns are trivial, and forbidden-pattern-project-multicorner (2-lower-bound-eval.tex:18-32) projects that colouring to a corner-free colouring of G^(d-1); minimality of chi_d(G) closes the bound. Both children carry lean and leanok markers and their Lean declarations (NOF.trivial_of_isForbiddenPattern_of_isValid_eval, LowerBoundEval.lean:31-52; NOF.isMultidimCorner_forget_of_isForbiddenPattern, MultidimCorners.lean:40-55) are sorry-free. Site is 14 lines; no sorry, admit, Admitted or oops in the range.",
+    "source": "chandra-furst-lipton",
+    "scale": "theorem"
+  },
+  {
+    "source": "classfieldtheory",
+    "path": "ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean",
+    "start": 384,
+    "end": 392,
+    "move": "calc-chain",
+    "name": "",
+    "why": "Theorem scale: the module docstring (10-31) names the isomorphism up.obj M = down.obj M as the file main construction, and it drives the 2-periodicity periodicCohomology (405-417). Glue is a pure 5-step calc (9 lines); its two substantive steps are the exactness theorems exact_periodSeq₁ (356-368) and exact_periodSeq₂ (371-381) fed to cokerIsoCoim and kerIsoIm, and those lemmas in turn reduce to Representation.map₁_ker (82) and Representation.map₂_range (145) in the same file. Cached file has no sorry/admit/axiom.",
+    "lemmas": [
+      "exact_periodSeq₁",
+      "exact_periodSeq₂",
+      "periodSeq₁Functor",
+      "periodSeq₂Functor"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "name": "example_not_solvable_by_radicals",
+    "path": "theories/abel.v",
+    "start": 1337,
+    "end": 1343,
+    "move": "calc-chain",
+    "signal": "move=> /AbelGaloisPolyRat; pose sol_gal := isog_sol (PDTNRR.isog_gal _ _ _). rewrite sol_gal ?size_poly_example ?solvable_SymF ?card_ord//. by rewrite -(count_map _ [predC Creal]) count_roots_ex.",
+    "why": "X^5 - 4X + 2 is not solvable by radicals. The three-line glue is a rewrite chain, one lemma per step: AbelGaloisPolyRat turns radical solvability into solvability of the Galois group; isog_gal identifies that group with Sym_5 (size_poly_example supplies the degree five); solvable_SymF refutes solvability of Sym_5; count_roots_ex supplies the two non-real roots the isog_gal hypothesis needs.",
+    "lemmas": [
+      "AbelGaloisPolyRat",
+      "isog_gal",
+      "size_poly_example",
+      "solvable_SymF",
+      "count_roots_ex"
+    ],
+    "source": "abel",
+    "scale": "theorem"
+  },
+  {
+    "source": "infinity-cosmos",
+    "path": "InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean",
+    "start": 574,
+    "end": 583,
+    "move": "calc-chain",
+    "name": "",
+    "why": "Theorem scale: the corollary that a composition structure transports along homotopies in all three edges. The glue is one lemma per step, the output of each feeding the next (a chain of three CompStruct statements rather than equalities), and the three children transport_edge0, transport_edge1, transport_edge2 are the named lemmas stated immediately above in the same file and each one closes with a single horn filling. No sorry or admit in the file.",
+    "lemmas": [
+      "transport_edge2",
+      "transport_edge0",
+      "transport_edge1"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "theories/Bertrand.v",
+    "start": 187,
+    "end": 220,
+    "move": "calc-chain",
+    "name": "no_prime_imp_spec_inegality",
+    "signal": "apply Nat.le_lt_trans with (2 * n * binomial (2 * n) n); apply binomial_even; apply Nat.lt_le_trans with (2 := H); apply upper_bound",
+    "why": "If no prime lies between n and 2n, the spec inequality is chained through binomial 2n n: Nat.le_lt_trans and Nat.lt_le_trans link the lower bound binomial_even to the file upper bound upper_bound. Glue is 34 lines and mostly these two applications.",
+    "lemmas": [
+      "upper_bound",
+      "binomial_even"
+    ],
+    "source": "bertrand",
+    "scale": "theorem"
+  },
+  {
+    "source": "formal-proofs",
+    "path": "Verification/Semantics/AirEncoding/Correctness.lean",
+    "start": 39,
+    "end": 127,
+    "move": "interface-lemma",
+    "name": "",
+    "why": "The file header calls it the main theorem of the whitepaper. The glue never unfolds the AIR constraints: each constraint family is discharged by a named bridge lemma (mem_extends, mem_pc, mem_dst_addr, mem_op0_addr, mem_op1_addr, mem_rc_addr, the three off_*_in_range, rc16_vals_in_range, rc_val_checked, rc_addr_eq, inst_eq) and the execution witness is closed by a single application of nextState_eq.",
+    "lemmas": [
+      "mem_extends",
+      "mem_pc",
+      "mem_dst_addr",
+      "mem_op0_addr",
+      "mem_op1_addr",
+      "mem_rc_addr",
+      "off_op0_in_range",
+      "off_op1_in_range",
+      "off_dst_in_range",
+      "rc16_vals_in_range",
+      "rc_val_checked",
+      "rc_addr_eq",
+      "inst_eq",
+      "nextState_eq"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "theories/Topology/BanachFixedPoint.v",
+    "start": 473,
+    "end": 488,
+    "move": "witness",
+    "name": "BanachFixedPoint",
+    "lemmas": [
+      "BanachFixedPoint_unique",
+      "BanachFixedPoint_seq_cauchy",
+      "BanachFixedPoint_seq_limit_fixed"
+    ],
+    "signal": "specialize (Hd_comp (BanachFixedPoint_seq x0) (BanachFixedPoint_seq_cauchy x0)) as [x Hx] (482-483) names the witness by completeness; exists x (485); apply BanachFixedPoint_seq_limit_fixed in Hx (485) proves it fixed; split then intros; apply BanachFixedPoint_unique (486-487) proves uniqueness.",
+    "why": "The Banach fixed-point theorem is the section's headline and the file's main result. The witness x is obtained from completeness applied to the dedicated Cauchy lemma, its two required properties are supplied by the dedicated fixed-point and uniqueness lemmas, and the 16-line glue only names x and splits existence from uniqueness. All three lemmas are written in the same section (277-289, 349-427, 456-471), read on their own, and close with Qed; the file has no sorry, admit, Admitted or oops.",
+    "source": "topology",
+    "scale": "theorem"
+  },
+  {
+    "source": "vellvm",
+    "path": "src/rocq/Theory/I2F/I2F_exp.v",
+    "start": 3292,
+    "end": 3312,
+    "move": "interface-lemma",
+    "name": "",
+    "why": "Theorem scale: the API lemma that lifts the per-expression refinement to the CFG-level refinement interface, so that all later obligation files stop unfolding denote_exp and just apply it. The glue is five lines of rule application with three named lemmas; all close; the file has no sorry or admit.",
+    "lemmas": [
+      "I2F_denote_exp",
+      "I2F_cutUB_CFG",
+      "I2F_cutOOM_CFG"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "ftc/RefLemma.v",
+    "start": 553,
+    "end": 594,
+    "move": "calc-chain",
+    "name": "first_refinement_lemma",
+    "lemmas": [
+      "ref_calc1",
+      "ref_calc2",
+      "ref_calc3",
+      "ref_calc4",
+      "ref_calc5",
+      "ref_calc6",
+      "ref_calc7",
+      "ref_calc8"
+    ],
+    "signal": "chain of leEq_wdl / leEq_transitive steps, one per ref_calcN lemma proved immediately above",
+    "why": "inequality (2.6.7) of the Riemann integral; glue rewrites through ref_calc2..5 then chains ref_calc6/7/8 and finishes with ref_calc1; eight same-file children, each Qed",
+    "source": "corn",
+    "scale": "theorem"
+  },
+  {
+    "source": "brownian-motion",
+    "path": "blueprint/src/chapters/brownian.tex",
+    "start": 101,
+    "end": 113,
+    "move": "blueprint-node",
+    "name": "",
+    "why": "Blueprint node proving that the paths of Brownian motion are locally Holder of all orders below 1/2; the proof is the glue of three named nodes of the project (cover with bounded covering numbers, Kolmogorov condition, localized Kolmogorov-Chentsov modification) plus arithmetic on (n+1)/(2n+4)",
+    "lemmas": [
+      "lem:hasBoundedCoveringNumberCover_nnreal",
+      "lem:isKolmogorovProcess_preBrownian",
+      "thm:localized_holder_modification_sup"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean",
+    "start": 157,
+    "end": 311,
+    "move": "case-split",
+    "name": "netfs_crash_safety_bounded",
+    "lemmas": [
+      "goose_dist_crash_adequacy",
+      "wp_boot",
+      "wp_NodeA",
+      "wp_NodeB",
+      "wp_NodeC",
+      "fsNet_globalStart",
+      "fsNet_localStart",
+      "fsNet_crashStart"
+    ],
+    "signal": "theorem netfs_crash_safety_bounded at 157 (statement 157-175, proof 176-311); the proof refines goose_dist_crash_adequacy, gets the protocol invariant from fsNet_globalStart at 184 and the per-node start facts from fsNet_localStart, then at 284 rcases Hnode with three node cases, each applying wp_boot to wp_NodeA, wp_NodeB or wp_NodeC, and the after-crash branch uses fsNet_crashStart at 299.",
+    "why": "Theorem scale: end-to-end crash safety of the three-node netfs, the headline result of this directory. Glue is one adequacy instantiation plus a case split on the node index; the three branches each apply wp_boot to that node's linked spec, the first-generation branches use fsNet_globalStart and fsNet_localStart, and the crashed branch uses fsNet_crashStart: eight named lemmas written in the project. All close; no sorry or axiom in the file.",
+    "source": "perennial",
+    "scale": "theorem"
+  },
+  {
+    "source": "metarocq",
+    "path": "pcuic/theories/Bidirectional/BDToPCUIC.v",
+    "start": 465,
+    "end": 474,
+    "move": "interface-lemma",
+    "name": "",
+    "why": "Theorem scale: the interface theorem that lets clients of the bidirectional type checker obtain PCUIC lift_typing facts without unfolding the checker, part of the published block of user-facing results of the file. Glue is 8 lines and only applies interface lemmas. Move interface-lemma: four lemmas sit at the abstraction boundary between the bidirectional relations and PCUIC typing, and the proof is their composition. 4 direct project lemmas, all closed with Qed.",
+    "lemmas": [
+      "lift_sorting_it_impl",
+      "infering_sort_typing",
+      "checking_typing",
+      "isTypebd_isType"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "theory/jordan.v",
+    "start": 205,
+    "end": 227,
+    "move": "calc-chain",
+    "name": "Jordan",
+    "signal": "Lemma Jordan n (A : 'M[R]_n.+1) : similar A (Jordan_form A). Proof. apply: (similar_trans (Frobenius _)). apply: (similar_trans (similar_Frobenius _)). ... apply: similar_diag_block ... similar_cj",
+    "why": "Theorem of Jordan decomposition that the file header calls its main result. A chain of similarity transitivity steps: A is similar to its Frobenius form (Frobenius), that to its closed-field block form (similar_Frobenius), and that block form to Jordan_form blockwise via similar_diag_block, each companion block turned into a Jordan block per root by similar_cj. The chain supplies the skeleton; the four named lemmas each close on their own.",
+    "lemmas": [
+      "Frobenius",
+      "similar_Frobenius",
+      "similar_diag_block",
+      "similar_cj"
+    ],
+    "source": "coqeal",
+    "scale": "theorem"
+  },
+  {
+    "source": "ssprove",
+    "path": "theories/Crypt/examples/MACCCA.v",
+    "start": 434,
+    "end": 470,
+    "move": "calc-chain",
+    "name": "",
+    "why": "Theorem scale: the file main MAC-plus-CPA composition bound. The glue is a hybrid triangle over six packages and one rewrite per hop lemma; each hop lemma is a program-equivalence proof in the same file that ends in Qed (CCA_EVAL_equiv_true 303, CCA_EVAL_HYB_equiv_true 316, CCA_EVAL_HYB_equiv_false 360, CCA_EVAL_equiv_false 404), and the file has no admit.",
+    "lemmas": [
+      "CCA_EVAL_equiv_true",
+      "CCA_EVAL_HYB_equiv_true",
+      "CCA_EVAL_HYB_equiv_false",
+      "CCA_EVAL_equiv_false"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "theories/regexp.v",
+    "start": 359,
+    "end": 365,
+    "move": "iff-split",
+    "name": "regularP",
+    "signal": "Lemma regularP (char : finType) (L : lang char) : regular L ... { e : regexp char | forall x, L x ... }. Proof. split => [[A HA]|[e He]]. - exists (dfa_to_re A) => x. by rewrite -dfa_to_re_correct. - exists (re_to_dfa e) => x. by rewrite re_to_dfa_correct. Qed.",
+    "why": "The Kleene theorem, headline of theories/regexp.v. Glue is an iff split, 4 proof lines, one per direction: forward cites dfa_to_re_correct (307), backward cites re_to_dfa_correct (134), both named lemmas written above in the same file and closing by a single rewrite. 2 direct lemmas, site 7 lines, glue 4 lines; no sorry/admit/oops in the file.",
+    "lemmas": [
+      "dfa_to_re_correct",
+      "re_to_dfa_correct"
+    ],
+    "source": "reglang",
+    "scale": "theorem"
+  },
+  {
+    "source": "voblint-verification-master-thesis",
+    "path": "src/Analyses/Shared/Result/Source_Activation_Sound.thy",
+    "start": 79,
+    "end": 117,
+    "move": "interface-lemma",
+    "name": "",
+    "why": "source_activation_sound is the generic source-level backbone: it feeds the five coverage obligations (entry, edge, call, combine, totality) into the activation_coverage locale, reads the collecting cap off activation_collect_sound and a context witness off valid_activation_trace_has_context, then hands both to source_sound_from_collecting_cap. The glue is one locale introduction and two applications, so no concrete analysis, domain or policy leaks into the proof.",
+    "lemmas": [
+      "activation_collect_sound",
+      "valid_activation_trace_has_context",
+      "source_sound_from_collecting_cap"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "theories/sets/sset6.v",
+    "start": 2033,
+    "end": 2039,
+    "name": "transfinite_definition",
+    "move": "witness",
+    "lemmas": [
+      "transfinite_defined_pr",
+      "transfinite_unique"
+    ],
+    "signal": "Theorem transfinite_definition at 2033 (statement 2033-2034, proof 2035-2039): apply /unique_existence at 2036 splits the exists! into existence and uniqueness; the witness transfinite_defined r T is supplied at 2038 with transfinite_defined_pr (2015) as its property, and uniqueness is discharged at 2037 by transfinite_unique (1745).",
+    "why": "Theorem scale: existence and uniqueness of the function defined by transfinite recursion on a well-ordering, the goal of section EIII-2-2. Glue is 3 lines: one witness term and two lemma citations, one per half of the unique-existence statement. Both children are in the same file and close; the definition transfinite_defined at 2012-2013 sits just above the site.",
+    "source": "gaia",
+    "scale": "theorem"
+  },
+  {
+    "source": "cogent",
+    "path": "impl/fs/bilby/proof/refine/FsopSyncR.thy",
+    "start": 53,
+    "end": 116,
+    "move": "interface-lemma",
+    "name": "",
+    "why": "FsopSyncR is the whole theory of the BilbyFsSync session, and refine_sync is its function-boundary lemma: it lets the parent system-call refinement proof use fsop_sync without unfolding the generated monadic code. The glue peels the generated program with the generic correspondence rules and finishes with ostore_sync_ret, while the five helper lemmas proved above in the same file discharge the error branch and the update-list arithmetic: fold_comp, corres_sync_err, length_updates_eqD, afs_fsop_match_updates (and afs_inv_steps_updated_afsD from AfsFsopR). The statement is kept generic over the exception ex with an existential-over-callee relation, so clients instantiate it. Every helper closes; the site itself ends with done.",
+    "lemmas": [
+      "fold_comp",
+      "corres_sync_err",
+      "length_updates_eqD",
+      "afs_fsop_match_updates",
+      "afs_inv_steps_updated_afsD",
+      "ostore_sync_ret"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "vibe-recipe/EXAMPLE_INSTRUCTIONS.md",
+    "start": 108,
+    "end": 316,
+    "name": "vibe-recipe decomposition prompt",
+    "move": "workflow",
+    "lemmas": [
+      "phi_continuous",
+      "mul_log_ge_neg_inv_exp",
+      "exists_seq_tendsto_ae_of_tendsto_eLpNorm_one",
+      "tendsto_integral_norm_fderiv_sq_of_sobolev",
+      "gaussian_logSobolev_CompSmo_fderiv"
+    ],
+    "signal": "Harness prompt: the Target Theorem is stated once at 116-120 (Gaussian log-Sobolev for continuously differentiable W^{1,2} functions) and the Optimal Proof at 123-316 splits it into seven numbered steps; step 1 pins phi_continuous (131) and mul_log_ge_neg_inv_exp (143), step 2 pins exists_seq_tendsto_ae_of_tendsto_eLpNorm_one from SLT/ConvergenceL1Subseq.lean (151), and step 6 applies tendsto_integral_norm_fderiv_sq_of_sobolev and gaussian_logSobolev_CompSmo_fderiv (295).",
+    "why": "Workflow scale: a skill prompt that teaches theorem-level decomposition, state the target once, then split it into seven steps each attached to a named project lemma before any tactic is written; same rule as README recipe step 1 (Decompose proofs into small lemmas, README 205). Five named project lemmas, all proved and sorry-free; the prompt closes with Success = lake build passes + zero sorries + zero custom axioms (323) and the decomposition is realised in SLT/GaussianLSI/OneDimGLSI.lean (gaussian_logSobolev_W12_real, 415).",
+    "source": "lean-stat-learning-theory",
+    "scale": "theorem"
+  },
+  {
+    "source": "sampcert",
+    "path": "SampCert/Samplers/Gaussian/Properties.lean",
+    "start": 60,
+    "end": 91,
+    "move": "calc-chain",
+    "name": "",
+    "why": "Normalization of the discrete Gaussian sampler loop, the lemma the file closed-form theorem DiscreteGaussianSample_apply consumes at line 245. The proof is a chain of equalities on the sum: rewrite the mixed Laplace sampler by its equivalence, drop the off-diagonal masses with the two same-file ite_simpl lemmas, combine the two remaining sums with mul_add, then close each factor by one project normalization lemma - BernoulliExpNegSample_normalizes (SampCert/Samplers/BernoulliNegativeExponential/Properties.lean:1148) and DiscreteLaplaceSample_normalizes (SampCert/Samplers/Laplace/Properties.lean:420). Each step is one rewrite and each of the five cited lemmas closes.",
+    "lemmas": [
+      "DiscreteLaplaceSampleMixed_equiv",
+      "ite_simpl_gaussian_1",
+      "ite_simpl_gaussian_2",
+      "BernoulliExpNegSample_normalizes",
+      "DiscreteLaplaceSample_normalizes"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "case_study/l4v/sys-init/InitCSpace_SI.thy",
+    "start": 1215,
+    "end": 1231,
+    "name": "init_cnode_slot_move_sep",
+    "move": "case-split",
+    "signal": "apply (case_tac \"original_cap_at (obj_id, slot) spec\") apply (wp init_cnode_slot_move_original_sep) apply (wp init_cnode_slot_move_not_original_sep)",
+    "why": "Per-slot stage theorem consumed by the cspace initialiser: after the shared premise context the whole proof is a case split on whether the slot holds an original capability, one branch closed by init_cnode_slot_move_original_sep and the other by init_cnode_slot_move_not_original_sep; exhaustiveness is discharged by wp against the two lemmas, with no other work in the glue.",
+    "lemmas": [
+      "init_cnode_slot_move_original_sep",
+      "init_cnode_slot_move_not_original_sep"
+    ],
+    "source": "jormungand",
+    "scale": "theorem"
+  },
+  {
+    "source": "arklib",
+    "path": "ArkLib/Data/CodingTheory/BerlekampWelch/Existence.lean",
+    "start": 151,
+    "end": 165,
+    "move": "witness",
+    "name": "",
+    "why": "The file existence theorem: if the received word is within e errors, linsolve on the Berlekamp-Welch matrix cannot return none. The proof exhibits the witness pair of polynomials (E, Q) as an explicit solution and discharges each of its properties by an in-file lemma; the 15-line glue names four of them. This is the existence result the decoder correctness theorem decoder_eq_some consumes.",
+    "lemmas": [
+      "E_and_Q_to_a_solution",
+      "E_and_Q_BerlekampWelch_condition",
+      "solutionToE_from_E",
+      "solutionToQ_from_Q"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "VerIso/Tapir_Falsification.thy",
+    "start": 434,
+    "end": 563,
+    "name": "tapir_refines_sser",
+    "move": "sorrify-at-failure",
+    "lemmas": [
+      "read_resp_abs_committed_reads_inv",
+      "prep_abs_committed_reads_inv",
+      "commit_abs_committed_reads_inv",
+      "abort_abs_committed_reads_inv"
+    ],
+    "signal": "lemma tapir_refines_sser at 434 (statement 434, proof 435-563); proof (induction a) at 447 gives one case per Tapir event. Read_Resp uses read_resp_abs_committed_reads_inv at 536, Prep uses prep_abs_committed_reads_inv at 542, Commit uses commit_abs_committed_reads_inv at 549, Abort uses abort_abs_committed_reads_inv at 557; the Cl_Commit case instantiates ET_SSER.ET_trans_rule at 455. Six obligations are left as sorry (471, 490, 493, 527, 553, 561), the last four with comments naming the missing invariant.",
+    "why": "Theorem scale, anti-pattern: the Section 6.3 falsification attempt for Tapir. Run.thy line 18 says tapir_refines_sser fails and points at the proof state at line 486, and the file keeps the attempted decomposition as evidence: an induction over events whose four per-event reads and writes bookkeeping lemmas (proved at 18-59, all closing) handle Read_Resp, Prep, Commit and Abort, while the fp_property and kvs_of_s update obligations of client commit, and the Cl_ReadyC, Commit and Abort cases, are replaced by sorry with comments naming the needed invariant (no newer committed or prepared version on the key; empty readerset; aborted transaction not in commit_order). The site records which children of a plausible decomposition were insufficient and why.",
+    "source": "veriso",
+    "scale": "theorem"
+  },
+  {
+    "source": "navierstokesandeuler",
+    "path": "NavierStokes/ComparatorR3Theorem.lean",
+    "start": 38,
+    "end": 44,
+    "move": "interface-lemma",
+    "name": "",
+    "why": "An adapter at the Comparator boundary: the internal Theorem 1.1 of the project is re-exposed under the reference challenges exact quantifiers and decay predicates, so comparator clients no longer unfold the internal ProblemStatement. The glue is two lines and two named lemmas (the project theorem and the conversion lemma); the file header states that the same force and zero datum satisfy the exact comparator conditions.",
+    "lemmas": [
+      "NavierStokesR3.theorem_1_1",
+      "NavierStokesR3.comparator_of_breakdown"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "OddOrder/BG/AppC_FinalContradiction.lean",
+    "start": 124,
+    "end": 130,
+    "move": "interface-lemma",
+    "name": "theoremC_abstract",
+    "signal": "theorem theoremC_abstract ... := NormSet.lemmaC1 (p := p) (q := q) hq (NormSet.normSetE_eq_inv_of_forall_normN_two_mul_sub_one ... hrel) (NormSet.lemmaC2 (p := p) (q := q) hp_odd hq hq_odd)",
+    "why": "BG Appendix C Theorem C in p/q-abstract form. The statement removes the Peterfalvi Section 16 configuration so any hypothesis-(B)-style input can use the three p,q-level step lemmas without unfolding group data. The glue composes lemmaC2 (p,q odd give the norm-set size bound) and the norm-set inverse-closure lemma derived from hrel into lemmaC1's hypotheses to conclude p <= q. Three direct children, three-line glue.",
+    "lemmas": [
+      "NormSet.lemmaC1",
+      "NormSet.normSetE_eq_inv_of_forall_normN_two_mul_sub_one",
+      "NormSet.lemmaC2"
+    ],
+    "source": "odd-order-2",
+    "scale": "theorem"
+  },
+  {
+    "source": "physlib",
+    "path": "QuantumInfo/Entropy/DPI.lean",
+    "start": 1349,
+    "end": 1378,
+    "move": "calc-chain",
+    "name": "",
+    "why": "Headline Data Processing Inequality for the sandwiched Rényi divergence at α greater than 1, proved by the Stinespring purification reduction described in the doc comment. The glue is a six-step calc chain: purify the channel, rewrite the output by prep_append_eq_tensor_pure, apply monotonicity under partial trace twice (sandwichedRenyiEntropy_mono_traceLeft), invariance under unitary conjugation (sandwichedRenyiEntropy_conj_unitary) and tensor with a pure ancilla (sandwichedRenyiEntropy_tensor_pure). Four named in-file lemmas, one per calc step, plus two purification lemmas used in the first two steps; glue mostly applies them.",
+    "lemmas": [
+      "prep_append_eq_tensor_pure",
+      "sandwichedRenyiEntropy_mono_traceLeft",
+      "sandwichedRenyiEntropy_conj_unitary",
+      "sandwichedRenyiEntropy_tensor_pure",
+      "CPTPMap.purify_IsUnitary",
+      "CPTPMap.purify_trace"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "name": "thm:main",
+    "path": "blueprint/src/content/07_main_theorem.tex",
+    "start": 12,
+    "end": 34,
+    "move": "blueprint-node",
+    "signal": "begin/end theorem at 12 and 26, begin/end proof at 28 and 34; statement dependency list at 15 names thm:halting plus def:game-description, def:sync-value, def:re; proof dependency list at 29 names thm:halting, cor:compression-from-answer-reduction, thm:answer-reduction; Lean-name line at 16 is HaltingGameValue.halting_reduces_to_gameValue.",
+    "why": "Theorem scale: thm:main, the formalization target of the whole project (Theorem 12.2 of MIP* = RE), a node of the published dependency graph. Glue is three lines naming its lemmas: MIPRE.Halting.halting_reduces_to_gameValue_of takes a GapCompression and a universal machine while Theorem thm:compression-target supplies the compression; declared proof dependencies are thm:halting, cor:compression-from-answer-reduction and thm:answer-reduction. Four direct blueprint lemmas, statement plus proof 23 lines, leanok on node and proof; the Lean counterpart is the one-line application at MIPRE/MainTheorem.lean:36-38.",
+    "lemmas": [
+      "thm:halting",
+      "cor:compression-from-answer-reduction",
+      "thm:answer-reduction",
+      "thm:compression-target"
+    ],
+    "source": "mipre-formalization",
+    "scale": "theorem"
+  },
+  {
+    "source": "jasmin",
+    "path": "proofs/compiler/it_compiler_proof.v",
+    "start": 1333,
+    "end": 1478,
+    "move": "calc-chain",
+    "name": "",
+    "why": "Headline back-end correctness theorem: the compiled linear program simulates the stack program from back_end_pre to back_end_post for every function of the compilation unit. The glue is a chain of five relation transports: merging varmaps (wovm, from merge_varmaps_export_call_checkP, 1367-1376), linearization (wlin, from linear_exportcallP, 1400-1403), stack zeroization (wsz, from istack_zeroization_lprogP, 1413-1415) and tunneling (tunnel_program_invariants, 1419-1420), joined by wkequiv_io_trans through the four in-file relation lemmas trans_pre_ovm_lin_sz (1043), trans_post_ovm_lin (1166), trans_pre_lin_sz_lin_sz (1286) and trans_post_lin_sz (1313). Eight named lemmas, each proved above or imported from the pass proof it belongs to, each closing; no sorry/admit/Admitted in the file.",
+    "lemmas": [
+      "merge_varmaps_export_call_checkP",
+      "linear_exportcallP",
+      "istack_zeroization_lprogP",
+      "it_tunneling_proof.tunnel_program_invariants",
+      "trans_pre_ovm_lin_sz",
+      "trans_post_ovm_lin",
+      "trans_pre_lin_sz_lin_sz",
+      "trans_post_lin_sz"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "LerayHopf/R3/KappaChainExit.lean",
+    "start": 114,
+    "end": 143,
+    "move": "interface-lemma",
+    "name": "r3_kappaChain_exit",
+    "lemmas": [
+      "extendReindexedFamily_R3",
+      "extendReindexedFamily_R3_apply",
+      "aubinLionsPackage_R3_of_timeCompactness",
+      "localRellichInput_of_frechetKolmogorov",
+      "frechetKolmogorov_holds",
+      "viscous_lsc_under_strongL2",
+      "galerkin_limit_passage_R3"
+    ],
+    "signal": "r3_kappaChain_exit at 114-119, proof 120-143: set base at 122, transport via extendReindexedFamily_R3_apply at 123-124, package via aubinLionsPackage_R3_of_timeCompactness + localRellichInput_of_frechetKolmogorov frechetKolmogorov_holds at 125-127, energy class via viscous_lsc_under_strongL2 at 128-129, representative+pin via galerkin_limit_passage_R3 at 130-131, then the eleven-field witness packed at 132-143.",
+    "why": "Theorem scale: P2 prime exit-gate contract (campaign section 6), a typed interface object consumed field-by-field by the global capstone (GlobalCapstone.lean:108, 115-123). Glue 24 lines, one call per chain stage plus the record; seven project children proved above in the file or imported project modules; no code sorry/admit/axiom.",
+    "source": "leray-hopf",
+    "scale": "theorem"
+  },
+  {
+    "source": "utp-main",
+    "path": "dynamics/Timed_Traces.thy",
+    "start": 738,
+    "end": 741,
+    "move": "iff-split",
+    "name": "",
+    "why": "Equivalence of piecewise continuity under trace concatenation: the forward direction is piecewise_continuous_cat (728), the backward direction the two projection lemmas at 601 and 611; glue 2 lines, 3 children, file has no sorry or oops",
+    "lemmas": [
+      "piecewise_continuous_cat",
+      "piecewise_continuous_cat_left",
+      "piecewise_continuous_cat_right"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "name": "m71ExtinctionFromCalibratedTheories",
+    "path": "PoincareConjecture/PoincareLib/Geometry/RicciFlow/Extinction/Global/Assembly.lean",
+    "start": 41,
+    "end": 94,
+    "move": "witness",
+    "signal": "theorem m71ExtinctionFromCalibratedTheories at 41 (statement 41-84, proof 85-94), the only theorem of the file: obtain K0/S/start from m71GlobalFlowWithComparisons at 86-88, instantiate start at N and hprojective at 89-90 to get the global flow G with L, K, C and its comparison data, build the M71 input with m71GlobalInputFromTheories at 91-93, and close with the witness triple <G, L, m71GlobalFiniteExtinction N G input hM67 hM68 hM69> at 94.",
+    "why": "Theorem scale: M71's extinction theorem on one calibrated global flow, the producer consumed by M75 and M90. Glue is 9 lines and is three named project lemmas written above it: m71GlobalFlowWithComparisons (ComparisonProviders.lean:68) supplies the global flow, raw local topology and comparison data; m71GlobalInputFromTheories (PoincareInputs.lean:75-123) assembles the extinction input from the M02/M57-M59/M61/M64-M66 providers; m71GlobalFiniteExtinction (Main.lean:35-46) yields finite extinction with permanence. The proof introduces the existential witnesses G and L and the extinction conclusion E and returns them as the triple, hence witness. The site file and the three child files were read and contain no sorry, admit, Admitted or axiom.",
+    "lemmas": [
+      "m71GlobalFlowWithComparisons",
+      "m71GlobalInputFromTheories",
+      "m71GlobalFiniteExtinction"
+    ],
+    "source": "poincare-conjecture",
+    "scale": "theorem"
+  },
+  {
+    "source": "lean-atiyah-singer",
+    "path": "AtiyahSinger/Analysis/FullSymbolCohomologicalIndexTheorem.lean",
+    "start": 101,
+    "end": 119,
+    "move": "interface-lemma",
+    "name": "",
+    "why": "T02 in atlas form: the glue transports the integer index equality to the tangent K group through the cotangent/tangent interface lemma cotangentTopologicalIndex_eq instead of unfolding either index, then applies the tangent characteristic-number formula to the same full-symbol class; 3 direct lemmas and an 18-line proof.",
+    "lemmas": [
+      "index_eq_cotangentTopologicalIndex_fullSymbol",
+      "cotangentTopologicalIndex_eq",
+      "topologicalIndex_eq_tangent_characteristic_number"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "source": "munta",
+    "path": "TA/DBM_Zone_Semantics.thy",
+    "start": 92,
+    "end": 145,
+    "move": "calc-chain",
+    "name": "",
+    "why": "Soundness of the DBM semantics against the zone semantics, the main result of the file: each case builds the zone of the successor DBM by chaining the equalities [D''] = inv, [And D D''] = [D] cap inv, [up D] = [D] up, and for the action case the reset equality D_reset plus A22, rather than unfolding the DBM operations. Glue 54 lines, six named lemmas, no sorry/oops in the file.",
+    "lemmas": [
+      "up_correct",
+      "And_correct",
+      "dbm_abstr_zone_eq",
+      "DBM_reset'_sound",
+      "DBM_reset'_complete",
+      "reset_set"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "source": "coq-library-undecidability",
+    "path": "theories/MinskyMachines/MMA/mma_k_mma_2_compiler.v",
+    "start": 226,
+    "end": 233,
+    "move": "interface-lemma",
+    "name": "",
+    "why": "mma_k_mma_2_compiler is the files main theorem: the compiler for k-counter machines into 2-counter machines is obtained by instantiating the generic compiler interface, with the two locally proved facts about icomp plus the totality and functionality of the MMA semantics; the glue is six lines and no case analysis leaks out.",
+    "lemmas": [
+      "icomp_length_eq",
+      "mma_sss_total_ni",
+      "mma_sss_fun",
+      "icomp_sound"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "source": "apery",
+    "path": "theories/z3irrational.v",
+    "start": 246,
+    "end": 284,
+    "move": "calc-chain",
+    "name": "",
+    "why": "sigma is bounded term by term into a geometric sequence: hanson bounds lcm(1..n), NdeltaP bounds a n * z3 - b n, a_asympt bounds 1 / a n, while lt_0_Ka, lt_0_Kdelta and iter_lcmn_gt0 keep the factors positive; the chain of lt_creal_trans and le_lt_trans steps ends at C * (K2^3/33)^n, which Gseqlt1 puts below eps. Glue 39 lines, six project lemmas, all close.",
+    "lemmas": [
+      "hanson",
+      "NdeltaP",
+      "a_asympt",
+      "lt_0_Ka",
+      "lt_0_Kdelta",
+      "iter_lcmn_gt0"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "source": "tarjan",
+    "path": "theories/acyclic.v",
+    "start": 363,
+    "end": 371,
+    "move": "iff-split",
+    "name": "",
+    "why": "sccs_acyclicE is the chapter headline: testing every class of the given SCC sequence is exactly acyclicity. The glue converts the goal through acyclicP and preacyclic_sccsP and splits into the two directions (forward: each class of scc_seq is an scc by sccsP, so class_acyclicP applies; backward: sccs_ex extracts a class for any scc and class_acyclicP refutes its hypothesis). 9 lines, closes at 371; all five lemmas are proved above in the same file and close.",
+    "lemmas": [
+      "acyclicP",
+      "preacyclic_sccsP",
+      "class_acyclicP",
+      "sccsP",
+      "sccs_ex"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "source": "jordan-curve-theorem",
+    "path": "Jordan1.v",
+    "start": 1907,
+    "end": 1917,
+    "move": "interface-lemma",
+    "name": "",
+    "why": "Theorem bij_cA states the bijection API of cA on exd m and sits immediately after Definition surj_dart (Jordan1.v:1865) and Definition bij_dart (:1903), so later files use bijectivity without unfolding: Jordan2.v:4373 defines the functor instance McA bij_f as bij_cA m Md.k. Its proof packages the two API lemmas inj_cA (:1537) and surj_cA (:1871), each closing by Qed; the glue is six lines.",
+    "lemmas": [
+      "inj_cA",
+      "surj_cA"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "source": "wasmcert-coq",
+    "path": "theories/type_checker_reflects_typing.v",
+    "start": 1527,
+    "end": 1610,
+    "move": "iff-split",
+    "name": "",
+    "why": "b_e_type_checker_reflects_typing is the type-checker soundness and completeness headline: ReflectT applies tc_to_bet_list (which packages the large tc_to_bet_conj above it), ReflectF inducts on the typing derivation and closes each rule by a named checker or subtyping lemma; glue 84 lines, all children close.",
+    "lemmas": [
+      "tc_to_bet_list",
+      "values_subtyping_rev",
+      "instr_subtyping_weaken1",
+      "common_lab_cond",
+      "common_lab_rev",
+      "consume_subtyping",
+      "check_single_subtyping",
+      "check_subtyping",
+      "check_extend",
+      "c_types_agree_subtyping",
+      "values_subtyping_trans",
+      "values_subtyping_cat"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "source": "qcert",
+    "path": "compiler/core/Translation/Lang/CAMPtocNRAEnv.v",
+    "start": 190,
+    "end": 200,
+    "move": "calc-chain",
+    "name": "",
+    "why": "top-level correctness of the CAMP -> cNRAEnv translation: a three-step rewrite chain through the NRA encoding, each step a named correctness lemma, closed in 11 lines at 200. nraenv_core_of_camp_top_id is proved in the same file at 178; the two camp lemmas are the CAMPtoNRA translation theorems of the same project imported at the top of the file.",
+    "lemmas": [
+      "nraenv_core_of_camp_top_id",
+      "camp_trans_correct",
+      "camp_trans_top_nra_context"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "source": "analysis",
+    "path": "Analysis/Section_8_3.lean",
+    "start": 66,
+    "end": 157,
+    "move": "calc-chain",
+    "name": "",
+    "why": "Corollary 8.3.4 (the reals are uncountable): the glue first proves injectivity of A => sum over n in A of 10^(-n) by a single long calc chain that splits the two tsums at the least differing index and sums the geometric tail, then transports uncountability of Set Nat along the resulting equinumerosity. 92 lines, closes at 157; Uncountable.equiv and Uncountable.power_set_nat close.",
+    "lemmas": [
+      "Uncountable.equiv",
+      "Uncountable.power_set_nat"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "isabelle/CVM_Invariant/CVM_Abstract_Algorithm.thy",
+    "start": 803,
+    "end": 816,
+    "move": "case-split",
+    "name": "correctness",
+    "lemmas": [
+      "correctness_aux",
+      "deterministic_phase"
+    ],
+    "signal": "theorem correctness at 803-807, labelled Theorem th:concentration at 802: measure (run_steps xs) {w. abs(estimate w - A) > eps*A} <= delta. Proof at 808-816 is proof (cases card (set xs) >= n): True closed by (intro correctness_aux True assms); False rewrites run_steps xs to return_pmf (State (set xs) 1) via deterministic_phase and finishes by simp.",
+    "why": "Theorem scale: the abstract CVM algorithm concentration theorem, headline result of the abstract-algorithm theory that both concrete algorithm files import. Two named children in the same file: correctness_aux (731-776) and deterministic_phase (780-800). Glue is 9 lines (808-816): split on whether the buffer cardinality reaches n, one child per case. Site is 14 lines; children close; no sorry, admit, Admitted or oops in the file.",
+    "source": "cvm",
+    "scale": "theorem"
+  },
+  {
+    "source": "cedar-spec",
+    "path": "cedar-lean/Cedar/Thm/Authorization.lean",
+    "start": 114,
+    "end": 128,
+    "move": "iff-split",
+    "name": "",
+    "why": "Theorem scale: the iff is split at 118; the forward direction (119-123) rewrites with explicitly_permitted_iff_satisfying_permit (62-64) and explicitly_forbidden_iff_satisfying_forbid (52-54); the backward direction (124-128) derives the two conjuncts with forbid_trumps_permit (69-77) and allowed_only_if_explicitly_permitted (80-91). All four children are stated above it in the same file, close, and no sorry/admit/axiom occurs in the cached file.",
+    "lemmas": [
+      "forbid_trumps_permit",
+      "allowed_only_if_explicitly_permitted",
+      "explicitly_permitted_iff_satisfying_permit",
+      "explicitly_forbidden_iff_satisfying_forbid"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "thys/examples/sorting/Sorting_Introsort.thy",
+    "start": 51,
+    "end": 55,
+    "move": "per-callee-lemma",
+    "name": "introsort4_refine",
+    "signal": "lemma introsort4_refine: introsort4 xs l h <= introsort3 xs l h; unfolding introsort4_def introsort3_def; apply (rule refine_IdD); apply (refine_rcg introsort_aux4_correct final_insertion_sort2_correct[THEN refine_IdI]); by auto.",
+    "why": "Theorem scale: the assembly of the whole introsort from its two components (depth-limited heapsort/partition recursion and the final insertion pass), in the theory that ends the ROOT session. One correctness lemma per callee is applied by refine_rcg: introsort_aux4_correct (this file, 40) and final_insertion_sort2_correct (Sorting_Final_insertion_Sort.thy, 95), both written in this project. Glue is 4 lines, site is 5 lines, both children close, no sorry/admit/oops in the file.",
+    "lemmas": [
+      "introsort_aux4_correct",
+      "final_insertion_sort2_correct"
+    ],
+    "source": "isabelle-llvm",
+    "scale": "theorem"
+  },
+  {
+    "source": "seymour",
+    "path": "Seymour/Matroid/Regularity.lean",
+    "start": 286,
+    "end": 322,
+    "move": "iff-split",
+    "name": "",
+    "why": "StandardRepr.toMatroid_isRegular_iff_hasTuSigning, the headline result of the file and the lemma each 1-, 2- and 3-sum regularity proof rewrites with, is an iff split into two directions: forward, a regular representation A of the matroid is turned into a standard representation Sp on the same base by exists_standardRepr_isBase_isTotallyUnimodular, and its support is matched to S.B through support_eq_support_of_same_matroid_same_X and right_eq_right_of_union_eq_union to produce the TU signing Sp.B; backward, a signing B is padded to the full representation 1 ◫ B and discharged by toMatroid_isRegular_if_hasTuSigning. Six project lemmas, closes.",
+    "lemmas": [
+      "Matrix.IsTotallyUnimodular.exists_standardRepr_isBase_isTotallyUnimodular",
+      "support_eq_support_of_same_matroid_same_X",
+      "right_eq_right_of_union_eq_union",
+      "Matrix.IsTotallyUnimodular.isTuSigningOf_support",
+      "Matrix.toMatroid_isRegular_if_hasTuSigning",
+      "Matrix.IsTotallyUnimodular.one_fromCols"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "ConNF/Construction/Code.lean",
+    "start": 269,
+    "end": 277,
+    "name": "ConNF.Code.ext",
+    "move": "extensionality",
+    "lemmas": [
+      "members_nonempty",
+      "members_eq_of_represents",
+      "represents_cofunctional"
+    ],
+    "signal": "theorem Code.ext at 269-270 (extensionality of codes: equal type-β member sets force equality) proved at 270-277 by obtaining representatives with members_nonempty hc β and members_nonempty hd β, rewriting with members_eq_of_represents hcs and hdt, then exact represents_cofunctional.injective hcs hdt.",
+    "why": "Theorem scale: blueprint node prop:Code.ext, the extensionality statement that the membership relation and TSet.of_symmetric rest on (blueprint construction.tex:122-134). Glue is 9 lines, one application per child; the three children are written in this file: members_nonempty (264-267), members_eq_of_represents (254-262) and represents_cofunctional (227-228). All close and the file has no sorry, admit, Admitted or oops.",
+    "source": "con-nf",
+    "scale": "theorem"
+  },
+  {
+    "source": "apap",
+    "path": "APAP/Physics/AlmostPeriodicity.lean",
+    "start": 391,
+    "end": 424,
+    "move": "witness",
+    "name": "",
+    "why": "Blueprint node lp_ap: the glue applies lemma28 for the density of good tuples, picks a tuple with big_shifts, defines T as the set of shifts that keep it good, bounds #T with T_bound and the norm with just_the_triangle_inequality; four named lemmas, glue 34 lines.",
+    "lemmas": [
+      "lemma28",
+      "big_shifts",
+      "T_bound",
+      "just_the_triangle_inequality"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "blueprint/src/chapter/3-upper-bound-eval.tex",
+    "start": 29,
+    "end": 42,
+    "move": "witness",
+    "name": "thm:det-fun-complex-eval-le-corner-color-num",
+    "signal": "theorem thm:det-fun-complex-eval-le-corner-color-num at 29-35: D(eval) <= ceil(log2 chi_d(G)) + d; its proof at 36-42 has uses{lem:non-monochromatic-protocol-valid, lem:forbidden-pattern-project-multicorner} (line 38) and reads: Using Lemma forbidden-pattern-project-multicorner, find some coloring c of {x | sum_i x_i = 0} in chi_d(G) colors such that all monochromatic forbidden patterns are trivial. Then Lemma non-monochromatic-protocol-valid tells us that the non-monochromatic protocol for c is valid in time ceil(log2 chi_d(G)) + d (line 41)",
+    "lemmas": [
+      "lem:non-monochromatic-protocol-valid",
+      "lem:forbidden-pattern-project-multicorner"
+    ],
+    "why": "Theorem scale: the blueprint node for the paper upper bound, the headline protocol construction, stated before it is proved. The glue exhibits the colouring c supplied by forbidden-pattern-project-multicorner (2-lower-bound-eval.tex:18-32) as the witness the non-monochromatic protocol (def:non-monochromatic-protocol, 3-upper-bound-eval.tex:3-10) is built from, then discharges that protocol validity with non-monochromatic-protocol-valid (3-upper-bound-eval.tex:12-27); two direct lemmas, 14 lines, no sorry, admit, Admitted or oops. Evidence caveat: forbidden-pattern-project-multicorner is formalised and leanok, but non-monochromatic-protocol-valid has its lean and leanok lines commented out, so closure of that child is not evidenced in the Lean project.",
+    "source": "chandra-furst-lipton",
+    "scale": "theorem"
+  },
+  {
+    "source": "classfieldtheory",
+    "path": "ClassFieldTheory/IsNonarchimedeanLocalField/Unramified.lean",
+    "start": 303,
+    "end": 314,
+    "move": "iff-split",
+    "name": "",
+    "why": "Theorem scale: the final theorem of the file, maximality of the maximal unramified subextension, stated as an iff and split into two directions. Glue is 12 lines; the backward direction invokes two named theorems proved earlier in the same file (278-285 and 248-269) plus IsUnramified.n_dvd_f from RamificationInertia.lean. The two children are themselves theorem-scale (the universal property and the algEquiv form). Cached file has no sorry/admit/axiom.",
+    "lemmas": [
+      "nonempty_unramifiedExtension_algEquiv_of_isUnramified",
+      "nonempty_unramifiedExtension_alghom_of_dvd_f",
+      "IsUnramified.n_dvd_f"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "name": "AbelGalois",
+    "path": "theories/abel.v",
+    "start": 579,
+    "end": 586,
+    "move": "iff-split",
+    "signal": "split; first exact: radical_ext_solvable_ext. exact: (ext_solvable_by_radical wprim).",
+    "why": "Headline Abel-Galois theorem, an iff between solvable_by radical E F and solvable_ext E F. The two-line glue is the split; the forward direction is exactly radical_ext_solvable_ext (abel.v 551-570), the converse ext_solvable_by_radical (abel.v 384-390), both proved in the same file for this theorem.",
+    "lemmas": [
+      "radical_ext_solvable_ext",
+      "ext_solvable_by_radical"
+    ],
+    "source": "abel",
+    "scale": "theorem"
+  },
+  {
+    "source": "infinity-cosmos",
+    "path": "blueprint/src/content.tex",
+    "start": 1050,
+    "end": 1070,
+    "move": "iff-split",
+    "name": "",
+    "why": "Theorem scale and the chapter headline: a three-way equivalence whose proof is one implication per edge of a cycle, each edge discharged by one named lemma stated earlier in the same blueprint (qcat-htpy-cat-equiv for rep-to-2cat, invertible-2-cell for 2cat-to-htpy, equiv-htpy-equiv for 2cat-to-htpy data and the closing htpy-to-rep step). Glue is about seven prose lines; statement, proof and the lemmas are all in the same project.",
+    "lemmas": [
+      "lem:qcat-htpy-cat-equiv",
+      "lem:invertible-2-cell",
+      "lem:equiv-htpy-equiv"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "theories/Bertrand.v",
+    "start": 406,
+    "end": 464,
+    "move": "case-split",
+    "name": "Bertrand",
+    "signal": "case (Nat.le_gt_cases n (power 2 7)); apply postulate_correct_128; case (postulate_dec n); 2: apply no_prime_imp_spec_inegality; apply spec_fun_bound",
+    "why": "Headline result: a prime between n and 2n. The glue splits on n <= 2^7 (closed by postulate_correct_128, the finite check of Check128.v) and on postulate_dec; the positive branch takes the witness, the negative branch contradicts no_prime_imp_spec_inegality with the analytic bound spec_fun_bound. Four named project lemmas, all closed by Qed.",
+    "lemmas": [
+      "postulate_correct_128",
+      "postulate_dec",
+      "no_prime_imp_spec_inegality",
+      "spec_fun_bound"
+    ],
+    "source": "bertrand",
+    "scale": "theorem"
+  },
+  {
+    "source": "formal-proofs",
+    "path": "Verification/Semantics/AirEncoding/FinalCorrectness.lean",
+    "start": 35,
+    "end": 87,
+    "move": "witness",
+    "name": "",
+    "why": "The file calls it the main correctness theorem of the Stone AIR encoding. The 53-line glue introduces the three bad sets with use, discharges each cardinality bound by its own lemma (bad1_bound/bad2_bound/bad3_bound), then hands the autogenerated constraints to execution_exists via toConstraints, one application each.",
+    "lemmas": [
+      "bad1_bound",
+      "bad2_bound",
+      "bad3_bound",
+      "execution_exists",
+      "toConstraints"
+    ],
+    "scale": "theorem",
+    "reused": true
+  },
+  {
+    "path": "theories/ZornsLemma/Cardinals/Comparability.v",
+    "start": 289,
+    "end": 323,
+    "move": "case-split",
+    "name": "le_cardinal_total",
+    "lemmas": [
+      "premaximal_partial_injection",
+      "premaximal_pi_is_full_or_surj"
+    ],
+    "signal": "destruct Hpi as [Hpi|Hpi] (295) after apply premaximal_pi_is_full_or_surj in Hpi (294); the left case builds an injection from the full domain (296-302), the right case builds the inverse injection from surjectivity by constructive_definite_description (303-322); premaximal_partial_injection is applied at 292-293.",
+    "why": "Cantor comparability of cardinals (README: Cardinals/Comparability.v, given choice cardinals form a total order) is the file's headline theorem. The 35-line glue obtains a premaximal partial injection by the preorder form of Zorn (premaximal_partial_injection, 168-174), splits on the dichotomy premaximal_pi_is_full_or_surj (176-287) and discharges each case: domain full gives an injection, surjectivity gives its inverse. The split is exhaustive by the lemma; both children are written for this theorem in the same file and close with Qed, and the file has no sorry, admit, Admitted or oops.",
+    "source": "topology",
+    "scale": "theorem"
+  },
+  {
+    "source": "vellvm",
+    "path": "src/rocq/Theory/I2F/I2F_memory.v",
+    "start": 860,
+    "end": 904,
+    "move": "case-split",
+    "name": "",
+    "why": "Theorem scale: the memory handler of the finite instantiation simulates the infinite one. The glue is a six-way destruct on the memory event, and each branch is closed by the corresponding named per-event lemma proved earlier in the same file (I2F_Mempush, I2F_Mempop, I2F_allocate_dtyp, I2F_read_dvalue, I2F_write_dvalue, I2F_convert_impure); six direct lemmas, about 40 glue lines, and the file has no sorry or admit.",
+    "lemmas": [
+      "I2F_Mempush",
+      "I2F_Mempop",
+      "I2F_allocate_dtyp",
+      "I2F_read_dvalue",
+      "I2F_write_dvalue",
+      "I2F_convert_impure"
+    ],
+    "scale": "theorem",
+    "reused": true
+  }
+]

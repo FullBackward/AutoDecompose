@@ -1,0 +1,1488 @@
+{
+  "candidates": 96,
+  "already_registered": 0,
+  "strategy_A": 60,
+  "strategy_B": 45,
+  "found_by_both": 9,
+  "lincoln_petersen_estimate": 300,
+  "seeded": 45,
+  "seeds_found_again": 13,
+  "unregistered_estimate": 332,
+  "new": [
+    {
+      "url": "https://github.com/joewatt95/cvm",
+      "language": "isabelle",
+      "why": "ITP 2025 artefact: CVM algorithm correctness split across CVM_Invariant, CVM_Transforms and Neg_Assoc theories around a functional probabilistic invariant; BSD-2.",
+      "found_by": [
+        "A-isabelle",
+        "B-isabelle",
+        "discovery-1:B-isabelle"
+      ],
+      "strategies": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/lammich/isabelle_llvm",
+      "language": "isabelle",
+      "why": "Isabelle-LLVM refinement framework with an Introsort case study: semantics/refinement lemmas composed into correctness theorems; well-cited (Lammich).",
+      "found_by": [
+        "A-isabelle",
+        "B-isabelle",
+        "discovery-1:A-isabelle"
+      ],
+      "strategies": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/arthur742ramos/isa-blueprint",
+      "language": "isabelle",
+      "why": "IsabelleBlueprint: LaTeX/Markdown blueprints with \\uses{} dependency graphs checked against Isabelle/AFP and turned into agent-ready proof tasks; bundled example formalisations (gauss-sum, euclid-primes, afp-gale-stewart); MIT.",
+      "found_by": [
+        "A-isabelle",
+        "B-isabelle",
+        "discovery-1:B-isabelle"
+      ],
+      "strategies": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/leanprover-community/con-nf",
+      "language": "lean",
+      "why": "Consistency of Quine's New Foundations, proof complete: headline theorem statements in ConNF/Model/Result.lean over the stratified model construction, with CI",
+      "found_by": [
+        "A-lean",
+        "discovery-1:B-lean"
+      ],
+      "strategies": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/yijunyuan/hardernarasimhan",
+      "language": "lean",
+      "why": "Lean 4 formalization of the Harder-Narasimhan theorem with a published Lean dependency graph and CI; headline results assembled from named project lemmas",
+      "found_by": [
+        "A-lean",
+        "discovery-1:B-lean"
+      ],
+      "strategies": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/yaeldillies/cam-combi",
+      "language": "lean",
+      "why": "Digitises seven Cambridge combinatorics courses into Lean 4; each course's textbook theorems are stated and proved from named lemmas in chapter files, with CI",
+      "found_by": [
+        "A-lean",
+        "B-lean"
+      ],
+      "strategies": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/yaeldillies/chandra-furst-lipton",
+      "language": "lean",
+      "why": "Digitisation of the Chandra-Furst-Lipton paper: the main theorem and its lemmas stated and proved in project files with a push CI workflow",
+      "found_by": [
+        "A-lean",
+        "discovery-1:B-lean"
+      ],
+      "strategies": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/math-comp/abel",
+      "language": "rocq",
+      "why": "Abel-Ruffini and Abel-Galois theorems: example_not_solvable_by_radicals and AbelGalois in theories/abel.v built from named lemmas galois_solvable_by_radical, ext_solvable_by_radical and radical_solvable_ext plus xmathcomp support files",
+      "found_by": [
+        "A-rocq",
+        "B-rocq"
+      ],
+      "strategies": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/rocq-community/bertrand",
+      "language": "rocq",
+      "why": "Bertrand postulate (a prime between n and 2n) proved in theories/Bertrand.v from binomial and partition lemmas, with reuse in Partition.v",
+      "found_by": [
+        "A-rocq",
+        "B-rocq"
+      ],
+      "strategies": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/rocq-community/topology",
+      "language": "rocq",
+      "why": "One headline theorem per file: ZornsLemma.v, BanachFixedPoint.v, UrysohnsLemma.v, TietzeExtension.v and CSB.v each derive a main result from named lemmas",
+      "found_by": [
+        "A-rocq",
+        "discovery-1:B-rocq"
+      ],
+      "strategies": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/rocq-community/corn",
+      "language": "rocq",
+      "why": "Constructive real analysis: Fundamental Theorem of Algebra in fta/ and Fundamental Theorem of Calculus and Taylor in ftc/, over the algebraic hierarchy in reals/ and model/",
+      "found_by": [
+        "A-rocq",
+        "B-rocq"
+      ],
+      "strategies": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/mit-pdos/perennial",
+      "language": "rocq",
+      "why": "Iris-based verification via goose: adequacy theorems goose_crash_adequacy, goose_dist_adequacy and goose_dist_crash_adequacy joined to end-to-end safety of crashfs and netfs",
+      "found_by": [
+        "A-rocq",
+        "B-rocq"
+      ],
+      "strategies": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/rocq-community/coqeal",
+      "language": "rocq",
+      "why": "Coq Effective Algebra Library: correctness and data-refinement theorems (Smith normal form, Kaplansky, coherent/edr/fpmod) in theory/ and refinements/",
+      "found_by": [
+        "A-rocq",
+        "B-rocq"
+      ],
+      "strategies": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/rocq-community/reglang",
+      "language": "rocq",
+      "why": "Kleene theorem, constructive Myhill-Nerode, DFA minimisation and two-way-automata translations, each main theorem proved from named lemmas in its own file",
+      "found_by": [
+        "discovery-1:A-rocq",
+        "discovery-1:B-rocq"
+      ],
+      "strategies": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/rocq-community/gaia",
+      "language": "rocq",
+      "why": "Bourbaki Elements of Mathematics formalised book by book (theory of sets, numbers, ordinals, Schutte), chapter-scale theorems from named lemmas",
+      "found_by": [
+        "discovery-1:A-rocq",
+        "discovery-1:B-rocq"
+      ],
+      "strategies": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/yuanhez/lean-stat-learning-theory",
+      "language": "lean",
+      "why": "First comprehensive Lean 4 statistical learning theory formalization (ICML 2026 paper): theorem library with named lemmas and CI",
+      "found_by": [
+        "A-lean",
+        "discovery-1:A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/sel4proj/jormungand",
+      "language": "isabelle",
+      "why": "Isabelle/HOL theories for Backwards and Forwards with Separation Logic: Hoare and strongest-postcondition separation-logic tactics plus a capDL-api/sys-init case study built from framed separation-logic lemmas.",
+      "found_by": [
+        "B-isabelle",
+        "discovery-1:B-isabelle"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/shabnamrad/veriso",
+      "language": "isabelle",
+      "why": "VLDB 2025 isolation-verification framework; per-protocol proof theories (S2PL_Proof.thy, Tapir.thy/Tapir_Falsification.thy) discharging RA/UA/TCC/SER guarantees from framework lemmas.",
+      "found_by": [
+        "A-isabelle",
+        "discovery-1:A-isabelle"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/sigp/verified-consensus",
+      "language": "isabelle",
+      "why": "Ethereum Capella consensus in Isabelle/HOL: functional-correctness proofs (Process_Epoch_O_Specs) relating the Python spec to optimised epoch processing, over Hoare/VCG and Word_Lib lemmas, ROOT session Verified_Consensus_Proofs.",
+      "found_by": [
+        "B-isabelle",
+        "discovery-1:B-isabelle"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/yawara/odd-order",
+      "language": "lean",
+      "why": "Complete Lean 4 Feit-Thompson odd order theorem (feitThompson, axiom-clean) built from the project's finite-group theory lemmas; book-scale main theorem with named children",
+      "found_by": [
+        "A-lean"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/lvpgroup/timsort",
+      "language": "isabelle",
+      "why": "Verified C TimSort in Isabelle/HOL Simpl: the correctness proof is split into TimSortLemma, per-procedure gallop lemmas in GallopA and the TimSort/TimSortProc specifications, with generated C and random tests.",
+      "found_by": [
+        "B-isabelle",
+        "discovery-1:B-isabelle"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/vidick/mipre-formalization",
+      "language": "lean",
+      "why": "MIP* = RE: MainTheorem.lean proves halting_reduces_to_gameValue and mipstar_eq_re by assembling the whole development, with a Mathlib-only statement file",
+      "found_by": [
+        "A-lean"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/dmarmsoler/isabelle-stark",
+      "language": "isabelle",
+      "why": "STARK formalisation with four ROOT sessions (Stark_Core, Stark_Completeness, Stark_Soundness, Stark_Examples): ten selected publication results exported by Publication_Manifest from named completeness and soundness theories.",
+      "found_by": [
+        "B-isabelle",
+        "discovery-1:B-isabelle"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/uda-lab/leray-hopf",
+      "language": "lean",
+      "why": "Leray-Hopf weak existence for Navier-Stokes on the 3-torus and R3: four kernel-only capstone existence theorems assembled over a published per-declaration dependency graph",
+      "found_by": [
+        "A-lean"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/frenzymath/poincare-conjecture",
+      "language": "lean",
+      "why": "Lean 4 formalisation of the Poincare conjecture with an 18-chapter blueprint; headline theorems assembled from named chapter lemmas",
+      "found_by": [
+        "B-lean"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/scottnarmstrong/liebthirring",
+      "language": "lean",
+      "why": "Stability of matter: extended-energy and quadratic-form lower bounds assembled from the kinetic Lieb-Thirring inequality and Baxter's electrostatic inequality, each a named lemma",
+      "found_by": [
+        "A-lean"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/mo271/formalbook",
+      "language": "lean",
+      "why": "Lean 4 blueprint formalisation of chapters of Proofs from THE BOOK; one chapter theorem per file built from named lemmas",
+      "found_by": [
+        "B-lean"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/gersh/ternary-goldbach-lean",
+      "language": "lean",
+      "why": "Ternary Goldbach theorem behind a reviewed blueprint and dependency graph; ternary_goldbach is a blueprint node proved from named lemmas",
+      "found_by": [
+        "A-lean"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/b-mehta/unit-fractions",
+      "language": "lean",
+      "why": "Lean 4 blueprint formalisation of the Bloom unit-fractions preprint; main results proved from named auxiliary lemmas",
+      "found_by": [
+        "B-lean"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/ctchou/automatatheory",
+      "language": "lean",
+      "why": "Automata theory over finite and infinite words: main results in RegLang.lean, OmegaRegLang.lean and DetMullerLang.lean proved from named closure lemmas; being ported to CSLib",
+      "found_by": [
+        "A-lean"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/b-mehta/abc-exceptions",
+      "language": "lean",
+      "why": "Lean 4 blueprint formalisation of the Browning-Lichtman-Teravainen ABC exceptions paper; paper theorems split into named lemmas",
+      "found_by": [
+        "B-lean"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/whysoserioushah/brauergroup",
+      "language": "lean",
+      "why": "Brauer group formalization with a leanblueprint site and PDF, so each lemma and main theorem is a node in a uses-dependency graph",
+      "found_by": [
+        "A-lean"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/fpvandoorn/bonnanalysis",
+      "language": "lean",
+      "why": "Lean 4 blueprint analysis seminar project; seminar theorems stated as blueprint nodes and proved from named lemmas",
+      "found_by": [
+        "B-lean"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/zetetic-dhruv/formal-learning-theory-kernel",
+      "language": "lean",
+      "why": "Formalized learning theory in Lean 4 under formal-learning-theory-kernel/ with a Verification directory, a blueprint PDF and CI",
+      "found_by": [
+        "A-lean"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/yaeldillies/toric",
+      "language": "lean",
+      "why": "Lean 4 blueprint formalisation of toric varieties; chapter theorems built from named lemmas across files",
+      "found_by": [
+        "B-lean"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/formalizedformallogic/foundation",
+      "language": "lean",
+      "why": "Formalized mathematical logic in Lean 4: first-order completeness, Gentzen cut-elimination, Goedel incompleteness, Loewenheim-Skolem and provability-logic completeness over shared Logic/Calculi/Semantics modules",
+      "found_by": [
+        "A-lean"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/acmepjz/lean-iwasawa",
+      "language": "lean",
+      "why": "Lean 4 blueprint formalisation of Iwasawa theory; main theorems decomposed into named lemmas with a blueprint dependency graph",
+      "found_by": [
+        "B-lean"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/evolvingprograms/erdos-simonovits-degeneracy",
+      "language": "lean",
+      "why": "Lean 4 formalization of a research paper (agent-produced): Theorems 1.2/1.3 and corollaries in proofs/Theorem*.lean assembled from named lib lemmas (Lemma42, Lemma44, SamplingR, AssemblyR)",
+      "found_by": [
+        "A-lean"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/ahhwuhu/zeta_3_irrational",
+      "language": "lean",
+      "why": "Lean 4 blueprint formalisation of a paper proving zeta(3) irrational; paper theorem split into named lemmas",
+      "found_by": [
+        "B-lean"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/rocq-community/comp-dec-modal",
+      "language": "rocq",
+      "why": "Soundness, completeness, decidability and small-model theorems for Hilbert and Gentzen calculi of K, K*, CTL and PDL, on shared modular_hilbert.v and sltype.v plus per-logic lemma files",
+      "found_by": [
+        "A-rocq"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/remydegenne/clt",
+      "language": "lean",
+      "why": "Lean 4 blueprint formalisation of the central limit theorem; main theorem assembled from named lemmas",
+      "found_by": [
+        "B-lean"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/rocq-community/almost-full",
+      "language": "rocq",
+      "why": "Ramsey theorem and almost-full relations for termination: AlmostFull.v, AFConstructions.v and AlmostFullInduction.v build the main results from named lemmas",
+      "found_by": [
+        "A-rocq"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/kkytola/extremevalueproject",
+      "language": "lean",
+      "why": "Lean 4 blueprint formalisation of the Fisher-Tippett-Gnedenko theorem; theorem-scale nodes proved from named lemmas",
+      "found_by": [
+        "B-lean"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/math-comp/poplmark",
+      "language": "rocq",
+      "why": "POPLmark challenge solutions ppmk.v and ppmk2.v: type soundness and metatheory for System F-sub assembled from named lemmas",
+      "found_by": [
+        "A-rocq"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/command-master/lean-bourgain",
+      "language": "lean",
+      "why": "Lean 4 blueprint formalisation of the Bourgain extractor and finite-field Szemeredi-Trotter; main results assembled from named lemmas",
+      "found_by": [
+        "B-lean"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/math-comp/cad",
+      "language": "rocq",
+      "why": "MathComp formalization of Collins cylindrical algebraic decomposition, its algorithm-correctness result proved across theories/ from named auxiliary lemmas",
+      "found_by": [
+        "A-rocq"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/verified-zkevm/vcvio",
+      "language": "lean",
+      "why": "Lean cryptographic-proof library and ArkLib dependency; security theorems such as SLH-DSA SUF-CMA built from named game-hop lemmas",
+      "found_by": [
+        "B-lean"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/rocq-community/chapar",
+      "language": "rocq",
+      "why": "Causal consistency: general Theorem CausallyConsistent in Framework/KVStore.v plus per-algorithm CausallyConsistent lemmas in Algorithms/KVSAlg1-3.v and verified client programs",
+      "found_by": [
+        "A-rocq"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/oliver-butterley/spectralthm",
+      "language": "lean",
+      "why": "Lean 4 formalisation of the spectral theorem; the main theorem is assembled from named lemmas",
+      "found_by": [
+        "B-lean"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/rocq-community/dedekind-reals",
+      "language": "rocq",
+      "why": "Dedekind real numbers: completeness theorem in theories/Completeness.v built over Cut, Additive, Multiplication, Order and Archimedean modules",
+      "found_by": [
+        "A-rocq"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/shetzl/autth",
+      "language": "lean",
+      "why": "Lean 4 formalisation of automata-theory results with a blueprint; theorems proved from named lemmas",
+      "found_by": [
+        "B-lean"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/rocq-community/buchberger",
+      "language": "rocq",
+      "why": "Verified Buchberger algorithm for Groebner bases: algorithm correctness in theories/ from a constructive proof of Dickson lemma",
+      "found_by": [
+        "A-rocq"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/rocq-community/graph-theory",
+      "language": "rocq",
+      "why": "Formalised graph theory: Menger, Hall and Wagner theorems and the treewidth-two excluded-minor characterisation, each a headline theorem built from named lemmas in theories/core and theories/planar",
+      "found_by": [
+        "B-rocq"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/rocq-community/stalmarck",
+      "language": "rocq",
+      "why": "Certified Coq implementation of Stalmarck tautology-checking algorithm with its proof of correctness in theories/",
+      "found_by": [
+        "A-rocq"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/geocoq/geocoq",
+      "language": "rocq",
+      "why": "Euclid Elements and Tarski geometry: one named lemma per file in theories/Elements/OriginalProofs feeding the book propositions, plus high-level Elements theorems",
+      "found_by": [
+        "B-rocq"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/rocq-community/huffman",
+      "language": "rocq",
+      "why": "Rocq proof of correctness of the Huffman coding algorithm in theories/, extracted to OCaml",
+      "found_by": [
+        "A-rocq"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/thery/coqprime",
+      "language": "rocq",
+      "why": "Pocklington and elliptic-curve primality certificates: certificate soundness proved from Lagrange, Euler-Fermat and modular-arithmetic lemmas; dependency of hydra-battles",
+      "found_by": [
+        "B-rocq"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/filipmaric/imo",
+      "language": "isabelle",
+      "why": "Formalised IMO shortlist solutions in Isabelle/HOL, one .thy per problem (solutions/IMO_2018_SL_C3_sol.thy, IMO_2017_SL_N1_sol.thy, ...) plus statements/ and a ROOT session; MIT.",
+      "found_by": [
+        "A-isabelle"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/rocq-community/coq-100-theorems",
+      "language": "rocq",
+      "why": "One file per famous theorem (pigeonhole, Konigsberg bridges, ballot, mean value), each proved from named lemmas; depends on Coquelicot",
+      "found_by": [
+        "B-rocq"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/meithecatte/isabelle-math-contests",
+      "language": "isabelle",
+      "why": "Olympiad proofs (IMO 2019 P1/P5, USAMO 2006 P5, APMO 2013 P4, Polish MO, Canada MO) as per-contest .thy files with shared Cyclic_Groups/Dihedral_Groups lemmas and a ROOT session.",
+      "found_by": [
+        "A-isabelle"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/mit-plv/koika",
+      "language": "rocq",
+      "why": "Verified compiler for rule-based hardware: coq/CompilerCorrectness/{Correctness,CircuitCorrectness,LoweringCorrectness}.v assemble per-pass simulation lemmas, with an RV32I pipelined core example",
+      "found_by": [
+        "B-rocq"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/wasmcert/wasmcert-isabelle",
+      "language": "isabelle",
+      "why": "Wasm mechanisation (CPP 2018, updated); WebAssembly/Wasm_Soundness.thy states and proves type soundness from local lemmas; BSD-2.",
+      "found_by": [
+        "A-isabelle"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/logsem/iriswasm",
+      "language": "rocq",
+      "why": "Iris-Wasm PLDI 2023 artifact: the Wasm stack module is verified one function per file (examples/stack/function/*.v) and assembled in stack_instantiation.v",
+      "found_by": [
+        "B-rocq"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/pirapira/eth-isabelle",
+      "language": "isabelle",
+      "why": "EVM in Lem with Isabelle/HOL proofs: EvmFacts, ContractSem, RelationalSem and Hoare/separation-algebra directories, plus verified example contracts; 244 stars.",
+      "found_by": [
+        "A-isabelle"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/mit-plv/kami",
+      "language": "rocq",
+      "why": "Modular verification of parametric hardware: per-module correctness lemmas and the 4-stage RISC-V pipeline used by bedrock2's end-to-end theorem",
+      "found_by": [
+        "B-rocq"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/elastic/elasticsearch-formal-models",
+      "language": "isabelle",
+      "why": "Formal models of replication/coordination algorithms; proofs that the monadic implementation is equivalent to the functional one and that each slot is consistent (OneSlot.thy, Zen.thy); Apache-2.",
+      "found_by": [
+        "A-isabelle"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://gitlab.inria.fr/flocq/flocq",
+      "language": "rocq",
+      "why": "Floating-point arithmetic library vendored by CompCert: rounding, ulp and error-bound results proved from named lemmas",
+      "found_by": [
+        "B-rocq"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/shenghaoyuan/certsbf",
+      "language": "isabelle",
+      "why": "Solana rBPF VM in Isabelle/HOL; ConsistencyProof.thy and VerifierSafety.thy target Theorem 6.3 and Lemma 6.4 over SBPF semantics (Rust + Isabelle, no licence file).",
+      "found_by": [
+        "A-isabelle"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://gitlab.inria.fr/coquelicot/coquelicot",
+      "language": "rocq",
+      "why": "Real analysis layered as named lemmas (limits, derivatives, integrals, mean value and fundamental theorem of calculus); dependency of coq-100-theorems",
+      "found_by": [
+        "B-rocq"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/jix/sortnetopt",
+      "language": "isabelle",
+      "why": "Verified certificate checker for sorting-network lower bounds (35 comparisons for 11 inputs, 39 for 12); Sorting_Network_Bound.thy plus Checker_Codegen.thy with main theorem check_proof_get_bound_spec.",
+      "found_by": [
+        "A-isabelle"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/mit-pdos/fscq",
+      "language": "rocq",
+      "why": "FSCQ/DFSCQ and SFSCQ verified crash-safe file systems (SOSP 2017, OSDI 2018): per-operation specifications combined into filesystem correctness",
+      "found_by": [
+        "B-rocq"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/skolodynski/isarmathlib",
+      "language": "isabelle",
+      "why": "Long-running Isabelle/ZF library of formalised mathematics with a ROOT session (IsarMathLib) and textbook-style theorems proved from named lemmas; 20 stars.",
+      "found_by": [
+        "A-isabelle"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/dominique-unruh/hksu-verification",
+      "language": "isabelle",
+      "why": "Isabelle formalisation accompanying Post-Quantum Verification of Fujisaki-Okamoto (eprint 2020/962): the FO security result is discharged through 81 named game-hop .qrhl proof files over 16 .thy specification and proof theories (FO, Punc, T).",
+      "found_by": [
+        "B-isabelle"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/marlowe-lang/marlowe",
+      "language": "isabelle",
+      "why": "Marlowe smart-contract semantics with a dedicated isabelle/ session and build-marlowe-proofs target; Apache-2, 174 stars.",
+      "found_by": [
+        "A-isabelle"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/lammich/lrat_isa",
+      "language": "isabelle",
+      "why": "Verified LRAT UNSAT certificate checker: end-to-end lrat_checker_correct assembled from named abstract-transition (Relaxed_Assignment), DIMACS grammar (CNF_Grammar) and per-data-structure theories over Isabelle-LLVM.",
+      "found_by": [
+        "B-isabelle"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://gitlab.com/hilbert-10/dprm",
+      "language": "isabelle",
+      "why": "Isabelle verification of the Davis-Putnam-Robinson-Matiyasevich theorem; a large theorem-scale development (licence and ROOT not visible on the page).",
+      "found_by": [
+        "A-isabelle"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/wimmers/poly-reductions",
+      "language": "isabelle",
+      "why": "NP-completeness in Isabelle/HOL: one theory per reduction (3CNF-SAT to Set Cover/Clique, HC to UHC, VC to FNS/HC) with Karp21/All_Reductions_Poly as the entry point and NREST cost analysis.",
+      "found_by": [
+        "B-isabelle"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/isabelle-utp/interaction-trees",
+      "language": "isabelle",
+      "why": "Interaction trees in Isabelle/HOL with a CSP model: monad and coinduction lemmas feeding the CSP semantics results; 11 stars.",
+      "found_by": [
+        "A-isabelle"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/jurban/isa_top_autoform2",
+      "language": "isabelle",
+      "why": "Autoformalised chapter development (Top1.thy, Top1_Ch5_8.thy, ROOT, top1.tex) whose CLAUDE.md instructs to split big theorems into named helper lemmas and to grow the proof sorry-first.",
+      "found_by": [
+        "B-isabelle"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/dastrial/llmprover",
+      "language": "rocq",
+      "why": "Rocq LLM prover with an explicit decomposition mode: agent splits a goal into helper lemmas, proposes a parent script over them, resolves dependencies via Print Assumptions; coqc-checked proof logs for 75 miniF2F problems",
+      "found_by": [
+        "A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/jurban/isa_geotop1",
+      "language": "isabelle",
+      "why": "Autoformalisation of geometric topology: GeoTop.thy with ROOT, STMT_INDEX and THEOREMS_AND_DEFS (statements indexed and stated before proof), phase plans and bck/CHANGES files.",
+      "found_by": [
+        "B-isabelle"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/nus-program-verification/autorocq",
+      "language": "rocq",
+      "why": "Agentic Rocq theorem prover for program verification: proof_controller/proof_tree with a plan tool that farms out lemmas, plus committed AutoRocq-bench and eval/final proof scripts",
+      "found_by": [
+        "A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/maxhaslbeck/proofground2020-solutions",
+      "language": "isabelle",
+      "why": "Proof Ground 2020 competition solutions in Isabelle/HOL: one Submission.thy per problem (infinitude_of_primes, substrings, concurrency, favourite_computer_game) plus committee sample solutions.",
+      "found_by": [
+        "B-isabelle"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/lean-prover/lean-prover",
+      "language": "lean",
+      "why": "Autonomous Lean 4 prover with lemma planning (PROVER_LEMMA_PLAN=1: model proposes <=3 helper lemmas, each statement-checked and proved in a bounded sub-loop) and released proof corpora (corpus/lean_proved.jsonl, synth.jsonl)",
+      "found_by": [
+        "A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/dominique-unruh/qrhl-local-variables-isabelle",
+      "language": "isabelle",
+      "why": "Isabelle/HOL formalisation accompanying Local Variables and Quantum Relational Hoare Logic: nine theories (Adversary_Rule, Rename_Locals, Locals_Up_Block, Helping_Lemmas) with ROOT and document/, proving the paper rules from helper lemmas.",
+      "found_by": [
+        "B-isabelle"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/goedel-lm/goedel-prover",
+      "language": "lean",
+      "why": "Goedel-Prover v1 release: Lean 4 prover/eval harness plus the released Lean-workbook-proofs dataset of 29.7K formal proofs for Lean Workbook problems",
+      "found_by": [
+        "A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/sel4proj/tlb",
+      "language": "isabelle",
+      "why": "Formal Isabelle/HOL ARMv7 TLB model: layered TLB_No_ASID/TLB_ASID/TLB_PDC theories with main results user_safe_assignment, kernel_safe_assignment and context_switch_invariants under Logic/.",
+      "found_by": [
+        "B-isabelle"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/jiyuan-tan/paperformalizer",
+      "language": "lean",
+      "why": "Author-in-the-loop paper formalizer: agent skill .claude/skills/paperformalizer/SKILL.md and planning/refereeing pipeline that turns each paper theorem into a Lean-verified Papers/<Slug> development",
+      "found_by": [
+        "A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/roozbeh-mohit/imo-steps",
+      "language": "lean",
+      "why": "Lean 4 IMO proofs deliberately cut into named proof-step lemmas (mylemma_1, mylemma_2, ...) plus 20 complete solutions, the closest thing to a lemma-hole skeleton",
+      "found_by": [
+        "discovery-1:B-lean"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/jascal/i-orca",
+      "language": "isabelle",
+      "why": "LLM proof DSL with Isabelle/Isar as kernel backend; ships agent-oriented skills/MCP workflow and eleven generated example corpora of compiled .thy proofs (fieldrun, tropical geometry, Johnson-Lindenstrauss) reported sorry-free",
+      "found_by": [
+        "A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/teorth/ieantn",
+      "language": "lean",
+      "why": "IEANTN analytic number theory Lean 4 project with 593 solution files and one node per paper (Conclusions/Challenge per node), a clean statement-object import graph",
+      "found_by": [
+        "discovery-1:B-lean"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/facebookresearch/atlas-lean",
+      "language": "lean",
+      "why": "ATLAS autoformalized textbook library at scale: MathlibExt, CSLibExt and PhyslibExt hold Lean 4 statements and proofs translated from undergraduate/graduate textbooks, some libraries fully proved",
+      "found_by": [
+        "A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/mortarsanjaya/imosllean4",
+      "language": "lean",
+      "why": "Lean 4 IMO shortlist solutions and generalisations, each problem file proved from helper lemmas, used as a prover benchmark",
+      "found_by": [
+        "discovery-1:B-lean"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/mathtician/rocq_llm_bench",
+      "language": "rocq",
+      "why": "Benchmark of LLM coding agents on sandboxed Rocq proving: releases a lemma-decomposition meta-harness (python3 lemma.py prove L --hint; each lemma verifier-graded and spliced into the parent proof) and prompts/default.md",
+      "found_by": [
+        "A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/uwplse/verdi-raft",
+      "language": "rocq",
+      "why": "Coq-verified Raft: election safety, log matching and linearizability proved from named invariant lemmas in theories/; cited by Verdi (registered)",
+      "found_by": [
+        "discovery-1:B-rocq"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/balazstothofficial/isabelle-agent-hooks",
+      "language": "isabelle",
+      "why": "Isabelle proof-discipline toolkit for coding agents: skill bundle skills/isabelle-proof-hooks plus searchable-method registry, teaching skeleton-then-fill (write structured proof with sorry, fill one closer per search, split into smaller haves)",
+      "found_by": [
+        "A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/coq-quantum/coqq",
+      "language": "rocq",
+      "why": "MathComp-based Rocq quantum programming logic: soundness and refinement theorems plus a Dirac-notation decision procedure, with per-program case studies",
+      "found_by": [
+        "discovery-1:B-rocq"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/ppetr/llm-math-prover",
+      "language": "isabelle",
+      "why": "Tool-calling LLM agent over an Isabelle/HOL proof checker that saves each kernel-verified result as a downloadable .thy theory, so proof outputs are Isabelle theory files",
+      "found_by": [
+        "A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/affeldt-aist/infotheo",
+      "language": "rocq",
+      "why": "Rocq information theory and coding: Shannon source/channel theorems and coding bounds built as layers of named lemmas over MathComp-Analysis",
+      "found_by": [
+        "discovery-1:B-rocq"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/competemath/tengoku",
+      "language": "lean",
+      "why": "AI-first Lean 4 library aggregating machine-checked theorems from many Lean projects on one toolchain, each linked to source commit and licence; includes AGENTS.md/CLAUDE.md/SEED.md guidance for agentic provers",
+      "found_by": [
+        "A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/math-comp/real-closed",
+      "language": "rocq",
+      "why": "Rocq real closed fields: fundamental theorem of algebra and quantifier-elimination decision procedure proved from named algebraic lemmas (MathComp ecosystem, listed on math-comp papers page)",
+      "found_by": [
+        "discovery-1:B-rocq"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/loganrjmurphy/leaneuclid",
+      "language": "lean",
+      "why": "Lean 4 formal system E plus 173 manually formalized Euclidean geometry statements and proofs (48 Elements propositions, 125 UniGeo), with an SMT diagrammatic-reasoning layer and an autoformalization equivalence checker",
+      "found_by": [
+        "A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/adampetcher/fcf",
+      "language": "rocq",
+      "why": "Foundational Cryptography Framework in Rocq: computational-model security proofs by game hops, ElGamal IND-CPA examples; carried as an fcf submodule of VST (registered)",
+      "found_by": [
+        "discovery-1:B-rocq"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/deepseek-ai/deepseek-prover-v1.5",
+      "language": "lean",
+      "why": "Official DeepSeek-Prover-V1.5 Lean 4 release: prover/ proof-search harness (RMaxTS agent, launch/summarize) plus configs and datasets used for miniF2F and Lean-workbook proof generation",
+      "found_by": [
+        "A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/mit-plv/rupicola",
+      "language": "rocq",
+      "why": "Relational-compilation toolkit: per-example theorems relating a Gallina source program to the generated low-level code (checksums, CRC32, UTF-8, Murmur3); fiat-crypto submodule",
+      "found_by": [
+        "discovery-1:B-rocq"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/trishullab/copra",
+      "language": "mixed",
+      "why": "In-context proof agent with prompts and DFS search for Lean 4, Coq and Isabelle; can save generated proofs to proof.txt and logs under .log/proofs",
+      "found_by": [
+        "A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/mit-plv/rewriter",
+      "language": "rocq",
+      "why": "Verified PHOAS rewriter: well-formedness and interpretation-correctness theorems assembled from parametricity lemmas, used to build a rewriter from a rule list; fiat-crypto submodule",
+      "found_by": [
+        "discovery-1:B-rocq"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/cuihtlauac/eliasfano-rocq",
+      "language": "rocq",
+      "why": "Elias-Fano encoding in Rocq produced by an LLM agent and kernel-checked: eight conjectures proved at the Z level plus an Int63/PArray refinement proving the compatibility theorems",
+      "found_by": [
+        "A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/tobias-rothmann/polynomial-commitment-schemes",
+      "language": "isabelle",
+      "why": "KZG and BatchKZG in Isabelle, one file per property (KZG_correct, KZG_hiding, KZG_eval_bind, KZG_knowledge_sound): a theorem-per-file decomposition of a paper.",
+      "found_by": [
+        "discovery-1:B-isabelle"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/dmxlarchey/kruskal-theorems",
+      "language": "rocq",
+      "why": "Kruskal tree theorem (af_ltree_homeo_embed) and Vazsonyi theorem derived from the more general Kruskal-Veldman result via relational morphisms",
+      "found_by": [
+        "discovery-1:A-rocq"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/vtrelat/tarjan",
+      "language": "isabelle",
+      "why": "Isabelle/HOL verification of a set-based Tarjan SCC algorithm (Isabelle/ session plus LaTeX paper): algorithmic correctness proof with named invariant lemmas.",
+      "found_by": [
+        "discovery-1:B-isabelle"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/uqcyber/veriopt-releases",
+      "language": "isabelle",
+      "why": "Each GraalVM IR optimisation pass in Optimizations/ is proved semantics-preserving against Semantics/, with per-pass proofs in Proofs/ (family of near-identical pass lemmas)",
+      "found_by": [
+        "discovery-1:A-isabelle"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/diekmann/iptables_semantics",
+      "language": "isabelle",
+      "why": "Verified iptables firewall ruleset analysis (ROOTS, thy/, haskell_tool): semantics-correctness main theorems built from per-construct lemmas; upstream development behind the AFP entry.",
+      "found_by": [
+        "discovery-1:B-isabelle"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/shabnamrad/epplus",
+      "language": "isabelle",
+      "why": "Eiger-PORT+ causally consistent transactions: main theory EP+.thy with proof EP+_Proof.thy split into named children Commutes, Invariants, Measure, Reduction, Refinement, Sorted",
+      "found_by": [
+        "discovery-1:A-isabelle"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/jurban/isa_algtop1",
+      "language": "isabelle",
+      "why": "Autoformalised algebraic topology in Isabelle (tst/AlgTop.thy, ALL_STATEMENTS.txt, CLAUDE.md): results stated first and proved from helper lemmas; agent-made stratum, companion of munkres-isabelle.",
+      "found_by": [
+        "discovery-1:B-isabelle"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/opensourceverif/solana-x64-semantics",
+      "language": "isabelle",
+      "why": "Isabelle/HOL 2024 x64 binary semantics: x64Syntax/x64Semantics plus x64DecodeProof, x64EncodeProof, x64EquivalenceProof, where Theorem 1 (encoder-decoder equivalence) is assembled from Lemma 1 and Lemma 2",
+      "found_by": [
+        "discovery-1:A-isabelle"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/digitsum/isabelle-kruskal",
+      "language": "isabelle",
+      "why": "Isabelle/HOL specification and verification of Kruskal MST (Kruskal.thy over Graph_Definition.thy, SeprefUF.thy, Union_Find2.thy; thesis): correctness theorem over union-find and graph lemmas.",
+      "found_by": [
+        "discovery-1:B-isabelle"
+      ],
+      "strategies": [
+        "B"
+      ]
+    },
+    {
+      "url": "https://github.com/opensourceverif/certsbf",
+      "language": "isabelle",
+      "why": "Isabelle/HOL semantics of the Solana SBPF/eBPF ISA with assembler/disassembler theorems, consistency proof (Theorem 6.3) and verifier proof (Lemma 6.4) built over the semantics theories",
+      "found_by": [
+        "discovery-1:A-isabelle"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/lammich/isafracsep",
+      "language": "isabelle",
+      "why": "ITP 2026 artifact Fractional Separation Logic in Isabelle/LLVM: fractional separation algebra, frame inference and Isabelle/LLVM reasoning infrastructure, used to verify a parallel matrix multiplication case study",
+      "found_by": [
+        "discovery-1:A-isabelle"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://gitlab.com/wirelover/tiny-lustre-compiler-isabelle",
+      "language": "isabelle",
+      "why": "Verified compiler for a Tiny Lustre subset (MIT): Compiler, Simulation_Relation, Preservation and Trace_Preservation prove correctness by a simulation relation over source and target semantics",
+      "found_by": [
+        "discovery-1:A-isabelle"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/mikhirurg/isabelle_x86asm",
+      "language": "isabelle",
+      "why": "Isabelle/HOL operational semantics of an x86 assembly subset (Apache-2.0) with per-program correctness lemmas (fac_prog, add_two_prog) each proved from instruction semantics",
+      "found_by": [
+        "discovery-1:A-isabelle"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/cmadlener/isabelle-online-matching-primal-dual",
+      "language": "isabelle",
+      "why": "Master-thesis formalisation of online bipartite matching and AdWords: AdWords.thy, Ranking_Order* and Bipartite_*_LP theories follow DJK13/BJN07, a primal-dual analysis split into named LP, ordering and probabilistic lemmas",
+      "found_by": [
+        "discovery-1:A-isabelle"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/epfl-lara/autoformalizedprojects",
+      "language": "lean",
+      "why": "Agent-generated Lean 4 formalizations of papers (Cramer-Wold, Pythagorean parametrization) and IMO 2026/LeanIMOBench; proof graphs in DAGS.md show each main theorem split into named lemmas.",
+      "found_by": [
+        "discovery-1:A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/axiommath/clusteralgebras",
+      "language": "lean",
+      "why": "Lean 4 formalization of Chapters 1-7 of Fomin-Williams-Zelevinsky, with Challenge.lean stating theorems and Solution/ proving them from named lemmas.",
+      "found_by": [
+        "discovery-1:A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/jwiegley/category-theory",
+      "language": "rocq",
+      "why": "Axiom-free Rocq/Coq category theory: Beck monadicity, adjoint functor theorems and topos results, proved from named lemmas organised by concept.",
+      "found_by": [
+        "discovery-1:A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/epfl-lara/leanflow",
+      "language": "lean",
+      "why": "Lean 4 formalization harness whose leanflow_skills/ and leanflow_specs/ hold agent guidance for theorem dependency graphs and bottom-up lemma scheduling.",
+      "found_by": [
+        "discovery-1:A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/marcusm117/proofnet-verified",
+      "language": "lean",
+      "why": "Audited Lean 4 ProofNet: 367 proved theorems with archived proof outputs, one theorem per file.",
+      "found_by": [
+        "discovery-1:A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    },
+    {
+      "url": "https://github.com/moonshotai/kimina-prover-preview",
+      "language": "lean",
+      "why": "Lean 4 prover release with miniF2F-test proof archives (minif2f_test_solved.zip) as proof outputs from an LLM proving system.",
+      "found_by": [
+        "discovery-1:A-agents"
+      ],
+      "strategies": [
+        "A"
+      ]
+    }
+  ],
+  "registered": [
+    "cvm",
+    "isabelle-llvm",
+    "isa-blueprint",
+    "con-nf",
+    "hardernarasimhan",
+    "cam-combi",
+    "chandra-furst-lipton",
+    "abel",
+    "bertrand",
+    "topology",
+    "corn",
+    "perennial",
+    "coqeal",
+    "reglang",
+    "gaia",
+    "lean-stat-learning-theory",
+    "jormungand",
+    "veriso",
+    "verified-consensus",
+    "odd-order-2",
+    "timsort",
+    "mipre-formalization",
+    "isabelle-stark",
+    "leray-hopf",
+    "poincare-conjecture"
+  ],
+  "registration_failed": []
+}

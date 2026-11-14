@@ -1,0 +1,194 @@
+{
+  "id": "rocq-iff-split-reglang-7747be2e",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Iff-split of the Kleene theorem: regular languages and regexp languages coincide",
+  "intent": "State the Kleene theorem as an inhabitation equivalence between \"L is regular\" and \"there is a regexp for L\", then close each direction by applying one named correctness lemma — dfa_to_re_correct (DFA to regexp) for the forward direction and re_to_dfa_correct (regexp to DFA) for the backward — so the iff adds nothing beyond pairing the two constructions.",
+  "move": "iff-split",
+  "also_known_as": [
+    "bidirectional split",
+    "iffI (Isabelle)",
+    "split on a two-way equivalence"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "reglang",
+    "url": "https://github.com/rocq-community/reglang",
+    "commit": "dd7521632d849ef1d143398262d0fb98e536dd6c",
+    "licence": "CECILL-B"
+  },
+  "files": [
+    {
+      "path": "theories/regexp.v",
+      "bytes": 21370,
+      "sha256": "242385b2f0d9aa695fcc9e8db47ccc03af1d8251dc3bf302159df1c5c5598f16",
+      "permalink": "https://github.com/rocq-community/reglang/blob/dd7521632d849ef1d143398262d0fb98e536dd6c/theories/regexp.v"
+    },
+    {
+      "path": "theories/dfa.v",
+      "bytes": 18780,
+      "sha256": "4760aa216bfbeeb12327d9c85ef39225a8cb9b2da24e393f652f880e573cc1a5",
+      "permalink": "https://github.com/rocq-community/reglang/blob/dd7521632d849ef1d143398262d0fb98e536dd6c/theories/dfa.v"
+    },
+    {
+      "path": "theories/languages.v",
+      "bytes": 6811,
+      "sha256": "a48de196ab9d6f78f3c91de4e7f8669989153c5a417926822c96ad197bf1f637",
+      "permalink": "https://github.com/rocq-community/reglang/blob/dd7521632d849ef1d143398262d0fb98e536dd6c/theories/languages.v"
+    },
+    {
+      "path": "theories/misc.v",
+      "bytes": 7476,
+      "sha256": "22ce8b776a15426aee70ac1daed22d812d5b7dd0131938212be698173a3b1832",
+      "permalink": "https://github.com/rocq-community/reglang/blob/dd7521632d849ef1d143398262d0fb98e536dd6c/theories/misc.v"
+    },
+    {
+      "path": "theories/nfa.v",
+      "bytes": 15986,
+      "sha256": "d98c73643d13d5b6b96d6ba09954b1c7cb6b7022cdf105632ea74cdfcd80e4b5",
+      "permalink": "https://github.com/rocq-community/reglang/blob/dd7521632d849ef1d143398262d0fb98e536dd6c/theories/nfa.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/regexp.v",
+      "lines": [
+        359,
+        365
+      ],
+      "role": "parent",
+      "name": "regularP",
+      "excerpt_sha256": "7d66c611dcc53e921046b4e6c3d38ce05035a976528466aa84d35900a980bc3c",
+      "permalink": "https://github.com/rocq-community/reglang/blob/dd7521632d849ef1d143398262d0fb98e536dd6c/theories/regexp.v#L359-L365"
+    },
+    {
+      "path": "theories/regexp.v",
+      "lines": [
+        307,
+        312
+      ],
+      "role": "child",
+      "name": "dfa_to_re_correct",
+      "excerpt_sha256": "8a3df8b765ce35e71360f3fff6a4502d1536eec7db23155160886289afddeda9",
+      "permalink": "https://github.com/rocq-community/reglang/blob/dd7521632d849ef1d143398262d0fb98e536dd6c/theories/regexp.v#L307-L312"
+    },
+    {
+      "path": "theories/regexp.v",
+      "lines": [
+        134,
+        135
+      ],
+      "role": "child",
+      "name": "re_to_dfa_correct",
+      "excerpt_sha256": "5288311782b4bd61ee6ce860bbaa939231c9a4b42999e24941d0855a162c0759",
+      "permalink": "https://github.com/rocq-community/reglang/blob/dd7521632d849ef1d143398262d0fb98e536dd6c/theories/regexp.v#L134-L135"
+    }
+  ],
+  "parent": {
+    "name": "regularP",
+    "statement": "Lemma regularP (char : finType) (L : lang char) :\n  regular L <-T->  { e : regexp char | forall x, L x <-> x \\in e}."
+  },
+  "children": [
+    {
+      "name": "dfa_to_re_correct",
+      "statement": "Lemma dfa_to_re_correct : dfa_lang A =i dfa_to_re.",
+      "closed_by": "apply/idP/big_plusP reflection split; both branches by rewrite -L_R set_enum dfa_L"
+    },
+    {
+      "name": "re_to_dfa_correct",
+      "statement": "Lemma re_to_dfa_correct (r : regexp char) : dfa_lang (re_to_dfa r) =i r.",
+      "closed_by": "by rewrite -nfa_to_dfa_correct re_to_nfa_correct"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An inhabitation equivalence P <-T-> Q (the project's `iffT`, a two-field record of P -> Q and Q -> P) between two constructible statements — here `regular L` (`{ A : dfa | forall x, L x <-> x \\in dfa_lang A }`) and `{ e : regexp char | forall x, L x <-> x \\in e }` — where each direction is already a named lemma `construction_correct` stating a language equality closed by rewriting.",
+    "use_when": "each direction of the equivalence is already proved as its own named correctness lemma (a construction and its inverse), so the split merely pairs them; the two halves are genuinely different constructions whose content lives in the lemmas, not in the glue.",
+    "avoid_when": "one direction still needs real work that no lemma already proves (the split then leaves a goal with the full difficulty); the two sides are not constructible types (a plain Prop equivalence `A <-> B` is split with `split`/`constructor` on `iff`, not on an `iffT`); or the directions are not symmetric constructions, in which case a one-line glue with two rewrites will not close them."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The lemma `regularP` is declared in `theories/regexp.v`, starting within lines 359-365.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-community/reglang/blob/dd7521632d849ef1d143398262d0fb98e536dd6c/theories/regexp.v#L359-L365",
+      "form": "declared(regularP, theories/regexp.v, 359-365)"
+    },
+    {
+      "n": 2,
+      "claim": "No `admit`, `Admitted`, `Axiom` or `axiom` occurs in `theories/regexp.v` (lines 1-556).",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-community/reglang/blob/dd7521632d849ef1d143398262d0fb98e536dd6c/theories/regexp.v",
+      "form": "no_sorry(theories/regexp.v, 1-556)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site `regularP` (the glue) is 7 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-community/reglang/blob/dd7521632d849ef1d143398262d0fb98e536dd6c/theories/regexp.v#L359-L365",
+      "form": "lines(parent, 7)"
+    },
+    {
+      "n": 4,
+      "claim": "Below `regularP`, the longest chain of project lemmas I checked has 7 lemmas: regularP -> dfa_to_re_correct -> L_R -> L_rec -> L_star -> L_catL -> L_cat -> LP.",
+      "evidence_kind": "measurement",
+      "evidence": "regexp.v:363 (regularP cites dfa_to_re_correct), :310 (dfa_to_re_correct cites L_R), :298 (L_R cites L_rec), :262 (L_rec cites L_star), :242 (L_star cites L_catL), :233 (L_catL cites L_cat), :223 (L_cat cites LP), all at https://github.com/rocq-community/reglang/blob/dd7521632d849ef1d143398262d0fb98e536dd6c/theories/regexp.v"
+    },
+    {
+      "n": 5,
+      "claim": "The same iff-split move proves `nfa_regular` (nfa.v:416-421), the DFA-NFA analogue, also by applying one correctness lemma per direction.",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/rocq-community/reglang/blob/dd7521632d849ef1d143398262d0fb98e536dd6c/theories/nfa.v#L416-L421"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 7,
+    "glue_lines": 7,
+    "child_lines": [
+      6,
+      2
+    ]
+  },
+  "metrics": {
+    "direct_lemmas": 2,
+    "depth": 7,
+    "depth_chain": "regularP -> dfa_to_re_correct -> L_R -> L_rec -> L_star -> L_catL -> L_cat -> LP",
+    "how_counted": "direct_lemmas = lemmas cited by the parent site (regexp.v:363, :364); depth = longest chain of project lemmas below regularP, read from each lemma's proof in regexp.v"
+  },
+  "consequences": "Creates two obligations, the two directions of the equivalence, each discharged by a pre-existing named lemma; the split itself adds no content, so the whole proof is only as good as the two correctness lemmas. Failure modes: if a direction is not already a lemma, the split leaves a goal carrying the full difficulty; and `<-T->` is a Type-level `iffT` between constructible types, so a plain Prop `A <-> B` must be split with `split`/`constructor` on `iff` instead, or the split will not apply.",
+  "known_uses": [
+    "https://github.com/rocq-community/reglang/blob/dd7521632d849ef1d143398262d0fb98e536dd6c/theories/nfa.v#L416-L421"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 7,
+    "relation": "supports"
+  },
+  "content_key": "7747be2e70e1647e1abbd7f2f2bab2cf9fd4b89e68ef9c3a80c524c0b6cf5769",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:41:41Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:45:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:43:04Z",
+      "note": "parent regularP: statement re-copied from code; child 'dfa_to_re_correct': statement re-copied from the declaration of dfa_to_re_correct; child 're_to_dfa_correct': statement re-copied from the declaration of re_to_dfa_correct"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T15:49:24Z"
+}

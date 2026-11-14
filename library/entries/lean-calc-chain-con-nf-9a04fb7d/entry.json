@@ -1,0 +1,187 @@
+{
+  "id": "lean-calc-chain-con-nf-9a04fb7d",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Calc chain bounding beta-support orbits by the coding-function hypothesis (ConNF.card_supportOrbit_lt)",
+  "intent": "Prove the cardinal bound #(SupportOrbit β) < #μ — the number of β-support orbits is below the strong limit μ — as a single transitive chain of three pre-proved lemmas: an injection of support orbits into weak specifications (card_supportOrbit_lt'), a bound on weak specifications from specifications (card_weakSpec_of_card_spec), and a bound on specifications from the inductive coding-function hypothesis (card_spec_of_card_codingFunction).",
+  "move": "calc-chain",
+  "also_known_as": [
+    "calculational proof",
+    "transitivity chain",
+    "trans_lt chain"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "con-nf",
+    "url": "https://github.com/leanprover-community/con-nf",
+    "commit": "edbce7eb98351870f553cfab6ccb7cab327e4259",
+    "licence": "Apache-2.0 AND MIT"
+  },
+  "files": [
+    {
+      "path": "ConNF/Counting/CountSupportOrbit.lean",
+      "bytes": 7612,
+      "sha256": "d9796748ca776d22b68ca2a406e59c7e4f19709216a5fe9dd04c498388447a67",
+      "permalink": "https://github.com/leanprover-community/con-nf/blob/edbce7eb98351870f553cfab6ccb7cab327e4259/ConNF/Counting/CountSupportOrbit.lean"
+    },
+    {
+      "path": "ConNF/Strong/SpecSame.lean",
+      "bytes": 10806,
+      "sha256": "615753ec6890e110ff94a89490af70a0159d40e6ddcb5097a04097ecf368e4dc",
+      "permalink": "https://github.com/leanprover-community/con-nf/blob/edbce7eb98351870f553cfab6ccb7cab327e4259/ConNF/Strong/SpecSame.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "ConNF/Counting/CountSupportOrbit.lean",
+      "lines": [
+        197,
+        199
+      ],
+      "role": "parent",
+      "name": "card_supportOrbit_lt",
+      "excerpt_sha256": "08d7592bacc69f11f32422409c371ca28012b5898123bcccb82a1e2872625c6c",
+      "permalink": "https://github.com/leanprover-community/con-nf/blob/edbce7eb98351870f553cfab6ccb7cab327e4259/ConNF/Counting/CountSupportOrbit.lean#L197-L199"
+    },
+    {
+      "path": "ConNF/Counting/CountSupportOrbit.lean",
+      "lines": [
+        184,
+        195
+      ],
+      "role": "child",
+      "name": "card_supportOrbit_lt'",
+      "excerpt_sha256": "820fc6fbc89c6a5ebeace38e666d9e68c3b75f7abeb0db267ad068d19c88a19e",
+      "permalink": "https://github.com/leanprover-community/con-nf/blob/edbce7eb98351870f553cfab6ccb7cab327e4259/ConNF/Counting/CountSupportOrbit.lean#L184-L195"
+    },
+    {
+      "path": "ConNF/Counting/CountSupportOrbit.lean",
+      "lines": [
+        105,
+        118
+      ],
+      "role": "child",
+      "name": "card_weakSpec_of_card_spec",
+      "excerpt_sha256": "83636c8319c6860b6aa499a3ee3594c5334513edd79d961b78495808cc45b495",
+      "permalink": "https://github.com/leanprover-community/con-nf/blob/edbce7eb98351870f553cfab6ccb7cab327e4259/ConNF/Counting/CountSupportOrbit.lean#L105-L118"
+    },
+    {
+      "path": "ConNF/Counting/CountSupportOrbit.lean",
+      "lines": [
+        155,
+        182
+      ],
+      "role": "child",
+      "name": "card_spec_of_card_codingFunction",
+      "excerpt_sha256": "00097302da6cbcb107bba05f59342835713dfd840258cac28d4a8be84074f7e6",
+      "permalink": "https://github.com/leanprover-community/con-nf/blob/edbce7eb98351870f553cfab6ccb7cab327e4259/ConNF/Counting/CountSupportOrbit.lean#L155-L182"
+    }
+  ],
+  "parent": {
+    "name": "card_supportOrbit_lt",
+    "statement": "theorem card_supportOrbit_lt (h : ∀ δ < β, [LeLevel δ] → #(CodingFunction δ) < #μ) :\n    #(SupportOrbit β) < #μ"
+  },
+  "children": [
+    {
+      "name": "card_supportOrbit_lt'",
+      "statement": "theorem card_supportOrbit_lt' : #(SupportOrbit β) ≤ #(WeakSpec β)",
+      "closed_by": "apply mk_le_of_injective (f := λ o ↦ σ o.out), with σ chosen by choose σ hσ using WeakSpec.exists (β := β); the injectivity goal closes by obtain ⟨ρ, hρ⟩ := WeakSpec.exists_conv _ h₁ h₂ then rwa [Support.smul_orbit, SupportOrbit.out_orbit, SupportOrbit.out_orbit] at this"
+    },
+    {
+      "name": "card_weakSpec_of_card_spec",
+      "statement": "theorem card_weakSpec_of_card_spec (h : #(Spec β) < #μ) : #(WeakSpec β) < #μ",
+      "closed_by": "rw [Cardinal.eq.mpr ⟨weakSpecEquiv⟩] unfolds WeakSpec as a product of four trees plus Spec, then four nested apply mul_lt_of_lt μ_isStrongLimit.aleph0_le; each tree factor closes by apply card_tree_lt (with rw [mk_set]; exact μ_isStrongLimit.2 κ_lt_μ), and the Spec factor closes by exact h"
+    },
+    {
+      "name": "card_spec_of_card_codingFunction",
+      "statement": "theorem card_spec_of_card_codingFunction\n    (h : ∀ δ < β, [LeLevel δ] → #(CodingFunction δ) < #μ) : #(Spec β) < #μ",
+      "closed_by": "rw [Cardinal.eq.mpr ⟨specEquiv⟩] unfolds Spec as a product of two enumeration trees; each factor closes by apply card_tree_lt / card_enumeration_lt, the AtomCond tree by mul_lt_of_lt with κ < μ, the NearLitterCond tree split by add_lt_of_lt into flex (κ < μ) and inflex (apply mul_lt_of_lt ... (h P.δ (P.hδ.trans_le P.A.le)) and card_inflexiblePath_lt β through mk_pow_le_of_mk_lt_ord_cof)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A strict cardinal bound #(X β) < #μ where the target type X admits an injection into an intermediate type Y (here SupportOrbit ↪ WeakSpec), Y is a finite product whose factors are already known to sit below μ, and the one non-tree factor is itself bounded below μ from an inductive hypothesis on a lower type.",
+    "use_when": "each link of the inequality chain is already stated as a named lemma with a matching type, so the parent's proof is a single trans_lt (or calc) composition; the chain is a ≤ followed by a < so trans_lt composes them into a strict bound.",
+    "avoid_when": "the intermediate bounds are not yet stated as lemmas (the parent would then have to prove them inline); the chain needs a ≥ or > step that trans_lt/calc cannot compose directly; the lemmas carry side conditions the glue cannot discharge by plain application of the next lemma down the chain."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "No sorry, admit, Admitted or axiom occurs in ConNF/Counting/CountSupportOrbit.lean lines 1-201.",
+      "evidence_kind": "check",
+      "form": "no_sorry(ConNF/Counting/CountSupportOrbit.lean, 1-201)",
+      "evidence": "https://github.com/leanprover-community/con-nf/blob/edbce7eb98351870f553cfab6ccb7cab327e4259/ConNF/Counting/CountSupportOrbit.lean"
+    },
+    {
+      "n": 2,
+      "claim": "card_supportOrbit_lt is declared at ConNF/Counting/CountSupportOrbit.lean lines 197-199.",
+      "evidence_kind": "check",
+      "form": "declared(card_supportOrbit_lt, ConNF/Counting/CountSupportOrbit.lean, 197-199)",
+      "evidence": "https://github.com/leanprover-community/con-nf/blob/edbce7eb98351870f553cfab6ccb7cab327e4259/ConNF/Counting/CountSupportOrbit.lean#L197-L199"
+    },
+    {
+      "n": 3,
+      "claim": "card_supportOrbit_lt' occurs in the parent site card_supportOrbit_lt.",
+      "evidence_kind": "check",
+      "form": "cites(card_supportOrbit_lt, card_supportOrbit_lt')",
+      "evidence": "https://github.com/leanprover-community/con-nf/blob/edbce7eb98351870f553cfab6ccb7cab327e4259/ConNF/Counting/CountSupportOrbit.lean#L197-L199"
+    },
+    {
+      "n": 4,
+      "claim": "The shape is minimal: the glue (the parent's whole proof, CountSupportOrbit.lean 197-199) is 3 lines; the three children's declarations-with-proofs are 12, 14 and 28 lines (card_supportOrbit_lt' 184-195, card_weakSpec_of_card_spec 105-118, card_spec_of_card_codingFunction 155-182); and the longest chain of project lemmas below the main theorem is 3 deep (card_supportOrbit_lt → card_supportOrbit_lt' → WeakSpec.exists_conv → Support.exists_conv).",
+      "evidence_kind": "measurement",
+      "evidence": "counted by reading the copied file ConNF/Counting/CountSupportOrbit.lean (parent 197-199, children 184-195/105-118/155-182, WeakSpec.exists_conv 51) and ConNF/Strong/SpecSame.lean (Support.exists_conv 209, used at CountSupportOrbit.lean 56)"
+    },
+    {
+      "n": 5,
+      "claim": "The authors document this theorem as blueprint node prop:card_supportOrbit, whose proof 'Define a function from the type of β-support orbits into the type of weak β-specifications by mapping a representative to a weak specification that specifies it; one will always exist by prop:exists_weakSpec. This is an injection: ...' cites prop:exists_weakSpec, prop:exists_allowable_of_weakSpec and prop:card_weakSpec — exactly the three formal lemmas card_supportOrbit_lt' (which uses WeakSpec.exists and WeakSpec.exists_conv) and card_weakSpec_of_card_spec.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover-community/con-nf/blob/edbce7eb98351870f553cfab6ccb7cab327e4259/blueprint/src/chapters/counting.tex#L605-L616"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 3,
+    "glue_lines": 3,
+    "child_lines": [
+      12,
+      14,
+      28
+    ]
+  },
+  "metrics": {
+    "parent_lines": 3,
+    "children": 3,
+    "child_proof_lines": [
+      12,
+      14,
+      28
+    ],
+    "how_counted": "parent = CountSupportOrbit.lean lines 197-199; children = card_supportOrbit_lt' 184-195, card_weakSpec_of_card_spec 105-118, card_spec_of_card_codingFunction 155-182 (declaration included in each)"
+  },
+  "consequences": "The move creates one obligation per child hypothesis, discharged by the next lemma down the chain: card_supportOrbit_lt' needs no cardinal hypothesis; card_weakSpec_of_card_spec needs #(Spec β) < #μ, discharged by card_spec_of_card_codingFunction; card_spec_of_card_codingFunction needs the coding-function hypothesis h, which is the theorem's own hypothesis. Known failure mode: the chain is a ≤ followed by a <, so trans_lt is the right combinator; if a link were weakened to ≥, or a ≤ link needed to feed a lemma that demands a strict <, the composition would fail and the strictness argument would have to be made a separate child.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "9a04fb7da835175fa10e716cc578c32f853b3b9f2ef4ccb40c378042d71d16f2",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:16:35Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T15:26:00Z"
+}

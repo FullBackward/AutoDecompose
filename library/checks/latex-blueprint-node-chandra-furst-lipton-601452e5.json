@@ -1,0 +1,117 @@
+{
+  "entry": "latex-blueprint-node-chandra-furst-lipton-601452e5",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:22:01Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:22:01Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:22:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, lem:mono-forbidden-pattern-trivial) -> cites: lem:mono-forbidden-pattern-trivial occurs at blueprint/src/chapter/2-lower-bound-eval.tex:58",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:22:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, lem:forbidden-pattern-project-multicorner) -> cites: lem:forbidden-pattern-project-multicorner occurs at blueprint/src/chapter/2-lower-bound-eval.tex:58",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:22:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(ChandraFurstLipton/LowerBoundEval.lean, 31-52) -> no_sorry: none of sorry, admit, axiom in ChandraFurstLipton/LowerBoundEval.lean:31-52",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:22:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "no_sorry(ChandraFurstLipton/MultidimCorners.lean, 40-55) -> no_sorry: none of sorry, admit, axiom in ChandraFurstLipton/MultidimCorners.lean:40-55",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:22:01Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 95c7ea0802c195bef2238ad962873c0907f1f8a9",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:22:14Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push.yml: 'build' job runs leanprover/lean-action (builds all ChandraFurstLipton/*.lean incl. LowerBoundEval.lean and MultidimCorners.lean) and 'build-docgen' runs docgen-action with blueprint:true (builds blueprint/src/chapter/2-lower-bound-eval.tex); commit 95c7ea0802c195bef2238ad962873c0907f1f8a9 on default branch master",
+      "by": "verifier",
+      "at": "2026-11-14T15:23:13Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read copied code/blueprint/src/chapter/2-lower-bound-eval.tex line 58: \\uses{lem:mono-forbidden-pattern-trivial, lem:forbidden-pattern-project-multicorner} — exactly the two named lemmas, matching the claim",
+      "by": "verifier",
+      "at": "2026-11-14T15:23:16Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Shape numbers and decomposition all check against the copied code. Parent site = 2-lower-bound-eval.tex 49-62 (14 lines = glue_lines), child1 = 18-32 (15 lines), child2 = 34-47 (14 lines), matching child_lines [15,14]. Proof \\uses{} at line 58 names exactly lem:mono-forbidden-pattern-trivial and lem:forbidden-pattern-project-multicorner (direct_lemmas=2); those two are exactly the children and no other lemma is cited in the glue. depth=3 verified from 1-nof-model.tex: mono-forbidden-pattern-trivial -> mono-forbidden-pattern-tip -> length-broadcast is a 3-lemma chain below the theorem. Children close: child1 proof 28-32 with empty \\uses{}; child2 proof 42-47 citing lem:length-broadcast and lem:mono-forbidden-pattern-tip; both carry \\lean{}/\\leanok and their Lean declarations exist at LowerBoundEval.lean:31-52 and MultidimCorners.lean:40-55 with no sorry/admit/axiom. Parent's \\lean{}/\\leanok commented out (52-53) matches the stated-before-proved node as documented. No correctness defect.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:25:04Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally (applicability.goal_shape/use_when/avoid_when and README 'When to use it' describe a blueprint-node as a headline theorem stated before proved, glued from a small number of named self-contained lemmas with \\lean{} markers, not tied to this example). avoid_when names concrete failure modes: one long inline argument, children not separate labelled nodes, or the theorem already fully formalised. Consequences are honest and specific: top node's \\lean{}/\\leanok commented out (lines 52-53) so closure still needs future formalisation; glue needs the two children exactly sufficient or the minimality step 2^t >= chi_d(G) breaks; and it admits the second child is not a strict leaf (its proof cites lem:length-broadcast and lem:mono-forbidden-pattern-tip). It says what makes the lemmas good leaves ('Why each child is a good leaf', README 104-110): one closes directly from definitions with empty \\uses{}, the other from two named siblings, i.e. short self-contained statements rather than a long inline argument. Confirmed against copied code lines 18-62.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:25:57Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at 95c7ea0802c195bef2238ad962873c0907f1f8a9",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:26:13Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance and licence fully consistent: check_provenance reports 4 file(s) byte-identical at commit 95c7ea0802c195bef2238ad962873c0907f1f8a9; entry.json files[4] match the code/ tree exactly (LowerBoundEval.lean, MultidimCorners.lean, NOFModel.lean, blueprint/src/chapter/2-lower-bound-eval.tex); all permalinks point at that commit and path; README short commit 95c7ea0802c1 is the 12-char prefix of the pinned full hash; licence Apache-2.0 agrees across entry.json, source.json, SOURCE.md and the copied upstream-LICENSE (Apache 2.0 text); README's line citations (parent 49-62, children 18-32 and 34-47) match the copied .tex verbatim; SOURCE.md licence_files=[LICENSE] and the relative source-note link resolves to library/sources/chandra-furst-lipton/SOURCE.md.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:26:45Z"
+    }
+  ]
+}

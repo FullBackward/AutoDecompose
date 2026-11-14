@@ -1,0 +1,117 @@
+{
+  "entry": "lean-interface-lemma-navierstokesandeuler-a97a0c4b",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:58:48Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:58:48Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:58:48Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: theorem_1_1@NavierStokes/ComparatorR3Theorem.lean:43, comparator_of_breakdown@NavierStokes/ComparatorR3Theorem.lean:44; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:58:48Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, theorem_1_1) -> cites: theorem_1_1 occurs at NavierStokes/ComparatorR3Theorem.lean:43",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:58:48Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, comparator_of_breakdown) -> cites: comparator_of_breakdown occurs at NavierStokes/ComparatorR3Theorem.lean:44",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:58:48Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "8 file(s) byte-identical at f9e8bc5b38b6e212696e8a30e3e91517af887bbd",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:58:56Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "No CI workflow in the repository at pinned commit f9e8bc5: list_files.py shows no .github/workflows/ directory and no *.yml/*.yaml workflow (only formalization.yaml repo metadata and lakefile.toml), so no CI builds NavierStokes/ComparatorR3Theorem.lean",
+      "by": "verifier",
+      "at": "2026-11-14T16:00:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "code/NavierStokes/ComparatorR3Theorem.lean lines 6-12 (module docstring) state 'Its same force and zero initial data satisfy the exact comparator conditions.' verbatim — matches the quoted purpose",
+      "by": "verifier",
+      "at": "2026-11-14T16:00:21Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Counted from copied files: parent site ComparatorR3Theorem.lean:38-44 is 7 lines (theorem + 2 tactic lines 43-44 citing NavierStokesR3.theorem_1_1 and NavierStokesR3.comparator_of_breakdown = 2 direct lemmas); child sites Theorem.lean:46-49 = 4 lines and ComparatorBridge.lean:77-88 = 12 lines; chain depth 4 confirmed: theorem_1_1 (Theorem.lean:48) -> theorem_1_1_with_initial_rest (Theorem.lean:32 -> ActualCandidate.selected_candidate_one_with_initial_rest) -> selected_candidate_one_with_initial_rest (ActualCandidate.lean: refine ... of_localized_fields hc hf) -> of_localized_fields",
+      "by": "verifier",
+      "at": "2026-11-14T16:00:23Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent site (ComparatorR3Theorem.lean 38-44) matches entry.json verbatim: two-line proof — line 43 'obtain ⟨u, p, f, K, h, hglobal⟩ := NavierStokesR3.theorem_1_1 ν hν', line 44 'exact NavierStokesR3.comparator_of_breakdown h hglobal'. Child theorem_1_1 (Theorem.lean 46-49) and comparator_of_breakdown (ComparatorBridge.lean 77-88) statements and closed_by match the code exactly; the 6-field destructure of theorem_1_1 (u,p,f,K,h,hglobal) feeds comparator_of_breakdown's (h, hglobal) so the glue closes, and Space = EuclideanSpace ℝ (Fin 3) makes the type change pure plumbing. Children are exactly the two lemmas the parent cites (no other lemma cited). Shape numbers all correct: direct_lemmas=2, glue_lines=7 (38-44), child_lines=[4,12] (46-49, 77-88); depth=4 confirmed theorem_1_1→theorem_1_1_with_initial_rest (Theorem.lean:48)→selected_candidate_one_with_initial_rest (Theorem.lean:32)→of_localized_fields (ActualCandidate.lean:150). Header lines 6-12 state the adapter purpose as claimed.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T16:01:23Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generically: applicability.goal_shape/use_when abstract from Navier-Stokes to 'a project-internal theorem over an internal ProblemStatement bundle restated under an external reference's predicate vocabulary', matching the interface-lemma definition (abstraction boundary, client stops unfolding). avoid_when is specific and honest with three distinct failure modes (vocabularies not inter-derivable by one lemma -> per-field proofs; adapter needing nontrivial math -> conversion lemma is the real content; churning boundary -> lockstep updates). Consequences are honest: the adapter is a two-line plumbing that adds no mathematics, the real work hides in comparator_of_breakdown (forceConditionDecay_of_compact, zero_initial_condition_decay), and the decay predicates are strictly stronger; it flags the silent-break risk. 'Why each child is a good leaf' states the bounded-prover property (self-contained statements that close from named siblings, parent only destructures the witness and never unfolds). Verified against cited line ranges: parent 38-44 is the two-line glue, header 6-12 states the purpose, children 46-49/77-88 and ActualCandidate 78-155 match.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T16:02:30Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "8 file(s) byte-identical at f9e8bc5b38b6e212696e8a30e3e91517af887bbd",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T16:02:58Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "provenance pass (8 files byte-identical at f9e8bc5b38b6e212696e8a30e3e91517af887bbd). Commit hash consistent across source.json, SOURCE.md, entry.json (all 8 file permalinks + 3 site permalinks + known_uses) and README. Licence Apache-2.0 consistent across entry.json source.licence, README, SOURCE.md and source.json; upstream-LICENSE file is the Apache License 2.0 text, matching the recorded licence and licence_files [LICENSE]. Source note correctly cites commit and licence.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T16:03:16Z"
+    }
+  ]
+}

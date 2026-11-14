@@ -1,0 +1,125 @@
+{
+  "entry": "rocq-witness-gaia-2592377b",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:46:49Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:46:49Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:46:49Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: transfinite_defined_pr@theories/sets/sset6.v:2038, transfinite_unique@theories/sets/sset6.v:2037; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:46:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, transfinite_defined_pr) -> cites: transfinite_defined_pr occurs at theories/sets/sset6.v:2038",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:46:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, transfinite_unique) -> cites: transfinite_unique occurs at theories/sets/sset6.v:2037",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:46:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "lines(parent, 7) -> lines: site parent has 7 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:46:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "no_sorry(theories/sets/sset6.v, 1745-2039) -> no_sorry: none of admit, Admitted, Axiom, axiom in theories/sets/sset6.v:1745-2039",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:46:49Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 5f54b6ee146e86e938180f8037db411da224bb29",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:46:56Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/docker-action.yml builds coq-gaia-theory-of-sets via 'opam install coq-gaia-theory-of-sets', which compiles theories/sets/sset6.v (listed in _CoqProject); workflow runs on push to master; commit 5f54b6ee146e86e938180f8037db411da224bb29 is the default-branch (master) HEAD pinned by register_source.py (ref HEAD)",
+      "by": "verifier",
+      "at": "2026-11-14T15:47:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read copied code theories/sets/sset6.v lines 2033-2039: 2036 'move=> wo; apply /unique_existence.', 2037 'split; last by move=> x y;apply: (transfinite_unique wo).' (uniqueness half closes by transfinite_unique), 2038 'by exists (transfinite_defined r T); apply:transfinite_defined_pr.' (existence half closes by the witness with transfinite_defined_pr), 2039 'Qed.'; proof body is indeed 3 lines 2036-2038",
+      "by": "verifier",
+      "at": "2026-11-14T15:47:50Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent site (2033-2039) is verbatim: it views exists! via unique_existence and cites exactly the two children, transfinite_unique (2037, uniqueness half) and transfinite_defined_pr (2038, existence half, witness transfinite_defined). Both child statements in entry.json match code verbatim (2015-2016, 1745-1746); both close with Qed; parent closes with Qed at 2039. Shape numbers all right: direct_lemmas=2, glue_lines=7 (2033-2039), child_lines=[11,10] (2015-2025 and 1745-1754), depth=7 chain verified link-by-link: defined_pr->pr1 (L2020), pr1->exists1 (L1888), exists1->aux2 (L1875), aux2->g_unique (L1792), g_unique->worder_prop2 (L1737), worder_prop2->worder_prop (L92).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:49:28Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generically: applicability.goal_shape is 'exists! f, P f' with a named witness w (P w) and a uniqueness lemma (forall f g, P f -> P g -> f = g), not tied to well-orderings; use_when names the reusable view unique_existence. avoid_when gives three concrete, honest conditions (inline witness with no property lemma yet; per-pair non-uniform uniqueness; large shared core). Consequences are specific and honest: they name the two obligations, admit existence is deferred below the glue (witness via choose from transfinite_exists1, depth-7 chain) and cite the reuse in transfinite_definition_stable. Verified in the copied file: the author comment 'It exists, its graph is unique' at 1690-1694, the named Definition transfinite_defined (2012-2013), the 3-line glue (2036-2038), and reuse in transfinite_pr (2030) and transfinite_definition_stable (2053). Leaf lesson is present in substance — named witness makes its property a standalone reusable lemma so the parent shrinks to a two-citation split, and the entry records child_lines 11/10 — though it is phrased as 'named standalone lemma' rather than 'bounded prover'.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:51:12Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 5f54b6ee146e86e938180f8037db411da224bb29",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:51:31Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "commit 5f54b6ee146e86e938180f8037db411da224bb29 is consistent across entry.json, source.json, SOURCE.md and every permalink; licence MIT is consistent across entry.json, source.json, SOURCE.md and upstream-LICENSE (MIT License, Copyright Yves Bertot); check_provenance.py passes (1 file byte-identical at the pinned commit); all cited line ranges (parent 2033-2039, children 2015-2025 and 1745-1754, contexts 2012-2013/1696-1698/1700-1702, known_uses 2027-2030/2045-2053) in code/theories/sets/sset6.v match the README excerpts and entry.json statements verbatim",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:51:58Z"
+    }
+  ]
+}

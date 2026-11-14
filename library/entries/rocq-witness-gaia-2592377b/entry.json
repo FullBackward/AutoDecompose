@@ -1,0 +1,209 @@
+{
+  "id": "rocq-witness-gaia-2592377b",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Witness transfinite_defined proves the function defined by transfinite recursion is unique",
+  "intent": "Prove the unique existence (`exists!`) of the function defined by transfinite recursion on a well-ordering by supplying the named witness `transfinite_defined r T` for the existence half and the lemma `transfinite_unique` for the uniqueness half.",
+  "move": "witness",
+  "also_known_as": [
+    "definition by transfinite recursion",
+    "transfinite induction on a well-ordering",
+    "well-founded recursion",
+    "epsilon/choose witness"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "gaia",
+    "url": "https://github.com/rocq-community/gaia",
+    "commit": "5f54b6ee146e86e938180f8037db411da224bb29",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "theories/sets/sset6.v",
+      "bytes": 135811,
+      "sha256": "7a9ec3f3e8feb1f1c87a19b09781e4a9982d29279563a1f1e8fd8480f84ff11b",
+      "permalink": "https://github.com/rocq-community/gaia/blob/5f54b6ee146e86e938180f8037db411da224bb29/theories/sets/sset6.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/sets/sset6.v",
+      "lines": [
+        2033,
+        2039
+      ],
+      "role": "parent",
+      "name": "transfinite_definition",
+      "excerpt_sha256": "94988429e1adfc36d383f44285e5873757f9fb8674c372216bb64fcee80ffc0d",
+      "permalink": "https://github.com/rocq-community/gaia/blob/5f54b6ee146e86e938180f8037db411da224bb29/theories/sets/sset6.v#L2033-L2039"
+    },
+    {
+      "path": "theories/sets/sset6.v",
+      "lines": [
+        2015,
+        2025
+      ],
+      "role": "child",
+      "name": "transfinite_defined_pr",
+      "excerpt_sha256": "1e9a14d541c4ab28cff4f2984050113d3780b7881f7c6d41eb99006d8d2cad6b",
+      "permalink": "https://github.com/rocq-community/gaia/blob/5f54b6ee146e86e938180f8037db411da224bb29/theories/sets/sset6.v#L2015-L2025"
+    },
+    {
+      "path": "theories/sets/sset6.v",
+      "lines": [
+        1745,
+        1754
+      ],
+      "role": "child",
+      "name": "transfinite_unique",
+      "excerpt_sha256": "987516d9e8454d526954957214cbc9332b0918d5a4972efeb83767a372778c62",
+      "permalink": "https://github.com/rocq-community/gaia/blob/5f54b6ee146e86e938180f8037db411da224bb29/theories/sets/sset6.v#L1745-L1754"
+    },
+    {
+      "path": "theories/sets/sset6.v",
+      "lines": [
+        2012,
+        2013
+      ],
+      "role": "context",
+      "name": "transfinite_defined",
+      "excerpt_sha256": "cd2592e805d8a0f145aca53746ddeca156bb53fd1380c993502c6d6f22a18144",
+      "permalink": "https://github.com/rocq-community/gaia/blob/5f54b6ee146e86e938180f8037db411da224bb29/theories/sets/sset6.v#L2012-L2013"
+    },
+    {
+      "path": "theories/sets/sset6.v",
+      "lines": [
+        1696,
+        1698
+      ],
+      "role": "context",
+      "name": "transfinite_def",
+      "excerpt_sha256": "8f73f64c5290de323d9df6207a504138778d2dcfe43dca495121b2f8c34e75d8",
+      "permalink": "https://github.com/rocq-community/gaia/blob/5f54b6ee146e86e938180f8037db411da224bb29/theories/sets/sset6.v#L1696-L1698"
+    },
+    {
+      "path": "theories/sets/sset6.v",
+      "lines": [
+        1700,
+        1702
+      ],
+      "role": "context",
+      "name": "transfiniteg_def",
+      "excerpt_sha256": "97dae646fd42d06fac27aea10ab922a190fa1493ab3a9f19a29ab992d42a2865",
+      "permalink": "https://github.com/rocq-community/gaia/blob/5f54b6ee146e86e938180f8037db411da224bb29/theories/sets/sset6.v#L1700-L1702"
+    }
+  ],
+  "parent": {
+    "name": "transfinite_definition",
+    "statement": "Theorem transfinite_definition r T:\n  worder r -> exists! f, (transfinite_def r T f)."
+  },
+  "children": [
+    {
+      "name": "transfinite_defined_pr",
+      "statement": "Lemma transfinite_defined_pr r T: worder r ->\n  transfinite_def r T  (transfinite_defined r T).",
+      "closed_by": "Qed.",
+      "note": "The existence half: the witness transfinite_defined r T satisfies transfinite_def. Its proof unfolds /transfinite_defined, applies transfinite_def_prop1 to transfinite_pr1 (the graph-level property of transfiniteg_defined), then closes the pointwise goal by fgraph_to_fun_restr. Analyst's paraphrase, replaced by the declaration's text: the witness transfinite_defined r T satisfies transfinite_def r T"
+    },
+    {
+      "name": "transfinite_unique",
+      "statement": "Lemma transfinite_unique r T : worder r -> \n  uniqueness (transfinite_def r T).",
+      "closed_by": "Qed.",
+      "note": "The uniqueness half. Its proof sends the two functions to their graphs via transfinite_def_prop2, obtains graph uniqueness from transfiniteg_unique, and lifts it back to function equality via function_exten1. Analyst's paraphrase, replaced by the declaration's text: two functions satisfying transfinite_def r T are equal"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A unique-existence goal `exists! f, P f` whose two halves are already proved as named lemmas: a witness `w` with `P w` for the existence half, and a uniqueness lemma `forall f g, P f -> P g -> f = g` for the uniqueness half.",
+    "use_when": "the witness is a named definition (here `transfinite_defined r T`, built by `choose` from a graph-level existence theorem) whose property is already a lemma; `unique_existence` is the view that turns `exists!` into `existence /\\ uniqueness`, so the proof is a two-line `split` with one lemma citation per half.",
+    "avoid_when": "the witness must be synthesised inline and has no property lemma yet (state the property as its own lemma first, as here); the uniqueness argument is not a uniform 'send to the graph' step and differs per pair; the two halves share a large common core (prove that core first rather than splitting at once)."
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 2,
+    "depth": 7,
+    "glue_lines": 7,
+    "child_lines": [
+      11,
+      10
+    ]
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site cites `transfinite_defined_pr`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-community/gaia/blob/5f54b6ee146e86e938180f8037db411da224bb29/theories/sets/sset6.v#L2033-L2039",
+      "form": "cites(parent, transfinite_defined_pr)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites `transfinite_unique`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-community/gaia/blob/5f54b6ee146e86e938180f8037db411da224bb29/theories/sets/sset6.v#L2033-L2039",
+      "form": "cites(parent, transfinite_unique)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site is 7 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-community/gaia/blob/5f54b6ee146e86e938180f8037db411da224bb29/theories/sets/sset6.v#L2033-L2039",
+      "form": "lines(parent, 7)"
+    },
+    {
+      "n": 4,
+      "claim": "Lines 1745-2039 of theories/sets/sset6.v contain no `admit`, `Admitted`, `Axiom` or `axiom`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-community/gaia/blob/5f54b6ee146e86e938180f8037db411da224bb29/theories/sets/sset6.v#L1745-L2039",
+      "form": "no_sorry(theories/sets/sset6.v, 1745-2039)"
+    },
+    {
+      "n": 5,
+      "claim": "The main proof body is 3 lines (2036-2038): `apply /unique_existence`, then a `split` whose uniqueness half closes by `transfinite_unique` (line 2037) and whose existence half closes by `exists (transfinite_defined r T)` with `transfinite_defined_pr` (line 2038).",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/rocq-community/gaia/blob/5f54b6ee146e86e938180f8037db411da224bb29/theories/sets/sset6.v#L2033-L2039; counted by reading lines 2035-2039 of the copied file (the proof is lines 2036-2038, closed by Qed at 2039)"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 7,
+    "glue_proof_lines": 3,
+    "direct_lemmas": 2,
+    "depth": 7,
+    "how_counted": "parent_lines = lines 2033-2039 of the copied file; glue_proof_lines = lines 2036-2038; direct_lemmas = the two lemmas the glue cites (transfinite_defined_pr, transfinite_unique); depth = the longest chain transfinite_defined_pr -> transfinite_pr1 -> transfinite_exists1 -> transfinite_aux2 -> transfiniteg_unique -> worder_prop2 -> worder_prop, each cited in the previous proof in the same file"
+  },
+  "consequences": "The move creates two obligations, one per half of `exists!`: existence (discharged by supplying the witness `transfinite_defined r T` with `transfinite_defined_pr`) and uniqueness (discharged by `transfinite_unique`). Existence is itself deferred one level: the witness is defined by `choose` from `transfinite_exists1`, so the real content of existence lives below the glue. Naming the witness keeps its property a reusable lemma, which the file reuses in `transfinite_definition_stable`; an inline `exists` term would force that property proof to be repeated.",
+  "known_uses": [
+    "https://github.com/rocq-community/gaia/blob/5f54b6ee146e86e938180f8037db411da224bb29/theories/sets/sset6.v#L2027-L2030",
+    "https://github.com/rocq-community/gaia/blob/5f54b6ee146e86e938180f8037db411da224bb29/theories/sets/sset6.v#L2045-L2053"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "2592377b9846fc0390532e02354e779d3590011a906c9cde5791be13654af972",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:43:26Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:45:05Z",
+      "note": "parent transfinite_definition: statement re-copied from code; child 'transfinite_defined_pr': statement re-copied from the declaration of transfinite_defined_pr; child 'transfinite_unique': statement re-copied from the declaration of transfinite_unique"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,shape,claims,metrics,consequences,known_uses,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:45:05Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T15:52:06Z"
+}

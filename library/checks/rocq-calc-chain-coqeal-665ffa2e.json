@@ -1,0 +1,125 @@
+{
+  "entry": "rocq-calc-chain-coqeal-665ffa2e",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:40:28Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:40:28Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:40:28Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: Frobenius@theory/jordan.v:207, similar_Frobenius@theory/jordan.v:208, similar_diag_block@theory/jordan.v:215, similar_cj@theory/jordan.v:220; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:40:28Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "no_sorry(theory/jordan.v, 205-227) -> no_sorry: none of admit, Admitted, Axiom, axiom in theory/jordan.v:205-227",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:40:28Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, similar_cj) -> cites: similar_cj occurs at theory/jordan.v:220",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:40:28Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 8fd26cf416ce0dfb5e9a9745293bdedf63b56d39",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:40:39Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/nix-action-rocq-9.3.yml (push to master; job coqeal builds the project); _CoqProject lists theory/jordan.v; commit 8fd26cf416ce0dfb5e9a9745293bdedf63b56d39 is the master head",
+      "by": "verifier",
+      "at": "2026-11-14T15:41:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "glue Jordan 205-227 = 23 lines (read code/jordan.v 205-227); 4 direct lemmas applied: Frobenius@207, similar_Frobenius@208, similar_diag_block@215, similar_cj@220; child line counts: similar_cj 128-179=52, Frobenius 381-400=20, similar_Frobenius 677-722=46, similar_diag_block 296-311=16; chain Jordan(205)->similar_cj(128)->char_poly_Jordan_block(110)->upt_Jordan_block(42) each link confirmed: line220 'exact: similar_cj', line142/171 char_poly_Jordan_block, line113 'apply: upt_Jordan_block'",
+      "by": "verifier",
+      "at": "2026-11-14T15:42:19Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "code/theory/jordan.v:10 reads 'The main result of this file is the theorem of Jordan decomposition.' (lines 10-11 header comment)",
+      "by": "verifier",
+      "at": "2026-11-14T15:42:20Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Jordan applied at line 232 'rewrite (similar_char_poly (Jordan A))', line 267 'have [Heq _]:= Jordan A', line 290 'apply: (similar_trans (Jordan A))' in code/theory/jordan.v",
+      "by": "verifier",
+      "at": "2026-11-14T15:42:21Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent Jordan (jordan.v 205-227) is a right-nested similar_trans chain citing exactly the four named children: Frobenius@207, similar_Frobenius@208, similar_diag_block@215, similar_cj@220; each child statement in entry.json matches its code verbatim and each closes with Qed (no sorry/admit/Admitted/axiom in any site; sorry-scan pass). Closing methods match the code: Frobenius ends in monic_invariant_factors (399); similar_Frobenius in similar_refl at 684/714/721; similar_diag_block in similar_refl at 303; similar_cj uses char_poly_Jordan_block@142 and dvdrP/-expr2 sqrr_sign@167. Shape numbers are right: glue_lines 23 (205-227), child_lines [52,20,46,16] = similar_cj, Frobenius, similar_Frobenius, similar_diag_block matching the sites order, direct_lemmas 4, and depth 3 matches the real chain Jordan->similar_cj->char_poly_Jordan_block->upt_Jordan_block (verified at 220/142/113). Claims 3-5 also verified against code (header 10, reuse at 232/267/290).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:43:41Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality passes. Move is stated beyond the Jordan example: applicability/use_when abstracts to 'end-to-end normalisation-to-canonical-form that splits into stages each with a named similarity lemma', with transferable conditions (few fixed intermediate forms, generic blockwise lemma so glue only names stages). 'When not to use' is honest and specific: (1) stage lacks a standalone lemma -> chain forces one lemma per stage first; (2) intermediate forms differing in dimension/base field -> similar_trans cannot bridge (true: the transitivity lemma needs a consistent middle type); (3) per-block step needing a different argument per block -> breaks the uniform forall-shape of similar_diag_block. Consequences are honest and specific, including a genuine failure mode: the glue does no new mathematical work, so a missing/misshaped stage lemma surfaces as a type error at the similar_trans application, not a subgoal. It says what makes leaves good for a bounded prover: each child's statement is self-contained and its proof closes from named siblings/imports, never from the parent (verified in the copied excerpts: Frobenius -> monic_invariant_factors, similar_Frobenius -> similar_refl, similar_diag_block -> similar_dgblockmx/similar_refl, similar_cj -> dvdrP), so each hole = one normalisation stage.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:44:43Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 8fd26cf416ce0dfb5e9a9745293bdedf63b56d39",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:45:01Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Commit 8fd26cf416ce0dfb5e9a9745293bdedf63b56d39 is consistent across entry.json, sources/coqeal/source.json, SOURCE.md and every permalink; check_provenance.py reports 3 files byte-identical at that commit. Licence MIT is consistent across entry.json, source.json, SOURCE.md and upstream-LICENSE (MIT text). All permalink line anchors match the cited ranges (jordan.v 205-227, 128-179, 10-11, 220, 232, 267, 290; frobenius_form.v 381-400, 677-722; similar.v 296-311). README source/licence section agrees. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:45:32Z"
+    }
+  ]
+}

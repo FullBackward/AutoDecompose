@@ -1,0 +1,117 @@
+{
+  "entry": "lean-calc-chain-con-nf-9a04fb7d",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:19:21Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:19:21Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:19:21Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: card_supportOrbit_lt'@ConNF/Counting/CountSupportOrbit.lean:199, card_weakSpec_of_card_spec@ConNF/Counting/CountSupportOrbit.lean:199, card_spec_of_card_codingFunction@ConNF/Counting/CountSupportOrbit.lean:199; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:19:21Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "no_sorry(ConNF/Counting/CountSupportOrbit.lean, 1-201) -> no_sorry: none of sorry, admit, axiom in ConNF/Counting/CountSupportOrbit.lean:1-201",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:19:21Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "declared(card_supportOrbit_lt, ConNF/Counting/CountSupportOrbit.lean, 197-199) -> declared: card_supportOrbit_lt is declared at ConNF/Counting/CountSupportOrbit.lean:197",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:19:21Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(card_supportOrbit_lt, card_supportOrbit_lt') -> cites: card_supportOrbit_lt' occurs at ConNF/Counting/CountSupportOrbit.lean:199",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:19:21Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at edbce7eb98351870f553cfab6ccb7cab327e4259",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:19:27Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push_main.yml runs '~/.elan/bin/lake -Kenv=dev build ConNF' on push to main; ConNF/Counting/CountSupportOrbit.lean is part of the ConNF library target (checked imports via mk_all --lib ConNF --check); pinned commit edbce7eb98351870f553cfab6ccb7cab327e4259 is on main (API branches-where-head = [main])",
+      "by": "verifier",
+      "at": "2026-11-14T15:20:57Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "read code/ConNF/Counting/CountSupportOrbit.lean: parent card_supportOrbit_lt at 197-199 = 3 lines (statement 2 + trans_lt glue 1); card_supportOrbit_lt' 184-195 = 12 lines; card_weakSpec_of_card_spec 105-118 = 14 lines; card_spec_of_card_codingFunction 155-182 = 28 lines; WeakSpec.exists_conv at line 51, its proof calls Support.exists_conv at line 56; code/ConNF/Strong/SpecSame.lean Support.exists_conv at line 209. Chain card_supportOrbit_lt -> card_supportOrbit_lt' (199 trans_lt) -> WeakSpec.exists_conv (193) -> Support.exists_conv (56) is 3 edges deep. All line ranges and counts match",
+      "by": "verifier",
+      "at": "2026-11-14T15:22:00Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "fetched blueprint/src/chapters/counting.tex at edbce7eb: node \\label{prop:card_supportOrbit} with \\uses{prop:exists_weakSpec,prop:exists_allowable_of_weakSpec,prop:card_weakSpec}; proof text 'Define a function from the type of β-support orbits into the type of weak β-specifications... one will always exist by prop:exists_weakSpec'; injectivity by prop:exists_allowable_of_weakSpec; bound by prop:card_weakSpec. Formal card_supportOrbit_lt' uses WeakSpec.exists (185) and WeakSpec.exists_conv (193), matching the blueprint",
+      "by": "verifier",
+      "at": "2026-11-14T15:22:02Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent site (CountSupportOrbit.lean 197-199) is pure glue: a single card_supportOrbit_lt'.trans_lt (card_weakSpec_of_card_spec (card_spec_of_card_codingFunction h)), citing exactly the three children and no others. All three child statements and closing methods match the copied code: card_supportOrbit_lt' (184-195, mk_le_of_injective on sigma chosen via WeakSpec.exists, injectivity via WeakSpec.exists_conv then rwa smul_orbit/out_orbit); card_weakSpec_of_card_spec (105-118, weakSpecEquiv to four trees + Spec, four mul_lt_of_lt, trees via card_tree_lt, Spec by exact h); card_spec_of_card_codingFunction (155-182, specEquiv to two enumeration trees, flex/inflex split with h and card_inflexiblePath_lt). Proofs are complete (no sorry/admit/axiom in the ranges; sorry-scan pass recorded). Shape numbers are right: direct_lemmas=3 (exactly the three cited lemmas), glue_lines=3 (197-199), child_lines=[12,14,28] = 184-195, 105-118, 155-182, and depth=3 is the real chain card_supportOrbit_lt -> card_supportOrbit_lt' -> WeakSpec.exists_conv -> Support.exists_conv (SpecSame.lean 209, in namespace Support at lines 30-242).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:23:39Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally: use_when/avoid_when turn the specific cardinal bound into the portable principle 'each link of the inequality chain is a named lemma with a matching type, parent is a single trans_lt (or calc) composition', and rule mapping cites survey F rule 9 (one child per link). When-not-to-use and consequences are honest and specific: I confirmed against the copied code that the glue is the single trans_lt composition, that h threads unchanged through card_spec_of_card_codingFunction, and that the Spec factor of card_weakSpec_of_card_spec closes by exact h (lines 105-118, 155-182, 197-199). The 'Each child is a good leaf' paragraph (README 128-139) says what makes them good leaves: self-contained closure by a named injection lemma with no cardinal arithmetic, definitional equivalence + generic card_tree_lt bound, one hypothesis threaded from the parent — i.e. small, closing from already-available lemmas, which is the bounded-prover property, though it does not use the phrase 'bounded prover'.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:24:54Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are all consistent and traceable. Commit edbce7eb98351870f553cfab6ccb7cab327e4259 matches across entry.json source.commit, sources/con-nf/source.json, SOURCE.md, and every permalink in README.md and entry.json (all blob URLs use the same 40-char hash; source note browse URL uses tree/ at the same hash). Licence 'Apache-2.0 AND MIT' matches entry.json, source.json, SOURCE.md and README.md; both upstream-LICENSE_APACHE (Apache 2.0) and upstream-LICENSE_MIT (MIT) are present under sources/con-nf. The two copied files are byte-identical to the pinned commit (sha256 d97967... for CountSupportOrbit.lean and 615753... for SpecSame.lean match entry.json files[], and check_provenance.py recorded pass '2 file(s) byte-identical at edbce7eb'). All cited line ranges in the README (parent 197-199, children 184-195/105-118/155-182, WeakSpec.exists 48, WeakSpec.exists_conv 51, weakSpecEquiv 98, specEquiv 120, SpecSame.lean Support.exists_conv 209 in namespace Support at 30) read back verbatim from the copied code. No stray files under the entry code dir (only the two declared paths).",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:25:55Z"
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "id": "isabelle-interface-lemma-voblint-verification-master-thesis-f80093c1",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Interface lemma source_activation_sound: coverage obligations to source soundness",
+  "intent": "Reduce the global source-soundness theorem to the five local coverage obligations (entry, edge, call, combine, totality) by routing them through the activation_coverage locale: interpret the locale once, read the collecting cap off activation_collect_sound and the context witness off valid_activation_trace_has_context, then hand both to source_sound_from_collecting_cap. The proof sits entirely at the two abstraction boundaries, so no concrete analysis, domain or routing policy appears in it.",
+  "move": "interface-lemma",
+  "also_known_as": [
+    "locale interface lemma",
+    "abstraction-boundary lemma",
+    "API lemma"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "voblint-verification-master-thesis",
+    "url": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis",
+    "commit": "07ecd3a886efa3a5744caabc19fbb301a40384a5",
+    "licence": "BSD-3-Clause"
+  },
+  "files": [
+    {
+      "path": "src/Analyses/Shared/Result/Source_Activation_Sound.thy",
+      "bytes": 15208,
+      "sha256": "591a248ab1e420c9ad630d6e32113978f1618b4ec8ed8eaa0792e7cb3694bd14",
+      "permalink": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Analyses/Shared/Result/Source_Activation_Sound.thy"
+    },
+    {
+      "path": "src/Abstract_Interpreter/Framework/Activation/Activation_Backbone.thy",
+      "bytes": 3190,
+      "sha256": "200e7c3ffbc2cb4bbaae8cdb0f26c0e7a020bb0f4db9760ef4ff17fdbb9ded7f",
+      "permalink": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Abstract_Interpreter/Framework/Activation/Activation_Backbone.thy"
+    },
+    {
+      "path": "src/Program_Model/CFG/Collecting/Activation_Trace_Abstract.thy",
+      "bytes": 20090,
+      "sha256": "5822ce42dac2cf3895c142a534e96622475cc41d1ba8433d6f234a18147c98ba",
+      "permalink": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Program_Model/CFG/Collecting/Activation_Trace_Abstract.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "src/Analyses/Shared/Result/Source_Activation_Sound.thy",
+      "lines": [
+        79,
+        117
+      ],
+      "role": "parent",
+      "name": "source_activation_sound",
+      "excerpt_sha256": "957e1640dea6929a221add88c3f6eadefbe8da4592fbafdd134682c5fb64371d",
+      "permalink": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Analyses/Shared/Result/Source_Activation_Sound.thy#L79-L117"
+    },
+    {
+      "path": "src/Abstract_Interpreter/Framework/Activation/Activation_Backbone.thy",
+      "lines": [
+        34,
+        50
+      ],
+      "role": "child",
+      "name": "activation_collect_sound",
+      "excerpt_sha256": "f9b90f8d6272b3f5eabed1e58dbd6dfb1f954a9bebd76e495ab90032c32c1449",
+      "permalink": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Abstract_Interpreter/Framework/Activation/Activation_Backbone.thy#L34-L50"
+    },
+    {
+      "path": "src/Program_Model/CFG/Collecting/Activation_Trace_Abstract.thy",
+      "lines": [
+        256,
+        259
+      ],
+      "role": "child",
+      "name": "valid_activation_trace_has_context",
+      "excerpt_sha256": "a731b4cfd0a8495f017f8af05eef75dd714c6528b2f44acce3cbb70646631eb1",
+      "permalink": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Program_Model/CFG/Collecting/Activation_Trace_Abstract.thy#L256-L259"
+    },
+    {
+      "path": "src/Analyses/Shared/Result/Source_Activation_Sound.thy",
+      "lines": [
+        19,
+        46
+      ],
+      "role": "child",
+      "name": "source_sound_from_collecting_cap",
+      "excerpt_sha256": "f51ff94bc99a67c69497ba4584c33786167bee7db72138f14d9177c5d0d1001b",
+      "permalink": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Analyses/Shared/Result/Source_Activation_Sound.thy#L19-L46"
+    }
+  ],
+  "parent": {
+    "name": "source_activation_sound",
+    "statement": "theorem source_activation_sound:\n  fixes sg :: \"pp \\<times> 'c + 'g \\<Rightarrow> 'a::numeric_domain abs_state\"\n    and adm :: \"'c context_policy\" and c\\<^sub>0 :: 'c\n  assumes wf: \"wf_compile_input \\<G> Pi ps\"\n    and s0: \"s0 \\<in> S\"\n    and run: \"\\<G>, Pi \\<turnstile> (main_body Pi, s0, []) \\<rightarrow>\\<^sub>p\\<^sup>* (residual, s, frs)\"\n    and ENTRY_G: \"\\<And>x. x \\<in> S \\<Longrightarrow> x \\<in> \\<gamma> (sg (Inl (cfg_entry (compile_prog Pi ps), c\\<^sub>0)))\"\n    and EDGE: \"\\<And>u a v c x x'. (u, a, v) \\<in> intra (compile_prog Pi ps)\n        \\<Longrightarrow> x \\<in> \\<gamma> (sg (Inl (u, c))) \\<Longrightarrow> x' \\<in> edge_step a x\n        \\<Longrightarrow> x' \\<in> \\<gamma> (sg (Inl (v, c)))\"\n    and CALL: \"\\<And>u dst pars args p cont c c' x.\n        (u, CallEdge dst pars args, FunctionEntry p, cont) \\<in> calls (compile_prog Pi ps)\n        \\<Longrightarrow> x \\<in> \\<gamma> (sg (Inl (u, c)))\n        \\<Longrightarrow> c' \\<in> adm u c (call_info_of (CallEdge dst pars args) p) x\n              (call_enter \\<G> (CallEdge dst pars args) x)\n        \\<Longrightarrow> call_enter \\<G> (CallEdge dst pars args) x \\<in> \\<gamma> (sg (Inl (FunctionEntry p, c')))\"\n    and COMB: \"\\<And>cl dst pars args p cont c1 c' p' x t es.\n        (cl, CallEdge dst pars args, FunctionEntry p, cont) \\<in> calls (compile_prog Pi ps)\n        \\<Longrightarrow> x \\<in> \\<gamma> (sg (Inl (cl, c1)))\n        \\<Longrightarrow> admits_call_context \\<G> (compile_prog Pi ps) adm cl c1 p' x es c'\n        \\<Longrightarrow> t \\<in> \\<gamma> (sg (Inl (FunctionResult p, c')))\n        \\<Longrightarrow> combine_collect \\<G> dst x t \\<in> \\<gamma> (sg (Inl (cont, c1)))\"\n    and TOTAL: \"call_context_total_on (\\<lambda>v c. \\<gamma> (sg (Inl (v, c)))) adm \\<G> (compile_prog Pi ps)\"\n  shows \"\\<exists>v stk t c. Pi, compile_prog Pi ps, prog_main_name \\<turnstile> (residual, s, frs) \\<approx> (v, s, stk)\n                   \\<and> activation_context_rel \\<G> adm c\\<^sub>0 (compile_prog Pi ps) t c\n                   \\<and> s \\<in> \\<gamma> (sg (Inl (v, c)))\""
+  },
+  "children": [
+    {
+      "name": "activation_collect_sound",
+      "statement": "theorem activation_collect_sound:\n  assumes \"activation_coverage g S cover adm c\\<^sub>0 \\<G>\"\n  shows \"\\<A>\\<^bsub>\\<G>,adm,c\\<^sub>0,g,S\\<^esub> v c \\<subseteq> cover v c\"",
+      "closed_by": "subsetI; activation_collect_E; G.valid_activation_trace_covered_at"
+    },
+    {
+      "name": "valid_activation_trace_has_context",
+      "statement": "theorem valid_activation_trace_has_context:\n  assumes \"t \\<in> \\<T>\"\n  obtains c where \"carries t c\"",
+      "closed_by": "valid_activation_trace_covered + trace_covered_someE"
+    },
+    {
+      "name": "source_sound_from_collecting_cap",
+      "statement": "theorem source_sound_from_collecting_cap:\n  fixes sg :: \"pp \\<times> 'c + 'g \\<Rightarrow> 'M\"\n    and \\<gamma>\\<^sub>M :: \"'M \\<Rightarrow> store set\"\n    and adm :: \"'c context_policy\" and c\\<^sub>0 :: 'c\n  assumes wf: \"wf_compile_input \\<G> Pi ps\"\n    and s0: \"s0 \\<in> S\"\n    and run: \"\\<G>, Pi \\<turnstile> (main_body Pi, s0, []) \\<rightarrow>\\<^sub>p\\<^sup>* (residual, s, frs)\"\n    and has_ctx: \"\\<And>t. t \\<in> \\<T>\\<^bsub>\\<G>,compile_prog Pi ps,S\\<^esub>\n                   \\<Longrightarrow> \\<exists>c. activation_context_rel \\<G> adm c\\<^sub>0 (compile_prog Pi ps) t c\"\n    and cap: \"\\<And>v ctx. \\<A>\\<^bsub>\\<G>,adm,c\\<^sub>0,compile_prog Pi ps,S\\<^esub> v ctx\n                       \\<subseteq> \\<gamma>\\<^sub>M (sg (Inl (v, ctx)))\"\n  shows \"\\<exists>v stk t c. Pi, compile_prog Pi ps, prog_main_name \\<turnstile> (residual, s, frs) \\<approx> (v, s, stk)\n                   \\<and> activation_context_rel \\<G> adm c\\<^sub>0 (compile_prog Pi ps) t c\n                   \\<and> s \\<in> \\<gamma>\\<^sub>M (sg (Inl (v, c)))\"",
+      "closed_by": "source_store_in_activation_collect + cap"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A theorem whose assumptions are the local coverage obligations of a locale (here activation_coverage's INIT/INTRA/CALL/RETURN/TOTAL, supplied as ENTRY_G/EDGE/CALL/COMB/TOTAL) and whose conclusion is a global inclusion of concrete stores into the concretization of an abstract map; the proof must not mention any concrete domain, analysis or routing policy.",
+    "use_when": "The obligations are already packaged as a locale (or a structure/interface), a separate lemma already turns a satisfying cover into the collecting cap (activation_collect_sound), and a second lemma supplies the existential context witness (valid_activation_trace_has_context); then the main theorem only interprets the locale and chains the two through a cap-consuming theorem.",
+    "avoid_when": "The obligations are not yet packaged, so each must be discharged inline; the cap-consuming theorem's statement is too strong or too weak for the client (it fixes the concretization via gamma_state, so a non-numeric domain needs its own corollary); or the proof must mention a specific analysis or routing policy."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The name source_sound_from_collecting_cap occurs in the parent site.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Analyses/Shared/Result/Source_Activation_Sound.thy#L79-L117",
+      "form": "cites(parent, source_sound_from_collecting_cap)"
+    },
+    {
+      "n": 2,
+      "claim": "The name activation_collect_sound occurs in the parent site.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Analyses/Shared/Result/Source_Activation_Sound.thy#L79-L117",
+      "form": "cites(parent, activation_collect_sound)"
+    },
+    {
+      "n": 3,
+      "claim": "The name valid_activation_trace_has_context occurs in the parent site.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Analyses/Shared/Result/Source_Activation_Sound.thy#L79-L117",
+      "form": "cites(parent, valid_activation_trace_has_context)"
+    },
+    {
+      "n": 4,
+      "claim": "The shape is theorem scale: direct_lemmas = 3 (activation_collect_sound, valid_activation_trace_has_context, source_sound_from_collecting_cap), glue_lines = 39 (lines 79-117 of Source_Activation_Sound.thy), child_lines = [17, 4, 28] (lines 34-50 of Activation_Backbone.thy, 256-259 of Activation_Trace_Abstract.thy, 19-46 of Source_Activation_Sound.thy), and depth = 5 along the chain activation_collect_sound -> valid_activation_trace_covered_at -> valid_activation_trace_covered -> caller_chain_covered -> init_covered/intra_covered/call_covered/return_covered.",
+      "evidence_kind": "measurement",
+      "evidence": "line counts from the site ranges in entry.json; the depth chain read from code/src/Abstract_Interpreter/Framework/Activation/Activation_Backbone.thy#L34-L50 and code/src/Program_Model/CFG/Collecting/Activation_Trace_Abstract.thy#L216-L264"
+    },
+    {
+      "n": 5,
+      "claim": "The authors state the move in the file's own comment: \"Given entry, edge, call, combine and totality obligations on the abstract map, activation_coverage builds the cap and the composition above yields source-level soundness.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Analyses/Shared/Result/Source_Activation_Sound.thy#L73-L77"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 5,
+    "glue_lines": 39,
+    "child_lines": [
+      17,
+      4,
+      28
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 39,
+    "direct_children": 3,
+    "children_declared_in_copied_files": 3,
+    "how_counted": "parent_proof_lines = lines 79-117 of Source_Activation_Sound.thy; direct_children = the three named lemmas the glue cites; all three child declarations are inside the copied files"
+  },
+  "consequences": "Creates no new obligations beyond those the locale interpretation discharges in one step (standard; blast intro: ENTRY_G EDGE CALL COMB TOTAL). The cost is two fixed points of contact: the cap lemma's cover parameter must match the interpreted locale (the lambda \\<lambda>v c. \\<gamma> (sg (Inl (v, c)))), and the cap-consuming theorem's concretization is instantiated to gamma_state. Failure modes: a domain or policy that does not fit gamma_state needs its own corollary (the file already has source_sound_toplevel_from_collecting_cap and source_sound_from_node_collect_cap for the other shapes); if the five obligations are renamed or reordered, the single interpret step stops matching.",
+  "known_uses": [
+    "https://github.com/ManuelLerchner/Voblint-Verification-Master-Thesis/blob/07ecd3a886efa3a5744caabc19fbb301a40384a5/src/Analyses/Shared/Result/Source_Activation_Sound.thy#L50-L69"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 8,
+    "relation": "supports"
+  },
+  "content_key": "f80093c1d00b7ee0e725a0cc03cb8b3a7ddce81f128b644726e6359a2ef8ad4a",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:40:46Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:45:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:43:17Z",
+      "note": "parent source_activation_sound: statement re-copied from code; child 'activation_collect_sound': statement re-copied from the declaration of activation_collect_sound; child 'valid_activation_trace_has_context': statement re-copied from the declaration of valid_activation_trace_has_context; child 'source_sound_from_collecting_cap': statement re-copied from the declaration of source_sound_from_collecting_cap"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T15:50:41Z"
+}

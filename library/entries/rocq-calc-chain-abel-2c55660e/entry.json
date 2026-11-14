@@ -1,0 +1,230 @@
+{
+  "id": "rocq-calc-chain-abel-2c55660e",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "calc-chain: X^5 - 4X + 2 is not solvable by radicals",
+  "intent": "Refute solvability of X^5 - 4X + 2 by radicals with a three-line rewrite chain: convert radical solvability into solvability of the Galois group, identify that group with Sym_5, and refute solvability of Sym_5, discharging the isomorphism's hypotheses (degree, two non-real roots) by name.",
+  "move": "calc-chain",
+  "also_known_as": [
+    "rewrite chain",
+    "transitivity chain",
+    "one lemma per step"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "abel",
+    "url": "https://github.com/math-comp/abel",
+    "commit": "8c6194115397371df63cd6fae7e39009872858fd",
+    "licence": "CECILL-B"
+  },
+  "files": [
+    {
+      "path": "theories/abel.v",
+      "bytes": 71263,
+      "sha256": "eec93421dd9baecbca1460cd41ca921c4ddcad0a4b82577c92cb6874a2b94172",
+      "permalink": "https://github.com/math-comp/abel/blob/8c6194115397371df63cd6fae7e39009872858fd/theories/abel.v"
+    },
+    {
+      "path": "theories/xmathcomp/various.v",
+      "bytes": 32986,
+      "sha256": "7a3449154338c4a196d09339184b28961b6909bcdce9252e7fdad0fc9d018ac4",
+      "permalink": "https://github.com/math-comp/abel/blob/8c6194115397371df63cd6fae7e39009872858fd/theories/xmathcomp/various.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/abel.v",
+      "lines": [
+        1337,
+        1343
+      ],
+      "role": "parent",
+      "name": "example_not_solvable_by_radicals",
+      "excerpt_sha256": "15a2a4d027884747956205efff35aa73727a9f80fc0acd7f5ef3ae89a74c9e6a",
+      "permalink": "https://github.com/math-comp/abel/blob/8c6194115397371df63cd6fae7e39009872858fd/theories/abel.v#L1337-L1343"
+    },
+    {
+      "path": "theories/abel.v",
+      "lines": [
+        854,
+        868
+      ],
+      "role": "child",
+      "name": "AbelGaloisPolyRat",
+      "excerpt_sha256": "566f0c9d9d6233ab5c1ad1cc3bbcabf4e6284c97251bdfd0db1eb8ebc9278493",
+      "permalink": "https://github.com/math-comp/abel/blob/8c6194115397371df63cd6fae7e39009872858fd/theories/abel.v#L854-L868"
+    },
+    {
+      "path": "theories/abel.v",
+      "lines": [
+        1168,
+        1169
+      ],
+      "role": "child",
+      "name": "isog_gal",
+      "excerpt_sha256": "47d5f01428f96b144b4181397fdcab16cab5db42b411890ffc7d3aee3c944cc5",
+      "permalink": "https://github.com/math-comp/abel/blob/8c6194115397371df63cd6fae7e39009872858fd/theories/abel.v#L1168-L1169"
+    },
+    {
+      "path": "theories/abel.v",
+      "lines": [
+        1198,
+        1202
+      ],
+      "role": "child",
+      "name": "size_poly_example",
+      "excerpt_sha256": "d742bca2e518e3a3af8f9bb5fe8055a38a10ba90230cc9c37104e6931cf8be66",
+      "permalink": "https://github.com/math-comp/abel/blob/8c6194115397371df63cd6fae7e39009872858fd/theories/abel.v#L1198-L1202"
+    },
+    {
+      "path": "theories/xmathcomp/various.v",
+      "lines": [
+        730,
+        731
+      ],
+      "role": "child",
+      "name": "solvable_SymF",
+      "excerpt_sha256": "a024283dccf78907bf93b38df4c7d13a139724408e64475ab702e53a7bce79f2",
+      "permalink": "https://github.com/math-comp/abel/blob/8c6194115397371df63cd6fae7e39009872858fd/theories/xmathcomp/various.v#L730-L731"
+    },
+    {
+      "path": "theories/abel.v",
+      "lines": [
+        1297,
+        1335
+      ],
+      "role": "child",
+      "name": "count_roots_ex",
+      "excerpt_sha256": "ac3cf7bd97ffd13f9401bb21e5896c9aaf241ff5fdfca805598413ef4cd944b8",
+      "permalink": "https://github.com/math-comp/abel/blob/8c6194115397371df63cd6fae7e39009872858fd/theories/abel.v#L1297-L1335"
+    }
+  ],
+  "parent": {
+    "name": "example_not_solvable_by_radicals",
+    "statement": "Lemma example_not_solvable_by_radicals :\n  ~ solvable_by_radical_poly ('X^5 - 4 *: 'X + 2 : {poly rat})."
+  },
+  "children": [
+    {
+      "name": "AbelGaloisPolyRat",
+      "statement": "Theorem AbelGaloisPolyRat (p : {poly rat}) :\n  reflect (solvable_by_radical_poly p) (solvable 'Gal({: numfield p} / 1)).",
+      "closed_by": "rewrite -AbelGaloisPoly (the main Abel-Galois theorem), then the forward direction closes by solvable_ext_polyP and the reverse by the witness numfield p",
+      "note": "Applied as a view (/AbelGaloisPolyRat) to the negated-goal hypothesis, turning solvable_by_radical_poly into solvable 'Gal({:numfield p} / 1). Analyst's paraphrase, replaced by the declaration's text: p is solvable by radicals iff the Galois group of its number field is solvable"
+    },
+    {
+      "name": "isog_gal",
+      "statement": "Lemma isog_gal : 'Gal ({:numfield p} / 1%AS) \\isog 'Sym_('I_d).",
+      "closed_by": "rewrite -adjoin_numfield_roots isog_gal_perm",
+      "note": "Module lemma of PrimeDegreeTwoNonRealRoots; the parent instantiates it as PDTNRR.isog_gal with the three hypotheses (irreducible, prime degree, two non-real roots). Analyst's paraphrase, replaced by the declaration's text: the Galois group of the number field is isomorphic to the symmetric group Sym_d"
+    },
+    {
+      "name": "size_poly_example",
+      "statement": "Lemma size_poly_example : size poly_example = 6%N.",
+      "closed_by": "rewrite /poly_example -addrA size_polyDl ?size_polyXn, then size_polyDl ?size_polyN ?size_scale ?size_polyX -?polyCn ?size_polyC",
+      "note": "Supplies the degree: size 6 makes (size p).-1 = 5, so d = 5 and 'I_d becomes 'I_5 in the rewrite. Analyst's paraphrase, replaced by the declaration's text: the example polynomial has size (degree+1) six"
+    },
+    {
+      "name": "solvable_SymF",
+      "statement": "Lemma solvable_SymF : 4 < #|T| -> solvable 'Sym_T = false.",
+      "closed_by": "rewrite (series_sol (Alt_normal T)) => /solvable_AltF->",
+      "note": "Defined in xmathcomp/various.v; with card_ord it turns the goal solvable 'Sym_('I_5) into false. Analyst's paraphrase, replaced by the declaration's text: the symmetric group Sym_T is not solvable when it has more than four letters"
+    },
+    {
+      "name": "count_roots_ex",
+      "statement": "Lemma count_roots_ex : count [predC Creal] example_roots = 2%N.",
+      "closed_by": "suff cR that exactly 3 roots are real; ivt_sign at the three sign changes gives them, and size_root_leSderiv with rootsR_deriv_poly_example bounds them to 3",
+      "note": "Supplies the two non-real roots that the isog_gal hypothesis count_rp' needs; the parent reaches it via count_map. Analyst's paraphrase, replaced by the declaration's text: the example polynomial has exactly two non-real roots"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "~ P, where P is a predicate (solvable_by_radical_poly) that a reflect lemma converts into a decidable group-theoretic predicate (solvable of a Galois group), itself refuted by an isomorphism to a known non-solvable group plus a degree/cardinality and a root-count computation.",
+    "use_when": "the predicate has an iff/reflect into group solvability; the Galois group is concretely isomorphic to a symmetric or other known group; the degree and root-count facts are already stated as small lemmas; the target group's non-solvability is a library lemma.",
+    "avoid_when": "the isomorphism needs a large splitting-field or Galois argument that is not already packaged; the root count needs real analysis (intermediate value theorem) rather than computation; the non-solvability of the target group is not already proved."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent `example_not_solvable_by_radicals` is declared at theories/abel.v lines 1337-1343.",
+      "evidence_kind": "check",
+      "form": "declared(example_not_solvable_by_radicals, theories/abel.v, 1337-1343)",
+      "evidence": "https://github.com/math-comp/abel/blob/8c6194115397371df63cd6fae7e39009872858fd/theories/abel.v#L1337-L1343"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site (lines 1337-1343) contains no `admit`, `Admitted`, `Axiom` or `axiom` closing token.",
+      "evidence_kind": "check",
+      "form": "no_sorry(theories/abel.v, 1337-1343)",
+      "evidence": "https://github.com/math-comp/abel/blob/8c6194115397371df63cd6fae7e39009872858fd/theories/abel.v#L1337-L1343"
+    },
+    {
+      "n": 3,
+      "claim": "The parent's proof cites `count_roots_ex`.",
+      "evidence_kind": "check",
+      "form": "cites(parent, count_roots_ex)",
+      "evidence": "https://github.com/math-comp/abel/blob/8c6194115397371df63cd6fae7e39009872858fd/theories/abel.v#L1342"
+    },
+    {
+      "n": 4,
+      "claim": "The parent site is 7 lines and its 3-line proof body (lines 1340-1342) cites 5 direct project lemmas; the longest checked chain of project lemmas below it is 5 deep (example_not_solvable_by_radicals -> isog_gal -> isog_gal_perm -> surj_gal_perm -> galJ_tperm -> gal_permP).",
+      "evidence_kind": "measurement",
+      "evidence": "parent at https://github.com/math-comp/abel/blob/8c6194115397371df63cd6fae7e39009872858fd/theories/abel.v#L1337-L1343; chain links isog_gal #L1168-L1169, isog_gal_perm #L1162-L1166, surj_gal_perm #L1153-L1160, galJ_tperm #L1145-L1151, gal_permP #L1020"
+    },
+    {
+      "n": 5,
+      "claim": "The authors comment that the exactly-three-real-roots fact is found by monitoring the sign of the derivative: \"Using the package real_closed, we should be able to monitor the sign of the derivative, and find that the polynomial has exactly three real roots\".",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/math-comp/abel/blob/8c6194115397371df63cd6fae7e39009872858fd/theories/abel.v#L1238-L1239"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 5,
+    "depth": 5,
+    "glue_lines": 7,
+    "child_lines": [
+      15,
+      2,
+      5,
+      2,
+      39
+    ]
+  },
+  "metrics": {
+    "glue_tactic_lines": 3,
+    "direct_lemmas": 5,
+    "depth": 5,
+    "how_counted": "glue_tactic_lines = proof body lines 1340-1342; direct_lemmas = the named lemmas cited by that body; depth = chain example_not_solvable_by_radicals -> isog_gal -> isog_gal_perm -> surj_gal_perm -> galJ_tperm -> gal_permP, each link cited verbatim in the preceding lemma's proof"
+  },
+  "consequences": "The chain creates side obligations: the three hypotheses of the isog_gal module (irreducibility, prime degree, exactly two non-real roots) must each be discharged, which the parent does via local hints (irreducible_example, prime_example) and count_roots_ex. Failure modes: a `rewrite ?lemma //` chain silently leaves a side condition open if a ?-rewrite does not fire; the degree (size_poly_example) must match the group cardinality (card_ord) exactly, or solvable_SymF will not apply.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "2c55660e873195c2fd8fe0850eb4f64390cba9c0a29787a187b297790ce7495a",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:26:19Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:28:26Z",
+      "note": "parent example_not_solvable_by_radicals: statement re-copied from code; child 'AbelGaloisPolyRat': statement re-copied from the declaration of AbelGaloisPolyRat; child 'isog_gal': statement re-copied from the declaration of isog_gal; child 'size_poly_example': statement re-copied from the declaration of size_poly_example; child 'solvable_SymF': statement re-copied from the declaration of solvable_SymF; child 'count_roots_ex': statement re-copied from the declaration of count_roots_ex"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T15:35:09Z"
+}

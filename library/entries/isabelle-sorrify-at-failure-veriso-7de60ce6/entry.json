@@ -1,0 +1,215 @@
+{
+  "id": "isabelle-sorrify-at-failure-veriso-7de60ce6",
+  "kind": "anti-pattern",
+  "status": "draft",
+  "title": "Sorrify-at-failure in the failed Tapir to SSER refinement (tapir_refines_sser)",
+  "intent": "Records the Section 6.3 falsification attempt for Tapir: the author decomposes tapir_refines_sser into an event induction plus four per-event abs_committed_reads bookkeeping lemmas that all close, while the harder obligations (fp_property, the kvs_of_s update, and the Cl_ReadyC, Commit and Abort cases) are left as sorry with comments naming the invariant still needed. The entry shows which children of a plausible decomposition were sufficient, and which were not, and why.",
+  "move": "sorrify-at-failure",
+  "also_known_as": [
+    "sorrify",
+    "sorry-first",
+    "sketch-with-sorry",
+    "admit"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "veriso",
+    "url": "https://github.com/shabnamrad/veriso",
+    "commit": "6407b7205c3bfc4adc62e758795a7fc5142efb33",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "VerIso/Tapir_Falsification.thy",
+      "bytes": 24146,
+      "sha256": "794aa1462e5befe1bee795def97e3fa8b60baca6c12ca78198e9a66d374a913a",
+      "permalink": "https://github.com/shabnamrad/veriso/blob/6407b7205c3bfc4adc62e758795a7fc5142efb33/VerIso/Tapir_Falsification.thy"
+    },
+    {
+      "path": "Run.thy",
+      "bytes": 938,
+      "sha256": "981ec233aceef87bfa1b6c7c486c46bf829daa359921222dd05f36c5d0a919d0",
+      "permalink": "https://github.com/shabnamrad/veriso/blob/6407b7205c3bfc4adc62e758795a7fc5142efb33/Run.thy"
+    },
+    {
+      "path": "VerIso/Tapir.thy",
+      "bytes": 15034,
+      "sha256": "29904ee698d85fd68929ab405c72f1e30392ab3638436fe31532e70b8decc4d4",
+      "permalink": "https://github.com/shabnamrad/veriso/blob/6407b7205c3bfc4adc62e758795a7fc5142efb33/VerIso/Tapir.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "VerIso/Tapir_Falsification.thy",
+      "lines": [
+        434,
+        563
+      ],
+      "role": "parent",
+      "name": "tapir_refines_sser",
+      "excerpt_sha256": "201290ea485853eb9642555850dd61c03b2fefddcbff674c2a251b8288ec4ebb",
+      "permalink": "https://github.com/shabnamrad/veriso/blob/6407b7205c3bfc4adc62e758795a7fc5142efb33/VerIso/Tapir_Falsification.thy#L434-L563"
+    },
+    {
+      "path": "VerIso/Tapir_Falsification.thy",
+      "lines": [
+        18,
+        25
+      ],
+      "role": "child",
+      "name": "read_resp_abs_committed_reads_inv",
+      "excerpt_sha256": "ee16386b5d06f50b4fe1581aeb5841c0e504b99a7efc47670705f572dc98eb79",
+      "permalink": "https://github.com/shabnamrad/veriso/blob/6407b7205c3bfc4adc62e758795a7fc5142efb33/VerIso/Tapir_Falsification.thy#L18-L25"
+    },
+    {
+      "path": "VerIso/Tapir_Falsification.thy",
+      "lines": [
+        27,
+        35
+      ],
+      "role": "child",
+      "name": "prep_abs_committed_reads_inv",
+      "excerpt_sha256": "4ef310bded97b8173619a9af7f1f290322d76d34a50863a67bd0c9180d3fe12a",
+      "permalink": "https://github.com/shabnamrad/veriso/blob/6407b7205c3bfc4adc62e758795a7fc5142efb33/VerIso/Tapir_Falsification.thy#L27-L35"
+    },
+    {
+      "path": "VerIso/Tapir_Falsification.thy",
+      "lines": [
+        37,
+        47
+      ],
+      "role": "child",
+      "name": "commit_abs_committed_reads_inv",
+      "excerpt_sha256": "9994835f5c1711160cfb90b3375de9341285c62e0dcb21f3180adb81355d9487",
+      "permalink": "https://github.com/shabnamrad/veriso/blob/6407b7205c3bfc4adc62e758795a7fc5142efb33/VerIso/Tapir_Falsification.thy#L37-L47"
+    },
+    {
+      "path": "VerIso/Tapir_Falsification.thy",
+      "lines": [
+        49,
+        57
+      ],
+      "role": "child",
+      "name": "abort_abs_committed_reads_inv",
+      "excerpt_sha256": "5e67e5d4293b53c56d02bfdb2eb2cf41b6294ed07292ace9cbe01a5c87e4b329",
+      "permalink": "https://github.com/shabnamrad/veriso/blob/6407b7205c3bfc4adc62e758795a7fc5142efb33/VerIso/Tapir_Falsification.thy#L49-L57"
+    },
+    {
+      "path": "Run.thy",
+      "lines": [
+        24,
+        27
+      ],
+      "role": "context",
+      "name": "falsification-note",
+      "excerpt_sha256": "7fee26a0c3ba5a8223a4a7f8f1110e2c4c3d16001eb35713a9f61a4ab0b32dbd",
+      "permalink": "https://github.com/shabnamrad/veriso/blob/6407b7205c3bfc4adc62e758795a7fc5142efb33/Run.thy#L24-L27"
+    }
+  ],
+  "parent": {
+    "name": "tapir_refines_sser",
+    "statement": "tapir refines ET_SSER.ET_ES up to the simulation relation sim and mediator med"
+  },
+  "children": [
+    {
+      "name": "read_resp_abs_committed_reads_inv",
+      "statement": "abs_committed_reads is unchanged when a read-response moves the server entry for Tn t from idle to read X",
+      "closed_by": "by (auto simp add: abs_committed_reads_def)"
+    },
+    {
+      "name": "prep_abs_committed_reads_inv",
+      "statement": "abs_committed_reads is unchanged when a prepare moves the server entry for Tn t from read X to occ_check (client still prepared)",
+      "closed_by": "by (auto simp add: abs_committed_reads_def)"
+    },
+    {
+      "name": "commit_abs_committed_reads_inv",
+      "statement": "abs_committed_reads is unchanged when a commit moves the server entry for Tn t from prepared to committed, for a key in the client's read map",
+      "closed_by": "by (auto simp add: abs_committed_reads_def)"
+    },
+    {
+      "name": "abort_abs_committed_reads_inv",
+      "statement": "abs_committed_reads is unchanged when an abort moves the server entry for Tn t to aborted",
+      "closed_by": "by (auto simp add: abs_committed_reads_def)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A refinement P refines Q up to a simulation relation sim and a mediator med, proved by a simulation relation (intro simulate_ES_fun_h) followed by induction over the event constructors; each event case must exhibit the abstract transition, and the invariant the simulation relation depends on (here abs_committed_reads) must be preserved by every event.",
+    "use_when": "A mostly-working decomposition has a few cases or obligations that will not close, and you want to keep the proved lemmas while recording exactly which sub-goals fail and what extra invariant each needs (the author's comments name it).",
+    "avoid_when": "The shared invariant is too weak in the first place: sorrifying the failures hides that the decomposition itself must be strengthened (a stronger invariant stated as its own lemma) rather than patched per case."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "tapir_refines_sser is declared in VerIso/Tapir_Falsification.thy, lines 434-435.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/shabnamrad/veriso/blob/6407b7205c3bfc4adc62e758795a7fc5142efb33/VerIso/Tapir_Falsification.thy#L434-L435",
+      "form": "declared(tapir_refines_sser, VerIso/Tapir_Falsification.thy, 434-435)"
+    },
+    {
+      "n": 2,
+      "claim": "VerIso/Tapir_Falsification.thy lines 18-57 contain no sorry.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/shabnamrad/veriso/blob/6407b7205c3bfc4adc62e758795a7fc5142efb33/VerIso/Tapir_Falsification.thy#L18-L57",
+      "form": "no_sorry(VerIso/Tapir_Falsification.thy, 18-57)"
+    },
+    {
+      "n": 3,
+      "claim": "sorry occurs 6 times in VerIso/Tapir_Falsification.thy.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/shabnamrad/veriso/blob/6407b7205c3bfc4adc62e758795a7fc5142efb33/VerIso/Tapir_Falsification.thy",
+      "form": "count(sorry, 6, VerIso/Tapir_Falsification.thy)"
+    },
+    {
+      "n": 4,
+      "claim": "The glue of tapir_refines_sser spans 130 lines (434-563) and its four direct children span 8, 9, 11 and 9 lines (18-25, 27-35, 37-47, 49-57), so the longest lemma chain below the theorem is 1.",
+      "evidence_kind": "measurement",
+      "evidence": "Line arithmetic on the parent and child sites (declaration through closing by/qed) in the copied file VerIso/Tapir_Falsification.thy at commit 6407b72; 434-563 is 130 lines, and 18-25, 27-35, 37-47, 49-57 are 8, 9, 11, 9 lines."
+    },
+    {
+      "n": 5,
+      "claim": "The authors record that tapir_refines_sser fails, in Run.thy: \"fails: checkout the proof state at line 486 (in Isabelle's \"Output\" tab)\".",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/shabnamrad/veriso/blob/6407b7205c3bfc4adc62e758795a7fc5142efb33/Run.thy#L26-L27, comment beside \"thm tapir_refines_sser\""
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 1,
+    "glue_lines": 130,
+    "child_lines": [
+      8,
+      9,
+      11,
+      9
+    ]
+  },
+  "metrics": {
+    "sorry_count": 6,
+    "children_closed_by_auto": 4,
+    "how_counted": "sorry = occurrences of the keyword 'sorry' in VerIso/Tapir_Falsification.thy (grep -c sorry); the four child lemmas each close by 'by (auto simp add: abs_committed_reads_def)'"
+  },
+  "consequences": "Replacing a failing block with sorry keeps the statement and lets the file compile, but leaves a hole: the theorem is unproved and the file no longer establishes the refinement. Each hole's obligation must be re-derived from a stronger invariant; the comments name them: 'no transactions after t_wr have written a new version to server k' and 'no prepared (but client-committed) newer versions are on server k' (fp_property), 'new (uncommitted) write is not read by any transactions' (Cl_ReadyC), 'newly committed version's readerset is empty' (Commit), and 'aborted txn not in commit_order' (Abort). The four bookkeeping lemmas all share the shape 'a state update leaves abs_committed_reads unchanged' and close by unfolding abs_committed_reads_def alone, which is why they were easy; the failing cases need facts about other transactions, which the invariant abs_committed_reads does not capture.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 2,
+    "relation": "supports"
+  },
+  "content_key": "7de60ce6c74b76b80626481d86935d605fd633baf66314d9b4bb62bb5e4bfa6d",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:54:16Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T16:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,293 @@
+{
+  "id": "lean-case-split-perennial-78263300",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Case split on the node index closes the three-node netfs crash-safety theorem",
+  "intent": "Reduce the end-to-end crash-safety theorem for the three-node netfs to one instantiation of the generic distributed crash-adequacy theorem (goose_dist_crash_adequacy), then discharge its per-node obligations by a case split on the node index (0, 1, 2), each branch applying the shared boot wrapper wp_boot to that node's linked spec (wp_NodeA / wp_NodeB / wp_NodeC).",
+  "move": "case-split",
+  "also_known_as": [
+    "per-node case split",
+    "case analysis on the component index"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "perennial",
+    "url": "https://github.com/mit-pdos/perennial",
+    "commit": "ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0",
+    "licence": "LicenseRef-unknown"
+  },
+  "files": [
+    {
+      "path": "Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean",
+      "bytes": 17099,
+      "sha256": "01562e95328efedd35eca85fb96263c9f9d37fe8913c889dc033d5bb8d6d565b",
+      "permalink": "https://github.com/mit-pdos/perennial/blob/ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0/Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean"
+    },
+    {
+      "path": "Perennial/GooseLang/DistAdequacy.lean",
+      "bytes": 40732,
+      "sha256": "6180b8aefba1bf5bca33aa78d06847b5510004f3becbe147801d64c27efe1e92",
+      "permalink": "https://github.com/mit-pdos/perennial/blob/ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0/Perennial/GooseLang/DistAdequacy.lean"
+    },
+    {
+      "path": "Perennial/GooseLang/Ext/Net/Adequacy.lean",
+      "bytes": 5181,
+      "sha256": "d79e58aa7c7dfea11f5ca4391a083a1bb1a6db2600a08a0c288502de89c1f978",
+      "permalink": "https://github.com/mit-pdos/perennial/blob/ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0/Perennial/GooseLang/Ext/Net/Adequacy.lean"
+    },
+    {
+      "path": "Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Link.lean",
+      "bytes": 3616,
+      "sha256": "a8070da224c1508a3090f18db9a49d77157ad0e7eeeb1403af828f219fbe407f",
+      "permalink": "https://github.com/mit-pdos/perennial/blob/ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0/Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Link.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean",
+      "lines": [
+        157,
+        311
+      ],
+      "role": "parent",
+      "name": "netfs_crash_safety_bounded",
+      "excerpt_sha256": "abba1612eedcb1b9f4061ae94037cf344e3a16d8e3fdc1f10bf3c51e88f2820c",
+      "permalink": "https://github.com/mit-pdos/perennial/blob/ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0/Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean#L157-L311"
+    },
+    {
+      "path": "Perennial/GooseLang/DistAdequacy.lean",
+      "lines": [
+        744,
+        801
+      ],
+      "role": "child",
+      "name": "goose_dist_crash_adequacy",
+      "excerpt_sha256": "768de3a5a0840b50b379fd920bd1e55dda413c3fedf0b8ec14189ce516486077",
+      "permalink": "https://github.com/mit-pdos/perennial/blob/ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0/Perennial/GooseLang/DistAdequacy.lean#L744-L801"
+    },
+    {
+      "path": "Perennial/GooseLang/Ext/Net/Adequacy.lean",
+      "lines": [
+        101,
+        104
+      ],
+      "role": "child",
+      "name": "fsNet_globalStart",
+      "excerpt_sha256": "514adb9d0eb08f600f9fdcace18c9352b7c614b63359ebf54438664fa171697d",
+      "permalink": "https://github.com/mit-pdos/perennial/blob/ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0/Perennial/GooseLang/Ext/Net/Adequacy.lean#L101-L104"
+    },
+    {
+      "path": "Perennial/GooseLang/Ext/Net/Adequacy.lean",
+      "lines": [
+        108,
+        112
+      ],
+      "role": "child",
+      "name": "fsNet_localStart",
+      "excerpt_sha256": "45b78bddf3ec807fa5afa9cd56f9e963faeeeb5153c183f6411aed94babaa7ae",
+      "permalink": "https://github.com/mit-pdos/perennial/blob/ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0/Perennial/GooseLang/Ext/Net/Adequacy.lean#L108-L112"
+    },
+    {
+      "path": "Perennial/GooseLang/Ext/Net/Adequacy.lean",
+      "lines": [
+        116,
+        120
+      ],
+      "role": "child",
+      "name": "fsNet_crashStart",
+      "excerpt_sha256": "db0a30edc9dcbb2ae7654a932a94af86176128fe2623b1a19528c72f17f865b7",
+      "permalink": "https://github.com/mit-pdos/perennial/blob/ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0/Perennial/GooseLang/Ext/Net/Adequacy.lean#L116-L120"
+    },
+    {
+      "path": "Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean",
+      "lines": [
+        85,
+        124
+      ],
+      "role": "child",
+      "name": "wp_boot",
+      "excerpt_sha256": "b0bca426ff3a680153c913ff48f54fd80c1d550c305f12bf489f44d18ec3556e",
+      "permalink": "https://github.com/mit-pdos/perennial/blob/ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0/Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean#L85-L124"
+    },
+    {
+      "path": "Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Link.lean",
+      "lines": [
+        32,
+        33
+      ],
+      "role": "child",
+      "name": "github_com.mit_pdos.perennial.goose.testdata.examples.netfs.wp_NodeA",
+      "excerpt_sha256": "d4b7a893584a3b69a508c30cc9b66747671ec75b77141daf9ed4d9a55cb2849b",
+      "permalink": "https://github.com/mit-pdos/perennial/blob/ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0/Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Link.lean#L32-L33"
+    },
+    {
+      "path": "Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Link.lean",
+      "lines": [
+        35,
+        36
+      ],
+      "role": "child",
+      "name": "github_com.mit_pdos.perennial.goose.testdata.examples.netfs.wp_NodeB",
+      "excerpt_sha256": "0a31014eca1197a3537bb2fe0c96cd733cd03e84646dafaab4659cef3cb6e35c",
+      "permalink": "https://github.com/mit-pdos/perennial/blob/ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0/Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Link.lean#L35-L36"
+    },
+    {
+      "path": "Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Link.lean",
+      "lines": [
+        38,
+        39
+      ],
+      "role": "child",
+      "name": "github_com.mit_pdos.perennial.goose.testdata.examples.netfs.wp_NodeC",
+      "excerpt_sha256": "31b03a7a2d9fa29488cb746365655aa97f62b98af5516047896b083a8aade454",
+      "permalink": "https://github.com/mit-pdos/perennial/blob/ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0/Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Link.lean#L38-L39"
+    }
+  ],
+  "parent": {
+    "name": "netfs_crash_safety_bounded",
+    "statement": "theorem netfs_crash_safety_bounded [lctx : GoLocalContext] [sem : go.Semantics]\n    [package_sem : Assumptions]\n    [hPre : GooseGpreS GF] (N T : Nat) (σa σb σc : state) (g : GlobalState) (c0 old : GoString)\n    (Ha : NodeStart lctx σa go!\"a\") (Hb : NodeStart lctx σb go!\"b\") (Hc : NodeStart lctx σc go!\"c\")\n    (Hin : extLocal fsExt σa.world !! go!\"in\" = some c0)\n    (Hout : extLocal fsExt σb.world !! go!\"out\" = some old)\n    (Hsent : extLocal fsExt σb.world !! go!\"sent\" = some go!\"\")\n    (Hneta : extGlobal netExt g.globalWorld !! go!\"a\" = some ∅)\n    (Hnetb : extGlobal netExt g.globalWorld !! go!\"b\" = some ∅)\n    (n : Nat) (κs : List Observation) (c : DistCfg)\n    (Hsteps : DistCrashNsteps ((system σa σb σc).map Prod.fst) n\n      (distInit (system σa σb σc) g) κs c)\n    (Hbound : n < N)\n    (Hlive : DistCrashThreadsBelow ((system σa σb σc).map Prod.fst) T n\n      (distInit (system σa σb σc) g)) :\n    ∀ (i : Nat) (tp : List Expr) (σ : state), c.nodes[i]? = some (tp, σ) →\n      (∀ v tp', tp = Val v :: tp' → v = #()) ∧\n      (∀ e, e ∈ tp → RealNotStuck e (σ, c.global)) ∧\n      (∀ e, e ∈ tp → ¬ UnrecoveredPanic e)"
+  },
+  "children": [
+    {
+      "name": "goose_dist_crash_adequacy",
+      "statement": "theorem goose_dist_crash_adequacy [hPre : GooseGpreS GF] (N T : Nat)\n    (es : List (Expr × state)) (g : GlobalState) (φ : Nat → val → Prop)\n    (hφ : ∀ i p, ¬ φ i (PanicV p))\n    (Hinitg : extsInitgP g.globalWorld)\n    (Hinit : ∀ n, n ∈ es → extsInitP n.2.world g.globalWorld)\n    (P : ∀ [GooseGlobalGS .hasLC GF], Nat → GooseLocalGS GF → IProp GF)\n    (Hstart : ∀ [GooseGlobalGS .hasLC GF],\n      receiptBound GF = N →\n      ⊢ extsGlobalStart (GF := GF) g.globalWorld ={⊤}=∗\n        [∗list] i ↦ n ∈ es, nodeStart T n.2 (P i))\n    (Hwp : ∀ [hG : HeapGS .hasLC GF],\n      receiptBound GF = N →\n      threadBound GF = T →\n      ∀ (i : Nat) (e : Expr) (σ : state), es[i]? = some (e, σ) →\n      hG.goose_localGS.goose_go_local_context = σ.goState.goLctx →\n      ⊢ P i hG.goose_localGS -∗ threadTok ={⊤}=∗\n        WP e @ Stuckness.NotStuck; ⊤ {{ v, ⌜φ i v⌝ }} ∗\n        ∀ L' : GooseLocalGS GF, crashed (hC := hG.goose_localGS.goose_crashGS) -∗\n          extsCrashStart hG.goose_localGS L' -∗\n          ownGoState (hG := L'.goose_go_stateGS) ∅ ={⊤}=∗ P i L')\n    (n : Nat) (κs : List Observation) (c : DistCfg)\n    (Hsteps : DistCrashNsteps (es.map Prod.fst) n (distInit es g) κs c)\n    (Hbound : n < N) (Hthreads : ∀ n, n ∈ es → n.2.threads = 1)\n    (Hlive : DistCrashThreadsBelow (es.map Prod.fst) T n (distInit es g)) :\n    ∀ i tp σ, c.nodes[i]? = some (tp, σ) →\n      (∀ v tp', tp = Val v :: tp' → φ i v) ∧\n      (∀ e, e ∈ tp → RealNotStuck e (σ, c.global)) ∧\n      (∀ e, e ∈ tp → ¬ UnrecoveredPanic e)",
+      "closed_by": "its own proof, reduced to goose_dist_crash_adequacy_blang via bdist_crash_nsteps_of_real",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: Distributed crash adequacy: under a per-node precondition P with its start and every-generation obligations, every execution with crashes has no stuck thread and no unrecovered panic."
+    },
+    {
+      "name": "fsNet_globalStart",
+      "statement": "theorem fsNet_globalStart [G : GooseGlobalGS .hasLC GF] (g : ExtsGlobalState exts) :\n    extsGlobalStart (GF := GF) g ⊢\n      [∗map] a ↦ ms ∈ extGlobal netExt g, netPointsto (extGlobalGS netExt) a (.own 1) ms",
+      "closed_by": "(sep_elim_right (P := iprop(True))).trans sep_elim_left",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The global start resources of [fsExt, netExt] are the network's points-to."
+    },
+    {
+      "name": "fsNet_localStart",
+      "statement": "theorem fsNet_localStart [L : GooseLocalGS GF] (σ : ExtsLocalState exts) :\n    extsLocalStart (GF := GF) σ ⊢\n      ([∗map] f ↦ c ∈ extLocal fsExt σ, fsPointsto (extLocalGS fsExt) f (.own 1) c) ∗\n      ⌜(extLocalGS netExt (L := L) : NetNodeGS GF).addr = extLocal netExt σ⌝",
+      "closed_by": "sep_mono_right sep_elim_left",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The local start resources of [fsExt, netExt] for a node are its files' points-to and its address."
+    },
+    {
+      "name": "fsNet_crashStart",
+      "statement": "theorem fsNet_crashStart (L L' : GooseLocalGS GF) :\n    extsCrashStart (GF := GF) L L' ⊢\n      ⌜extLocalGS fsExt (L := L') = extLocalGS fsExt (L := L)⌝ ∗\n      ⌜extLocalGS netExt (L := L') = extLocalGS netExt (L := L)⌝",
+      "closed_by": "sep_mono_right sep_elim_left",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The crash resources of [fsExt, netExt]: the new generation keeps the old one's files' and address's ghost state."
+    },
+    {
+      "name": "wp_boot",
+      "statement": "theorem wp_boot [hG : HeapGS .hasLC GF] [sem : go.Semantics] [package_sem : Assumptions] (f : GoString) (P : IProp GF)\n    (Hf : {{ isPkgInit (PROP := IProp GF)\n          pkg_id.github_com.mit_pdos.perennial.goose.testdata.examples.netfs ∗ P }}\n        (App (Val (@! f)) (Val #()))\n      {{ RET #(); True }}) :\n    ⊢ P -∗ ownGoState ∅ -∗ WP (boot f) @ Stuckness.NotStuck; ⊤ {{ v, ⌜v = #()⌝ }}",
+      "closed_by": "wp_apply wp_initialize' getIsPkgInit Hinit, then wp_apply Hf (the given function spec); ipureintro; rfl",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: A boot program's WP, from a spec of its function f with precondition P, given the package initialized."
+    },
+    {
+      "name": "github_com.mit_pdos.perennial.goose.testdata.examples.netfs.wp_NodeA",
+      "statement": "theorem github_com.mit_pdos.perennial.goose.testdata.examples.netfs.wp_NodeA : github_com.mit_pdos.perennial.goose.testdata.examples.netfs.NodeA.spec (GF := GF) (hG := hG)",
+      "closed_by": "github_com.mit_pdos.perennial.goose.testdata.examples.netfs.NodeA.wp_proof applied to fsext.wp_Read, netext.wp_Send and wp_recvFrom",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The linked spec of NodeA: NodeA.spec from NodeA.wp_proof applied to fsext.wp_Read, netext.wp_Send and wp_recvFrom."
+    },
+    {
+      "name": "github_com.mit_pdos.perennial.goose.testdata.examples.netfs.wp_NodeB",
+      "statement": "theorem github_com.mit_pdos.perennial.goose.testdata.examples.netfs.wp_NodeB : github_com.mit_pdos.perennial.goose.testdata.examples.netfs.NodeB.spec (GF := GF) (hG := hG)",
+      "closed_by": "github_com.mit_pdos.perennial.goose.testdata.examples.netfs.NodeB.wp_proof applied to fsext.wp_Read, fsext.wp_Write, netext.wp_Send and wp_recvFrom",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The linked spec of NodeB: NodeB.spec from NodeB.wp_proof applied to fsext.wp_Read, fsext.wp_Write, netext.wp_Send and wp_recvFrom."
+    },
+    {
+      "name": "github_com.mit_pdos.perennial.goose.testdata.examples.netfs.wp_NodeC",
+      "statement": "theorem github_com.mit_pdos.perennial.goose.testdata.examples.netfs.wp_NodeC : github_com.mit_pdos.perennial.goose.testdata.examples.netfs.NodeC.spec (GF := GF) (hG := hG)",
+      "closed_by": "github_com.mit_pdos.perennial.goose.testdata.examples.netfs.NodeC.wp_proof applied to netext.wp_Send",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The linked spec of NodeC: NodeC.spec from NodeC.wp_proof applied to netext.wp_Send."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A ∀-quantified safety property over a finite family of system components (here three nodes), discharged by a generic adequacy theorem (goose_dist_crash_adequacy) whose per-component obligation is discharged by case-splitting on the component index and applying a per-component linked spec through a shared boot wrapper.",
+    "use_when": "the components are finitely enumerable, each has its own linked spec and a shared boot wrapper (wp_boot), and the per-component branches are structurally parallel so the shared wrapper folds them together.",
+    "avoid_when": "the number of components is large or unbounded (a case split does not scale), the components need genuinely different arguments (the shared boot framing breaks), or the exhaustiveness of the index is not trivially decidable from a list-membership proof."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent proof cites goose_dist_crash_adequacy.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/mit-pdos/perennial/blob/ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0/Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean#L157-L311",
+      "form": "cites(parent, goose_dist_crash_adequacy)"
+    },
+    {
+      "n": 2,
+      "claim": "fsNet_localStart occurs 3 times in Results.lean.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/mit-pdos/perennial/blob/ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0/Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean#L202",
+      "form": "count(fsNet_localStart, 3, Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean)"
+    },
+    {
+      "n": 3,
+      "claim": "There is no sorry, admit or axiom in Results.lean.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/mit-pdos/perennial/blob/ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0/Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean#L1-L358",
+      "form": "no_sorry(Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean, 1-358)"
+    },
+    {
+      "n": 4,
+      "claim": "The netfs_crash_safety_bounded site (statement and proof) spans 155 lines (Results.lean 157-311), is assembled from 8 named lemmas cited directly, and the longest chain of project lemmas below it that I checked is 3 (wp_NodeA → wp_recvFrom → recvFrom.wp_proof, Link.lean 29-33).",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/mit-pdos/perennial/blob/ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0/Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean#L157-L311 and https://github.com/mit-pdos/perennial/blob/ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0/Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Link.lean#L29-L33"
+    },
+    {
+      "n": 5,
+      "claim": "The authors state the file's goal in the header comment — 'the distributed crash safety of the three-node system, on the network and the filesystem' (Results.lean 2-4) — and the theorem's own doc comment says it is 'goose_dist_crash_adequacy for the system' (Results.lean 154-156).",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/mit-pdos/perennial/blob/ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0/Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean#L2-L4 and https://github.com/mit-pdos/perennial/blob/ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0/Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean#L154-L156"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 155,
+    "children": 8,
+    "one_term_children": 6,
+    "how_counted": "parent_lines = Results.lean 157-311 inclusive (the whole theorem and its proof); children = the 8 named lemmas the glue cites directly; one_term_children = children whose proof is a single term (fsNet_globalStart, fsNet_localStart, fsNet_crashStart, wp_NodeA, wp_NodeB, wp_NodeC)"
+  },
+  "consequences": "The case split creates an exhaustiveness obligation — i = 0 ∨ i = 1 ∨ i = 2 must cover every node of the system — discharged here by `match i, Hes` on the list-membership proof Hes, which enumerates the three-entry system list. Each branch must rebuild the node precondition `nodePre` and apply `wp_boot` to the right node's linked spec; nodes that need different resources (`\"b\"` carries a files invariant `bInv`, `\"c\"` is trivial) are handled inside the parallel branches, so the branches are not literally identical. The adequacy instantiation also leaves two further obligations — the global setup and the thread bound — which are not part of the split and must be discharged separately (by `fsNet_globalStart` / the single-thread start facts).",
+  "known_uses": [],
+  "related": [],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 8,
+    "depth": 3,
+    "glue_lines": 155,
+    "child_lines": [
+      58,
+      4,
+      5,
+      5,
+      40,
+      2,
+      2,
+      2
+    ]
+  },
+  "rule": {
+    "f10_rule": 5,
+    "relation": "supports"
+  },
+  "content_key": "782633009cd111bcefd07aedeaf519dda4f85dea3ca700af9808a02a5ea804eb",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:40:45Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,metrics,consequences,rule,shape",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:45:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:42:17Z",
+      "note": "parent netfs_crash_safety_bounded: statement re-copied from code; child 'goose_dist_crash_adequacy': statement re-copied from the declaration of goose_dist_crash_adequacy; child 'fsNet_globalStart': statement re-copied from the declaration of fsNet_globalStart; child 'fsNet_localStart': statement re-copied from the declaration of fsNet_localStart; child 'fsNet_crashStart': statement re-copied from the declaration of fsNet_crashStart; child 'wp_boot': statement re-copied from the declaration of wp_boot; child 'github_com.mit_pdos.perennial.goose.testdata.examples.netfs.wp_NodeA': statement re-copied from the declaration of github_com.mit_pdos.perennial.goose.testdata.examples.netfs.wp_NodeA; child 'github_com.mit_pdos.perennial.goose.testdata.examples.netfs.wp_NodeB': statement re-copied from the declaration of github_com.mit_pdos.perennial.goose.testdata.examples.netfs.wp_NodeB; child 'github_com.mit_pdos.perennial.goose.testdata.examples.netfs.wp_NodeC': statement re-copied from the declaration of github_com.mit_pdos.perennial.goose.testdata.examples.netfs.wp_NodeC"
+    }
+  ]
+}

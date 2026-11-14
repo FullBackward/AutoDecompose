@@ -1,0 +1,174 @@
+{
+  "id": "lean-calc-chain-infinity-cosmos-933fc1d5",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Transport a composition structure along homotopies of all three edges",
+  "intent": "Reduce the goal of transporting a composition structure (a 2-simplex) along homotopies of all three edges to a chain of three single-edge transports, each a small lemma closing with one horn filling, so the corollary is a three-step `Nonempty (CompStruct …)` chain rather than one large construction.",
+  "move": "calc-chain",
+  "also_known_as": [
+    "chain of transports",
+    "transitivity chain"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "infinity-cosmos",
+    "url": "https://github.com/emilyriehl/infinity-cosmos",
+    "commit": "89d7dc3ed861824535e540da489a46469dcc8e56",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean",
+      "bytes": 39808,
+      "sha256": "99a9422899f0a27157ea495288dba673ae571b06937584b3b69b1ed29b0329bd",
+      "permalink": "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean",
+      "lines": [
+        574,
+        583
+      ],
+      "role": "parent",
+      "name": "transport_all_edges",
+      "excerpt_sha256": "4f5d58ad3c01157479709a8cb6b4c714773b11b5e214a94213f658b14240acd7",
+      "permalink": "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean#L574-L583"
+    },
+    {
+      "path": "InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean",
+      "lines": [
+        545,
+        548
+      ],
+      "role": "child",
+      "name": "transport_edge₀",
+      "excerpt_sha256": "b41e30cdbdf4fcb4e5ea7280bdff58200433a692125683b16449ab5cf02eb3a4",
+      "permalink": "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean#L545-L548"
+    },
+    {
+      "path": "InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean",
+      "lines": [
+        550,
+        554
+      ],
+      "role": "child",
+      "name": "transport_edge₁",
+      "excerpt_sha256": "a6df8eea0b09b6130e22f4f9057bb4ae706230f2082b72d3dc9de55aa72f1cde",
+      "permalink": "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean#L550-L554"
+    },
+    {
+      "path": "InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean",
+      "lines": [
+        556,
+        560
+      ],
+      "role": "child",
+      "name": "transport_edge₂",
+      "excerpt_sha256": "bfa7fdef94eafc8a0d94de912d2320990589a2a98976bb95f75235d554361e40",
+      "permalink": "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean#L556-L560"
+    }
+  ],
+  "parent": {
+    "name": "transport_all_edges",
+    "statement": "lemma transport_all_edges {f f' : Truncated.Edge x y} {g g' : Truncated.Edge y z}\n    {h h' : Truncated.Edge x z} (hf : HomotopicL f f') (hg : HomotopicL g g') (hh : HomotopicL h h')\n    (s : CompStruct f g h) :\n    Nonempty (CompStruct f' g' h')"
+  },
+  "children": [
+    {
+      "name": "transport_edge₀",
+      "statement": "lemma transport_edge₀ {f : Truncated.Edge x y} {g g' : Truncated.Edge y z} {h : Truncated.Edge x z}\n    (s : CompStruct f g h) (htpy : HomotopicL g g') : Nonempty (CompStruct f g' h)",
+      "closed_by": "rcases htpy with ⟨htpy⟩; exact Quasicategory₂.fill32 s htpy (compId h)"
+    },
+    {
+      "name": "transport_edge₁",
+      "statement": "lemma transport_edge₁ {f : Truncated.Edge x y} {g : Truncated.Edge y z} {h h' : Truncated.Edge x z}\n    (s : CompStruct f g h) (htpy : HomotopicL h h') : Nonempty (CompStruct f g h')",
+      "closed_by": "rcases (HomotopicL_iff_HomotopicR.mp htpy) with ⟨htpy⟩; exact Quasicategory₂.fill31 (idComp f) s htpy"
+    },
+    {
+      "name": "transport_edge₂",
+      "statement": "lemma transport_edge₂ {f f' : Truncated.Edge x y} {g : Truncated.Edge y z} {h : Truncated.Edge x z}\n    (s : CompStruct f g h) (htpy : HomotopicL f f') : Nonempty (CompStruct f' g h)",
+      "closed_by": "rcases (HomotopicL_iff_HomotopicR.mp htpy) with ⟨htpy⟩; exact Quasicategory₂.fill31 htpy s (idComp h)"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "a structure transport goal `(s : R e₀ e₁ e₂) → R e₀' e₁' e₂'` given homotopies/equalities `eᵢ ~ eᵢ'` for each edge, where `R` is built horn-by-horn (here `CompStruct f g h`, a 2-simplex with spine `f`, `g` and diagonal `h`) and each untouched edge has a degenerate filler (`idComp`, `compId`)",
+    "use_when": "the transports along the edges are independent, each a one-line horn fill `Quasicategory₂.fill*`; the goal is a `Nonempty (CompStruct …)` that can be threaded one edge at a time",
+    "avoid_when": "an edge transport is a nontrivial construction rather than a single horn fill (then that edge is its own sub-decomposition); the transports interact so a later step needs more than one earlier output; the structure lacks degenerate fillers for the untouched edges; or the homotopies are stated in a relation that needs conversion first (as `HomotopicL` → `HomotopicR` does here via `HomotopicL_iff_HomotopicR`)"
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent site cites `transport_edge₂`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean#L574-L583",
+      "form": "cites(parent, transport_edge₂)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites `transport_edge₀`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean#L574-L583",
+      "form": "cites(parent, transport_edge₀)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site cites `transport_edge₁`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean#L574-L583",
+      "form": "cites(parent, transport_edge₁)"
+    },
+    {
+      "n": 4,
+      "claim": "The theorem-scale shape has 3 direct child lemmas; the glue (parent site) is 10 lines and the three child sites are 4, 5 and 5 lines, each child's proof being one `rcases` plus one `Quasicategory₂.fill*` horn-filling line.",
+      "evidence_kind": "measurement",
+      "evidence": "site spans of the copied file: parent 574-583, children 545-548, 550-554, 556-560 (https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean)"
+    },
+    {
+      "n": 5,
+      "claim": "The authors' blueprint `proof` for the corollary states the strategy verbatim: \"Apply the three conclusions of Lemma \\ref{lem:2-truncated-qcat-htpy-comp} one at a time to transform the given 2-simplex.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/emilyriehl/infinity-cosmos/blob/89d7dc3ed861824535e540da489a46469dcc8e56/InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean#L569-L572"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 2,
+    "glue_lines": 10,
+    "child_lines": [
+      4,
+      5,
+      5
+    ]
+  },
+  "metrics": {
+    "direct_lemmas": 3,
+    "glue_lines": 10,
+    "child_lines": [
+      4,
+      5,
+      5
+    ],
+    "children_closed_by_single_horn_fill": 3,
+    "how_counted": "line counts are the site spans (parent 574-583, children 545-548, 550-554, 556-560); 'children_closed_by_single_horn_fill' counts the three children, each of whose proofs is one rcases plus one exact Quasicategory2.fill31/fill32 line"
+  },
+  "consequences": "The move creates one leaf per edge of the structure (here three) and a linear plumbing obligation: each step must open the previous `Nonempty` with `rcases` before applying the next lemma, so the glue is O(edges) `have`/`rcases` steps. If an edge's homotopy is stated in the opposite relation (here `HomotopicL` against the fillers' `HomotopicR`), the leaf converts it first via `HomotopicL_iff_HomotopicR`, which adds one project lemma below the children (the depth-2 chain). The chain has no side conditions of its own, but it relies on degenerate fillers `idComp`/`compId` for the edges not yet transported.",
+  "known_uses": [],
+  "related": [],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "933fc1d54d4bfe8c82300d55bc75913980e674ffb2064b64e178236e15421f85",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:25:16Z"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T15:35:19Z"
+}

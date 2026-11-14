@@ -1,0 +1,125 @@
+{
+  "entry": "rocq-interface-lemma-metarocq-dfd0eaa4",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:40:25Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:40:25Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:40:25Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: lift_sorting_it_impl@pcuic/theories/Bidirectional/BDToPCUIC.v:469, infering_sort_typing@pcuic/theories/Bidirectional/BDToPCUIC.v:470, checking_typing@pcuic/theories/Bidirectional/BDToPCUIC.v:472, isTypebd_isType@pcuic/theories/Bidirectional/BDToPCUIC.v:473; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:40:25Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "no_sorry(pcuic/theories/Bidirectional/BDToPCUIC.v, 465-474) -> no_sorry: none of admit, Admitted, Axiom, axiom in pcuic/theories/Bidirectional/BDToPCUIC.v:465-474",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:40:25Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, lift_sorting_it_impl) -> cites: lift_sorting_it_impl occurs at pcuic/theories/Bidirectional/BDToPCUIC.v:469",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:40:25Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:40:36Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/build.yml builds make ci-local (Makefile: all -> pcuic -> pcuic/theories/Bidirectional/BDToPCUIC.v); commit 51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56 is HEAD of default branch 9.1",
+      "by": "verifier",
+      "at": "2026-11-14T15:41:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Parent BDToPCUIC.v 465-474 = 10 lines (2-line statement 465-466, 8-line Proof..Qed 467-474); glue cites 4 lemmas at 469 (lift_sorting_it_impl), 470 (infering_sort_typing), 472 (checking_typing), 473 (isTypebd_isType). Child spans: EnvironmentTyping.v 540-550=11, BDToPCUIC.v 427-433=7, 419-425=7, 458-463=6. Chain depth 4: isTypebd_isType(458) -> infering_sort_isType(435, 'eapply infering_sort_isType') -> infering_sort_typing(427, 'apply bidirectional_to_pcuic') -> bidirectional_to_pcuic(206).",
+      "by": "verifier",
+      "at": "2026-11-14T15:42:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "BDToPCUIC.v line 409 reads '(** The user-facing theorems, directly following from the previous one *)', immediately before Theorem infering_typing and the group that includes checking_typing, infering_sort_typing, infering_sort_isType, isTypebd_isType, lift_sorting_lift_typing.",
+      "by": "verifier",
+      "at": "2026-11-14T15:42:14Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:42:33Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent lift_sorting_lift_typing (BDToPCUIC.v 465-474, ends in Qed, no sorry/admit) applies exactly the four children and no other named lemmas: lift_sorting_it_impl (469), infering_sort_typing (470), checking_typing (472), isTypebd_isType (473). Each child site and closed_by match the code verbatim: lift_sorting_it_impl EnvironmentTyping.v 540-550 closed by lift_sorting_f_it_impl (548); infering_sort_typing 427-433 closed by bidirectional_to_pcuic (431); checking_typing 419-425 closed by bidirectional_to_pcuic (423); isTypebd_isType 458-463 closed by infering_sort_isType (462). Shape numbers correct: scale theorem, direct_lemmas 4, depth 4 via the verified chain isTypebd_isType->infering_sort_isType->infering_sort_typing->bidirectional_to_pcuic (462->440->431->206), glue_lines 10 (465-474), child_lines [11,7,7,6]. Provenance passes (3 files byte-identical).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:43:49Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality stated beyond the example: use_when/avoid_when frame the move as 'algorithmic relation -> semantic relation' one-shot bridge with componentwise implications already proved, not MetaRocq-specific; goal_shape + also_known_as (abstraction-boundary/API/facade lemma) carry the abstract form. 'When not to use' is honest and specific: it names bidirectional_to_pcuic (BDToPCUIC.v:206, confirmed 'The big theorem, proven by mutual induction'), the thin-glue vs hard-bridge distinction, and the no-single-generic-lifting-lemma case. Consequences are honest and specific: checking_typing's isType premise (verified in its statement) is discharged by isTypebd_isType (line 473), and the failure mode of lift_sorting_it_impl's Ps->Qs side (the 2: branch, line 470) is real and matches the code. It does say what makes good leaves: each child is self-contained and closes by applying one named lemma (lift_sorting_f_it_impl, bidirectional_to_pcuic x2, infering_sort_isType), the property a bounded prover needs. All cited ranges (BDToPCUIC.v 409/411-417/419-425/427-433/458-463/465-474; EnvironmentTyping.v 348/361/540-550; BDTyping.v 130) verified against local copies.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:44:42Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:45:02Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are all consistent. check_provenance.py passes (3 files byte-identical at 51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56). Commit is identical across entry.json, README (abbrev 51b14e4bb5f4), sources/metarocq/SOURCE.md and source.json. Licence MIT is recorded in entry.json, README, SOURCE.md and source.json; upstream-LICENSE is copied and is the MIT text. Every permalink in entry.json (files and sites) points to the pinned commit with the correct path and line range; the cited line ranges were checked against the local copies (parent 465-474, children 540-550/427-433/419-425/458-463, author comment 409) and all match the verbatim excerpts. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:45:29Z"
+    }
+  ]
+}

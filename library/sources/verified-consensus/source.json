@@ -1,0 +1,15 @@
+{
+  "source_id": "verified-consensus",
+  "url": "https://github.com/sigp/verified-consensus",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "sigp/verified-consensus",
+  "commit": "4a3809f12d5aefac6ca47ad36cb6a1b11938bd3a",
+  "ref": "HEAD",
+  "language": "isabelle",
+  "pinned_at": "2026-11-14T14:53:43Z",
+  "how_found": "discovery-2: B-isabelle, discovery-1:B-isabelle",
+  "note": "Ethereum Capella consensus in Isabelle/HOL: functional-correctness proofs (Process_Epoch_O_Specs) relating the Python spec to optimised epoch processing, over Hoare/VCG and Word_Lib lemmas, ROOT session Verified_Consensus_Proofs.",
+  "licence": "LicenseRef-unknown",
+  "licence_files": []
+}

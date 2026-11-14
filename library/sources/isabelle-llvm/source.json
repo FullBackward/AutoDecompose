@@ -1,0 +1,17 @@
+{
+  "source_id": "isabelle-llvm",
+  "url": "https://github.com/lammich/isabelle_llvm",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "lammich/isabelle_llvm",
+  "commit": "6be37a9c3cae74a1134dbef2979e312abb5f7f42",
+  "ref": "HEAD",
+  "language": "isabelle",
+  "pinned_at": "2026-11-14T14:52:56Z",
+  "how_found": "discovery-2: A-isabelle, B-isabelle, discovery-1:A-isabelle",
+  "note": "Isabelle-LLVM refinement framework with an Introsort case study: semantics/refinement lemmas composed into correctness theorems; well-cited (Lammich).",
+  "licence": "BSD-3-Clause",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

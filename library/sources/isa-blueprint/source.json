@@ -1,0 +1,17 @@
+{
+  "source_id": "isa-blueprint",
+  "url": "https://github.com/arthur742ramos/isa-blueprint",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "arthur742ramos/isa-blueprint",
+  "commit": "6f52dc13d92d03f44a47b76609cf6ae7c55ecae2",
+  "ref": "HEAD",
+  "language": "isabelle",
+  "pinned_at": "2026-11-14T14:53:02Z",
+  "how_found": "discovery-2: A-isabelle, B-isabelle, discovery-1:B-isabelle",
+  "note": "IsabelleBlueprint: LaTeX/Markdown blueprints with \\uses{} dependency graphs checked against Isabelle/AFP and turned into agent-ready proof tasks; bundled example formalisations (gauss-sum, euclid-primes, afp-gale-stewart); MIT.",
+  "licence": "MIT",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

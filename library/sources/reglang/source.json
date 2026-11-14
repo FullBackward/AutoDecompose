@@ -1,0 +1,17 @@
+{
+  "source_id": "reglang",
+  "url": "https://github.com/rocq-community/reglang",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "rocq-community/reglang",
+  "commit": "dd7521632d849ef1d143398262d0fb98e536dd6c",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-14T14:53:29Z",
+  "how_found": "discovery-2: discovery-1:A-rocq, discovery-1:B-rocq",
+  "note": "Kleene theorem, constructive Myhill-Nerode, DFA minimisation and two-way-automata translations, each main theorem proved from named lemmas in its own file",
+  "licence": "CECILL-B",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

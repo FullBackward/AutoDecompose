@@ -1,0 +1,17 @@
+{
+  "source_id": "gaia",
+  "url": "https://github.com/rocq-community/gaia",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "rocq-community/gaia",
+  "commit": "5f54b6ee146e86e938180f8037db411da224bb29",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-14T14:53:32Z",
+  "how_found": "discovery-2: discovery-1:A-rocq, discovery-1:B-rocq",
+  "note": "Bourbaki Elements of Mathematics formalised book by book (theory of sets, numbers, ordinals, Schutte), chapter-scale theorems from named lemmas",
+  "licence": "MIT",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

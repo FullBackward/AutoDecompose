@@ -258,7 +258,8 @@
   },
   "consequences": "One `_ret` lemma per callee plus side lemmas, so the obligations are: (1) each callee's post-state must be characterised by a `suc`/`err` assumption pair in its `_ret` lemma, and the parent must re-establish that pair before every `rule <callee>_ret`; (2) the case split `sync_offs = used` must be exhaustive — the two branches are `used_eq_sync_offs_means_no_update` and `used_neq_sync_offs_means_updates_not_Nil`, complementary by construction, but the parent still has to apply the right one in each branch; (3) a callee whose refinement lemma is left as `oops` (like `ostore_write_ret` at line 2510) cannot be used by the glue. Failure mode: the per-callee post-states are highly specific (`\\<exists>`-packed `ostore_st'` updates), so a change to the generated code's state layout breaks the whole family at once.",
   "known_uses": [
-    "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/OstoreReadR.thy#L1356-L1395"
+    "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/OstoreReadR.thy#L1356-L1395",
+    "isabelle-interface-lemma-cogent-da73726a"
   ],
   "related": [],
   "shape": {
@@ -303,6 +304,14 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T12:28:17Z",
       "note": "parent ostore_sync_ret: statement re-copied from code; child 'prepare_wbuf_ret': statement re-copied from the declaration of prepare_wbuf_ret; child 'ostore_sync_summary_if_eb_new_ret': statement re-copied from the declaration of ostore_sync_summary_if_eb_new_ret; child 'ostore_write_buf_ret': statement re-copied from the declaration of ostore_write_buf_ret; child 'extra_padding_is_aligned': statement re-copied from the declaration of extra_padding_is_aligned; child 'ostore_sync_\\\\<alpha>_ostore_uptodate': statement re-copied from the declaration of ostore_sync_\\<alpha>_ostore_uptodate; child '\\\\<alpha>_updates_buf_prepare_eq': statement re-copied from the declaration of \\<alpha>_updates_buf_prepare_eq; child 'used_neq_sync_offs_means_updates_not_Nil': statement re-copied from the declaration of used_neq_sync_offs_means_updates_not_Nil; child 'used_eq_sync_offs_means_no_update': statement re-copied from the declaration of used_eq_sync_offs_means_no_update"
+    },
+    {
+      "field": "known_uses",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "discovery-2",
+      "at": "2026-11-14T16:19:57Z",
+      "note": "added isabelle-interface-lemma-cogent-da73726a: the level above: that entry's child ostore_sync_ret is this entry's parent, cited by refine_sync; not a duplicate"
     }
   ]
 }

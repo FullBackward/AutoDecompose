@@ -1,0 +1,17 @@
+{
+  "source_id": "cam-combi",
+  "url": "https://github.com/yaeldillies/cam-combi",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "yaeldillies/cam-combi",
+  "commit": "0a42535119073f677dd60a28acbbdcda11b87f60",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T14:53:11Z",
+  "how_found": "discovery-2: A-lean, B-lean",
+  "note": "Digitises seven Cambridge combinatorics courses into Lean 4; each course's textbook theorems are stated and proved from named lemmas in chapter files, with CI",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

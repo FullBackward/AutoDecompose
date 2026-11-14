@@ -1,0 +1,125 @@
+{
+  "entry": "lean-case-split-perennial-78263300",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:43:55Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:43:55Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:43:55Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: goose_dist_crash_adequacy@Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean:176, fsNet_globalStart@Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean:184, fsNet_localStart@Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean:202, fsNet_crashStart@Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean:299, wp_boot@Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean:285, github_com.mit_pdos.perennial.goose.testdata.examples.netfs.wp_NodeA@Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean:285, github_com.mit_pdos.perennial.goose.testdata.examples.netfs.wp_NodeB@Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean:291, github_com.mit_pdos.perennial.goose.testdata.examples.netfs.wp_NodeC@Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean:295; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:43:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, goose_dist_crash_adequacy) -> cites: goose_dist_crash_adequacy occurs at Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean:176",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:43:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "count(fsNet_localStart, 3, Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean) -> count: fsNet_localStart occurs 3 times in 1 file(s) matching Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:43:55Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean, 1-358) -> no_sorry: none of sorry, admit, axiom in Perennial/Proof/github_com/mit_pdos/perennial/goose/testdata/examples/netfs/Results.lean:1-358",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:43:55Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:44:09Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "pinned commit ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0 is the HEAD of default branch 'lean' (GitHub compare API: identical to lean), but the tree at that commit has no .github directory (root listing lacks any workflow file). The repo's GitHub Actions ci.yml lives only on the 'master' branch and builds the Rocq/Coq project (setup-rocq, opam install --deps-only ./perennial.opam, make -j4 -k ci), not the Lean Results.lean file on 'lean'. No CI workflow builds this file on the default branch.",
+      "by": "verifier",
+      "at": "2026-11-14T15:47:11Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "read Results.lean 157-311: theorem netfs_crash_safety_bounded starts at 157 and its proof ends at 311 (155 lines). The glue cites 8 named lemmas: goose_dist_crash_adequacy (176), fsNet_globalStart (185), fsNet_localStart (202/215/234), wp_boot+wp_NodeA (285), wp_boot+wp_NodeB (291), wp_boot+wp_NodeC (295), fsNet_crashStart (299). Link.lean 29-33: wp_NodeA (32) proof applies NodeA.wp_proof ... wp_recvFrom (33); wp_recvFrom (29) proof applies recvFrom.wp_proof (30), giving the 3-lemma chain wp_NodeA -> wp_recvFrom -> recvFrom.wp_proof.",
+      "by": "verifier",
+      "at": "2026-11-14T15:47:15Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read Results.lean 2-4: header comment says 'the distributed crash safety of the three-node system, on the network and the filesystem'. Read Results.lean 154-156: doc comment '/-- netfs_crash_safety for executions ...: goose_dist_crash_adequacy for the system. -/' — both quotes match the claim verbatim.",
+      "by": "verifier",
+      "at": "2026-11-14T15:47:17Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Read README.md and entry.json, then the cited line ranges in the local code/ copies. Parent proof (Results.lean 157-311) opens with refine goose_dist_crash_adequacy (line 176) and the case split is real: have Hnode (i=0/e=boot NodeA/sigma=sigmaa) or (i=1/...) or (i=2/...) proved by match i, Hes, then rcases Hnode with 3 branches each iapply wp_boot to that node's spec. All 8 children are exactly the named lemmas the glue cites directly, at the exact lines recorded: goose_dist_crash_adequacy@176, fsNet_globalStart@184, fsNet_localStart@202/220/250, wp_boot@285/291/295, wp_NodeA@285, wp_NodeB@291, wp_NodeC@295, fsNet_crashStart@299. Each child's statement and closing method in entry.json match the code: fsNet_* are one-term sep_elim/mono lemmas (Adequacy.lean 101-104, 108-112, 116-120), wp_boot is a full wp_apply proof (Results.lean 85-124), wp_NodeA/B/C are one-line wp_proof applications (Link.lean 32-33, 35-36, 38-39), goose_dist_crash_adequacy closes by reducing to goose_dist_crash_adequacy_blang (DistAdequacy.lean 744-801). The proof closes: no sorry/admit/axiom in the file, and all three refine holes are discharged. Shape numbers are correct: direct_lemmas=8 (8 children), glue_lines=155 (311-157+1), child_lines=[58,4,5,5,40,2,2,2] all match the site spans (801-744+1=58, 104-101+1=4, 112-108+1=5, 120-116+1=5, 124-85+1=40, 2, 2, 2), depth=3 matches the wp_NodeA -> wp_recvFrom -> recvFrom.wp_proof chain (Link.lean 29-33).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:48:43Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "The move is stated beyond the example: applicability.goal_shape and 'When to use' generalise to a safety property over a finite, enumerable family of components reduced by a generic adequacy/simulation theorem to a per-component obligation, each discharged through a shared wrapper (wp_boot) over a per-component linked spec. avoid_when is honest and specific (large/unbounded count does not scale; genuinely different arguments that break the shared wrapper; exhaustiveness not trivially decidable from list membership), and the consequences section honestly flags the exhaustiveness obligation, that the branches are not literally identical (b carries bInv, c is trivial), the two non-split obligations (global setup, thread bound), and the silent-failure mode when a node is added. A dedicated paragraph ('Each child is a good leaf') says what makes them good leaves for a bounded prover: self-contained statements that close on their own or from named siblings, with one-line/one-term closures.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:50:35Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:50:58Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance pass: check_provenance.py reports 4 file(s) byte-identical at ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0. Commit ddc0f0acc59a is recorded consistently in entry.json, SOURCE.md and sources.jsonl. Permalink line anchors spot-checked against code/ and all match (Results.lean 154-157/311/85, Link.lean 32-39, Ext/Net/Adequacy.lean 101-120, DistAdequacy.lean 744/801). Licence LicenseRef-unknown is recorded consistently in entry.json, README.md and SOURCE.md; the source note's 'no licence file found at the root' is accurate (only goose/LICENSE exists, MIT for the goose translator, not governing the copied Perennial/ proof files), so unknown is correctly tagged per protocol 4. Out of lens: source is registered language 'rocq' but the copied files are .lean (Lean development).",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:52:54Z"
+    }
+  ]
+}

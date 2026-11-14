@@ -1,0 +1,125 @@
+{
+  "entry": "latex-blueprint-node-brownian-motion-9cd4212c",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:34:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:34:06Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "not-run",
+      "evidence": "no Lean, Rocq or Isabelle file among the copied files",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:34:06Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, lem:hasBoundedCoveringNumberCover_nnreal) -> cites: lem:hasBoundedCoveringNumberCover_nnreal occurs at blueprint/src/chapters/brownian.tex:109",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:34:07Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, lem:isKolmogorovProcess_preBrownian) -> cites: lem:isKolmogorovProcess_preBrownian occurs at blueprint/src/chapters/brownian.tex:109",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:34:07Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, thm:localized_holder_modification_sup) -> cites: thm:localized_holder_modification_sup occurs at blueprint/src/chapters/brownian.tex:109",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:34:07Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "lines(parent, 13) -> lines: site parent has 13 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:34:07Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 8fd8dc52830cdd07cf9cc8eadd533e284425fa6f",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:34:13Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/blueprint.yml 'Compile blueprint and documentation' step runs docgen-action with blueprint:true, compiling the blueprint LaTeX (incl. blueprint/src/chapters/brownian.tex) on pushes to the default branch master; commit 8fd8dc52830cdd07cf9cc8eadd533e284425fa6f is the source's pinned HEAD",
+      "by": "verifier",
+      "at": "2026-11-14T15:35:57Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "direct_lemmas=3 confirmed from proof \\uses{} at brownian.tex:109 listing lem:hasBoundedCoveringNumberCover_nnreal, lem:isKolmogorovProcess_preBrownian, thm:localized_holder_modification_sup; depth-7 chain confirmed edge by edge: 1841 uses thm:localized_holder_modification -> 1812 uses thm:holder_modification -> 1764 uses lem:holder_modification_single -> 1716 uses thm:countable_set_bound -> 1688 uses lem:finite_set_bound -> 1639 uses cor:finite_set_bound_of_dist_le (7 nodes); child_lines [13,22,20] confirmed: 1786-1798=13, 53-74=22, 1830-1849=20",
+      "by": "verifier",
+      "at": "2026-11-14T15:36:00Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 8fd8dc52830cdd07cf9cc8eadd533e284425fa6f",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:36:19Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Correctness verified against the copied code. Parent lem:isHolderWith_brownian (brownian.tex:101-113) has a proof whose \\uses{} (line 109) cites exactly the three children: lem:hasBoundedCoveringNumberCover_nnreal, lem:isKolmogorovProcess_preBrownian, thm:localized_holder_modification_sup — no more, no fewer. Each child's closing method matches: child1 (kolmogorov_chentsov.tex:1786-1798) empty body with \\uses{lem:hasBoundedInternalCoveringNumber_unitInterval}; child2 (brownian.tex:53-74) cites centralMoment_two_mul_gaussianReal and hasLaw_preBrownian_sub; child3 (kolmogorov_chentsov.tex:1830-1849) cites thm:localized_holder_modification and lem:indistinguishable_of_modification_of_continuous. The node closes: the proof ends with the arithmetic sup_n (n+1)/(2n+4)=1/2, and the entry correctly flags the blueprint's transcription slip at line 112 (writes '<=2 / tends to 2' where 1/2 is correct). Shape numbers are right: glue_lines=13 (101-113), child_lines=[13,22,20] (1786-1798, 53-74, 1830-1849), direct_lemmas=3, depth=7 confirmed along the uses chain 1841->1812->1764->1716->1688->1639->finite_set_bound_of_dist_le.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:37:12Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalises: applicability.goal_shape and README 'When to use' state the general shape (a canonically-constructed object whose property follows from a universal theorem by instantiating parameters, plus a one-line sup/limit computation), not just Brownian motion. When-not-to-use is honest and specific (ingredient still an open node; the sup/limit is the real content; exponents not uniformly reindexable), and consequences flag real failure modes I confirmed in the copied code: the line-112 transcription slip writes '<= 2'/'tends to 2' where the correct sup is 1/2, and the silent reindexing of both the cover [0,n+1) vs [0,n) and exponents (2n+4,n+2) vs (2n,n). 'Why each child is a good leaf' names what makes them bounded-prover leaves: each is self-contained and closes on its own or from named siblings, and the opinion paragraph names the three-lemma-hole shape.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:38:01Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "2 file(s) byte-identical at 8fd8dc52830cdd07cf9cc8eadd533e284425fa6f",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:38:16Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note all consistent. check_provenance.py passes: both files byte-identical at pinned commit 8fd8dc52830cdd07cf9cc8eadd533e284425fa6f, so permalinks resolve. The commit hash matches across source.json, SOURCE.md, entry.json, README and every permalink. Entry licence Apache-2.0 matches source.json/source note; upstream-LICENSE is the Apache-2.0 text. Cited line ranges (brownian.tex 101-113, 53-74; kolmogorov_chentsov.tex 1786-1798, 1830-1849) match the copied files verbatim.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:38:41Z"
+    }
+  ]
+}

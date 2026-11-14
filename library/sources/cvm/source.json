@@ -1,0 +1,17 @@
+{
+  "source_id": "cvm",
+  "url": "https://github.com/joewatt95/cvm",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "joewatt95/cvm",
+  "commit": "aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb",
+  "ref": "HEAD",
+  "language": "isabelle",
+  "pinned_at": "2026-11-14T14:52:54Z",
+  "how_found": "discovery-2: A-isabelle, B-isabelle, discovery-1:B-isabelle",
+  "note": "ITP 2025 artefact: CVM algorithm correctness split across CVM_Invariant, CVM_Transforms and Neg_Assoc theories around a functional probabilistic invariant; BSD-2.",
+  "licence": "BSD-2-Clause",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

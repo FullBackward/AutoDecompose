@@ -1,0 +1,18 @@
+{
+  "source_id": "con-nf",
+  "url": "https://github.com/leanprover-community/con-nf",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "leanprover-community/con-nf",
+  "commit": "edbce7eb98351870f553cfab6ccb7cab327e4259",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T14:53:04Z",
+  "how_found": "discovery-2: A-lean, discovery-1:B-lean",
+  "note": "Consistency of Quine's New Foundations, proof complete: headline theorem statements in ConNF/Model/Result.lean over the stratified model construction, with CI",
+  "licence": "Apache-2.0 AND MIT",
+  "licence_files": [
+    "LICENSE_APACHE",
+    "LICENSE_MIT"
+  ]
+}

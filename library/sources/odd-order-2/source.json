@@ -1,0 +1,17 @@
+{
+  "source_id": "odd-order-2",
+  "url": "https://github.com/yawara/odd-order",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "yawara/odd-order",
+  "commit": "ba8ec35982ceecbd31ca987cbe0cee30477f4883",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T14:53:44Z",
+  "how_found": "discovery-2: A-lean",
+  "note": "Complete Lean 4 Feit-Thompson odd order theorem (feitThompson, axiom-clean) built from the project's finite-group theory lemmas; book-scale main theorem with named children",
+  "licence": "Apache-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

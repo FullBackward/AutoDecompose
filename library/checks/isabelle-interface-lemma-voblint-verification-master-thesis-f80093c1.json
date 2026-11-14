@@ -1,0 +1,133 @@
+{
+  "entry": "isabelle-interface-lemma-voblint-verification-master-thesis-f80093c1",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:44:53Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:44:53Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:44:53Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: activation_collect_sound@src/Analyses/Shared/Result/Source_Activation_Sound.thy:110, valid_activation_trace_has_context@src/Analyses/Shared/Result/Source_Activation_Sound.thy:113, source_sound_from_collecting_cap@src/Analyses/Shared/Result/Source_Activation_Sound.thy:115; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:44:53Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, source_sound_from_collecting_cap) -> cites: source_sound_from_collecting_cap occurs at src/Analyses/Shared/Result/Source_Activation_Sound.thy:115",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:44:53Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, activation_collect_sound) -> cites: activation_collect_sound occurs at src/Analyses/Shared/Result/Source_Activation_Sound.thy:110",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:44:53Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, valid_activation_trace_has_context) -> cites: valid_activation_trace_has_context occurs at src/Analyses/Shared/Result/Source_Activation_Sound.thy:113",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:44:53Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 07ecd3a886efa3a5744caabc19fbb301a40384a5",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:45:05Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/ci.yml job isabelle-build runs 'pixi run isabelle-build' -> scripts/mk/build.sh -> 'isabelle build ... Voblint_Examples'; Voblint_Examples -> Voblint_Examples_CLI -> Voblint_CLI -> Voblint_Analysis_Int -> Voblint_Nonrelational -> Voblint_Result (src/Analyses/Shared/Result/ROOT), whose theories include Source_Activation_Sound.thy; commit 07ecd3a886efa3a5744caabc19fbb301a40384a5 on default branch main",
+      "by": "verifier",
+      "at": "2026-11-14T15:46:58Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "shape numbers re-derived: glue_lines 79-117 = 39 lines; child_lines: Activation_Backbone.thy 34-50 = 17, Activation_Trace_Abstract.thy 256-259 = 4, Source_Activation_Sound.thy 19-46 = 28; direct_lemmas = 3 (all three children cited in glue at Source_Activation_Sound.thy:110,113,115); depth chain verified in code: activation_collect_sound (Activation_Backbone.thy:34-50) calls valid_activation_trace_covered_at (:261), which uses valid_activation_trace_covered (:249), which uses caller_chain_covered (:216), which discharges init_covered/intra_covered/call_covered/return_covered -> depth 5",
+      "by": "verifier",
+      "at": "2026-11-14T15:47:37Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read code/src/Analyses/Shared/Result/Source_Activation_Sound.thy lines 70-76: text block reads 'Given entry, edge, call, combine and totality obligations on the abstract map, activation_coverage builds the cap and the composition above yields source-level soundness. The node-collect variants restate it per CFG node.' — the quoted sentence appears verbatim at lines 73-75 (the cited L73-L77)",
+      "by": "verifier",
+      "at": "2026-11-14T15:47:40Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 07ecd3a886efa3a5744caabc19fbb301a40384a5",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:48:04Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent site 79-117 matches code; glue cites exactly the 3 children (activation_collect_sound@110, valid_activation_trace_has_context@113, source_sound_from_collecting_cap@115) and no other named lemma; the interpret step uses the 5 assumptions, not a lemma. Child declarations and closed_by fields match: activation_collect_sound (34-50) closed by subsetI/activation_collect_E/valid_activation_trace_covered_at; valid_activation_trace_has_context (256-259) closed by valid_activation_trace_covered + trace_covered_someE; source_sound_from_collecting_cap (19-46) closed by source_store_in_activation_collect + cap. Proof closes (qed at 117). Shape numbers correct: glue_lines=39 (79..117), child_lines=[17,4,28] (34..50, 256..259, 19..46), direct_lemmas=3, depth=5 along activation_collect_sound->valid_activation_trace_covered_at(261)->valid_activation_trace_covered(249)->caller_chain_covered(216)->init/intra/call/return_covered. Author comment at 73-77 quotes as claimed.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:48:43Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generically: intent and applicability.use_when frame it as 'obligations packaged as a locale (or structure/interface), a cap lemma, a context-witness lemma, chained through a cap-consuming theorem', with the Voblint names only as parenthetical examples, and goal_shape names the generic shape without concrete domain/policy. When-not-to-use is specific and honest, each branch grounded in the code I read: 'obligations not yet packaged' (discharge inline), 'cap-consumer too strong/weak for the client (fixes concretization via gamma_state)' matches the gamma_state instantiation at Source_Activation_Sound.thy:115 and the header comment (lines 12-15) that corollaries read at gamma_state while the cap-consuming theorem is parametrised over gamma_M, and the sibling corollaries source_sound_toplevel_from_collecting_cap (line 50) and source_sound_from_node_collect_cap (line 152) do exist; 'proof must mention a specific analysis/routing policy' matches the intent claim that nothing concrete appears. Consequences name real costs (two fixed points of contact: the cover lambda and gamma_state) and a real failure mode (renamed/reordered obligations break the single interpret step). Good-leaves question is answered: README 'Why each child is a good leaf' says activation_collect_sound is self-contained and knows nothing about source programs, valid_activation_trace_has_context is a one-line leaf, source_sound_from_collecting_cap is client-facing and parametrised over the concretization. Minor wording nit only: avoid_when's parenthetical 'it fixes the concretization via gamma_state' could be misread as attributing the fixing to the cap-consuming theorem rather than the corollary, but the header comment and the leaves section state the correct relationship, so it does not mislead.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:49:53Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 07ecd3a886efa3a5744caabc19fbb301a40384a5",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:50:11Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance check passes (3 files byte-identical at 07ecd3a886efa3a5744caabc19fbb301a40384a5). Commit, licence (BSD-3-Clause) and every permalink agree across entry.json, source.json, SOURCE.md and README; upstream-LICENSE is BSD 3-Clause text; author-statement locator #L73-L77 verified in the copied Source_Activation_Sound.thy.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:50:37Z"
+    }
+  ]
+}

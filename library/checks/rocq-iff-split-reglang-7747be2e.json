@@ -1,0 +1,125 @@
+{
+  "entry": "rocq-iff-split-reglang-7747be2e",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:44:16Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:44:16Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:44:16Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: dfa_to_re_correct@theories/regexp.v:363, re_to_dfa_correct@theories/regexp.v:364; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:44:16Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(regularP, theories/regexp.v, 359-365) -> declared: regularP is declared at theories/regexp.v:359",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:44:16Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(theories/regexp.v, 1-556) -> no_sorry: none of admit, Admitted, Axiom, axiom in theories/regexp.v:1-556",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:44:16Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "lines(parent, 7) -> lines: site parent has 7 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:44:16Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "5 file(s) byte-identical at dd7521632d849ef1d143398262d0fb98e536dd6c",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:44:27Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/docker-action.yml (Docker CI, push to master) builds coq-reglang.opam via coq-community/docker-coq-action, which compiles theories/regexp.v (listed in _CoqProject); also .github/workflows/nix-action-8.16.yml and nix-action-8.17.yml build job 'reglang' on push to master",
+      "by": "verifier",
+      "at": "2026-11-14T15:45:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "read theories/regexp.v at pinned commit: regularP cites dfa_to_re_correct at :363, dfa_to_re_correct cites L_R at :310, L_R cites L_rec at :298, L_rec cites L_star at :262, L_star cites L_catL at :242, L_catL cites L_cat at :233, L_cat cites LP at :223; that is 7 lemmas below regularP",
+      "by": "verifier",
+      "at": "2026-11-14T15:45:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "read theories/nfa.v:416-421 at pinned commit: Lemma nfa_regular L : regular L <-T-> {N : nfa | ...}; Proof. split => [[A]|[N]] H. exists (dfa_to_nfa A) => x. by rewrite -dfa_to_nfa_correct. exists (nfa_to_dfa N) => x. by rewrite -nfa_to_dfa_correct. Qed. — same iff-split, one correctness lemma per direction",
+      "by": "verifier",
+      "at": "2026-11-14T15:45:43Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent regularP (regexp.v:359-365) is one split on the project's iffT type, forward by dfa_to_re_correct and backward by re_to_dfa_correct, which are exactly the two children and the only lemmas the parent cites (lines 363 and 364). Both children's statements and closed_by match the copied code: dfa_to_re_correct (307-312) closes via apply/idP/big_plusP then rewrite -L_R set_enum dfa_L; re_to_dfa_correct (134-135) closes via rewrite -nfa_to_dfa_correct re_to_nfa_correct. All three end in Qed with no admit/Admitted/Axiom, so the decomposition closes. Shape numbers are correct: direct_lemmas=2; glue_lines=7 (359-365); child_lines=[6,2] (307-312 and 134-135); depth=7 matches the chain regularP, dfa_to_re_correct, L_R, L_rec, L_star, L_catL, L_cat, LP (edges at :310, :298, :262, :242, :233, :223 all present, and LP is a leaf).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:47:39Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalises: applicability states the pattern as an inhabitation equivalence via the Type-level iffT record (misc.v:34) between two constructible sig types (regular L is a dfa sig type, dfa.v:70), each direction already a named correctness lemma closed by one rewrite - confirmed in regularP (regexp.v:359-365) and the analogue nfa_regular (nfa.v:416-421). When-not-to-use is honest and specific: flags the plain-Prop A iff B case (needs Prop iff, not iffT), a direction still needing real work, and asymmetric constructions. Consequences are honest (split adds no content, proof only as strong as the two lemmas) and name concrete failure modes. It says what makes the leaves good for a bounded prover: dfa_to_re_correct and re_to_dfa_correct are self-contained language-equalities closed by one rewrite each, so the glue is four lines.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:48:33Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "5 file(s) byte-identical at dd7521632d849ef1d143398262d0fb98e536dd6c",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:48:53Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes: all 5 copied files byte-identical at commit dd7521632d849ef1d143398262d0fb98e536dd6c, matching the commit in entry.json, sources/reglang/source.json and SOURCE.md; permalinks all pin that commit with the correct paths and line anchors, and sed -n of the cited ranges (regexp.v 359-365, 307-312, 134-135; nfa.v 416-421) matches the statements/claims verbatim; licence CECILL-B is recorded consistently across entry.json source.licence, README, source.json, SOURCE.md and the copied upstream-LICENSE (CeCILL-B text).",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:49:18Z"
+    }
+  ]
+}

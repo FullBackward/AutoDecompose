@@ -1,0 +1,17 @@
+{
+  "source_id": "coqeal",
+  "url": "https://github.com/rocq-community/coqeal",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "rocq-community/coqeal",
+  "commit": "8fd26cf416ce0dfb5e9a9745293bdedf63b56d39",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-14T14:53:27Z",
+  "how_found": "discovery-2: A-rocq, B-rocq",
+  "note": "Coq Effective Algebra Library: correctness and data-refinement theorems (Smith normal form, Kaplansky, coherent/edr/fpmod) in theory/ and refinements/",
+  "licence": "MIT",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

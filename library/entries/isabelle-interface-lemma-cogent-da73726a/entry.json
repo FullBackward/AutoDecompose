@@ -1,0 +1,271 @@
+{
+  "id": "isabelle-interface-lemma-cogent-da73726a",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Function-boundary correspondence lemma refine_sync for the BilbyFs sync operation",
+  "intent": "refine_sync states, at the boundary of the generated fsop_sync program, that the abstract afs_sync and the concrete fsop_sync_fs correspond under rsync_res. Its proof peels the generated monadic program with the generic cogent_corres_* rules and closes each remaining obligation with a named helper lemma, so the parent system-call refinement can cite refine_sync instead of unfolding fsop_sync's generated code.",
+  "move": "interface-lemma",
+  "also_known_as": [
+    "API lemma",
+    "boundary lemma",
+    "refinement wrapper",
+    "correspondence lemma"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "cogent",
+    "url": "https://github.com/au-ts/cogent",
+    "commit": "49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a",
+    "licence": "BSD-2-Clause AND GPL-2.0"
+  },
+  "files": [
+    {
+      "path": "impl/fs/bilby/proof/refine/FsopSyncR.thy",
+      "bytes": 4518,
+      "sha256": "2a689a64dd82e5eb8b36d09a26cd2717a1d04fe217ec8de592ab4c0f7cca8b0c",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/FsopSyncR.thy"
+    },
+    {
+      "path": "impl/fs/bilby/proof/refine/AfsFsopR.thy",
+      "bytes": 11456,
+      "sha256": "c26157c06b7b0f799488bcdf2b56e3bcde8797cbad1dffccf610dfc476dae28c",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/AfsFsopR.thy"
+    },
+    {
+      "path": "impl/fs/bilby/proof/refine/OstoreR.thy",
+      "bytes": 134397,
+      "sha256": "968a469fff3691fb2c20cab6ced0cbd7b94762bb424ef30d005a3c90fab7c217",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/OstoreR.thy"
+    },
+    {
+      "path": "impl/fs/bilby/proof/lib/CogentCorres.thy",
+      "bytes": 3551,
+      "sha256": "a2a74f666872154a1381cb8de33596e288265eb50715bec4f2e2ba74e7a33d80",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/lib/CogentCorres.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "impl/fs/bilby/proof/refine/FsopSyncR.thy",
+      "lines": [
+        53,
+        116
+      ],
+      "role": "parent",
+      "name": "refine_sync",
+      "excerpt_sha256": "b42e23b1fb8de9dfb0c1e16aaa92497e4712a57531eac97c851377680a6f87f4",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/FsopSyncR.thy#L53-L116"
+    },
+    {
+      "path": "impl/fs/bilby/proof/refine/FsopSyncR.thy",
+      "lines": [
+        26,
+        28
+      ],
+      "role": "child",
+      "name": "fold_comp",
+      "excerpt_sha256": "a8d0965fcc1c47bffa33554c1fc0fdb6178447c90dfd740bac9aba741a85af0d",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/FsopSyncR.thy#L26-L28"
+    },
+    {
+      "path": "impl/fs/bilby/proof/refine/FsopSyncR.thy",
+      "lines": [
+        30,
+        33
+      ],
+      "role": "child",
+      "name": "corres_sync_err",
+      "excerpt_sha256": "87d724956c9acb9609526c58d3573c6f9537a6ef01ec9859d295374472239285",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/FsopSyncR.thy#L30-L33"
+    },
+    {
+      "path": "impl/fs/bilby/proof/refine/FsopSyncR.thy",
+      "lines": [
+        35,
+        38
+      ],
+      "role": "child",
+      "name": "length_updates_eqD",
+      "excerpt_sha256": "1ef90ef6e02840217455a58ca1d228b9b392f729b816c32e21d9eced08100662",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/FsopSyncR.thy#L35-L38"
+    },
+    {
+      "path": "impl/fs/bilby/proof/refine/FsopSyncR.thy",
+      "lines": [
+        40,
+        43
+      ],
+      "role": "child",
+      "name": "afs_fsop_match_updates",
+      "excerpt_sha256": "64a18850833813974da807a5c99730a7acd8dc9ce346597be525770f01de3df5",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/FsopSyncR.thy#L40-L43"
+    },
+    {
+      "path": "impl/fs/bilby/proof/refine/AfsFsopR.thy",
+      "lines": [
+        235,
+        241
+      ],
+      "role": "child",
+      "name": "afs_inv_steps_updated_afsD",
+      "excerpt_sha256": "c641cafdf7e96c3bbb95c58808484cf154b0ba03232662a9560c4c6bf1e18bed",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/AfsFsopR.thy#L235-L241"
+    },
+    {
+      "path": "impl/fs/bilby/proof/refine/OstoreR.thy",
+      "lines": [
+        2379,
+        2487
+      ],
+      "role": "child",
+      "name": "ostore_sync_ret",
+      "excerpt_sha256": "503bbde4a09c2b1297472816b5214ade39e9576087cbc0f3f9181bac1d6ac1e1",
+      "permalink": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/OstoreR.thy#L2379-L2487"
+    }
+  ],
+  "parent": {
+    "name": "refine_sync",
+    "statement": "lemma refine_sync:\nnotes length_drop[simp del]\nassumes rel:\"afs_fsop_rel afs fs_st\"\nshows\n  \"\\<And>ex. cogent_corres rsync_res\n         (afs_sync afs) (fsop_sync_fs (FsopFsP.make ex fs_st))\""
+  },
+  "children": [
+    {
+      "name": "fold_comp",
+      "statement": "lemma fold_comp[rule_format]:\n  \"xs = ys @ zs \\<longrightarrow> fold f xs accu = (fold f zs (fold f ys accu))\"",
+      "closed_by": "by (induct_tac xs, simp+)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: folding over a list equals folding zs after folding ys when the list is ys @ zs"
+    },
+    {
+      "name": "corres_sync_err",
+      "statement": "lemma corres_sync_err:\n\"afs_fsop_rel afs fs_st \\<Longrightarrow>\n cogent_corres rsync_res (return (afs, R.Error e)) (\\<lparr>FsopFsP.ex\\<^sub>f = ex, fs_st\\<^sub>f = fs_st\\<rparr>, R.Error e)\"",
+      "closed_by": "by (simp add: rsync_res_def cogent_corres_def return_def)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the sync error branch corresponds: the returned Error e relates to the concrete Error e"
+    },
+    {
+      "name": "length_updates_eqD",
+      "statement": "lemma length_updates_eqD:\n \"afs_fsop_rel afs fs_st \\<Longrightarrow>\n length (\\<alpha>_updates (FsState.ostore_st\\<^sub>f fs_st)) = length (a_medium_updates afs)\"",
+      "closed_by": "by (clarsimp simp: rsync_simp)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: under afs_fsop_rel, the ostore update list and the abstract medium updates have equal length"
+    },
+    {
+      "name": "afs_fsop_match_updates",
+      "statement": "lemma afs_fsop_match_updates:\n \"afs_fsop_match (fold id xs' a) (fold id ys' c) \\<Longrightarrow> xs' = xs \\<Longrightarrow> ys' = ys \\<Longrightarrow>\n  afs_fsop_match (fold id xs a) (fold id ys c)\"",
+      "closed_by": "by simp",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: afs_fsop_match of two folds is preserved when the folded lists are respectively equal"
+    },
+    {
+      "name": "afs_inv_steps_updated_afsD",
+      "statement": "lemma afs_inv_steps_updated_afsD:\n \"afs_inv_steps afs \\<Longrightarrow> afs_inv (updated_afs afs)\"",
+      "closed_by": "apply (simp add: updated_afs_def); apply (simp add: afs_inv_steps_def); apply (erule_tac x=\"length (a_medium_updates afs)\" in allE); apply (fastforce simp add: a_afs_updated_def); done",
+      "note": "Declared in the sibling theory AfsFsopR.thy, imported by FsopSyncR. Analyst's paraphrase, replaced by the declaration's text: the all-steps invariant afs_inv_steps implies afs_inv of the fully updated state"
+    },
+    {
+      "name": "ostore_sync_ret",
+      "statement": "lemma ostore_sync_ret:\n assumes inv_ostore: \"inv_ostore mount_st ostore_st\"\n and inv_mount_st: \"inv_mount_st mount_st\"\n and inv_step: \"inv_\\<alpha>_ostore (\\<alpha>_ostore_uptodate ostore_st)\"\n and suc: \"\\<And>ostore_st' ex'. \\<lbrakk> inv_ostore mount_st ostore_st';\n        inv_\\<alpha>_ostore (\\<alpha>_ostore_uptodate ostore_st');\n        \\<alpha>_ostore_medium ostore_st' = \\<alpha>_ostore_uptodate ostore_st;\n        \\<alpha>_updates ostore_st' = []\n        \\<rbrakk> \\<Longrightarrow>\n      P ((ex', ostore_st'), Success ())\"\n and err: \"\\<And>e ostore_st' ex' n. \\<lbrakk> inv_ostore mount_st ostore_st';\n       inv_\\<alpha>_ostore (\\<alpha>_ostore_uptodate ostore_st');\n       e \\<in> {eIO, eNoMem, eNoSpc,eOverflow};\n       n < length (\\<alpha>_updates ostore_st); \n       \\<alpha>_ostore_medium ostore_st' = apply_n_updates n (\\<alpha>_ostore_medium ostore_st) (\\<alpha>_updates ostore_st);\n       \\<alpha>_updates ostore_st' = (drop n $ \\<alpha>_updates ostore_st)\n       \\<rbrakk> \\<Longrightarrow>\n      P ((ex', ostore_st'), Error e)\"\n\n notes pad_simps = padding_to_def[unfolded tuple_simps sanitizers] ostoreWriteNone_def\n\n shows \"P (ostore_sync (ex, mount_st, ostore_st, ostoreWriteNone))\"",
+      "closed_by": "the apply script at OstoreR.thy lines 2401-2487 (cases on sync_offs = used, then prepare_wbuf_ret / ostore_sync_summary_if_eb_new_ret / ostore_write_buf_ret, discharging the suc and err assumptions)",
+      "note": "Declared in OstoreR.thy, imported by FsopSyncR. Analyst's paraphrase, replaced by the declaration's text: the ostore-layer sync interface lemma: given the invariant assumptions and the suc/err continuations, P holds of ostore_sync"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "a correspondence goal cogent_corres R (abstract-op args) (generated-concrete-op args) where the concrete side is a generated monadic program (here fsop_sync_fs) and the abstract side is a thin wrapper (here afs_sync); the statement is generic over the exception via the meta-universal quantifier (⋀ ex)",
+    "use_when": "the concrete side is a generated program whose code clients must not unfold; the boundary lemma can be proven once by structure-directed peeling with generic correspondence rules, and each leaf obligation is naturally a self-contained named lemma",
+    "avoid_when": "the generated program contains a monadic combinator with no matching correspondence rule (the peeling stalls); or the leaf obligations are not independent (the helpers here each close by one automated tactic, so a client with intertwined obligations would not split this cleanly)"
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 6,
+    "depth": 2,
+    "glue_lines": 64,
+    "child_lines": [
+      3,
+      4,
+      4,
+      4,
+      7,
+      109
+    ]
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "refine_sync is declared in impl/fs/bilby/proof/refine/FsopSyncR.thy at line 53.",
+      "evidence_kind": "check",
+      "form": "declared(refine_sync, impl/fs/bilby/proof/refine/FsopSyncR.thy, 53-53)",
+      "evidence": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/FsopSyncR.thy#L53-L116"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site (FsopSyncR.thy lines 53-116) contains no sorry; the proof closes with done.",
+      "evidence_kind": "check",
+      "form": "no_sorry(impl/fs/bilby/proof/refine/FsopSyncR.thy, 53-116)",
+      "evidence": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/FsopSyncR.thy#L53-L116"
+    },
+    {
+      "n": 3,
+      "claim": "fold_comp occurs 3 times in impl/fs/bilby/proof/refine/FsopSyncR.thy (its declaration and the two subst fold_comp[symmetric] uses in the glue).",
+      "evidence_kind": "check",
+      "form": "count(fold_comp, 3, impl/fs/bilby/proof/refine/FsopSyncR.thy)",
+      "evidence": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/FsopSyncR.thy#L26-L116"
+    },
+    {
+      "n": 4,
+      "claim": "The theorem-scale shape is 6 direct lemmas (4 local, 2 imported), glue 64 lines, child proof lengths [3, 4, 4, 4, 7, 109], and the longest checked dependency chain below refine_sync has depth 2 (refine_sync -> ostore_sync_ret -> ostore_sync_summary_if_eb_new_ret).",
+      "evidence_kind": "measurement",
+      "evidence": "counted from the copied files: FsopSyncR.thy 53-116 and 26-43; AfsFsopR.thy 235-241; OstoreR.thy 2379-2487 and 2417 (ostore_sync_summary_if_eb_new_ret cited by ostore_sync_ret)"
+    },
+    {
+      "n": 5,
+      "claim": "The same move appears in the sibling theory FsopIgetR.thy: refine_iget (line 90) is an interface lemma at the fsop_iget boundary, proven by the same peeling with cogent_corres_conc_let_exec / cogent_corres_R and finishing with the ostore layer's ostore_read_ret, reusing afs_inv_steps_updated_afsD (line 123).",
+      "evidence_kind": "known-use",
+      "evidence": "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/FsopIgetR.thy#L90-L123"
+    }
+  ],
+  "metrics": {
+    "direct_lemmas": 6,
+    "local_lemmas": 4,
+    "imported_lemmas": 2,
+    "children_closed_by_automation": 4,
+    "how_counted": "direct_lemmas = named lemmas cited in refine_sync's site (FsopSyncR.thy 53-116); local = declared in FsopSyncR.thy, imported = declared in AfsFsopR.thy / OstoreR.thy; children_closed_by_automation = the 4 local children each close by one simp/clarsimp/induct tactic"
+  },
+  "consequences": "The glue depends on the exact shape of the generated program: each cogent_corres_conc_let_exec peels one let, so a change in the Cogent code generator's output shape breaks the peeling sequence and must be re-fitted. The statement is kept generic over the exception via the meta-universal quantifier (⋀ ex), so a client instantiates it; the error branch and the update-list arithmetic are separate obligations discharged by corres_sync_err, length_updates_eqD, afs_fsop_match_updates and fold_comp rather than by the correspondence rules. Failure modes: a new monadic combinator in the generated code without a matching cogent_corres_* rule stalls the glue; the helper updates_take_eq (FsopSyncR.thy 45-51) is declared but never used by refine_sync, showing the boundary of what the glue actually needs.",
+  "known_uses": [
+    "https://github.com/au-ts/cogent/blob/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a/impl/fs/bilby/proof/refine/FsopIgetR.thy#L90-L123",
+    "isabelle-per-callee-lemma-cogent-53de77e6"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "da73726ad9d9c24e533707be4d4cb2ea5fc6aa2b90a635b15c0678ee3da58b34",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:44:23Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,shape,claims,metrics,consequences,known_uses,rule",
+      "agent_role": "harvest-analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:45:47Z",
+      "note": "parent refine_sync: statement re-copied from code; child 'fold_comp': statement re-copied from the declaration of fold_comp; child 'corres_sync_err': statement re-copied from the declaration of corres_sync_err; child 'length_updates_eqD': statement re-copied from the declaration of length_updates_eqD; child 'afs_fsop_match_updates': statement re-copied from the declaration of afs_fsop_match_updates; child 'afs_inv_steps_updated_afsD': statement re-copied from the declaration of afs_inv_steps_updated_afsD; child 'ostore_sync_ret': statement re-copied from the declaration of ostore_sync_ret"
+    },
+    {
+      "field": "known_uses",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "discovery-2",
+      "at": "2026-11-14T16:19:57Z",
+      "note": "added isabelle-per-callee-lemma-cogent-53de77e6: the level below: this entry's child ostore_sync_ret (OstoreR.thy 2379-2487) is that entry's parent; not a duplicate"
+    }
+  ]
+}

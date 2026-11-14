@@ -1,0 +1,217 @@
+{
+  "id": "rocq-calc-chain-ssprove-54f699c2",
+  "kind": "instance",
+  "status": "verified",
+  "title": "Hybrid game-hop chain bounds CCA advantage by the MAC and CPA epsilons",
+  "intent": "Prove the CCA-security bound of the MAC-then-CPA construction (CCA_EVAL) as a chain of game hops: one ssprove triangle turns Advantage CCA_EVAL A into a sum over six intermediate packages, and four named program-equivalence lemmas, one per hop, collapse that chain to mac_epsilon (A ∘ CCA_EVAL_TAG_pkg_tt) + cpa_epsilon (A ∘ CCA_EVAL_HYB_pkg) + mac_epsilon (A ∘ CCA_EVAL_TAG_pkg_ff).",
+  "move": "calc-chain",
+  "also_known_as": [
+    "hybrid argument",
+    "game hopping",
+    "game transformation",
+    "triangle inequality over advantages",
+    "switching lemma"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "ssprove",
+    "url": "https://github.com/SSProve/ssprove",
+    "commit": "9a37fe0ab79d041f8d835e6cf18e37614b16a791",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "theories/Crypt/examples/MACCCA.v",
+      "bytes": 14016,
+      "sha256": "b82043d72ed5b8018b42d42f4a1f584bfdb128ecffb7623e2b65396f353ab5fe",
+      "permalink": "https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/MACCCA.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "theories/Crypt/examples/MACCCA.v",
+      "lines": [
+        434,
+        470
+      ],
+      "role": "parent",
+      "name": "security_based_on_mac",
+      "excerpt_sha256": "4cadef55dd9aea2d1779418048ec698c20a18729f8fafc442549dfa69664e785",
+      "permalink": "https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/MACCCA.v#L434-L470"
+    },
+    {
+      "path": "theories/Crypt/examples/MACCCA.v",
+      "lines": [
+        303,
+        314
+      ],
+      "role": "child",
+      "name": "CCA_EVAL_equiv_true",
+      "excerpt_sha256": "a60f5fa3da62b32fe2fbde6861e099a441fa599d93323b38766988ec1253b6fa",
+      "permalink": "https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/MACCCA.v#L303-L314"
+    },
+    {
+      "path": "theories/Crypt/examples/MACCCA.v",
+      "lines": [
+        316,
+        358
+      ],
+      "role": "child",
+      "name": "CCA_EVAL_HYB_equiv_true",
+      "excerpt_sha256": "cbf0b889a67c87073b01adc7ad7d956b128bfcb6f838fa0bb889577635e26d20",
+      "permalink": "https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/MACCCA.v#L316-L358"
+    },
+    {
+      "path": "theories/Crypt/examples/MACCCA.v",
+      "lines": [
+        360,
+        402
+      ],
+      "role": "child",
+      "name": "CCA_EVAL_HYB_equiv_false",
+      "excerpt_sha256": "f1fc1ef05fd4c67a04190b8e851ae23cd101387e6860649945b0906690cf4de3",
+      "permalink": "https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/MACCCA.v#L360-L402"
+    },
+    {
+      "path": "theories/Crypt/examples/MACCCA.v",
+      "lines": [
+        404,
+        415
+      ],
+      "role": "child",
+      "name": "CCA_EVAL_equiv_false",
+      "excerpt_sha256": "284d42f3c1199ce22be8fd7ac8757e58e02cd3e0ed99cf6f143bb13dac2296a8",
+      "permalink": "https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/MACCCA.v#L404-L415"
+    }
+  ],
+  "parent": {
+    "name": "security_based_on_mac",
+    "statement": "Theorem security_based_on_mac LA A:\n  ValidPackage LA\n    [interface\n      #val #[eavesdrop]: 'word × 'word → 'word × 'word ;\n      #val #[decrypt]: 'word × 'word → 'option 'word ]\n    A_export A ->\n  fseparate LA TAG_locs_tt ->\n  fseparate LA TAG_locs_ff ->\n  fseparate LA CPA_EVAL_locs ->\n  fseparate LA CCA_EVAL_locs ->\n  fseparate LA CCA_EVAL_TAG_locs ->\n  fseparate LA CCA_EVAL_HYB_locs ->\n  Advantage CCA_EVAL A <=\n  mac_epsilon (A ∘ CCA_EVAL_TAG_pkg_tt) +\n  cpa_epsilon (A ∘ CCA_EVAL_HYB_pkg) +\n  mac_epsilon (A ∘ CCA_EVAL_TAG_pkg_ff)."
+  },
+  "children": [
+    {
+      "name": "CCA_EVAL_equiv_true",
+      "statement": "Lemma CCA_EVAL_equiv_true:\n  CCA_EVAL true ≈₀ CCA_EVAL_TAG_pkg_tt ∘ TAG true.",
+      "closed_by": "apply: eq_rel_perf_ind_eq, then simplify_eq_rel m and two ssprove_code_simpl unfoldings; every goal closes with all: by apply: rreflexivity_rule",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: CCA_EVAL true and CCA_EVAL_TAG_pkg_tt composed with TAG true are perfectly indistinguishable."
+    },
+    {
+      "name": "CCA_EVAL_HYB_equiv_true",
+      "statement": "Lemma CCA_EVAL_HYB_equiv_true:\n  CCA_EVAL_TAG_pkg_tt ∘ TAG false ≈₀ CCA_EVAL_HYB_pkg ∘ CPA_EVAL true.",
+      "closed_by": "apply eq_rel_perf_ind with the invariant (fun '(h0,h1) => h0 = h1) ⋊ couple_lhs S_loc T_loc (fun S T => S = T), then case: m; each eavesdrop/decrypt branch steps through r_get_vs_get_remember / r_put_vs_put / r_ret and closes by rewrite Hinv",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: CCA_EVAL_TAG_pkg_tt composed with TAG false and CCA_EVAL_HYB_pkg composed with CPA_EVAL true are perfectly indistinguishable."
+    },
+    {
+      "name": "CCA_EVAL_HYB_equiv_false",
+      "statement": "Lemma CCA_EVAL_HYB_equiv_false:\n  CCA_EVAL_HYB_pkg ∘ CPA_EVAL false ≈₀ CCA_EVAL_TAG_pkg_ff ∘ TAG false.",
+      "closed_by": "apply eq_rel_perf_ind with the invariant couple_rhs S_loc T_loc (fun S T => S = T), then case: m; the mirror of HYB_equiv_true with r_get_remember_rhs / r_put_vs_put / r_ret, closing by rewrite Hinv",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: CCA_EVAL_HYB_pkg composed with CPA_EVAL false and CCA_EVAL_TAG_pkg_ff composed with TAG false are perfectly indistinguishable."
+    },
+    {
+      "name": "CCA_EVAL_equiv_false",
+      "statement": "Lemma CCA_EVAL_equiv_false:\n  CCA_EVAL_TAG_pkg_ff ∘ TAG true ≈₀ CCA_EVAL false.",
+      "closed_by": "apply: eq_rel_perf_ind_eq, then simplify_eq_rel m and two ssprove_code_simpl unfoldings; every goal closes with all: by apply: rreflexivity_rule",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: CCA_EVAL_TAG_pkg_ff composed with TAG true and CCA_EVAL false are perfectly indistinguishable."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A goal Advantage P A <= mac_epsilon (A ∘ Q1) + cpa_epsilon (A ∘ Q2) + ... bounding a composed package's advantage by a sum of named sub-advantages, where the packages on both sides are linked by perfect-indistinguishability (≈₀) hops.",
+    "use_when": "the bound is a hybrid argument: an ssprove triangle (or the equivalent triangle inequality) lists a chain of intermediate packages whose adjacent pairs are equivalent by reflexivity after unfolding or by a small memory invariant, and the boundary terms are definitionally the sub-advantages (mac_epsilon/cpa_epsilon).",
+    "avoid_when": "a hop needs a non-trivial reduction or an event-based (bad-event) bound rather than an exact ≈₀ equivalence; the intermediate packages are not definitionally equal to the advantage terms, so the closing rewrite /mac_epsilon /cpa_epsilon will not fire; or a hop is not between adjacent terms of the chain, so the triangle list and the rewrite lemmas do not line up."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The main theorem `security_based_on_mac` is declared in `theories/Crypt/examples/MACCCA.v`, in lines 434-470.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/MACCCA.v#L434-L470",
+      "form": "declared(security_based_on_mac, theories/Crypt/examples/MACCCA.v, 434-470)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent's proof cites the child `CCA_EVAL_equiv_true`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/MACCCA.v#L450-L470",
+      "form": "cites(parent, CCA_EVAL_equiv_true)"
+    },
+    {
+      "n": 3,
+      "claim": "No closing-by-sorry token (`admit`, `Admitted`, `Axiom`) occurs in lines 303-470 of `theories/Crypt/examples/MACCCA.v`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/MACCCA.v#L303-L470",
+      "form": "no_sorry(theories/Crypt/examples/MACCCA.v, 303-470)"
+    },
+    {
+      "n": 4,
+      "claim": "The decomposition has 4 direct lemmas (the four `CCA_EVAL_*_equiv_*` hops), depth 1 below the main theorem, 37 glue lines and child proof lines [12, 43, 43, 12].",
+      "evidence_kind": "measurement",
+      "evidence": "direct lemmas = the four rewrite -> CCA_EVAL_* by ssprove_valid at MACCCA.v#L463-L466; depth 1 = each hop lemma closes from ssprove library tactics and cites no further project lemma; glue = parent site 434-470; child lines = sites 303-314, 316-358, 360-402, 404-415"
+    },
+    {
+      "n": 5,
+      "claim": "The authors state the proof's plan in the file header: \"It shows an alternate way to gain CCA security, by augmenting a CPA-secure encryption scheme with a MAC\", and \"The advantage is at most a sum of the MAC and CPA epsilons, which are negligible by assumption, hence the scheme is secure.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/SSProve/ssprove/blob/9a37fe0ab79d041f8d835e6cf18e37614b16a791/theories/Crypt/examples/MACCCA.v#L1-L11"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 1,
+    "glue_lines": 37,
+    "child_lines": [
+      12,
+      43,
+      43,
+      12
+    ]
+  },
+  "metrics": {
+    "glue_lines": 37,
+    "direct_lemmas": 4,
+    "depth": 1,
+    "child_lines": [
+      12,
+      43,
+      43,
+      12
+    ],
+    "how_counted": "line counts from the sites (parent 434-470, children 303-314, 316-358, 360-402, 404-415); depth = 1 because each of the four hop lemmas closes from ssprove library tactics (eq_rel_perf_ind_eq / rreflexivity_rule / r_get_vs_get_remember ...) and none cites another project lemma"
+  },
+  "consequences": "Turns one CCA-security bound into a six-package hybrid triangle plus four program-equivalence lemmas, one per hop, so each hole is one bounded program-equivalence proof. Obligations: each hop lemma must be an exact ≈₀ equivalence between the adjacent packages named by the triangle; the triangle's package list, the four rewrites and the mac_epsilon/cpa_epsilon definitions must all agree exactly, or a rewrite fails; the two reflexive hops depend on both ssprove_code_simpl passes unfolding the two sides to the same program. Failure modes: a hop lemma stated over the wrong b flag or composition order leaves a residual term no later rewrite removes; the two hybrid hops each carry their own invariant (couple_lhs/couple_rhs on S_loc/T_loc), and getting the invariant or its side wrong breaks the r_get/r_put bookkeeping.",
+  "known_uses": [],
+  "related": [
+    "rocq-calc-chain-bedrock2-f158f24e",
+    "rocq-calc-chain-bertrand-62edaca1"
+  ],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "54f699c2b237541f219705306feaabb3ce7ee86b2b9e564db20329d233179dac",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:39:15Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:50:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:42:19Z",
+      "note": "parent security_based_on_mac: statement re-copied from code; child 'CCA_EVAL_equiv_true': statement re-copied from the declaration of CCA_EVAL_equiv_true; child 'CCA_EVAL_HYB_equiv_true': statement re-copied from the declaration of CCA_EVAL_HYB_equiv_true; child 'CCA_EVAL_HYB_equiv_false': statement re-copied from the declaration of CCA_EVAL_HYB_equiv_false; child 'CCA_EVAL_equiv_false': statement re-copied from the declaration of CCA_EVAL_equiv_false"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T15:47:58Z"
+}

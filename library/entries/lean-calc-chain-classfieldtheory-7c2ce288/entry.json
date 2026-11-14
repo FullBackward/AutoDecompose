@@ -1,0 +1,210 @@
+{
+  "id": "lean-calc-chain-classfieldtheory-7c2ce288",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Calc chain assembling two exact short complexes into the natural isomorphism up ≅ down (finite cyclic group)",
+  "intent": "Assemble the natural isomorphism up ≅ down (dimensionShift.up.obj M ≅ dimensionShift.down.obj M) for a finite cyclic group as a five-step calc chain of natural isomorphisms, whose two substantive steps are closed by the exactness lemmas exact_periodSeq₁ and exact_periodSeq₂ fed to ShortComplex.cokerIsoCoim and ShortComplex.kerIsoIm.",
+  "move": "calc-chain",
+  "also_known_as": [
+    "calculation",
+    "calculational proof",
+    "Isar also/finally"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "classfieldtheory",
+    "url": "https://github.com/kbuzzard/ClassFieldTheory",
+    "commit": "1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean",
+      "bytes": 22235,
+      "sha256": "2755554a4b2017513baabf30d2692cdff07e300e3e5fc80ee645acbd9b79459d",
+      "permalink": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean",
+      "lines": [
+        384,
+        392
+      ],
+      "role": "parent",
+      "name": "upIsoDown",
+      "excerpt_sha256": "a09aff2bfbeb20b2ffbe88b981d34ce31932d10066ac50c9d3ac2bf704b62909",
+      "permalink": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean#L384-L392"
+    },
+    {
+      "path": "ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean",
+      "lines": [
+        356,
+        368
+      ],
+      "role": "child",
+      "name": "exact_periodSeq₁",
+      "excerpt_sha256": "52897b4f72b5e463ce6011cf5357848283c0e1fff9b873cdb60214e95b575e22",
+      "permalink": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean#L356-L368"
+    },
+    {
+      "path": "ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean",
+      "lines": [
+        371,
+        381
+      ],
+      "role": "child",
+      "name": "exact_periodSeq₂",
+      "excerpt_sha256": "8c548561afd0b898b8927e09cb70d13db86d939a9e77adce3fda071d0c4afb7d",
+      "permalink": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean#L371-L381"
+    },
+    {
+      "path": "ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean",
+      "lines": [
+        345,
+        347
+      ],
+      "role": "child",
+      "name": "periodSeq₁Functor",
+      "excerpt_sha256": "355889dd96eb2adc2330617980112d287a9c25d434e22f01cbd681c323ed3696",
+      "permalink": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean#L345-L347"
+    },
+    {
+      "path": "ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean",
+      "lines": [
+        351,
+        353
+      ],
+      "role": "child",
+      "name": "periodSeq₂Functor",
+      "excerpt_sha256": "97adbe59713960e40bb2e848d36e997074d65a308bb615dc82f2bcc2dceb2cff",
+      "permalink": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean#L351-L353"
+    },
+    {
+      "path": "ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean",
+      "lines": [
+        10,
+        31
+      ],
+      "role": "context",
+      "name": "module-docstring",
+      "excerpt_sha256": "48d494bdb12625515a856a6dfab6fd1c164ca11d5d53e2682a2aff34fc7d0f5d",
+      "permalink": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean#L10-L31"
+    }
+  ],
+  "parent": {
+    "name": "upIsoDown",
+    "statement": "def upIsoDown : up (R := R) (G := G) ≅ down"
+  },
+  "children": [
+    {
+      "name": "exact_periodSeq₁",
+      "statement": "lemma exact_periodSeq₁ : (periodSeq₁ M).Exact",
+      "closed_by": "Representation.map₁_ker (via exact LinearMap.mem_range.1 (Representation.map₁_ker.le (LinearMap.mem_ker.2 hw)))",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the first periodicity short complex is exact"
+    },
+    {
+      "name": "exact_periodSeq₂",
+      "statement": "lemma exact_periodSeq₂ : (periodSeq₂ M).Exact",
+      "closed_by": "Representation.map₂_range (via LinearMap.mem_range.1 (Representation.map₂_range.ge (LinearMap.mem_ker.2 hw)))",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the second periodicity short complex is exact"
+    },
+    {
+      "name": "periodSeq₁Functor",
+      "statement": "def periodSeq₁Functor : Rep R G ⥤ ShortComplex (Rep R G)",
+      "closed_by": "ShortComplex.homMk; both naturality goals closed by cat_disch",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the first periodicity sequence as a functor"
+    },
+    {
+      "name": "periodSeq₂Functor",
+      "statement": "def periodSeq₂Functor : Rep R G ⥤ ShortComplex (Rep R G)",
+      "closed_by": "ShortComplex.homMk; both naturality goals closed by cat_disch",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the second periodicity sequence as a functor"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A natural isomorphism up ≅ down (or any isomorphism between two functors) assembled as a calc chain of isomorphisms whose substantive steps are justified by an exactness lemma about a short complex fed to cokerIsoCoim / kerIsoIm.",
+    "use_when": "The target isomorphism factors through a short exact sequence (or short complex) the file has already built, so the coker and kernel isomorphisms plus one exactness lemma per link supply the content, and the remaining links are structural (associators, whiskering).",
+    "avoid_when": "The chain is a plain equality rewrite with no per-step content lemma, the exactness lemmas are not yet proved (they are the real work), or the steps need genuinely different arguments that do not factor through one short complex."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The glue upIsoDown is 9 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean#L384-L392",
+      "form": "lines(parent, 9)"
+    },
+    {
+      "n": 2,
+      "claim": "The copied file closes without sorry, admit or axiom.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean",
+      "form": "no_sorry(ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean, 1-534)"
+    },
+    {
+      "n": 3,
+      "claim": "The identifier upIsoDown occurs 3 times in the copied file.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean",
+      "form": "count(upIsoDown, 3, ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean)"
+    },
+    {
+      "n": 4,
+      "claim": "The module docstring states the plan the proof follows — 'Using this sequence, we construct an isomorphism `dimensionShift.up.obj M ≅ dimensionShift.down.obj M`' — and its consequence 'Using this, construct isomorphisms `Hⁿ⁺¹(G,M) ≅ Hⁿ⁺³(G,M)`'.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean#L10-L31"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 9,
+    "children": 4,
+    "children_closed_by_automation": 2,
+    "how_counted": "parent_lines = parent site 384-392; children = 4 child sites; children_closed_by_automation = the two functor defs (periodSeq₁Functor, periodSeq₂Functor), whose naturality goals each close by cat_disch"
+  },
+  "consequences": "The chain creates one obligation per substantive link: exact_periodSeq₁ (closing the cokerIsoCoim step) and exact_periodSeq₂ (closing the kerIsoIm step), plus the two functors that package the short complexes. The three structural links (Functor.associator twice, Functor.isoWhiskerLeft once) are discharged by the library, not by project lemmas. The exactness lemmas in turn reduce to the kernel-range equalities Representation.map₁_ker and Representation.map₂_range, which carry the finiteness and cyclicity of G; if either were false the corresponding calc step would not close.",
+  "known_uses": [
+    "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean#L395-L402",
+    "https://github.com/kbuzzard/ClassFieldTheory/blob/1e7f5dbe38358bd37a0643bb0db2dd3a436e6cb7/ClassFieldTheory/Cohomology/FiniteCyclic/UpDown.lean#L439-L449"
+  ],
+  "related": [
+    "lean-calc-chain-sphere-packing-7d6a60c4",
+    "isabelle-calc-chain-afp-4d3178de"
+  ],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 4,
+    "glue_lines": 9,
+    "child_lines": [
+      13,
+      11,
+      3,
+      3
+    ]
+  },
+  "content_key": "7c2ce2883aed3d9147a9f7bce9e7f0664c228ff1ed85cd37da961dc9714e862b",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "harvest-analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:17:21Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:20:02Z",
+      "note": "parent upIsoDown: statement re-copied from code; child 'exact_periodSeq₁': statement re-copied from the declaration of exact_periodSeq₁; child 'exact_periodSeq₂': statement re-copied from the declaration of exact_periodSeq₂; child 'periodSeq₁Functor': statement re-copied from the declaration of periodSeq₁Functor; child 'periodSeq₂Functor': statement re-copied from the declaration of periodSeq₂Functor"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T15:25:39Z"
+}

@@ -1,0 +1,125 @@
+{
+  "entry": "rocq-calc-chain-ssprove-54f699c2",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:43:09Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:43:09Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:43:09Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: CCA_EVAL_equiv_true@theories/Crypt/examples/MACCCA.v:463, CCA_EVAL_HYB_equiv_true@theories/Crypt/examples/MACCCA.v:464, CCA_EVAL_HYB_equiv_false@theories/Crypt/examples/MACCCA.v:465, CCA_EVAL_equiv_false@theories/Crypt/examples/MACCCA.v:466; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:43:09Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(security_based_on_mac, theories/Crypt/examples/MACCCA.v, 434-470) -> declared: security_based_on_mac is declared at theories/Crypt/examples/MACCCA.v:434",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:43:09Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, CCA_EVAL_equiv_true) -> cites: CCA_EVAL_equiv_true occurs at theories/Crypt/examples/MACCCA.v:463",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:43:09Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(theories/Crypt/examples/MACCCA.v, 303-470) -> no_sorry: none of admit, Admitted, Axiom, axiom in theories/Crypt/examples/MACCCA.v:303-470",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:43:09Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 9a37fe0ab79d041f8d835e6cf18e37614b16a791",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:43:16Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/opam-build.yml runs 'opam exec -- make' on push/PR to branch main; make compiles the files of _RocqProject, which lists theories/Crypt/examples/MACCCA.v at line 116; commit 9a37fe0ab79d041f8d835e6cf18e37614b16a791 is on the default branch main",
+      "by": "verifier",
+      "at": "2026-11-14T15:44:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Checked code/MACCCA.v: the four hop rewrites (rewrite -> CCA_EVAL_equiv_true / CCA_EVAL_HYB_equiv_true / CCA_EVAL_HYB_equiv_false / CCA_EVAL_equiv_false by ssprove_valid) are at lines 463-466 = 4 direct lemmas; parent site 434-470 = 37 glue lines; child sites 303-314 (12), 316-358 (43), 360-402 (43), 404-415 (12); each child proof uses only ssprove library tactics and cites no further project lemma, so depth 1",
+      "by": "verifier",
+      "at": "2026-11-14T15:44:44Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Checked code/MACCCA.v lines 1-11: header comment reads verbatim 'It shows an alternate way to gain CCA security, by augmenting a CPA-secure encryption scheme with a MAC.' (line 6) and 'The advantage is at most a sum of the MAC and CPA epsilons, which are negligible by assumption, hence the scheme is secure.' (lines 9-10)",
+      "by": "verifier",
+      "at": "2026-11-14T15:44:46Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Verified against the local copy code/theories/Crypt/examples/MACCCA.v: parent security_based_on_mac is exactly lines 434-470 (Qed. at 470); the four children are declared at 303-314, 316-358, 360-402, 404-415 with statements matching entry.json verbatim; the glue cites all four by name (rewrite -> CCA_EVAL_equiv_true/HYB_equiv_true/HYB_equiv_false/equiv_false by ssprove_valid) and no other project lemma, so children are exactly the lemmas used; closing methods match (reflexive hops close by eq_rel_perf_ind_eq + rreflexivity_rule, hybrid hops by eq_rel_perf_ind with couple_lhs/couple_rhs invariant + r_get/r_put + rewrite Hinv); all proofs end in Qed. with no admit/Admitted/Axiom in 303-470, so it closes. Shape numbers are right: direct_lemmas=4, depth=1, glue_lines=37 (parent site 434-470), child_lines=[12,43,43,12], all matching fields.md's definition and validate_entry's recomputation.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:45:47Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "object",
+      "evidence": "Use_when/avoid_when and consequences are honest and specific, and the move is abstracted to hybrid-argument/game-hopping beyond this construction ('ssprove triangle (or the equivalent triangle inequality)'). But the leaf-quality summary misstates the split: 'In my opinion' says 'three of the four hops close by reflexivity after unfolding, and only the CPA hop (and its mirror) needs a real invariant', which is internally contradictory and refuted by the copied code — CCA_EVAL_equiv_true and CCA_EVAL_equiv_false close by eq_rel_perf_ind_eq/rreflexivity_rule (2 reflexive), while CCA_EVAL_HYB_equiv_true/false use eq_rel_perf_ind with a couple_lhs/couple_rhs invariant (2 invariant). Fix: change 'three of the four' to 'two of the four' and name the two invariant hops.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:47:08Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 9a37fe0ab79d041f8d835e6cf18e37614b16a791",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:47:24Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance pass: check_provenance.py reports 1 file byte-identical at 9a37fe0ab79d041f8d835e6cf18e37614b16a791. All permalinks (files, 5 sites, 5 claim evidence URLs) use the same commit and the correct path theories/Crypt/examples/MACCCA.v; line ranges match the copied file (theorem at 434-470, four lemmas at 303-314/316-358/360-402/404-415, header comment at 1-11). Licence recorded MIT in entry.json, README, source.json and SOURCE.md, and sources/ssprove/upstream-LICENSE is the MIT text (Copyright 2021 SSProve) matching source.json licence_files [LICENSE]. Local copy is 14016 bytes matching the entry's files[0].bytes. Everything traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:47:51Z"
+    }
+  ]
+}

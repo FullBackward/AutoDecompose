@@ -1,0 +1,206 @@
+{
+  "id": "lean-interface-lemma-odd-order-2-6e6d20ec",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "theoremC_abstract: BG Appendix C Theorem C as a p/q-level interface lemma over the norm set",
+  "intent": "State BG Appendix C Theorem C in a p/q-abstract form whose only inputs are oddness of p and q plus the norm-set relation N(2a−1)=1 on E, so any Hypothesis-(B)-style configuration concludes p ≤ q without unfolding the Peterfalvi Section 16 field-normalizer data.",
+  "move": "interface-lemma",
+  "also_known_as": [
+    "API lemma",
+    "abstraction-boundary lemma"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "odd-order-2",
+    "url": "https://github.com/yawara/odd-order",
+    "commit": "ba8ec35982ceecbd31ca987cbe0cee30477f4883",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "OddOrder/BG/AppC_FinalContradiction.lean",
+      "bytes": 9198,
+      "sha256": "ead47341b6f6fde1163bdfa216bb2402179b2a99e7b83e41281b673161c23ef6",
+      "permalink": "https://github.com/yawara/odd-order/blob/ba8ec35982ceecbd31ca987cbe0cee30477f4883/OddOrder/BG/AppC_FinalContradiction.lean"
+    },
+    {
+      "path": "OddOrder/BG/AppC_NormSet.lean",
+      "bytes": 43973,
+      "sha256": "b695e6a36911cc085056b9c5f59a01d0c2f9d624111fb84c877c8ed33586a7c6",
+      "permalink": "https://github.com/yawara/odd-order/blob/ba8ec35982ceecbd31ca987cbe0cee30477f4883/OddOrder/BG/AppC_NormSet.lean"
+    },
+    {
+      "path": "OddOrder/BG/AppC_LemmaC2.lean",
+      "bytes": 1896,
+      "sha256": "f064561d8a9409d69069d1aa5ade8d8a9c693f27c933820b120fb2a37961d2ec",
+      "permalink": "https://github.com/yawara/odd-order/blob/ba8ec35982ceecbd31ca987cbe0cee30477f4883/OddOrder/BG/AppC_LemmaC2.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "OddOrder/BG/AppC_FinalContradiction.lean",
+      "lines": [
+        124,
+        130
+      ],
+      "role": "parent",
+      "name": "theoremC_abstract",
+      "excerpt_sha256": "3e6c8620bad11b5a122bd82c526756f53745ba0c3b5f6af1507a4ac7af1f7208",
+      "permalink": "https://github.com/yawara/odd-order/blob/ba8ec35982ceecbd31ca987cbe0cee30477f4883/OddOrder/BG/AppC_FinalContradiction.lean#L124-L130"
+    },
+    {
+      "path": "OddOrder/BG/AppC_NormSet.lean",
+      "lines": [
+        535,
+        604
+      ],
+      "role": "child",
+      "name": "lemmaC1",
+      "excerpt_sha256": "86af497d55bc43ede5f24d5771916f18028cbe81146c2b4b615a2e1198a66f6f",
+      "permalink": "https://github.com/yawara/odd-order/blob/ba8ec35982ceecbd31ca987cbe0cee30477f4883/OddOrder/BG/AppC_NormSet.lean#L535-L604"
+    },
+    {
+      "path": "OddOrder/BG/AppC_NormSet.lean",
+      "lines": [
+        289,
+        300
+      ],
+      "role": "child",
+      "name": "normSetE_eq_inv_of_forall_normN_two_mul_sub_one",
+      "excerpt_sha256": "e435ef7f6ecd392f063a6d22d3d57b0012f0d75621f6a99a2735e0d6ba5900e8",
+      "permalink": "https://github.com/yawara/odd-order/blob/ba8ec35982ceecbd31ca987cbe0cee30477f4883/OddOrder/BG/AppC_NormSet.lean#L289-L300"
+    },
+    {
+      "path": "OddOrder/BG/AppC_LemmaC2.lean",
+      "lines": [
+        41,
+        49
+      ],
+      "role": "child",
+      "name": "lemmaC2",
+      "excerpt_sha256": "de6a1e2c7e7344162957f974529c3ad1d7fbe88f9a5a487fec318f2c670d72ac",
+      "permalink": "https://github.com/yawara/odd-order/blob/ba8ec35982ceecbd31ca987cbe0cee30477f4883/OddOrder/BG/AppC_LemmaC2.lean#L41-L49"
+    }
+  ],
+  "parent": {
+    "name": "theoremC_abstract",
+    "statement": "theorem theoremC_abstract {p q : ℕ} [Fact p.Prime] (hp_odd : Odd p) (hq : q.Prime) (hq_odd : Odd q)\n    (hrel : ∀ a : GaloisField p q, a ∈ NormSet.normSetE p q →\n      NormSet.normN p q ((2 : GaloisField p q) * a - 1) = 1) :\n    p ≤ q"
+  },
+  "children": [
+    {
+      "name": "lemmaC1",
+      "statement": "theorem lemmaC1 [Fact p.Prime] (hq : q.Prime)\n    (hEinv : normSetE p q = (normSetE p q)⁻¹)\n    (hcard : 2 ≤ (normSetE p q).ncard) :\n    p ≤ q",
+      "closed_by": "its own calc chain `p = … _ ≤ … _ ≤ P.natDegree _ = q` (lines 600-604), after constructing a degree-q norm polynomial P whose roots include all of 𝔽_p",
+      "note": "Lemma C.1: E = E⁻¹ and |E| ≥ 2 force p ≤ q, by a root count for a polynomial of degree < q. Analyst's paraphrase, replaced by the declaration's text: an inverse-closed norm set E with at least two elements forces p ≤ q"
+    },
+    {
+      "name": "normSetE_eq_inv_of_forall_normN_two_mul_sub_one",
+      "statement": "theorem normSetE_eq_inv_of_forall_normN_two_mul_sub_one [Fact p.Prime] (hq : 0 < q)\n    (hrel : ∀ a : GaloisField p q, a ∈ normSetE p q →\n      normN p q ((2 : GaloisField p q) * a - 1) = 1) :\n    normSetE p q = (normSetE p q)⁻¹",
+      "closed_by": "ext a; constructor, then inv_mem_normSetE_of_normN_two_mul_sub_one on each direction (lines 293-300)",
+      "note": "Lemma C.3 step: the generator-relation norm identity N(2a − 1) = 1 on E implies E is inverse-closed. Analyst's paraphrase, replaced by the declaration's text: the pointwise norm relation N(2a − 1) = 1 on E implies E = E⁻¹"
+    },
+    {
+      "name": "lemmaC2",
+      "statement": "theorem lemmaC2 [Fact p.Prime] (hpodd : Odd p) (hq : q.Prime) (hqodd : Odd q) :\n    2 ≤ (normSetE p q).ncard",
+      "closed_by": "rcases eq_or_ne q 3; the q = 3 branch is normSetE_ncard_ge_two_of_eq_three, the q ≥ 5 branch normSetE_ncard_ge_two_of_five_le (lines 43-49)",
+      "note": "Lemma C.2: p and q odd give |E| ≥ 2. Analyst's paraphrase, replaced by the declaration's text: odd primes p and q give the norm set at least two elements"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A conclusion p ≤ q for primes p, q whose proof needs only three p,q-level facts about a norm set E ⊆ 𝔽_{p^q}: inverse-closure E = E⁻¹, a size bound |E| ≥ 2, and a root-count step turning those into p ≤ q.",
+    "use_when": "the step lemmas are already stated over p and q alone, and a client can supply the boundary hypothesis (here hrel : N(2a − 1) = 1 on E) without unfolding the concrete configuration that produced it.",
+    "avoid_when": "the step lemmas still mention the concrete configuration in their statements, or the boundary hypothesis is not what clients hold (so they would have to unfold group data to build it)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "`lemmaC1` occurs in the parent site `theoremC_abstract`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/yawara/odd-order/blob/ba8ec35982ceecbd31ca987cbe0cee30477f4883/OddOrder/BG/AppC_FinalContradiction.lean#L124-L130",
+      "form": "cites(parent, lemmaC1)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site `theoremC_abstract` (lines 124-130) contains no `sorry`, `admit` or `axiom`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/yawara/odd-order/blob/ba8ec35982ceecbd31ca987cbe0cee30477f4883/OddOrder/BG/AppC_FinalContradiction.lean#L124-L130",
+      "form": "no_sorry(OddOrder/BG/AppC_FinalContradiction.lean, 124-130)"
+    },
+    {
+      "n": 3,
+      "claim": "`lemmaC2` is declared in `OddOrder/BG/AppC_LemmaC2.lean` in lines 41-49.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/yawara/odd-order/blob/ba8ec35982ceecbd31ca987cbe0cee30477f4883/OddOrder/BG/AppC_LemmaC2.lean#L41-L49",
+      "form": "declared(lemmaC2, OddOrder/BG/AppC_LemmaC2.lean, 41-49)"
+    },
+    {
+      "n": 4,
+      "claim": "The theorem-scale shape of `theoremC_abstract` is 3 direct lemmas, glue 7 lines (124-130), child proofs 70 + 12 + 9 lines, and depth 4 down the inverse-closure branch.",
+      "evidence_kind": "measurement",
+      "evidence": "parent site AppC_FinalContradiction.lean:124-130; child sites AppC_NormSet.lean:535-604, AppC_NormSet.lean:289-300, AppC_LemmaC2.lean:41-49; depth chain normSetE_eq_inv_of_forall_normN_two_mul_sub_one → inv_mem_normSetE_of_normN_two_mul_sub_one (AppC_NormSet.lean:275-285) → ne_zero_of_mem_normSetE (AppC_NormSet.lean:92-97) → normN_zero (AppC_NormSet.lean:86-89)"
+    },
+    {
+      "n": 5,
+      "claim": "The author's doc comment says the abstract form removes the Section 16 configuration from the statement: 'This is the book's Theorem C with the Peterfalvi Section 16 configuration removed from the *statement*: no `S16.Hypothesis`, no `FieldNormalizerData`, no ambient `q < p`.'",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/yawara/odd-order/blob/ba8ec35982ceecbd31ca987cbe0cee30477f4883/OddOrder/BG/AppC_FinalContradiction.lean#L113-L116"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 3,
+    "depth": 4,
+    "glue_lines": 7,
+    "child_lines": [
+      70,
+      12,
+      9
+    ]
+  },
+  "metrics": {
+    "parent_lines": 7,
+    "child_lines": [
+      70,
+      12,
+      9
+    ],
+    "reused_by": 1,
+    "how_counted": "parent and child line counts are the site spans (declaration included); reused_by counts direct callers of theoremC_abstract in the copied files (theoremC_of_hypothesisB, AppC_FinalContradiction.lean line 142)"
+  },
+  "consequences": "The abstract lemma carries no condition (A) and no Section 16 data, so its obligations are exactly three: the client must supply oddness of p and q and the norm relation hrel. It defers condition (A)'s work to the client that produces hrel (here FieldNormalizerData.normSetGeneratorRelation_of_hypothesisB, line 143); if a client cannot produce hrel without unfolding the configuration, the abstraction buys nothing. Both the inverse-closure and the size bound must be supplied — neither is derived from the other here — so the interface is only as thin as the three step lemmas allow.",
+  "known_uses": [
+    "https://github.com/yawara/odd-order/blob/ba8ec35982ceecbd31ca987cbe0cee30477f4883/OddOrder/BG/AppC_FinalContradiction.lean#L139-L145",
+    "https://github.com/yawara/odd-order/blob/ba8ec35982ceecbd31ca987cbe0cee30477f4883/OddOrder/BG/AppC_FinalContradiction.lean#L158-L162"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "6e6d20ecf3e293daab2d87202d5fe117e8fd58d00e816b59219eacc6c67a91cb",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:55:54Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T16:00:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:57:43Z",
+      "note": "parent theoremC_abstract: statement re-copied from code; child 'lemmaC1': statement re-copied from the declaration of lemmaC1; child 'normSetE_eq_inv_of_forall_normN_two_mul_sub_one': statement re-copied from the declaration of normSetE_eq_inv_of_forall_normN_two_mul_sub_one; child 'lemmaC2': statement re-copied from the declaration of lemmaC2"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T16:05:18Z"
+}

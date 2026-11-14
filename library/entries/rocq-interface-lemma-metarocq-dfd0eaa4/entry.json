@@ -1,0 +1,213 @@
+{
+  "id": "rocq-interface-lemma-metarocq-dfd0eaa4",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Interface lemmas expose PCUIC lift_typing to bidirectional-checker clients",
+  "intent": "Close the abstraction boundary between the bidirectional checker's `checking`/`infering_sort` relations and PCUIC's `typing`/`lift_typing`: the parent `lift_sorting_lift_typing` assembles four already-proved interface lemmas into one theorem that turns any bidirectional sorting judgment into a PCUIC `lift_typing` fact, so clients read off PCUIC facts without unfolding the checker.",
+  "move": "interface-lemma",
+  "also_known_as": [
+    "abstraction-boundary lemma",
+    "API lemma",
+    "facade lemma"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "metarocq",
+    "url": "https://github.com/MetaRocq/metarocq",
+    "commit": "51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56",
+    "licence": "MIT"
+  },
+  "files": [
+    {
+      "path": "pcuic/theories/Bidirectional/BDToPCUIC.v",
+      "bytes": 18714,
+      "sha256": "06a13204c616534d06f6472d62326465135cb90c4aa78e4143a2eb57e34830a0",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/Bidirectional/BDToPCUIC.v"
+    },
+    {
+      "path": "common/theories/EnvironmentTyping.v",
+      "bytes": 99707,
+      "sha256": "f2bf91c256b365597316d93cb70918a78ebc09c71c04c5e607b74aa090c0c14b",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/common/theories/EnvironmentTyping.v"
+    },
+    {
+      "path": "pcuic/theories/Bidirectional/BDTyping.v",
+      "bytes": 30542,
+      "sha256": "f4295a5fc325b3e422e28d24cf939ef2715ce13c8868b2bdbb8df6f30da75245",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/Bidirectional/BDTyping.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "pcuic/theories/Bidirectional/BDToPCUIC.v",
+      "lines": [
+        465,
+        474
+      ],
+      "role": "parent",
+      "name": "lift_sorting_lift_typing",
+      "excerpt_sha256": "251d5b1e07f21230924a7f1f90f2c3e4c807aaa24bb9fbb82ddee20e5f97517e",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/Bidirectional/BDToPCUIC.v#L465-L474"
+    },
+    {
+      "path": "common/theories/EnvironmentTyping.v",
+      "lines": [
+        540,
+        550
+      ],
+      "role": "child",
+      "name": "lift_sorting_it_impl",
+      "excerpt_sha256": "52567cff841cb9cb0cd26670f275dd0e920d41064a4cd8629f2b874142904605",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/common/theories/EnvironmentTyping.v#L540-L550"
+    },
+    {
+      "path": "pcuic/theories/Bidirectional/BDToPCUIC.v",
+      "lines": [
+        427,
+        433
+      ],
+      "role": "child",
+      "name": "infering_sort_typing",
+      "excerpt_sha256": "33866f85e94f288a03bab76a155bd602a2371033938faf7eac675d87ad7e610d",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/Bidirectional/BDToPCUIC.v#L427-L433"
+    },
+    {
+      "path": "pcuic/theories/Bidirectional/BDToPCUIC.v",
+      "lines": [
+        419,
+        425
+      ],
+      "role": "child",
+      "name": "checking_typing",
+      "excerpt_sha256": "d0d54800d3cd9040c6d12bdcd4dd57b6fc5f6824795d828a571e9dd7593de22b",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/Bidirectional/BDToPCUIC.v#L419-L425"
+    },
+    {
+      "path": "pcuic/theories/Bidirectional/BDToPCUIC.v",
+      "lines": [
+        458,
+        463
+      ],
+      "role": "child",
+      "name": "isTypebd_isType",
+      "excerpt_sha256": "29bfa23fa643f6c26c4c369244f14f28792eee66629e546906f961164aecf0c0",
+      "permalink": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/Bidirectional/BDToPCUIC.v#L458-L463"
+    }
+  ],
+  "parent": {
+    "name": "lift_sorting_lift_typing",
+    "statement": "Theorem lift_sorting_lift_typing `{cf : checker_flags} (Σ : global_env_ext) Γ j (wfΣ : wf Σ) :\n  wf_local Σ Γ -> lift_sorting (checking Σ Γ) (infering_sort Σ Γ) j -> lift_typing typing Σ Γ j."
+  },
+  "children": [
+    {
+      "name": "lift_sorting_it_impl",
+      "statement": "Lemma lift_sorting_it_impl {Pc Qc Ps Qs} {j} :\n    forall tu: lift_sorting Pc Ps j,\n    let s := tu.2.π1 in\n    option_default (fun tm => Pc tm (j_typ j) -> Qc tm (j_typ j)) (j_term j) unit ->\n    (Ps (j_typ j) s -> Qs (j_typ j) s) ->\n    lift_sorting Qc Qs j.",
+      "closed_by": "relativize (lift_sorting Qc Qs j); 1: apply lift_sorting_f_it_impl with (f := id); destruct j, j_term => //",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: A generic lifting lemma that turns a lift_sorting for Pc/Ps into one for Qc/Qs from componentwise implications."
+    },
+    {
+      "name": "infering_sort_typing",
+      "statement": "Theorem infering_sort_typing `{checker_flags} (Σ : global_env_ext) Γ t u (wfΣ : wf Σ) :\n  wf_local Σ Γ -> Σ ;;; Γ |- t ▹□ u -> Σ ;;; Γ |- t : tSort u.",
+      "closed_by": "apply bidirectional_to_pcuic. assumption.",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: Bidirectional sort inference implies PCUIC typing at the inferred sort."
+    },
+    {
+      "name": "checking_typing",
+      "statement": "Theorem checking_typing `{checker_flags} (Σ : global_env_ext) Γ t T (wfΣ : wf Σ) :\n  wf_local Σ Γ -> isType Σ Γ T -> Σ ;;; Γ |- t ◃ T -> Σ ;;; Γ |- t : T.",
+      "closed_by": "apply bidirectional_to_pcuic. all: assumption.",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: Bidirectional checking against a well-typed type implies PCUIC typing."
+    },
+    {
+      "name": "isTypebd_isType",
+      "statement": "Theorem isTypebd_isType `{checker_flags} (Σ : global_env_ext) Γ j (wfΣ : wf Σ) :\n  wf_local Σ Γ -> lift_sorting (checking Σ Γ) (infering_sort Σ Γ) j -> isType Σ Γ (j_typ j).",
+      "closed_by": "now eapply infering_sort_isType.",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: A bidirectional sorting judgment yields a PCUIC isType of the judgment's type."
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 4,
+    "depth": 4,
+    "glue_lines": 10,
+    "child_lines": [
+      11,
+      7,
+      7,
+      6
+    ]
+  },
+  "applicability": {
+    "goal_shape": "A goal whose conclusion is a PCUIC judgment (`lift_typing typing Σ Γ j`, or a component `Σ ;;; Γ |- t : T` / `isType Σ Γ t`) and whose hypotheses are the algorithmic bidirectional judgments (`lift_sorting (checking Σ Γ) (infering_sort Σ Γ) j`, `Σ ;;; Γ |- t ▹□ u`, `Σ ;;; Γ |- t ◃ T`).",
+    "use_when": "A development defines its own algorithmic relation (here the mutual inductive `checking`/`infering_sort` of BDTyping.v) and wants a one-shot bridge to the semantic relation (`typing`/`lift_typing`), with the componentwise implications already proved separately; clients should consume the semantic facts without unfolding the algorithmic definitions.",
+    "avoid_when": "The bridge itself is the hard content — here that work lives in `bidirectional_to_pcuic` (BDToPCUIC.v line 206), proved by mutual induction, not in the thin glue; when clients genuinely need the algorithmic structure rather than the semantic conclusion; when there is no single generic lifting lemma (`lift_sorting_it_impl`) to carry the componentwise implications, so each component would need its own ad-hoc glue."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "No `admit`, `Admitted`, `Axiom` or `axiom` token occurs in `pcuic/theories/Bidirectional/BDToPCUIC.v` lines 465-474, the parent's declaration and proof.",
+      "evidence_kind": "check",
+      "form": "no_sorry(pcuic/theories/Bidirectional/BDToPCUIC.v, 465-474)",
+      "evidence": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/Bidirectional/BDToPCUIC.v#L465-L474"
+    },
+    {
+      "n": 2,
+      "claim": "The parent site cites the generic lifting lemma `lift_sorting_it_impl`.",
+      "evidence_kind": "check",
+      "form": "cites(parent, lift_sorting_it_impl)",
+      "evidence": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/Bidirectional/BDToPCUIC.v#L465-L474"
+    },
+    {
+      "n": 3,
+      "claim": "The parent `lift_sorting_lift_typing` is a 10-line site (2-line statement, 8-line proof) that composes 4 direct lemmas; the four child sites span 11, 7, 7 and 6 lines, and the longest checked chain of project lemmas below the parent has depth 4 (isTypebd_isType -> infering_sort_isType -> infering_sort_typing -> bidirectional_to_pcuic).",
+      "evidence_kind": "measurement",
+      "evidence": "line counts of the copied files: BDToPCUIC.v lines 465-474 (parent), EnvironmentTyping.v lines 540-550 (11), BDToPCUIC.v lines 427-433 (7), 419-425 (7), 458-463 (6); the chain is at BDToPCUIC.v lines 458-463 -> 435-441 -> 427-433 -> 206 (bidirectional_to_pcuic)."
+    },
+    {
+      "n": 4,
+      "claim": "The authors place the theorem in a block headed by the comment 'The user-facing theorems, directly following from the previous one' (BDToPCUIC.v line 409), marking this group as the published interface of the development.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/Bidirectional/BDToPCUIC.v#L409"
+    }
+  ],
+  "metrics": {
+    "parent_lines": 10,
+    "direct_children": 4,
+    "children_closed_by_named_lemma": 4,
+    "how_counted": "parent_lines = span of the parent site (BDToPCUIC.v 465-474); direct_children = the four child sites; each child proof closes by applying a named lemma (lift_sorting_f_it_impl, bidirectional_to_pcuic twice, infering_sort_isType), counted by reading each child site."
+  },
+  "consequences": "The move relies on the componentwise implications already existing: `lift_sorting_it_impl` needs a `Pc -> Qc` and a `Ps -> Qs` implication, and here `checking_typing` additionally needs an `isType Σ Γ (j_typ j)` well-formedness hypothesis, which the glue discharges with `isTypebd_isType`. If a client calls `checking_typing` directly they must supply that `isType` obligation themselves; the parent hides it by deriving it from the bidirectional judgment. A failure mode is applying `lift_sorting_it_impl` when the `Ps -> Qs` side is not available for all sorts, in which case the `2:` branch of the parent's `apply` would not close.",
+  "known_uses": [
+    "https://github.com/MetaRocq/metarocq/blob/51b14e4bb5f4580f00f60208ff8dbf31f3ad6f56/pcuic/theories/Bidirectional/BDToPCUIC.v#L411-L417"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": null,
+    "relation": "none"
+  },
+  "content_key": "dfd0eaa4480354e663f6f3cbcf927b436263cbedd274ab16be51a68786cfb9e1",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "extractor",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:37:44Z"
+    },
+    {
+      "field": "intent,parent,children,shape,applicability,claims,metrics,consequences,known_uses,related,rule,also_known_as",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:38:55Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:39:23Z",
+      "note": "parent lift_sorting_lift_typing: statement re-copied from code; child 'lift_sorting_it_impl': statement re-copied from the declaration of lift_sorting_it_impl; child 'infering_sort_typing': statement re-copied from the declaration of infering_sort_typing; child 'checking_typing': statement re-copied from the declaration of checking_typing; child 'isTypebd_isType': statement re-copied from the declaration of isTypebd_isType"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T15:45:35Z"
+}

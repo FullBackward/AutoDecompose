@@ -1,0 +1,289 @@
+{
+  "id": "rocq-calc-chain-corn-a6c2c42b",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Calculation chain of equalities then inequalities for CoRN's first refinement lemma",
+  "intent": "Bound the difference between the Riemann sum of a partition P and that of its refinement Q by e*(b-a), where e is the modulus-of-continuity parameter. The proof chains four equality rewrites (ref_calc2..ref_calc5) that normalise the difference into one double sum of (fP_i - fQ_j) * (Q_j - Q_{j-1}), then three inequalities (ref_calc6..ref_calc8) up to e times that telescoping sum, and finally ref_calc1 collapses the inner sum to P_i - P_{i-1}.",
+  "move": "calc-chain",
+  "also_known_as": [
+    "calculational proof",
+    "transitivity chain",
+    "leEq_wdl / leEq_transitive chain"
+  ],
+  "language": "rocq",
+  "source": {
+    "source_id": "corn",
+    "url": "https://github.com/rocq-community/corn",
+    "commit": "f678996112929e1674e20b75fb9bd728ded35e55",
+    "licence": "GPL-2.0"
+  },
+  "files": [
+    {
+      "path": "ftc/RefLemma.v",
+      "bytes": 37384,
+      "sha256": "293b56acb5c310f89cf3568fb6cd3a73a010ba5db3c29c4360eaa83cebba4b8f",
+      "permalink": "https://github.com/rocq-community/corn/blob/f678996112929e1674e20b75fb9bd728ded35e55/ftc/RefLemma.v"
+    }
+  ],
+  "sites": [
+    {
+      "path": "ftc/RefLemma.v",
+      "lines": [
+        553,
+        594
+      ],
+      "role": "parent",
+      "name": "first_refinement_lemma",
+      "excerpt_sha256": "7f26652553c2c693fcdc48e8bfec2d33876017a5680afae7a1885c8bc3533a15",
+      "permalink": "https://github.com/rocq-community/corn/blob/f678996112929e1674e20b75fb9bd728ded35e55/ftc/RefLemma.v#L553-L594"
+    },
+    {
+      "path": "ftc/RefLemma.v",
+      "lines": [
+        238,
+        284
+      ],
+      "role": "child",
+      "name": "ref_calc1",
+      "excerpt_sha256": "ad2a6f0b8bf95a7255a0116b27259531e6e54d26390b22eb1ffc1b5f780100a3",
+      "permalink": "https://github.com/rocq-community/corn/blob/f678996112929e1674e20b75fb9bd728ded35e55/ftc/RefLemma.v#L238-L284"
+    },
+    {
+      "path": "ftc/RefLemma.v",
+      "lines": [
+        289,
+        350
+      ],
+      "role": "child",
+      "name": "ref_calc2",
+      "excerpt_sha256": "e771f33770437b0fb1b54a03f0e33d5483a121a89457cd300ca478db2f46d045",
+      "permalink": "https://github.com/rocq-community/corn/blob/f678996112929e1674e20b75fb9bd728ded35e55/ftc/RefLemma.v#L289-L350"
+    },
+    {
+      "path": "ftc/RefLemma.v",
+      "lines": [
+        352,
+        387
+      ],
+      "role": "child",
+      "name": "ref_calc3",
+      "excerpt_sha256": "b4223515b6594c308e3e1c282d93e5bf36a3b7abbfa169d0caaaa898505b5be1",
+      "permalink": "https://github.com/rocq-community/corn/blob/f678996112929e1674e20b75fb9bd728ded35e55/ftc/RefLemma.v#L352-L387"
+    },
+    {
+      "path": "ftc/RefLemma.v",
+      "lines": [
+        389,
+        421
+      ],
+      "role": "child",
+      "name": "ref_calc4",
+      "excerpt_sha256": "34635dc4caba39c0e9601de0260447a811fc61b2a7062b25d8080acbd61f0dfc",
+      "permalink": "https://github.com/rocq-community/corn/blob/f678996112929e1674e20b75fb9bd728ded35e55/ftc/RefLemma.v#L389-L421"
+    },
+    {
+      "path": "ftc/RefLemma.v",
+      "lines": [
+        423,
+        445
+      ],
+      "role": "child",
+      "name": "ref_calc5",
+      "excerpt_sha256": "5ad47d057d4130abe799bafe70a5affe0c2cfbdd024d91f426c68cf3902f8012",
+      "permalink": "https://github.com/rocq-community/corn/blob/f678996112929e1674e20b75fb9bd728ded35e55/ftc/RefLemma.v#L423-L445"
+    },
+    {
+      "path": "ftc/RefLemma.v",
+      "lines": [
+        447,
+        472
+      ],
+      "role": "child",
+      "name": "ref_calc6",
+      "excerpt_sha256": "ac5a8b9241d05dfb6eebcf5f26114acfabc6658a07614beb41ec4036911c5c03",
+      "permalink": "https://github.com/rocq-community/corn/blob/f678996112929e1674e20b75fb9bd728ded35e55/ftc/RefLemma.v#L447-L472"
+    },
+    {
+      "path": "ftc/RefLemma.v",
+      "lines": [
+        474,
+        495
+      ],
+      "role": "child",
+      "name": "ref_calc7",
+      "excerpt_sha256": "0c4658a1de9ad2d2b5d3376048141fab5a4cd2fe958f0f11af67205758a331c7",
+      "permalink": "https://github.com/rocq-community/corn/blob/f678996112929e1674e20b75fb9bd728ded35e55/ftc/RefLemma.v#L474-L495"
+    },
+    {
+      "path": "ftc/RefLemma.v",
+      "lines": [
+        497,
+        550
+      ],
+      "role": "child",
+      "name": "ref_calc8",
+      "excerpt_sha256": "ab2fc576c6b64a0fd3296dbf520a7d686fb4a1ddb2bba3f797a4e8e0f4ee7b09",
+      "permalink": "https://github.com/rocq-community/corn/blob/f678996112929e1674e20b75fb9bd728ded35e55/ftc/RefLemma.v#L497-L550"
+    }
+  ],
+  "parent": {
+    "name": "first_refinement_lemma",
+    "statement": "Lemma first_refinement_lemma : AbsIR (Partition_Sum HfP incF[-]Partition_Sum HfQ incF) [<=] e[*] (b[-]a)."
+  },
+  "children": [
+    {
+      "name": "ref_calc1",
+      "statement": "Lemma ref_calc1 :\n  forall (i : nat) (Hi : i < n),\n  Sum2\n    (fun (j : nat) (Hj : sub i <= j) (Hj' : j <= pred (sub (S i))) =>\n     Q _ (H' _ _ Hi Hj') [-]Q _ (Nat.lt_le_incl _ _ (H _ _ Hi Hj'))) [=]\n  P _ Hi[-]P _ (Nat.lt_le_incl _ _ Hi).",
+      "closed_by": "str_Mengolli_Sum_gen (telescoping the Sum2), with RL_sub_hyp, RL_sub_SS, RL_sub_S",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the inner sum over one refinement block telescopes to P (S i) - P i"
+    },
+    {
+      "name": "ref_calc2",
+      "statement": "Lemma ref_calc2 :\n  AbsIR (Partition_Sum HfP incF[-]Partition_Sum HfQ incF) [=]\n  AbsIR\n    (Sumx\n       (fun (i : nat) (Hi : i < n) =>\n        Part F (fP i Hi) just1[*]\n        Sum2\n          (fun (j : nat) (Hj : sub i <= j) (Hj' : j <= pred (sub (S i))) =>\n           Q _ (H' _ _ Hi Hj') [-]Q _ (Nat.lt_le_incl _ _ (H _ _ Hi Hj')))) [-]\n     Sumx\n       (fun (i : nat) (Hi : i < n) =>\n        Sum2\n          (fun (j : nat) (Hj : sub i <= j) (Hj' : j <= pred (sub (S i))) =>\n           Part F (fQ j (H _ _ Hi Hj')) just2[*]\n           (Q _ (H' _ _ Hi Hj') [-]Q _ (Nat.lt_le_incl _ _ (H _ _ Hi Hj')))))).",
+      "closed_by": "ref_calc1 (for the P part) and str_Sumx_Sum_Sum (for the Q part), with RL_sub_0, RL_sub_mon, RL_sub_n, RL_sub_S",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: expresses the difference of the two partition sums as a difference of two double sums over the refinement blocks"
+    },
+    {
+      "name": "ref_calc3",
+      "statement": "Lemma ref_calc3 :\n  AbsIR\n    (Sumx\n       (fun (i : nat) (Hi : i < n) =>\n        Part F (fP i Hi) just1[*]\n        Sum2\n          (fun (j : nat) (Hj : sub i <= j) (Hj' : j <= pred (sub (S i))) =>\n           Q _ (H' _ _ Hi Hj') [-]Q _ (Nat.lt_le_incl _ _ (H _ _ Hi Hj')))) [-]\n     Sumx\n       (fun (i : nat) (Hi : i < n) =>\n        Sum2\n          (fun (j : nat) (Hj : sub i <= j) (Hj' : j <= pred (sub (S i))) =>\n           Part F (fQ j (H _ _ Hi Hj')) just2[*]\n           (Q _ (H' _ _ Hi Hj') [-]Q _ (Nat.lt_le_incl _ _ (H _ _ Hi Hj')))))) [=]\n  AbsIR\n    (Sumx\n       (fun (i : nat) (Hi : i < n) =>\n        Sum2\n          (fun (j : nat) (Hj : sub i <= j) (Hj' : j <= pred (sub (S i))) =>\n           Part F (fP i Hi) just1[*]\n           (Q _ (H' _ _ Hi Hj') [-]Q _ (Nat.lt_le_incl _ _ (H _ _ Hi Hj'))))) [-]\n     Sumx\n       (fun (i : nat) (Hi : i < n) =>\n        Sum2\n          (fun (j : nat) (Hj : sub i <= j) (Hj' : j <= pred (sub (S i))) =>\n           Part F (fQ j (H _ _ Hi Hj')) just2[*]\n           (Q _ (H' _ _ Hi Hj') [-]Q _ (Nat.lt_le_incl _ _ (H _ _ Hi Hj')))))).",
+      "closed_by": "Sum2_comm_scal' with RL_sub_SS, then algebra",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: commutes the scalar fQ_j into the inner sum so both terms carry the same Q-difference"
+    },
+    {
+      "name": "ref_calc4",
+      "statement": "Lemma ref_calc4 :\n  AbsIR\n    (Sumx\n       (fun (i : nat) (Hi : i < n) =>\n        Sum2\n          (fun (j : nat) (Hj : sub i <= j) (Hj' : j <= pred (sub (S i))) =>\n           Part F (fP i Hi) just1[*]\n           (Q _ (H' _ _ Hi Hj') [-]Q _ (Nat.lt_le_incl _ _ (H _ _ Hi Hj'))))) [-]\n     Sumx\n       (fun (i : nat) (Hi : i < n) =>\n        Sum2\n          (fun (j : nat) (Hj : sub i <= j) (Hj' : j <= pred (sub (S i))) =>\n           Part F (fQ j (H _ _ Hi Hj')) just2[*]\n           (Q _ (H' _ _ Hi Hj') [-]Q _ (Nat.lt_le_incl _ _ (H _ _ Hi Hj')))))) [=]\n  AbsIR\n    (Sumx\n       (fun (i : nat) (Hi : i < n) =>\n        Sum2\n          (fun (j : nat) (Hj : sub i <= j) (Hj' : j <= pred (sub (S i))) =>\n           Part F (fP i Hi) just1[*]\n           (Q _ (H' _ _ Hi Hj') [-]Q _ (Nat.lt_le_incl _ _ (H _ _ Hi Hj'))) [-]\n           Part F (fQ j (H _ _ Hi Hj')) just2[*]\n           (Q _ (H' _ _ Hi Hj') [-]Q _ (Nat.lt_le_incl _ _ (H _ _ Hi Hj')))))).",
+      "closed_by": "Sumx_minus_Sumx and Sum2_minus_Sum2, then algebra",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: merges the two Sumx into one, moving the subtraction inside the sum"
+    },
+    {
+      "name": "ref_calc5",
+      "statement": "Lemma ref_calc5 :\n  AbsIR\n    (Sumx\n       (fun (i : nat) (Hi : i < n) =>\n        Sum2\n          (fun (j : nat) (Hj : sub i <= j) (Hj' : j <= pred (sub (S i))) =>\n           Part F (fP i Hi) just1[*]\n           (Q _ (H' _ _ Hi Hj') [-]Q _ (Nat.lt_le_incl _ _ (H _ _ Hi Hj'))) [-]\n           Part F (fQ j (H _ _ Hi Hj')) just2[*]\n           (Q _ (H' _ _ Hi Hj') [-]Q _ (Nat.lt_le_incl _ _ (H _ _ Hi Hj')))))) [=]\n  AbsIR\n    (Sumx\n       (fun (i : nat) (Hi : i < n) =>\n        Sum2\n          (fun (j : nat) (Hj : sub i <= j) (Hj' : j <= pred (sub (S i))) =>\n           (Part F (fP i Hi) just1[-]Part F (fQ j (H _ _ Hi Hj')) just2) [*]\n           (Q _ (H' _ _ Hi Hj') [-]Q _ (Nat.lt_le_incl _ _ (H _ _ Hi Hj')))))).",
+      "closed_by": "Sum2_wd, then algebra",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: factors the common Q-difference out, leaving (fP_i - fQ_j) * (Q_j - Q_{j-1})"
+    },
+    {
+      "name": "ref_calc6",
+      "statement": "Lemma ref_calc6 :\n  AbsIR\n    (Sumx\n       (fun (i : nat) (Hi : i < n) =>\n        Sum2\n          (fun (j : nat) (Hj : sub i <= j) (Hj' : j <= pred (sub (S i))) =>\n           (Part F (fP i Hi) just1[-]Part F (fQ j (H _ _ Hi Hj')) just2) [*]\n           (Q _ (H' _ _ Hi Hj') [-]Q _ (Nat.lt_le_incl _ _ (H _ _ Hi Hj')))))) [<=]\n  Sumx\n    (fun (i : nat) (Hi : i < n) =>\n     AbsIR\n       (Sum2\n          (fun (j : nat) (Hj : sub i <= j) (Hj' : j <= pred (sub (S i))) =>\n           (Part F (fP i Hi) just1[-]Part F (fQ j (H _ _ Hi Hj')) just2) [*]\n           (Q _ (H' _ _ Hi Hj') [-]Q _ (Nat.lt_le_incl _ _ (H _ _ Hi Hj')))))).",
+      "closed_by": "triangle_SumxIR, then algebra",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: pushes AbsIR through the outer Sumx by the triangle inequality"
+    },
+    {
+      "name": "ref_calc7",
+      "statement": "Lemma ref_calc7 :\n  Sumx\n    (fun (i : nat) (Hi : i < n) =>\n     AbsIR\n       (Sum2\n          (fun (j : nat) (Hj : sub i <= j) (Hj' : j <= pred (sub (S i))) =>\n           (Part F (fP i Hi) just1[-]Part F (fQ j (H _ _ Hi Hj')) just2) [*]\n           (Q _ (H' _ _ Hi Hj') [-]Q _ (Nat.lt_le_incl _ _ (H _ _ Hi Hj')))))) [<=]\n  Sumx\n    (fun (i : nat) (Hi : i < n) =>\n     Sum2\n       (fun (j : nat) (Hj : sub i <= j) (Hj' : j <= pred (sub (S i))) =>\n        AbsIR\n          ((Part F (fP i Hi) just1[-]Part F (fQ j (H _ _ Hi Hj')) just2) [*]\n           (Q _ (H' _ _ Hi Hj') [-]Q _ (Nat.lt_le_incl _ _ (H _ _ Hi Hj')))))).",
+      "closed_by": "triangle_Sum2IR, then algebra",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: pushes AbsIR through the inner Sum2 by the triangle inequality"
+    },
+    {
+      "name": "ref_calc8",
+      "statement": "Lemma ref_calc8 :\n  Sumx\n    (fun (i : nat) (Hi : i < n) =>\n     Sum2\n       (fun (j : nat) (Hj : sub i <= j) (Hj' : j <= pred (sub (S i))) =>\n        AbsIR\n          ((Part F (fP i Hi) just1[-]Part F (fQ j (H _ _ Hi Hj')) just2) [*]\n           (Q _ (H' _ _ Hi Hj') [-]Q _ (Nat.lt_le_incl _ _ (H _ _ Hi Hj')))))) [<=]\n  Sumx\n    (fun (i : nat) (Hi : i < n) =>\n     Sum2\n       (fun (j : nat) (Hj : sub i <= j) (Hj' : j <= pred (sub (S i))) =>\n        e[*] (Q _ (H' _ _ Hi Hj') [-]Q _ (Nat.lt_le_incl _ _ (H _ _ Hi Hj'))))).",
+      "closed_by": "mult_resp_leEq_both with the modulus of continuity (contF' e He)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: bounds |fP_i - fQ_j| by the modulus of continuity e, since the points lie in a block of mesh at most d"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "A bound |S(f,P) - S(f,Q)| <= e*(b-a) between two Riemann sums where Q refines P, stated as an AbsIR(._-_.) [<=] e[*](b[-]a) goal over constructive reals (CoRN IR), to be reached by equality rewrites of the left side followed by triangle inequalities and a modulus-of-continuity bound.",
+    "use_when": "the two sides differ by a sequence of algebraic normalisations (pull sums apart, commute scalars, factor a common difference) followed by triangle inequalities and a continuity bound; each step is worth naming as its own lemma so the chain cites a flat list of statements.",
+    "avoid_when": "the intermediate terms are not worth naming (inline the rewrites instead); the steps need different hypotheses at different points (here only ref_calc8 uses the modulus of continuity, the rest are purely algebraic); a single long rewrite would be fragile to term-index mismatches."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "ref_calc1 occurs in the parent site.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-community/corn/blob/f678996112929e1674e20b75fb9bd728ded35e55/ftc/RefLemma.v#L553-L594",
+      "form": "cites(parent, ref_calc1)"
+    },
+    {
+      "n": 2,
+      "claim": "ref_calc1 occurs in the site ftc/RefLemma.v:289-350.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-community/corn/blob/f678996112929e1674e20b75fb9bd728ded35e55/ftc/RefLemma.v#L289-L350",
+      "form": "cites(ftc/RefLemma.v:289-350, ref_calc1)"
+    },
+    {
+      "n": 3,
+      "claim": "No closing-by-sorry token (admit, Admitted, Axiom, axiom) occurs in ftc/RefLemma.v lines 238-594.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/rocq-community/corn/blob/f678996112929e1674e20b75fb9bd728ded35e55/ftc/RefLemma.v#L238-L594",
+      "form": "no_sorry(ftc/RefLemma.v, 238-594)"
+    },
+    {
+      "n": 4,
+      "claim": "The parent site is 42 lines and the eight child sites are 303 lines in total (47+62+36+33+23+26+22+54).",
+      "evidence_kind": "measurement",
+      "evidence": "counted from the site line ranges in entry.json: parent 553-594 (42); children 238-284 (47), 289-350 (62), 352-387 (36), 389-421 (33), 423-445 (23), 447-472 (26), 474-495 (22), 497-550 (54)."
+    },
+    {
+      "n": 5,
+      "claim": "The authors state the proof plan as 'we prove our main lemma in several steps (and versions)' in the file's header comment.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/rocq-community/corn/blob/f678996112929e1674e20b75fb9bd728ded35e55/ftc/RefLemma.v#L85-L86 (\"Using the results from these files, we prove our main lemma in several steps (and versions).\")"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 8,
+    "depth": 2,
+    "glue_lines": 42,
+    "child_lines": [
+      47,
+      62,
+      36,
+      33,
+      23,
+      26,
+      22,
+      54
+    ]
+  },
+  "metrics": {
+    "parent_lines": 42,
+    "children": 8,
+    "child_lines": [
+      47,
+      62,
+      36,
+      33,
+      23,
+      26,
+      22,
+      54
+    ],
+    "how_counted": "line counts of the parent site (553-594) and the eight child sites, each including the declaration, the proof and Qed"
+  },
+  "consequences": "Each link is either an equality applied with leEq_wdl (rewriting the left side of the inequality down, ref_calc2..ref_calc5) or an inequality applied with leEq_transitive (ref_calc6..ref_calc8), so the chain is only as strong as its weakest link and a single mismatched rewrite breaks every link after it. The head of the chain must end in a form the tail can discharge: here ref_calc8 leaves e times an inner sum, the tail factors out e, ref_calc1 telescopes the inner sum to P_i - P_{i-1}, and the library lemma Mengolli_Sum telescopes the outer sum to b - a. The modulus of continuity enters only at ref_calc8, so the first seven links are purely algebraic and reusable for other integrands.",
+  "known_uses": [
+    "https://github.com/rocq-community/corn/blob/f678996112929e1674e20b75fb9bd728ded35e55/ftc/RefLemma.v#L645-L660 (second_refinement_lemma applies first_refinement_lemma twice, at lines 656 and 659)"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "a6c2c42bd325872d484cc0b027ebd77fde973c2fa72df11b11f170326bc3b022",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:28:21Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:40:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:32:21Z",
+      "note": "parent first_refinement_lemma: statement re-copied from code; child 'ref_calc1': statement re-copied from the declaration of ref_calc1; child 'ref_calc2': statement re-copied from the declaration of ref_calc2; child 'ref_calc3': statement re-copied from the declaration of ref_calc3; child 'ref_calc4': statement re-copied from the declaration of ref_calc4; child 'ref_calc5': statement re-copied from the declaration of ref_calc5; child 'ref_calc6': statement re-copied from the declaration of ref_calc6; child 'ref_calc7': statement re-copied from the declaration of ref_calc7; child 'ref_calc8': statement re-copied from the declaration of ref_calc8"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T15:39:46Z"
+}

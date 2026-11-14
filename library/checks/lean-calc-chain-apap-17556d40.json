@@ -1,0 +1,133 @@
+{
+  "entry": "lean-calc-chain-apap-17556d40",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:19:12Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:19:12Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:19:12Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: lemma28_markov@APAP/Physics/AlmostPeriodicity.lean:294, lemma28_part_one@APAP/Physics/AlmostPeriodicity.lean:304, lemma28_part_two@APAP/Physics/AlmostPeriodicity.lean:316, lemma28_end@APAP/Physics/AlmostPeriodicity.lean:318; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:19:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, lemma28_markov) -> cites: lemma28_markov occurs at APAP/Physics/AlmostPeriodicity.lean:294",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:19:12Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "lines(parent, 35) -> lines: site parent has 35 lines",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:19:12Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at fb5cb9c4f594cbeeb160c715618d13640984c521",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:19:19Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/push.yml build job (leanprover/lean-action) builds the APAP project on push to master; AlmostPeriodicity.lean is part of it; commit fb5cb9c4f594cbeeb160c715618d13640984c521 on default branch",
+      "by": "verifier",
+      "at": "2026-11-14T15:20:19Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "Counted from code/APAP/Physics/AlmostPeriodicity.lean: parent 284-318 = 35 lines; children 246-258=13, 139-155=17, 263-280=18, 110-131=22 (sum 70); 4 direct lemmas. Depth chain: lemma28 cites lemma28_markov at L294 (refine lemma28_markov hε hm ?_), lemma28_markov cites my_other_markov at L252 (have := my_other_markov ...), my_other_markov cites my_markov at L83 (· exact my_markov hc hg h)",
+      "by": "verifier",
+      "at": "2026-11-14T15:20:23Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "code/APAP/Physics/AlmostPeriodicity.lean L283: '-- Public because it is in the blueprint' (line above the lemma28 declaration at L284)",
+      "by": "verifier",
+      "at": "2026-11-14T15:20:24Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "code/APAP/Physics/AlmostPeriodicity.lean: lemma28 at L412, big_shifts at L416 (obtain ⟨a,ha,hL'⟩ := big_shifts ...), T_bound at L419 (exact T_bound hK₂ ...), just_the_triangle_inequality at L423 (have := just_the_triangle_inequality ha ht hk.bot_lt hm)",
+      "by": "verifier",
+      "at": "2026-11-14T15:20:25Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at fb5cb9c4f594cbeeb160c715618d13640984c521",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:20:41Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Verified against code copy APAP/Physics/AlmostPeriodicity.lean. Parent lemma28 is 284-318 (35 lines) and cites exactly the four children: lemma28_markov@294, lemma28_part_one@304, lemma28_part_two@316, lemma28_end@318; no other named project lemma is cited in the glue. Child sites and shape numbers are exact: lemma28_markov 246-258 (13), lemma28_part_one 139-155 (17), lemma28_part_two 263-280 (18), lemma28_end 110-131 (22); direct_lemmas=4, glue_lines=35, child_lines=[13,17,18,22] all match. Closing methods match the code (my_other_markov/pow_le_pow_iff_left0; marcinkiewicz_zygmund_piFinset+gcongr/norm_num; dLpNorm_sub_le/translate/ddconv_le/dL1Norm_mu; ring/ring_nf/gcongr/norm_num/omega calc). Proof closes: empty case via simp@293, nonempty via lemma28_markov leaving a norm subgoal closed by the part_one->rewrite->part_two->end chain, ending simpa[mul_assoc] using lemma28_end@318; no sorry in any site. Depth chain lemma28->lemma28_markov->my_other_markov->my_markov is depth 3 (my_markov applied@83, declared@68). Statement texts in entry.json match the declarations verbatim.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:22:05Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move stated generally: 'one named lemma per inequality step, each with hypotheses exactly what the previous step delivers, glue as pure sequencing' (README 210-217), with the pointwise/translate-norm/arithmetic triple offered as an instance, not the rule. 'When not to use' is honest and specific: non-composing steps (mismatched norms), a side condition not delivered by the preceding step (hA, ε>0, k large — all real hypotheses of lemma28_part_two/lemma28_end), and an arithmetic end entangled with the analytic steps. Consequences are specific and grounded in the glue I read (lines 284-318): 0<k from hk before the split, A-empty case before nonempty-only lemmas, hA passed to part_two, hε/hm/hk to end, and the connecting rewrite (lines 308-312) matching one lemma's conclusion to the next's hypothesis. Good-leaf answer present (README 175-187): each child has a self-contained statement and closes from library facts (marcinkiewicz_zygmund_piFinset, dLpNorm_* lemmas) or named siblings (my_other_markov), with the arithmetic child a pure ring/gcongr calc — the bounded-prover-relevant property.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:22:52Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at fb5cb9c4f594cbeeb160c715618d13640984c521",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:23:10Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance passes: check_provenance reports 1 file byte-identical at fb5cb9c4f594cbeeb160c715618d13640984c521; copied AlmostPeriodicity.lean sha256 8454cf5d... matches entry.json files[0].sha256 and 25380 bytes. Licence Apache-2.0 is consistent across entry.json source.licence, sources/apap/source.json, and SOURCE.md; upstream-LICENSE is the Apache License 2.0 text. Commit fb5cb9c4f594cbeeb160c715618d13640984c521 matches in all three places; every permalink pins that commit. Fully traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:23:32Z"
+    }
+  ]
+}

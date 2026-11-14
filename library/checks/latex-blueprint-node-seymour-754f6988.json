@@ -1,0 +1,117 @@
+{
+  "entry": "latex-blueprint-node-seymour-754f6988",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:19:38Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:19:38Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "not-run",
+      "evidence": "no Lean, Rocq or Isabelle file among the copied files",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:19:38Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, MatrixSum3.IsCanonicalSigning.toMatrixLikeSum3) -> cites: MatrixSum3.IsCanonicalSigning.toMatrixLikeSum3 occurs at blueprint/src/sum_3.tex:600",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:19:38Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, MatrixLikeSum3.isTotallyUnimodular) -> cites: MatrixLikeSum3.isTotallyUnimodular occurs at blueprint/src/sum_3.tex:592",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:19:38Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2769b10cb73fda17bafc0f13890dc057a2f4ff2a",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:19:51Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/blueprint.yml 'Compile blueprint' job uses docgen-action with blueprint:true, which builds the blueprint including blueprint/src/sum_3.tex; workflow triggers on push to main (paths include blueprint/**); pinned commit 2769b10cb73fda17bafc0f13890dc057a2f4ff2a on default branch main",
+      "by": "verifier",
+      "at": "2026-11-14T15:21:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "parent site 591-604 is 14 lines (glue_lines=14); line 600 \\uses{toMatrixLikeSum3,isTotallyUnimodular} lists exactly 2 children (direct_lemmas=2). Depth-5 chain confirmed along \\uses{} lines: 537 toMatrixLikeSum3->Al_D_isTotallyUnimodular, 468 Al_D->cccAr_isTotallyUnimodular, 374 cccAr->HasTuCanonicalSigning.toCanonicalSigning, 300 toCanonicalSigning->toCanonicalSigning_submatrix3x3, 223 submatrix3x3 uses only Matrix-namespace facts. Child sites 528-540 (13) and 569-589 (21) match child_lines [13,21].",
+      "by": "verifier",
+      "at": "2026-11-14T15:21:08Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "sum_3.tex:602 reads exactly 'Combine the results of Lemmas~\\ref{MatrixSum3.IsCanonicalSigning.toMatrixLikeSum3} and~\\ref{MatrixLikeSum3.isTotallyUnimodular}.' inside the parent's proof block (599-604).",
+      "by": "verifier",
+      "at": "2026-11-14T15:21:09Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2769b10cb73fda17bafc0f13890dc057a2f4ff2a",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:21:28Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent proof (sum_3.tex:600) uses exactly the two children MatrixSum3.IsCanonicalSigning.toMatrixLikeSum3 and MatrixLikeSum3.isTotallyUnimodular; child statements at :533 and :574 match entry.json; both children close via their own proofs (:536-540 cites Al_D_isTotallyUnimodular+cccAr; :577-589 induction via shortTableauPivot); node closes as modus ponens. Shape numbers verified against code: direct_lemmas=2, glue_lines=14 (591-604), child_lines [13 (528-540), 21 (569-589)], depth=5 chain 537->468->374->300->223 all confirmed (223 uses only Matrix-namespace facts).",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:23:15Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move is stated generally as P(x) = membership(x in F) x family-universal(forall y in F, P(y)); avoid_when and consequences name concrete, honest failure modes (open parent, failed membership, non-closed property, node adds no reasoning); 'Why each child is a good leaf' gives the bounded-prover-relevant properties (self-contained proof over the family's own axioms, never names B'' so reusable, parents mutually independent).",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:23:57Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 2769b10cb73fda17bafc0f13890dc057a2f4ff2a",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:24:12Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "check_provenance passes (1 file byte-identical at pinned commit 2769b10cb73fda17bafc0f13890dc057a2f4ff2a). Commit is consistent across entry.json, README (short 2769b10cb73f), sources/seymour/SOURCE.md and source.json. Licence Apache-2.0 is consistent in entry.json, README and SOURCE.md, and upstream-LICENSE is the Apache License 2.0 text. Permalinks use the full commit hash and line ranges 591-604/528-540/569-589, which match the copied code/blueprint/src/sum_3.tex and the shape numbers (14/13/21). All traceable.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:24:46Z"
+    }
+  ]
+}

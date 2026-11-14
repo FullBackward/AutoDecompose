@@ -1,0 +1,117 @@
+{
+  "entry": "isabelle-sorrify-at-failure-veriso-7de60ce6",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:59:51Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:59:51Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "fail",
+      "evidence": "inside parent/child/skeleton sites: VerIso/Tapir_Falsification.thy:471 (sorry), VerIso/Tapir_Falsification.thy:490 (sorry), VerIso/Tapir_Falsification.thy:493 (sorry), VerIso/Tapir_Falsification.thy:527 (sorry), VerIso/Tapir_Falsification.thy:553 (sorry), VerIso/Tapir_Falsification.thy:561 (sorry); elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:59:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "declared(tapir_refines_sser, VerIso/Tapir_Falsification.thy, 434-435) -> declared: tapir_refines_sser is declared at VerIso/Tapir_Falsification.thy:434",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:59:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(VerIso/Tapir_Falsification.thy, 18-57) -> no_sorry: none of sorry in VerIso/Tapir_Falsification.thy:18-57",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:59:51Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "count(sorry, 6, VerIso/Tapir_Falsification.thy) -> count: sorry occurs 6 times in 1 file(s) matching VerIso/Tapir_Falsification.thy",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:59:51Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 6407b7205c3bfc4adc62e758795a7fc5142efb33",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T16:00:03Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "not-run",
+      "evidence": "no CI workflow in the source (no .github/workflows or equivalent; full file listing at commit 6407b72 shows only .gitmodules, README.md, Run.thy and VerIso/*.thy), and no Isabelle toolchain on the harvest machine",
+      "by": "verifier",
+      "at": "2026-11-14T16:00:48Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "line arithmetic on copied VerIso/Tapir_Falsification.thy: parent site 434-563 = 130 lines; children 18-25=8, 27-35=9, 37-47=11, 49-57=9 lines; confirmed declarations at those lines (read_resp/prep/commit/abort_abs_committed_reads_inv close by 'by (auto simp add: abs_committed_reads_def)')",
+      "by": "verifier",
+      "at": "2026-11-14T16:00:49Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Run.thy line 26 is 'thm tapir_refines_sser' and line 27 comment reads 'fails: checkout the proof state at line 486 (in Isabelle's \"Output\" tab)' in the copied code",
+      "by": "verifier",
+      "at": "2026-11-14T16:00:50Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Correctness lens verified against the copied code (VerIso/Tapir_Falsification.thy at 6407b72). Parent tapir_refines_sser (434-563, 130 lines) opens with intro simulate_ES_fun_h then induction a, and cites exactly the four children via 'using *_abs_committed_reads_inv[of gs]' (Read_Resp, Prep, Commit, Abort cases); no other project lemma in the copied file is cited (full_view_satisfies_ET_SSER_canCommit and ET_trans_rule are imported from ET_SSER, not declared in the copied files). All four children (18-25, 27-35, 37-47, 49-57) close by 'by (auto simp add: abs_committed_reads_def)', matching closed_by, and 18-57 contain no sorry. The parent does not close: 6 sorrys at lines 471/490/493/527/553/561, all inside the parent site, matching the anti-pattern framing (grep -c sorry = 6). Shape numbers are right: glue_lines 563-434+1=130, child_lines 8/9/11/9, direct_lemmas 4, depth 1 (children close on one definition unfold, no nested lemma). Parent/child statements are accurate glosses of the verbatim code.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T16:02:40Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality holds. use_when/avoid_when state the move generally (any mostly-working decomposition with a few non-closing obligations; avoid when the shared invariant is too weak and must be strengthened as its own lemma), not just for this refinement. goal_shape generalises to refinement-by-simulation-induction with a per-event invariant. Consequences are honest and specific: sorry leaves the theorem unproved and the file no longer establishes the refinement, and each named hole (fp_property, kvs_of_s, Cl_ReadyC, Commit, Abort) needs a cross-transaction invariant abs_committed_reads does not capture. The entry says precisely what makes the four lemmas good leaves for a bounded prover: each states a single state update leaves abs_committed_reads unchanged and closes on its own by 'by (auto simp add: abs_committed_reads_def)' (a one-definition unfold), with no child needing another lemma. Verified against code lines 18-57 and 434-563: leaves close by auto, six sorries carry comments naming the missing invariants.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T16:03:28Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "3 file(s) byte-identical at 6407b7205c3bfc4adc62e758795a7fc5142efb33",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T16:03:55Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are all consistent and traceable. check_provenance.py passes (3 files byte-identical at 6407b7205c3bfc4adc62e758795a7fc5142efb33). Every permalink uses the full pinned commit hash and a path that matches code/; I verified each cited line range against the local copy: parent tapir_refines_sser 434-563 (434=lemma, 563=qed), children read_resp 18-25, prep 27-35, commit 37-47, abort 49-57, and Run.thy context 24-27 all match exactly. Commit 6407b7205c3bfc4adc62e758795a7fc5142efb33 is identical in SOURCE.md, entry.json and README (README's 6407b7205c3b is a traceable short prefix). Licence LicenseRef-unknown is recorded consistently in README, entry.json source block and SOURCE.md, which honestly notes 'no licence file found at the root' and gives attribution. code/ contains exactly the three listed files, no strays.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T16:04:41Z"
+    }
+  ]
+}

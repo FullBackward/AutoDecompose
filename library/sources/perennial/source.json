@@ -1,0 +1,18 @@
+{
+  "source_id": "perennial",
+  "url": "https://github.com/mit-pdos/perennial",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "mit-pdos/perennial",
+  "commit": "ddc0f0acc59a5730ad109be9ecfc4a485dcc4ea0",
+  "ref": "HEAD",
+  "language": "lean",
+  "pinned_at": "2026-11-14T14:53:24Z",
+  "how_found": "discovery-2: A-rocq, B-rocq",
+  "note": "Iris-based verification via goose: adequacy theorems goose_crash_adequacy, goose_dist_adequacy and goose_dist_crash_adequacy joined to end-to-end safety of crashfs and netfs",
+  "licence": "LicenseRef-unknown",
+  "licence_files": [],
+  "language_registered": "rocq",
+  "language_note": "the pinned commit ddc0f0a is the head of the default branch 'lean', which holds 1682 .lean files, lakefile.toml and lean-toolchain and no .v file; the Rocq development is on branch 'master'",
+  "language_set_by": "fixer (after discovery-2)"
+}

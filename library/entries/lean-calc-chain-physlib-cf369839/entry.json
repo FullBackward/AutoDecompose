@@ -1,0 +1,256 @@
+{
+  "id": "lean-calc-chain-physlib-cf369839",
+  "kind": "instance",
+  "status": "accepted",
+  "title": "Data Processing Inequality for sandwiched Rényi divergence (α > 1) via Stinespring purification",
+  "intent": "Reduce the Data Processing Inequality `D̃_ α(Φ ρ‖Φ σ) ≤ D̃_ α(ρ‖σ)` for an arbitrary CPTP map `Φ` to a six-link calculational chain: first dilate `Φ` into ancilla preparation + unitary conjugation + partial trace (Stinespring), then rewrite the target step by step with a named lemma per link — two purification lemmas plus one lemma each for tensor-with-pure-ancilla, monotonicity under partial trace, unitary invariance, and dropping the ancilla.",
+  "move": "calc-chain",
+  "also_known_as": [
+    "calculational chain",
+    "transitivity chain",
+    "Isar `also … finally`"
+  ],
+  "language": "lean",
+  "source": {
+    "source_id": "physlib",
+    "url": "https://github.com/leanprover-community/physlib",
+    "commit": "ca577bfd34ef356be2595528da1ef13a4a405816",
+    "licence": "Apache-2.0"
+  },
+  "files": [
+    {
+      "path": "QuantumInfo/Entropy/DPI.lean",
+      "bytes": 81659,
+      "sha256": "038c3f32e5acdd5b7576b812f1a072e488422558706991e3847cef2788262570",
+      "permalink": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/Entropy/DPI.lean"
+    },
+    {
+      "path": "QuantumInfo/Channels/CPTP.lean",
+      "bytes": 37798,
+      "sha256": "24eb5583d233763f8db7a6dc64230ca274c62cd2a7fb33137c948e65e7c746e1",
+      "permalink": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/Channels/CPTP.lean"
+    }
+  ],
+  "sites": [
+    {
+      "path": "QuantumInfo/Entropy/DPI.lean",
+      "lines": [
+        1349,
+        1378
+      ],
+      "role": "parent",
+      "name": "sandwichedRenyiEntropy_DPI_gt_one",
+      "excerpt_sha256": "2fafd9fd621eaef7c0f101beac875e94aaf727edfe3dd432686380eec48125a6",
+      "permalink": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/Entropy/DPI.lean#L1349-L1378"
+    },
+    {
+      "path": "QuantumInfo/Channels/CPTP.lean",
+      "lines": [
+        753,
+        754
+      ],
+      "role": "child",
+      "name": "purify_IsUnitary",
+      "excerpt_sha256": "f452404c3cb7977ae93f0021fc202554698dda8290cc3c244068beb2320e6431",
+      "permalink": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/Channels/CPTP.lean#L753-L754"
+    },
+    {
+      "path": "QuantumInfo/Channels/CPTP.lean",
+      "lines": [
+        763,
+        769
+      ],
+      "role": "child",
+      "name": "purify_trace",
+      "excerpt_sha256": "d02930e2c86161a29fb03e2a928ca88720bde4aad33772932cb165c168823130",
+      "permalink": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/Channels/CPTP.lean#L763-L769"
+    },
+    {
+      "path": "QuantumInfo/Entropy/DPI.lean",
+      "lines": [
+        1327,
+        1339
+      ],
+      "role": "child",
+      "name": "prep_append_eq_tensor_pure",
+      "excerpt_sha256": "2d406a723aeb0b4b068534e3b840a3397e3f735761eb5864a0d7209d1c2eb834",
+      "permalink": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/Entropy/DPI.lean#L1327-L1339"
+    },
+    {
+      "path": "QuantumInfo/Entropy/DPI.lean",
+      "lines": [
+        1314,
+        1322
+      ],
+      "role": "child",
+      "name": "sandwichedRenyiEntropy_mono_traceLeft",
+      "excerpt_sha256": "3c2da063ab57595a12b76b8cab8e12bee50a689713f7d4956c425c58f1cb55e1",
+      "permalink": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/Entropy/DPI.lean#L1314-L1322"
+    },
+    {
+      "path": "QuantumInfo/Entropy/DPI.lean",
+      "lines": [
+        1231,
+        1281
+      ],
+      "role": "child",
+      "name": "sandwichedRenyiEntropy_conj_unitary",
+      "excerpt_sha256": "f64233c1c0c7dd54ec7c50d6a0e33a9cee865c09c50b31e9c9d1fa079a4c4071",
+      "permalink": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/Entropy/DPI.lean#L1231-L1281"
+    },
+    {
+      "path": "QuantumInfo/Entropy/DPI.lean",
+      "lines": [
+        1287,
+        1289
+      ],
+      "role": "child",
+      "name": "sandwichedRenyiEntropy_tensor_pure",
+      "excerpt_sha256": "0e8c01c5359d20fbe309d48b2de2c1b653b650704c4e9d4b755647fe73b15d65",
+      "permalink": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/Entropy/DPI.lean#L1287-L1289"
+    }
+  ],
+  "parent": {
+    "name": "sandwichedRenyiEntropy_DPI_gt_one",
+    "statement": "theorem sandwichedRenyiEntropy_DPI_gt_one (hα : 1 < α) (ρ σ : MState d₁) (Φ : CPTPMap d₁ d₂) :\n    D̃_ α(Φ ρ‖Φ σ) ≤ D̃_ α(ρ‖σ)"
+  },
+  "children": [
+    {
+      "name": "purify_IsUnitary",
+      "statement": "lemma purify_IsUnitary (Λ : CPTPMap dIn dOut) : Λ.purify.IsUnitary",
+      "closed_by": "exists_purify Λ |>.choose_spec.1",
+      "note": "Declared in namespace CPTPMap in QuantumInfo/Channels/CPTP.lean (fully-qualified CPTPMap.purify_IsUnitary). Analyst's paraphrase, replaced by the declaration's text: The Stinespring dilation of a channel is a unitary channel."
+    },
+    {
+      "name": "purify_trace",
+      "statement": "theorem purify_trace (Λ : CPTPMap dIn dOut) : Λ = (\n    let zero_prep : CPTPMap Unit (dOut × dOut) := replacement (MState.pure (Ket.basis default))\n    let prep := (id ⊗ᶜᵖ zero_prep)\n    let append : CPTPMap dIn (dIn × Unit) := CPTPMap.ofEquiv (Equiv.prodPUnit dIn).symm\n    CPTPMap.traceLeft ∘ₘ CPTPMap.traceLeft ∘ₘ Λ.purify ∘ₘ prep ∘ₘ append\n  )",
+      "closed_by": "exists_purify Λ |>.choose_spec.2",
+      "note": "Declared in namespace CPTPMap in QuantumInfo/Channels/CPTP.lean (fully-qualified CPTPMap.purify_trace). Analyst's paraphrase, replaced by the declaration's text: A channel equals traceLeft ∘ₘ traceLeft ∘ₘ purify ∘ₘ prep ∘ₘ append."
+    },
+    {
+      "name": "prep_append_eq_tensor_pure",
+      "statement": "theorem prep_append_eq_tensor_pure [Inhabited d₂] (ρ : MState d₁) :\n    let ψ₀ : Ket (d₂ × d₂) := Ket.basis default\n    let τ := MState.pure ψ₀\n    let zero_prep : CPTPMap Unit (d₂ × d₂) := CPTPMap.replacement τ\n    let prep := (CPTPMap.id ⊗ᶜᵖ zero_prep)\n    let append : CPTPMap d₁ (d₁ × Unit) := CPTPMap.ofEquiv (Equiv.prodPUnit d₁).symm\n    (prep ∘ₘ append) ρ = ρ ⊗ᴹ τ",
+      "closed_by": "CPTPMap.prep_append_map_entry (via MState.ext, ext, funext)",
+      "note": "Helper the author flagged to be pulled out to a more reasonable place (comment \"PULLOUT to a more reasonable place\"). Analyst's paraphrase, replaced by the declaration's text: Preparing a fixed pure state and appending equals tensoring with that pure state."
+    },
+    {
+      "name": "sandwichedRenyiEntropy_mono_traceLeft",
+      "statement": "theorem sandwichedRenyiEntropy_mono_traceLeft [Nonempty dA]\n    (hα : 1 < α) (ρ σ : MState (dA × dB)) :\n    D̃_ α(ρ.traceLeft‖σ.traceLeft) ≤ D̃_ α(ρ‖σ)",
+      "closed_by": "sandwichedRenyiEntropy_mono_traceRight' + sandwichedRenyiEntropy_SWAP",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The sandwiched Rényi divergence is monotone under traceLeft for α > 1."
+    },
+    {
+      "name": "sandwichedRenyiEntropy_conj_unitary",
+      "statement": "lemma sandwichedRenyiEntropy_conj_unitary (hα : 0 < α) (ρ σ : MState d)\n    (U : Matrix.unitaryGroup d ℂ) :\n    D̃_ α(ρ.uConj U‖σ.uConj U) = D̃_ α(ρ‖σ)",
+      "closed_by": "sandwichedTraceFunctional_conj_unitary_MState (plus a kernel-equivalence argument and by_cases on σ.M.ker ≤ ρ.M.ker)"
+    },
+    {
+      "name": "sandwichedRenyiEntropy_tensor_pure",
+      "statement": "lemma sandwichedRenyiEntropy_tensor_pure (hα : 0 < α) (ρ σ : MState d₁) (ψ : Ket d₂) :\n    D̃_ α(ρ ⊗ᴹ MState.pure ψ‖σ ⊗ᴹ MState.pure ψ) = D̃_ α(ρ‖σ)",
+      "closed_by": "simp [hα]",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: The sandwiched Rényi divergence is invariant under tensoring with a fixed pure state."
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An inequality (or equality) between two instances of an order-respecting quantity `D̃_ α(Φ ρ‖Φ σ) ≤ D̃_ α(ρ‖σ)`, to be closed by rewriting the target through an intermediate normal form so that each link is a previously proved invariance or monotonicity lemma.",
+    "use_when": "The map `Φ` has a representation theorem (here Stinespring: ancilla preparation + unitary + partial trace) that lets you pass the target through a chain of equalities and `≤` steps, and each step is already a named lemma whose own proof is a leaf.",
+    "avoid_when": "The steps are not already named lemmas (an inline calc hides the skeleton the move is meant to expose), or a link needs the wrong monotonicity direction (`≥`), which a calc chain does not compose by default (survey F §10 rule 9)."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The parent `sandwichedRenyiEntropy_DPI_gt_one` is declared in `QuantumInfo/Entropy/DPI.lean` within lines 1349-1378.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/Entropy/DPI.lean#L1349-L1378",
+      "form": "declared(sandwichedRenyiEntropy_DPI_gt_one, QuantumInfo/Entropy/DPI.lean, 1349-1378)"
+    },
+    {
+      "n": 2,
+      "claim": "No `sorry`, `admit`, or `axiom` occurs in `QuantumInfo/Entropy/DPI.lean` lines 1349-1378.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/Entropy/DPI.lean#L1349-L1378",
+      "form": "no_sorry(QuantumInfo/Entropy/DPI.lean, 1349-1378)"
+    },
+    {
+      "n": 3,
+      "claim": "The parent site cites `purify_trace`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/Entropy/DPI.lean#L1365",
+      "form": "cites(sandwichedRenyiEntropy_DPI_gt_one, purify_trace)"
+    },
+    {
+      "n": 4,
+      "claim": "The authors state the reduction in the doc comment above the theorem: \"The proof uses the Stinespring representation (see `CPTPMap.exists_purify`): every CPTP map can be written as ancilla preparation + unitary conjugation + partial trace. Since the sandwiched Rényi divergence is invariant under the first two operations (by additivity and relabel invariance) and monotone under partial trace (by `sandwichedRenyiEntropy_mono_traceRight`), the DPI follows.\"",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/Entropy/DPI.lean#L1341-L1348"
+    },
+    {
+      "n": 5,
+      "claim": "Five project lemmas sit in a chain below the parent: `sandwichedRenyiEntropy_mono_traceLeft` (line 1314) is closed by `sandwichedRenyiEntropy_mono_traceRight'` (cited at line 1321), which uses `sandwichedRenyiEntropy_mono_traceRight` (line 1306), which uses `sandwichedTraceFunctional_mono_traceRight` (line 1222), which uses `sandwichedTraceFunctional_jointly_convex` (line 1110); all in `QuantumInfo/Entropy/DPI.lean`.",
+      "evidence_kind": "measurement",
+      "evidence": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/Entropy/DPI.lean#L1314-L1322 ; #L1302-L1310 ; #L1209-L1222 ; #L1083-L1123 ; #L568-L584"
+    },
+    {
+      "n": 6,
+      "claim": "The parent site is 30 lines long.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/Entropy/DPI.lean#L1349-L1378",
+      "form": "lines(sandwichedRenyiEntropy_DPI_gt_one, 30)"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 6,
+    "depth": 5,
+    "glue_lines": 30,
+    "child_lines": [
+      2,
+      7,
+      13,
+      9,
+      51,
+      3
+    ]
+  },
+  "metrics": {
+    "parent_proof_lines": 30,
+    "direct_children": 6,
+    "children_closed_by_a_single_step": 3,
+    "how_counted": "parent_proof_lines = site QuantumInfo/Entropy/DPI.lean:1349-1378 (declaration included); direct_children = the 6 named lemmas the glue cites; children_closed_by_a_single_step = purify_IsUnitary, purify_trace (each `exists_purify Λ |>.choose_spec.i`) and sandwichedRenyiEntropy_tensor_pure (`simp [hα]`)"
+  },
+  "consequences": "Each link of the calc is an `=` or `≤` whose justification is one named lemma, so transitivity is discharged by the chain itself and the only obligations are the hypotheses of each lemma (`hα : 1 < α`, `0 < α`, and the `Nonempty`/`Inhabited` instances). Failure modes: a link with the wrong monotonicity direction (`≥`) does not compose (survey F §10 rule 9); steps 3 and 4 reuse the same `sandwichedRenyiEntropy_mono_traceLeft` with a `..` hole, so the second trace must be dropped in exactly the right order; and the kernel condition of the trace-functional monotonicity is hidden inside `sandwichedRenyiEntropy_mono_traceLeft`, which dispatches it via `by_cases` in `sandwichedRenyiEntropy_mono_traceRight'`.",
+  "known_uses": [
+    "https://github.com/leanprover-community/physlib/blob/ca577bfd34ef356be2595528da1ef13a4a405816/QuantumInfo/Entropy/DPI.lean#L1119-L1123"
+  ],
+  "related": [],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "cf369839111a67256dc77d5e27c479091fb018928a686b7c2e77598d28369690",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:59:18Z"
+    },
+    {
+      "field": "intent,parent,children,applicability,claims,shape,metrics,consequences,known_uses,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T16:05:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T16:01:43Z",
+      "note": "parent sandwichedRenyiEntropy_DPI_gt_one: statement re-copied from code; child 'purify_IsUnitary': statement re-copied from the declaration of purify_IsUnitary; child 'purify_trace': statement re-copied from the declaration of purify_trace; child 'prep_append_eq_tensor_pure': statement re-copied from the declaration of prep_append_eq_tensor_pure; child 'sandwichedRenyiEntropy_mono_traceLeft': statement re-copied from the declaration of sandwichedRenyiEntropy_mono_traceLeft; child 'sandwichedRenyiEntropy_tensor_pure': statement re-copied from the declaration of sandwichedRenyiEntropy_tensor_pure"
+    }
+  ],
+  "status_reason": "",
+  "status_at": "2026-11-14T16:10:09Z"
+}

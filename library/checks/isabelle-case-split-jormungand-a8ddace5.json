@@ -1,0 +1,125 @@
+{
+  "entry": "isabelle-case-split-jormungand-a8ddace5",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:55:25Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:55:25Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:55:25Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: init_cnode_slot_move_original_sep@case_study/l4v/sys-init/InitCSpace_SI.thy:1229, init_cnode_slot_move_not_original_sep@case_study/l4v/sys-init/InitCSpace_SI.thy:1230; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:55:25Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(init_cnode_slot_move_sep, init_cnode_slot_move_original_sep) -> cites: init_cnode_slot_move_original_sep occurs at case_study/l4v/sys-init/InitCSpace_SI.thy:1229",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:55:25Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(init_cnode_slot_move_sep, init_cnode_slot_move_not_original_sep) -> cites: init_cnode_slot_move_not_original_sep occurs at case_study/l4v/sys-init/InitCSpace_SI.thy:1230",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:55:25Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "no_sorry(case_study/l4v/sys-init/InitCSpace_SI.thy, 1106-1231) -> no_sorry: none of sorry in case_study/l4v/sys-init/InitCSpace_SI.thy:1106-1231",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:55:25Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at bad97f9817b4034cd705cd295a1f86af880a7631",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:55:33Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".travis.yml (commit bad97f98 on default branch HEAD): 'L4V_ARCH=ARM Isabelle2016-1/bin/isabelle build -v -D .' builds all sessions recursively; case_study/l4v/sys-init/ROOT session SysInit imports Proof_SI, which imports InitCSpace_SI.thy",
+      "by": "verifier",
+      "at": "2026-11-14T15:56:41Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "glue_lines: parent site 1215-1231 = 17 lines; child_lines: original 1106-1175 = 70, not_original 1195-1213 = 19; direct_lemmas=2 (parent applies init_cnode_slot_move_original_sep and init_cnode_slot_move_not_original_sep); depth=3 chain confirmed: parent cites child (line 1229), child cites seL4_CNode_Mutate_object_slot_initialised_sep (line 1146), which cites seL4_CNode_Mutate_object_slot_initialised_sep_helper (lemma at line 781, applied at ~1089)",
+      "by": "verifier",
+      "at": "2026-11-14T15:56:43Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "InitCSpace_SI.thy lines 1545-1562: init_cnode_slot_copy_sep applies 'case_tac original_cap_at (obj_id, slot) spec' (line 1559) and dispatches to init_cnode_slot_copy_original_sep (line 1560) and init_cnode_slot_copy_not_original_sep (line 1562)",
+      "by": "verifier",
+      "at": "2026-11-14T15:56:44Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Parent init_cnode_slot_move_sep (1215-1231) is case_tac on original_cap_at (obj_id,slot) spec then wp of exactly its two children at lines 1229 and 1230, then done; parent and both children end in done, no sorry in 1106-1231. Child statements in entry.json are verbatim copies of the code. closed_by matches: the original child case-splits on opt_cap being Some NullCap, None, a cap with an object, or an IRQ-handler cap and closes via wp seL4_CNode_Mutate_object_slot_initialised_sep, seL4_CNode_Move_object_slot_initialised_cap_has_object_sep and seL4_CNode_Move_object_slot_initialised_irqhandler_cap_sep; the not_original child closes via wp init_cnode_slot_move_not_original_inv, two substs and clarsimp (closed_by omits the substs, a minor abbreviation). Shape numbers check out: glue_lines 17 (1215-1231), child_lines 70 and 19 (1106-1175, 1195-1213), direct_lemmas 2, depth 3 via 1215 to 1106 to 1062 (Mutate) to 781 (helper). Copy mode 1545-1562 does the same case_tac and dispatches to the copy original/not_original lemmas.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:58:09Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality holds. The move is stated beyond this one example: entry.json use_when abstracts to 'the program's behaviour branches on a single boolean predicate of the spec' with one pre-proved framed lemma per branch carrying the predicate (or its negation) as premise and sharing the same frame, and the README's opinion paragraph names the transferable discipline (branch lemmas carry the discriminating predicate as premise + identical frame so glue = case_tac + two wp, never unfolding the program). avoid_when is honest and specific: different frames/generalisations (wp won't close), non-exhaustive predicate (third case), unproved branch lemmas. Consequences are accurate: case_tac on a boolean yields exactly two goals and discharges its own exhaustiveness (verified at code:1215-1231), and the branch lemmas must carry the predicate as premise. A verified independent known-use (Copy mode, InitCSpace_SI.thy:1545-1562) recurs the same split, confirmed by reading it. Leaf quality for a bounded prover is stated in substance: 'self-contained', 'closes on its own' by one wp against a named seL4 lemma then clarsimp/metis, each object-slot leaf closing by wp against one _helper lemma. Minor unstated nuance, not an objection: the Copy-mode known-use has a different frame (empty->half vs half->initialised) so its glue needs extra subst/simp, which is itself one of the avoid_when conditions; the known-use claim remains accurate as written.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:59:24Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "4 file(s) byte-identical at bad97f9817b4034cd705cd295a1f86af880a7631",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:59:47Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "object",
+      "evidence": "Licence recorded (BSD-2-Clause, from LICENSE_BSD2.txt) is inconsistent with the copied files: all four files under code/case_study/l4v/sys-init/ carry GPL-2.0 headers (@TAG(NICTA_GPL); seen in each file's top comment). GPL-2.0 is copyleft, and protocol section 2 decision 1 requires copyleft entries to be marked so they can be withheld on publication; recording BSD-2-Clause means this entry would not be flagged. The README disclosure also understates it (says only InitCSpace_SI.thy carries the GPL header; actually all four do), and sources/jormungand/SOURCE.md lists only LICENSE_BSD2.txt, so the licence that actually governs the copied files is not recorded or traceable. Fix: set entry source.licence (and the README licence row) to GPL-2.0 for these files (or record both licences with these files flagged copyleft), add LICENSE_GPLv2.txt to the source note's licence_files (and copy its text), and correct the README note to say all four files carry the GPL-2.0 header. Permalinks and commit are otherwise consistent: check_provenance reports all 4 files byte-identical at bad97f9817b4034cd705cd295a1f86af880a7631, and that commit string matches across entry.json, README and SOURCE.md.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T16:00:38Z"
+    }
+  ]
+}

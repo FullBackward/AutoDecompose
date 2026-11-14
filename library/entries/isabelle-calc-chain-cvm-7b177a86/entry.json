@@ -1,0 +1,263 @@
+{
+  "id": "isabelle-calc-chain-cvm-7b177a86",
+  "kind": "instance",
+  "status": "draft",
+  "title": "Inequality chain bounding the failure probability of the CVM estimate",
+  "intent": "Reduce the main CVM correctness theorem — that the probability the estimate returned by cvm is wrong is at most δ — to five named lemmas: one discharges the trivial empty-list / oversized-threshold case exactly, and the other four supply the three links of a single 'also … finally' chain that bounds the failure probability, the k > l error and the k ≤ l out-of-range error, whose bounds sum to δ.",
+  "move": "calc-chain",
+  "also_known_as": [
+    "calculational chain",
+    "Isar also/finally",
+    "chained transitivity"
+  ],
+  "language": "isabelle",
+  "source": {
+    "source_id": "cvm",
+    "url": "https://github.com/joewatt95/cvm",
+    "commit": "aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb",
+    "licence": "BSD-2-Clause"
+  },
+  "files": [
+    {
+      "path": "isabelle/CVM_Transforms/CVM_Correctness.thy",
+      "bytes": 5872,
+      "sha256": "f7e98050b3d206895ac4ec95bf3f11240e54c2b66d5f755da40c507aaaaddf75",
+      "permalink": "https://github.com/joewatt95/cvm/blob/aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb/isabelle/CVM_Transforms/CVM_Correctness.thy"
+    },
+    {
+      "path": "isabelle/CVM_Transforms/CVM_Algo_No_Fail.thy",
+      "bytes": 9197,
+      "sha256": "e8bbe1a32f5224e04ee3cabddad1f409b55430938663e292dcd1b650b1483956",
+      "permalink": "https://github.com/joewatt95/cvm/blob/aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb/isabelle/CVM_Transforms/CVM_Algo_No_Fail.thy"
+    },
+    {
+      "path": "isabelle/CVM_Transforms/CVM_Algo_Lazy_Eager.thy",
+      "bytes": 20662,
+      "sha256": "f631da0a5bd0fe1278a495c4118f7cdf0fd1c7a7a655d1c34b71a1a332cd5983",
+      "permalink": "https://github.com/joewatt95/cvm/blob/aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb/isabelle/CVM_Transforms/CVM_Algo_Lazy_Eager.thy"
+    },
+    {
+      "path": "isabelle/CVM_Transforms/CVM_Error_Bounds.thy",
+      "bytes": 19107,
+      "sha256": "cb88c8d2f16704e2eba7e4e9fc2482ea2d6b6f41afd7886abb2afc5e92776050",
+      "permalink": "https://github.com/joewatt95/cvm/blob/aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb/isabelle/CVM_Transforms/CVM_Error_Bounds.thy"
+    }
+  ],
+  "sites": [
+    {
+      "path": "isabelle/CVM_Transforms/CVM_Correctness.thy",
+      "lines": [
+        94,
+        149
+      ],
+      "role": "parent",
+      "name": "prob_cvm_incorrect_le",
+      "excerpt_sha256": "63550e74c2b5be6ce622038b8dfe52aefe243b76c2bdde7f09e22f9c329b1b36",
+      "permalink": "https://github.com/joewatt95/cvm/blob/aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb/isabelle/CVM_Transforms/CVM_Correctness.thy#L94-L149"
+    },
+    {
+      "path": "isabelle/CVM_Transforms/CVM_Correctness.thy",
+      "lines": [
+        83,
+        92
+      ],
+      "role": "context",
+      "name": "prob_bounds_defs",
+      "excerpt_sha256": "3204cb89fcb7073cbfc398f8ca45178c3a05dfe7f8f57f108c18f8ea37644989",
+      "permalink": "https://github.com/joewatt95/cvm/blob/aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb/isabelle/CVM_Transforms/CVM_Correctness.thy#L83-L92"
+    },
+    {
+      "path": "isabelle/CVM_Transforms/CVM_Correctness.thy",
+      "lines": [
+        53,
+        76
+      ],
+      "role": "child",
+      "name": "cvm_correct_of_empty_or_threshold",
+      "excerpt_sha256": "eb5e44c19b2a46a4525ff3059897425a9d2a8c18c1daecd5f33faa595c4cd837",
+      "permalink": "https://github.com/joewatt95/cvm/blob/aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb/isabelle/CVM_Transforms/CVM_Correctness.thy#L53-L76"
+    },
+    {
+      "path": "isabelle/CVM_Transforms/CVM_Algo_No_Fail.thy",
+      "lines": [
+        198,
+        213
+      ],
+      "role": "child",
+      "name": "prob_run_steps_is_None_or_pred_le",
+      "excerpt_sha256": "e8d0a439ce3b7a1062f12228e2e049e4b2a9891268fed520a02bbbfab422a832",
+      "permalink": "https://github.com/joewatt95/cvm/blob/aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb/isabelle/CVM_Transforms/CVM_Algo_No_Fail.thy#L198-L213"
+    },
+    {
+      "path": "isabelle/CVM_Transforms/CVM_Algo_Lazy_Eager.thy",
+      "lines": [
+        512,
+        519
+      ],
+      "role": "child",
+      "name": "run_steps_no_fail_eq_run_steps_eager_bernoulli_matrix",
+      "excerpt_sha256": "3f6d5ee01309f15e3d25ec961ac643722ffff7d0edf96e3b3759ac09a26a39b3",
+      "permalink": "https://github.com/joewatt95/cvm/blob/aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb/isabelle/CVM_Transforms/CVM_Algo_Lazy_Eager.thy#L512-L519"
+    },
+    {
+      "path": "isabelle/CVM_Transforms/CVM_Error_Bounds.thy",
+      "lines": [
+        354,
+        455
+      ],
+      "role": "child",
+      "name": "prob_eager_algo_k_gt_l_le",
+      "excerpt_sha256": "51ccac17c3811b2d234d8731b1e63626f0fe31af00de039cfaac9825779c4f71",
+      "permalink": "https://github.com/joewatt95/cvm/blob/aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb/isabelle/CVM_Transforms/CVM_Error_Bounds.thy#L354-L455"
+    },
+    {
+      "path": "isabelle/CVM_Transforms/CVM_Error_Bounds.thy",
+      "lines": [
+        97,
+        248
+      ],
+      "role": "child",
+      "name": "prob_eager_algo_k_le_l_and_est_out_of_range_le",
+      "excerpt_sha256": "86b1805e065da4761feb326e5b6342022b15212daa0514a7ac484814f8cda756",
+      "permalink": "https://github.com/joewatt95/cvm/blob/aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb/isabelle/CVM_Transforms/CVM_Error_Bounds.thy#L97-L248"
+    }
+  ],
+  "parent": {
+    "name": "prob_cvm_incorrect_le",
+    "statement": "theorem prob_cvm_incorrect_le :\n  assumes\n    \\<open>0 < \\<epsilon>\\<close> \\<open>0 \\<le> \\<delta>\\<close>\n    \\<open>\\<lbrakk>xs \\<noteq> []; threshold \\<le> card_xs\\<rbrakk> \\<Longrightarrow>\n      \\<epsilon> \\<le> 1 \\<and>\n      2 \\<le> r \\<and> r \\<le> threshold \\<and>\n      \\<epsilon>\\<^sup>2 * threshold \\<ge> 6 * r \\<and>\n      r * card_xs \\<le> two_l_threshold \\<and> two_l_threshold \\<le> 2 * r * card_xs \\<and>\n      prob_fail_bound + prob_k_gt_l_bound + prob_k_le_l_and_est_out_of_range_bound\n      \\<le> \\<delta>\\<close>\n  shows\n    \\<open>\\<P>(estimate in cvm xs.\n      estimate |> is_None_or_pred\n        (\\<lambda> estimate. estimate >[\\<epsilon>] card (set xs)))\n    \\<le> \\<delta>\\<close>\n    (is \\<open>?L \\<le> ?R\\<close>)"
+  },
+  "children": [
+    {
+      "name": "cvm_correct_of_empty_or_threshold",
+      "statement": "theorem cvm_correct_of_empty_or_threshold :\n  assumes \\<open>xs = [] \\<or> threshold > card (set xs)\\<close>\n  shows \\<open>cvm xs = return_spmf (card <| set xs)\\<close>",
+      "closed_by": "intro pmf_hoare_foldM_indexed over the folded step, then auto unfolding cvm_def compute_estimate_def initial_state_def foldM_spmf_eq_foldM_pmf_case",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: cvm returns the exact count when xs is empty or the threshold exceeds card (set xs)"
+    },
+    {
+      "name": "prob_run_steps_is_None_or_pred_le",
+      "statement": "theorem prob_run_steps_is_None_or_pred_le :\n  \\<open>\\<P>(state in run_steps xs initial_state. state |> is_None_or_pred P)\n  \\<le> real (length xs) * f ^ threshold +\n    \\<P>(state in run_steps_no_fail xs initial_state. P state)\\<close>\n  (is \\<open>?L is_None_or_pred \\<le> ?R\\<close>)",
+      "closed_by": "smt (verit, del_insts) combining prob_fail_run_steps_le and prob_measure_spmf_le_of_ord_spmf[OF run_steps_le_run_steps_no_fail]",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the probability that run_steps fails or gives a wrong result is bounded by the fail probability plus the no-fail wrong-result probability, generically in P"
+    },
+    {
+      "name": "run_steps_no_fail_eq_run_steps_eager_bernoulli_matrix",
+      "statement": "corollary run_steps_no_fail_eq_run_steps_eager_bernoulli_matrix :\n  assumes \"length xs \\<le> n\"\n  shows\n    \"run_steps_no_fail xs initial_state = (\n      bernoulli_matrix n n f\n        |> map_pmf (run_reader <| run_steps_eager xs initial_state))\"",
+      "closed_by": "using run_steps_no_fail_eq_lazy sample_run_steps_eager_eq_run_steps_lazy by (metis bernoulli_matrix_def local.space_def sample_def)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: run_steps_no_fail equals the eager algorithm run over a Bernoulli random matrix"
+    },
+    {
+      "name": "prob_eager_algo_k_gt_l_le",
+      "statement": "theorem prob_eager_algo_k_gt_l_le :\n  assumes \\<open>r \\<ge> 2\\<close> \\<open>2 ^ l * threshold \\<ge> r * card (set xs)\\<close>\n  shows\n    \\<open>\\<P>(state in\n      run_with_bernoulli_matrix <| run_reader <<< flip run_steps_eager initial_state.\n      state_k state > l)\n    \\<le> prob_k_gt_l_bound\\<close>\n    (is \\<open>?L \\<le> _\\<close>)",
+      "closed_by": "an 'also ... finally' chain linking exists_index_threshold_exceeded_of_k_exceeds, a union bound, prob_eager_algo_then_step_1_le_binomial and binomial_distribution.chernoff_prob_ge; the l > length xs case closes by initial_state_k_bounded run_steps_eager_k_bounded",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the probability that state_k exceeds l is bounded by prob_k_gt_l_bound"
+    },
+    {
+      "name": "prob_eager_algo_k_le_l_and_est_out_of_range_le",
+      "statement": "theorem prob_eager_algo_k_le_l_and_est_out_of_range_le :\n  assumes \\<open>0 < \\<epsilon>\\<close> \\<open>\\<epsilon> \\<le> 1\\<close> \\<open>\\<epsilon>\\<^sup>2 * threshold \\<ge> 6 * r\\<close>\n  shows\n    \\<open>\\<P>(state in run_with_bernoulli_matrix <|\n        run_reader <<< flip run_steps_eager initial_state.\n      state_k state \\<le> l \\<and> compute_estimate state >[\\<epsilon>] card (set xs))\n    \\<le> prob_k_le_l_and_est_out_of_range_bound\\<close>\n    (is \\<open>?L (\\<le>) l \\<le> _\\<close>)",
+      "closed_by": "an 'also ... finally' chain linking subadditivity, prob_eager_algo_le_binomial, binomial_distribution.chernoff_prob_abs_ge and a geometric-series bound (sum_le_suminf / suminf_geometric); the final 4 * exp_bound step closes by sos",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the probability that state_k <= l and the estimate is out of range is bounded by prob_k_le_l_and_est_out_of_range_bound"
+    }
+  ],
+  "applicability": {
+    "goal_shape": "An upper bound Pr[event] <= delta whose event is a disjunction ('the algorithm fails' OR 'the algorithm returns a wrong estimate'), proved as an ordered <= chain from the left-hand probability to a sum of named error bounds that the assumptions already cap at delta.",
+    "use_when": "each link of the chain is non-trivial enough to deserve its own named lemma, and the links are ordered in one direction (< / <= / =) so Isar's 'also' composes them; the trivial cases (empty input, oversized threshold) can be split off first and closed exactly.",
+    "avoid_when": "the links are one-off rewrites with no reuse (fold them inline); the chain needs >= steps, which Isar's 'also' does not compose by default; a single library theorem closes the whole bound; the case split's trivial branch needs the same machinery as the general branch."
+  },
+  "claims": [
+    {
+      "n": 1,
+      "claim": "The main theorem `prob_cvm_incorrect_le` is declared in `isabelle/CVM_Transforms/CVM_Correctness.thy`, in lines 94-149.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/joewatt95/cvm/blob/aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb/isabelle/CVM_Transforms/CVM_Correctness.thy#L94-L149",
+      "form": "declared(prob_cvm_incorrect_le, isabelle/CVM_Transforms/CVM_Correctness.thy, 94-149)"
+    },
+    {
+      "n": 2,
+      "claim": "The parent's proof (the glue) cites the child `prob_eager_algo_k_le_l_and_est_out_of_range_le`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/joewatt95/cvm/blob/aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb/isabelle/CVM_Transforms/CVM_Correctness.thy#L94-L149",
+      "form": "cites(parent, prob_eager_algo_k_le_l_and_est_out_of_range_le)"
+    },
+    {
+      "n": 3,
+      "claim": "No `sorry` token occurs in the parent's proof, lines 94-149 of `isabelle/CVM_Transforms/CVM_Correctness.thy`.",
+      "evidence_kind": "check",
+      "evidence": "https://github.com/joewatt95/cvm/blob/aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb/isabelle/CVM_Transforms/CVM_Correctness.thy#L94-L149",
+      "form": "no_sorry(isabelle/CVM_Transforms/CVM_Correctness.thy, 94-149)"
+    },
+    {
+      "n": 4,
+      "claim": "The decomposition has depth 3 below the main theorem: prob_cvm_incorrect_le -> prob_run_steps_is_None_or_pred_le -> run_steps_le_run_steps_no_fail -> step_le_step_no_fail, all in the copied files.",
+      "evidence_kind": "measurement",
+      "evidence": "prob_cvm_incorrect_le cites prob_run_steps_is_None_or_pred_le at CVM_Correctness.thy#L127; prob_run_steps_is_None_or_pred_le cites run_steps_le_run_steps_no_fail at CVM_Algo_No_Fail.thy#L210; run_steps_le_run_steps_no_fail cites step_le_step_no_fail at CVM_Algo_No_Fail.thy#L189"
+    },
+    {
+      "n": 5,
+      "claim": "The authors label prob_cvm_incorrect_le 'the main correctness theorem as in Theorem 2 of \\cite{cvm_2023}' in the file's introductory text.",
+      "evidence_kind": "author-statement",
+      "evidence": "https://github.com/joewatt95/cvm/blob/aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb/isabelle/CVM_Transforms/CVM_Correctness.thy#L17-L18"
+    }
+  ],
+  "shape": {
+    "scale": "theorem",
+    "direct_lemmas": 5,
+    "depth": 3,
+    "glue_lines": 56,
+    "child_lines": [
+      24,
+      16,
+      8,
+      102,
+      152
+    ]
+  },
+  "metrics": {
+    "glue_lines": 56,
+    "direct_lemmas": 5,
+    "depth": 3,
+    "child_lines": [
+      24,
+      16,
+      8,
+      102,
+      152
+    ],
+    "how_counted": "line counts from the sites (parent 94-149, children 53-76, 198-213, 512-519, 354-455, 97-248); depth counted along the chain prob_cvm_incorrect_le -> prob_run_steps_is_None_or_pred_le -> run_steps_le_run_steps_no_fail -> step_le_step_no_fail"
+  },
+  "consequences": "The move creates one obligation per link: each named lemma must be proved in its own right before 'also ... finally' composes them. Transitivity of the chain is automatic. A link stated too weak breaks the final result; here the last step needs prob_fail_bound + prob_k_gt_l_bound + prob_k_le_l_and_est_out_of_range_bound <= delta, which the assumptions package as a single hypothesis discharged by 'unfolding prob_bounds_defs'. The two error-bound children carry their own Chernoff and geometric-series sub-chains, so the decomposition's weight lies in the leaves, not in the 40-line glue.",
+  "known_uses": [
+    "https://github.com/joewatt95/cvm/blob/aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb/isabelle/CVM_Transforms/CVM_Error_Bounds.thy#L354-L455",
+    "https://github.com/joewatt95/cvm/blob/aee8c4ba0bdc244048d4a8ea24a1789d6d9de2bb/isabelle/CVM_Transforms/CVM_Error_Bounds.thy#L97-L248"
+  ],
+  "related": [
+    "isabelle-calc-chain-afp-4d3178de"
+  ],
+  "rule": {
+    "f10_rule": 9,
+    "relation": "supports"
+  },
+  "content_key": "7b177a86ddc1db05fce441bdfdabf1225de56f1aa2f226100f4b86eba8b1d92e",
+  "provenance_log": [
+    {
+      "field": "files,sites",
+      "agent_role": "analyst",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:17:46Z"
+    },
+    {
+      "field": "intent,also_known_as,parent,children,applicability,claims,shape,metrics,consequences,known_uses,related,rule",
+      "agent_role": "analyst",
+      "model": "deepseek-v4-pro",
+      "run": "discovery-2",
+      "at": "2026-11-14T15:21:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T15:19:13Z",
+      "note": "parent prob_cvm_incorrect_le: statement re-copied from code; child 'cvm_correct_of_empty_or_threshold': statement re-copied from the declaration of cvm_correct_of_empty_or_threshold; child 'prob_run_steps_is_None_or_pred_le': statement re-copied from the declaration of prob_run_steps_is_None_or_pred_le; child 'run_steps_no_fail_eq_run_steps_eager_bernoulli_matrix': statement re-copied from the declaration of run_steps_no_fail_eq_run_steps_eager_bernoulli_matrix; child 'prob_eager_algo_k_gt_l_le': statement re-copied from the declaration of prob_eager_algo_k_gt_l_le; child 'prob_eager_algo_k_le_l_and_est_out_of_range_le': statement re-copied from the declaration of prob_eager_algo_k_le_l_and_est_out_of_range_le"
+    }
+  ]
+}

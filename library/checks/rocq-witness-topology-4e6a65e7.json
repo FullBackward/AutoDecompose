@@ -1,0 +1,117 @@
+{
+  "entry": "rocq-witness-topology-4e6a65e7",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:30:24Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:30:24Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:30:24Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: BanachFixedPoint_unique@theories/Topology/BanachFixedPoint.v:487, BanachFixedPoint_seq_cauchy@theories/Topology/BanachFixedPoint.v:478, BanachFixedPoint_seq_limit_fixed@theories/Topology/BanachFixedPoint.v:485; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:30:25Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, BanachFixedPoint_seq_cauchy) -> cites: BanachFixedPoint_seq_cauchy occurs at theories/Topology/BanachFixedPoint.v:478",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:30:25Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "no_sorry(theories/Topology/BanachFixedPoint.v, 1-489) -> no_sorry: none of admit, Admitted, Axiom, axiom in theories/Topology/BanachFixedPoint.v:1-489",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:30:25Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1e898b95f68f9ce75bf44faa8446992b03c84052",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:30:34Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/docker-action.yml builds coq-topology (opam install -y coq-topology), which compiles theories/Topology/BanachFixedPoint.v, on push to default branch master; pinned commit 1e898b95f68f9ce75bf44faa8446992b03c84052 is on master (GitHub API branches-where-head)",
+      "by": "verifier",
+      "at": "2026-11-14T15:31:32Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "read code/theories/Topology/BanachFixedPoint.v: parent 473-488 = 16 lines; child spans 277-289 (13), 349-427 (79), 456-471 (16); direct_lemmas=3 = the 3 children; depth chain BanachFixedPoint (cites seq_cauchy:483, seq_limit_fixed:485, unique:487) -> seq_cauchy cites seq_dist_add at :402 -> seq_dist_add cites seq_dist_succ at :341 -> seq_dist_succ 295-309",
+      "by": "verifier",
+      "at": "2026-11-14T15:31:53Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "read code/theories/Topology/BanachFixedPoint.v lines 478-481: comment reads 'consider [BanachFixedPoint_seq_cauchy] and obtain its limit-point using completeness of [X]. The fancy invocation is needed, to immediately obtain a [net_limit].' matching the quoted author-statement",
+      "by": "verifier",
+      "at": "2026-11-14T15:31:54Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Correctness verified: glue (BanachFixedPoint.v:473-488) cites exactly three named lemmas from the section — BanachFixedPoint_seq_cauchy (478/483), BanachFixedPoint_seq_limit_fixed (485), BanachFixedPoint_unique (487) — matching the three children; metric_space_net_limit is imported and correctly not a child. Child statements and closed_by match the copied code verbatim (unique ends 'apply Rle0_char' in HT; auto', seq_cauchy ends 'apply Rle_pow_pos_lt_1; auto' with the constant case via Nat_iter_fix/metric_zero, seq_limit_fixed ends 'apply BanachFixedPoint_seq_net_limit_shift with (x0 := x0); assumption'). All three children close with Qed and no admit/Admitted/Axiom tokens exist in the file, so it closes. Shape numbers checked against the copy: direct_lemmas=3 (the three glue-cited lemmas), depth=3 (BanachFixedPoint -> seq_cauchy 349-427 -> seq_dist_add 312-347 -> seq_dist_succ 295-309), glue_lines=16 (473-488), child_lines=[13,79,16] (277-289, 349-427, 456-471) — all correct. Author comment at 478-481 matches claim 4.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:33:24Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Move generalises beyond the example: stated for exists! x, P x (or exists x, P x) with a witness from a construction carrying its own certificate (Cauchy -> completeness), not just the Banach theorem; applicability/use_when fields repeat this at generic level. 'Avoid when' is specific and honest (properties not pre-factored into lemmas; existence/uniqueness needing unshared hypotheses; certificate not statable before naming the witness). Consequences name concrete obligations (Cauchy certificate, net_limit bridge) and concrete failure modes (missed bridge; case-split leak), and are honest about the 79-line Cauchy leaf and depth-3 chain rather than hiding them. Good-leaves question answered in substance: leaves are self-contained statements proved in the section context, none depending on the parent or the other two children, so glue is pure assembly (verified against code 262-289, 456-488, 295-349); independence + section-context hypotheses is what lets a bounded prover fill each hole. Minor note (not an objection): the entry never uses 'bounded prover' wording nor confronts that the Cauchy leaf is itself 79 lines with internal sub-lemmas, though it records sizes/depth honestly in shape.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:34:49Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 1e898b95f68f9ce75bf44faa8446992b03c84052",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:35:01Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Provenance and licence are consistent and traceable. check_provenance.py passes: 1 file byte-identical at commit 1e898b95f68f9ce75bf44faa8446992b03c84052. Commit, licence and repo are consistent across entry.json (source.commit=1e898b95f68f9ce75bf44faa8446992b03c84052, licence=LGPL-2.1), README.md, sources/topology/SOURCE.md, and sources/topology/source.json. All permalinks point to github.com/rocq-community/topology/blob/1e898b95f68f9ce75bf44faa8446992b03c84052/theories/Topology/BanachFixedPoint.v with line anchors matching the copied file's content (parent 473-488, context 262-275 verified by sed). Copied file code/theories/Topology/BanachFixedPoint.v is 13659 bytes, matching entry.json files[].bytes. The upstream LICENSE (sources/topology/upstream-LICENSE) states LGPL-2.1, matching the recorded licence.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:35:23Z"
+    }
+  ]
+}

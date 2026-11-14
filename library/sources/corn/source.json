@@ -1,0 +1,17 @@
+{
+  "source_id": "corn",
+  "url": "https://github.com/rocq-community/corn",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "rocq-community/corn",
+  "commit": "f678996112929e1674e20b75fb9bd728ded35e55",
+  "ref": "HEAD",
+  "language": "rocq",
+  "pinned_at": "2026-11-14T14:53:21Z",
+  "how_found": "discovery-2: A-rocq, B-rocq",
+  "note": "Constructive real analysis: Fundamental Theorem of Algebra in fta/ and Fundamental Theorem of Calculus and Taylor in ftc/, over the algebraic hierarchy in reals/ and model/",
+  "licence": "GPL-2.0",
+  "licence_files": [
+    "LICENSE"
+  ]
+}

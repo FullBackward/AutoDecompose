@@ -1,0 +1,117 @@
+{
+  "entry": "lean-calc-chain-infinity-cosmos-933fc1d5",
+  "records": [
+    {
+      "type": "check",
+      "key": "fidelity",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:30:34Z"
+    },
+    {
+      "type": "check",
+      "key": "sufficiency",
+      "value": "not-run",
+      "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
+      "by": "driver",
+      "at": "2026-11-14T15:30:34Z"
+    },
+    {
+      "type": "check",
+      "key": "sorry-scan",
+      "value": "pass",
+      "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
+      "by": "sorry_scan.py",
+      "at": "2026-11-14T15:30:35Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: transport_edge₀@InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean:581, transport_edge₁@InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean:583, transport_edge₂@InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean:578; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T15:30:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "1",
+      "value": "verified",
+      "evidence": "cites(parent, transport_edge₂) -> cites: transport_edge₂ occurs at InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean:578",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:30:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "cites(parent, transport_edge₀) -> cites: transport_edge₀ occurs at InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean:581",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:30:35Z"
+    },
+    {
+      "type": "claim",
+      "key": "3",
+      "value": "verified",
+      "evidence": "cites(parent, transport_edge₁) -> cites: transport_edge₁ occurs at InfinityCosmos/ForMathlib/AlgebraicTopology/Quasicategory/TwoTruncated.lean:583",
+      "by": "check_claims.py",
+      "at": "2026-11-14T15:30:35Z"
+    },
+    {
+      "type": "check",
+      "key": "provenance",
+      "value": "pass",
+      "evidence": "1 file(s) byte-identical at 89d7dc3ed861824535e540da489a46469dcc8e56",
+      "by": "check_provenance.py",
+      "at": "2026-11-14T15:30:41Z"
+    },
+    {
+      "type": "check",
+      "key": "build",
+      "value": "ci-record",
+      "evidence": ".github/workflows/blueprint.yml builds the project with lean-action (build-args ':blueprint --wfail') on push to main; pinned commit 89d7dc3ed861824535e540da489a46469dcc8e56 is on default branch main",
+      "by": "verifier",
+      "at": "2026-11-14T15:31:58Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "Copied code TwoTruncated.lean: transport_edge0 at 545-548 (4 lines), transport_edge1 at 550-554 (5 lines), transport_edge2 at 556-560 (5 lines), parent transport_all_edges at 574-583 (10 lines); each child proof is one rcases plus one exact Quasicategory2.fill31/fill32 line (lines 547-548, 553-554, 559-560)",
+      "by": "verifier",
+      "at": "2026-11-14T15:32:01Z"
+    },
+    {
+      "type": "claim",
+      "key": "5",
+      "value": "verified",
+      "evidence": "Copied code TwoTruncated.lean lines 569-572: (proof := /-- 'Apply the three conclusions of Lemma \\ref{lem:2-truncated-qcat-htpy-comp} one at a time to transform the given 2-simplex.' -/) matches the quoted blueprint proof verbatim",
+      "by": "verifier",
+      "at": "2026-11-14T15:32:02Z"
+    },
+    {
+      "type": "review",
+      "key": "correctness",
+      "value": "accept",
+      "evidence": "Opened local copy TwoTruncated.lean lines 545-583 and 490-500. Parent transport_all_edges (574-583, 10 lines) cites exactly transport_edge2 (line 578), transport_edge0 (line 581), transport_edge1 (line 583) and no other named lemma; entry.json statements and closed_by match the copied code verbatim; the proof closes: transport_edge2 s hf : Nonempty (CompStruct f' g h), transport_edge0 a hg : Nonempty (CompStruct f' g' h), transport_edge1 b hh : Nonempty (CompStruct f' g' h') = goal. Shape numbers correct: direct_lemmas 3, glue 10 lines (574-583), child sites 4/5/5 lines (545-548, 550-554, 556-560); depth 2 matches transport_edge1/2 using HomotopicL_iff_HomotopicR at line 498. Author-statement quote matches lines 570-571.",
+      "by": "reviewer-correctness",
+      "at": "2026-11-14T15:33:13Z"
+    },
+    {
+      "type": "review",
+      "key": "generality",
+      "value": "accept",
+      "evidence": "Generality holds. The move is stated beyond this example via a goal-shape (s : R e0 e1 e2) -> R e0' e1' e2' with per-edge homotopies/equalities and per-edge horn-fill transports; use_when/avoid_when are honest and specific (independence of transports, one-line horn fills, degenerate fillers idComp/compId, relation conversion HomotopicL->HomotopicR, O(edges) plumbing, failure mode where a transport breaks degeneracies). It says each child is a good leaf because it is self-contained and closes with one rcases plus one Quasicategory2.fill31/fill32 horn filling, matching the bounded-prover shape.",
+      "by": "reviewer-generality",
+      "at": "2026-11-14T15:34:02Z"
+    },
+    {
+      "type": "review",
+      "key": "provenance-licence",
+      "value": "accept",
+      "evidence": "Permalinks, commit, licence and source note are consistent and traceable. Copied file TwoTruncated.lean sha256 99a9422899f0a27157ea495288dba673ae571b06937584b3b69b1ed29b0329bd and 39808 bytes match entry.json; line ranges in the permalinks match the copied file exactly (parent 574-583, children 545-548/550-554/556-560, HomotopicL_iff_HomotopicR at 498). Commit 89d7dc3ed861824535e540da489a46469dcc8e56 is identical across README, entry.json, SOURCE.md and source.json; fetch_file.py retrieved the file at that commit and check_provenance recorded it byte-identical. Licence Apache-2.0 in entry.json/README/SOURCE.md/source.json, and the upstream LICENSE fetched at the pinned commit is Apache License 2.0 and byte-identical to the recorded upstream-LICENSE.",
+      "by": "reviewer-provenance-licence",
+      "at": "2026-11-14T15:35:14Z"
+    }
+  ]
+}

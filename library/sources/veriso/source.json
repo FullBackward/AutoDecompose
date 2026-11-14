@@ -1,0 +1,15 @@
+{
+  "source_id": "veriso",
+  "url": "https://github.com/shabnamrad/veriso",
+  "host": "github",
+  "base": "https://github.com",
+  "repo_path": "shabnamrad/veriso",
+  "commit": "6407b7205c3bfc4adc62e758795a7fc5142efb33",
+  "ref": "HEAD",
+  "language": "isabelle",
+  "pinned_at": "2026-11-14T14:53:41Z",
+  "how_found": "discovery-2: A-isabelle, discovery-1:A-isabelle",
+  "note": "VLDB 2025 isolation-verification framework; per-protocol proof theories (S2PL_Proof.thy, Tapir.thy/Tapir_Falsification.thy) discharging RA/UA/TCC/SER guarantees from framework lemmas.",
+  "licence": "LicenseRef-unknown",
+  "licence_files": []
+}
