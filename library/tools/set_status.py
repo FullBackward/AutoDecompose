@@ -16,9 +16,28 @@ from __future__ import annotations
 import argparse
 import re
 
-from common import ENTRIES, LEDGER, append_jsonl, die, now, read_json, write_json
+from common import ENTRIES, LEDGER, REPORTS, append_jsonl, die, now, read_json, write_json
 from record_verdict import LENSES, latest
 from statements import PROVER
+
+
+def dedupe_clash(eid: str, e: dict) -> list[str]:
+    """Other non-deprecated members of a dedupe cluster that this entry does not list
+    in known_uses (fixes brief 2026-11-14, item 5)."""
+    p = REPORTS / "dedupe.json"
+    if not p.exists():
+        return []
+    known = " ".join(str(k) for k in e.get("known_uses") or [])
+    out = set()
+    for clusters in read_json(p).values():
+        for ids in (clusters if isinstance(clusters, list) else []):
+            ids = ids.get("entries", []) if isinstance(ids, dict) else ids
+            if eid in ids:
+                for o in ids:
+                    if o != eid and o not in known and (ENTRIES / o / "entry.json").exists()                             and read_json(ENTRIES / o / "entry.json")["status"] != "deprecated":
+                        out.add(o)
+    return sorted(out)
+from validate_entry import check as validate
 
 
 def render(eid: str, e: dict, recs: dict) -> None:
@@ -67,6 +86,10 @@ def main() -> None:
             errs.append("sorry-scan has not been recorded (sorry_scan.py)")
         elif v("check", "sorry-scan") == "fail":
             errs.append("sorry-scan found a sorry, admit or axiom inside a parent or child site")
+        clash = dedupe_clash(a.entry, e)
+        if clash:
+            errs.append(f"duplicate of non-deprecated {', '.join(clash)} (reports/dedupe.json) "
+                        f"not listed in known_uses: merge first")
         for c in e["claims"]:
             verdict = v("claim", str(c["n"]))
             if verdict in (None, "unverified"):
