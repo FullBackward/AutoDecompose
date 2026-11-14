@@ -1,0 +1,76 @@
+{
+  "run": "discovery-1",
+  "date": "2026-11-14",
+  "language": "mixed",
+  "scale": "theorem",
+  "sources": [],
+  "discover": {
+    "strategies": [
+      {
+        "id": "A-lean",
+        "strategy": "A",
+        "focus": "Lean 4 projects outside the start set.",
+        "how": "Read Reservoir (https://reservoir.lean-lang.org), GitHub topic pages (https://github.com/topics/lean4, https://github.com/topics/mathlib), the Lean community's website (https://leanprover-community.github.io) for project lists and blueprints, and grep.app (https://grep.app/search?q=%5Cuses%7B&filter[lang][0]=TeX) for blueprint repositories."
+      },
+      {
+        "id": "A-rocq",
+        "strategy": "A",
+        "focus": "Rocq/Coq developments outside the start set.",
+        "how": "Read the Rocq package index (https://rocq-prover.org/packages), the coq-community and math-comp organisations on GitHub (https://github.com/coq-community, https://github.com/math-comp), and GitHub topic pages (https://github.com/topics/coq, https://github.com/topics/rocq)."
+      },
+      {
+        "id": "A-isabelle",
+        "strategy": "A",
+        "focus": "Isabelle developments outside the AFP (the AFP is registered as one source, afp).",
+        "how": "Read GitHub topic pages (https://github.com/topics/isabelle, https://github.com/topics/isabelle-hol), the isabelle-prover organisation, and artefact links on the Isabelle website (https://isabelle.in.tum.de) and in recent ITP and CPP proceedings pages."
+      },
+      {
+        "id": "A-agents",
+        "strategy": "A",
+        "focus": "LLM proving systems and agent skills whose repositories hold decomposition prompts or proof outputs (Lean, Rocq or Isabelle).",
+        "how": "Read GitHub topic pages (https://github.com/topics/theorem-proving, https://github.com/topics/autoformalization), the READMEs of benchmark repositories (miniF2F, PutnamBench, ProofNet) for linked prover systems and released solutions, and Hugging Face model cards that link code."
+      },
+      {
+        "id": "B-lean",
+        "strategy": "B",
+        "focus": "Snowballing from the registered Lean sources.",
+        "how": "For each registered Lean source (library/sources/*/source.json with Lean files), read its README for linked or related projects and its lake-manifest.json or lakefile for project dependencies (skip general libraries: mathlib, batteries, aesop, plausible, proofwidgets, LeanSearchClient, importGraph, Qq), and follow papers it cites to their code."
+      },
+      {
+        "id": "B-rocq",
+        "strategy": "B",
+        "focus": "Snowballing from the registered Rocq sources.",
+        "how": "For each registered Rocq source, read its README, opam file and _CoqProject for dependencies and related developments (skip general libraries such as stdpp, coq-ext-lib, equations), and follow cited developments to their code."
+      },
+      {
+        "id": "B-isabelle",
+        "strategy": "B",
+        "focus": "Snowballing from the registered Isabelle sources (l4v, autocorrode, munkres-isabelle, isabelle-pide-ai, isabelle-dist, afp).",
+        "how": "Read their READMEs and ROOT files for sessions and projects outside the AFP that they depend on or cite, and the papers they cite for linked artefacts."
+      }
+    ],
+    "candidatesPerStrategy": 15,
+    "maxNewSources": 30
+  },
+  "screen": true,
+  "reuseScreening": true,
+  "siteBudget": {
+    "min": 2,
+    "max": 6,
+    "linesPerSite": 400
+  },
+  "maxEntries": 60,
+  "goldSize": 0,
+  "concurrency": 8,
+  "timeoutMinutes": 45,
+  "maxCalls": 600,
+  "maxTokens": 600000000,
+  "maxCostCNY": 100,
+  "softStopCNY": 85,
+  "offPeakOnly": true,
+  "models": {
+    "locator": "deepseek-flash",
+    "analyst": "deepseek-v4-pro",
+    "verifier": "deepseek-v4-pro"
+  }
+}
