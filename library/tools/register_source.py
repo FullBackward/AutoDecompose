@@ -4,7 +4,7 @@
         [--ref HEAD] [--how-found TEXT] [--note TEXT]
   py.sh register_source.py --start-set library/sources/start-set.json [--batch 1 ...]
   py.sh register_source.py --id ID --set-licence SPDX_EXPRESSION --why TEXT [--by NAME] \
-        [--licence-file PATH ...]
+        [--licence-file PATH ...] [--licence-url URL ...]
   py.sh register_source.py --id ID --set-language lean|rocq|isabelle|mixed --why TEXT [--by NAME]
 
 Writes library/sources/<id>/source.json, the licence file(s) copied verbatim,
@@ -72,15 +72,44 @@ def detect_spdx(text: str) -> str:
         (r"Attribution-ShareAlike 4\.0", "CC-BY-SA-4.0"),
         (r"Attribution-NonCommercial", "LicenseRef-CC-BY-NC"),
         (r"Attribution 4\.0 International", "CC-BY-4.0"),
-        (r"Permission is hereby granted, free of charge", "MIT"),
-        (r"Redistribution and use in source and binary forms.*Neither the name", "BSD-3-Clause"),
-        (r"Redistribution and use in source and binary forms", "BSD-2-Clause"),
+        (r"DEEPSEEK LICENSE AGREEMENT Version 1\.0", "LicenseRef-DeepSeek-License-1.0"),
+        (r"This Apple software is supplied to you by Apple", "AML"),
         (r"Boost Software License", "BSL-1.0"),
+        # MIT only when both its condition and its disclaimer are there; a variant
+        # (UniMath's drops the disclaimer) stays unknown, for a reader to name
+        (r"Permission is hereby granted, free of charge.*The above copyright notice and this "
+         r"permission notice shall be included.*PROVIDED \"?AS IS\"?", "MIT"),
+        (r"Redistribution and use in source and binary forms.*Neither the name", "BSD-3-Clause"),
+        (r"Redistribution and use in source and binary forms.*Redistributions? in binary form",
+         "BSD-2-Clause"),
+        (r"Redistribution and use in source and binary forms", "BSD-1-Clause"),
     ]
     for pat, spdx in rules:
         if re.search(pat, t, flags=re.I):
             return spdx
     return "LicenseRef-unknown"
+
+
+def to_read(src: dict, texts: list[str]) -> list[str]:
+    """Why a detected licence still needs a human reading (the licence audit of 2026-11-14 found
+    each of these misread at least once); --set-licence clears the list."""
+    why = []
+    if src["licence"] == "LicenseRef-unknown":
+        why.append("no licence recognised at the root: look in README, subdirectories and package metadata")
+    if re.search(r"\b(L?GPL-[23]\.[01])(?![-\w])", src["licence"]):
+        why.append("a GNU licence text alone does not say 'only' or 'or later': read the file headers")
+    if len(src["licence_files"]) > 1:
+        why.append("several licence files: decide between AND (by file or directory) and OR (a choice)")
+    if any(n.upper().startswith("NOTICE") for n in src["licence_files"]):
+        why.append("a NOTICE file: read it for per-directory licences and third-party material")
+    if any(n.lower().endswith(".md") and "SPDX-License-Identifier" in t
+           for n, t in zip(src["licence_files"], texts)):
+        why.append("an SPDX tag in a Markdown licence file may license the document, not the code")
+    if any(re.search(r"dual[- ]licen|the following (?:files|directories)|subdirector|individual files"
+                     r"|each file|Files described as being under", " ".join(t.split()), flags=re.I)
+           for t in texts):
+        why.append("the licence text assigns licences by file or directory: read which cover the copied files")
+    return why
 
 
 def register(url: str, sid: str, language: str, ref: str, how_found: str,
@@ -114,6 +143,9 @@ def register(url: str, sid: str, language: str, ref: str, how_found: str,
         ids = sorted({detect_spdx(t) for t in texts})
         known = [i for i in ids if i != "LicenseRef-unknown"]
         src["licence"] = " AND ".join(known) if known else "LicenseRef-unknown"
+    todo = to_read(src, texts)
+    if todo:
+        src["licence_to_read"] = todo
     write_json(d / "source.json", src)
     write_note(d, src)
     rec = dict(src)
@@ -124,21 +156,27 @@ def register(url: str, sid: str, language: str, ref: str, how_found: str,
 
 
 def copy_name(path: str) -> str:
-    """The local name of a copied licence file; a file below the root keeps its path, flattened."""
-    return "upstream-" + path.replace("/", "--")
+    """The local name of a copied licence file; a file below the root keeps its path, flattened,
+    and a licence published outside the repository keeps its host and path."""
+    return "upstream-" + re.sub(r"^https?://", "", path).replace("/", "--")
 
 
 def write_note(d, src: dict) -> None:
     """SOURCE.md from source.json."""
     sha = src["commit"]
-    lic_links = "\n".join(f"- [{n}]({permalink(src, n)}) (copied here as `{copy_name(n)}`)"
-                          for n in src["licence_files"]) or "- no licence file found at the root"
+    lic_links = "\n".join([f"- [{n}]({permalink(src, n)}) (copied here as `{copy_name(n)}`)"
+                           for n in src["licence_files"]]
+                          + [f"- [{u}]({u}), published outside the repository (copied here as `{copy_name(u)}`)"
+                             for u in src.get("licence_urls", [])]) or "- no licence file found at the root"
     lang = src["language"] + (f" (registered as {src['language_registered']}; {src.get('language_note', '')})"
                               if src.get("language_registered") else "")
     if src.get("licence_detected"):
         lic = (f"- Licence: `{src['licence']}`, read from the licence files by {src.get('licence_set_by', 'hand')} "
                f"({src.get('licence_note', '')}); the detector had `{src['licence_detected']}`. "
                f"The licence text below governs.\n")
+    elif src.get("licence_to_read"):
+        lic = (f"- Licence (detected, not yet read): `{src['licence']}`; to read: "
+               f"{'; '.join(src['licence_to_read'])}. The licence text below governs.\n")
     else:
         lic = f"- Licence (detected): `{src['licence']}`; the licence text below governs.\n"
     (d / "SOURCE.md").write_text(
@@ -159,11 +197,13 @@ def write_note(d, src: dict) -> None:
         encoding="utf-8")
 
 
-def set_licence(sid: str, expr: str, why: str, by: str, files: list[str] = ()) -> None:
+def set_licence(sid: str, expr: str, why: str, by: str, files: list[str] = (),
+                urls: list[str] = ()) -> None:
     """Correct a detected licence after reading the copied licence files. The detected value is
     kept in source.json (licence_detected) and the change is appended to ledger/sources.jsonl.
     FILES are further licence files below the root (a vendored tree's own licence, say), copied
-    verbatim at the pinned commit like the root ones."""
+    verbatim at the pinned commit like the root ones; URLS are licence texts the project
+    publishes outside the repository (the AFP's, say), copied verbatim as served."""
     d = SOURCES / sid
     if not (d / "source.json").exists():
         die(f"no source {sid}")
@@ -174,8 +214,13 @@ def set_licence(sid: str, expr: str, why: str, by: str, files: list[str] = ()) -
         if name not in src["licence_files"]:
             (d / copy_name(name)).write_bytes(http_get(raw_url(src, name)))
             src["licence_files"].append(name)
+    for url in urls:
+        if url not in src.get("licence_urls", []):
+            (d / copy_name(url)).write_bytes(http_get(url))
+            src.setdefault("licence_urls", []).append(url)
     src.setdefault("licence_detected", src["licence"])
     src.update(licence=expr, licence_note=why, licence_set_by=by)
+    src.pop("licence_to_read", None)
     write_json(d / "source.json", src)
     write_note(d, src)
     append_jsonl(LEDGER / "sources.jsonl", {**src, "event": "licence", "at": now()})
@@ -214,6 +259,8 @@ def main() -> None:
                     help="with --id: correct the detected licence of a registered source")
     ap.add_argument("--licence-file", action="append", default=[], metavar="PATH",
                     help="with --set-licence: also copy this licence file below the root")
+    ap.add_argument("--licence-url", action="append", default=[], metavar="URL",
+                    help="with --set-licence: also copy this licence text published outside the repository")
     ap.add_argument("--set-language", choices=["lean", "rocq", "isabelle", "mixed"],
                     help="with --id: correct the language a source was registered under")
     ap.add_argument("--why", default="", help="with --set-licence or --set-language: the evidence")
@@ -225,7 +272,7 @@ def main() -> None:
         if a.set_language:
             set_language(a.id, a.set_language, a.why, a.by)
         if a.set_licence:
-            set_licence(a.id, a.set_licence, a.why, a.by, a.licence_file)
+            set_licence(a.id, a.set_licence, a.why, a.by, a.licence_file, a.licence_url)
         return
     if a.start_set:
         for s in read_json(__import__("pathlib").Path(a.start_set))["sources"]:

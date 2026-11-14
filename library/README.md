@@ -72,7 +72,7 @@ Python 3 interpreter). No tool uses an API token or a model.
 
 | Tool | Does |
 |---|---|
-| `register_source.py` | pins a source's commit with `git ls-remote`, copies its licence, writes its note; `--set-licence` (with `--licence-file` for a licence below the root) and `--set-language` correct a registered source, keeping the old value |
+| `register_source.py` | pins a source's commit with `git ls-remote`, copies its licence, writes its note; `--set-licence` (with `--licence-file` for a licence below the root, `--licence-url` for one published elsewhere) and `--set-language` correct a registered source, keeping the old value; a detected licence that still needs reading is listed in `licence_to_read` |
 | `list_files.py` | lists a source's files at the pinned commit |
 | `fetch_file.py` | fetches files at the pinned commit into the cache, for searching |
 | `ledger.py` | appends a checked record to a ledger |
