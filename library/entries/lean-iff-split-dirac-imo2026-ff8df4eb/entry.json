@@ -138,7 +138,10 @@
     "how_counted": "parent proof = lines 381-384 of the copied file; child proofs = lines 365-370 (exists_div_of_canGuarantee) and 273-279 (mulanCanGuarantee_of_div); direct_children = the two lemmas named in the parent's proof"
   },
   "consequences": "The split creates exactly two obligations, one per direction, both already discharged by named lemmas: (⇒) a guarantee forces θ = 180/n (by contradiction from the good equilateral triangle), and (⇐) θ = 180/n allows a guarantee (by a constructive opening cut). It also assigns each lemma exactly the hypotheses it needs — the forward direction requires 0 < θ and θ < 180, while the backward direction requires only 2 ≤ n and θ = 180/n. Failure mode: `constructor` on an iff whose sides are not lemmas merely exposes two open goals, so the split is worth recording only when the children already read on their own.",
-  "known_uses": [],
+  "known_uses": [
+    "lean-iff-split-mechmath-imo2026-75bedf39",
+    "lean-iff-split-axiom-imo2026-5ffbca5d"
+  ],
   "related": [],
   "rule": {
     "f10_rule": 7,
@@ -174,6 +177,14 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T07:58:46Z",
       "note": "typed glue_lines 4, child_lines [6, 7]; derived from the site ranges (declaration included): 9, [8, 9]"
+    },
+    {
+      "field": "known_uses",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T08:02:16Z",
+      "note": "added lean-iff-split-mechmath-imo2026-75bedf39, lean-iff-split-axiom-imo2026-5ffbca5d: the same iff split of the same IMO 2026 Q4 statement in another agent-made repository; the forward directions differ"
     }
   ]
 }

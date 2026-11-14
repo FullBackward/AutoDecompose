@@ -112,7 +112,9 @@
     "how_counted": "line spans in the copied file at commit 60d33c8: reduction 1018-1031, induction 1432-1585"
   },
   "consequences": "Creates one new obligation (the package h) plus the reduction obligation in the suffices' `by` block (that h implies the parent). The strengthened statement quantifies over all j ≥ 1, so it must hold at every index, not just k; a false strengthened claim makes the whole proof unprovable. The two conjuncts are coupled: each induction step of hP uses both halves of the IH (obtain ⟨ih_b, ih_A⟩ := ih, line 1439), so they cannot be split into two independent inductions. A too-strong suffices is a silent dead-end: it fails only when the package goal is attacked.",
-  "known_uses": [],
+  "known_uses": [
+    "lean-suffices-or-strengthen-numina-putnam2025-3fe390a3"
+  ],
   "related": [],
   "rule": {
     "f10_rule": 8,
@@ -140,6 +142,14 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T07:53:36Z",
       "note": "child 'h (the strengthened valuation package)': gloss moved from the name to the note"
+    },
+    {
+      "field": "known_uses",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T08:02:16Z",
+      "note": "added lean-suffices-or-strengthen-numina-putnam2025-3fe390a3: an abandoned extraction of the same site, deprecated"
     }
   ],
   "status_reason": "",

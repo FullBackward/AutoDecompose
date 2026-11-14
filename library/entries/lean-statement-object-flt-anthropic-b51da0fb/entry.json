@@ -146,7 +146,9 @@
     "how_counted": "parent_lines = every line of Theorems/Thm_fermatLastTheoremFive.lean (wc -l = 5); parent_declarations = the single theorem in that file; children = the one solution theorem the parent delegates to; child_proof_lines = lines 1987-1989 of P2M/Sol/S_fermatLastTheoremFive.lean"
   },
   "consequences": "The statement file has no proof obligations of its own: its one obligation is discharged by the delegated term, and p2m_exact_reverting re-checks that term's type against the statement. Obligations created: (1) the solution module must define a term of exactly the statement's type — a mismatch, or a solution more or less general than the statement, is a hard error (see #p2m_type_eq's P2M_TYPE_MISMATCH / P2M_UNDERGENERAL in P2M/Util.lean); (2) the import must name the right module; (3) statement and solution are tied by the type match, so neither can change without the other. Failure modes: a circular import if the solution ever imports the statement; a statement that silently drifts from the proof it delegates to.",
-  "known_uses": [],
+  "known_uses": [
+    "lean-statement-object-flt-anthropic-afa74779"
+  ],
   "related": [],
   "rule": {
     "f10_rule": 15,
@@ -174,6 +176,14 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T07:53:36Z",
       "note": "child 'solution': statement re-copied from the declaration of solution"
+    },
+    {
+      "field": "known_uses",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T08:02:16Z",
+      "note": "added lean-statement-object-flt-anthropic-afa74779: another statement object of the same proof tree (a different theorem; they share a context site)"
     }
   ]
 }

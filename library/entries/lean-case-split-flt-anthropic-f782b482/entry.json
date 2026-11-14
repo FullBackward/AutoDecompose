@@ -274,7 +274,8 @@
   },
   "consequences": "The split creates exactly two obligations (h3 and ¬h3) and no exhaustiveness child: by_cases discharges exhaustiveness via excluded middle on the decidable Prop W.ModRepIsIrreducible 3 (unlike a mod_cases residue split, which needs an exhaustiveness proof). Each branch must produce a Mlc1IsModularModelOfExactConductorLevel for isModular_map_of_mlc1, which forces the glue to carry a residual level M and its conditions — the two local have-blocks (h25, hN3) and two NeZero instances are exactly those obligations. The branches are symmetric only because threeFiveSwitchCurve carries the mod-5 trace congruence at every common good prime ℓ ≠ 5; without that congruence the isResiduallyModularOfLevel_of_switch call would not typecheck.",
   "known_uses": [
-    "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean#L208-L210"
+    "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean#L208-L210",
+    "lean-case-split-flt-anthropic-22d1c0d8"
   ],
   "related": [
     "lean-case-split-compfiles-6ac56e7f"
@@ -305,6 +306,14 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T07:58:46Z",
       "note": "typed glue_lines 35, child_lines [1, 2, 1, 1, 1, 1, 1]; derived from the site ranges (declaration included): 37, [10, 4, 10, 1, 1, 6, 6]"
+    },
+    {
+      "field": "known_uses",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T08:02:16Z",
+      "note": "added lean-case-split-flt-anthropic-22d1c0d8: an abandoned extraction of the same site, deprecated"
     }
   ]
 }

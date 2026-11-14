@@ -128,6 +128,14 @@
       "evidence": "inside parent/child/skeleton sites: none; elsewhere in the copied files (not failed): none",
       "by": "sorry_scan.py",
       "at": "2026-11-14T08:00:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "6",
+      "value": "verified",
+      "evidence": "Read the three parent sites: dirac IMO2026/Q4/solution.lean 376-384 'constructor; exact exists_div_of_canGuarantee hθ0 hθ180; rintro ...; exact mulanCanGuarantee_of_div hn hθ'; axiom 469-518 'constructor' ... 'exact all_win_of_divides θ hθ0 n hn hdvd', forward via equilateral_counterexample (its child); mechmath 383-398 'rw [← arithmetic_bridge hθ0 hθ180]' ... 'exact universal_win ...', children safe_start, safe_nonwin. Same statement in all three (main_theorem, same binders).",
+      "by": "fixer-2026-11-14",
+      "at": "2026-11-14T08:02:16Z"
     }
   ]
 }

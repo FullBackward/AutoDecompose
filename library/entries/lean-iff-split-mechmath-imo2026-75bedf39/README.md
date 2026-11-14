@@ -238,6 +238,7 @@ In my opinion the detail worth copying is `arithmetic_bridge`: the proof does
 the arithmetic once, as a named equivalence, so that the main theorem's split
 happens on the clean game predicate `Marked θ 180` rather than on the
 `∃ n, 2 ≤ n ∧ θ = 180 / n` formula, and the glue stays two one-liners.
+6. *(known-use)* Two other agent-made repositories split the same IMO 2026 Q4 statement (MulanCanGuarantee θ ↔ ∃ n, 2 ≤ n ∧ θ = 180 / n) the same way at the top: an iff whose backward direction is one lemma (Dirac: mulanCanGuarantee_of_div; Axiom: all_win_of_divides). Their forward directions differ: Dirac proves it with one lemma (exists_div_of_canGuarantee), Axiom by a counterexample (equilateral_counterexample), this entry through arithmetic_bridge and the invariants safe_start and safe_nonwin. See [Dirac](https://github.com/Boundless-Intuition/IMO2026/blob/37259237016275044e3905e8d537efd0eead74d2/IMO2026/Q4/solution.lean#L376-L384) and [Axiom](https://github.com/AxiomMath/IMO2026/blob/c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2/IMO2026/Q4/solution.lean#L469-L518).
 
 ## When to use it, and when not
 

@@ -127,7 +127,10 @@
     "how_counted": "parent proof = solution.lean lines 469-518; child proofs = equilateral_counterexample lines 444-462, all_win_of_divides lines 251-360"
   },
   "consequences": "`constructor` on `↔` creates exactly two goals, one per direction. Necessity side: the obligation is to produce `∃ n, 2 ≤ n ∧ θ = 180/n` from `MulanCanGuarantee θ`, which the proof reduces to showing `180` is an integer multiple of θ (by contradiction with `equilateral_counterexample`) and then to excluding n = 1 via `θ < 180`. Sufficiency side: the obligation is to prove `MulanCanGuarantee θ` from `θ = 180/n`, discharged by the rewrite `180 = n·θ` plus `all_win_of_divides`. Failure modes: dropping `θ < 180` leaves n = 1 (θ = 180) unexcluded and necessity fails; if the two lemmas are not stated with matching hypotheses (`0 < θ`, `hstar` for the counterexample, `2 ≤ n` and `hdvd` for sufficiency) the `exact` hand-offs fail and the glue grows.",
-  "known_uses": [],
+  "known_uses": [
+    "lean-iff-split-mechmath-imo2026-75bedf39",
+    "lean-iff-split-dirac-imo2026-ff8df4eb"
+  ],
   "related": [],
   "rule": {
     "f10_rule": 7,
@@ -147,6 +150,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-2",
       "at": "2026-11-12"
+    },
+    {
+      "field": "known_uses",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T08:02:16Z",
+      "note": "added lean-iff-split-mechmath-imo2026-75bedf39, lean-iff-split-dirac-imo2026-ff8df4eb: the same iff split of the same IMO 2026 Q4 statement in another agent-made repository; the forward directions differ"
     }
   ]
 }

@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | suffices-or-strengthen |
 | Language | lean |
-| Status | draft |
+| Status | deprecated |
 | Source | [numina-putnam2025](../../sources/numina-putnam2025/SOURCE.md) at `60d33c8ba19a` |
 | Licence | `MIT` |
 
@@ -77,7 +77,7 @@ TODO: obligations created, failure modes.
 ## Verification
 
 <!-- verification:start -->
-Status: **draft**
+Status: **deprecated** (duplicate of lean-suffices-or-strengthen-numina-putnam2025-687e778f: an abandoned extraction of the same site (no claims, TODO parent))
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|

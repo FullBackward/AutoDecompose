@@ -52,6 +52,17 @@
       "lean-iff-split-mechmath-imo2026-75bedf39"
     ]
   ],
+  "problem+move": [
+    [
+      "lean-iff-split-axiom-imo2026-5ffbca5d",
+      "lean-iff-split-dirac-imo2026-ff8df4eb",
+      "lean-iff-split-mechmath-imo2026-75bedf39"
+    ],
+    [
+      "lean-suffices-or-strengthen-numina-putnam2025-3fe390a3",
+      "lean-suffices-or-strengthen-numina-putnam2025-687e778f"
+    ]
+  ],
   "move+shape": [
     [
       "lean-statement-object-flt-anthropic-afa74779",

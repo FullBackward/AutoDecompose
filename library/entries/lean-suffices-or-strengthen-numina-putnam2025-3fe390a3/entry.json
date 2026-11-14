@@ -1,7 +1,7 @@
 {
   "id": "lean-suffices-or-strengthen-numina-putnam2025-3fe390a3",
   "kind": "instance",
-  "status": "draft",
+  "status": "deprecated",
   "title": "Suffices to a two-claim valuation package for Putnam 2025 A6",
   "intent": "TODO",
   "move": "suffices-or-strengthen",
@@ -99,5 +99,7 @@
       "at": "2026-11-14T07:55:48Z",
       "note": "parent TODO: TODO left by an abandoned extraction (see item 5)"
     }
-  ]
+  ],
+  "status_reason": "duplicate of lean-suffices-or-strengthen-numina-putnam2025-687e778f: an abandoned extraction of the same site (no claims, TODO parent)",
+  "status_at": "2026-11-14T08:02:16Z"
 }

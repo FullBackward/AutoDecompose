@@ -1,7 +1,7 @@
 {
   "id": "lean-case-split-flt-anthropic-22d1c0d8",
   "kind": "instance",
-  "status": "draft",
+  "status": "deprecated",
   "title": "Case-split at the prime 3 (the 3-5 switch) for Wiles semistable modularity",
   "intent": "TODO",
   "move": "case-split",
@@ -212,5 +212,7 @@
       "at": "2026-11-14T07:55:48Z",
       "note": "parent TODO: TODO left by an abandoned extraction (see item 5)"
     }
-  ]
+  ],
+  "status_reason": "duplicate of lean-case-split-flt-anthropic-f782b482: an abandoned extraction of the same site (no claims, TODO parent)",
+  "status_at": "2026-11-14T08:02:16Z"
 }

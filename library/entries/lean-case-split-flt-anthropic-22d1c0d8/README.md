@@ -5,7 +5,7 @@
 | Kind | instance |
 | Move | case-split |
 | Language | lean |
-| Status | draft |
+| Status | deprecated |
 | Source | [flt-anthropic](../../sources/flt-anthropic/SOURCE.md) at `6e837e753555` |
 | Licence | `Apache-2.0` |
 
@@ -192,7 +192,7 @@ TODO: obligations created, failure modes.
 ## Verification
 
 <!-- verification:start -->
-Status: **draft**
+Status: **deprecated** (duplicate of lean-case-split-flt-anthropic-f782b482: an abandoned extraction of the same site (no claims, TODO parent))
 
 | Check | Result | Evidence | By | Date |
 |---|---|---|---|---|
