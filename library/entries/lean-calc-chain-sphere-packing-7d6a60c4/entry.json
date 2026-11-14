@@ -269,16 +269,16 @@
     "scale": "theorem",
     "direct_lemmas": 13,
     "depth": 4,
-    "glue_lines": 29,
+    "glue_lines": 31,
     "child_lines": [
-      1,
-      4,
-      8,
       6,
-      29,
-      27,
-      29,
-      1
+      9,
+      14,
+      12,
+      34,
+      33,
+      35,
+      5
     ]
   },
   "metrics": {
@@ -329,6 +329,14 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T07:53:36Z",
       "note": "child 'step_1': statement re-copied from the declaration of step_1; child 'step_2': statement re-copied from the declaration of step_2; child 'step_3': statement re-copied from the declaration of step_3; child 'step_4': statement re-copied from the declaration of step_4; child 'step_5': statement re-copied from the declaration of step_5; child 'step_6': statement re-copied from the declaration of step_6; child 'step_7': statement re-copied from the declaration of step_7; child 'step_8': statement re-copied from the declaration of step_8; child 'step_9': statement re-copied from the declaration of step_9; child 'step_10': statement re-copied from the declaration of step_10; child 'step_11': statement re-copied from the declaration of step_11; child 'step_12': statement re-copied from the declaration of step_12; child 'step_13': statement re-copied from the declaration of step_13"
+    },
+    {
+      "field": "shape.glue_lines,shape.child_lines",
+      "agent_role": "fixer",
+      "model": "derived from the sites",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:58:46Z",
+      "note": "typed glue_lines 29, child_lines [1, 4, 8, 6, 29, 27, 29, 1]; derived from the site ranges (declaration included): 31, [6, 9, 14, 12, 34, 33, 35, 5]"
     }
   ],
   "status_reason": "",

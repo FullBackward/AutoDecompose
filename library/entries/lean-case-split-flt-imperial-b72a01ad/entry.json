@@ -135,10 +135,10 @@
     "scale": "theorem",
     "direct_lemmas": 2,
     "depth": 4,
-    "glue_lines": 16,
+    "glue_lines": 30,
     "child_lines": [
-      11,
-      23
+      22,
+      31
     ]
   },
   "metrics": {
@@ -171,6 +171,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-2",
       "at": "2026-11-12T14:44:49Z"
+    },
+    {
+      "field": "shape.glue_lines,shape.child_lines",
+      "agent_role": "fixer",
+      "model": "derived from the sites",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:58:46Z",
+      "note": "typed glue_lines 16, child_lines [11, 23]; derived from the site ranges (declaration included): 30, [22, 31]"
     }
   ],
   "status_reason": "",

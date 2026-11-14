@@ -122,10 +122,10 @@
     "scale": "theorem",
     "direct_lemmas": 2,
     "depth": 5,
-    "glue_lines": 4,
+    "glue_lines": 9,
     "child_lines": [
-      6,
-      7
+      8,
+      9
     ]
   },
   "metrics": {
@@ -166,6 +166,14 @@
       "run": "pilot-2",
       "at": "2026-11-12",
       "note": "claim 2 refuted by verifier (longest chain is 5, not 4): rewritten as claim 5 with corrected depth; shape.depth corrected 4 -> 5"
+    },
+    {
+      "field": "shape.glue_lines,shape.child_lines",
+      "agent_role": "fixer",
+      "model": "derived from the sites",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:58:46Z",
+      "note": "typed glue_lines 4, child_lines [6, 7]; derived from the site ranges (declaration included): 9, [8, 9]"
     }
   ]
 }

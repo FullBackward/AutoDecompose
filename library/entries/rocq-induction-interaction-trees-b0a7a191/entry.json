@@ -230,16 +230,16 @@
     "scale": "theorem",
     "direct_lemmas": 10,
     "depth": 4,
-    "glue_lines": 153,
+    "glue_lines": 155,
     "child_lines": [
-      13,
-      22,
-      6,
-      49,
-      44,
-      112,
-      31,
-      19
+      19,
+      30,
+      9,
+      55,
+      54,
+      117,
+      35,
+      26
     ]
   },
   "metrics": {
@@ -289,6 +289,14 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T07:53:36Z",
       "note": "child 'while_is_loop': statement re-copied from the declaration of while_is_loop"
+    },
+    {
+      "field": "shape.glue_lines,shape.child_lines",
+      "agent_role": "fixer",
+      "model": "derived from the sites",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:58:46Z",
+      "note": "typed glue_lines 153, child_lines [13, 22, 6, 49, 44, 112, 31, 19]; derived from the site ranges (declaration included): 155, [19, 30, 9, 55, 54, 117, 35, 26]"
     }
   ],
   "status_reason": "",

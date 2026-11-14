@@ -152,7 +152,7 @@
     "scale": "theorem",
     "direct_lemmas": 2,
     "depth": 2,
-    "glue_lines": 4,
+    "glue_lines": 9,
     "child_lines": [
       79,
       307
@@ -195,6 +195,14 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T07:53:36Z",
       "note": "child 'Lemma_40_1_step2': statement re-copied from the declaration of Lemma_40_1_step2; child 'Lemma_40_1_step3': statement re-copied from the declaration of Lemma_40_1_step3"
+    },
+    {
+      "field": "shape.glue_lines,shape.child_lines",
+      "agent_role": "fixer",
+      "model": "derived from the sites",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:58:46Z",
+      "note": "typed glue_lines 4, child_lines [79, 307]; derived from the site ranges (declaration included): 9, [79, 307]"
     }
   ]
 }

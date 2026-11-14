@@ -119,8 +119,8 @@
     "depth": 1,
     "glue_lines": 8,
     "child_lines": [
-      1,
-      1
+      2,
+      2
     ]
   },
   "metrics": {
@@ -155,6 +155,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-2",
       "at": "2026-11-12T15:21:00Z"
+    },
+    {
+      "field": "shape.glue_lines,shape.child_lines",
+      "agent_role": "fixer",
+      "model": "derived from the sites",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:58:46Z",
+      "note": "typed glue_lines 8, child_lines [1, 1]; derived from the site ranges (declaration included): 8, [2, 2]"
     }
   ]
 }

@@ -146,7 +146,7 @@
     "scale": "theorem",
     "direct_lemmas": 5,
     "depth": 4,
-    "glue_lines": 29,
+    "glue_lines": 30,
     "child_lines": [
       53,
       71,
@@ -223,6 +223,14 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T07:53:36Z",
       "note": "child 'TrivialPartialSolution': statement re-copied from the declaration of TrivialPartialSolution"
+    },
+    {
+      "field": "shape.glue_lines,shape.child_lines",
+      "agent_role": "fixer",
+      "model": "derived from the sites",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:58:46Z",
+      "note": "typed glue_lines 29, child_lines [53, 71, 50, 10, 367]; derived from the site ranges (declaration included): 30, [53, 71, 50, 10, 367]"
     }
   ],
   "status_reason": "",

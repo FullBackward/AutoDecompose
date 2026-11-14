@@ -145,11 +145,11 @@
     "scale": "theorem",
     "direct_lemmas": 3,
     "depth": 3,
-    "glue_lines": 29,
+    "glue_lines": 30,
     "child_lines": [
-      11,
-      18,
-      7
+      12,
+      19,
+      12
     ]
   },
   "metrics": {
@@ -190,6 +190,14 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T07:53:36Z",
       "note": "child 'fact_ge_power': statement re-copied from the declaration of fact_ge_power"
+    },
+    {
+      "field": "shape.glue_lines,shape.child_lines",
+      "agent_role": "fixer",
+      "model": "derived from the sites",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:58:46Z",
+      "note": "typed glue_lines 29, child_lines [11, 18, 7]; derived from the site ranges (declaration included): 30, [12, 19, 12]"
     }
   ]
 }

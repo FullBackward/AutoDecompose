@@ -219,7 +219,7 @@
     "scale": "theorem",
     "direct_lemmas": 4,
     "depth": 4,
-    "glue_lines": 21,
+    "glue_lines": 22,
     "child_lines": [
       29,
       4,
@@ -266,6 +266,14 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T07:53:54Z",
       "note": "re-copied after statements.py learned that a ':=' after 'haveI'/'let' (up to ';') binds, not proves; the first copy stopped at that haveI"
+    },
+    {
+      "field": "shape.glue_lines,shape.child_lines",
+      "agent_role": "fixer",
+      "model": "derived from the sites",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:58:46Z",
+      "note": "typed glue_lines 21, child_lines [29, 4, 2, 2]; derived from the site ranges (declaration included): 22, [29, 4, 2, 2]"
     }
   ],
   "status_reason": "",

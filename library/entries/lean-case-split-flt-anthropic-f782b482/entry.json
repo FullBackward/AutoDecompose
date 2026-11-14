@@ -5,7 +5,10 @@
   "title": "Case-split at the prime 3 (the 3-5 switch) for Wiles semistable modularity",
   "intent": "Reduce Wiles's semistable modularity theorem — every integral Weierstrass model W with Δ ≠ 0 and IsSemistableModel is modular — to a case split on whether the mod-3 Galois representation ρ̄_{W,3} is irreducible, and close each branch from already-proved project lemmas (Langlands–Tunnell, modularity lifting, the 3-5 switch), leaving ~35 lines of glue that only extract record fields and prove two small Nat divisibility facts.",
   "move": "case-split",
-  "also_known_as": ["the 3-5 switch", "case split on residual irreducibility"],
+  "also_known_as": [
+    "the 3-5 switch",
+    "case split on residual irreducibility"
+  ],
   "language": "lean",
   "source": {
     "source_id": "flt-anthropic",
@@ -214,8 +217,16 @@
     "scale": "theorem",
     "direct_lemmas": 7,
     "depth": 3,
-    "glue_lines": 35,
-    "child_lines": [1, 2, 1, 1, 1, 1, 1]
+    "glue_lines": 37,
+    "child_lines": [
+      10,
+      4,
+      10,
+      1,
+      1,
+      6,
+      6
+    ]
   },
   "applicability": {
     "goal_shape": "∀ W : WeierstrassCurve ℤ, W.IsSemistableModel → (W.map (Int.castRingHom ℚ)).IsModular, split by by_cases on a decidable property of one fixed prime (W.ModRepIsIrreducible 3); each branch ends by applying isModular_map_of_mlc1 to a liftingAtConductor lemma that consumes a residual-modularity level M with its side conditions.",
@@ -265,7 +276,9 @@
   "known_uses": [
     "https://github.com/anthropics/fermats-last-theorem/blob/6e837e75355538c7f80bab5b956861e86c4eacc2/P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean#L208-L210"
   ],
-  "related": ["lean-case-split-compfiles-6ac56e7f"],
+  "related": [
+    "lean-case-split-compfiles-6ac56e7f"
+  ],
   "rule": {
     "f10_rule": 5,
     "relation": "supports"
@@ -284,6 +297,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-2",
       "at": "2026-11-12"
+    },
+    {
+      "field": "shape.glue_lines,shape.child_lines",
+      "agent_role": "fixer",
+      "model": "derived from the sites",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:58:46Z",
+      "note": "typed glue_lines 35, child_lines [1, 2, 1, 1, 1, 1, 1]; derived from the site ranges (declaration included): 37, [10, 4, 10, 1, 1, 6, 6]"
     }
   ]
 }
