@@ -104,6 +104,14 @@
       "evidence": "Permalinks, commit, licence and source note are consistent and traceable. check_provenance.py passes: the copied SeedProver/imo2025/IMO2025/P4.lean is byte-identical at commit 38c59cebaf969ac259196eb091757518d5b54c67 and its recorded sha256 matches. Commit 38c59cebaf969ac259196eb091757518d5b54c67 is identical across entry.json source.commit, source.json commit and SOURCE.md; all files[]/sites[] permalinks use blob/38c59ceb.../SeedProver/imo2025/IMO2025/P4.lean, matching source.json repo_path and commit. Licence 'Apache-2.0' is recorded identically in entry.json source.licence, source.json licence and SOURCE.md; sources/seed-prover/upstream-LICENSE is Apache 2.0 and is byte-identical (sha256 a5116e42...) to LICENSE fetched at the pinned commit. SOURCE.md records repo URL, commit, language lean, licence, how-found 'start set' (matches source.json) and the licence-file link. Everything traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:25:22Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: imo2025_p4_right8_h1@SeedProver/imo2025/IMO2025/P4.lean:3907, imo2025_p4_right8_h2@SeedProver/imo2025/IMO2025/P4.lean:3908, imo2025_p4_right8_h3@SeedProver/imo2025/IMO2025/P4.lean:3909, imo2025_p4_right1_main@SeedProver/imo2025/IMO2025/P4.lean:3910; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

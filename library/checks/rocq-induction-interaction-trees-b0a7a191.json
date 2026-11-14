@@ -112,6 +112,14 @@
       "evidence": "Permalinks, commit, licence and source note all consistent and traceable. Commit 284d42248a3c5517cff9f582e335fcee2f6bdc1f matches across entry.json, sources/interaction-trees/source.json and SOURCE.md; check_provenance reports both copied files (Imp2AsmCorrectness.v, AsmCombinators.v) byte-identical at that commit. Licence MIT is recorded in entry.json, source.json, SOURCE.md and README.md and the copied upstream-LICENSE is the MIT License (Copyright 2018 DeepSpec). All site/full permalinks resolve to the correct paths and the line ranges in the permalinks match the named lemma/Theorem in the local copies (bisimilar_bind' 353, bisimilar_iter 373, seq_asm_correct 454, if_asm_correct 466, while_asm_correct 526, compile_expr_correct 597, compile_assign_correct 719, while_is_loop 772, fold_to_itree' 800, compile_correct 822, pure_asm_correct 308 in AsmCombinators.v).",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T16:08:02Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: bisimilar_bind'@tutorial/Imp2AsmCorrectness.v:836, bisimilar_iter@tutorial/Imp2AsmCorrectness.v:901, seq_asm_correct@tutorial/Imp2AsmCorrectness.v:851, if_asm_correct@tutorial/Imp2AsmCorrectness.v:862, while_asm_correct@tutorial/Imp2AsmCorrectness.v:893, compile_expr_correct@tutorial/Imp2AsmCorrectness.v:871, compile_assign_correct@tutorial/Imp2AsmCorrectness.v:837, while_is_loop@tutorial/Imp2AsmCorrectness.v:890, fold_to_itree'@tutorial/Imp2AsmCorrectness.v:850, pure_asm_correct@tutorial/Imp2AsmCorrectness.v:968; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

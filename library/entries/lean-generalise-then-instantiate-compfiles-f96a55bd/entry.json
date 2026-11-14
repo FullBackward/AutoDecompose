@@ -78,13 +78,17 @@
   "children": [
     {
       "name": "condition_api (generalise)",
-      "statement": "variable {a b : ℕ} (h : Condition a b)\n\nlemma gcd_eq_g {n : ℕ} (hn : h.N ≤ n) : Nat.gcd (a ^ n + b) (b ^ n + a) = h.g := h.N_spec.2.2 n hn",
-      "closed_by": "each API lemma projects from the witness and rewrites: `a_pos : 0 < a := h.1`; `b_pos : 0 < b := h.2.1`; `g : ℕ := h.2.2.choose`; `g_spec := h.2.2.choose_spec`; `N : ℕ := h.g_spec.choose`; `N_spec := h.g_spec.choose_spec`; `g_pos := h.N_spec.1`; `N_pos := h.N_spec.2.1`; `gcd_eq_g := h.N_spec.2.2 n hn`; `symm` by `refine ⟨h.b_pos, h.a_pos, h.g, h.N, h.g_pos, h.N_pos, fun n hn ↦ ?_⟩` then `rw [Nat.gcd_comm]`; `dvd_g_of_le_N_of_dvd` by `rw [← h.gcd_eq_g hn, Nat.dvd_gcd_iff]`. The definition of `Condition` is never unfolded."
+      "statement": null,
+      "closed_by": "each API lemma projects from the witness and rewrites: `a_pos : 0 < a := h.1`; `b_pos : 0 < b := h.2.1`; `g : ℕ := h.2.2.choose`; `g_spec := h.2.2.choose_spec`; `N : ℕ := h.g_spec.choose`; `N_spec := h.g_spec.choose_spec`; `g_pos := h.N_spec.1`; `N_pos := h.N_spec.2.1`; `gcd_eq_g := h.N_spec.2.2 n hn`; `symm` by `refine ⟨h.b_pos, h.a_pos, h.g, h.N, h.g_pos, h.N_pos, fun n hn ↦ ?_⟩` then `rw [Nat.gcd_comm]`; `dvd_g_of_le_N_of_dvd` by `rw [← h.gcd_eq_g hn, Nat.dvd_gcd_iff]`. The definition of `Condition` is never unfolded.",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: variable {a b : ℕ} (h : Condition a b)\n\nlemma gcd_eq_g {n : ℕ} (hn : h.N ≤ n) : Nat.gcd (a ^ n + b) (b ^ n + a) = h.g := h.N_spec.2.2 n hn",
+      "subgoal": true
     },
     {
       "name": "instantiation (hc : Condition a b)",
-      "statement": "(a, b) ∈ solutionSet — the ← direction of imo2024_p2 (line 206)",
-      "closed_by": "`have hc : Condition a b := by refine ⟨ha, hb, ?_⟩; obtain ⟨g, N, HCm⟩ := h; use g, N; refine ⟨g.pos, N.pos, ?_⟩; exact fun n a ↦ HCm n a` (lines 209-214); then the two generalised lemmas `PNat.coe_eq_one_iff.mp (hc.a_eq_one)` and `PNat.coe_eq_one_iff.mp (hc.b_eq_one)` (lines 216-217)."
+      "statement": null,
+      "closed_by": "`have hc : Condition a b := by refine ⟨ha, hb, ?_⟩; obtain ⟨g, N, HCm⟩ := h; use g, N; refine ⟨g.pos, N.pos, ?_⟩; exact fun n a ↦ HCm n a` (lines 209-214); then the two generalised lemmas `PNat.coe_eq_one_iff.mp (hc.a_eq_one)` and `PNat.coe_eq_one_iff.mp (hc.b_eq_one)` (lines 216-217).",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: (a, b) ∈ solutionSet — the ← direction of imo2024_p2 (line 206)",
+      "subgoal": true
     }
   ],
   "applicability": {
@@ -147,6 +151,14 @@
       "agent_role": "analyst",
       "run": "pilot-1",
       "at": "2026-11-12T11:48:26Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "child 'condition_api (generalise)': a subgoal made inside the parent's proof; child 'instantiation (hc : Condition a b)': a subgoal made inside the parent's proof"
     }
   ],
   "status_reason": "",

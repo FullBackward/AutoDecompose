@@ -241,6 +241,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/push.yml (leanprover/lean-action builds the whole project incl. PFR/EntropyPFR.lean); default branch master; pinned commit 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: tau_minimizer_exists@PFR/EntropyPFR.lean:61, tau_strictly_decreases@PFR/EntropyPFR.lean:62, exists_isUniform_of_rdist_eq_zero@PFR/EntropyPFR.lean:63, rdist_symm@PFR/EntropyPFR.lean:64, is_tau_min@PFR/EntropyPFR.lean:65, rdist_triangle@PFR/EntropyPFR.lean:68; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 4 file(s) byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

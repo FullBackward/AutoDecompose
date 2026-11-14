@@ -62,7 +62,7 @@
   ],
   "parent": {
     "name": "lem_s_N_smallest_divisors",
-    "statement": "lemma lem_s_N_smallest_divisors (N : ℕ) (h_card : 3 ≤ N.properDivisors.card) : let d₁ := ((N.divisors.erase 1).sort (· ≤ ·))[0]!; let d₂ := ((N.divisors.erase 1).sort (· ≤ ·))[1]!; let d₃ := ((N.divisors.erase 1).sort (· ≤ ·))[2]!; s N = N / d₁ + N / d₂ + N / d₃"
+    "statement": "lemma lem_s_N_smallest_divisors (N : ℕ) (h_card : 3 ≤ N.properDivisors.card) :\n  let d₁ := ((N.divisors.erase 1).sort (· ≤ ·))[0]!\n  let d₂ := ((N.divisors.erase 1).sort (· ≤ ·))[1]!\n  let d₃ := ((N.divisors.erase 1).sort (· ≤ ·))[2]!\n  s N = N / d₁ + N / d₂ + N / d₃"
   },
   "children": [
     {
@@ -73,7 +73,9 @@
     {
       "name": "main goal",
       "statement": "s N = N / d₁ + N / d₂ + N / d₃",
-      "closed_by": "unfold s; aesop (line 110)"
+      "closed_by": "unfold s; aesop (line 110)",
+      "subgoal": true,
+      "note": "Subgoal made by a tactic inside the parent's proof; its name is a description, not an identifier the glue could cite."
     }
   ],
   "applicability": {
@@ -143,6 +145,22 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-1",
       "at": "2026-11-12T12:00:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "parent lem_s_N_smallest_divisors: statement re-copied from code"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:55:48Z",
+      "note": "child 'main goal': named by a description, so a subgoal (statement kept)"
     }
   ],
   "status_reason": "",

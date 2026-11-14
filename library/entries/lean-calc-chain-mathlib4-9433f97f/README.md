@@ -118,6 +118,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/build.yml (push to master/default branch) uses build_template.yml, which builds Archive via 'lake build --no-build --wfail Archive' (build_template.yml:297); Archive.lean:20 'public import Archive.Imo.Imo1964Q1' pulls in the entry's file; commit e1545ebed97594477bbd88b2fe948ffce56e5af2 is on master (GitHub compare API: behind master by 1, merge base = the commit) | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: none; subgoals (no name to cite): 4 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2 | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

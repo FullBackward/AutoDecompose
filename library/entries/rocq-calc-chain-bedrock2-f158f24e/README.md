@@ -475,6 +475,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/debian.yml runs 'make' on push to master (default branch); root Makefile 'all' -> compiler_ex -> compiler_noex -> compiler/Makefile 'noex' compiles every *.v under src/compiler including Pipeline.v; commit b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b is pinned at ref HEAD | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: compose_phases_correct@compiler/src/compiler/Pipeline.v:637, flattening_correct@compiler/src/compiler/Pipeline.v:637, useimmediate_correct@compiler/src/compiler/Pipeline.v:638, dce_correct@compiler/src/compiler/Pipeline.v:639, regalloc_correct@compiler/src/compiler/Pipeline.v:640, spilling_correct@compiler/src/compiler/Pipeline.v:641, riscv_phase_correct@compiler/src/compiler/Pipeline.v:642; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

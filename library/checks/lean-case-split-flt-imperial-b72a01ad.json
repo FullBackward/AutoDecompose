@@ -112,6 +112,14 @@
       "evidence": "check_provenance passes: 4 code files byte-identical at commit a3210204ad8876e851e32f73dd97d882bf1ccd0a. Commit is recorded identically in entry.json, sources/flt-imperial/source.json and SOURCE.md. Licence is Apache-2.0 everywhere (entry.json, source.json, SOURCE.md) and matches the upstream LICENSE (fetched: Apache License 2.0) and the file header 'Released under Apache 2.0 license as described in the file LICENSE'. Permalinks use the pinned commit and correct paths FLT/Slop/PGL2/FiniteSubgroups/*.lean, and the cited line anchors (parent 54-83, docstring 24-26, wild 694/705-715, tame 1641/1649-1671) all match the byte-identical local copies. Source note links repo, commit and LICENSE correctly. Fully traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T14:54:37Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: Dickson.classification_wild_slop@FLT/Slop/PGL2/FiniteSubgroups/DicksonClassification.lean:70, Dickson.classification_tame_slop@FLT/Slop/PGL2/FiniteSubgroups/DicksonClassification.lean:76; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:05Z"
     }
   ]
 }

@@ -96,6 +96,14 @@
       "evidence": "check_provenance.py passes: 5 files byte-identical at commit efe3bbbc1ece548f4672a772b94d8f621c10fdda and recorded sha256 hashes match. entry.json source.url/commit/licence (thefundamentaltheor3m/Sphere-Packing-Lean, efe3bbbc..., Apache-2.0) match sources/sphere-packing/source.json and SOURCE.md exactly; upstream-LICENSE is Apache License 2.0 text. All permalinks (files and sites) use the pinned commit with correct repo and paths matching the copied code files. Fully traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T14:59:26Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: step_1@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:461, step_2@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:463, step_3@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:466, step_4@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:469, step_5@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:472, step_6@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:474, step_7@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:476, step_8@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:478, step_9@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:480, step_10@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:482, step_11@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:484, step_12@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:486, step_13@SpherePacking/MagicFunction/PolyFourierCoeffBound.lean:487; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:05Z"
     }
   ]
 }

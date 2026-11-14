@@ -96,6 +96,14 @@
       "evidence": "Permalinks, commit, licence and source note all consistent and traceable. check_provenance.py passes: copied file putnam_2025_a2.lean byte-identical at pinned commit 60d33c8ba19af905bd731e938ebde1c5b8c76519; entry.json files.sha256 (15bc6302...) matches local file, bytes 25823 and 524 lines match. Commit is identical across entry.json, source.json, SOURCE.md and every permalink (blob URL + #L ranges); site line ranges (parent 511-522; children 20, 195-196, 253, 488-489) match the local copy. Licence MIT is consistent across entry.json, source.json, SOURCE.md and the repo LICENSE fetched at the pinned commit (byte-identical to sources/numina-putnam2025/upstream-LICENSE, standard MIT text, 'Copyright (c) 2025 Numina'). SOURCE.md records repo URL, pinned commit (pinned_at 2026-11-12T10:24:03Z), browse URL, licence and links the LICENSE file. Nothing to fix.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:24:29Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: sin_ge_inv_pi_mul_quad@NuminaPutnam2025/putnam_2025_a2.lean:516, inv_pi_is_greatest_lower_bound@NuminaPutnam2025/putnam_2025_a2.lean:518, sin_le_four_div_pi_sq_mul_quad@NuminaPutnam2025/putnam_2025_a2.lean:520, four_div_pi_sq_is_least_upper_bound@NuminaPutnam2025/putnam_2025_a2.lean:522; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

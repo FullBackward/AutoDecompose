@@ -104,6 +104,14 @@
       "evidence": "Provenance is consistent and traceable. check_provenance.py passed: code/theories/goedel/goedel1.v is byte-identical at pinned commit ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8 (9666 bytes; sha256 4081bd6d...f4757 matches entry.json). Commit recorded identically in entry.json, source.json and SOURCE.md. Permalinks all use repo coq-community/hydra-battles at that commit with correct path and line ranges (verified against the copied file: G at 66, freeVarG 87-106, FirstIncompletenessA 108-124, FirstIncompletenessB 132-286, parent 289-301). Licence MIT recorded consistently in entry.json, source.json, SOURCE.md and README; upstream LICENSE at the commit is the MIT License and matches sources/hydra-battles/upstream-LICENSE verbatim.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T16:04:05Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: freeVarG@theories/goedel/goedel1.v:293, FirstIncompletenessA@theories/goedel/goedel1.v:294, FirstIncompletenessB@theories/goedel/goedel1.v:295; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

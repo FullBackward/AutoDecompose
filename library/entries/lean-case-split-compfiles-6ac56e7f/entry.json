@@ -56,18 +56,24 @@
   "children": [
     {
       "name": "case n % 3 = 0",
-      "statement": "goal created by mod_cases h2 : n % 3 (residue 0)",
-      "closed_by": "rw [Nat.zero_mod, add_zero, Nat.add_mod, Nat.pow_mod, pow_mul, Nat.pow_mod, h1, one_pow (M := ℕ)] at h; contradiction"
+      "statement": null,
+      "closed_by": "rw [Nat.zero_mod, add_zero, Nat.add_mod, Nat.pow_mod, pow_mul, Nat.pow_mod, h1, one_pow (M := ℕ)] at h; contradiction",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: goal created by mod_cases h2 : n % 3 (residue 0)",
+      "subgoal": true
     },
     {
       "name": "case n % 3 = 1",
-      "statement": "goal created by mod_cases h2 : n % 3 (residue 1)",
-      "closed_by": "rw [Nat.add_mod, pow_add, pow_mul, Nat.mul_mod, Nat.pow_mod, h1, one_pow (M := ℕ)] at h; contradiction"
+      "statement": null,
+      "closed_by": "rw [Nat.add_mod, pow_add, pow_mul, Nat.mul_mod, Nat.pow_mod, h1, one_pow (M := ℕ)] at h; contradiction",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: goal created by mod_cases h2 : n % 3 (residue 1)",
+      "subgoal": true
     },
     {
       "name": "case n % 3 = 2",
-      "statement": "goal created by mod_cases h2 : n % 3 (residue 2)",
-      "closed_by": "rw [Nat.add_mod, pow_add, pow_mul, Nat.mul_mod, Nat.pow_mod, h1, one_pow (M := ℕ)] at h; contradiction"
+      "statement": null,
+      "closed_by": "rw [Nat.add_mod, pow_add, pow_mul, Nat.mul_mod, Nat.pow_mod, h1, one_pow (M := ℕ)] at h; contradiction",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: goal created by mod_cases h2 : n % 3 (residue 2)",
+      "subgoal": true
     }
   ],
   "applicability": {
@@ -130,6 +136,14 @@
       "model": "claude-opus-5-5",
       "run": "exemplar",
       "at": "2026-11-12"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "child 'case n % 3 = 0': a subgoal made inside the parent's proof; child 'case n % 3 = 1': a subgoal made inside the parent's proof; child 'case n % 3 = 2': a subgoal made inside the parent's proof"
     }
   ]
 }

@@ -104,6 +104,14 @@
       "evidence": "check_provenance passes: 7 copied files byte-identical at commit 6e837e75355538c7f80bab5b956861e86c4eacc2. The commit, repo URL and licence (Apache-2.0) are identical across entry.json, source.json, SOURCE.md and README; every permalink pins that same commit with the correct path and line anchors. LICENSE (copied as upstream-LICENSE) is the Apache-2.0 text; NOTICE (upstream-NOTICE) explains the FLT/Mathlib derivation and shows all third-party material is Apache-2.0, so no copyleft/non-commercial/unknown marking is needed. Source note records repo, pinned commit, licence text and attribution, so the chain entry -> source -> upstream is traceable. Minor note, not an objection: NOTICE points to ATTRIBUTION.md for per-file attribution of the derived P2M/Sol material, which is not copied, but NOTICE itself is preserved and the licence remains consistent.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:00:25Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: WeierstrassCurve.isResiduallyModular_three_and_noInertiaFixedTorsion_and_not_cube_dvd_of_isSemistableModel@P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean:172, WeierstrassCurve.isModular_map_of_mlc1@P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean:174, WeierstrassCurve.liftingAtConductor_three_of_level_hns@P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean:175, WeierstrassCurve.modThreeOrFiveIrreducible@P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean:178, WeierstrassCurve.threeFiveSwitchCurve@P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean:180, WeierstrassCurve.isResiduallyModularOfLevel_of_switch@P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean:189, WeierstrassCurve.liftingAtConductor_threeFive_of_level_not_sq_dvd@P2M/Sol/S_WeierstrassCurve_modularity_of_semistableModel.lean:201; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:05Z"
     }
   ]
 }

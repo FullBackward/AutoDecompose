@@ -39,7 +39,7 @@
         23,
         35
       ],
-      "role": "parent",
+      "role": "child",
       "name": "imo1977_q6_nat",
       "excerpt_sha256": "d11a15958dc87d7d65b5fd5befa11e8f493ad61a6b04dfe0f1f34d4543ef5bf1",
       "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1977Q6.lean#L23-L35"
@@ -50,7 +50,7 @@
         41,
         48
       ],
-      "role": "child",
+      "role": "parent",
       "name": "imo1977_q6",
       "excerpt_sha256": "997d8af8133cf762a55653f43f0dc1aaba87e72d1568427d03021f9106ca24a6",
       "permalink": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1977Q6.lean#L41-L48"
@@ -68,14 +68,15 @@
     }
   ],
   "parent": {
-    "name": "imo1977_q6_nat",
-    "statement": "public theorem imo1977_q6_nat (f : ℕ → ℕ) (h : ∀ n, f (f n) < f (n + 1)) : ∀ n, f n = n := by"
+    "name": "imo1977_q6",
+    "statement": "theorem imo1977_q6 (f : ℕ+ → ℕ+) (h : ∀ n, f (f n) < f (n + 1)) : ∀ n, f n = n"
   },
   "children": [
     {
-      "name": "imo1977_q6",
-      "statement": "public theorem imo1977_q6 (f : ℕ+ → ℕ+) (h : ∀ n, f (f n) < f (n + 1)) : ∀ n, f n = n := by",
-      "closed_by": "intro n; refine imo1977_q6_nat (fun m => if 0 < m then f m.toPNat' else 0) ?_ n; the hypothesis goal is closed by intro x; cases x; · simp; · simpa using! h _; the final goal is closed by simpa"
+      "name": "imo1977_q6_nat",
+      "statement": "theorem imo1977_q6_nat (f : ℕ → ℕ) (h : ∀ n, f (f n) < f (n + 1)) : ∀ n, f n = n",
+      "closed_by": "exact Nat.eq_of_le_of_lt_succ (hf _) (hf_mono.lt_iff_lt.mp (h _))",
+      "note": "Roles swapped on 2026-11-14: the goal is imo1977_q6 (over ℕ+), whose proof cites imo1977_q6_nat; the general lemma is the child. Before the swap the parent's proof was given as the child's closed_by: intro n; refine imo1977_q6_nat (fun m => if 0 < m then f m.toPNat' else 0) ?_ n; the hypothesis goal is closed by intro x; cases x; · simp; · simpa using! h _; the final goal is closed by simpa"
     }
   ],
   "applicability": {
@@ -92,7 +93,7 @@
     },
     {
       "n": 2,
-      "claim": "The child `imo1977_q6` is closed by instantiating the parent `imo1977_q6_nat` at the extension `fun m => if 0 < m then f m.toPNat' else 0` (line 44); the new hypothesis is discharged by `intro x; cases x` into a `simp` case (x = 0) and a `simpa using! h _` case (positive), and `simpa` (line 48) closes the goal.",
+      "claim": "The parent `imo1977_q6` is closed by instantiating the child `imo1977_q6_nat` at the extension `fun m => if 0 < m then f m.toPNat' else 0` (line 44); the new hypothesis is discharged by `intro x; cases x` into a `simp` case (x = 0) and a `simpa using! h _` case (positive), and `simpa` (line 48) closes the goal.",
       "evidence_kind": "check",
       "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1977Q6.lean#L41-L48"
     },
@@ -104,7 +105,7 @@
     },
     {
       "n": 4,
-      "claim": "The instantiation adds no new mathematics: the child's proof body (lines 42-48, 7 lines) only extends `f`, applies the parent, discharges the hypothesis by `cases`, and `simpa`; the parent's 8-line induction/`calc` block (lines 24-31) is never repeated.",
+      "claim": "The instantiation adds no new mathematics: the parent's proof body (lines 42-48, 7 lines) only extends `f`, applies the child, discharges the hypothesis by `cases`, and `simpa`; the child's 8-line induction/`calc` block (lines 24-31) is never repeated.",
       "evidence_kind": "measurement",
       "evidence": "https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1977Q6.lean#L41-L48 and #L24-L31; line counts by reading the copied file"
     }
@@ -140,6 +141,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-1",
       "at": "2026-11-12T12:26:00Z"
+    },
+    {
+      "field": "sites.role,parent,children,claims",
+      "agent_role": "fixer",
+      "model": "manual+statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:56:30Z",
+      "note": "parent and child were reversed (glue-cites-children failed: the goal's proof cites the general lemma); roles, fields and the words parent/child in claims and README swapped"
     }
   ],
   "status_reason": "",

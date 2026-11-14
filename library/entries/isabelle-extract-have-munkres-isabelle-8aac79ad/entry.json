@@ -100,13 +100,15 @@
   "children": [
     {
       "name": "Lemma_40_1_step2",
-      "statement": "closedin_on X TX A \\<Longrightarrow> top1_G_delta_on X TX A (under the same hReg/hBasis/hCLF)",
-      "closed_by": "Lemma_40_1_step1 (line 4649) decomposes the open complement W = X - A into U n with cl(U n) \\<subseteq> W and W = \\<Union>n. U n; then V n = X - cl(U n) gives A = \\<Inter>n. V n, and the goal closes by unfolding top1_G_delta_on_def and apply (rule exI[where x=V]) by satx"
+      "statement": "lemma Lemma_40_1_step2:\n  assumes hReg: \"top1_regular_on X TX\"\n  assumes hBasis: \"basis_for X \\<B> TX\"\n  assumes hCLF: \"top1_sigma_locally_finite_family_on X TX \\<B>\"\n  assumes hClosed: \"closedin_on X TX A\"\n  shows \"top1_G_delta_on X TX A\"",
+      "closed_by": "Lemma_40_1_step1 (line 4649) decomposes the open complement W = X - A into U n with cl(U n) \\<subseteq> W and W = \\<Union>n. U n; then V n = X - cl(U n) gives A = \\<Inter>n. V n, and the goal closes by unfolding top1_G_delta_on_def and apply (rule exI[where x=V]) by satx",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: closedin_on X TX A \\<Longrightarrow> top1_G_delta_on X TX A (under the same hReg/hBasis/hCLF)"
     },
     {
       "name": "Lemma_40_1_step3",
-      "statement": "top1_normal_on X TX (under the same hReg/hBasis/hCLF)",
-      "closed_by": "unfolds top1_normal_on_def, then the Theorem 32.1 shrinking argument: Lemma_40_1_step1 applied twice (lines 4798, 4811) to X - D and X - C, define U'_n / V'_n by subtracting finite unions of closures, closedin_on_finite_Union (4854, 4891) makes those unions closed, and a WLOG m \\<le> n case split closes the disjointness of UU and VV"
+      "statement": "lemma Lemma_40_1_step3:\n  assumes hReg: \"top1_regular_on X TX\"\n  assumes hBasis: \"basis_for X \\<B> TX\"\n  assumes hCLF: \"top1_sigma_locally_finite_family_on X TX \\<B>\"\n  shows \"top1_normal_on X TX\"",
+      "closed_by": "unfolds top1_normal_on_def, then the Theorem 32.1 shrinking argument: Lemma_40_1_step1 applied twice (lines 4798, 4811) to X - D and X - C, define U'_n / V'_n by subtracting finite unions of closures, closedin_on_finite_Union (4854, 4891) makes those unions closed, and a WLOG m \\<le> n case split closes the disjointness of UU and VV",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: top1_normal_on X TX (under the same hReg/hBasis/hCLF)"
     }
   ],
   "applicability": {
@@ -185,6 +187,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-2",
       "at": "2026-11-12T16:06:10Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "child 'Lemma_40_1_step2': statement re-copied from the declaration of Lemma_40_1_step2; child 'Lemma_40_1_step3': statement re-copied from the declaration of Lemma_40_1_step3"
     }
   ]
 }

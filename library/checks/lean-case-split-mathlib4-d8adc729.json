@@ -96,6 +96,14 @@
       "evidence": "check_provenance passes: 1 file byte-identical at pinned commit e1545ebed97594477bbd88b2fe948ffce56e5af2; copied file sha256 27ed2662... matches entry.json; all file/site permalinks use the same pinned commit; licence Apache-2.0 matches upstream LICENSE (Apache License 2.0, copied as sources/mathlib4/upstream-LICENSE) and source.json/SOURCE.md; site line ranges (149-175, 248-273, 315-319, 330-335, 28-32) verified against the local copy",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T14:50:25Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: isRegularOf_not_existsPolitician@Archive/Wiedijk100Theorems/FriendshipGraphs.lean:332, false_of_three_le_degree@Archive/Wiedijk100Theorems/FriendshipGraphs.lean:335, existsPolitician_of_degree_le_two@Archive/Wiedijk100Theorems/FriendshipGraphs.lean:334; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:05Z"
     }
   ]
 }

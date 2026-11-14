@@ -104,6 +104,14 @@
       "evidence": "provenance pass (check_provenance.py: 1 file byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a, recorded sha256 matches). Commit 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a is consistent across entry.json, sources/pfr/source.json, sources/pfr/SOURCE.md and README. Permalinks point to teorth/pfr at that commit with path PFR/Main.lean and line ranges matching the local copy (parent 261-337 ends at file line 337; aux 149-254; pos_aux' 102-109; cited lines 285/286/291/294/308/314 all verified in the copied file). Licence Apache-2.0 consistent in entry.json, source note and upstream-LICENSE (Apache License 2.0).",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T14:59:43Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: PFR_conjecture_aux@PFR/Main.lean:286, PFR_conjecture_pos_aux'@PFR/Main.lean:285; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:05Z"
     }
   ]
 }

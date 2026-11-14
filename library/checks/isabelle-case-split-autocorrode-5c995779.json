@@ -104,6 +104,14 @@
       "evidence": "Permalinks, commit, licence and source note are mutually consistent and traceable. check_provenance.py reports pass: 4 file(s) byte-identical at 200f1acf2d264f2dedee33792b986ebe73c224a3. entry.json source.commit and every permalink use that same pinned commit with paths matching the four copied files under code/ (Adequacy.thy, Triple.thy, Eval.thy, Core_Expression_Lemmas.thy). source.json and sources/autocorrode/SOURCE.md record the identical commit (pinned 2026-11-12T13:44:17Z) and repo https://github.com/awslabs/AutoCorrode. Licence is MIT throughout entry.json/README/SOURCE.md/source.json, and sources/autocorrode/upstream-LICENSE is the standard MIT License (Amazon copyright); no conflicting or copyleft/NC notice. SOURCE.md carries licence text pointer and attribution; README's Source and licence section agrees.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T16:13:45Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: atriple_rel_eval_value_adequacy@Shallow_Separation_Logic/Adequacy.thy:65, atriple_rel_eval_return_adequacy@Shallow_Separation_Logic/Adequacy.thy:65, atriple_rel_eval_abort_adequacy@Shallow_Separation_Logic/Adequacy.thy:66, deep_evaluate_basic_no_yield'@Shallow_Separation_Logic/Adequacy.thy:64; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:05Z"
     }
   ]
 }

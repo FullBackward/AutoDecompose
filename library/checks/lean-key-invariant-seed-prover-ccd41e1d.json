@@ -96,6 +96,14 @@
       "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
       "by": "driver",
       "at": "2026-11-12T13:34:04Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: h11@SeedProver/imo2025/IMO2025/P5.lean:213, h12@SeedProver/imo2025/IMO2025/P5.lean:222, h13@SeedProver/imo2025/IMO2025/P5.lean:243; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

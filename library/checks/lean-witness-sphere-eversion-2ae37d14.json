@@ -96,6 +96,14 @@
       "evidence": "check_provenance passes (2 files byte-identical at 33ab3d626854a0f0f04ed5772e3102d652e96475). Commit, URL, licence are consistent across entry.json, sources/sphere-eversion/source.json and SOURCE.md; upstream-LICENSE is Apache-2.0 text matching the recorded 'Apache-2.0'. Both copied files' sha256 in entry.json match the local copies. All file/site permalinks use the same commit, correct paths, and line ranges verified against the local copies (parent 307-340, children 119-124/209/211/243-256). Evidence permalinks resolve: blueprint.yml:34-35 has 'lake build SphereEversion'; global_convex_integration.tex:737-746 has thm:sphere_eversion + leanok + uses. Fully traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:15:05Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: immersionRel_satisfiesHPrincipleWith@SphereEversion/Global/Immersion.lean:324, formalEversion_hol_near_zero_one@SphereEversion/Global/Immersion.lean:327, formalEversion_zero@SphereEversion/Global/Immersion.lean:333, formalEversion_one@SphereEversion/Global/Immersion.lean:336; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

@@ -174,8 +174,9 @@
     },
     {
       "name": "while_is_loop",
-      "statement": "Lemma while_is_loop {E} (body : itree E (unit+unit)) : while body ≈ iter (C := ktree _) (fun l : unit + unit => match l with | inl _ => x <- body;; match x with inl _ => Ret (inl (inl tt)) | inr _ => Ret (inr tt) end | inr _ => Ret (inl (inl tt)) end) (inr tt).",
-      "closed_by": "unfold while; rewrite unfold_iter_ktree; apply eutt_iter' with (RI := fun _ r => inl tt = r)"
+      "statement": "Lemma while_is_loop {E} (body : itree E (unit+unit)) :\n    while body\n          ≈ iter (C := ktree _) (fun l : unit + unit =>\n                    match l with\n                    | inl _ => x <- body;; match x with inl _ => Ret (inl (inl tt)) | inr _ => Ret (inr tt) end\n                    | inr _ => Ret (inl (inl tt))   (* Enter loop *)\n                    end) (inr tt).",
+      "closed_by": "unfold while; rewrite unfold_iter_ktree; apply eutt_iter' with (RI := fun _ r => inl tt = r)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: Lemma while_is_loop {E} (body : itree E (unit+unit)) : while body ≈ iter (C := ktree _) (fun l : unit + unit => match l with | inl _ => x <- body;; match x with inl _ => Ret (inl (inl tt)) | inr _ => Ret (inr tt) end | inr _ => Ret (inl (inl tt)) end) (inr tt)."
     },
     {
       "name": "fold_to_itree'",
@@ -280,6 +281,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-2",
       "at": "2026-11-12"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "child 'while_is_loop': statement re-copied from the declaration of while_is_loop"
     }
   ],
   "status_reason": "",

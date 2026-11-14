@@ -301,6 +301,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/nix-action-rocq-9.2.yml (also nix-action-rocq-9.1.yml, nix-action-rocq-9.3.yml, nix-action-rocq-master.yml) has a mathcomp-solvable job built via nix-build on push/PR; mathcomp-solvable compiles solvable/jordanholder.v. Commit 3a90d8b65f77f24e4fd770453c0697233b1c791d is on the default branch master (branches-where-head returns master). | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: trivg_comps@solvable/jordanholder.v:170, simple_compsP@solvable/jordanholder.v:174, maxnormal_proper@solvable/jordanholder.v:182, maxnormalM@solvable/jordanholder.v:194, weak_second_isog@solvable/jordanholder.v:196, exists_comps@solvable/jordanholder.v:200, quotient_simple@solvable/jordanholder.v:205, section_repr_isog@solvable/jordanholder.v:219; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 3 file(s) byte-identical at 3a90d8b65f77f24e4fd770453c0697233b1c791d | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

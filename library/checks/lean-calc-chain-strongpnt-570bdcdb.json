@@ -128,6 +128,14 @@
       "evidence": "Provenance and licence are consistent and traceable. Permalinks point to github.com/math-inc/strongpnt/blob/2f5835c322314f55f1026ec2f139d704b7c45c69/StrongPNT/PNT3_RiemannZeta.lean with line ranges that match the copied file exactly (abs_zeta_prod_prime 62-67, abs_zeta_inequality 519-581, abs_zeta_ratio_eval 585-637, zeta_lower_bound 639-651). Commit 2f5835c322314f55f1026ec2f139d704b7c45c69 is real (GitHub API, message 'Let there be light') and identical across entry.json, README, SOURCE.md and source.json. Licence is recorded as LicenseRef-unknown, matching SOURCE.md/source.json, and confirmed honest: the repo root has no LICENSE/COPYING file (GitHub API listing). check_provenance.py passes: file byte-identical at the pinned commit.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:08:07Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: abs_zeta_ratio_eval@StrongPNT/PNT3_RiemannZeta.lean:647, abs_zeta_inequality@StrongPNT/PNT3_RiemannZeta.lean:649, abs_zeta_prod_prime@StrongPNT/PNT3_RiemannZeta.lean:651; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:05Z"
     }
   ]
 }

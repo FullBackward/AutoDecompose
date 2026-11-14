@@ -154,6 +154,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/push.yml build_project job: lean-action build:true build-args 'Carleson Challenge Solution' on push to master; commit d75f54374f7f930e70a86b443f20d0e0935c275e is master HEAD (default branch, compare identical); lakefile.toml defaultTargets=['Carleson'] and lean_lib Carleson include Carleson/Forest.lean | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: mem_mk@Carleson/Forest.lean:43, mem_𝔘@Carleson/Forest.lean:46, mem_𝔗@Carleson/Forest.lean:47, nonempty@Carleson/Forest.lean:49, ordConnected@Carleson/Forest.lean:50, 𝓘_ne_𝓘@Carleson/Forest.lean:51, smul_four_le@Carleson/Forest.lean:52, stackSize_le@Carleson/Forest.lean:53, dens₁_𝔗_le@Carleson/Forest.lean:54, lt_dist@Carleson/Forest.lean:55, ball_subset@Carleson/Forest.lean:57; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

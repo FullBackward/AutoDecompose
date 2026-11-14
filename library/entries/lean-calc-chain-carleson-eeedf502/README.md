@@ -214,6 +214,7 @@ Status: **verified**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/push.yml builds the Carleson library on push to master via leanprover/lean-action (build-args 'Carleson Challenge Solution'); commit d75f54374f7f930e70a86b443f20d0e0935c275e is on master, the default branch | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: le_C2_0_2@Carleson/Discrete/MainTheorem.lean:68, exceptional_set@Carleson/Discrete/MainTheorem.lean:49, forest_union@Carleson/Discrete/MainTheorem.lean:63, forest_complement@Carleson/Discrete/MainTheorem.lean:63; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 4 file(s) byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

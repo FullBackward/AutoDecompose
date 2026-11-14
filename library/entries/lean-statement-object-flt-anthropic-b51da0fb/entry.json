@@ -96,8 +96,9 @@
   "children": [
     {
       "name": "solution",
-      "statement": "theorem solution : FermatLastTheoremFor 5 := by rw [fermatLastTheoremFor_iff_int]; exact FLT5.flt_five_int",
-      "closed_by": "p2m_exact_reverting @_root_.P2MW.S_fermatLastTheoremFive.solution"
+      "statement": "theorem solution : FermatLastTheoremFor 5",
+      "closed_by": "p2m_exact_reverting @_root_.P2MW.S_fermatLastTheoremFive.solution",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: theorem solution : FermatLastTheoremFor 5 := by rw [fermatLastTheoremFor_iff_int]; exact FLT5.flt_five_int"
     }
   ],
   "applicability": {
@@ -165,6 +166,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-1",
       "at": "2026-11-12T12:05:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "child 'solution': statement re-copied from the declaration of solution"
     }
   ]
 }

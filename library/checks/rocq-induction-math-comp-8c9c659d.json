@@ -112,6 +112,14 @@
       "evidence": "provenance pass: check_provenance.py reports 3/3 files byte-identical at 3a90d8b65f77f24e4fd770453c0697233b1c791d; commit, licence CECILL-B and URL agree across entry.json, source.json and sources/math-comp/SOURCE.md; upstream-LICENCE is the CeCILL-B text; all site/claim permalinks and line ranges verified against local copies (parent L165-224, children L126-131/L136-145/L147-158/L100-104/L389-392/L405-417/L461-466/L796-797, known-use StrongJordanHolderUniqueness L575-660); bytes 28830/20676/33871 match entry.json",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:51:21Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: trivg_comps@solvable/jordanholder.v:170, simple_compsP@solvable/jordanholder.v:174, maxnormal_proper@solvable/jordanholder.v:182, maxnormalM@solvable/jordanholder.v:194, weak_second_isog@solvable/jordanholder.v:196, exists_comps@solvable/jordanholder.v:200, quotient_simple@solvable/jordanholder.v:205, section_repr_isog@solvable/jordanholder.v:219; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

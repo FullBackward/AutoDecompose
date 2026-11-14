@@ -277,6 +277,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/build-and-docs.yml build job (steps 208-212) runs lake --wfail build FormalConjecturesForMathlib FormalConjecturesUtil on push to main (default branch), which builds the library containing Combinatorics/Ramsey/Diagonal.lean; pinned commit a425ca3eb797fe927cb88c950565fdcbbbbada70 registered at ref=HEAD (default branch) | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: HasRamseyProperty.mono@FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean:252, hasRamseyProperty_zero_left@FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean:252, hasRamseyProperty_zero_right@FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean:256, HasRamseyProperty.step@FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean:271; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at a425ca3eb797fe927cb88c950565fdcbbbbada70 | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

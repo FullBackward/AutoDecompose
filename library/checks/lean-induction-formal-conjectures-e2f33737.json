@@ -136,6 +136,14 @@
       "evidence": "Provenance/licence lens passes. Permalinks: every files[] and sites[] permalink and every claim URL pins the full commit a425ca3eb797fe927cb88c950565fdcbbbbada70 with the correct repo google-deepmind/formal-conjectures and path FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean; site line ranges match the copied file verbatim (mono 67-70, zero_left 73-79, zero_right 82-87, HasRamseyProperty 61-64, step 180-233, parent 237-278; claim-4 docstring 27-31 and claim-5 290-308 also match). Commit: entry.json source.commit == source.json commit == SOURCE.md pinned commit (a425ca3e..., pinned 2026-11-12T10:23:42Z); check_provenance re-ran pass ('1 file(s) byte-identical at a425ca3eb797fe927cb88c950565fdcbbbbada70'), proving the commit and path resolve upstream and the local copy (14955 bytes, recorded sha256) is unmodified. Licence: entry.json 'Apache-2.0' == source.json licence == SOURCE.md 'Apache-2.0'; the copied file header declares Apache License 2.0 and sources/formal-conjectures/upstream-LICENSE begins with the Apache 2.0 text; SOURCE.md lists the LICENSE permalink and attribution. Source note is consistent with the copied files. Everything traceable; no objection.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:09:51Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: HasRamseyProperty.mono@FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean:252, hasRamseyProperty_zero_left@FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean:252, hasRamseyProperty_zero_right@FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean:256, HasRamseyProperty.step@FormalConjecturesForMathlib/Combinatorics/Ramsey/Diagonal.lean:271; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

@@ -104,6 +104,14 @@
       "evidence": "Permalinks, commit, licence and source note are mutually consistent and traceable. Commit 1c918ec9a96c7751ce9c283304e1aebd7ffb19a3 is recorded identically in entry.json (source, files, sites), README, SOURCE.md and source.json, and is on the default branch main; check_provenance.py re-run this session confirms the copied file is byte-identical at that commit. The copied file's sha256 (7e296f9f...) and 21031 bytes match entry.json files[]. Licence Apache-2.0 AND CC-BY-4.0 matches source.json, SOURCE.md and the upstream NOTICE (code/Lean proofs under Apache-2.0, natural-language write-ups under CC-BY-4.0); upstream-LICENSE (Apache 2.0), upstream-LICENSE-CC-BY-4.0 (CC BY Attribution 4.0 International) and upstream-NOTICE are present and match the recorded licence files. Every permalink uses the same commit and path imo2026/gpt-5.6-solution/IMO2026Q1.lean, and the README 'Source and licence' note links the source note correctly.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:20:02Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: initial_allPositive@imo2026/gpt-5.6-solution/IMO2026Q1.lean:423, reachable_allPositive@imo2026/gpt-5.6-solution/IMO2026Q1.lean:424, statement_a_unique_large@imo2026/gpt-5.6-solution/IMO2026Q1.lean:425, terminal_prod_eq_large@imo2026/gpt-5.6-solution/IMO2026Q1.lean:426, reachable_prod_primeFactors@imo2026/gpt-5.6-solution/IMO2026Q1.lean:430, reachable_gExp@imo2026/gpt-5.6-solution/IMO2026Q1.lean:443, terminal_gExp_eq_padicValNat@imo2026/gpt-5.6-solution/IMO2026Q1.lean:444; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:05Z"
     }
   ]
 }

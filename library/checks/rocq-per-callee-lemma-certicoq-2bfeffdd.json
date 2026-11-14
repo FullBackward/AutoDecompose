@@ -104,6 +104,14 @@
       "evidence": "Provenance check passes: 2 files byte-identical at pinned commit 943b52ae654708130f241ccf8a50ecb95a7956e2 (theories/CodegenWasm/LambdaANF_to_Wasm_correct.v, theories/CodegenWasm/toplevel_theorem.v). Commit is recorded consistently across entry.json source.commit, sources.jsonl, source.json, and SOURCE.md. Licence MIT is consistent: entry.json licence=MIT, source.json licence=MIT, SOURCE.md 'MIT', and upstream-LICENSE.md contains verbatim MIT text (copyright lines + MIT permission grant). Permalinks all use the pinned commit and paths matching the copied files; source URL https://github.com/CertiCoq/certicoq matches. README source-note links resolve to ../../sources/certicoq/SOURCE.md which carries the licence file and attribution.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T16:04:29Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: bs_wasm_related_Econstr@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6038, bs_wasm_related_Eproj@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6039, bs_wasm_related_Ecase@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6040, bs_wasm_related_Eapp@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6041, bs_wasm_related_Eletapp@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6042, bs_wasm_related_Efun@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6043, bs_wasm_related_Eprim_val@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6044, bs_wasm_related_Eprim@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6045, bs_wasm_related_Ehalt@theories/CodegenWasm/LambdaANF_to_Wasm_correct.v:6046; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

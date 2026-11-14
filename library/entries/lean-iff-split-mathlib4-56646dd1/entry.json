@@ -68,13 +68,17 @@
   "children": [
     {
       "name": "forward",
-      "statement": "IsGood f → f = fun x ↦ 2 / (2 - x) (left component of refine ⟨·, ·⟩)",
-      "closed_by": "funext hf.map_eq — extensionality applied to the pointwise lemma map_eq (lines 67-70)"
+      "statement": null,
+      "closed_by": "funext hf.map_eq — extensionality applied to the pointwise lemma map_eq (lines 67-70)",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: IsGood f → f = fun x ↦ 2 / (2 - x) (left component of refine ⟨·, ·⟩)",
+      "subgoal": true
     },
     {
       "name": "reverse",
-      "statement": "f = fun x ↦ 2 / (2 - x) → IsGood f (the ?_ right component of refine)",
-      "closed_by": "rintro rfl; constructor, then one case per field of IsGood: case map_two => simp [tsub_self]; case map_ne_zero => intro x hx; simpa [tsub_eq_zero_iff_le]; case map_add_rev => intro x y; cases lt_or_ge y 2 (inl: rw chain lines 85-86; inr: simp [tsub_eq_zero_of_le, *])"
+      "statement": null,
+      "closed_by": "rintro rfl; constructor, then one case per field of IsGood: case map_two => simp [tsub_self]; case map_ne_zero => intro x hx; simpa [tsub_eq_zero_iff_le]; case map_add_rev => intro x y; cases lt_or_ge y 2 (inl: rw chain lines 85-86; inr: simp [tsub_eq_zero_of_le, *])",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: f = fun x ↦ 2 / (2 - x) → IsGood f (the ?_ right component of refine)",
+      "subgoal": true
     }
   ],
   "applicability": {
@@ -147,6 +151,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-1",
       "at": "2026-11-12"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "child 'forward': a subgoal made inside the parent's proof; child 'reverse': a subgoal made inside the parent's proof"
     }
   ],
   "status_reason": "",

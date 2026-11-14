@@ -104,6 +104,14 @@
       "evidence": "check_provenance passes (1 file byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8); commit 1745e6ced3e671bd74417548494b034eb2c87da8 is identical across entry.json, README (short form 1745e6ced3e6), sources/compfiles/SOURCE.md and source.json; licence Apache-2.0 matches the upstream-LICENSE (Apache License 2.0 text); the single copied file code/Compfiles/Usa2020P3.lean (6019 bytes, sha256 6266f959...) matches the entry.json files/sha256 and all permalinks resolve to valid line ranges within the 150-line file. Source note is consistent and traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:09:12Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: setC_eq_union@Compfiles/Usa2020P3.lean:143, disjoint_AB@Compfiles/Usa2020P3.lean:143, two_mem_setC@Compfiles/Usa2020P3.lean:145, prod_C_erase_eq_prod_B@Compfiles/Usa2020P3.lean:147, prod_B_ne_zero@Compfiles/Usa2020P3.lean:140; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:05Z"
     }
   ]
 }

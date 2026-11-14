@@ -120,6 +120,14 @@
       "evidence": "Provenance and licence are consistent and traceable. check_provenance.py passes: the copied file code/FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean is byte-identical at commit a3210204ad8876e851e32f73dd97d882bf1ccd0a (sha256 4715d179... matches entry.json files[0].sha256; 23691 bytes match). The commit hash is recorded identically in entry.json source.commit, sources/flt-imperial/source.json, and sources/flt-imperial/SOURCE.md. Licence 'Apache-2.0' is recorded identically in all three and matches the copied upstream-LICENSE (standard Apache-2.0 text, linked from SOURCE.md as the LICENSE at the pinned commit). Every permalink (files, sites, claims, known_uses) uses the same commit and the correct repo path, and the file has 495 lines so all cited line ranges (up to L492) are in range. The source note's attribution paragraph matches the entry's README 'Source and licence' section. Nothing inconsistent or untraceable found.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T16:26:59Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: isIrreducible_baseChange_of_finrank_eigenspace_eq_one@FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean:488, isIrreducible_of_baseChange@FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean:492; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

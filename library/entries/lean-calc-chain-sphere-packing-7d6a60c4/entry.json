@@ -157,68 +157,81 @@
   "children": [
     {
       "name": "step_1",
-      "statement": "norm (f z / Δ z) = norm ((∑' n, c (n+n₀) * cexp (π*I*(n+n₀)*z)) / (cexp (2*π*I*z) * ∏' n : ℕ+, (1 - cexp (2*π*I*n*z))^24)) — unfold f via hf/fouterm and Δ via DiscriminantProductFormula",
-      "closed_by": "simp [DiscriminantProductFormula, hf, fouterm]"
+      "statement": "lemma step_1 :\n    norm ((f z) / (Δ z)) = norm (\n      (∑' (n : ℕ), c (n + n₀) * cexp (π * I * (n + n₀) * z)) /\n      (cexp (2 * π * I * z) * ∏' (n : ℕ+), (1 - cexp (2 * π * I * n * z)) ^ 24)\n    )",
+      "closed_by": "simp [DiscriminantProductFormula, hf, fouterm]",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: norm (f z / Δ z) = norm ((∑' n, c (n+n₀) * cexp (π*I*(n+n₀)*z)) / (cexp (2*π*I*z) * ∏' n : ℕ+, (1 - cexp (2*π*I*n*z))^24)) — unfold f via hf/fouterm and Δ via DiscriminantProductFormula"
     },
     {
       "name": "step_2",
-      "statement": "pull cexp (π*I*n₀*z) out of the tsum: ∑' n, c (n+n₀) * cexp (π*I*(n+n₀)*z) = cexp (π*I*n₀*z) * ∑' n, c (n+n₀) * cexp (π*I*n*z)",
-      "closed_by": "congr; rw [← tsum_mul_left]; ext n; ring_nf; rw [mul_assoc, ← Complex.exp_add]; ring"
+      "statement": "lemma step_2 :\n    norm ((∑' (n : ℕ), c (n + n₀) * cexp (π * I * (n + n₀) * z)) /\n    (cexp (2 * π * I * z) * ∏' (n : ℕ+), (1 - cexp (2 * π * I * n * z)) ^ 24)) =\n    norm ((cexp (π * I * n₀ * z) * ∑' (n : ℕ), c (n + n₀) * cexp (π * I * n * z)) /\n    (cexp (2 * π * I * z) * ∏' (n : ℕ+), (1 - cexp (2 * π * I * n * z)) ^ 24))",
+      "closed_by": "congr; rw [← tsum_mul_left]; ext n; ring_nf; rw [mul_assoc, ← Complex.exp_add]; ring",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: pull cexp (π*I*n₀*z) out of the tsum: ∑' n, c (n+n₀) * cexp (π*I*(n+n₀)*z) = cexp (π*I*n₀*z) * ∑' n, c (n+n₀) * cexp (π*I*n*z)"
     },
     {
       "name": "step_3",
-      "statement": "fold cexp (π*I*n₀*z) into the numerator as the quotient cexp (π*I*n₀*z) / cexp (2*π*I*z)",
-      "closed_by": "field_simp"
+      "statement": "lemma step_3 :\n    norm ((cexp (π * I * n₀ * z) * ∑' (n : ℕ), c (n + n₀) * cexp (π * I * n * z)) /\n    (cexp (2 * π * I * z) * ∏' (n : ℕ+), (1 - cexp (2 * π * I * n * z)) ^ 24)) =\n    norm ((cexp (π * I * n₀ * z) / cexp (2 * π * I * z)) *\n    (∑' (n : ℕ), c (n + n₀) * cexp (π * I * n * z)) /\n    (∏' (n : ℕ+), (1 - cexp (2 * π * I * n * z)) ^ 24))",
+      "closed_by": "field_simp",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: fold cexp (π*I*n₀*z) into the numerator as the quotient cexp (π*I*n₀*z) / cexp (2*π*I*z)"
     },
     {
       "name": "step_4",
-      "statement": "cexp (π*I*n₀*z) / cexp (2*π*I*z) = cexp (π*I*(n₀-2)*z)",
-      "closed_by": "rw [mul_sub, sub_mul, ← Complex.exp_sub]; congr 6; ac_rfl"
+      "statement": "lemma step_4 :\n    norm ((cexp (π * I * n₀ * z) / cexp (2 * π * I * z)) *\n    (∑' (n : ℕ), c (n + n₀) * cexp (π * I * n * z)) /\n    (∏' (n : ℕ+), (1 - cexp (2 * π * I * n * z)) ^ 24)) =\n    norm ((cexp (π * I * (n₀ - 2) * z)) *\n    (∑' (n : ℕ), c (n + n₀) * cexp (π * I * n * z)) /\n    (∏' (n : ℕ+), (1 - cexp (2 * π * I * n * z)) ^ 24))",
+      "closed_by": "rw [mul_sub, sub_mul, ← Complex.exp_sub]; congr 6; ac_rfl",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: cexp (π*I*n₀*z) / cexp (2*π*I*z) = cexp (π*I*(n₀-2)*z)"
     },
     {
       "name": "step_5",
-      "statement": "norm (a * b / c) = norm a * norm b / norm c, pushing norm through the product and division",
-      "closed_by": "simp only [norm_div, norm_mul]"
+      "statement": "lemma step_5 :\n    norm ((cexp (π * I * (n₀ - 2) * z)) *\n    (∑' (n : ℕ), c (n + n₀) * cexp (π * I * n * z)) /\n    (∏' (n : ℕ+), (1 - cexp (2 * π * I * n * z)) ^ 24)) =\n    norm (cexp (π * I * (n₀ - 2) * z)) *\n    norm (∑' (n : ℕ), c (n + n₀) * cexp (π * I * n * z)) /\n    norm (∏' (n : ℕ+), (1 - cexp (2 * π * I * n * z)) ^ 24)",
+      "closed_by": "simp only [norm_div, norm_mul]",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: norm (a * b / c) = norm a * norm b / norm c, pushing norm through the product and division"
     },
     {
       "name": "step_6",
-      "statement": "norm (∏' n : ℕ+, (1 - cexp (2*π*I*n*z))^24) = ∏' n : ℕ+, norm (1 - cexp (2*π*I*n*z))^24",
-      "closed_by": "congr; exact aux_5 z"
+      "statement": "lemma step_6 :\n    norm (cexp (π * I * (n₀ - 2) * z)) *\n    norm (∑' (n : ℕ), c (n + n₀) * cexp (π * I * n * z)) /\n    norm (∏' (n : ℕ+), (1 - cexp (2 * π * I * n * z)) ^ 24) =\n    norm (cexp (π * I * (n₀ - 2) * z)) *\n    norm (∑' (n : ℕ), c (n + n₀) * cexp (π * I * n * z)) /\n    ∏' (n : ℕ+), norm (1 - cexp (2 * π * I * n * z)) ^ 24",
+      "closed_by": "congr; exact aux_5 z",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: norm (∏' n : ℕ+, (1 - cexp (2*π*I*n*z))^24) = ∏' n : ℕ+, norm (1 - cexp (2*π*I*n*z))^24"
     },
     {
       "name": "step_7",
-      "statement": "norm (cexp (π*I*(n₀-2)*z)) ≤ rexp (-π*(n₀-2)*z.im) — the first inequality, bounding the leading exponential",
-      "closed_by": "gcongr; exact aux_6 z; norm_cast; exact aux_7 z (n₀-2)"
+      "statement": "lemma step_7 :\n    norm (cexp (π * I * (n₀ - 2) * z)) * norm (∑' (n : ℕ), c (n + n₀) * cexp (π * I * n * z)) /\n    ∏' (n : ℕ+), norm (1 - cexp (2 * π * I * n * z)) ^ 24 ≤\n    rexp (-π * (n₀ - 2) * z.im) * norm (∑' (n : ℕ), c (n + n₀) * cexp (π * I * n * z)) /\n    (∏' (n : ℕ+), norm (1 - cexp (2 * π * I * n * z)) ^ 24)",
+      "closed_by": "gcongr; exact aux_6 z; norm_cast; exact aux_7 z (n₀-2)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: norm (cexp (π*I*(n₀-2)*z)) ≤ rexp (-π*(n₀-2)*z.im) — the first inequality, bounding the leading exponential"
     },
     {
       "name": "step_8",
-      "statement": "norm (∑' n, c (n+n₀) * cexp (π*I*n*z)) ≤ ∑' n, norm (c (n+n₀)) * norm (cexp (π*I*n*z)) — triangle inequality for the infinite sum",
-      "closed_by": "norm_tsum_le_tsum_norm; aux_3 z c n₀ hcsum"
+      "statement": "lemma step_8 :\n    rexp (-π * (n₀ - 2) * z.im) * norm (∑' (n : ℕ), c (n + n₀) * cexp (π * I * n * z)) /\n    (∏' (n : ℕ+), norm (1 - cexp (2 * π * I * n * z)) ^ 24) ≤\n    rexp (-π * (n₀ - 2) * z.im) * (∑' (n : ℕ), norm (c (n + n₀)) * norm (cexp (π * I * n * z))) /\n    (∏' (n : ℕ+), norm (1 - cexp (2 * π * I * n * z)) ^ 24)",
+      "closed_by": "norm_tsum_le_tsum_norm; aux_3 z c n₀ hcsum",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: norm (∑' n, c (n+n₀) * cexp (π*I*n*z)) ≤ ∑' n, norm (c (n+n₀)) * norm (cexp (π*I*n*z)) — triangle inequality for the infinite sum"
     },
     {
       "name": "step_9",
-      "statement": "norm (cexp (π*I*n*z)) = rexp (-π*n*z.im) pointwise, so the sum becomes ∑' n, norm (c (n+n₀)) * rexp (-π*n*z.im)",
-      "closed_by": "gcongr; aux_4; aux_10; rw [Complex.norm_exp]"
+      "statement": "lemma step_9 :\n    rexp (-π * (n₀ - 2) * z.im) * (∑' (n : ℕ), norm (c (n + n₀)) * norm (cexp (π * I * n * z))) /\n    (∏' (n : ℕ+), norm (1 - cexp (2 * π * I * n * z)) ^ 24) ≤\n    rexp (-π * (n₀ - 2) * z.im) * (∑' (n : ℕ), norm (c (n + n₀)) * rexp (-π * n * z.im)) /\n    (∏' (n : ℕ+), norm (1 - cexp (2 * π * I * n * z)) ^ 24)",
+      "closed_by": "gcongr; aux_4; aux_10; rw [Complex.norm_exp]",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: norm (cexp (π*I*n*z)) = rexp (-π*n*z.im) pointwise, so the sum becomes ∑' n, norm (c (n+n₀)) * rexp (-π*n*z.im)"
     },
     {
       "name": "step_10",
-      "statement": "∏' n : ℕ+, norm (1 - cexp (2*π*I*n*z))^24 ≤ ∏' n : ℕ+, (1 - rexp (-2*π*n*z.im))^24 — bound each product factor below the denominator",
-      "closed_by": "tprod_le_of_nonneg_of_multipliable; aux_2; aux_8"
+      "statement": "lemma step_10 :\n    rexp (-π * (n₀ - 2) * z.im) * (∑' (n : ℕ), norm (c (n + n₀)) * rexp (-π * n * z.im)) /\n    (∏' (n : ℕ+), norm (1 - cexp (2 * π * I * n * z)) ^ 24) ≤\n    rexp (-π * (n₀ - 2) * z.im) * (∑' (n : ℕ), norm (c (n + n₀)) * rexp (-π * n * z.im)) /\n    (∏' (n : ℕ+), (1 - rexp (-2 * π * n * z.im)) ^ 24)",
+      "closed_by": "tprod_le_of_nonneg_of_multipliable; aux_2; aux_8",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: ∏' n : ℕ+, norm (1 - cexp (2*π*I*n*z))^24 ≤ ∏' n : ℕ+, (1 - rexp (-2*π*n*z.im))^24 — bound each product factor below the denominator"
     },
     {
       "name": "step_11",
-      "statement": "∑' n, norm (c (n+n₀)) * rexp (-π*n*z.im) ≤ ∑' n, norm (c (n+n₀)) * rexp (-π*n/2) — the polynomial-growth step, using z.im > 1/2 and hpoly",
-      "closed_by": "summable_real_norm_mul_geometric_of_norm_lt_one hnorm (hpoly' c n₀ k hpoly)"
+      "statement": "lemma step_11 :\n  rexp (-π * (n₀ - 2) * z.im) * (∑' (n : ℕ), norm (c (n + n₀)) * rexp (-π * n * z.im)) /\n  (∏' (n : ℕ+), (1 - rexp (-2 * π * n * z.im)) ^ 24) ≤\n  rexp (-π * (n₀ - 2) * z.im) * (∑' (n : ℕ), norm (c (n + n₀)) * rexp (-π * n / 2)) /\n  (∏' (n : ℕ+), (1 - rexp (-2 * π * n * z.im)) ^ 24)",
+      "closed_by": "summable_real_norm_mul_geometric_of_norm_lt_one hnorm (hpoly' c n₀ k hpoly)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: ∑' n, norm (c (n+n₀)) * rexp (-π*n*z.im) ≤ ∑' n, norm (c (n+n₀)) * rexp (-π*n/2) — the polynomial-growth step, using z.im > 1/2 and hpoly"
     },
     {
       "name": "step_12",
-      "statement": "∏' n : ℕ+, (1 - rexp (-2*π*n*z.im))^24 ≤ ∏' n : ℕ+, (1 - rexp (-π*n))^24 — bound the product using z.im > 1/2",
-      "closed_by": "tprod_le_of_nonneg_of_multipliable; step_12a"
+      "statement": "lemma step_12 :\n    rexp (-π * (n₀ - 2) * z.im) * (∑' (n : ℕ), norm (c (n + n₀)) * rexp (-π * n / 2)) /\n    (∏' (n : ℕ+), (1 - rexp (-2 * π * n * z.im)) ^ 24) ≤\n    rexp (-π * (n₀ - 2) * z.im) * (∑' (n : ℕ), norm (c (n + n₀)) * rexp (-π * n / 2)) /\n    (∏' (n : ℕ+), (1 - rexp (-π * n)) ^ 24)",
+      "closed_by": "tprod_le_of_nonneg_of_multipliable; step_12a",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: ∏' n : ℕ+, (1 - rexp (-2*π*n*z.im))^24 ≤ ∏' n : ℕ+, (1 - rexp (-π*n))^24 — bound the product using z.im > 1/2"
     },
     {
       "name": "step_13",
-      "statement": "the final expression equals (DivDiscBound c n₀) * rexp (-π*(n₀-2)*z.im) — recognise the definition of DivDiscBound",
-      "closed_by": "rw [DivDiscBound, mul_div_assoc, mul_comm]"
+      "statement": "lemma step_13 :\n  rexp (-π * (n₀ - 2) * z.im) * (∑' (n : ℕ), norm (c (n + n₀)) * rexp (-π * n / 2)) /\n  (∏' (n : ℕ+), (1 - rexp (-π * n)) ^ 24) =\n  (DivDiscBound c n₀) * rexp (-π * (n₀ - 2) * z.im)",
+      "closed_by": "rw [DivDiscBound, mul_div_assoc, mul_comm]",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: the final expression equals (DivDiscBound c n₀) * rexp (-π*(n₀-2)*z.im) — recognise the definition of DivDiscBound"
     }
   ],
   "applicability": {
@@ -308,6 +321,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-2",
       "at": "2026-11-12T14:52:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "child 'step_1': statement re-copied from the declaration of step_1; child 'step_2': statement re-copied from the declaration of step_2; child 'step_3': statement re-copied from the declaration of step_3; child 'step_4': statement re-copied from the declaration of step_4; child 'step_5': statement re-copied from the declaration of step_5; child 'step_6': statement re-copied from the declaration of step_6; child 'step_7': statement re-copied from the declaration of step_7; child 'step_8': statement re-copied from the declaration of step_8; child 'step_9': statement re-copied from the declaration of step_9; child 'step_10': statement re-copied from the declaration of step_10; child 'step_11': statement re-copied from the declaration of step_11; child 'step_12': statement re-copied from the declaration of step_12; child 'step_13': statement re-copied from the declaration of step_13"
     }
   ],
   "status_reason": "",

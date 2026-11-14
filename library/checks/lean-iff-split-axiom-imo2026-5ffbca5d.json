@@ -104,6 +104,14 @@
       "evidence": "check_provenance passes (1 file byte-identical at c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2). Commit is consistent across entry.json, sources/axiom-imo2026/source.json and SOURCE.md (all c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2). Licence MIT is recorded identically in entry.json, README and the source note; sources/axiom-imo2026/upstream-LICENSE is a genuine MIT text (Copyright 2026 Axiom Math). Permalinks point to the pinned commit and file IMO2026/Q4/solution.lean; line ranges verified against the copied file: parent main_theorem 469-518, child equilateral_counterexample 444-462, child all_win_of_divides 251-360, doc comment 466-468. Copied file is 520 lines, 23893 bytes, sha256 22410574...c7896, matching entry.json fields. Source note links the licence text and attribution. All traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:12:57Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: equilateral_counterexample@IMO2026/Q4/solution.lean:475, all_win_of_divides@IMO2026/Q4/solution.lean:512; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

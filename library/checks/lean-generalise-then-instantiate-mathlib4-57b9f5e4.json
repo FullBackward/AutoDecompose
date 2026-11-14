@@ -96,6 +96,30 @@
       "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
       "by": "driver",
       "at": "2026-11-12T13:34:04Z"
+    },
+    {
+      "type": "claim",
+      "key": "2",
+      "value": "verified",
+      "evidence": "After the role swap: code/Archive/Imo/Imo1977Q6.lean line 41 declares the parent imo1977_q6; line 44 is 'refine imo1977_q6_nat (fun m => if 0 < m then f m.toPNat' else 0) ?_ n', instantiating the child imo1977_q6_nat (declared line 23).",
+      "by": "fixer-2026-11-14",
+      "at": "2026-11-14T07:56:40Z"
+    },
+    {
+      "type": "claim",
+      "key": "4",
+      "value": "verified",
+      "evidence": "After the role swap: the parent's body is lines 42-48 (7 lines: intro n; have := by; refine imo1977_q6_nat ...; intro x; cases x; simp; simpa); the child's induction and calc are lines 24-31 and appear nowhere in 42-48.",
+      "by": "fixer-2026-11-14",
+      "at": "2026-11-14T07:56:40Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: imo1977_q6_nat@Archive/Imo/Imo1977Q6.lean:44; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:05Z"
     }
   ]
 }

@@ -62,23 +62,30 @@
   ],
   "parent": {
     "name": "Imo1961Q3_forward",
-    "statement": "(cos x) ^ n - (sin x) ^ n = 1 → (∃ k : ℤ, k * π = x) ∧ Even n ∨ (∃ k : ℤ, k * (2 * π) = x) ∧ Odd n ∨ (∃ k : ℤ, -(π / 2) + k * (2 * π) = x) ∧ Odd n   [premise h₀ : n ≠ 0]"
+    "statement": null,
+    "note": "The parent is a goal inside a larger proof (its site shows where), not a declaration; the analyst described it as: (cos x) ^ n - (sin x) ^ n = 1 → (∃ k : ℤ, k * π = x) ∧ Even n ∨ (∃ k : ℤ, k * (2 * π) = x) ∧ Odd n ∨ (∃ k : ℤ, -(π / 2) + k * (2 * π) = x) ∧ Odd n   [premise h₀ : n ≠ 0]"
   },
   "children": [
     {
       "name": "case n = 1",
-      "statement": "goal after `| 1 =>`; rewriting h to `cos x = sin x + 1` and using `cos_sq_add_sin_sq x` forces `2 * sin x * cos x = 0`, which contradicts `hsinx` and `hcosx`",
-      "closed_by": "rw [pow_one, pow_one, sub_eq_iff_eq_add] at h; have : 2 * sin x * cos x = 0 := by simpa [h, add_sq, add_assoc, ← two_mul, mul_add, mul_assoc, ← sq] using cos_sq_add_sin_sq x; simp [hsinx, hcosx] at this"
+      "statement": null,
+      "closed_by": "rw [pow_one, pow_one, sub_eq_iff_eq_add] at h; have : 2 * sin x * cos x = 0 := by simpa [h, add_sq, add_assoc, ← two_mul, mul_add, mul_assoc, ← sq] using cos_sq_add_sin_sq x; simp [hsinx, hcosx] at this",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: goal after `| 1 =>`; rewriting h to `cos x = sin x + 1` and using `cos_sq_add_sin_sq x` forces `2 * sin x * cos x = 0`, which contradicts `hsinx` and `hcosx`",
+      "subgoal": true
     },
     {
       "name": "case n = 2",
-      "statement": "goal after `| 2 =>`; rewriting h via `cos_sq_add_sin_sq` reduces it to `sin x = 0`, contradicting `hsinx`",
-      "closed_by": "rw [← cos_sq_add_sin_sq x, sub_eq_add_neg, add_right_inj, neg_eq_self] at h; exact absurd (eq_zero_of_pow_eq_zero h) hsinx"
+      "statement": null,
+      "closed_by": "rw [← cos_sq_add_sin_sq x, sub_eq_add_neg, add_right_inj, neg_eq_self] at h; exact absurd (eq_zero_of_pow_eq_zero h) hsinx",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: goal after `| 2 =>`; rewriting h via `cos_sq_add_sin_sq` reduces it to `sin x = 0`, contradicting `hsinx`",
+      "subgoal": true
     },
     {
       "name": "residual n = m + 2",
-      "statement": "goal after `| (n + 1 + 2) =>`; `set m := n + 1` writes the exponent as `m + 2`, and a `calc` chain proves `(cos x)^(m+2) - (sin x)^(m+2) < 1`, contradicting `h` (which says it equals 1)",
-      "closed_by": "set m := n + 1; refine absurd ?_ h.not_lt; calc … ≤ … = … < … = 1 (the two `gcongr` steps use hcos1 : |cos x| < 1 and hsin1 : |sin x| < 1)"
+      "statement": null,
+      "closed_by": "set m := n + 1; refine absurd ?_ h.not_lt; calc … ≤ … = … < … = 1 (the two `gcongr` steps use hcos1 : |cos x| < 1 and hsin1 : |sin x| < 1)",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: goal after `| (n + 1 + 2) =>`; `set m := n + 1` writes the exponent as `m + 2`, and a `calc` chain proves `(cos x)^(m+2) - (sin x)^(m+2) < 1`, contradicting `h` (which says it equals 1)",
+      "subgoal": true
     }
   ],
   "applicability": {
@@ -151,6 +158,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-1",
       "at": "2026-11-12"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "parent Imo1961Q3_forward: a goal inside a declaration, not a declaration; child 'case n = 1': a subgoal made inside the parent's proof; child 'case n = 2': a subgoal made inside the parent's proof; child 'residual n = m + 2': a subgoal made inside the parent's proof"
     }
   ],
   "status_reason": "",

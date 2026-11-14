@@ -96,6 +96,14 @@
       "evidence": "check_provenance passes: all 7 files byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e. entry.json source.commit/url/source_id match library/sources/carleson/source.json and SOURCE.md (same commit, https://github.com/fpvandoorn/carleson). Licence Apache-2.0 is consistent across entry.json, source.json, SOURCE.md, and upstream-LICENSE (which is the Apache License 2.0 text). All site permalink line ranges match the copied code: finitary_carleson L110-124, tile_sum_operator L69-98, C2_0_1 def L104 with docstring L102-103, discrete_carleson L43-68 with 'Proposition 2.0.2' header at L14, grid_existence L1571-1652, tile_existence L2009-2021. All permalinks pin the same commit. Everything traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T16:25:31Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: discrete_carleson@Carleson/FinitaryCarleson.lean:117, grid_existence@Carleson/FinitaryCarleson.lean:114, tile_existence@Carleson/FinitaryCarleson.lean:115, tile_sum_operator@Carleson/FinitaryCarleson.lean:120; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:05Z"
     }
   ]
 }

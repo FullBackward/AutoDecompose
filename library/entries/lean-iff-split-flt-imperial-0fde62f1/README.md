@@ -275,6 +275,7 @@ Status: **verified**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/blueprint.yml ('Build project') runs leanprover/lean-action@v1 with build:true on push to main and PRs (paths '**/*.lean'); lakefile.toml defaultTargets=['FLT'] and lean_lib FLT globs 'FLT', so FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean is built on the default branch (pinned commit a3210204ad8876e851e32f73dd97d882bf1ccd0a from ref HEAD) | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: isIrreducible_baseChange_of_finrank_eigenspace_eq_one@FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean:488, isIrreducible_of_baseChange@FLT/Slop/RepresentationTheory/OddAbsIrredSlop.lean:492; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at a3210204ad8876e851e32f73dd97d882bf1ccd0a | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

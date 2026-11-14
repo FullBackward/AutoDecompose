@@ -145,13 +145,17 @@
   "children": [
     {
       "name": "at_firstNonzero",
-      "statement": "pointwise goal at coordinate `firstNonzero x hx`, after ext i, by_cases hi : i = firstNonzero x hx and subst hi: (σ (σ x hx) (σ_ne_zero x hx)) (firstNonzero x hx) = x (firstNonzero x hx)",
-      "closed_by": "rw [eq1, eq2, swap12_invol], where eq1 unfolds the outer σ at that coordinate (conv_lhs => rw [σ, if_pos hk_σ.symm]) and eq2 is σ_at_firstNonzero x hx"
+      "statement": null,
+      "closed_by": "rw [eq1, eq2, swap12_invol], where eq1 unfolds the outer σ at that coordinate (conv_lhs => rw [σ, if_pos hk_σ.symm]) and eq2 is σ_at_firstNonzero x hx",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: pointwise goal at coordinate `firstNonzero x hx`, after ext i, by_cases hi : i = firstNonzero x hx and subst hi: (σ (σ x hx) (σ_ne_zero x hx)) (firstNonzero x hx) = x (firstNonzero x hx)",
+      "subgoal": true
     },
     {
       "name": "away_firstNonzero",
-      "statement": "pointwise goal at coordinate `i` under hi : i ≠ firstNonzero x hx: (σ (σ x hx) (σ_ne_zero x hx)) i = x i",
-      "closed_by": "rw [eq1, eq2], where eq1 unfolds the outer σ away from that coordinate (conv_lhs => rw [σ, if_neg (by rwa [hk_σ])]) and eq2 is σ_away_firstNonzero x hx i hi"
+      "statement": null,
+      "closed_by": "rw [eq1, eq2], where eq1 unfolds the outer σ away from that coordinate (conv_lhs => rw [σ, if_neg (by rwa [hk_σ])]) and eq2 is σ_away_firstNonzero x hx i hi",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: pointwise goal at coordinate `i` under hi : i ≠ firstNonzero x hx: (σ (σ x hx) (σ_ne_zero x hx)) i = x i",
+      "subgoal": true
     }
   ],
   "applicability": {
@@ -225,6 +229,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-1",
       "at": "2026-11-12T12:35:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "child 'at_firstNonzero': a subgoal made inside the parent's proof; child 'away_firstNonzero': a subgoal made inside the parent's proof"
     }
   ],
   "status_reason": "",

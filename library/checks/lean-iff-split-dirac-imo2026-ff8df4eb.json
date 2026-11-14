@@ -128,6 +128,14 @@
       "evidence": "Permalinks, commit, licence and source note are consistent and traceable. check_provenance.py passes: code/IMO2026/Q4/solution.lean is byte-identical at commit 37259237016275044e3905e8d537efd0eead74d2 and its recorded sha256 matches. Commit is identical across entry.json source.commit, source.json, SOURCE.md (pinned 2026-11-12T10:23:52Z) and README (372592370162 = first 12 chars). Licence MIT is consistent in entry.json, source.json, SOURCE.md and README; upstream-LICENSE is the MIT text (Copyright 2026 Boundless Intuition) and is byte-identical to the fetched upstream LICENSE at the pinned commit. All 4 site permalinks and the file permalink use the pinned commit and correct path IMO2026/Q4/solution.lean with line anchors matching the README excerpts.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:20:08Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: exists_div_of_canGuarantee@IMO2026/Q4/solution.lean:382, mulanCanGuarantee_of_div@IMO2026/Q4/solution.lean:384; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

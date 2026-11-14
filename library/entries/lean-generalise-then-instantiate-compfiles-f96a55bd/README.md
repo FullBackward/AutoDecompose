@@ -177,6 +177,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/push-main.yaml runs 'lake build' on push to main (default branch); Compfiles/Imo2024P2.lean is imported by Compfiles.lean line 273, so lake build builds it | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: none; subgoals (no name to cite): 2 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8 | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

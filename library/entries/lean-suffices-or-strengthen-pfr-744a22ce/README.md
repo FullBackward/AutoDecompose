@@ -154,6 +154,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/push.yml at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a: 'Build project' job runs leanprover/lean-action@f807b338d95de7813c5c50d018f1c23c9b93b4ec (v1.2.0), i.e. lake build of the whole project incl. PFR/Fibring.lean, on push to master and pull_request; pinned commit is the default-branch (master) tip (source registered with ref HEAD) | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: none; subgoals (no name to cite): 2 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 2 file(s) byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

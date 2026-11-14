@@ -339,6 +339,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/docker-action.yml (Docker CI) triggers on pushes to master and builds the coq-goedel package via 'opam install coq-goedel' -> 'dune build -p coq-goedel'; theories/goedel/dune declares (coq.theory (name Goedel) (package coq-goedel)) with no modules filter so it builds all of theories/goedel/*.v including goedel1.v. Commit ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8 is the head of master (default branch). | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: freeVarG@theories/goedel/goedel1.v:293, FirstIncompletenessA@theories/goedel/goedel1.v:294, FirstIncompletenessB@theories/goedel/goedel1.v:295; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at ed8e6048018a61b4fe6d7d6f96daf0d63da2eba8 | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

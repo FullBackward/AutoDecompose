@@ -165,6 +165,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/push.yml triggers on push to master (default branch) and runs 'lake -R -Kenv=dev build FltRegular', which compiles FltRegular/FltRegular.lean (the parent theorem file); pinned commit 83f477ccc8cef9fd9a022b90d87aed49368e7bbd is on master (GitHub API branches-where-head) | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: caseII@FltRegular/FltRegular.lean:27, caseI@FltRegular/FltRegular.lean:28; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 4 file(s) byte-identical at 83f477ccc8cef9fd9a022b90d87aed49368e7bbd | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

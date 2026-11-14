@@ -208,6 +208,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/build.yml (Build job runs tools/runner.sh build = make all, which compiles every Coq file including driver/Compiler.v; workflow triggers on push to master, the default branch; pinned commit 2685140bf72c959446981fb99b5e44a8975021bc) | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: transf_c_program_match@driver/Compiler.v:451, c_semantic_preservation@driver/Compiler.v:451; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at 2685140bf72c959446981fb99b5e44a8975021bc | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

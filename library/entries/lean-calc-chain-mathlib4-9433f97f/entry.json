@@ -90,22 +90,30 @@
     {
       "name": "link 1: expand n via div_add_mod",
       "statement": "2 ^ n = 2 ^ (3 * (n / 3) + t)",
-      "closed_by": "rw [Nat.div_add_mod]"
+      "closed_by": "rw [Nat.div_add_mod]",
+      "subgoal": true,
+      "note": "Subgoal made by a tactic inside the parent's proof; its name is a description, not an identifier the glue could cite."
     },
     {
       "name": "link 2: distribute the powers",
-      "statement": "2 ^ (3 * (n / 3) + t) = (2 ^ 3) ^ (n / 3) * 2 ^ t",
-      "closed_by": "rw [pow_add, pow_mul]"
+      "statement": null,
+      "closed_by": "rw [pow_add, pow_mul]",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: 2 ^ (3 * (n / 3) + t) = (2 ^ 3) ^ (n / 3) * 2 ^ t",
+      "subgoal": true
     },
     {
       "name": "link 3: reduce base 2^3 to 1 mod 7",
-      "statement": "(2 ^ 3) ^ (n / 3) * 2 ^ t ≡ 1 ^ (n / 3) * 2 ^ t [MOD 7]",
-      "closed_by": "gcongr; decide"
+      "statement": null,
+      "closed_by": "gcongr; decide",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: (2 ^ 3) ^ (n / 3) * 2 ^ t ≡ 1 ^ (n / 3) * 2 ^ t [MOD 7]",
+      "subgoal": true
     },
     {
       "name": "link 4: evaluate 1^k * 2^t",
-      "statement": "1 ^ (n / 3) * 2 ^ t = 2 ^ t",
-      "closed_by": "ring"
+      "statement": null,
+      "closed_by": "ring",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: 1 ^ (n / 3) * 2 ^ t = 2 ^ t",
+      "subgoal": true
     }
   ],
   "applicability": {
@@ -172,6 +180,22 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-1",
       "at": "2026-11-12"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "child 'link 2: distribute the powers': a subgoal made inside the parent's proof; child 'link 3: reduce base 2^3 to 1 mod 7': a subgoal made inside the parent's proof; child 'link 4: evaluate 1^k * 2^t': a subgoal made inside the parent's proof"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:55:48Z",
+      "note": "child 'link 1: expand n via div_add_mod': named by a description, so a subgoal (statement kept)"
     }
   ],
   "status_reason": "",

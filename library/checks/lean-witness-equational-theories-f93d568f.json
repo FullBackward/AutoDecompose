@@ -96,6 +96,14 @@
       "evidence": "Provenance is fully traceable and consistent. check_provenance.py passes: 3 files byte-identical at pinned commit 8b87204d5b201e1cf6c69b8dcabb0558109bee00. Commit matches across entry.json source.commit, source.json, SOURCE.md, and every file/site permalink. Licence Apache-2.0 is consistent in entry.json, SOURCE.md (Licence detected), and source.json, and upstream-LICENSE is the genuine Apache-2.0 text. Copied files exist with matching byte sizes (Equation854.lean 22923, Greedy.lean 2426, 854.tex 32686). Site permalinks' line ranges (parent 506-527; children 466-494, 496-499, 442-443, 445-446; contexts) were checked against the local copy and match the excerpted code exactly. SOURCE.md links the repo, pinned commit, browse-at-commit URL, and licence file (LICENSE copied as upstream-LICENSE).",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T16:23:24Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: fromList_ok@equational_theories/ManuallyProved/Equation854.lean:510, fromList_eval@equational_theories/ManuallyProved/Equation854.lean:512, Extension.eq854@equational_theories/ManuallyProved/Equation854.lean:511, Extension.aux@equational_theories/ManuallyProved/Equation854.lean:517; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

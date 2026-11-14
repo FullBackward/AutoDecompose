@@ -104,6 +104,14 @@
       "evidence": "Permalinks, commit, licence and source note are all consistent and traceable. check_provenance.py passes: the 6 copied files are byte-identical at the pinned commit ee4795874a99ea5f9d85bd0b364425f07b932377, matching both entry.json (source.commit, file permalinks, sha256) and sources/lean-liquid/SOURCE.md (same commit, same repository URL). Licence is recorded as LicenseRef-unknown in entry.json, README 'Source and licence', and SOURCE.md consistently; I confirmed via list_files.py lean-liquid that no LICENSE/COPYING file exists at the root or anywhere in the tree, so 'unknown' is the honest tag per protocol decision 1. Every file and site permalink points at the pinned commit with line anchors, and the entry README states files are copied whole/unmodified from that commit, matching the provenance result.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:29:03Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: is_zero_iff_epi_and_is_iso@src/challenge.lean:36, epi_and_is_iso@src/challenge.lean:40, short_exact@src/challenge.lean:36; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

@@ -112,6 +112,14 @@
       "evidence": "Permalinks, commit (1abfe5bce98632a94ba52adf183045620c509340) and source-note URL are consistent and traceable: check_provenance.py reports both copied files byte-identical at the pinned commit, and every site permalink uses that commit. But the recorded licence is wrong. entry.json source.licence, SOURCE.md and the README all record CC-BY-SA-4.0, which is only the licence of the LICENSE.md document itself, not the code. The two copied files carry their own SPDX headers: proof/refine/Refine.thy is GPL-2.0-only and lib/Simulation.thy is BSD-2-Clause; the upstream LICENSE.md (copied as upstream-LICENSE.md) states this exactly ('proofs about the seL4 kernel code itself are licensed under GPL version 2, and general libraries and tools under the 2-Clause BSD license'). Fix: record the per-file licences (GPL-2.0-only for Refine.thy, BSD-2-Clause for Simulation.thy) and mark the entry copyleft in the index per protocol decision 1.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T16:10:21Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: akernel_invariant@proof/refine/Refine.thy:846, ckernel_invariant@proof/refine/Refine.thy:847, fw_sim_A_H@proof/refine/Refine.thy:848; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:05Z"
     }
   ]
 }

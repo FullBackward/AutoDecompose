@@ -96,6 +96,14 @@
       "evidence": "Commit 7e1641b758d8f0032aa7de63620bc115330e0a6b is identical in entry.json source.commit, sources/verdi/source.json, and SOURCE.md; check_provenance.py reports the copied file byte-identical at that commit, so the commit resolves and every permalink (correct commit + path theories/Core/StatePacketPacketDecomposition.v + line ranges) matches the copied file (verified parent 172-207, children 117-124/126-133/137-146/148-155/157-170, contexts 5-9/11-99/112-115, author comment 135-136). Licence BSD-2-Clause is consistent across entry.json, source.json, SOURCE.md, and the upstream-LICENSE copy, which matches the actual LICENSE at the pinned commit (Copyright 2014-2019 Verdi Team, two redistribution conditions, AS-IS disclaimer). Source note records the correct repo URL, commit, rocq language, licence and attribution. Fully traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:51:22Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: post_net_analyze_sent_packet@theories/Core/StatePacketPacketDecomposition.v:181, post_input_analyze_sent_packet@theories/Core/StatePacketPacketDecomposition.v:196, nw_nw_distinct_pairs_and_elim@theories/Core/StatePacketPacketDecomposition.v:186, distinct_pairs_and_app_cons@theories/Core/StatePacketPacketDecomposition.v:189, distinct_pairs_and_app@theories/Core/StatePacketPacketDecomposition.v:188; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

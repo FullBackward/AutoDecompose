@@ -223,6 +223,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/blueprint.yml (workflow 'Build project', job build_project runs leanprover/lean-action@v1 with build:true, triggered on push/PR to main for **/*.lean) builds the file; pinned commit a3210204ad8876e851e32f73dd97d882bf1ccd0a is the tip of default branch main (GitHub compare main...a3210204 returned identical) | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: Dickson.classification_wild_slop@FLT/Slop/PGL2/FiniteSubgroups/DicksonClassification.lean:70, Dickson.classification_tame_slop@FLT/Slop/PGL2/FiniteSubgroups/DicksonClassification.lean:76; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 4 file(s) byte-identical at a3210204ad8876e851e32f73dd97d882bf1ccd0a | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

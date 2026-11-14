@@ -77,33 +77,45 @@
   "children": [
     {
       "name": "L: y = β",
-      "statement": "0 < y under h : y = β (first branch of rcases on y ∈ {β, x, 180 - β - x})",
-      "closed_by": "rw [h]; exact hβ"
+      "statement": null,
+      "closed_by": "rw [h]; exact hβ",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: 0 < y under h : y = β (first branch of rcases on y ∈ {β, x, 180 - β - x})",
+      "subgoal": true
     },
     {
       "name": "L: y = x",
-      "statement": "0 < y under h : y = x (second branch; linarith from γ < x and 0 < γ)",
-      "closed_by": "rw [h]; linarith"
+      "statement": null,
+      "closed_by": "rw [h]; linarith",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: 0 < y under h : y = x (second branch; linarith from γ < x and 0 < γ)",
+      "subgoal": true
     },
     {
       "name": "L: y = 180 - β - x",
-      "statement": "0 < y under h : y = 180 - β - x (third branch; linarith from x < 180 - β)",
-      "closed_by": "rw [h]; linarith"
+      "statement": null,
+      "closed_by": "rw [h]; linarith",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: 0 < y under h : y = 180 - β - x (third branch; linarith from x < 180 - β)",
+      "subgoal": true
     },
     {
       "name": "R: y = γ",
-      "statement": "0 < y under h : y = γ (first branch of rcases on y ∈ {γ, 180 - x, x - γ})",
-      "closed_by": "rw [h]; exact hγ"
+      "statement": null,
+      "closed_by": "rw [h]; exact hγ",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: 0 < y under h : y = γ (first branch of rcases on y ∈ {γ, 180 - x, x - γ})",
+      "subgoal": true
     },
     {
       "name": "R: y = 180 - x",
-      "statement": "0 < y under h : y = 180 - x (second branch; linarith from x < 180 - β and 0 < β)",
-      "closed_by": "rw [h]; linarith"
+      "statement": null,
+      "closed_by": "rw [h]; linarith",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: 0 < y under h : y = 180 - x (second branch; linarith from x < 180 - β and 0 < β)",
+      "subgoal": true
     },
     {
       "name": "R: y = x - γ",
-      "statement": "0 < y under h : y = x - γ (third branch; linarith from γ < x)",
-      "closed_by": "rw [h]; linarith"
+      "statement": null,
+      "closed_by": "rw [h]; linarith",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: 0 < y under h : y = x - γ (third branch; linarith from γ < x)",
+      "subgoal": true
     }
   ],
   "applicability": {
@@ -169,6 +181,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-1",
       "at": "2026-11-12"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "child 'L: y = β': a subgoal made inside the parent's proof; child 'L: y = x': a subgoal made inside the parent's proof; child 'L: y = 180 - β - x': a subgoal made inside the parent's proof; child 'R: y = γ': a subgoal made inside the parent's proof; child 'R: y = 180 - x': a subgoal made inside the parent's proof; child 'R: y = x - γ': a subgoal made inside the parent's proof"
     }
   ]
 }

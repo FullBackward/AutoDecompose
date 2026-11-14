@@ -163,6 +163,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/build_template.yml builds Archive via 'lake-build-with-retry.sh Archive Counterexamples Wanted' (line 252) and gates on 'lake build --no-build --wfail Archive' (line 297); Archive/Imo/Imo1985Q2.lean is part of the Archive target. Pinned commit e1545ebed97594477bbd88b2fe948ffce56e5af2 is on the default branch master (GitHub compare API e1545ebed...master: behind_by 0, ahead_by 1). | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: none; subgoals (no name to cite): 2 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2 | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

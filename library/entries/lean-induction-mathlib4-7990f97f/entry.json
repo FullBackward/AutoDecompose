@@ -68,13 +68,17 @@
   "children": [
     {
       "name": "base (k = 1)",
-      "statement": "C (1 * j % n) = C j",
-      "closed_by": "rw [one_mul, Nat.mod_eq_of_lt hj.2]"
+      "statement": null,
+      "closed_by": "rw [one_mul, Nat.mod_eq_of_lt hj.2]",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: C (1 * j % n) = C j",
+      "subgoal": true
     },
     {
       "name": "step (k → k + 1)",
-      "statement": "C ((k + 1) * j % n) = C j with hk₁ : 1 ≤ k and hk.2 : k + 1 < n",
-      "closed_by": "rw [← ih ⟨hk₁, Nat.lt_of_succ_lt hk.2⟩, hC.2 _ b₁ nej]; rcases nej.lt_or_gt with h | h; the two branches close by rewrite chains reducing |j − (k+1)*j % n| to k*j % n"
+      "statement": null,
+      "closed_by": "rw [← ih ⟨hk₁, Nat.lt_of_succ_lt hk.2⟩, hC.2 _ b₁ nej]; rcases nej.lt_or_gt with h | h; the two branches close by rewrite chains reducing |j − (k+1)*j % n| to k*j % n",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: C ((k + 1) * j % n) = C j with hk₁ : 1 ≤ k and hk.2 : k + 1 < n",
+      "subgoal": true
     }
   ],
   "applicability": {
@@ -138,6 +142,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-1",
       "at": "2026-11-12T12:17:21Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "child 'base (k = 1)': a subgoal made inside the parent's proof; child 'step (k → k + 1)': a subgoal made inside the parent's proof"
     }
   ],
   "status_reason": "",

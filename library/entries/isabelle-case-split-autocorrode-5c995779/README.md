@@ -193,6 +193,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/ci.yml build job runs 'isabelle build -v -b -d . -o browser_info -d $AFP_COMPONENT_BASE/Word_Lib AutoCorrode'; AutoCorrode session ROOT lists Shallow_Separation_Logic, whose ROOT lists Adequacy as its first theory; pinned commit 200f1acf2d264f2dedee33792b986ebe73c224a3 is identical to default branch main (git compare status identical) | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: atriple_rel_eval_value_adequacy@Shallow_Separation_Logic/Adequacy.thy:65, atriple_rel_eval_return_adequacy@Shallow_Separation_Logic/Adequacy.thy:65, atriple_rel_eval_abort_adequacy@Shallow_Separation_Logic/Adequacy.thy:66, deep_evaluate_basic_no_yield'@Shallow_Separation_Logic/Adequacy.thy:64; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 4 file(s) byte-identical at 200f1acf2d264f2dedee33792b986ebe73c224a3 | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

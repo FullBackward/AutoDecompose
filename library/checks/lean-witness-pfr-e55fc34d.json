@@ -96,6 +96,14 @@
       "evidence": "check_provenance.py pass: 4 files byte-identical at 1ef23c3c5a83db690fe3b3b5c2e8299fae17b81a; commit consistent across entry.json/source.json/SOURCE.md; licence Apache-2.0 in entry, source.json and SOURCE.md matches upstream-LICENSE (Apache 2.0 text); permalinks all point to github.com/teorth/pfr/blob/<commit>/<path> with correct paths and line ranges",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T16:21:44Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: tau_minimizer_exists@PFR/EntropyPFR.lean:61, tau_strictly_decreases@PFR/EntropyPFR.lean:62, exists_isUniform_of_rdist_eq_zero@PFR/EntropyPFR.lean:63, rdist_symm@PFR/EntropyPFR.lean:64, is_tau_min@PFR/EntropyPFR.lean:65, rdist_triangle@PFR/EntropyPFR.lean:68; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

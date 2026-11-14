@@ -104,6 +104,14 @@
       "evidence": "Provenance pass (check_provenance: 1 file byte-identical at eca10f89bd852201c8148ff2f597c7c7346d6df2); copied file sha256 86caef4f...4165 matches entry.json; all permalinks point to math-comp/analysis/blob/eca10f89.../theories/functional_analysis/hahn_banach_theorem.v (path identical to the copied file); licence recorded as CECILL-C, consistent with source.json, SOURCE.md and the copied upstream-LICENCE (CeCILL-C FREE SOFTWARE LICENSE AGREEMENT); SOURCE.md commit/path/licence all agree with source.json and entry.json. Fully traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:48:55Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: zornS_ex@theories/functional_analysis/hahn_banach_theorem.v:310, hahn_banach_witness@theories/functional_analysis/hahn_banach_theorem.v:310, lingraphD@theories/functional_analysis/hahn_banach_theorem.v:314, lingraphZ@theories/functional_analysis/hahn_banach_theorem.v:317; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

@@ -197,6 +197,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/lean_action_ci.yml (leanprover/lean-action@v1 runs lake build on the whole HarmonicLean package, which includes HarmonicLean/IMO2025P4_solve2.lean); pinned commit 72b62405a176a7eaeadb335a7fa6ee80b6667161 is HEAD of default branch main | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: h_largest@HarmonicLean/IMO2025P4_solve2.lean:80; subgoals (no name to cite): 1 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at 72b62405a176a7eaeadb335a7fa6ee80b6667161 | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

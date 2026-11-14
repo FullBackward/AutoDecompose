@@ -104,6 +104,14 @@
       "evidence": "Permalink, commit, licence and source note are all consistent and traceable. check_provenance.py reports the single copied file theories/Logic/WKL.v is byte-identical at commit 22fcaa27d17bc28ab4be728ed10a1fb73afb23ee. Raw view of LICENSE at that commit is LGPL-2.1 (matches entry.json licence, SOURCE.md, source.json and the copied upstream-LICENSE); the WKL.v header itself states 'GNU Lesser General Public License Version 2.1'. All site permalinks point at the pinned commit and the correct path. source.json and SOURCE.md agree on url, commit, licence and licence_files.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T16:02:23Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: is_path_from_restrict@theories/Logic/WKL.v:228, inductively_barred_at_monotone@theories/Logic/WKL.v:231, inductively_barred_at_imp_is_path_from@theories/Logic/WKL.v:233, find_left_path@theories/Logic/WKL.v:229, Y_unique@theories/Logic/WKL.v:225, Y_approx@theories/Logic/WKL.v:222; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

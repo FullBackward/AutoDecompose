@@ -74,13 +74,17 @@
   "children": [
     {
       "name": "suffices goal (conditioning bracketed)",
-      "statement": "I[⟨Y 0 - Y 1, Y 2 - Y 3⟩:⟨Y 0 - Y 2, Y 1 - Y 3⟩|Y 0 - Y 1 - (Y 2 - Y 3);μ] = I[Y 0 - Y 1 : Y 1 - Y 3|Y 0 - Y 1 - (Y 2 - Y 3);μ]",
-      "closed_by": "symm (line 126); rw [← condMutualInfo_of_inj_map hmij hmij hm0123 (fun z x ↦ (x, x - z)), condMutualInfo_comm hmf hmij, ← condMutualInfo_of_inj_map hmij hmf hm0123 (fun z x ↦ (x + z, x)), condMutualInfo_comm hmg hmf] (lines 136-139); then congr! 3 with ω with the two pointwise subgoals closed by simp and rw [sub_sub, add_sub_left_comm, ← sub_sub]; simp (lines 140-143); the two injectivity obligations closed by exact fun _ _ _ h ↦ (Prod.ext_iff.1 h).2 and exact fun _ _ _ h ↦ (Prod.ext_iff.1 h).1 (lines 144-145)"
+      "statement": null,
+      "closed_by": "symm (line 126); rw [← condMutualInfo_of_inj_map hmij hmij hm0123 (fun z x ↦ (x, x - z)), condMutualInfo_comm hmf hmij, ← condMutualInfo_of_inj_map hmij hmf hm0123 (fun z x ↦ (x + z, x)), condMutualInfo_comm hmg hmf] (lines 136-139); then congr! 3 with ω with the two pointwise subgoals closed by simp and rw [sub_sub, add_sub_left_comm, ← sub_sub]; simp (lines 140-143); the two injectivity obligations closed by exact fun _ _ _ h ↦ (Prod.ext_iff.1 h).2 and exact fun _ _ _ h ↦ (Prod.ext_iff.1 h).1 (lines 144-145)",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: I[⟨Y 0 - Y 1, Y 2 - Y 3⟩:⟨Y 0 - Y 2, Y 1 - Y 3⟩|Y 0 - Y 1 - (Y 2 - Y 3);μ] = I[Y 0 - Y 1 : Y 1 - Y 3|Y 0 - Y 1 - (Y 2 - Y 3);μ]",
+      "subgoal": true
     },
     {
       "name": "original goal (residual from suffices)",
       "statement": "I[⟨Y 0 - Y 1, Y 2 - Y 3⟩:⟨Y 0 - Y 2, Y 1 - Y 3⟩|Y 0 - Y 1 - (Y 2 - Y 3);μ] = I[Y 0 - Y 1 : Y 1 - Y 3|Y 0 - Y 1 - Y 2 + Y 3;μ]",
-      "closed_by": "convert this using 2; abel (line 125)"
+      "closed_by": "convert this using 2; abel (line 125)",
+      "subgoal": true,
+      "note": "Subgoal made by a tactic inside the parent's proof; its name is a description, not an identifier the glue could cite."
     }
   ],
   "applicability": {
@@ -143,6 +147,22 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-1",
       "at": "2026-11-12"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "child 'suffices goal (conditioning bracketed)': a subgoal made inside the parent's proof"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:55:48Z",
+      "note": "child 'original goal (residual from suffices)': named by a description, so a subgoal (statement kept)"
     }
   ],
   "status_reason": "",

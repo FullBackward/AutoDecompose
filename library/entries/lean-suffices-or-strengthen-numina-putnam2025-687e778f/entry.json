@@ -67,9 +67,10 @@
   },
   "children": [
     {
-      "name": "h (the strengthened valuation package)",
+      "name": "h",
       "statement": "(∀ j ≥ 1, padicValInt 2 (b (2^j)) = j + 1) ∧ (∀ j ≥ 1, padicValInt 2 (A b (2^j) - 1) = j + 1)",
-      "closed_by": "hP proved by Nat.le_induction (lines 1432-1581) with base cases base_case_b/base_case_A (line 1436) and a succ step carrying both halves of the IH together (obtain ⟨ih_b, ih_A⟩ := ih, line 1439); then constructor with two projections (lines 1583-1585) recovers the two conjuncts of h"
+      "closed_by": "hP proved by Nat.le_induction (lines 1432-1581) with base cases base_case_b/base_case_A (line 1436) and a succ step carrying both halves of the IH together (obtain ⟨ih_b, ih_A⟩ := ih, line 1439); then constructor with two projections (lines 1583-1585) recovers the two conjuncts of h",
+      "note": "Gloss moved from the name: (the strengthened valuation package)."
     }
   ],
   "applicability": {
@@ -131,6 +132,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-1",
       "at": "2026-11-12"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "child 'h (the strengthened valuation package)': gloss moved from the name to the note"
     }
   ],
   "status_reason": "",

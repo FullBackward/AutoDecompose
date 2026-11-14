@@ -195,6 +195,22 @@
       "agent_role": "harvest-analyst",
       "run": "pilot-2",
       "at": "2026-11-12T14:44:44Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "parent TODO: TODO left by an abandoned extraction (see item 5)"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:55:48Z",
+      "note": "parent TODO: TODO left by an abandoned extraction (see item 5)"
     }
   ]
 }

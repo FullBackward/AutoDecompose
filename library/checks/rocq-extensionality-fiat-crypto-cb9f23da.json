@@ -96,6 +96,14 @@
       "evidence": "Permalinks, commit and copied files are consistent: check_provenance.py passed (2 files byte-identical at 3d2880ef); every site permalink's line range matches the local copy (divstep_g 638-718, divstep_d 720-755, divstep_f 757-784, divstep_v 818-856, divstep_r 870-948, projections 950-953/955-958/960-963, parent divstep_correct_full 975-1021, glue 1012-1021), and the section header 572-574 is as claimed. The source note and source.json agree on commit and licence string. Objection: the recorded licence 'Apache-2.0 AND BSD-2-Clause AND MIT AND MIT OR Apache-2.0 OR BSD-1-Clause' is inconsistent with the copied licence files -- there is no BSD-2-Clause file (the file is LICENSE-BSD-1 declaring BSD-1-Clause), and the 'AND' conjunction contradicts the COPYRIGHT's 'MIT OR Apache-2.0 OR BSD-1-Clause' ('at your option'). Fix: set the licence field to 'MIT OR Apache-2.0 OR BSD-1-Clause' per COPYRIGHT, dropping the phantom BSD-2-Clause and the 'AND' framing, in entry.json, the README and the source note.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:58:05Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: divstep_spec_divstep_spec_full_d@src/Arithmetic/BYInv.v:1015, divstep_d@src/Arithmetic/BYInv.v:1015, divstep_spec_divstep_spec_full_f@src/Arithmetic/BYInv.v:1016, divstep_f@src/Arithmetic/BYInv.v:1016, divstep_spec_divstep_spec_full_g@src/Arithmetic/BYInv.v:1017, divstep_g@src/Arithmetic/BYInv.v:1017, divstep_spec2_divstep_spec_full_v@src/Arithmetic/BYInv.v:1018, divstep_v@src/Arithmetic/BYInv.v:1019, divstep_spec2_divstep_spec_full_r@src/Arithmetic/BYInv.v:1020, divstep_r@src/Arithmetic/BYInv.v:1021; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

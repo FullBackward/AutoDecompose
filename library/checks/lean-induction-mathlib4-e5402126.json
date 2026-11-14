@@ -96,6 +96,14 @@
       "evidence": "Provenance pass: check_provenance.py reports 2 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2. SHA-256 in entry.json files[] match the copied files exactly (BallotProblem.lean a90aa888…, Init.lean 2537d5b0…). Commit is recorded consistently across entry.json source.commit, README, sources/mathlib4/SOURCE.md and source.json (e1545ebed97594477bbd88b2fe948ffce56e5af2, pinned via HEAD). Licence Apache-2.0 recorded in entry.json, README and source.json; upstream-LICENSE is genuine Apache-2.0 text. All permalinks (entry.json files[] and sites[], README links) use the same commit hash and correct repo/file paths; spot-checked line anchors match the copied files (parent 309-344, ballot_same 239-246, diag_induction 358-366). Everything traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T16:22:32Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: ballot_same@Archive/Wiedijk100Theorems/BallotProblem.lean:313, ballot_edge@Archive/Wiedijk100Theorems/BallotProblem.lean:316, ballot_pos@Archive/Wiedijk100Theorems/BallotProblem.lean:327, ballot_neg@Archive/Wiedijk100Theorems/BallotProblem.lean:327, first_vote_pos@Archive/Wiedijk100Theorems/BallotProblem.lean:327, first_vote_neg@Archive/Wiedijk100Theorems/BallotProblem.lean:327; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

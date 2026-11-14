@@ -577,6 +577,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/coq-action.yml (name: CI) builds coq-mathcomp-odd-order.opam via docker-coq-action on push to master and PRs; _CoqProject lists theories/PFsection14.v (line 23). Pinned commit ba734c0 is HEAD of master (default branch, 2026-08-20). nix-action-master.yml also has an odd-order job on push to master. | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: FTtypeP_pair_cases@theories/PFsection14.v:1218, not_all_FTtype1@theories/PFsection14.v:1219, typeP_pair_sym@theories/PFsection14.v:1221, typeP_pairW@theories/PFsection14.v:1232, FTtypeP_max_typeII@theories/PFsection14.v:1233, FTtypeP_min_typeII@theories/PFsection14.v:1234, compl_of_typeII@theories/PFsection14.v:1236, FTtypeII_support_facts@theories/PFsection14.v:1242, FT_Frobenius_type1@theories/PFsection14.v:1244, FTtype1_coherence@theories/PFsection14.v:1246, FTtype1_ref_irr@theories/PFsection14.v:1248, FTtype2_exclusion@theories/PFsection14.v:1250; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 4 file(s) byte-identical at ba734c020d9f7dce5758fa822904dea29e2624ba | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

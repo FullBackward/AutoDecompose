@@ -221,6 +221,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/lean_action_ci.yml (leanprover/lean-action@v1 on push/PR); commit 60d33c8ba19af905bd731e938ebde1c5b8c76519 is HEAD of default branch main; NuminaPutnam2025.lean imports NuminaPutnam2025.putnam_2025_a3 | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: none; subgoals (no name to cite): 2 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at 60d33c8ba19af905bd731e938ebde1c5b8c76519 | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

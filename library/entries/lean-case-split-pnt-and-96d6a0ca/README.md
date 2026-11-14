@@ -216,6 +216,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/build.yml: runs leanprover/lean-action (build-args :blueprint) on push/PR to main, which compiles the PrimeNumberTheoremAnd library including StrongPNT.lean; pinned commit 2c476fa6441c607096d93c8fc7ac0a227a655dae is on default branch main (compare API: main ahead 1, behind 0) | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: LogDerivZetaUniformLogSquaredBoundStripSpec@PrimeNumberTheoremAnd/StrongPNT.lean:2834, LogDerivZetaBdd_of_Re_ge_three_halves@PrimeNumberTheoremAnd/StrongPNT.lean:2835; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at 2c476fa6441c607096d93c8fc7ac0a227a655dae | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

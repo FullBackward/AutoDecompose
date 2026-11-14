@@ -96,6 +96,14 @@
       "evidence": "Provenance pass: check_provenance.py confirms 4 files byte-identical at ba734c020d9f7dce5758fa822904dea29e2624ba. Commit is consistent everywhere: entry.json source.commit, source.json, SOURCE.md, and every file/site permalink use ba734c020d9f7dce5758fa822904dea29e2624ba; the verifier's ci-record cites it as HEAD of master. Licence CECILL-B is recorded consistently in entry.json, source.json, SOURCE.md, README; the copied upstream-CeCILL-B is genuinely the CeCILL-B licence (Version 1.0 dated 2006-09-05). Source note SOURCE.md matches (repo, commit, language, licence file). All 12 site line ranges resolve to the correct named lemmas in the byte-identical copies (spot-checked: no_minSimple_odd_group 1216, Feit_Thompson 1255, compl_of_typeII 387, typeP_pair_sym 436, FTtypeP_pair_cases 443, typeP_pairW 470, FTtype1_ref_irr 56, FT_Frobenius_type1 491, not_all_FTtype1 1302, FTtypeII_support_facts 1658, FTtype1_coherence 1963, FTtypeP_max_typeII 491, FTtypeP_min_typeII 733, FTtype2_exclusion 1211). Traceable end to end.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:49:49Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: FTtypeP_pair_cases@theories/PFsection14.v:1218, not_all_FTtype1@theories/PFsection14.v:1219, typeP_pair_sym@theories/PFsection14.v:1221, typeP_pairW@theories/PFsection14.v:1232, FTtypeP_max_typeII@theories/PFsection14.v:1233, FTtypeP_min_typeII@theories/PFsection14.v:1234, compl_of_typeII@theories/PFsection14.v:1236, FTtypeII_support_facts@theories/PFsection14.v:1242, FT_Frobenius_type1@theories/PFsection14.v:1244, FTtype1_coherence@theories/PFsection14.v:1246, FTtype1_ref_irr@theories/PFsection14.v:1248, FTtype2_exclusion@theories/PFsection14.v:1250; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

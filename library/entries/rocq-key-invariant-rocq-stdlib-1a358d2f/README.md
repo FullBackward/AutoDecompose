@@ -326,6 +326,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/nix-action-rocq-9.3.yml 'stdlib' job (nix-build bundle rocq-9.3 job stdlib) compiles the whole rocq stdlib incl. theories/Logic/WKL.v, on push to master (default branch); pinned commit 22fcaa27d17bc28ab4be728ed10a1fb73afb23ee is on master (API compare master...22fcaa27 = identical) | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: is_path_from_restrict@theories/Logic/WKL.v:228, inductively_barred_at_monotone@theories/Logic/WKL.v:231, inductively_barred_at_imp_is_path_from@theories/Logic/WKL.v:233, find_left_path@theories/Logic/WKL.v:229, Y_unique@theories/Logic/WKL.v:225, Y_approx@theories/Logic/WKL.v:222; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at 22fcaa27d17bc28ab4be728ed10a1fb73afb23ee | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

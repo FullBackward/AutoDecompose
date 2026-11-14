@@ -96,6 +96,7 @@ Status: **draft**
 |---|---|---|---|---|
 | build | not-run | No CI workflow in the source: no .github/workflows directory exists at commit 6e837e75355538c7f80bab5b956861e86c4eacc2 (pinned commit = HEAD of default branch main, per GitHub API); formalization.yaml is metadata, not CI. No local Lean toolchain installed. | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: solution@Theorems/Thm_fermatLastTheoremFive.lean:5; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 4 file(s) byte-identical at 6e837e75355538c7f80bab5b956861e86c4eacc2 | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

@@ -57,12 +57,16 @@
     {
       "name": "the witness n = 4000",
       "statement": "n = 4000",
-      "closed_by": "use 4000"
+      "closed_by": "use 4000",
+      "subgoal": true,
+      "note": "Subgoal made by a tactic inside the parent's proof; its name is a description, not an identifier the glue could cite."
     },
     {
       "name": "the property at the witness",
-      "statement": "3.999 ≤ ∑ k ∈ range 4000, (x k) ^ 2 / x (k + 1)",
-      "closed_by": "convert! Imo1982Q3.ineq (Nat.succ_ne_zero 3998) hx h0 hp; norm_num"
+      "statement": null,
+      "closed_by": "convert! Imo1982Q3.ineq (Nat.succ_ne_zero 3998) hx h0 hp; norm_num",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: 3.999 ≤ ∑ k ∈ range 4000, (x k) ^ 2 / x (k + 1)",
+      "subgoal": true
     }
   ],
   "applicability": {
@@ -131,6 +135,22 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-1",
       "at": "2026-11-12T12:30:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "child 'the property at the witness': a subgoal made inside the parent's proof"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:55:48Z",
+      "note": "child 'the witness n = 4000': named by a description, so a subgoal (statement kept)"
     }
   ],
   "status_reason": "",

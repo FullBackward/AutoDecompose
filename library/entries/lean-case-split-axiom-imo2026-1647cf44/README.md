@@ -161,6 +161,7 @@ Status: **draft**
 |---|---|---|---|---|
 | build | not-run | No GitHub CI workflow builds this file: list_files.py at commit c5a6a089d06d shows no .github/workflows/ directory; verification is via the external Axle verify_proof service invoked by verify.py, documented in README.md, not a CI build on the default branch. | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: none; subgoals (no name to cite): 6 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2 | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

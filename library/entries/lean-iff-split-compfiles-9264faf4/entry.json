@@ -57,13 +57,17 @@
   "children": [
     {
       "name": "forward",
-      "statement": "n ∈ solution_set → 2^n ≡ 1 [MOD 7] (first goal created by constructor)",
-      "closed_by": "obtain ⟨m, hm⟩ := Nat.dvd_of_mod_eq_zero hn; change 2^n % 7 = 1; rw [hm, Nat.pow_mul, Nat.pow_mod]; norm_num"
+      "statement": null,
+      "closed_by": "obtain ⟨m, hm⟩ := Nat.dvd_of_mod_eq_zero hn; change 2^n % 7 = 1; rw [hm, Nat.pow_mul, Nat.pow_mod]; norm_num",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: n ∈ solution_set → 2^n ≡ 1 [MOD 7] (first goal created by constructor)",
+      "subgoal": true
     },
     {
       "name": "reverse",
-      "statement": "2^n ≡ 1 [MOD 7] → n ∈ solution_set (second goal created by constructor)",
-      "closed_by": "change n % 3 = 0; change 2^n % 7 = 1 at hn; rw [(Nat.div_add_mod' n 3).symm, pow_add, pow_mul', Nat.mul_mod, Nat.pow_mod] at hn; mod_cases H : n % 3; exact H / rw [H] at hn; norm_num at hn / rw [H] at hn; norm_num at hn"
+      "statement": null,
+      "closed_by": "change n % 3 = 0; change 2^n % 7 = 1 at hn; rw [(Nat.div_add_mod' n 3).symm, pow_add, pow_mul', Nat.mul_mod, Nat.pow_mod] at hn; mod_cases H : n % 3; exact H / rw [H] at hn; norm_num at hn / rw [H] at hn; norm_num at hn",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: 2^n ≡ 1 [MOD 7] → n ∈ solution_set (second goal created by constructor)",
+      "subgoal": true
     }
   ],
   "applicability": {
@@ -129,6 +133,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-1",
       "at": "2026-11-12"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "child 'forward': a subgoal made inside the parent's proof; child 'reverse': a subgoal made inside the parent's proof"
     }
   ],
   "status_reason": "",

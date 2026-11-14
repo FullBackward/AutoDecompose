@@ -19,7 +19,7 @@ once, over the ambient type, and never repeated for the subtype.
 
 ## The decomposition
 
-### parent `imo1977_q6_nat`: [`Archive/Imo/Imo1977Q6.lean` lines 23-35](https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1977Q6.lean#L23-L35) ([local copy](code/Archive/Imo/Imo1977Q6.lean))
+### child `imo1977_q6_nat`: [`Archive/Imo/Imo1977Q6.lean` lines 23-35](https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1977Q6.lean#L23-L35) ([local copy](code/Archive/Imo/Imo1977Q6.lean))
 
 ```lean
 public theorem imo1977_q6_nat (f : ℕ → ℕ) (h : ∀ n, f (f n) < f (n + 1)) : ∀ n, f n = n := by
@@ -37,7 +37,7 @@ public theorem imo1977_q6_nat (f : ℕ → ℕ) (h : ∀ n, f (f n) < f (n + 1))
   exact Nat.eq_of_le_of_lt_succ (hf _) (hf_mono.lt_iff_lt.mp (h _))
 ```
 
-### child `imo1977_q6`: [`Archive/Imo/Imo1977Q6.lean` lines 41-48](https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1977Q6.lean#L41-L48) ([local copy](code/Archive/Imo/Imo1977Q6.lean))
+### parent `imo1977_q6`: [`Archive/Imo/Imo1977Q6.lean` lines 41-48](https://github.com/leanprover-community/mathlib4/blob/e1545ebed97594477bbd88b2fe948ffce56e5af2/Archive/Imo/Imo1977Q6.lean#L41-L48) ([local copy](code/Archive/Imo/Imo1977Q6.lean))
 
 ```lean
 public theorem imo1977_q6 (f : ℕ+ → ℕ+) (h : ∀ n, f (f n) < f (n + 1)) : ∀ n, f n = n := by
@@ -64,7 +64,7 @@ then we use it to prove the statement for positive naturals.
 -/
 ```
 
-How the parts fit. The parent `imo1977_q6_nat` states the problem over
+How the parts fit. The child `imo1977_q6_nat` states the problem over
 `f : ℕ → ℕ` (the ambient type, which has `0`). Its proof (lines 24-35) never
 mentions ℕ+:
 
@@ -75,24 +75,24 @@ mentions ℕ+:
 3. `hf_mono : StrictMono f` follows from `hf` and `h` (line 33).
 4. `Nat.eq_of_le_of_lt_succ` closes `f n = n` (line 35).
 
-The child `imo1977_q6` restores the ℕ+ statement. It extends the given
+The parent `imo1977_q6` restores the ℕ+ statement. It extends the given
 `f : ℕ+ → ℕ+` to a total function `f' : ℕ → ℕ := fun m => if 0 < m then f m.toPNat' else 0`:
 at `m = 0` the garbage value `0`, and at positive `m` the value `f m.toPNat'`
 (`Nat.toPNat'` sends `n + 1` to itself; see [`Mathlib/Data/PNat/Defs.lean`](code/Mathlib/Data/PNat/Defs.lean)).
-Then `refine imo1977_q6_nat f' ?_ n` instantiates the parent; the one remaining
+Then `refine imo1977_q6_nat f' ?_ n` instantiates the child; the one remaining
 obligation, `∀ x, f' (f' x) < f' (x + 1)`, is discharged by `cases x` —
 `· simp` closes the `0` case, `· simpa using! h _` the positive case — and a
 final `simpa` coerces `f' n = n` in ℕ back to `f n = n` in ℕ+.
 
 So the generalisation buys the whole argument for the price of an extension:
-the child is 8 lines, none of which re-derive the induction.
+the parent is 8 lines, none of which re-derive the induction.
 
 ## Why it is good
 
 1. *(author-statement)* The authors state the plan in the module comment:
    "We first prove the problem statement for `f : ℕ → ℕ` then we use it to prove
    the statement for positive naturals." (lines 16-17).
-2. *(check)* The child `imo1977_q6` is closed by instantiating the parent at the
+2. *(check)* The parent `imo1977_q6` is closed by instantiating the child at the
    extension `fun m => if 0 < m then f m.toPNat' else 0` (line 44), discharging
    the new hypothesis by `intro x; cases x` into `· simp` and `· simpa using! h _`,
    and finishing with `simpa` (lines 41-48).
@@ -101,9 +101,9 @@ the child is 8 lines, none of which re-derive the induction.
    `build_template.yml`, which builds the Archive library
    (`lake-build-with-retry.sh Archive Counterexamples Wanted`, line 252) and
    fails the job if Archive did not build (lines 410-414).
-4. *(measurement)* The instantiation adds no new mathematics: the child's body
-   is 7 lines (42-48) that only extend `f`, apply the parent, `cases`, and
-   `simpa`; the parent's 8-line induction/`calc` (24-31) is never repeated.
+4. *(measurement)* The instantiation adds no new mathematics: the parent's body
+   is 7 lines (42-48) that only extend `f`, apply the child, `cases`, and
+   `simpa`; the child's 8-line induction/`calc` (24-31) is never repeated.
 
 In my opinion the reusable detail is the pair of obligations the move exposes —
 a total, decidable extension and a `cases` on the added element — because those
@@ -147,15 +147,16 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/build.yml (on: push, lines 3-14) invokes .github/workflows/build_template.yml (line 35 uses), whose step 'build archive, counterexamples and wanted' runs '../tools-branch/scripts/lake-build-with-retry.sh Archive Counterexamples Wanted' (line 252) and step 'Check if building Archive or Counterexamples failed' (lines 410-419) exits 1 if Archive did not build, so Archive/Imo/Imo1977Q6.lean is built. Pinned commit e1545ebed97594477bbd88b2fe948ffce56e5af2 confirmed on master (default branch) via GitHub compare API: status ahead, ahead_by 1, behind_by 0. | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: imo1977_q6_nat@Archive/Imo/Imo1977Q6.lean:44; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 2 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2 | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
 | Claim | Verdict | Evidence | By |
 |---|---|---|---|
 | 1 | verified | Copied file Archive/Imo/Imo1977Q6.lean lines 16-17 read: 'We first prove the problem statement for f over Nat, then we use it to prove the statement for positive naturals.' Matches the quoted module comment verbatim (backtick f : N -> N backtick). | verifier |
-| 2 | verified | Copied code Archive/Imo/Imo1977Q6.lean lines 41-48: line 41 'public theorem imo1977_q6 (f : ℕ+ → ℕ+) (h : ...) : ∀ n, f n = n := by', line 44 'refine imo1977_q6_nat (fun m => if 0 < m then f m.toPNat' else 0) ?_ n' instantiates the parent at the extension, line 45 'intro x; cases x', line 46 '· simp' (x=0), line 47 '· simpa using! h _' (positive), line 48 'simpa' closes the goal — all as claimed. | verifier |
+| 2 | verified | After the role swap: code/Archive/Imo/Imo1977Q6.lean line 41 declares the parent imo1977_q6; line 44 is 'refine imo1977_q6_nat (fun m => if 0 < m then f m.toPNat' else 0) ?_ n', instantiating the child imo1977_q6_nat (declared line 23). | fixer-2026-11-14 |
 | 3 | verified | Fetched .github/workflows/build_template.yml and build.yml at e1545ebed97594477bbd88b2fe948ffce56e5af2 via fetch_file.py. build_template.yml line 252 runs '../tools-branch/scripts/lake-build-with-retry.sh Archive Counterexamples Wanted'; lines 410-419 are the step 'Check if building Archive or Counterexamples failed' which prints an error and exits 1 if steps.archive.outcome == 'failure'. build.yml lines 3-4 'on: push:' (branches-ignore excludes only bors/experiment branches, not master) and line 35 'uses: ./.github/workflows/build_template.yml'. | verifier |
-| 4 | verified | Copied code Archive/Imo/Imo1977Q6.lean: child body is lines 42-48 = 7 lines (intro n; have := by; refine ... at line 44; intro x; cases x; · simp; · simpa using! h _; simpa), none re-deriving the induction; parent induction/calc block is lines 24-31 = 8 lines (have h' ... := by / induction k generalizing n with / | zero / | succ ... calc), and this block appears nowhere in the child (lines 41-48). Line counts match the claim. | verifier |
+| 4 | verified | After the role swap: the parent's body is lines 42-48 (7 lines: intro n; have := by; refine imo1977_q6_nat ...; intro x; cases x; simp; simpa); the child's induction and calc are lines 24-31 and appear nowhere in 42-48. | fixer-2026-11-14 |
 
 | Review lens | Decision | Reason | By |
 |---|---|---|---|

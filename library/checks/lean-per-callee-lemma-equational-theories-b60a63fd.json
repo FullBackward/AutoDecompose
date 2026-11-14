@@ -96,6 +96,14 @@
       "evidence": "check_provenance.py passes: all 3 copied files byte-identical at pinned commit 8b87204d5b201e1cf6c69b8dcabb0558109bee00, and recorded sha256 hashes match the local copies; commit agrees across entry.json, source.json and SOURCE.md; licence Apache-2.0 consistent across entry.json, source.json, SOURCE.md and the copied upstream-LICENSE (Apache 2.0 text with Equational Theories Project copyright); every file and site permalink points at github.com/teorth/equational_theories/blob/<commit>/<path> matching the copied paths.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T14:58:43Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: use_chain@equational_theories/ManuallyProved/Equation1729.lean:23, enlarge_L₀'@equational_theories/ManuallyProved/Equation1729.lean:36, enlarge_S'@equational_theories/ManuallyProved/Equation1729.lean:40, enlarge_op@equational_theories/ManuallyProved/Equation1729.lean:43, TrivialPartialSolution@equational_theories/ManuallyProved/Equation1729.lean:21; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

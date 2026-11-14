@@ -96,6 +96,14 @@
       "evidence": "Commit, licence, permalinks and source note are mutually consistent and traceable. source.json, SOURCE.md and entry.json all pin commit 788fddc53c463d5d40d4680fb9bfd7b0f96f1063; check_provenance.py reports the copied IMO2026/Q5/solution.lean byte-identical at that commit, and its sha256 (237a1707...) and byte count (9559) match entry.json files[0]. The upstream-LICENSE (sources/pramaana-imo2026/upstream-LICENSE) is the MIT License (c) 2026 Pramaana Labs, matching the MIT recorded in source.json, SOURCE.md and entry.json. Every permalink uses the pinned commit, and the site line ranges match the copied file (d_nonneg@78, g_const@191, easy_dir@204, answer_correctness@223, AnswerType@5/def answer@20). All traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:17:12Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: d_nonneg@IMO2026/Q5/solution.lean:230, g_const@IMO2026/Q5/solution.lean:233, easy_dir@IMO2026/Q5/solution.lean:236; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

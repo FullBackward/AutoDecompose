@@ -201,6 +201,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/build.yml at efe3bbbc (default branch main; commit is HEAD of main per GitHub compare API): push to main runs job build_project -> leanprover/lean-action 'Build the project' (lake build); SpherePacking.lean:3 'public import SpherePacking.Basic.E8' pulls E8.lean into the build | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: PeriodicSpherePacking.density_eq@SpherePacking/Basic/E8.lean:672, E8Packing_numReps@SpherePacking/Basic/E8.lean:673, E8_ℤBasis_apply_norm@SpherePacking/Basic/E8.lean:693, E8_ℤBasis_ofZLatticeBasis_volume@SpherePacking/Basic/E8.lean:683; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 3 file(s) byte-identical at efe3bbbc1ece548f4672a772b94d8f621c10fdda | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

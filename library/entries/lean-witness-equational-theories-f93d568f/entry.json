@@ -156,13 +156,15 @@
   "children": [
     {
       "name": "fromList_ok",
-      "statement": "theorem fromList_ok {S : List ((Nat × Nat) × Nat)} (sorted … eq854 … eq8 … eq101 … eq46155 … eq378 … no_idem … aux … uniq_fac … mono, each := by decide) : (fromList S).OK",
-      "closed_by": "each of the 10 `PreExtension.OK` fields is discharged from its matching `by decide` hypothesis; `finite := List.finite_toSet S` (line 479), `func` by `List.isChain_iff_pairwise.1 sorted` (lines 480-485), the rest by direct application (lines 486-494)"
+      "statement": "theorem fromList_ok {S : List ((Nat × Nat) × Nat)}\n    (sorted : S.IsChain (fun a b => lexLt a.1 b.1) := by decide)\n    (eq854 : ∀ a ∈ S, ∀ b ∈ S, a.1.2 = b.1.2 →\n      ∀ c ∈ S, c.1 = (b.2, a.2) → ((a.1.1, c.2), a.1.1) ∈ S := by decide)\n    (eq8 : ∀ a ∈ S, a.1.1 = a.1.2 → ((a.1.1, a.2), a.1.1) ∈ S := by decide)\n    (eq101 : ∀ a ∈ S, ∀ b ∈ S, a.2 = b.1.1 → a.1.1 = b.1.2 → ((a.1.1, b.2), a.1.1) ∈ S := by decide)\n    (eq46155 : ∀ a ∈ S, ∀ b ∈ S, a.1.1 = b.1.1 → a.2 = b.1.2 → ((a.2, b.2), a.2) ∈ S := by decide)\n    (eq378 : ∀ a ∈ S, ((a.2, a.1.2), a.2) ∈ S := by decide)\n    (no_idem : ∀ a ∈ S, a.1.1 = a.2 → a.1.2 ≠ a.2 := by decide)\n    (aux : ∀ a ∈ S, a.1.1 ≠ a.1.2 → ((a.1.1, a.2), a.1.1) ∉ S := by decide)\n    (uniq_fac : ∀ a ∈ S, a.2 ≠ a.1.1 → ∀ b ∈ S, a.2 = b.2 → a.2 = b.1.1 ∨ a.1 = b.1 := by decide)\n    (mono : ∀ a ∈ S, a.2 = a.1.1 ∨ a.1.1 < a.2 ∧ a.1.2 < a.2 := by decide) :\n    (fromList S).OK",
+      "closed_by": "each of the 10 `PreExtension.OK` fields is discharged from its matching `by decide` hypothesis; `finite := List.finite_toSet S` (line 479), `func` by `List.isChain_iff_pairwise.1 sorted` (lines 480-485), the rest by direct application (lines 486-494)",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: theorem fromList_ok {S : List ((Nat × Nat) × Nat)} (sorted … eq854 … eq8 … eq101 … eq46155 … eq378 … no_idem … aux … uniq_fac … mono, each := by decide) : (fromList S).OK"
     },
     {
       "name": "fromList_eval",
-      "statement": "theorem fromList_eval {e : Extension} {S : List ((Nat × Nat) × Nat)} (hS : e.1 = fromList S) (a b c : Nat) (h : ((a, b), c) ∈ S := by decide) : a ◇ b = c",
-      "closed_by": "(Extension.base e (hS ▸ h)).symm (line 499): the table membership is coerced through `hS` to `c ∈ e.1 a b`, then `Extension.base` gives `c = a ◇ b`, reversed"
+      "statement": "theorem fromList_eval {e : Extension} {S : List ((Nat × Nat) × Nat)} (hS : e.1 = fromList S)\n    (a b c : Nat) (h : ((a, b), c) ∈ S := by decide) :\n    haveI : Magma Nat := instMagma e; a ◇ b = c",
+      "closed_by": "(Extension.base e (hS ▸ h)).symm (line 499): the table membership is coerced through `hS` to `c ∈ e.1 a b`, then `Extension.base` gives `c = a ◇ b`, reversed",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: theorem fromList_eval {e : Extension} {S : List ((Nat × Nat) × Nat)} (hS : e.1 = fromList S) (a b c : Nat) (h : ((a, b), c) ∈ S := by decide) : a ◇ b = c"
     },
     {
       "name": "Extension.eq854",
@@ -248,6 +250,22 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-2",
       "at": "2026-11-12T16:15:41Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "child 'fromList_ok': statement re-copied from the declaration of fromList_ok; child 'fromList_eval': statement re-copied from the declaration of fromList_eval"
+    },
+    {
+      "field": "children.fromList_eval.statement",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:54Z",
+      "note": "re-copied after statements.py learned that a ':=' after 'haveI'/'let' (up to ';') binds, not proves; the first copy stopped at that haveI"
     }
   ],
   "status_reason": "",

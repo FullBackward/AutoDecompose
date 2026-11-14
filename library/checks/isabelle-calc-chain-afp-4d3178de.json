@@ -96,6 +96,14 @@
       "evidence": "Permalinks and commit are consistent and traceable: every permalink points at 07cd9ca548d180f234c63f06bf5d1cb85c7fc5df, check_provenance reports the copied file byte-identical at that commit, and the line anchors match the copied file (n_less_7 L231-260, context L133-139, children L180-191/L206-224/L27-38). The licence is not consistent with the copied file: entry.json and SOURCE.md record LicenseRef-unknown and claim 'no licence file found at the root', but the IMO2019 entry's licence is traceable at the pinned commit - metadata/entries/IMO2019.toml has license = 'bsd' and metadata/licenses.toml maps bsd -> 'BSD'. Fix: record the licence as BSD and cite that metadata locator in the entry's source licence and in SOURCE.md, instead of LicenseRef-unknown.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T16:11:22Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: k_gt_T@thys/IMO2019/IMO2019_Q4.thy:246, rhs_less@thys/IMO2019/IMO2019_Q4.thy:248, fact_ge_power@thys/IMO2019/IMO2019_Q4.thy:258; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:05Z"
     }
   ]
 }

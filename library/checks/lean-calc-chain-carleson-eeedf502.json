@@ -112,6 +112,14 @@
       "evidence": "check_provenance.py passes: 4 files byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e. Commit is consistent across entry.json source.commit, every file and site permalink, sources/carleson/source.json, and SOURCE.md. Licence Apache-2.0 is consistent everywhere (entry.json source.licence, source.json licence, SOURCE.md, and the copied upstream-LICENSE which is the Apache License 2.0 text). Site line anchors verified against the copied files: parent MainTheorem.lean L44-L68 (file has 68 lines), children L21-L36, ExceptionalSet.lean L977-L989 (of 989), ForestUnion.lean L1042-L1047 (of 1047), ForestComplement.lean L1176-L1181 (of 1181). File byte sizes match (2799/56136/54896/63506). Source note records repo URL, pinned commit, licence, license file, and attribution. Everything traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T14:58:24Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: le_C2_0_2@Carleson/Discrete/MainTheorem.lean:68, exceptional_set@Carleson/Discrete/MainTheorem.lean:49, forest_union@Carleson/Discrete/MainTheorem.lean:63, forest_complement@Carleson/Discrete/MainTheorem.lean:63; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:05Z"
     }
   ]
 }

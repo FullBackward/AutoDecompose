@@ -112,6 +112,14 @@
       "evidence": "Provenance pass: file driver/Compiler.v byte-identical at pinned commit 2685140bf72c959446981fb99b5e44a8975021bc (sha256 1782a975... matches, 20511 bytes). Commit is recorded identically across entry.json, README, SOURCE.md and source.json. Licence LicenseRef-INRIA-Non-Commercial is consistent in all four and matches upstream-LICENSE text. Line permalinks verified against the local copy: parent 446-452, author comment 434-444, known-use 466-481 (transf_c_program_match at 476, c_semantic_preservation at 480). Source note records licence text and attribution. Fully traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:48:59Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: transf_c_program_match@driver/Compiler.v:451, c_semantic_preservation@driver/Compiler.v:451; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

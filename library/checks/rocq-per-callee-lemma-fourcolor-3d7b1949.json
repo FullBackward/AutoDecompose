@@ -112,6 +112,14 @@
       "evidence": "Provenance passes: 13 files byte-identical at c1d6b1cd5288bea4b067aac13cdde3c18dffe018 (check_provenance.py). Commit c1d6b1cd5288bea4b067aac13cdde3c18dffe018 is consistent across entry.json source, sources/fourcolor/source.json, sources/fourcolor/SOURCE.md, and every file/site permalink (all blob/c1d6b1cd.../theories/proof/*.v). Licence CECILL-B is recorded consistently in entry.json source.licence, source.json licence, and SOURCE.md, and the copied upstream-LICENSE is the CeCILL-B licence text (matches). Source note records the pinned commit, browse URL, detected licence, and licence file LICENSE->upstream-LICENSE, with attribution. All 13 code/ files match the entry files array; permalink line anchors are consistent with the copied files. Everything traceable; no gaps.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:44:56Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: red000to214@theories/proof/reducibility.v:19, red214to234@theories/proof/reducibility.v:19, red234to282@theories/proof/reducibility.v:19, red282to302@theories/proof/reducibility.v:19, red302to322@theories/proof/reducibility.v:19, red322to485@theories/proof/reducibility.v:20, red485to506@theories/proof/reducibility.v:20, red506to541@theories/proof/reducibility.v:20, red541to588@theories/proof/reducibility.v:20, red588to633@theories/proof/reducibility.v:20; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

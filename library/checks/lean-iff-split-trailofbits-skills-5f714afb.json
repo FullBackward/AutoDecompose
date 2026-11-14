@@ -112,6 +112,14 @@
       "evidence": "Provenance pass (1 file byte-identical at e4dd0bb5b155). Commit e4dd0bb5b15535f7c5a0834187dffba6ac37e4ff is consistent across entry.json, sources/trailofbits-skills/SOURCE.md, source.json and README. Licence CC-BY-SA-4.0 matches upstream-LICENSE (Attribution-ShareAlike 4.0 International). All permalinks point at the pinned commit with paths and line ranges matching the copied WordCmp.lean. Source note links upstream and records commit + licence. Fully traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:27:11Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: gtFelt_of_gt@plugins/writing-lean-proofs/evals/cases/03-normal-form/input/WordCmp.lean:45, gtFelt_of_not_gt@plugins/writing-lean-proofs/evals/cases/03-normal-form/input/WordCmp.lean:42; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

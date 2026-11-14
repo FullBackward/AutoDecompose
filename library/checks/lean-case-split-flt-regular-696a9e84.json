@@ -96,6 +96,14 @@
       "evidence": "Commit, licence, permalinks and source note are mutually consistent and traceable. entry.json source.commit 83f477ccc8cef9fd9a022b90d87aed49368e7bbd equals source.json commit and sources/flt-regular/SOURCE.md pinned commit. Licence is Apache-2.0 in entry.json, source.json and SOURCE.md, and sources/flt-regular/upstream-LICENSE is the Apache License 2.0 text. All four file permalinks and three site permalinks use github.com/leanprover-community/flt-regular/blob/83f477c.../<path>, matching repo, commit and path. check_provenance.py reports 4 file(s) byte-identical at 83f477c..., confirming the copied files match the permalinks. README 'Source and licence' section correctly states whole-and-unmodified copy at 83f477c under Apache-2.0 and links the source note.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:13:14Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: caseII@FltRegular/FltRegular.lean:27, caseI@FltRegular/FltRegular.lean:28; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:05Z"
     }
   ]
 }

@@ -143,6 +143,7 @@ Status: **verified**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/build_template.yml builds Archive (step 'build archive, counterexamples and wanted' runs 'lake-build-with-retry.sh Archive Counterexamples Wanted' at line 252, and step 'check that Archive built' gates on 'lake build --no-build --wfail Archive' at line 297); invoked by .github/workflows/build.yml on: push (lines 3-4). Pinned commit e1545ebed97594477bbd88b2fe948ffce56e5af2 is on master (default branch), confirmed via GitHub compare API: master is ahead_by 1, behind_by 0. | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: none; subgoals (no name to cite): 2 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at e1545ebed97594477bbd88b2fe948ffce56e5af2 | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

@@ -104,6 +104,14 @@
       "evidence": "no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain')",
       "by": "driver",
       "at": "2026-11-12T13:34:04Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: h1@Compfiles/Egmo2023P1.lean:35, h2@Compfiles/Egmo2023P1.lean:45; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:05Z"
     }
   ]
 }

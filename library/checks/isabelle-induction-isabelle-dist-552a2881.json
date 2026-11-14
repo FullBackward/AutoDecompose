@@ -104,6 +104,14 @@
       "evidence": "Provenance pass (check_provenance.py): the single copied file code/src/HOL/Examples/Reflection_Examples.thy is byte-identical at pinned commit 34ca456d44ca14641450b5d52f51b38688d4d1b5. Commit is consistent across entry.json source.commit, sources/isabelle-dist/SOURCE.md, source.json and ledger. Licence BSD-3-Clause is consistent across entry.json, README, SOURCE.md and source.json, and upstream-COPYRIGHT is the standard 3-clause BSD text. All permalinks (blob/ at the pinned commit) point at the same repo/path and their cited line ranges match the copied file exactly (parent 243-245; children 218-223, 231-233; contexts 137-138, 152-158, 205-216, 225-229, 235-241). README and SOURCE.md both state the code is copied whole and unmodified under BSD-3-Clause. Everything traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T16:15:23Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: lin_add@src/HOL/Examples/Reflection_Examples.thy:245, lin_mul@src/HOL/Examples/Reflection_Examples.thy:245; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:05Z"
     }
   ]
 }

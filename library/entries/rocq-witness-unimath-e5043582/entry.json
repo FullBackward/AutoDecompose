@@ -96,7 +96,7 @@
   ],
   "parent": {
     "name": "isweq_yoneda_map_1",
-    "statement": "Lemma isweq_yoneda_map_1 (C : category) (c : C) (F : functor C^op HSET) : isweq (yoneda_map_1 C c F)."
+    "statement": "Lemma isweq_yoneda_map_1 (C : category) (c : C)\n   (F : functor C^op HSET) :\n  isweq\n     (*a := make_hSet (hom _ ((yoneda C) hs c) F) (isaset_nat_trans_yoneda C hs c F)*)\n     (*b := F c*)\n     (yoneda_map_1 C c F)."
   },
   "children": [
     {
@@ -194,6 +194,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-2",
       "at": "2026-11-12T15:52:00Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "parent isweq_yoneda_map_1: statement re-copied from code"
     }
   ],
   "status_reason": "",

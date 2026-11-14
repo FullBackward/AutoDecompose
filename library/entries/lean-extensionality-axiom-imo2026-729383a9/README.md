@@ -135,6 +135,7 @@ Status: **draft**
 |---|---|---|---|---|
 | build | not-run | No CI workflow present: list_files.py on axiom-imo2026 shows no .github/workflows and no *.yml; README documents lake build + verify.py (external Axle service), not a CI file | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: hset@IMO2026/Q1/solution.lean:332; subgoals (no name to cite): 1 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at c5a6a089d06d3619afe7ff45c5ccab9e2a30d5d2 | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

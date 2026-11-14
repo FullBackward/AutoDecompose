@@ -104,6 +104,14 @@
       "evidence": "Permalinks, commit, licence and source note are mutually consistent and traceable. check_provenance.py passes (1 file byte-identical at pinned commit 90d108779e83453e9cae2f55b513246e1cc044e0). All six site permalinks and the file permalink use that commit and path tst/Top1_Ch5_8.thy; list_files.py at the commit shows tst/Top1_Ch5_8.thy = 1644384 bytes, matching entry.json files[0].bytes. entry.json source (source_id munkres-isabelle, url github.com/JUrban/isa_top_autoform1, commit 90d1087...) matches sources/munkres-isabelle/SOURCE.md exactly. Licence is LicenseRef-unknown in both entry.json and SOURCE.md, and SOURCE.md's 'no licence file found at the root' is accurate: the 14-file listing at the commit has no LICENSE/LICENCE/COPYING. README 'Source and licence' note repeats the same commit and licence. Nothing inconsistent found.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T16:13:53Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: Lemma_40_1_step2@tst/Top1_Ch5_8.thy:5070, Lemma_40_1_step3@tst/Top1_Ch5_8.thy:5069; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:05Z"
     }
   ]
 }

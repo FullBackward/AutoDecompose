@@ -56,13 +56,17 @@
   "children": [
     {
       "name": "witness a = b = c = d = 6 / 5",
-      "statement": "the four existential variables of ∃ a b c d : ℝ, IsGood a b c d max_e (e is the set's bound variable, fixed at max_e)",
-      "closed_by": "use (6 / 5), four times (lines 42-45)"
+      "statement": null,
+      "closed_by": "use (6 / 5), four times (lines 42-45)",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: the four existential variables of ∃ a b c d : ℝ, IsGood a b c d max_e (e is the set's bound variable, fixed at max_e)",
+      "subgoal": true
     },
     {
       "name": "IsGood at the witness",
-      "statement": "IsGood (6/5) (6/5) (6/5) (6/5) max_e, i.e. a+b+c+d+e = 8 ∧ a^2+b^2+c^2+d^2+e^2 = 16",
-      "closed_by": "constructor <;> norm_num (line 46)"
+      "statement": null,
+      "closed_by": "constructor <;> norm_num (line 46)",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: IsGood (6/5) (6/5) (6/5) (6/5) max_e, i.e. a+b+c+d+e = 8 ∧ a^2+b^2+c^2+d^2+e^2 = 16",
+      "subgoal": true
     }
   ],
   "applicability": {
@@ -118,6 +122,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-1",
       "at": "2026-11-12"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "child 'witness a = b = c = d = 6 / 5': a subgoal made inside the parent's proof; child 'IsGood at the witness': a subgoal made inside the parent's proof"
     }
   ],
   "status_reason": "",

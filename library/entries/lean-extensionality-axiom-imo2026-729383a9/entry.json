@@ -73,8 +73,10 @@
     },
     {
       "name": "Mval_termwise",
-      "statement": "∏ p ∈ B'.prod.primeFactors, p ^ gExp p B = ∏ p ∈ B'.prod.primeFactors, p ^ gExp p B'",
-      "closed_by": "Finset.prod_congr rfl; intro p hp; rw [gExp_move hpp h] (hpp : p.Prime recovered from hp)"
+      "statement": null,
+      "closed_by": "Finset.prod_congr rfl; intro p hp; rw [gExp_move hpp h] (hpp : p.Prime recovered from hp)",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: ∏ p ∈ B'.prod.primeFactors, p ^ gExp p B = ∏ p ∈ B'.prod.primeFactors, p ^ gExp p B'",
+      "subgoal": true
     }
   ],
   "applicability": {
@@ -135,6 +137,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-1",
       "at": "2026-11-12T11:55:27Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "child 'Mval_termwise': a subgoal made inside the parent's proof"
     }
   ]
 }

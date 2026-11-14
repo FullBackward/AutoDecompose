@@ -112,6 +112,14 @@
       "evidence": "Permalinks, commit, licence and source note are consistent and traceable. check_provenance passes: code/IMO2026/Q4/solution.lean is byte-identical at 47ff510110dd400c98aee2ead3be0f53f7b8ba04 (bytes 17624, sha256 2fd1ea37...80d2ff match entry.json). Commit hash is identical across entry.json source.commit, README, source note and every permalink. Licence LicenseRef-unknown is accurate: GitHub API reports license=null and repo root has no LICENSE/COPYING file; source note records 'no licence file found at the root'. All line-range permalinks (max L398; README cites L402) are within the 402-line file. Fully traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:23:13Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: arithmetic_bridge@IMO2026/Q4/solution.lean:385, safe_start@IMO2026/Q4/solution.lean:389, safe_nonwin@IMO2026/Q4/solution.lean:391, universal_win@IMO2026/Q4/solution.lean:398; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

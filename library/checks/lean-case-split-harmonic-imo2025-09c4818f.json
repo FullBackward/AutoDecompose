@@ -96,6 +96,14 @@
       "evidence": "check_provenance passes (1 file byte-identical at 72b62405a176a7eaeadb335a7fa6ee80b6667161); copied-file sha256 b763f019... matches entry.json; commit consistent across entry.json, SOURCE.md and ledger/sources.jsonl; licence LicenseRef-unknown correct - jsDelivr listing at the pinned commit shows no LICENSE/COPYING file at root; permalinks use the pinned commit and path HarmonicLean/IMO2025P1.lean, all line ranges within the 1433-line file.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:28:43Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: lem_k0_possible@HarmonicLean/IMO2025P1.lean:1402, lem_k1_possible@HarmonicLean/IMO2025P1.lean:1409, lem_k3_possible@HarmonicLean/IMO2025P1.lean:1413, lem_k_ge_4_impossible@HarmonicLean/IMO2025P1.lean:1422, lem_k2_impossible@HarmonicLean/IMO2025P1.lean:1428; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:05Z"
     }
   ]
 }

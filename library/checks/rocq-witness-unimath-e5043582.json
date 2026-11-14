@@ -112,6 +112,14 @@
       "evidence": "Permalinks all use pinned commit 7a4b03cce49449f45ce0d4285615165172f50546 and their line ranges match the copied file (yoneda_map_1 147-150, yoneda_map_2_ax 154-167, yoneda_map_2 169-176, yoneda_map_1_2 178-194, yoneda_map_2_1 197-204, isweq_yoneda_map_1 305-317, yoneda_fully_faithful 327-346). Commit is identical across entry.json, source.json, SOURCE.md and README, and check_provenance.py confirms the file byte-identical at that commit. Licence MIT recorded consistently in all four places, and upstream-LICENSE.md holds the MIT permission grant (no copyleft/non-commercial). SOURCE.md source note (repo, commit, browse URL, licence, LICENSE.md -> upstream-LICENSE.md) matches the copied file and entry.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T15:57:27Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: yoneda_map_1_2@UniMath/CategoryTheory/yoneda.v:315, yoneda_map_2_1@UniMath/CategoryTheory/yoneda.v:316; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

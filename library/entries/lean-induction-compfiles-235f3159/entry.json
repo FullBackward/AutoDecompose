@@ -46,18 +46,24 @@
   "children": [
     {
       "name": "self (k = 2023)",
-      "statement": "|a 2023 - a 2024| = 1, the top case of the decreasing induction",
-      "closed_by": "exact ha'"
+      "statement": null,
+      "closed_by": "exact ha'",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: |a 2023 - a 2024| = 1, the top case of the decreasing induction",
+      "subgoal": true
     },
     {
       "name": "of_succ forward branch (a (i+2) = 2 * a (i+1) - a i)",
-      "statement": "goal |a i - a (i+1)| = 1 after rw [ha] at hP with the forward recurrence",
-      "closed_by": "rwa [two_mul, ← sub_add, sub_add_cancel_right, neg_add_eq_sub] at hP"
+      "statement": null,
+      "closed_by": "rwa [two_mul, ← sub_add, sub_add_cancel_right, neg_add_eq_sub] at hP",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: goal |a i - a (i+1)| = 1 after rw [ha] at hP with the forward recurrence",
+      "subgoal": true
     },
     {
       "name": "of_succ backward branch (a (i+2) = 2 * a i - a (i+1))",
-      "statement": "hP becomes 2 * |a (i+1) - a i| = 1, which is contradictory",
-      "closed_by": "rw [← sub_add, sub_add_eq_add_sub, ← two_mul, ← mul_sub_left_distrib, abs_mul, Int.mul_eq_one_iff_eq_one_or_neg_one] at hP; obtain hP | hP := hP <;> replace hP := hP.1 <;> norm_num at hP"
+      "statement": null,
+      "closed_by": "rw [← sub_add, sub_add_eq_add_sub, ← two_mul, ← mul_sub_left_distrib, abs_mul, Int.mul_eq_one_iff_eq_one_or_neg_one] at hP; obtain hP | hP := hP <;> replace hP := hP.1 <;> norm_num at hP",
+      "note": "Subgoal made by a tactic inside the parent's proof, not a declaration; the analyst described it as: hP becomes 2 * |a (i+1) - a i| = 1, which is contradictory",
+      "subgoal": true
     }
   ],
   "applicability": {
@@ -118,6 +124,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-1",
       "at": "2026-11-12"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "child 'self (k = 2023)': a subgoal made inside the parent's proof; child 'of_succ forward branch (a (i+2) = 2 * a (i+1) - a i)': a subgoal made inside the parent's proof; child 'of_succ backward branch (a (i+2) = 2 * a i - a (i+1))': a subgoal made inside the parent's proof"
     }
   ],
   "status_reason": "",

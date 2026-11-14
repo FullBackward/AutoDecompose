@@ -104,6 +104,14 @@
       "evidence": "Permalinks, commit, licence and source note are consistent and traceable. check_provenance passes (1 file byte-identical at b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b); the local copy compiler/src/compiler/Pipeline.v is 37416 bytes with sha256 514ccfb9... matching entry.json files[0]. Commit b4ec84bc6dbbd94e6ff778bbba1ab4c4808a3c6b is identical across source.json, SOURCE.md, entry.json and README; all permalinks use that full commit hash on mit-plv/bedrock2. Licence is MIT consistently (source.json licence, SOURCE.md detected MIT with upstream-LICENSE holding the MIT text, entry.json licence, README licence); MIT is permissive so no index withholding mark needed. Source note records pinned commit, browse URL, licence file and attribution.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T16:01:58Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: compose_phases_correct@compiler/src/compiler/Pipeline.v:637, flattening_correct@compiler/src/compiler/Pipeline.v:637, useimmediate_correct@compiler/src/compiler/Pipeline.v:638, dce_correct@compiler/src/compiler/Pipeline.v:639, regalloc_correct@compiler/src/compiler/Pipeline.v:640, spilling_correct@compiler/src/compiler/Pipeline.v:641, riscv_phase_correct@compiler/src/compiler/Pipeline.v:642; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:06Z"
     }
   ]
 }

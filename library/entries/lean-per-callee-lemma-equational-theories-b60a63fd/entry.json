@@ -132,8 +132,9 @@
     },
     {
       "name": "TrivialPartialSolution",
-      "statement": "def TrivialPartialSolution : PartialSolution := { L₀' := fun _ ↦ 1, op := fun _ ↦ fun _ ↦ Sum.inl 0, S' := fun _ ↦ 0, I := Finset.empty, Predom_L₀' := Finset.empty, Dom_op := Finset.empty, Dom_S' := Finset.empty, ... }",
-      "closed_by": "each of the ten `axiom_*` fields is closed by `contrapose! h; exact Finset.notMem_empty _`, since every domain field is `Finset.empty`"
+      "statement": "def TrivialPartialSolution : PartialSolution",
+      "closed_by": "each of the ten `axiom_*` fields is closed by `contrapose! h; exact Finset.notMem_empty _`, since every domain field is `Finset.empty`",
+      "note": "Analyst's paraphrase, replaced by the declaration's text: def TrivialPartialSolution : PartialSolution := { L₀' := fun _ ↦ 1, op := fun _ ↦ fun _ ↦ Sum.inl 0, S' := fun _ ↦ 0, I := Finset.empty, Predom_L₀' := Finset.empty, Dom_op := Finset.empty, Dom_S' := Finset.empty, ... }"
     }
   ],
   "applicability": {
@@ -214,6 +215,14 @@
       "agent_role": "analyst",
       "run": "pilot-2",
       "at": "2026-11-12T14:46:53Z"
+    },
+    {
+      "field": "parent.statement,children",
+      "agent_role": "fixer",
+      "model": "statements.py",
+      "run": "fixes-2026-11-14",
+      "at": "2026-11-14T07:53:36Z",
+      "note": "child 'TrivialPartialSolution': statement re-copied from the declaration of TrivialPartialSolution"
     }
   ],
   "status_reason": "",

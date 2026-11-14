@@ -104,6 +104,14 @@
       "evidence": "check_provenance pass (1 file byte-identical at 2c476fa6441c607096d93c8fc7ac0a227a655dae); commit 2c476fa... consistent across entry.json, sources/pnt-and/source.json and SOURCE.md; licence Apache-2.0 consistent in entry.json/source.json/SOURCE.md and upstream-LICENSE is the Apache 2.0 text (not copyleft/nc/unknown); all 5 permalinks use the pinned commit; copied file 151072 bytes and sha256 f777e11c... match entry.json. Fully traceable.",
       "by": "reviewer-provenance-licence",
       "at": "2026-11-12T14:59:01Z"
+    },
+    {
+      "type": "check",
+      "key": "glue-cites-children",
+      "value": "pass",
+      "evidence": "cited: LogDerivZetaUniformLogSquaredBoundStripSpec@PrimeNumberTheoremAnd/StrongPNT.lean:2834, LogDerivZetaBdd_of_Re_ge_three_halves@PrimeNumberTheoremAnd/StrongPNT.lean:2835; subgoals (no name to cite): 0",
+      "by": "validate_entry.py",
+      "at": "2026-11-14T07:57:05Z"
     }
   ]
 }

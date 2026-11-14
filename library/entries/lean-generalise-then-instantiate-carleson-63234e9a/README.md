@@ -339,6 +339,7 @@ Status: **accepted**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/push.yml builds the whole Carleson project (leanprover/lean-action build:true, build-args 'Carleson Challenge Solution', mk_all-check true --lib Carleson) on push to master; pinned commit d75f54374f7f930e70a86b443f20d0e0935c275e is the current HEAD of master (default branch, confirmed via GitHub API) | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: discrete_carleson@Carleson/FinitaryCarleson.lean:117, grid_existence@Carleson/FinitaryCarleson.lean:114, tile_existence@Carleson/FinitaryCarleson.lean:115, tile_sum_operator@Carleson/FinitaryCarleson.lean:120; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 7 file(s) byte-identical at d75f54374f7f930e70a86b443f20d0e0935c275e | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 

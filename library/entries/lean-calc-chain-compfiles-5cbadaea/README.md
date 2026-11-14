@@ -168,6 +168,7 @@ Status: **verified**
 |---|---|---|---|---|
 | build | ci-record | .github/workflows/push-main.yaml runs lake build on push to main; pinned commit 1745e6ced3e671bd74417548494b034eb2c87da8 is HEAD of main (compare identical) | verifier | 2026-11-12 |
 | fidelity | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
+| glue-cites-children | pass | cited: h1@Compfiles/Egmo2023P1.lean:35, h2@Compfiles/Egmo2023P1.lean:45; subgoals (no name to cite): 0 | validate_entry.py | 2026-11-14 |
 | provenance | pass | 1 file(s) byte-identical at 1745e6ced3e671bd74417548494b034eb2c87da8 | check_provenance.py | 2026-11-12 |
 | sufficiency | not-run | no Lean or Rocq toolchain on the harvest machine, so the check was not run (protocol section 6, 'Checks without a local toolchain') | driver | 2026-11-12 |
 
