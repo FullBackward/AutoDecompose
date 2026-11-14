@@ -10,6 +10,9 @@
   "pinned_at": "2026-11-12T10:24:15Z",
   "how_found": "start set",
   "note": "",
-  "licence": "LicenseRef-unknown",
-  "licence_files": []
+  "licence": "Apache-2.0",
+  "licence_files": [],
+  "licence_detected": "LicenseRef-unknown",
+  "licence_note": "no licence file anywhere in the tree; README.md line 10 carries a 'License: Apache 2.0' badge linking to opensource.org/licenses/Apache-2.0, the repository's only licence statement",
+  "licence_set_by": "licence audit 2026-11-14"
 }

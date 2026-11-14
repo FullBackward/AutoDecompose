@@ -7,7 +7,7 @@
 | Language | markdown |
 | Status | draft |
 | Source | [deepseek-prover-v2](../../sources/deepseek-prover-v2/SOURCE.md) at `e598a57ea328` |
-| Licence | `LicenseRef-unknown` |
+| Licence | `LicenseRef-DeepSeek-License-1.0` |
 
 ## Intent
 
@@ -149,4 +149,4 @@ Status: **draft**
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/deepseek-ai/DeepSeek-Prover-V2 at commit `e598a57ea3284997d4a2a168a069fdd5064afbc8`, under `LicenseRef-unknown`; see the [source note](../../sources/deepseek-prover-v2/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/deepseek-ai/DeepSeek-Prover-V2 at commit `e598a57ea3284997d4a2a168a069fdd5064afbc8`, under `LicenseRef-DeepSeek-License-1.0`; see the [source note](../../sources/deepseek-prover-v2/SOURCE.md) for the licence text and attribution.

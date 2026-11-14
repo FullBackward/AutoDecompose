@@ -7,7 +7,7 @@
 | Language | isabelle |
 | Status | draft |
 | Source | [afp](../../sources/afp/SOURCE.md) at `07cd9ca548d1` |
-| Licence | `LicenseRef-unknown` |
+| Licence | `BSD-3-Clause` |
 
 ## Intent
 
@@ -484,4 +484,4 @@ Status: **draft**
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/isabelle-prover/mirror-afp-devel at commit `07cd9ca548d180f234c63f06bf5d1cb85c7fc5df`, under `LicenseRef-unknown`; see the [source note](../../sources/afp/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/isabelle-prover/mirror-afp-devel at commit `07cd9ca548d180f234c63f06bf5d1cb85c7fc5df`, under `BSD-3-Clause`; see the [source note](../../sources/afp/SOURCE.md) for the licence text and attribution.

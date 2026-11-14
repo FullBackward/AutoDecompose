@@ -15,7 +15,7 @@
     "source_id": "corn",
     "url": "https://github.com/rocq-community/corn",
     "commit": "f678996112929e1674e20b75fb9bd728ded35e55",
-    "licence": "GPL-2.0"
+    "licence": "GPL-2.0-or-later"
   },
   "files": [
     {
@@ -282,6 +282,14 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T15:32:21Z",
       "note": "parent first_refinement_lemma: statement re-copied from code; child 'ref_calc1': statement re-copied from the declaration of ref_calc1; child 'ref_calc2': statement re-copied from the declaration of ref_calc2; child 'ref_calc3': statement re-copied from the declaration of ref_calc3; child 'ref_calc4': statement re-copied from the declaration of ref_calc4; child 'ref_calc5': statement re-copied from the declaration of ref_calc5; child 'ref_calc6': statement re-copied from the declaration of ref_calc6; child 'ref_calc7': statement re-copied from the declaration of ref_calc7; child 'ref_calc8': statement re-copied from the declaration of ref_calc8"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "licence audit 2026-11-14",
+      "at": "2026-11-14T22:40:52Z",
+      "note": "Changed from GPL-2.0 to GPL-2.0-or-later: the copied file's header reads 'either version 2 of the License, or (at your option) any later version' (ftc/RefLemma.v lines 22-25). README Licence row and Source-and-licence section updated to match."
     }
   ],
   "status_reason": "",

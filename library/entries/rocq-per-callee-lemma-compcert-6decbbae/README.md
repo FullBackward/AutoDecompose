@@ -7,7 +7,7 @@
 | Language | rocq |
 | Status | accepted |
 | Source | [compcert](../../sources/compcert/SOURCE.md) at `2685140bf72c` |
-| Licence | `LicenseRef-INRIA-Non-Commercial` |
+| Licence | `LicenseRef-INRIA-Non-Commercial AND (LicenseRef-INRIA-Non-Commercial OR LGPL-2.1-or-later)` |
 
 ## Intent
 
@@ -634,4 +634,4 @@ Status: **accepted**
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/AbsInt/CompCert at commit `2685140bf72c959446981fb99b5e44a8975021bc`, under `LicenseRef-INRIA-Non-Commercial`; see the [source note](../../sources/compcert/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/AbsInt/CompCert at commit `2685140bf72c959446981fb99b5e44a8975021bc`, under `LicenseRef-INRIA-Non-Commercial AND (LicenseRef-INRIA-Non-Commercial OR LGPL-2.1-or-later)`; see the [source note](../../sources/compcert/SOURCE.md) for the licence text and attribution. Per file: `backend/Inliningproof.v` is under the INRIA Non-Commercial License Agreement only; `common/Smallstep.v` is dual-licensed under it or the GNU LGPL version 2.1 or later, at the user's choice (its header; CompCert's `LICENSE`). The entry as a whole is therefore non-commercial.

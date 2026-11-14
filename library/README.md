@@ -42,7 +42,10 @@ protocol §2). Each entry and each source note records the licence. The
 library therefore mixes licences, including copyleft (GPL, LGPL, CC-BY-SA),
 non-commercial (CompCert) and unknown ones. Before the repository is published,
 entries whose licence is not permissive must be reviewed; `INDEX.md` shows
-the source of each entry and `sources/<id>/SOURCE.md` its licence.
+the source of each entry and `sources/<id>/SOURCE.md` its licence. Every
+source's licence was read by hand on 2026-11-14:
+[reports/licence-audit-2026-11-14.md](reports/licence-audit-2026-11-14.md)
+lists the corrections and the 44 entries that are not permissive.
 
 ## Layout
 

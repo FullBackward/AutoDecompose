@@ -7,7 +7,7 @@
 | Language | rocq |
 | Status | accepted |
 | Source | [unimath](../../sources/unimath/SOURCE.md) at `7a4b03cce494` |
-| Licence | `MIT` |
+| Licence | `LicenseRef-UniMath` |
 
 ## Intent
 
@@ -412,4 +412,4 @@ Status: **accepted**
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/UniMath/UniMath at commit `7a4b03cce49449f45ce0d4285615165172f50546`, under `MIT`; see the [source note](../../sources/unimath/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/UniMath/UniMath at commit `7a4b03cce49449f45ce0d4285615165172f50546`, under `LicenseRef-UniMath`; see the [source note](../../sources/unimath/SOURCE.md) for the licence text and attribution.

@@ -16,7 +16,7 @@
     "source_id": "humanfia-hoa-qed",
     "url": "https://github.com/humanfia/hoa-qed",
     "commit": "1c918ec9a96c7751ce9c283304e1aebd7ffb19a3",
-    "licence": "Apache-2.0 AND CC-BY-4.0"
+    "licence": "Apache-2.0"
   },
   "files": [
     {
@@ -176,6 +176,14 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T09:45:10Z",
       "note": "parent fuchsVanDeGraafInequalities: statement re-copied from code; child 'fuchsVanDeGraaf_lower': statement re-copied from the declaration of fuchsVanDeGraaf_lower; child 'fuchsVanDeGraaf_upper': statement re-copied from the declaration of fuchsVanDeGraaf_upper"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "licence audit 2026-11-14",
+      "at": "2026-11-14T22:40:52Z",
+      "note": "Changed from Apache-2.0 AND CC-BY-4.0 to Apache-2.0: the copied file lies in lean-qit-qlg/QIT/, which the source's NOTICE lists as third-party statements from QuAIR's Lean-QIT-Bench under Apache 2.0 (Copyright 2026 QuAIR; lean-qit-qlg/QIT/LICENSE, now copied into the source note); CC-BY-4.0 covers only the source's prose. README Licence row and Source-and-licence section updated to match."
     }
   ],
   "status_reason": "",

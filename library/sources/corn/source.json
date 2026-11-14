@@ -10,8 +10,11 @@
   "pinned_at": "2026-11-14T14:53:21Z",
   "how_found": "discovery-2: A-rocq, B-rocq",
   "note": "Constructive real analysis: Fundamental Theorem of Algebra in fta/ and Fundamental Theorem of Calculus and Taylor in ftc/, over the algebraic hierarchy in reals/ and model/",
-  "licence": "GPL-2.0",
+  "licence": "GPL-2.0-or-later",
   "licence_files": [
     "LICENSE"
-  ]
+  ],
+  "licence_detected": "GPL-2.0",
+  "licence_note": "LICENSE is the GPL version 2 text; the file headers read 'either version 2 of the License, or (at your option) any later version' (e.g. ftc/RefLemma.v lines 22-25); the detector's 'GPL-2.0' is a deprecated SPDX identifier",
+  "licence_set_by": "licence audit 2026-11-14"
 }

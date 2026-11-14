@@ -7,7 +7,7 @@
 | Language | markdown |
 | Status | draft |
 | Source | [numina-lean-agent](../../sources/numina-lean-agent/SOURCE.md) at `1c9af8a52e71` |
-| Licence | `LicenseRef-unknown` |
+| Licence | `MIT` |
 
 ## Intent
 
@@ -166,4 +166,4 @@ Status: **draft**
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/project-numina/numina-lean-agent at commit `1c9af8a52e715f22fede766425ba3d3b95526132`, under `LicenseRef-unknown`; see the [source note](../../sources/numina-lean-agent/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/project-numina/numina-lean-agent at commit `1c9af8a52e715f22fede766425ba3d3b95526132`, under `MIT`; see the [source note](../../sources/numina-lean-agent/SOURCE.md) for the licence text and attribution.

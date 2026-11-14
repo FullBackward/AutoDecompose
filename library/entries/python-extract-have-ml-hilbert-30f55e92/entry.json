@@ -16,7 +16,7 @@
     "source_id": "ml-hilbert",
     "url": "https://github.com/apple/ml-hilbert",
     "commit": "86360f90260613d21e08a001c83971a1998a5b5e",
-    "licence": "LicenseRef-unknown"
+    "licence": "AML"
   },
   "files": [
     {
@@ -166,6 +166,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-2",
       "at": "2026-11-12T15:40:00Z"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "licence audit 2026-11-14",
+      "at": "2026-11-14T22:40:52Z",
+      "note": "Changed from LicenseRef-unknown to AML: the source's LICENSE is the Apple MIT License (SPDX AML) word for word, apart from the copyright line and 'Apple Inc.' for 'Apple Computer, Inc.'; the copied files say 'For licensing see accompanying LICENSE file.'. README Licence row and Source-and-licence section updated to match."
     }
   ]
 }

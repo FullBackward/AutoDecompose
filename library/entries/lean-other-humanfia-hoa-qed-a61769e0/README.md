@@ -7,7 +7,7 @@
 | Language | lean |
 | Status | accepted |
 | Source | [humanfia-hoa-qed](../../sources/humanfia-hoa-qed/SOURCE.md) at `1c918ec9a96c` |
-| Licence | `Apache-2.0 AND CC-BY-4.0` |
+| Licence | `Apache-2.0` |
 
 ## Intent
 
@@ -457,4 +457,4 @@ Status: **accepted**
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/humanfia/hoa-qed at commit `1c918ec9a96c7751ce9c283304e1aebd7ffb19a3`, under `Apache-2.0 AND CC-BY-4.0`; see the [source note](../../sources/humanfia-hoa-qed/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/humanfia/hoa-qed at commit `1c918ec9a96c7751ce9c283304e1aebd7ffb19a3`, under `Apache-2.0`; see the [source note](../../sources/humanfia-hoa-qed/SOURCE.md) for the licence text and attribution. The copied file lies in `lean-qit-qlg/QIT/`, which the source's NOTICE lists as third-party material from QuAIR's Lean-QIT-Bench under Apache 2.0 (Copyright 2026 QuAIR; its `LICENSE` is copied into the source note).

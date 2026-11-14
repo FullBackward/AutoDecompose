@@ -16,7 +16,7 @@
     "source_id": "afp",
     "url": "https://github.com/isabelle-prover/mirror-afp-devel",
     "commit": "07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
-    "licence": "LicenseRef-unknown"
+    "licence": "BSD-3-Clause"
   },
   "files": [
     {
@@ -180,6 +180,14 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T10:40:22Z",
       "note": "parent equal_inc_mat_isomorphism: statement re-copied from code; child 'block_mat_cond_rev': statement re-copied from the declaration of block_mat_cond_rev; child \"block_mat_cond_rep'\": statement re-copied from the declaration of block_mat_cond_rep'"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "licence audit 2026-11-14",
+      "at": "2026-11-14T22:40:52Z",
+      "note": "Changed from LicenseRef-unknown to BSD-3-Clause: AFP metadata/entries/Fishers_Inequality.toml has license = \"bsd\", and the AFP's LICENSE puts files 'unmarked or marked with License: BSD' under a 3-clause BSD text; thys/Fishers_Inequality/ ships no licence of its own. README Licence row and Source-and-licence section updated to match."
     }
   ]
 }

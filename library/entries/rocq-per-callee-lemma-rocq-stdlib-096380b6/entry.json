@@ -15,7 +15,7 @@
     "source_id": "rocq-stdlib",
     "url": "https://github.com/rocq-prover/stdlib",
     "commit": "22fcaa27d17bc28ab4be728ed10a1fb73afb23ee",
-    "licence": "LGPL-2.1"
+    "licence": "LGPL-2.1-only"
   },
   "files": [
     {
@@ -170,6 +170,14 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T10:25:25Z",
       "note": "parent tauto_checker_sound: statement re-copied from code; child 'xcnf_correct': statement re-copied from the declaration of xcnf_correct; child 'cnf_checker_sound': statement re-copied from the declaration of cnf_checker_sound"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "licence audit 2026-11-14",
+      "at": "2026-11-14T22:40:52Z",
+      "note": "Changed from LGPL-2.1 to LGPL-2.1-only: the copied files' headers read 'distributed under the terms of the GNU Lesser General Public License Version 2.1' with no 'or later'. README Licence row and Source-and-licence section updated to match."
     }
   ],
   "status_reason": "",

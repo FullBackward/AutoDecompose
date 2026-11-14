@@ -10,9 +10,12 @@
   "pinned_at": "2026-11-14T11:39:25Z",
   "how_found": "discovery-1: A-isabelle, B-isabelle",
   "note": "Cogent verified compiler: compilation-correctness proofs for BilbyFs and ext2 plus c-refinement Isabelle/HOL theories; per-filesystem proof directories (impl/fs/bilby/proof) discharge headline theorems from named refinement lemmas",
-  "licence": "BSD-2-Clause AND GPL-2.0",
+  "licence": "BSD-2-Clause AND GPL-2.0-only",
   "licence_files": [
     "LICENSE_BSD2.txt",
     "LICENSE_GPLv2.txt"
-  ]
+  ],
+  "licence_detected": "BSD-2-Clause AND GPL-2.0",
+  "licence_note": "per file: LICENSE_BSD2.txt and LICENSE_GPLv2.txt each cover the files 'described as being under' them; the proof theories under impl/fs/bilby/proof/ carry 'may be distributed and modified according to the terms of the GNU General Public License version 2 ... @TAG(NICTA_GPL)' with no 'or later', hence GPL-2.0-only (the detector's 'GPL-2.0' is a deprecated SPDX identifier)",
+  "licence_set_by": "licence audit 2026-11-14"
 }

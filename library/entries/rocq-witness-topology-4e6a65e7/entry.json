@@ -15,7 +15,7 @@
     "source_id": "topology",
     "url": "https://github.com/rocq-community/topology",
     "commit": "1e898b95f68f9ce75bf44faa8446992b03c84052",
-    "licence": "LGPL-2.1"
+    "licence": "LGPL-2.1-or-later"
   },
   "files": [
     {
@@ -174,6 +174,14 @@
       "model": "deepseek-v4-pro",
       "run": "discovery-2",
       "at": "2026-11-14T15:28:54Z"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "licence audit 2026-11-14",
+      "at": "2026-11-14T22:40:52Z",
+      "note": "Changed from LGPL-2.1 to LGPL-2.1-or-later: the source's LICENSE opens with 'either version 2.1 of the License, or (at your option) any later version'. README Licence row and Source-and-licence section updated to match."
     }
   ],
   "status_reason": "",

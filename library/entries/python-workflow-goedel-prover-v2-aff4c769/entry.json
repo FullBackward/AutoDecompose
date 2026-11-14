@@ -16,7 +16,7 @@
     "source_id": "goedel-prover-v2",
     "url": "https://github.com/Goedel-LM/Goedel-Prover-V2",
     "commit": "2e9036e118464aa96a8bebaf9f5b9d091aa3585c",
-    "licence": "LicenseRef-unknown"
+    "licence": "Apache-2.0"
   },
   "files": [
     {
@@ -130,6 +130,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-2",
       "at": "2026-11-12T15:32:00Z"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "licence audit 2026-11-14",
+      "at": "2026-11-14T22:40:52Z",
+      "note": "Changed from LicenseRef-unknown to Apache-2.0: the source has no licence file; its README's 'License: Apache 2.0' badge is its only licence statement. README Licence row and Source-and-licence section updated to match."
     }
   ]
 }

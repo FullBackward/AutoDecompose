@@ -15,7 +15,7 @@
     "source_id": "unimath",
     "url": "https://github.com/UniMath/UniMath",
     "commit": "7a4b03cce49449f45ce0d4285615165172f50546",
-    "licence": "MIT"
+    "licence": "LicenseRef-UniMath"
   },
   "files": [
     {
@@ -268,6 +268,14 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T10:21:19Z",
       "note": "parent ZermeloWellOrdering: statement re-copied from code; child 'AC_to_choice_fun': statement re-copied from the declaration of AC_to_choice_fun; child 'guided_WOSubset_total': statement re-copied from the declaration of guided_WOSubset_total; child 'chain_union_le': statement re-copied from the declaration of chain_union_le; child \"upto'_eqn\": statement re-copied from the declaration of upto'_eqn; child 'WOSubset_plus_point': statement re-copied from the declaration of WOSubset_plus_point; child 'TOSubset_plus_point_incl': statement re-copied from the declaration of TOSubset_plus_point_incl; child 'TOSubset_plus_point_le': statement re-copied from the declaration of TOSubset_plus_point_le; child 'TOSubset_plus_point_initial': statement re-copied from the declaration of TOSubset_plus_point_initial"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "licence audit 2026-11-14",
+      "at": "2026-11-14T22:40:52Z",
+      "note": "Changed from MIT to LicenseRef-UniMath: the source's LICENSE.md is UniMath's own permissive licence (the MIT grant without MIT's warranty disclaimer), not the MIT text. README Licence row and Source-and-licence section updated to match."
     }
   ],
   "status_reason": "",

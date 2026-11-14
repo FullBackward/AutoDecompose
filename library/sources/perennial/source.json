@@ -11,8 +11,13 @@
   "how_found": "discovery-2: A-rocq, B-rocq",
   "note": "Iris-based verification via goose: adequacy theorems goose_crash_adequacy, goose_dist_adequacy and goose_dist_crash_adequacy joined to end-to-end safety of crashfs and netfs",
   "licence": "LicenseRef-unknown",
-  "licence_files": [],
+  "licence_files": [
+    "goose/LICENSE"
+  ],
   "language_registered": "rocq",
   "language_note": "the pinned commit ddc0f0a is the head of the default branch 'lean', which holds 1682 .lean files, lakefile.toml and lean-toolchain and no .v file; the Rocq development is on branch 'master'",
-  "language_set_by": "fixer (after discovery-2)"
+  "language_set_by": "fixer (after discovery-2)",
+  "licence_detected": "LicenseRef-unknown",
+  "licence_note": "no licence file at the root of the pinned commit (branch 'lean'); goose/LICENSE (MIT, Tej Chajed; copied here) covers only the goose/ tree, which no entry draws on, and the copied file Perennial/Proof/.../netfs/Results.lean has no licence header",
+  "licence_set_by": "licence audit 2026-11-14"
 }

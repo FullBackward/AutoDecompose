@@ -4,7 +4,7 @@
 - Commit (pinned 2026-11-14T11:39:25Z): `49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a`
 - Browse at this commit: https://github.com/au-ts/cogent/tree/49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a
 - Language: isabelle
-- Licence (detected): `BSD-2-Clause AND GPL-2.0`; the licence text below governs.
+- Licence: `BSD-2-Clause AND GPL-2.0-only`, read from the licence files by licence audit 2026-11-14 (per file: LICENSE_BSD2.txt and LICENSE_GPLv2.txt each cover the files 'described as being under' them; the proof theories under impl/fs/bilby/proof/ carry 'may be distributed and modified according to the terms of the GNU General Public License version 2 ... @TAG(NICTA_GPL)' with no 'or later', hence GPL-2.0-only (the detector's 'GPL-2.0' is a deprecated SPDX identifier)); the detector had `BSD-2-Clause AND GPL-2.0`. The licence text below governs.
 - How found: discovery-1: A-isabelle, B-isabelle
 
 ## Licence files

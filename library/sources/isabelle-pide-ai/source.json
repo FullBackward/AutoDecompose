@@ -10,8 +10,11 @@
   "pinned_at": "2026-11-12T13:44:21Z",
   "how_found": "start set",
   "note": "",
-  "licence": "LGPL-3.0",
+  "licence": "LGPL-3.0-only",
   "licence_files": [
     "LICENSE.md"
-  ]
+  ],
+  "licence_detected": "LGPL-3.0",
+  "licence_note": "LICENSE.md is the GNU LGPL version 3 text and README.md's citation entries give 'license = {LGPL-3.0}'; nothing in the repository says 'or any later version', so version 3 only (the detector's 'LGPL-3.0' is a deprecated SPDX identifier)",
+  "licence_set_by": "licence audit 2026-11-14"
 }

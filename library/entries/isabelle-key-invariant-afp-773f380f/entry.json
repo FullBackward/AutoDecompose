@@ -14,7 +14,7 @@
     "source_id": "afp",
     "url": "https://github.com/isabelle-prover/mirror-afp-devel",
     "commit": "07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
-    "licence": "LicenseRef-unknown"
+    "licence": "BSD-3-Clause"
   },
   "files": [
     {
@@ -228,6 +228,14 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T10:33:36Z",
       "note": "parent mertens_bound_strong: statement re-copied from code; child 'mertens_remainder_aux_bound': statement re-copied from the declaration of mertens_remainder_aux_bound; child 'primepows_le_subset': statement re-copied from the declaration of primepows_le_subset; child 'ln_fact_conv_sum_upto_mangoldt': statement re-copied from the declaration of ln_fact_conv_sum_upto_mangoldt; child '\\\\<theta>_upper_bound': statement re-copied from the declaration of \\<theta>_upper_bound; child 'sum_upto_primepows': statement re-copied from the declaration of sum_upto_primepows"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "licence audit 2026-11-14",
+      "at": "2026-11-14T22:40:52Z",
+      "note": "Changed from LicenseRef-unknown to BSD-3-Clause: AFP metadata/entries/Prime_Number_Theorem.toml has license = \"bsd\", and the AFP's LICENSE puts files 'unmarked or marked with License: BSD' under a 3-clause BSD text; thys/Prime_Number_Theorem/ ships no licence of its own. README Licence row and Source-and-licence section updated to match."
     }
   ]
 }

@@ -7,7 +7,7 @@
 | Language | python |
 | Status | draft |
 | Source | [ml-hilbert](../../sources/ml-hilbert/SOURCE.md) at `86360f902606` |
-| Licence | `LicenseRef-unknown` |
+| Licence | `AML` |
 
 ## Intent
 
@@ -283,4 +283,4 @@ Status: **draft**
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/apple/ml-hilbert at commit `86360f90260613d21e08a001c83971a1998a5b5e`, under `LicenseRef-unknown`; see the [source note](../../sources/ml-hilbert/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/apple/ml-hilbert at commit `86360f90260613d21e08a001c83971a1998a5b5e`, under `AML`; see the [source note](../../sources/ml-hilbert/SOURCE.md) for the licence text and attribution.

@@ -10,8 +10,11 @@
   "pinned_at": "2026-11-12T10:25:21Z",
   "how_found": "start set",
   "note": "",
-  "licence": "LGPL-2.1",
+  "licence": "LGPL-2.1-only",
   "licence_files": [
     "LICENSE"
-  ]
+  ],
+  "licence_detected": "LGPL-2.1",
+  "licence_note": "LICENSE is the LGPL version 2.1 text and the file headers read 'This file is distributed under the terms of the GNU Lesser General Public License Version 2.1' with no 'or later' (e.g. theories/Logic/WKL.v, theories/micromega/Tauto.v); the detector's 'LGPL-2.1' is a deprecated SPDX identifier",
+  "licence_set_by": "licence audit 2026-11-14"
 }

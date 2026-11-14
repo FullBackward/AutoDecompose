@@ -16,7 +16,7 @@
     "source_id": "deepseek-prover-v2",
     "url": "https://github.com/deepseek-ai/DeepSeek-Prover-V2",
     "commit": "e598a57ea3284997d4a2a168a069fdd5064afbc8",
-    "licence": "LicenseRef-unknown"
+    "licence": "LicenseRef-DeepSeek-License-1.0"
   },
   "files": [
     {
@@ -114,6 +114,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-2",
       "at": "2026-11-12"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "licence audit 2026-11-14",
+      "at": "2026-11-14T22:40:52Z",
+      "note": "Changed from LicenseRef-unknown to LicenseRef-DeepSeek-License-1.0: the copied README is documentation accompanying the model, which LICENSE-MODEL (the DeepSeek License Agreement 1.0) covers as 'Complementary Material'; the README's MIT badge links to another repository's code licence. README Licence row and Source-and-licence section updated to match."
     }
   ]
 }

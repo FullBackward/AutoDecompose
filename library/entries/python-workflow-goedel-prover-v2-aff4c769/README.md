@@ -7,7 +7,7 @@
 | Language | python |
 | Status | draft |
 | Source | [goedel-prover-v2](../../sources/goedel-prover-v2/SOURCE.md) at `2e9036e11846` |
-| Licence | `LicenseRef-unknown` |
+| Licence | `Apache-2.0` |
 
 ## Intent
 
@@ -148,4 +148,4 @@ Status: **draft**
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/Goedel-LM/Goedel-Prover-V2 at commit `2e9036e118464aa96a8bebaf9f5b9d091aa3585c`, under `LicenseRef-unknown`; see the [source note](../../sources/goedel-prover-v2/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/Goedel-LM/Goedel-Prover-V2 at commit `2e9036e118464aa96a8bebaf9f5b9d091aa3585c`, under `Apache-2.0`; see the [source note](../../sources/goedel-prover-v2/SOURCE.md) for the licence text and attribution.

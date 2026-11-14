@@ -7,7 +7,7 @@
 | Language | rocq |
 | Status | accepted |
 | Source | [bertrand](../../sources/bertrand/SOURCE.md) at `033b1a8f1a9c` |
-| Licence | `LGPL-2.1` |
+| Licence | `LGPL-2.1-or-later` |
 
 ## Intent
 
@@ -425,4 +425,4 @@ Status: **accepted**
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/rocq-community/bertrand at commit `033b1a8f1a9c121855b6b78cd55154d3c09e1c23`, under `LGPL-2.1`; see the [source note](../../sources/bertrand/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/rocq-community/bertrand at commit `033b1a8f1a9c121855b6b78cd55154d3c09e1c23`, under `LGPL-2.1-or-later`; see the [source note](../../sources/bertrand/SOURCE.md) for the licence text and attribution.

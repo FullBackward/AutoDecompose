@@ -10,8 +10,11 @@
   "pinned_at": "2026-11-12T10:25:18Z",
   "how_found": "start set",
   "note": "",
-  "licence": "MIT",
+  "licence": "LicenseRef-UniMath",
   "licence_files": [
     "LICENSE.md"
-  ]
+  ],
+  "licence_detected": "MIT",
+  "licence_note": "LICENSE.md is UniMath's own permissive licence, not the MIT text: it grants the MIT permissions with 'UniMath' in place of 'the Software', on the condition 'This copyright and license shall be included in all copies or substantial portions of the Software', and has no warranty disclaimer",
+  "licence_set_by": "licence audit 2026-11-14"
 }

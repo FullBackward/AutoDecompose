@@ -7,7 +7,7 @@
 | Language | rocq |
 | Status | accepted |
 | Source | [topology](../../sources/topology/SOURCE.md) at `1e898b95f68f` |
-| Licence | `LGPL-2.1` |
+| Licence | `LGPL-2.1-or-later` |
 
 ## Intent
 
@@ -295,4 +295,4 @@ Status: **accepted**
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/rocq-community/topology at commit `1e898b95f68f9ce75bf44faa8446992b03c84052`, under `LGPL-2.1`; see the [source note](../../sources/topology/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/rocq-community/topology at commit `1e898b95f68f9ce75bf44faa8446992b03c84052`, under `LGPL-2.1-or-later`; see the [source note](../../sources/topology/SOURCE.md) for the licence text and attribution.

@@ -7,7 +7,7 @@
 | Language | lean |
 | Status | accepted |
 | Source | [con-nf](../../sources/con-nf/SOURCE.md) at `edbce7eb9835` |
-| Licence | `Apache-2.0 AND MIT` |
+| Licence | `Apache-2.0 OR MIT` |
 
 ## Intent
 
@@ -238,4 +238,4 @@ Status: **accepted**
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/leanprover-community/con-nf at commit `edbce7eb98351870f553cfab6ccb7cab327e4259`, under `Apache-2.0 AND MIT`; see the [source note](../../sources/con-nf/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/leanprover-community/con-nf at commit `edbce7eb98351870f553cfab6ccb7cab327e4259`, under `Apache-2.0 OR MIT`; see the [source note](../../sources/con-nf/SOURCE.md) for the licence text and attribution. The copied files are outside `Old/`, so they are offered under either licence, at the user's choice.

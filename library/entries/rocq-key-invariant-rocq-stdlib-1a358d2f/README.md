@@ -7,7 +7,7 @@
 | Language | rocq |
 | Status | accepted |
 | Source | [rocq-stdlib](../../sources/rocq-stdlib/SOURCE.md) at `22fcaa27d17b` |
-| Licence | `LGPL-2.1` |
+| Licence | `LGPL-2.1-only` |
 
 ## Intent
 
@@ -348,4 +348,4 @@ Status: **accepted**
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/rocq-prover/stdlib at commit `22fcaa27d17bc28ab4be728ed10a1fb73afb23ee`, under `LGPL-2.1`; see the [source note](../../sources/rocq-stdlib/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/rocq-prover/stdlib at commit `22fcaa27d17bc28ab4be728ed10a1fb73afb23ee`, under `LGPL-2.1-only`; see the [source note](../../sources/rocq-stdlib/SOURCE.md) for the licence text and attribution.

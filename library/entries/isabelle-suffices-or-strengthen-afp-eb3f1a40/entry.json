@@ -15,7 +15,7 @@
     "source_id": "afp",
     "url": "https://github.com/isabelle-prover/mirror-afp-devel",
     "commit": "07cd9ca548d180f234c63f06bf5d1cb85c7fc5df",
-    "licence": "LicenseRef-unknown"
+    "licence": "BSD-3-Clause"
   },
   "files": [
     {
@@ -155,6 +155,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-3",
       "at": "2026-11-14T10:52:00Z"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "licence audit 2026-11-14",
+      "at": "2026-11-14T22:40:52Z",
+      "note": "Changed from LicenseRef-unknown to BSD-3-Clause: AFP metadata/entries/Catalan_Numbers.toml has license = \"bsd\", and the AFP's LICENSE puts files 'unmarked or marked with License: BSD' under a 3-clause BSD text; thys/Catalan_Numbers/ ships no licence of its own. README Licence row and Source-and-licence section updated to match."
     }
   ]
 }

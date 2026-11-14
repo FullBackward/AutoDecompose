@@ -10,8 +10,11 @@
   "pinned_at": "2026-11-12T10:24:15Z",
   "how_found": "start set",
   "note": "",
-  "licence": "LicenseRef-unknown",
+  "licence": "LicenseRef-DeepSeek-License-1.0",
   "licence_files": [
     "LICENSE-MODEL"
-  ]
+  ],
+  "licence_detected": "LicenseRef-unknown",
+  "licence_note": "the only licence file is LICENSE-MODEL, the 'DEEPSEEK LICENSE AGREEMENT Version 1.0', which licenses the model and its 'Complementary Material' ('This includes any accompanying documentation, tutorials, examples'); README.md section 6 says 'The use of DeepSeek-Prover-V2 models is subject to the Model License'. The README's 'Code License MIT' badge links to another repository (DeepSeek-V3's LICENSE-CODE), and this repository holds no code. The agreement adds use-based restrictions on the model (Section III, Attachment A); it is not an open-source licence",
+  "licence_set_by": "licence audit 2026-11-14"
 }

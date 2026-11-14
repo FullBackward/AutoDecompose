@@ -7,7 +7,7 @@
 | Language | isabelle |
 | Status | draft |
 | Source | [cogent](../../sources/cogent/SOURCE.md) at `49b6ceb0d033` |
-| Licence | `BSD-2-Clause AND GPL-2.0` |
+| Licence | `GPL-2.0-only` |
 
 ## Intent
 
@@ -731,4 +731,4 @@ Status: **draft**
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/au-ts/cogent at commit `49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a`, under `BSD-2-Clause AND GPL-2.0`; see the [source note](../../sources/cogent/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/au-ts/cogent at commit `49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a`, under `GPL-2.0-only`; see the [source note](../../sources/cogent/SOURCE.md) for the licence text and attribution.

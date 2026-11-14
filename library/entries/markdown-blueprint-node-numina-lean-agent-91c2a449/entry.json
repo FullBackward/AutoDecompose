@@ -15,7 +15,7 @@
     "source_id": "numina-lean-agent",
     "url": "https://github.com/project-numina/numina-lean-agent",
     "commit": "1c9af8a52e715f22fede766425ba3d3b95526132",
-    "licence": "LicenseRef-unknown"
+    "licence": "MIT"
   },
   "files": [
     {
@@ -198,6 +198,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-3",
       "at": "2026-11-14T10:05:00Z"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "licence audit 2026-11-14",
+      "at": "2026-11-14T22:40:52Z",
+      "note": "Changed from LicenseRef-unknown to MIT: the source has no licence file; its README's 'License' section reads 'MIT License'. README Licence row and Source-and-licence section updated to match."
     }
   ]
 }

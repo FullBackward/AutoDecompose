@@ -4,7 +4,7 @@
 - Commit (pinned 2026-11-14T14:53:04Z): `edbce7eb98351870f553cfab6ccb7cab327e4259`
 - Browse at this commit: https://github.com/leanprover-community/con-nf/tree/edbce7eb98351870f553cfab6ccb7cab327e4259
 - Language: lean
-- Licence (detected): `Apache-2.0 AND MIT`; the licence text below governs.
+- Licence: `(Apache-2.0 OR MIT) AND LicenseRef-all-rights-reserved`, read from the licence files by licence audit 2026-11-14 (README.md: 'All files not under the Old/ subdirectory are dual-licensed under the Apache 2.0 license and the MIT license' (LICENSE_APACHE, LICENSE_MIT: a choice of either, not both), and 'Files under the Old/ subdirectory ... are not released under any open-source license' (LicenseRef-all-rights-reserved covers Old/ only)); the detector had `Apache-2.0 AND MIT`. The licence text below governs.
 - How found: discovery-2: A-lean, discovery-1:B-lean
 
 ## Licence files

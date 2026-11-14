@@ -7,7 +7,7 @@
 | Language | rocq |
 | Status | accepted |
 | Source | [corn](../../sources/corn/SOURCE.md) at `f67899611292` |
-| Licence | `GPL-2.0` |
+| Licence | `GPL-2.0-or-later` |
 
 ## Intent
 
@@ -533,4 +533,4 @@ Status: **accepted**
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/rocq-community/corn at commit `f678996112929e1674e20b75fb9bd728ded35e55`, under `GPL-2.0`; see the [source note](../../sources/corn/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/rocq-community/corn at commit `f678996112929e1674e20b75fb9bd728ded35e55`, under `GPL-2.0-or-later`; see the [source note](../../sources/corn/SOURCE.md) for the licence text and attribution.

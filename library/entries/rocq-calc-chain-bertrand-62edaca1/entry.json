@@ -16,7 +16,7 @@
     "source_id": "bertrand",
     "url": "https://github.com/rocq-community/bertrand",
     "commit": "033b1a8f1a9c121855b6b78cd55154d3c09e1c23",
-    "licence": "LGPL-2.1"
+    "licence": "LGPL-2.1-or-later"
   },
   "files": [
     {
@@ -200,6 +200,14 @@
       "run": "fixes-2026-11-14",
       "at": "2026-11-14T15:29:41Z",
       "note": "parent no_prime_imp_spec_inegality: statement re-copied from code; child 'upper_bound': statement re-copied from the declaration of upper_bound; child 'binomial_even': statement re-copied from the declaration of binomial_even"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "licence audit 2026-11-14",
+      "at": "2026-11-14T22:40:52Z",
+      "note": "Changed from LGPL-2.1 to LGPL-2.1-or-later: every copied file's header reads 'either version 2.1 of the License, or (at your option) any later version'. README Licence row and Source-and-licence section updated to match."
     }
   ],
   "status_reason": "",

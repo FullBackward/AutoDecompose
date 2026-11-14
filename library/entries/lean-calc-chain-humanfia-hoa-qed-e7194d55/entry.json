@@ -15,7 +15,7 @@
     "source_id": "humanfia-hoa-qed",
     "url": "https://github.com/humanfia/hoa-qed",
     "commit": "1c918ec9a96c7751ce9c283304e1aebd7ffb19a3",
-    "licence": "Apache-2.0 AND CC-BY-4.0"
+    "licence": "Apache-2.0"
   },
   "files": [
     {
@@ -238,6 +238,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-2",
       "at": "2026-11-12T15:12:55Z"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "licence audit 2026-11-14",
+      "at": "2026-11-14T22:40:52Z",
+      "note": "Changed from Apache-2.0 AND CC-BY-4.0 to Apache-2.0: the source's NOTICE puts 'Code and Lean proofs' under Apache 2.0 and only natural-language write-ups under CC-BY-4.0; the copied file is a Lean proof. README Licence row and Source-and-licence section updated to match."
     }
   ],
   "status_reason": "",

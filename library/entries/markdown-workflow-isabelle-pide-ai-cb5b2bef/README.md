@@ -7,7 +7,7 @@
 | Language | markdown |
 | Status | draft |
 | Source | [isabelle-pide-ai](../../sources/isabelle-pide-ai/SOURCE.md) at `80ec85239c8a` |
-| Licence | `LGPL-3.0` |
+| Licence | `LGPL-3.0-only` |
 
 ## Intent
 
@@ -127,4 +127,4 @@ Status: **draft**
 
 ## Source and licence
 
-Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/kappelmann/isabelle-pide-ai at commit `80ec85239c8a76d992a6f06d586cdc370934d751`, under `LGPL-3.0`; see the [source note](../../sources/isabelle-pide-ai/SOURCE.md) for the licence text and attribution.
+Every file under [`code/`](code/) is copied whole and unmodified from https://github.com/kappelmann/isabelle-pide-ai at commit `80ec85239c8a76d992a6f06d586cdc370934d751`, under `LGPL-3.0-only`; see the [source note](../../sources/isabelle-pide-ai/SOURCE.md) for the licence text and attribution.

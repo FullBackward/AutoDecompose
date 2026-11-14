@@ -14,7 +14,7 @@
     "source_id": "compcert",
     "url": "https://github.com/AbsInt/CompCert",
     "commit": "2685140bf72c959446981fb99b5e44a8975021bc",
-    "licence": "LicenseRef-INRIA-Non-Commercial"
+    "licence": "LicenseRef-INRIA-Non-Commercial AND (LicenseRef-INRIA-Non-Commercial OR LGPL-2.1-or-later)"
   },
   "files": [
     {
@@ -195,6 +195,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-3",
       "at": "2026-11-14T10:09:25Z"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "licence audit 2026-11-14",
+      "at": "2026-11-14T22:40:52Z",
+      "note": "Changed from LicenseRef-INRIA-Non-Commercial to LicenseRef-INRIA-Non-Commercial AND (LicenseRef-INRIA-Non-Commercial OR LGPL-2.1-or-later): per file: backend/Inliningproof.v is under the INRIA Non-Commercial License Agreement only, while common/Smallstep.v is dual-licensed under it or the LGPL version 2.1 or later (its header, and CompCert's LICENSE: 'all files in the common/ directory'). README Licence row and Source-and-licence section updated to match."
     }
   ],
   "status_reason": "",

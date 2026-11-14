@@ -16,7 +16,7 @@
     "source_id": "cogent",
     "url": "https://github.com/au-ts/cogent",
     "commit": "49b6ceb0d0337198a0ce26944b1ae11dd93fcb9a",
-    "licence": "BSD-2-Clause AND GPL-2.0"
+    "licence": "GPL-2.0-only"
   },
   "files": [
     {
@@ -266,6 +266,14 @@
       "run": "discovery-2",
       "at": "2026-11-14T16:19:57Z",
       "note": "added isabelle-per-callee-lemma-cogent-53de77e6: the level below: this entry's child ostore_sync_ret (OstoreR.thy 2379-2487) is that entry's parent; not a duplicate"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "licence audit 2026-11-14",
+      "at": "2026-11-14T22:40:52Z",
+      "note": "Changed from BSD-2-Clause AND GPL-2.0 to GPL-2.0-only: every copied file carries 'the GNU General Public License version 2 ... @TAG(NICTA_GPL)' with no 'or later'; the BSD-2-Clause half of the source's licence covers none of them. README Licence row and Source-and-licence section updated to match."
     }
   ]
 }

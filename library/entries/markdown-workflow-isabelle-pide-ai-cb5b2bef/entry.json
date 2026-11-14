@@ -15,7 +15,7 @@
     "source_id": "isabelle-pide-ai",
     "url": "https://github.com/kappelmann/isabelle-pide-ai",
     "commit": "80ec85239c8a76d992a6f06d586cdc370934d751",
-    "licence": "LGPL-3.0"
+    "licence": "LGPL-3.0-only"
   },
   "files": [
     {
@@ -120,6 +120,14 @@
       "model": "deepseek-v4-pro",
       "run": "pilot-2",
       "at": "2026-11-12"
+    },
+    {
+      "field": "source.licence",
+      "agent_role": "fixer",
+      "model": "manual",
+      "run": "licence audit 2026-11-14",
+      "at": "2026-11-14T22:41:37Z",
+      "note": "Changed from LGPL-3.0 to LGPL-3.0-only: the source ships the LGPL version 3 text and cites 'license = {LGPL-3.0}', and nothing says 'or any later version'. README Licence row and Source-and-licence section updated to match."
     }
   ]
 }

@@ -10,9 +10,12 @@
   "pinned_at": "2026-11-14T14:53:04Z",
   "how_found": "discovery-2: A-lean, discovery-1:B-lean",
   "note": "Consistency of Quine's New Foundations, proof complete: headline theorem statements in ConNF/Model/Result.lean over the stratified model construction, with CI",
-  "licence": "Apache-2.0 AND MIT",
+  "licence": "(Apache-2.0 OR MIT) AND LicenseRef-all-rights-reserved",
   "licence_files": [
     "LICENSE_APACHE",
     "LICENSE_MIT"
-  ]
+  ],
+  "licence_detected": "Apache-2.0 AND MIT",
+  "licence_note": "README.md: 'All files not under the Old/ subdirectory are dual-licensed under the Apache 2.0 license and the MIT license' (LICENSE_APACHE, LICENSE_MIT: a choice of either, not both), and 'Files under the Old/ subdirectory ... are not released under any open-source license' (LicenseRef-all-rights-reserved covers Old/ only)",
+  "licence_set_by": "licence audit 2026-11-14"
 }

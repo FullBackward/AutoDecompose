@@ -10,6 +10,9 @@
   "pinned_at": "2026-11-12T10:24:12Z",
   "how_found": "start set",
   "note": "",
-  "licence": "LicenseRef-unknown",
-  "licence_files": []
+  "licence": "MIT",
+  "licence_files": [],
+  "licence_detected": "LicenseRef-unknown",
+  "licence_note": "no licence file anywhere in the tree; README.md's 'License' section reads 'MIT License' and nothing more, so the licence is stated but no copyright line or licence text is supplied",
+  "licence_set_by": "licence audit 2026-11-14"
 }
