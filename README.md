@@ -83,6 +83,12 @@ nearAI_Isabelle harness, imported rather than copied.
 - `docs/research/survey-I-search-orchestration-2026-11-12.md`: multi-agent
   research architectures, systematic-review and repository-mining methodology,
   curated catalogues, and a harvest protocol with an entry template.
+- `papers/`: survey M, anchored on two papers of November 2026 (Turing Agent
+  and MathEye). One folder for each of 28 works, with the source and an
+  analysis note; `papers/survey-M-results-2026-11-21.md` gives the results
+  (the split check and its gaps, the scaling problem of Prove2Me, what
+  companies add, public data on machine-made splits). The PDFs stay on disk
+  and are not committed.
 
 ## The decomposition library
 

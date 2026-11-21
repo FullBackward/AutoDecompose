@@ -4,3 +4,8 @@ __pycache__/
 .DS_Store
 library/cache/
 .env.deepseek
+
+# third-party papers: kept on disk, not committed (licences differ per paper)
+papers/**/*.pdf
+# a figure from a paper whose licence does not permit redistribution
+papers/matheye-2611.22103/figures/
