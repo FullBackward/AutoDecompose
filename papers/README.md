@@ -5,6 +5,9 @@ has three subjects: what the works add to the ideas of the anchors, what compani
 and the scaling problem that Prove2Me names.
 
 - **Results:** `survey-M-results-2026-11-21.md`.
+- **First measurement after the survey:** `formalpedia-and-library-splits-2026-11-21.md` compares
+  the splits in the public Prove2Me corpus with the splits in the library. The scripts and the
+  measures are in `prove2me-2608.28433/formalpedia/`.
 - **Form of a note:** `NOTE_TEMPLATE.md` (a header table and nine sections).
 - **One folder for each work.** A folder holds `note.md` and the source: `paper.pdf` for a paper,
   `source.pdf` for web pages printed to PDF. Some folders hold figures or data.

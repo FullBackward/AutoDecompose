@@ -309,8 +309,11 @@ items by dependencies, and in the body that it uses the order of the index.
 ## 11. Recommended next steps, in order of cost
 
 1. **No model and no prover.** Measure the Formalpedia arrows: fan-out, depth, number of
-   alternative splits. Compare them with the 199 graphs of the library. This is the first
-   comparison of human splits with machine splits.
+   alternative splits. Compare them with the graphs of the library. This is the first
+   comparison of human splits with machine splits. **Done on 21 November 2026:** see
+   `formalpedia-and-library-splits-2026-11-21.md`. Its main result changes this plan: the arrows
+   show approximately 15 % of the lemmas of a proof, because most lemmas are local to a proof
+   file. The next comparison must read the proof files with the feature tools of the library.
 2. **No model and no prover.** Add to the feature tools the three definitions of an unused child,
    and a scanner for a hypothesis that repeats the conclusion.
 3. **A prover and no model.** On the 27 Isabelle entries: the four-part check of Section 9, and

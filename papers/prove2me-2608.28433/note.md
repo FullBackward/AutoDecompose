@@ -87,6 +87,13 @@ Reader:
   - Accept a parent when it builds with open children. Finish with one full build that permits no `Admitted` or `sorry`.
 - Not rebuildable from public parts: the search index, the credit system, the moderators.
 
+**Measured on 21 November 2026.** The folder `formalpedia/` holds measures of the public corpus,
+and `../formalpedia-and-library-splits-2026-11-21.md` gives the findings. Three of them belong
+here. The arrows of the corpus show approximately 15 % of the lemmas of a proof, because most
+lemmas are local to a proof file. The arrows contain 87 cycles with 2,593 cards, and the platform
+does not mark a circular group as proved. A change to the statement of a median card reaches 7
+cards, and the largest reach in a sample of 601 cards is 13,115.
+
 ## 9. Open points and things not read
 
 - How much rebuild time does the card layout save? Nobody has measured it.

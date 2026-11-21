@@ -1,0 +1,157 @@
+{
+ "proof_files": 300,
+ "files_not_found": 0,
+ "files_with_a_solution_declaration": 297,
+ "lines": {
+  "n": 300,
+  "min": 11,
+  "q1": 41,
+  "median": 107,
+  "q3": 395,
+  "p90": 1367,
+  "max": 9607,
+  "mean": 479.583
+ },
+ "local_helper_lemmas": {
+  "n": 300,
+  "min": 0,
+  "q1": 0,
+  "median": 2,
+  "q3": 19,
+  "p90": 69,
+  "max": 871,
+  "mean": 27.947
+ },
+ "files_with_a_local_helper_lemma": 170,
+ "local_helper_lemmas_in_those_files": {
+  "n": 170,
+  "min": 1,
+  "q1": 4,
+  "median": 15,
+  "q3": 53,
+  "p90": 143,
+  "max": 871,
+  "mean": 49.318
+ },
+ "local_definitions": {
+  "n": 300,
+  "min": 0,
+  "q1": 0,
+  "median": 0,
+  "q3": 0,
+  "p90": 5,
+  "max": 96,
+  "mean": 2.947
+ },
+ "have_steps": {
+  "n": 300,
+  "min": 0,
+  "q1": 0,
+  "median": 6,
+  "q3": 37,
+  "p90": 129,
+  "max": 1135,
+  "mean": 54.157
+ },
+ "card_children": {
+  "n": 300,
+  "min": 0,
+  "q1": 0,
+  "median": 1,
+  "q3": 4,
+  "p90": 8,
+  "max": 239,
+  "mean": 4.92
+ },
+ "lemmas_in_total (local helper lemmas + card children)": {
+  "n": 300,
+  "min": 0,
+  "q1": 1,
+  "median": 5,
+  "q3": 32,
+  "p90": 81,
+  "max": 878,
+  "mean": 32.867
+ },
+ "files_with_no_card_child": 133,
+ "of_these_with_a_local_helper_lemma": 83,
+ "files_with_a_card_child": 167,
+ "of_these_with_a_local_helper_lemma_too": 87,
+ "files_with_neither": 50,
+ "lines_of_files_with_neither": {
+  "n": 50,
+  "min": 11,
+  "q1": 21,
+  "median": 27,
+  "q3": 52,
+  "p90": 80,
+  "max": 280,
+  "mean": 44.8
+ },
+ "card_children_in_all_files": 1476,
+ "card_children_that_the_text_names": 1438,
+ "card_children_that_the_text_does_not_name": 38,
+ "files_with_a_card_child_that_the_text_does_not_name": 13,
+ "final_proof: local helper lemmas that its own text names": {
+  "n": 297,
+  "min": 0,
+  "q1": 0,
+  "median": 1,
+  "q3": 1,
+  "p90": 3,
+  "max": 156,
+  "mean": 2.094
+ },
+ "final_proof: card children that its own text names": {
+  "n": 297,
+  "min": 0,
+  "q1": 0,
+  "median": 0,
+  "q3": 1,
+  "p90": 3,
+  "max": 51,
+  "mean": 1.061
+ },
+ "final_proof: lemmas that its own text names (local + card)": {
+  "n": 297,
+  "min": 0,
+  "q1": 1,
+  "median": 1,
+  "q3": 2,
+  "p90": 5,
+  "max": 156,
+  "mean": 3.155
+ },
+ "final_proof: the same, for files with one or more such lemmas": {
+  "n": 242,
+  "min": 1,
+  "q1": 1,
+  "median": 1,
+  "q3": 3,
+  "p90": 6,
+  "max": 156,
+  "mean": 3.872
+ },
+ "height of the final proof above the local helper lemmas": {
+  "n": 297,
+  "min": 0,
+  "q1": 0,
+  "median": 1,
+  "q3": 5,
+  "p90": 9,
+  "max": 26,
+  "mean": 2.993
+ },
+ "the same, for files with a local helper lemma": {
+  "n": 167,
+  "min": 1,
+  "q1": 2,
+  "median": 4,
+  "q3": 7,
+  "p90": 11,
+  "max": 26,
+  "mean": 5.323
+ },
+ "arrow_count_equals_import_count_in_files": 297,
+ "files_that_import_all_of_mathlib": 146
+}
