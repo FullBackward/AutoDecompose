@@ -92,6 +92,8 @@ nearAI_Isabelle harness, imported rather than copied.
   been measured about decomposition (oracle experiments, ablations, error
   rates), about proof structure in human corpora, and about feature and graph
   representations of goals and proofs; what has not been measured.
+- `docs/features-and-literature-review-2026-11-15.md`: the review of surveys J
+  and K and of the feature extractors in `library/features/`.
 - `docs/research/survey-L-cross-prover-decomposition-2026-11-16.md`: whether
   decomposition across proof assistants has been done before (methods above the
   prover, corpora aligned across assistants, transfer of a lemma skeleton).
