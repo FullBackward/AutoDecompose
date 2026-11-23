@@ -1,0 +1,582 @@
+{
+ "version": "feature_gold 1.0.0",
+ "files": 7189,
+ "lines": 2021796,
+ "files_the_lexer_failed_on": [],
+ "nodes": {
+  "gold declarations that a user wrote (by name pattern)": 245539,
+  "with a row of the same name": 216205,
+  "with no row": 29334,
+  "share with a row of the same name": 0.8805,
+  "with no row, by kind": {
+   "theorem": 25765,
+   "abbrev": 2904,
+   "definition": 550,
+   "opaque": 114,
+   "inductive": 1
+  },
+  "with no row, and the last part of the name is in the file": 9326,
+  "with no row, and the last part of the name is not in the file": 20008,
+  "lexer rows with a name": 223667,
+  "lexer rows with a gold declaration": 220887,
+  "share of lexer rows with a gold declaration": 0.9876
+ },
+ "edges": {
+  "lexer edges": 336381,
+  "compiler edges inside the file, explicit": 210462,
+  "compiler edges inside the file, all": 429497,
+  "precision (the compiler has the edge)": 0.8883,
+  "precision against explicit edges only": 0.5321,
+  "recall of explicit edges": 0.8505,
+  "recall of all edges": 0.6957,
+  "missed explicit edges, name in the text": 7565,
+  "missed explicit edges, no token": 23899,
+  "gold edges in the file with an end that has no row": 220724,
+  "per file, recall of explicit edges": {
+   "n": 6192,
+   "min": 0.0,
+   "q1": 0.8333,
+   "median": 0.9545,
+   "q3": 1.0,
+   "max": 1.0
+  },
+  "per file, precision": {
+   "n": 6385,
+   "min": 0.0,
+   "q1": 0.8734,
+   "median": 0.962,
+   "q3": 1.0,
+   "max": 1.0
+  }
+ },
+ "by_level": {
+  "scoped": {
+   "edges": 176437,
+   "the compiler has the edge": 161615,
+   "precision": 0.916,
+   "explicit in the compiler data": 101057
+  },
+  "field": {
+   "edges": 79949,
+   "the compiler has the edge": 62092,
+   "precision": 0.7766,
+   "explicit in the compiler data": 35773
+  },
+  "exact": {
+   "edges": 73747,
+   "the compiler has the edge": 69810,
+   "precision": 0.9466,
+   "explicit in the compiler data": 38429
+  },
+  "opened": {
+   "edges": 6248,
+   "the compiler has the edge": 5301,
+   "precision": 0.8484,
+   "explicit in the compiler data": 3739
+  }
+ },
+ "by_class_of_the_source": {
+  "theorem": {
+   "lexer edges": 271313,
+   "precision": 0.9091,
+   "compiler explicit edges": 172996,
+   "recall of explicit edges": 0.8459
+  },
+  "other": {
+   "lexer edges": 65068,
+   "precision": 0.8018,
+   "compiler explicit edges": 37466,
+   "recall of explicit edges": 0.8718
+  }
+ },
+ "where_the_compiler_edges_of_these_files_go": {
+  "explicit, other Mathlib file": 842553,
+  "explicit, outside Mathlib or no file known": 848479,
+  "explicit, same file": 282425,
+  "not explicit, other Mathlib file": 4951581,
+  "not explicit, outside Mathlib or no file known": 705568,
+  "not explicit, same file": 401371
+ },
+ "share_of_explicit_compiler_edges_that_stay_in_the_file": 0.1431,
+ "examples": {
+  "gold declaration with no row, name is in the file": [
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMap.toFun"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMapClass.map_add_const"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMap.map_add_const'"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Equiv",
+    "AddConstEquiv.toEquiv"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Equiv",
+    "AddConstEquiv.map_add_const'"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Equiv",
+    "AddConstEquiv.toAddConstMap"
+   ],
+   [
+    "Mathlib.Algebra.AddTorsor.Defs",
+    "AddTorsor.nonempty"
+   ],
+   [
+    "Mathlib.Algebra.AddTorsor.Defs",
+    "AddTorsor.vadd_vsub'"
+   ],
+   [
+    "Mathlib.Algebra.AddTorsor.Defs",
+    "AddTorsor.vsub_vadd'"
+   ],
+   [
+    "Mathlib.Algebra.Algebra.Defs",
+    "Algebra.algebraMap"
+   ],
+   [
+    "Mathlib.Algebra.Algebra.Defs",
+    "Algebra.toSMul"
+   ],
+   [
+    "Mathlib.Algebra.Algebra.Defs",
+    "Algebra.smul_def'"
+   ]
+  ],
+  "gold declaration with no row, name is not in the file": [
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMap.coe_replaceConsts"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMap.coe_id"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMap.coe_addLeftHom_apply"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMap.toEnd_apply"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMap.coe_smul"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMap.coe_comp"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMap.coe_conjNeg_apply"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Equiv",
+    "AddConstEquiv.refl_toEquiv"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Equiv",
+    "AddConstEquiv.trans_toEquiv"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Equiv",
+    "AddConstEquiv.refl_apply"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Equiv",
+    "AddConstEquiv.trans_apply"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Equiv",
+    "AddConstEquiv.toPerm_apply"
+   ]
+  ],
+  "missed, name in the text": [
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMap.conjNeg",
+    "AddConstMap"
+   ],
+   [
+    "Mathlib.Algebra.AffineMonoid.Irreducible",
+    "finite_irreducible",
+    "Submonoid.FG.finite_irreducible_mem_submonoidClosure"
+   ],
+   [
+    "Mathlib.Algebra.Algebra.Bilinear",
+    "NonUnitalAlgHom.lmul",
+    "LinearMap.mul"
+   ],
+   [
+    "Mathlib.Algebra.Algebra.Defs",
+    "toAlgebra_algebraMap",
+    "Algebra.algebra_ext"
+   ],
+   [
+    "Mathlib.Algebra.Algebra.Defs",
+    "Algebra.algebraMap_eq_smul_one'",
+    "Algebra.algebraMap_eq_smul_one"
+   ],
+   [
+    "Mathlib.Algebra.Algebra.Defs",
+    "IsScalarTower.right",
+    "Algebra.smul_def"
+   ],
+   [
+    "Mathlib.Algebra.Algebra.Defs",
+    "RingHom.smulOneHom_eq_algebraMap",
+    "Algebra.algebraMap_eq_smul_one"
+   ],
+   [
+    "Mathlib.Algebra.Algebra.Defs",
+    "smul_algebraMap",
+    "Algebra.algebraMap_eq_smul_one"
+   ],
+   [
+    "Mathlib.Algebra.Algebra.Epi",
+    "RingHom.surjective_of_tmul_eq_tmul_of_finite",
+    "Algebra.isEpi_iff_surjective_algebraMap_of_finite"
+   ],
+   [
+    "Mathlib.Algebra.Algebra.Equiv",
+    "AlgEquiv.mk_coe",
+    "AlgEquiv.ext"
+   ],
+   [
+    "Mathlib.Algebra.Algebra.Equiv",
+    "AlgEquiv.symm_bijective",
+    "AlgEquiv.symm"
+   ],
+   [
+    "Mathlib.Algebra.Algebra.Equiv",
+    "AlgEquiv.mk_coe'",
+    "AlgEquiv.ext"
+   ]
+  ],
+  "missed, no token": [
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMap",
+    "AddConstMap.ext"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMapClass.map_add_nat",
+    "AddConstMapClass.map_add_nat'"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMapClass.map_nat",
+    "AddConstMapClass.map_nat'"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMapClass.map_nat_add",
+    "AddConstMapClass.map_nat_add'"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMapClass.map_add_zsmul",
+    "AddConstMapClass.map_add_nsmul"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMapClass.map_add_zsmul",
+    "AddConstMapClass.map_sub_nsmul"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMapClass.map_add_int",
+    "AddConstMapClass.map_add_int'"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMapClass.map_sub_int",
+    "AddConstMapClass.map_sub_int'"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMapClass.map_int_add",
+    "AddConstMapClass.map_int_add'"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMapClass.rel_map_of_Icc",
+    "AddConstMapClass.map_sub_zsmul"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMap.id",
+    "AddConstMap"
+   ],
+   [
+    "Mathlib.Algebra.AddConstMap.Basic",
+    "AddConstMap.comp",
+    "AddConstMap"
+   ]
+  ],
+  "lexer edge that the compiler does not have": {
+   "scoped": [
+    [
+     "Mathlib.Algebra.AddConstMap.Basic",
+     "AddConstMapClass.map_add_nat'",
+     "AddConstMapClass.map_add_nsmul"
+    ],
+    [
+     "Mathlib.Algebra.AddConstMap.Basic",
+     "AddConstMap.coe_one",
+     "AddConstMap.id"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Equiv",
+     "AlgEquiv.Simps.symm_apply",
+     "AlgEquiv.Simps.apply"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Equiv",
+     "AlgEquiv.arrowCongr",
+     "AlgEquiv.toAlgHom_eq_coe"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Equiv",
+     "AlgEquiv.arrowCongr",
+     "AlgEquiv.comp_symm"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Equiv",
+     "AlgEquiv.arrowCongr",
+     "AlgEquiv.symm_comp"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Equiv",
+     "AlgEquiv.equivCongr",
+     "AlgEquiv.apply_symm_apply"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Equiv",
+     "AlgEquiv.equivCongr",
+     "AlgEquiv.symm_apply_apply"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Equiv",
+     "AlgEquiv.equivCongr",
+     "AlgEquiv.trans_apply"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Equiv",
+     "AlgEquiv.aut",
+     "AlgEquiv.ext"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Equiv",
+     "AlgEquiv.autCongr",
+     "AlgEquiv.symm_apply_apply"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Equiv",
+     "AlgEquiv.autCongr",
+     "AlgEquiv.trans_apply"
+    ]
+   ],
+   "exact": [
+    [
+     "Mathlib.Algebra.AddConstMap.Basic",
+     "AddConstMap.conjNeg",
+     "AddConstMap.ext"
+    ],
+    [
+     "Mathlib.Algebra.AddTorsor.Defs",
+     "Equiv.constVSub",
+     "vsub_vadd_eq_vsub_sub"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Defs",
+     "RingHom.toAlgebra'",
+     "algebraMap"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Defs",
+     "Algebra.ofModule'",
+     "algebraMap"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Defs",
+     "Algebra.compHom",
+     "Algebra.smul_def"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Defs",
+     "Algebra.compHom",
+     "Algebra.commutes"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Defs",
+     "Algebra.linearMap",
+     "Algebra.smul_def"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Equiv",
+     "MulSemiringAction.toAlgAut",
+     "AlgEquiv.ext"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Hom",
+     "uniqueOfRight",
+     "AlgHom.ext"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.NonUnitalSubalgebra",
+     "NonUnitalAlgebra.gi",
+     "NonUnitalSubalgebra.copy_eq"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.NonUnitalSubalgebra",
+     "NonUnitalAlgebra.toSubmodule_bot",
+     "NonUnitalSubalgebra.mem_toSubmodule"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.NonUnitalSubalgebra",
+     "NonUnitalAlgebra.coe_bot",
+     "NonUnitalAlgebra.mem_bot"
+    ]
+   ],
+   "opened": [
+    [
+     "Mathlib.Algebra.AddConstMap.Basic",
+     "AddConstMap.mkFract",
+     "AddConstMapClass.map_fract"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Spectrum.Quasispectrum",
+     "Unitization.unitsFstOne_mulEquiv_quasiregular",
+     "PreQuasiregular.inv_add_add_mul_eq_zero"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Spectrum.Quasispectrum",
+     "Unitization.unitsFstOne_mulEquiv_quasiregular",
+     "PreQuasiregular.add_inv_add_mul_eq_zero"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Subalgebra.Lattice",
+     "AlgHom.eqOn_adjoin_iff",
+     "Algebra.adjoin_le_iff"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Subalgebra.Lattice",
+     "Subsemiring.closureEquivAdjoinNat",
+     "Algebra.adjoin_nat"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Subalgebra.Lattice",
+     "Subring.closureEquivAdjoinInt",
+     "Algebra.adjoin_int"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Subalgebra.Lattice",
+     "NonUnitalAlgebra.adjoin_le_algebra_adjoin",
+     "Algebra.adjoin_le"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Tower",
+     "AlgHom.restrictScalars",
+     "IsScalarTower.algebraMap_apply"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Tower",
+     "AlgEquiv.restrictScalars",
+     "IsScalarTower.algebraMap_apply"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Tower",
+     "Submodule.restrictScalars_span",
+     "IsScalarTower.algebraMap_smul"
+    ],
+    [
+     "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+     "Function.Bijective.finset_prod",
+     "Finset.prod_bijective"
+    ],
+    [
+     "Mathlib.Algebra.BigOperators.Group.Finset.Defs",
+     "Function.Bijective.prod_comp",
+     "Finset.prod_bijective"
+    ]
+   ],
+   "field": [
+    [
+     "Mathlib.Algebra.AddConstMap.Equiv",
+     "AddConstEquiv.instPowInt",
+     "AddConstEquiv.symm"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Basic",
+     "LinearMap.extendScalarsOfSurjective_apply",
+     "LinearEquiv.extendScalarsOfSurjective"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Basic",
+     "LinearEquiv.extendScalarsOfSurjective_apply",
+     "LinearMap.extendScalarsOfSurjective"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Basic",
+     "LinearEquiv.extendScalarsOfSurjective_symm",
+     "LinearMap.extendScalarsOfSurjective"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Equiv",
+     "AlgEquiv.ofLinearEquiv",
+     "AlgEquiv.commutes"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Equiv",
+     "AlgEquiv.ofLinearEquiv",
+     "AlgEquiv.symm"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Equiv",
+     "AlgEquiv.ofRingEquiv",
+     "AlgEquiv.symm"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Equiv",
+     "AlgEquiv.apply_smulCommClass",
+     "AlgEquiv.symm"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Equiv",
+     "LinearEquiv.algEquivOfRing",
+     "AlgEquiv.symm"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Equiv",
+     "LinearEquiv.algEquivOfRing",
+     "AlgEquiv.apply_symm_apply"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Equiv",
+     "LinearEquiv.algEquivOfRing",
+     "AlgEquiv.symm_apply_apply"
+    ],
+    [
+     "Mathlib.Algebra.Algebra.Equiv",
+     "LinearEquiv.conjAlgEquiv_apply",
+     "AlgEquiv.symm"
+    ]
+   ]
+  }
+ },
+ "sample": {
+  "modules with declarations and a source file": 7189,
+  "step": 1,
+  "modules read": 7189
+ }
+}

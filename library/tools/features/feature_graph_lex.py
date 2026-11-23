@@ -26,7 +26,7 @@ from __future__ import annotations
 import bisect
 import re
 
-LEX_VERSION = "1.0.0"
+LEX_VERSION = "1.1.0"
 
 PROVER_EXT = {".lean": "lean", ".v": "rocq", ".thy": "isabelle"}
 
@@ -245,6 +245,92 @@ def _lean_split(masked: str, a: int, b: int):
     return None
 
 
+_LP_WHERE = re.compile(r"(?<![\w'.])where(?![\w'])|:=")
+_LP_EXTENDS = re.compile(r"(?<![\w'.])extends(?![\w'])")
+_LP_HEAD = re.compile(r"[ \t]*(?:@\[[^\]\n]*\][ \t]*)*(?:(?:private|protected)[ \t]+)*")
+_LP_NAMES = re.compile(rf"\(?[ \t]*((?:{_LID1}{_LIDC}*[ \t]+)*{_LID1}{_LIDC}*)[ \t]*(::|:=|:|[({{\[⦃])")
+_LP_GROUP = re.compile(rf"\([ \t]*((?:{_LID1}{_LIDC}*[ \t]+)*{_LID1}{_LIDC}*)[ \t]*:(?!=)")
+_LP_ARM = re.compile(rf"\|[ \t]*(?:(?:private|protected)[ \t]+)?({_LID1}{_LIDC}*)")
+_LP_ENUM = re.compile(rf"(?:[ \t]*\|[ \t]*{_LID1}{_LIDC}*)+[ \t]*$")
+_LP_PARENT = re.compile(rf"\s*({_LID1}{_LIDC}*(?:\.{_LID1}{_LIDC}*)*)(?:\s+(?:[\w'.]+|\([^()]*\)|\{{[^{{}}]*\}}|\[[^\[\]]*\]))*\s*$")
+_LP_STOP = frozenset("deriving instance end namespace open variable theorem lemma def section".split())
+
+
+def _lean_provides(masked: str, d: dict) -> dict:
+    """Names that a Lean `structure`, `class` or `inductive` brings with it, written relative to the
+    namespace the declaration is in: `S.mk` (or the constructor the text names with `c ::`), `S.f`
+    for each field, `S.toP` for each parent after `extends`, `T.c` for each constructor arm `| c`.
+    The compiler makes one constant for each of them; without these names a use such as `x.f` or
+    `T.c` has nothing to point at."""
+    short = d["short"]
+    if not short or short.startswith("_root_."):
+        return {}
+    a = d["name_at"][1] if d["name_at"] else d["kw"]
+    seg = masked[a:d["end"]]
+    out = {}
+    if d["kind"] in ("structure", "class"):
+        m = _LP_WHERE.search(seg)
+        head = seg[:m.start()] if m else seg
+        e = _LP_EXTENDS.search(head)
+        if e:
+            depth, start, stop, parts = 0, e.end(), len(head), []
+            for i in range(e.end(), len(head)):
+                ch = head[i]
+                if ch in "([{⟨⦃":
+                    depth += 1
+                elif ch in ")]}⟩⦄":
+                    depth -= 1
+                elif ch == "," and depth == 0:
+                    parts.append(head[start:i])
+                    start = i + 1
+                elif ch == ":" and depth == 0:               # `extends A, B : Type u`
+                    stop = i
+                    break
+            parts.append(head[start:stop])
+            for part in parts:
+                pm = _LP_PARENT.match(part)                 # `A ≃ B` names no parent: no projection
+                if pm:
+                    out[short + ".to" + pm.group(1).split(".")[-1]] = "field"
+        ctor = "mk"
+        if m:
+            first, _, rest = seg[m.end():].partition("\n")
+            for g in _LP_GROUP.finditer(first):                  # Lean 3: `:= (a : T) (b : U)`
+                for nm in g.group(1).split():
+                    out[short + "." + nm] = "field"
+            base = None
+            for line in rest.split("\n"):
+                if not line.strip():
+                    continue
+                indent = len(line) - len(line.lstrip(" \t"))
+                if base is None:
+                    base = indent
+                if indent != base:
+                    continue
+                nm = _LP_NAMES.match(line, _LP_HEAD.match(line).end())
+                if not nm:
+                    continue
+                names = nm.group(1).split()
+                if names[0] in _LP_STOP:
+                    break
+                if nm.group(2) == "::":
+                    ctor = names[-1]
+                else:
+                    for x in names:
+                        out[short + "." + x] = "field"
+        out[short + "." + ctor] = "constructor"
+    else:
+        lines = seg.split("\n")
+        bar = lines[0].find("|")                              # `inductive E | a | b` on the header line
+        for line in ([lines[0][bar:]] if bar >= 0 else []) + lines[1:]:
+            st = line.lstrip(" \t")
+            if not st.startswith("|"):
+                continue
+            arms = _LP_ARM.findall(st) if _LP_ENUM.match(st) else [x.group(1) for x in [_LP_ARM.match(st)] if x]
+            for x in arms:
+                out[short + "." + x] = "constructor"
+    return out
+
+
 def lean_table(text: str) -> dict:
     docs = []
     masked = mask_lean(text, docs)
@@ -429,6 +515,8 @@ def lean_table(text: str) -> dict:
             d["split"] = _lean_split(masked, a, d["end"])
         if d["kind"] == "alias":
             d["split"] = None
+        if d["kind"] in ("structure", "class", "inductive", "coinductive", "class inductive") and not d["dup"]:
+            d["provides"] = _lean_provides(masked, d)
     return {"lang": "lean", "dialect": "lean3" if lean3 else "lean4", "masked": masked, "inner": None,
             "L": L, "decls": decls, "opens": sorted(set(opens)), "interps": {}, "anomalies": anomalies,
             "variables": variables, "docs": docs}
@@ -593,6 +681,9 @@ def lean_bound(text: str):
 
 
 _LEAN_HEAD = re.compile(r"(?:^|[;·|(]|<;>|(?<![\w'.])by)[ \t]*$")
+
+
+_LEAN_BY = re.compile(r"(?<![\w'.])(?:by|begin)(?![\w'])")
 
 
 def lean_tokens(masked: str, a: int, b: int):
@@ -1780,9 +1871,15 @@ def decl_mentions(t: dict, d: dict) -> dict:
     it = (lean_tokens(masked, a, b) if lang == "lean" else rocq_tokens(masked, a, b) if lang == "rocq"
           else isabelle_tokens(masked, t["inner"], a, b, t.get("tspans"), t.get("tstarts")))
     out = {}
+    by_at = -1
+    if lang == "lean":                           # before the first `by` of the body every word is a term
+        mb = _LEAN_BY.search(masked, sp, b)
+        by_at = mb.start() if mb else b
     for tok, off, head in it:
         if off == skip:
             continue
+        if head and off < by_at:
+            head = False
         if soft and tok[0] != ".":
             first = tok.split(".", 1)
             z = soft.get(first[0])
@@ -1818,6 +1915,7 @@ def range_tokens(t: dict, a: int, b: int):
 # ============================================================================ resolver
 
 MATCH_LEVELS = ("exact", "scoped", "opened", "file-qualified", "suffix", "field", "last")
+FIELD_TYPE_RULES = True      # switch for measurement with feature_gold.py; see library/features/gold-lean.md
 
 
 class Resolver:
@@ -2043,13 +2141,20 @@ class Resolver:
                 res = lookup((comps[1],), g, None, True, only_qualified=True)
                 if res:
                     ty = self.bound(g)[3].get(comps[0])
-                    if ty and len(res[1]) > 1:           # the receiver's written type picks the namespace
+                    if ty:                               # the receiver's written type picks the namespace
                         tc = tuple(ty.split("."))
-                        sub = [c for c in res[1] if c[0] != g and
-                               tuple((self.items[c[0]][1]["name"] or "").split("."))[:-1][-len(tc):] == tc]
+
+                        def member_of(c):                # the namespace that the candidate lives in
+                            nm = tuple((self.items[c[0]][1]["name"] or "").split("."))
+                            return nm if c[1] in ("field", "constructor") else nm[:-1]
+
+                        sub = [c for c in res[1] if c[0] != g and member_of(c)[-len(tc):] == tc]
                         if sub:
                             res = (res[0], sub)
-                    take(res, level2="field")
+                        elif FIELD_TYPE_RULES and tc[0] not in bound and tc[0][:1].isupper():
+                            res = None                   # a named type with no such member in these files
+                    if res:
+                        take(res, level2="field")
             return out, note
         if lang == "rocq":
             comps = tuple(tok.split("."))
@@ -2208,13 +2313,28 @@ def self_test() -> list[str]:
           (["hp", "p", "r", "s", "t", "u", "v", "w", "x", "y", "z"], ["hq"], {"x": "Nat", "y": "Nat", "z": "Foo.Bar"}))
     field = ("structure A where\n  n : Nat\nstructure B where\n  n : Nat\ndef A.size (a : A) : Nat := a.n\n"
              "def B.size (b : B) : Nat := b.n\nvariable (v : B)\ntheorem t1 (a : A) : a.size = a.size := rfl\n"
-             "theorem t2 : v.size = v.size := rfl\ntheorem t3 (h : True) : h.size = 0 := sorry\n")
+             "theorem t2 : v.size = v.size := rfl\ntheorem t3 (h : True) : h.size = 0 := sorry\n"
+             "theorem t4 (α : Type) (h : α) : h.size = 0 := sorry\ntheorem t5 (a : A) : a.n = (A.mk 0).n := rfl\n"
+             "theorem t6 : True :=\n  trivial\n")
     R = Resolver([("F.lean", file_table(field, "lean"))])
     by = {d["name"]: g for g, (_, d, _) in enumerate(R.items)}
     names = lambda g, tok: sorted(R.items[x[0]][1]["name"] for x in R.resolve(g, tok)[0])
     check("lean field by binder type", names(by["t1"], "a.size"), ["A.size"])
     check("lean field by variable type", names(by["t2"], "v.size"), ["B.size"])
-    check("lean field undecided", names(by["t3"], "h.size"), ["A.size", "B.size"])
+    check("lean field ruled out by a named type", names(by["t3"], "h.size"), [])
+    check("lean field undecided", names(by["t4"], "h.size"), ["A.size", "B.size"])
+    check("lean structure field", names(by["t5"], "a.n"), ["A"])
+    check("lean structure constructor", names(by["t5"], "A.mk"), ["A"])
+    ft = file_table(field, "lean")
+    check("lean provides", sorted(next(d for d in ft["decls"] if d["name"] == "A")["provides"].items()),
+          [("A.mk", "constructor"), ("A.n", "field")])
+    check("lean provides, parents and arms",
+          [sorted(d["provides"]) for d in file_table(
+              "structure S (X Y : Type) extends X ≃ Y, Foo.Bar X where\n  c ::\n  (p q : Nat)\n"
+              "inductive E | a | b\ninductive T\n  | leaf\n  | node (l r : T) : T\n", "lean")["decls"]],
+          [["S.c", "S.p", "S.q", "S.toBar"], ["E.a", "E.b"], ["T.leaf", "T.node"]])
+    m6 = decl_mentions(ft, next(d for d in ft["decls"] if d["name"] == "t6"))
+    check("lean word at line start before any `by` is a term", m6.get("trivial", [0, 0, 0, 0, True])[4], False)
     shadow = ("theorem key : True := trivial\ntheorem user (h : True) : True := by\n  have key : True :=\n"
               "    key\n  exact key\n")
     t2 = file_table(shadow, "lean")

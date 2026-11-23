@@ -92,3 +92,8 @@ with the source by hand. Two cautions follow from it.
    argument of the functions in a goal (survey J §10, candidate 2), and a generality relation
    between a parent and a child statement by anti-unification (survey J §10, candidate 3). The
    statement parser stops at the connectives and relations; what lies below is one leaf.
+
+On 2026-11-21 the Lean graph was compared with dependency data from the Lean compiler for all of
+Mathlib: `gold-lean.md` gives the method and the results, `tools/features/feature_gold.py` runs it. This
+is the first check of the graph against a prover. It led to lexer 1.1.0, which changes Lean
+entries only. The Rocq and Isabelle graphs have no such check yet.

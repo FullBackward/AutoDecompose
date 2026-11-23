@@ -128,7 +128,7 @@ Node keys:
 
 How the edges of `local`, `region` and `external` nodes are made. A `local` or `region` node uses a declaration when a token of its line range matches it, by the rules of the next section applied inside the enclosing declaration; all such mentions count as `body`. The enclosing declaration keeps its own edges, which are computed from its whole text, local steps included. A mention of a `local` node's name counts for the innermost named step that holds the token and for the enclosing declaration, except that a mention inside another child's step counts for that step only; the tokens of the step's own range, its `have` line included, are not mentions of it. A node uses an `external` node when one of its tokens equals the external name, or one is a dotted suffix of the other, or the token starts with the name and goes on with projections.
 
-Sizes: 4,316 nodes and 10,511 edges over the 199 graphs (10,438 `uses`, 36 `contains`, 37 `subgoal`). Median 13 nodes for lean, 31 for rocq, 15 for isabelle; the largest graph has 183 nodes.
+Sizes: 4,360 nodes and 10,738 edges over the 199 graphs (10,665 `uses`, 36 `contains`, 37 `subgoal`). Median 13 nodes for lean, 31 for rocq, 15 for isabelle; the largest graph has 183 nodes.
 
 ## The lexer
 
@@ -289,6 +289,20 @@ Why a T1 feature is null on a prover entry. `parent_kind` and the other features
 
 Each number below is printed by `--report glue`, `--report shape` or `--report sizes`, except the hand audit.
 
+### Against the Lean compiler
+
+`gold-lean.md` reports a comparison of the Lean graph with dependency data that the Lean compiler
+produced for all of Mathlib (7,189 files); `tools/features/feature_gold.py` makes it. With lexer 1.1.0,
+89.6% of the arrows are also in the compiler data (91.6% when the source is a theorem), and the
+graph has 84.8% of the arrows that a person wrote by name. By level: `exact` 94.8%, `scoped`
+91.8%, `opened` 85.6%, `field` 80.1%. No such data was found for Rocq or Isabelle.
+
+Lexer 1.1.0 changed four Lean rules after this comparison: fields, parent projections and
+constructors are names of their type's row; a parent written in notation gives no projection; a
+word is a tactic only after the first `by` of a body; for `x.f`, a named type of `x` that holds no
+candidate removes the arrow. The tables below this subsection were made with lexer 1.0.0, except
+where a line says otherwise. For Rocq and Isabelle the two versions give the same output.
+
 ### Against the library's glue check
 
 `validate_entry.py --strict` requires that the text of the parent and skeleton sites cites every named child: the last dotted component of the child's name occurs as a whole word in a line of those sites, comments included. The graph was compared with that rule on the 753 named children of prover instances.
@@ -369,7 +383,7 @@ Limits of the audit. The test sample has no wrong edge, but it holds only 26 Lea
 | rocq `suffix` | 20 | 20 |
 | isabelle `suffix` | 20 | 17 |
 
-Lean `scoped` (25 of 25), `opened` (12 of 12), rocq `scoped` (14 of 14), isabelle `exact` (30 of 30) and `last` (18 of 18) were sampled with an earlier version of the resolver. Weak levels are 14% of the edges between all Lean declarations of the copied files (2,478 of 17,691), 0.7% for Rocq and 1.2% for Isabelle; among parent-to-child edges they are 30 of 380 for Lean, 1 of 262 for Rocq, 8 of 95 for Isabelle.
+Lean `scoped` (25 of 25), `opened` (12 of 12), rocq `scoped` (14 of 14), isabelle `exact` (30 of 30) and `last` (18 of 18) were sampled with an earlier version of the resolver. Weak levels are 14% of the edges between all Lean declarations of the copied files (2,493 of 17,817 with lexer 1.1.0), 0.7% for Rocq and 1.2% for Isabelle; among parent-to-child edges they are 30 of 380 for Lean, 1 of 262 for Rocq, 8 of 95 for Isabelle.
 
 Recall is measured against what a reader can see in the text. Dependencies that leave no token (instances, coercions, `simp` sets, `auto` with hint databases, canonical structures) are outside it.
 
@@ -392,7 +406,7 @@ Misses (a real dependency with no edge):
 False edges:
 
 - a local name that the binding rules do not see (a pattern variable of a form not listed, an implicit free variable of an Isabelle statement, the parameter on the left of an Isabelle `definition`) and that equals a declared name;
-- Lean `field` edges: `x.f` gets an edge to every `N.f` of the copied files unless the written type of `x` selects one; `h.symm` matches a project lemma `Foo.symm`;
+- Lean `field` edges: `x.f` gets an edge to every `N.f` of the copied files when the header gives `x` no named type (a type in notation, or a type that is a variable); `h.symm` then matches a project lemma `Foo.symm`. Measured on Mathlib, 1 `field` edge in 5 is not in the compiler data (`gold-lean.md`);
 - `suffix` edges of Rocq and Isabelle: the name is in a module or locale the text does not show to be open;
 - names that occur in two copied files: the first file in path order wins, the import relation between the copied files is not read, and this can create a cycle (`on_cycle`);
 - an `open` or `Import` is applied to the whole file, whatever its extent.

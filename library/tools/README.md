@@ -45,6 +45,8 @@ own instructions with `--help`.
 | `feature_graph_lex.py` | The lexer and the name resolver that `feature_graph.py` uses, for Lean, Rocq and Isabelle |
 | `feature_terms.py` | Writes `library/features/term-features.jsonl`: the form of each statement, the relation of each child to its parent, the proof steps, the move detectors |
 | `feature_terms_lex.py` | The statement parser that `feature_terms.py` uses |
+| `feature_gold.py` | Compares the Lean graph with dependency data from the Lean compiler; `library/features/gold-lean.md` gives the results |
+| `lean_deps.lean` | A Lean script that prints, for each constant of a built module, the constants in its statement and in its proof. It runs inside a built source with that source's Lean version |
 | `graph_viewer.py` | Writes `library/features/graph-viewer.html`, a page that shows the graph of each entry |
 | `graph_viewer_template.html` | The page layout and script that `graph_viewer.py` fills |
 
