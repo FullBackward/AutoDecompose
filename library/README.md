@@ -58,6 +58,7 @@ library/
   checks/<id>.json    verification and review records (append-only)
   ledger/*.jsonl      queries, candidates, sources, screening, sites, verdicts (append-only)
   reports/            flow, coverage, duplicates
+  features/           features of every entry, extracted by code (see features/README.md)
   tools/              the scripts every agent uses (Python standard library)
   gold/               hidden gold standards per run (harvest agents must not read)
   cache/              disposable, git-ignored: files fetched only for searching
@@ -90,6 +91,9 @@ Python 3 interpreter). No tool uses an API token or a model.
 | `set_status.py` | promotes or flags an entry, refusing when a gate is not met |
 | `dedupe.py` | finds duplicate entries |
 | `build_index.py` | writes `INDEX.md` and `reports/flow.md` |
+| `features/feature_graph.py` | writes `features/graphs.jsonl` and `features/graph-features.jsonl`: the declarations of each entry's copied files, which mentions which, and measures of the decomposition taken from that graph; `--check` recomputes and compares |
+| `features/graph_viewer.py` | writes `features/graph-viewer.html` (generated, git-ignored): a page that opens in a browser without a server and shows, for each entry, its graph and why it is recorded as a good decomposition (intent, claims and their verdicts) |
+| `features/feature_terms.py` | writes `features/term-features.jsonl`: the skeleton of each statement, how each child statement relates to its parent, the proof steps by class, and a code detector for each move; `--check` recomputes and compares |
 | `run_harvest.py` | runs one batch with DeepSeek workers (headless Claude Code on DeepSeek's Anthropic-compatible API); config in `runs/<run>.json`, logs in `reports/<run>/`; `--smoke` checks the routing, `--dry-run` the plumbing; `--finish ID... [--cap CNY]` completes entries a budget halt cut short and reruns the critic; with `--revise` it first has the analyst meet each standing review objection, then reviews those lenses again |
 
 Two ways to run a batch: the saved workflow `.claude/workflows/harvest-library.js`

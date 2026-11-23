@@ -112,6 +112,12 @@ it is good; start at `library/README.md`. The harvest follows
 `.claude/agents/` and `.claude/skills/harvest-decompositions/`. Every run spends
 tokens and needs the owner's go-ahead.
 
+`library/features/` holds features of every entry, extracted by code alone
+(`library/tools/features/feature_graph.py`, `library/tools/features/feature_terms.py`): a graph
+of the declarations each entry copies and which mentions which, and the
+structure of its statements and proofs. A rerun gives the same bytes; see
+`library/features/README.md`.
+
 The experimental evidence the note cites (pass-1 analysis, rep-1 analysis, the
 three-run comparison table) stays in `nearAI_Isabelle/docs/`.
 

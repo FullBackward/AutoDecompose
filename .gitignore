@@ -4,6 +4,7 @@ __pycache__/
 .DS_Store
 library/cache/
 .env.deepseek
+library/features/graph-viewer.html
 
 # third-party papers: kept on disk, not committed (licences differ per paper)
 papers/**/*.pdf

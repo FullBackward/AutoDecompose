@@ -2,3 +2,6 @@
 # a converted copy no longer matches its source, and check_provenance.py fails.
 library/entries/*/code/** -text
 library/sources/*/upstream-* -text
+
+# Extracted features: the committed bytes are the hashed bytes on every checkout.
+library/features/*.jsonl -text

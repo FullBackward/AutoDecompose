@@ -1,0 +1,693 @@
+<title>Library Decomposition Graphs</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a two-pane tool. The left rail picks an entry; the right pane draws its graph left to
+   right with the parent first, the entry's facts above it and the inspected declaration below. */
+:root {
+  --plane: #f9f9f7; --surface: #fcfcfb; --raised: #ffffff;
+  --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781; --hair: #e1e0d9; --axis: #c3c2b7;
+  --role-parent: #2a78d6; --role-child: #eb6834; --role-skeleton: #eda100; --role-context: #1baf7a; --role-other: #a3a199;
+  --good: #006300; --bad: #c22f2f;
+  --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-code: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --plane: #0d0d0d; --surface: #1a1a19; --raised: #222221;
+    --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781; --hair: #2c2c2a; --axis: #45453f;
+    --role-parent: #3987e5; --role-child: #d95926; --role-skeleton: #c98500; --role-context: #199e70; --role-other: #6f6e68; --good: #0ca30c; --bad: #e66767;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --plane: #0d0d0d; --surface: #1a1a19; --raised: #222221;
+  --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781; --hair: #2c2c2a; --axis: #45453f;
+  --role-parent: #3987e5; --role-child: #d95926; --role-skeleton: #c98500; --role-context: #199e70; --role-other: #6f6e68; --good: #0ca30c; --bad: #e66767;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--plane); color: var(--ink); font-family: var(--font-ui); font-size: 14px; line-height: 1.45;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 40px;
+}
+h1, h2, h3 { margin: 0; font-weight: 600; text-wrap: balance; }
+h1 { font-size: 22px; letter-spacing: -0.01em; }
+h2 { font-size: 18px; line-height: 1.3; }
+h3 { font-size: 14px; }
+p { margin: 0; }
+code, .mono { font-family: var(--font-code); font-size: 0.92em; }
+button, select, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+.top { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; max-width: 78ch; }
+.lede { color: var(--ink-2); }
+.totals { color: var(--muted); font-size: 12.5px; font-variant-numeric: tabular-nums; }
+
+.layout { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 860px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+
+.rail { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.filters { display: grid; gap: 8px; }
+.filters label { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 2px; }
+.filters input, .filters select {
+  width: 100%; padding: 6px 8px; background: var(--surface); border: 1px solid var(--axis); border-radius: 4px;
+}
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.count { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.list { list-style: none; margin: 0; padding: 0; max-height: 68vh; overflow-y: auto; border: 1px solid var(--hair); border-radius: 6px; background: var(--surface); }
+@media (max-width: 860px) { .list { max-height: 210px; } }
+.item { display: block; width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid var(--hair); padding: 8px 10px 8px 12px; cursor: pointer; border-left: 3px solid transparent; }
+.list li:last-child .item { border-bottom: 0; }
+.item:hover { background: var(--plane); }
+.item[aria-current="true"] { background: var(--raised); border-left-color: var(--ink); }
+.it-title { display: block; font-size: 13px; line-height: 1.3; overflow-wrap: anywhere; }
+.it-meta { display: block; margin-top: 2px; font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.pane { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.entry-head { display: flex; flex-direction: column; gap: 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 11.5px; padding: 1px 8px; border: 1px solid var(--axis); border-radius: 999px; color: var(--ink-2); }
+.e-id { font-size: 12px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; }
+.e-id .mono { overflow-wrap: anywhere; }
+a { color: var(--ink); text-underline-offset: 2px; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px 18px; margin: 4px 0 0; padding: 12px 0 0; border-top: 1px solid var(--hair); }
+.facts div { min-width: 0; }
+.facts dt { font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 2px 0 0; font-size: 15px; font-variant-numeric: tabular-nums; }
+.facts dd small { font-size: 12px; color: var(--muted); }
+
+.why { border: 1px solid var(--hair); border-radius: 6px; background: var(--surface); padding: 12px 16px; min-width: 0; }
+.why > summary { cursor: pointer; font-weight: 600; }
+.why summary small { font-weight: 400; color: var(--muted); margin-left: 8px; font-variant-numeric: tabular-nums; }
+.intent { margin-top: 10px; max-width: 84ch; }
+.why h3 { margin: 14px 0 6px; font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.claims { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; max-width: 92ch; }
+.claims li { display: grid; grid-template-columns: 1.6em minmax(0, 1fr); gap: 2px 6px; }
+.cl-n { color: var(--muted); font-variant-numeric: tabular-nums; }
+.cl-text { overflow-wrap: anywhere; }
+.cl-meta { grid-column: 2; display: flex; flex-wrap: wrap; gap: 2px 14px; font-size: 12px; color: var(--muted); min-width: 0; }
+.cl-meta .ev { overflow-wrap: anywhere; }
+.vd { color: var(--ink-2); white-space: nowrap; }
+.vd b { font-weight: 600; }
+.vd.ok b { color: var(--good); }
+.vd.bad b { color: var(--bad); }
+.checks { margin-top: 12px; }
+.checks > summary { cursor: pointer; font-size: 12.5px; color: var(--ink-2); }
+.checks .claims { margin-top: 8px; }
+
+.quality { display: flex; flex-direction: column; gap: 8px; border-top: 1px solid var(--hair); padding-top: 12px; }
+.quality h3 { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); }
+.facts.q { border-top: 0; padding-top: 0; margin: 0; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.q-note { font-size: 12px; color: var(--muted); max-width: 86ch; }
+
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-bottom: 8px; }
+.seg { display: inline-flex; border: 1px solid var(--axis); border-radius: 5px; overflow: hidden; }
+.seg button { background: var(--surface); border: 0; padding: 5px 10px; cursor: pointer; font-size: 13px; }
+.seg button + button { border-left: 1px solid var(--axis); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+.btn { background: var(--surface); border: 1px solid var(--axis); border-radius: 5px; padding: 5px 10px; cursor: pointer; font-size: 13px; }
+.btn[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.shown { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.fig { margin: 0; }
+.scroll { overflow: auto; max-height: 74vh; background: var(--surface); border: 1px solid var(--hair); border-radius: 6px; }
+#svg { display: block; }
+#svg.fit { width: 100%; height: auto; }
+figcaption { margin-top: 8px; color: var(--ink-2); font-size: 13px; max-width: 80ch; }
+
+/* graph marks: labels wear ink; the band and outline carry the role */
+.node { cursor: pointer; }
+.node .box { fill: var(--raised); stroke: var(--role-other); stroke-width: 1; }
+.node .band { fill: var(--role-other); }
+.node.r0 .box { stroke: var(--role-parent); stroke-width: 2; } .node.r0 .band { fill: var(--role-parent); }
+.node.r1 .box { stroke: var(--role-child); stroke-width: 1.5; } .node.r1 .band { fill: var(--role-child); }
+.node.r2 .box { stroke: var(--role-skeleton); stroke-width: 1.5; } .node.r2 .band { fill: var(--role-skeleton); }
+.node.r3 .box { stroke: var(--role-context); stroke-width: 1.5; } .node.r3 .band { fill: var(--role-context); }
+.node.y1 .box, .node.y2 .box { stroke-dasharray: 5 3; }
+.node.y3 .box { stroke-dasharray: 1.5 3; }
+.node .name { font-family: var(--font-code); font-size: 11.5px; fill: var(--ink); }
+.node.r0 .name { font-weight: 500; }
+.node .badge { font-family: var(--font-ui); font-size: 9.5px; letter-spacing: 0.04em; fill: var(--muted); text-transform: uppercase; }
+.node:focus { outline: none; }
+.node:focus-visible .box, .node.sel .box { stroke: var(--ink); stroke-width: 2.25; }
+.edge path { fill: none; stroke: var(--ink-2); stroke-width: 1; opacity: 0.42; }
+.edge polygon { fill: var(--ink-2); opacity: 0.55; }
+.edge.w1 path { stroke-dasharray: 5 4; }
+.edge.k1 path, .edge.k2 path { stroke-dasharray: 1.5 4; }
+.edge.weak path { opacity: 0.22; }
+.edge.pc path { stroke: var(--ink); stroke-width: 2; opacity: 0.85; }
+.edge.pc polygon { fill: var(--ink); opacity: 0.95; }
+.edge .mult { font-family: var(--font-ui); font-size: 10px; fill: var(--ink-2); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; }
+#svg.dim .node:not(.hi) { opacity: 0.25; }
+#svg.dim .edge:not(.hi) { opacity: 0.1; }
+#svg.dim .edge.hi path { stroke: var(--ink); opacity: 1; stroke-width: 1.75; }
+#svg.dim .edge.hi polygon { fill: var(--ink); opacity: 1; }
+@media (prefers-reduced-motion: no-preference) { .node, .edge { transition: opacity 120ms; } }
+
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 10px; font-size: 12px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend svg { flex: none; }
+.lg-box { fill: var(--raised); stroke-width: 1.5; }
+.lg-line { stroke: var(--ink-2); fill: none; }
+
+.detail { border: 1px solid var(--hair); border-radius: 6px; background: var(--surface); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.detail h3 { font-family: var(--font-code); font-weight: 500; font-size: 14px; overflow-wrap: anywhere; }
+.d-sub { color: var(--ink-2); font-size: 13px; overflow-wrap: anywhere; }
+.d-facts { display: flex; flex-wrap: wrap; gap: 4px 20px; font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.d-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px 24px; }
+.d-cols h4 { margin: 0 0 4px; font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.d-cols ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; max-height: 220px; overflow-y: auto; }
+.jump { background: none; border: 0; padding: 2px 0; cursor: pointer; text-align: left; font-family: var(--font-code); font-size: 12px; text-decoration: underline; text-decoration-color: var(--axis); text-underline-offset: 2px; overflow-wrap: anywhere; }
+.d-cols li small { color: var(--muted); font-size: 11.5px; margin-left: 6px; }
+.none { color: var(--muted); font-size: 12.5px; }
+
+.table-view { border-top: 1px solid var(--hair); padding-top: 10px; }
+.table-view summary { cursor: pointer; font-size: 13px; color: var(--ink-2); }
+.tscroll { overflow-x: auto; margin-top: 8px; }
+table { border-collapse: collapse; font-size: 12.5px; width: 100%; }
+th, td { text-align: left; padding: 4px 12px 4px 0; border-bottom: 1px solid var(--hair); white-space: nowrap; }
+th { font-size: 11px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.mono { font-family: var(--font-code); font-size: 12px; }
+.err { color: var(--ink); border: 1px solid var(--ink); border-radius: 6px; padding: 10px 12px; }
+</style>
+
+<header class="top">
+  <h1>Library decomposition graphs</h1>
+  <p class="lede">Each graph shows the declarations that one library entry copies and which of them names which. An arrow from A to B means the text of A mentions B. The mentions were found by a lexer in the source text. They are not dependencies checked by a prover.</p>
+  <p class="totals" id="totals"></p>
+</header>
+
+<div class="layout">
+  <aside class="rail" aria-label="Entries">
+    <div class="filters">
+      <div><label for="f-q">Find</label><input id="f-q" type="search" placeholder="title, source or id" autocomplete="off"></div>
+      <div class="row2">
+        <div><label for="f-lang">Language</label><select id="f-lang"></select></div>
+        <div><label for="f-move">Move</label><select id="f-move"></select></div>
+      </div>
+      <div><label for="f-sort">Order</label><select id="f-sort">
+        <option value="">By entry id</option>
+        <option value="auto">Most children closed by automation alone</option>
+        <option value="reused">Most children used elsewhere</option>
+        <option value="glue">Smallest parent share of lines</option>
+      </select></div>
+      <p class="count" id="f-count"></p>
+    </div>
+    <ol class="list" id="list"></ol>
+  </aside>
+
+  <main class="pane">
+    <section class="entry-head">
+      <div class="chips" id="chips"></div>
+      <h2 id="e-title"></h2>
+      <p class="e-id"><span class="mono" id="e-id"></span><a id="e-link" target="_blank" rel="noopener">Parent at the source</a></p>
+      <dl class="facts" id="facts"></dl>
+      <div class="quality">
+        <h3>Candidate quality numbers</h3>
+        <dl class="facts q" id="qfacts"></dl>
+        <p class="q-note">These three describe the entry. None has been tested as a measure of how good a decomposition is. "Automation alone" is read from the tactic names in each child's proof.</p>
+      </div>
+    </section>
+
+    <details class="why" id="why" open>
+      <summary>Why it is a good decomposition <small id="why-count"></small></summary>
+      <div id="why-body"></div>
+    </details>
+
+    <section>
+      <div class="toolbar">
+        <div class="seg" role="group" aria-label="Which declarations to draw">
+          <button type="button" id="v-core" aria-pressed="false">Decomposition only</button>
+          <button type="button" id="v-all" aria-pressed="false">All stored</button>
+        </div>
+        <button type="button" class="btn" id="fit" aria-pressed="false">Fit to width</button>
+        <span class="shown" id="shown"></span>
+      </div>
+      <figure class="fig">
+        <div class="scroll" id="scroll"><svg id="svg" role="img" xmlns="http://www.w3.org/2000/svg"></svg></div>
+        <figcaption id="cap"></figcaption>
+      </figure>
+      <div class="legend" aria-label="Legend">
+        <span><svg width="26" height="14"><rect class="lg-box" x="1" y="1" width="24" height="12" rx="3" style="stroke:var(--role-parent);stroke-width:2"/><rect x="1" y="1" width="4" height="12" rx="2" style="fill:var(--role-parent)"/></svg>Parent</span>
+        <span><svg width="26" height="14"><rect class="lg-box" x="1" y="1" width="24" height="12" rx="3" style="stroke:var(--role-child)"/><rect x="1" y="1" width="4" height="12" rx="2" style="fill:var(--role-child)"/></svg>Child</span>
+        <span><svg width="26" height="14"><rect class="lg-box" x="1" y="1" width="24" height="12" rx="3" style="stroke:var(--role-context)"/><rect x="1" y="1" width="4" height="12" rx="2" style="fill:var(--role-context)"/></svg>Context site</span>
+        <span><svg width="26" height="14"><rect class="lg-box" x="1" y="1" width="24" height="12" rx="3" style="stroke:var(--role-skeleton)"/><rect x="1" y="1" width="4" height="12" rx="2" style="fill:var(--role-skeleton)"/></svg>Declared inside the parent site</span>
+        <span><svg width="26" height="14"><rect class="lg-box" x="1" y="1" width="24" height="12" rx="3" style="stroke:var(--role-other);stroke-width:1"/><rect x="1" y="1" width="4" height="12" rx="2" style="fill:var(--role-other)"/></svg>Other declaration</span>
+        <span><svg width="26" height="14"><rect class="lg-box" x="1" y="1" width="24" height="12" rx="3" style="stroke:var(--ink-2);stroke-dasharray:5 3"/></svg>Step or region, not a declaration</span>
+        <span><svg width="26" height="14"><rect class="lg-box" x="1" y="1" width="24" height="12" rx="6" style="stroke:var(--ink-2)"/></svg>Unnamed subgoal</span>
+        <span><svg width="30" height="14"><line class="lg-line" x1="1" y1="7" x2="29" y2="7" style="stroke:var(--ink);stroke-width:2"/></svg>Parent cites child</span>
+        <span><svg width="30" height="14"><line class="lg-line" x1="1" y1="7" x2="29" y2="7"/></svg>Mentioned in a proof or body</span>
+        <span><svg width="30" height="14"><line class="lg-line" x1="1" y1="7" x2="29" y2="7" style="stroke-dasharray:5 4"/></svg>Mentioned in the statement only</span>
+      </div>
+    </section>
+
+    <section class="detail" id="detail" aria-live="polite"></section>
+
+    <details class="table-view">
+      <summary>Declarations in this drawing, as a table</summary>
+      <div class="tscroll"><table id="tbl"></table></div>
+    </details>
+  </main>
+</div>
+
+<script id="graph-data" type="application/json">__DATA__</script>
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  function fail(msg) {
+    var d = $('detail');
+    if (d) d.innerHTML = '<p class="err">The page could not draw this graph: ' + esc(String(msg)) + '</p>';
+  }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  window.addEventListener('error', function (ev) { fail(ev.message); });
+
+  var DATA = JSON.parse($('graph-data').textContent);
+  var ENT = DATA.entries;
+  var ROLE = ['Parent', 'Child', 'Declared inside the parent site', 'Context site', 'Other declaration'];
+  var ROLE_SHORT = ['parent', 'child', 'in parent site', 'context', 'other'];
+  var TYPE = ['declaration', 'step inside a proof', 'region of a file', 'not declared in the copied files', 'unnamed subgoal'];
+  var CLS = { theorem: 'thm', definition: 'def', type: 'type', instance: 'inst', assumption: 'asm', other: 'cmd' };
+  var WHERE = ['proof or body', 'statement', 'statement and body', ''];
+  var MATCH = { exact: 'exact name', scoped: 'name in scope', opened: 'opened namespace', 'file-qualified': 'file-qualified name',
+    suffix: 'name suffix', field: 'field notation', last: 'last component only', local: 'local step', external: 'outside the copied files' };
+  var WEAK = { suffix: 1, field: 1, last: 1 };
+  var nf = new Intl.NumberFormat('en-US');
+
+  var state = { cur: 0, modeUser: null, fit: false, pinned: null, shown: [] };
+  var view = null;      // current layout
+  var nodeEls = [], edgeEls = [];
+
+  // ---------- layout ----------
+  var CH = 6.95, PADL = 12, PADR = 10, BADGE = 30, NH = 24, GAPY = 9, GAPX = 76, MARGIN = 18, MAXCH = 34;
+
+  function trunc(s) { return s.length > MAXCH ? s.slice(0, MAXCH - 1) + '…' : s; }
+
+  function layout(ent, mode) {
+    var N = ent.n, idx = [], map = {};
+    N.forEach(function (nd, i) { if (mode === 'all' || nd.r !== 4) { map[i] = idx.length; idx.push(i); } });
+    var n = idx.length, edges = [];
+    ent.e.forEach(function (e) {
+      if (map[e[0]] !== undefined && map[e[1]] !== undefined && e[0] !== e[1]) edges.push({ s: map[e[0]], t: map[e[1]], e: e, back: false });
+    });
+    var out = [], inn = [], v, i;
+    for (v = 0; v < n; v++) { out.push([]); inn.push([]); }
+    edges.forEach(function (ed, k) { out[ed.s].push(k); inn[ed.t].push(k); });
+
+    // break cycles by depth-first search, parent first
+    var st = new Uint8Array(n), order = [];
+    var roots = []; for (v = 0; v < n; v++) roots.push(v);
+    roots.sort(function (a, b) { return N[idx[a]].r - N[idx[b]].r || a - b; });
+    roots.forEach(function (r) {
+      if (st[r]) return;
+      var stack = [[r, 0]]; st[r] = 1;
+      while (stack.length) {
+        var top = stack[stack.length - 1], x = top[0];
+        if (top[1] < out[x].length) {
+          var k = out[x][top[1]++], w = edges[k].t;
+          if (st[w] === 1) edges[k].back = true;
+          else if (st[w] === 0) { st[w] = 1; stack.push([w, 0]); }
+        } else { st[x] = 2; stack.pop(); order.push(x); }
+      }
+    });
+    order.reverse();
+
+    // longest-path layers
+    var layer = new Int32Array(n);
+    order.forEach(function (x) {
+      out[x].forEach(function (k) { if (!edges[k].back && layer[edges[k].t] < layer[x] + 1) layer[edges[k].t] = layer[x] + 1; });
+    });
+    // a source other than the parent sits just left of what it names
+    for (v = 0; v < n; v++) {
+      if (N[idx[v]].r === 0) continue;
+      var hasIn = inn[v].some(function (k) { return !edges[k].back; });
+      var outs = out[v].filter(function (k) { return !edges[k].back; });
+      if (!hasIn && outs.length) {
+        var m = Infinity; outs.forEach(function (k) { m = Math.min(m, layer[edges[k].t]); });
+        layer[v] = Math.max(0, m - 1);
+      }
+    }
+    var L = 0; for (v = 0; v < n; v++) L = Math.max(L, layer[v] + 1);
+    var layers = []; for (i = 0; i < L; i++) layers.push([]);
+    for (v = 0; v < n; v++) layers[layer[v]].push(v);
+    layers.forEach(function (a) {
+      a.sort(function (x, y) {
+        var A = N[idx[x]], B = N[idx[y]];
+        return A.r - B.r || (A.p === undefined ? 99 : A.p) - (B.p === undefined ? 99 : B.p) || (A.a || 0) - (B.a || 0) || x - y;
+      });
+    });
+    var pos = new Float64Array(n);
+    function place(a) { a.forEach(function (x, j) { pos[x] = j - (a.length - 1) / 2; }); }
+    layers.forEach(place);
+    function bary(x, list, end) {
+      var s = 0, c = 0;
+      list.forEach(function (k) { var w = edges[k][end]; if (layer[w] !== layer[x]) { s += pos[w]; c++; } });
+      return c ? s / c : null;
+    }
+    for (var it = 0; it < 8; it++) {
+      var fwd = it % 2 === 0;
+      var seq = fwd ? layers.slice(1) : layers.slice(0, -1).reverse();
+      seq.forEach(function (a) {
+        var b = {};
+        a.forEach(function (x) { var mm = fwd ? bary(x, inn[x], 's') : bary(x, out[x], 't'); b[x] = mm === null ? pos[x] : mm; });
+        a.sort(function (x, y) { return b[x] - b[y] || x - y; });
+        place(a);
+      });
+    }
+
+    // coordinates
+    var label = [], width = [];
+    for (v = 0; v < n; v++) {
+      var nd = N[idx[v]], lab = trunc(nd.s);
+      label.push(lab);
+      width.push(Math.ceil(PADL + (nd.c ? BADGE : 0) + lab.length * CH + PADR));
+    }
+    var maxRows = 1, X = [], x0 = MARGIN;
+    layers.forEach(function (a) {
+      maxRows = Math.max(maxRows, a.length);
+      var wmax = 0; a.forEach(function (x) { wmax = Math.max(wmax, width[x]); });
+      X.push(x0); x0 += wmax + GAPX;
+    });
+    var W = x0 - GAPX + MARGIN, H = MARGIN * 2 + maxRows * (NH + GAPY) - GAPY;
+    var nx = new Float64Array(n), ny = new Float64Array(n);
+    for (v = 0; v < n; v++) { nx[v] = X[layer[v]]; ny[v] = MARGIN + (pos[v] + (maxRows - 1) / 2) * (NH + GAPY); }
+    return { ent: ent, idx: idx, n: n, edges: edges, out: out, inn: inn, layer: layer, label: label, width: width, nx: nx, ny: ny, W: W, H: H };
+  }
+
+  // ---------- drawing ----------
+  function draw() {
+    var ent = ENT[state.cur];
+    var mode = state.modeUser || (ent.n.length <= 45 ? 'all' : 'core');
+    view = layout(ent, mode);
+    var V = view, N = ent.n, parts = [], k, v;
+
+    for (k = 0; k < V.edges.length; k++) {
+      var ed = V.edges[k], e = ed.e, s = ed.s, t = ed.t;
+      var sx = V.nx[s] + V.width[s], sy = V.ny[s] + NH / 2, ty = V.ny[t] + NH / 2, tx, d, head;
+      if (V.nx[t] > V.nx[s]) {
+        tx = V.nx[t];
+        var c = Math.max(28, (tx - sx) * 0.5);
+        d = 'M' + sx + ',' + sy + ' C' + (sx + c) + ',' + sy + ' ' + (tx - c) + ',' + ty + ' ' + (tx - 6) + ',' + ty;
+        head = tx + ',' + ty + ' ' + (tx - 7) + ',' + (ty - 3.2) + ' ' + (tx - 7) + ',' + (ty + 3.2);
+      } else {                      // same column or a cycle: loop round the right-hand side
+        tx = V.nx[t] + V.width[t];
+        var bulge = 34 + Math.min(60, Math.abs(ty - sy) * 0.25);
+        var far = Math.max(sx, tx) + bulge;
+        d = 'M' + sx + ',' + sy + ' C' + far + ',' + sy + ' ' + far + ',' + ty + ' ' + (tx + 6) + ',' + ty;
+        head = tx + ',' + ty + ' ' + (tx + 7) + ',' + (ty - 3.2) + ' ' + (tx + 7) + ',' + (ty + 3.2);
+      }
+      var cls = 'edge k' + e[2] + ' w' + e[3];
+      var pc = N[V.idx[s]].r === 0 && N[V.idx[t]].r === 1 && e[2] === 0;
+      if (pc) cls += ' pc';
+      if (WEAK[e[6]]) cls += ' weak';
+      var mult = e[4] + e[5];
+      parts.push('<g class="' + cls + '" data-k="' + k + '"><path d="' + d + '"/><polygon points="' + head + '"/>' +
+        (pc && mult > 1 && V.nx[t] > V.nx[s] ? '<text class="mult" x="' + (tx - 12) + '" y="' + (ty - 5) + '" text-anchor="end">×' + mult + '</text>' : '') + '</g>');
+    }
+    for (v = 0; v < V.n; v++) {
+      var nd = N[V.idx[v]], x = V.nx[v], y = V.ny[v], w = V.width[v];
+      var rx = nd.y === 4 ? NH / 2 : 4;
+      var tx0 = x + PADL + (nd.c ? BADGE : 0);
+      parts.push('<g class="node r' + nd.r + ' y' + nd.y + '" data-v="' + v + '" tabindex="0" role="button" aria-label="' +
+        esc(ROLE_SHORT[nd.r] + ': ' + (nd.f || nd.s)) + '">' +
+        '<rect class="box" x="' + x + '" y="' + y + '" width="' + w + '" height="' + NH + '" rx="' + rx + '"/>' +
+        (nd.y === 4 ? '' : '<rect class="band" x="' + x + '" y="' + y + '" width="4" height="' + NH + '" rx="2"/>') +
+        (nd.c ? '<text class="badge" x="' + (x + PADL) + '" y="' + (y + 15.5) + '">' + (CLS[nd.c] || '') + '</text>' : '') +
+        '<text class="name" x="' + tx0 + '" y="' + (y + 16) + '">' + esc(V.label[v]) + '</text>' +
+        '<title>' + esc(nd.f || nd.s) + '</title></g>');
+    }
+    var svg = $('svg');
+    svg.setAttribute('viewBox', '0 0 ' + V.W + ' ' + V.H);
+    if (state.fit) { svg.removeAttribute('width'); svg.removeAttribute('height'); }
+    else { svg.setAttribute('width', V.W); svg.setAttribute('height', V.H); }
+    svg.classList.toggle('fit', state.fit);
+    svg.classList.remove('dim');
+    svg.innerHTML = parts.join('');
+    nodeEls = [].slice.call(svg.querySelectorAll('.node'));
+    edgeEls = [].slice.call(svg.querySelectorAll('.edge'));
+
+    var counts = [0, 0, 0, 0, 0], sub = 0;
+    V.idx.forEach(function (i) { counts[N[i].r]++; if (N[i].y === 4) sub++; });
+    var pv = V.idx.findIndex(function (i) { return N[i].r === 0; });
+    var pname = pv >= 0 ? N[V.idx[pv]].s : ent.id;
+    var cap = 'The parent ' + pname + ' with ' + counts[1] + (counts[1] === 1 ? ' child' : ' children') +
+      (sub ? ' (' + sub + ' of them unnamed subgoals)' : '') +
+      (counts[3] ? ', ' + counts[3] + ' context ' + (counts[3] === 1 ? 'site' : 'sites') : '') +
+      (counts[4] ? ' and ' + counts[4] + ' other ' + (counts[4] === 1 ? 'declaration' : 'declarations') + ' of the copied files that lie between them' : '') +
+      '. Read left to right: an arrow runs from a declaration to one its text names.';
+    $('cap').textContent = cap;
+    svg.setAttribute('aria-label', cap);
+    $('shown').textContent = 'Drawing ' + V.n + ' of ' + ent.n.length + ' stored declarations, ' + V.edges.length + ' of ' + ent.e.length + ' edges';
+    var other = ent.n.filter(function (x) { return x.r === 4; }).length;
+    $('v-core').textContent = 'Decomposition only (' + (ent.n.length - other) + ')';
+    $('v-all').textContent = 'All stored (' + ent.n.length + ')';
+    $('v-core').setAttribute('aria-pressed', mode === 'core');
+    $('v-all').setAttribute('aria-pressed', mode === 'all');
+    $('fit').setAttribute('aria-pressed', state.fit);
+    $('scroll').scrollLeft = 0; $('scroll').scrollTop = 0;
+    state.pinned = null;
+    showDetail(pv >= 0 ? pv : 0);
+    drawTable();
+  }
+
+  function highlight(v) {
+    var svg = $('svg');
+    if (v === null) {
+      svg.classList.remove('dim');
+      nodeEls.forEach(function (el) { el.classList.remove('hi'); });
+      edgeEls.forEach(function (el) { el.classList.remove('hi'); });
+      return;
+    }
+    var keep = {}; keep[v] = 1;
+    edgeEls.forEach(function (el, k) {
+      var ed = view.edges[k], on = ed.s === v || ed.t === v;
+      el.classList.toggle('hi', on);
+      if (on) { keep[ed.s] = 1; keep[ed.t] = 1; }
+    });
+    nodeEls.forEach(function (el, i) { el.classList.toggle('hi', !!keep[i]); });
+    svg.classList.add('dim');
+  }
+
+  function edgeNote(e) {
+    var bits = [];
+    if (e[2] === 1) return 'contains';
+    if (e[2] === 2) return 'subgoal of the parent';
+    bits.push(WHERE[e[3]]);
+    var m = e[4] + e[5]; if (m > 1) bits.push(m + ' mentions');
+    if (e[7]) bits.push('first at line ' + e[7]);
+    if (e[6] && e[6] !== 'exact') bits.push('matched by ' + (MATCH[e[6]] || e[6]));
+    return bits.join(', ');
+  }
+
+  function showDetail(v) {
+    var V = view, ent = V.ent, nd = ent.n[V.idx[v]];
+    nodeEls.forEach(function (el, i) { el.classList.toggle('sel', i === v); });
+    var kind = nd.y === 0 ? (nd.k ? nd.k : 'declaration') : TYPE[nd.y];
+    var where = nd.p !== undefined ? ent.files[nd.p] + (nd.a ? ', lines ' + nd.a + (nd.b && nd.b !== nd.a ? '–' + nd.b : '') : '') : '';
+    var facts = [];
+    if (nd.u !== undefined) facts.push('Used by ' + nf.format(nd.u) + ' declaration' + (nd.u === 1 ? '' : 's') + ' of the copied files');
+    if (nd.d !== undefined) facts.push('Uses ' + nf.format(nd.d));
+    if (nd.h !== undefined) facts.push('Longest chain below it: ' + nd.h);
+    if (nd.rec) facts.push('Mentions its own name');
+    if (nd.cyc) facts.push('Lies on a cycle of mentions');
+    if (nd.q) facts.push('Found by: ' + nd.q);
+    if (nd.g) facts.push('Flags: ' + nd.g.join(', '));
+    function side(list, end, title, empty) {
+      var rows = list.map(function (k) { return V.edges[k]; });
+      rows.sort(function (a, b) { return ent.n[V.idx[a[end]]].r - ent.n[V.idx[b[end]]].r || a[end] - b[end]; });
+      var h = '<div><h4>' + title + ' (' + rows.length + ')</h4>';
+      if (!rows.length) return h + '<p class="none">' + empty + '</p></div>';
+      return h + '<ul>' + rows.map(function (ed) {
+        var o = ent.n[V.idx[ed[end]]];
+        return '<li><button type="button" class="jump" data-v="' + ed[end] + '">' + esc(o.s) + '</button><small>' +
+          esc(ROLE_SHORT[o.r] + '; ' + edgeNote(ed.e)) + '</small></li>';
+      }).join('') + '</ul></div>';
+    }
+    $('detail').innerHTML =
+      '<h3>' + esc(nd.f || nd.s) + '</h3>' +
+      '<p class="d-sub">' + esc(ROLE[nd.r] + ' · ' + kind + (where ? ' · ' + where : '')) + '</p>' +
+      (facts.length ? '<p class="d-facts">' + facts.map(function (f) { return '<span>' + esc(f) + '</span>'; }).join('') + '</p>' : '') +
+      '<div class="d-cols">' + side(V.out[v], 't', 'Its text names', 'Nothing in this drawing.') +
+      side(V.inn[v], 's', 'Named by', 'Nothing in this drawing.') + '</div>';
+  }
+
+  function drawTable() {
+    var V = view, ent = V.ent, rows = [];
+    for (var v = 0; v < V.n; v++) rows.push(v);
+    rows.sort(function (a, b) {
+      var A = ent.n[V.idx[a]], B = ent.n[V.idx[b]];
+      return A.r - B.r || (A.p || 0) - (B.p || 0) || (A.a || 0) - (B.a || 0);
+    });
+    var num = function (x) { return x === undefined ? '' : nf.format(x); };
+    $('tbl').innerHTML = '<thead><tr><th>Name</th><th>Role</th><th>Kind</th><th>File</th><th>Lines</th><th class="num">Used by</th><th class="num">Uses</th><th class="num">Chain below</th></tr></thead><tbody>' +
+      rows.map(function (v) {
+        var nd = ent.n[V.idx[v]];
+        return '<tr><td class="mono">' + esc(nd.s) + '</td><td>' + ROLE_SHORT[nd.r] + '</td><td>' + esc(nd.k || TYPE[nd.y]) + '</td><td class="mono">' +
+          esc(nd.p !== undefined ? ent.files[nd.p] : '') + '</td><td>' + (nd.a ? nd.a + '–' + nd.b : '') + '</td><td class="num">' + num(nd.u) +
+          '</td><td class="num">' + num(nd.d) + '</td><td class="num">' + num(nd.h) + '</td></tr>';
+      }).join('') + '</tbody>';
+  }
+
+  // ---------- entry head and list ----------
+  function drawHead() {
+    var ent = ENT[state.cur], fx = ent.fx;
+    $('chips').innerHTML = [ent.l, ent.m, ent.s, ent.src].map(function (c) { return '<span class="chip">' + esc(c) + '</span>'; }).join('');
+    $('e-title').textContent = ent.t;
+    $('e-id').textContent = ent.id;
+    var a = $('e-link');
+    if (ent.u) { a.href = ent.u; a.hidden = false; } else { a.hidden = true; }
+    var na = '<small>not computed</small>';
+    var facts = [
+      ['Children', fx.named === null ? na : nf.format(fx.named) + ' named' + (fx.sub ? ' <small>+ ' + fx.sub + ' subgoals</small>' : '')],
+      ['Cited by the parent', fx.fan === null || fx.named === null ? na : fx.fan + ' <small>of ' + fx.named + '</small>'],
+      ['Longest chain below', fx.depth === null ? na : nf.format(fx.depth) + ' <small>declarations</small>'],
+      ['Stored graph', nf.format(ent.n.length) + ' <small>declarations, ' + nf.format(ent.e.length) + ' edges</small>']
+    ];
+    var tiles = function (rows) { return rows.map(function (f) { return '<div><dt>' + f[0] + '</dt><dd>' + f[1] + '</dd></div>'; }).join(''); };
+    $('facts').innerHTML = tiles(facts);
+    var pct = function (x) { return Math.round(x * 100) + '%'; };
+    $('qfacts').innerHTML = tiles([
+      ['Children closed by automation alone', fx.proofs ? fx.auto + ' <small>of ' + fx.proofs + ' child proofs read, ' + pct(fx.auto / fx.proofs) + '</small>' : '<small>no child proof was read</small>'],
+      ['Children used elsewhere', fx.reused === null || !fx.decl ? na : fx.reused + ' <small>of ' + fx.decl + ' declared children, ' + pct(fx.reused / fx.decl) + '</small>'],
+      ['Parent share of lines', fx.glue === null ? na : pct(fx.glue) + ' <small>of parent plus children</small>']
+    ]);
+    drawWhy(ent);
+  }
+
+  // ---------- why the entry is a good decomposition: its intent and its claims with their verdicts ----------
+  var EVKIND = { 'author-statement': 'the authors say so', measurement: 'measured', 'known-use': 'used elsewhere', check: 'checked by a tool' };
+  var VERDICT = { verified: ['✓', 'verified', 'ok'], refuted: ['✕', 'refuted', 'bad'],
+    unverifiable: ['?', 'could not be verified', ''], unverified: ['–', 'not checked', ''] };
+  function md(s) { return esc(s).replace(/`([^`]+)`/g, '<code>$1</code>'); }
+  function evidence(ev) {
+    if (!ev) return '';
+    if (/^https?:\/\/\S+$/.test(ev)) return '<a href="' + esc(ev) + '" target="_blank" rel="noopener">evidence at the source</a>';
+    return '<span class="ev">' + md(ev).replace(/https?:\/\/[^\s<)]+/g, function (u) {
+      return '<a href="' + u + '" target="_blank" rel="noopener">source</a>';
+    }) + '</span>';
+  }
+  function claimRow(c) {
+    var v = VERDICT[c[4]] || VERDICT.unverified;
+    return '<li><span class="cl-n">' + c[0] + '</span><span class="cl-text">' + md(c[2]) + '</span><span class="cl-meta">' +
+      '<span class="vd ' + v[2] + '"><b aria-hidden="true">' + v[0] + '</b> ' + v[1] + '</span><span>' + (EVKIND[c[1]] || esc(c[1])) + '</span>' +
+      evidence(c[3]) + '</span></li>';
+  }
+  function drawWhy(ent) {
+    var cl = ent.cl || [];
+    var main = cl.filter(function (c) { return c[1] !== 'check'; }), chk = cl.filter(function (c) { return c[1] === 'check'; });
+    var ok = function (a) { return a.filter(function (c) { return c[4] === 'verified'; }).length; };
+    $('why-count').textContent = cl.length ? cl.length + (cl.length === 1 ? ' claim, ' : ' claims, ') + ok(cl) + ' verified' : 'no claims recorded';
+    var h = '<p class="intent">' + (ent.w && ent.w !== 'TODO' ? md(ent.w) : 'No intent is recorded for this entry.') + '</p>';
+    if (main.length) h += '<h3>What supports it</h3><ol class="claims">' + main.map(claimRow).join('') + '</ol>';
+    if (chk.length) h += '<details class="checks"><summary>' + chk.length + (chk.length === 1 ? ' structural check, ' : ' structural checks, ') + ok(chk) +
+      ' verified: the declarations exist, hold no sorry, and have the stated size</summary><ol class="claims">' + chk.map(claimRow).join('') + '</ol></details>';
+    $('why-body').innerHTML = h;
+  }
+
+  // orderings of the list by one of the candidate quality numbers; entries without the number go last
+  var SORT = {
+    auto: { dir: -1, val: function (f) { return f.proofs ? f.auto / f.proofs : null; },
+      show: function (f) { return f.proofs ? f.auto + ' of ' + f.proofs + ' by automation' : 'no child proof read'; } },
+    reused: { dir: -1, val: function (f) { return f.reused !== null && f.decl ? f.reused / f.decl : null; },
+      show: function (f) { return f.reused !== null && f.decl ? f.reused + ' of ' + f.decl + ' used elsewhere' : 'not computed'; } },
+    glue: { dir: 1, val: function (f) { return f.glue; },
+      show: function (f) { return f.glue === null ? 'not computed' : 'parent ' + Math.round(f.glue * 100) + '% of lines'; } }
+  };
+  function matches(ent) {
+    var q = $('f-q').value.trim().toLowerCase(), l = $('f-lang').value, m = $('f-move').value;
+    if (l && ent.l !== l) return false;
+    if (m && ent.m !== m) return false;
+    if (q && (ent.t + ' ' + ent.id + ' ' + ent.src).toLowerCase().indexOf(q) < 0) return false;
+    return true;
+  }
+  function drawList() {
+    state.shown = [];
+    ENT.forEach(function (ent, i) { if (matches(ent)) state.shown.push(i); });
+    var by = $('f-sort').value, key = SORT[by];
+    if (key) {
+      state.shown.sort(function (a, b) {
+        var x = key.val(ENT[a].fx), y = key.val(ENT[b].fx);
+        if (x === null || y === null) return (x === null) - (y === null) || a - b;
+        return key.dir * (x - y) || a - b;
+      });
+    }
+    $('f-count').textContent = state.shown.length + ' of ' + ENT.length + ' graphs';
+    $('list').innerHTML = state.shown.map(function (i) {
+      var ent = ENT[i], extra = key ? key.show(ent.fx) : ent.n.length + ' decl.';
+      return '<li><button type="button" class="item" data-i="' + i + '" aria-current="' + (i === state.cur) + '">' +
+        '<span class="it-title">' + esc(ent.t) + '</span><span class="it-meta">' + esc(ent.l + ' · ' + ent.m + ' · ' + extra) + '</span></button></li>';
+    }).join('') || '<li><p class="none" style="padding:10px 12px">No graph matches these filters.</p></li>';
+  }
+  function select(i, fromHash) {
+    state.cur = i;
+    [].forEach.call($('list').querySelectorAll('.item'), function (b) {
+      var on = +b.getAttribute('data-i') === i;
+      b.setAttribute('aria-current', on);
+      if (on && b.scrollIntoView) b.scrollIntoView({ block: 'nearest' });
+    });
+    drawHead(); draw();
+    if (!fromHash) { try { history.replaceState(null, '', '#' + ENT[i].id); } catch (e) { location.hash = ENT[i].id; } }
+  }
+  function fromHash() {
+    var id = decodeURIComponent((location.hash || '').slice(1));
+    var i = ENT.findIndex(function (e) { return e.id === id; });
+    return i;
+  }
+
+  // ---------- wiring ----------
+  function fillSelect(id, values, all) {
+    $(id).innerHTML = '<option value="">' + all + '</option>' + values.map(function (v) { return '<option>' + esc(v) + '</option>'; }).join('');
+  }
+  var uniq = function (key) { var s = {}; ENT.forEach(function (e) { s[e[key]] = 1; }); return Object.keys(s).sort(); };
+  fillSelect('f-lang', uniq('l'), 'All');
+  fillSelect('f-move', uniq('m'), 'All');
+  ['f-q', 'f-lang', 'f-move', 'f-sort'].forEach(function (id) { $(id).addEventListener('input', drawList); });
+
+  $('list').addEventListener('click', function (ev) {
+    var b = ev.target.closest('.item'); if (b) select(+b.getAttribute('data-i'));
+  });
+  $('list').addEventListener('keydown', function (ev) {
+    if (ev.key !== 'ArrowDown' && ev.key !== 'ArrowUp') return;
+    var at = state.shown.indexOf(state.cur), to = at + (ev.key === 'ArrowDown' ? 1 : -1);
+    if (to < 0 || to >= state.shown.length) return;
+    ev.preventDefault(); select(state.shown[to]);
+    var b = $('list').querySelector('.item[aria-current="true"]'); if (b) b.focus();
+  });
+  $('v-core').addEventListener('click', function () { state.modeUser = 'core'; draw(); });
+  $('v-all').addEventListener('click', function () { state.modeUser = 'all'; draw(); });
+  $('fit').addEventListener('click', function () { state.fit = !state.fit; draw(); });
+
+  var svg = $('svg');
+  function nodeOf(ev) { var g = ev.target.closest ? ev.target.closest('.node') : null; return g ? +g.getAttribute('data-v') : null; }
+  svg.addEventListener('mouseover', function (ev) { var v = nodeOf(ev); if (v !== null) { highlight(v); if (state.pinned === null) showDetail(v); } });
+  svg.addEventListener('mouseout', function (ev) { if (nodeOf(ev) !== null) highlight(state.pinned); });
+  svg.addEventListener('focusin', function (ev) { var v = nodeOf(ev); if (v !== null) { highlight(v); if (state.pinned === null) showDetail(v); } });
+  svg.addEventListener('focusout', function () { highlight(state.pinned); });
+  function pin(v) { state.pinned = state.pinned === v ? null : v; highlight(state.pinned); if (v !== null) showDetail(v); }
+  svg.addEventListener('click', function (ev) { var v = nodeOf(ev); if (v === null) { state.pinned = null; highlight(null); } else pin(v); });
+  svg.addEventListener('keydown', function (ev) {
+    if (ev.key !== 'Enter' && ev.key !== ' ') return;
+    var v = nodeOf(ev); if (v !== null) { ev.preventDefault(); pin(v); }
+  });
+  $('detail').addEventListener('click', function (ev) {
+    var b = ev.target.closest('.jump'); if (!b) return;
+    var v = +b.getAttribute('data-v'); state.pinned = v; highlight(v); showDetail(v);
+    var el = nodeEls[v]; if (el && el.scrollIntoView) el.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  });
+  window.addEventListener('hashchange', function () { var i = fromHash(); if (i >= 0 && i !== state.cur) select(i, true); });
+
+  var M = DATA.meta;
+  $('totals').textContent = nf.format(M.graphs) + ' graphs, ' + nf.format(M.nodes) + ' declarations and ' + nf.format(M.edges) +
+    ' edges. ' + (M.entries - M.graphs) + ' of the ' + M.entries + ' entries are in LaTeX, Markdown or Python and have no graph. Extracted by ' + M.version + '.';
+  try {
+    var start = fromHash();
+    var first = ENT.findIndex(function (e) { return e.id === 'lean-key-invariant-sphere-packing-ad9db4d3'; });
+    state.cur = start >= 0 ? start : Math.max(0, first);
+    drawList();
+    select(state.cur, start >= 0);
+  } catch (err) { fail(err && err.message ? err.message : err); }
+})();
+</script>
