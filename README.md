@@ -83,6 +83,15 @@ nearAI_Isabelle harness, imported rather than copied.
 - `docs/research/survey-I-search-orchestration-2026-11-12.md`: multi-agent
   research architectures, systematic-review and repository-mining methodology,
   curated catalogues, and a harvest protocol with an entry template.
+- `docs/research/survey-J-decomposition-automation-2026-11-15.md`: how the
+  splitting of a goal has been automated outside the LLM harnesses of survey F
+  (proof planning, lemma discovery, cut introduction, learned subgoals,
+  verification-condition splitting, rule catalogues), with the goal features
+  each mechanism keys on.
+- `docs/research/survey-K-decomposition-experiments-2026-11-15.md`: what has
+  been measured about decomposition (oracle experiments, ablations, error
+  rates), about proof structure in human corpora, and about feature and graph
+  representations of goals and proofs; what has not been measured.
 - `papers/`: survey M, anchored on two papers of November 2026 (Turing Agent
   and MathEye). One folder for each of 28 works, with the source and an
   analysis note; `papers/survey-M-results-2026-11-21.md` gives the results
